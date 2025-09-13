@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "ailydian-search",
   "alias": ["www.ailydian.com"],
   "regions": ["fra1", "iad1"],
   "framework": "nextjs",

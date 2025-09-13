@@ -6,8 +6,7 @@ const nextConfig = {
   
   // Vercel optimizations
   experimental: {
-    serverComponentsExternalPackages: ['mongoose', 'bcryptjs'],
-    optimizeCss: true
+    serverComponentsExternalPackages: ['mongoose', 'bcryptjs']
   },
 
   // Image optimization for Vercel
