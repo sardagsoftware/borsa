@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "alias": ["www.ailydian.com"],
   "regions": ["fra1", "iad1"],
   "framework": "nextjs",
   "buildCommand": "npm run build",
@@ -8,8 +7,8 @@
   "installCommand": "npm install",
   "devCommand": "npm run dev",
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://www.ailydian.com/api",
-    "NEXT_PUBLIC_SITE_URL": "https://www.ailydian.com"
+    "NEXT_PUBLIC_API_URL": "https://tourism-pulse-demo.vercel.app/api",
+    "NEXT_PUBLIC_SITE_URL": "https://tourism-pulse-demo.vercel.app"
   },
   "build": {
     "env": {
