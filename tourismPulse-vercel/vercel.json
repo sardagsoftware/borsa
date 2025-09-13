@@ -1,23 +1,16 @@
 {
   "version": 2,
-  "name": "tourismPulse-ai",
-  "alias": ["travel.ailaydian.com", "www.travel.ailaydian.com"],
+  "name": "ailydian-search",
+  "alias": ["www.ailydian.com"],
   "regions": ["fra1", "iad1"],
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "functions": {
-    "app/api/**/*.ts": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 30
-    }
-  },
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://travel.ailaydian.com/api",
-    "NEXT_PUBLIC_SITE_URL": "https://travel.ailaydian.com",
-    "NEXT_PUBLIC_VERCEL_ENV": "@vercel-env"
+    "NEXT_PUBLIC_API_URL": "https://www.ailydian.com/api",
+    "NEXT_PUBLIC_SITE_URL": "https://www.ailydian.com"
   },
   "build": {
     "env": {
@@ -56,7 +49,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://travel.ailaydian.com"
+          "value": "https://www.ailydian.com"
         },
         {
           "key": "Access-Control-Allow-Methods",
