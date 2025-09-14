@@ -19,7 +19,7 @@ export function applySecurityHeaders(response: NextResponse, nonce?: string): Ne
   response.headers.set('Server', 'AILYDIAN');
   
   // Copyright notice in headers
-  response.headers.set('X-Copyright', process.env.OWNERSHIP_COPYRIGHT || '© Emrah Şardağ. All rights reserved.');
+  response.headers.set('X-Copyright', process.env.OWNERSHIP_COPYRIGHT || '(c) 2024-2025 Emrah Sardag - AILYDIAN');
   
   return response;
 }
@@ -38,7 +38,7 @@ export function getApiSecurityHeaders(): Record<string, string> {
     'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
     'Cache-Control': 'no-store, no-cache, must-revalidate',
     'Pragma': 'no-cache',
-    'X-Copyright': process.env.OWNERSHIP_COPYRIGHT || '© Emrah Şardağ. All rights reserved.'
+    'X-Copyright': process.env.OWNERSHIP_COPYRIGHT || '(c) 2024-2025 Emrah Sardag - AILYDIAN'
   };
 }
 
@@ -62,5 +62,5 @@ export const SECURITY_HEADERS_MIDDLEWARE = {
   'X-Permitted-Cross-Domain-Policies': 'none',
   'Clear-Site-Data': '"cache", "cookies", "storage"', // Only on logout
   'Feature-Policy': "geolocation 'none'; microphone 'none'; camera 'none'",
-  'X-Copyright': process.env.OWNERSHIP_COPYRIGHT || '© Emrah Şardağ. All rights reserved.'
+  'X-Copyright': process.env.OWNERSHIP_COPYRIGHT || '(c) 2024-2025 Emrah Sardag - AILYDIAN'
 } as const;

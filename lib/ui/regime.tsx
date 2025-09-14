@@ -220,15 +220,15 @@ export function useRegimeStyles() {
   }, [regime, isTransitioning]);
 
   const getRegimeColors = useCallback(() => {
-    switch (regimeData.regime) {
-      case 'volatile':
+    switch (regime) {
+      case 'shock':
         return {
           bg: '#0A0A0D',
           panel: '#0D121B',
           brand1: '#49C6B5',
           accent1: '#FFD166',
         };
-      case 'bull':
+      case 'elevated':
         return {
           bg: '#0A0E15',
           panel: '#0E1420',
