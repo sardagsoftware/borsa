@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
 
 export type Regime = 'calm' | 'elevated' | 'shock';
 
@@ -60,225 +60,47 @@ interface RegimeContextValue {
 const RegimeContext = createContext<RegimeContextValue | null>(null);
 
 interface RegimeProviderProps {
-  children: React.ReactNode;
-  initialRegime?: Regime;
-  config?: Partial<RegimeConfig>;
-  debug?: boolean;
+  children: ReactNode;
 }
 
-export function RegimeProvider({ 
-  children, 
-  initialRegime = 'calm',
-  config: initialConfig = {},
-  debug = false 
-}: RegimeProviderProps) {
-  const [regime, setRegimeState] = useState<Regime>(initialRegime);
+export function RegimeProvider({ children }: RegimeProviderProps) {
+  const [regime, setRegime] = useState<Regime>('calm');
   const [metrics, setMetrics] = useState<MarketMetrics | null>(null);
-  const [config, setConfigState] = useState<RegimeConfig>({ ...DEFAULT_CONFIG, ...initialConfig });
+  const [config, setConfig] = useState<RegimeConfig>(DEFAULT_CONFIG);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [history, setHistory] = useState<Array<{ regime: Regime; timestamp: number; metrics: MarketMetrics }>>([]);
 
-  // Calculate regime based on metrics
-  const calculateRegime = useCallback((metrics: MarketMetrics): Regime => {
-    const { volatility, spread, volume, sentiment } = metrics;
-    const { volatilityThreshold, spreadThreshold, combinedWeight } = config;
-
-    // Calculate weighted score
-    const score = (
-      volatility * combinedWeight.volatility +
-      spread * combinedWeight.spread +
-      volume * combinedWeight.volume +
-      Math.abs(sentiment) * combinedWeight.sentiment
-    );
-
-    // Determine regime based on thresholds
-    if (score >= Math.max(volatilityThreshold.shock, spreadThreshold.shock)) {
-      return 'shock';
-    } else if (score >= Math.max(volatilityThreshold.elevated, spreadThreshold.elevated)) {
-      return 'elevated';
-    } else {
-      return 'calm';
-    }
-  }, [config]);
-
-  // Apply regime to DOM
-  const applyRegimeToDom = useCallback((newRegime: Regime) => {
-    if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute('data-regime', newRegime);
-      
-      if (debug) {
-        console.log(`🎨 Regime changed to: ${newRegime}`);
-      }
-    }
-  }, [debug]);
-
-  // Set regime with transition handling
-  const setRegime = useCallback((newRegime: Regime) => {
-    if (newRegime === regime) return;
-
-    setIsTransitioning(true);
-    setRegimeState(newRegime);
-    applyRegimeToDom(newRegime);
-
-    // Add to history
-    if (metrics) {
-      setHistory(prev => [
-        ...prev.slice(-9), // Keep last 10 entries
-        { regime: newRegime, timestamp: Date.now(), metrics }
-      ]);
-    }
-
-    // Clear transition state after animation
-    setTimeout(() => setIsTransitioning(false), 300);
-  }, [regime, metrics, applyRegimeToDom]);
-
-  // Update metrics and recalculate regime
   const updateMetrics = useCallback((newMetrics: MarketMetrics) => {
     setMetrics(newMetrics);
-    const calculatedRegime = calculateRegime(newMetrics);
-    setRegime(calculatedRegime);
-  }, [calculateRegime, setRegime]);
+    setHistory(prev => [...prev.slice(-49), { regime, timestamp: Date.now(), metrics: newMetrics }]);
+  }, [regime]);
 
-  // Update config
-  const setConfig = useCallback((newConfig: Partial<RegimeConfig>) => {
-    setConfigState(prev => ({ ...prev, ...newConfig }));
+  const handleSetConfig = useCallback((newConfig: Partial<RegimeConfig>) => {
+    setConfig(prev => ({ ...prev, ...newConfig }));
   }, []);
 
-  // Initialize DOM on mount
-  useEffect(() => {
-    applyRegimeToDom(regime);
-  }, [regime, applyRegimeToDom]);
-
-  // Debug mode - expose to window
-  useEffect(() => {
-    if (debug && typeof window !== 'undefined') {
-      (window as any).regimeDebug = {
-        regime,
-        metrics,
-        config,
-        history,
-        setRegime,
-        updateMetrics,
-        setConfig,
-        logCurrentState: () => {
-          console.log('🎨 Current Regime State:', {
-            regime,
-            metrics,
-            config,
-            history: history.slice(-3),
-          });
-        },
-        simulateVolatility: (vol: number) => {
-          updateMetrics({
-            volatility: vol,
-            spread: 0.3,
-            volume: 0.5,
-            liquidity: 0.7,
-            sentiment: 0.1,
-          });
-        },
-        forceRegime: setRegime,
-      };
-    }
-  }, [debug, regime, metrics, config, history, setRegime, updateMetrics, setConfig]);
-
-  const contextValue: RegimeContextValue = {
-    regime,
-    metrics,
-    config,
-    setRegime,
-    updateMetrics,
-    setConfig,
-    isTransitioning,
-    history,
-  };
-
   return (
-    <RegimeContext.Provider value={contextValue}>
+    <RegimeContext.Provider value={{
+      regime,
+      metrics,
+      config,
+      setRegime,
+      updateMetrics,
+      setConfig: handleSetConfig,
+      isTransitioning,
+      history,
+    }}>
       {children}
     </RegimeContext.Provider>
   );
 }
 
-// Hook to use regime context
 export function useRegime() {
   const context = useContext(RegimeContext);
   if (!context) {
     throw new Error('useRegime must be used within a RegimeProvider');
   }
   return context;
-}
-
-// Hook for regime-aware styling
-export function useRegimeStyles() {
-  const { regime, isTransitioning } = useRegime();
-
-  const getRegimeClass = useCallback((baseClass: string = '') => {
-    const regimeClass = `regime-${regime}`;
-    const transitionClass = isTransitioning ? 'regime-transitioning' : '';
-    return [baseClass, regimeClass, transitionClass].filter(Boolean).join(' ');
-  }, [regime, isTransitioning]);
-
-  const getRegimeColors = useCallback(() => {
-    switch (regime) {
-      case 'shock':
-        return {
-          bg: '#0A0A0D',
-          panel: '#0D121B',
-          brand1: '#49C6B5',
-          accent1: '#FFD166',
-        };
-      case 'elevated':
-        return {
-          bg: '#0A0E15',
-          panel: '#0E1420',
-          brand1: '#58DAC9',
-          accent1: '#E6FF63',
-        };
-      case 'calm':
-      default:
-        return {
-          bg: '#0B1016',
-          panel: '#111926',
-          brand1: '#68E7D7',
-          accent1: '#C7FF5A',
-        };
-    }
-  }, [regime]);
-
-  return {
-    regime,
-    isTransitioning,
-    getRegimeClass,
-    getRegimeColors,
-  };
-}
-
-// Utility functions
-export function setRegimeGlobal(regime: Regime) {
-  if (typeof document !== 'undefined') {
-    document.documentElement.setAttribute('data-regime', regime);
-  }
-}
-
-export function getRegimeFromMetrics(metrics: MarketMetrics, config = DEFAULT_CONFIG): Regime {
-  const { volatility, spread, volume, sentiment } = metrics;
-  const { volatilityThreshold, spreadThreshold, combinedWeight } = config;
-
-  const score = (
-    volatility * combinedWeight.volatility +
-    spread * combinedWeight.spread +
-    volume * combinedWeight.volume +
-    Math.abs(sentiment) * combinedWeight.sentiment
-  );
-
-  if (score >= Math.max(volatilityThreshold.shock, spreadThreshold.shock)) {
-    return 'shock';
-  } else if (score >= Math.max(volatilityThreshold.elevated, spreadThreshold.elevated)) {
-    return 'elevated';
-  } else {
-    return 'calm';
-  }
 }
 
 export { RegimeContext };

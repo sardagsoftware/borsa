@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { 
   Shield, 
   Key, 
@@ -207,7 +206,7 @@ export function VaultManager({
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="exchange">Exchange</Label>
+                <label htmlFor="exchange" className="block text-sm font-medium text-gray-300 mb-1">Exchange</label>
                 <select
                   id="exchange"
                   value={newCredential.exchange}
@@ -224,7 +223,7 @@ export function VaultManager({
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="label">Label</Label>
+                <label htmlFor="label" className="block text-sm font-medium text-gray-300 mb-1">Label</label>
                 <Input
                   id="label"
                   placeholder="e.g., Main Trading Account"
@@ -235,7 +234,7 @@ export function VaultManager({
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="apiKey">API Key</Label>
+              <label htmlFor="apiKey" className="block text-sm font-medium text-gray-300 mb-1">API Key</label>
               <Input
                 id="apiKey"
                 placeholder="Enter your API key"
@@ -245,7 +244,7 @@ export function VaultManager({
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="secretKey">Secret Key</Label>
+              <label htmlFor="secretKey" className="block text-sm font-medium text-gray-300 mb-1">Secret Key</label>
               <Input
                 id="secretKey"
                 type="password"
@@ -310,7 +309,7 @@ export function VaultManager({
                         
                         <div className="mt-3 space-y-2">
                           <div className="flex items-center space-x-2">
-                            <Label className="text-xs text-gray-500 w-16">API Key:</Label>
+                            <span className="text-xs text-gray-500 w-16">API Key:</span>
                             <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono">
                               {credential.apiKey}
                             </code>
@@ -325,7 +324,7 @@ export function VaultManager({
                           </div>
                           
                           <div className="flex items-center space-x-2">
-                            <Label className="text-xs text-gray-500 w-16">Secret:</Label>
+                            <span className="text-xs text-gray-500 w-16">Secret:</span>
                             <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono">
                               {isSecretVisible ? credential.secretKey : '••••••••••••••••'}
                             </code>

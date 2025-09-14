@@ -68,8 +68,8 @@ export default function SmokeTestPage() {
             <Button variant="outline">Outline</Button>
             <Button variant="ghost">Ghost</Button>
             <Button variant="danger">Danger</Button>
-            <Button variant="positive">Positive</Button>
-            <Button variant="negative">Negative</Button>
+            <Button variant="positive">Buy Signal</Button>
+            <Button variant="negative">Sell Signal</Button>
           </div>
 
           <div className="space-y-4">

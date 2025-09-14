@@ -50,7 +50,10 @@ export default function ConnectButton() {
       ].join('\n');
 
       // Sign message
-      const signature = await signMessage({ message });
+      const signature = await signMessage({ 
+        message,
+        account: address as `0x${string}`
+      });
 
       // Verify with server
       const response = await fetch('/api/siwe/verify', {

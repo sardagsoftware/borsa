@@ -43,7 +43,9 @@ const modalVariants = cva(
   }
 );
 
-interface ModalProps extends VariantProps<typeof modalVariants> {
+interface ModalProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof modalVariants> {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
@@ -53,7 +55,6 @@ interface ModalProps extends VariantProps<typeof modalVariants> {
   showCloseButton?: boolean;
   preventBodyScroll?: boolean;
   children: React.ReactNode;
-  className?: string;
 }
 
 export function Modal({
@@ -69,9 +70,13 @@ export function Modal({
   variant,
   className,
   children,
-  ...props
+  id,
+  role,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
 }: ModalProps) {
-  const regimeData = useRegime();
+  const { regime } = useRegime();
 
   // Handle body scroll lock
   useEffect(() => {
@@ -124,8 +129,8 @@ export function Modal({
           {/* Backdrop */}
           <motion.div
             className={`absolute inset-0 transition-all duration-300 ${
-              regimeData.regime === 'volatile' ? 'bg-bg/80 backdrop-blur-md' :
-              regimeData.regime === 'bull' ? 'bg-bg/85 backdrop-blur-lg' :
+              regime === 'shock' ? 'bg-bg/80 backdrop-blur-md' :
+              regime === 'elevated' ? 'bg-bg/85 backdrop-blur-lg' :
               'bg-bg/90 backdrop-blur-xl'
             }`}
             initial={{ opacity: 0 }}
@@ -141,7 +146,7 @@ export function Modal({
               'relative z-10',
               className
             )}
-            data-regime={regimeData.regime}
+            data-regime={regime}
             initial={{ 
               opacity: 0, 
               scale: 0.95,
@@ -164,7 +169,11 @@ export function Modal({
               mass: 0.8
             }}
             onClick={(e) => e.stopPropagation()}
-            {...props}
+            id={id}
+            role={role || "dialog"}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            aria-describedby={ariaDescribedby}
           >
             {/* Header */}
             {(title || showCloseButton) && (
@@ -197,7 +206,7 @@ export function Modal({
                     onClick={onClose}
                     className={`ml-4 p-2 rounded-lg hover:bg-panel/50 text-gray-400 hover:text-gray-200 transition-colors duration-200
                                data-[regime=shock]:hover:text-warn data-[regime=elevated]:hover:text-accent1 data-[regime=calm]:hover:text-brand1`}
-                    data-regime={regimeData.regime}
+                    data-regime={regime}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}

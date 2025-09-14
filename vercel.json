@@ -8,9 +8,6 @@
     "app/api/**/*.ts": {
       "maxDuration": 30
     },
-    "app/api/ai/**/*.ts": {
-      "maxDuration": 60
-    },
     "app/api/trading/**/*.ts": {
       "maxDuration": 60
     },
@@ -41,10 +38,6 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "X-Copyright",
-          "value": "(c) 2024-2025 Emrah Sardag - AILYDIAN"
         }
       ]
     }

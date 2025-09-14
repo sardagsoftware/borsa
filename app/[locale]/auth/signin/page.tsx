@@ -5,10 +5,10 @@ import { signIn, getSession, getProviders } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Eye, EyeOff, Mail, Lock, AlertCircle, TrendingUp, Shield, Bot, BarChart3, Wallet, Globe } from 'lucide-react';
-import Link from 'next/link';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { Turnstile } from '@marsidev/react-turnstile';
 import ConnectionStatus from '@/components/ConnectionStatus';
+import { Link } from '@/i18n/routing';
 import CryptoPriceTicker from '@/components/CryptoPriceTicker';
 import Logo from '@/components/Logo';
 
@@ -112,8 +112,10 @@ export default function SignInPage() {
         throw new Error(result.error === 'CredentialsSignin' ? 'Geçersiz email veya şifre' : result.error);
       }
 
-      // Başarılı giriş
-      router.push('/dashboard');
+      // Başarılı giriş - locale aware redirect
+      const currentLocale = window.location.pathname.split('/')[1] || 'tr';
+      const dashboardPath = currentLocale === 'tr' ? '/dashboard' : `/${currentLocale}/dashboard`;
+      router.push(dashboardPath);
     } catch (error) {
       console.error('Sign in error:', error);
       setError(error instanceof Error ? error.message : (t('errors.general') || 'An error occurred during sign in'));

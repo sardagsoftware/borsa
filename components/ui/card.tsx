@@ -94,7 +94,7 @@ export interface CardProps
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, padding, size, interactive = false, ...props }, ref) => {
-    const regimeData = useRegime()
+    const { regime } = useRegime()
     
     return (
       <div
@@ -105,7 +105,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           size, 
           className 
         }))}
-        data-regime={regimeData.regime}
+        data-regime={regime}
         {...props}
       />
     )

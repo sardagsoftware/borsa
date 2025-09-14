@@ -1,13 +1,12 @@
 import '@testing-library/jest-dom';
 
 // Mock environment variables for testing
-process.env = {
-  ...process.env,
+Object.assign(process.env, {
   NODE_ENV: 'test',
   NEXTAUTH_SECRET: 'test-secret',
   VAULT_ENCRYPTION_KEY: '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef',
-  DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
-};
+  DATABASE_URL: 'postgresql://test:test@localhost:5432/test',
+});
 
 // Global mocks
 Object.defineProperty(window, 'matchMedia', {

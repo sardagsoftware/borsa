@@ -115,7 +115,7 @@ export class IOCEnrichment {
         
         if (stats) {
           const maliciousCount = stats.malicious || 0;
-          const totalEngines = Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0);
+          const totalEngines = Number(Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0));
           const threatScore = totalEngines > 0 ? (maliciousCount / totalEngines) * 100 : 0;
 
           ioc.threat_score = threatScore;
@@ -156,7 +156,7 @@ export class IOCEnrichment {
         
         if (stats) {
           const maliciousCount = stats.malicious || 0;
-          const totalEngines = Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0);
+          const totalEngines = Number(Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0));
           const threatScore = totalEngines > 0 ? (maliciousCount / totalEngines) * 100 : 0;
 
           ioc.threat_score = threatScore;
@@ -200,7 +200,7 @@ export class IOCEnrichment {
         
         if (stats) {
           const maliciousCount = stats.malicious || 0;
-          const totalEngines = Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0);
+          const totalEngines = Number(Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0));
           const threatScore = totalEngines > 0 ? (maliciousCount / totalEngines) * 100 : 0;
 
           ioc.threat_score = threatScore;
@@ -216,6 +216,7 @@ export class IOCEnrichment {
     return ioc;
   }
 
+  // Enrich File Hash
   // Enrich File Hash
   private async enrichFileHash(ioc: any): Promise<any> {
     if (!this.apiKey) {
@@ -235,7 +236,7 @@ export class IOCEnrichment {
         
         if (stats) {
           const maliciousCount = stats.malicious || 0;
-          const totalEngines = Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0);
+          const totalEngines = Number(Object.values(stats).reduce((sum: number, count) => sum + (count as number), 0));
           const threatScore = totalEngines > 0 ? (maliciousCount / totalEngines) * 100 : 0;
 
           ioc.threat_score = threatScore;

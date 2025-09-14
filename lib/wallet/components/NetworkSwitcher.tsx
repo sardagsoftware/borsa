@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useWallet } from '../context';
-import { SUPPORTED_CHAINS } from '../config';
+import { ENABLED_CHAINS as SUPPORTED_CHAINS } from '../config';
 import { useTranslations } from 'next-intl';
 
 export default function NetworkSwitcher() {

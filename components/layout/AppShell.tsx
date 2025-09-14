@@ -30,7 +30,7 @@ export default function AppShell({
   variant = 'default'
 }: AppShellProps) {
   const [mounted, setMounted] = useState(false);
-  const regimeData = useRegime();
+  const { regime } = useRegime();
 
   useEffect(() => {
     setMounted(true);
@@ -67,15 +67,11 @@ export default function AppShell({
   };
 
   const getRegimeClasses = () => {
-    switch (regimeData.regime) {
-      case 'bull':
-        return 'shadow-green-500/20 border-green-500/10';
-      case 'bear': 
-        return 'shadow-red-500/20 border-red-500/10';
-      case 'volatile':
-        return 'shadow-yellow-500/20 border-yellow-500/10';
-      case 'sideways':
-        return 'shadow-gray-500/10 border-gray-500/5';
+    switch (regime) {
+      case 'shock':
+        return 'shadow-shock/20';
+      case 'elevated': 
+        return 'shadow-elevated/20';
       default:
         return 'shadow-soft/10';
     }
@@ -84,7 +80,7 @@ export default function AppShell({
   return (
     <div 
       className={`min-h-screen bg-bg text-text antialiased transition-all duration-500 ${getRegimeClasses()} ${className}`}
-      data-regime={regimeData.regime}
+      data-regime={regime}
     >
       {/* Regime indicator - floating top-right */}
       {showRegimeIndicator && (
@@ -111,8 +107,8 @@ export default function AppShell({
           }}
           className="sticky top-0 z-50 backdrop-blur-md border-b border-panel/20"
           style={{
-            background: regimeData.regime === 'bull' ? 'rgba(var(--panel-rgb), 0.85)' :
-                       regimeData.regime === 'bear' ? 'rgba(var(--panel-rgb), 0.90)' :
+            background: regime === 'shock' ? 'rgba(var(--panel-rgb), 0.85)' :
+                       regime === 'elevated' ? 'rgba(var(--panel-rgb), 0.90)' :
                        'rgba(var(--panel-rgb), 0.95)'
           }}
         >
@@ -134,8 +130,8 @@ export default function AppShell({
         {/* Background pattern based on regime */}
         <div 
           className={`absolute inset-0 opacity-[0.02] pointer-events-none transition-opacity duration-1000 ${
-            regimeData.regime === 'volatile' ? 'bg-warn' : 
-            regimeData.regime === 'bull' ? 'bg-accent1' : 
+            regime === 'shock' ? 'bg-warn' : 
+            regime === 'elevated' ? 'bg-accent1' : 
             'bg-brand1'
           }`}
           style={{

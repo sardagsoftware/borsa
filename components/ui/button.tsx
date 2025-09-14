@@ -137,12 +137,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     disabled,
     ...props 
   }, ref) => {
-    const regimeData = useRegime()
+    const { regime } = useRegime()
     
     return (
       <button
         className={cn(buttonVariants({ variant, size, loading, className }))}
-        data-regime={regimeData.regime}
+        data-regime={regime}
         ref={ref}
         disabled={disabled || loading}
         {...props}

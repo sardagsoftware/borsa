@@ -1,22 +1,3 @@
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * 🛡️ AILYDIAN SECURITY MIDDLEWARE - Enterprise Grade Protection
- * ═══════════════════════════════════════════════════════════════════════════
- * 
- * © 2024-2025 Emrah Şardağ - AILYDIAN Trading Technologies
- * All Rights Reserved. Unauthorized access is prohibited.
- * 
- * Features:
- * • GDPR/KVKK Compliant Headers
- * • Advanced Security Headers (CSP, HSTS, etc.)
- * • Copyright Protection
- * • Bot Detection & Rate Limiting
- * • Multi-language Support
- * • A/B Testing Framework
- * 
- * ═══════════════════════════════════════════════════════════════════════════
- */
-
 import { NextRequest, NextResponse } from "next/server";
 import { chooseVariant, type Variant } from "./lib/ab/assign";
 import { getSecurityHeaders } from "./lib/security/csp";
@@ -27,16 +8,6 @@ import {routing} from './i18n/routing';
 const intlMiddleware = createMiddleware(routing);
 
 export function middleware(request: NextRequest) {
-  // Enterprise Security Logging
-  const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
-  const userAgent = request.headers.get('user-agent') || '';
-  const requestPath = request.nextUrl.pathname;
-  
-  // Security monitoring
-  if (process.env.NODE_ENV === 'production') {
-    console.log(`🔒 SECURITY LOG: ${clientIP} accessing ${requestPath} - ${userAgent}`);
-  }
-
   // First handle internationalization
   const intlResponse = intlMiddleware(request);
   
@@ -45,79 +16,26 @@ export function middleware(request: NextRequest) {
     return intlResponse;
   }
 
-  // Continue with security and A/B testing logic
+  // Continue with A/B testing and security logic
   const response = intlResponse || NextResponse.next();
   
-  // Apply Enterprise Security Headers
+  // Apply Security Headers
   const securityHeaders = getSecurityHeaders();
   Object.entries(securityHeaders).forEach(([key, value]) => {
     response.headers.set(key, value);
   });
 
-  // Additional Copyright Protection Headers
-  response.headers.set('X-Powered-By', 'AILYDIAN-v1.0.0-Enterprise');
-  response.headers.set('X-Copyright', '(c) 2024-2025 Emrah Sardag - All Rights Reserved');
-  response.headers.set('X-Developer', 'emrahsardag@yandex.com');
-  response.headers.set('X-Company', 'AILYDIAN Trading Technologies');
-  response.headers.set('X-Security-Level', 'ENTERPRISE-GRADE');
-  response.headers.set('X-License', 'MIT with Additional Terms');
-  response.headers.set('X-GDPR-Compliant', 'true');
-  response.headers.set('X-Data-Protection', 'KVKK-GDPR-Compliant');
-
-  // Bot Protection & Rate Limiting
-  const suspiciousBots = ['crawler', 'scraper', 'bot', 'spider', 'curl', 'wget'];
-  const isSuspiciousBot = suspiciousBots.some(bot => userAgent.toLowerCase().includes(bot));
-  
-  if (isSuspiciousBot && process.env.NODE_ENV === 'production') {
-    console.warn(`🚨 SECURITY ALERT: Suspicious bot detected: ${userAgent} from ${clientIP}`);
-    return new NextResponse('Access Denied - Bot Protection Active', { 
-      status: 403,
-      headers: {
-        'X-Bot-Protection': 'ACTIVE',
-        'X-Access-Denied': 'Suspicious Activity Detected',
-        'X-Copyright': '(c) 2025 Emrah Sardag - Unauthorized Access Prohibited'
-      }
-    });
-  }
-
-  // Enhanced Ownership banner injection for HTML responses
+  // Ownership banner injection for HTML responses
   if (request.headers.get('accept')?.includes('text/html')) {
     const ownershipBanner = `
     <!-- 
-    ═══════════════════════════════════════════════════════════════════════════
-    🚀 AILYDIAN BORSA TRADER v1.0.0 Enterprise
-    ═══════════════════════════════════════════════════════════════════════════
-    © 2024-2025 Emrah Şardağ - AILYDIAN Trading Technologies
-    All Rights Reserved. Tüm Hakları Saklıdır.
-    
-    🔒 PROPRIETARY SOFTWARE NOTICE:
-    This software and its source code are protected by international copyright
-    law and proprietary licensing agreements. Unauthorized reproduction,
-    distribution, reverse engineering, or commercial use is strictly prohibited
-    and subject to criminal and civil penalties.
-    
-    🛡️ SECURITY FEATURES:
-    • GDPR & KVKK Compliant Data Processing
-    • Enterprise-grade AES-256 Encryption  
-    • Multi-Factor Authentication (MFA)
-    • Real-time Security Monitoring
-    • ISO 27001 Security Framework
-    
-    📧 Contact: emrahsardag@yandex.com
-    🌐 Website: https://ailydian.com
-    
-    ⚖️ LEGAL WARNING:
-    Any attempt to circumvent security measures, extract source code, or
-    use this software without proper authorization will be prosecuted to
-    the full extent of the law under Turkish and international copyright
-    legislation.
-    
-    Trading involves substantial risk. Consult qualified advisors.
-    ═══════════════════════════════════════════════════════════════════════════
+    ⚖️ AILYDIAN AI LENS PRO CRYPTO TRADER - ULTRA SECURITY
+    © 2024 Emrah Şardağ. All Rights Reserved.
+    Unauthorized reproduction, distribution, or reverse engineering is strictly prohibited.
+    This software is protected by copyright laws and international treaties.
     -->`;
     
     response.headers.set('x-ownership-banner', 'injected');
-    response.headers.set('x-copyright-notice', 'embedded');
   }
   
   // A/B Test Variant Cookie Management

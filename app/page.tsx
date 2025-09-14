@@ -74,15 +74,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* AI Intelligence Kartı */}
-          <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-6 rounded-lg border border-blue-500/30">
-            <h2 className="text-xl font-bold text-blue-300 mb-4">🧠 AI Intelligence Center</h2>
-            <p className="text-binance-text mb-4">Groq AI ile güçlendirilmiş trading intelligence</p>
-            <Link href="/ai" className="btn-primary px-4 py-2 rounded bg-gradient-to-r from-blue-600 to-purple-600">
-              AI Center Aç
-            </Link>
-          </div>
-
           {/* Journal Kartı */}
           <div className="bg-binance-panel p-6 rounded-lg border border-gray-700">
             <h2 className="text-xl font-bold text-binance-text mb-4">📝 Journal</h2>

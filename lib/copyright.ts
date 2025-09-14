@@ -1,148 +1,71 @@
 /**
- * ═══════════════════════════════════════════════════════════════════════════
- * 🚀 AILYDIAN TRADER - AI-Powered Trading Platform
- * ═══════════════════════════════════════════════════════════════════════════
+ * AILYDIAN AI LENS PRO CRYPTO TRADER
  * 
- * 📋 COPYRIGHT & INTELLECTUAL PROPERTY NOTICE
- * ──────────────────────────────────────────────────────────────────────────
- * © 2024-2025 Emrah Şardağ - AiLydian Technologies
- * All Rights Reserved. Tüm Hakları Saklıdır.
+ * © 2024-2025 Emrah Şardağ - Tüm Hakları Saklıdır
  * 
- * 🔒 PROPRIETARY SOFTWARE LICENSE
- * This software and its source code are the exclusive intellectual property 
- * of Emrah Şardağ. Unauthorized reproduction, distribution, or reverse 
- * engineering is strictly prohibited and subject to legal action.
+ * BU YAZILIM TELİF HAKLARI KANUNU VE ULUSLARARASI ANDLAŞMALAR İLE KORUNMAKTADIR.
  * 
- * 🛡️ CYBERSECURITY & DATA PROTECTION
- * ──────────────────────────────────────────────────────────────────────────
- * • GDPR Compliant Data Processing
- * • Advanced Encryption Standards (AES-256)
- * • Multi-Factor Authentication (MFA)
- * • Real-time Security Monitoring
- * • Penetration Testing Certified
- * • ISO 27001 Security Framework
+ * YASAK EYLEMLER:
+ * - Bu yazılımın izinsiz kopyalanması, dağıtılması veya değiştirilmesi
+ * - Kaynak kodunun tersine mühendisliği yapılması
+ * - Ticari amaçlı kullanılması (lisans olmadan)
+ * - Telif hakkı bilgilerinin çıkarılması veya değiştirilmesi
  * 
- * 🌍 LEGAL COMPLIANCE
- * ──────────────────────────────────────────────────────────────────────────
- * • GDPR (General Data Protection Regulation) - EU
- * • KVKK (Kişisel Verilerin Korunması Kanunu) - Turkey
- * • SOX (Sarbanes-Oxley Act) - Financial Compliance
- * • MiFID II (Markets in Financial Instruments Directive) - EU
- * • Basel III Banking Regulations
- * • FSF (Free Software Foundation) Compliance
+ * İZİNLER:
+ * - Sadece lisanslı kullanıcılar tarafından kullanım
+ * - Kişisel/eğitim amaçlı inceleme (ticari olmayan)
  * 
- * 📞 CONTACT & SUPPORT
- * ──────────────────────────────────────────────────────────────────────────
- * Developer: Emrah Şardağ
- * Email: emrah@ailydian.com
- * Company: AiLydian Technologies
- * Website: https://ailydian.com
- * GitHub: https://github.com/sardagsoftware
+ * GARANTİ REDDİ:
+ * Bu yazılım "olduğu gibi" sağlanır ve herhangi bir garanti verilmez.
+ * Telif hakkı sahibi, yazılımın kullanımından doğabilecek zararlardan sorumlu değildir.
  * 
- * ⚖️ LEGAL DISCLAIMER
- * ──────────────────────────────────────────────────────────────────────────
- * Trading in financial markets involves substantial risk of loss and is not 
- * suitable for all investors. This software is provided for educational and 
- * informational purposes only. Past performance is not indicative of future 
- * results. Users are advised to consult with qualified financial advisors 
- * before making investment decisions.
+ * LİSANS SORULARI:
+ * licensing@ailydian.com
  * 
- * 🔐 SECURITY NOTICE
- * Any unauthorized access, modification, or distribution of this software
- * will be prosecuted to the full extent of the law. This system is protected
- * by advanced security measures and all activities are monitored and logged.
+ * GELİŞTİRİCİ:
+ * Emrah Şardağ
+ * emrah@sardagsoftware.com
+ * https://sardagsoftware.com
  * 
- * Version: 1.0.0 Enterprise
- * Build Date: September 14, 2025
- * Security Level: ENTERPRISE GRADE
- * Encryption: AES-256 / RSA-4096
+ * PROJE:
+ * AILYDIAN AI Lens Pro Crypto Trader
+ * Profesyonel Kripto Para Trading Platformu
  * 
- * ═══════════════════════════════════════════════════════════════════════════
+ * TARİH: 2024-2025
+ * VERSİYON: 1.0.0 Enterprise
  */
 
 export const COPYRIGHT_NOTICE = {
   owner: "Emrah Şardağ",
-  company: "AiLydian Technologies",
-  project: "AILYDIAN TRADER", 
+  company: "Sardag Software",
+  project: "AILYDIAN AI Lens Pro Crypto Trader", 
   year: "2024-2025",
-  rights: "All Rights Reserved - Tüm Hakları Saklıdır",
-  license: "Proprietary License - See LICENSE file",
+  rights: "Tüm Hakları Saklıdır",
+  license: "Özel Lisans - Ticari Kullanım Yasak",
   contact: {
-    email: "emrah@ailydian.com",
-    website: "https://ailydian.com",
-    github: "https://github.com/sardagsoftware",
-    support: "support@ailydian.com"
+    licensing: "licensing@ailydian.com",
+    developer: "emrah@sardagsoftware.com",
+    website: "https://sardagsoftware.com"
   },
-  security: {
-    level: "ENTERPRISE GRADE",
-    encryption: "AES-256 / RSA-4096",
-    compliance: ["GDPR", "KVKK", "SOX", "MiFID II", "Basel III"],
-    certifications: ["ISO 27001", "Penetration Testing Certified"]
-  },
-  warning: "⚠️ Unauthorized access, modification, or distribution is strictly prohibited and subject to legal action.",
-  version: "1.0.0 Enterprise",
-  buildDate: "2025-09-14"
+  warning: "Bu yazılım telif hakları ile korunmaktadır. İzinsiz kullanım yasaktır.",
+  version: "1.0.0 Enterprise"
 };
 
 export const getCopyrightBanner = () => `
-╔════════════════════════════════════════════════════════════════════════════════╗
-║                      🚀 AILYDIAN TRADER v2.1.0 Enterprise                     ║
-║                                                                                ║
-║                          © 2024 AiLydian Technologies                         ║
-║                      AiLydian Trading Technologies                             ║
-║                           All Rights Reserved                                  ║
-║                                                                                ║
-║    🔒 This software is protected by international copyright law and            ║
-║       proprietary licensing agreements. Unauthorized reproduction,             ║
-║       distribution, or reverse engineering is strictly prohibited.             ║
-║                                                                                ║
-║    🛡️  ENTERPRISE SECURITY FEATURES:                                          ║
-║       • GDPR & KVKK Compliant Data Processing                                 ║
-║       • AES-256 / RSA-4096 Encryption                                         ║
-║       • Multi-Factor Authentication (MFA)                                     ║
-║       • Real-time Security Monitoring                                         ║
-║       • ISO 27001 Security Framework                                          ║
-║                                                                                ║
-║    📧 Contact: emrah@ailydian.com                                             ║
-║    🌐 Website: https://ailydian.com                                           ║
-║    💻 GitHub: https://github.com/sardagsoftware                               ║
-║                                                                                ║
-║    ⚖️  LEGAL DISCLAIMER: Trading involves substantial risk of loss.           ║
-║        Consult qualified financial advisors before making investments.        ║
-║                                                                                ║
-╚════════════════════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    🚀 AILYDIAN AI LENS PRO CRYPTO TRADER                    ║
+║                                                                              ║
+║                        © 2024-2025 Emrah Şardağ                             ║
+║                           Tüm Hakları Saklıdır                              ║
+║                                                                              ║
+║    Bu yazılım telif hakları kanunu ve uluslararası andlaşmalar ile          ║
+║    korunmaktadır. İzinsiz kopyalama, dağıtım veya değiştirme yasaktır.      ║
+║                                                                              ║
+║    Lisans: licensing@ailydian.com                                            ║
+║    Geliştirici: emrah@sardagsoftware.com                                     ║
+║    Website: https://sardagsoftware.com                                       ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 `;
-
-// Runtime protection for production environment
-if (typeof window !== 'undefined') {
-  // Disable right-click context menu for source protection
-  document.addEventListener('contextmenu', (e) => {
-    if (process.env.NODE_ENV === 'production') {
-      e.preventDefault();
-      console.warn('🔒 Source code is protected by copyright law. © 2024 AiLydian Technologies');
-    }
-  });
-
-  // Disable developer tools shortcuts in production
-  document.addEventListener('keydown', (e) => {
-    if (process.env.NODE_ENV === 'production') {
-      if (e.key === 'F12' || 
-          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-          (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-          (e.ctrlKey && e.key === 'U')) {
-        e.preventDefault();
-        console.warn('🛡️ Developer tools access is restricted for security purposes.');
-      }
-    }
-  });
-
-  // Display copyright notice in console
-  console.log(getCopyrightBanner());
-  
-  // Add security monitoring
-  console.log('%c🔐 SECURITY NOTICE', 'color: red; font-weight: bold; font-size: 16px;');
-  console.log('All activities are monitored and logged for security purposes.');
-  console.log('Unauthorized access attempts will be reported to authorities.');
-}
 
 export default COPYRIGHT_NOTICE;

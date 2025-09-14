@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useAccount, useBalance, useConnect, useDisconnect } from 'wagmi';
-import { SUPPORTED_CHAINS } from './config';
+import { ENABLED_CHAINS as SUPPORTED_CHAINS } from './config';
 
 interface WalletContextType {
   // Connection State
@@ -86,8 +86,8 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
             params: [{
               chainId: `0x${targetChainId.toString(16)}`,
               chainName: chainConfig.name,
-              rpcUrls: chainConfig.rpcUrls.default.http,
-              blockExplorerUrls: [chainConfig.blockExplorers?.default?.url],
+              rpcUrls: chainConfig.rpcUrls?.default?.http || [],
+              blockExplorerUrls: chainConfig.blockExplorers ? [chainConfig.blockExplorers.default.url] : [],
               nativeCurrency: {
                 name: chainConfig.nativeCurrency.name,
                 symbol: chainConfig.nativeCurrency.symbol,

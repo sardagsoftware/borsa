@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
 import { SessionProvider } from 'next-auth/react';
 import ConnectionStatus from '@/components/ConnectionStatus';
 import CryptoPriceTicker from '@/components/CryptoPriceTicker';
