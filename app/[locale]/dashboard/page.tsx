@@ -7,6 +7,7 @@ import { SessionProvider } from 'next-auth/react';
 import ConnectionStatus from '@/components/ConnectionStatus';
 import CryptoPriceTicker from '@/components/CryptoPriceTicker';
 import Logo from '@/components/Logo';
+import AIChat from '@/components/AIChat';
 
 interface UserProfile {
   id: string;
@@ -250,7 +251,7 @@ function UserDashboardInner() {
               onClick={() => router.push('/ai-lens/trader')}
               className="btn-primary"
             >
-              📊 Trading Terminal
+              📊 İşlem Terminali
             </button>
             <button
               onClick={() => signOut()}
@@ -264,10 +265,10 @@ function UserDashboardInner() {
         {/* Navigation Tabs */}
         <div className="flex gap-1 mb-6">
           {[
-            { id: 'profile', label: '👤 Profile', icon: '👤' },
-            { id: 'api-keys', label: '🔑 API Keys', icon: '🔑' },
-            { id: 'risk', label: '⚠️ Risk Settings', icon: '⚠️' },
-            { id: 'security', label: '🔒 Security', icon: '🔒' },
+            { id: 'profile', label: '👤 Profil', icon: '👤' },
+            { id: 'api-keys', label: '🔑 API Anahtarları', icon: '🔑' },
+            { id: 'risk', label: '⚠️ Risk Ayarları', icon: '⚠️' },
+            { id: 'security', label: '🔒 Güvenlik', icon: '🔒' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -288,21 +289,21 @@ function UserDashboardInner() {
           {/* Profile Tab */}
           {activeTab === 'profile' && profile && (
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-binance-text mb-4">Profile Information</h2>
+              <h2 className="text-2xl font-bold text-binance-text mb-4">Profil Bilgileri</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Name</label>
+                  <label className="block text-binance-text font-semibold mb-2">Ad Soyad</label>
                   <input
                     type="text"
                     value={profile.name || ''}
                     className="input-primary w-full"
-                    placeholder="Enter your name"
+                    placeholder="Adınızı girin"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Email</label>
+                  <label className="block text-binance-text font-semibold mb-2">E-posta</label>
                   <input
                     type="email"
                     value={profile.email}
@@ -312,16 +313,16 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Risk Level</label>
+                  <label className="block text-binance-text font-semibold mb-2">Risk Seviyesi</label>
                   <select className="input-primary w-full">
-                    <option value="LOW">Low Risk</option>
-                    <option value="MEDIUM">Medium Risk</option>
-                    <option value="HIGH">High Risk</option>
+                    <option value="LOW">Düşük Risk</option>
+                    <option value="MEDIUM">Orta Risk</option>
+                    <option value="HIGH">Yüksek Risk</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Max Daily Loss ($)</label>
+                  <label className="block text-binance-text font-semibold mb-2">Maksimum Günlük Zarar ($)</label>
                   <input
                     type="number"
                     value={profile.maxDailyLoss}
@@ -333,7 +334,7 @@ function UserDashboardInner() {
               </div>
               
               <button className="btn-primary">
-                💾 Update Profile
+                💾 Profili Güncelle
               </button>
             </div>
           )}
@@ -342,12 +343,12 @@ function UserDashboardInner() {
           {activeTab === 'api-keys' && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-binance-text">API Keys</h2>
+                <h2 className="text-2xl font-bold text-binance-text">API Anahtarları</h2>
                 <button
                   onClick={() => setShowApiKeyForm(true)}
                   className="btn-primary"
                 >
-                  ➕ Add API Key
+                  ➕ API Anahtarı Ekle
                 </button>
               </div>
 
@@ -370,14 +371,14 @@ function UserDashboardInner() {
                           }`}></span>
                         </div>
                         <div className="text-binance-textSecondary text-sm mt-1">
-                          Permissions: {key.permissions.join(', ')} • Created: {new Date(key.createdAt).toLocaleDateString()}
+                          İzinler: {key.permissions.join(', ')} • Oluşturulma: {new Date(key.createdAt).toLocaleDateString('tr-TR')}
                         </div>
                       </div>
                       <button
                         onClick={() => handleDeleteApiKey(key.id)}
                         className="btn-sell text-sm"
                       >
-                        🗑️ Delete
+                        🗑️ Sil
                       </button>
                     </div>
                   </div>
@@ -385,7 +386,7 @@ function UserDashboardInner() {
                 
                 {apiKeys.length === 0 && (
                   <div className="text-center py-8 text-binance-textSecondary">
-                    No API keys configured. Add your first API key to start trading.
+                    Henüz API anahtarı yapılandırılmamış. İşlem yapmaya başlamak için ilk API anahtarınızı ekleyin.
                   </div>
                 )}
               </div>
@@ -393,11 +394,11 @@ function UserDashboardInner() {
               {/* Add API Key Form */}
               {showApiKeyForm && (
                 <div className="bg-binance-dark p-6 rounded-lg border border-binance-yellow">
-                  <h3 className="text-xl font-bold text-binance-text mb-4">Add New API Key</h3>
+                  <h3 className="text-xl font-bold text-binance-text mb-4">Yeni API Anahtarı Ekle</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-binance-text font-semibold mb-2">Exchange</label>
+                      <label className="block text-binance-text font-semibold mb-2">Borsa</label>
                       <select
                         value={newApiKey.exchange}
                         onChange={(e) => setNewApiKey({...newApiKey, exchange: e.target.value})}
@@ -411,35 +412,35 @@ function UserDashboardInner() {
                     </div>
                     
                     <div>
-                      <label className="block text-binance-text font-semibold mb-2">Name</label>
+                      <label className="block text-binance-text font-semibold mb-2">İsim</label>
                       <input
                         type="text"
                         value={newApiKey.name}
                         onChange={(e) => setNewApiKey({...newApiKey, name: e.target.value})}
                         className="input-primary w-full"
-                        placeholder="My Trading Key"
+                        placeholder="Benim İşlem Anahtarım"
                       />
                     </div>
                     
                     <div className="md:col-span-2">
-                      <label className="block text-binance-text font-semibold mb-2">API Key</label>
+                      <label className="block text-binance-text font-semibold mb-2">API Anahtarı</label>
                       <input
                         type="password"
                         value={newApiKey.apiKey}
                         onChange={(e) => setNewApiKey({...newApiKey, apiKey: e.target.value})}
                         className="input-primary w-full"
-                        placeholder="Enter your API key"
+                        placeholder="API anahtarınızı girin"
                       />
                     </div>
                     
                     <div className="md:col-span-2">
-                      <label className="block text-binance-text font-semibold mb-2">Secret Key</label>
+                      <label className="block text-binance-text font-semibold mb-2">Gizli Anahtar</label>
                       <input
                         type="password"
                         value={newApiKey.secretKey}
                         onChange={(e) => setNewApiKey({...newApiKey, secretKey: e.target.value})}
                         className="input-primary w-full"
-                        placeholder="Enter your secret key"
+                        placeholder="Gizli anahtarınızı girin"
                       />
                     </div>
                     
@@ -451,7 +452,7 @@ function UserDashboardInner() {
                         onChange={(e) => setNewApiKey({...newApiKey, isTestnet: e.target.checked})}
                         className="mr-2"
                       />
-                      <label htmlFor="testnet" className="text-binance-text">Use Testnet</label>
+                      <label htmlFor="testnet" className="text-binance-text">Test Ağı Kullan</label>
                     </div>
                   </div>
                   
@@ -461,13 +462,13 @@ function UserDashboardInner() {
                       className="btn-primary"
                       disabled={!newApiKey.apiKey || !newApiKey.secretKey || !newApiKey.name}
                     >
-                      💾 Save API Key
+                      💾 API Anahtarı Kaydet
                     </button>
                     <button
                       onClick={() => setShowApiKeyForm(false)}
                       className="btn-secondary"
                     >
-                      ❌ Cancel
+                      ❌ İptal
                     </button>
                   </div>
                 </div>
@@ -478,11 +479,11 @@ function UserDashboardInner() {
           {/* Risk Settings Tab */}
           {activeTab === 'risk' && riskSettings && (
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-binance-text mb-4">Risk Management Settings</h2>
+              <h2 className="text-2xl font-bold text-binance-text mb-4">Risk Yönetimi Ayarları</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Max Daily Loss ($)</label>
+                  <label className="block text-binance-text font-semibold mb-2">Maksimum Günlük Zarar ($)</label>
                   <input
                     type="number"
                     value={riskSettings.maxDailyLoss}
@@ -493,7 +494,7 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Max Position Size ($)</label>
+                  <label className="block text-binance-text font-semibold mb-2">Maksimum Pozisyon Boyutu ($)</label>
                   <input
                     type="number"
                     value={riskSettings.maxPositionSize}
@@ -504,7 +505,7 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Max Leverage</label>
+                  <label className="block text-binance-text font-semibold mb-2">Maksimum Kaldıraç</label>
                   <input
                     type="number"
                     value={riskSettings.maxLeverage}
@@ -516,7 +517,7 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Stop Loss (%)</label>
+                  <label className="block text-binance-text font-semibold mb-2">Zarar Durdur (%)</label>
                   <input
                     type="number"
                     value={riskSettings.stopLossPercent}
@@ -529,7 +530,7 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Take Profit (%)</label>
+                  <label className="block text-binance-text font-semibold mb-2">Kar Al (%)</label>
                   <input
                     type="number"
                     value={riskSettings.takeProfitPercent}
@@ -542,7 +543,7 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Max Positions</label>
+                  <label className="block text-binance-text font-semibold mb-2">Maksimum Pozisyon Sayısı</label>
                   <input
                     type="number"
                     value={riskSettings.maxPositions}
@@ -554,7 +555,7 @@ function UserDashboardInner() {
                 </div>
                 
                 <div>
-                  <label className="block text-binance-text font-semibold mb-2">Min AI Confidence</label>
+                  <label className="block text-binance-text font-semibold mb-2">Minimum AI Güven Seviyesi</label>
                   <input
                     type="range"
                     value={riskSettings.minAiConfidence}
@@ -565,7 +566,7 @@ function UserDashboardInner() {
                     step="0.05"
                   />
                   <div className="text-binance-textSecondary text-sm mt-1">
-                    {(riskSettings.minAiConfidence * 100).toFixed(0)}% confidence required
+                    %{(riskSettings.minAiConfidence * 100).toFixed(0)} güven seviyesi gerekli
                   </div>
                 </div>
                 
@@ -579,11 +580,11 @@ function UserDashboardInner() {
                       className="mr-2"
                     />
                     <label htmlFor="aiTrading" className="text-binance-text font-semibold">
-                      Enable AI Trading
+                      AI İşlem Sistemini Etkinleştir
                     </label>
                   </div>
                   <p className="text-binance-textSecondary text-sm mt-1">
-                    Allow the AI system to execute trades automatically based on signals
+                    AI sisteminin sinyallere dayalı otomatik işlem yapmasına izin ver
                   </p>
                 </div>
               </div>
@@ -592,7 +593,7 @@ function UserDashboardInner() {
                 onClick={handleUpdateRiskSettings}
                 className="btn-primary"
               >
-                💾 Update Risk Settings
+                💾 Risk Ayarlarını Güncelle
               </button>
             </div>
           )}
@@ -600,46 +601,46 @@ function UserDashboardInner() {
           {/* Security Tab */}
           {activeTab === 'security' && (
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-binance-text mb-4">Security Settings</h2>
+              <h2 className="text-2xl font-bold text-binance-text mb-4">Güvenlik Ayarları</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="panel p-4">
-                  <h3 className="text-lg font-bold text-binance-text mb-3">Two-Factor Authentication</h3>
+                  <h3 className="text-lg font-bold text-binance-text mb-3">İki Faktörlü Kimlik Doğrulama</h3>
                   <p className="text-binance-textSecondary mb-4">
-                    Add an extra layer of security to your account
+                    Hesabınıza ekstra güvenlik katmanı ekleyin
                   </p>
                   <button className="btn-primary">
-                    🔐 Setup 2FA
+                    🔐 2FA Kurulumu
                   </button>
                 </div>
                 
                 <div className="panel p-4">
-                  <h3 className="text-lg font-bold text-binance-text mb-3">Change Password</h3>
+                  <h3 className="text-lg font-bold text-binance-text mb-3">Şifre Değiştir</h3>
                   <p className="text-binance-textSecondary mb-4">
-                    Update your account password
+                    Hesap şifrenizi güncelleyin
                   </p>
                   <button className="btn-secondary">
-                    🔑 Change Password
+                    🔑 Şifre Değiştir
                   </button>
                 </div>
                 
                 <div className="panel p-4">
-                  <h3 className="text-lg font-bold text-binance-text mb-3">Emergency Stop</h3>
+                  <h3 className="text-lg font-bold text-binance-text mb-3">Acil Durdurma</h3>
                   <p className="text-binance-textSecondary mb-4">
-                    Immediately stop all trading activities
+                    Tüm işlem aktivitelerini anında durdur
                   </p>
                   <button className="btn-sell">
-                    🛑 Kill Switch
+                    🛑 Acil Stop
                   </button>
                 </div>
                 
                 <div className="panel p-4">
-                  <h3 className="text-lg font-bold text-binance-text mb-3">Session Management</h3>
+                  <h3 className="text-lg font-bold text-binance-text mb-3">Oturum Yönetimi</h3>
                   <p className="text-binance-textSecondary mb-4">
-                    View and manage active sessions
+                    Aktif oturumları görüntüleyin ve yönetin
                   </p>
                   <button className="btn-secondary">
-                    👁️ View Sessions
+                    👁️ Oturumları Görüntüle
                   </button>
                 </div>
               </div>
@@ -648,6 +649,9 @@ function UserDashboardInner() {
         </div>
       </div>
       </div>
+      
+      {/* AI Chat - Floating */}
+      <AIChat compact={true} placeholder="Dashboard hakkında soru sorun..." />
     </div>
   );
 }

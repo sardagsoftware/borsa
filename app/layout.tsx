@@ -110,8 +110,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="author" content={COPYRIGHT_NOTICE.owner} />
         <meta name="developer" content={COPYRIGHT_NOTICE.contact.developer} />
         <meta name="license" content={COPYRIGHT_NOTICE.license} />
-        {/* Telif koruması için */}
-        <meta name="robots" content="noindex, nofollow" />
+        {/* SEO Optimization */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://ailydian.com" />
         <style>{`
           /* Telif hakları footer */
           .copyright-footer::after {

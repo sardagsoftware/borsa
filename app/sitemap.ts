@@ -9,6 +9,7 @@ const mainPages = [
   '',          // home
   'dashboard',
   'trading',
+  'ai-lens/trader',    // AI Lens Trader
   'portfolio',
   'security',
   'settings',
@@ -55,7 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       let changeFrequency: 'hourly' | 'daily' | 'weekly' = 'daily';
       
       // Sayfa önemine göre priority ayarla
-      if (page === 'dashboard' || page === 'trading') {
+      if (page === 'dashboard' || page === 'trading' || page === 'ai-lens/trader') {
         priority = 0.9;
         changeFrequency = 'hourly';
       } else if (page === 'auth/signin' || page === 'auth/register') {

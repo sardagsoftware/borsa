@@ -22,6 +22,7 @@ Allow: /nl/
 # Trading ve dashboard sayfaları
 Allow: /dashboard
 Allow: /trading
+Allow: /ai-lens/trader
 Allow: /portfolio
 Allow: /security
 Allow: /wallet

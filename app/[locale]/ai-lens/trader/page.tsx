@@ -1,197 +1,351 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import ConnectionStatus from '@/components/ConnectionStatus';
+import CryptoPriceTicker from '@/components/CryptoPriceTicker';
+import Logo from '@/components/Logo';
+import AIChat from '@/components/AIChat';
+
+interface CoinData {
+  id: number;
+  name: string;
+  symbol: string;
+  quote: {
+    USD: {
+      price: number;
+      percent_change_24h: number;
+      percent_change_7d: number;
+      market_cap: number;
+      volume_24h: number;
+    };
+  };
+}
 
 export default function TradingTerminal() {
-  const [selectedSymbol, setSelectedSymbol] = useState('BTCUSDT');
+  const { data: session } = useSession();
+  const router = useRouter();
+  
+  const [selectedSymbol, setSelectedSymbol] = useState('BTC');
   const [orderType, setOrderType] = useState('limit');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
   const [botMode, setBotMode] = useState('semi');
+  const [cryptoData, setCryptoData] = useState<CoinData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPrice, setCurrentPrice] = useState(0);
+
+  // Fetch crypto data from CoinMarketCap
+  useEffect(() => {
+    const fetchCryptoData = async () => {
+      try {
+        const response = await fetch('/api/crypto/coinmarketcap?limit=20');
+        if (response.ok) {
+          const data = await response.json();
+          setCryptoData(data.data || []);
+          
+          // Set current price for selected symbol
+          const selectedCoin = data.data?.find((coin: CoinData) => 
+            coin.symbol === selectedSymbol
+          );
+          if (selectedCoin) {
+            setCurrentPrice(selectedCoin.quote.USD.price);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch crypto data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCryptoData();
+    const interval = setInterval(fetchCryptoData, 30000); // Update every 30 seconds
+
+    return () => clearInterval(interval);
+  }, [selectedSymbol]);
+
+  // Update price when symbol changes
+  useEffect(() => {
+    const selectedCoin = cryptoData.find(coin => coin.symbol === selectedSymbol);
+    if (selectedCoin) {
+      setCurrentPrice(selectedCoin.quote.USD.price);
+    }
+  }, [selectedSymbol, cryptoData]);
+
+  const handlePlaceOrder = () => {
+    // Simulate order placement
+    alert(`${orderType.toUpperCase()} emir verildi: ${quantity} ${selectedSymbol} @ $${price}`);
+  };
+
+  const selectedCoin = cryptoData.find(coin => coin.symbol === selectedSymbol);
+
+  if (!session) {
+    router.push('/tr/auth/signin');
+    return null;
+  }
 
   return (
-    <div className="min-h-screen bg-binance-dark text-binance-text">
-      {/* Header */}
-      <div className="bg-binance-panel border-b border-gray-700 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-bg via-bg-soft to-panel text-text">
+      {/* Top Status Bar */}
+      <div className="w-full bg-panel/80 backdrop-blur-sm border-b border-glass/30 px-6 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-bold text-binance-yellow">⚡ AiLydian Borsa - Trader</h1>
-            <select 
-              value={selectedSymbol}
-              onChange={(e) => setSelectedSymbol(e.target.value)}
-              className="bg-binance-dark border border-gray-600 rounded px-3 py-1"
-            >
-              <option>BTCUSDT</option>
-              <option>ETHUSDT</option>
-              <option>SOLUSDT</option>
-            </select>
-            <span className="text-binance-green text-2xl font-mono">$67,234.50</span>
-            <span className="text-binance-green">+2.34%</span>
+          <ConnectionStatus className="flex-shrink-0" />
+          <div className="flex-1 mx-6">
+            <CryptoPriceTicker 
+              showTop={20}
+              autoScroll={true}
+              updateInterval={30000}
+            />
           </div>
-          
-          {/* Bot Controls */}
-          <div className="flex items-center space-x-4">
-            <select 
-              value={botMode}
-              onChange={(e) => setBotMode(e.target.value)}
-              className="bg-binance-dark border border-gray-600 rounded px-3 py-1"
-            >
-              <option value="semi">Semi Auto</option>
-              <option value="auto">Full Auto</option>
-              <option value="off">Manual Only</option>
-            </select>
-            <div className="text-sm">
-              <span className="text-binance-text">Signal: </span>
-              <span className="text-binance-green font-bold">+85.2</span>
+          <div className="flex items-center gap-4 text-xs text-muted flex-shrink-0">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Gerçek Zamanlı Veriler</span>
             </div>
-            <button className="bg-binance-red text-white px-3 py-1 rounded font-bold">
-              🛑 KILL
-            </button>
+            <span>•</span>
+            <span>{session.user?.email}</span>
+            <span>•</span>
+            <span>{new Date().toLocaleTimeString('tr-TR')}</span>
           </div>
         </div>
       </div>
 
-      <div className="flex h-screen">
-        {/* Sol Panel: Depth Chart & Order Book */}
-        <div className="w-1/4 bg-binance-panel border-r border-gray-700 p-4">
-          <h3 className="text-lg font-bold mb-4">📊 Depth Chart</h3>
-          <div className="h-48 bg-binance-dark rounded border border-gray-600 mb-4 flex items-center justify-center">
-            <span className="text-gray-500">Depth Chart (Canvas)</span>
+      {/* Header */}
+      <div className="bg-panel/80 backdrop-blur-sm border-b border-glass/30 p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <Logo size="md" />
+            <div>
+              <h1 className="text-2xl font-bold text-brand-1">⚡ AI Lens Trader</h1>
+              <p className="text-muted">Yapay Zeka Destekli İşlem Terminali</p>
+            </div>
           </div>
           
-          <h3 className="text-lg font-bold mb-4">📖 Order Book</h3>
-          <div className="space-y-1">
-            {/* Ask Orders (Kırmızı) */}
-            <div className="text-sm">
-              <div className="text-binance-red font-bold mb-2">ASK</div>
-              {[67250, 67249, 67248, 67247, 67246].map((p, i) => (
-                <div key={i} className="flex justify-between hover:bg-red-900/20 px-1">
-                  <span className="text-binance-red">${p}</span>
-                  <span className="text-gray-400">1.23</span>
-                </div>
-              ))}
+          {/* Controls */}
+          <div className="flex items-center space-x-4">
+            <div>
+              <label className="block text-xs text-muted mb-1">Bot Modu</label>
+              <select 
+                value={botMode}
+                onChange={(e) => setBotMode(e.target.value)}
+                className="bg-bg border border-glass rounded px-3 py-2 text-text focus:border-brand-1 focus:outline-none"
+              >
+                <option value="semi">Yarı Otomatik</option>
+                <option value="auto">Tam Otomatik</option>
+                <option value="off">Sadece Manuel</option>
+              </select>
             </div>
-            
-            {/* Spread */}
-            <div className="text-center py-2 border-y border-gray-600">
-              <span className="text-binance-yellow">Spread: $1.50</span>
-            </div>
-            
-            {/* Bid Orders (Yeşil) */}
-            <div className="text-sm">
-              <div className="text-binance-green font-bold mb-2">BID</div>
-              {[67245, 67244, 67243, 67242, 67241].map((p, i) => (
-                <div key={i} className="flex justify-between hover:bg-green-900/20 px-1">
-                  <span className="text-binance-green">${p}</span>
-                  <span className="text-gray-400">2.45</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Orta Panel: Price Chart */}
-        <div className="flex-1 bg-binance-panel p-4">
-          <div className="h-full bg-binance-dark rounded border border-gray-600 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-gray-500 mb-4">TradingView Chart (Lightweight Charts)</div>
-              <div className="text-binance-green text-6xl font-mono">📈</div>
-              <div className="text-gray-400 mt-4">AI Signal Overlay + Indicators</div>
+              <div className="text-xs text-muted mb-1">AI Sinyal</div>
+              <span className="text-2xl font-bold text-brand-1">+85.2</span>
             </div>
-          </div>
-        </div>
-
-        {/* Sağ Panel: Order Form */}
-        <div className="w-1/4 bg-binance-panel border-l border-gray-700 p-4">
-          <h3 className="text-lg font-bold mb-4">📝 Order Form</h3>
-          
-          {/* Order Type Tabs */}
-          <div className="flex mb-4">
-            <button 
-              className={`flex-1 py-2 px-3 rounded-l ${orderType === 'limit' ? 'bg-binance-yellow text-black' : 'bg-gray-600'}`}
-              onClick={() => setOrderType('limit')}
-            >
-              Limit
-            </button>
-            <button 
-              className={`flex-1 py-2 px-3 rounded-r ${orderType === 'market' ? 'bg-binance-yellow text-black' : 'bg-gray-600'}`}
-              onClick={() => setOrderType('market')}
-            >
-              Market
-            </button>
-          </div>
-          
-          {/* Price Input */}
-          <div className="mb-4">
-            <label className="block text-sm mb-1">Price</label>
-            <input 
-              type="number" 
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full bg-binance-dark border border-gray-600 rounded px-3 py-2"
-              placeholder="67234.50"
-            />
-          </div>
-          
-          {/* Quantity Input */}
-          <div className="mb-4">
-            <label className="block text-sm mb-1">Quantity</label>
-            <input 
-              type="number" 
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              className="w-full bg-binance-dark border border-gray-600 rounded px-3 py-2"
-              placeholder="0.001"
-            />
-          </div>
-          
-          {/* Risk Preview */}
-          <div className="mb-4 p-3 bg-gray-800 rounded">
-            <h4 className="text-sm font-bold text-binance-yellow mb-2">⚠️ Risk Preview</h4>
-            <div className="text-xs space-y-1">
-              <div>Max Loss: <span className="text-binance-red">-$67.23</span></div>
-              <div>Fee Est: <span className="text-gray-400">$0.34</span></div>
-              <div>Slippage: <span className="text-gray-400">0.02%</span></div>
-            </div>
-          </div>
-          
-          {/* Buy/Sell Buttons */}
-          <div className="space-y-2">
-            <button className="w-full bg-binance-green text-black py-3 rounded font-bold">
-              🟢 BUY / LONG
-            </button>
-            <button className="w-full bg-binance-red text-white py-3 rounded font-bold">
-              🔴 SELL / SHORT
+            <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-bold transition-colors">
+              🛑 ACİL STOP
             </button>
           </div>
         </div>
       </div>
 
-      {/* Alt Panel: Positions, Orders, Balances */}
-      <div className="bg-binance-panel border-t border-gray-700 p-4 h-48">
-        <div className="flex space-x-6">
-          <div className="flex-1">
-            <h4 className="font-bold mb-2">🎯 Positions</h4>
-            <div className="text-sm space-y-1">
-              <div className="flex justify-between">
-                <span>BTCUSDT</span>
-                <span className="text-binance-green">+0.05 BTC</span>
-                <span className="text-binance-green">+$234.50</span>
+      <div className="p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          
+          {/* Symbol Selection & Price Info */}
+          <div className="lg:col-span-1">
+            <div className="panel p-6">
+              <h2 className="text-lg font-semibold text-text mb-4">📈 Kripto Seçimi</h2>
+              
+              {loading ? (
+                <div className="text-center py-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-1 mx-auto"></div>
+                  <p className="text-muted mt-2">Veriler yükleniyor...</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {cryptoData.slice(0, 10).map((coin) => (
+                    <button
+                      key={coin.symbol}
+                      onClick={() => setSelectedSymbol(coin.symbol)}
+                      className={`w-full text-left p-3 rounded transition-colors ${
+                        selectedSymbol === coin.symbol
+                          ? 'bg-brand-1 text-white'
+                          : 'bg-bg-soft hover:bg-brand-1/10 text-text hover:text-brand-1'
+                      }`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <div className="font-semibold">{coin.symbol}</div>
+                          <div className="text-xs opacity-70">{coin.name}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-mono">
+                            ${coin.quote.USD.price.toFixed(2)}
+                          </div>
+                          <div className={`text-xs ${
+                            coin.quote.USD.percent_change_24h >= 0 
+                              ? 'text-green-500' 
+                              : 'text-red-500'
+                          }`}>
+                            {coin.quote.USD.percent_change_24h >= 0 ? '+' : ''}
+                            {coin.quote.USD.percent_change_24h.toFixed(2)}%
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Price Chart Area */}
+          <div className="lg:col-span-2">
+            <div className="panel p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-text">
+                  📊 {selectedCoin?.name || selectedSymbol} Grafiği
+                </h2>
+                <div className="flex items-center space-x-4">
+                  <div className="text-right">
+                    <div className="text-2xl font-mono font-bold text-brand-1">
+                      ${currentPrice.toFixed(2)}
+                    </div>
+                    {selectedCoin && (
+                      <div className={`text-sm ${
+                        selectedCoin.quote.USD.percent_change_24h >= 0 
+                          ? 'text-green-500' 
+                          : 'text-red-500'
+                      }`}>
+                        {selectedCoin.quote.USD.percent_change_24h >= 0 ? '+' : ''}
+                        {selectedCoin.quote.USD.percent_change_24h.toFixed(2)}% (24s)
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Placeholder for TradingView Chart */}
+              <div className="bg-bg rounded-lg p-8 h-96 flex items-center justify-center border-2 border-dashed border-glass">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">📈</div>
+                  <div className="text-lg font-semibold text-text mb-2">
+                    Gelişmiş Grafik Görünümü
+                  </div>
+                  <div className="text-muted">
+                    TradingView entegrasyonu yakında eklenecek
+                  </div>
+                  <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+                    <div className="bg-panel/50 p-3 rounded">
+                      <div className="text-muted">Market Cap</div>
+                      <div className="font-semibold">
+                        ${selectedCoin ? (selectedCoin.quote.USD.market_cap / 1e9).toFixed(2) + 'B' : '---'}
+                      </div>
+                    </div>
+                    <div className="bg-panel/50 p-3 rounded">
+                      <div className="text-muted">24s Hacim</div>
+                      <div className="font-semibold">
+                        ${selectedCoin ? (selectedCoin.quote.USD.volume_24h / 1e9).toFixed(2) + 'B' : '---'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          
-          <div className="flex-1">
-            <h4 className="font-bold mb-2">📋 Orders</h4>
-            <div className="text-sm text-gray-400">No active orders</div>
-          </div>
-          
-          <div className="flex-1">
-            <h4 className="font-bold mb-2">💰 Balance</h4>
-            <div className="text-sm">
-              <div>USDT: <span className="text-binance-yellow">5,432.10</span></div>
-              <div>BTC: <span className="text-binance-yellow">0.1234</span></div>
+
+          {/* Trading Panel */}
+          <div className="lg:col-span-1">
+            <div className="panel p-6">
+              <h2 className="text-lg font-semibold text-text mb-4">💰 İşlem Paneli</h2>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm text-muted mb-2">Emir Tipi</label>
+                  <select 
+                    value={orderType}
+                    onChange={(e) => setOrderType(e.target.value)}
+                    className="input-primary w-full"
+                  >
+                    <option value="market">Market</option>
+                    <option value="limit">Limit</option>
+                    <option value="stop">Stop Loss</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm text-muted mb-2">Fiyat ($)</label>
+                  <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder={currentPrice.toFixed(2)}
+                    className="input-primary w-full"
+                    disabled={orderType === 'market'}
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm text-muted mb-2">Miktar</label>
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    placeholder="0.001"
+                    step="0.001"
+                    className="input-primary w-full"
+                  />
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <button 
+                    onClick={handlePlaceOrder}
+                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded transition-colors"
+                  >
+                    📈 AL
+                  </button>
+                  <button 
+                    onClick={handlePlaceOrder}
+                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-4 rounded transition-colors"
+                  >
+                    📉 SAT
+                  </button>
+                </div>
+                
+                <div className="border-t border-glass pt-4 mt-4">
+                  <h3 className="text-sm font-semibold text-text mb-2">🤖 AI Önerileri</h3>
+                  <div className="bg-brand-1/10 border border-brand-1/20 rounded p-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-muted">Sinyal Gücü:</span>
+                      <span className="text-sm font-semibold text-brand-1">Güçlü Al</span>
+                    </div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-muted">Hedef:</span>
+                      <span className="text-sm font-semibold text-green-500">
+                        ${(currentPrice * 1.05).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted">Stop Loss:</span>
+                      <span className="text-sm font-semibold text-red-500">
+                        ${(currentPrice * 0.95).toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* AI Chat Integration */}
+        <div className="mt-6">
+          <div className="panel p-6">
+            <h2 className="text-lg font-semibold text-text mb-4">🧠 AI Asistan</h2>
+            <AIChat 
+              className="h-96" 
+              placeholder="Trading hakkında soru sorun... (ör: Bitcoin analizi yap)" 
+            />
           </div>
         </div>
       </div>
