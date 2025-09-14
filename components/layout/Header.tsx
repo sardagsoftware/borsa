@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Logo from "@/components/Logo";
 
 interface HeaderProps {
   className?: string;
@@ -68,19 +69,11 @@ export default function Header({
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo & Brand */}
           <motion.div 
-            className="flex items-center space-x-3"
+            className="flex items-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-br from-brand1 to-brand2 flex items-center justify-center shadow-soft">
-              <span className="text-bg font-bold text-sm lg:text-lg">A</span>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-brand1 to-brand2 bg-clip-text text-transparent">
-                AILYDIAN
-              </h1>
-              <p className="text-xs text-gray-400 -mt-1">PREMIUM FUTURES</p>
-            </div>
+            <Logo size="md" className="text-brand1" />
           </motion.div>
 
           {/* Desktop Navigation */}

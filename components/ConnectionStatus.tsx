@@ -14,100 +14,49 @@ export default function ConnectionStatus({ className = '' }: ConnectionStatusPro
   const [connectionStatus, setConnectionStatus] = useState<'connecting' | 'connected' | 'disconnected' | 'error'>('connecting');
 
   useEffect(() => {
-    let ws: WebSocket | null = null;
-    let pingInterval: NodeJS.Timeout | null = null;
-    let reconnectTimeout: NodeJS.Timeout | null = null;
-
-    const connectWebSocket = () => {
+    let healthCheckInterval: NodeJS.Timeout | null = null;
+    
+    // WebSocket yerine simple health check kullan
+    const checkConnectionHealth = async () => {
       try {
-        // WebSocket bağlantısı kurulumu
-        const wsUrl = process.env.NODE_ENV === 'production' 
-          ? 'wss://your-ws-server.com/ws' 
-          : 'ws://localhost:3001/ws';
-        
-        ws = new WebSocket(wsUrl);
         setConnectionStatus('connecting');
-
-        ws.onopen = () => {
-          console.log('WebSocket bağlantısı kuruldu');
+        const startTime = Date.now();
+        
+        // Health check API endpoint'ine ping at
+        const response = await fetch('/api/healthz', {
+          method: 'GET',
+          cache: 'no-cache'
+        });
+        
+        const endTime = Date.now();
+        const currentLatency = endTime - startTime;
+        
+        if (response.ok) {
           setIsConnected(true);
           setConnectionStatus('connected');
+          setLatency(currentLatency);
           setLastUpdate(new Date());
-          
-          // Ping/pong ile bağlantı kalitesini ölç
-          if (pingInterval) clearInterval(pingInterval);
-          pingInterval = setInterval(() => {
-            if (ws?.readyState === WebSocket.OPEN) {
-              const startTime = Date.now();
-              ws.send(JSON.stringify({ type: 'ping', timestamp: startTime }));
-            }
-          }, 5000);
-        };
-
-        ws.onmessage = (event) => {
-          try {
-            const data = JSON.parse(event.data);
-            
-            if (data.type === 'pong') {
-              const currentLatency = Date.now() - data.timestamp;
-              setLatency(currentLatency);
-            }
-            
-            setLastUpdate(new Date());
-          } catch (error) {
-            console.error('WebSocket mesaj ayrıştırma hatası:', error);
-          }
-        };
-
-        ws.onclose = (event) => {
-          console.log('WebSocket bağlantısı kapandı:', event.code, event.reason);
-          setIsConnected(false);
-          setConnectionStatus('disconnected');
-          
-          if (pingInterval) {
-            clearInterval(pingInterval);
-            pingInterval = null;
-          }
-
-          // Otomatik yeniden bağlanma
-          if (!event.wasClean) {
-            reconnectTimeout = setTimeout(() => {
-              connectWebSocket();
-            }, 3000);
-          }
-        };
-
-        ws.onerror = (error) => {
-          console.error('WebSocket hatası:', error);
-          setConnectionStatus('error');
-          setIsConnected(false);
-        };
-
+        } else {
+          throw new Error('Health check failed');
+        }
       } catch (error) {
-        console.error('WebSocket bağlantı hatası:', error);
-        setConnectionStatus('error');
+        console.error('Connection health check error:', error);
         setIsConnected(false);
-        
-        // Hata durumunda yeniden deneme
-        reconnectTimeout = setTimeout(() => {
-          connectWebSocket();
-        }, 5000);
+        setConnectionStatus('error');
+        setLatency(null);
       }
     };
 
-    // İlk bağlantı
-    connectWebSocket();
+    // İlk kontrol
+    checkConnectionHealth();
+    
+    // Periyodik kontrol (her 10 saniyede bir)
+    healthCheckInterval = setInterval(checkConnectionHealth, 10000);
 
     // Cleanup
     return () => {
-      if (ws) {
-        ws.close();
-      }
-      if (pingInterval) {
-        clearInterval(pingInterval);
-      }
-      if (reconnectTimeout) {
-        clearTimeout(reconnectTimeout);
+      if (healthCheckInterval) {
+        clearInterval(healthCheckInterval);
       }
     };
   }, []);
