@@ -209,7 +209,7 @@ function UserDashboardInner() {
           {/* Center - Crypto Ticker */}
           <div className="flex-1 mx-6">
             <CryptoPriceTicker 
-              showTop={8}
+              showTop={100}
               autoScroll={true}
               updateInterval={30000}
             />

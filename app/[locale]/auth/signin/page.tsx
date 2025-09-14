@@ -143,10 +143,9 @@ export default function SignInPage() {
           {/* Center - Crypto Ticker */}
                     {/* Center - Live Crypto Prices */}
           <div className="flex-1 mx-4 min-w-0">
-            <CryptoPriceTicker 
-              showTop={6}
-              autoScroll={true}
+                        <CryptoPriceTicker 
               updateInterval={30000}
+              showTop={100}
             />
           </div>
           
