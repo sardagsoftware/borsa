@@ -93,7 +93,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ...props 
   }, ref) => {
     const [focused, setFocused] = useState(false);
-    const { regime } = useRegime();
+    const regimeData = useRegime();
     
     // Determine state based on error/success props
     const currentState = error ? 'error' : success ? 'success' : state;
@@ -106,8 +106,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         case 'warning': return 'text-warn';
         default: 
           return focused 
-            ? regime === 'shock' ? 'text-warn' :
-              regime === 'elevated' ? 'text-accent1' :
+            ? regimeData.regime === 'volatile' ? 'text-warn' :
+              regimeData.regime === 'bull' ? 'text-accent1' :
               'text-brand1'
             : 'text-gray-500';
       }
@@ -122,8 +122,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             animate={{ opacity: 1, y: 0 }}
             className={`block text-sm font-medium mb-2 transition-colors duration-200 ${
               focused 
-                ? regime === 'shock' ? 'text-warn' :
-                  regime === 'elevated' ? 'text-accent1' :
+                ? regimeData.regime === 'volatile' ? 'text-warn' :
+                  regimeData.regime === 'bull' ? 'text-accent1' :
                   'text-brand1'
                 : 'text-gray-300'
             }`}
@@ -151,7 +151,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               (rightIcon || loading || (showClear && hasValue)) && 'pr-10',
               className
             )}
-            data-regime={regime}
+            data-regime={regimeData.regime}
             onFocus={(e) => {
               setFocused(true);
               props.onFocus?.(e);
@@ -199,8 +199,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               className={`absolute inset-0 rounded-xl pointer-events-none border-2 ${
-                regime === 'shock' ? 'border-warn/30' :
-                regime === 'elevated' ? 'border-accent1/30' :
+                regimeData.regime === 'volatile' ? 'border-warn/30' :
+                regimeData.regime === 'bull' ? 'border-accent1/30' :
                 'border-brand1/30'
               }`}
             />
@@ -275,7 +275,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ...props 
   }, ref) => {
     const [focused, setFocused] = useState(false);
-    const { regime } = useRegime();
+    const regimeData = useRegime();
     
     const currentState = error ? 'error' : success ? 'success' : state;
 
@@ -287,8 +287,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             animate={{ opacity: 1, y: 0 }}
             className={`block text-sm font-medium mb-2 transition-colors duration-200 ${
               focused 
-                ? regime === 'shock' ? 'text-warn' :
-                  regime === 'elevated' ? 'text-accent1' :
+                ? regimeData.regime === 'volatile' ? 'text-warn' :
+                  regimeData.regime === 'bull' ? 'text-accent1' :
                   'text-brand1'
                 : 'text-gray-300'
             }`}
@@ -306,7 +306,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               !resize && 'resize-none',
               className
             )}
-            data-regime={regime}
+            data-regime={regimeData.regime}
             onFocus={(e) => {
               setFocused(true);
               props.onFocus?.(e);
@@ -324,8 +324,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               className={`absolute inset-0 rounded-xl pointer-events-none border-2 ${
-                regime === 'shock' ? 'border-warn/30' :
-                regime === 'elevated' ? 'border-accent1/30' :
+                regimeData.regime === 'volatile' ? 'border-warn/30' :
+                regimeData.regime === 'bull' ? 'border-accent1/30' :
                 'border-brand1/30'
               }`}
             />

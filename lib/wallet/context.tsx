@@ -86,12 +86,12 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
             params: [{
               chainId: `0x${targetChainId.toString(16)}`,
               chainName: chainConfig.name,
-              rpcUrls: [chainConfig.rpc],
-              blockExplorerUrls: [chainConfig.explorer],
+              rpcUrls: chainConfig.rpcUrls.default.http,
+              blockExplorerUrls: [chainConfig.blockExplorers?.default?.url],
               nativeCurrency: {
-                name: chainConfig.name,
-                symbol: chainConfig.symbol,
-                decimals: 18,
+                name: chainConfig.nativeCurrency.name,
+                symbol: chainConfig.nativeCurrency.symbol,
+                decimals: chainConfig.nativeCurrency.decimals,
               },
             }],
           });

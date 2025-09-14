@@ -15,7 +15,7 @@ export function LoadingSpinner({
   variant = 'default',
   className = '' 
 }: LoadingSpinnerProps) {
-  const { regime } = useRegime();
+  const regimeData = useRegime();
 
   const getSizeClasses = () => {
     switch (size) {
@@ -27,9 +27,9 @@ export function LoadingSpinner({
   };
 
   const getRegimeColor = () => {
-    switch (regime) {
-      case 'shock': return 'border-warn';
-      case 'elevated': return 'border-accent1';
+    switch (regimeData.regime) {
+      case 'volatile': return 'border-warn';
+      case 'bull': return 'border-accent1';
       default: return 'border-brand1';
     }
   };
@@ -41,8 +41,8 @@ export function LoadingSpinner({
           <motion.div
             key={i}
             className={`rounded-full ${
-              regime === 'shock' ? 'bg-warn' :
-              regime === 'elevated' ? 'bg-accent1' :
+              regimeData.regime === 'volatile' ? 'bg-warn' :
+              regimeData.regime === 'bull' ? 'bg-accent1' :
               'bg-brand1'
             } ${size === 'sm' ? 'w-1 h-1' : size === 'lg' ? 'w-3 h-3' : 'w-2 h-2'}`}
             animate={{
@@ -65,8 +65,8 @@ export function LoadingSpinner({
     return (
       <motion.div
         className={`${getSizeClasses()} rounded-full ${
-          regime === 'shock' ? 'bg-warn/20' :
-          regime === 'elevated' ? 'bg-accent1/20' :
+          regimeData.regime === 'volatile' ? 'bg-warn/20' :
+          regimeData.regime === 'bull' ? 'bg-accent1/20' :
           'bg-brand1/20'
         } ${className}`}
         animate={{
@@ -80,8 +80,8 @@ export function LoadingSpinner({
         }}
       >
         <div className={`w-full h-full rounded-full ${
-          regime === 'shock' ? 'bg-warn' :
-          regime === 'elevated' ? 'bg-accent1' :
+          regimeData.regime === 'volatile' ? 'bg-warn' :
+          regimeData.regime === 'bull' ? 'bg-accent1' :
           'bg-brand1'
         }`} />
       </motion.div>
@@ -95,8 +95,8 @@ export function LoadingSpinner({
           <motion.div
             key={i}
             className={`${
-              regime === 'shock' ? 'bg-warn' :
-              regime === 'elevated' ? 'bg-accent1' :
+              regimeData.regime === 'volatile' ? 'bg-warn' :
+              regimeData.regime === 'bull' ? 'bg-accent1' :
               'bg-brand1'
             } ${
               size === 'sm' ? 'w-0.5 h-3' :
@@ -126,8 +126,8 @@ export function LoadingSpinner({
         <motion.div
           className="absolute inset-0 rounded-full border-2 border-transparent"
           style={{
-            borderTopColor: regime === 'shock' ? 'var(--warn)' :
-                          regime === 'elevated' ? 'var(--accent1)' :
+            borderTopColor: regimeData.regime === 'volatile' ? 'var(--warn)' :
+                          regimeData.regime === 'bull' ? 'var(--accent1)' :
                           'var(--brand1)'
           }}
           animate={{ rotate: 360 }}
@@ -139,8 +139,8 @@ export function LoadingSpinner({
         />
         <motion.div
           className={`absolute inset-2 rounded-full ${
-            regime === 'shock' ? 'bg-warn/20' :
-            regime === 'elevated' ? 'bg-accent1/20' :
+            regimeData.regime === 'volatile' ? 'bg-warn/20' :
+            regimeData.regime === 'bull' ? 'bg-accent1/20' :
             'bg-brand1/20'
           }`}
           animate={{
@@ -180,7 +180,7 @@ export function LoadingScreen({
   variant = 'default',
   className = ''
 }: LoadingScreenProps) {
-  const { regime } = useRegime();
+  const regimeData = useRegime();
 
   if (variant === 'minimal') {
     return (
@@ -192,7 +192,7 @@ export function LoadingScreen({
 
   if (variant === 'detailed') {
     return (
-      <div className={`flex items-center justify-center min-h-screen bg-bg ${className}`} data-regime={regime}>
+      <div className={`flex items-center justify-center min-h-screen bg-bg ${className}`} data-regime={regimeData.regime}>
         <div className="text-center max-w-md mx-auto p-8">
           {/* Logo or brand area */}
           <motion.div
@@ -201,13 +201,13 @@ export function LoadingScreen({
             className="mb-8"
           >
             <div className={`w-16 h-16 mx-auto rounded-2xl ${
-              regime === 'shock' ? 'bg-warn/20' :
-              regime === 'elevated' ? 'bg-accent1/20' :
+              regimeData.regime === 'volatile' ? 'bg-warn/20' :
+              regimeData.regime === 'bull' ? 'bg-accent1/20' :
               'bg-brand1/20'
             } flex items-center justify-center`}>
               <div className={`w-8 h-8 rounded-lg ${
-                regime === 'shock' ? 'bg-warn' :
-                regime === 'elevated' ? 'bg-accent1' :
+                regimeData.regime === 'volatile' ? 'bg-warn' :
+                regimeData.regime === 'bull' ? 'bg-accent1' :
                 'bg-brand1'
               }`} />
             </div>
@@ -251,8 +251,8 @@ export function LoadingScreen({
               <div className="w-full bg-panel/50 rounded-full h-2">
                 <motion.div
                   className={`h-2 rounded-full ${
-                    regime === 'shock' ? 'bg-warn' :
-                    regime === 'elevated' ? 'bg-accent1' :
+                    regimeData.regime === 'volatile' ? 'bg-warn' :
+                    regimeData.regime === 'bull' ? 'bg-accent1' :
                     'bg-brand1'
                   }`}
                   initial={{ width: 0 }}
@@ -272,7 +272,7 @@ export function LoadingScreen({
 
   // Default loading screen
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen bg-bg ${className}`} data-regime={regime}>
+    <div className={`flex flex-col items-center justify-center min-h-screen bg-bg ${className}`} data-regime={regimeData.regime}>
       <LoadingSpinner size="lg" />
       <motion.p
         initial={{ opacity: 0 }}
@@ -310,7 +310,7 @@ export function LoadingOverlay({
   variant = 'blur',
   className = ''
 }: LoadingOverlayProps) {
-  const { regime } = useRegime();
+  const regimeData = useRegime();
 
   if (!isVisible) return null;
 
@@ -331,7 +331,7 @@ export function LoadingOverlay({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className={`fixed inset-0 z-50 flex items-center justify-center ${getBackgroundClass()} ${className}`}
-      data-regime={regime}
+      data-regime={regimeData.regime}
     >
       <div className="text-center">
         <LoadingSpinner size="lg" />

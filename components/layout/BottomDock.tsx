@@ -26,7 +26,7 @@ export default function BottomDock({
 }: BottomDockProps) {
   const [lastScrollY, setLastScrollY] = useState(0);
   const controls = useAnimation();
-  const { regime } = useRegime();
+  const regimeData = useRegime();
 
   useEffect(() => {
     if (!hideOnScroll) return;
@@ -45,7 +45,7 @@ export default function BottomDock({
               opacity: 0.8,
               transition: { 
                 type: "spring", 
-                stiffness: regime === 'shock' ? 400 : 300, 
+                stiffness: regimeData.regime === 'volatile' ? 400 : 300, 
                 damping: 30 
               }
             });
@@ -56,7 +56,7 @@ export default function BottomDock({
               opacity: 1,
               transition: { 
                 type: "spring", 
-                stiffness: regime === 'shock' ? 400 : 300, 
+                stiffness: regimeData.regime === 'volatile' ? 400 : 300, 
                 damping: 30 
               }
             });
@@ -71,7 +71,7 @@ export default function BottomDock({
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, controls, hideOnScroll, regime]);
+  }, [lastScrollY, controls, hideOnScroll, regimeData.regime]);
 
   const getVariantClasses = () => {
     switch (variant) {
@@ -85,11 +85,13 @@ export default function BottomDock({
   };
 
   const getRegimeBackground = () => {
-    switch (regime) {
-      case 'shock':
+    switch (regimeData.regime) {
+      case 'volatile':
         return 'bg-panel/85 border-warn/20 shadow-shock backdrop-blur-xl';
-      case 'elevated':
+      case 'bull':
         return 'bg-panel/90 border-accent1/20 shadow-elevated backdrop-blur-xl';
+      case 'bear':
+        return 'bg-panel/85 border-red-500/20 shadow-shock backdrop-blur-xl';
       default:
         return 'bg-panel/80 border-panel/30 shadow-card backdrop-blur-md';
     }
@@ -111,7 +113,7 @@ export default function BottomDock({
         paddingLeft: "env(safe-area-inset-left)",
         paddingRight: "env(safe-area-inset-right)"
       }}
-      data-regime={regime}
+      data-regime={regimeData.regime}
     >
       <div className={getVariantClasses() + " pointer-events-auto"}>
         <motion.div 
@@ -126,8 +128,8 @@ export default function BottomDock({
           {/* Regime indicator bar */}
           <div 
             className={`h-1 rounded-t-2xl transition-all duration-500 ${
-              regime === 'shock' ? 'bg-warn/60' :
-              regime === 'elevated' ? 'bg-accent1/60' :
+              regimeData.regime === 'volatile' ? 'bg-warn/60' :
+              regimeData.regime === 'bull' ? 'bg-accent1/60' :
               'bg-brand1/60'
             }`}
           />
@@ -163,7 +165,7 @@ export function DockButton({
   className = "",
   pulse = false
 }: DockButtonProps) {
-  const { regime } = useRegime();
+  const regimeData = useRegime();
 
   const getVariantClasses = () => {
     const base = 'relative flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-300 min-h-[52px] min-w-[52px]';
@@ -171,8 +173,8 @@ export function DockButton({
     switch (variant) {
       case 'primary':
         return `${base} ${
-          regime === 'shock' ? 'bg-warn text-bg hover:bg-warn/90 shadow-shock' :
-          regime === 'elevated' ? 'bg-accent1 text-bg hover:bg-accent1/90 shadow-elevated' :
+          regimeData.regime === 'volatile' ? 'bg-warn text-bg hover:bg-warn/90 shadow-shock' :
+          regimeData.regime === 'bull' ? 'bg-accent1 text-bg hover:bg-accent1/90 shadow-elevated' :
           'bg-brand1 text-bg hover:bg-brand1/90 shadow-soft'
         }`;
       
@@ -208,7 +210,7 @@ export function DockButton({
         damping: 20,
         delay: Math.random() * 0.1 // Stagger animation
       }}
-      data-regime={regime}
+      data-regime={regimeData.regime}
     >
       <div className="w-6 h-6 mb-1 flex items-center justify-center">
         {icon}
@@ -225,8 +227,8 @@ export function DockButton({
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           className={`absolute -top-1 -right-1 text-bg text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 shadow-soft ${
-            regime === 'shock' ? 'bg-warn' :
-            regime === 'elevated' ? 'bg-accent1' :
+            regimeData.regime === 'volatile' ? 'bg-warn' :
+            regimeData.regime === 'bull' ? 'bg-accent1' :
             'bg-brand2'
           }`}
         >

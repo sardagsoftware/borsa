@@ -91,7 +91,7 @@ export const metadata: Metadata = {
   other: {
     'copyright': `© ${COPYRIGHT_NOTICE.year} ${COPYRIGHT_NOTICE.owner}`,
     'license': COPYRIGHT_NOTICE.license,
-    'developer': COPYRIGHT_NOTICE.contact.developer
+    'developer': COPYRIGHT_NOTICE.contact.email
   }
 };
 
@@ -108,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="copyright" content={`© ${COPYRIGHT_NOTICE.year} ${COPYRIGHT_NOTICE.owner}`} />
         <meta name="author" content={COPYRIGHT_NOTICE.owner} />
-        <meta name="developer" content={COPYRIGHT_NOTICE.contact.developer} />
+        <meta name="developer" content={COPYRIGHT_NOTICE.contact.email} />
         <meta name="license" content={COPYRIGHT_NOTICE.license} />
         {/* Telif koruması için */}
         <meta name="robots" content="noindex, nofollow" />

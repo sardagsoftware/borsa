@@ -2,7 +2,7 @@ export { default as WalletButton } from './components/WalletButton';
 export { default as WalletModal } from './components/WalletModal';
 export { default as NetworkSwitcher } from './components/NetworkSwitcher';
 export { WalletProvider, useWallet, signInWithEthereum, executeMultiChainTransaction } from './context';
-export { config, SUPPORTED_CHAINS, TRADING_PAIRS, GAS_CONFIGS, DEX_ROUTERS } from './config';
+export { wagmiConfig as config, SUPPORTED_CHAINS, ENABLED_CHAINS, GAS_CONFIGS, DEX_ROUTERS } from './config';
 import { SUPPORTED_CHAINS, GAS_CONFIGS, DEX_ROUTERS } from './config';
 
 // Wallet utilities
@@ -32,7 +32,7 @@ export const getExplorerUrl = (chainId: number, hash: string, type: 'tx' | 'addr
   if (!chain) return '';
   
   const path = type === 'tx' ? 'tx' : 'address';
-  return `${chain.explorer}/${path}/${hash}`;
+  return `${chain.blockExplorers?.default?.url}/${path}/${hash}`;
 };
 
 // Price formatting for different locales
@@ -69,7 +69,7 @@ export const estimateGasCost = (chainId: number, gasUsed: number, gasPrice: 'slo
   if (!gasConfig) return '0';
   
   const priceInGwei = gasConfig[gasPrice];
-  const costInEth = (gasUsed * priceInGwei) / 1e9;
+  const costInEth = (gasUsed * parseFloat(priceInGwei)) / 1e9;
   
   return costInEth.toFixed(6);
 };

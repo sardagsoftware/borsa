@@ -59,7 +59,7 @@ export default function SecurityPage() {
             Kill Switch: {killSwitch ? 'ACTIVE' : 'INACTIVE'}
           </span>
           <Button
-            variant={killSwitch ? 'destructive' : 'outline'}
+            variant={killSwitch ? 'danger' : 'outline'}
             size="lg"
             onClick={handleKillSwitch}
             className="text-lg font-bold"

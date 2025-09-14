@@ -71,7 +71,7 @@ const StatusBadge = ({ status }: { status: 'healthy' | 'degraded' | 'unhealthy' 
 
   return (
     <Badge 
-      variant="secondary" 
+      variant="default" 
       className={cn(variants[status], 'font-medium')}
     >
       {status.charAt(0).toUpperCase() + status.slice(1)}

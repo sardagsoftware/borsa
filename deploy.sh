@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# AILYDIAN AI LENS TRADER PRO+ - Production Deployment Script
-# This script validates the build and ensures production readiness
+# AiLydian Trader - Production Deployment Script
+# Copyright (c) 2024 AiLydian Technologies
+# Secure automated deployment to Vercel with GitHub integration
 
-set -e
+set -e  # Exit on any error
 
-echo "🚀 AILYDIAN AI LENS TRADER PRO+ - Production Deployment"
-echo "======================================================"
+echo "🚀 AiLydian Trader - Production Deployment"
+echo "=========================================="
 
 # Colors for output
 RED='\033[0;31m'

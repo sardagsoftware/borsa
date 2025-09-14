@@ -29,7 +29,7 @@ const config: Config = {
       statements: 70
     }
   },
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1'
   }
 };

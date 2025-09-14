@@ -200,7 +200,7 @@ export const generateSkillManifest = () => {
                   intents: Object.values(ALEXA_INTENTS).map(intent => ({
                     name: intent.name,
                     samples: intent.samples,
-                    ...(intent.slots && { slots: intent.slots })
+                    ...(('slots' in intent && intent.slots) ? { slots: intent.slots } : {})
                   }))
                 }
               }

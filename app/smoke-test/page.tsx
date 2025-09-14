@@ -17,9 +17,13 @@ import Header from "@/components/layout/Header";
 import BottomDock, { QuickActionsDock, DockButton } from "@/components/layout/BottomDock";
 import { 
   Button, 
-  Card, 
-  Pills
+  Card,
+  CardContent,
+  CardHeader, 
+  CardTitle,
+  CardFooter
 } from "@/components/ui";
+import { Pill, PillsContainer } from "@/components/ui/pills";
 
 export default function SmokeTestPage() {
   const [connected, setConnected] = useState(false);
@@ -35,9 +39,9 @@ export default function SmokeTestPage() {
   };
 
   const variants = ['primary', 'secondary', 'ghost', 'danger', 'success', 'outline'] as const;
-  const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+  const sizes = ['xs', 'sm', 'default', 'lg', 'xl'] as const;
   const cardVariants = ['default', 'elevated', 'glass', 'flat', 'gradient'] as const;
-  const pillVariants = ['default', 'primary', 'secondary', 'success', 'danger', 'warning'] as const;
+  const pillVariants = ['default', 'success', 'danger', 'warning'] as const;
 
   return (
     <div className="min-h-screen bg-bg">
@@ -81,10 +85,10 @@ export default function SmokeTestPage() {
               >
                               <div className="p-6 space-y-4">
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <Pills variant="success">🔐 Security System</Pills>
-                  <Pills variant="primary">🎨 UI Components</Pills>
-                  <Pills variant="default">📱 Mobile Native</Pills>
-                  <Pills variant="warning">🚀 Docker Ready</Pills>
+                  <Pill variant="success">🔐 Security System</Pill>
+                  <Pill variant="default">🎨 UI Components</Pill>
+                  <Pill variant="default">📱 Mobile Native</Pill>
+                  <Pill variant="warning">🚀 Docker Ready</Pill>
                 </div>
               </div>
               </motion.div>
@@ -133,13 +137,12 @@ export default function SmokeTestPage() {
                     <Button 
                       variant="primary" 
                       loading={loading}
-                      loadingText="Processing..."
                       onClick={() => {
                         setLoading(true);
                         setTimeout(() => setLoading(false), 3000);
                       }}
                     >
-                      Click to Load
+                      {loading ? "Processing..." : "Click to Load"}
                     </Button>
                     <Button variant="secondary" disabled>
                       Disabled
@@ -154,7 +157,7 @@ export default function SmokeTestPage() {
                     >
                       With Icon
                     </Button>
-                    <Button variant="primary" fullWidth className="sm:w-auto">
+                    <Button variant="primary" className="w-full sm:w-auto">
                       Full Width (Mobile)
                     </Button>
                   </div>
@@ -189,7 +192,7 @@ export default function SmokeTestPage() {
                       </div>
                     </CardContent>
                     <CardFooter>
-                      <Button size="sm" variant="ghost" fullWidth>
+                      <Button size="sm" variant="ghost" className="w-full">
                         View Details
                       </Button>
                     </CardFooter>
@@ -220,20 +223,13 @@ export default function SmokeTestPage() {
                 <div>
                   <h3 className="text-lg font-semibold mb-4">With Icons & Removable</h3>
                   <PillsContainer>
-                    <Pill 
-                      variant="primary" 
-                      leftIcon={
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      }
-                    >
+                    <Pill variant="success">
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
                       Verified
                     </Pill>
-                    <Pill 
-                      variant="success"
-                      onRemove={() => console.log('Removed!')}
-                    >
+                    <Pill variant="success">
                       Removable
                     </Pill>
                     <Pill variant="warning">

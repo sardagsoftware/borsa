@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         expiresAt: exportResult.expiresAt,
         metadata: {
           techniqueCount: ttpData.length,
-          layerVersion: layer.version,
+          layerVersion: layer.versions || '1.0.0',
           generatedAt: new Date().toISOString()
         }
       }

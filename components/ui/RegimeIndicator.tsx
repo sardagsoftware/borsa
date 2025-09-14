@@ -14,11 +14,11 @@ export function RegimeIndicator({
   showLabel = true,
   size = 'md' 
 }: RegimeIndicatorProps) {
-  const { regime, isTransitioning } = useRegime();
+  const regimeData = useRegime();
 
   const getRegimeInfo = () => {
-    switch (regime) {
-      case 'shock':
+    switch (regimeData.regime) {
+      case 'volatile':
         return { 
           label: 'High Volatility', 
           color: 'text-warn',
@@ -27,24 +27,33 @@ export function RegimeIndicator({
           icon: '⚡',
           description: 'Market experiencing high volatility'
         };
-      case 'elevated':
+      case 'bull':
         return { 
-          label: 'Elevated Risk', 
+          label: 'Bull Market', 
           color: 'text-accent1',
           bg: 'bg-accent1/20',
           border: 'border-accent1/30',
           icon: '📈',
-          description: 'Market conditions are elevated'
+          description: 'Market in uptrend'
         };
-      case 'calm':
+      case 'bear':
+        return { 
+          label: 'Bear Market', 
+          color: 'text-red-500',
+          bg: 'bg-red-500/20',
+          border: 'border-red-500/30',
+          icon: '🐻',
+          description: 'Market in downtrend'
+        };
+      case 'sideways':
       default:
         return { 
-          label: 'Normal Conditions', 
+          label: 'Sideways Market', 
           color: 'text-brand1',
           bg: 'bg-brand1/20',
           border: 'border-brand1/30',
           icon: '🌊',
-          description: 'Market conditions are calm'
+          description: 'Market moving sideways'
         };
     }
   };
@@ -54,105 +63,111 @@ export function RegimeIndicator({
       case 'sm':
         return {
           container: 'px-2 py-1 text-xs',
-          icon: 'text-xs',
-          dot: 'w-1 h-1',
+          icon: 'text-sm',
+          dot: 'w-1.5 h-1.5'
         };
       case 'lg':
         return {
-          container: 'px-4 py-2 text-base',
-          icon: 'text-base',
-          dot: 'w-3 h-3',
+          container: 'px-4 py-3 text-base',
+          icon: 'text-lg',
+          dot: 'w-3 h-3'
         };
       case 'md':
       default:
         return {
-          container: 'px-3 py-1.5 text-sm',
-          icon: 'text-sm',
-          dot: 'w-2 h-2',
+          container: 'px-3 py-2 text-sm',
+          icon: 'text-base',
+          dot: 'w-2 h-2'
         };
     }
   };
 
-  const info = getRegimeInfo();
+  const regimeInfo = getRegimeInfo();
   const sizeClasses = getSizeClasses();
 
   return (
-    <div 
-      className={`
-        flex items-center gap-2 rounded-lg border transition-all duration-300
-        ${info.bg} ${info.border} ${sizeClasses.container}
-        ${className}
-      `}
-      title={info.description}
-    >
-      <span className={sizeClasses.icon}>{info.icon}</span>
+    <div className={`
+      inline-flex items-center gap-2 rounded-lg
+      ${regimeInfo.bg} ${regimeInfo.border} ${regimeInfo.color}
+      ${sizeClasses.container} ${className}
+      transition-all duration-200 border
+    `}>
+      <div className={`
+        flex items-center justify-center
+        ${sizeClasses.icon}
+      `}>
+        {regimeInfo.icon}
+      </div>
       
       {showLabel && (
-        <span className={`font-medium ${info.color}`}>
-          {info.label}
+        <span className="font-medium whitespace-nowrap">
+          {regimeInfo.label}
         </span>
       )}
       
-      {isTransitioning && (
+      <div className={`
+        relative rounded-full
+        ${regimeInfo.color} ${sizeClasses.dot}
+        opacity-80
+      `}>
+        {/* Pulse animation based on confidence */}
         <div className={`
-          rounded-full bg-current animate-pulse 
-          ${sizeClasses.dot}
-        `} />
-      )}
+          absolute inset-0 rounded-full animate-ping
+          ${regimeInfo.color} opacity-30
+        `} 
+        style={{
+          animationDuration: `${2 - regimeData.confidence}s`
+        }} />
+      </div>
     </div>
   );
 }
 
-// Compact dot-only indicator
-export function RegimeDot({ className = '' }: { className?: string }) {
-  const { regime, isTransitioning } = useRegime();
+// Simple regime dot component
+export function RegimeDot({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
+  const regimeData = useRegime();
 
   const getRegimeColor = () => {
-    switch (regime) {
-      case 'shock':
+    switch (regimeData.regime) {
+      case 'volatile':
         return 'bg-warn';
-      case 'elevated':
+      case 'bull':
         return 'bg-accent1';
-      case 'calm':
+      case 'bear':
+        return 'bg-red-500';
+      case 'sideways':
       default:
         return 'bg-brand1';
     }
   };
 
+  const getSizeClass = () => {
+    switch (size) {
+      case 'sm': return 'w-1.5 h-1.5';
+      case 'lg': return 'w-3 h-3';
+      case 'md':
+      default: return 'w-2 h-2';
+    }
+  };
+
   return (
-    <div className={`relative ${className}`}>
+    <div className={`
+      relative rounded-full ${getRegimeColor()} ${getSizeClass()}
+    `}>
       <div className={`
-        w-2 h-2 rounded-full transition-colors duration-300
-        ${getRegimeColor()}
+        absolute inset-0 rounded-full animate-ping
+        ${getRegimeColor()} opacity-75
       `} />
-      
-      {isTransitioning && (
-        <div className={`
-          absolute inset-0 w-2 h-2 rounded-full animate-ping
-          ${getRegimeColor()} opacity-75
-        `} />
-      )}
     </div>
   );
 }
 
 // Status bar component with regime info
 export function RegimeStatusBar({ className = '' }: { className?: string }) {
-  const { regime, metrics, history } = useRegime();
+  const regimeData = useRegime();
 
   const getStatusMessage = () => {
-    const changeCount = history.length;
-    const lastChange = history[history.length - 1];
-    
-    if (changeCount === 0) {
-      return `Market regime: ${regime}`;
-    }
-
-    const timeSinceChange = lastChange 
-      ? Math.round((Date.now() - lastChange.timestamp) / 60000) 
-      : 0;
-
-    return `${regime.toUpperCase()} regime for ${timeSinceChange}min`;
+    return `${regimeData.regime.toUpperCase()} regime (${(regimeData.confidence * 100).toFixed(0)}% confidence)`;
   };
 
   return (
@@ -168,10 +183,10 @@ export function RegimeStatusBar({ className = '' }: { className?: string }) {
         </span>
       </div>
       
-      {metrics && (
-        <div className="flex items-center gap-4 text-xs text-muted">
-          <span>Vol: {(metrics.volatility * 100).toFixed(0)}%</span>
-          <span>Spread: {(metrics.spread * 100).toFixed(0)}%</span>
+      {regimeData.volatility && (
+        <div className="flex items-center gap-3 text-xs text-muted">
+          <span>Vol: {(regimeData.volatility * 100).toFixed(0)}%</span>
+          <span>Trend: {regimeData.trend}</span>
         </div>
       )}
     </div>

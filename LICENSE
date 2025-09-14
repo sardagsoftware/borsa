@@ -1,0 +1,221 @@
+AILYDIAN TRADER PROPRIETARY LICENSE
+
+Copyright (c) 2024 AiLydian Technologies
+All Rights Reserved.
+
+================================================================================
+IMPORTANT LEGAL NOTICE
+================================================================================
+
+This software and its associated documentation (the "Software") are the 
+exclusive proprietary property of AiLydian Technologies ("Company"). This 
+license agreement ("License") governs your use of the Software.
+
+BY USING, INSTALLING, OR ACCESSING THE SOFTWARE, YOU AGREE TO BE BOUND BY THE 
+TERMS OF THIS LICENSE. IF YOU DO NOT AGREE TO THESE TERMS, DO NOT USE THE 
+SOFTWARE.
+
+================================================================================
+1. GRANT OF LICENSE
+================================================================================
+
+Subject to the terms and conditions of this License, the Company hereby grants 
+you a limited, non-exclusive, non-transferable, revocable license to:
+
+a) Evaluate the Software for potential licensing opportunities
+b) Use the Software solely for personal, non-commercial evaluation purposes
+c) Access the Software's functionality as permitted by the Company
+
+================================================================================
+2. RESTRICTIONS
+================================================================================
+
+You may NOT:
+
+a) Copy, reproduce, or distribute the Software or any portion thereof
+b) Modify, adapt, alter, translate, or create derivative works of the Software
+c) Reverse engineer, decompile, disassemble, or attempt to derive source code
+d) Remove, alter, or obscure any proprietary notices or labels on the Software
+e) Use the Software for commercial purposes without explicit written permission
+f) Transfer, sublicense, or assign your rights under this License
+g) Use the Software to develop competing products or services
+h) Extract, harvest, or scrape data from the Software
+
+================================================================================
+3. INTELLECTUAL PROPERTY RIGHTS
+================================================================================
+
+The Software contains trade secrets and proprietary information of AiLydian 
+Technologies, including but not limited to:
+
+a) Source code, object code, and algorithms
+b) User interface designs and implementations  
+c) Database schemas and data structures
+d) API specifications and integrations
+e) Security implementations and protocols
+f) Artificial intelligence models and training data
+
+All rights, title, and interest in and to the Software remain exclusively with 
+AiLydian Technologies.
+
+================================================================================
+4. ENTERPRISE LICENSING
+================================================================================
+
+Commercial use of the Software requires a separate Enterprise License Agreement. 
+Enterprise licenses include:
+
+a) Commercial deployment rights
+b) White-label customization options
+c) Priority technical support
+d) Service level agreements (SLA)
+e) Professional services and consulting
+
+Contact: emrah@ailydian.com for enterprise licensing inquiries.
+
+================================================================================
+5. FREE SOFTWARE FOUNDATION (FSF) COMPLIANCE STATEMENT
+================================================================================
+
+While this Software is proprietary, AiLydian Technologies respects the 
+principles of software freedom and supports the Free Software Foundation's 
+mission. This compliance statement addresses FSF guidelines:
+
+a) USER FREEDOM RESPECT:
+   - Users have the right to know what software they are running
+   - Clear disclosure of proprietary nature and limitations
+   - No hidden or undisclosed functionality
+
+b) DEPENDENCY TRANSPARENCY:
+   - All open-source dependencies are properly attributed
+   - Dependency licenses are respected and maintained
+   - No GPL contamination in proprietary components
+
+c) CONTRIBUTION POLICY:
+   - Contributions to underlying open-source projects are encouraged
+   - Bug fixes in open-source dependencies are shared back to communities
+   - Support for open standards and interoperability
+
+d) ETHICAL COMPUTING:
+   - No surveillance or privacy violations
+   - No malicious functionality or backdoors
+   - Transparent data collection and usage policies
+
+================================================================================
+6. OPEN SOURCE COMPONENTS
+================================================================================
+
+This Software incorporates open-source components with compatible licenses:
+
+- Next.js (MIT License)
+- React (MIT License)  
+- TypeScript (Apache 2.0 License)
+- Tailwind CSS (MIT License)
+- Framer Motion (MIT License)
+- Other dependencies as listed in package.json
+
+All open-source licenses are preserved and available in the source distribution.
+
+================================================================================
+7. PRIVACY AND DATA PROTECTION
+================================================================================
+
+AiLydian Technologies is committed to data protection and privacy:
+
+a) GDPR Compliance (European Union)
+b) KVKK Compliance (Turkey)
+c) CCPA Compliance (California)
+d) SOX Compliance (Financial Data)
+
+Data processing is governed by our Privacy Policy available at:
+https://ailydian.com/privacy
+
+================================================================================
+8. SECURITY AND COMPLIANCE
+================================================================================
+
+The Software implements enterprise-grade security measures:
+
+a) AES-256 encryption for sensitive data
+b) TLS 1.3 for data transmission
+c) Multi-factor authentication support
+d) Regular security audits and penetration testing
+e) ISO 27001 security framework compliance
+
+================================================================================
+9. DISCLAIMER OF WARRANTIES
+================================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. 
+
+THE COMPANY DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS OR 
+THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE.
+
+================================================================================
+10. LIMITATION OF LIABILITY
+================================================================================
+
+IN NO EVENT SHALL AILYDIAN TECHNOLOGIES BE LIABLE FOR ANY SPECIAL, INCIDENTAL, 
+INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER ARISING OUT OF THE USE OF OR 
+INABILITY TO USE THE SOFTWARE, EVEN IF THE COMPANY HAS BEEN ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGES.
+
+TRADING DISCLAIMER: CRYPTOCURRENCY TRADING INVOLVES SUBSTANTIAL RISK OF LOSS. 
+THE COMPANY IS NOT RESPONSIBLE FOR TRADING DECISIONS OR FINANCIAL LOSSES.
+
+================================================================================
+11. TERMINATION
+================================================================================
+
+This License is effective until terminated. The Company may terminate this 
+License at any time without notice if you fail to comply with any term hereof. 
+
+Upon termination, you must:
+a) Cease all use of the Software immediately
+b) Delete all copies of the Software in your possession
+c) Destroy any derivative materials
+
+================================================================================
+12. GOVERNING LAW
+================================================================================
+
+This License shall be governed by and construed in accordance with the laws of 
+Turkey. Any disputes arising under this License shall be subject to the 
+exclusive jurisdiction of the courts of Istanbul, Turkey.
+
+================================================================================
+13. CONTACT INFORMATION
+================================================================================
+
+AiLydian Technologies
+Email: emrah@ailydian.com
+Website: https://ailydian.com
+Address: Istanbul, Turkey
+
+For licensing inquiries: emrah@ailydian.com
+For technical support: support@ailydian.com
+For legal matters: legal@ailydian.com
+
+================================================================================
+14. ENTIRE AGREEMENT
+================================================================================
+
+This License constitutes the entire agreement between you and AiLydian 
+Technologies regarding the Software and supersedes all prior agreements, 
+understandings, and communications relating to the subject matter hereof.
+
+This License may only be modified by a written agreement signed by an 
+authorized representative of AiLydian Technologies.
+
+================================================================================
+ACKNOWLEDGMENT
+================================================================================
+
+By using the Software, you acknowledge that you have read this License, 
+understand it, and agree to be bound by its terms and conditions.
+
+This License was last updated on: December 14, 2024
+
+© 2024 AiLydian Technologies. All Rights Reserved.

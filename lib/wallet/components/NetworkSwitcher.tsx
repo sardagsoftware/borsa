@@ -114,7 +114,7 @@ export default function NetworkSwitcher() {
                     {network.name}
                   </div>
                   <div className="text-xs text-gray-400">
-                    {network.symbol}
+                    {network.nativeCurrency.symbol}
                   </div>
                 </div>
                 

@@ -63,13 +63,13 @@ export default function SmokeTestPage() {
         <Card className="p-6 space-y-6">
           <h3 className="text-xl font-semibold">🔘 Button Variants</h3>
           <div className="flex flex-wrap gap-3">
-            <Button variant="default">Default</Button>
+            <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
             <Button variant="ghost">Ghost</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="buy">Buy Signal</Button>
-            <Button variant="sell">Sell Signal</Button>
+            <Button variant="danger">Danger</Button>
+            <Button variant="positive">Positive</Button>
+            <Button variant="negative">Negative</Button>
           </div>
 
           <div className="space-y-4">
@@ -163,7 +163,7 @@ export default function SmokeTestPage() {
               ⚡ Elevated Theme (B)
             </Button>
             <Button 
-              variant="destructive" 
+              variant="danger" 
               onClick={() => {
                 if (typeof window !== 'undefined' && (window as any).themeDebug) {
                   (window as any).themeDebug.simulateVolatility(0.9);

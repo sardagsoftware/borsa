@@ -165,7 +165,10 @@ async function handleCoverageReport(
   // Generate coverage report
   const coverageReport = generateCoverageReport(
     validLayers.map(l => l!.layer), 
-    { tactic, platform }
+    { 
+      tactic: tactic || undefined, 
+      platform: platform || undefined 
+    }
   );
 
   return NextResponse.json({
