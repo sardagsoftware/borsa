@@ -1,37 +1,9 @@
 {
-  "version": 3,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next",
-      "config": {
-        "maxDuration": 60
-      }
-    }
-  ],
-  "buildCommand": "npm run build && npm run postbuild",
-  "installCommand": "npm ci",
+  "version": 2,
+  "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "JWT_SECRET": "@jwt_secret",
-    "BINANCE_API_KEY": "@binance_api_key",
-    "BINANCE_API_SECRET": "@binance_api_secret",
-    "OPENAI_API_KEY": "@openai_api_key",
-    "VIRUSTOTAL_API_KEY": "@virustotal_api_key",
-    "NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID": "@walletconnect_project_id",
-    "NEXT_PUBLIC_SITE_URL": "@site_url",
-    "CLOUDFLARE_API_TOKEN": "@cloudflare_api_token",
-    "CLOUDFLARE_ACCOUNT_ID": "@cloudflare_account_id",
-    "CLOUDFLARE_ZONE_ID": "@cloudflare_zone_id"
-  },
-  "build": {
-    "env": {
-      "NEXT_TELEMETRY_DISABLED": "1",
-      "ANALYZE": "false",
-      "NODE_OPTIONS": "--max-old-space-size=4096"
-    }
-  },
+  "installCommand": "npm ci",
+  "framework": "nextjs",
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30
@@ -66,31 +38,6 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://ailydian.com"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, X-Requested-With"
-        },
-        {
-          "key": "Access-Control-Max-Age",
-          "value": "86400"
         }
       ]
     }
@@ -98,44 +45,14 @@
   "redirects": [
     {
       "source": "/dashboard",
-      "destination": "/en/dashboard",
+      "destination": "/tr/dashboard",
       "permanent": false
     },
     {
-      "source": "/trading",
-      "destination": "/en/trading",
-      "permanent": false
-    },
-    {
-      "source": "/wallet",
-      "destination": "/en/wallet",
+      "source": "/auth/signin",
+      "destination": "/tr/auth/signin",
       "permanent": false
     }
   ],
-  "rewrites": [
-    {
-      "source": "/api/health",
-      "destination": "/api/system/health"
-    },
-    {
-      "source": "/api/status",
-      "destination": "/api/system/status"
-    }
-  ],
-  "crons": [
-    {
-      "path": "/api/tasks/update-prices",
-      "schedule": "0 * * * *"
-    },
-    {
-      "path": "/api/tasks/cleanup-logs",
-      "schedule": "0 2 * * *"
-    },
-    {
-      "path": "/api/security/threat-update",
-      "schedule": "0 */6 * * *"
-    }
-  ],
-  "regions": ["iad1", "fra1", "hkg1"],
-  "framework": "nextjs"
+  "regions": ["iad1", "fra1", "hkg1"]
 }
