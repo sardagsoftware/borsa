@@ -1,0 +1,39 @@
+{
+  "color": {
+    "bg": { 
+      "value": "#0B1016",
+      "description": "Calm theme - deeper, more relaxed background"
+    },
+    "panel": { 
+      "value": "#111926",
+      "description": "Calm theme - subtle panel background"
+    },
+    "brand1": { 
+      "value": "#68E7D7",
+      "description": "Calm theme - soothing mint primary"
+    },
+    "accent1": { 
+      "value": "#C7FF5A",
+      "description": "Calm theme - gentle lime accent"
+    },
+    "border": { 
+      "value": "rgba(104, 231, 215, 0.15)",
+      "description": "Calm theme - soft mint border"
+    },
+    "hover": { 
+      "value": "rgba(104, 231, 215, 0.1)",
+      "description": "Calm theme - gentle hover state"
+    }
+  },
+  "animation": {
+    "duration": {
+      "fast": { "value": "150ms" },
+      "normal": { "value": "200ms" },
+      "slow": { "value": "300ms" }
+    },
+    "ease": {
+      "smooth": { "value": "cubic-bezier(0.4, 0, 0.2, 1)" },
+      "bounce": { "value": "cubic-bezier(0.68, -0.55, 0.265, 1.55)" }
+    }
+  }
+}

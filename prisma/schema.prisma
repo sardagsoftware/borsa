@@ -1,0 +1,852 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  
+  // Trading specific fields
+  isActive      Boolean   @default(true)
+  riskLevel     String    @default("MEDIUM") // LOW, MEDIUM, HIGH
+  maxDailyLoss  Float     @default(1000.0)
+  twoFactorEnabled Boolean @default(false)
+  
+  // Relations
+  accounts      Account[]
+  sessions      Session[]
+  apiKeys       ApiKey[]
+  trades        Trade[]
+  portfolios    Portfolio[]
+  riskSettings  RiskSetting[]
+  strategies    Strategy[]
+  
+  // PRO+ Relations
+  exchangeAccounts ExchangeAccount[]
+  alertRules    AlertRule[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Trading API Keys (Encrypted)
+model ApiKey {
+  id          String   @id @default(cuid())
+  userId      String
+  exchange    String   // BINANCE, BYBIT, OKX, etc.
+  name        String   // User-friendly name
+  key         String   // Encrypted API Key
+  secret      String   // Encrypted Secret Key
+  passphrase  String?  // For some exchanges, encrypted
+  testnet     Boolean  @default(true)
+  isActive    Boolean  @default(true)
+  permissions String[] // READ, TRADE, FUTURES, etc.
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Trade Records
+model Trade {
+  id          String   @id @default(cuid())
+  userId      String
+  symbol      String   // BTCUSDT, ETHUSDT, etc.
+  side        String   // BUY, SELL
+  type        String   // MARKET, LIMIT, STOP_LOSS, etc.
+  qty         Float    // Quantity
+  price       Float?   // Order price
+  executedQty Float    @default(0)
+  executedPrice Float?
+  status      String   // NEW, FILLED, CANCELLED, etc.
+  
+  // Exchange info
+  exchange    String   // BINANCE, BYBIT, etc.
+  exchangeOrderId String?
+  
+  // Trading mode
+  isBot       Boolean  @default(false)
+  botMode     String?  // SEMI, AUTO, MANUAL
+  signal      Float?   // AI signal strength
+  reason      String?  // AI reasoning
+  
+  // PnL tracking
+  pnl         Float?
+  commission  Float?
+  commissionAsset String?
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  journals    Journal[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Portfolio tracking
+model Portfolio {
+  id          String   @id @default(cuid())
+  userId      String
+  symbol      String   // BTCUSDT, ETHUSDT, etc.
+  quantity    Float
+  avgPrice    Float
+  currentPrice Float?
+  pnl         Float?
+  pnlPercent  Float?
+  
+  // Position info  
+  side        String   // LONG, SHORT
+  leverage    Float    @default(1.0)
+  marginUsed  Float?
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([userId, symbol, side])
+}
+
+// Risk management settings
+model RiskSetting {
+  id            String   @id @default(cuid())
+  userId        String
+  
+  // Global risk settings
+  maxDailyLoss  Float    @default(1000.0)
+  maxPositionSize Float  @default(10000.0)
+  maxLeverage   Float    @default(10.0)
+  
+  // Stop loss settings
+  stopLossPercent Float  @default(2.0)
+  takeProfitPercent Float @default(5.0)
+  
+  // Portfolio limits
+  maxPositions  Int      @default(10)
+  maxCorrelation Float   @default(0.7)
+  
+  // AI settings
+  aiTradingEnabled Boolean @default(false)
+  minAiConfidence Float   @default(0.7)
+  
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@unique([userId])
+}
+
+// XAI Journal
+model Journal {
+  id        String   @id @default(cuid())
+  tradeId   String
+  xaiReason String
+  confidence Float?
+  indicators Json?    // Technical indicators at trade time
+  sentiment  Float?   // Market sentiment score
+  
+  trade     Trade    @relation(fields: [tradeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+// Market data cache (CoinMarketCap Top 100)
+model MarketData {
+  id          String   @id @default(cuid())
+  symbol      String   @unique
+  name        String
+  price       Float
+  change24h   Float?
+  volume24h   Float?
+  marketCap   Float?
+  rank        Int?
+  
+  // Technical indicators cache
+  rsi         Float?
+  macd        Float?
+  macdSignal  Float?
+  macdHist    Float?
+  bb_upper    Float?
+  bb_lower    Float?
+  bb_middle   Float?
+  sma_20      Float?
+  sma_50      Float?
+  ema_20      Float?
+  ema_50      Float?
+  adx         Float?
+  stoch_k     Float?
+  stoch_d     Float?
+  
+  updatedAt   DateTime @updatedAt
+  
+  @@index([symbol])
+  @@index([rank])
+}
+
+// System alerts and notifications
+model Alert {
+  id          String   @id @default(cuid())
+  userId      String?  // null for system alerts
+  type        String   // PRICE, VOLUME, PNL, SYSTEM, etc.
+  title       String
+  message     String
+  severity    String   @default("INFO") // INFO, WARNING, ERROR, CRITICAL
+  isRead      Boolean  @default(false)
+  
+  // Alert conditions
+  symbol      String?
+  condition   String?  // JSON string with conditions
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([userId, isRead])
+  @@index([createdAt])
+}
+
+// Trading strategies and backtests
+model Strategy {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  config      Json     // Strategy configuration
+  
+  // Performance metrics
+  totalTrades Int      @default(0)
+  winRate     Float?
+  avgReturn   Float?
+  maxDrawdown Float?
+  sharpeRatio Float?
+  
+  isActive    Boolean  @default(false)
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Bot Signals (Top100 tarama sonuçları)
+model BotSignal {
+  id          String   @id @default(cuid())
+  timestamp   DateTime @default(now())
+  symbol      String
+  timeframe   String   // 1m, 5m, 15m, 1h, 4h, 1d
+  score       Float    // Composite Score [-100, +100]
+  regime      String   // trend|range|squeeze|shock
+  prebreakout Float    // Pre-breakout score [0, 1]
+  squeeze     Float    // Squeeze probability [0, 1]
+  micro       Json     // Micro structure data
+  beta        Float?   // BTC/ETH correlation
+  source      String   @default("auto-scanner")
+  
+  @@index([symbol, timestamp])
+  @@index([score])
+  @@index([regime])
+}
+
+// Bot Decisions (Policy engine sonuçları)
+model BotDecision {
+  id          String   @id @default(cuid())
+  timestamp   DateTime @default(now())
+  symbol      String
+  action      String   // LONG|SHORT|CLOSE|HOLD
+  rationale   String   // XAI explanation
+  risk        Float    // Risk score
+  policy      Json     // Applied policy rules
+  plan        Json     // Execution plan (TWAP/iceberg)
+  mode        String   // semi|auto|manual
+  
+  // Relations
+  orders      BotOrder[]
+  journals    BotJournal[]
+  
+  @@index([symbol, timestamp])
+}
+
+// Bot Orders (Execution results)
+model BotOrder {
+  id          String   @id @default(cuid())
+  decisionId  String
+  venue       String   // BINANCE|BYBIT|etc
+  request     Json     // Original order request
+  response    Json?    // Exchange response
+  state       String   // pending|filled|cancelled|rejected
+  cost        Float?   // Actual execution cost
+  slippage    Float?   // Estimated vs actual
+  
+  decision    BotDecision @relation(fields: [decisionId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([decisionId])
+  @@index([state])
+}
+
+// Bot Journal (XAI explanations)
+model BotJournal {
+  id          String   @id @default(cuid())
+  decisionId  String
+  xaiJson     Json     // Detailed attribution
+  summaryMd   String   // Markdown summary
+  
+  decision    BotDecision @relation(fields: [decisionId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+// Universe Snapshots (Top100 listesi)
+model UniverseSnapshot {
+  id        String   @id @default(cuid())
+  timestamp DateTime @default(now())
+  members   Json     // Array of symbols with metadata
+  meta      Json     // Additional universe info
+  
+  @@index([timestamp])
+}
+
+// PRO+ Models
+model ExchangeAccount {
+  id            String   @id @default(cuid())
+  userId        String
+  exchange      String   // binance, bybit, okx, etc.
+  alias         String   // User-friendly name
+  encryptedData String   // Encrypted API credentials
+  iv            String   // Encryption IV
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  lastUsed      DateTime?
+  lastRotated   DateTime?
+  deactivatedAt DateTime?
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, isActive])
+  @@index([exchange])
+}
+
+model FeatureFlag {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       Boolean  @default(false)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AlertRule {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  ruleType    String   // signal_threshold, var_limit, loss_cap, breaker
+  config      Json     // Rule configuration
+  isActive    Boolean  @default(true)
+  lastTriggered DateTime?
+  createdAt   DateTime @default(now())
+  
+  user User @relation(fields: [userId], references: [id])
+  
+  @@index([userId, isActive])
+}
+
+model SystemSnapshot {
+  id          String   @id @default(cuid())
+  timestamp   DateTime @default(now())
+  dataHash    String   // SHA-256 hash of snapshot data
+  signature   String   // HMAC signature for integrity
+  bucketPath  String   // Storage path
+  size        Int      // Snapshot size in bytes
+  tables      Json     // List of included tables
+  createdBy   String   // Admin user ID
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  timestamp DateTime @default(now())
+  userId    String?
+  action    String   // login, trade, config_change, etc.
+  details   Json     // Action details
+  ipAddress String?
+  userAgent String?
+  
+  @@index([timestamp])
+  @@index([userId])
+  @@index([action])
+}
+
+model TelemetryEvent {
+  id        String   @id @default(cuid())
+  timestamp DateTime @default(now())
+  eventType String   // metric, span, log
+  service   String   // auto-trader, oms, vault, etc.
+  data      Json     // Event data
+  
+  @@index([timestamp])
+  @@index([eventType, service])
+}
+
+// 🛡️ AILYDIAN SECURITY MODELS
+// Security scan results and history
+model SecurityScan {
+  id          String   @id @default(cuid())
+  scanType    String   // dependencies, vulnerabilities, full
+  status      String   // pending, running, completed, failed
+  duration    Int?     // Scan duration in milliseconds
+  findings    Json?    // Scan results and findings
+  metadata    Json?    // Additional scan metadata
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+  
+  // Relations
+  events      SecurityEvent[]
+  
+  @@index([scanType, status])
+  @@index([startedAt])
+}
+
+// Security events and violations
+model SecurityEvent {
+  id            String   @id @default(cuid())
+  eventType     String   // POLICY_VIOLATION, VULNERABILITY_FOUND, SCAN_COMPLETED, etc.
+  severity      String   // LOW, MEDIUM, HIGH, CRITICAL
+  category      String   // ACCESS, DATA, NETWORK, CRYPTO, COMPLIANCE, BEHAVIOR, SYSTEM
+  title         String
+  description   String
+  sourceIp      String?
+  userAgent     String?
+  userId        String?
+  scanId        String?
+  metadata      Json?    // Additional event data
+  resolved      Boolean  @default(false)
+  resolvedAt    DateTime?
+  resolvedBy    String?
+  
+  // Relations
+  scan          SecurityScan? @relation(fields: [scanId], references: [id], onDelete: SetNull)
+  alerts        SecurityAlert[]
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([eventType, severity])
+  @@index([category])
+  @@index([createdAt])
+  @@index([resolved])
+}
+
+// SOC findings and MITRE ATT&CK mappings
+model SOCFinding {
+  id              String   @id @default(cuid())
+  findingType     String   // THREAT_DETECTION, ANOMALY, IOC, etc.
+  severity        String   // LOW, MEDIUM, HIGH, CRITICAL
+  title           String
+  description     String
+  mitreAttack     Json?    // MITRE ATT&CK technique mappings
+  indicators      Json?    // IOCs and artifacts
+  sourceData      Json?    // Raw detection data
+  confidence      Float    @default(0.5)
+  status          String   @default("NEW") // NEW, INVESTIGATING, RESOLVED, FALSE_POSITIVE
+  assignedTo      String?
+  
+  // Threat intelligence
+  threatActor     String?
+  campaign        String?
+  malwareFamily   String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([findingType, severity])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Security policies and rules
+model SecurityPolicy {
+  id            String   @id @default(cuid())
+  name          String
+  description   String
+  category      String   // ACCESS, DATA, NETWORK, CRYPTO, COMPLIANCE, BEHAVIOR
+  severity      String   // INFO, WARNING, CRITICAL
+  enabled       Boolean  @default(true)
+  conditions    Json     // Policy conditions
+  actions       Json     // Policy actions
+  
+  // Metadata
+  createdBy     String?
+  lastModified  DateTime @updatedAt
+  version       Int      @default(1)
+  
+  // Relations
+  violations    PolicyViolation[]
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([category, enabled])
+  @@index([severity])
+}
+
+// Policy violations and enforcement actions
+model PolicyViolation {
+  id            String   @id @default(cuid())
+  policyId      String
+  violationType String
+  severity      String
+  sourceIp      String?
+  userAgent     String?
+  userId        String?
+  requestPath   String?
+  details       Json?    // Violation details
+  actions       Json?    // Actions taken
+  resolved      Boolean  @default(false)
+  
+  // Relations
+  policy        SecurityPolicy @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([policyId])
+  @@index([severity, resolved])
+  @@index([createdAt])
+}
+
+// Security alerts and notifications
+model SecurityAlert {
+  id            String   @id @default(cuid())
+  alertType     String   // SECURITY, SYSTEM, TRADING, COMPLIANCE
+  severity      String   // LOW, MEDIUM, HIGH, CRITICAL
+  title         String
+  description   String
+  eventId       String?
+  
+  // Delivery tracking
+  channels      Json?    // Delivery channels and status
+  deliveredAt   DateTime?
+  acknowledged  Boolean  @default(false)
+  acknowledgedBy String?
+  acknowledgedAt DateTime?
+  
+  // Relations
+  event         SecurityEvent? @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([alertType, severity])
+  @@index([acknowledged])
+  @@index([createdAt])
+}
+
+// Security analytics and metrics
+model SecurityAnalytics {
+  id            String   @id @default(cuid())
+  metricType    String   // DAILY, HOURLY, SUMMARY
+  period        String   // Date period (YYYY-MM-DD or YYYY-MM-DD-HH)
+  data          Json     // Analytics data
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@unique([metricType, period])
+  @@index([metricType])
+  @@index([createdAt])
+}
+
+// OSINT threat intelligence feeds
+model ThreatIntelligence {
+  id            String   @id @default(cuid())
+  source        String   // CISA_KEV, NVD_CVE, GITHUB_ADVISORY, etc.
+  feedId        String   // External ID from source
+  threatType    String   // CVE, KEV, ADVISORY, IOC
+  severity      String   // LOW, MEDIUM, HIGH, CRITICAL
+  title         String
+  description   String
+  references    Json?    // URLs and references
+  indicators    Json?    // IOCs and artifacts
+  affectedProducts Json? // Affected software/versions
+  lastSeen      DateTime?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@unique([source, feedId])
+  @@index([source, threatType])
+  @@index([severity])
+  @@index([createdAt])
+}
+
+// 🛡️ SOC (Security Operations Center) Tables
+
+// SOC Events - Normalized security events from all sources
+model SocEvent {
+  id          String   @id @default(cuid())
+  timestamp   DateTime
+  source      String   // cloudflare, vercel, waf, secscan, osint, anomaly
+  ip          String?
+  asn         String?
+  userAgent   String?
+  route       String?
+  method      String?
+  statusCode  Int?
+  country     String?
+  signal      Json     // source-specific metadata and signals
+  metadata    Json?    // additional context
+  
+  sessionId   String?
+  session     SocSession? @relation(fields: [sessionId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([timestamp])
+  @@index([source])
+  @@index([ip])
+  @@index([sessionId])
+}
+
+// SOC Sessions - Correlated actor sessions
+model SocSession {
+  id          String   @id @default(cuid())
+  firstSeen   DateTime
+  lastSeen    DateTime
+  actors      Json     // IP, ASN, UA fingerprints
+  score       Float    @default(0) // Risk score 0-100
+  eventCount  Int      @default(0)
+  metadata    Json?    // correlation details
+  
+  events      SocEvent[]
+  findings    SocFinding[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([firstSeen])
+  @@index([score])
+}
+
+// SOC Findings - MITRE ATT&CK TTP mappings
+model SocFinding {
+  id          String   @id @default(cuid())
+  timestamp   DateTime
+  ttp         String   // MITRE technique ID (e.g., T1110)
+  mitreId     String   // Full MITRE ID with sub-technique
+  tactic      String   // MITRE tactic (e.g., Initial Access)
+  technique   String   // MITRE technique name
+  risk        Float    // Risk score 0-100
+  confidence  Float    // AI confidence 0-1
+  evidence    Json     // Supporting evidence and patterns
+  
+  sessionId   String?
+  session     SocSession? @relation(fields: [sessionId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([timestamp])
+  @@index([ttp])
+  @@index([tactic])
+  @@index([risk])
+}
+
+// SOC Actions - Automated response actions
+model SocAction {
+  id          String   @id @default(cuid())
+  timestamp   DateTime
+  action      String   // rateLimitTighten, featureFlagOff, triggerCanary, etc.
+  reason      String   // Why this action was taken
+  params      Json     // Action-specific parameters
+  status      String   // pending, completed, failed, cancelled
+  result      Json?    // Action execution result
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([timestamp])
+  @@index([action])
+  @@index([status])
+}
+
+// SOC Alerts - Generated alerts for high-risk findings
+model SocAlert {
+  id          String   @id @default(cuid())
+  timestamp   DateTime
+  severity    String   // LOW, MEDIUM, HIGH, CRITICAL
+  title       String
+  body        String   @db.Text
+  links       Json?    // Related links and references
+  ttp         String?  // Associated MITRE TTP
+  channels    Json?    // Delivery channels (slack, telegram, webhook)
+  delivered   Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([timestamp])
+  @@index([severity])
+  @@index([delivered])
+  @@index([ttp])
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SOC++ TABLES (MITRE Navigator + Sigma + YARA + IOC + STIX/TAXII)
+// ═══════════════════════════════════════════════════════════════════
+
+// Sigma Rules - Parsed and stored Sigma detection rules
+model SigmaRule {
+  id          String   @id @default(cuid())
+  title       String
+  level       String   // low, medium, high, critical
+  tags        Json     // Array of tags
+  source      String   // File path or source
+  ruleContent String   @db.Text // Original YAML content
+  parseData   Json     // Parsed rule structure
+  enabled     Boolean  @default(true)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  matches     SigmaMatch[]
+  
+  @@index([level])
+  @@index([enabled])
+  @@index([updatedAt])
+}
+
+// Sigma Matches - Detection hits from Sigma rule evaluation
+model SigmaMatch {
+  id        String   @id @default(cuid())
+  timestamp DateTime
+  ruleId    String
+  eventId   String?  // Reference to SOC event if applicable
+  source    String   // Event source (cloudflare, waf, etc.)
+  fields    Json     // Matched fields and values
+  riskScore Int      @default(0) // 0-100
+  
+  rule      SigmaRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@index([timestamp])
+  @@index([ruleId])
+  @@index([source])
+  @@index([riskScore])
+}
+
+// YARA Scans - File and artifact scan results
+model YaraScan {
+  id          String   @id @default(cuid())
+  timestamp   DateTime
+  target      String   // File path or artifact URL
+  targetType  String   // file, artifact, url
+  matches     Json     // Array of YARA matches
+  sizeMb      Float?   // File size in MB
+  status      String   // pending, completed, failed, timeout
+  scanTime    Float?   // Scan duration in seconds
+  ruleCount   Int      @default(0) // Number of rules evaluated
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([timestamp])
+  @@index([status])
+  @@index([targetType])
+}
+
+// IOC Cache - Threat intelligence and reputation cache
+model IocCache {
+  id        String   @id @default(cuid())
+  value     String   @unique // IP, domain, hash, or other IOC
+  type      String   // ip, domain, hash, url
+  score     Int      // Risk score 0-100
+  category  String   // benign, suspicious, malicious
+  sources   Json     // Array of source results (AbuseIPDB, OTX, VT)
+  metadata  Json?    // Additional context and details
+  
+  lastSeen  DateTime @default(now())
+  expiresAt DateTime // TTL for cache invalidation
+  
+  @@index([value])
+  @@index([type])
+  @@index([score])
+  @@index([category])
+  @@index([lastSeen])
+  @@index([expiresAt])
+}
+
+// Navigator Exports - MITRE ATT&CK Navigator layer exports
+model NavigatorExport {
+  id            String   @id @default(cuid())
+  timestamp     DateTime
+  layerData     Json     // Complete Navigator layer JSON
+  url           String?  // Signed export URL
+  signature     String?  // Export signature for integrity
+  mitreVersion  String   @default("13") // MITRE ATT&CK version
+  techniqueCount Int     @default(0) // Number of techniques in layer
+  
+  createdAt     DateTime @default(now())
+  expiresAt     DateTime? // URL expiration
+  
+  @@index([timestamp])
+  @@index([mitreVersion])
+  @@index([expiresAt])
+}
+
+// STIX Packages - STIX 2.1 threat intelligence packages
+model StixPackage {
+  id            String   @id @default(cuid())
+  name          String   // Package name
+  description   String?  // Package description
+  version       String   // Package version
+  bundle        String   @db.Text // Complete STIX bundle JSON
+  objectCount   Int      @default(0) // Number of STIX objects
+  source        String   // local, taxii, import
+  collectionId  String?  // TAXII collection ID if from TAXII
+  tags          String[] // Tags for categorization
+  metadata      Json?    // Additional metadata
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([source])
+  @@index([createdAt])
+  @@index([objectCount])
+}

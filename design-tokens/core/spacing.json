@@ -1,0 +1,54 @@
+{
+  "space": {
+    "gutter": { 
+      "value": "24px",
+      "description": "Standard gutter/gap size"
+    },
+    "0": { "value": "0px" },
+    "1": { "value": "4px" },
+    "2": { "value": "8px" },
+    "3": { "value": "12px" },
+    "4": { "value": "16px" },
+    "5": { "value": "20px" },
+    "6": { "value": "24px" },
+    "8": { "value": "32px" },
+    "10": { "value": "40px" },
+    "12": { "value": "48px" },
+    "16": { "value": "64px" },
+    "20": { "value": "80px" },
+    "24": { "value": "96px" }
+  },
+  "radius": {
+    "none": { "value": "0" },
+    "sm": { "value": "0.25rem" },
+    "md": { "value": "0.5rem" },
+    "lg": { "value": "0.75rem" },
+    "xl": { 
+      "value": "1.25rem",
+      "description": "Large radius for cards"
+    },
+    "2xl": { 
+      "value": "1.6rem",
+      "description": "Extra large radius for major elements"
+    },
+    "3xl": { "value": "2rem" },
+    "full": { "value": "9999px" }
+  },
+  "shadow": {
+    "sm": { "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
+    "md": { "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)" },
+    "lg": { "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" },
+    "xl": { "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" },
+    "glass": { 
+      "value": "0 8px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+      "description": "Glassmorphism shadow effect"
+    }
+  },
+  "blur": {
+    "sm": { "value": "4px" },
+    "md": { "value": "12px" },
+    "lg": { "value": "16px" },
+    "xl": { "value": "24px" },
+    "2xl": { "value": "40px" }
+  }
+}

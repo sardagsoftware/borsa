@@ -1,0 +1,210 @@
+/* RTL Language Styles */
+
+/* Arabic and Farsi RTL Support */
+[lang="ar"], [lang="fa"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL Typography */
+[lang="ar"], [lang="fa"] {
+  font-family: 'Cairo', 'Vazir', 'Tahoma', sans-serif;
+}
+
+/* RTL Button Alignment */
+[lang="ar"] .btn-primary,
+[lang="ar"] .btn-secondary,
+[lang="fa"] .btn-primary,
+[lang="fa"] .btn-secondary {
+  text-align: center;
+}
+
+/* RTL Grid and Flex Adjustments */
+[lang="ar"] .flex,
+[lang="fa"] .flex {
+  flex-direction: row-reverse;
+}
+
+[lang="ar"] .justify-between,
+[lang="fa"] .justify-between {
+  justify-content: space-between;
+}
+
+/* RTL Navigation */
+[lang="ar"] nav,
+[lang="fa"] nav {
+  flex-direction: row-reverse;
+}
+
+/* RTL Form Elements */
+[lang="ar"] input,
+[lang="ar"] select,
+[lang="ar"] textarea,
+[lang="fa"] input,
+[lang="fa"] select,
+[lang="fa"] textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL Table Headers */
+[lang="ar"] th,
+[lang="ar"] td,
+[lang="fa"] th,
+[lang="fa"] td {
+  text-align: right;
+}
+
+/* RTL Modal and Drawer */
+[lang="ar"] .modal-content,
+[lang="ar"] .drawer-content,
+[lang="fa"] .modal-content,
+[lang="fa"] .drawer-content {
+  text-align: right;
+}
+
+/* RTL Icons (reverse arrows etc) */
+[lang="ar"] .arrow-right::before,
+[lang="fa"] .arrow-right::before {
+  content: "←";
+}
+
+[lang="ar"] .arrow-left::before,
+[lang="fa"] .arrow-left::before {
+  content: "→";
+}
+
+/* RTL Chart and Trading Panel Adjustments */
+[lang="ar"] .trading-panel,
+[lang="ar"] .chart-container,
+[lang="fa"] .trading-panel,
+[lang="fa"] .chart-container {
+  text-align: right;
+}
+
+/* RTL Currency and Number Format */
+[lang="ar"] .currency-symbol,
+[lang="fa"] .currency-symbol {
+  margin-left: 4px;
+  margin-right: 0;
+}
+
+/* RTL Notification Positioning */
+[lang="ar"] .notification,
+[lang="fa"] .notification {
+  text-align: right;
+}
+
+[lang="ar"] .notification.top-right,
+[lang="fa"] .notification.top-right {
+  left: 20px;
+  right: auto;
+}
+
+/* RTL Menu Dropdowns */
+[lang="ar"] .dropdown-menu,
+[lang="fa"] .dropdown-menu {
+  left: auto;
+  right: 0;
+  text-align: right;
+}
+
+/* RTL Progress Bars */
+[lang="ar"] .progress-bar,
+[lang="fa"] .progress-bar {
+  direction: ltr; /* Keep progress direction LTR for consistency */
+}
+
+/* RTL Breadcrumbs */
+[lang="ar"] .breadcrumb,
+[lang="fa"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[lang="ar"] .breadcrumb-separator::before,
+[lang="fa"] .breadcrumb-separator::before {
+  content: "←";
+}
+
+/* RTL Search and Filter */
+[lang="ar"] .search-input,
+[lang="ar"] .filter-input,
+[lang="fa"] .search-input,
+[lang="fa"] .filter-input {
+  text-align: right;
+  padding-right: 40px;
+  padding-left: 12px;
+}
+
+/* RTL Tooltips */
+[lang="ar"] .tooltip,
+[lang="fa"] .tooltip {
+  text-align: right;
+}
+
+/* RTL Card Layout */
+[lang="ar"] .card-header,
+[lang="ar"] .card-body,
+[lang="ar"] .card-footer,
+[lang="fa"] .card-header,
+[lang="fa"] .card-body,
+[lang="fa"] .card-footer {
+  text-align: right;
+}
+
+/* RTL Trading Terminal Specific */
+[lang="ar"] .order-book,
+[lang="ar"] .trade-history,
+[lang="ar"] .market-depth,
+[lang="fa"] .order-book,
+[lang="fa"] .trade-history,
+[lang="fa"] .market-depth {
+  text-align: right;
+}
+
+/* RTL Price Display */
+[lang="ar"] .price-up::before,
+[lang="fa"] .price-up::before {
+  content: "↑";
+}
+
+[lang="ar"] .price-down::before,
+[lang="fa"] .price-down::before {
+  content: "↓";
+}
+
+/* RTL Responsive Adjustments */
+@media (max-width: 768px) {
+  [lang="ar"] .mobile-nav,
+  [lang="fa"] .mobile-nav {
+    flex-direction: row-reverse;
+  }
+  
+  [lang="ar"] .mobile-menu,
+  [lang="fa"] .mobile-menu {
+    text-align: right;
+  }
+}
+
+/* RTL Animation Adjustments */
+[lang="ar"] .slide-in-right,
+[lang="fa"] .slide-in-right {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+[lang="ar"] .slide-in-left,
+[lang="fa"] .slide-in-left {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* RTL Accessibility */
+[lang="ar"] .sr-only,
+[lang="fa"] .sr-only {
+  text-align: right;
+}
+
+/* RTL Focus States */
+[lang="ar"] *:focus,
+[lang="fa"] *:focus {
+  outline-offset: -2px;
+}

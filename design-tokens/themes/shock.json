@@ -1,0 +1,39 @@
+{
+  "color": {
+    "bg": { 
+      "value": "#0F0A0A",
+      "description": "Shock theme - urgent, alert background with red undertone"
+    },
+    "panel": { 
+      "value": "#1A0E0E",
+      "description": "Shock theme - emergency panel with warmth"
+    },
+    "brand1": { 
+      "value": "#FF4757",
+      "description": "Shock theme - alert red primary"
+    },
+    "accent1": { 
+      "value": "#FFA726",
+      "description": "Shock theme - warning orange accent"
+    },
+    "border": { 
+      "value": "rgba(255, 71, 87, 0.25)",
+      "description": "Shock theme - alert red border"
+    },
+    "hover": { 
+      "value": "rgba(255, 71, 87, 0.2)",
+      "description": "Shock theme - urgent hover state"
+    }
+  },
+  "animation": {
+    "duration": {
+      "fast": { "value": "100ms" },
+      "normal": { "value": "150ms" },
+      "slow": { "value": "200ms" }
+    },
+    "ease": {
+      "smooth": { "value": "cubic-bezier(0.25, 0.1, 0.25, 1)" },
+      "bounce": { "value": "cubic-bezier(0.68, -0.55, 0.265, 1.55)" }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "font": {
+    "heading": { 
+      "value": "'Space Grotesk', Inter, system-ui, -apple-system, sans-serif",
+      "description": "Display/heading font family"
+    },
+    "body": { 
+      "value": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+      "description": "Body text font family"
+    },
+    "mono": { 
+      "value": "'JetBrains Mono', 'Fira Code', Consolas, monospace",
+      "description": "Monospace font for code"
+    }
+  },
+  "size": {
+    "fs-2": { 
+      "value": "0.82rem",
+      "description": "Extra small text - 13.12px"
+    },
+    "fs-1": { 
+      "value": "0.9rem",
+      "description": "Small text - 14.4px"
+    },
+    "fs0": { 
+      "value": "1rem",
+      "description": "Base font size - 16px"
+    },
+    "fs1": { 
+      "value": "1.15rem",
+      "description": "Medium text - 18.4px"
+    },
+    "fs2": { 
+      "value": "1.35rem",
+      "description": "Large text - 21.6px"
+    },
+    "fs3": { 
+      "value": "1.6rem",
+      "description": "Extra large text - 25.6px"
+    },
+    "fs4": { 
+      "value": "2rem",
+      "description": "Heading size - 32px"
+    },
+    "fs5": { 
+      "value": "2.5rem",
+      "description": "Large heading - 40px"
+    },
+    "fs6": { 
+      "value": "3rem",
+      "description": "Extra large heading - 48px"
+    }
+  },
+  "weight": {
+    "light": { "value": "300" },
+    "normal": { "value": "400" },
+    "medium": { "value": "500" },
+    "semibold": { "value": "600" },
+    "bold": { "value": "700" },
+    "extrabold": { "value": "800" }
+  },
+  "lineHeight": {
+    "tight": { "value": "1.2" },
+    "normal": { "value": "1.4" },
+    "relaxed": { "value": "1.6" },
+    "loose": { "value": "1.8" }
+  }
+}

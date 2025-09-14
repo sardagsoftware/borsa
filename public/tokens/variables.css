@@ -1,0 +1,82 @@
+/**
+ * Do not edit directly
+ * Generated on Sat, 13 Sep 2025 09:11:41 GMT
+ */
+
+:root {
+  --animation-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animation-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --animation-duration-slow: 200ms;
+  --animation-duration-normal: 150ms;
+  --animation-duration-fast: 100ms;
+  --line-height-loose: 1.8;
+  --line-height-relaxed: 1.6;
+  --line-height-normal: 1.4;
+  --line-height-tight: 1.2;
+  --weight-extrabold: 800;
+  --weight-bold: 700;
+  --weight-semibold: 600;
+  --weight-medium: 500;
+  --weight-normal: 400;
+  --weight-light: 300;
+  --size-fs6: 3rem;
+  --size-fs5: 2.5rem;
+  --size-fs4: 2rem;
+  --size-fs3: 1.6rem;
+  --size-fs2: 1.35rem;
+  --size-fs1: 1.15rem;
+  --size-fs0: 1rem;
+  --size-fs-1: 0.9rem;
+  --size-fs-2: 0.82rem;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Space Grotesk', Inter, system-ui, -apple-system, sans-serif;
+  --blur-2xl: 40px;
+  --blur-xl: 24px;
+  --blur-lg: 16px;
+  --blur-md: 12px;
+  --blur-sm: 4px;
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --radius-full: 9999px;
+  --radius-3xl: 2rem;
+  --radius-2xl: 1.6rem;
+  --radius-xl: 1.25rem;
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
+  --radius-none: 0;
+  --space-gutter: 24px;
+  --space-24: 96px;
+  --space-20: 80px;
+  --space-16: 64px;
+  --space-12: 48px;
+  --space-10: 40px;
+  --space-8: 32px;
+  --space-6: 24px;
+  --space-5: 20px;
+  --space-4: 16px;
+  --space-3: 12px;
+  --space-2: 8px;
+  --space-1: 4px;
+  --space-0: 0px;
+  --color-hover: rgba(255, 71, 87, 0.2);
+  --color-border: rgba(255, 71, 87, 0.25);
+  --color-shock-red: #ff4757;
+  --color-elevated-mint: #58dac9;
+  --color-calm-mint: #68e7d7;
+  --color-info: #6ee7ff;
+  --color-warn: #ffc86b;
+  --color-neg: #ff6a6a;
+  --color-pos: #17d68f;
+  --color-accent1: #ffa726;
+  --color-brand2: #7cb8ff;
+  --color-brand1: #ff4757;
+  --color-muted: #a7b7c9;
+  --color-text: #e7eef7;
+  --color-panel: #1a0e0e;
+  --color-bg: #0f0a0a;
+}

@@ -1,0 +1,60 @@
+{
+  "color": {
+    "bg": { 
+      "value": "#0B1016",
+      "description": "Primary background color"
+    },
+    "panel": { 
+      "value": "#121A26",
+      "description": "Panel/card background"
+    },
+    "text": { 
+      "value": "#E7EEF7",
+      "description": "Primary text color"
+    },
+    "muted": { 
+      "value": "#A7B7C9",
+      "description": "Muted/secondary text"
+    },
+    "brand1": { 
+      "value": "{color.calmMint.value}",
+      "description": "Primary brand color - references calm mint"
+    },
+    "brand2": { 
+      "value": "#7CB8FF",
+      "description": "Secondary brand color - blue accent"
+    },
+    "accent1": { 
+      "value": "#C7FF5A",
+      "description": "Primary accent - lime green"
+    },
+    "pos": { 
+      "value": "#17D68F",
+      "description": "Positive/success color"
+    },
+    "neg": { 
+      "value": "#FF6A6A",
+      "description": "Negative/error color"
+    },
+    "warn": { 
+      "value": "#FFC86B",
+      "description": "Warning color"
+    },
+    "info": { 
+      "value": "#6EE7FF",
+      "description": "Information color"
+    },
+    "calmMint": { 
+      "value": "#68E7D7",
+      "description": "AILYDIAN calm mint brand color"
+    },
+    "elevatedMint": { 
+      "value": "#58DAC9",
+      "description": "AILYDIAN elevated mint brand color - more saturated"
+    },
+    "shockRed": { 
+      "value": "#FF4757",
+      "description": "Shock regime emergency color"
+    }
+  }
+}

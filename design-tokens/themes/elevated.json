@@ -1,0 +1,39 @@
+{
+  "color": {
+    "bg": { 
+      "value": "#0A0E15",
+      "description": "Elevated theme - more energetic background"
+    },
+    "panel": { 
+      "value": "#0E1420",
+      "description": "Elevated theme - slightly brighter panel"
+    },
+    "brand1": { 
+      "value": "#58DAC9",
+      "description": "Elevated theme - more saturated mint"
+    },
+    "accent1": { 
+      "value": "#E6FF63",
+      "description": "Elevated theme - brighter lime accent"
+    },
+    "border": { 
+      "value": "rgba(88, 218, 201, 0.2)",
+      "description": "Elevated theme - more visible mint border"
+    },
+    "hover": { 
+      "value": "rgba(88, 218, 201, 0.15)",
+      "description": "Elevated theme - stronger hover state"
+    }
+  },
+  "animation": {
+    "duration": {
+      "fast": { "value": "120ms" },
+      "normal": { "value": "180ms" },
+      "slow": { "value": "250ms" }
+    },
+    "ease": {
+      "smooth": { "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)" },
+      "bounce": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)" }
+    }
+  }
+}
