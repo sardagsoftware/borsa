@@ -1,0 +1,184 @@
+{
+  "version": "13.1",
+  "updated": "2024-01-15",
+  "mappings": {
+    "suricata": {
+      "2100498": {
+        "rule_name": "ET TROJAN Suspicious Outbound Connection",
+        "tactic": "Command and Control",
+        "technique": "T1071",
+        "subtechnique": "T1071.001",
+        "confidence": 0.85,
+        "description": "Application Layer Protocol: Web Protocols"
+      },
+      "2013926": {
+        "rule_name": "ET POLICY PE EXE or DLL Windows file download HTTP",
+        "tactic": "Initial Access",
+        "technique": "T1189",
+        "subtechnique": null,
+        "confidence": 0.75,
+        "description": "Drive-by Compromise"
+      }
+    },
+    "zeek": {
+      "dns_tunneling": {
+        "rule_name": "DNS Tunneling Detected",
+        "tactic": "Command and Control",
+        "technique": "T1071",
+        "subtechnique": "T1071.004",
+        "confidence": 0.90,
+        "description": "Application Layer Protocol: DNS"
+      },
+      "http_c2": {
+        "rule_name": "HTTP C2 Communication",
+        "tactic": "Command and Control",
+        "technique": "T1071",
+        "subtechnique": "T1071.001",
+        "confidence": 0.88,
+        "description": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "falco": {
+      "Terminal shell in container": {
+        "rule_name": "Terminal shell in container",
+        "tactic": "Execution",
+        "technique": "T1059",
+        "subtechnique": "T1059.004",
+        "confidence": 0.70,
+        "description": "Command and Scripting Interpreter: Unix Shell"
+      },
+      "Write below binary dir": {
+        "rule_name": "Write below binary dir",
+        "tactic": "Persistence",
+        "technique": "T1543",
+        "subtechnique": "T1543.002",
+        "confidence": 0.80,
+        "description": "Create or Modify System Process: Systemd Service"
+      },
+      "Modify binary dirs": {
+        "rule_name": "Modify binary dirs",
+        "tactic": "Defense Evasion",
+        "technique": "T1070",
+        "subtechnique": "T1070.004",
+        "confidence": 0.85,
+        "description": "Indicator Removal on Host: File Deletion"
+      }
+    },
+    "wazuh": {
+      "5715": {
+        "rule_name": "SSHD authentication success",
+        "tactic": "Initial Access",
+        "technique": "T1078",
+        "subtechnique": "T1078.003",
+        "confidence": 0.60,
+        "description": "Valid Accounts: Local Accounts"
+      },
+      "5716": {
+        "rule_name": "SSHD authentication failed",
+        "tactic": "Credential Access",
+        "technique": "T1110",
+        "subtechnique": "T1110.001",
+        "confidence": 0.75,
+        "description": "Brute Force: Password Guessing"
+      }
+    },
+    "yara": {
+      "Metasploit_Generic": {
+        "rule_name": "Metasploit Generic Payload",
+        "tactic": "Execution",
+        "technique": "T1569",
+        "subtechnique": "T1569.002",
+        "confidence": 0.95,
+        "description": "System Services: Service Execution"
+      },
+      "Cobalt_Strike": {
+        "rule_name": "Cobalt Strike Beacon",
+        "tactic": "Command and Control",
+        "technique": "T1573",
+        "subtechnique": "T1573.001",
+        "confidence": 0.92,
+        "description": "Encrypted Channel: Symmetric Cryptography"
+      }
+    },
+    "sigma": {
+      "win_susp_powershell_enc_cmd": {
+        "rule_name": "Suspicious Encoded PowerShell Command",
+        "tactic": "Execution",
+        "technique": "T1059",
+        "subtechnique": "T1059.001",
+        "confidence": 0.88,
+        "description": "Command and Scripting Interpreter: PowerShell"
+      },
+      "win_mimikatz_command_line": {
+        "rule_name": "Mimikatz CommandLine",
+        "tactic": "Credential Access",
+        "technique": "T1003",
+        "subtechnique": "T1003.001",
+        "confidence": 0.90,
+        "description": "OS Credential Dumping: LSASS Memory"
+      }
+    }
+  },
+  "tactics": [
+    {
+      "id": "TA0001",
+      "name": "Initial Access",
+      "description": "The adversary is trying to get into your network."
+    },
+    {
+      "id": "TA0002",
+      "name": "Execution",
+      "description": "The adversary is trying to run malicious code."
+    },
+    {
+      "id": "TA0003",
+      "name": "Persistence",
+      "description": "The adversary is trying to maintain their foothold."
+    },
+    {
+      "id": "TA0004",
+      "name": "Privilege Escalation",
+      "description": "The adversary is trying to gain higher-level permissions."
+    },
+    {
+      "id": "TA0005",
+      "name": "Defense Evasion",
+      "description": "The adversary is trying to avoid being detected."
+    },
+    {
+      "id": "TA0006",
+      "name": "Credential Access",
+      "description": "The adversary is trying to steal account names and passwords."
+    },
+    {
+      "id": "TA0007",
+      "name": "Discovery",
+      "description": "The adversary is trying to figure out your environment."
+    },
+    {
+      "id": "TA0008",
+      "name": "Lateral Movement",
+      "description": "The adversary is trying to move through your environment."
+    },
+    {
+      "id": "TA0009",
+      "name": "Collection",
+      "description": "The adversary is trying to gather data of interest."
+    },
+    {
+      "id": "TA0010",
+      "name": "Command and Control",
+      "description": "The adversary is trying to communicate with compromised systems."
+    },
+    {
+      "id": "TA0011",
+      "name": "Exfiltration",
+      "description": "The adversary is trying to steal data."
+    },
+    {
+      "id": "TA0040",
+      "name": "Impact",
+      "description": "The adversary is trying to manipulate, interrupt, or destroy systems and data."
+    }
+  ]
+}

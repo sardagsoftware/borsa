@@ -1,0 +1,54 @@
+{
+  "name": "@ailydian/anomaly-detection",
+  "version": "2.1.0",
+  "description": "AILYDIAN SENTINEL OSS - AI-Powered Anomaly Detection Engine",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.14.2",
+    "winston": "^3.11.0",
+    "node-cron": "^3.0.3",
+    "@types/express": "^4.17.20",
+    "@types/ws": "^8.5.8",
+    "@types/node": "^20.8.7",
+    "uuid": "^9.0.1",
+    "@types/uuid": "^9.0.6",
+    "joi": "^17.11.0",
+    "lodash": "^4.17.21",
+    "@types/lodash": "^4.17.200",
+    "ml-matrix": "^6.10.7",
+    "ml-kmeans": "^1.1.1",
+    "simple-statistics": "^7.8.3",
+    "mathjs": "^11.11.0",
+    "fft-js": "^0.0.12",
+    "eventemitter3": "^5.0.1",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.6",
+    "eslint": "^8.51.0",
+    "@typescript-eslint/parser": "^6.9.1",
+    "@typescript-eslint/eslint-plugin": "^6.9.1"
+  },
+  "keywords": [
+    "security",
+    "anomaly-detection",
+    "machine-learning",
+    "ai",
+    "cybersecurity",
+    "soc"
+  ],
+  "author": "AILYDIAN Security Team",
+  "license": "MIT"
+}
