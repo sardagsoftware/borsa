@@ -16,6 +16,50 @@ export const navigationConfig: NavigationItem[] = [
     description: 'Overview and analytics'
   },
   {
+    id: 'ai-models',
+    label: 'AI Models',
+    href: '/models',
+    icon: '🤖',
+    description: 'AI model selection and management',
+    children: [
+      {
+        id: 'gpt-4-turbo',
+        label: 'GPT-4 Turbo',
+        href: '/models/gpt-4-turbo',
+        icon: '🧠',
+        description: 'OpenAI GPT-4 Turbo model'
+      },
+      {
+        id: 'claude-3-5-sonnet',
+        label: 'Claude 3.5 Sonnet',
+        href: '/models/claude-3-5-sonnet',
+        icon: '🎭',
+        description: 'Anthropic Claude 3.5 Sonnet'
+      },
+      {
+        id: 'gemini-2-0-flash',
+        label: 'Gemini 2.0 Flash',
+        href: '/models/gemini-2-0-flash',
+        icon: '💎',
+        description: 'Google Gemini 2.0 Flash'
+      },
+      {
+        id: 'mistral-large-2',
+        label: 'Mistral Large 2',
+        href: '/models/mistral-large-2',
+        icon: '🌪️',
+        description: 'Mistral Large 2 model'
+      },
+      {
+        id: 'llama-3-70b',
+        label: 'Llama 3 70B',
+        href: '/models/llama-3-70b',
+        icon: '🦙',
+        description: 'Meta Llama 3 70B model'
+      }
+    ]
+  },
+  {
     id: 'ai-search',
     label: 'AI Search',
     href: '/search',

@@ -212,8 +212,8 @@ export function StealthMenu({ isOpen, onClose, triggerRef }: StealthMenuProps) {
               ease: 'easeOut'
             }}
             className={`
-              absolute top-full left-0 mt-2 w-80 max-h-[80vh] overflow-y-auto
-              ${themeClasses} backdrop-blur-lg border rounded-xl shadow-2xl z-50
+              absolute top-full left-0 mt-2 w-80 max-h-[60vh] overflow-y-auto
+              ${themeClasses} backdrop-blur-lg border rounded-xl shadow-2xl z-[9999]
               scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent
               ${isNeonNoir ? 'scrollbar-thumb-gray-600' : 'scrollbar-thumb-gray-300'}
             `}

@@ -4,6 +4,10 @@ import { redirect } from 'next/navigation'
 import HeroSection from '@/components/hero-section'
 import { SearchPanel } from '@/components/search-panel'
 import { TopNav } from '@/components/nav/top-nav'
+import StatsSection from '@/components/stats-section'
+import FeaturedDestinations from '@/components/featured-destinations'
+import TrendingDeals from '@/components/trending-deals'
+import TestimonialsSection from '@/components/testimonials'
 
 export const metadata: Metadata = {
   title: 'TourismPulse AI - Intelligent Travel Platform',
@@ -16,22 +20,6 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  // Check if we should redirect to search
-  if (process.env.NEXT_PUBLIC_SEARCH_AS_HOME === '1') {
-    redirect('/search')
-  }
-
-  return (
-    <>
-      <TopNav />
-      <main className="min-h-screen pt-16">
-        <HeroSection />
-        <SearchPanel />
-        {/* <StatsSection />
-        <FeaturedDestinations />
-        <TrendingDeals />
-        <TestimonialsSection /> */}
-      </main>
-    </>
-  )
+  // Redirect to working search page
+  redirect('/search-simple')
 }
