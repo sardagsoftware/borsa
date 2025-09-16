@@ -1,117 +1,244 @@
-/**
- * AILYDIAN - Quantum Portfolio Test Page
- * Test quantum-ML microservice connectivity
- */
+'use client'
 
-'use client';
+import { useState, useEffect } from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { CheckCircle, XCircle, Loader2, Play, Activity } from 'lucide-react'
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic'
-
-import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+interface ServiceTest {
+  name: string
+  endpoint: string
+  status: 'idle' | 'testing' | 'passed' | 'failed'
+  message?: string
+  responseTime?: number
+}
 
 export default function QuantumTestPage() {
-  const [serviceStatus, setServiceStatus] = useState<string>('Checking...');
-  const [testResults, setTestResults] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-
-  // Test service health on component mount
-  useEffect(() => {
-    checkServiceHealth();
-  }, []);
-
-  const checkServiceHealth = async () => {
-    try {
-      const response = await fetch('/api/quantum-ml/health');
-      const data = await response.json();
-      
-      if (response.ok) {
-        setServiceStatus(`✅ Service Online - ${data.status}`);
-      } else {
-        setServiceStatus(`❌ Service Error - ${data.error}`);
-      }
-    } catch (error) {
-      setServiceStatus('🔌 Service Offline - Cannot connect');
+  const [services, setServices] = useState<ServiceTest[]>([
+    {
+      name: 'Quantum ML Service',
+      endpoint: '/api/quantum/predict',
+      status: 'idle'
+    },
+    {
+      name: 'Portfolio Optimization',
+      endpoint: '/api/quantum/portfolio',
+      status: 'idle'
+    },
+    {
+      name: 'Risk Analysis',
+      endpoint: '/api/quantum/risk',
+      status: 'idle'
+    },
+    {
+      name: 'Market Prediction',
+      endpoint: '/api/quantum/market',
+      status: 'idle'
     }
-  };
+  ])
 
-  const testPortfolioOptimization = async () => {
-    setLoading(true);
+  const [globalStatus, setGlobalStatus] = useState<'idle' | 'testing' | 'completed'>('idle')
+
+  const testService = async (service: ServiceTest, index: number) => {
+    setServices(prev => prev.map((s, i) => 
+      i === index ? { ...s, status: 'testing' } : s
+    ))
+
     try {
-      const testData = {
-        assets: ['AAPL', 'GOOGL', 'MSFT', 'TSLA'],
-        risk_tolerance: 0.5,
-        objective: 'sharpe'
-      };
+      const startTime = Date.now()
+      const response = await fetch(service.endpoint, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      const endTime = Date.now()
 
-      const response = await fetch('/api/quantum-ml/optimize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(testData),
-      });
-
-      const result = await response.json();
-      setTestResults(result);
+      const isSuccess = response.ok
+      setServices(prev => prev.map((s, i) => 
+        i === index ? {
+          ...s,
+          status: isSuccess ? 'passed' : 'failed',
+          message: isSuccess ? 'Service responding' : `HTTP ${response.status}`,
+          responseTime: endTime - startTime
+        } : s
+      ))
     } catch (error) {
-      setTestResults({ error: 'Test failed: ' + error });
+      setServices(prev => prev.map((s, i) => 
+        i === index ? {
+          ...s,
+          status: 'failed',
+          message: error instanceof Error ? error.message : 'Connection failed'
+        } : s
+      ))
     }
-    setLoading(false);
-  };
+  }
+
+  const testAllServices = async () => {
+    setGlobalStatus('testing')
+    
+    for (let i = 0; i < services.length; i++) {
+      await testService(services[i], i)
+      // Small delay between tests
+      await new Promise(resolve => setTimeout(resolve, 500))
+    }
+    
+    setGlobalStatus('completed')
+  }
+
+  const resetTests = () => {
+    setServices(prev => prev.map(s => ({
+      ...s,
+      status: 'idle',
+      message: undefined,
+      responseTime: undefined
+    })))
+    setGlobalStatus('idle')
+  }
+
+  const getStatusIcon = (status: ServiceTest['status']) => {
+    switch (status) {
+      case 'testing':
+        return <Loader2 className="h-4 w-4 animate-spin" />
+      case 'passed':
+        return <CheckCircle className="h-4 w-4 text-green-500" />
+      case 'failed':
+        return <XCircle className="h-4 w-4 text-red-500" />
+      default:
+        return <Activity className="h-4 w-4 text-gray-400" />
+    }
+  }
+
+  const getStatusBadge = (status: ServiceTest['status']) => {
+    switch (status) {
+      case 'testing':
+        return <Badge variant="secondary">Testing...</Badge>
+      case 'passed':
+        return <Badge className="bg-green-100 text-green-800">Passed</Badge>
+      case 'failed':
+        return <Badge className="bg-red-100 text-red-800">Failed</Badge>
+      default:
+        return <Badge variant="outline">Ready</Badge>
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-white mb-8">
-          Quantum-ML Service Test
-        </h1>
+    <div className="container mx-auto p-6">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Quantum ML Service Tests</h1>
+        <p className="text-gray-600">Test quantum machine learning service connectivity and performance</p>
+      </div>
 
-        {/* Service Status */}
-        <Card className="mb-6 p-6">
-          <h2 className="text-xl font-semibold text-white mb-4">Service Status</h2>
-          <p className="text-gray-300 mb-4">{serviceStatus}</p>
-          <Button onClick={checkServiceHealth} variant="outline">
-            Refresh Status
-          </Button>
-        </Card>
-
-        {/* Test Portfolio Optimization */}
-        <Card className="mb-6 p-6">
-          <h2 className="text-xl font-semibold text-white mb-4">Test Portfolio Optimization</h2>
-          <p className="text-gray-300 mb-4">
-            Test quantum portfolio optimization with sample assets
-          </p>
-          <Button 
-            onClick={testPortfolioOptimization}
-            disabled={loading}
-            className="mb-4"
-          >
-            {loading ? 'Running Test...' : 'Test Optimization'}
-          </Button>
-
-          {testResults && (
-            <div className="bg-black/50 p-4 rounded-lg">
-              <h3 className="text-white font-medium mb-2">Test Results:</h3>
-              <pre className="text-gray-300 text-sm overflow-auto">
-                {JSON.stringify(testResults, null, 2)}
-              </pre>
+      <div className="mb-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Activity className="h-5 w-5" />
+              Test Controls
+            </CardTitle>
+            <CardDescription>
+              Run comprehensive tests on all quantum ML services
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex gap-4">
+              <Button 
+                onClick={testAllServices}
+                disabled={globalStatus === 'testing'}
+                className="flex items-center gap-2"
+              >
+                {globalStatus === 'testing' ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Testing Services...
+                  </>
+                ) : (
+                  <>
+                    <Play className="h-4 w-4" />
+                    Run All Tests
+                  </>
+                )}
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                onClick={resetTests}
+                disabled={globalStatus === 'testing'}
+              >
+                Reset Tests
+              </Button>
             </div>
-          )}
-        </Card>
-
-        {/* Docker Status */}
-        <Card className="p-6">
-          <h2 className="text-xl font-semibold text-white mb-4">Docker Commands</h2>
-          <div className="space-y-2 text-gray-300 text-sm font-mono">
-            <p>Start service: docker-compose up quantum-ml -d</p>
-            <p>Check logs: docker-compose logs quantum-ml</p>
-            <p>Stop service: docker-compose stop quantum-ml</p>
-          </div>
+          </CardContent>
         </Card>
       </div>
+
+      <div className="grid gap-4">
+        {services.map((service, index) => (
+          <Card key={service.name}>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {getStatusIcon(service.status)}
+                  <CardTitle className="text-lg">{service.name}</CardTitle>
+                </div>
+                {getStatusBadge(service.status)}
+              </div>
+              <CardDescription>
+                Endpoint: <code className="text-sm bg-gray-100 px-2 py-1 rounded">{service.endpoint}</code>
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  {service.message && (
+                    <p className={`text-sm ${
+                      service.status === 'passed' ? 'text-green-600' : 
+                      service.status === 'failed' ? 'text-red-600' : 'text-gray-600'
+                    }`}>
+                      {service.message}
+                    </p>
+                  )}
+                  {service.responseTime && (
+                    <p className="text-sm text-gray-500">
+                      Response time: {service.responseTime}ms
+                    </p>
+                  )}
+                </div>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => testService(service, index)}
+                  disabled={service.status === 'testing' || globalStatus === 'testing'}
+                >
+                  Test Individual
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {globalStatus === 'completed' && (
+        <div className="mt-6">
+          <Card className={`border-2 ${
+            services.every(s => s.status === 'passed') 
+              ? 'border-green-200 bg-green-50' 
+              : 'border-yellow-200 bg-yellow-50'
+          }`}>
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <h3 className="text-lg font-semibold mb-2">
+                  Test Results Summary
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {services.filter(s => s.status === 'passed').length} of {services.length} services passed
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
-  );
+  )
 }

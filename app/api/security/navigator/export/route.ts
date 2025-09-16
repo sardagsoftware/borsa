@@ -1,5 +1,7 @@
 /**
- * 🛡️ AILYDIAN — SOC++ Navigator Export API
+
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'; * 🛡️ AILYDIAN — SOC++ Navigator Export API
  * 
  * MITRE ATT&CK Navigator layer export endpoint
  * - Generate Navigator layer from TTP heat map data

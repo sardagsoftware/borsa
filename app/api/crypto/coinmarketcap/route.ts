@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic';
+
 // CoinMarketCap API Configuration
 const CMC_API_KEY = process.env.COINMARKETCAP_API_KEY;
 const CMC_BASE_URL = 'https://pro-api.coinmarketcap.com/v1';

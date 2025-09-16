@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic';
+
 // SSE endpoint for bot signals
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);

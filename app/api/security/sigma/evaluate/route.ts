@@ -1,5 +1,7 @@
 /**
- * 🛡️ AILYDIAN — SOC++ Sigma Evaluate API
+
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'; * 🛡️ AILYDIAN — SOC++ Sigma Evaluate API
  * 
  * Sigma rules evaluation endpoint
  * - Evaluate events against Sigma rules

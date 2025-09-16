@@ -1,5 +1,7 @@
 /**
- * 🛡️ AILYDIAN — SOC++ Sigma Matches API
+
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'; * 🛡️ AILYDIAN — SOC++ Sigma Matches API
  * 
  * Sigma match history and management
  * - Retrieve match history

@@ -5,6 +5,16 @@ import crypto from 'crypto';
 const prisma = (globalThis as any).prisma || new PrismaClient();
 if (process.env.NODE_ENV !== 'production') (globalThis as any).prisma = prisma;
 
+// Production-safe database connection wrapper
+async function safeDbOperation<T>(operation: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await operation();
+  } catch (error) {
+    console.warn('Database operation failed, using fallback:', error);
+    return fallback;
+  }
+}
+
 interface AlertRule {
   id: string;
   name: string;
@@ -87,26 +97,28 @@ export class AlertsEngine {
    * Load alert rules from database
    */
   private async loadAlertRules(): Promise<void> {
-    try {
-      const rules = await prisma.alertRule.findMany({
-        where: { isActive: true }
-      });
-
-      for (const rule of rules) {
-        this.rules.set(rule.id, {
-          id: rule.id,
-          name: rule.name,
-          ruleType: rule.ruleType as any,
-          config: rule.config,
-          isActive: rule.isActive,
-          lastTriggered: rule.lastTriggered || undefined
+    await safeDbOperation(
+      async () => {
+        const rules = await prisma.alertRule.findMany({
+          where: { isActive: true }
         });
-      }
 
-      console.log(`📋 Loaded ${rules.length} alert rules`);
-    } catch (error) {
-      console.error('Failed to load alert rules:', error);
-    }
+        for (const rule of rules) {
+          this.rules.set(rule.id, {
+            id: rule.id,
+            name: rule.name,
+            ruleType: rule.ruleType as any,
+            config: rule.config,
+            isActive: rule.isActive,
+            lastTriggered: rule.lastTriggered || undefined
+          });
+        }
+
+        console.log(`✅ Loaded ${rules.length} alert rules`);
+        return true;
+      },
+      false // fallback: no rules loaded
+    );
   }
 
   /**

@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import speakeasy from 'speakeasy';
 import QRCode from 'qrcode';
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic';
+
 // 2FA QR kod oluşturma
 export async function POST(request: NextRequest) {
   try {

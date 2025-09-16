@@ -1,5 +1,7 @@
 /**
- * 🛡️ AILYDIAN — SOC++ YARA Rules API
+
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'; * 🛡️ AILYDIAN — SOC++ YARA Rules API
  * 
  * YARA rules management
  * - Rule validation and testing

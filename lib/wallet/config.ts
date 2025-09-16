@@ -18,20 +18,21 @@ const getWalletConnectProjectId = () => {
   return projectId;
 };
 
-// Wagmi configuration
+// Wagmi configuration - WalletConnect disabled for stability
 export const wagmiConfig = createConfig({
   chains: [mainnet, bsc, polygon, avalanche],
   connectors: [
     injected(),
-    walletConnect({ 
-      projectId: getWalletConnectProjectId(),
-      metadata: {
-        name: 'AILYDIAN',
-        description: 'AI Lens Trader - Professional Crypto Trading Platform',
-        url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001',
-        icons: ['http://localhost:3001/logo.png']
-      }
-    }),
+    // Temporarily disabled WalletConnect to fix webpack issues
+    // walletConnect({ 
+    //   projectId: getWalletConnectProjectId(),
+    //   metadata: {
+    //     name: 'AILYDIAN',
+    //     description: 'AI Lens Trader - Professional Crypto Trading Platform',
+    //     url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001',
+    //     icons: ['http://localhost:3001/logo.png']
+    //   }
+    // }),
     coinbaseWallet({ 
       appName: process.env.NEXT_PUBLIC_APP_NAME || 'AILYDIAN',
       preference: 'smartWalletOnly' 

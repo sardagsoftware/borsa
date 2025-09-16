@@ -27,7 +27,7 @@ interface HealthCheckResult {
   service: string;
   status: 'healthy' | 'degraded' | 'unhealthy';
   details: any;
-  lastCheck: Date;
+  lastCheck: string; // Changed from Date to string
   responseTime?: number;
 }
 
@@ -110,28 +110,28 @@ export function AdminDashboard({
         service: 'vault',
         status: 'healthy' as const,
         details: { encryptionKeys: 'ok', storage: 'ok' },
-        lastCheck: new Date(),
+        lastCheck: new Date().toISOString(), // Convert to string
         responseTime: 45
       },
       trading: {
         service: 'trading',
         status: 'healthy' as const,
         details: { exchanges: 3, activeOrders: 12 },
-        lastCheck: new Date(),
+        lastCheck: new Date().toISOString(), // Convert to string
         responseTime: 123
       },
       portfolio: {
         service: 'portfolio',
         status: 'degraded' as const,
         details: { accounts: 5, syncDelay: '2m' },
-        lastCheck: new Date(),
+        lastCheck: new Date().toISOString(), // Convert to string
         responseTime: 267
       },
       telemetry: {
         service: 'telemetry',
         status: 'healthy' as const,
         details: { metrics: 'collecting', alerts: 'active' },
-        lastCheck: new Date(),
+        lastCheck: new Date().toISOString(), // Convert to string
         responseTime: 89
       }
     },
@@ -312,7 +312,7 @@ export function AdminDashboard({
                   <div>
                     <div className="font-medium capitalize">{service.service}</div>
                     <div className="text-sm text-gray-600">
-                      Last check: {service.lastCheck.toLocaleTimeString()}
+                      Last check: {new Date(service.lastCheck).toLocaleTimeString()}
                     </div>
                   </div>
                 </div>

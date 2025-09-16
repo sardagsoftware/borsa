@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic';
 // Binance API'den fiyat verilerini çek
 async function fetchBinancePrices(symbols: string[]) {
   const symbolsQuery = symbols.map(s => `"${s}USDT"`).join(',');

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic';import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { deploymentManager } from '@/lib/pro/canary';
 import { featureFlags } from '@/lib/pro/flags';

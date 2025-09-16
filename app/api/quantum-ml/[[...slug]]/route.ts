@@ -6,6 +6,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic';
+
 const QUANTUM_ML_SERVICE_URL = process.env.QUANTUM_ML_SERVICE_URL || 'http://localhost:8001';
 
 interface PortfolioOptimizationRequest {

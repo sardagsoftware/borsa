@@ -4,6 +4,16 @@ import { PrismaClient } from '@prisma/client';
 const prisma = (globalThis as any).prisma || new PrismaClient();
 if (process.env.NODE_ENV !== 'production') (globalThis as any).prisma = prisma;
 
+// Production-safe database operation wrapper
+async function safeDbOperation<T>(operation: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await operation();
+  } catch (error) {
+    console.warn('Database operation failed, using fallback:', error);
+    return fallback;
+  }
+}
+
 interface FeatureFlag {
   key: string;
   value: boolean;
@@ -55,17 +65,19 @@ export class FeatureFlagsManager {
    * Load flags from database (overrides defaults)
    */
   private async loadDatabaseFlags(): Promise<void> {
-    try {
-      const dbFlags = await prisma.featureFlag.findMany();
-      
-      for (const flag of dbFlags) {
-        this.flags.set(flag.key, flag.value);
-      }
-      
-      console.log(`🚩 Loaded ${dbFlags.length} database feature flags`);
-    } catch (error) {
-      console.error('Failed to load database flags:', error);
-    }
+    await safeDbOperation(
+      async () => {
+        const dbFlags = await prisma.featureFlag.findMany();
+        
+        for (const flag of dbFlags) {
+          this.flags.set(flag.key, flag.value);
+        }
+        
+        console.log(`🚩 Loaded ${dbFlags.length} database feature flags`);
+        return true;
+      },
+      false // fallback: use default flags only
+    );
   }
 
   /**

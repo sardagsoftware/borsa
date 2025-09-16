@@ -47,49 +47,63 @@ const MainLayout: React.FC = () => {
     {
       id: 'dashboard',
       label: 'Portfolio Dashboard',
-      icon: LayoutDashboard,
-      component: RWADeFiDashboard
+      icon: LayoutDashboard
     },
     {
       id: 'risk',
       label: 'Risk Analytics', 
-      icon: Shield,
-      component: RiskAnalyticsDashboard
+      icon: Shield
     },
     {
       id: 'compliance',
       label: 'Compliance & AML',
-      icon: Settings,
-      component: ComplianceDashboard
+      icon: Settings
     },
     {
       id: 'custody',
       label: 'Custody Management',
-      icon: Wallet,
-      component: CustodyDashboard
+      icon: Wallet
     },
     {
       id: 'analytics',
       label: 'Advanced Analytics',
-      icon: BarChart3,
-      component: AnalyticsDashboard
+      icon: BarChart3
     },
     {
       id: 'notifications',
       label: 'Notifications',
       icon: Bell,
-      component: NotificationCenter,
       badge: notifications > 0 ? notifications : undefined
     },
     {
       id: 'account',
       label: 'Account Settings',
-      icon: User,
-      component: AccountManagement
+      icon: User
     }
   ];
 
-  const ActiveComponent = navigationItems.find(item => item.id === activeTab)?.component || RWADeFiDashboard;
+  const getActiveComponent = () => {
+    switch (activeTab) {
+      case 'dashboard':
+        return RWADeFiDashboard;
+      case 'risk':
+        return RiskAnalyticsDashboard;
+      case 'compliance':
+        return ComplianceDashboard;
+      case 'custody':
+        return CustodyDashboard;
+      case 'analytics':
+        return AnalyticsDashboard;
+      case 'notifications':
+        return NotificationCenter;
+      case 'account':
+        return AccountManagement;
+      default:
+        return RWADeFiDashboard;
+    }
+  };
+
+  const ActiveComponent = getActiveComponent();
 
   return (
     <div className="min-h-screen bg-gray-50 flex">

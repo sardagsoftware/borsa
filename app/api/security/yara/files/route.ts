@@ -1,5 +1,7 @@
 /**
- * 🛡️ AILYDIAN — SOC++ YARA Files API
+
+// Force dynamic rendering for this API route
+export const dynamic = 'force-dynamic'; * 🛡️ AILYDIAN — SOC++ YARA Files API
  * 
  * YARA file scanning and analysis
  * - Upload and scan files against YARA rules
