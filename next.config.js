@@ -41,6 +41,10 @@ const nextConfig = withNextIntl({
     outputFileTracingRoot: process.cwd(),
     serverComponentsExternalPackages: ['@prisma/client'],
     esmExternals: true,
+    // Enable build debugging
+    logging: {
+      level: 'verbose'
+    }
   },
   // Skip static generation errors
   typescript: {
@@ -119,11 +123,11 @@ const nextConfig = withNextIntl({
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://*.vercel-analytics.com https://*.vercel.app;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel-analytics.com https://*.vercel.app https://api.web3modal.org;
               style-src 'self' 'unsafe-inline';
               img-src 'self' data: https://*.binance.com https://*.coingecko.com;
               font-src 'self' data:;
-              connect-src 'self' https://*.binance.com https://*.coingecko.com wss://*.binance.com;
+              connect-src 'self' https://*.binance.com https://*.coingecko.com wss://*.binance.com https://api.web3modal.org;
               object-src 'none';
               base-uri 'none';
               frame-ancestors 'none';
