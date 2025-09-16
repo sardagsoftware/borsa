@@ -100,12 +100,31 @@ export function getSecurityHeaders(nonce?: string): Record<string, string> {
       'bluetooth=()',
       'magnetometer=()',
       'gyroscope=()',
-      'accelerometer=()'
+      'accelerometer=()',
+      'picture-in-picture=()',
+      'display-capture=()',
+      'web-share=(self)'
     ].join(', '),
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
-    'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload'
+    'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+    'X-DNS-Prefetch-Control': 'off',
+    'X-Download-Options': 'noopen',
+    'X-Permitted-Cross-Domain-Policies': 'none',
+    'X-XSS-Protection': '1; mode=block',
+    // Feature Policy (legacy support)
+    'Feature-Policy': [
+      'geolocation \'none\'',
+      'microphone \'none\'',
+      'camera \'none\'',
+      'magnetometer \'none\'',
+      'gyroscope \'none\'',
+      'speaker \'self\'',
+      'vibrate \'self\'',
+      'fullscreen \'self\'',
+      'payment \'none\''
+    ].join('; ')
   };
 }
 

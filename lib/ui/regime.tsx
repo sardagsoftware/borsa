@@ -98,6 +98,19 @@ export function RegimeProvider({ children }: RegimeProviderProps) {
 export function useRegime() {
   const context = useContext(RegimeContext);
   if (!context) {
+    // Return default values for SSR/Static generation instead of throwing
+    if (typeof window === 'undefined') {
+      return {
+        regime: 'calm' as Regime,
+        metrics: null,
+        config: DEFAULT_CONFIG,
+        setRegime: () => {},
+        updateMetrics: () => {},
+        setConfig: () => {},
+        isTransitioning: false,
+        history: [],
+      }
+    }
     throw new Error('useRegime must be used within a RegimeProvider');
   }
   return context;

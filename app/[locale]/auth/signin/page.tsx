@@ -4,12 +4,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { signIn, getSession, getProviders } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Eye, EyeOff, Mail, Lock, AlertCircle, TrendingUp, Shield, Bot, BarChart3, Wallet, Globe } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, AlertCircle, TrendingUp, Shield, Bot, BarChart3, Wallet, Globe, CheckCircle } from 'lucide-react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { Turnstile } from '@marsidev/react-turnstile';
 import ConnectionStatus from '@/components/ConnectionStatus';
 import CryptoPriceTicker from '@/components/CryptoPriceTicker';
 import Logo from '@/components/Logo';
+import CaptchaArrowStepper from '@/components/security/CaptchaArrowStepper';
+import CaptchaProviderMount, { CaptchaProvider } from '@/components/security/CaptchaProviderMount';
 
 interface Provider {
   id: string;
@@ -30,9 +32,16 @@ export default function SignInPage() {
   const [providers, setProviders] = useState<Record<string, Provider> | null>(null);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [cloudflareToken, setCloudflareToken] = useState<string | null>(null);
+  
+  // New CAPTCHA states
+  const [captchaEnabled, setCaptchaEnabled] = useState(true);
+  const [captchaProvider, setCaptchaProvider] = useState<CaptchaProvider | 'stepper'>('turnstile');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [showCaptchaStepper, setShowCaptchaStepper] = useState(false);
 
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
-  const errorParam = searchParams.get('error');
+  const callbackUrl = searchParams?.get('callbackUrl') || '/dashboard';
+  const errorParam = searchParams?.get('error');
 
   const getErrorMessage = useCallback((error: string) => {
     switch (error) {
@@ -44,6 +53,70 @@ export default function SignInPage() {
         return t('errors.general') || 'An error occurred';
     }
   }, [t]);
+
+  // CAPTCHA configuration check
+  useEffect(() => {
+    const checkCaptchaConfig = async () => {
+      try {
+        const response = await fetch('/api/captcha/verify');
+        if (response.ok) {
+          const config = await response.json();
+          setCaptchaEnabled(config.enabled);
+          setCaptchaProvider(config.provider || 'turnstile');
+        }
+      } catch (error) {
+        console.warn('Failed to fetch CAPTCHA config:', error);
+        setCaptchaEnabled(false);
+      }
+    };
+
+    checkCaptchaConfig();
+  }, []);
+
+  const handleCaptchaStepperComplete = useCallback((success: boolean, data?: any) => {
+    if (success) {
+      setCaptchaVerified(true);
+      setShowCaptchaStepper(false);
+      setCaptchaToken(data?.challengeId || 'stepper_verified');
+    } else {
+      setError('CAPTCHA doğrulaması başarısız oldu');
+      setCaptchaVerified(false);
+    }
+  }, []);
+
+  const handleCaptchaProviderSuccess = useCallback(async (token: string, provider: CaptchaProvider) => {
+    try {
+      setIsLoading(true);
+      
+      const response = await fetch('/api/captcha/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, provider })
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        setCaptchaToken(token);
+        setCaptchaVerified(true);
+        setError('');
+      } else {
+        setError(result.error?.message || 'CAPTCHA doğrulaması başarısız');
+        setCaptchaVerified(false);
+      }
+    } catch (error) {
+      setError('CAPTCHA doğrulaması sırasında hata oluştu');
+      setCaptchaVerified(false);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const handleCaptchaProviderError = useCallback((error: string) => {
+    setError(`CAPTCHA hatası: ${error}`);
+    setCaptchaVerified(false);
+    setCaptchaToken(null);
+  }, []);
 
   useEffect(() => {
     getProviders().then(setProviders);
@@ -61,84 +134,57 @@ export default function SignInPage() {
     }
   }, [errorParam, router, getErrorMessage]);
 
-  const handleDemoLogin = async () => {
-    setIsLoading(true);
-    setError('');
-
-    try {
-      const result = await signIn('credentials', {
-        email: 'demo@ailydian.com',
-        password: 'demo123456',
-        redirect: false,
-      });
-
-      if (result?.error) {
-        setError(getErrorMessage(result.error));
-      } else {
-        router.push(callbackUrl);
-      }
-    } catch (error) {
-      setError('Demo giriş sırasında bir hata oluştu');
-    }
-
-    setIsLoading(false);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!email || !password) {
+      setError(t('errors.required') || 'Email and password are required');
+      return;
+    }
+
+    // CAPTCHA check
+    if (captchaEnabled && !captchaVerified) {
+      if (captchaProvider === 'stepper') {
+        setShowCaptchaStepper(true);
+        return;
+      } else {
+        setError('Lütfen CAPTCHA doğrulamasını tamamlayın');
+        return;
+      }
+    }
+
     setIsLoading(true);
     setError('');
 
-    if (!email || !password) {
-      setError(t('errors.required') || 'Email and password are required');
-      setIsLoading(false);
-      return;
-    }
-
-    // CAPTCHA doğrulaması - development için bypass
-    if (process.env.NODE_ENV === 'development' && email === 'demo@ailydian.com') {
-      console.log('Development mode: CAPTCHA bypass for demo user');
-      // Demo user için CAPTCHA bypass
-    } else if (!recaptchaToken && !cloudflareToken) {
-      setError('Lütfen bot olmadığınızı doğrulayın');
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      // CAPTCHA token'ını backend'e göndermek için API endpoint
-      const captchaResponse = await fetch('/api/auth/verify-captcha', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          recaptchaToken, 
-          cloudflareToken,
-          email,
-          password 
-        })
-      });
-
-      if (!captchaResponse.ok) {
-        const errorData = await captchaResponse.json();
-        throw new Error(errorData.error || 'CAPTCHA doğrulaması başarısız');
-      }
-
       const result = await signIn('credentials', {
         email,
         password,
-        redirect: false,
+        captchaToken,
+        redirect: false
       });
 
       if (result?.error) {
         setError(getErrorMessage(result.error));
+        // Reset CAPTCHA on authentication failure
+        if (captchaEnabled) {
+          setCaptchaVerified(false);
+          setCaptchaToken(null);
+        }
       } else {
         router.push(callbackUrl);
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Giriş sırasında bir hata oluştu');
+      console.error('Sign in error:', error);
+      setError('Giriş yapılırken bir hata oluştu');
+      // Reset CAPTCHA on error
+      if (captchaEnabled) {
+        setCaptchaVerified(false);
+        setCaptchaToken(null);
+      }
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const handleRecaptchaChange = (token: string | null) => {
@@ -249,34 +295,18 @@ export default function SignInPage() {
                 </div>
               )}
 
-              {/* Demo Login Button - Enhanced */}
-              <div className="mb-6 p-4 bg-gradient-to-r from-brand-1/20 to-brand-2/20 rounded-lg border border-brand-1/30">
+              {/* Registration Link */}
+              <div className="mb-6 p-4 bg-gradient-to-r from-brand-1/10 to-brand-2/10 rounded-lg border border-brand-1/20">
                 <div className="text-center mb-2">
-                  <h3 className="text-brand-1 font-semibold text-sm">🚀 Hızlı Demo Erişimi</h3>
-                  <p className="text-muted text-xs">Hiç kayıt olmadan sistemi test edin</p>
+                  <h3 className="text-brand-1 font-semibold text-sm">🌟 Henüz Hesabınız Yok mu?</h3>
+                  <p className="text-muted text-xs mb-3">Ücretsiz hesap oluşturun ve tüm özelliklere erişin</p>
+                  <a 
+                    href="/tr/auth/register"
+                    className="inline-flex items-center gap-2 bg-brand-1 hover:bg-brand-1/90 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                  >
+                    📝 Hesap Oluştur
+                  </a>
                 </div>
-                <button
-                  onClick={handleDemoLogin}
-                  disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-brand-1 to-brand-2 hover:from-brand-1/90 hover:to-brand-2/90 disabled:from-brand-1/50 disabled:to-brand-2/50 text-white font-bold py-4 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
-                >
-                  {isLoading ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      Demo Sisteme Giriliyor...
-                    </>
-                  ) : (
-                    <>
-                      🎯 Demo Test Sistemi - Şimdi Dene!
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex-1 h-px bg-glass"></div>
-                <span className="text-muted text-sm">veya</span>
-                <div className="flex-1 h-px bg-glass"></div>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -323,23 +353,51 @@ export default function SignInPage() {
                   </div>
                 </div>
 
-                {/* CAPTCHA */}
-                <div className="flex justify-center">
-                  {process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY ? (
-                    <Turnstile
-                      siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
-                      onSuccess={handleCloudflareChange}
-                    />
-                  ) : process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-                    <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                      onChange={handleRecaptchaChange}
-                      theme="dark"
-                    />
-                  ) : (
-                    <div className="text-sm text-muted">CAPTCHA yapılandırması bekleniyor...</div>
-                  )}
-                </div>
+                {/* CAPTCHA - New System */}
+                {captchaEnabled && (
+                  <div className="space-y-4">
+                    {captchaProvider === 'stepper' ? (
+                      <div className="flex justify-center">
+                        <div className="bg-panel/50 backdrop-blur-sm p-4 rounded-lg border border-glass/30">
+                          <div className="text-center text-white text-sm mb-2">
+                            🔐 Güvenlik Doğrulaması
+                          </div>
+                          <div className="text-muted text-xs text-center mb-2">
+                            Bot olmadığınızı doğrulayın
+                          </div>
+                          {captchaVerified ? (
+                            <div className="flex items-center justify-center gap-2 text-green-500">
+                              <CheckCircle className="w-4 h-4" />
+                              <span className="text-sm">Doğrulandı</span>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => setShowCaptchaStepper(true)}
+                              className="bg-brand-1 hover:bg-brand-1/80 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+                            >
+                              Doğrulamaya Başla
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex justify-center">
+                        <CaptchaProviderMount
+                          provider={captchaProvider}
+                          onSuccess={handleCaptchaProviderSuccess}
+                          onError={handleCaptchaProviderError}
+                          onExpire={() => {
+                            setCaptchaVerified(false);
+                            setCaptchaToken(null);
+                          }}
+                          theme="dark"
+                          disabled={isLoading}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <button
                   type="submit"
@@ -438,6 +496,19 @@ export default function SignInPage() {
           </div>
         </div>
       </div>
+
+      {/* CAPTCHA Stepper Modal */}
+      {showCaptchaStepper && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-panel/95 backdrop-blur-sm rounded-2xl border border-glass/30 shadow-2xl max-w-md w-full mx-4">
+            <CaptchaArrowStepper
+              onComplete={handleCaptchaStepperComplete}
+              onClose={() => setShowCaptchaStepper(false)}
+              className="w-full"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

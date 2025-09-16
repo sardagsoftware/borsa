@@ -192,28 +192,36 @@ export function LoadingScreen({
 
   if (variant === 'detailed') {
     return (
-      <div className={`flex items-center justify-center min-h-screen bg-bg ${className}`} data-regime={regime}>
+      <div className={`flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 ${className}`} data-regime={regime}>
         <div className="text-center max-w-md mx-auto p-8">
-          {/* Logo or brand area */}
+          {/* Ailydian AI Logo */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <div className={`w-16 h-16 mx-auto rounded-2xl ${
-              regime === 'shock' ? 'bg-warn/20' :
-              regime === 'elevated' ? 'bg-accent1/20' :
-              'bg-brand1/20'
-            } flex items-center justify-center`}>
-              <div className={`w-8 h-8 rounded-lg ${
-                regime === 'shock' ? 'bg-warn' :
-                regime === 'elevated' ? 'bg-accent1' :
-                'bg-brand1'
-              }`} />
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className={`w-12 h-12 rounded-2xl ${
+                regime === 'shock' ? 'bg-warn/20' :
+                regime === 'elevated' ? 'bg-accent1/20' :
+                'bg-blue-500/20'
+              } flex items-center justify-center`}>
+                <span className={`text-xl font-bold ${
+                  regime === 'shock' ? 'text-warn' :
+                  regime === 'elevated' ? 'text-accent1' :
+                  'text-blue-400'
+                }`}>AI</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  AILYDIAN AI
+                </h1>
+                <p className="text-xs text-slate-400">8 Advanced AI Models</p>
+              </div>
             </div>
           </motion.div>
 
-          {/* Spinner */}
+          {/* Enhanced Spinner */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -230,11 +238,11 @@ export function LoadingScreen({
             transition={{ delay: 0.4 }}
             className="space-y-2"
           >
-            <h3 className="text-lg font-semibold text-gray-100">
+            <h3 className="text-lg font-semibold text-white">
               {message}
             </h3>
             {subMessage && (
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-slate-400">
                 {subMessage}
               </p>
             )}
@@ -248,19 +256,15 @@ export function LoadingScreen({
               transition={{ delay: 0.6 }}
               className="mt-6"
             >
-              <div className="w-full bg-panel/50 rounded-full h-2">
+              <div className="w-full bg-slate-700/50 rounded-full h-2">
                 <motion.div
-                  className={`h-2 rounded-full ${
-                    regime === 'shock' ? 'bg-warn' :
-                    regime === 'elevated' ? 'bg-accent1' :
-                    'bg-brand1'
-                  }`}
+                  className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.5 }}
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-slate-500 mt-2">
                 {Math.round(progress)}% complete
               </p>
             </motion.div>

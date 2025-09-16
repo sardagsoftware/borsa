@@ -1,0 +1,78 @@
+# Build artifacts
+.next/
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Runtime directories
+.turbo/
+.parcel-cache/
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+.jest/
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Services (backend microservices - not needed for frontend deploy)
+services/
+
+# Development tools
+scripts/smoke-e2e.js
+scripts/security-check.js
+
+# Large files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.pdf
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Analytics
+.vercel/analytics.json
+
+# Database
+prisma/dev.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache
+.cache/
+.next/cache/

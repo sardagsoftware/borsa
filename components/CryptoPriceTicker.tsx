@@ -163,7 +163,7 @@ export const CryptoPriceTicker: React.FC<CryptoTickerProps> = ({
       {/* Scrolling Ticker */}
       <div className="relative overflow-hidden">
         <div 
-          className={`flex space-x-6 py-3 px-4 ${autoScroll ? 'animate-scroll' : ''}`}
+          className={`flex space-x-3 sm:space-x-6 py-2 sm:py-3 px-2 sm:px-4 ${autoScroll ? 'animate-scroll' : ''}`}
           style={{
             animationDuration: autoScroll ? `${coins.length * 3}s` : 'none'
           }}
@@ -171,29 +171,29 @@ export const CryptoPriceTicker: React.FC<CryptoTickerProps> = ({
           {coins.concat(coins).map((coin, index) => (
             <div 
               key={`${coin.symbol}-${index}`}
-              className="flex-shrink-0 flex items-center space-x-3 min-w-[280px]"
+              className="flex-shrink-0 flex items-center space-x-2 sm:space-x-3 min-w-[200px] sm:min-w-[280px]"
             >
-              {/* Rank */}
-              <div className="text-gray-500 text-xs font-mono w-6 text-center">
+              {/* Rank - Hidden on very small screens */}
+              <div className="hidden sm:block text-gray-500 text-xs font-mono w-6 text-center">
                 #{coin.rank}
               </div>
               
               {/* Coin Info */}
               <div className="flex flex-col">
-                <div className="flex items-center space-x-2">
-                  <span className="text-white font-bold text-sm">{coin.symbol}</span>
-                  <span className="text-gray-400 text-xs">{coin.name}</span>
+                <div className="flex items-center space-x-1 sm:space-x-2">
+                  <span className="text-white font-bold text-xs sm:text-sm">{coin.symbol}</span>
+                  <span className="hidden sm:inline text-gray-400 text-xs">{coin.name}</span>
                 </div>
                 
-                <div className="flex items-center space-x-2 mt-1">
+                <div className="flex items-center space-x-1 sm:space-x-2 mt-1">
                   {/* Price */}
-                  <span className="text-yellow-500 font-mono text-sm">
+                  <span className="text-yellow-500 font-mono text-xs sm:text-sm">
                     {formatPrice(coin.price)}
                   </span>
                   
                   {/* 24h Change */}
                   <span 
-                    className={`text-xs px-1.5 py-0.5 rounded ${
+                    className={`text-xs px-1 sm:px-1.5 py-0.5 rounded ${
                       coin.price_change_24h >= 0 
                         ? 'text-green-400 bg-green-900/30' 
                         : 'text-red-400 bg-red-900/30'

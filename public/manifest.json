@@ -1,0 +1,160 @@
+{
+  "name": "AILYDIAN AI Lens Pro",
+  "short_name": "AILens",
+  "description": "Emrah Şardağ'ın Z.AI GLM-4.5 powered kripto trader asistanı",
+  "start_url": "/tr/dashboard",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "productivity", "business"],
+  "lang": "tr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Hızlı Alım",
+      "short_name": "Alım",
+      "description": "Hızlı kripto alım işlemi",
+      "url": "/tr/dashboard?action=buy",
+      "icons": [
+        {
+          "src": "/icons/buy-shortcut.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Hızlı Satım",
+      "short_name": "Satım",
+      "description": "Hızlı kripto satım işlemi",
+      "url": "/tr/dashboard?action=sell",
+      "icons": [
+        {
+          "src": "/icons/sell-shortcut.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "AI Asistan",
+      "short_name": "AI",
+      "description": "Z.AI GLM-4.5 ile sohbet",
+      "url": "/tr/dashboard?view=ai",
+      "icons": [
+        {
+          "src": "/icons/ai-shortcut.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "short_name": "Portföy",
+      "description": "Portföy görüntüleme",
+      "url": "/tr/dashboard?view=portfolio",
+      "icons": [
+        {
+          "src": "/icons/portfolio-shortcut.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Ana dashboard ekranı"
+    },
+    {
+      "src": "/screenshots/mobile-1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Mobil trading ekranı"
+    }
+  ],
+  "share_target": {
+    "action": "/tr/dashboard/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": ["image/*", ".csv", ".json"]
+        }
+      ]
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+crypto",
+      "url": "/tr/dashboard/crypto?symbol=%s"
+    }
+  ]
+}

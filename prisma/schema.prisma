@@ -51,6 +51,15 @@ model User {
   image         String?
   password      String?
   
+  // Email verification fields
+  verificationToken String?
+  verificationTokenExpiry DateTime?
+  
+  // Registration tracking
+  registrationIP String?
+  registrationUserAgent String?
+  registrationMetadata Json? // VPN detection, bot detection, etc.
+  
   // Trading specific fields
   isActive      Boolean   @default(true)
   riskLevel     String    @default("MEDIUM") // LOW, MEDIUM, HIGH

@@ -2,10 +2,13 @@ import './globals.css';
 import './styles/design.css';
 import './styles/type.css';
 import './styles/premium.css'; // Premium tema aktif
+import './styles/premium-theme.css'; // Advanced premium theme system
 import './styles/logo.css'; // Logo stilleri
 import { Inter, Space_Grotesk } from 'next/font/google';
 import type { Metadata } from 'next';
 import { COPYRIGHT_NOTICE, getCopyrightBanner } from '@/lib/copyright';
+import { ToastProvider } from '@/components/ui/toast-provider';
+import { RegimeProvider } from '@/lib/providers/RegimeProvider';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -22,6 +25,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://borsa.ailydian.com' : 'http://localhost:3000'),
   title: `${COPYRIGHT_NOTICE.project} - ${COPYRIGHT_NOTICE.owner}`,
   description: `© ${COPYRIGHT_NOTICE.year} ${COPYRIGHT_NOTICE.owner} - Gelişmiş AI destekli kripto para trading platformu. Ultra güvenli, Binance API, otomatik bot, teknik analiz ve portföy yönetimi. ${COPYRIGHT_NOTICE.rights}`,
   authors: [{ name: COPYRIGHT_NOTICE.owner, url: COPYRIGHT_NOTICE.contact.website }],
@@ -133,7 +137,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</style>
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-inter bg-bg text-text antialiased copyright-footer`}>
-        {children}
+        <RegimeProvider>
+          <ToastProvider />
+          {children}
+        </RegimeProvider>
       </body>
     </html>
   );

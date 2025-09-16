@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { chooseVariant, type Variant } from "./lib/ab/assign";
 import { getSecurityHeaders } from "./lib/security/csp";
+import { apiRateLimit, aiRateLimit, tradeRateLimit, authRateLimit } from './lib/middleware/rate-limit';
 import createMiddleware from 'next-intl/middleware';
 import {routing} from './i18n/routing';
 
@@ -8,6 +9,47 @@ import {routing} from './i18n/routing';
 const intlMiddleware = createMiddleware(routing);
 
 export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Apply rate limiting for API routes first
+  if (pathname.startsWith('/api/')) {
+    let rateLimitResult;
+    if (pathname.startsWith('/api/ai/')) {
+      rateLimitResult = aiRateLimit.check(request);
+    } else if (pathname.startsWith('/api/trade/')) {
+      rateLimitResult = tradeRateLimit.check(request);
+    } else if (pathname.startsWith('/api/auth/')) {
+      rateLimitResult = authRateLimit.check(request);
+    } else {
+      rateLimitResult = apiRateLimit.check(request);
+    }
+
+    // Return rate limit response if exceeded
+    if (!rateLimitResult.allowed) {
+      const rateLimitResponse = new NextResponse(
+        JSON.stringify({
+          error: 'Rate limit exceeded',
+          retryAfter: Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000)
+        }),
+        { 
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            ...rateLimitResult.headers
+          }
+        }
+      );
+      
+      // Add security headers even to rate limit responses
+      const securityHeaders = getSecurityHeaders();
+      Object.entries(securityHeaders).forEach(([key, value]) => {
+        rateLimitResponse.headers.set(key, value);
+      });
+      
+      return rateLimitResponse;
+    }
+  }
+
   // First handle internationalization
   const intlResponse = intlMiddleware(request);
   
@@ -24,6 +66,14 @@ export function middleware(request: NextRequest) {
   Object.entries(securityHeaders).forEach(([key, value]) => {
     response.headers.set(key, value);
   });
+
+  // Add mobile-specific performance headers
+  const userAgent = request.headers.get('user-agent') || '';
+  if (userAgent.includes('Mobile')) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    response.headers.set('Service-Worker-Allowed', '/');
+    response.headers.set('X-Mobile-Optimized', 'true');
+  }
 
   // Ownership banner injection for HTML responses
   if (request.headers.get('accept')?.includes('text/html')) {
@@ -67,7 +117,7 @@ export function middleware(request: NextRequest) {
   
   // Add locale to headers for server-side access
   const locale = request.nextUrl.pathname.split('/')[1] || 'tr';
-  if (['tr', 'en', 'ar', 'fa', 'fr', 'de', 'nl'].includes(locale)) {
+  if (['tr', 'en', 'es', 'zh', 'ja', 'ko', 'ru', 'pt', 'it', 'ar', 'fa', 'fr', 'de', 'nl'].includes(locale)) {
     response.headers.set("x-locale", locale);
   } else {
     response.headers.set("x-locale", 'tr');
@@ -80,7 +130,7 @@ export const config = {
   // Match internationalized pathnames and A/B testing paths
   matcher: [
     '/',
-    '/(tr|en|ar|fa|fr|de|nl)/:path*',
+    '/(tr|en|es|zh|ja|ko|ru|pt|it|ar|fa|fr|de|nl)/:path*',
     '/((?!api|_next/static|_next/image|favicon.ico|public).*)',
   ],
 };

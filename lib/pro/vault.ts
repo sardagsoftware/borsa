@@ -48,7 +48,19 @@ export class SecureVault {
       throw new Error('VAULT_ENCRYPTION_KEY is required for secure vault operations');
     }
 
-    this.encryptionKey = Buffer.from(this.config.encryptionKey, 'base64');
+    // Support both hex and base64 encoding
+    try {
+      if (this.config.encryptionKey.length === 64) {
+        // Hex encoded (64 chars = 32 bytes)
+        this.encryptionKey = Buffer.from(this.config.encryptionKey, 'hex');
+      } else {
+        // Base64 encoded
+        this.encryptionKey = Buffer.from(this.config.encryptionKey, 'base64');
+      }
+    } catch {
+      throw new Error('Invalid encryption key format - must be hex or base64 encoded');
+    }
+
     if (this.encryptionKey.length !== 32) {
       throw new Error('Encryption key must be 32 bytes (256-bit AES)');
     }

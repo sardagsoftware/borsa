@@ -2,6 +2,16 @@
 
 import { useState, useEffect } from 'react';
 
+interface BotSignal {
+  signal: number;
+  symbol: string;
+  action: string;
+  timestamp: Date;
+  regime?: string;
+  prebreakout?: number;
+  risk?: number;
+}
+
 export default function BotPage() {
   const [botStatus, setBotStatus] = useState({
     mode: 'semi',
@@ -12,7 +22,7 @@ export default function BotPage() {
     isRunning: true,
   });
 
-  const [signals, setSignals] = useState<any[]>([]);
+  const [signals, setSignals] = useState<BotSignal[]>([]);
 
   useEffect(() => {
     // Connect to bot signal stream

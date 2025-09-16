@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Logo from "@/components/Logo";
+import { Link } from '@/i18n/routing';
+import { usePathname } from '@/i18n/routing';
 
 interface HeaderProps {
   className?: string;
@@ -81,7 +83,10 @@ export default function Header({
             <NavLink href="/dashboard" label="Dashboard" />
             <NavLink href="/trading" label="Trading" />
             <NavLink href="/portfolio" label="Portfolio" />
-            <NavLink href="/analytics" label="Analytics" />
+            <NavLink href="/quantum/portfolio" label="Quantum" />
+            <NavLink href="/social/sentiment" label="Sentiment" />
+            <NavLink href="/trading/auto-trader" label="Auto-Trader" />
+            <NavLink href="/monitoring" label="Monitoring" />
             <NavLink href="/settings" label="Settings" badge={notifications} />
           </nav>
 
@@ -266,7 +271,10 @@ export default function Header({
                 <MobileNavLink href="/dashboard" label="Dashboard" />
                 <MobileNavLink href="/trading" label="Trading" />
                 <MobileNavLink href="/portfolio" label="Portfolio" />
-                <MobileNavLink href="/analytics" label="Analytics" />
+                <MobileNavLink href="/quantum/portfolio" label="Quantum" />
+                <MobileNavLink href="/social/sentiment" label="Sentiment" />
+                <MobileNavLink href="/trading/auto-trader" label="Auto-Trader" />
+                <MobileNavLink href="/monitoring" label="Monitoring" />
                 <MobileNavLink href="/settings" label="Settings" badge={notifications} />
               </nav>
               
@@ -315,42 +323,54 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, label, badge }: NavLinkProps) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+  
   return (
-    <motion.a
-      href={href}
-      className="relative text-text hover:text-brand1 transition-colors font-medium"
-      whileHover={{ y: -2 }}
-      whileTap={{ y: 0 }}
-    >
-      {label}
-      {badge && badge > 0 && (
-        <motion.span
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="absolute -top-2 -right-2 bg-accent1 text-bg text-xs font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1"
-        >
-          {badge}
-        </motion.span>
-      )}
-    </motion.a>
+    <Link href={href}>
+      <motion.span
+        className={`relative transition-colors font-medium cursor-pointer ${
+          isActive ? 'text-brand1' : 'text-text hover:text-brand1'
+        }`}
+        whileHover={{ y: -2 }}
+        whileTap={{ y: 0 }}
+      >
+        {label}
+        {badge && badge > 0 && (
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute -top-2 -right-2 bg-accent1 text-bg text-xs font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-1"
+          >
+            {badge}
+          </motion.span>
+        )}
+      </motion.span>
+    </Link>
   );
 }
 
 function MobileNavLink({ href, label, badge }: NavLinkProps) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+  
   return (
-    <motion.a
-      href={href}
-      className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-soft transition-colors"
-      whileHover={{ x: 4 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <span className="font-medium">{label}</span>
-      {badge && badge > 0 && (
-        <span className="bg-accent1 text-bg text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-          {badge}
-        </span>
-      )}
-    </motion.a>
+    <Link href={href}>
+      <motion.span
+        className={`flex items-center justify-between px-4 py-3 rounded-lg transition-colors cursor-pointer ${
+          isActive ? 'bg-soft text-brand1' : 'hover:bg-soft'
+        }`}
+        whileHover={{ x: 4 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <span className="font-medium">{label}</span>
+        {badge && badge > 0 && (
+          <span className="bg-accent1 text-bg text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+            {badge}
+          </span>
+        )}
+      </motion.span>
+    </Link>
   );
 }
 

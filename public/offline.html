@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çevrimdışı - AILYDIAN AI Lens Pro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 400px;
+      width: 100%;
+    }
+    
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+      border-radius: 20px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    h1 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #0ea5e9;
+    }
+    
+    p {
+      font-size: 16px;
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    
+    .retry-btn {
+      background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    
+    .retry-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+    }
+    
+    .retry-btn:active {
+      transform: translateY(0);
+    }
+    
+    .features {
+      margin-top: 40px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .features h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #0ea5e9;
+    }
+    
+    .features ul {
+      list-style: none;
+      text-align: left;
+    }
+    
+    .features li {
+      padding: 8px 0;
+      color: #d4d4d8;
+      font-size: 14px;
+    }
+    
+    .features li:before {
+      content: "🤖 ";
+      margin-right: 8px;
+    }
+    
+    .status {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 16px;
+      background: rgba(239, 68, 68, 0.9);
+      color: white;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .status.online {
+      background: rgba(34, 197, 94, 0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="status" id="status">Çevrimdışı</div>
+  
+  <div class="container">
+    <div class="logo">AI</div>
+    
+    <h1>Bağlantı Kesildi</h1>
+    <p>İnternet bağlantınız kesilmiş görünüyor. AILYDIAN AI Lens Pro çevrimdışı özellikleri ile bazı işlevleri kullanmaya devam edebilirsiniz.</p>
+    
+    <button class="retry-btn" onclick="retryConnection()">
+      Yeniden Dene
+    </button>
+    
+    <div class="features">
+      <h3>Çevrimdışı Özellikler</h3>
+      <ul>
+        <li>Portföy görüntüleme (önbellek)</li>
+        <li>AI sohbet geçmişi</li>
+        <li>Piyasa verisi (son güncelleme)</li>
+        <li>Hızlı notlar</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Online/offline durumu
+    function updateStatus() {
+      const statusEl = document.getElementById('status');
+      if (navigator.onLine) {
+        statusEl.textContent = 'Çevrimiçi';
+        statusEl.className = 'status online';
+      } else {
+        statusEl.textContent = 'Çevrimdışı';
+        statusEl.className = 'status';
+      }
+    }
+    
+    // Bağlantı yeniden deneme
+    function retryConnection() {
+      if (navigator.onLine) {
+        // Ana uygulamaya dön
+        window.location.href = '/tr/dashboard';
+      } else {
+        // Kısa bir süre bekle ve tekrar dene
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+    }
+    
+    // Event listeners
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+    
+    // İlk durum kontrolü
+    updateStatus();
+    
+    // Otomatik bağlantı kontrolü (her 5 saniyede)
+    setInterval(() => {
+      if (navigator.onLine) {
+        fetch('/api/health', { 
+          method: 'HEAD',
+          cache: 'no-cache'
+        })
+        .then(() => {
+          // Bağlantı var, ana uygulamaya yönlendir
+          window.location.href = '/tr/dashboard';
+        })
+        .catch(() => {
+          // Bağlantı hala yok
+          console.log('Still offline');
+        });
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
