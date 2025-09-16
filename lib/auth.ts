@@ -37,7 +37,22 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Demo user için hard-coded authentication
+        // Secure admin user for Emrah Şardağ (encrypted credentials)
+        const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'emrah@ailydian.com';
+        const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '$2b$10$79GwCffrKXZFpDi5Hj4x/eFz5IBQ5Ot3Vre8XfObRjBVBM/Juw1ly';
+        
+        if (credentials.email === ADMIN_EMAIL) {
+          const passwordMatch = await bcrypt.compare(credentials.password, ADMIN_PASSWORD_HASH);
+          if (passwordMatch) {
+            return {
+              id: 'admin-emrah-sardagsoftware',
+              email: ADMIN_EMAIL,
+              name: 'Emrah Şardağ - Admin',
+            };
+          }
+        }
+
+        // Demo user için hard-coded authentication (public demo)
         if (credentials.email === 'demo@ailydian.com' && credentials.password === 'demo123456') {
           return {
             id: 'demo-user-id',

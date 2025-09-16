@@ -177,7 +177,7 @@ export const Logo: React.FC<LogoProps> = ({
 
         {/* Text Logo */}
         <div className="flex flex-col items-start">
-          {/* AiLydian Trader */}
+          {/* AiLydian Pro Trader */}
           <motion.div
             className={`${textSizes[size]} font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent`}
             initial={animated ? { opacity: 0, x: -20 } : {}}
@@ -185,7 +185,7 @@ export const Logo: React.FC<LogoProps> = ({
             transition={animated ? { delay: 0.8, duration: 0.6 } : {}}
             style={{ fontFamily: '"Orbitron", "Exo 2", sans-serif' }}
           >
-            <span className="drop-shadow-sm">AiLydian Trader</span>
+            <span className="drop-shadow-sm">AiLydian Pro Trader</span>
           </motion.div>
         </div>
       </div>

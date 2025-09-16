@@ -286,7 +286,7 @@ export default function SignInPage() {
 
             <div className="bg-panel/80 backdrop-blur-sm p-8 rounded-2xl border border-glass/30 shadow-2xl">
               <h1 className="text-2xl font-bold text-white mb-2">Hoş Geldiniz</h1>
-              <p className="text-muted mb-8">AiLydian Trader hesabınıza giriş yapın</p>
+              <p className="text-muted mb-8">AiLydian Pro Trader hesabınıza giriş yapın</p>
 
               {error && (
                 <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-3">
