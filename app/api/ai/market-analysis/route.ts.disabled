@@ -7,13 +7,9 @@ import { headers } from 'next/headers';
 import { z } from 'zod';
 import { ratelimit } from '@/lib/ratelimit';
 import { withCors } from '@/lib/cors';
-// import ZAIService from '@/lib/services/zai-service';
+import ZAIService from '@/lib/services/zai-service';
 
-let zaiService: ZAIService;
-
-if (!zaiService) {
-  zaiService = new ZAIService();
-}
+const zaiService = new ZAIService();
 
 export async function GET(request: NextRequest) {
   try {
