@@ -1,0 +1,12 @@
+.vercel
+# ignore build & heavy artifacts
+.next/
+dist/
+coverage/
+tmp/
+*.mp4
+*.mov
+*.webm
+*.zip
+*.bin
+*.dmg

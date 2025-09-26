@@ -1,0 +1,4 @@
+# stop tracking large binaries via LFS
+*.mp4 -filter -merge -text
+*.mov -filter -merge -text
+*.webm -filter -merge -text
