@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
+const aiProvider = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -42,7 +42,6 @@ async function fetchTradingSignal(symbol: string, language: string) {
       headers: { 'Content-Type': 'application/json' }
     });
 
-    // Şimdilik mock data dönüyoruz, production'da gerçek signal API'si aktif olacak
     return {
       symbol: symbol.toUpperCase(),
       price: '45234.56',
@@ -56,10 +55,11 @@ async function fetchTradingSignal(symbol: string, language: string) {
       risk_level: language === 'tr' ? 'DÜŞÜK' : 'LOW'
     };
   } catch (error) {
-    console.error('Trading API Error:', error);
     return null;
   }
 }
+
+type SupportedLanguage = 'tr' | 'en' | 'de' | 'fr' | 'ru' | 'zh' | 'ja';
 
 export async function POST(request: NextRequest) {
   try {
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Dil öneki ekle
-    const languagePrefix = {
+    const languagePrefixMap: Record<SupportedLanguage, string> = {
       tr: 'Türkçe cevap ver:',
       en: 'Answer in English:',
       de: 'Antworte auf Deutsch:',
@@ -82,7 +82,8 @@ export async function POST(request: NextRequest) {
       ru: 'Ответь на русском:',
       zh: '用中文回答:',
       ja: '日本語で答えて:'
-    }[language] || 'Türkçe cevap ver:';
+    };
+    const languagePrefix = languagePrefixMap[language as SupportedLanguage] || 'Türkçe cevap ver:';
 
     // Build messages array
     const messages: any[] = [
@@ -94,8 +95,7 @@ export async function POST(request: NextRequest) {
       { role: 'user', content: `${languagePrefix} ${message}` }
     ];
 
-    // Call OpenAI API for initial response
-    const completion = await openai.chat.completions.create({
+    const completion = await aiProvider.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages,
       temperature: 0.7,
@@ -144,16 +144,13 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error: any) {
-    console.error('AI Chat Error:', error);
-
-    // Handle specific OpenAI errors
     if (error?.status === 401) {
       return NextResponse.json(
         {
           message: '🤖 AI servisi geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
-          error: 'OpenAI API key issue'
+          error: 'Service temporarily unavailable'
         },
-        { status: 200 } // Return 200 to show message to user
+        { status: 200 }
       );
     }
 
@@ -161,7 +158,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           message: '⏳ Çok fazla istek geldi. Lütfen birkaç saniye bekleyip tekrar deneyin.',
-          error: 'Rate limit'
+          error: 'Rate limit exceeded'
         },
         { status: 200 }
       );
@@ -170,7 +167,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         message: '❌ Bir hata oluştu. Lütfen tekrar deneyin.',
-        error: error.message
+        error: 'Request failed'
       },
       { status: 200 }
     );

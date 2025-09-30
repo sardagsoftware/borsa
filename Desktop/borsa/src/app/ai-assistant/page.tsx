@@ -24,12 +24,52 @@ export default function AIAssistantPage() {
     { code: 'ja', name: '日本語', flag: '🇯🇵' }
   ];
 
-  const quickActions = [
-    { icon: TrendingUp, text: 'BTC analizi yap', query: 'Bitcoin (BTC) için teknik analiz yap ve AL/ALMA önerisi ver' },
-    { icon: TrendingUp, text: 'ETH sinyali', query: 'Ethereum (ETH) için güncel sinyal ver' },
-    { icon: Shield, text: 'Risk analizi', query: 'Kripto piyasasındaki mevcut risk seviyesini analiz et' },
-    { icon: Globe, text: 'Piyasa özeti', query: 'Bugünkü kripto piyasası genel durumunu özetle' }
-  ];
+  const quickActionsMap: Record<string, Array<{ icon: any; text: string; query: string }>> = {
+    tr: [
+      { icon: TrendingUp, text: 'BTC analizi yap', query: 'Bitcoin (BTC) için teknik analiz yap ve AL/ALMA önerisi ver' },
+      { icon: TrendingUp, text: 'ETH sinyali', query: 'Ethereum (ETH) için güncel sinyal ver' },
+      { icon: Shield, text: 'Risk analizi', query: 'Kripto piyasasındaki mevcut risk seviyesini analiz et' },
+      { icon: Globe, text: 'Piyasa özeti', query: 'Bugünkü kripto piyasası genel durumunu özetle' }
+    ],
+    en: [
+      { icon: TrendingUp, text: 'BTC analysis', query: 'Provide technical analysis for Bitcoin (BTC) with BUY/HOLD recommendation' },
+      { icon: TrendingUp, text: 'ETH signal', query: 'Give current signal for Ethereum (ETH)' },
+      { icon: Shield, text: 'Risk analysis', query: 'Analyze current risk level in crypto market' },
+      { icon: Globe, text: 'Market summary', query: 'Summarize today\'s crypto market situation' }
+    ],
+    de: [
+      { icon: TrendingUp, text: 'BTC Analyse', query: 'Technische Analyse für Bitcoin (BTC) mit KAUFEN/HALTEN Empfehlung' },
+      { icon: TrendingUp, text: 'ETH Signal', query: 'Aktuelles Signal für Ethereum (ETH)' },
+      { icon: Shield, text: 'Risikoanalyse', query: 'Aktuelles Risikoniveau im Kryptomarkt analysieren' },
+      { icon: Globe, text: 'Marktübersicht', query: 'Heutige Kryptomarkt-Situation zusammenfassen' }
+    ],
+    fr: [
+      { icon: TrendingUp, text: 'Analyse BTC', query: 'Analyse technique pour Bitcoin (BTC) avec recommandation ACHETER/CONSERVER' },
+      { icon: TrendingUp, text: 'Signal ETH', query: 'Signal actuel pour Ethereum (ETH)' },
+      { icon: Shield, text: 'Analyse des risques', query: 'Analyser le niveau de risque actuel du marché crypto' },
+      { icon: Globe, text: 'Résumé du marché', query: 'Résumer la situation du marché crypto aujourd\'hui' }
+    ],
+    ru: [
+      { icon: TrendingUp, text: 'Анализ BTC', query: 'Технический анализ Bitcoin (BTC) с рекомендацией КУПИТЬ/ДЕРЖАТЬ' },
+      { icon: TrendingUp, text: 'Сигнал ETH', query: 'Текущий сигнал для Ethereum (ETH)' },
+      { icon: Shield, text: 'Анализ рисков', query: 'Проанализировать текущий уровень риска на крипторынке' },
+      { icon: Globe, text: 'Обзор рынка', query: 'Резюме ситуации на крипторынке сегодня' }
+    ],
+    zh: [
+      { icon: TrendingUp, text: 'BTC分析', query: '提供比特币(BTC)技术分析和买入/持有建议' },
+      { icon: TrendingUp, text: 'ETH信号', query: '提供以太坊(ETH)当前信号' },
+      { icon: Shield, text: '风险分析', query: '分析加密市场当前风险水平' },
+      { icon: Globe, text: '市场摘要', query: '总结今日加密市场情况' }
+    ],
+    ja: [
+      { icon: TrendingUp, text: 'BTC分析', query: 'ビットコイン(BTC)のテクニカル分析と購入/保有の推奨' },
+      { icon: TrendingUp, text: 'ETHシグナル', query: 'イーサリアム(ETH)の現在のシグナル' },
+      { icon: Shield, text: 'リスク分析', query: '暗号市場の現在のリスクレベルを分析' },
+      { icon: Globe, text: '市場概要', query: '今日の暗号市場の状況をまとめる' }
+    ]
+  };
+
+  const quickActions = quickActionsMap[selectedLanguage] || quickActionsMap.tr;
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -111,7 +151,13 @@ export default function AIAssistantPage() {
             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
               <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <Shield className="w-5 h-5 text-purple-400" />
-                Hızlı İşlemler
+                {selectedLanguage === 'tr' ? 'Hızlı İşlemler' :
+                 selectedLanguage === 'en' ? 'Quick Actions' :
+                 selectedLanguage === 'de' ? 'Schnellaktionen' :
+                 selectedLanguage === 'fr' ? 'Actions Rapides' :
+                 selectedLanguage === 'ru' ? 'Быстрые действия' :
+                 selectedLanguage === 'zh' ? '快速操作' :
+                 selectedLanguage === 'ja' ? 'クイックアクション' : 'Hızlı İşlemler'}
               </h2>
               <div className="space-y-2">
                 {quickActions.map((action, idx) => (
@@ -128,23 +174,63 @@ export default function AIAssistantPage() {
 
               {/* Features */}
               <div className="mt-6 pt-6 border-t border-white/10">
-                <h3 className="text-sm font-semibold text-gray-400 mb-3">Özellikler</h3>
+                <h3 className="text-sm font-semibold text-gray-400 mb-3">
+                  {selectedLanguage === 'tr' ? 'Özellikler' :
+                   selectedLanguage === 'en' ? 'Features' :
+                   selectedLanguage === 'de' ? 'Funktionen' :
+                   selectedLanguage === 'fr' ? 'Fonctionnalités' :
+                   selectedLanguage === 'ru' ? 'Особенности' :
+                   selectedLanguage === 'zh' ? '特点' :
+                   selectedLanguage === 'ja' ? '機能' : 'Özellikler'}
+                </h3>
                 <div className="space-y-2 text-xs text-gray-500">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Gerçek zamanlı analiz</span>
+                    <span>
+                      {selectedLanguage === 'tr' ? 'Gerçek zamanlı analiz' :
+                       selectedLanguage === 'en' ? 'Real-time analysis' :
+                       selectedLanguage === 'de' ? 'Echtzeit-Analyse' :
+                       selectedLanguage === 'fr' ? 'Analyse en temps réel' :
+                       selectedLanguage === 'ru' ? 'Анализ в реальном времени' :
+                       selectedLanguage === 'zh' ? '实时分析' :
+                       selectedLanguage === 'ja' ? 'リアルタイム分析' : 'Gerçek zamanlı analiz'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>7 dil desteği</span>
+                    <span>
+                      {selectedLanguage === 'tr' ? '7 dil desteği' :
+                       selectedLanguage === 'en' ? '7 language support' :
+                       selectedLanguage === 'de' ? '7 Sprachen' :
+                       selectedLanguage === 'fr' ? '7 langues' :
+                       selectedLanguage === 'ru' ? '7 языков' :
+                       selectedLanguage === 'zh' ? '7种语言' :
+                       selectedLanguage === 'ja' ? '7言語対応' : '7 dil desteği'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Teknik göstergeler</span>
+                    <span>
+                      {selectedLanguage === 'tr' ? 'Teknik göstergeler' :
+                       selectedLanguage === 'en' ? 'Technical indicators' :
+                       selectedLanguage === 'de' ? 'Technische Indikatoren' :
+                       selectedLanguage === 'fr' ? 'Indicateurs techniques' :
+                       selectedLanguage === 'ru' ? 'Технические индикаторы' :
+                       selectedLanguage === 'zh' ? '技术指标' :
+                       selectedLanguage === 'ja' ? 'テクニカル指標' : 'Teknik göstergeler'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
-                    <span>AL/ALMA sinyalleri</span>
+                    <span>
+                      {selectedLanguage === 'tr' ? 'AL/ALMA sinyalleri' :
+                       selectedLanguage === 'en' ? 'BUY/HOLD signals' :
+                       selectedLanguage === 'de' ? 'KAUFEN/HALTEN Signale' :
+                       selectedLanguage === 'fr' ? 'Signaux ACHETER/CONSERVER' :
+                       selectedLanguage === 'ru' ? 'КУПИТЬ/ДЕРЖАТЬ сигналы' :
+                       selectedLanguage === 'zh' ? '买入/持有信号' :
+                       selectedLanguage === 'ja' ? '買い/保有シグナル' : 'AL/ALMA sinyalleri'}
+                    </span>
                   </div>
                 </div>
               </div>

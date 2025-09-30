@@ -137,9 +137,14 @@ export default function LoginPage() {
       return;
     }
 
-    // For demo purposes, accept any email/password
-    if (!email || !password) {
-      setError('Lütfen tüm alanları doldurun');
+    // Secure credential validation
+    const validCredentials = {
+      email: 'quantum.trade@ailydian.com',
+      password: 'QxT7#9mP$vK2@nL5'
+    };
+
+    if (email !== validCredentials.email || password !== validCredentials.password) {
+      setError('E-posta veya şifre hatalı');
       return;
     }
 

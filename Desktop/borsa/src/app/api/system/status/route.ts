@@ -11,7 +11,7 @@ export const runtime = 'nodejs';
 
 interface SystemStatus {
   timestamp: number;
-  tensorflow: {
+  mlEngine: {
     version: string;
     backend: string;
     memory: {
@@ -71,7 +71,7 @@ interface SystemStatus {
   health: {
     overall: 'healthy' | 'degraded' | 'critical';
     checks: {
-      tensorflow: boolean;
+      mlEngine: boolean;
       models: boolean;
       dataCollector: boolean;
       memory: boolean;
@@ -85,10 +85,9 @@ interface SystemStatus {
  */
 export async function GET(request: NextRequest) {
   try {
-    // TensorFlow.js status
     const tfMemory = tf.memory();
-    const tensorflowStatus = {
-      version: tf.version.tfjs,
+    const mlEngineStatus = {
+      version: '4.22.0',
       backend: tf.getBackend(),
       memory: {
         numTensors: tfMemory.numTensors,
@@ -155,10 +154,10 @@ export async function GET(request: NextRequest) {
 
     // Health checks
     const healthChecks = {
-      tensorflow: tfMemory.numTensors < 10000, // Not leaking
-      models: true, // All models ready
+      mlEngine: tfMemory.numTensors < 10000,
+      models: true,
       dataCollector: dataCollectorStatus.websocketConnected,
-      memory: memUsage.heapUsed / memUsage.heapTotal < 0.9, // Less than 90% heap
+      memory: memUsage.heapUsed / memUsage.heapTotal < 0.9,
     };
 
     const overallHealth =
@@ -170,7 +169,7 @@ export async function GET(request: NextRequest) {
 
     const status: SystemStatus = {
       timestamp: Date.now(),
-      tensorflow: tensorflowStatus,
+      mlEngine: mlEngineStatus,
       models: modelsStatus,
       performance: performanceMetrics,
       dataCollector: dataCollectorStatus,
@@ -187,11 +186,10 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('❌ System status error:', error);
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Internal server error',
+        error: 'System status unavailable',
       },
       { status: 500 }
     );

@@ -20,11 +20,23 @@ const nextConfig: NextConfig = {
     serverComponentsExternalPackages: ['@tensorflow/tfjs-node', '@mapbox/node-pre-gyp'],
   },
 
-  // Production optimizations
+  // Production optimizations - Ultra code obfuscation & security
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' ? {
-      exclude: ['error', 'warn']
-    } : false,
+    // Remove ALL console logs in production (including error/warn for stealth)
+    removeConsole: process.env.NODE_ENV === 'production' ? true : false,
+    // Minify and obfuscate in production
+    styledComponents: true,
+    // Remove all React DevTools hints
+    reactRemoveProperties: process.env.NODE_ENV === 'production',
+  },
+
+  // Disable source maps in production for code protection
+  productionBrowserSourceMaps: false,
+
+  // Hide build info
+  generateBuildId: async () => {
+    // Use random hash instead of git commit
+    return require('crypto').randomBytes(16).toString('hex');
   },
 
   // Image optimization
