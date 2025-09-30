@@ -11,8 +11,8 @@ import { z } from 'zod';
 
 // Environment validation
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-in-production-min-32-chars-12345678';
-const PASSWORD_HASH = process.env.PASSWORD_HASH || '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgdP.rW1S'; // QxT7#9mP$vK2@nL5
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'quantum.trade@ailydian.com';
+const PASSWORD_HASH = process.env.PASSWORD_HASH || '$2b$12$PvxW9uiX4ImXi/vLDhHnXOgnF1cnTchlNAyi0/wN04qc6/GSjSTVS'; // Demo2025!
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'demo@ailydian.com';
 
 // Zod validation schema
 const loginSchema = z.object({
