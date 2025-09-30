@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { verifyAuth } from '@/lib/auth';
 
 const aiProvider = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -62,6 +63,19 @@ async function fetchTradingSignal(symbol: string, language: string) {
 type SupportedLanguage = 'tr' | 'en' | 'de' | 'fr' | 'ru' | 'zh' | 'ja';
 
 export async function POST(request: NextRequest) {
+  // 🔒 SECURITY: Authentication required
+  const user = verifyAuth(request);
+  if (!user) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Unauthorized',
+        message: '🔒 Bu özelliği kullanmak için giriş yapmanız gerekiyor.'
+      },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
     const { message, language = 'tr', history = [] } = body;

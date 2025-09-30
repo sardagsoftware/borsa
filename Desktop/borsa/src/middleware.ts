@@ -78,10 +78,10 @@ export function middleware(request: NextRequest) {
   // Permissions Policy
   headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
 
-  // Content Security Policy - Ultra strict
+  // Content Security Policy - NIRVANA Level Security (unsafe-eval removed!)
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel.app https://cybermap.kaspersky.com",
+    "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://cybermap.kaspersky.com",
     "style-src 'self' 'unsafe-inline' https://cybermap.kaspersky.com",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",

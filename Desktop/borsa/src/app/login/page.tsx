@@ -137,22 +137,35 @@ export default function LoginPage() {
       return;
     }
 
-    // Secure credential validation
-    const validCredentials = {
-      email: 'quantum.trade@ailydian.com',
-      password: 'QxT7#9mP$vK2@nL5'
-    };
+    try {
+      // Call secure backend authentication API
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          captcha: captchaInput,
+          expectedCaptcha: captcha
+        }),
+      });
 
-    if (email !== validCredentials.email || password !== validCredentials.password) {
-      setError('E-posta veya şifre hatalı');
-      return;
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.message || 'E-posta veya şifre hatalı');
+        return;
+      }
+
+      // Secure cookie is set by backend with HttpOnly flag
+      // Redirect to dashboard
+      router.push('/dashboard');
+
+    } catch (error) {
+      setError('Bir hata oluştu. Lütfen tekrar deneyin.');
     }
-
-    // Set auth cookie
-    document.cookie = 'lydian-auth=authenticated; path=/; max-age=86400'; // 24 hours
-
-    // Redirect to dashboard
-    router.push('/dashboard');
   };
 
   return (

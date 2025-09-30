@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   authors: [{ name: "LyDian Trader" }],
   creator: "LyDian Trader",
   publisher: "LyDian Trader",
-  metadataBase: new URL('https://borsa-lydian-io4im2qqr-emrahsardag-yandexcoms-projects.vercel.app'),
+  metadataBase: new URL('https://borsa.ailydian.com'),
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
-    url: 'https://borsa-lydian-io4im2qqr-emrahsardag-yandexcoms-projects.vercel.app',
+    url: 'https://borsa.ailydian.com',
     siteName: 'LyDian Trader',
     title: 'LyDian Trader - AI Destekli Trading Platformu',
     description: 'Yapay zeka ile kripto ve borsa takibi. Quantum Pro AI sistemi ile %93+ doğruluk oranında trading sinyalleri.',
