@@ -1,0 +1,68 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "welcome": "Hoş Geldiniz"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "login": "Giriş",
+    "dashboard": "Kontrol Paneli",
+    "stocks": "Hisse Senetleri",
+    "crypto": "Kripto Paralar",
+    "portfolio": "Portföy",
+    "watchlist": "İzleme Listesi",
+    "news": "Haberler"
+  },
+  "home": {
+    "title": "LyDian Trader",
+    "subtitle": "Kuantum Seviyesi Doğrulukla Yapay Zeka Destekli Ticaret Platformu",
+    "getStarted": "Başla",
+    "viewDashboard": "Kontrol Panelini Görüntüle",
+    "features": {
+      "ultraFast": {
+        "title": "Ultra Hızlı",
+        "description": "Nirvana seviyesi performans ile 0.20ms TPS"
+      },
+      "accuracy": {
+        "title": "%93 Doğruluk",
+        "description": "Detaylı analiz ile gerçek zamanlı sinyaller"
+      },
+      "whiteHat": {
+        "title": "Beyaz Şapka Uyumlu",
+        "description": "%100 yasal ve güvenli ticaret"
+      }
+    }
+  },
+  "login": {
+    "title": "Güvenli Giriş",
+    "subtitle": "LyDian Trader hesabınıza giriş yapın",
+    "email": "E-posta",
+    "emailPlaceholder": "ornek@email.com",
+    "password": "Şifre",
+    "passwordPlaceholder": "Şifrenizi girin",
+    "captcha": "Güvenlik Doğrulaması",
+    "captchaPlaceholder": "Yukarıdaki kodu girin",
+    "loginButton": "Giriş Yap",
+    "noAccount": "Hesabınız yok mu?",
+    "signUp": "Kayıt Ol",
+    "securityInfo": "Güvenlik Bilgileri",
+    "browser": "Tarayıcı",
+    "os": "İşletim Sistemi",
+    "device": "Cihaz",
+    "macAddress": "MAC Adresi",
+    "ipAddress": "IP Adresi",
+    "location": "Konum",
+    "timestamp": "Zaman Damgası",
+    "liveMap": "Canlı Güvenlik Haritası",
+    "kaspersky": "Kaspersky Siber Güvenlik"
+  },
+  "dashboard": {
+    "title": "Kontrol Paneli",
+    "welcome": "Hoş Geldiniz",
+    "totalValue": "Toplam Değer",
+    "dailyChange": "Günlük Değişim",
+    "activePositions": "Aktif Pozisyonlar"
+  }
+}
