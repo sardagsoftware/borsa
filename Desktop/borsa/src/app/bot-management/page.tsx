@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { coinMarketCapService, CoinData } from '@/services/CoinMarketCapService';
+import { emitSignalNotification } from '@/components/SignalNotification';
 
 interface Bot {
   id: string;
@@ -12,6 +14,17 @@ interface Bot {
   trades: number;
   winRate: number;
   uptime: number;
+  config?: BotConfig;
+}
+
+interface BotConfig {
+  indicators: string[];
+  timeframe: string;
+  riskLevel: 'low' | 'medium' | 'high';
+  stopLoss: number;
+  takeProfit: number;
+  symbol: string;
+  exchange: string;
 }
 
 interface BotStats {
@@ -20,6 +33,40 @@ interface BotStats {
   totalProfit: number;
   totalTrades: number;
 }
+
+const INDICATORS = [
+  { id: 'RSI', name: 'RSI (Relative Strength Index)', description: 'Momentum göstergesi' },
+  { id: 'MACD', name: 'MACD', description: 'Trend takip göstergesi' },
+  { id: 'EMA', name: 'EMA (Exponential Moving Average)', description: 'Hareketli ortalama' },
+  { id: 'SMA', name: 'SMA (Simple Moving Average)', description: 'Basit hareketli ortalama' },
+  { id: 'BB', name: 'Bollinger Bands', description: 'Volatilite göstergesi' },
+  { id: 'ATR', name: 'ATR (Average True Range)', description: 'Volatilite ölçümü' },
+  { id: 'STOCH', name: 'Stochastic Oscillator', description: 'Momentum göstergesi' },
+  { id: 'ADX', name: 'ADX (Average Directional Index)', description: 'Trend gücü' }
+];
+
+const TIMEFRAMES = [
+  { value: '1m', label: '1 Dakika', description: 'Scalping için ideal' },
+  { value: '5m', label: '5 Dakika', description: 'Hızlı işlemler' },
+  { value: '15m', label: '15 Dakika', description: 'Kısa vadeli' },
+  { value: '30m', label: '30 Dakika', description: 'Orta vadeli' },
+  { value: '1h', label: '1 Saat', description: 'Swing trading' },
+  { value: '4h', label: '4 Saat', description: 'Günlük analiz' },
+  { value: '1d', label: '1 Gün', description: 'Uzun vadeli' }
+];
+
+const EXCHANGES = [
+  { id: 'binance', name: 'Binance', volume: '76B' },
+  { id: 'coinbase', name: 'Coinbase', volume: '14B' },
+  { id: 'kraken', name: 'Kraken', volume: '8B' },
+  { id: 'bybit', name: 'Bybit', volume: '45B' },
+  { id: 'okx', name: 'OKX', volume: '32B' },
+  { id: 'huobi', name: 'Huobi', volume: '12B' },
+  { id: 'kucoin', name: 'KuCoin', volume: '9B' },
+  { id: 'gateio', name: 'Gate.io', volume: '7.5B' },
+  { id: 'bitfinex', name: 'Bitfinex', volume: '5B' },
+  { id: 'mexc', name: 'MEXC', volume: '6B' }
+];
 
 export default function BotManagementPage() {
   const [loading, setLoading] = useState(true);
@@ -32,18 +79,46 @@ export default function BotManagementPage() {
   });
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [topCoins, setTopCoins] = useState<CoinData[]>([]);
+  const [loadingCoins, setLoadingCoins] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
-    strategy: 'Scalping',
+    strategy: 'Custom',
     symbol: 'BTCUSDT',
-    interval: '5m'
+    interval: '5m',
+    indicators: [] as string[],
+    riskLevel: 'medium' as 'low' | 'medium' | 'high',
+    stopLoss: 2,
+    takeProfit: 5,
+    exchange: 'binance'
   });
 
   useEffect(() => {
     fetchBots();
+    fetchTopCoins();
     const interval = setInterval(fetchBots, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  const fetchTopCoins = async () => {
+    try {
+      const result = await coinMarketCapService.getTopNCoins(50);
+      setTopCoins(result);
+    } catch (error) {
+      console.error('Top coins fetch error:', error);
+    } finally {
+      setLoadingCoins(false);
+    }
+  };
+
+  const toggleIndicator = (indicatorId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      indicators: prev.indicators.includes(indicatorId)
+        ? prev.indicators.filter(id => id !== indicatorId)
+        : [...prev.indicators, indicatorId]
+    }));
+  };
 
   const fetchBots = async () => {
     try {
@@ -91,34 +166,90 @@ export default function BotManagementPage() {
       return;
     }
 
+    if (formData.indicators.length === 0) {
+      alert('En az bir gösterge seçin');
+      return;
+    }
+
     setCreating(true);
     try {
+      const botConfig: BotConfig = {
+        indicators: formData.indicators,
+        timeframe: formData.interval,
+        riskLevel: formData.riskLevel,
+        stopLoss: formData.stopLoss,
+        takeProfit: formData.takeProfit,
+        symbol: formData.symbol,
+        exchange: formData.exchange
+      };
+
       const response = await fetch('/api/quantum-pro/bots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          config: botConfig
+        })
       });
 
       const data = await response.json();
 
       if (data.success) {
-        alert('Bot başarıyla oluşturuldu!');
+        alert('✅ Bot başarıyla oluşturuldu ve aktif edildi!');
+
+        // Emit notification for bot creation
+        emitSignalNotification({
+          id: `bot-created-${Date.now()}`,
+          botName: formData.name,
+          botRoute: '/bot-management',
+          symbol: formData.symbol,
+          action: 'BUY',
+          confidence: 85,
+          price: 0,
+          timestamp: new Date(),
+          reasoning: [
+            `Yeni bot oluşturuldu: ${formData.indicators.join(', ')} göstergeleri ile`,
+            `Risk seviyesi: ${formData.riskLevel.toUpperCase()}`,
+            `Stop Loss: ${formData.stopLoss}% | Take Profit: ${formData.takeProfit}%`
+          ]
+        });
+
         setShowCreateModal(false);
         setFormData({
           name: '',
-          strategy: 'Scalping',
+          strategy: 'Custom',
           symbol: 'BTCUSDT',
-          interval: '5m'
+          interval: '5m',
+          indicators: [],
+          riskLevel: 'medium',
+          stopLoss: 2,
+          takeProfit: 5,
+          exchange: 'binance'
         });
         fetchBots();
       } else {
-        alert('Hata: ' + data.error);
+        alert('❌ Hata: ' + data.error);
       }
     } catch (error) {
       console.error('Bot creation error:', error);
-      alert('Bot oluşturulurken hata oluştu');
+      alert('❌ Bot oluşturulurken hata oluştu');
     } finally {
       setCreating(false);
+    }
+  };
+
+  const deleteBot = async (botId: string) => {
+    if (!confirm('Bu botu silmek istediğinizden emin misiniz?')) return;
+
+    try {
+      await fetch('/api/quantum-pro/bots', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ botId })
+      });
+      fetchBots();
+    } catch (error) {
+      console.error('Bot delete error:', error);
     }
   };
 
@@ -251,6 +382,13 @@ export default function BotManagementPage() {
                           ▶️ Başlat
                         </button>
                       )}
+                      <button
+                        onClick={() => deleteBot(bot.id)}
+                        className="px-4 py-2 bg-red-500/20 border border-red-500/30 text-red-300 rounded-lg hover:bg-red-500/40 transition-all text-sm"
+                        title="Botu sil"
+                      >
+                        🗑️ Sil
+                      </button>
                     </div>
                   </div>
 
@@ -369,93 +507,269 @@ export default function BotManagementPage() {
         </div>
       </div>
 
-      {/* Create Bot Modal */}
+      {/* Enhanced Create Bot Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-900 rounded-2xl border border-slate-700 p-8 max-w-lg w-full">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl border border-emerald-500/30 p-8 max-w-4xl w-full my-8 shadow-2xl shadow-emerald-500/10">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">🤖 Yeni Bot Oluştur</h2>
+              <div>
+                <h2 className="text-3xl font-bold text-white flex items-center gap-3">
+                  🤖 Özel Bot Oluştur
+                </h2>
+                <p className="text-slate-400 text-sm mt-1">Kendi trading stratejinizi yapılandırın</p>
+              </div>
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-white transition-colors text-2xl"
               >
                 ✕
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2">
+              {/* Bot Name */}
               <div>
-                <label className="block text-slate-300 text-sm mb-2">Bot Adı</label>
+                <label className="block text-emerald-300 text-sm font-semibold mb-2">Bot Adı *</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Örn: BTC Scalper Pro"
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500"
+                  placeholder="Örn: BTC Quantum Pro v2"
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                 />
               </div>
 
+              {/* Symbol Selection from CoinMarketCap */}
               <div>
-                <label className="block text-slate-300 text-sm mb-2">Strateji</label>
+                <label className="block text-emerald-300 text-sm font-semibold mb-2">Trading Çifti *</label>
                 <select
-                  value={formData.strategy}
-                  onChange={(e) => setFormData({ ...formData, strategy: e.target.value })}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-yellow-500"
+                  value={formData.symbol}
+                  onChange={(e) => setFormData({ ...formData, symbol: e.target.value })}
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500"
                 >
-                  <option value="Scalping">Scalping</option>
-                  <option value="Swing Trading">Swing Trading</option>
-                  <option value="Grid Trading">Grid Trading</option>
-                  <option value="DCA">DCA (Dollar Cost Averaging)</option>
-                  <option value="Arbitrage">Arbitrage</option>
-                  <option value="Market Making">Market Making</option>
+                  <option value="">Seçin...</option>
+                  {loadingCoins ? (
+                    <option disabled>Yükleniyor...</option>
+                  ) : (
+                    topCoins.map(coin => (
+                      <option key={coin.symbol} value={`${coin.symbol}USDT`}>
+                        {coin.symbol}/USDT - #{coin.rank} {coin.name} (${coin.price.toFixed(2)})
+                      </option>
+                    ))
+                  )}
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-slate-300 text-sm mb-2">Sembol</label>
-                  <select
-                    value={formData.symbol}
-                    onChange={(e) => setFormData({ ...formData, symbol: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-yellow-500"
-                  >
-                    <option value="BTCUSDT">BTC/USDT</option>
-                    <option value="ETHUSDT">ETH/USDT</option>
-                    <option value="BNBUSDT">BNB/USDT</option>
-                    <option value="SOLUSDT">SOL/USDT</option>
-                    <option value="ADAUSDT">ADA/USDT</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-slate-300 text-sm mb-2">Zaman Aralığı</label>
-                  <select
-                    value={formData.interval}
-                    onChange={(e) => setFormData({ ...formData, interval: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-yellow-500"
-                  >
-                    <option value="1m">1 Dakika</option>
-                    <option value="5m">5 Dakika</option>
-                    <option value="15m">15 Dakika</option>
-                    <option value="1h">1 Saat</option>
-                    <option value="4h">4 Saat</option>
-                  </select>
+              {/* Exchange Selection */}
+              <div>
+                <label className="block text-emerald-300 text-sm font-semibold mb-2">Borsa Seçimi *</label>
+                <div className="grid grid-cols-5 gap-2">
+                  {EXCHANGES.map(exchange => (
+                    <button
+                      key={exchange.id}
+                      onClick={() => setFormData({ ...formData, exchange: exchange.id })}
+                      className={`px-3 py-2 rounded-lg border-2 transition-all text-xs font-semibold ${
+                        formData.exchange === exchange.id
+                          ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300'
+                          : 'bg-slate-800/50 border-slate-700 text-slate-400 hover:border-slate-600'
+                      }`}
+                    >
+                      {exchange.name}
+                      <div className="text-[10px] text-slate-500">{exchange.volume}</div>
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              <div className="flex gap-3 mt-6">
+              {/* Technical Indicators */}
+              <div>
+                <label className="block text-emerald-300 text-sm font-semibold mb-2">
+                  Teknik Göstergeler * (En az 1 seçin)
+                </label>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {INDICATORS.map(indicator => (
+                    <button
+                      key={indicator.id}
+                      onClick={() => toggleIndicator(indicator.id)}
+                      className={`p-4 rounded-lg border-2 transition-all text-left ${
+                        formData.indicators.includes(indicator.id)
+                          ? 'bg-emerald-500/20 border-emerald-500'
+                          : 'bg-slate-800/50 border-slate-700 hover:border-slate-600'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className={`font-bold ${
+                          formData.indicators.includes(indicator.id) ? 'text-emerald-300' : 'text-white'
+                        }`}>
+                          {indicator.name}
+                        </span>
+                        {formData.indicators.includes(indicator.id) && (
+                          <span className="text-emerald-400">✓</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-slate-400">{indicator.description}</p>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-slate-500 mt-2">
+                  Seçilen: {formData.indicators.length} gösterge
+                </p>
+              </div>
+
+              {/* Timeframe Selection */}
+              <div>
+                <label className="block text-emerald-300 text-sm font-semibold mb-2">Zaman Dilimi *</label>
+                <div className="grid grid-cols-7 gap-2">
+                  {TIMEFRAMES.map(tf => (
+                    <button
+                      key={tf.value}
+                      onClick={() => setFormData({ ...formData, interval: tf.value })}
+                      className={`px-3 py-3 rounded-lg border-2 transition-all ${
+                        formData.interval === tf.value
+                          ? 'bg-cyan-500/20 border-cyan-500 text-cyan-300'
+                          : 'bg-slate-800/50 border-slate-700 text-slate-400 hover:border-slate-600'
+                      }`}
+                    >
+                      <div className="font-bold text-sm">{tf.label}</div>
+                      <div className="text-[10px] text-slate-500">{tf.description}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Risk Level */}
+              <div>
+                <label className="block text-emerald-300 text-sm font-semibold mb-2">Risk Seviyesi *</label>
+                <div className="grid grid-cols-3 gap-4">
+                  <button
+                    onClick={() => setFormData({ ...formData, riskLevel: 'low' })}
+                    className={`p-4 rounded-lg border-2 transition-all ${
+                      formData.riskLevel === 'low'
+                        ? 'bg-green-500/20 border-green-500'
+                        : 'bg-slate-800/50 border-slate-700 hover:border-slate-600'
+                    }`}
+                  >
+                    <div className="text-2xl mb-2">🛡️</div>
+                    <div className={`font-bold ${formData.riskLevel === 'low' ? 'text-green-300' : 'text-white'}`}>
+                      Düşük Risk
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">Muhafazakar • Küçük pozisyonlar</p>
+                  </button>
+
+                  <button
+                    onClick={() => setFormData({ ...formData, riskLevel: 'medium' })}
+                    className={`p-4 rounded-lg border-2 transition-all ${
+                      formData.riskLevel === 'medium'
+                        ? 'bg-yellow-500/20 border-yellow-500'
+                        : 'bg-slate-800/50 border-slate-700 hover:border-slate-600'
+                    }`}
+                  >
+                    <div className="text-2xl mb-2">⚖️</div>
+                    <div className={`font-bold ${formData.riskLevel === 'medium' ? 'text-yellow-300' : 'text-white'}`}>
+                      Orta Risk
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">Dengeli • Standart pozisyonlar</p>
+                  </button>
+
+                  <button
+                    onClick={() => setFormData({ ...formData, riskLevel: 'high' })}
+                    className={`p-4 rounded-lg border-2 transition-all ${
+                      formData.riskLevel === 'high'
+                        ? 'bg-red-500/20 border-red-500'
+                        : 'bg-slate-800/50 border-slate-700 hover:border-slate-600'
+                    }`}
+                  >
+                    <div className="text-2xl mb-2">🚀</div>
+                    <div className={`font-bold ${formData.riskLevel === 'high' ? 'text-red-300' : 'text-white'}`}>
+                      Yüksek Risk
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">Agresif • Büyük pozisyonlar</p>
+                  </button>
+                </div>
+              </div>
+
+              {/* Stop Loss & Take Profit */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-emerald-300 text-sm font-semibold mb-2">Stop Loss % *</label>
+                  <input
+                    type="number"
+                    min="0.1"
+                    max="50"
+                    step="0.1"
+                    value={formData.stopLoss}
+                    onChange={(e) => setFormData({ ...formData, stopLoss: parseFloat(e.target.value) })}
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-red-500"
+                  />
+                  <p className="text-xs text-slate-500 mt-1">Zarar durdurma yüzdesi</p>
+                </div>
+
+                <div>
+                  <label className="block text-emerald-300 text-sm font-semibold mb-2">Take Profit % *</label>
+                  <input
+                    type="number"
+                    min="0.1"
+                    max="100"
+                    step="0.1"
+                    value={formData.takeProfit}
+                    onChange={(e) => setFormData({ ...formData, takeProfit: parseFloat(e.target.value) })}
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+                  />
+                  <p className="text-xs text-slate-500 mt-1">Kar alma yüzdesi</p>
+                </div>
+              </div>
+
+              {/* Configuration Summary */}
+              <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-lg p-4">
+                <h3 className="text-white font-bold mb-3 flex items-center gap-2">
+                  📋 Yapılandırma Özeti
+                </h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="text-slate-400">Bot Adı:</div>
+                  <div className="text-white font-semibold">{formData.name || '-'}</div>
+
+                  <div className="text-slate-400">Trading Çifti:</div>
+                  <div className="text-white font-semibold">{formData.symbol || '-'}</div>
+
+                  <div className="text-slate-400">Borsa:</div>
+                  <div className="text-white font-semibold">{formData.exchange.toUpperCase()}</div>
+
+                  <div className="text-slate-400">Göstergeler:</div>
+                  <div className="text-white font-semibold">{formData.indicators.join(', ') || 'Seçilmedi'}</div>
+
+                  <div className="text-slate-400">Zaman Dilimi:</div>
+                  <div className="text-white font-semibold">{formData.interval}</div>
+
+                  <div className="text-slate-400">Risk Seviyesi:</div>
+                  <div className="text-white font-semibold">{formData.riskLevel.toUpperCase()}</div>
+
+                  <div className="text-slate-400">Stop Loss / Take Profit:</div>
+                  <div className="text-white font-semibold">{formData.stopLoss}% / {formData.takeProfit}%</div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4">
                 <button
                   onClick={() => setShowCreateModal(false)}
-                  className="flex-1 px-6 py-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-700 transition-all"
+                  disabled={creating}
+                  className="flex-1 px-6 py-4 bg-slate-800 border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-700 transition-all font-semibold disabled:opacity-50"
                 >
                   İptal
                 </button>
                 <button
                   onClick={handleCreateBot}
-                  disabled={creating}
-                  className="flex-1 px-6 py-3 bg-yellow-500 border border-yellow-600 text-slate-900 rounded-lg hover:bg-yellow-400 transition-all font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={creating || !formData.name || formData.indicators.length === 0}
+                  className="flex-1 px-6 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg hover:from-emerald-600 hover:to-cyan-600 transition-all font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/20"
                 >
-                  {creating ? 'Oluşturuluyor...' : 'Bot Oluştur'}
+                  {creating ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Oluşturuluyor...
+                    </span>
+                  ) : (
+                    '🚀 Bot Oluştur ve Aktif Et'
+                  )}
                 </button>
               </div>
             </div>

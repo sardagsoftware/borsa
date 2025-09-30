@@ -1,0 +1,203 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Mistake",
+    "success": "Successful",
+    "welcome": "Welcome",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Regulation",
+    "refresh": "Renovation",
+    "search": "Intermediate",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Inward"
+  },
+  "nav": {
+    "home": "Home page",
+    "markets": "Markets",
+    "crypto": "Crypto",
+    "stocks": "Stocks",
+    "portfolio": "Portfolio",
+    "watchlist": "Monitoring list",
+    "aiTrading": "AI Trading",
+    "quantumNexus": "Quantum nexus",
+    "nirvana": "Nirvana TF Bot",
+    "quantumPro": "Quantum Pro",
+    "aiTradingHub": "AI Trading Hub",
+    "botManagement": "Boat management",
+    "analysis": "Analysis",
+    "marketAnalysis": "Market Analysis",
+    "backtesting": "Backtesting",
+    "riskManagement": "Risk management",
+    "signals": "Signals",
+    "settings": "Settings",
+    "logout": "Exit"
+  },
+  "home": {
+    "title": "Lydian Trader",
+    "subtitle": "Quantum Level Truth with Righteousness Artificial Intelligence Supported Trade Platform",
+    "getStarted": "Start",
+    "viewDashboard": "View control panel",
+    "features": {
+      "ultraFast": {
+        "title": "Ultra fast",
+        "description": "0.20MS TPS with Nirvana level performance"
+      },
+      "accuracy": {
+        "title": "93 %accuracy",
+        "description": "Real -time signals with detailed analysis"
+      },
+      "whiteHat": {
+        "title": "White hat compatible",
+        "description": "100 %legal and safe trade"
+      }
+    }
+  },
+  "login": {
+    "title": "Safe entrance",
+    "subtitle": "Login to your Lydian Trader account",
+    "email": "E-mail",
+    "emailPlaceholder": "ornek@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "captcha": "Safety verification",
+    "captchaPlaceholder": "Enter the above code",
+    "loginButton": "Login",
+    "noAccount": "Don't you have an account?",
+    "signUp": "Register",
+    "securityInfo": "SECURITY INFORMATION",
+    "browser": "Scanner",
+    "os": "Operating system",
+    "device": "Device",
+    "macAddress": "MAC address",
+    "ipAddress": "IP address",
+    "location": "Location",
+    "timestamp": "Time stamp",
+    "liveMap": "Live security map",
+    "kaspersky": "Kaspersky cyber security"
+  },
+  "dashboard": {
+    "title": "Control Panel",
+    "welcome": "Welcome",
+    "totalValue": "Total value",
+    "dailyChange": "Daily change",
+    "activePositions": "Active positions",
+    "profitLoss": "Snow/Damage",
+    "winRate": "Winning rate"
+  },
+  "quantumNexus": {
+    "title": "Quantum nexus",
+    "subtitle": "Quantum-Inspired AI Trading with Full Explainability",
+    "generateSignal": "Production of Signal",
+    "selectSymbol": "Choose symbol",
+    "selectTimeframe": "Choose my time frame",
+    "prediction": "Guess",
+    "confidence": "Trust",
+    "probability": "Possibility",
+    "uncertainty": "Uncertainty",
+    "marketRegime": "Market regime",
+    "quantumState": "Quantum status",
+    "amplitude": "Amplitude",
+    "phase": "Phase",
+    "entanglement": "Entanglement",
+    "featureImportance": "Feature Importance",
+    "attentionWeights": "Attention weights",
+    "reasoning": "Logic",
+    "modelVersion": "Model version",
+    "trainingSamples": "EDUCATION SAMPLES",
+    "latency": "Delay"
+  },
+  "nirvana": {
+    "title": "Nirvana TF Bot",
+    "subtitle": "TENSORFLOW Based Advanced Trade Signals",
+    "autoRefresh": "Automatic renovation",
+    "refreshAll": "Refresh all",
+    "buyProbability": "Possibility of purchasing",
+    "decision": "Decision",
+    "buy": "Take",
+    "hold": "TUTU",
+    "pass": "LATE",
+    "indicators": "Indicators",
+    "reasons": "Reasons",
+    "votes": "vote"
+  },
+  "signals": {
+    "title": "Trade signals",
+    "active": "Active Signals",
+    "history": "Signal history",
+    "strength": "Signal power",
+    "type": "Signal type",
+    "entryPrice": "Entry price",
+    "targetPrice": "Target price",
+    "stopLoss": "Stop damage",
+    "timeframe": "Time zone",
+    "status": "Situation"
+  },
+  "marketAnalysis": {
+    "title": "Market Analysis",
+    "technicalAnalysis": "Technical analysis",
+    "fundamentalAnalysis": "Basic analysis",
+    "sentimentAnalysis": "Emotion analysis",
+    "trend": "Trend",
+    "support": "Support",
+    "resistance": "Resistance",
+    "volume": "Volume",
+    "volatility": "Volatility"
+  },
+  "riskManagement": {
+    "title": "Risk management",
+    "totalRisk": "Total risk",
+    "maxDrawdown": "Maximum decline",
+    "riskReward": "Risk/Reward",
+    "positionSize": "Position size",
+    "diversification": "Diversification",
+    "alerts": "Warnings",
+    "metrics": "Metrics"
+  },
+  "backtesting": {
+    "title": "Backtesting",
+    "runBacktest": "Run backtest",
+    "strategy": "Strategy",
+    "results": "Consequences",
+    "trades": "Transactions",
+    "returns": "Returns",
+    "sharpeRatio": "Sharpe ratio",
+    "maxDrawdown": "Maximum decline",
+    "winRate": "Winning rate"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "totalValue": "Total value",
+    "allocation": "Distribution",
+    "performance": "Performance",
+    "holdings": "Assets",
+    "history": "Past",
+    "rebalance": "Re -balance"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "notifications": "Notifications",
+    "api": "API settings",
+    "security": "Security",
+    "preferences": "Preferences",
+    "account": "Bill"
+  },
+  "languages": {
+    "tr": "Turkish",
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français",
+    "es": "Español",
+    "it": "Italiano",
+    "pt": "Português",
+    "ru": "Руский",
+    "zh": "Chinese",
+    "ja": "日本語",
+    "ko": "한국어",
+    "ar": "العربية"
+  }
+}

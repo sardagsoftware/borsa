@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { SignalNotificationsContainer } from "@/components/SignalNotification";
 
 export const metadata: Metadata = {
   title: "LyDian Trader - AI Destekli Kripto & Borsa Trading Platformu",
@@ -67,6 +68,7 @@ export default function RootLayout({
     <html lang="tr">
       <body className="antialiased flex flex-col min-h-screen">
         <Navigation />
+        <SignalNotificationsContainer />
         <main className="flex-1">
           {children}
         </main>
