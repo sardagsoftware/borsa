@@ -156,11 +156,11 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 flex items-center justify-center">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
+    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 flex items-center justify-center py-8">
+      <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6">
           {/* Left side - Login form */}
-          <div className="lg:col-span-1 bg-slate-800/50 backdrop-blur-xl rounded-2xl p-8 border border-slate-700/50 shadow-2xl">
+          <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-8 border border-slate-700/50 shadow-2xl h-fit">
             <h2 className="text-3xl font-bold text-white mb-3">Güvenli Giriş</h2>
             <p className="text-slate-400 mb-8 text-base">LyDian Trader hesabınıza giriş yapın</p>
 
@@ -295,26 +295,31 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Middle - Real-time Map */}
-          <div className="lg:col-span-1 bg-slate-800/30 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-8 shadow-2xl">
-            <h3 className="text-xl font-bold text-white mb-6">🌍 Canlı Güvenlik Haritası</h3>
-            <div className="h-[550px] rounded-lg overflow-hidden">
-              <MapComponent location={deviceInfo.location} />
+          {/* Right side - Maps stacked vertically */}
+          <div className="flex flex-col gap-6">
+            {/* Top - Real-time Security Map */}
+            <div className="bg-slate-800/30 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6 shadow-2xl">
+              <h3 className="text-xl font-bold text-white mb-4">🌍 Canlı Güvenlik Haritası</h3>
+              <div className="h-[350px] rounded-lg overflow-hidden">
+                <MapComponent location={deviceInfo.location} />
+              </div>
             </div>
-          </div>
 
-          {/* Right side - Kaspersky widget (hidden on mobile) */}
-          <div className="hidden lg:block bg-slate-800/30 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-8 shadow-2xl">
-            <h3 className="text-xl font-bold text-white mb-6">🛡️ Kaspersky Siber Güvenlik</h3>
-            <iframe
-              width="100%"
-              height="550"
-              src="https://cybermap.kaspersky.com/tr/widget/dynamic/dark"
-              frameBorder="0"
-              title="Kaspersky Cybermap"
-              className="rounded-lg"
-              sandbox="allow-scripts allow-same-origin"
-            />
+            {/* Bottom - Kaspersky Cybermap */}
+            <div className="bg-slate-800/30 backdrop-blur-xl rounded-2xl border border-slate-700/50 p-6 shadow-2xl">
+              <h3 className="text-xl font-bold text-white mb-4">🛡️ Kaspersky Siber Saldırı Haritası</h3>
+              <div className="h-[350px] rounded-lg overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://cybermap.kaspersky.com/tr/widget/dynamic/dark"
+                  frameBorder="0"
+                  title="Kaspersky Cybermap"
+                  className="rounded-lg"
+                  sandbox="allow-scripts allow-same-origin"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
