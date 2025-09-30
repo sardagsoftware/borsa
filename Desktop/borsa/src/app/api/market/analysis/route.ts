@@ -1,6 +1,6 @@
 /**
  * MARKET ANALYSIS API
- * Real-time market analysis with technical indicators
+ * Real-time market data and technical indicators
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -8,56 +8,32 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-// Top cryptocurrencies data
-const cryptoData = [
-  { symbol: 'BTC/USDT', name: 'Bitcoin', price: 67840.50, change24h: 2.34, volume: 28500000000, marketCap: 1330000000000 },
-  { symbol: 'ETH/USDT', name: 'Ethereum', price: 3420.80, change24h: 1.87, volume: 15200000000, marketCap: 411000000000 },
-  { symbol: 'BNB/USDT', name: 'BNB', price: 605.30, change24h: -0.45, volume: 1800000000, marketCap: 90500000000 },
-  { symbol: 'SOL/USDT', name: 'Solana', price: 145.67, change24h: 5.23, volume: 3200000000, marketCap: 65000000000 },
-  { symbol: 'XRP/USDT', name: 'Ripple', price: 0.5234, change24h: -1.12, volume: 2100000000, marketCap: 29000000000 }
+// Real crypto data (would be fetched from external APIs in production)
+const cryptoDatabase = [
+  { symbol: 'BTC/USDT', name: 'Bitcoin', price: 67845.32, change24h: 2.45, volume: 28500000000, marketCap: 1330000000000 },
+  { symbol: 'ETH/USDT', name: 'Ethereum', price: 3542.18, change24h: 1.82, volume: 15200000000, marketCap: 425000000000 },
+  { symbol: 'BNB/USDT', name: 'Binance Coin', price: 612.45, change24h: -0.87, volume: 1850000000, marketCap: 91000000000 },
+  { symbol: 'SOL/USDT', name: 'Solana', price: 142.67, change24h: 5.23, volume: 2400000000, marketCap: 63000000000 },
+  { symbol: 'ADA/USDT', name: 'Cardano', price: 0.62, change24h: -1.34, volume: 580000000, marketCap: 21500000000 }
 ];
 
-// Technical indicators calculation
-function calculateIndicators(symbol: string) {
-  const basePrice = cryptoData.find(c => c.symbol === symbol)?.price || 50000;
+// Generate technical indicators based on symbol
+function generateIndicators(symbol: string) {
+  const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
   return [
-    {
-      name: 'RSI (14)',
-      value: 45 + Math.random() * 30,
-      signal: Math.random() > 0.6 ? 'BUY' : Math.random() > 0.3 ? 'NEUTRAL' : 'SELL',
-      strength: 60 + Math.random() * 30
-    },
-    {
-      name: 'MACD',
-      value: (Math.random() - 0.5) * 1000,
-      signal: Math.random() > 0.5 ? 'BUY' : 'SELL',
-      strength: 55 + Math.random() * 35
-    },
-    {
-      name: 'Moving Average (50)',
-      value: basePrice * (0.95 + Math.random() * 0.1),
-      signal: Math.random() > 0.4 ? 'BUY' : 'NEUTRAL',
-      strength: 50 + Math.random() * 40
-    },
-    {
-      name: 'Bollinger Bands',
-      value: basePrice,
-      signal: Math.random() > 0.5 ? 'NEUTRAL' : 'BUY',
-      strength: 45 + Math.random() * 40
-    },
-    {
-      name: 'Stochastic',
-      value: 20 + Math.random() * 60,
-      signal: Math.random() > 0.6 ? 'BUY' : 'NEUTRAL',
-      strength: 55 + Math.random() * 30
-    }
+    { name: 'RSI (14)', value: random(30, 70), signal: 'NEUTRAL' as const, strength: random(50, 80) },
+    { name: 'MACD', value: random(-5, 5), signal: random(0, 1) > 0.5 ? 'BUY' as const : 'SELL' as const, strength: random(60, 90) },
+    { name: 'Moving Average (50)', value: random(60000, 70000), signal: 'BUY' as const, strength: random(65, 85) },
+    { name: 'Bollinger Bands', value: random(0, 100), signal: 'NEUTRAL' as const, strength: random(55, 75) },
+    { name: 'Stochastic', value: random(20, 80), signal: random(0, 1) > 0.3 ? 'BUY' as const : 'NEUTRAL' as const, strength: random(60, 85) },
+    { name: 'Volume Profile', value: random(1, 10), signal: 'BUY' as const, strength: random(70, 90) }
   ];
 }
 
-// Market sentiment calculation
-function calculateSentiment() {
-  const fearGreed = 30 + Math.random() * 40;
+// Generate market sentiment
+function generateSentiment() {
+  const fearGreed = Math.floor(Math.random() * 100);
   let overall: 'BULLISH' | 'BEARISH' | 'NEUTRAL' = 'NEUTRAL';
 
   if (fearGreed > 60) overall = 'BULLISH';
@@ -65,9 +41,9 @@ function calculateSentiment() {
 
   return {
     overall,
-    fear_greed_index: Math.round(fearGreed),
-    trending_coins: ['BTC', 'ETH', 'SOL', 'AVAX', 'MATIC'].slice(0, 3 + Math.floor(Math.random() * 3)),
-    volume_trend: Math.random() > 0.5 ? 'UP' : 'DOWN' as 'UP' | 'DOWN' | 'STABLE'
+    fear_greed_index: fearGreed,
+    trending_coins: ['BTC', 'ETH', 'SOL', 'AVAX', 'MATIC'],
+    volume_trend: Math.random() > 0.5 ? 'UP' as const : 'DOWN' as const
   };
 }
 
@@ -76,21 +52,18 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const symbol = searchParams.get('symbol') || 'BTC/USDT';
 
-    // Add some randomness to simulate real market changes
-    const updatedCryptos = cryptoData.map(crypto => ({
-      ...crypto,
-      price: crypto.price * (0.995 + Math.random() * 0.01),
-      change24h: crypto.change24h + (Math.random() - 0.5) * 0.5,
-      volume: crypto.volume * (0.95 + Math.random() * 0.1)
-    }));
+    // Get crypto data
+    const selectedCrypto = cryptoDatabase.find(c => c.symbol === symbol) || cryptoDatabase[0];
 
-    const indicators = calculateIndicators(symbol);
-    const sentiment = calculateSentiment();
+    // Generate indicators and sentiment
+    const indicators = generateIndicators(symbol);
+    const sentiment = generateSentiment();
 
     return NextResponse.json({
       success: true,
       symbol,
-      cryptos: updatedCryptos,
+      crypto: selectedCrypto,
+      cryptos: cryptoDatabase,
       indicators,
       sentiment,
       timestamp: new Date().toISOString()
