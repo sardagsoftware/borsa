@@ -271,7 +271,11 @@ export class MasterAIOrchestrator {
     // ============================================
     // MODEL 2: Attention Transformer
     // ============================================
-    let transformerPrediction = { action: 'HOLD' as const, confidence: 0.5, attentionWeights: undefined };
+    let transformerPrediction: { action: 'BUY' | 'SELL' | 'HOLD', confidence: number, attentionWeights: any } = {
+      action: 'HOLD',
+      confidence: 0.5,
+      attentionWeights: undefined
+    };
 
     if (this.config.enableTransformer) {
       try {
@@ -292,7 +296,11 @@ export class MasterAIOrchestrator {
     // ============================================
     // MODEL 3: Random Forest
     // ============================================
-    let forestPrediction = { action: 'HOLD' as const, confidence: 0.5, treeVotes: 0 };
+    let forestPrediction: { action: 'BUY' | 'SELL' | 'HOLD', confidence: number, treeVotes: number } = {
+      action: 'HOLD',
+      confidence: 0.5,
+      treeVotes: 0
+    };
 
     if (this.config.enableRandomForest) {
       try {
@@ -315,8 +323,8 @@ export class MasterAIOrchestrator {
     // ============================================
     // MODEL 4: Reinforcement Learning (DQN)
     // ============================================
-    let rlPrediction = {
-      action: 'HOLD' as const,
+    let rlPrediction: { action: 'BUY' | 'SELL' | 'HOLD', confidence: number, qValues: number[], epsilon: number } = {
+      action: 'HOLD',
       confidence: 0.5,
       qValues: [0, 0, 0],
       epsilon: 0.1
