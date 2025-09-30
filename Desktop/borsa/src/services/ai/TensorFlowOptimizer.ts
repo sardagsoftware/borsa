@@ -338,7 +338,13 @@ export class TensorFlowOptimizer {
     numDataBuffers: number;
     unreliable: boolean;
   } {
-    return tf.memory();
+    const memory = tf.memory();
+    return {
+      numTensors: memory.numTensors,
+      numBytes: memory.numBytes,
+      numDataBuffers: memory.numDataBuffers,
+      unreliable: memory.unreliable ?? false
+    };
   }
 
   /**
