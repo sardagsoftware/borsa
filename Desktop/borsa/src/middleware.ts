@@ -81,11 +81,12 @@ export function middleware(request: NextRequest) {
   // Content Security Policy - Ultra strict
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel.app",
-    "style-src 'self' 'unsafe-inline'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel.app https://cybermap.kaspersky.com",
+    "style-src 'self' 'unsafe-inline' https://cybermap.kaspersky.com",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data:",
-    "connect-src 'self' https://*.ailydian.com https://vercel.live https://*.vercel.app wss://*.vercel.app",
+    "connect-src 'self' https://*.ailydian.com https://vercel.live https://*.vercel.app wss://*.vercel.app https://cybermap.kaspersky.com wss://cybermap.kaspersky.com",
+    "frame-src https://cybermap.kaspersky.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
