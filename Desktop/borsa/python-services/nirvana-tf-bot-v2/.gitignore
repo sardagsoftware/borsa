@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Nirvana specific
+.env
+artifacts/model/*
+!artifacts/model/.gitkeep
+artifacts/checkpoints/*
+!artifacts/checkpoints/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+backtest/*.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

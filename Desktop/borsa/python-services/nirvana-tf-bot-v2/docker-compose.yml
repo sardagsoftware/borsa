@@ -1,0 +1,82 @@
+# Nirvana TF Bot v2 - Production Docker Compose
+version: '3.8'
+
+services:
+  # FastAPI Serving
+  api:
+    build: .
+    container_name: nirvana-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - ./backtest:/app/backtest
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/nirvana
+      - REDIS_URL=redis://redis:6379/0
+      - MODEL_DIR=artifacts/model
+      - LOG_LEVEL=INFO
+    depends_on:
+      - mongo
+      - redis
+    restart: unless-stopped
+    command: ["uvicorn", "src.serving.app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  # Training Service
+  trainer:
+    build: .
+    container_name: nirvana-trainer
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/nirvana
+      - MODEL_DIR=artifacts/model
+      - EPOCHS=50
+      - BATCH_SIZE=64
+    command: ["python", "-m", "src.training.train", "--data", "data/cache", "--epochs", "50", "--model-out", "artifacts/model"]
+    profiles: ["training"]  # Only run when explicitly specified
+
+  # 24/7 Scheduler Loop
+  scheduler:
+    build: .
+    container_name: nirvana-scheduler
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/nirvana
+      - REDIS_URL=redis://redis:6379/0
+      - MODEL_DIR=artifacts/model
+      - ENABLE_SCHEDULER=true
+      - FETCH_INTERVAL_SECONDS=60
+    depends_on:
+      - mongo
+      - redis
+    restart: unless-stopped
+    command: ["python", "-m", "src.scheduler.loop"]
+
+  # MongoDB
+  mongo:
+    image: mongo:7
+    container_name: nirvana-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: nirvana-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+  redis-data:

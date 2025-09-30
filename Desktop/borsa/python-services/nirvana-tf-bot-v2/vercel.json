@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "name": "nirvana-tf-bot-v2",
+  "builds": [
+    {
+      "src": "src/serving/app.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/serving/app.py"
+    }
+  ],
+  "env": {
+    "BINANCE_REST_BASE": "https://api.binance.com",
+    "BINANCE_WS_BASE": "wss://stream.binance.com:9443",
+    "MODEL_DIR": "artifacts/model",
+    "SEQ_LEN": "128",
+    "THRESH_BUY": "0.60",
+    "MIN_INDICATOR_CONF": "3",
+    "LOG_LEVEL": "INFO",
+    "LOG_FORMAT": "json"
+  }
+}
