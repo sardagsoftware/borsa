@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.DS_Store
+*.md
+.git
+.gitignore
+railway.json
+railway.toml
+README.md
