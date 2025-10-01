@@ -28,6 +28,9 @@ import {
   schemas
 } from './middleware/input-validation.js';
 
+// AI Engine (Production-grade)
+import { generateTradingSignal, generateBatchSignals } from './services/ai-engine.js';
+
 const app = new Hono();
 
 // ============================================================================
@@ -106,37 +109,31 @@ app.get('/health', (c) => {
 app.post('/v1/signal',
   inputValidationMiddleware(schemas.signalRequest),
   async (c) => {
-    const { symbol, timeframe, limit } = c.req.validated;
+    const { symbol, timeframe } = c.req.validated;
 
-    // TODO: Replace with real AI model inference
-    // For now, returning structured mock data
+    try {
+      // ✅ REAL AI PREDICTION - Production-grade
+      const signal = await generateTradingSignal(symbol, timeframe);
 
-    return c.json({
-      success: true,
-      signal: {
+      return c.json({
+        success: true,
+        signal
+      });
+
+    } catch (error) {
+      console.error('Signal generation error:', {
         symbol,
         timeframe,
-        action: 'BUY', // TODO: Real AI prediction
-        confidence: 0.75, // TODO: Real AI confidence score
-        entryPrice: 50000, // TODO: Real price analysis
-        stopLoss: 48000, // TODO: Real risk management
-        takeProfit: 54000, // TODO: Real target calculation
-        timestamp: Date.now(),
-        source: 'railway-ai-microservice',
-        version: '1.0.0',
-        indicators: {
-          rsi: 45.2, // TODO: Real RSI calculation
-          macd: 120.5, // TODO: Real MACD calculation
-          volume: 1250000, // TODO: Real volume analysis
-          trend: 'bullish' // TODO: Real trend detection
-        },
-        metadata: {
-          requestId: crypto.randomUUID(),
-          processingTime: 0, // TODO: Real timing
-          modelVersion: 'stub-1.0.0' // TODO: Real model version
-        }
-      }
-    });
+        error: error.message
+      });
+
+      return c.json({
+        success: false,
+        error: 'Failed to generate trading signal',
+        code: 'AI_ERROR',
+        message: error.message
+      }, 500);
+    }
   }
 );
 
@@ -187,20 +184,27 @@ app.post('/v1/batch', async (c) => {
     }, 400);
   }
 
-  // TODO: Replace with real AI batch processing
-  const results = symbols.map(symbol => ({
-    symbol,
-    action: Math.random() > 0.5 ? 'BUY' : 'SELL',
-    confidence: Math.random() * 0.3 + 0.6,
-    timestamp: Date.now()
-  }));
+  try {
+    // ✅ REAL AI BATCH PROCESSING
+    const results = await generateBatchSignals(symbols, timeframe);
 
-  return c.json({
-    success: true,
-    results,
-    count: results.length,
-    timestamp: Date.now()
-  });
+    return c.json({
+      success: true,
+      results,
+      count: results.length,
+      timestamp: Date.now()
+    });
+
+  } catch (error) {
+    console.error('Batch processing error:', error);
+
+    return c.json({
+      success: false,
+      error: 'Batch processing failed',
+      code: 'BATCH_ERROR',
+      message: error.message
+    }, 500);
+  }
 });
 
 // ============================================================================
@@ -262,7 +266,12 @@ serve({
   console.log('   ✓ CORS Protection');
   console.log('   ✓ Security Headers');
   console.log('');
-  console.log('🤖 AI Status: STUB (Replace with real models)');
+  console.log('🤖 AI Status: ✅ PRODUCTION-GRADE');
+  console.log('   ✓ Real-time market data (Binance API)');
+  console.log('   ✓ Technical indicators (RSI, MACD, Bollinger, EMA)');
+  console.log('   ✓ Multi-indicator consensus algorithm');
+  console.log('   ✓ Conservative confidence scoring');
+  console.log('   ✓ Risk management (stop-loss, take-profit)');
   console.log('');
   console.log('✅ Server ready for production!');
   console.log('');
