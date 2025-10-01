@@ -158,7 +158,7 @@ function generateHMACSignature(
   timestamp: number,
   secret: string
 ): string {
-  const payload = JSON.stringify(body) + timestamp.toString();
+  const payload = timestamp.toString() + JSON.stringify(body);
 
   const hmac = crypto.createHmac('sha256', secret);
   hmac.update(payload);
