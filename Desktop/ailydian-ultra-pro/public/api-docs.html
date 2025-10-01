@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiLydian API Documentation - Enterprise Developer Platform</title>
+    <meta name="description" content="AiLydian Enterprise API Documentation - Multi-provider AI integration, developer tools, and comprehensive API reference">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- ChatGPT Style Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- AiLydians Inspired CSS Framework -->
+    <link rel="stylesheet" href="/css/ailydians-inspired.css">
+
+    <!-- Prism.js for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <style>
+        /* API Documentation specific styles */
+        .api-docs-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+            background: var(--asana-bg-primary);
+        }
+
+        .api-sidebar {
+            background: var(--asana-bg-secondary);
+            border-right: 1px solid var(--asana-border);
+            padding: 2rem 0;
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .api-main {
+            margin-left: 300px;
+            padding: 2rem;
+            background: var(--asana-bg-primary);
+        }
+
+        .api-header {
+            background: var(--asana-bg-secondary);
+            padding: 2rem;
+            border-bottom: 1px solid var(--asana-border);
+            margin: -2rem -2rem 3rem -2rem;
+        }
+
+        .api-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--asana-text-primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .api-subtitle {
+            font-size: 1.125rem;
+            color: var(--asana-text-secondary);
+            margin: 0;
+        }
+
+        .api-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--asana-text-primary);
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--asana-green-primary);
+        }
+
+        .endpoint-card {
+            background: var(--asana-bg-secondary);
+            border: 1px solid var(--asana-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .endpoint-card:hover {
+            box-shadow: 0 8px 32px rgba(13, 115, 119, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .method-get { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+        .method-post { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .method-put { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+        .method-delete { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+
+        .endpoint-url {
+            font-family: var(--font-chatgpt);
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--asana-text-primary);
+        }
+
+        .endpoint-description {
+            color: var(--asana-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: var(--font-chatgpt);
+            color: #d4d4d4;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .parameter-table th,
+        .parameter-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--asana-border);
+        }
+
+        .parameter-table th {
+            background: var(--asana-green-ghost);
+            color: var(--asana-text-primary);
+            font-weight: 600;
+        }
+
+        .parameter-table td {
+            color: var(--asana-text-secondary);
+        }
+
+        .response-example {
+            background: var(--asana-bg-primary);
+            border: 1px solid var(--asana-border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .sidebar-nav {
+            padding: 0 1.5rem;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--asana-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 1rem 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--asana-text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+            margin-left: -1rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--asana-green-primary);
+            border-left-color: var(--asana-green-primary);
+        }
+
+        .quick-start {
+            background: linear-gradient(135deg, var(--asana-green-primary), var(--asana-green-light));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .quick-start h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quick-start p {
+            margin: 0 0 1.5rem 0;
+            opacity: 0.9;
+        }
+
+        .quick-start-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-start-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .auth-section {
+            background: var(--asana-bg-secondary);
+            border: 1px solid var(--asana-border);
+            border-left: 4px solid var(--asana-green-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .auth-section h4 {
+            color: var(--asana-text-primary);
+            margin: 0 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--asana-green-accent);
+        }
+
+        @media (max-width: 768px) {
+            .api-docs-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .api-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .api-main {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Dots -->
+    <div class="floating-dots"></div>
+    <div class="floating-dots-extra"></div>
+
+    <div class="api-docs-layout">
+        <!-- Sidebar -->
+        <aside class="api-sidebar">
+            <!-- AiLydian Logo -->
+            <div style="padding: 0 1.5rem 2rem 1.5rem;">
+                <a href="/" class="ailydian-logo">
+                    <div class="ailydian-logo-text">
+                        <span class="letter-a">A</span>iLydian
+                        <span class="ailydian-beta">BETA</span>
+                    </div>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Getting Started</h3>
+                    <a href="#overview" class="nav-link active">Overview</a>
+                    <a href="#authentication" class="nav-link">Authentication</a>
+                    <a href="#quickstart" class="nav-link">Quick Start</a>
+                    <a href="#rate-limits" class="nav-link">Rate Limits</a>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">API Endpoints</h3>
+                    <a href="#chat-completion" class="nav-link">Chat Completion</a>
+                    <a href="#models" class="nav-link">Models</a>
+                    <a href="#embeddings" class="nav-link">Embeddings</a>
+                    <a href="#completions" class="nav-link">Completions</a>
+                    <a href="#images" class="nav-link">Image Generation</a>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">AI Providers</h3>
+                    <a href="#azure-ai" class="nav-link">Azure AI</a>
+                    <a href="#google-ai" class="nav-link">Google AI</a>
+                    <a href="#anthropic" class="nav-link">Anthropic</a>
+                    <a href="#openai" class="nav-link">OpenAI</a>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Resources</h3>
+                    <a href="/analytics" class="nav-link" target="_blank">Analytics</a>
+                    <a href="/developers" class="nav-link" target="_blank">Developers</a>
+                    <a href="/ailydians-chat" class="nav-link" target="_blank">Test API</a>
+                    <a href="/" class="nav-link">Home</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="api-main">
+            <!-- Header -->
+            <header class="api-header">
+                <h1 class="api-title">API Documentation</h1>
+                <p class="api-subtitle">
+                    Enterprise AI Platform - Multi-provider integration with Azure, Google, OpenAI, and Anthropic
+                </p>
+                <div class="status-indicator" style="margin-top: 1rem;">
+                    <div class="status-dot"></div>
+                    <span style="color: var(--asana-text-secondary);">All systems operational</span>
+                </div>
+            </header>
+
+            <!-- Quick Start -->
+            <div class="quick-start" id="quickstart">
+                <h3>🚀 Quick Start</h3>
+                <p>Get started with AiLydian API in minutes. Send your first request and integrate with 23+ AI models.</p>
+                <button class="quick-start-btn" onclick="showQuickStartExample()">
+                    Show Example Request
+                </button>
+            </div>
+
+            <!-- Overview Section -->
+            <section class="api-section" id="overview">
+                <h2 class="section-title">Overview</h2>
+                <p style="color: var(--asana-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+                    AiLydian API provides unified access to multiple AI providers including Azure AI, Google AI, OpenAI, and Anthropic.
+                    Our enterprise-grade platform handles routing, fallbacks, and optimization automatically.
+                </p>
+
+                <div class="endpoint-card">
+                    <h4 style="margin: 0 0 1rem 0; color: var(--asana-text-primary);">Base URL</h4>
+                    <div class="code-block">
+                        <code>https://api.ailydian.com/v1</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentication Section -->
+            <section class="api-section" id="authentication">
+                <h2 class="section-title">Authentication</h2>
+
+                <div class="auth-section">
+                    <h4>
+                        <span class="material-icons" style="font-size: 1rem;">security</span>
+                        API Key Authentication
+                    </h4>
+                    <p style="color: var(--asana-text-secondary); margin: 0 0 1rem 0;">
+                        All API requests require authentication using your API key in the Authorization header.
+                    </p>
+                    <div class="code-block">
+                        <code>Authorization: Bearer YOUR_API_KEY</code>
+                    </div>
+                </div>
+
+                <div class="endpoint-card">
+                    <h4 style="margin: 0 0 1rem 0; color: var(--asana-text-primary);">Example Request</h4>
+                    <div class="code-block">
+                        <code>curl -H "Authorization: Bearer sk-ailydian-..." \\
+     -H "Content-Type: application/json" \\
+     https://api.ailydian.com/v1/chat/completions</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Completion Endpoint -->
+            <section class="api-section" id="chat-completion">
+                <h2 class="section-title">Chat Completions</h2>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge method-post">POST</span>
+                        <span class="endpoint-url">/v1/chat/completions</span>
+                    </div>
+
+                    <p class="endpoint-description">
+                        Create a chat completion using any of our integrated AI models. The API automatically routes to the best available model based on your preferences.
+                    </p>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--asana-text-primary);">Request Body</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>model</code></td>
+                                <td>string</td>
+                                <td>Yes</td>
+                                <td>Model ID (gpt-4, claude-3-opus, gemini-pro, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td><code>messages</code></td>
+                                <td>array</td>
+                                <td>Yes</td>
+                                <td>Array of message objects</td>
+                            </tr>
+                            <tr>
+                                <td><code>temperature</code></td>
+                                <td>number</td>
+                                <td>No</td>
+                                <td>Sampling temperature (0-2)</td>
+                            </tr>
+                            <tr>
+                                <td><code>max_tokens</code></td>
+                                <td>integer</td>
+                                <td>No</td>
+                                <td>Maximum tokens to generate</td>
+                            </tr>
+                            <tr>
+                                <td><code>stream</code></td>
+                                <td>boolean</td>
+                                <td>No</td>
+                                <td>Enable streaming responses</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--asana-text-primary);">Example Request</h4>
+                    <div class="code-block">
+                        <code>{
+  "model": "gpt-4-turbo",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a helpful assistant."
+    },
+    {
+      "role": "user",
+      "content": "Explain quantum computing in simple terms."
+    }
+  ],
+  "temperature": 0.7,
+  "max_tokens": 500
+}</code>
+                    </div>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--asana-text-primary);">Example Response</h4>
+                    <div class="response-example">
+                        <div class="code-block">
+                            <code>{
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "created": 1677652288,
+  "model": "gpt-4-turbo",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Quantum computing is a revolutionary approach to computation..."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 20,
+    "completion_tokens": 100,
+    "total_tokens": 120
+  }
+}</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Models Endpoint -->
+            <section class="api-section" id="models">
+                <h2 class="section-title">Available Models</h2>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge method-get">GET</span>
+                        <span class="endpoint-url">/v1/models</span>
+                    </div>
+
+                    <p class="endpoint-description">
+                        Retrieve a list of available AI models across all integrated providers.
+                    </p>
+
+                    <h4 style="margin: 1.5rem 0 1rem 0; color: var(--asana-text-primary);">Available Models</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Model ID</th>
+                                <th>Provider</th>
+                                <th>Type</th>
+                                <th>Context Length</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>gpt-4-turbo</code></td>
+                                <td>Azure OpenAI</td>
+                                <td>Chat</td>
+                                <td>128K tokens</td>
+                            </tr>
+                            <tr>
+                                <td><code>claude-3-opus</code></td>
+                                <td>Anthropic</td>
+                                <td>Chat</td>
+                                <td>200K tokens</td>
+                            </tr>
+                            <tr>
+                                <td><code>gemini-pro</code></td>
+                                <td>Google AI</td>
+                                <td>Chat</td>
+                                <td>32K tokens</td>
+                            </tr>
+                            <tr>
+                                <td><code>gpt-3.5-turbo</code></td>
+                                <td>OpenAI</td>
+                                <td>Chat</td>
+                                <td>16K tokens</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Rate Limits Section -->
+            <section class="api-section" id="rate-limits">
+                <h2 class="section-title">Rate Limits</h2>
+
+                <div class="endpoint-card">
+                    <h4 style="margin: 0 0 1rem 0; color: var(--asana-text-primary);">Enterprise Limits</h4>
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Requests/minute</th>
+                                <th>Tokens/minute</th>
+                                <th>Concurrent Requests</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Free</td>
+                                <td>60</td>
+                                <td>100,000</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Pro</td>
+                                <td>3,000</td>
+                                <td>1,000,000</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Enterprise</td>
+                                <td>Unlimited</td>
+                                <td>Unlimited</td>
+                                <td>Unlimited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <script>
+        // API Documentation Management
+        class ApiDocumentation {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupNavigation();
+                this.setupCodeHighlighting();
+                this.loadApiStatus();
+            }
+
+            setupNavigation() {
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+
+                            // Update active nav link
+                            document.querySelectorAll('.nav-link').forEach(link => {
+                                link.classList.remove('active');
+                            });
+                            anchor.classList.add('active');
+                        }
+                    });
+                });
+
+                // Highlight current section on scroll
+                window.addEventListener('scroll', () => {
+                    this.updateActiveSection();
+                });
+            }
+
+            updateActiveSection() {
+                const sections = document.querySelectorAll('.api-section');
+                const navLinks = document.querySelectorAll('.nav-link');
+
+                let currentSection = '';
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        currentSection = section.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            setupCodeHighlighting() {
+                // Enhanced code blocks with copy functionality
+                document.querySelectorAll('.code-block').forEach(block => {
+                    const copyBtn = document.createElement('button');
+                    copyBtn.innerHTML = '<span class="material-icons">content_copy</span>';
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.style.cssText = `
+                        position: absolute;
+                        top: 0.5rem;
+                        right: 0.5rem;
+                        background: var(--asana-green-primary);
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        padding: 0.25rem;
+                        cursor: pointer;
+                        opacity: 0;
+                        transition: opacity 0.2s;
+                    `;
+
+                    block.style.position = 'relative';
+                    block.appendChild(copyBtn);
+
+                    block.addEventListener('mouseenter', () => {
+                        copyBtn.style.opacity = '1';
+                    });
+
+                    block.addEventListener('mouseleave', () => {
+                        copyBtn.style.opacity = '0';
+                    });
+
+                    copyBtn.addEventListener('click', () => {
+                        const code = block.querySelector('code').textContent;
+                        navigator.clipboard.writeText(code);
+                        copyBtn.innerHTML = '<span class="material-icons">check</span>';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<span class="material-icons">content_copy</span>';
+                        }, 2000);
+                    });
+                });
+            }
+
+            async loadApiStatus() {
+                try {
+                    const response = await fetch('/api/status');
+                    const data = await response.json();
+
+                    const statusIndicator = document.querySelector('.status-indicator span');
+                    if (data.status === 'operational') {
+                        statusIndicator.textContent = 'All systems operational';
+                    }
+                } catch (error) {
+                    console.log('API status check failed:', error);
+                }
+            }
+        }
+
+        // Global Functions
+        function showQuickStartExample() {
+            const exampleCode = `curl -X POST https://api.ailydian.com/v1/chat/completions \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "gpt-4-turbo",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, AiLydian!"
+      }
+    ]
+  }'`;
+
+            alert('Quick Start Example:\\n\\n' + exampleCode);
+        }
+
+        // Initialize API Documentation
+        document.addEventListener('DOMContentLoaded', () => {
+            window.apiDocs = new ApiDocumentation();
+        });
+
+        // Performance optimizations
+        window.addEventListener('load', () => {
+            // Preload other pages
+            const preloadLinks = ['/analytics', '/developers', '/ailydians-chat'];
+            preloadLinks.forEach(link => {
+                const linkElement = document.createElement('link');
+                linkElement.rel = 'prefetch';
+                linkElement.href = link;
+                document.head.appendChild(linkElement);
+            });
+        });
+    </script>
+</body>
+</html>

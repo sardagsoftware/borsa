@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api referansı - ailydian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --neon-primary: #FF6B4A; --neon-secondary: #FF8A6B; --neon-accent: #E64A2E;
+            --neon-glow: rgba(255, 107, 74, 0.6); --bg-primary: #0A0A0B; --bg-secondary: #111113;
+            --bg-card: #141416; --bg-hover: #1A1A1C; --text-primary: #FFFFFF;
+            --text-secondary: #B8B8B8; --text-tertiary: #6B6B6B;
+            --border-neon: 1px solid rgba(255, 107, 74, 0.3);
+            --shadow-neon: 0 0 20px var(--neon-glow), 0 0 40px rgba(255, 107, 74, 0.4);
+        }
+        body {
+            font-family: 'Sora', sans-serif; background: var(--bg-primary);
+            color: var(--text-primary); min-height: 100vh;
+        }
+        .container { display: flex; min-height: 100vh; }
+        .sidebar {
+            width: 280px; background: var(--bg-secondary); border-right: var(--border-neon);
+            padding: 2rem 1.5rem; position: fixed; height: 100vh; overflow-y: auto;
+        }
+        .logo {
+            font-size: 1.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem; letter-spacing: -0.02em;
+        }
+        .nav-section { margin-bottom: 2rem; }
+        .nav-title {
+            color: var(--text-tertiary); font-size: 0.75rem; font-weight: 600;
+            text-transform: lowercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;
+        }
+        .nav-link {
+            display: block; color: var(--text-secondary); text-decoration: none;
+            padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 0.25rem;
+            transition: all 0.3s; font-size: 0.9rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--bg-hover); color: var(--neon-primary);
+            border-left: 2px solid var(--neon-primary); padding-left: 1.5rem;
+        }
+        .main { margin-left: 280px; flex: 1; padding: 3rem 4rem; }
+        .page-title {
+            font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em; text-transform: lowercase;
+        }
+        .page-subtitle {
+            color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; line-height: 1.6;
+        }
+        .endpoint-card {
+            background: var(--bg-card); border: var(--border-neon); border-radius: 12px;
+            padding: 2rem; margin-bottom: 2rem; transition: all 0.3s;
+        }
+        .endpoint-card:hover { border-color: var(--neon-primary); box-shadow: var(--shadow-neon); }
+        .endpoint-header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+        }
+        .method {
+            padding: 0.4rem 1rem; border-radius: 6px; font-weight: 700;
+            font-size: 0.85rem; text-transform: uppercase;
+        }
+        .method.get { background: #10B981; color: white; }
+        .method.post { background: #3B82F6; color: white; }
+        .method.put { background: #F59E0B; color: white; }
+        .method.delete { background: #EF4444; color: white; }
+        .endpoint-path {
+            font-family: 'JetBrains Mono', monospace; color: var(--text-primary);
+            font-size: 1.1rem; font-weight: 600;
+        }
+        .endpoint-desc {
+            color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;
+        }
+        .section-label {
+            color: var(--neon-primary); font-weight: 600; font-size: 0.9rem;
+            margin-top: 1.5rem; margin-bottom: 0.75rem; text-transform: lowercase;
+        }
+        .param-table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+        }
+        .param-table th {
+            background: var(--bg-secondary); padding: 0.75rem; text-align: left;
+            color: var(--neon-primary); font-size: 0.85rem; font-weight: 600;
+            text-transform: lowercase;
+        }
+        .param-table td {
+            padding: 0.75rem; border-bottom: 1px solid rgba(255, 107, 74, 0.1);
+            color: var(--text-secondary); font-size: 0.9rem;
+        }
+        .param-name {
+            font-family: 'JetBrains Mono', monospace; color: var(--neon-primary);
+            font-weight: 600;
+        }
+        .param-type {
+            font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+        .code-block {
+            background: var(--bg-secondary); border: var(--border-neon); border-radius: 8px;
+            padding: 1.5rem; margin: 1rem 0; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem; overflow-x: auto; position: relative;
+        }
+        .copy-btn-top {
+            position: absolute; top: 1rem; right: 1rem; background: var(--bg-card);
+            border: var(--border-neon); color: var(--text-tertiary); padding: 0.4rem 0.8rem;
+            border-radius: 6px; cursor: pointer; font-size: 0.75rem; transition: all 0.3s;
+        }
+        .copy-btn-top:hover { color: var(--neon-primary); border-color: var(--neon-primary); }
+        .info-banner {
+            background: linear-gradient(135deg, rgba(255, 107, 74, 0.1), rgba(255, 138, 107, 0.1));
+            border: var(--border-neon); border-left: 3px solid var(--neon-primary);
+            border-radius: 8px; padding: 1.5rem; margin: 2rem 0;
+        }
+        .info-banner-title {
+            color: var(--neon-primary); font-weight: 600; margin-bottom: 0.5rem;
+            text-transform: lowercase;
+        }
+        .info-banner-text {
+            color: var(--text-secondary); line-height: 1.6; font-size: 0.9rem;
+        }
+        @media (max-width: 968px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main { margin-left: 0; padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">ailydian</div>
+
+            <div class="nav-section">
+                <div class="nav-title">Genel</div>
+                <a href="#overview" class="nav-link active">Genel Bakış</a>
+                <a href="#auth" class="nav-link">Kimlik Doğrulama</a>
+                <a href="#errors" class="nav-link">Hata Kodları</a>
+                <a href="#rate-limits" class="nav-link">Rate Limiting</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Chat Api</div>
+                <a href="#chat-create" class="nav-link">Chat Oluştur</a>
+                <a href="#chat-stream" class="nav-link">Streaming</a>
+                <a href="#chat-history" class="nav-link">Geçmiş</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Model Api</div>
+                <a href="#models-list" class="nav-link">Model Listesi</a>
+                <a href="#models-info" class="nav-link">Model Bilgisi</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Multimodal</div>
+                <a href="#vision" class="nav-link">Görsel Analiz</a>
+                <a href="#audio" class="nav-link">Ses İşleme</a>
+                <a href="#image-gen" class="nav-link">Görsel Üretim</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Dil</div>
+                <a href="#translate" class="nav-link">Çeviri</a>
+                <a href="#detect" class="nav-link">Dil Algılama</a>
+            </div>
+        </aside>
+
+        <main class="main">
+            <h1 class="page-title">api referansı</h1>
+            <p class="page-subtitle">
+                ailydian enterprise ai platformu için kapsamlı api dokümantasyonu.
+                tüm endpoint'ler, parametreler ve örnek kullanımlar.
+            </p>
+
+            <div class="info-banner">
+                <div class="info-banner-title">base url</div>
+                <div class="info-banner-text">
+                    <code style="color: var(--neon-primary);">http://localhost:3100/api</code><br>
+                    tüm api istekleri bu base url ile başlar. production ortamda kendi domain'inizi kullanın.
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <section id="overview">
+                <div class="info-banner">
+                    <div class="info-banner-title">hızlı başlangıç</div>
+                    <div class="info-banner-text">
+                        ailydian api, restful mimari kullanır. tüm istekler json formatındadır.
+                        her istek authorization header ile kimlik doğrulaması gerektirir.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentication -->
+            <section id="auth">
+                <div class="endpoint-card">
+                    <h2 style="color: var(--text-primary); margin-bottom: 1rem; text-transform: lowercase;">kimlik doğrulama</h2>
+                    <p class="endpoint-desc">
+                        tüm api istekleri bearer token ile kimlik doğrulaması gerektirir.
+                        token'ı authorization header'ında göndermeniz gerekir.
+                    </p>
+
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>curl -X GET http://localhost:3100/api/models \
+  -H "Authorization: Bearer sk-ailydian-xxxxxxxxxxxxxxxx" \
+  -H "Content-Type: application/json"</pre>
+                    </div>
+
+                    <div class="section-label">güvenlik notları</div>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>api anahtarınızı asla public repository'lerde paylaşmayın</li>
+                        <li>environment değişkenlerinde saklayın</li>
+                        <li>client-side kodda kullanmayın</li>
+                        <li>periyodik olarak anahtarlarınızı yenileyin</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Chat Create -->
+            <section id="chat-create">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method post">post</span>
+                        <span class="endpoint-path">/api/chat</span>
+                    </div>
+                    <p class="endpoint-desc">
+                        ai modelleri ile sohbet oluşturur. 23 farklı modelden seçim yapabilirsiniz.
+                    </p>
+
+                    <div class="section-label">parametreler</div>
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>parametre</th>
+                                <th>tip</th>
+                                <th>zorunlu</th>
+                                <th>açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">message</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>evet</td>
+                                <td>kullanıcı mesajı</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">model</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>hayır</td>
+                                <td>kullanılacak model (varsayılan: gpt-4)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">stream</span></td>
+                                <td><span class="param-type">boolean</span></td>
+                                <td>hayır</td>
+                                <td>streaming modu (varsayılan: false)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">temperature</span></td>
+                                <td><span class="param-type">number</span></td>
+                                <td>hayır</td>
+                                <td>0-1 arası, yaratıcılık seviyesi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">örnek istek</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>const response = await fetch('http://localhost:3100/api/chat', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    message: 'yapay zeka nedir?',
+    model: 'gpt-4',
+    temperature: 0.7
+  })
+});
+
+const data = await response.json();
+console.log(data.response);</pre>
+                    </div>
+
+                    <div class="section-label">örnek yanıt</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>{
+  "success": true,
+  "response": "yapay zeka, makinelerin insan benzeri...",
+  "model": "gpt-4",
+  "tokens": 156,
+  "timestamp": "2024-01-15T10:30:00Z"
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Streaming -->
+            <section id="chat-stream">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method post">post</span>
+                        <span class="endpoint-path">/api/chat</span>
+                    </div>
+                    <p class="endpoint-desc">
+                        gerçek zamanlı streaming ile yanıt alın. her token geldiğinde anında gösterilir.
+                    </p>
+
+                    <div class="section-label">örnek istek (streaming)</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>const response = await fetch('http://localhost:3100/api/chat', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    message: 'uzun bir makale yaz',
+    stream: true
+  })
+});
+
+const reader = response.body.getReader();
+const decoder = new TextDecoder();
+
+while (true) {
+  const { done, value } = await reader.read();
+  if (done) break;
+
+  const chunk = decoder.decode(value);
+  process.stdout.write(chunk); // her kelime geldiğinde yazdır
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Models List -->
+            <section id="models-list">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method get">get</span>
+                        <span class="endpoint-path">/api/models</span>
+                    </div>
+                    <p class="endpoint-desc">
+                        tüm kullanılabilir ai modellerini listeler. her modelin özellikleri ve limitleri dahil.
+                    </p>
+
+                    <div class="section-label">örnek istek</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>curl -X GET http://localhost:3100/api/models \
+  -H "Authorization: Bearer YOUR_API_KEY"</pre>
+                    </div>
+
+                    <div class="section-label">örnek yanıt</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>{
+  "models": [
+    {
+      "id": "gpt-4",
+      "name": "GPT-4 Omni",
+      "provider": "openai",
+      "capabilities": ["chat", "vision", "code"],
+      "max_tokens": 128000
+    },
+    {
+      "id": "claude-3.5-sonnet",
+      "name": "Claude 3.5 Sonnet",
+      "provider": "anthropic",
+      "capabilities": ["chat", "code", "analysis"],
+      "max_tokens": 200000
+    }
+  ]
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision -->
+            <section id="vision">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method post">post</span>
+                        <span class="endpoint-path">/api/vision</span>
+                    </div>
+                    <p class="endpoint-desc">
+                        görsel analizi yapar. nesne tespiti, yüz tanıma, ocr ve içerik moderasyonu.
+                    </p>
+
+                    <div class="section-label">parametreler</div>
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>parametre</th>
+                                <th>tip</th>
+                                <th>zorunlu</th>
+                                <th>açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">image</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>evet</td>
+                                <td>base64 encoded görsel veya url</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">task</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>evet</td>
+                                <td>detect, ocr, moderate, describe</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">örnek istek</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>const response = await fetch('http://localhost:3100/api/vision', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    image: 'https://example.com/image.jpg',
+    task: 'describe'
+  })
+});
+
+const data = await response.json();</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Generation -->
+            <section id="image-gen">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method post">post</span>
+                        <span class="endpoint-path">/api/generate-image</span>
+                    </div>
+                    <p class="endpoint-desc">
+                        metin açıklamasından yüksek kaliteli görseller oluşturur. dall-e 3 modeli ile.
+                    </p>
+
+                    <div class="section-label">parametreler</div>
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>parametre</th>
+                                <th>tip</th>
+                                <th>zorunlu</th>
+                                <th>açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">prompt</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>evet</td>
+                                <td>görsel açıklaması</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">size</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>hayır</td>
+                                <td>1024x1024, 1792x1024, 1024x1792</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">quality</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>hayır</td>
+                                <td>standard, hd</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">örnek istek</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>const response = await fetch('http://localhost:3100/api/generate-image', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    prompt: 'güneş batımında minimalist bir dağ manzarası',
+    size: '1024x1024',
+    quality: 'hd'
+  })
+});</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Translate -->
+            <section id="translate">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method post">post</span>
+                        <span class="endpoint-path">/api/translate</span>
+                    </div>
+                    <p class="endpoint-desc">
+                        84 dil desteği ile metin çevirisi. z.ai dil paketi kullanır.
+                    </p>
+
+                    <div class="section-label">parametreler</div>
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>parametre</th>
+                                <th>tip</th>
+                                <th>zorunlu</th>
+                                <th>açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">text</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>evet</td>
+                                <td>çevrilecek metin</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">from</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>hayır</td>
+                                <td>kaynak dil (auto detect)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">to</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>evet</td>
+                                <td>hedef dil kodu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">örnek istek</div>
+                    <div class="code-block">
+                        <button class="copy-btn-top" onclick="copyCode(this)">Kopyala</button>
+                        <pre>const response = await fetch('http://localhost:3100/api/translate', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    text: 'hello world',
+    to: 'tr'
+  })
+});</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Codes -->
+            <section id="errors">
+                <div class="endpoint-card">
+                    <h2 style="color: var(--text-primary); margin-bottom: 1rem; text-transform: lowercase;">hata kodları</h2>
+
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>kod</th>
+                                <th>durum</th>
+                                <th>açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">400</span></td>
+                                <td>bad request</td>
+                                <td>geçersiz istek formatı veya parametreler</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">401</span></td>
+                                <td>unauthorized</td>
+                                <td>geçersiz veya eksik api anahtarı</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">403</span></td>
+                                <td>forbidden</td>
+                                <td>bu kaynağa erişim izniniz yok</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">429</span></td>
+                                <td>rate limit</td>
+                                <td>çok fazla istek, daha sonra tekrar deneyin</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">500</span></td>
+                                <td>server error</td>
+                                <td>sunucu hatası, destek ekibiyle iletişime geçin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Rate Limits -->
+            <section id="rate-limits">
+                <div class="endpoint-card">
+                    <h2 style="color: var(--text-primary); margin-bottom: 1rem; text-transform: lowercase;">rate limiting</h2>
+                    <p class="endpoint-desc">
+                        api istekleriniz plan tipinize göre sınırlandırılmıştır.
+                    </p>
+
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>plan</th>
+                                <th>istek/dakika</th>
+                                <th>istek/gün</th>
+                                <th>token limiti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">free</span></td>
+                                <td>10</td>
+                                <td>100</td>
+                                <td>10k tokens</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">starter</span></td>
+                                <td>60</td>
+                                <td>10,000</td>
+                                <td>100k tokens</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">pro</span></td>
+                                <td>300</td>
+                                <td>100,000</td>
+                                <td>1M tokens</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">enterprise</span></td>
+                                <td>unlimited</td>
+                                <td>unlimited</td>
+                                <td>unlimited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function copyCode(btn) {
+            const codeBlock = btn.closest('.code-block');
+            const code = codeBlock.querySelector('pre').textContent;
+            navigator.clipboard.writeText(code);
+            btn.textContent = 'kopyalandı!';
+            setTimeout(() => btn.textContent = 'kopyala', 2000);
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

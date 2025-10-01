@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiLydians - Tıp Uzmanı AI</title>
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <link rel="stylesheet" href="/css/chat-ailydian.css">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="chat-body">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="ailydian-logo-chat">
+                <span class="letter-a">A</span>i<span class="letter-l">L</span>ydians
+                <span class="ailydian-beta">TIP</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="/chat" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Ana Chat'e Dön
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-chat">
+        <!-- Specialized Header -->
+        <div class="specialist-header medical">
+            <div class="specialist-icon">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+            <div class="specialist-info">
+                <h1>Tıp Uzmanı AI</h1>
+                <p>Sağlık bilgileri, semptom analizi ve tıbbi rehberlik konularında uzmanlaşmış AI asistanınız</p>
+            </div>
+        </div>
+
+        <!-- Medical Disclaimer -->
+        <div class="medical-disclaimer">
+            <div class="disclaimer-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="disclaimer-text">
+                <strong>Tıbbi Uyarı:</strong> Bu AI asistan genel sağlık bilgilendirmesi amaçlı olup, profesyonel tıbbi teşhis ve tedavi yerine geçmez.
+                Acil durumlar için 112'yi arayın. Ciddi sağlık sorunları için mutlaka bir doktora başvurun.
+            </div>
+        </div>
+
+        <!-- Quick Health Check -->
+        <div class="health-check-section">
+            <h3>Hızlı Sağlık Kontrolü</h3>
+            <div class="health-cards">
+                <div class="health-card" onclick="sendPredefinedMessage('Semptomlarımı analiz etmek istiyorum')">
+                    <i class="fas fa-search"></i>
+                    <h4>Semptom Analizi</h4>
+                    <p>Yaşadığınız belirtileri analiz edelim</p>
+                </div>
+                <div class="health-card" onclick="sendPredefinedMessage('İlaç etkileşimi kontrolü yapmak istiyorum')">
+                    <i class="fas fa-pills"></i>
+                    <h4>İlaç Kontrolü</h4>
+                    <p>İlaç etkileşimlerini kontrol edin</p>
+                </div>
+                <div class="health-card" onclick="sendPredefinedMessage('Beslenme önerileri almak istiyorum')">
+                    <i class="fas fa-apple-alt"></i>
+                    <h4>Beslenme Rehberi</h4>
+                    <p>Sağlıklı beslenme önerileri</p>
+                </div>
+                <div class="health-card" onclick="sendPredefinedMessage('Egzersiz programı önerisi istiyorum')">
+                    <i class="fas fa-running"></i>
+                    <h4>Egzersiz Planı</h4>
+                    <p>Kişisel egzersiz önerileri</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specialties -->
+        <div class="medical-specialties">
+            <h3>Tıp Dalları</h3>
+            <div class="specialties-grid">
+                <div class="specialty-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Kardiyoloji</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Nöroloji</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-lungs"></i>
+                    <span>Göğüs Hastalıkları</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-bone"></i>
+                    <span>Ortopedi</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-eye"></i>
+                    <span>Göz Hastalıkları</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-child"></i>
+                    <span>Pediatri</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-female"></i>
+                    <span>Kadın Doğum</span>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-tooth"></i>
+                    <span>Diş Hekimliği</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Info -->
+        <div class="emergency-info">
+            <div class="emergency-header">
+                <i class="fas fa-ambulance"></i>
+                <h3>Acil Durum Bilgileri</h3>
+            </div>
+            <div class="emergency-numbers">
+                <div class="emergency-number">
+                    <strong>112</strong>
+                    <span>Acil Sağlık</span>
+                </div>
+                <div class="emergency-number">
+                    <strong>110</strong>
+                    <span>İtfaiye</span>
+                </div>
+                <div class="emergency-number">
+                    <strong>155</strong>
+                    <span>Polis</span>
+                </div>
+                <div class="emergency-number">
+                    <strong>184</strong>
+                    <span>Zehir Danışma</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Messages will be dynamically added here -->
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <div class="text-input-wrapper">
+                    <textarea
+                        id="messageInput"
+                        placeholder="Sağlık sorununuzu detaylı bir şekilde açıklayın..."
+                        rows="1"
+                        maxlength="5000"
+                    ></textarea>
+                </div>
+                <button class="send-btn" id="sendBtn" title="Gönder">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="input-info">
+                <span class="char-counter" id="charCounter">0/5000</span>
+                <span class="input-hint">Enter ile gönder, Shift+Enter ile yeni satır</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Specialized medical AI functionality
+        const specialistType = 'medical-expert';
+        const specialistName = 'Tıp Uzmanı AI';
+
+        function sendPredefinedMessage(message) {
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (!message) return;
+
+            // Add user message to chat
+            addMessageToChat(message, 'user');
+
+            // Clear input
+            messageInput.value = '';
+            updateCharCounter();
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Send to specialized medical AI endpoint
+            fetch('/api/medical-expert/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    specialist: specialistType,
+                    context: 'medical_consultation'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                if (data.success) {
+                    addMessageToChat(data.response, 'assistant', true);
+                } else {
+                    addMessageToChat('Üzgünüm, şu anda bir teknik sorun yaşıyorum. Lütfen tekrar deneyin.', 'assistant');
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                console.error('Error:', error);
+                addMessageToChat('Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.', 'assistant');
+            });
+        }
+
+        function addMessageToChat(message, sender, isMedical = false) {
+            const chatContainer = document.getElementById('chatContainer');
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+
+            if (sender === 'assistant' && isMedical) {
+                messageDiv.innerHTML = `
+                    <div class="message-header">
+                        <div class="specialist-badge medical">
+                            <i class="fas fa-stethoscope"></i>
+                            Tıp Uzmanı AI
+                        </div>
+                        <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                    </div>
+                    <div class="message-content">${message}</div>
+                    <div class="medical-footer">
+                        <small><i class="fas fa-info-circle"></i> Bu bilgi genel amaçlıdır ve tıbbi teşhis yerine geçmez. Ciddi durumlar için doktora başvurun.</small>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-content">${message}</div>
+                    <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                `;
+            }
+
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = `
+                <div class="specialist-badge medical">
+                    <i class="fas fa-stethoscope"></i>
+                    Tıp Uzmanı AI
+                </div>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+
+            document.getElementById('chatContainer').appendChild(indicator);
+            document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        function updateCharCounter() {
+            const messageInput = document.getElementById('messageInput');
+            const charCounter = document.getElementById('charCounter');
+            charCounter.textContent = `${messageInput.value.length}/5000`;
+        }
+
+        // Event listeners
+        document.getElementById('messageInput').addEventListener('input', updateCharCounter);
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
+        // Auto-resize textarea
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        // Initial welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                addMessageToChat(
+                    'Merhaba! Ben AiLydians Tıp Uzmanı AI\'ıyım. Sağlık konularında size yardımcı olmaya hazırım. ' +
+                    'Semptomlarınızı, sağlık sorularınızı veya genel tıbbi bilgi ihtiyaçlarınızı paylaşabilirsiniz. ' +
+                    'Lütfen unutmayın: Bu bilgiler genel amaçlıdır ve profesyonel tıbbi muayene yerine geçmez. ' +
+                    'Acil durumlar için 112\'yi arayın.',
+                    'assistant',
+                    true
+                );
+            }, 1000);
+        });
+    </script>
+
+    <style>
+        .specialist-header.medical {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .medical-disclaimer {
+            background: #ffe6e6;
+            border: 1px solid #ffcccc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: #c0392b;
+        }
+
+        .disclaimer-icon {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        .health-check-section {
+            margin: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .health-check-section h3 {
+            margin-bottom: 1rem;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .health-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .health-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .health-card:hover {
+            background: rgba(231, 76, 60, 0.1);
+            border-color: #e74c3c;
+            transform: translateY(-2px);
+        }
+
+        .health-card i {
+            font-size: 2rem;
+            color: #e74c3c;
+            margin-bottom: 0.75rem;
+        }
+
+        .health-card h4 {
+            margin: 0.5rem 0;
+            color: var(--chat-text);
+            font-weight: 600;
+        }
+
+        .health-card p {
+            margin: 0;
+            color: var(--chat-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .medical-specialties {
+            margin: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .medical-specialties h3 {
+            margin-bottom: 1rem;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .specialty-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .specialty-item:hover {
+            background: rgba(231, 76, 60, 0.1);
+            border-color: #e74c3c;
+        }
+
+        .specialty-item i {
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+
+        .specialty-item span {
+            color: var(--chat-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .emergency-info {
+            margin: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.05));
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            border-radius: 10px;
+        }
+
+        .emergency-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #e74c3c;
+        }
+
+        .emergency-header i {
+            font-size: 1.5rem;
+        }
+
+        .emergency-header h3 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .emergency-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .emergency-number {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .emergency-number strong {
+            display: block;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .emergency-number span {
+            color: var(--chat-text);
+            font-size: 0.85rem;
+        }
+
+        .specialist-badge.medical {
+            color: #e74c3c;
+        }
+
+        .medical-footer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .medical-footer small {
+            color: #e74c3c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .typing-indicator {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #e74c3c;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .health-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .specialties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .emergency-numbers {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .specialist-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>

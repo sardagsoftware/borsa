@@ -2787,10 +2787,14 @@ body {
                                             <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Speech to Text - Voice Input">
+                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Voice Output - Sesli Yanıt (ElevenLabs)">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                                            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="neon-icon neon-code" id="neonCodeBtn" title="Code Mode - Özel Kod Modu">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
                                         </svg>
                                     </button>
                                 </div>
@@ -3041,7 +3045,9 @@ body {
             neonDeepThinkBtn: document.getElementById('neonDeepThinkBtn'),
             neonWebSearchBtn: document.getElementById('neonWebSearchBtn'),
             neonImageBtn: document.getElementById('neonImageBtn'),
-            neonVideoBtn: document.getElementById('neonVideoBtn')
+            neonVideoBtn: document.getElementById('neonVideoBtn'),
+            neonMicBtn: document.getElementById('neonMicBtn'),
+            neonCodeBtn: document.getElementById('neonCodeBtn')
         };
 
         // ========== EVENT LISTENERS ==========
@@ -3240,7 +3246,9 @@ body {
                 elements.neonDeepThinkBtn,
                 elements.neonWebSearchBtn,
                 elements.neonImageBtn,
-                elements.neonVideoBtn
+                elements.neonVideoBtn,
+                elements.neonMicBtn,
+                elements.neonCodeBtn
             ].filter(Boolean);
 
             allNeonIcons.forEach(icon => icon.classList.remove('active'));
@@ -3269,99 +3277,40 @@ body {
             });
         }
 
-        // 🖼️ Neon Image Icon
-        // 🖼️ Image Upload (Google Studio Style)
-        const imageFileInput = document.getElementById('imageFileInput');
-        if (elements.neonImageBtn && imageFileInput) {
+        // 🖼️ Neon Image Generation Icon (Google Imagen)
+        if (elements.neonImageBtn) {
             elements.neonImageBtn.addEventListener('click', () => {
-                imageFileInput.click(); // Trigger file selector
-            });
-
-            imageFileInput.addEventListener('change', async (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    toggleNeonIcon(elements.neonImageBtn);
-                    showToast('🖼️ Görsel yükleniyor...');
-
-                    // Convert to base64
-                    const reader = new FileReader();
-                    reader.onload = async (event) => {
-                        const base64 = event.target.result;
-                        // Add image to messages with analysis prompt
-                        const prompt = `Bu görseli analiz et ve detaylı açıkla:`;
-                        await sendMessage(prompt, { image: base64, type: 'image-analysis' });
-                    };
-                    reader.readAsDataURL(file);
-                }
+                state.selectedAiType = 'image';
+                toggleNeonIcon(elements.neonImageBtn);
+                showToast('🎨 Görsel Üretme Modu Aktif - Açıklama yazın, görsel oluşturulsun');
             });
         }
 
-        // 🎥 Video Upload (Google Studio Style)
-        const videoFileInput = document.getElementById('videoFileInput');
-        if (elements.neonVideoBtn && videoFileInput) {
+        // 🎥 Video Generation Icon (Google Veo)
+        if (elements.neonVideoBtn) {
             elements.neonVideoBtn.addEventListener('click', () => {
-                videoFileInput.click(); // Trigger file selector
-            });
-
-            videoFileInput.addEventListener('change', async (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    toggleNeonIcon(elements.neonVideoBtn);
-                    showToast('🎥 Video yükleniyor...');
-
-                    // Convert to base64
-                    const reader = new FileReader();
-                    reader.onload = async (event) => {
-                        const base64 = event.target.result;
-                        // Add video to messages with analysis prompt
-                        const prompt = `Bu videoyu analiz et ve içeriğini detaylı açıkla:`;
-                        await sendMessage(prompt, { video: base64, type: 'video-analysis' });
-                    };
-                    reader.readAsDataURL(file);
-                }
+                state.selectedAiType = 'video';
+                toggleNeonIcon(elements.neonVideoBtn);
+                showToast('🎬 Video Üretme Modu Aktif - Açıklama yazın, video oluşturulsun');
             });
         }
 
-        // 🎤 Speech to Text (Web Speech API)
-        const neonMicBtn = document.getElementById('neonMicBtn');
-        if (neonMicBtn && 'webkitSpeechRecognition' in window) {
-            const recognition = new webkitSpeechRecognition();
-            recognition.lang = 'tr-TR';
-            recognition.continuous = false;
-            recognition.interimResults = false;
-
-            let isRecording = false;
-
-            neonMicBtn.addEventListener('click', () => {
-                if (!isRecording) {
-                    recognition.start();
-                    isRecording = true;
-                    neonMicBtn.classList.add('recording');
-                    showToast('🎤 Dinliyorum... Konuşun');
-                }
+        // 🎤 Voice Output Mode (ElevenLabs TTS)
+        if (elements.neonMicBtn) {
+            elements.neonMicBtn.addEventListener('click', () => {
+                state.selectedAiType = 'voice';
+                toggleNeonIcon(elements.neonMicBtn);
+                showToast('🎤 Sesli Yanıt Modu Aktif - Cevaplar sesli olacak');
             });
+        }
 
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                if (elements.messageInput) {
-                    elements.messageInput.value = transcript;
-                    elements.messageInput.focus();
-                }
-                showToast(`✅ Metin: "${transcript}"`);
-                isRecording = false;
-                neonMicBtn.classList.remove('recording');
-            };
-
-            recognition.onerror = () => {
-                showToast('❌ Ses tanıma hatası');
-                isRecording = false;
-                neonMicBtn.classList.remove('recording');
-            };
-
-            recognition.onend = () => {
-                isRecording = false;
-                neonMicBtn.classList.remove('recording');
-            };
+        // 💻 Code Mode Icon
+        if (elements.neonCodeBtn) {
+            elements.neonCodeBtn.addEventListener('click', () => {
+                state.selectedAiType = 'code';
+                toggleNeonIcon(elements.neonCodeBtn);
+                showToast('💻 Kod Modu Aktif - Özel kod üretimi');
+            });
         }
 
         // 🔗 Share Button with Modal
@@ -3439,6 +3388,14 @@ body {
 
             // Call backend API - Use specialized endpoint
             try {
+                console.log('🔍 Sending message to API:', { message, aiType: state.selectedAiType });
+
+                // Clean history: remove timestamp property for API compatibility
+                const cleanHistory = state.messages.slice(-10).map(msg => ({
+                    role: msg.role,
+                    content: msg.content
+                }));
+
                 const response = await fetch('/api/chat/specialized', {
                     method: 'POST',
                     headers: {
@@ -3449,16 +3406,21 @@ body {
                     body: JSON.stringify({
                         message: message,
                         aiType: state.selectedAiType,
+                        model: 'llama', // Llama 3.3 70B as primary model
                         temperature: 0.7,
                         max_tokens: 2048,
-                        history: state.messages.slice(-10),
+                        history: cleanHistory,
                         language: 'tr',
                         locale: 'tr-TR'
                     })
                 });
 
+                console.log('📡 Response status:', response.status, 'OK:', response.ok);
+
                 if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
+                    const errorText = await response.text();
+                    console.error('❌ API Error Response:', errorText);
+                    throw new Error(`API Error: ${response.status} - ${errorText.substring(0, 100)}`);
                 }
 
                 const data = await response.json();
@@ -3467,6 +3429,64 @@ body {
                 if (data.success && data.response) {
                     addMessage('assistant', data.response);
                     console.log('✅ AI Response:', data);
+
+                    // 🎤 VOICE MODE: Convert response to speech with ElevenLabs
+                    if (state.selectedAiType === 'voice') {
+                        try {
+                            const voiceResponse = await fetch('/api/voice-tts', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ text: data.response })
+                            });
+                            const voiceData = await voiceResponse.json();
+                            if (voiceData.success && voiceData.audio) {
+                                const audio = new Audio(`data:audio/mp3;base64,${voiceData.audio}`);
+                                audio.play();
+                                showToast('🔊 Ses çalınıyor...');
+                            }
+                        } catch (e) {
+                            console.error('Voice TTS failed:', e);
+                        }
+                        state.selectedAiType = 'general'; // Reset mode
+                    }
+
+                    // 🎨 IMAGE MODE: Generate image with Google Imagen
+                    if (state.selectedAiType === 'image') {
+                        try {
+                            const imageResponse = await fetch('/api/media-generation', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ prompt: message, type: 'image' })
+                            });
+                            const imageData = await imageResponse.json();
+                            if (imageData.success) {
+                                addMessage('assistant', `🎨 **Görsel Oluşturuldu!**\n\n${JSON.stringify(imageData.result, null, 2)}`);
+                            }
+                        } catch (e) {
+                            console.error('Image generation failed:', e);
+                            addMessage('assistant', '❌ Görsel oluşturulamadı. Lütfen tekrar deneyin.');
+                        }
+                        state.selectedAiType = 'general'; // Reset mode
+                    }
+
+                    // 🎬 VIDEO MODE: Generate video with Google Veo
+                    if (state.selectedAiType === 'video') {
+                        try {
+                            const videoResponse = await fetch('/api/media-generation', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ prompt: message, type: 'video', duration: 5 })
+                            });
+                            const videoData = await videoResponse.json();
+                            if (videoData.success) {
+                                addMessage('assistant', `🎬 **Video Oluşturuldu!**\n\n${JSON.stringify(videoData.result, null, 2)}`);
+                            }
+                        } catch (e) {
+                            console.error('Video generation failed:', e);
+                            addMessage('assistant', '❌ Video oluşturulamadı. Lütfen tekrar deneyin.');
+                        }
+                        state.selectedAiType = 'general'; // Reset mode
+                    }
 
                     // Save chat after getting response
                     saveCurrentChat();
@@ -3899,6 +3919,12 @@ body {
             showTypingIndicator();
 
             try {
+                // Clean history: remove timestamp property for API compatibility
+                const cleanHistory = state.messages.slice(-10).map(msg => ({
+                    role: msg.role,
+                    content: msg.content
+                }));
+
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {
@@ -3907,11 +3933,11 @@ body {
                         'Content-Language': 'tr'
                     },
                     body: JSON.stringify({
-                        model: state.selectedModel,
+                        model: 'llama', // Llama 3.3 70B as primary model
                         message: lastUserMessage,
                         temperature: 0.9,
                         max_tokens: 2048,
-                        history: state.messages.slice(-10),
+                        history: cleanHistory,
                         language: 'tr',
                         locale: 'tr-TR'
                     })
