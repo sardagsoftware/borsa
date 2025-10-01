@@ -12,6 +12,7 @@ const menuGroups = {
     label: 'AI Botlar',
     items: [
       { href: '/ai-control-center', label: 'AI Kontrol Merkezi' },
+      { href: '/auto-trading', label: '⚡ Auto Trading' },
       { href: '/ai-chat', label: 'AI Asistan' },
       { href: '/quantum-pro', label: 'Quantum Pro' },
       { href: '/bot-management', label: 'Bot Yönetimi' },
