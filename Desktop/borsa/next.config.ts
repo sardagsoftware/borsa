@@ -106,13 +106,22 @@ const nextConfig: NextConfig = {
 
   // Webpack optimizations for 0.20ms TPS target
   webpack: (config, { dev, isServer }) => {
-    // Externalize native node modules to prevent Turbopack errors
+    // Externalize native node modules and TensorFlow to reduce bundle size
     if (isServer) {
       config.externals = config.externals || [];
       config.externals.push({
+        '@tensorflow/tfjs': 'commonjs @tensorflow/tfjs',
         '@tensorflow/tfjs-node': 'commonjs @tensorflow/tfjs-node',
         '@mapbox/node-pre-gyp': 'commonjs @mapbox/node-pre-gyp',
       });
+    }
+
+    // Exclude TensorFlow from client bundle too
+    if (!isServer) {
+      config.externals = config.externals || [];
+      if (Array.isArray(config.externals)) {
+        config.externals.push('@tensorflow/tfjs', '@tensorflow/tfjs-node');
+      }
     }
 
     // Production optimizations
