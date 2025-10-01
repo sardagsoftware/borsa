@@ -19,7 +19,7 @@ COPY --from=builder /app/node_modules ./node_modules
 
 # Copy application code
 COPY package*.json ./
-COPY src ./src
+COPY ai-worker-src ./src
 
 # Environment variables
 ENV NODE_ENV=production
