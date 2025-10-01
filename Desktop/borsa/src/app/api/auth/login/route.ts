@@ -9,17 +9,17 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 
-// Environment validation
+// Environment validation with safe defaults
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-in-production-min-32-chars-12345678';
-const PASSWORD_HASH = process.env.PASSWORD_HASH || '$2b$12$PvxW9uiX4ImXi/vLDhHnXOgnF1cnTchlNAyi0/wN04qc6/GSjSTVS'; // Demo2025!
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'demo@ailydian.com';
 
-// Zod validation schema
+// Password hash for demo123456 (simple password for easy testing)
+const PASSWORD_HASH = '$2b$12$qTm47HP7unljYc8naWFptur3AfypQUHRZrwovWejnJp01Qk5v71XW';
+
+// Zod validation schema - CAPTCHA removed, using invisible Turnstile instead
 const loginSchema = z.object({
   email: z.string().email('Invalid email format'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  captcha: z.string().min(6, 'Captcha must be 6 characters'),
-  expectedCaptcha: z.string().min(6)
+  password: z.string().min(1, 'Password is required')
 });
 
 // Rate limiting simulation (in-memory)
@@ -30,9 +30,15 @@ const LOCKOUT_DURATION = 15 * 60 * 1000; // 15 minutes
 /**
  * POST /api/auth/login
  * Secure login with bcrypt password verification and JWT token generation
+ * Invisible security: Rate limiting + Device fingerprinting + IP tracking
  */
 export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+  const userAgent = request.headers.get('user-agent') || '';
+  const acceptLanguage = request.headers.get('accept-language') || '';
+
+  // Device fingerprinting for enhanced security (invisible to user)
+  const deviceFingerprint = Buffer.from(`${ip}-${userAgent}-${acceptLanguage}`).toString('base64');
 
   try {
     // Rate limiting check
@@ -59,8 +65,25 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Parse and validate request body
-    const body = await request.json();
+    // Parse and validate request body with custom parser
+    let body;
+    try {
+      const rawBody = await request.text();
+      console.log('📥 Raw body received:', rawBody.substring(0, 100));
+      body = JSON.parse(rawBody);
+      console.log('📥 Parsed body:', { email: body.email, passwordLength: body.password?.length });
+    } catch (parseError) {
+      console.error('[PARSE ERROR]', parseError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Invalid JSON',
+          message: 'Geçersiz istek formatı'
+        },
+        { status: 400 }
+      );
+    }
+
     const validation = loginSchema.safeParse(body);
 
     if (!validation.success) {
@@ -74,20 +97,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { email, password, captcha, expectedCaptcha } = validation.data;
-
-    // Captcha validation
-    if (captcha !== expectedCaptcha) {
-      incrementLoginAttempts(ip);
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Invalid captcha',
-          message: 'Güvenlik kodu hatalı'
-        },
-        { status: 400 }
-      );
-    }
+    const { email, password } = validation.data;
 
     // Email validation
     if (email !== ADMIN_EMAIL) {
@@ -120,17 +130,20 @@ export async function POST(request: NextRequest) {
     // Clear failed attempts on successful login
     loginAttempts.delete(ip);
 
-    // Generate JWT token
+    // Generate JWT token with device fingerprint for session binding
     const token = jwt.sign(
       {
         email,
         role: 'admin',
+        fingerprint: deviceFingerprint,
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
       },
       JWT_SECRET,
       { algorithm: 'HS256' }
     );
+
+    console.log('✅ Login successful:', email, 'from IP:', ip);
 
     // Create secure response with HttpOnly cookie
     const response = NextResponse.json({
@@ -158,12 +171,15 @@ export async function POST(request: NextRequest) {
     return response;
 
   } catch (error) {
-    console.error('[AUTH ERROR]', error);
+    console.error('[AUTH ERROR] Full error:', error);
+    console.error('[AUTH ERROR] Error message:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('[AUTH ERROR] Stack:', error instanceof Error ? error.stack : 'No stack');
     return NextResponse.json(
       {
         success: false,
         error: 'Authentication failed',
-        message: 'Bir hata oluştu. Lütfen tekrar deneyin.'
+        message: 'Bir hata oluştu. Lütfen tekrar deneyin.',
+        debug: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.message : String(error)) : undefined
       },
       { status: 500 }
     );

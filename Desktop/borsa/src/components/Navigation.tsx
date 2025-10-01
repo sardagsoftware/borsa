@@ -47,7 +47,8 @@ const navItems: NavItem[] = [
     label: 'AI Trading',
     icon: <Bot size={18} />,
     children: [
-      { href: '/ai-assistant', label: '✨ AI KOÇ', icon: <Sparkles size={16} /> },
+      { href: '/quantum-sentinel', label: '⚛️ Quantum Sentinel', icon: <Shield size={16} /> },
+      { href: '/ai-assistant', label: '✨ AI Koç', icon: <Sparkles size={16} /> },
       { href: '/quantum-nexus', label: '⚛️ Quantum Nexus', icon: <Brain size={16} /> },
       { href: '/nirvana', label: '🧠 Nirvana TF Bot', icon: <Zap size={16} /> },
       { href: '/quantum-pro', label: 'Quantum Pro', icon: <Brain size={16} /> },

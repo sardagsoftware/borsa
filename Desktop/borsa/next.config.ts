@@ -17,8 +17,10 @@ const nextConfig: NextConfig = {
         '@tensorflow/tfjs-node': '@tensorflow/tfjs',
       },
     },
-    serverComponentsExternalPackages: ['@tensorflow/tfjs-node', '@mapbox/node-pre-gyp'],
   },
+
+  // Server external packages (moved from experimental)
+  serverExternalPackages: ['@tensorflow/tfjs-node', '@mapbox/node-pre-gyp'],
 
   // Production optimizations - Ultra code obfuscation & security
   compiler: {

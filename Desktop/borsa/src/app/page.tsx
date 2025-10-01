@@ -1,12 +1,10 @@
 import Link from 'next/link';
-import { Logo } from '@/components/ui/Logo';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900">
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <Logo size="lg" animated={true} className="mx-auto mb-8" />
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             LyDian Trader
           </h1>
