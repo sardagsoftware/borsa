@@ -1,0 +1,59 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage
+.nyc_output
+playwright-report
+test-results
+
+# Build artifacts (except public)
+.next
+dist
+out
+build
+.cache
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files (use Vercel dashboard for env vars)
+.env
+.env.*
+!.env.example
+
+# Development tools
+.git
+.gitignore
+
+# Documentation
+docs
+*.md
+!README.md
+
+# Reports
+reports
+
+# Backup files
+*.backup
+*.bak
+
+# Large assets that should be on CDN
+# public/videos/*
+# public/images/large/*
