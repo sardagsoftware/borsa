@@ -1,20 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "echo 'No build command needed for serverless deployment'",
-  "installCommand": "npm install --production=false",
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxDuration": 30
-      }
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
-  ],
   "rewrites": [
     {
       "source": "/",
@@ -25,14 +10,15 @@
       "destination": "/public/chat.html"
     },
     {
-      "source": "/api/:path*",
-      "destination": "/server.js"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/public/:path*"
+      "source": "/((?!api/).*)",
+      "destination": "/public/$1"
     }
   ],
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 30
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
