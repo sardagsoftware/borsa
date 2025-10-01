@@ -1211,7 +1211,7 @@ body {
     display: flex;
     gap: 0.75rem;
     animation: messageAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    max-width: 70%; /* Centered narrow bubbles */
+    max-width: 85%; /* Wider bubbles for better readability */
     padding: 0;
 }
 
@@ -1221,10 +1221,11 @@ body {
     flex-direction: row-reverse;
 }
 
-/* AI messages: Left aligned */
+/* AI messages: Left aligned, FULL WIDTH for square/wide layout */
 .message.assistant {
     align-self: flex-start; /* Align to left */
     flex-direction: row;
+    max-width: 100%; /* Full width for AI responses */
 }
 
 /* ========== AVATARS HIDDEN (Icon-less Layout) ========== */
@@ -1348,6 +1349,11 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-left: 4px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    /* Neon white text */
+    color: #FFFFFF;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 /* Premium hover effect with lift & glow */
@@ -1377,22 +1383,22 @@ body {
 
 .message-text strong {
     font-weight: 700;
-    color: #10A37F;
+    color: #FFFFFF; /* Clean white, no colors */
 }
 
 .message-text em {
     font-style: italic;
-    color: #FF6B4A;
+    color: #FFFFFF; /* Clean white, no colors */
 }
 
 .message-text code {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     padding: 0.2rem 0.5rem;
     border-radius: 6px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.875rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #10A37F;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF; /* Clean white, no colors */
 }
 
 /* 🕒 Message Timestamp */
@@ -2409,6 +2415,11 @@ body {
     .message {
         padding: 0.875rem;
         border-radius: 12px;
+        max-width: 95%; /* Wider on mobile */
+    }
+
+    .message.assistant {
+        max-width: 100%; /* Full width for AI on mobile */
     }
 
     .message-content {
