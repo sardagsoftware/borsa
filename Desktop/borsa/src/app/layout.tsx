@@ -1,28 +1,32 @@
-/**
- * AILYDIAN BORSA - Root Layout
- * Next.js 15 App Router Layout
- */
-
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import type { Metadata } from "next";
+import "./globals.css";
+import Navigation from "@/components/Navigation";
+import CryptoTicker from "@/components/CryptoTicker";
+import GlobalMap from "@/components/GlobalMap";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata: Metadata = {
-  title: 'AILYDIAN BORSA - AI Trading Platform',
-  description: 'Production-grade AI-powered crypto trading platform with real-time signals',
-  keywords: 'AI trading, crypto, bitcoin, signals, technical analysis',
+  title: "LyDian Trader - AI-Powered Trading Platform | Yapay Zeka Destekli Ticaret Platformu",
+  description: "Ultra-fast, white-hat compliant AI trading platform - Real-time signals and quantum-level accuracy | Ultra hızlı, beyaz şapka uyumlu yapay zeka ticaret platformu",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="tr">
+      <body className="antialiased">
+        <LanguageProvider>
+          <GlobalMap />
+          <Navigation />
+          <div className="relative z-20">
+            {children}
+          </div>
+          <CryptoTicker />
+        </LanguageProvider>
+      </body>
     </html>
   );
 }

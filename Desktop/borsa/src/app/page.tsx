@@ -1,123 +1,161 @@
-/**
- * AILYDIAN BORSA - Ana Sayfa
- *
- * Production-Grade Trading Platform with AI Signals
- * White-hat compliant, real money trading ready
- */
+'use client';
 
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import GlobalMap from '@/components/GlobalMap';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function HomePage() {
+interface GeoData {
+  ip: string;
+  location: {
+    city: string;
+    region: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+    timezone: string;
+  };
+  device: {
+    type: string;
+    os: string;
+    browser: string;
+    brand: string;
+  };
+  isp: string;
+}
+
+export default function Home() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [geoData, setGeoData] = useState<GeoData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { language, setLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    fetchGeolocation();
+  }, []);
+
+  const fetchGeolocation = async () => {
+    try {
+      const response = await fetch('/api/geolocation');
+      const result = await response.json();
+
+      if (result.success) {
+        setGeoData(result.data);
+      }
+    } catch (error) {
+      console.error('Geolocation error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Login logic here
+    window.location.href = '/quantum-pro';
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Header */}
-      <header className="border-b border-blue-800/50 bg-slate-900/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AI</span>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-white">AILYDIAN BORSA</h1>
-                <p className="text-xs text-blue-300">AI-Powered Trading Platform</p>
-              </div>
-            </div>
-            <nav className="flex gap-4">
-              <Link
-                href="/dashboard"
-                className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
-              >
-                Dashboard
-              </Link>
-            </nav>
+    <main className="min-h-screen bg-gradient-dark flex items-center justify-center relative overflow-hidden">
+      {/* Full Width Background Map */}
+      <GlobalMap />
+
+      {/* Language Toggle Button - Bottom Left */}
+      <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[100]">
+        <LanguageSwitcher />
+      </div>
+
+      {/* Right Side Login Panel - Mobile Responsive */}
+      <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 glass-dark rounded-2xl p-4 md:p-6 w-[calc(100%-2rem)] max-w-[320px] md:w-80 border-primary/30 z-20 shadow-2xl">
+        <form onSubmit={handleLogin} className="space-y-3 md:space-y-4">
+          <div>
+            <label className="text-white/60 text-xs md:text-sm mb-2 block">{t('login.email')}</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input-glass w-full text-sm md:text-base"
+              placeholder="email@example.com"
+              required
+            />
           </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <main className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block mb-4 px-4 py-1 rounded-full bg-blue-500/20 border border-blue-500/50">
-            <span className="text-blue-300 text-sm font-semibold">✓ Railway AI Microservice Active</span>
+          <div>
+            <label className="text-white/60 text-xs md:text-sm mb-2 block">{t('login.password')}</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input-glass w-full text-sm md:text-base"
+              placeholder="••••••••"
+              required
+            />
           </div>
-
-          <h2 className="text-5xl font-bold text-white mb-6">
-            AI-Powered Crypto Trading
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-              Real-Time Signals
-            </span>
-          </h2>
-
-          <p className="text-xl text-blue-200 mb-10 max-w-2xl mx-auto">
-            Advanced technical analysis with multi-indicator consensus algorithm.
-            HMAC-authenticated AI signals from Railway microservices.
-          </p>
-
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-700/50 rounded-xl p-6">
-              <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4 mx-auto">
-                <span className="text-2xl">📊</span>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Technical Analysis</h3>
-              <p className="text-sm text-blue-300">RSI, MACD, Bollinger Bands, EMA, Volume indicators</p>
-            </div>
-
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-700/50 rounded-xl p-6">
-              <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 mx-auto">
-                <span className="text-2xl">🤖</span>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">AI Predictions</h3>
-              <p className="text-sm text-blue-300">Multi-indicator consensus with confidence scoring</p>
-            </div>
-
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-700/50 rounded-xl p-6">
-              <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 mx-auto">
-                <span className="text-2xl">🔒</span>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Secure & Fast</h3>
-              <p className="text-sm text-blue-300">HMAC-SHA256 auth, sub-second response times</p>
-            </div>
-          </div>
-
-          <Link
-            href="/dashboard"
-            className="inline-block px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold text-lg transition-all shadow-lg shadow-blue-500/50"
+          <button
+            type="submit"
+            className="w-full px-4 md:px-6 py-2.5 md:py-3 bg-gradient-primary text-white text-sm md:text-base font-semibold rounded-xl hover:shadow-glow-primary transition-all active:scale-95"
           >
-            Get Started →
-          </Link>
-
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">99.9%</div>
-              <div className="text-sm text-blue-300">Uptime</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">&lt;1s</div>
-              <div className="text-sm text-blue-300">Response Time</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">5+</div>
-              <div className="text-sm text-blue-300">AI Indicators</div>
-            </div>
+            {t('login.login')}
+          </button>
+          <div className="text-center">
+            <a href="#" className="text-primary text-xs md:text-sm hover:text-primary/80 transition-colors">
+              {t('login.forgotPassword')}
+            </a>
           </div>
-        </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="border-t border-blue-800/50 bg-slate-900/50 backdrop-blur-sm mt-20">
-        <div className="container mx-auto px-4 py-6">
-          <div className="text-center text-sm text-blue-300">
-            <p>© 2025 AILYDIAN BORSA - AI Trading Platform</p>
-            <p className="mt-1 text-xs text-blue-400">
-              White-hat compliant • HMAC Secured • Real-time Binance Data
-            </p>
-          </div>
+          {/* Device & Location Info */}
+          {geoData && (
+            <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-white/10">
+              <div className="space-y-1.5 md:space-y-2 text-[11px] md:text-xs">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-white/40">{t('login.ipAddress')}:</span>
+                  <span className="text-primary font-mono text-[10px] md:text-xs">{geoData.ip}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-white/40">{t('login.location')}:</span>
+                  <span className="text-white/60">{geoData.location.city}, {geoData.location.country}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-white/40">{t('login.device')}:</span>
+                  <span className="text-white/60">{geoData.device.brand} {geoData.device.type}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-white/40">{t('login.os')}:</span>
+                  <span className="text-white/60">{geoData.device.os}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-white/40">{t('login.operator')}:</span>
+                  <span className="text-white/60 text-right text-[9px] md:text-[10px]">{geoData.isp}</span>
+                </div>
+              </div>
+              <p className="text-white/40 text-[10px] md:text-xs text-center mt-2 md:mt-3">{t('login.authenticator')}</p>
+            </div>
+          )}
+
+          {loading && !geoData && (
+            <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-white/10 text-center">
+              <div className="inline-block animate-spin rounded-full h-3 md:h-4 w-3 md:w-4 border-b-2 border-primary"></div>
+              <p className="text-white/40 text-[10px] md:text-xs mt-2">{t('login.loadingLocation')}</p>
+            </div>
+          )}
+        </form>
+      </div>
+
+      {/* Bottom Left Footer Links - Mobile Responsive */}
+      <div className="fixed bottom-16 md:bottom-20 left-4 md:left-6 z-20">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-4 text-xs md:text-sm">
+          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors glass-dark px-3 py-1.5 rounded-lg">
+            {t('login.privacy')}
+          </a>
+          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors glass-dark px-3 py-1.5 rounded-lg">
+            {t('login.copyright')}
+          </a>
+          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors glass-dark px-3 py-1.5 rounded-lg">
+            {t('login.security')}
+          </a>
         </div>
-      </footer>
-    </div>
+      </div>
+    </main>
   );
 }
