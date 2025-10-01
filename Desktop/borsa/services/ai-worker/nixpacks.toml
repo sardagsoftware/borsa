@@ -1,0 +1,12 @@
+# Disable Nixpacks completely - Use Dockerfile instead
+[phases.setup]
+cmds = ["echo 'Nixpacks disabled - Using Dockerfile'"]
+
+[phases.install]
+cmds = ["echo 'Using Dockerfile build'"]
+
+[phases.build]
+cmds = ["echo 'Dockerfile build in progress'"]
+
+[start]
+cmd = "echo 'This should not run - Dockerfile CMD will be used'"
