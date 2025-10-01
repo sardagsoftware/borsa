@@ -1700,7 +1700,8 @@ body {
 
 /* 🌟 MOBILE ONLY BUTTONS - Hidden on desktop */
 .mobile-plus-btn,
-.mobile-search-btn {
+.mobile-search-btn,
+.mobile-toggle-btn {
     display: none;
 }
 
@@ -2181,10 +2182,21 @@ body {
         width: 100%;
     }
 
+    /* Input area as flex column */
+    .input-area {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .input-row {
+        order: 2;
+    }
+
     #messageInput {
         font-size: 1rem;
         min-height: 52px;
-        padding: 1rem 110px 1rem 60px !important; /* Space for plus button left, search+send right */
+        padding: 1rem 60px 1rem 60px !important; /* Space for plus button left, send right */
         width: 100%;
         line-height: 1.6;
         border-radius: 16px;
@@ -2292,59 +2304,62 @@ body {
         box-shadow: 0 0 16px rgba(16, 163, 127, 0.5);
     }
 
-    /* Token/char counter - Move to top left navbar */
+    /* Token/char counter - Below input, no background */
     .input-stats {
-        position: fixed !important;
-        top: 1rem !important;
-        left: 1rem !important;
+        position: relative !important;
         display: flex !important;
-        gap: 0.75rem !important;
-        background: rgba(0, 0, 0, 0.8) !important;
-        padding: 0.5rem 0.75rem !important;
-        border-radius: 12px !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        backdrop-filter: blur(10px) !important;
-        z-index: 9999 !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        margin-top: 0.5rem !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
         font-size: 0.75rem !important;
-        flex-direction: row !important;
-        align-items: center !important;
+        order: 3 !important;
     }
 
     .input-stats span {
-        color: #FFFFFF !important;
-        opacity: 0.9 !important;
+        color: rgba(255, 255, 255, 0.6) !important;
+        opacity: 1 !important;
         white-space: nowrap !important;
+        font-weight: 400 !important;
     }
 
-    /* 🔍 MOBILE SEARCH BUTTON */
+    /* Hide mobile search button */
     .mobile-search-btn {
+        display: none !important;
+    }
+
+    /* 🎛️ MOBILE TOGGLE BUTTON - Top Left */
+    .mobile-toggle-btn {
+        position: fixed !important;
+        top: 1rem !important;
+        left: 1rem !important;
         display: flex !important;
         align-items: center;
         justify-content: center;
         width: 44px;
         height: 44px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-        position: absolute;
-        right: 54px;
-        top: 50%;
-        transform: translateY(-50%);
+        background: linear-gradient(135deg, rgba(16, 163, 127, 0.15), rgba(16, 163, 127, 0.05));
+        border: 1.5px solid rgba(16, 163, 127, 0.3);
+        border-radius: 12px;
         cursor: pointer;
-        transition: all 0.2s ease;
-        z-index: 50;
+        transition: all 0.3s ease;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    .mobile-search-btn svg {
+    .mobile-toggle-btn svg {
         width: 20px;
         height: 20px;
-        fill: #FFFFFF;
+        fill: #10A37F;
+        transition: transform 0.3s ease;
     }
 
-    .mobile-search-btn:active {
-        transform: translateY(-50%) scale(0.95);
-        background: rgba(16, 163, 127, 0.2);
-        border-color: rgba(16, 163, 127, 0.4);
+    .mobile-toggle-btn:active {
+        transform: scale(0.95);
+        background: linear-gradient(135deg, rgba(16, 163, 127, 0.25), rgba(16, 163, 127, 0.15));
     }
 
     .input-action-btn,
@@ -2812,6 +2827,13 @@ body {
             </button>
 
             <!-- 🎯 HEADER -->
+            <!-- 🎛️ MOBILE TOGGLE BUTTON (Top Left - Only Mobile) -->
+            <button class="mobile-toggle-btn" id="mobileToggleBtn" title="Menü">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
+
             <div class="chat-header">
                 <div class="header-left">
                 </div>
@@ -3531,15 +3553,16 @@ body {
             });
         }
 
-        // 🔍 MOBILE SEARCH BUTTON
-        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-        if (mobileSearchBtn) {
-            mobileSearchBtn.addEventListener('click', () => {
-                // Trigger send message action
-                const sendBtn = document.getElementById('sendBtn');
-                if (sendBtn) {
-                    sendBtn.click();
-                }
+        // 🎛️ MOBILE TOGGLE BUTTON - Top left menu
+        const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+        if (mobileToggleBtn) {
+            mobileToggleBtn.addEventListener('click', () => {
+                // Toggle sidebar or menu functionality here
+                // For now, just visual feedback
+                mobileToggleBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    mobileToggleBtn.style.transform = 'scale(1)';
+                }, 150);
             });
         }
 
