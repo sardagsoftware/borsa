@@ -1733,7 +1733,8 @@ body {
     scrollbar-width: thin;
     scrollbar-color: #10A37F transparent;
     padding: 0.5rem 0;
-    padding-left: 160px; /* Space for icons on the left inside wrapper */
+    padding-left: 180px; /* Space for icons on the left inside wrapper */
+    padding-right: 0.5rem;
 }
 
 #messageInput::placeholder {
@@ -1749,7 +1750,7 @@ body {
     border-radius: 10px;
 }
 
-/* 🎬 Input Actions - INSIDE INPUT-WRAPPER, VERTICALLY CENTERED */
+/* 🎬 Input Actions - LEFT SIDE OF INPUT, VERTICALLY CENTERED */
 .input-actions {
     position: absolute;
     top: 50%;
@@ -1809,13 +1810,57 @@ body {
     transform: scale(0.95);
 }
 
-/* Active state for neon icons */
+/* Active state for neon icons - WITH PULSE ANIMATION */
 .neon-icon.active {
     opacity: 1;
+    background: rgba(16, 163, 127, 0.15);
+    border-radius: 8px;
+    animation: iconPulse 2s ease-in-out infinite;
 }
 
 .neon-icon.active svg {
     fill: #10A37F !important; /* Teal highlight when active */
+    animation: iconRotate 3s ease-in-out infinite;
+}
+
+/* Pulse animation for active icon */
+@keyframes iconPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(16, 163, 127, 0.7);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(16, 163, 127, 0);
+        transform: scale(1.05);
+    }
+}
+
+/* Subtle rotate/bounce for SVG inside */
+@keyframes iconRotate {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1.15) rotate(0deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Ripple animation on icon click */
+@keyframes rippleAnimation {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
 }
 
 /* REMOVED: Plus Button & Dropdown - CSS kaldırıldı, boş işlevi yok */
@@ -2073,6 +2118,7 @@ body {
         position: fixed;
         left: 0;
         top: 0;
+        transform: translateX(-280px); /* Start hidden on mobile */
         height: 100vh;
         width: 280px;
         z-index: 1000;
@@ -2114,23 +2160,37 @@ body {
     }
 
     .chat-header {
-        padding: 1rem;
-        flex-wrap: wrap;
-        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        justify-content: space-between;
     }
 
-    .header-left,
+    .header-left {
+        display: none; /* Hide on mobile */
+    }
+
     .header-actions {
         gap: 0.5rem;
+        width: 100%;
+        justify-content: flex-end;
     }
 
     .header-btn {
-        width: 40px;
-        height: 40px;
-        padding: 0.5rem;
+        width: 36px;
+        height: 36px;
+        padding: 0.4rem;
+        min-width: 36px;
     }
 
-    .header-btn svg {
+    .header-btn-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+    .header-btn svg,
+    .header-btn-icon svg {
         width: 18px;
         height: 18px;
     }
@@ -2184,28 +2244,41 @@ body {
         font-size: 1rem;
         min-height: 44px;
         padding: 0.75rem 1rem;
-        padding-left: 120px; /* Reduced space for smaller mobile icons */
+        padding-right: 1rem; /* No space for icons on mobile */
+        padding-left: 1rem;
     }
 
     .input-actions {
-        gap: 0.4rem;
-        bottom: 0.5rem;
-        left: 0.75rem;
+        position: static; /* Take icons OUT of input on mobile */
+        transform: none;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem; /* Space above input */
+        justify-content: center;
     }
 
     /* 🌟 Neon Icons Mobile - Smaller & Compact */
     .neon-icons-container {
-        gap: 0.3rem;
+        gap: 0.5rem;
     }
 
     .neon-icon {
-        width: 20px;
-        height: 20px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        padding: 6px;
     }
 
     .neon-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Active state on mobile - more visible */
+    .neon-icon.active {
+        background: rgba(16, 163, 127, 0.25);
+        border-color: rgba(16, 163, 127, 0.5);
     }
 
     .input-stats {
@@ -3239,7 +3312,7 @@ body {
         }
 
         // 🌟 NEON AI MODE ICON HANDLERS (Premium Inline Icons)
-        // Helper function to toggle active neon icon
+        // Helper function to toggle active neon icon with animation
         function toggleNeonIcon(activeIcon) {
             // Remove active class from all neon icons
             const allNeonIcons = [
@@ -3253,10 +3326,43 @@ body {
 
             allNeonIcons.forEach(icon => icon.classList.remove('active'));
 
-            // Add active class to clicked icon
+            // Add active class to clicked icon with animation
             if (activeIcon) {
                 activeIcon.classList.add('active');
+
+                // Trigger click animation (scale bounce)
+                activeIcon.style.animation = 'none';
+                setTimeout(() => {
+                    activeIcon.style.animation = '';
+                }, 10);
+
+                // Create ripple effect
+                createRippleEffect(activeIcon);
             }
+        }
+
+        // Create ripple effect on icon click
+        function createRippleEffect(element) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${rect.width}px;
+                height: ${rect.height}px;
+                border-radius: 50%;
+                background: rgba(16, 163, 127, 0.5);
+                transform: scale(0);
+                animation: rippleAnimation 0.6s ease-out;
+                pointer-events: none;
+                left: 0;
+                top: 0;
+            `;
+
+            element.style.position = 'relative';
+            element.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
         }
 
         // 🧠 Neon Deep Thinking Icon
@@ -3407,8 +3513,8 @@ body {
                         message: message,
                         aiType: state.selectedAiType,
                         model: 'llama', // Llama 3.3 70B as primary model
-                        temperature: 0.7,
-                        max_tokens: 2048,
+                        temperature: 0.9, // Higher for detailed responses
+                        max_tokens: 8000, // Maximum detail
                         history: cleanHistory,
                         language: 'tr',
                         locale: 'tr-TR'
@@ -3450,40 +3556,63 @@ body {
                         state.selectedAiType = 'general'; // Reset mode
                     }
 
-                    // 🎨 IMAGE MODE: Generate image with Google Imagen
+                    // 🎨 IMAGE MODE: Generate image with Google Imagen 3 (Vertex AI)
                     if (state.selectedAiType === 'image') {
                         try {
-                            const imageResponse = await fetch('/api/media-generation', {
+                            showToast('🎨 Görsel oluşturuluyor... (Ultra HD 8K)');
+                            const imageResponse = await fetch('/api/imagen-photo', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ prompt: message, type: 'image' })
+                                body: JSON.stringify({
+                                    prompt: message,
+                                    numberOfImages: 1,
+                                    aspectRatio: '1:1'
+                                })
                             });
                             const imageData = await imageResponse.json();
-                            if (imageData.success) {
-                                addMessage('assistant', `🎨 **Görsel Oluşturuldu!**\n\n${JSON.stringify(imageData.result, null, 2)}`);
+                            if (imageData.success && imageData.images && imageData.images.length > 0) {
+                                const imageUrl = imageData.images[0].dataUrl;
+                                addMessage('assistant', `🎨 **Ultra HD Görsel Oluşturuldu!**\n\n![${message}](${imageUrl})\n\n**Prompt:** ${message}\n**Kalite:** ${imageData.metadata.quality}\n**Teknoloji:** ${imageData.metadata.technology}`);
+                                showToast('✅ Görsel başarıyla oluşturuldu!');
+                            } else {
+                                addMessage('assistant', '⚠️ Görsel oluşturuldu ama görüntülenemedi. Lütfen tekrar deneyin.');
                             }
                         } catch (e) {
                             console.error('Image generation failed:', e);
-                            addMessage('assistant', '❌ Görsel oluşturulamadı. Lütfen tekrar deneyin.');
+                            addMessage('assistant', '❌ Görsel oluşturulamadı. Lütfen daha detaylı bir açıklama deneyin.');
                         }
                         state.selectedAiType = 'general'; // Reset mode
                     }
 
-                    // 🎬 VIDEO MODE: Generate video with Google Veo
+                    // 🎬 VIDEO MODE: Generate video with Google Veo 2.0 (Vertex AI)
                     if (state.selectedAiType === 'video') {
                         try {
-                            const videoResponse = await fetch('/api/media-generation', {
+                            showToast('🎬 Video oluşturuluyor... (Premium 4K, 8 saniye)');
+                            const videoResponse = await fetch('/api/veo-video', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ prompt: message, type: 'video', duration: 5 })
+                                body: JSON.stringify({
+                                    prompt: message,
+                                    durationSeconds: 8,
+                                    aspectRatio: '16:9',
+                                    sampleCount: 1
+                                })
                             });
                             const videoData = await videoResponse.json();
-                            if (videoData.success) {
-                                addMessage('assistant', `🎬 **Video Oluşturuldu!**\n\n${JSON.stringify(videoData.result, null, 2)}`);
+
+                            if (videoData.status === 'processing') {
+                                addMessage('assistant', `🎬 **Video Oluşturuluyor...**\n\n⏳ Video arka planda üretiliyor. Bu işlem 2-3 dakika sürebilir.\n\n**Prompt:** ${message}\n**Süre:** 8 saniye\n**Kalite:** Premium 4K\n\n*İşlem tamamlandığında bildirim alacaksınız.*`);
+                                showToast('⏳ Video arka planda üretiliyor...');
+                            } else if (videoData.success && videoData.videos && videoData.videos.length > 0) {
+                                const videoUrl = videoData.videos[0];
+                                addMessage('assistant', `🎬 **Premium 4K Video Oluşturuldu!**\n\n[Video İndir](${videoUrl})\n\n**Prompt:** ${message}\n**Süre:** ${videoData.duration} saniye\n**Kalite:** ${videoData.metadata.quality}\n**Teknoloji:** ${videoData.metadata.technology}`);
+                                showToast('✅ Video başarıyla oluşturuldu!');
+                            } else {
+                                addMessage('assistant', '⚠️ Video oluşturuldu ama indirilemedi. Lütfen tekrar deneyin.');
                             }
                         } catch (e) {
                             console.error('Video generation failed:', e);
-                            addMessage('assistant', '❌ Video oluşturulamadı. Lütfen tekrar deneyin.');
+                            addMessage('assistant', '❌ Video oluşturulamadı. Lütfen daha kısa ve net bir açıklama deneyin.');
                         }
                         state.selectedAiType = 'general'; // Reset mode
                     }
@@ -3936,7 +4065,7 @@ body {
                         model: 'llama', // Llama 3.3 70B as primary model
                         message: lastUserMessage,
                         temperature: 0.9,
-                        max_tokens: 2048,
+                        max_tokens: 8000, // Maximum detail
                         history: cleanHistory,
                         language: 'tr',
                         locale: 'tr-TR'
@@ -4042,6 +4171,11 @@ body {
         // ========== INITIALIZATION ==========
 
         window.addEventListener('DOMContentLoaded', () => {
+            // Mobilde sidebar kapalı başlasın
+            if (window.innerWidth <= 768) {
+                elements.sidebar.classList.add('collapsed');
+            }
+
             // Load saved theme
             const savedTheme = localStorage.getItem('ailydian_theme') || 'dark';
             setTheme(savedTheme);
