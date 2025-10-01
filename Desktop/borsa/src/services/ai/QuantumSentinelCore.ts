@@ -360,42 +360,88 @@ export class QuantumSentinelCore {
   ): Promise<AgentDecision> {
     const signals: string[] = [];
 
-    // Calculate position size based on ATR (Average True Range)
-    const accountBalance = 10000; // Example balance
-    const riskPerTrade = 0.02; // 2% risk per trade
-    const atrRisk = indicators.atr;
-    const positionSize = (accountBalance * riskPerTrade) / atrRisk;
+    // ============================================================================
+    // PROFESSIONAL RISK MANAGEMENT - INDUSTRY STANDARDS
+    // ============================================================================
 
-    signals.push(`Position size: ${positionSize.toFixed(2)} units`);
-    signals.push(`ATR-based stop loss: ${atrRisk.toFixed(2)}`);
-    signals.push(`Risk per trade: ${(riskPerTrade * 100).toFixed(1)}%`);
+    const accountBalance = 10000; // $10k demo account
+    const riskPerTrade = 0.02; // Maximum 2% risk per trade (industry standard)
 
-    // Calculate stop loss and take profit
-    const stopLossDistance = indicators.atr * 2;
-    const takeProfitDistance = indicators.atr * 4; // 2:1 reward-to-risk
+    // ATR-based dynamic stop loss
+    const volatilityRatio = indicators.atr / marketData.price;
+    const atrMultiplier = volatilityRatio > 0.02 ? 2.0 : 2.5;
+    const stopLossDistance = indicators.atr * atrMultiplier;
+
+    // Risk/Reward calculation
+    const rewardMultiplier = 2.5; // Minimum 1:2.5 R/R
+    const takeProfitDistance = stopLossDistance * rewardMultiplier;
+
+    // Position size based on risk
+    const riskAmount = accountBalance * riskPerTrade; // $200 at 2%
+    const stopLossPercentage = stopLossDistance / marketData.price;
+    const positionSize = (riskAmount / marketData.price) / stopLossPercentage;
+    const maxPositionSize = accountBalance * 0.1 / marketData.price; // Max 10% of account
+    const finalPositionSize = Math.min(positionSize, maxPositionSize);
+
+    // Calculate actual prices
+    let stopLoss: number;
+    let takeProfit: number;
 
     if (proposedAction === 'BUY') {
-      signals.push(`Stop Loss: ${(marketData.price - stopLossDistance).toFixed(2)}`);
-      signals.push(`Take Profit: ${(marketData.price + takeProfitDistance).toFixed(2)}`);
+      stopLoss = marketData.price - stopLossDistance;
+      takeProfit = marketData.price + takeProfitDistance;
+
+      // Adjust to support/resistance if close
+      const supportLevel = indicators.bollingerBands.lower;
+      if (supportLevel < stopLoss && stopLoss - supportLevel < stopLossDistance * 0.3) {
+        stopLoss = supportLevel * 0.995;
+      }
+
+      signals.push(`📍 Entry: $${marketData.price.toFixed(2)}`);
+      signals.push(`🛑 Stop Loss: $${stopLoss.toFixed(2)} (-${((stopLossDistance / marketData.price) * 100).toFixed(2)}%)`);
+      signals.push(`🎯 Take Profit: $${takeProfit.toFixed(2)} (+${((takeProfitDistance / marketData.price) * 100).toFixed(2)}%)`);
+      signals.push(`📊 Position Size: ${finalPositionSize.toFixed(4)} units ($${(finalPositionSize * marketData.price).toFixed(2)})`);
+      signals.push(`⚖️ Risk/Reward: 1:${rewardMultiplier.toFixed(1)}`);
+
+    } else if (proposedAction === 'SELL') {
+      stopLoss = marketData.price + stopLossDistance;
+      takeProfit = marketData.price - takeProfitDistance;
+
+      const resistanceLevel = indicators.bollingerBands.upper;
+      if (resistanceLevel > stopLoss && resistanceLevel - stopLoss < stopLossDistance * 0.3) {
+        stopLoss = resistanceLevel * 1.005;
+      }
+
+      signals.push(`📍 Entry: $${marketData.price.toFixed(2)}`);
+      signals.push(`🛑 Stop Loss: $${stopLoss.toFixed(2)} (+${((stopLossDistance / marketData.price) * 100).toFixed(2)}%)`);
+      signals.push(`🎯 Take Profit: $${takeProfit.toFixed(2)} (-${((takeProfitDistance / marketData.price) * 100).toFixed(2)}%)`);
+      signals.push(`📊 Position Size: ${finalPositionSize.toFixed(4)} units ($${(finalPositionSize * marketData.price).toFixed(2)})`);
+      signals.push(`⚖️ Risk/Reward: 1:${rewardMultiplier.toFixed(1)}`);
     }
 
-    // Check if risk is acceptable
-    const volatilityRisk = indicators.atr / marketData.price;
-    const riskScore = volatilityRisk * 100;
+    signals.push(`💰 Risk Amount: $${riskAmount.toFixed(2)} (${(riskPerTrade * 100).toFixed(1)}% of account)`);
+    signals.push(`📊 ATR: ${indicators.atr.toFixed(2)} (${(volatilityRatio * 100).toFixed(2)}% of price)`);
+
+    // Risk score based on volatility and market conditions
+    const riskScore = Math.min(100, volatilityRatio * 100 * 50); // Scale to 0-100
 
     let finalAction = proposedAction;
     if (riskScore > 80) {
       finalAction = 'HOLD';
-      signals.push('⚠️ Risk too high - Position blocked');
+      signals.push('⚠️ RISK TOO HIGH - Volatility exceeds acceptable limits');
+    } else if (riskScore > 60) {
+      signals.push('⚠️ MODERATE RISK - Consider reducing position size');
+    } else {
+      signals.push('✅ Risk acceptable for entry');
     }
 
     return {
-      agent: 'Risk Manager',
+      agent: 'Risk Management Agent',
       action: finalAction,
-      confidence: riskScore < 50 ? 0.9 : riskScore < 80 ? 0.6 : 0.3,
+      confidence: riskScore < 40 ? 0.9 : riskScore < 60 ? 0.7 : riskScore < 80 ? 0.5 : 0.2,
       reasoning: signals,
       riskScore,
-      timeframe: 'instant'
+      timeframe: 'all'
     };
   }
 
@@ -501,23 +547,75 @@ export class QuantumSentinelCore {
       finalAction = 'HOLD';
     }
 
-    // Calculate stops and targets
-    const stopLoss = finalAction === 'BUY'
-      ? marketData.price - (indicators.atr * 2)
-      : marketData.price + (indicators.atr * 2);
+    // ============================================================================
+    // GERÇEK RİSK YÖNETİMİ - PROFESSIONAL TRADING STANDARDS
+    // ============================================================================
 
-    const takeProfit = finalAction === 'BUY'
-      ? marketData.price + (indicators.atr * 4)
-      : marketData.price - (indicators.atr * 4);
+    // ATR-based dynamic stop loss (2-3 ATR depending on volatility)
+    const atrMultiplier = indicators.atr / marketData.price > 0.02 ? 2.0 : 2.5;
+    const stopLossDistance = indicators.atr * atrMultiplier;
+
+    // Risk/Reward ratio: Minimum 1:2, ideal 1:3
+    const rewardMultiplier = confidence > 0.75 ? 3.5 : 2.5;
+    const takeProfitDistance = stopLossDistance * rewardMultiplier;
+
+    let stopLoss: number;
+    let takeProfit: number;
+    let positionSize: number;
+
+    if (finalAction === 'BUY') {
+      // BUY: Stop below entry, target above
+      stopLoss = marketData.price - stopLossDistance;
+      takeProfit = marketData.price + takeProfitDistance;
+
+      // Support/Resistance adjustment for better SL placement
+      const supportLevel = indicators.bollingerBands.lower;
+      if (supportLevel < stopLoss && stopLoss - supportLevel < stopLossDistance * 0.5) {
+        stopLoss = supportLevel * 0.995; // Place just below support
+      }
+
+      // Position size: Risk 1-2% of account per trade
+      const riskPercentage = confidence > 0.7 ? 0.02 : 0.01; // 2% or 1%
+      const accountBalance = 10000; // $10k default (should come from account)
+      const riskAmount = accountBalance * riskPercentage;
+      const stopLossPercentage = stopLossDistance / marketData.price;
+      positionSize = (riskAmount / marketData.price) / stopLossPercentage;
+      positionSize = Math.min(positionSize, accountBalance * 0.1 / marketData.price); // Max 10% of account
+
+    } else if (finalAction === 'SELL') {
+      // SELL: Stop above entry, target below
+      stopLoss = marketData.price + stopLossDistance;
+      takeProfit = marketData.price - takeProfitDistance;
+
+      // Resistance adjustment
+      const resistanceLevel = indicators.bollingerBands.upper;
+      if (resistanceLevel > stopLoss && resistanceLevel - stopLoss < stopLossDistance * 0.5) {
+        stopLoss = resistanceLevel * 1.005; // Place just above resistance
+      }
+
+      // Position size calculation
+      const riskPercentage = confidence > 0.7 ? 0.02 : 0.01;
+      const accountBalance = 10000;
+      const riskAmount = accountBalance * riskPercentage;
+      const stopLossPercentage = stopLossDistance / marketData.price;
+      positionSize = (riskAmount / marketData.price) / stopLossPercentage;
+      positionSize = Math.min(positionSize, accountBalance * 0.1 / marketData.price);
+
+    } else {
+      // HOLD: No position, neutral values
+      stopLoss = marketData.price;
+      takeProfit = marketData.price;
+      positionSize = 0;
+    }
 
     const signal: TradingSignal = {
       symbol: marketData.symbol,
       action: finalAction,
       confidence,
       entryPrice: marketData.price,
-      stopLoss,
-      takeProfit,
-      positionSize: 0.02, // 2% of account
+      stopLoss: parseFloat(stopLoss.toFixed(2)),
+      takeProfit: parseFloat(takeProfit.toFixed(2)),
+      positionSize: parseFloat(positionSize.toFixed(4)),
       reasoning: allDecisions.flatMap(d => d.reasoning),
       timestamp: Date.now(),
       agents: allDecisions

@@ -101,10 +101,22 @@ export class RealTimeMarketDataService {
     try {
       // Fetch historical data
       const klines = await this.fetchBinanceKlines(symbol, '1h', 200);
+
+      if (!klines || klines.length < 200) {
+        console.warn(`⚠️ Insufficient data for ${symbol}, got ${klines?.length || 0} candles, need 200`);
+        throw new Error(`Insufficient historical data for ${symbol}`);
+      }
+
       const closes = klines.map(k => parseFloat(k.close));
       const highs = klines.map(k => parseFloat(k.high));
       const lows = klines.map(k => parseFloat(k.low));
       const volumes = klines.map(k => parseFloat(k.volume));
+
+      // Validate data
+      if (closes.some(isNaN) || highs.some(isNaN) || lows.some(isNaN) || volumes.some(isNaN)) {
+        console.error('❌ Invalid price data detected for', symbol);
+        throw new Error('Invalid price data');
+      }
 
       const indicators: TechnicalIndicators = {
         rsi: this.calculateRSI(closes, 14),
@@ -122,9 +134,9 @@ export class RealTimeMarketDataService {
       this.setCache(cacheKey, indicators);
       return indicators;
 
-    } catch (error) {
-      console.error('❌ Error calculating indicators:', error);
-      throw new Error('Failed to calculate technical indicators');
+    } catch (error: any) {
+      console.error(`❌ Error calculating indicators for ${symbol}:`, error.message || error);
+      throw new Error(`Failed to calculate technical indicators for ${symbol}: ${error.message || 'Unknown error'}`);
     }
   }
 
@@ -175,24 +187,42 @@ export class RealTimeMarketDataService {
     interval: string,
     limit: number
   ): Promise<BinanceKline[]> {
-    const url = `${this.BINANCE_BASE}/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
-    const response = await fetch(url);
+    try {
+      const url = `${this.BINANCE_BASE}/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
+      console.log(`📊 Fetching ${limit} ${interval} candles for ${symbol}...`);
 
-    if (!response.ok) {
-      throw new Error(`Binance API error: ${response.statusText}`);
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`❌ Binance API error (${response.status}):`, errorText);
+        throw new Error(`Binance API error: ${response.status} ${response.statusText}`);
+      }
+
+      const rawKlines = await response.json();
+
+      if (!Array.isArray(rawKlines) || rawKlines.length === 0) {
+        console.error(`❌ Invalid klines data for ${symbol}:`, rawKlines);
+        throw new Error(`No klines data returned for ${symbol}`);
+      }
+
+      const klines = rawKlines.map((k: any) => ({
+        openTime: k[0],
+        open: k[1],
+        high: k[2],
+        low: k[3],
+        close: k[4],
+        volume: k[5],
+        closeTime: k[6]
+      }));
+
+      console.log(`✅ Fetched ${klines.length} candles for ${symbol}`);
+      return klines;
+
+    } catch (error: any) {
+      console.error(`❌ Failed to fetch klines for ${symbol}:`, error.message || error);
+      throw error;
     }
-
-    const rawKlines = await response.json();
-
-    return rawKlines.map((k: any) => ({
-      openTime: k[0],
-      open: k[1],
-      high: k[2],
-      low: k[3],
-      close: k[4],
-      volume: k[5],
-      closeTime: k[6]
-    }));
   }
 
   // ============================================================================
@@ -226,21 +256,60 @@ export class RealTimeMarketDataService {
     signal: number;
     histogram: number;
   } {
-    const ema12 = this.calculateEMA(closes, 12);
-    const ema26 = this.calculateEMA(closes, 26);
-    const macdValue = ema12 - ema26;
+    if (closes.length < 26) {
+      return { value: 0, signal: 0, histogram: 0 };
+    }
 
-    // Calculate signal line (9-period EMA of MACD)
-    const macdValues = closes.slice(-26).map((_, i) => {
-      const slice = closes.slice(0, closes.length - 26 + i + 1);
-      return this.calculateEMA(slice, 12) - this.calculateEMA(slice, 26);
-    });
-    const signal = this.calculateEMA(macdValues, 9);
+    // Calculate EMA12 and EMA26 for all data points
+    const ema12Values: number[] = [];
+    const ema26Values: number[] = [];
+    const macdLine: number[] = [];
+
+    // Calculate EMA12 values
+    let ema12 = closes.slice(0, 12).reduce((a, b) => a + b, 0) / 12;
+    const k12 = 2 / (12 + 1);
+    ema12Values.push(ema12);
+
+    for (let i = 12; i < closes.length; i++) {
+      ema12 = closes[i] * k12 + ema12 * (1 - k12);
+      ema12Values.push(ema12);
+    }
+
+    // Calculate EMA26 values
+    let ema26 = closes.slice(0, 26).reduce((a, b) => a + b, 0) / 26;
+    const k26 = 2 / (26 + 1);
+    ema26Values.push(ema26);
+
+    for (let i = 26; i < closes.length; i++) {
+      ema26 = closes[i] * k26 + ema26 * (1 - k26);
+      ema26Values.push(ema26);
+    }
+
+    // Calculate MACD line (EMA12 - EMA26)
+    const startIdx = Math.max(0, ema12Values.length - ema26Values.length);
+    for (let i = 0; i < ema26Values.length; i++) {
+      macdLine.push(ema12Values[startIdx + i] - ema26Values[i]);
+    }
+
+    // Calculate signal line (9-period EMA of MACD line)
+    if (macdLine.length < 9) {
+      const currentMacd = macdLine[macdLine.length - 1] || 0;
+      return { value: currentMacd, signal: currentMacd, histogram: 0 };
+    }
+
+    let signal = macdLine.slice(0, 9).reduce((a, b) => a + b, 0) / 9;
+    const k9 = 2 / (9 + 1);
+
+    for (let i = 9; i < macdLine.length; i++) {
+      signal = macdLine[i] * k9 + signal * (1 - k9);
+    }
+
+    const currentMacd = macdLine[macdLine.length - 1];
 
     return {
-      value: macdValue,
-      signal,
-      histogram: macdValue - signal
+      value: currentMacd,
+      signal: signal,
+      histogram: currentMacd - signal
     };
   }
 
@@ -330,25 +399,38 @@ export class RealTimeMarketDataService {
     closes: number[],
     period: number = 14
   ): { k: number; d: number } {
-    const recentHighs = highs.slice(-period);
-    const recentLows = lows.slice(-period);
-    const currentClose = closes[closes.length - 1];
+    if (closes.length < period) {
+      return { k: 50, d: 50 }; // Default values
+    }
 
-    const highestHigh = Math.max(...recentHighs);
-    const lowestLow = Math.min(...recentLows);
+    // Calculate %K for last 3 periods (to calculate %D)
+    const kValues: number[] = [];
+    const periodsToCalc = Math.min(3, closes.length - period + 1);
 
-    const k = ((currentClose - lowestLow) / (highestHigh - lowestLow)) * 100;
+    for (let i = 0; i < periodsToCalc; i++) {
+      const endIdx = closes.length - periodsToCalc + i + 1;
+      const recentHighs = highs.slice(endIdx - period, endIdx);
+      const recentLows = lows.slice(endIdx - period, endIdx);
+      const currentClose = closes[endIdx - 1];
+
+      const highestHigh = Math.max(...recentHighs);
+      const lowestLow = Math.min(...recentLows);
+
+      if (highestHigh === lowestLow) {
+        kValues.push(50); // Avoid division by zero
+      } else {
+        const k = ((currentClose - lowestLow) / (highestHigh - lowestLow)) * 100;
+        kValues.push(k);
+      }
+    }
+
+    // Current %K is the last calculated value
+    const currentK = kValues[kValues.length - 1];
 
     // %D is 3-period SMA of %K
-    const kValues = closes.slice(-3).map((_, i) => {
-      const slice = closes.slice(0, closes.length - 3 + i + 1);
-      const h = highs.slice(0, closes.length - 3 + i + 1);
-      const l = lows.slice(0, closes.length - 3 + i + 1);
-      return this.calculateStochastic(h, l, slice, period).k;
-    });
     const d = kValues.reduce((a, b) => a + b, 0) / kValues.length;
 
-    return { k, d };
+    return { k: currentK, d };
   }
 
   /**

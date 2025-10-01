@@ -78,20 +78,24 @@ export function middleware(request: NextRequest) {
   // Permissions Policy
   headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
 
-  // Content Security Policy - NIRVANA Level Security (unsafe-eval removed!)
+  // Content Security Policy - Development-friendly with security
+  // In production, tighten this further
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://cybermap.kaspersky.com",
+    isDevelopment
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel.app https://cybermap.kaspersky.com https://api.binance.com https://api.coingecko.com"
+      : "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://cybermap.kaspersky.com",
     "style-src 'self' 'unsafe-inline' https://cybermap.kaspersky.com",
-    "img-src 'self' data: https: blob:",
+    "img-src 'self' data: https: blob: https://s2.coinmarketcap.com https://assets.coingecko.com",
     "font-src 'self' data:",
-    "connect-src 'self' https://*.ailydian.com https://vercel.live https://*.vercel.app wss://*.vercel.app https://cybermap.kaspersky.com wss://cybermap.kaspersky.com",
+    "connect-src 'self' https://*.ailydian.com https://vercel.live https://*.vercel.app wss://*.vercel.app https://cybermap.kaspersky.com wss://cybermap.kaspersky.com https://api.binance.com https://api.coingecko.com https://api.coinmarketcap.com ws://localhost:* http://localhost:*",
     "frame-src https://cybermap.kaspersky.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
-    "form-action 'self'",
-    "upgrade-insecure-requests"
-  ].join('; ');
+    "form-action 'self'"
+  ].filter(Boolean).join('; ');
 
   headers.set('Content-Security-Policy', csp);
 
