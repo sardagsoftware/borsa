@@ -109,7 +109,7 @@ export interface TradingSignal {
 export class QuantumSentinelCore {
   private isActive: boolean = false;
   private state: QuantumSentinelState;
-  private model: tf.LayersModel | null = null;
+  private model: any = null; // TensorFlow model or null
   private decisionHistory: AgentDecision[] = [];
   private tradingHistory: TradingSignal[] = [];
 
