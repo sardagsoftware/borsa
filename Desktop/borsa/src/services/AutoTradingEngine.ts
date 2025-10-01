@@ -510,10 +510,11 @@ export class AutoTradingEngine {
     }
   }
 
-  // Güncel fiyatı al (CoinGecko API)
+  // Güncel fiyatı al (Binance + CoinGecko Hybrid)
   private async getCurrentPrice(symbol: string): Promise<number> {
     try {
-      const response = await fetch('/api/market/crypto');
+      // Top 100'den fiyat al (Binance first, CoinGecko fallback)
+      const response = await fetch('/api/market/top100');
       const data = await response.json();
 
       if (data.success && data.data) {
@@ -522,11 +523,21 @@ export class AutoTradingEngine {
         );
 
         if (coin) {
-          return coin.currentPrice;
+          console.log(`💰 Price for ${symbol}: $${coin.price} (source: ${coin.source})`);
+          return coin.price;
         }
       }
 
-      // Fallback: mock fiyat
+      // Fallback: Binance direct API
+      console.log(`⚠️ ${symbol} not in top 100, trying Binance direct...`);
+      const binanceRes = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}USDT`);
+      if (binanceRes.ok) {
+        const binanceData = await binanceRes.json();
+        return parseFloat(binanceData.price);
+      }
+
+      // Final fallback: mock price
+      console.log(`❌ ${symbol} not found, using fallback price`);
       return 50000 + Math.random() * 1000;
 
     } catch (error) {
