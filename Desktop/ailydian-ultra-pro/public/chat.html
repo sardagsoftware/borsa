@@ -1698,6 +1698,12 @@ body {
     backdrop-filter: none;
 }
 
+/* 🌟 MOBILE ONLY BUTTONS - Hidden on desktop */
+.mobile-plus-btn,
+.mobile-search-btn {
+    display: none;
+}
+
 /* 🌟 NEON ICONS - COMPACT PREMIUM DESIGN */
 .neon-icon {
     width: 24px;
@@ -2178,62 +2184,167 @@ body {
     #messageInput {
         font-size: 1rem;
         min-height: 52px;
-        padding: 1rem 3.75rem 1rem 1.25rem; /* Premium spacing */
+        padding: 1rem 110px 1rem 60px !important; /* Space for plus button left, search+send right */
         width: 100%;
         line-height: 1.6;
-        border-radius: 16px; /* Softer corners on mobile */
+        border-radius: 16px;
+        text-align: left;
     }
 
     #messageInput::placeholder {
         font-size: 0.95rem;
         opacity: 0.7;
         letter-spacing: 0.01em;
+        text-align: left;
     }
 
     .input-actions {
-        position: static; /* Take icons OUT of input on mobile */
-        transform: none;
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
         gap: 0.5rem;
-        margin-bottom: 0.75rem; /* Space above input */
-        justify-content: center;
+        z-index: 100;
     }
 
-    /* 🌟 Neon Icons Mobile - Smaller & Compact */
-    .neon-icons-container {
-        gap: 0.4rem;
-        display: flex;
-        flex-wrap: wrap;
+    /* 🎯 MOBILE PLUS BUTTON - Premium Design */
+    .mobile-plus-btn {
+        display: flex !important;
+        align-items: center;
         justify-content: center;
-        padding: 0.5rem;
-        background: rgba(255, 255, 255, 0.02);
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, rgba(16, 163, 127, 0.2), rgba(16, 163, 127, 0.1));
+        border: 2px solid rgba(16, 163, 127, 0.4);
         border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
+    }
+
+    .mobile-plus-btn svg {
+        width: 24px;
+        height: 24px;
+        fill: #10A37F;
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-plus-btn.active svg {
+        transform: rotate(45deg);
+    }
+
+    .mobile-plus-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* 🎯 MOBILE ICONS MENU - Slide up animation */
+    .neon-icons-container {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        background: rgba(11, 15, 25, 0.95);
+        border: 2px solid rgba(16, 163, 127, 0.3);
+        border-radius: 16px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+    }
+
+    .neon-icons-container.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
     }
 
     .neon-icon {
-        width: 42px;
-        height: 42px;
+        width: 48px;
+        height: 48px;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-        padding: 7px;
+        border-radius: 12px;
+        padding: 10px;
         flex-shrink: 0;
+        transition: all 0.2s ease;
+    }
+
+    .neon-icon:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(16, 163, 127, 0.4);
     }
 
     .neon-icon svg {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
     }
 
     /* Active state on mobile - more visible */
     .neon-icon.active {
         background: rgba(16, 163, 127, 0.3);
-        border-color: rgba(16, 163, 127, 0.6);
-        box-shadow: 0 0 12px rgba(16, 163, 127, 0.3);
+        border-color: rgba(16, 163, 127, 0.8);
+        box-shadow: 0 0 16px rgba(16, 163, 127, 0.5);
     }
 
+    /* Token/char counter - Move to top left navbar */
     .input-stats {
-        display: none !important; /* Hide token/char count on mobile - cleaner UI */
+        position: fixed !important;
+        top: 1rem !important;
+        left: 1rem !important;
+        display: flex !important;
+        gap: 0.75rem !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        padding: 0.5rem 0.75rem !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(10px) !important;
+        z-index: 9999 !important;
+        font-size: 0.75rem !important;
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+
+    .input-stats span {
+        color: #FFFFFF !important;
+        opacity: 0.9 !important;
+        white-space: nowrap !important;
+    }
+
+    /* 🔍 MOBILE SEARCH BUTTON */
+    .mobile-search-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        position: absolute;
+        right: 54px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 50;
+    }
+
+    .mobile-search-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: #FFFFFF;
+    }
+
+    .mobile-search-btn:active {
+        transform: translateY(-50%) scale(0.95);
+        background: rgba(16, 163, 127, 0.2);
+        border-color: rgba(16, 163, 127, 0.4);
     }
 
     .input-action-btn,
@@ -2849,6 +2960,13 @@ body {
                             ></textarea>
 
                             <div class="input-actions">
+                                <!-- 🎯 MOBILE PLUS BUTTON -->
+                                <button class="mobile-plus-btn" id="mobilePlusBtn" title="AI Araçları">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                    </svg>
+                                </button>
+
                                 <!-- 🌟 NEON AI MODE ICONS (Inline) -->
                                 <div class="neon-icons-container">
                                     <button class="neon-icon neon-thinking" id="neonDeepThinkBtn" title="Deep Thinking Mode - Advanced reasoning">
@@ -2912,6 +3030,13 @@ body {
                             </span>
                         </div>
                     </div>
+
+                    <!-- 🔍 MOBILE SEARCH BUTTON -->
+                    <button class="mobile-search-btn" id="mobileSearchBtn" title="Ara">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
 
                     <!-- 🚀 SEND BUTTON - Grey-White Neon, Far Right Next to Token Counter -->
                     <button id="sendBtn">
@@ -3374,6 +3499,48 @@ body {
             element.appendChild(ripple);
 
             setTimeout(() => ripple.remove(), 600);
+        }
+
+        // 🎯 MOBILE PLUS BUTTON - Toggle icon menu
+        const mobilePlusBtn = document.getElementById('mobilePlusBtn');
+        const neonIconsContainer = document.querySelector('.neon-icons-container');
+
+        if (mobilePlusBtn && neonIconsContainer) {
+            mobilePlusBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobilePlusBtn.classList.toggle('active');
+                neonIconsContainer.classList.toggle('show');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobilePlusBtn.contains(e.target) && !neonIconsContainer.contains(e.target)) {
+                    mobilePlusBtn.classList.remove('active');
+                    neonIconsContainer.classList.remove('show');
+                }
+            });
+
+            // Close menu after selecting an icon
+            neonIconsContainer.querySelectorAll('.neon-icon').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    setTimeout(() => {
+                        mobilePlusBtn.classList.remove('active');
+                        neonIconsContainer.classList.remove('show');
+                    }, 300);
+                });
+            });
+        }
+
+        // 🔍 MOBILE SEARCH BUTTON
+        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+        if (mobileSearchBtn) {
+            mobileSearchBtn.addEventListener('click', () => {
+                // Trigger send message action
+                const sendBtn = document.getElementById('sendBtn');
+                if (sendBtn) {
+                    sendBtn.click();
+                }
+            });
         }
 
         // 🧠 Neon Deep Thinking Icon
