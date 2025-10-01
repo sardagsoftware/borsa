@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "ailydian",
   "builds": [
     {
       "src": "server.js",
@@ -11,27 +10,16 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/chat.html",
-      "dest": "/public/chat.html"
+      "source": "/api/:path*",
+      "destination": "/server.js"
     },
     {
-      "src": "/index.html",
-      "dest": "/public/index.html"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "source": "/:path*",
+      "destination": "/public/:path*"
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -65,12 +53,6 @@
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.openai.com https://*.anthropic.com; frame-ancestors 'none';"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/server.js"
     }
   ]
 }
