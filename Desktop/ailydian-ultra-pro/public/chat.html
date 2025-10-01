@@ -1002,12 +1002,15 @@ body {
     height: 120px;
     animation: fadeInScale 0.8s ease, floatAnimation 3s ease-in-out infinite;
     z-index: 10;
+    filter: drop-shadow(0 0 24px rgba(124, 92, 255, 0.15));
 }
 
 .mini-spinner {
     width: 100%;
     height: 100%;
     position: relative;
+    display: grid;
+    place-items: center;
 }
 
 /* Floating animation for AI brain */
@@ -1020,9 +1023,9 @@ body {
     }
 }
 
-/* Orbit rings removed - clean LEGO pyramid only */
+/* 🌌 AILYDIAN ORBIT ANIMATION - Premium Interactive SVG Orbit */
 
-/* 👤 USER WELCOME TEXT - Above Pyramid */
+/* 👤 USER WELCOME TEXT - Above Orbit */
 .user-welcome-text {
     position: absolute;
     top: 20%;
@@ -1044,137 +1047,51 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* 🔺 LEGO PYRAMID - Egyptian Style Layered Block Animation */
-
-/* Core Pyramid Top - AI Processing Peak (LEGO Block with 3D effect) */
-.orbit-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 18px;
-    height: 18px;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-    transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg);
-    animation: pyramidTopRotate 4s ease-in-out infinite;
-    border: 2px solid rgba(255, 215, 0, 0.6);
-    box-shadow:
-        inset -2px -2px 4px rgba(0, 0, 0, 0.3),
-        inset 2px 2px 4px rgba(255, 255, 255, 0.3),
-        4px 4px 8px rgba(0, 0, 0, 0.4);
-    border-radius: 2px;
+/* Ailydian Orbit SVG Animations */
+.ailydian-orbit-ring-1 {
+    transform-origin: center;
+    animation: orbitRotate1 36s linear infinite;
 }
 
-/* LEGO Pyramid Layer Blocks - Stacked Construction */
-.orbit-dot {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 2px;
-    transform-style: preserve-3d;
+.ailydian-orbit-ring-2 {
+    transform-origin: center;
+    animation: orbitRotate2 24s linear infinite reverse;
 }
 
-/* Layer 1 - Top Tier (Golden LEGO Block) */
-.orbit-dot-1 {
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(135deg, #FFD700 0%, #FFB347 100%);
-    border: 2px solid rgba(255, 215, 0, 0.5);
-    box-shadow:
-        inset -3px -3px 6px rgba(0, 0, 0, 0.3),
-        inset 3px 3px 6px rgba(255, 255, 255, 0.4),
-        6px 6px 12px rgba(0, 0, 0, 0.3);
-    animation: pyramidLayer1 3s ease-in-out infinite;
+.ailydian-orbit-ring-3 {
+    transform-origin: center;
+    animation: orbitRotate3 12s linear infinite;
 }
 
-/* Layer 2 - Middle Tier (Orange LEGO Block) */
-.orbit-dot-2 {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-    border: 2px solid rgba(255, 165, 0, 0.5);
-    box-shadow:
-        inset -3px -3px 6px rgba(0, 0, 0, 0.3),
-        inset 3px 3px 6px rgba(255, 255, 255, 0.4),
-        8px 8px 16px rgba(0, 0, 0, 0.3);
-    animation: pyramidLayer2 3.5s ease-in-out infinite;
+@keyframes orbitRotate1 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* Layer 3 - Base Tier (Dark Gold LEGO Block) */
-.orbit-dot-3 {
-    width: 42px;
-    height: 42px;
-    background: linear-gradient(135deg, #FF8C00 0%, #D97706 100%);
-    border: 2px solid rgba(255, 140, 0, 0.5);
-    box-shadow:
-        inset -4px -4px 8px rgba(0, 0, 0, 0.4),
-        inset 4px 4px 8px rgba(255, 255, 255, 0.3),
-        10px 10px 20px rgba(0, 0, 0, 0.4);
-    animation: pyramidLayer3 4s ease-in-out infinite;
+@keyframes orbitRotate2 {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
 }
 
-/* 🔺 PYRAMID TOP ROTATE - Peak Block Rotation */
-@keyframes pyramidTopRotate {
-    0% {
-        transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg) rotateY(0deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg) rotateY(180deg);
-        opacity: 0.9;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg) rotateY(360deg);
-        opacity: 1;
-    }
+@keyframes orbitRotate3 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
 }
 
-/* 🟡 PYRAMID LAYER 1 - Top Tier (Gentle Float & Rotate) */
-@keyframes pyramidLayer1 {
-    0% {
-        transform: translate(-50%, -50%) translateY(0px) rotateZ(0deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translate(-50%, -50%) translateY(-8px) rotateZ(180deg);
-        opacity: 0.85;
-    }
-    100% {
-        transform: translate(-50%, -50%) translateY(0px) rotateZ(360deg);
-        opacity: 1;
-    }
+/* Lissajous satellite motion */
+.ailydian-lissajous {
+    animation: lissajousFly 10s linear infinite;
 }
 
-/* 🟠 PYRAMID LAYER 2 - Middle Tier (Medium Float & Counter-Rotate) */
-@keyframes pyramidLayer2 {
-    0% {
-        transform: translate(-50%, -50%) translateY(0px) rotateZ(0deg) scale(1);
-        opacity: 0.95;
-    }
-    50% {
-        transform: translate(-50%, -50%) translateY(-12px) rotateZ(-180deg) scale(1.05);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translate(-50%, -50%) translateY(0px) rotateZ(-360deg) scale(1);
-        opacity: 0.95;
-    }
+@keyframes lissajousFly {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(45px, -35px); }
+    50%  { transform: translate(0, -60px); }
+    75%  { transform: translate(-45px, -35px); }
+    100% { transform: translate(0, 0); }
 }
 
-/* 🟤 PYRAMID LAYER 3 - Base Tier (Deep Float & Slow Rotate) */
-@keyframes pyramidLayer3 {
-    0% {
-        transform: translate(-50%, -50%) translateY(0px) rotateZ(0deg) scale(1);
-        opacity: 0.9;
-    }
-    50% {
-        transform: translate(-50%, -50%) translateY(-16px) rotateZ(180deg) scale(1.08);
-        opacity: 0.75;
-    }
-    100% {
-        transform: translate(-50%, -50%) translateY(0px) rotateZ(360deg) scale(1);
-        opacity: 0.9;
-    }
-}
+/* Pyramid animations removed - replaced with Ailydian Orbit */
 
 /* 💡 Suggestion Chips */
 .suggestion-chips {
@@ -2803,13 +2720,64 @@ body {
                         <div class="welcome-message">Size Nasıl Yardımcı Olabilirim?</div>
                     </div>
 
-                    <!-- Unique Orbit Loader -->
+                    <!-- 🌌 Ailydian Orbit Loader -->
                     <div class="mini-spinner-container">
                         <div class="mini-spinner">
-                            <div class="orbit-dot orbit-dot-1"></div>
-                            <div class="orbit-dot orbit-dot-2"></div>
-                            <div class="orbit-dot orbit-dot-3"></div>
-                            <div class="orbit-center"></div>
+                            <svg viewBox="-60 -60 120 120" width="120" height="120" role="img" aria-label="Ailydian orbit">
+                                <defs>
+                                    <radialGradient id="g-core" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#7C5CFF" stop-opacity="1" />
+                                        <stop offset="60%" stop-color="#00E0FF" stop-opacity="0.4" />
+                                        <stop offset="100%" stop-color="#0B0F19" stop-opacity="0" />
+                                    </radialGradient>
+                                    <linearGradient id="g-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#7C5CFF" />
+                                        <stop offset="100%" stop-color="#00E0FF" />
+                                    </linearGradient>
+                                    <linearGradient id="g-2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#00E0FF" />
+                                        <stop offset="100%" stop-color="#FF9D00" />
+                                    </linearGradient>
+                                    <linearGradient id="g-3" x1="100%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF9D00" />
+                                        <stop offset="100%" stop-color="#7C5CFF" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Background aura -->
+                                <circle r="48" fill="url(#g-core)" opacity="0.2" />
+
+                                <!-- Orbit 1 - Outer ellipse -->
+                                <g class="ailydian-orbit-ring-1">
+                                    <ellipse rx="50" ry="30" fill="none" stroke="url(#g-1)" stroke-opacity="0.7" stroke-width="0.8" />
+                                    <circle cx="50" cy="0" r="2" fill="#00E0FF" />
+                                    <circle cx="-50" cy="0" r="2" fill="#00E0FF" />
+                                </g>
+
+                                <!-- Orbit 2 - Middle circle -->
+                                <g class="ailydian-orbit-ring-2">
+                                    <circle r="38" fill="none" stroke="url(#g-2)" stroke-opacity="0.8" stroke-width="0.8" />
+                                    <circle cx="38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="-38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="38" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="-38" r="1.5" fill="#FF9D00" />
+                                </g>
+
+                                <!-- Orbit 3 - Inner circle -->
+                                <g class="ailydian-orbit-ring-3">
+                                    <circle r="25" fill="none" stroke="url(#g-3)" stroke-opacity="0.9" stroke-width="1" stroke-dasharray="1.5 5" />
+                                </g>
+
+                                <!-- Lissajous satellites -->
+                                <g class="ailydian-lissajous">
+                                    <circle r="2.5" fill="#7C5CFF" />
+                                </g>
+
+                                <!-- Core nucleus -->
+                                <circle r="12" fill="#111827" />
+                                <circle r="12" fill="url(#g-core)" opacity="0.35" />
+                                <circle r="0.8" fill="#7C5CFF" />
+                            </svg>
                         </div>
                     </div>
 
@@ -3805,10 +3773,49 @@ body {
                     </div>
                     <div class="mini-spinner-container">
                         <div class="mini-spinner">
-                            <div class="orbit-dot orbit-dot-1"></div>
-                            <div class="orbit-dot orbit-dot-2"></div>
-                            <div class="orbit-dot orbit-dot-3"></div>
-                            <div class="orbit-center"></div>
+                            <svg viewBox="-60 -60 120 120" width="120" height="120" role="img" aria-label="Ailydian orbit">
+                                <defs>
+                                    <radialGradient id="g-core-2" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#7C5CFF" stop-opacity="1" />
+                                        <stop offset="60%" stop-color="#00E0FF" stop-opacity="0.4" />
+                                        <stop offset="100%" stop-color="#0B0F19" stop-opacity="0" />
+                                    </radialGradient>
+                                    <linearGradient id="g-1-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#7C5CFF" />
+                                        <stop offset="100%" stop-color="#00E0FF" />
+                                    </linearGradient>
+                                    <linearGradient id="g-2-2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#00E0FF" />
+                                        <stop offset="100%" stop-color="#FF9D00" />
+                                    </linearGradient>
+                                    <linearGradient id="g-3-2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF9D00" />
+                                        <stop offset="100%" stop-color="#7C5CFF" />
+                                    </linearGradient>
+                                </defs>
+                                <circle r="48" fill="url(#g-core-2)" opacity="0.2" />
+                                <g class="ailydian-orbit-ring-1">
+                                    <ellipse rx="50" ry="30" fill="none" stroke="url(#g-1-2)" stroke-opacity="0.7" stroke-width="0.8" />
+                                    <circle cx="50" cy="0" r="2" fill="#00E0FF" />
+                                    <circle cx="-50" cy="0" r="2" fill="#00E0FF" />
+                                </g>
+                                <g class="ailydian-orbit-ring-2">
+                                    <circle r="38" fill="none" stroke="url(#g-2-2)" stroke-opacity="0.8" stroke-width="0.8" />
+                                    <circle cx="38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="-38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="38" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="-38" r="1.5" fill="#FF9D00" />
+                                </g>
+                                <g class="ailydian-orbit-ring-3">
+                                    <circle r="25" fill="none" stroke="url(#g-3-2)" stroke-opacity="0.9" stroke-width="1" stroke-dasharray="1.5 5" />
+                                </g>
+                                <g class="ailydian-lissajous">
+                                    <circle r="2.5" fill="#7C5CFF" />
+                                </g>
+                                <circle r="12" fill="#111827" />
+                                <circle r="12" fill="url(#g-core-2)" opacity="0.35" />
+                                <circle r="0.8" fill="#7C5CFF" />
+                            </svg>
                         </div>
                     </div>
                     <div class="suggestion-chips">
