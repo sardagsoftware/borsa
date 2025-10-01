@@ -41,7 +41,7 @@ const translations = {
     'login.operator': 'Operator',
     'login.authenticator': '🔐 Using Authenticator',
     'login.loadingLocation': 'Getting location info...',
-    'login.privacy': 'Privacy Policy',
+    'login.privacy': 'Privacy',
     'login.copyright': 'Copyright',
     'login.security': 'Security',
 
@@ -128,8 +128,8 @@ const translations = {
     'login.operator': 'Operatör',
     'login.authenticator': '🔐 Authenticator kullanılmaktadır',
     'login.loadingLocation': 'Konum bilgisi alınıyor...',
-    'login.privacy': 'Gizlilik Politikası',
-    'login.copyright': 'Telif Hakları',
+    'login.privacy': 'Gizlilik',
+    'login.copyright': 'Telif',
     'login.security': 'Güvenlik',
 
     // Navigation

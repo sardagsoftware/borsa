@@ -62,9 +62,22 @@ export default function Home() {
       {/* Full Width Background Map */}
       <GlobalMap />
 
-      {/* Language Toggle Button - Bottom Left */}
-      <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[100]">
+      {/* Language Toggle Button & Footer Links - Bottom Left */}
+      <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[100] flex items-center gap-3 md:gap-4">
         <LanguageSwitcher />
+        <div className="flex items-center gap-2 md:gap-3">
+          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors text-xs md:text-sm font-medium">
+            {t('login.privacy')}
+          </a>
+          <span className="text-white/30">•</span>
+          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors text-xs md:text-sm font-medium">
+            {t('login.copyright')}
+          </a>
+          <span className="text-white/30">•</span>
+          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors text-xs md:text-sm font-medium">
+            {t('login.security')}
+          </a>
+        </div>
       </div>
 
       {/* Right Side Login Panel - Mobile Responsive */}
@@ -142,20 +155,6 @@ export default function Home() {
         </form>
       </div>
 
-      {/* Bottom Left Footer Links - Mobile Responsive */}
-      <div className="fixed bottom-16 md:bottom-20 left-4 md:left-6 z-20">
-        <div className="flex flex-col md:flex-row gap-2 md:gap-4 text-xs md:text-sm">
-          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors glass-dark px-3 py-1.5 rounded-lg">
-            {t('login.privacy')}
-          </a>
-          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors glass-dark px-3 py-1.5 rounded-lg">
-            {t('login.copyright')}
-          </a>
-          <a href="#" onClick={(e) => e.preventDefault()} className="text-white/60 hover:text-primary transition-colors glass-dark px-3 py-1.5 rounded-lg">
-            {t('login.security')}
-          </a>
-        </div>
-      </div>
     </main>
   );
 }
