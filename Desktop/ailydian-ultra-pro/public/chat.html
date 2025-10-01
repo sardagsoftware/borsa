@@ -3673,22 +3673,13 @@ body {
             });
         }
 
-        // 🎛️ MOBILE TOGGLE BUTTON & SIDEBAR - Top left menu
+        // 🎛️ MOBILE TOGGLE BUTTON & SIDEBAR - Only close functionality
         const mobileToggleBtn = document.getElementById('mobileToggleBtn');
         const mobileSidebar = document.getElementById('mobileSidebar');
         const mobileSidebarClose = document.getElementById('mobileSidebarClose');
         const headerActions = document.querySelector('.header-actions');
         const menuDownload = document.getElementById('menuDownload');
         const menuShare = document.getElementById('menuShare');
-
-        function openMobileSidebar() {
-            if (mobileSidebar) {
-                mobileSidebar.classList.add('open');
-                if (headerActions) {
-                    headerActions.classList.add('hide-on-sidebar-open');
-                }
-            }
-        }
 
         function closeMobileSidebar() {
             if (mobileSidebar) {
@@ -3699,32 +3690,83 @@ body {
             }
         }
 
+        // Toggle button only closes the sidebar (no opening)
         if (mobileToggleBtn) {
-            mobileToggleBtn.addEventListener('click', openMobileSidebar);
+            mobileToggleBtn.addEventListener('click', closeMobileSidebar);
         }
 
         if (mobileSidebarClose) {
             mobileSidebarClose.addEventListener('click', closeMobileSidebar);
         }
 
-        // Menu actions
+        // Header download/share buttons open the sidebar on mobile
+        const originalDownloadBtn = document.getElementById('downloadBtn');
+        const originalShareBtn = document.getElementById('shareBtn');
+
+        if (originalDownloadBtn && window.innerWidth <= 768) {
+            originalDownloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (mobileSidebar) {
+                    mobileSidebar.classList.add('open');
+                    if (headerActions) {
+                        headerActions.classList.add('hide-on-sidebar-open');
+                    }
+                }
+            });
+        }
+
+        if (originalShareBtn && window.innerWidth <= 768) {
+            originalShareBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (mobileSidebar) {
+                    mobileSidebar.classList.add('open');
+                    if (headerActions) {
+                        headerActions.classList.add('hide-on-sidebar-open');
+                    }
+                }
+            });
+        }
+
+        // Menu actions - actually perform download/share
         if (menuDownload) {
             menuDownload.addEventListener('click', () => {
                 closeMobileSidebar();
-                const downloadBtn = document.getElementById('downloadBtn');
-                if (downloadBtn) {
-                    downloadBtn.click();
-                }
+                // Trigger actual download
+                setTimeout(() => {
+                    if (originalDownloadBtn) {
+                        const clickEvent = new MouseEvent('click', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window
+                        });
+                        // Remove our handler temporarily
+                        const handler = originalDownloadBtn.onclick;
+                        originalDownloadBtn.onclick = null;
+                        originalDownloadBtn.dispatchEvent(clickEvent);
+                        originalDownloadBtn.onclick = handler;
+                    }
+                }, 300);
             });
         }
 
         if (menuShare) {
             menuShare.addEventListener('click', () => {
                 closeMobileSidebar();
-                const shareBtn = document.getElementById('shareBtn');
-                if (shareBtn) {
-                    shareBtn.click();
-                }
+                // Trigger actual share
+                setTimeout(() => {
+                    if (originalShareBtn) {
+                        const clickEvent = new MouseEvent('click', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window
+                        });
+                        // Remove our handler temporarily
+                        const handler = originalShareBtn.onclick;
+                        originalShareBtn.onclick = null;
+                        originalShareBtn.dispatchEvent(clickEvent);
+                        originalShareBtn.onclick = handler;
+                    }
+                }, 300);
             });
         }
 
