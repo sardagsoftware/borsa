@@ -3,8 +3,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy AI worker package files
+COPY ai-worker-src/package*.json ./
 
 # Install dependencies
 RUN npm ci --only=production
@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 
 # Copy application code
-COPY package*.json ./
+COPY ai-worker-src/package*.json ./
 COPY ai-worker-src ./src
 
 # Environment variables
