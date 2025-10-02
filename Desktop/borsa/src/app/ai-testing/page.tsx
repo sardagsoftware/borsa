@@ -334,10 +334,10 @@ export default function AITestingPage() {
                           </div>
                           <div className="flex items-center justify-between text-xs">
                             <span className="text-white font-mono">
-                              ${coin.price >= 1 ? coin.price.toLocaleString() : coin.price.toFixed(6)}
+                              ${coin.price && coin.price >= 1 ? coin.price.toLocaleString() : (coin.price || 0).toFixed(6)}
                             </span>
-                            <span className={`font-bold ${coin.change24h >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                              {coin.change24h >= 0 ? '↑' : '↓'} {Math.abs(coin.change24h).toFixed(2)}%
+                            <span className={`font-bold ${(coin.change24h || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                              {(coin.change24h || 0) >= 0 ? '↑' : '↓'} {Math.abs(coin.change24h || 0).toFixed(2)}%
                             </span>
                           </div>
                         </button>
@@ -366,10 +366,10 @@ export default function AITestingPage() {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-white">
-                      ${selectedCoin.price >= 1 ? selectedCoin.price.toLocaleString() : selectedCoin.price.toFixed(6)}
+                      ${selectedCoin.price && selectedCoin.price >= 1 ? selectedCoin.price.toLocaleString() : (selectedCoin.price || 0).toFixed(6)}
                     </div>
-                    <div className={`text-sm font-bold ${selectedCoin.change24h >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {selectedCoin.change24h >= 0 ? '📈' : '📉'} {selectedCoin.change24h.toFixed(2)}%
+                    <div className={`text-sm font-bold ${(selectedCoin.change24h || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {(selectedCoin.change24h || 0) >= 0 ? '📈' : '📉'} {(selectedCoin.change24h || 0).toFixed(2)}%
                     </div>
                   </div>
                 </div>
@@ -378,11 +378,11 @@ export default function AITestingPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-slate-800/50 rounded-lg p-3">
                     <div className="text-xs text-slate-400">24h Volume</div>
-                    <div className="text-white font-bold">${(selectedCoin.volume24h / 1e9).toFixed(2)}B</div>
+                    <div className="text-white font-bold">${((selectedCoin.volume24h || 0) / 1e9).toFixed(2)}B</div>
                   </div>
                   <div className="bg-slate-800/50 rounded-lg p-3">
                     <div className="text-xs text-slate-400">Market Cap</div>
-                    <div className="text-white font-bold">${(selectedCoin.marketCap / 1e9).toFixed(2)}B</div>
+                    <div className="text-white font-bold">${((selectedCoin.marketCap || 0) / 1e9).toFixed(2)}B</div>
                   </div>
                 </div>
               </div>
@@ -543,7 +543,7 @@ export default function AITestingPage() {
                           <div className="flex justify-between">
                             <span className="text-slate-400">Price:</span>
                             <span className="text-white font-mono">
-                              ${item.coin.price >= 1 ? item.coin.price.toLocaleString() : item.coin.price.toFixed(6)}
+                              ${item.coin.price && item.coin.price >= 1 ? item.coin.price.toLocaleString() : (item.coin.price || 0).toFixed(6)}
                             </span>
                           </div>
 
