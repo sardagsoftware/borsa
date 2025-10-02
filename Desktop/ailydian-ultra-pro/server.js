@@ -16336,6 +16336,29 @@ app.post('/api/auth/check-email', authOAuth.handleCheckEmail);
 app.post('/api/auth/logout', authOAuth.handleLogout);
 app.get('/api/auth/verify', authOAuth.handleVerifyToken);
 
+// ==================================================
+// 🌐 SEO & INDEXING ROUTES
+// ==================================================
+const robotsTxt = require('./api/seo/robots');
+const sitemapIndex = require('./api/seo/sitemap-index');
+const sitemapCore = require('./api/seo/sitemap-core');
+const indexNow = require('./api/seo/indexnow');
+
+// robots.txt - Dynamic for all subdomains
+app.get('/robots.txt', robotsTxt.handleRobots);
+
+// Sitemap routes
+app.get('/sitemap-index.xml', sitemapIndex.handleSitemapIndex);
+app.get('/sitemap-core.xml', sitemapCore.handleCoreSitemap);
+app.get('/sitemap.xml', sitemapIndex.handleSitemapIndex); // Alias
+
+// IndexNow API
+app.post('/api/seo/indexnow', indexNow.handleIndexNow);
+
+// IndexNow key verification file
+app.get('/ailydian-indexnow-2025.txt', indexNow.handleKeyVerification);
+app.get(`/${process.env.INDEXNOW_KEY_ID || 'ailydian-indexnow-2025'}.txt`, indexNow.handleKeyVerification);
+
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {
   res.status(404).json({
