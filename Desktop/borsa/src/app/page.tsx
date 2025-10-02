@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import GlobalMap from '@/components/GlobalMap';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import SOCMonitor from '@/components/SOCMonitor';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface GeoData {
@@ -150,6 +151,9 @@ export default function Home() {
           )}
         </form>
       </div>
+
+      {/* SOC Security Monitor */}
+      <SOCMonitor />
 
     </main>
   );
