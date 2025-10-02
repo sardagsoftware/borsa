@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function SettingsPage() {
@@ -30,10 +30,55 @@ export default function SettingsPage() {
     useTakeProfit: true
   });
 
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedApiKeys = localStorage.getItem('borsa_api_keys');
+      const savedNotifications = localStorage.getItem('borsa_notifications');
+      const savedTradingSettings = localStorage.getItem('borsa_trading_settings');
+
+      if (savedApiKeys) {
+        setApiKeys(JSON.parse(savedApiKeys));
+      }
+      if (savedNotifications) {
+        setNotifications(JSON.parse(savedNotifications));
+      }
+      if (savedTradingSettings) {
+        setTradingSettings(JSON.parse(savedTradingSettings));
+      }
+    } catch (error) {
+      console.error('Error loading settings from localStorage:', error);
+    }
+  }, []);
+
   const handleSave = async () => {
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
-    // API call to save settings
+    try {
+      // Save to localStorage
+      localStorage.setItem('borsa_api_keys', JSON.stringify(apiKeys));
+      localStorage.setItem('borsa_notifications', JSON.stringify(notifications));
+      localStorage.setItem('borsa_trading_settings', JSON.stringify(tradingSettings));
+
+      // Show success message
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+
+      // Optional: Send to API for server-side persistence
+      try {
+        await fetch('/api/settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            apiKeys,
+            notifications,
+            tradingSettings
+          })
+        });
+      } catch (apiError) {
+        console.log('API save skipped (optional):', apiError);
+      }
+    } catch (error) {
+      console.error('Error saving settings:', error);
+    }
   };
 
   return (
