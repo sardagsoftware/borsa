@@ -39,9 +39,16 @@ const PUBLIC_ROUTES = [
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow public routes
-  if (PUBLIC_ROUTES.some(route => pathname.startsWith(route))) {
-    return NextResponse.next();
+  // Allow public routes - exact match for root
+  if (pathname === '/' || pathname === '/login' || PUBLIC_ROUTES.some(route => pathname.startsWith(route))) {
+    const response = NextResponse.next();
+
+    // Add basic security headers even for public routes
+    response.headers.set('X-Frame-Options', 'DENY');
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-XSS-Protection', '1; mode=block');
+
+    return response;
   }
 
   // Check if route is protected
@@ -54,13 +61,13 @@ export function middleware(request: NextRequest) {
 
     // If no auth token, redirect to login
     if (!authToken && !sessionToken) {
-      const loginUrl = new URL('/login', request.url);
+      const loginUrl = new URL('/', request.url);
       loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);
     }
 
     // Verify token (in production, verify with JWT)
-    if (authToken) {
+    if (authToken || sessionToken) {
       try {
         // Add security headers
         const response = NextResponse.next();
@@ -79,12 +86,16 @@ export function middleware(request: NextRequest) {
         return response;
       } catch (error) {
         // Invalid token, redirect to login
-        return NextResponse.redirect(new URL('/login', request.url));
+        return NextResponse.redirect(new URL('/', request.url));
       }
     }
   }
 
-  return NextResponse.next();
+  // Default: allow with security headers
+  const response = NextResponse.next();
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  return response;
 }
 
 // Configure which routes use this middleware
