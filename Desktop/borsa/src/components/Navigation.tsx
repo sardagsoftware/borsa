@@ -8,6 +8,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 // Simplified premium menu structure
 const menuGroups = {
+  trading: {
+    label: 'Trading',
+    items: [
+      { href: '/live-trading', label: '💰 Live Trading', highlight: true },
+      { href: '/dashboard', label: 'Dashboard' },
+      { href: '/portfolio', label: 'Portfolio' },
+    ]
+  },
   ai: {
     label: 'AI Botlar',
     items: [
