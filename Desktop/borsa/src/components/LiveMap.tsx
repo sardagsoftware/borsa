@@ -139,7 +139,7 @@ export default function LiveMap({ location }: { location: LocationData | null })
           </div>
           <div style="display: flex; justify-content: space-between; padding: 4px 0;">
             <span style="color: #666; font-weight: 500;">${t.coordinates}:</span>
-            <code style="color: #333; font-size: 11px;">${location.latitude.toFixed(4)}, ${location.longitude.toFixed(4)}</code>
+            <code style="color: #333; font-size: 11px;">${(location.latitude || 0).toFixed(4)}, ${(location.longitude || 0).toFixed(4)}</code>
           </div>
           ${location.device ? `
             <div style="display: flex; justify-content: space-between; padding: 4px 0;">
