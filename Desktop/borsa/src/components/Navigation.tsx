@@ -13,11 +13,12 @@ const menuGroups = {
     items: [
       { href: '/ai-control-center', label: 'AI Kontrol Merkezi' },
       { href: '/auto-trading', label: '⚡ Auto Trading' },
+      { href: '/bot-test', label: '🎯 Bot Test (Top 10)' },
+      { href: '/ai-testing', label: '🧠 AI Testing Center' },
+      { href: '/signals', label: '🚀 Trading Signals' },
       { href: '/ai-chat', label: 'AI Asistan' },
       { href: '/quantum-pro', label: 'Quantum Pro' },
       { href: '/bot-management', label: 'Bot Yönetimi' },
-      { href: '/ai-testing', label: 'AI Model Test' },
-      { href: '/signals', label: 'Sinyaller' },
     ]
   },
   analytics: {
@@ -91,7 +92,7 @@ export default function Navigation() {
         </button>
 
         {isOpen && (
-          <div className="absolute left-0 mt-2 w-56 glass-dark border border-white/10 rounded-xl shadow-2xl py-2 z-50 animate-in slide-in-from-top-2 duration-200">
+          <div className="absolute left-0 mt-2 w-56 bg-slate-900/95 backdrop-blur-sm border border-white/10 rounded-xl shadow-2xl py-2 z-50 animate-in slide-in-from-top-2 duration-200">
             {items.map((item: any) => {
               const isItemActive = pathname === item.href;
               return (
@@ -118,7 +119,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="glass-dark border-b border-white/10 sticky top-0 z-[55]">
+    <nav className="bg-slate-900/95 backdrop-blur-sm border-b border-white/10 sticky top-0 z-[55]">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

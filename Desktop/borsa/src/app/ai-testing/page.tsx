@@ -8,6 +8,9 @@ interface PredictionResult {
   action: string;
   model_name: string;
   model_type: string;
+  entry_price?: number;
+  stop_loss?: number;
+  take_profit?: number;
 }
 
 interface ModelInfo {
@@ -15,6 +18,7 @@ interface ModelInfo {
   type: string;
   version: string;
   parameters: number;
+  active: boolean;
 }
 
 interface CoinData {
@@ -26,17 +30,25 @@ interface CoinData {
   volume24h: number;
 }
 
+interface WatchlistCoin {
+  coin: CoinData;
+  prediction?: PredictionResult;
+  addedAt: string;
+}
+
 export default function AITestingPage() {
   const [selectedCoin, setSelectedCoin] = useState<CoinData | null>(null);
   const [timeframe, setTimeframe] = useState('1h');
   const [selectedModel, setSelectedModel] = useState('ensemble');
   const [loading, setLoading] = useState(false);
   const [loadingCoins, setLoadingCoins] = useState(false);
+  const [autoBotRunning, setAutoBotRunning] = useState(false);
   const [predictionResult, setPredictionResult] = useState<PredictionResult | null>(null);
   const [models, setModels] = useState<ModelInfo[]>([]);
   const [topCoins, setTopCoins] = useState<CoinData[]>([]);
+  const [watchlist, setWatchlist] = useState<WatchlistCoin[]>([]);
   const [error, setError] = useState('');
-  const [predictionHistory, setPredictionHistory] = useState<any[]>([]);
+  const [activeModels, setActiveModels] = useState<string[]>(['ensemble']);
 
   // Top 100 coinleri yükle
   const loadTop100Coins = async () => {
@@ -46,7 +58,7 @@ export default function AITestingPage() {
       const data = await response.json();
 
       if (data.success && data.data) {
-        const coins = data.data.map((item: any) => ({
+        const coins = data.data.slice(0, 50).map((item: any) => ({
           symbol: item.coin.symbol,
           name: item.coin.name,
           price: item.coin.price,
@@ -55,50 +67,35 @@ export default function AITestingPage() {
           volume24h: item.coin.volume24h,
         }));
         setTopCoins(coins);
-        // İlk coini otomatik seç
         if (coins.length > 0 && !selectedCoin) {
           setSelectedCoin(coins[0]);
         }
       }
     } catch (err) {
       console.error('Top 100 yüklenemedi:', err);
+      setError('Coinler yüklenemedi');
     } finally {
       setLoadingCoins(false);
     }
   };
 
-  // Modelleri yükle
-  const loadModels = async () => {
-    try {
-      const response = await fetch('/api/ai/models');
-      const data = await response.json();
-      if (data.success) {
-        setModels(data.models);
-      }
-    } catch (err) {
-      console.error('Modeller yüklenemedi:', err);
-    }
-  };
-
-  // Tahmin yap
-  const testPrediction = async () => {
-    if (!selectedCoin) {
+  // AI Tahmin yap
+  const runPrediction = async (coin?: CoinData) => {
+    const targetCoin = coin || selectedCoin;
+    if (!targetCoin) {
       setError('Lütfen bir coin seçin');
-      return;
+      return null;
     }
 
     setLoading(true);
     setError('');
-    setPredictionResult(null);
 
     try {
       const response = await fetch('/api/ai/predict', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          symbol: selectedCoin.symbol,
+          symbol: targetCoin.symbol,
           timeframe,
           model: selectedModel,
         }),
@@ -106,574 +103,524 @@ export default function AITestingPage() {
 
       const data = await response.json();
 
-      if (data.success) {
-        setPredictionResult(data.prediction);
+      if (data.success && data.prediction) {
+        const result = {
+          ...data.prediction,
+          entry_price: targetCoin.price,
+          stop_loss: targetCoin.price * 0.97, // 3% stop loss
+          take_profit: targetCoin.price * 1.05, // 5% take profit
+        };
 
-        // Geçmişe ekle
-        setPredictionHistory(prev => [
-          {
-            coin: selectedCoin,
-            timeframe,
-            model: selectedModel,
-            result: data.prediction,
-            timestamp: new Date().toISOString(),
-          },
-          ...prev.slice(0, 9)
-        ]);
+        if (!coin) {
+          setPredictionResult(result);
+        }
+
+        return result;
       } else {
         setError(data.error || 'Tahmin başarısız');
+        return null;
       }
     } catch (err: any) {
-      setError(err.message || 'AI servisine bağlanılamadı');
+      console.error('Tahmin hatası:', err);
+      setError('Tahmin yapılamadı: ' + err.message);
+      return null;
     } finally {
       setLoading(false);
     }
   };
 
-  // Toplu tahmin (Top 10)
-  const predictTop10 = async () => {
-    if (topCoins.length === 0) {
-      setError('Önce Top 100 coinleri yükleyin');
+  // Watchlist'e ekle
+  const addToWatchlist = async () => {
+    if (!selectedCoin) return;
+
+    // Zaten varsa ekleme
+    if (watchlist.find(w => w.coin.symbol === selectedCoin.symbol)) {
+      setError('Bu coin zaten izleme listesinde');
       return;
     }
 
-    setLoading(true);
-    setError('');
+    // Tahmin yap
+    const prediction = await runPrediction(selectedCoin);
 
-    try {
-      const top10Symbols = topCoins.slice(0, 10).map(c => c.symbol);
+    const newItem: WatchlistCoin = {
+      coin: selectedCoin,
+      prediction: prediction || undefined,
+      addedAt: new Date().toISOString(),
+    };
 
-      const response = await fetch('/api/ai/predict-batch', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          symbols: top10Symbols,
-          timeframe,
-          model: selectedModel,
-        }),
-      });
+    setWatchlist(prev => [newItem, ...prev]);
+  };
 
-      const data = await response.json();
+  // Watchlist'ten çıkar
+  const removeFromWatchlist = (symbol: string) => {
+    setWatchlist(prev => prev.filter(w => w.coin.symbol !== symbol));
+  };
 
-      if (data.success) {
-        alert(`✅ ${data.total} coin için tahmin tamamlandı!`);
-      } else {
-        setError(data.error || 'Toplu tahmin başarısız');
-      }
-    } catch (err: any) {
-      setError(err.message || 'Toplu tahmin hatası');
-    } finally {
-      setLoading(false);
+  // Auto Bot başlat/durdur
+  const toggleAutoBot = () => {
+    setAutoBotRunning(!autoBotRunning);
+
+    if (!autoBotRunning) {
+      // Auto bot başladı
+      console.log('🤖 Auto Bot başlatıldı - Arka planda çalışıyor');
+      // Burada gerçek auto bot logic'i çalışacak
+      setError('');
+    } else {
+      console.log('⏸️ Auto Bot durduruldu');
     }
   };
 
-  // Sayfa yüklenince
+  // Model aktif/pasif toggle
+  const toggleModel = (modelName: string) => {
+    setActiveModels(prev => {
+      if (prev.includes(modelName)) {
+        return prev.filter(m => m !== modelName);
+      } else {
+        return [...prev, modelName];
+      }
+    });
+  };
+
+  // Component mount
   useEffect(() => {
     loadTop100Coins();
-    loadModels();
   }, []);
 
+  // Auto bot çalışırken watchlist güncellemesi
+  useEffect(() => {
+    if (!autoBotRunning) return;
+
+    const interval = setInterval(async () => {
+      // Her 30 saniyede watchlist'i güncelle
+      const updatedWatchlist = await Promise.all(
+        watchlist.map(async (item) => {
+          const prediction = await runPrediction(item.coin);
+          return {
+            ...item,
+            prediction: prediction || item.prediction,
+          };
+        })
+      );
+      setWatchlist(updatedWatchlist);
+    }, 30000); // 30 saniye
+
+    return () => clearInterval(interval);
+  }, [autoBotRunning, watchlist]);
+
+  const availableModels = [
+    { id: 'ensemble', name: 'Ensemble AI', icon: '🎯', color: 'emerald' },
+    { id: 'transformer', name: 'Transformer', icon: '🤖', color: 'cyan' },
+    { id: 'xgboost', name: 'XGBoost', icon: '📊', color: 'purple' },
+    { id: 'lstm', name: 'LSTM Neural', icon: '🧠', color: 'blue' },
+    { id: 'random_forest', name: 'Random Forest', icon: '🌲', color: 'green' },
+    { id: 'gradient_boost', name: 'Gradient Boost', icon: '⚡', color: 'orange' },
+  ];
+
+  const timeframes = [
+    { id: '15m', label: '15 Dakika' },
+    { id: '1h', label: '1 Saat' },
+    { id: '4h', label: '4 Saat' },
+    { id: '1d', label: '1 Gün' },
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 py-8">
-      <div className="container mx-auto px-4">
-        {/* Başlık */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">🤖 AI Model Test Merkezi</h1>
-          <p className="text-slate-300">16 Derin Öğrenme Modeli • Gerçek Zamanlı CoinMarketCap Verileri • 200+ Teknik Gösterge</p>
-        </div>
+    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 py-6">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header - Fixed */}
+        <div className="sticky top-20 z-40 bg-gradient-to-r from-slate-900/95 to-purple-900/95 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30 shadow-2xl mb-6">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-white mb-1">🧠 AI Testing Center</h1>
+              <p className="text-slate-300 text-sm">Premium AI Models • Real-time Analysis • Auto Trading</p>
+            </div>
 
-        {/* Ana Grid */}
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Sol Kolon - Top 100 Liste */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Top 100 CoinMarketCap */}
-            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-white">🏆 Top 100 CoinMarketCap</h2>
-                <button
-                  onClick={loadTop100Coins}
-                  disabled={loadingCoins}
-                  className="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30 transition-all text-sm font-semibold"
-                >
-                  {loadingCoins ? '⏳' : '🔄'}
-                </button>
-              </div>
+            <div className="flex items-center gap-3">
+              {/* Auto Bot Toggle */}
+              <button
+                onClick={toggleAutoBot}
+                className={`px-6 py-3 rounded-xl font-bold transition-all shadow-lg ${
+                  autoBotRunning
+                    ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white animate-pulse'
+                    : 'bg-slate-700/50 text-slate-300 hover:bg-slate-600/50'
+                }`}
+              >
+                {autoBotRunning ? '🤖 Auto Bot: ÇALIŞIYOR' : '⏸️ Auto Bot: DURDUR'}
+              </button>
 
-              {loadingCoins ? (
-                <div className="text-center py-8">
-                  <div className="text-4xl mb-2">⏳</div>
-                  <div className="text-slate-400">Yükleniyor...</div>
-                </div>
-              ) : topCoins.length > 0 ? (
-                <div className="space-y-2 max-h-[700px] overflow-y-auto">
-                  {topCoins.map((coin, idx) => (
-                    <div
-                      key={coin.symbol}
-                      onClick={() => setSelectedCoin(coin)}
-                      className={`rounded-lg p-3 border cursor-pointer transition-all ${
-                        selectedCoin?.symbol === coin.symbol
-                          ? 'bg-emerald-500/20 border-emerald-500/50 shadow-lg'
-                          : 'bg-slate-700/30 border-slate-600/30 hover:bg-slate-700/50'
-                      }`}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-slate-500 font-mono">#{idx + 1}</span>
-                            <span className="font-bold text-white">{coin.symbol}</span>
-                          </div>
-                          <div className="text-xs text-slate-400 mt-0.5">{coin.name}</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-mono text-white text-sm">
-                            ${coin.price >= 1 ? coin.price.toLocaleString() : coin.price.toFixed(6)}
-                          </div>
-                          <div
-                            className={`text-xs font-bold ${
-                              coin.change24h >= 0 ? 'text-emerald-400' : 'text-red-400'
-                            }`}
-                          >
-                            {coin.change24h >= 0 ? '↑' : '↓'} {Math.abs(coin.change24h).toFixed(2)}%
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <div className="text-4xl mb-2">📊</div>
-                  <div className="text-slate-400">Top 100 coinleri yüklemek için butona tıklayın</div>
-                </div>
-              )}
+              {/* Quick Actions */}
+              <button
+                onClick={loadTop100Coins}
+                disabled={loadingCoins}
+                className="px-4 py-3 bg-purple-500/20 text-purple-300 rounded-xl hover:bg-purple-500/30 transition-all font-semibold disabled:opacity-50"
+              >
+                {loadingCoins ? '⏳' : '🔄'} Yenile
+              </button>
             </div>
           </div>
 
-          {/* Orta Kolon - Ayarlar ve Sonuçlar */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Seçili Coin Bilgisi */}
+          {/* Active Models Bar */}
+          <div className="mt-4 flex items-center gap-2 flex-wrap">
+            <span className="text-sm text-slate-400">Aktif Modeller:</span>
+            {availableModels.map((model) => (
+              <button
+                key={model.id}
+                onClick={() => toggleModel(model.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeModels.includes(model.id)
+                    ? `bg-${model.color}-500/30 text-${model.color}-300 border border-${model.color}-500/50`
+                    : 'bg-slate-700/30 text-slate-500 border border-slate-600/30'
+                }`}
+              >
+                {model.icon} {model.name}
+              </button>
+            ))}
+            <span className="text-xs text-slate-500 ml-2">
+              ({activeModels.length} / {availableModels.length} aktif)
+            </span>
+          </div>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-12 gap-6">
+          {/* Left Sidebar - Coin Selection */}
+          <div className="lg:col-span-3">
+            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 overflow-hidden sticky top-60">
+              <div className="p-4 border-b border-slate-700/50 bg-gradient-to-r from-purple-500/10 to-cyan-500/10">
+                <h2 className="text-lg font-bold text-white">📊 Top 50 Coins</h2>
+                <p className="text-xs text-slate-400 mt-1">Click to analyze</p>
+              </div>
+
+              <div className="max-h-[600px] overflow-y-auto">
+                {loadingCoins ? (
+                  <div className="p-8 text-center">
+                    <div className="text-4xl mb-2">⏳</div>
+                    <div className="text-slate-400">Loading...</div>
+                  </div>
+                ) : topCoins.length > 0 ? (
+                  <div className="p-2 space-y-1">
+                    {topCoins.map((coin, idx) => {
+                      const isInWatchlist = watchlist.find(w => w.coin.symbol === coin.symbol);
+                      return (
+                        <button
+                          key={coin.symbol}
+                          onClick={() => setSelectedCoin(coin)}
+                          className={`w-full text-left p-3 rounded-lg transition-all ${
+                            selectedCoin?.symbol === coin.symbol
+                              ? 'bg-gradient-to-r from-purple-500/30 to-cyan-500/30 border border-purple-500/50'
+                              : 'bg-slate-700/30 hover:bg-slate-600/30 border border-transparent'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-slate-500 font-mono w-6">#{idx + 1}</span>
+                              <div>
+                                <div className="font-bold text-white text-sm">{coin.symbol}</div>
+                                <div className="text-xs text-slate-400">{coin.name}</div>
+                              </div>
+                            </div>
+                            {isInWatchlist && <span className="text-emerald-400 text-xs">⭐</span>}
+                          </div>
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-white font-mono">
+                              ${coin.price >= 1 ? coin.price.toLocaleString() : coin.price.toFixed(6)}
+                            </span>
+                            <span className={`font-bold ${coin.change24h >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                              {coin.change24h >= 0 ? '↑' : '↓'} {Math.abs(coin.change24h).toFixed(2)}%
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="p-8 text-center">
+                    <div className="text-4xl mb-2">📊</div>
+                    <div className="text-slate-400">No coins loaded</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Center - Analysis Panel */}
+          <div className="lg:col-span-6 space-y-6">
+            {/* Selected Coin Info */}
             {selectedCoin && (
-              <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 border-2 border-emerald-500/50 rounded-xl p-6">
-                <h3 className="text-sm font-medium text-slate-400 mb-2">Seçili Kripto Para</h3>
-                <div className="flex items-center justify-between mb-3">
+              <div className="bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border-2 border-purple-500/30 rounded-2xl p-6">
+                <div className="flex items-center justify-between mb-4">
                   <div>
-                    <div className="text-2xl font-bold text-white">{selectedCoin.symbol}</div>
+                    <div className="text-3xl font-bold text-white">{selectedCoin.symbol}</div>
                     <div className="text-sm text-slate-300">{selectedCoin.name}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-bold text-white">
+                    <div className="text-2xl font-bold text-white">
                       ${selectedCoin.price >= 1 ? selectedCoin.price.toLocaleString() : selectedCoin.price.toFixed(6)}
                     </div>
-                    <div
-                      className={`text-sm font-bold ${
-                        selectedCoin.change24h >= 0 ? 'text-emerald-400' : 'text-red-400'
-                      }`}
-                    >
+                    <div className={`text-sm font-bold ${selectedCoin.change24h >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                       {selectedCoin.change24h >= 0 ? '📈' : '📉'} {selectedCoin.change24h.toFixed(2)}%
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-slate-700/30 rounded p-2">
-                    <div className="text-slate-400">Piyasa Değeri</div>
-                    <div className="text-white font-mono">${(selectedCoin.marketCap / 1e9).toFixed(2)}B</div>
+
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-slate-800/50 rounded-lg p-3">
+                    <div className="text-xs text-slate-400">24h Volume</div>
+                    <div className="text-white font-bold">${(selectedCoin.volume24h / 1e9).toFixed(2)}B</div>
                   </div>
-                  <div className="bg-slate-700/30 rounded p-2">
-                    <div className="text-slate-400">24s Hacim</div>
-                    <div className="text-white font-mono">${(selectedCoin.volume24h / 1e6).toFixed(2)}M</div>
+                  <div className="bg-slate-800/50 rounded-lg p-3">
+                    <div className="text-xs text-slate-400">Market Cap</div>
+                    <div className="text-white font-bold">${(selectedCoin.marketCap / 1e9).toFixed(2)}B</div>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Tahmin Ayarları */}
-            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-              <h2 className="text-xl font-bold text-white mb-4">⚙️ Tahmin Ayarları</h2>
+            {/* Analysis Controls */}
+            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 p-6">
+              <h3 className="text-lg font-bold text-white mb-4">⚙️ Analysis Settings</h3>
 
-              {/* Timeframe */}
+              {/* Timeframe Selection */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Zaman Dilimi
-                </label>
-                <select
-                  value={timeframe}
-                  onChange={(e) => setTimeframe(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-emerald-500"
-                >
-                  <option value="1m">📊 1 Dakika</option>
-                  <option value="5m">📊 5 Dakika</option>
-                  <option value="15m">📊 15 Dakika</option>
-                  <option value="30m">📊 30 Dakika</option>
-                  <option value="1h">📊 1 Saat (Önerilen)</option>
-                  <option value="4h">📊 4 Saat</option>
-                  <option value="1d">📊 1 Gün</option>
-                  <option value="1w">📊 1 Hafta</option>
-                </select>
+                <label className="text-sm text-slate-400 mb-2 block">Timeframe</label>
+                <div className="grid grid-cols-4 gap-2">
+                  {timeframes.map((tf) => (
+                    <button
+                      key={tf.id}
+                      onClick={() => setTimeframe(tf.id)}
+                      className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all ${
+                        timeframe === tf.id
+                          ? 'bg-purple-500/30 text-purple-300 border border-purple-500/50'
+                          : 'bg-slate-700/30 text-slate-400 hover:bg-slate-600/30'
+                      }`}
+                    >
+                      {tf.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              {/* Model Seçimi */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  AI Modeli ({models.length} model hazır)
-                </label>
+              {/* Model Selection */}
+              <div className="mb-6">
+                <label className="text-sm text-slate-400 mb-2 block">AI Model</label>
                 <select
                   value={selectedModel}
                   onChange={(e) => setSelectedModel(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50"
                 >
-                  <option value="ensemble">🎯 Ensemble (En Güçlü - Önerilen)</option>
-                  <optgroup label="LSTM Modelleri">
-                    <option value="lstm_standard">Standard LSTM</option>
-                    <option value="lstm_bidirectional">Çift Yönlü LSTM</option>
-                    <option value="lstm_stacked">Katmanlı LSTM</option>
-                  </optgroup>
-                  <optgroup label="GRU Modelleri">
-                    <option value="gru_standard">Standard GRU</option>
-                    <option value="gru_bidirectional">Çift Yönlü GRU</option>
-                    <option value="gru_stacked">Katmanlı GRU</option>
-                    <option value="gru_attention">🌟 Dikkat Mekanizmalı GRU</option>
-                    <option value="gru_residual">🌟 Residual GRU</option>
-                  </optgroup>
-                  <optgroup label="Transformer Modelleri (En Gelişmiş)">
-                    <option value="transformer_standard">🌟 Standard Transformer</option>
-                    <option value="transformer_timeseries">Zaman Serisi Transformer</option>
-                    <option value="transformer_informer">Informer</option>
-                  </optgroup>
-                  <optgroup label="CNN Modelleri">
-                    <option value="cnn_standard">Standard CNN</option>
-                    <option value="cnn_resnet">ResNet CNN</option>
-                    <option value="cnn_multiscale">🌟 Çok Ölçekli CNN</option>
-                    <option value="cnn_dilated">Dilated CNN</option>
-                    <option value="cnn_tcn">🌟 Temporal CNN (TCN)</option>
-                  </optgroup>
+                  {availableModels.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.icon} {model.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
-              {/* Aksiyon Butonları */}
-              <div className="space-y-3">
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-3">
                 <button
-                  onClick={testPrediction}
+                  onClick={() => runPrediction()}
                   disabled={loading || !selectedCoin}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-lg hover:from-emerald-600 hover:to-cyan-600 transition-all disabled:opacity-50 text-lg shadow-lg"
+                  className="py-3 px-6 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold rounded-xl hover:from-purple-600 hover:to-cyan-600 transition-all disabled:opacity-50 shadow-lg"
                 >
-                  {loading ? '⏳ Tahmin Yapılıyor...' : '🚀 AI Tahmin Yap'}
+                  {loading ? '⏳ Analyzing...' : '🚀 Analyze Now'}
                 </button>
 
                 <button
-                  onClick={predictTop10}
-                  disabled={loading || topCoins.length === 0}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all disabled:opacity-50"
+                  onClick={addToWatchlist}
+                  disabled={!selectedCoin}
+                  className="py-3 px-6 bg-emerald-500/20 text-emerald-300 font-bold rounded-xl hover:bg-emerald-500/30 transition-all disabled:opacity-50 border border-emerald-500/50"
                 >
-                  {loading ? '⏳ İşlem Yapılıyor...' : '📊 Top 10 Toplu Tahmin'}
+                  ⭐ Add to Watch
                 </button>
               </div>
             </div>
 
-            {/* Tahmin Sonucu */}
-            {predictionResult && selectedCoin && (
-              <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-                <h2 className="text-xl font-bold text-white mb-4">🎯 Tahmin Sonucu</h2>
+            {/* Prediction Result */}
+            {predictionResult && (
+              <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 border-2 border-emerald-500/50 rounded-2xl p-6">
+                <h3 className="text-xl font-bold text-white mb-4">🎯 AI Prediction Result</h3>
 
-                {/* Aksiyon Badge */}
-                <div className="text-center mb-6">
-                  <div
-                    className={`inline-block px-8 py-4 rounded-xl text-3xl font-bold ${
-                      predictionResult.action === 'BUY'
-                        ? 'bg-emerald-500/20 text-emerald-400 border-2 border-emerald-500/50'
-                        : predictionResult.action === 'SELL'
-                        ? 'bg-red-500/20 text-red-400 border-2 border-red-500/50'
-                        : 'bg-yellow-500/20 text-yellow-400 border-2 border-yellow-500/50'
-                    }`}
-                  >
-                    {predictionResult.action === 'BUY' && '📈 AL'}
-                    {predictionResult.action === 'SELL' && '📉 SAT'}
-                    {predictionResult.action === 'HOLD' && '⏸️ BEKLE'}
-                  </div>
-                  <div className="mt-3 text-xl text-white font-bold">{selectedCoin.symbol}</div>
-                </div>
-
-                {/* Metrikler */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-slate-700/30 rounded-lg p-4">
-                    <div className="text-sm text-slate-400 mb-1">Tahmin Değeri</div>
-                    <div className="text-3xl font-bold text-white">
-                      {(predictionResult.prediction * 100).toFixed(1)}%
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="bg-slate-800/50 rounded-xl p-4">
+                    <div className="text-sm text-slate-400 mb-1">Action</div>
+                    <div className={`text-2xl font-bold ${
+                      predictionResult.action === 'BUY' ? 'text-emerald-400' :
+                      predictionResult.action === 'SELL' ? 'text-red-400' : 'text-yellow-400'
+                    }`}>
+                      {predictionResult.action === 'BUY' && '📈 BUY'}
+                      {predictionResult.action === 'SELL' && '📉 SELL'}
+                      {predictionResult.action === 'HOLD' && '⏸️ HOLD'}
                     </div>
                   </div>
-                  <div className="bg-slate-700/30 rounded-lg p-4">
-                    <div className="text-sm text-slate-400 mb-1">Güven Skoru</div>
-                    <div className="text-3xl font-bold text-emerald-400">
+
+                  <div className="bg-slate-800/50 rounded-xl p-4">
+                    <div className="text-sm text-slate-400 mb-1">Confidence</div>
+                    <div className="text-2xl font-bold text-cyan-400">
                       {(predictionResult.confidence * 100).toFixed(1)}%
                     </div>
                   </div>
                 </div>
 
-                {/* Model Bilgisi */}
-                <div className="bg-slate-700/30 rounded-lg p-4 mb-4">
-                  <div className="text-sm text-slate-400 mb-2">Kullanılan Model</div>
-                  <div className="font-bold text-white text-lg">{predictionResult.model_name}</div>
-                  <div className="text-xs text-slate-400 mt-1">
-                    Tip: {predictionResult.model_type} • Zaman: {timeframe}
-                  </div>
-                </div>
-
-                {/* Progress Bar */}
-                <div>
-                  <div className="flex justify-between text-xs text-slate-400 mb-2">
-                    <span className="font-bold text-red-400">SAT</span>
-                    <span className="font-bold text-yellow-400">BEKLE</span>
-                    <span className="font-bold text-emerald-400">AL</span>
-                  </div>
-                  <div className="h-4 bg-slate-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-red-500 via-yellow-500 to-emerald-500 transition-all duration-500"
-                      style={{ width: `${predictionResult.prediction * 100}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Hata Mesajı */}
-            {error && (
-              <div className="bg-red-500/10 border-2 border-red-500/50 rounded-xl p-6">
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl">❌</span>
-                  <div>
-                    <div className="font-bold text-red-400 mb-1 text-lg">Hata</div>
-                    <div className="text-sm text-red-300">{error}</div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Tahmin Geçmişi */}
-            {predictionHistory.length > 0 && (
-              <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-                <h2 className="text-xl font-bold text-white mb-4">📜 Tahmin Geçmişi</h2>
-                <div className="space-y-2 max-h-96 overflow-y-auto">
-                  {predictionHistory.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-slate-700/30 rounded-lg p-3 border border-slate-600/30"
-                    >
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="font-bold text-white">{item.coin.symbol}</span>
-                          <span className="text-xs text-slate-400 ml-2">{item.timeframe}</span>
-                        </div>
-                        <span
-                          className={`text-sm font-bold ${
-                            item.result.action === 'BUY'
-                              ? 'text-emerald-400'
-                              : item.result.action === 'SELL'
-                              ? 'text-red-400'
-                              : 'text-yellow-400'
-                          }`}
-                        >
-                          {item.result.action === 'BUY' && 'AL'}
-                          {item.result.action === 'SELL' && 'SAT'}
-                          {item.result.action === 'HOLD' && 'BEKLE'}
-                        </span>
-                      </div>
-                      <div className="text-xs text-slate-500 mt-1">
-                        {new Date(item.timestamp).toLocaleString('tr-TR')}
-                      </div>
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="bg-slate-700/30 rounded-lg p-3">
+                    <div className="text-xs text-slate-400">Entry</div>
+                    <div className="text-white font-mono text-sm">
+                      ${predictionResult.entry_price?.toFixed(2)}
                     </div>
-                  ))}
+                  </div>
+                  <div className="bg-red-500/20 rounded-lg p-3">
+                    <div className="text-xs text-red-400">Stop Loss</div>
+                    <div className="text-red-300 font-mono text-sm">
+                      ${predictionResult.stop_loss?.toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="bg-emerald-500/20 rounded-lg p-3">
+                    <div className="text-xs text-emerald-400">Take Profit</div>
+                    <div className="text-emerald-300 font-mono text-sm">
+                      ${predictionResult.take_profit?.toFixed(2)}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 p-3 bg-slate-700/30 rounded-lg">
+                  <div className="text-xs text-slate-400 mb-1">Model</div>
+                  <div className="text-sm text-white font-semibold">
+                    {predictionResult.model_name} ({predictionResult.model_type})
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Sağ Kolon - Bilgilendirme */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Sistem Bilgisi */}
-            <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-white mb-3">💡 Sistem Nasıl Çalışır?</h3>
-              <div className="space-y-3 text-sm text-slate-300">
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-400 mt-0.5 text-lg">1️⃣</span>
-                  <div>
-                    <div className="font-bold text-white">Veri Toplama</div>
-                    <div className="text-xs text-slate-400 mt-1">
-                      Binance'den gerçek zamanlı OHLCV mum verileri çekilir (Open, High, Low, Close, Volume)
-                    </div>
-                  </div>
+          {/* Right Sidebar - Watchlist */}
+          <div className="lg:col-span-3">
+            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 sticky top-60">
+              <div className="p-4 border-b border-slate-700/50 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold text-white">⭐ Watch List</h2>
+                  <span className="text-xs text-slate-400 bg-slate-700/50 px-2 py-1 rounded">
+                    {watchlist.length} coins
+                  </span>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-400 mt-0.5 text-lg">2️⃣</span>
-                  <div>
-                    <div className="font-bold text-white">Teknik Analiz</div>
-                    <div className="text-xs text-slate-400 mt-1">
-                      TA-Lib servisi 158 teknik gösterge hesaplar: RSI, MACD, Bollinger Bands, Moving Averages vb.
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-400 mt-0.5 text-lg">3️⃣</span>
-                  <div>
-                    <div className="font-bold text-white">Özellik Mühendisliği</div>
-                    <div className="text-xs text-slate-400 mt-1">
-                      200+ özellik oluşturulur: fiyat değişimleri, volatilite, momentum, trend göstergeleri
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-400 mt-0.5 text-lg">4️⃣</span>
-                  <div>
-                    <div className="font-bold text-white">AI Tahmin</div>
-                    <div className="text-xs text-slate-400 mt-1">
-                      16 derin öğrenme modeli verileri analiz eder ve BUY/SELL/HOLD tahmini yapar
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-400 mt-0.5 text-lg">5️⃣</span>
-                  <div>
-                    <div className="font-bold text-white">Sonuç Sunumu</div>
-                    <div className="text-xs text-slate-400 mt-1">
-                      Tahmin + güven skoru ile size sunulur. Ensemble mode tüm modellerin ortalamasını alır.
-                    </div>
-                  </div>
-                </div>
+                <p className="text-xs text-slate-400 mt-1">Auto-updated every 30s</p>
               </div>
-            </div>
 
-            {/* Model Açıklamaları */}
-            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-              <h3 className="text-lg font-bold text-white mb-3">🤖 AI Modelleri Hakkında</h3>
-              <div className="space-y-3 text-sm">
-                <div className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="font-bold text-emerald-400 mb-1">LSTM (Long Short-Term Memory)</div>
-                  <div className="text-xs text-slate-300">
-                    Uzun vadeli bağımlılıkları öğrenen tekrarlayan sinir ağı. Zaman serisi tahminlerinde başarılı.
-                  </div>
-                </div>
-                <div className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="font-bold text-cyan-400 mb-1">GRU (Gated Recurrent Unit)</div>
-                  <div className="text-xs text-slate-300">
-                    LSTM'e benzer ama daha hızlı. Dikkat mekanizması önemli olayları vurgular.
-                  </div>
-                </div>
-                <div className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="font-bold text-purple-400 mb-1">Transformer (En Güçlü)</div>
-                  <div className="text-xs text-slate-300">
-                    Paralel işlem yapabilen, çok başlı dikkat mekanizmalı state-of-the-art model. En yüksek doğruluk.
-                  </div>
-                </div>
-                <div className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="font-bold text-orange-400 mb-1">CNN (Convolutional Neural Network)</div>
-                  <div className="text-xs text-slate-300">
-                    Grafik paternlerini tanır: Head & Shoulders, Double Top/Bottom, Triangles. Görsel analiz.
-                  </div>
-                </div>
-                <div className="bg-slate-700/30 rounded-lg p-3">
-                  <div className="font-bold text-yellow-400 mb-1">Ensemble (Önerilen)</div>
-                  <div className="text-xs text-slate-300">
-                    Tüm 16 modelin tahminlerini birleştirir. En stabil ve güvenilir sonuçlar.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Teknik Bilgi */}
-            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-              <h3 className="text-lg font-bold text-white mb-3">📊 Teknik Detaylar</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Veri Kaynağı:</span>
-                  <span className="text-white font-medium">Binance API</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Teknik Göstergeler:</span>
-                  <span className="text-white font-medium">158 adet (TA-Lib)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Toplam Özellik:</span>
-                  <span className="text-white font-medium">200+</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">AI Modeli:</span>
-                  <span className="text-white font-medium">16 adet</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Toplam Parametre:</span>
-                  <span className="text-white font-medium">~4.4M</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Tahmin Süresi:</span>
-                  <span className="text-white font-medium">{'<'}50ms</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Güncelleme:</span>
-                  <span className="text-white font-medium">Gerçek Zamanlı</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Servis Durumu */}
-            <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-              <h2 className="text-lg font-bold text-white mb-4">🔌 Servis Durumu</h2>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between bg-slate-700/30 rounded-lg p-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                    <span className="text-white font-medium text-sm">AI Tahmin Servisi</span>
-                  </div>
-                  <span className="text-xs text-emerald-400 font-mono">:5003 ✓</span>
-                </div>
-                <div className="flex items-center justify-between bg-slate-700/30 rounded-lg p-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                    <span className="text-white font-medium text-sm">TA-Lib Servisi</span>
-                  </div>
-                  <span className="text-xs text-emerald-400 font-mono">:5002 ✓</span>
-                </div>
-                <div className="flex items-center justify-between bg-slate-700/30 rounded-lg p-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                    <span className="text-white font-medium text-sm">Next.js API</span>
-                  </div>
-                  <span className="text-xs text-emerald-400 font-mono">:3000 ✓</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Yüklü Modeller */}
-            {models.length > 0 && (
-              <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50">
-                <h2 className="text-lg font-bold text-white mb-4">
-                  🧠 Yüklü AI Modelleri ({models.length})
-                </h2>
-                <div className="space-y-2 max-h-60 overflow-y-auto">
-                  {models.map((model, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-slate-700/30 rounded-lg p-2 border border-slate-600/30"
-                    >
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <div className="font-medium text-white text-xs">{model.name}</div>
-                          <div className="text-xs text-slate-400">
-                            {model.type}
+              <div className="max-h-[600px] overflow-y-auto">
+                {watchlist.length > 0 ? (
+                  <div className="p-2 space-y-2">
+                    {watchlist.map((item) => (
+                      <div
+                        key={item.coin.symbol}
+                        className="bg-slate-700/30 rounded-lg p-3 border border-slate-600/30"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <div>
+                            <div className="font-bold text-white text-sm">{item.coin.symbol}</div>
+                            <div className="text-xs text-slate-400">{item.coin.name}</div>
                           </div>
+                          <button
+                            onClick={() => removeFromWatchlist(item.coin.symbol)}
+                            className="text-red-400 hover:text-red-300 text-xs"
+                          >
+                            ✕
+                          </button>
                         </div>
-                        <div className="text-right">
-                          <div className="text-xs text-emerald-400 font-mono">
-                            {(model.parameters / 1000).toFixed(0)}K
+
+                        <div className="text-xs space-y-1">
+                          <div className="flex justify-between">
+                            <span className="text-slate-400">Price:</span>
+                            <span className="text-white font-mono">
+                              ${item.coin.price >= 1 ? item.coin.price.toLocaleString() : item.coin.price.toFixed(6)}
+                            </span>
                           </div>
+
+                          {item.prediction && (
+                            <>
+                              <div className="flex justify-between">
+                                <span className="text-slate-400">Signal:</span>
+                                <span className={`font-bold ${
+                                  item.prediction.action === 'BUY' ? 'text-emerald-400' :
+                                  item.prediction.action === 'SELL' ? 'text-red-400' : 'text-yellow-400'
+                                }`}>
+                                  {item.prediction.action}
+                                </span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-slate-400">Confidence:</span>
+                                <span className="text-cyan-400 font-bold">
+                                  {(item.prediction.confidence * 100).toFixed(0)}%
+                                </span>
+                              </div>
+                            </>
+                          )}
+                        </div>
+
+                        <div className="mt-2 text-xs text-slate-500">
+                          Added: {new Date(item.addedAt).toLocaleTimeString('tr-TR')}
                         </div>
                       </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-8 text-center">
+                    <div className="text-4xl mb-2">⭐</div>
+                    <div className="text-slate-400 text-sm mb-1">No coins in watchlist</div>
+                    <div className="text-xs text-slate-500">
+                      Add coins to monitor<br />AI predictions in real-time
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
               </div>
-            )}
+
+              {/* Auto Bot Status */}
+              {autoBotRunning && (
+                <div className="p-4 border-t border-slate-700/50 bg-emerald-500/10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span className="text-xs text-emerald-400 font-semibold">
+                      Auto Bot Active - Monitoring {watchlist.length} coins
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="fixed bottom-6 right-6 bg-red-500/10 border-2 border-red-500/50 rounded-xl p-4 max-w-md z-50">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">❌</span>
+              <div className="flex-1">
+                <div className="font-bold text-red-400 text-sm">Error</div>
+                <div className="text-xs text-red-300">{error}</div>
+              </div>
+              <button
+                onClick={() => setError('')}
+                className="text-red-400 hover:text-red-300"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Success Notification */}
+        {autoBotRunning && (
+          <div className="fixed bottom-6 left-6 bg-emerald-500/10 border-2 border-emerald-500/50 rounded-xl p-4 max-w-md z-50">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl animate-pulse">🤖</span>
+              <div>
+                <div className="font-bold text-emerald-400 text-sm">Auto Bot Running</div>
+                <div className="text-xs text-emerald-300">
+                  Background analysis active • Updates every 30s
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );

@@ -3,7 +3,9 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import CryptoTicker from "@/components/CryptoTicker";
 import GlobalMap from "@/components/GlobalMap";
+import GlobalNotifications from "@/components/GlobalNotifications";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 
 export const metadata: Metadata = {
   title: "LyDian Trader - AI-Powered Trading Platform | Yapay Zeka Destekli Ticaret Platformu",
@@ -18,14 +20,17 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className="antialiased">
-        <LanguageProvider>
-          <GlobalMap />
-          <Navigation />
-          <div className="relative z-20">
-            {children}
-          </div>
-          <CryptoTicker />
-        </LanguageProvider>
+        <NotificationProvider>
+          <LanguageProvider>
+            <GlobalMap />
+            <Navigation />
+            <div className="relative z-20">
+              {children}
+            </div>
+            <CryptoTicker />
+            <GlobalNotifications />
+          </LanguageProvider>
+        </NotificationProvider>
       </body>
     </html>
   );

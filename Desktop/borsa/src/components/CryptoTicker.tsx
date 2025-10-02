@@ -76,7 +76,7 @@ export default function CryptoTicker() {
 
         .ticker-content {
           display: flex;
-          animation: scroll 300s linear infinite;
+          animation: scroll 60s linear infinite;
         }
 
         @keyframes scroll {
