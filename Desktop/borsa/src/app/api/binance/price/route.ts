@@ -10,15 +10,36 @@ export async function GET(request: Request) {
   const symbol = searchParams.get('symbol') || 'BTCUSDT';
 
   try {
-    // Fetch ticker data from Binance
+    // Fetch ticker data from Binance with timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
     const [tickerRes, klineRes] = await Promise.all([
-      fetch(`${BINANCE_API}/ticker/24hr?symbol=${symbol}`),
-      fetch(`${BINANCE_API}/klines?symbol=${symbol}&interval=1m&limit=1`)
+      fetch(`${BINANCE_API}/ticker/24hr?symbol=${symbol}`, {
+        signal: controller.signal,
+        headers: {
+          'Accept': 'application/json',
+          'User-Agent': 'Mozilla/5.0'
+        }
+      }),
+      fetch(`${BINANCE_API}/klines?symbol=${symbol}&interval=1m&limit=1`, {
+        signal: controller.signal,
+        headers: {
+          'Accept': 'application/json',
+          'User-Agent': 'Mozilla/5.0'
+        }
+      })
     ]);
 
+    clearTimeout(timeoutId);
+
     if (!tickerRes.ok || !klineRes.ok) {
+      console.error('Binance API response error:', {
+        tickerStatus: tickerRes.status,
+        klineStatus: klineRes.status
+      });
       return NextResponse.json(
-        { success: false, error: 'Failed to fetch Binance data' },
+        { success: false, error: 'Failed to fetch Binance data', details: `Ticker: ${tickerRes.status}, Kline: ${klineRes.status}` },
         { status: 500 }
       );
     }
