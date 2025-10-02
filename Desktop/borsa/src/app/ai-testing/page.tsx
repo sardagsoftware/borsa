@@ -42,7 +42,7 @@ export default function AITestingPage() {
   const loadTop100Coins = async () => {
     setLoadingCoins(true);
     try {
-      const response = await fetch('http://localhost:3000/api/trading/top100');
+      const response = await fetch('/api/trading/top100');
       const data = await response.json();
 
       if (data.success && data.data) {
@@ -70,7 +70,7 @@ export default function AITestingPage() {
   // Modelleri yükle
   const loadModels = async () => {
     try {
-      const response = await fetch('http://localhost:5003/models/list');
+      const response = await fetch('/api/ai/models');
       const data = await response.json();
       if (data.success) {
         setModels(data.models);
@@ -92,7 +92,7 @@ export default function AITestingPage() {
     setPredictionResult(null);
 
     try {
-      const response = await fetch('http://localhost:5003/predict/single', {
+      const response = await fetch('/api/ai/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export default function AITestingPage() {
     try {
       const top10Symbols = topCoins.slice(0, 10).map(c => c.symbol);
 
-      const response = await fetch('http://localhost:5003/predict/batch', {
+      const response = await fetch('/api/ai/predict-batch', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
