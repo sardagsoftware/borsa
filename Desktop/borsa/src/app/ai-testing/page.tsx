@@ -261,19 +261,31 @@ export default function AITestingPage() {
           {/* Active Models Bar */}
           <div className="mt-4 flex items-center gap-2 flex-wrap">
             <span className="text-sm text-slate-400">Aktif Modeller:</span>
-            {availableModels.map((model) => (
-              <button
-                key={model.id}
-                onClick={() => toggleModel(model.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  activeModels.includes(model.id)
-                    ? `bg-${model.color}-500/30 text-${model.color}-300 border border-${model.color}-500/50`
-                    : 'bg-slate-700/30 text-slate-500 border border-slate-600/30'
-                }`}
-              >
-                {model.icon} {model.name}
-              </button>
-            ))}
+            {availableModels.map((model) => {
+              const isActive = activeModels.includes(model.id);
+              const colorClasses = {
+                emerald: isActive ? 'bg-emerald-500/30 text-emerald-300 border border-emerald-500/50' : '',
+                cyan: isActive ? 'bg-cyan-500/30 text-cyan-300 border border-cyan-500/50' : '',
+                purple: isActive ? 'bg-purple-500/30 text-purple-300 border border-purple-500/50' : '',
+                blue: isActive ? 'bg-blue-500/30 text-blue-300 border border-blue-500/50' : '',
+                green: isActive ? 'bg-green-500/30 text-green-300 border border-green-500/50' : '',
+                orange: isActive ? 'bg-orange-500/30 text-orange-300 border border-orange-500/50' : '',
+              };
+
+              return (
+                <button
+                  key={model.id}
+                  onClick={() => toggleModel(model.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    isActive
+                      ? colorClasses[model.color as keyof typeof colorClasses]
+                      : 'bg-slate-700/30 text-slate-500 border border-slate-600/30'
+                  }`}
+                >
+                  {model.icon} {model.name}
+                </button>
+              );
+            })}
             <span className="text-xs text-slate-500 ml-2">
               ({activeModels.length} / {availableModels.length} aktif)
             </span>
