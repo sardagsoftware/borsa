@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>LyDian Quantum Chat - Clean Premium Interface</title>
+    <title>LyDian Chat - Multi-AI Quantum Intelligence | Claude, GPT-4, Gemini</title>
 
     <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
     <script src="/js/geo-language.js"></script>
@@ -3102,6 +3102,34 @@ body {
                     </button>
                 </div>
 
+                <!-- 🤖 AI MODEL SELECTORS (GPT-5, Claude, Gemini) -->
+                <div class="input-mode-selectors" style="margin-top: 0.5rem; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
+                    <button class="mode-btn" data-model="gpt-5" title="GPT-5 (Azure AI Foundry)">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span>GPT-5</span>
+                    </button>
+                    <button class="mode-btn active" data-model="claude" title="Claude 3.5 Sonnet (Anthropic)">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18.5c-3.87-1.18-6.5-4.85-6.5-8.5V8.3l6.5-3.11 6.5 3.11V12c0 3.65-2.63 7.32-6.5 8.5z"/>
+                        </svg>
+                        <span>Claude</span>
+                    </button>
+                    <button class="mode-btn" data-model="gemini" title="Gemini 2.0 Flash (Google AI)">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2L1 12l11 10 11-10L12 2zm0 2.83L19.17 12 12 19.17 4.83 12 12 4.83z"/>
+                        </svg>
+                        <span>Gemini</span>
+                    </button>
+                    <button class="mode-btn" data-model="rag" title="RAG - Retrieval Augmented Generation">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
+                        </svg>
+                        <span>RAG</span>
+                    </button>
+                </div>
+
                 <div class="input-wrapper">
                     <div class="input-area">
                         <div class="input-row">
@@ -3375,7 +3403,7 @@ body {
             messages: [],
             currentChatId: null,
             isTyping: false,
-            selectedModel: 'claude-sonnet-4.5',
+            selectedModel: 'claude',  // Default: Claude 3.5 Sonnet
             selectedAiType: 'general'  // 🎯 Track specialized AI mode
         };
 
@@ -3838,6 +3866,19 @@ body {
             });
         }
 
+        // 🤖 MODEL SELECTOR BUTTONS (GPT-5, Claude, Gemini, RAG)
+        document.querySelectorAll('[data-model]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all model buttons
+                document.querySelectorAll('[data-model]').forEach(b => b.classList.remove('active'));
+                // Add active to clicked button
+                btn.classList.add('active');
+                // Update state
+                state.selectedModel = btn.getAttribute('data-model');
+                showToast(`Model: ${state.selectedModel.toUpperCase()}`);
+            });
+        });
+
         // 🔗 Share Button with Modal
         if (elements.shareBtn) {
             elements.shareBtn.addEventListener('click', () => {
@@ -3911,9 +3952,9 @@ body {
             // Track start time for speed calculation
             const startTime = Date.now();
 
-            // Call backend API - Use specialized endpoint
+            // Call backend API - Use model-specific or specialized endpoint
             try {
-                console.log('🔍 Sending message to API:', { message, aiType: state.selectedAiType });
+                console.log('🔍 Sending message to API:', { message, aiType: state.selectedAiType, model: state.selectedModel });
 
                 // Clean history: remove timestamp property for API compatibility
                 const cleanHistory = state.messages.slice(-10).map(msg => ({
@@ -3921,23 +3962,54 @@ body {
                     content: msg.content
                 }));
 
-                const response = await fetch('/api/chat/specialized', {
+                // Determine API endpoint based on selected model
+                let apiEndpoint = '/api/chat/specialized';
+                let requestBody = {
+                    message: message,
+                    aiType: state.selectedAiType,
+                    model: state.selectedModel || 'claude',
+                    temperature: 0.7,
+                    max_tokens: 4000,
+                    history: cleanHistory
+                };
+
+                // Use specialized endpoints for specific models
+                if (state.selectedModel === 'gpt-5') {
+                    apiEndpoint = '/api/chat/gpt5';
+                    requestBody = {
+                        messages: [...cleanHistory, { role: 'user', content: message }],
+                        model: 'gpt-4',
+                        temperature: 0.7,
+                        max_tokens: 4000
+                    };
+                } else if (state.selectedModel === 'claude') {
+                    apiEndpoint = '/api/chat/claude';
+                    requestBody = {
+                        messages: [...cleanHistory, { role: 'user', content: message }],
+                        model: 'claude-3-5-sonnet-20241022',
+                        max_tokens: 4000
+                    };
+                } else if (state.selectedModel === 'gemini') {
+                    apiEndpoint = '/api/chat/gemini';
+                    requestBody = {
+                        messages: [...cleanHistory, { role: 'user', content: message }],
+                        model: 'gemini-2.0-flash-exp'
+                    };
+                } else if (state.selectedModel === 'rag') {
+                    apiEndpoint = '/api/rag/chat';
+                    requestBody = {
+                        message: message,
+                        contextLimit: 3,
+                        model: 'gpt-4'
+                    };
+                }
+
+                const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Accept-Language': 'tr-TR',
-                        'Content-Language': 'tr'
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        message: message,
-                        aiType: state.selectedAiType,
-                        model: 'llama', // Llama 3.3 70B as primary model
-                        temperature: 0.9, // Higher for detailed responses
-                        max_tokens: 8000, // Maximum detail
-                        history: cleanHistory,
-                        language: 'tr',
-                        locale: 'tr-TR'
-                    })
+                    body: JSON.stringify(requestBody)
                 });
 
                 console.log('📡 Response status:', response.status, 'OK:', response.ok);
@@ -3951,8 +4023,20 @@ body {
                 const data = await response.json();
                 hideTypingIndicator();
 
-                if (data.success && data.response) {
-                    addMessage('assistant', data.response);
+                // Extract response from different API formats
+                let aiResponse = '';
+                if (data.response) {
+                    aiResponse = data.response;
+                } else if (data.message) {
+                    aiResponse = data.message;
+                } else if (data.content) {
+                    aiResponse = data.content;
+                } else if (data.choices && data.choices[0]?.message?.content) {
+                    aiResponse = data.choices[0].message.content;
+                }
+
+                if (aiResponse) {
+                    addMessage('assistant', aiResponse);
                     console.log('✅ AI Response:', data);
 
                     // 🎤 VOICE MODE: Convert response to speech with ElevenLabs
@@ -4003,18 +4087,18 @@ body {
                         state.selectedAiType = 'general'; // Reset mode
                     }
 
-                    // 🎬 VIDEO MODE: Generate video with Google Veo 2.0 (Vertex AI)
+                    // 🎬 VIDEO MODE: Generate video with Google Veo (New Video API)
                     if (state.selectedAiType === 'video') {
                         try {
-                            showToast('🎬 Video oluşturuluyor... (Premium 4K, 8 saniye)');
-                            const videoResponse = await fetch('/api/veo-video', {
+                            showToast('🎬 Video oluşturuluyor... (Premium 1280x720, 5 saniye)');
+                            const videoResponse = await fetch('/api/video/generate', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
                                     prompt: message,
-                                    durationSeconds: 8,
-                                    aspectRatio: '16:9',
-                                    sampleCount: 1
+                                    duration: 5,
+                                    resolution: '1280x720',
+                                    style: 'realistic'
                                 })
                             });
                             const videoData = await videoResponse.json();

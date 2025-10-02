@@ -3408,6 +3408,10 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// 🔵 Azure Metrics API - Real Azure Data Integration
+const azureMetrics = require('./api/azure-metrics');
+app.get('/api/azure/metrics', azureMetrics.handleMetricsRequest);
+
 // Google Veo Video Generation API
 app.post('/api/video/generate', async (req, res) => {
   const { prompt, duration = 5, resolution = '1080p' } = req.body;
@@ -4517,6 +4521,74 @@ SONUÇ: Acil tedavi gerektiren kritik bulgular mevcut.
     });
   }
 });
+
+// 🏥 MEDICAL EXPERT AI - AZURE OPENAI INTEGRATION
+// Real medical consultation with Azure OpenAI GPT-4 Turbo
+const medicalExpertHandler = require('./api/medical-expert/index');
+app.post('/api/medical-expert', medicalExpertHandler);
+
+// 📊 MEDICAL EXPERT METRICS - REAL-TIME STATISTICS
+const medicalMetricsHandler = require('./api/medical-expert/metrics');
+app.get('/api/medical-expert/metrics', medicalMetricsHandler);
+
+// 🎨 AZURE DALL-E 3 IMAGE GENERATION API (Azure → Google Imagen fallback)
+const imagenPhotoHandler = require('./api/imagen-photo');
+app.post('/api/imagen-photo', imagenPhotoHandler);
+app.post('/api/image/azure', imagenPhotoHandler); // Alias
+
+// 🗣️ AZURE SPEECH SERVICES TTS API (Azure → ElevenLabs fallback)
+const voiceTTSHandler = require('./api/voice-tts');
+app.post('/api/voice-tts', voiceTTSHandler);
+app.post('/api/voice/azure', voiceTTSHandler); // Alias
+
+// 🚀 NEW AI MODEL INTEGRATIONS - PRODUCTION READY APIs
+
+// GPT-5 API - Azure AI Foundry Integration
+const chatGPT5 = require('./api/chat-gpt5');
+app.post('/api/chat/gpt5', chatGPT5.handleRequest);
+app.post('/api/gpt5', chatGPT5.handleRequest); // Alias
+
+// Claude API - Anthropic Integration
+const chatClaude = require('./api/chat-claude');
+app.post('/api/chat/claude', chatClaude.handleRequest);
+app.post('/api/claude/chat', chatClaude.handleRequest); // Alias
+app.get('/api/claude/models', chatClaude.getModels);
+
+// Gemini API - Google AI Integration
+const chatGemini = require('./api/chat-gemini');
+app.post('/api/chat/gemini', chatGemini.handleRequest);
+app.post('/api/gemini/chat', chatGemini.handleRequest); // Alias
+app.get('/api/gemini/models', chatGemini.getModels);
+
+// Speech API - Azure Speech Services Integration
+const speech = require('./api/speech');
+app.post('/api/speech/transcribe', speech.handleTranscribe);
+app.post('/api/speech/synthesize', speech.handleSynthesize);
+app.get('/api/speech/voices', speech.getVoices);
+
+// Web Search API - Google Custom Search Integration
+const webSearch = require('./api/web-search');
+app.get('/api/web-search', webSearch.handleSearch);
+app.post('/api/web-search/clear-cache', webSearch.clearCache);
+app.get('/api/web-search/stats', webSearch.getCacheStats);
+
+// RAG API - Retrieval-Augmented Generation
+const rag = require('./api/rag');
+app.post('/api/rag/upload', rag.handleUpload);
+app.post('/api/rag/embed', rag.handleEmbed);
+app.post('/api/rag/search', rag.handleSearch);
+app.post('/api/rag/chat', rag.handleRagChat);
+app.get('/api/rag/stats', rag.handleStats);
+app.delete('/api/rag/clear', rag.handleClear);
+
+// Video AI API - Video Analysis, Generation & Transcription
+const video = require('./api/video');
+app.post('/api/video/analyze', video.handleAnalyze);
+app.post('/api/video/generate', video.handleGenerate);
+app.post('/api/video/transcribe', video.handleTranscribe);
+app.get('/api/video/status/:videoId', video.handleStatus);
+app.post('/api/video/extract-frames', video.handleExtractFrames);
+app.get('/api/video/stats', video.handleStats);
 
 // 🎤 AZURE SPEECH-TO-TEXT REST API - ENTERPRISE AUDIO PROCESSING
 app.post('/api/speech-to-text', async (req, res) => {
@@ -9204,14 +9276,32 @@ apolloServer.applyMiddleware({
 */
 
 // Apply tenant middleware to API routes
-// Multi-tenant middleware setup (skip for translation endpoints)
+// Multi-tenant middleware setup (skip for translation endpoints and auth routes)
 app.use('/api', (req, res, next) => {
-  // Skip tenant middleware for UI translation endpoint
-  if (req.path.startsWith('/translate/ui/')) {
+  // Skip tenant middleware for UI translation endpoint and auth routes
+  if (req.path.startsWith('/translate/ui/') || req.path.startsWith('/auth/')) {
     return next();
   }
   return tenantMiddleware(req, res, next);
 });
+
+// 🔐 AUTHENTICATION ROUTES - ChatGPT Style Auth System
+const authRoutes = require('./api/auth');
+const oauthRoutes = require('./api/auth/oauth');
+app.use('/api/auth', authRoutes);
+app.use('/api/auth', oauthRoutes);
+
+// 🔐 RBAC ADMIN ROUTES - Role & Permission Management
+const adminRolesRoutes = require('./api/admin/roles');
+app.use('/api/admin', adminRolesRoutes);
+
+// 📊 AZURE METRICS DASHBOARD API
+const metricsRoutes = require('./api/metrics/dashboard');
+app.use('/api/metrics', metricsRoutes);
+
+// 💰 COST TRACKING DASHBOARD API
+const costTrackingRoutes = require('./api/cost-tracking/dashboard');
+app.use('/api/cost-tracking', costTrackingRoutes);
 
 // Multi-tenant REST API endpoints
 app.get('/api/tenants', (req, res) => {
