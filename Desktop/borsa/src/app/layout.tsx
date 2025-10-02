@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
-      <body className="antialiased">
+    <html lang="tr" style={{ background: '#1a1a1a' }}>
+      <body className="antialiased" style={{ background: 'linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%)', minHeight: '100vh' }}>
         <NotificationProvider>
           <LanguageProvider>
             <GlobalMap />
