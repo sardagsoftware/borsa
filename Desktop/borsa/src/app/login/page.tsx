@@ -206,6 +206,26 @@ export default function LoginPage() {
               </button>
             </form>
 
+            {/* Demo Credentials Info */}
+            <div className="mt-6 pt-6 border-t border-slate-700">
+              <h3 className="text-sm font-semibold text-emerald-400 mb-3">🎯 Demo Hesap Bilgileri</h3>
+              <div className="bg-slate-900/50 rounded-lg p-3 space-y-2 text-xs">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Email:</span>
+                  <span className="text-emerald-300 font-mono">demo@borsa.ailydian.com</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Şifre:</span>
+                  <span className="text-emerald-300 font-mono">Demo2025!Borsa</span>
+                </div>
+                <div className="mt-2 pt-2 border-t border-slate-700">
+                  <p className="text-[10px] text-slate-500">
+                    ✅ Paper Trading (Güvenli Mod) | ✅ Tüm AI Botlar Aktif | ✅ Risk Yönetimi Zorunlu
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Device Info */}
             <div className="mt-6 pt-6 border-t border-slate-700">
               <h3 className="text-sm font-semibold text-slate-300 mb-3">🔒 Güvenlik Bilgileri</h3>
