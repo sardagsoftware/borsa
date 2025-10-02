@@ -3,12 +3,9 @@
 
 class EnterpriseAPIManager {
     constructor() {
-        this.apiKeys = {
-            microsoftTranslator: process.env.MICROSOFT_TRANSLATOR_KEY || 'demo-key-microsoft',
-            googleTranslate: process.env.GOOGLE_TRANSLATE_KEY || 'demo-key-google',
-            zaiAPI: process.env.ZAI_API_KEY || 'demo-key-zai',
-            mixtralAPI: process.env.MIXTRAL_API_KEY || 'demo-key-mixtral'
-        };
+        // SECURITY: API keys NEVER stored in frontend
+        // All API calls go through backend proxy endpoints
+        this.apiKeys = null; // Removed for security
 
         this.apiEndpoints = {
             microsoftTranslator: 'https://api.cognitive.microsofttranslator.com',
