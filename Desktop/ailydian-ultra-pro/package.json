@@ -28,6 +28,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "geoip-lite": "^1.4.10",
+    "google-auth-library": "^10.4.0",
     "graphql": "^16.11.0",
     "graphql-scalars": "^1.24.2",
     "graphql-tools": "^9.0.20",

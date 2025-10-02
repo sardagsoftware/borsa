@@ -10,7 +10,15 @@
       "destination": "/public/chat.html"
     },
     {
-      "source": "/((?!api/).*)",
+      "source": "/js/(.*)",
+      "destination": "/public/js/$1"
+    },
+    {
+      "source": "/css/(.*)",
+      "destination": "/public/css/$1"
+    },
+    {
+      "source": "/((?!api/)(?!js/)(?!css/).*)",
       "destination": "/public/$1"
     }
   ],
@@ -49,7 +57,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.openai.com https://*.anthropic.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://api.openai.com https://*.anthropic.com https://api.groq.com; frame-ancestors 'none';"
         }
       ]
     }

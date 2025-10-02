@@ -918,7 +918,7 @@ wss.on('connection', (ws, req) => {
       'performance-monitoring',
       'enterprise-notifications'
     ],
-    message: 'Welcome to Ailydian Real-Time AI Platform'
+    message: 'Welcome to LyDian Real-Time AI Platform'
   }));
 
   // Handle incoming messages
@@ -1908,12 +1908,12 @@ const multimodalServices = {
           { name: 'person', confidence: 0.98, boundingBox: [100, 200, 300, 400] },
           { name: 'car', confidence: 0.95, boundingBox: [400, 150, 600, 350] }
         ],
-        text: data.imageUrl ? `Extracted text from ${data.imageUrl}: "Welcome to Ailydian Enterprise"` : 'Image text extraction ready',
+        text: data.imageUrl ? `Extracted text from ${data.imageUrl}: "Welcome to LyDian Enterprise"` : 'Image text extraction ready',
         faces: [
           { age: 25, gender: 'male', emotion: 'happy', confidence: 0.94 },
           { age: 30, gender: 'female', emotion: 'neutral', confidence: 0.92 }
         ],
-        brands: ['Microsoft', 'Azure', 'Ailydian'],
+        brands: ['Microsoft', 'Azure', 'LyDian'],
         categories: ['technology', 'business', 'ai'],
         colors: { dominant: 'blue', accent: 'orange' },
         adult: { isAdult: false, confidence: 0.99 },
@@ -1947,11 +1947,11 @@ const multimodalServices = {
     speechToText: (data) => ({
       success: true,
       service: 'Azure Speech-to-Text Neural',
-      transcript: data.audioData ? 'Merhaba, Ailydian AI asistanı ile nasıl yardımcı olabilirim?' : 'Real-time speech transcription ready',
+      transcript: data.audioData ? 'Merhaba, LyDian AI asistanı ile nasıl yardımcı olabilirim?' : 'Real-time speech transcription ready',
       confidence: 0.96,
       language: 'tr-TR',
       speakers: [
-        { id: 1, text: 'Merhaba, Ailydian AI asistanı ile', timeRange: [0, 2.5] },
+        { id: 1, text: 'Merhaba, LyDian AI asistanı ile', timeRange: [0, 2.5] },
         { id: 1, text: 'nasıl yardımcı olabilirim?', timeRange: [2.5, 4.2] }
       ],
       metadata: {
@@ -1965,7 +1965,7 @@ const multimodalServices = {
       success: true,
       service: 'Azure Neural Text-to-Speech',
       audioUrl: 'https://speech-audio.azure.com/generated/' + Date.now() + '.wav',
-      text: data.text || 'Ailydian AI enterprise speech synthesis',
+      text: data.text || 'LyDian AI enterprise speech synthesis',
       voice: data.voice || 'tr-TR-EmelNeural',
       ssml: `<speak version="1.0" xml:lang="tr-TR"><voice name="tr-TR-EmelNeural"><prosody rate="medium" pitch="medium">${data.text || 'Test speech'}</prosody></voice></speak>`,
       metadata: {
@@ -1982,18 +1982,18 @@ const multimodalServices = {
     analyze: (data) => ({
       success: true,
       service: 'Azure Language Understanding 2025',
-      text: data.text || 'Ailydian AI is revolutionizing enterprise automation',
+      text: data.text || 'LyDian AI is revolutionizing enterprise automation',
       sentiment: {
         overall: 'positive',
         confidence: 0.94,
         scores: { positive: 0.94, neutral: 0.05, negative: 0.01 }
       },
       entities: [
-        { text: 'Ailydian AI', type: 'Product', confidence: 0.98 },
+        { text: 'LyDian AI', type: 'Product', confidence: 0.98 },
         { text: 'enterprise automation', type: 'BusinessConcept', confidence: 0.92 },
         { text: 'revolutionizing', type: 'Action', confidence: 0.89 }
       ],
-      keyPhrases: ['Ailydian AI', 'enterprise automation', 'revolutionizing technology', 'business transformation'],
+      keyPhrases: ['LyDian AI', 'enterprise automation', 'revolutionizing technology', 'business transformation'],
       language: { name: 'English', code: 'en', confidence: 0.99 },
       summary: 'Text discusses positive impact of AI technology on business automation',
       metadata: {
@@ -2005,14 +2005,14 @@ const multimodalServices = {
     translate: (data) => ({
       success: true,
       service: 'Azure Translator Neural',
-      originalText: data.text || 'Hello, welcome to Ailydian Enterprise AI',
-      translatedText: data.to === 'tr' ? 'Merhaba, Ailydian Enterprise AI\'ya hoş geldiniz' : 'Translated text',
+      originalText: data.text || 'Hello, welcome to LyDian Enterprise AI',
+      translatedText: data.to === 'tr' ? 'Merhaba, LyDian Enterprise AI\'ya hoş geldiniz' : 'Translated text',
       fromLanguage: data.from || 'en',
       toLanguage: data.to || 'tr',
       confidence: 0.97,
       alternatives: [
-        'Selam, Ailydian Enterprise AI\'ya hoş geldiniz',
-        'Merhaba, Ailydian Kurumsal AI\'ya hoş geldiniz'
+        'Selam, LyDian Enterprise AI\'ya hoş geldiniz',
+        'Merhaba, LyDian Kurumsal AI\'ya hoş geldiniz'
       ],
       metadata: {
         model: 'neural-translation-v4',
@@ -2028,7 +2028,7 @@ const multimodalServices = {
       success: true,
       service: 'Azure Document Intelligence 2025',
       documentType: 'business-contract',
-      extractedText: 'ENTERPRISE AI SERVICES AGREEMENT\nCompany: Ailydian Technologies\nDate: 2025-09-15\nServices: Multimodal AI Platform',
+      extractedText: 'ENTERPRISE AI SERVICES AGREEMENT\nCompany: LyDian Technologies\nDate: 2025-09-15\nServices: Multimodal AI Platform',
       tables: [
         {
           rows: 3,
@@ -2041,7 +2041,7 @@ const multimodalServices = {
         }
       ],
       fields: {
-        companyName: { value: 'Ailydian Technologies', confidence: 0.98 },
+        companyName: { value: 'LyDian Technologies', confidence: 0.98 },
         contractDate: { value: '2025-09-15', confidence: 0.96 },
         totalAmount: { value: '$3,000', confidence: 0.94 }
       },
@@ -2062,7 +2062,7 @@ const multimodalServices = {
       videoUrl: data.videoUrl || 'sample-video.mp4',
       insights: {
         transcript: [
-          { start: 0, end: 5, text: 'Welcome to Ailydian AI demonstration' },
+          { start: 0, end: 5, text: 'Welcome to LyDian AI demonstration' },
           { start: 5, end: 10, text: 'This is our enterprise multimodal platform' }
         ],
         faces: [
@@ -2073,7 +2073,7 @@ const multimodalServices = {
           { emotion: 'excitement', timeRange: [8, 15], confidence: 0.87 }
         ],
         topics: ['artificial intelligence', 'enterprise technology', 'business automation'],
-        brands: ['Microsoft', 'Azure', 'Ailydian'],
+        brands: ['Microsoft', 'Azure', 'LyDian'],
         scenes: [
           { start: 0, end: 10, description: 'Office presentation scene' },
           { start: 10, end: 20, description: 'Technology demonstration' }
@@ -2419,7 +2419,7 @@ app.get('/api/docs', (req, res) => {
   res.json({
     success: true,
     documentation: {
-      title: 'Ailydian API Documentation',
+      title: 'LyDian API Documentation',
       version: '2.0.0',
       endpoints: {
         models: {
@@ -3401,7 +3401,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
     timestamp: new Date().toISOString(),
-    server: 'Ailydian',
+    server: 'LyDian',
     version: '2.0.0',
     models_count: aiModels.length,
     uptime: process.uptime()
@@ -3504,7 +3504,7 @@ app.get('/api/video/status/:videoId', (req, res) => {
 // Server Status
 app.get('/api/status', (req, res) => {
   res.json({
-    server: 'Ailydian',
+    server: 'LyDian',
     status: 'ACTIVE',
     models: aiModels.length,
     categories: [...new Set(aiModels.map(m => m.category))].length,
@@ -4113,7 +4113,7 @@ app.post('/api/document-intelligence', async (req, res) => {
           Fatura No: ${Math.floor(Math.random() * 100000)}
           Tarih: ${new Date().toLocaleDateString('tr-TR')}
           Tutar: ${(Math.random() * 10000).toFixed(2)} TL
-          Şirket: Ailydian Technologies Ltd.
+          Şirket: LyDian Technologies Ltd.
           Vergi No: ${Math.floor(Math.random() * 10000000000)}`,
 
           // Page-level analysis
@@ -4144,7 +4144,7 @@ app.post('/api/document-intelligence', async (req, res) => {
             { key: { content: 'Fatura No', spans: [{ offset: 0, length: 9 }] }, value: { content: `${Math.floor(Math.random() * 100000)}`, spans: [{ offset: 11, length: 5 }] }, confidence: 0.99 },
             { key: { content: 'Tarih', spans: [{ offset: 20, length: 5 }] }, value: { content: new Date().toLocaleDateString('tr-TR'), spans: [{ offset: 27, length: 10 }] }, confidence: 0.98 },
             { key: { content: 'Toplam Tutar', spans: [{ offset: 40, length: 12 }] }, value: { content: `${(Math.random() * 10000).toFixed(2)} TL`, spans: [{ offset: 54, length: 10 }] }, confidence: 0.96 },
-            { key: { content: 'Şirket Adı', spans: [{ offset: 70, length: 10 }] }, value: { content: 'Ailydian Technologies Ltd.', spans: [{ offset: 82, length: 26 }] }, confidence: 0.95 }
+            { key: { content: 'Şirket Adı', spans: [{ offset: 70, length: 10 }] }, value: { content: 'LyDian Technologies Ltd.', spans: [{ offset: 82, length: 26 }] }, confidence: 0.95 }
           ],
 
           // Table Extraction
@@ -4197,8 +4197,8 @@ app.post('/api/document-intelligence', async (req, res) => {
             },
             'VendorName': {
               type: 'string',
-              valueString: 'Ailydian Technologies Ltd.',
-              content: 'Ailydian Technologies Ltd.',
+              valueString: 'LyDian Technologies Ltd.',
+              content: 'LyDian Technologies Ltd.',
               boundingRegions: [{ pageNumber: 1, polygon: [1.0, 5.0, 4.0, 5.0, 4.0, 5.4, 1.0, 5.4] }],
               confidence: 0.95,
               spans: [{ offset: 82, length: 26 }]
@@ -4550,7 +4550,7 @@ app.post('/api/speech-to-text', async (req, res) => {
         results: {
           // Fast Transcription Results
           fastTranscription: {
-            text: `Merhaba, Ailydian Enterprise AI platformuna hoş geldiniz.
+            text: `Merhaba, LyDian Enterprise AI platformuna hoş geldiniz.
                    Bu sistem Azure Speech-to-Text teknolojisi kullanılarak geliştirilmiştir.
                    Gerçek zamanlı ses işleme ve yüksek doğruluk oranları sunmaktadır.
                    Konuşma tanıma sistemi Türkçe dil desteği ile optimize edilmiştir.`,
@@ -4570,7 +4570,7 @@ app.post('/api/speech-to-text', async (req, res) => {
               speakerId: enableSpeakerIdentification ? 'Speaker1' : null
             },
             {
-              word: 'Ailydian',
+              word: 'LyDian',
               confidence: 0.97,
               offset: '00:00:01.000',
               duration: '00:00:00.800',
@@ -4605,7 +4605,7 @@ app.post('/api/speech-to-text', async (req, res) => {
               speakerId: 'Speaker1',
               segments: [
                 {
-                  text: 'Merhaba, Ailydian Enterprise AI platformuna hoş geldiniz.',
+                  text: 'Merhaba, LyDian Enterprise AI platformuna hoş geldiniz.',
                   offset: '00:00:00.200',
                   duration: '00:00:04.500',
                   confidence: 0.94
@@ -4643,7 +4643,7 @@ app.post('/api/speech-to-text', async (req, res) => {
             adaptationScenario: 'medical-terminology',
             domainSpecificAccuracy: 0.98,
             customWords: [
-              { word: 'Ailydian', confidence: 0.99, adaptedFrom: 'generic' },
+              { word: 'LyDian', confidence: 0.99, adaptedFrom: 'generic' },
               { word: 'radyoloji', confidence: 0.97, adaptedFrom: 'medical' },
               { word: 'tomografi', confidence: 0.96, adaptedFrom: 'medical' }
             ]
@@ -4821,7 +4821,7 @@ app.post('/api/azure/speech/live', async (req, res) => {
 
         streamingResults: {
           finalTranscription: {
-            text: `Merhaba, ben Ailydian Enterprise AI platformuyum. Bu sistem Azure Speech Services'in en gelişmiş özelliklerini kullanarak canlı dil tanıma ve çoklu dil desteği sağlıyor.`,
+            text: `Merhaba, ben LyDian Enterprise AI platformuyum. Bu sistem Azure Speech Services'in en gelişmiş özelliklerini kullanarak canlı dil tanıma ve çoklu dil desteği sağlıyor.`,
             confidence: 0.95,
             duration: '00:00:15.150',
             wordCount: 25,
@@ -4901,9 +4901,9 @@ app.post('/api/azure', async (req, res) => {
               { name: 'person', confidence: 0.98, boundingBox: [100, 200, 300, 400] },
               { name: 'car', confidence: 0.95, boundingBox: [400, 150, 600, 350] }
             ],
-            text: data.imageUrl ? `Extracted text from ${data.imageUrl}: "Welcome to Ailydian Enterprise"` : 'Image text extraction ready',
+            text: data.imageUrl ? `Extracted text from ${data.imageUrl}: "Welcome to LyDian Enterprise"` : 'Image text extraction ready',
             faces: [{ age: 25, gender: 'male', emotion: 'happy', confidence: 0.94 }],
-            brands: ['Microsoft', 'Azure', 'Ailydian'],
+            brands: ['Microsoft', 'Azure', 'LyDian'],
             categories: ['technology', 'business', 'ai'],
             colors: { dominant: 'blue', accent: 'orange' },
             description: 'Modern office environment with people working on AI technology'
@@ -5361,7 +5361,7 @@ app.post('/api/orchestrator', async (req, res) => {
         rateLimit: rateLimitCheck
       },
       metadata: {
-        service: 'Ailydian Multimodal Orchestrator',
+        service: 'LyDian Multimodal Orchestrator',
         version: '2.1.0',
         timestamp: new Date().toISOString(),
         requestId: `req_${Math.random().toString(36).substr(2, 9)}`
@@ -5431,7 +5431,7 @@ app.post('/api/vision', async (req, res) => {
           { name: 'building', confidence: 0.95, boundingBox: [50, 10, 400, 200] },
           { name: 'car', confidence: 0.92, boundingBox: [300, 250, 450, 350] }
         ],
-        text: 'Görsel içindeki metin tespit edildi: "Ailydian Enterprise AI"',
+        text: 'Görsel içindeki metin tespit edildi: "LyDian Enterprise AI"',
         colors: {
           dominant: '#ff6b35',
           palette: ['#ffffff', '#000000', '#2c3e50', '#3498db'],
@@ -5467,7 +5467,7 @@ app.post('/api/vision', async (req, res) => {
       },
       metadata: {
         timestamp: new Date().toISOString(),
-        service: 'Ailydian Vision AI',
+        service: 'LyDian Vision AI',
         version: '4.2.1'
       }
     };
@@ -5578,7 +5578,7 @@ app.post('/api/security/validate', async (req, res) => {
       },
       client: clientMetrics,
       metadata: {
-        service: 'Ailydian Security Layer',
+        service: 'LyDian Security Layer',
         version: '3.0.0',
         timestamp: new Date().toISOString()
       }
@@ -7693,7 +7693,7 @@ app.post('/api/smoke-test', async (req, res) => {
         summary: summary,
         tests: tests,
         system: {
-          server: 'Ailydian',
+          server: 'LyDian',
           version: '2.0.0',
           environment: 'production',
           region: 'global',
@@ -7818,7 +7818,7 @@ app.post('/api/multimodal', async (req, res) => {
     // Advanced multimodal processing
     const multimodalResponse = {
       success: true,
-      service: 'Ailydian Advanced Multimodal AI',
+      service: 'LyDian Advanced Multimodal AI',
       task: task,
       inputs: inputs,
       results: {
@@ -7861,7 +7861,7 @@ app.post('/api/multimodal', async (req, res) => {
         ],
         // Generated content
         synthesis: {
-          summary: 'Professional presentation about Ailydian AI technology demonstrating multimodal capabilities with enterprise-grade features',
+          summary: 'Professional presentation about LyDian AI technology demonstrating multimodal capabilities with enterprise-grade features',
           keywords: ['AI', 'multimodal', 'enterprise', 'technology', 'presentation'],
           topics: ['artificial intelligence', 'business technology', 'enterprise solutions'],
           actionItems: [
@@ -8267,7 +8267,7 @@ class TenantManager {
     const defaultTenants = [
       {
         id: 'ailydian-corp',
-        name: 'Ailydian Corporation',
+        name: 'LyDian Corporation',
         plan: 'enterprise',
         status: 'active',
         domain: 'ailydian.com',
@@ -9492,7 +9492,7 @@ wss.on('connection', (ws, req) => {
   // Send enhanced welcome message
   ws.send(JSON.stringify({
     type: 'welcome',
-    message: 'Connected to Ailydian Ultra Pro Enhanced WebSocket',
+    message: 'Connected to LyDian Ultra Pro Enhanced WebSocket',
     features: [
       'fine-tuning-updates',
       'system-metrics',
@@ -12948,7 +12948,7 @@ class DocumentationGenerator {
         {
           title: 'Installation',
           content: `
-# Ailydian Ultra Pro - Quick Start
+# LyDian Ultra Pro - Quick Start
 
 ## Requirements
 - Node.js 18+
@@ -13175,7 +13175,7 @@ processMultimodal(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ailydian Ultra Pro - API Reference</title>
+    <title>LyDian Ultra Pro - API Reference</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -13309,7 +13309,7 @@ processMultimodal(
 
     <div class="container">
         <div class="header">
-            <h1>🚀 Ailydian Ultra Pro API</h1>
+            <h1>🚀 LyDian Ultra Pro API</h1>
             <p>Enterprise Multimodal AI Platform - Complete API Reference</p>
             <p style="margin-top: 10px; font-size: 1em; opacity: 0.8;">
                 Version 2.0 | Updated ${new Date().toLocaleDateString()}
@@ -13489,7 +13489,7 @@ processMultimodal(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ailydian Ultra Pro - Developer Portal</title>
+    <title>LyDian Ultra Pro - Developer Portal</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -13612,7 +13612,7 @@ processMultimodal(
 </head>
 <body>
     <div class="header">
-        <h1>🚀 Ailydian Ultra Pro</h1>
+        <h1>🚀 LyDian Ultra Pro</h1>
         <p>Enterprise Multimodal AI Platform for Developers - Build the future of AI applications with our comprehensive suite of tools and services.</p>
     </div>
 
@@ -13647,7 +13647,7 @@ processMultimodal(
             <div class="grid">
                 <div class="card">
                     <h3>🛠️ Installation</h3>
-                    <p>Get started with Ailydian Ultra Pro in minutes. Follow our simple installation guide.</p>
+                    <p>Get started with LyDian Ultra Pro in minutes. Follow our simple installation guide.</p>
                     <div class="code-sample">
 <span style="color: #4fc3f7;"># Clone the repository</span>
 git clone https://github.com/ailydian/ultra-pro.git
@@ -14894,7 +14894,7 @@ app.post('/api/azure/search', async (req, res) => {
           content: `Advanced Retrieval-Augmented Generation (RAG) system implementation for ${query} use cases. Features vector embeddings, semantic chunking, context-aware retrieval, and enterprise security compliance.`,
           relevanceScore: 0.94,
           confidenceScore: 0.89,
-          source: 'Ailydian RAG Framework',
+          source: 'LyDian RAG Framework',
           category: 'Technical Implementation',
           lastUpdated: '2025-01-16T09:15:00Z',
           highlights: [`RAG system for ${query}`, `Vector embeddings with ${query}`, `Context-aware ${query} retrieval`],
@@ -14928,7 +14928,7 @@ app.post('/api/azure/search', async (req, res) => {
         sources: [
           { name: 'Azure AI Documentation', count: 67 },
           { name: 'Microsoft Technical Documentation', count: 43 },
-          { name: 'Ailydian RAG Framework', count: 35 },
+          { name: 'LyDian RAG Framework', count: 35 },
           { name: 'Enterprise Knowledge Base', count: 89 }
         ],
         lastUpdated: [
@@ -14972,7 +14972,7 @@ app.post('/api/azure/search', async (req, res) => {
 
 This comprehensive approach ensures optimal performance, security, and reliability for enterprise ${query} implementations.`,
         confidenceLevel: 'High',
-        sourcesUsed: ['Azure AI Documentation', 'Microsoft Technical Documentation', 'Ailydian RAG Framework'],
+        sourcesUsed: ['Azure AI Documentation', 'Microsoft Technical Documentation', 'LyDian RAG Framework'],
         generationTime: Math.floor(Math.random() * 300) + 100
       }
     };
@@ -15075,7 +15075,7 @@ app.get('/analytics', (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ailydian Analytics Dashboard</title>
+    <title>LyDian Analytics Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15148,7 +15148,7 @@ app.get('/analytics', (req, res) => {
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 Ailydian Analytics Dashboard</h1>
+            <h1>🚀 LyDian Analytics Dashboard</h1>
             <p>Real-time monitoring and analytics for your AI platform</p>
         </div>
 
@@ -16198,6 +16198,24 @@ app.post('/api/chat/specialized', async (req, res) => {
       error: 'AI yanıt oluşturma hatası',
       details: error.message,
       aiType: aiType || 'unknown'
+    });
+  }
+});
+
+// ==================================================
+// 🧠 LYDIAN IQ REASONING ENGINE API
+// ==================================================
+const lydianIQSolver = require('./api/lydian-iq/solve');
+
+app.post('/api/lydian-iq/solve', async (req, res) => {
+  try {
+    await lydianIQSolver(req, res);
+  } catch (error) {
+    console.error('❌ LyDian IQ routing error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      message: 'LyDian IQ API hatası'
     });
   }
 });
