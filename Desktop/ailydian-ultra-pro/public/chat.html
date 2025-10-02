@@ -2156,11 +2156,18 @@ body {
 
     .message-actions {
         gap: 0.5rem;
+        margin-top: 1rem !important; /* Mobilde butonlardan uzak */
     }
 
     .action-btn {
         padding: 0.5rem;
         font-size: 0.75rem;
+    }
+
+    /* Kullanıcı mesajına daha fazla bottom margin - butonlara değmesin */
+    .user-message {
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
     }
 
     .input-wrapper {
@@ -2325,6 +2332,15 @@ body {
         opacity: 1 !important;
         white-space: nowrap !important;
         font-weight: 400 !important;
+    }
+
+    /* Mobilde sadece sayılar ve ikonlar - yazıları gizle */
+    .input-stats .count-label {
+        display: none !important;
+    }
+
+    .input-stats svg {
+        opacity: 0.8 !important;
     }
 
     /* Hide mobile search button */
@@ -3093,6 +3109,10 @@ body {
                                 id="messageInput"
                                 placeholder="Mesajınızı buraya yazın..."
                                 rows="1"
+                                autocomplete="on"
+                                autocorrect="on"
+                                autocapitalize="sentences"
+                                spellcheck="true"
                             ></textarea>
 
                             <div class="input-actions">
@@ -3145,10 +3165,16 @@ body {
 
                         <div class="input-stats">
                             <span class="char-count">
-                                <span id="charCount">0</span> karakter
+                                <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-right: 4px;">
+                                    <path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                                </svg>
+                                <span id="charCount">0</span><span class="count-label"> karakter</span>
                             </span>
                             <span class="token-count">
-                                ~<span id="tokenCount">0</span> token
+                                <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-right: 4px;">
+                                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                ~<span id="tokenCount">0</span><span class="count-label"> token</span>
                             </span>
                             <!-- ⚡ Real-time Speed & Token Display (after query) -->
                             <span class="speed-display" id="speedDisplay" style="display:none;">
