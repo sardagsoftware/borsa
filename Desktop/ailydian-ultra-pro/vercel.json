@@ -6,6 +6,26 @@
       "destination": "/server.js"
     },
     {
+      "source": "/robots.txt",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/sitemap-index.xml",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/sitemap-core.xml",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/ailydian-indexnow-2025.txt",
+      "destination": "/server.js"
+    },
+    {
       "source": "/",
       "destination": "/public/index.html"
     },
