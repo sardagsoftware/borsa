@@ -39,6 +39,10 @@ const PUBLIC_ROUTES = [
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // In development or if DISABLE_AUTH is set, only apply security headers
+  const isDevMode = process.env.NODE_ENV === 'development';
+  const authDisabled = process.env.DISABLE_AUTH === 'true';
+
   // Allow public routes - exact match for root
   if (pathname === '/' || pathname === '/login' || PUBLIC_ROUTES.some(route => pathname.startsWith(route))) {
     const response = NextResponse.next();
