@@ -16344,18 +16344,19 @@ const sitemapIndex = require('./api/seo/sitemap-index');
 const sitemapCore = require('./api/seo/sitemap-core');
 const indexNow = require('./api/seo/indexnow');
 
-// robots.txt - Dynamic for all subdomains
-app.get('/robots.txt', robotsTxt.handleRobots);
+// SEO API endpoints (guaranteed to work under /api/)
+app.get('/api/seo/robots', robotsTxt.handleRobots);
+app.get('/api/seo/sitemap-index', sitemapIndex.handleSitemapIndex);
+app.get('/api/seo/sitemap-core', sitemapCore.handleCoreSitemap);
+app.get('/api/seo/sitemap', sitemapIndex.handleSitemapIndex); // Alias
+app.post('/api/seo/indexnow', indexNow.handleIndexNow);
+app.get('/api/seo/indexnow-key', indexNow.handleKeyVerification);
 
-// Sitemap routes
+// Standard SEO paths (legacy/standard locations)
+app.get('/robots.txt', robotsTxt.handleRobots);
 app.get('/sitemap-index.xml', sitemapIndex.handleSitemapIndex);
 app.get('/sitemap-core.xml', sitemapCore.handleCoreSitemap);
-app.get('/sitemap.xml', sitemapIndex.handleSitemapIndex); // Alias
-
-// IndexNow API
-app.post('/api/seo/indexnow', indexNow.handleIndexNow);
-
-// IndexNow key verification file
+app.get('/sitemap.xml', sitemapIndex.handleSitemapIndex);
 app.get('/ailydian-indexnow-2025.txt', indexNow.handleKeyVerification);
 app.get(`/${process.env.INDEXNOW_KEY_ID || 'ailydian-indexnow-2025'}.txt`, indexNow.handleKeyVerification);
 

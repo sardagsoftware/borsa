@@ -7,23 +7,23 @@
     },
     {
       "source": "/robots.txt",
-      "destination": "/server.js"
+      "destination": "/api/seo/robots"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/server.js"
+      "destination": "/api/seo/sitemap-index"
     },
     {
       "source": "/sitemap-index.xml",
-      "destination": "/server.js"
+      "destination": "/api/seo/sitemap-index"
     },
     {
       "source": "/sitemap-core.xml",
-      "destination": "/server.js"
+      "destination": "/api/seo/sitemap-core"
     },
     {
       "source": "/ailydian-indexnow-2025.txt",
-      "destination": "/server.js"
+      "destination": "/api/seo/indexnow-key"
     },
     {
       "source": "/",
