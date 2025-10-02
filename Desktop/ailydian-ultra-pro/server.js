@@ -16310,6 +16310,32 @@ app.post('/api/lydian-iq/solve', async (req, res) => {
   }
 });
 
+// ==================================================
+// 🔐 OAUTH AUTHENTICATION ROUTES
+// ==================================================
+const authOAuth = require('./api/auth-oauth');
+
+// Google OAuth
+app.get('/api/auth/google', authOAuth.handleGoogleAuth);
+app.get('/api/auth/google/callback', authOAuth.handleGoogleCallback);
+
+// Microsoft OAuth
+app.get('/api/auth/microsoft', authOAuth.handleMicrosoftAuth);
+app.get('/api/auth/microsoft/callback', authOAuth.handleMicrosoftCallback);
+
+// GitHub OAuth
+app.get('/api/auth/github', authOAuth.handleGithubAuth);
+app.get('/api/auth/github/callback', authOAuth.handleGithubCallback);
+
+// Apple OAuth
+app.get('/api/auth/apple', authOAuth.handleAppleAuth);
+app.post('/api/auth/apple/callback', authOAuth.handleAppleCallback);
+
+// Auth utilities
+app.post('/api/auth/check-email', authOAuth.handleCheckEmail);
+app.post('/api/auth/logout', authOAuth.handleLogout);
+app.get('/api/auth/verify', authOAuth.handleVerifyToken);
+
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {
   res.status(404).json({
