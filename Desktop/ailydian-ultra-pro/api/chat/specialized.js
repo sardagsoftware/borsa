@@ -1,4 +1,5 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
+require('dotenv').config();
 const OpenAI = require('openai');
 
 // HIDDEN AI MODELS - User never knows
