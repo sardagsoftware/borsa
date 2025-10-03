@@ -6,6 +6,9 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Ailydian AI - Multi-Model Intelligence Platform</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+
     <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
     <script src="/js/geo-language.js"></script>
 
@@ -332,30 +335,29 @@ body {
     transform: scale(1.05);
 }
 
-/* 🔘 Sidebar Toggle Button */
+/* 🔘 Sidebar Toggle Button - Visible on desktop, inside sidebar */
 .sidebar-toggle {
     position: absolute;
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
-    display: flex !important;
+    display: flex !important; /* Show on desktop */
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 101;
+    padding: 0;
 }
 
 .sidebar-toggle:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-toggle svg {
@@ -365,12 +367,26 @@ body {
     transition: all 0.3s;
 }
 
+.sidebar-toggle img {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .sidebar-toggle:hover svg {
     fill: #FFFFFF !important;
 }
 
+.sidebar-toggle:hover img {
+    transform: scale(1.1);
+}
+
 .sidebar.collapsed .sidebar-toggle {
-    left: -280px;
+    left: 1rem !important; /* Stay visible when collapsed */
+    position: fixed !important;
+    z-index: 1000 !important;
+    transform: translateY(-50%) translateX(280px) !important; /* Move out from collapsed sidebar */
 }
 
 /* Floating Open Button - Visible on Dark Background */
@@ -1268,7 +1284,7 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     /* Neon white text */
     color: #FFFFFF;
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+    
     font-weight: 400;
     letter-spacing: 0.01em;
 }
@@ -1702,6 +1718,11 @@ body {
 .mobile-plus-btn,
 .mobile-search-btn,
 .mobile-toggle-btn,
+.mobile-logo-toggle,
+.mobile-logo-text,
+.mobile-logo-container,
+.mobile-dropdown-trigger,
+.mobile-dropdown-menu,
 .mobile-sidebar {
     display: none;
 }
@@ -2060,25 +2081,9 @@ body {
         transform: translateX(-100%);
     }
 
+    /* Sidebar toggle remains hidden on mobile - use .mobile-logo-toggle instead */
     .sidebar-toggle {
-        display: block;
-        position: fixed;
-        left: 1rem;
-        top: 1rem;
-        z-index: 999;
-        background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
-        color: white;
-        border: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .sidebar-toggle:active {
-        transform: scale(0.95);
+        display: none !important;
     }
 
     .main-content {
@@ -2348,35 +2353,105 @@ body {
         display: none !important;
     }
 
-    /* 🎛️ MOBILE TOGGLE BUTTON - Grey tone, no green */
+    /* 🎛️ MOBILE TOGGLE BUTTON - Hide old one */
     .mobile-toggle-btn {
+        display: none !important;
+    }
+
+    /* 📱 Mobile Logo Toggle - Show on mobile, aligned with header */
+    .mobile-logo-toggle {
+        display: flex !important;
+        position: relative !important; /* Changed from fixed to relative */
+        width: auto !important; /* Auto width for logo + text */
+        height: 36px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem; /* Space between logo and text */
+    }
+
+    .mobile-logo-toggle img {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        flex-shrink: 0;
+    }
+
+    .mobile-logo-text {
+        display: inline-block !important;
+        font-size: 1.125rem !important;
+        font-weight: 600 !important;
+        color: #FFFFFF !important;
+        white-space: nowrap;
+    }
+
+    /* 📱 Mobile Logo Container - Flex wrapper */
+    .mobile-logo-container {
+        display: flex !important;
         position: fixed !important;
-        top: 1rem !important;
+        top: 0.75rem !important;
         left: 1rem !important;
+        z-index: 9999 !important;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    /* 📱 Mobile Dropdown Trigger - V icon button */
+    .mobile-dropdown-trigger {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1.5px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
+        width: 20px !important;
+        height: 20px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
         cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 9999;
-        box-shadow: none;
+        transition: transform 0.2s;
     }
 
-    .mobile-toggle-btn svg {
-        width: 20px;
-        height: 20px;
-        fill: rgba(255, 255, 255, 0.8);
-        transition: transform 0.3s ease;
+    .mobile-dropdown-trigger:active {
+        transform: scale(0.9);
     }
 
-    .mobile-toggle-btn:active {
-        transform: scale(0.95);
-        background: rgba(255, 255, 255, 0.12);
+    .mobile-dropdown-trigger.open {
+        transform: rotate(180deg);
+    }
+
+    /* 📱 Mobile Dropdown Menu - Simple list, no shadow/border */
+    .mobile-dropdown-menu {
+        display: none;
+        position: fixed;
+        top: 2.75rem; /* Right below logo text */
+        left: 4rem; /* Align with logo text, not icon */
+        z-index: 9998;
+        background: transparent;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .mobile-dropdown-menu.show {
+        display: flex !important;
+    }
+
+    /* 📱 Mobile Dropdown Items - Minimal style */
+    .mobile-dropdown-item {
+        font-size: 0.875rem !important;
+        font-weight: 400 !important;
+        color: #FFFFFF !important;
+        text-decoration: none !important;
+        padding: 0.25rem 0 !important;
+        background: transparent !important;
+        border: none !important;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+    }
+
+    .mobile-dropdown-item:hover {
+        opacity: 0.7;
     }
 
     /* 📱 MOBILE SIDEBAR MENU - Slide from right */
@@ -2823,6 +2898,127 @@ body {
     background: rgba(239, 68, 68, 0.2) !important;
 }
 
+/* ============================================================
+   ⏱️ GUEST TIMER COUNTDOWN - 5 MINUTE LIMIT
+   ============================================================ */
+.guest-timer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: #FF6B4A;
+    font-weight: 700;
+    font-size: 14px;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideInFromRight 0.5s ease-out;
+}
+
+.guest-timer.warning {
+    animation: pulseWarning 1s ease-in-out infinite;
+}
+
+.guest-timer.warning .guest-timer-time {
+    color: #EF4444;
+}
+
+/* Modern Premium Hourglass Icon */
+.guest-timer-icon {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    animation: hourglassFlip 3s ease-in-out infinite;
+}
+
+@keyframes hourglassFlip {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+.guest-timer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.guest-timer-label {
+    font-size: 10px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.guest-timer-time {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseWarning {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .guest-timer {
+        top: 10px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .guest-timer-icon {
+        font-size: 16px;
+    }
+
+    .guest-timer-label {
+        font-size: 9px;
+    }
+
+    .guest-timer-time {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .guest-timer {
+        top: 70px;
+        right: 10px;
+        padding: 8px 14px;
+    }
+
+    .guest-timer-text {
+        gap: 0;
+    }
+
+    .guest-timer-time {
+        font-size: 16px;
+    }
+}
+
 @keyframes pulse-recording {
     0%, 100% {
         transform: scale(1);
@@ -2848,11 +3044,11 @@ body {
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <button class="sidebar-toggle" id="sidebarToggle">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                    </svg>
+                    <img src="/lydian-logo.png" alt="LyDian Logo">
                 </button>
-                <div class="logo">LyDian</div>
+                <div class="logo" style="display: flex; align-items: center; gap: 8px;">
+                    <span>LyDian</span>
+                </div>
             </div>
 
             <button class="new-chat-btn" id="newChatBtn">
@@ -2931,12 +3127,23 @@ body {
         <!-- 💬 MAIN CHAT AREA -->
         <div class="main-chat">
             <!-- 🎯 HEADER -->
-            <!-- 🎛️ MOBILE TOGGLE BUTTON (Top Left - Only Mobile) -->
-            <button class="mobile-toggle-btn" id="mobileToggleBtn" title="Menü">
-                <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                </svg>
-            </button>
+            <!-- 🎛️ MOBILE LOGO WITH DROPDOWN -->
+            <div class="mobile-logo-container">
+                <button class="mobile-logo-toggle" id="mobileToggleBtn" title="Menü">
+                    <img src="/lydian-logo.png" alt="LyDian Logo">
+                    <span class="mobile-logo-text">LyDian</span>
+                </button>
+                <button class="mobile-dropdown-trigger" id="mobileDropdownBtn" aria-label="Menü">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu" id="mobileDropdownMenu">
+                    <a href="/lydian-iq.html" target="_blank" rel="noopener noreferrer" class="mobile-dropdown-item">IQ</a>
+                    <a href="/medical-expert.html" target="_blank" rel="noopener noreferrer" class="mobile-dropdown-item">TIP</a>
+                    <a href="/knowledge-base.html" target="_blank" rel="noopener noreferrer" class="mobile-dropdown-item">BANK</a>
+                </div>
+            </div>
 
             <!-- 📱 MOBILE SIDEBAR MENU (Slide from right) -->
             <div class="mobile-sidebar" id="mobileSidebar">
@@ -2965,7 +3172,8 @@ body {
             </div>
 
             <div class="chat-header">
-                <div class="header-left">
+                <div class="header-left" style="display: flex; align-items: center; gap: 10px;">
+                    <!-- Logo removed per user request -->
                 </div>
 
                 <div class="header-actions">
@@ -3104,29 +3312,29 @@ body {
 
                 <!-- 🤖 AI MODEL SELECTORS (Advanced, Premium, Ultra) -->
                 <div class="input-mode-selectors" style="margin-top: 0.5rem; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
-                    <button class="mode-btn" data-model="gpt-5" title="Advanced AI Model">
+                    <button class="mode-btn" data-model="model-a" title="Advanced Mode">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
                         <span>Advanced</span>
                     </button>
-                    <button class="mode-btn active" data-model="claude" title="Premium AI Model">
+                    <button class="mode-btn active" data-model="model-p" title="Premium Mode">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18.5c-3.87-1.18-6.5-4.85-6.5-8.5V8.3l6.5-3.11 6.5 3.11V12c0 3.65-2.63 7.32-6.5 8.5z"/>
                         </svg>
                         <span>Premium</span>
                     </button>
-                    <button class="mode-btn" data-model="gemini" title="Ultra AI Model">
+                    <button class="mode-btn" data-model="model-u" title="Ultra Mode">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2L1 12l11 10 11-10L12 2zm0 2.83L19.17 12 12 19.17 4.83 12 12 4.83z"/>
                         </svg>
                         <span>Ultra</span>
                     </button>
-                    <button class="mode-btn" data-model="rag" title="RAG - Retrieval Augmented Generation">
+                    <button class="mode-btn" data-model="model-r" title="Research Mode">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
                         </svg>
-                        <span>RAG</span>
+                        <span>Research</span>
                     </button>
                 </div>
 
@@ -3153,32 +3361,32 @@ body {
 
                                 <!-- 🌟 NEON AI MODE ICONS (Inline) -->
                                 <div class="neon-icons-container">
-                                    <button class="neon-icon neon-thinking" id="neonDeepThinkBtn" title="Deep Thinking Mode - Advanced reasoning">
+                                    <button class="neon-icon neon-thinking" id="neonDeepThinkBtn" title="Aktif">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-search" id="neonWebSearchBtn" title="Web Search Mode - Live internet search">
+                                    <button class="neon-icon neon-search" id="neonWebSearchBtn" title="Aktif">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-image" id="neonImageBtn" title="Image Generation - Create stunning visuals">
+                                    <button class="neon-icon neon-image" id="neonImageBtn" title="Aktif">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-video" id="neonVideoBtn" title="Video Upload & Analysis">
+                                    <button class="neon-icon neon-video" id="neonVideoBtn" title="Aktif">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Voice Output - Sesli Yanıt (Ailydian AI)">
+                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Aktif">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-code" id="neonCodeBtn" title="Code Mode - Özel Kod Modu">
+                                    <button class="neon-icon neon-code" id="neonCodeBtn" title="Aktif">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
                                         </svg>
@@ -3237,7 +3445,7 @@ body {
                 </div>
 
                 <!-- 📋 AILYDIAN AI DISCLAIMER - Professional Corporate Notice -->
-                <div class="ai-disclaimer">
+                <div class="ai-disclaimer" style="display: none;">
                     <strong>LyDian AI Hata Yapabilir.</strong> Önemli bilgiler için doğrulama yapmanızı öneririz.
                     Kullanım koşulları ve gizlilik politikası için <a href="/terms.html" target="_blank">buraya tıklayın</a>.
                 </div>
@@ -3258,7 +3466,7 @@ body {
             </div>
             <div class="theme-options">
                 <div class="theme-option active" data-theme="dark">
-                    <div class="theme-preview" style="background: linear-gradient(135deg, #10A37F, #FF6B4A);">
+                    <div class="theme-preview" >
                         <div class="theme-preview-color" style="background: #10A37F;"></div>
                         <div class="theme-preview-color" style="background: #FF6B4A;"></div>
                         <div class="theme-preview-color" style="background: #FFF;"></div>
@@ -3266,7 +3474,7 @@ body {
                     <div class="theme-name">Neon Dark</div>
                 </div>
                 <div class="theme-option" data-theme="ocean">
-                    <div class="theme-preview" style="background: linear-gradient(135deg, #00D4FF, #00A8CC);">
+                    <div class="theme-preview" >
                         <div class="theme-preview-color" style="background: #00D4FF;"></div>
                         <div class="theme-preview-color" style="background: #4AE3FF;"></div>
                         <div class="theme-preview-color" style="background: #00A8CC;"></div>
@@ -3274,7 +3482,7 @@ body {
                     <div class="theme-name">Ocean Blue</div>
                 </div>
                 <div class="theme-option" data-theme="forest">
-                    <div class="theme-preview" style="background: linear-gradient(135deg, #00FF88, #00CC6A);">
+                    <div class="theme-preview" >
                         <div class="theme-preview-color" style="background: #00FF88;"></div>
                         <div class="theme-preview-color" style="background: #4AFFAA;"></div>
                         <div class="theme-preview-color" style="background: #00CC6A;"></div>
@@ -3282,7 +3490,7 @@ body {
                     <div class="theme-name">Forest Green</div>
                 </div>
                 <div class="theme-option" data-theme="purple">
-                    <div class="theme-preview" style="background: linear-gradient(135deg, #B24BF3, #9333EA);">
+                    <div class="theme-preview" >
                         <div class="theme-preview-color" style="background: #B24BF3;"></div>
                         <div class="theme-preview-color" style="background: #C77DFF;"></div>
                         <div class="theme-preview-color" style="background: #9333EA;"></div>
@@ -3290,7 +3498,7 @@ body {
                     <div class="theme-name">Purple Dream</div>
                 </div>
                 <div class="theme-option" data-theme="sunset">
-                    <div class="theme-preview" style="background: linear-gradient(135deg, #FF6B9D, #E64A7A);">
+                    <div class="theme-preview" >
                         <div class="theme-preview-color" style="background: #FF6B9D;"></div>
                         <div class="theme-preview-color" style="background: #FF8FAB;"></div>
                         <div class="theme-preview-color" style="background: #E64A7A;"></div>
@@ -3298,7 +3506,7 @@ body {
                     <div class="theme-name">Sunset Pink</div>
                 </div>
                 <div class="theme-option" data-theme="minimal-dark">
-                    <div class="theme-preview" style="background: linear-gradient(135deg, #FFF, #E5E5E5);">
+                    <div class="theme-preview" >
                         <div class="theme-preview-color" style="background: #FFF;"></div>
                         <div class="theme-preview-color" style="background: #E5E5E5;"></div>
                         <div class="theme-preview-color" style="background: #D0D0D0;"></div>
@@ -3331,7 +3539,7 @@ body {
                 ></textarea>
                 <button
                     id="generateImageBtn"
-                    style="margin-top: 1rem; width: 100%; padding: 1rem; background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%); border: none; border-radius: 12px; color: #FFFFFF; font-weight: 700; cursor: pointer; transition: all 0.3s;"
+                    
                 >
                     Oluştur
                 </button>
@@ -3385,7 +3593,7 @@ body {
                 </div>
                 <button
                     id="generateVideoBtn"
-                    style="margin-top: 1.5rem; width: 100%; padding: 1rem; background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%); border: none; border-radius: 12px; color: #FFFFFF; font-weight: 700; cursor: pointer; transition: all 0.3s;"
+                    
                 >
                     Video Oluştur
                 </button>
@@ -3738,6 +3946,27 @@ body {
             }
         }
 
+        // Mobile dropdown functionality
+        const mobileDropdownBtn = document.getElementById('mobileDropdownBtn');
+        const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
+
+        if (mobileDropdownBtn && mobileDropdownMenu) {
+            mobileDropdownBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileDropdownMenu.classList.toggle('show');
+                mobileDropdownBtn.classList.toggle('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.mobile-logo-container')) {
+                    mobileDropdownMenu.classList.remove('show');
+                    mobileDropdownBtn.classList.remove('open');
+                }
+            });
+        }
+
         // Toggle button only closes the sidebar (no opening)
         if (mobileToggleBtn) {
             mobileToggleBtn.addEventListener('click', closeMobileSidebar);
@@ -3839,6 +4068,7 @@ body {
             elements.neonImageBtn.addEventListener('click', () => {
                 state.selectedAiType = 'image';
                 toggleNeonIcon(elements.neonImageBtn);
+                // No toast - only tooltip shows "Aktif"
             });
         }
 
@@ -3847,6 +4077,7 @@ body {
             elements.neonVideoBtn.addEventListener('click', () => {
                 state.selectedAiType = 'video';
                 toggleNeonIcon(elements.neonVideoBtn);
+                // No toast - only tooltip shows "Aktif"
             });
         }
 
@@ -3858,13 +4089,13 @@ body {
             });
         }
 
-        // 💻 Code Mode Icon (Z.AI GLM-4.6)
+        // 💻 Code Mode Icon
         if (elements.neonCodeBtn) {
             elements.neonCodeBtn.addEventListener('click', () => {
                 state.selectedAiType = 'code';
-                state.selectedModel = 'glm-4-6'; // Z.AI GLM-4.6 Code Expert
+                state.selectedModel = 'code-model';
                 toggleNeonIcon(elements.neonCodeBtn);
-                showToast('💻 Kod Uzmanı Modu Aktif (GLM-4.6)');
+                // No toast message on click
             });
         }
 
@@ -3972,7 +4203,9 @@ body {
                     model: state.selectedModel || 'primary',
                     temperature: 0.7,
                     max_tokens: 4000,
-                    history: cleanHistory
+                    history: cleanHistory,
+                    language: 'tr',  // Always Turkish
+                    locale: 'tr-TR'  // Turkish locale
                 };
 
                 const response = await fetch(apiEndpoint, {
@@ -4010,86 +4243,19 @@ body {
                     addMessage('assistant', aiResponse);
                     // Silent success - no model exposure
 
-                    // 🎤 VOICE MODE: Convert response to speech with Ailydian AI
-                    if (state.selectedAiType === 'voice') {
+                    // 🎤 VOICE MODE: Play Azure AI Speech audio
+                    if (state.selectedAiType === 'voice' && data.audioData) {
                         try {
-                            const voiceResponse = await fetch('/api/voice-tts', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ text: data.response })
-                            });
-                            const voiceData = await voiceResponse.json();
-                            if (voiceData.success && voiceData.audio) {
-                                const audio = new Audio(`data:audio/mp3;base64,${voiceData.audio}`);
-                                audio.play();
-                                showToast('🔊 Ses çalınıyor...');
-                            }
+                            const audio = new Audio(data.audioData);
+                            audio.play();
+                            console.log('🔊 Azure AI Speech audio playing...');
                         } catch (e) {
-                            console.error('Voice TTS failed:', e);
+                            console.error('Voice playback failed:', e);
                         }
                         state.selectedAiType = 'general'; // Reset mode
                     }
 
-                    // 🎨 IMAGE MODE: Generate image with Ailydian AI
-                    if (state.selectedAiType === 'image') {
-                        try {
-                            showToast('🎨 Görsel oluşturuluyor... (Ultra HD 8K)');
-                            const imageResponse = await fetch('/api/imagen-photo', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    prompt: message,
-                                    numberOfImages: 1,
-                                    aspectRatio: '1:1'
-                                })
-                            });
-                            const imageData = await imageResponse.json();
-                            if (imageData.success && imageData.images && imageData.images.length > 0) {
-                                const imageUrl = imageData.images[0].dataUrl;
-                                addMessage('assistant', `🎨 **Ultra HD Görsel Oluşturuldu!**\n\n![${message}](${imageUrl})\n\n**Prompt:** ${message}\n**Kalite:** ${imageData.metadata.quality}\n**Teknoloji:** ${imageData.metadata.technology}`);
-                                showToast('✅ Görsel başarıyla oluşturuldu!');
-                            } else {
-                                addMessage('assistant', '⚠️ Görsel oluşturuldu ama görüntülenemedi. Lütfen tekrar deneyin.');
-                            }
-                        } catch (e) {
-                            console.error('Image generation failed:', e);
-                            addMessage('assistant', '❌ Görsel oluşturulamadı. Lütfen daha detaylı bir açıklama deneyin.');
-                        }
-                        state.selectedAiType = 'general'; // Reset mode
-                    }
-
-                    // 🎬 VIDEO MODE: Generate video with Ailydian AI
-                    if (state.selectedAiType === 'video') {
-                        try {
-                            showToast('🎬 Video oluşturuluyor... (Premium 1280x720, 5 saniye)');
-                            const videoResponse = await fetch('/api/video/generate', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    prompt: message,
-                                    duration: 5,
-                                    resolution: '1280x720',
-                                    style: 'realistic'
-                                })
-                            });
-                            const videoData = await videoResponse.json();
-
-                            if (videoData.status === 'processing') {
-                                addMessage('assistant', `🎬 **Video Oluşturuluyor...**\n\n⏳ Video arka planda üretiliyor. Bu işlem 2-3 dakika sürebilir.\n\n**Prompt:** ${message}\n**Süre:** 8 saniye\n**Kalite:** Premium 4K\n\n*İşlem tamamlandığında bildirim alacaksınız.*`);
-                                showToast('⏳ Video arka planda üretiliyor...');
-                            } else if (videoData.success && videoData.videos && videoData.videos.length > 0) {
-                                const videoUrl = videoData.videos[0];
-                                addMessage('assistant', `🎬 **Premium 4K Video Oluşturuldu!**\n\n[Video İndir](${videoUrl})\n\n**Prompt:** ${message}\n**Süre:** ${videoData.duration} saniye\n**Kalite:** ${videoData.metadata.quality}\n**Teknoloji:** ${videoData.metadata.technology}`);
-                                showToast('✅ Video başarıyla oluşturuldu!');
-                            } else {
-                                addMessage('assistant', '⚠️ Video oluşturuldu ama indirilemedi. Lütfen tekrar deneyin.');
-                            }
-                        } catch (e) {
-                            console.error('Video generation failed:', e);
-                            addMessage('assistant', '❌ Video oluşturulamadı. Lütfen daha kısa ve net bir açıklama deneyin.');
-                        }
-                        state.selectedAiType = 'general'; // Reset mode
-                    }
+                    // Image and video are now handled by /api/chat/specialized - no extra processing needed
 
                     // Save chat after getting response
                     saveCurrentChat();
@@ -4236,7 +4402,19 @@ body {
                 .split('\n').map(line => `<p>${escapeHtml(line)}</p>`).join('')
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/`(.*?)`/g, '<code>$1</code>');
+                .replace(/`(.*?)`/g, '<code>$1</code>')
+                .replace(/!\[(.*?)\]\((https?:\/\/[^\)]+)\)/g, function(match, alt, url) {
+                    return `<div style="position: relative; display: inline-block; margin: 10px 0;">
+                        <img src="${url}" alt="${alt}" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <a href="${url}" download target="_blank" style="position: absolute; bottom: 12px; right: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4); transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            İndir
+                        </a>
+                    </div>`;
+                }) // Markdown images with download button
+                .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'); // Markdown links
         }
 
         function escapeHtml(text) {
@@ -4818,6 +4996,127 @@ body {
                 addMessage(msg.role, msg.content);
             });
         }
+
+        // ============================================================
+        // 🚨 5 MINUTE GUEST USAGE TIMER - COUNTDOWN DISPLAY
+        // ============================================================
+        (function initGuestTimer() {
+            // Check if user is logged in (you can modify this check based on your auth system)
+            const isUserLoggedIn = localStorage.getItem('userToken') ||
+                                   localStorage.getItem('isLoggedIn') ||
+                                   sessionStorage.getItem('userToken');
+
+            // If user is logged in, don't start timer
+            if (isUserLoggedIn) {
+                console.log('✅ User is logged in - no timer needed');
+                return;
+            }
+
+            // Check if timer has already started
+            const timerStartTime = localStorage.getItem('guestChatStartTime');
+            const currentTime = Date.now();
+
+            if (!timerStartTime) {
+                // First time visiting chat page - set start time
+                localStorage.setItem('guestChatStartTime', currentTime.toString());
+                console.log('⏰ Guest timer started - 5 minutes remaining');
+            }
+
+            // Create timer UI element with modern animated hourglass
+            const timerElement = document.createElement('div');
+            timerElement.className = 'guest-timer';
+            timerElement.innerHTML = `
+                <div class="guest-timer-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <defs>
+                            <linearGradient id="hourglassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF6B4A"/>
+                                <stop offset="100%" style="stop-color:#FF8A6D"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Hourglass Frame -->
+                        <path d="M8 4 L24 4 L24 6 L20 10 L16 14 L20 18 L24 22 L24 24 L24 28 L8 28 L8 24 L8 22 L12 18 L16 14 L12 10 L8 6 L8 4 Z"
+                              stroke="url(#hourglassGradient)" stroke-width="2" fill="none"/>
+                        <!-- Top Sand -->
+                        <path d="M10 6 L22 6 L18 10 L14 10 Z" fill="url(#hourglassGradient)" opacity="0.6">
+                            <animate attributeName="d"
+                                     dur="3s"
+                                     repeatCount="indefinite"
+                                     values="M10 6 L22 6 L18 10 L14 10 Z;
+                                             M10 6 L22 6 L17 11 L15 11 Z;
+                                             M10 6 L22 6 L16.5 12 L15.5 12 Z"/>
+                        </path>
+                        <!-- Bottom Sand -->
+                        <path d="M10 26 L22 26 L18 22 L14 22 Z" fill="url(#hourglassGradient)" opacity="0.6">
+                            <animate attributeName="d"
+                                     dur="3s"
+                                     repeatCount="indefinite"
+                                     values="M10 26 L22 26 L18 22 L14 22 Z;
+                                             M10 26 L22 26 L17 21 L15 21 Z;
+                                             M10 26 L22 26 L16 19 L16 19 Z"/>
+                        </path>
+                        <!-- Falling Sand Particles -->
+                        <circle cx="16" cy="13" r="0.5" fill="#FF6B4A">
+                            <animate attributeName="cy" dur="1s" repeatCount="indefinite" values="13;18;13"/>
+                            <animate attributeName="opacity" dur="1s" repeatCount="indefinite" values="1;0.3;1"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="guest-timer-text">
+                    <div class="guest-timer-label">Kalan Süre</div>
+                    <div class="guest-timer-time" id="guestTimerDisplay">05:00</div>
+                </div>
+            `;
+            document.body.appendChild(timerElement);
+
+            const timerDisplay = document.getElementById('guestTimerDisplay');
+
+            // Update countdown every second
+            const countdownInterval = setInterval(() => {
+                const startTime = parseInt(localStorage.getItem('guestChatStartTime'));
+                const fiveMinutesInMs = 5 * 60 * 1000; // 5 minutes
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = fiveMinutesInMs - elapsedTime;
+
+                // If time is up, redirect
+                if (remainingTime <= 0) {
+                    clearInterval(countdownInterval);
+                    alert('5 dakikalık ücretsiz deneme süreniz doldu. Devam etmek için lütfen giriş yapın veya kayıt olun.');
+                    window.location.href = '/auth.html';
+                    return;
+                }
+
+                // Calculate minutes and seconds
+                const totalSeconds = Math.floor(remainingTime / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+
+                // Format as MM:SS
+                const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timerDisplay.textContent = formattedTime;
+
+                // Add warning state when less than 1 minute remaining
+                if (remainingTime < 60000) {
+                    timerElement.classList.add('warning');
+                }
+            }, 1000);
+
+            // Calculate initial remaining time
+            const startTime = parseInt(localStorage.getItem('guestChatStartTime'));
+            const fiveMinutesInMs = 5 * 60 * 1000;
+            const elapsedTime = currentTime - startTime;
+            const remainingTime = fiveMinutesInMs - elapsedTime;
+
+            // If time is already up, redirect immediately
+            if (remainingTime <= 0) {
+                console.log('⏰ Guest time expired - redirecting to auth page');
+                alert('5 dakikalık ücretsiz deneme süreniz doldu. Devam etmek için lütfen giriş yapın veya kayıt olun.');
+                window.location.href = '/auth.html';
+                return;
+            }
+
+            console.log(`⏰ Guest timer - ${Math.floor(remainingTime / 1000)} seconds remaining`);
+        })();
     </script>
 </body>
 </html>
