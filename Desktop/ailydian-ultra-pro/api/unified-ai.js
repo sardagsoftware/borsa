@@ -1,4 +1,5 @@
 // LyDian Unified AI API - All Models Hidden
+require('dotenv').config();
 const OpenAI = require('openai');
 
 // Hidden AI Configuration - User never knows which AI they're using

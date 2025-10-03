@@ -1,6 +1,7 @@
 // Gemini API - Google AI Integration
 // Supports Gemini 2.0 Flash and other Gemini models
 
+require('dotenv').config();
 const axios = require('axios');
 
 // Google AI Configuration

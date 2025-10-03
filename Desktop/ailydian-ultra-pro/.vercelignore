@@ -1,59 +1,67 @@
-# Dependencies
+# Development files
 node_modules
-.pnpm-store
+.env
+.env.local
+.env.*.local
 
 # Logs
-logs
 *.log
+logs
+server.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Testing
-coverage
-.nyc_output
-playwright-report
+# Test files
 test-results
-
-# Build artifacts (except public)
-.next
-dist
-out
-build
-.cache
+playwright-report
+*.spec.js
+*.test.js
 
 # IDE
 .vscode
 .idea
+.DS_Store
 *.swp
 *.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment files (use Vercel dashboard for env vars)
-.env
-.env.*
-!.env.example
-
-# Development tools
-.git
-.gitignore
 
 # Documentation
-docs
 *.md
 !README.md
-
-# Reports
-reports
+docs
 
 # Backup files
-*.backup
+*backup*
+*BACKUP*
 *.bak
+*.tar.gz
 
-# Large assets that should be on CDN
-# public/videos/*
-# public/images/large/*
+# Azure services (local only)
+azure-services
+monitoring
+
+# Apps (using separate repos)
+apps
+
+# Multi-language libraries (local only)
+multi-language-libraries
+
+# Infrastructure (local only)
+infra
+
+# Database (local only)
+database
+
+# Backend (local only, if separate)
+backend
+
+# Security (local only)
+security
+
+# AI integrations (local only, if not needed)
+ai-integrations
+
+# Large files
+*.tar.gz
+*.zip
+*.rar

@@ -1,8 +1,16 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
 const OpenAI = require('openai');
 
-// HIDDEN AI MODELS - User never knows
+// HIDDEN AI MODELS - User never knows | Azure OpenAI Integrated
 const MODELS = {
+  // Azure OpenAI (Enterprise Primary)
+  azure: {
+    name: 'gpt-4-turbo',
+    key: () => process.env.AZURE_OPENAI_API_KEY,
+    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : null,
+    apiVersion: '2024-02-01',
+    display: 'LyDian AI'
+  },
   // Groq Models (Ultra Fast)
   primary: {
     name: 'llama-3.3-70b-versatile',
@@ -143,36 +151,53 @@ module.exports = async (req, res) => {
       return res.status(400).json({ success: false, error: 'Mesaj gerekli' });
     }
 
-    // Smart model selection (hidden from user)
-    let selectedModel = MODELS.primary;
+    // Build provider cascade (Azure → Groq → OpenAI)
+    const providers = [];
 
-    // Code detection - use fast model
-    if (message.includes('```') || message.includes('code') || message.includes('kod')) {
-      selectedModel = MODELS.fast;
-    }
-    // Long complex queries - use primary
-    else if (message.length > 500) {
-      selectedModel = MODELS.primary;
-    }
-
-    const apiKey = selectedModel.key();
-    if (!apiKey) {
-      // Fallback to another model
-      selectedModel = MODELS.gpt4mini;
-      const fallbackKey = selectedModel.key();
-      if (!fallbackKey) {
-        return res.status(500).json({
-          success: false,
-          error: 'AI servisi geçici olarak kullanılamıyor'
-        });
-      }
+    // Azure OpenAI (Priority 1)
+    if (MODELS.azure.key() && MODELS.azure.url) {
+      providers.push({
+        name: 'Azure OpenAI',
+        model: MODELS.azure,
+        setup: () => new OpenAI({
+          apiKey: MODELS.azure.key(),
+          baseURL: MODELS.azure.url,
+          defaultQuery: { 'api-version': MODELS.azure.apiVersion },
+          defaultHeaders: { 'api-key': MODELS.azure.key() }
+        })
+      });
     }
 
-    // Initialize AI client
-    const client = new OpenAI({
-      apiKey: apiKey,
-      baseURL: selectedModel.url
-    });
+    // Groq (Priority 2 - Fast)
+    if (MODELS.primary.key()) {
+      providers.push({
+        name: 'Groq Llama 3.3',
+        model: MODELS.primary,
+        setup: () => new OpenAI({
+          apiKey: MODELS.primary.key(),
+          baseURL: MODELS.primary.url
+        })
+      });
+    }
+
+    // OpenAI (Priority 3 - Fallback)
+    if (MODELS.gpt4mini.key()) {
+      providers.push({
+        name: 'OpenAI GPT-4o-mini',
+        model: MODELS.gpt4mini,
+        setup: () => new OpenAI({
+          apiKey: MODELS.gpt4mini.key(),
+          baseURL: MODELS.gpt4mini.url
+        })
+      });
+    }
+
+    if (providers.length === 0) {
+      return res.status(503).json({
+        success: false,
+        error: 'AI servisi geçici olarak kullanılamıyor - Hiçbir provider yapılandırılmadı'
+      });
+    }
 
     // Clean history
     const cleanHistory = history.map(msg => ({
@@ -180,19 +205,47 @@ module.exports = async (req, res) => {
       content: msg.content
     }));
 
-    // Make API call with dynamic system prompt
-    const completion = await client.chat.completions.create({
-      model: selectedModel.name,
-      messages: [
-        getMultilingualSystem(), // Dynamic system prompt for variety
-        ...cleanHistory,
-        { role: 'user', content: message }
-      ],
-      temperature,
-      max_tokens
-    });
+    // Try providers in cascade
+    let response = null;
+    let completion = null;
+    let usedProvider = null;
 
-    const response = completion.choices[0].message.content;
+    for (let i = 0; i < providers.length; i++) {
+      const provider = providers[i];
+
+      try {
+        console.log(`${i === 0 ? '🎯' : '🔄'} ${i === 0 ? 'Using' : 'Fallback to'} ${provider.name} (Chat API)`);
+
+        const client = provider.setup();
+
+        completion = await client.chat.completions.create({
+          model: provider.model.name,
+          messages: [
+            getMultilingualSystem(),
+            ...cleanHistory,
+            { role: 'user', content: message }
+          ],
+          temperature,
+          max_tokens
+        });
+
+        response = completion.choices[0].message.content;
+        usedProvider = provider.name;
+        console.log(`✅ ${provider.name} response completed`);
+
+        // Success - break the loop
+        break;
+
+      } catch (error) {
+        console.error(`❌ ${provider.name} failed: ${error.message}`);
+
+        // Continue to next provider
+        if (i === providers.length - 1) {
+          // All providers failed
+          throw new Error('All AI providers failed');
+        }
+      }
+    }
 
     // NEVER reveal which AI was used
     res.status(200).json({
@@ -210,50 +263,12 @@ module.exports = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ LyDian AI Error:', error.message);
-
-    // Try fallback
-    try {
-      const fallback = MODELS.gpt4mini;
-      const fallbackKey = fallback.key();
-
-      if (fallbackKey) {
-        const client = new OpenAI({
-          apiKey: fallbackKey,
-          baseURL: fallback.url
-        });
-
-        const cleanHistory = (req.body.history || []).map(msg => ({
-          role: msg.role,
-          content: msg.content
-        }));
-
-        const completion = await client.chat.completions.create({
-          model: fallback.name,
-          messages: [
-            getMultilingualSystem(), // Dynamic system prompt for variety
-            ...cleanHistory,
-            { role: 'user', content: req.body.message }
-          ],
-          temperature: 0.7,
-          max_tokens: 3000
-        });
-
-        return res.status(200).json({
-          success: true,
-          provider: 'LyDian AI',
-          response: completion.choices[0].message.content,
-          timestamp: new Date().toISOString()
-        });
-      }
-    } catch (fallbackError) {
-      console.error('❌ Fallback failed:', fallbackError.message);
-    }
+    console.error('❌ LyDian AI Critical Error:', error.message);
 
     res.status(500).json({
       success: false,
-      error: 'AI yanıt oluşturulamadı',
-      details: 'Lütfen tekrar deneyin',
+      error: 'AI yanıt oluşturulamadı - Tüm AI servisleri başarısız',
+      details: 'Lütfen daha sonra tekrar deneyin',
       aiType: req.body?.aiType || 'unknown'
     });
   }

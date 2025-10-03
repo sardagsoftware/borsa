@@ -10,13 +10,13 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 // Claude Model Configurations
 const CLAUDE_MODELS = {
   'claude-3-5-sonnet': {
-    name: 'claude-3-5-sonnet-20250219',
+    name: 'claude-3-5-sonnet-20241022',
     maxTokens: 8192,
     contextWindow: 200000,
     description: 'Most intelligent Claude model'
   },
   'claude-3-5-sonnet-latest': {
-    name: 'claude-3-5-sonnet-latest',
+    name: 'claude-3-5-sonnet-20241022',
     maxTokens: 8192,
     contextWindow: 200000,
     description: 'Latest Claude 3.5 Sonnet'

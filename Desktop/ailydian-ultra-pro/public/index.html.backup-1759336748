@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian - Yapay zeka ile geleceği şekillendirin. Gelişmiş AI modelleri ve daha fazlası.">
+    <meta name="keywords" content="AI, yapay zeka, AI Sohbet, Görsel Oluşturma, makine öğrenmesi, derin öğrenme">
+    <title>LyDian - Yapay Zeka Platformu</title>
+
+    <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
+    <script src="/js/geo-language.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            min-height: 100%;
+            height: 100%;
+            background: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FFFFFF;
+            color: #111827;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > nav,
+        body > section {
+            flex-shrink: 0;
+        }
+
+        body > footer {
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* ========== NAVIGATION (DETACHED BOXED STYLE) ========== */
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            max-width: 1400px;
+            width: calc(100% - 80px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 20px rgba(16, 163, 127, 0.6),
+                         0 0 40px rgba(16, 163, 127, 0.4),
+                         0 0 60px rgba(16, 163, 127, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(16, 163, 127, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.15);
+        }
+
+        .nav-links a:active {
+            transform: translateY(0);
+        }
+
+        /* Hover Preview Dropdowns */
+        .nav-preview {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+        }
+
+        .nav-links li:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .preview-content {
+            text-align: center;
+        }
+
+        .preview-content img,
+        .preview-content svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .preview-content h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-content p {
+            font-size: 0.875rem;
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #F3F4F6;
+            color: #000000;
+        }
+
+        .btn-primary {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #1F2937;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========== HERO SECTION ========== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+            padding-top: 72px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 163, 127, 0.4), rgba(255, 107, 74, 0.2));
+            animation: float linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hero-gradient {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16, 163, 127, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #10A37F;
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            min-height: 220px;
+        }
+
+        .typewriter-text {
+            display: inline-block;
+            position: relative;
+            transition: color 0.3s ease;
+            font-weight: 800;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background-color: #10A37F;
+            margin-left: 2px;
+            animation: cursorBlink 0.8s ease-in-out infinite;
+        }
+
+        @keyframes cursorBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #4B5563;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 12px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.8s both, floatAnimation 6s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-video-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-video-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: #FFFFFF;
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 1;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            mix-blend-mode: normal;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E5E7EB;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ========== FEATURES SECTION ========== */
+
+        .features {
+            padding: 8rem 2rem;
+            background: #FFFFFF;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #F3F4F6;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: #4B5563;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: #10A37F;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4B5563;
+        }
+
+        /* ========== SHOWCASE SECTION ========== */
+
+        .showcase {
+            padding: 8rem 2rem;
+            background: #F9FAFB;
+        }
+
+        .showcase-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 8rem;
+        }
+
+        .showcase-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .showcase-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .showcase-content {
+            padding: 2rem;
+        }
+
+        .showcase-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #10A37F;
+            color: #FFFFFF;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .showcase-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #000000;
+            margin-bottom: 1.5rem;
+        }
+
+        .showcase-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #4B5563;
+            margin-bottom: 2rem;
+        }
+
+        .showcase-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .showcase-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #374151;
+        }
+
+        .showcase-list li::before {
+            content: "✓";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #10A37F;
+            color: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .showcase-visual {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E5E7EB;
+            background: #FFFFFF;
+        }
+
+        .showcase-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .showcase-visual video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* ========== STATS SECTION ========== */
+
+        .stats {
+            padding: 6rem 2rem;
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1.125rem;
+            color: #9CA3AF;
+            font-weight: 500;
+        }
+
+        /* ========== CTA SECTION ========== */
+
+        .cta {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        .btn-white:hover {
+            background: #F3F4F6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ========== FOOTER ========== */
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: #111827;
+            color: #9CA3AF;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Righteous', cursive;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 20px rgba(16, 163, 127, 0.6),
+                         0 0 40px rgba(16, 163, 127, 0.4),
+                         0 0 60px rgba(16, 163, 127, 0.2);
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #1F2937;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: #10A37F;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #1F2937;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: #FFFFFF;
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                min-height: auto;
+            }
+
+            .hero-video-container {
+                height: 400px;
+            }
+
+            .showcase-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .showcase-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                min-height: auto;
+            }
+
+            .hero-description {
+                font-size: 1.125rem;
+            }
+
+            .hero-video-container {
+                height: 300px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ========== SCROLL ANIMATIONS ========== */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">LyDian</a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="/chat.html">LyDian AI</a>
+                    <div class="nav-preview">
+                        <div class="preview-content">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                            <h4>AI Sohbet</h4>
+                            <p>Gelişmiş AI modelleri ile doğal sohbet edin</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/models.html">Modeller</a>
+                    <div class="nav-preview">
+                        <div class="preview-content">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            <h4>AI Modelleri</h4>
+                            <p>50+ güçlü AI modeli keşfedin</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/api-reference.html">API</a>
+                    <div class="nav-preview">
+                        <div class="preview-content">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                            </svg>
+                            <h4>Developer API</h4>
+                            <p>RESTful API ile entegre edin</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/developers.html">Geliştiriciler</a>
+                    <div class="nav-preview">
+                        <div class="preview-content">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                            <h4>Dokümantasyon</h4>
+                            <p>Kapsamlı geliştirici kılavuzu</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="/auth.html" class="btn btn-secondary">Giriş Yap</a>
+                <a href="/chat.html" class="btn btn-primary">Şimdi Dene</a>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    <span>Yapay Zeka ile Güçlendirilmiş Platform</span>
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="typewriter-text" id="typewriter-text"></span>
+                    <span class="typewriter-cursor"></span>
+                </h1>
+
+                <p class="hero-description">
+                    Gelişmiş yapay zeka modelleriyle desteklenen LyDian,
+                    iş süreçlerinizi optimize eder ve yaratıcılığınızı sınırsız hale getirir.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="/chat.html" class="btn btn-primary btn-large">Ücretsiz Başlayın</a>
+                    <a href="#features" class="btn btn-secondary btn-large">Özellikleri Keşfedin</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-video-container">
+                    <video class="hero-video" autoplay loop muted playsinline preload="auto" id="hero-video" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(1.2) contrast(0.9);">
+                        <source src="https://videos.pexels.com/video-files/3141211/3141211-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-artificial-intelligence-brain-32471-large.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-moving-lights-31291-large.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">ÖZELLİKLER</span>
+                <h2 class="section-title">Güçlü yapay zeka yetenekleri</h2>
+                <p class="section-description">
+                    En gelişmiş AI teknolojileriyle donatılmış araçlar ile projelerinizi hayata geçirin
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Doğal Dil İşleme</h3>
+                    <p class="feature-description">
+                        Çoklu AI modeli desteği ile doğal ve akıcı konuşmalar yapın.
+                        En gelişmiş dil modelleriyle güçlendirilmiştir.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Görsel Oluşturma</h3>
+                    <p class="feature-description">
+                        Gelişmiş görsel üretim modelleriyle hayal gücünüzü gerçeğe dönüştürün.
+                        Profesyonel kalitede görseller oluşturun.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Video Üretimi</h3>
+                    <p class="feature-description">
+                        Google Veo ile profesyonel videolar oluşturun. Metin açıklamasından
+                        otomatik video sentezi yapın.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Kod Üretimi</h3>
+                    <p class="feature-description">
+                        Yapay zeka destekli kod asistanı ile hızlıca kod yazın, debug yapın
+                        ve projelerinizi optimize edin.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Güvenli & Güvenilir</h3>
+                    <p class="feature-description">
+                        Enterprise-grade güvenlik altyapısı ile verileriniz her zaman
+                        güvende. SOC 2 ve GDPR uyumlu.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Yüksek Performans</h3>
+                    <p class="feature-description">
+                        Groq LPU ile saniyeler içinde yanıt alın. 500+ token/saniye
+                        inference hızı ile ultra-fast deneyim.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AILYDIAN Ecosystem Section -->
+    <section id="ecosystem" class="features" style="background: #F9FAFB; padding: 6rem 2rem;">
+        <div class="features-container">
+            <div class="section-header fade-in">
+                <span class="section-badge">EKOSISTEM</span>
+                <h2 class="section-title">AILYDIAN Ekosistemi</h2>
+                <p class="section-description">
+                    Herkes için güçlü AI araçları - bireyler, şirketler ve devletler için özelleştirilmiş çözümler
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3B82F6, #8B5CF6);">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Bireyler İçin</h3>
+                    <p class="feature-description">
+                        Kişisel asistanlar, öğrenme araçları ve yaratıcı içerik üretimi.
+                        AI ile günlük hayatınızı kolaylaştırın ve verimliliğinizi artırın.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #EF4444, #F59E0B);">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Kurumlar İçin</h3>
+                    <p class="feature-description">
+                        Enterprise-grade AI çözümleri, özel model eğitimi ve güvenli veri işleme.
+                        İş süreçlerinizi otomatikleştirin ve rekabette öne çıkın.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #059669, #0EA5E9);">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Devletler İçin</h3>
+                    <p class="feature-description">
+                        Ulusal güvenlik, kamu hizmetleri optimizasyonu ve stratejik planlama.
+                        Tam egemenlik ve veri güvenliği ile devlet düzeyinde AI çözümleri.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="showcase" style="padding: 6rem 2rem;">
+        <div class="showcase-container">
+            <div class="section-header fade-in" style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-badge">KULLANIM ALANLARI</span>
+                <h2 class="section-title">Sınırsız Kullanım Alanları</h2>
+                <p class="section-description">
+                    AILYDIAN'ı her sektörde ve her ihtiyaç için kullanabilirsiniz
+                </p>
+            </div>
+
+            <div class="features-grid" style="max-width: 1200px; margin: 0 auto;">
+                <div class="feature-card fade-in" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #3B82F6;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827;">Eğitim & Öğrenme</h4>
+                    <p style="font-size: 0.95rem; color: #6B7280;">
+                        Özel ders, sınav hazırlık, dil öğrenimi ve akademik araştırma desteği
+                    </p>
+                </div>
+                <div class="feature-card fade-in" style="background: linear-gradient(135deg, rgba(16, 163, 127, 0.1), rgba(255, 107, 74, 0.1));">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #10A37F;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827;">İş & Finans</h4>
+                    <p style="font-size: 0.95rem; color: #6B7280;">
+                        Pazar analizi, finansal raporlama, müşteri hizmetleri ve stratejik planlama
+                    </p>
+                </div>
+                <div class="feature-card fade-in" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(245, 158, 11, 0.1));">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #EF4444;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                    </svg>
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827;">Yaratıcılık & Sanat</h4>
+                    <p style="font-size: 0.95rem; color: #6B7280;">
+                        İçerik üretimi, görsel tasarım, video prodüksiyonu ve müzik kompozisyonu
+                    </p>
+                </div>
+                <div class="feature-card fade-in" style="background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(14, 165, 233, 0.1));">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #059669;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827;">Sağlık & Wellness</h4>
+                    <p style="font-size: 0.95rem; color: #6B7280;">
+                        Teşhis desteği, hasta takibi, sağlık danışmanlığı ve ilaç araştırması
+                    </p>
+                </div>
+                <div class="feature-card fade-in" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #A855F7;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827;">Ar-Ge & Teknoloji</h4>
+                    <p style="font-size: 0.95rem; color: #6B7280;">
+                        Bilimsel araştırma, patent analizi, kod geliştirme ve ürün tasarımı
+                    </p>
+                </div>
+                <div class="feature-card fade-in" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(249, 115, 22, 0.1));">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 1rem; color: #EAB308;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                    </svg>
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827;">Hukuk & Danışmanlık</h4>
+                    <p style="font-size: 0.95rem; color: #6B7280;">
+                        Yasal döküman analizi, sözleşme inceleme ve risk değerlendirmesi
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section id="tech-stack" class="features" style="background: #000000; color: #FFFFFF; padding: 6rem 2rem;">
+        <div class="features-container">
+            <div class="section-header fade-in">
+                <span class="section-badge" style="background: rgba(16, 163, 127, 0.2); color: #10A37F;">TEKNOLOJİ</span>
+                <h2 class="section-title" style="color: #FFFFFF;">Güçlü Teknoloji Altyapısı</h2>
+                <p class="section-description" style="color: #9CA3AF;">
+                    En gelişmiş AI modelleri ve teknolojilerle desteklenen ekosistem
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 4rem;">
+                <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
+                    <svg fill="none" stroke="#10A37F" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">OpenAI GPT-4</h4>
+                    <p style="font-size: 0.875rem; color: #9CA3AF;">En güçlü dil modeli</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
+                    <svg fill="none" stroke="#FF6B4A" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">Groq LPU</h4>
+                    <p style="font-size: 0.875rem; color: #9CA3AF;">Ultra-hızlı inference</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
+                    <svg fill="none" stroke="#8B5CF6" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">DALL-E 3</h4>
+                    <p style="font-size: 0.875rem; color: #9CA3AF;">Profesyonel görseller</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
+                    <svg fill="none" stroke="#3B82F6" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">Google Veo</h4>
+                    <p style="font-size: 0.875rem; color: #9CA3AF;">Video üretimi</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
+                    <svg fill="none" stroke="#F59E0B" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">ERNIE Bot</h4>
+                    <p style="font-size: 0.875rem; color: #9CA3AF;">Derin düşünce</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
+                    <svg fill="none" stroke="#10B981" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                    </svg>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">ElevenLabs</h4>
+                    <p style="font-size: 0.875rem; color: #9CA3AF;">Doğal ses sentezi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section id="showcase" class="showcase">
+        <div class="showcase-container">
+            <div class="showcase-item fade-in">
+                <div class="showcase-content">
+                    <span class="showcase-label">AI Sohbet</span>
+                    <h2 class="showcase-title">Sohbet edin, öğrenin, üretin</h2>
+                    <p class="showcase-description">
+                        En gelişmiş dil modelleri ile desteklenen sohbet sistemimiz,
+                        karmaşık sorularınızı anlar ve detaylı yanıtlar üretir.
+                    </p>
+                    <ul class="showcase-list">
+                        <li>200K token context window ile uzun sohbetler</li>
+                        <li>Çoklu AI modeli desteği</li>
+                        <li>Gerçek zamanlı yanıtlar ve streaming</li>
+                        <li>Dosya yükleme ve analiz yetenekleri</li>
+                    </ul>
+                    <a href="/chat.html" class="btn btn-primary">Hemen Deneyin</a>
+                </div>
+                <div class="showcase-visual">
+                    <svg width="600" height="400" viewBox="0 0 600 400" fill="none">
+                        <rect width="600" height="400" fill="white"/>
+                        <rect x="50" y="50" width="500" height="60" rx="12" fill="#F3F4F6"/>
+                        <circle cx="80" cy="80" r="15" fill="#10A37F"/>
+                        <rect x="110" y="70" width="200" height="10" rx="5" fill="#D1D5DB"/>
+                        <rect x="110" y="90" width="150" height="8" rx="4" fill="#E5E7EB"/>
+                        <rect x="50" y="140" width="500" height="80" rx="12" fill="#10A37F" opacity="0.1"/>
+                        <rect x="70" y="160" width="300" height="10" rx="5" fill="#10A37F"/>
+                        <rect x="70" y="180" width="400" height="10" rx="5" fill="#10A37F" opacity="0.6"/>
+                        <rect x="50" y="250" width="500" height="60" rx="12" fill="#F3F4F6"/>
+                        <circle cx="80" cy="280" r="15" fill="#FF6B4A"/>
+                        <rect x="110" y="270" width="180" height="10" rx="5" fill="#D1D5DB"/>
+                        <rect x="110" y="290" width="120" height="8" rx="4" fill="#E5E7EB"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="showcase-item fade-in">
+                <div class="showcase-content">
+                    <span class="showcase-label">Görsel & Video AI</span>
+                    <h2 class="showcase-title">Görsel ve video oluşturun</h2>
+                    <p class="showcase-description">
+                        Metin açıklamalarından profesyonel görseller ve videolar oluşturun.
+                        Profesyonel video üretimi ve görsel oluşturma.
+                    </p>
+                    <ul class="showcase-list">
+                        <li>4K çözünürlükte görsel üretimi</li>
+                        <li>Video sentezi ve düzenleme</li>
+                        <li>Style transfer ve image-to-image</li>
+                        <li>Batch processing desteği</li>
+                    </ul>
+                    <a href="/chat.html" class="btn btn-primary">Video Oluştur</a>
+                </div>
+                <div class="showcase-visual">
+                    <video autoplay loop muted playsinline class="ai-demo-video" preload="auto" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                        <source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                        <source src="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_25fps.mp4" type="video/mp4">
+                        <source src="https://videos.pexels.com/video-files/6964346/6964346-uhd_2560_1440_30fps.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="showcase-item fade-in">
+                <div class="showcase-content">
+                    <span class="showcase-label">API & Entegrasyon</span>
+                    <h2 class="showcase-title">Uygulamalarınıza entegre edin</h2>
+                    <p class="showcase-description">
+                        RESTful API ve SDK'larımız ile AI yeteneklerini kendi uygulamalarınıza
+                        kolayca entegre edin. Enterprise destek ve SLA garantisi.
+                    </p>
+                    <ul class="showcase-list">
+                        <li>RESTful API ve WebSocket desteği</li>
+                        <li>Python, Node.js, Go SDK'ları</li>
+                        <li>99.9% uptime SLA garantisi</li>
+                        <li>Rate limiting ve caching</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">API Dokümantasyonu</a>
+                </div>
+                <div class="showcase-visual" style="position: relative; background: #1F2937; border-radius: 16px; padding: 2rem;">
+                    <button onclick="copyApiCode()" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #10A37F; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.875rem; font-weight: 600;">
+                        Kodu Kopyala
+                    </button>
+                    <pre id="api-code" style="margin: 0; font-family: monospace; font-size: 12px; color: #9CA3AF; overflow-x: auto;"><code><span style="color: #10A37F;">POST /api/chat</span>
+
+{
+  "model": "lydian-turbo",
+  "message": "Merhaba!",
+  "temperature": 0.7
+}
+
+<span style="color: #374151;">────────────────────────────────────</span>
+
+<span style="color: #FF6B4A;">200 OK</span>
+
+{
+  "response": "Merhaba! LyDian'a hoş geldiniz. Size nasıl yardımcı olabilirim?"
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number">100M+</div>
+                    <div class="stat-label">Haftalık Kullanıcı</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Müşteri Memnuniyeti</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Kurumsal Müşteri</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime SLA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="cta-title">Yapay zekanın gücünü keşfedin</h2>
+            <p class="cta-description">
+                Bugün başlayın ve AI teknolojilerinin iş süreçlerinizi nasıl
+                dönüştürebileceğini görün. Ücretsiz deneme, kredi kartı gerektirmez.
+            </p>
+            <div class="cta-buttons">
+                <a href="/chat.html" class="btn btn-white btn-large">Ücretsiz Başlayın</a>
+                <a href="#features" class="btn btn-outline btn-large">Daha Fazla Bilgi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="company" class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">LyDian</div>
+                    <p class="footer-description">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ürünler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
+                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+                        <li><a href="/video-ai.html">Video AI</a></li>
+                        <li><a href="/api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Çözümler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/enterprise.html">Enterprise</a></li>
+                        <li><a href="/education.html">Eğitim</a></li>
+                        <li><a href="/research.html">Araştırma</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Şirket</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html">Hakkımızda</a></li>
+                        <li><a href="/careers.html">Kariyer</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="/help.html">Yardım Merkezi</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Dil / Language</h3>
+                    <div id="languageSelector" style="margin-top: 0.5rem;"></div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Gizlilik Politikası</a>
+                    <a href="/terms.html">Kullanım Koşulları</a>
+                    <a href="/cookies.html">Çerezler</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter effect with color transitions
+        (function() {
+            const texts = [
+                'Yapay zeka ile geleceği şekillendirin',
+                'AI ile sınırsız yaratıcılık',
+                'Gelişmiş yapay zeka modelleri',
+                'İş süreçlerinizi optimize edin'
+            ];
+            const colors = ['#10A37F', '#1A1A1A', '#FF6B4A'];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let colorIndex = 0;
+            const typewriterElement = document.getElementById('typewriter-text');
+
+            function typeWriter() {
+                const currentText = texts[textIndex];
+
+                if (isDeleting) {
+                    // Delete character
+                    charIndex--;
+                    typewriterElement.textContent = currentText.substring(0, charIndex);
+
+                    if (charIndex === 0) {
+                        isDeleting = false;
+                        textIndex = (textIndex + 1) % texts.length;
+                        colorIndex = (colorIndex + 1) % colors.length;
+                        setTimeout(typeWriter, 500);
+                        return;
+                    }
+                } else {
+                    // Type character
+                    charIndex++;
+                    typewriterElement.textContent = currentText.substring(0, charIndex);
+
+                    // Update color smoothly as typing
+                    const progress = charIndex / currentText.length;
+                    typewriterElement.style.color = colors[colorIndex];
+
+                    if (charIndex === currentText.length) {
+                        // Wait before deleting
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeWriter();
+                        }, 2500);
+                        return;
+                    }
+                }
+
+                // Typing speed
+                const typingSpeed = isDeleting ? 50 : 100;
+                setTimeout(typeWriter, typingSpeed);
+            }
+
+            // Start typewriter effect
+            setTimeout(typeWriter, 1000);
+        })();
+
+        // Video loading and autoplay handler
+        (function() {
+            const heroVideo = document.getElementById('hero-video');
+            if (heroVideo) {
+                // Ensure video plays
+                heroVideo.addEventListener('loadeddata', function() {
+                    heroVideo.play().catch(err => {
+                        console.log('Video autoplay prevented:', err);
+                    });
+                });
+
+                // Fallback: try to play on user interaction
+                document.addEventListener('click', function playOnInteraction() {
+                    heroVideo.play().catch(() => {});
+                    document.removeEventListener('click', playOnInteraction);
+                }, { once: true });
+
+                // Error handling for video sources
+                heroVideo.addEventListener('error', function() {
+                    console.log('Video failed to load, trying next source');
+                });
+            }
+        })();
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Copy API code function
+        function copyApiCode() {
+            const codeElement = document.getElementById('api-code');
+            const textToCopy = `POST /api/chat
+
+{
+  "model": "lydian-turbo",
+  "message": "Merhaba!",
+  "temperature": 0.7
+}
+
+────────────────────────────────────
+
+200 OK
+
+{
+  "response": "Merhaba! LyDian'a hoş geldiniz. Size nasıl yardımcı olabilirim?"
+}`;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Kopyalandı!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Kopyalama başarısız:', err);
+            });
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const heroBackground = document.querySelector('.hero-background');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'floating-particle';
+
+                const size = Math.random() * 40 + 10;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+
+                heroBackground.appendChild(particle);
+            }
+        }
+
+        // Initialize particles on page load
+        window.addEventListener('load', createParticles);
+
+        // Initialize language selector
+        document.addEventListener('DOMContentLoaded', function() {
+            const langContainer = document.getElementById('languageSelector');
+            if (langContainer && window.AILYDIAN_LANG) {
+                const selector = window.AILYDIAN_LANG.createSelector();
+                langContainer.appendChild(selector);
+
+                // Add click handlers to language options
+                selector.querySelectorAll('.language-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        const lang = option.getAttribute('data-lang');
+                        window.AILYDIAN_LANG.change(lang);
+                    });
+                });
+            }
+        });
+
+        // Ensure videos keep playing
+        window.addEventListener('load', () => {
+            // Hero video
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                heroVideo.load();
+                setTimeout(() => {
+                    heroVideo.play().catch(err => {
+                        console.log('Hero video autoplay prevented:', err);
+                        heroVideo.addEventListener('click', () => {
+                            heroVideo.play();
+                        });
+                    });
+                }, 100);
+
+                document.addEventListener('scroll', () => {
+                    if (heroVideo.paused) {
+                        heroVideo.play().catch(err => console.log('Hero video play prevented:', err));
+                    }
+                });
+
+                heroVideo.addEventListener('loadeddata', () => {
+                    console.log('Hero video loaded successfully');
+                });
+
+                heroVideo.addEventListener('error', (e) => {
+                    console.error('Hero video error:', e);
+                });
+            }
+
+            // AI demo video (showcase section)
+            const video = document.querySelector('.ai-demo-video');
+            if (video) {
+                video.load();
+                setTimeout(() => {
+                    video.play().catch(err => {
+                        console.log('Video autoplay prevented:', err);
+                        video.addEventListener('click', () => {
+                            video.play();
+                        });
+                    });
+                }, 100);
+
+                document.addEventListener('scroll', () => {
+                    if (video.paused) {
+                        video.play().catch(err => console.log('Video play prevented:', err));
+                    }
+                });
+
+                video.addEventListener('loadeddata', () => {
+                    console.log('Video loaded successfully');
+                });
+
+                video.addEventListener('error', (e) => {
+                    console.error('Video error:', e);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

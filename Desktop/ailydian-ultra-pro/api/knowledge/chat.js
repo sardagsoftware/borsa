@@ -85,31 +85,64 @@ module.exports = async (req, res) => {
             systemPrompt += `\n\n**BAĞLAM:**\nKullanıcı şu konuda bilgi arıyor: "${context.query || context.title || 'N/A'}"\nAlan: ${domain}\nDil: ${language}`;
         }
 
-        // Select AI model
+        // Multi-provider cascade with automatic fallback
+        const useAzure = !!(process.env.AZURE_OPENAI_ENDPOINT && process.env.AZURE_OPENAI_API_KEY);
         const useGroq = !!process.env.GROQ_API_KEY;
         const useOpenAI = !!process.env.OPENAI_API_KEY;
 
-        let client, model;
+        // Build provider cascade
+        const providers = [];
+
+        if (useAzure) {
+            providers.push({
+                name: 'Azure OpenAI GPT-4 Turbo',
+                icon: '☁️',
+                setup: () => ({
+                    client: new OpenAI({
+                        apiKey: process.env.AZURE_OPENAI_API_KEY,
+                        baseURL: `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo`,
+                        defaultQuery: { 'api-version': '2024-02-01' },
+                        defaultHeaders: { 'api-key': process.env.AZURE_OPENAI_API_KEY }
+                    }),
+                    model: 'gpt-4-turbo',
+                    provider: 'Azure OpenAI GPT-4 Turbo'
+                })
+            });
+        }
 
         if (useGroq) {
-            // Prefer Groq for speed
-            client = new OpenAI({
-                apiKey: process.env.GROQ_API_KEY,
-                baseURL: 'https://api.groq.com/openai/v1'
+            providers.push({
+                name: 'Groq Llama 3.3 70B',
+                icon: '🚀',
+                setup: () => ({
+                    client: new OpenAI({
+                        apiKey: process.env.GROQ_API_KEY,
+                        baseURL: 'https://api.groq.com/openai/v1'
+                    }),
+                    model: 'llama-3.3-70b-versatile',
+                    provider: 'Groq Llama 3.3 70B'
+                })
             });
-            model = 'llama-3.3-70b-versatile';
-            console.log('🚀 Using Groq (Llama 3.3 70B)');
-        } else if (useOpenAI) {
-            // Fallback to OpenAI
-            client = new OpenAI({
-                apiKey: process.env.OPENAI_API_KEY
+        }
+
+        if (useOpenAI) {
+            providers.push({
+                name: 'OpenAI GPT-4o-mini',
+                icon: '🤖',
+                setup: () => ({
+                    client: new OpenAI({
+                        apiKey: process.env.OPENAI_API_KEY
+                    }),
+                    model: 'gpt-4o-mini',
+                    provider: 'OpenAI GPT-4o-mini'
+                })
             });
-            model = 'gpt-4o-mini';
-            console.log('🤖 Using OpenAI (GPT-4o-mini)');
-        } else {
+        }
+
+        if (providers.length === 0) {
             return res.status(503).json({
                 success: false,
-                error: 'AI service temporarily unavailable'
+                error: 'AI service unavailable - No provider configured'
             });
         }
 
@@ -119,19 +152,49 @@ module.exports = async (req, res) => {
             content: msg.content
         }));
 
-        // Make API call
-        const completion = await client.chat.completions.create({
-            model: model,
-            messages: [
-                { role: 'system', content: systemPrompt },
-                ...cleanHistory,
-                { role: 'user', content: message }
-            ],
-            temperature: 0.7,
-            max_tokens: 4000
-        });
+        // Try providers in cascade
+        let response = null;
+        let completion = null;
+        let provider = null;
+        let lastError = null;
 
-        const response = completion.choices[0].message.content;
+        for (let i = 0; i < providers.length; i++) {
+            const currentProvider = providers[i];
+
+            try {
+                console.log(`${currentProvider.icon} ${i === 0 ? 'Using' : 'Fallback to'} ${currentProvider.name} (Knowledge Base)`);
+
+                const { client, model, provider: providerName } = currentProvider.setup();
+                provider = providerName;
+
+                completion = await client.chat.completions.create({
+                    model: model,
+                    messages: [
+                        { role: 'system', content: systemPrompt },
+                        ...cleanHistory,
+                        { role: 'user', content: message }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: 4000
+                });
+
+                response = completion.choices[0].message.content;
+                console.log(`✅ ${currentProvider.name} response completed`);
+
+                // Success - break the loop
+                break;
+
+            } catch (error) {
+                lastError = error;
+                console.error(`❌ ${currentProvider.name} failed: ${error.message}`);
+
+                // Continue to next provider
+                if (i === providers.length - 1) {
+                    // All providers failed
+                    throw new Error('All AI providers failed');
+                }
+            }
+        }
 
         // Extract sources (if AI mentions any)
         const sources = extractSources(response);
@@ -142,8 +205,10 @@ module.exports = async (req, res) => {
             success: true,
             response: response,
             sources: sources,
+            provider: provider, // Azure OpenAI / Groq / OpenAI
             metadata: {
                 model: 'AiLydian Knowledge Base AI',
+                aiProvider: provider,
                 language: language,
                 domain: domain,
                 tokens: completion.usage.total_tokens,

@@ -6,31 +6,51 @@
 
 const fetch = require('node-fetch');
 
-// LyDian IQ Configuration - Multi-Provider Support
+// LyDian IQ Configuration - Azure-First Multi-Provider with RAG
 const AI_CONFIG = {
-    // Primary: Anthropic Claude (Best for reasoning)
+    // Priority 1: Azure OpenAI (Enterprise Deep Thinking)
+    azure: {
+        apiKey: process.env.AZURE_OPENAI_API_KEY || '',
+        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : '',
+        model: 'gpt-4-turbo',
+        maxTokens: 8192,
+        defaultTemperature: 0.3,
+        apiVersion: '2024-02-01',
+        supportsRAG: true
+    },
+    // Priority 2: Anthropic Claude (Best for reasoning)
     anthropic: {
         apiKey: process.env.ANTHROPIC_API_KEY || '',
         endpoint: 'https://api.anthropic.com/v1/messages',
         model: 'claude-3-7-sonnet-20250219',
         maxTokens: 8192,
-        defaultTemperature: 0.3
+        defaultTemperature: 0.3,
+        supportsRAG: false
     },
-    // Fallback: OpenAI GPT-4
+    // Priority 3: OpenAI GPT-4
     openai: {
         apiKey: process.env.OPENAI_API_KEY || '',
         endpoint: 'https://api.openai.com/v1/chat/completions',
         model: 'gpt-4-turbo-preview',
         maxTokens: 4096,
-        defaultTemperature: 0.3
+        defaultTemperature: 0.3,
+        supportsRAG: false
     },
-    // Ultra-Fast: Groq
+    // Priority 4: Groq (Ultra-Fast)
     groq: {
         apiKey: process.env.GROQ_API_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
         model: 'llama-3.3-70b-versatile',
         maxTokens: 8000,
-        defaultTemperature: 0.3
+        defaultTemperature: 0.3,
+        supportsRAG: false
+    },
+    // Azure Cognitive Search (RAG)
+    azureSearch: {
+        endpoint: process.env.AZURE_SEARCH_ENDPOINT || '',
+        apiKey: process.env.AZURE_SEARCH_KEY || '',
+        indexName: 'lydian-iq-knowledge',
+        enabled: !!(process.env.AZURE_SEARCH_ENDPOINT && process.env.AZURE_SEARCH_KEY)
     },
     timeout: 60000 // 60 seconds
 };

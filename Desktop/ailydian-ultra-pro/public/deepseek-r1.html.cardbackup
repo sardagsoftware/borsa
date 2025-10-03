@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian IQ - Gelişmiş Mantık Motoru | 99.5% Doğruluk</title>
+    <meta name="description" content="LyDian IQ Reasoning Engine - Matematik, Kodlama, Bilim, Strateji ve Lojistik için yapay zeka destekli çözümler">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <!-- Prism.js for Code Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/deepseek-r1.css">
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="neural-network"></div>
+        <div class="particle-field"></div>
+    </div>
+
+    <!-- Modern Detached Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L4 8v8c0 7.732 5.22 14.968 12 16 6.78-1.032 12-8.268 12-16V8l-12-6z" fill="url(#logoGradient)"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="4" y1="2" x2="28" y2="26">
+                                <stop offset="0%" stop-color="#10A37F"/>
+                                <stop offset="100%" stop-color="#FF6B4A"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">
+                    <span class="logo-main">AiLydian</span>
+                    <span class="logo-divider">|</span>
+                    <span class="logo-sub">LyDian IQ</span>
+                </span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/deepseek-r1.html" class="active"><i class="fas fa-brain"></i> LyDian IQ</a></li>
+                <li><a href="/knowledge-base.html"><i class="fas fa-book"></i> Bilgi Bankası</a></li>
+                <li><a href="/chat.html"><i class="fas fa-comments"></i> AI Chat</a></li>
+                <li><a href="/system-status.html"><i class="fas fa-chart-line"></i> Sistem Durumu</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn nav-btn-secondary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Giriş</span>
+                </button>
+                <button class="nav-btn nav-btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    <span>Başla</span>
+                </button>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-deepseek">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <div class="pulse-dot"></div>
+                <span>Azure AI Foundry Powered</span>
+            </div>
+
+            <h1 class="hero-title">
+                <div class="title-icon-wrapper">
+                    <svg class="brain-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#10A37F;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FF6B4A;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Left hemisphere -->
+                        <path class="brain-left" d="M60,100 Q50,60 70,40 Q90,20 110,30 Q120,35 120,50 Q120,70 110,90 Q100,110 80,115 Q65,118 60,100"
+                              fill="url(#brainGradient)" opacity="0.9" filter="url(#glow)">
+                            <animate attributeName="d"
+                                     dur="3s"
+                                     repeatCount="indefinite"
+                                     values="M60,100 Q50,60 70,40 Q90,20 110,30 Q120,35 120,50 Q120,70 110,90 Q100,110 80,115 Q65,118 60,100;
+                                             M60,100 Q48,58 72,38 Q92,18 112,28 Q122,33 122,48 Q122,68 112,88 Q102,108 82,113 Q67,116 60,100;
+                                             M60,100 Q50,60 70,40 Q90,20 110,30 Q120,35 120,50 Q120,70 110,90 Q100,110 80,115 Q65,118 60,100"/>
+                        </path>
+
+                        <!-- Right hemisphere -->
+                        <path class="brain-right" d="M140,100 Q150,60 130,40 Q110,20 90,30 Q80,35 80,50 Q80,70 90,90 Q100,110 120,115 Q135,118 140,100"
+                              fill="url(#brainGradient)" opacity="0.9" filter="url(#glow)">
+                            <animate attributeName="d"
+                                     dur="3s"
+                                     repeatCount="indefinite"
+                                     values="M140,100 Q150,60 130,40 Q110,20 90,30 Q80,35 80,50 Q80,70 90,90 Q100,110 120,115 Q135,118 140,100;
+                                             M140,100 Q152,58 128,38 Q108,18 88,28 Q78,33 78,48 Q78,68 88,88 Q98,108 118,113 Q133,116 140,100;
+                                             M140,100 Q150,60 130,40 Q110,20 90,30 Q80,35 80,50 Q80,70 90,90 Q100,110 120,115 Q135,118 140,100"/>
+                        </path>
+
+                        <!-- Neural connections -->
+                        <g class="neural-network" stroke="url(#brainGradient)" stroke-width="2" fill="none" opacity="0.6">
+                            <line x1="70" y1="60" x2="130" y2="60">
+                                <animate attributeName="opacity" dur="2s" repeatCount="indefinite" values="0.3;0.8;0.3"/>
+                            </line>
+                            <line x1="80" y1="80" x2="120" y2="80">
+                                <animate attributeName="opacity" dur="2s" begin="0.5s" repeatCount="indefinite" values="0.3;0.8;0.3"/>
+                            </line>
+                            <line x1="75" y1="100" x2="125" y2="100">
+                                <animate attributeName="opacity" dur="2s" begin="1s" repeatCount="indefinite" values="0.3;0.8;0.3"/>
+                            </line>
+                        </g>
+
+                        <!-- Synaptic dots -->
+                        <g class="synapses" fill="url(#brainGradient)">
+                            <circle cx="70" cy="60" r="3">
+                                <animate attributeName="r" dur="1.5s" repeatCount="indefinite" values="3;5;3"/>
+                            </circle>
+                            <circle cx="130" cy="60" r="3">
+                                <animate attributeName="r" dur="1.5s" begin="0.3s" repeatCount="indefinite" values="3;5;3"/>
+                            </circle>
+                            <circle cx="100" cy="100" r="4">
+                                <animate attributeName="r" dur="1.5s" begin="0.6s" repeatCount="indefinite" values="4;6;4"/>
+                            </circle>
+                        </g>
+                    </svg>
+                </div>
+                <span class="title-gradient">LyDian IQ</span>
+                <span class="title-subtitle">Reasoning Engine</span>
+            </h1>
+
+            <p class="hero-description">
+                Gelişmiş Mantık Motoru | Matematik • Kodlama • Bilim • Strateji • Lojistik
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">99.5%</div>
+                    <div class="stat-label">Doğruluk</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">32K</div>
+                    <div class="stat-label">Max Tokens</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5-15s</div>
+                    <div class="stat-label">Yanıt Süresi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">345</div>
+                    <div class="stat-label">Aktif İstekler</div>
+                </div>
+            </div>
+
+            <!-- Quick Problem Input -->
+            <div class="quick-input-section">
+                <div class="input-container">
+                    <textarea
+                        id="quickProblem"
+                        class="problem-textarea"
+                        placeholder="Probleminizi buraya yazın... (ör: 'x^2 + 5x + 6 = 0 denklemini çöz')"
+                        rows="4"
+                    ></textarea>
+
+                    <div class="input-actions">
+                        <select id="domainSelect" class="domain-select">
+                            <option value="general">Genel</option>
+                            <option value="mathematics">🧮 Matematik</option>
+                            <option value="coding">💻 Kodlama</option>
+                            <option value="science">🔬 Bilim</option>
+                            <option value="strategy">♟️ Strateji</option>
+                            <option value="logistics">📦 Lojistik</option>
+                        </select>
+
+                        <button class="btn-primary" id="solveBtn">
+                            <i class="fas fa-play"></i>
+                            Çöz
+                        </button>
+                    </div>
+                </div>
+
+                <div class="example-prompts">
+                    <span class="example-label">Örnekler:</span>
+                    <button class="example-chip" data-domain="mathematics" data-problem="∫(x^2 * e^x) dx integralini çöz">
+                        <i class="fas fa-square-root-alt"></i> Integral çözümü
+                    </button>
+                    <button class="example-chip" data-domain="coding" data-problem="Bubble sort algoritmasını optimize et">
+                        <i class="fas fa-code"></i> Kod optimizasyonu
+                    </button>
+                    <button class="example-chip" data-domain="science" data-problem="DNA replikasyonu sürecini açıkla">
+                        <i class="fas fa-dna"></i> Bilimsel analiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="capabilities-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-layer-group"></i>
+                    Ana Yetenekler
+                </h2>
+                <p class="section-subtitle">5 farklı alanda uzman seviye çözüm</p>
+            </div>
+
+            <div class="capabilities-grid">
+
+                <!-- Mathematics -->
+                <div class="capability-card mathematics-card" data-domain="mathematics">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon mathematics-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="card-title">Matematik</h3>
+                    </div>
+
+                    <p class="card-description">
+                        İleri düzey matematiksel problemler için kapsamlı çözümler
+                    </p>
+
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> Advanced Calculus</li>
+                        <li><i class="fas fa-check"></i> Linear Algebra</li>
+                        <li><i class="fas fa-check"></i> İstatistik & Olasılık</li>
+                        <li><i class="fas fa-check"></i> Kanıt Doğrulama</li>
+                        <li><i class="fas fa-check"></i> Sayı Teorisi</li>
+                    </ul>
+
+                    <div class="card-example">
+                        <div class="example-label">Örnek Problem:</div>
+                        <code>∫₀^π sin²(x) dx = ?</code>
+                    </div>
+
+                    <button class="card-btn" onclick="selectCapability('mathematics')">
+                        <i class="fas fa-arrow-right"></i>
+                        Dene
+                    </button>
+                </div>
+
+                <!-- Coding -->
+                <div class="capability-card coding-card" data-domain="coding">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon coding-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="card-title">Kodlama</h3>
+                    </div>
+
+                    <p class="card-description">
+                        Algoritma tasarımı ve kod optimizasyonu
+                    </p>
+
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> Algoritma Tasarımı</li>
+                        <li><i class="fas fa-check"></i> Kod Optimizasyonu</li>
+                        <li><i class="fas fa-check"></i> Debugging & Analiz</li>
+                        <li><i class="fas fa-check"></i> Complexity Analysis</li>
+                        <li><i class="fas fa-check"></i> Code Review</li>
+                    </ul>
+
+                    <div class="card-example">
+                        <div class="example-label">Örnek Problem:</div>
+                        <code>O(n²) → O(n log n) optimizasyon</code>
+                    </div>
+
+                    <button class="card-btn" onclick="selectCapability('coding')">
+                        <i class="fas fa-arrow-right"></i>
+                        Dene
+                    </button>
+                </div>
+
+                <!-- Science -->
+                <div class="capability-card science-card" data-domain="science">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon science-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="card-title">Bilim</h3>
+                    </div>
+
+                    <p class="card-description">
+                        Bilimsel veri analizi ve hipotez testleri
+                    </p>
+
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> Fizik & Kimya</li>
+                        <li><i class="fas fa-check"></i> Biyoloji & Genetik</li>
+                        <li><i class="fas fa-check"></i> Veri Analizi</li>
+                        <li><i class="fas fa-check"></i> Hipotez Testleri</li>
+                        <li><i class="fas fa-check"></i> Deney Tasarımı</li>
+                    </ul>
+
+                    <div class="card-example">
+                        <div class="example-label">Örnek Problem:</div>
+                        <code>pH 3.5 → 5.5 tampon hesapla</code>
+                    </div>
+
+                    <button class="card-btn" onclick="selectCapability('science')">
+                        <i class="fas fa-arrow-right"></i>
+                        Dene
+                    </button>
+                </div>
+
+                <!-- Strategy -->
+                <div class="capability-card strategy-card" data-domain="strategy">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon strategy-icon">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <h3 class="card-title">Strateji</h3>
+                    </div>
+
+                    <p class="card-description">
+                        Stratejik planlama ve karar destek sistemleri
+                    </p>
+
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> Oyun Teorisi</li>
+                        <li><i class="fas fa-check"></i> Karar Analizi</li>
+                        <li><i class="fas fa-check"></i> Risk Değerlendirme</li>
+                        <li><i class="fas fa-check"></i> Kaynak Planlaması</li>
+                        <li><i class="fas fa-check"></i> Rekabet Analizi</li>
+                    </ul>
+
+                    <div class="card-example">
+                        <div class="example-label">Örnek Problem:</div>
+                        <code>Nash Equilibrium analizi</code>
+                    </div>
+
+                    <button class="card-btn" onclick="selectCapability('strategy')">
+                        <i class="fas fa-arrow-right"></i>
+                        Dene
+                    </button>
+                </div>
+
+                <!-- Logistics -->
+                <div class="capability-card logistics-card" data-domain="logistics">
+                    <div class="card-glow"></div>
+                    <div class="card-header">
+                        <div class="card-icon logistics-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 class="card-title">Lojistik</h3>
+                    </div>
+
+                    <p class="card-description">
+                        Lojistik optimizasyon ve tedarik zinciri
+                    </p>
+
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> Tedarik Zinciri</li>
+                        <li><i class="fas fa-check"></i> Rota Optimizasyonu</li>
+                        <li><i class="fas fa-check"></i> Envanter Yönetimi</li>
+                        <li><i class="fas fa-check"></i> Zamanlama</li>
+                        <li><i class="fas fa-check"></i> Maliyet Optimizasyonu</li>
+                    </ul>
+
+                    <div class="card-example">
+                        <div class="example-label">Örnek Problem:</div>
+                        <code>TSP 15 şehir optimal rota</code>
+                    </div>
+
+                    <button class="card-btn" onclick="selectCapability('logistics')">
+                        <i class="fas fa-arrow-right"></i>
+                        Dene
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (Initially Hidden) -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="results-title">
+                    <i class="fas fa-brain"></i>
+                    Reasoning Süreci & Çözüm
+                </h2>
+                <button class="btn-secondary" id="newProblemBtn">
+                    <i class="fas fa-plus"></i>
+                    Yeni Problem
+                </button>
+            </div>
+
+            <!-- Problem Display -->
+            <div class="problem-display">
+                <div class="problem-header">
+                    <i class="fas fa-question-circle"></i>
+                    Problem
+                </div>
+                <div class="problem-content" id="problemContent"></div>
+                <div class="problem-meta">
+                    <span class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        <span id="problemDomain"></span>
+                    </span>
+                    <span class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span id="problemComplexity"></span>
+                    </span>
+                    <span class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="processingTime"></span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Reasoning Chain Visualization -->
+            <div class="reasoning-chain" id="reasoningChain">
+                <div class="reasoning-header">
+                    <i class="fas fa-project-diagram"></i>
+                    Thought Chain (Düşünce Zinciri)
+                </div>
+                <div class="reasoning-steps" id="reasoningSteps">
+                    <!-- Steps will be dynamically loaded -->
+                </div>
+                <div class="reasoning-quality" id="reasoningQuality"></div>
+            </div>
+
+            <!-- Final Solution -->
+            <div class="solution-display">
+                <div class="solution-header">
+                    <i class="fas fa-check-circle"></i>
+                    Final Çözüm
+                    <div class="confidence-badge" id="confidenceBadge">
+                        <i class="fas fa-star"></i>
+                        <span id="confidenceScore"></span>
+                    </div>
+                </div>
+                <div class="solution-content" id="solutionContent"></div>
+
+                <!-- Validation Details -->
+                <div class="validation-details" id="validationDetails"></div>
+
+                <!-- Action Buttons -->
+                <div class="solution-actions">
+                    <button class="action-btn" onclick="copyToClipboard()">
+                        <i class="fas fa-copy"></i>
+                        Kopyala
+                    </button>
+                    <button class="action-btn" onclick="exportPDF()">
+                        <i class="fas fa-file-pdf"></i>
+                        PDF Export
+                    </button>
+                    <button class="action-btn" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i>
+                        Paylaş
+                    </button>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="performance-metrics" id="performanceMetrics"></div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    Nasıl Çalışır?
+                </h2>
+                <p class="section-subtitle">3-Fazlı Reasoning Pipeline</p>
+            </div>
+
+            <div class="workflow-diagram">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="step-title">Problem Analizi</h3>
+                    <p class="step-description">
+                        Domain tanımlama, karmaşıklık değerlendirmesi ve gerekli becerilerin belirlenmesi
+                    </p>
+                </div>
+
+                <div class="workflow-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="step-title">Thought Chain</h3>
+                    <p class="step-description">
+                        Adım adım mantıksal çıkarım, ara hesaplamalar ve düşünce sürecinin belgelenmesi
+                    </p>
+                </div>
+
+                <div class="workflow-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3 class="step-title">Self-Validation</h3>
+                    <p class="step-description">
+                        Mantık tutarlılığı, doğruluk testi ve metodolojik sağlamlık kontrolü
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-deepseek">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">
+                        <i class="fas fa-brain"></i>
+                        LyDian IQ
+                    </h4>
+                    <p class="footer-description">
+                        Azure AI Foundry powered reasoning engine. Matematik, kodlama, bilim, strateji ve lojistik için gelişmiş AI çözümleri.
+                    </p>
+                    <div class="footer-stats">
+                        <span class="stat-badge">99.5% Doğruluk</span>
+                        <span class="stat-badge">32K Tokens</span>
+                        <span class="stat-badge">5 Domain</span>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Yetenekler</h4>
+                    <ul class="footer-links">
+                        <li><a href="#mathematics"><i class="fas fa-calculator"></i> Matematik</a></li>
+                        <li><a href="#coding"><i class="fas fa-code"></i> Kodlama</a></li>
+                        <li><a href="#science"><i class="fas fa-flask"></i> Bilim</a></li>
+                        <li><a href="#strategy"><i class="fas fa-chess"></i> Strateji</a></li>
+                        <li><a href="#logistics"><i class="fas fa-truck"></i> Lojistik</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Kaynaklar</h4>
+                    <ul class="footer-links">
+                        <li><a href="/api-docs.html"><i class="fas fa-book"></i> API Dokümantasyonu</a></li>
+                        <li><a href="/knowledge-base.html"><i class="fas fa-database"></i> Bilgi Bankası</a></li>
+                        <li><a href="/system-status.html"><i class="fas fa-server"></i> Sistem Durumu</a></li>
+                        <li><a href="/help.html"><i class="fas fa-question-circle"></i> Yardım</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Hakkında</h4>
+                    <ul class="footer-links">
+                        <li><a href="/index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                        <li><a href="/contact.html"><i class="fas fa-envelope"></i> İletişim</a></li>
+                        <li><a href="/privacy.html"><i class="fas fa-shield-alt"></i> Gizlilik</a></li>
+                        <li><a href="/terms.html"><i class="fas fa-file-contract"></i> Şartlar</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 AiLydian LyDian IQ Reasoning Engine. Tüm hakları saklıdır.</p>
+                <p class="footer-tech">Powered by Azure AI Foundry | LyDian-IQ Model</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-text">
+                <i class="fas fa-brain"></i>
+                <p>LyDian IQ Düşünüyor...</p>
+                <span class="loading-progress" id="loadingProgress">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- KaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/deepseek-r1.js"></script>
+</body>
+</html>

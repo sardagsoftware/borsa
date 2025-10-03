@@ -3,6 +3,7 @@
  * Integrated chat history, credits management, and subscription-based model access
  */
 
+require('dotenv').config();
 const OpenAI = require('openai');
 const { Anthropic } = require('@anthropic-ai/sdk');
 const { getDatabase } = require('../database/init-db');

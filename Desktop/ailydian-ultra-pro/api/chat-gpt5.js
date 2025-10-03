@@ -1,6 +1,7 @@
 // GPT-5 API - Azure AI Foundry Integration
 // Supports GPT-5, GPT-5 Mini, GPT-5 Nano, GPT-5 Chat
 
+require('dotenv').config();
 const axios = require('axios');
 
 // Azure AI Foundry Configuration
