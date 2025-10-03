@@ -3986,7 +3986,7 @@ body {
                     apiEndpoint = '/api/chat/claude';
                     requestBody = {
                         messages: [...cleanHistory, { role: 'user', content: message }],
-                        model: 'claude-3-5-sonnet-20241022',
+                        model: 'claude-3-5-sonnet-20250219',
                         max_tokens: 4000
                     };
                 } else if (state.selectedModel === 'gemini') {
