@@ -2,28 +2,24 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/server.js"
-    },
-    {
       "source": "/robots.txt",
-      "destination": "/api/seo/robots"
+      "destination": "/public/robots.txt"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/seo/sitemap-index"
+      "destination": "/public/sitemap-index.xml"
     },
     {
       "source": "/sitemap-index.xml",
-      "destination": "/api/seo/sitemap-index"
+      "destination": "/public/sitemap-index.xml"
     },
     {
       "source": "/sitemap-core.xml",
-      "destination": "/api/seo/sitemap-core"
+      "destination": "/public/sitemap-core.xml"
     },
     {
       "source": "/ailydian-indexnow-2025.txt",
-      "destination": "/api/seo/indexnow-key"
+      "destination": "/public/ailydian-indexnow-2025.txt"
     },
     {
       "source": "/",
