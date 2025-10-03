@@ -3858,11 +3858,13 @@ body {
             });
         }
 
-        // 💻 Code Mode Icon
+        // 💻 Code Mode Icon (Z.AI GLM-4.6)
         if (elements.neonCodeBtn) {
             elements.neonCodeBtn.addEventListener('click', () => {
                 state.selectedAiType = 'code';
+                state.selectedModel = 'glm-4-6'; // Z.AI GLM-4.6 Code Expert
                 toggleNeonIcon(elements.neonCodeBtn);
+                showToast('💻 Kod Uzmanı Modu Aktif (GLM-4.6)');
             });
         }
 

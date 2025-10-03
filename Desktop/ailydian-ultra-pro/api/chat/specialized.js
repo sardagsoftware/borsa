@@ -49,6 +49,13 @@ const MODELS = {
     key: () => process.env.GOOGLE_AI_KEY,
     url: 'https://generativelanguage.googleapis.com/v1beta',
     display: 'LyDian AI'
+  },
+  // Z.AI GLM-4.6 (Code Expert)
+  'glm-4-6': {
+    name: 'glm-4.6',
+    key: () => process.env.Z_AI_API_KEY,
+    url: 'https://api.z.ai/api/paas/v4',
+    display: 'LyDian AI'
   }
 };
 
