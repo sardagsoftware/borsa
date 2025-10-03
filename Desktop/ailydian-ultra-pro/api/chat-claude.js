@@ -1,6 +1,7 @@
 // Claude API - Anthropic Integration
 // Supports Claude 3.5 Sonnet and other Claude models
 
+require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
 
 // Claude Configuration
