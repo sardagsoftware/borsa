@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>LyDian Chat - Multi-AI Quantum Intelligence | Claude, GPT-4, Gemini</title>
+    <title>Ailydian AI - Multi-Model Intelligence Platform</title>
 
     <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
     <script src="/js/geo-language.js"></script>
@@ -3102,25 +3102,25 @@ body {
                     </button>
                 </div>
 
-                <!-- 🤖 AI MODEL SELECTORS (GPT-5, Claude, Gemini) -->
+                <!-- 🤖 AI MODEL SELECTORS (Advanced, Premium, Ultra) -->
                 <div class="input-mode-selectors" style="margin-top: 0.5rem; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
-                    <button class="mode-btn" data-model="gpt-5" title="GPT-5 (Azure AI Foundry)">
+                    <button class="mode-btn" data-model="gpt-5" title="Advanced AI Model">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        <span>GPT-5</span>
+                        <span>Advanced</span>
                     </button>
-                    <button class="mode-btn active" data-model="claude" title="Claude 3.5 Sonnet (Anthropic)">
+                    <button class="mode-btn active" data-model="claude" title="Premium AI Model">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18.5c-3.87-1.18-6.5-4.85-6.5-8.5V8.3l6.5-3.11 6.5 3.11V12c0 3.65-2.63 7.32-6.5 8.5z"/>
                         </svg>
-                        <span>Claude</span>
+                        <span>Premium</span>
                     </button>
-                    <button class="mode-btn" data-model="gemini" title="Gemini 2.0 Flash (Google AI)">
+                    <button class="mode-btn" data-model="gemini" title="Ultra AI Model">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M12 2L1 12l11 10 11-10L12 2zm0 2.83L19.17 12 12 19.17 4.83 12 12 4.83z"/>
                         </svg>
-                        <span>Gemini</span>
+                        <span>Ultra</span>
                     </button>
                     <button class="mode-btn" data-model="rag" title="RAG - Retrieval Augmented Generation">
                         <svg viewBox="0 0 24 24" width="20" height="20">
@@ -3173,7 +3173,7 @@ body {
                                             <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
                                         </svg>
                                     </button>
-                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Voice Output - Sesli Yanıt (ElevenLabs)">
+                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Voice Output - Sesli Yanıt (Ailydian AI)">
                                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                                             <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                                         </svg>
@@ -3322,7 +3322,7 @@ body {
             </div>
             <div style="padding: 1rem 0;">
                 <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">
-                    Google Imagen ile görsel oluştur
+                    Ailydian AI ile görsel oluştur
                 </p>
                 <textarea
                     id="imagePromptInput"
@@ -3352,7 +3352,7 @@ body {
             </div>
             <div style="padding: 1rem 0;">
                 <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">
-                    Google Veo ile video oluştur
+                    Ailydian AI ile video oluştur
                 </p>
                 <textarea
                     id="videoPromptInput"
@@ -3403,7 +3403,7 @@ body {
             messages: [],
             currentChatId: null,
             isTyping: false,
-            selectedModel: 'claude',  // Default: Claude 3.5 Sonnet
+            selectedModel: 'claude',  // Default: Premium AI
             selectedAiType: 'general'  // 🎯 Track specialized AI mode
         };
 
@@ -3566,7 +3566,7 @@ body {
                     }
 
                     elements.imageModal.classList.remove('active');
-                    addMessage('assistant', `🎨 **Görsel Oluşturuluyor...**\n\n**Prompt:** ${prompt}\n\n*Google Imagen API ile görsel oluşturulacak...*`);
+                    addMessage('assistant', `🎨 **Görsel Oluşturuluyor...**\n\n**Prompt:** ${prompt}\n\n*Ailydian AI ile görsel oluşturuluyor...*`);
                 });
             }
         }
@@ -3597,7 +3597,7 @@ body {
                     const resolution = videoResolution?.value;
 
                     elements.videoModal.classList.remove('active');
-                    addMessage('assistant', `🎬 **Video Oluşturuluyor...**\n\n**Prompt:** ${prompt}\n**Süre:** ${duration}s\n**Çözünürlük:** ${resolution}\n\n*Google Veo API ile video oluşturulacak...*`);
+                    addMessage('assistant', `🎬 **Video Oluşturuluyor...**\n\n**Prompt:** ${prompt}\n**Süre:** ${duration}s\n**Çözünürlük:** ${resolution}\n\n*Ailydian AI ile video oluşturuluyor...*`);
                 });
             }
         }
@@ -3624,7 +3624,7 @@ body {
         // 🧠 Deep Think Button (ERNIE multi-language)
         if (elements.deepThinkBtn) {
             elements.deepThinkBtn.addEventListener('click', () => {
-                state.selectedAiType = 'reasoning'; // Uses ERNIE for Chinese, Zhipu/Gemini for others
+                state.selectedAiType = 'reasoning'; // Uses Ailydian AI Reasoning Engine
                 showToast('🧠 Derin Düşünce Modu Aktif (ERNIE/Zhipu)');
             });
         }
@@ -3834,7 +3834,7 @@ body {
             });
         }
 
-        // 🖼️ Neon Image Generation Icon (Google Imagen)
+        // 🖼️ Neon Image Generation Icon (Ailydian AI)
         if (elements.neonImageBtn) {
             elements.neonImageBtn.addEventListener('click', () => {
                 state.selectedAiType = 'image';
@@ -3842,7 +3842,7 @@ body {
             });
         }
 
-        // 🎥 Video Generation Icon (Google Veo)
+        // 🎥 Video Generation Icon (Ailydian AI)
         if (elements.neonVideoBtn) {
             elements.neonVideoBtn.addEventListener('click', () => {
                 state.selectedAiType = 'video';
@@ -3850,7 +3850,7 @@ body {
             });
         }
 
-        // 🎤 Voice Output Mode (ElevenLabs TTS)
+        // 🎤 Voice Output Mode (Ailydian AI TTS)
         if (elements.neonMicBtn) {
             elements.neonMicBtn.addEventListener('click', () => {
                 state.selectedAiType = 'voice';
@@ -3868,7 +3868,7 @@ body {
             });
         }
 
-        // 🤖 MODEL SELECTOR BUTTONS (GPT-5, Claude, Gemini, RAG)
+        // 🤖 MODEL SELECTOR BUTTONS (Advanced, Premium, Ultra, RAG)
         document.querySelectorAll('[data-model]').forEach(btn => {
             btn.addEventListener('click', () => {
                 // Remove active from all model buttons
@@ -4010,7 +4010,7 @@ body {
                     addMessage('assistant', aiResponse);
                     // Silent success - no model exposure
 
-                    // 🎤 VOICE MODE: Convert response to speech with ElevenLabs
+                    // 🎤 VOICE MODE: Convert response to speech with Ailydian AI
                     if (state.selectedAiType === 'voice') {
                         try {
                             const voiceResponse = await fetch('/api/voice-tts', {
@@ -4030,7 +4030,7 @@ body {
                         state.selectedAiType = 'general'; // Reset mode
                     }
 
-                    // 🎨 IMAGE MODE: Generate image with Google Imagen 3 (Vertex AI)
+                    // 🎨 IMAGE MODE: Generate image with Ailydian AI
                     if (state.selectedAiType === 'image') {
                         try {
                             showToast('🎨 Görsel oluşturuluyor... (Ultra HD 8K)');
@@ -4058,7 +4058,7 @@ body {
                         state.selectedAiType = 'general'; // Reset mode
                     }
 
-                    // 🎬 VIDEO MODE: Generate video with Google Veo (New Video API)
+                    // 🎬 VIDEO MODE: Generate video with Ailydian AI
                     if (state.selectedAiType === 'video') {
                         try {
                             showToast('🎬 Video oluşturuluyor... (Premium 1280x720, 5 saniye)');
