@@ -46,7 +46,7 @@ const MODELS = {
   // Google Gemini
   gemini: {
     name: 'gemini-2.0-flash-exp',
-    key: () => process.env.GOOGLE_AI_KEY,
+    key: () => process.env.GOOGLE_API_KEY || process.env.GOOGLE_GEMINI_API_KEY,
     url: 'https://generativelanguage.googleapis.com/v1beta',
     display: 'LyDian AI'
   },
