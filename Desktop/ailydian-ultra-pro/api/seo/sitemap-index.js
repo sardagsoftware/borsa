@@ -1,5 +1,3 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
-
 const SUBDOMAINS = process.env.SEO_SUBDOMAINS?.split(',') || [
   'www', 'borsa', 'travel', 'dev', 'docs', 'news', 'ai', 'hub', 'brain', 'market'
 ];
@@ -12,7 +10,7 @@ const LOCALES = process.env.SEO_LOCALES?.split(',') || ['tr-TR', 'en-US'];
 /**
  * Generate sitemap index XML
  */
-function generateSitemapIndex(subdomain: string = 'www'): string {
+function generateSitemapIndex(subdomain = 'www') {
   const baseUrl = `${PROTOCOL}://${subdomain === 'www' ? PRIMARY_DOMAIN : `${subdomain}.${PRIMARY_DOMAIN}`}`;
   const now = new Date().toISOString();
 
@@ -56,9 +54,9 @@ function generateSitemapIndex(subdomain: string = 'www'): string {
 }
 
 /**
- * Vercel Serverless Function Handler
+ * Express.js Handler
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function handleSitemapIndex(req, res) {
   try {
     // Detect subdomain from hostname
     const hostname = req.headers.host || '';
@@ -85,3 +83,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Internal Server Error</error>');
   }
 }
+
+module.exports = { handleSitemapIndex };

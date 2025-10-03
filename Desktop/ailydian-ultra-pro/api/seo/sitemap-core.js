@@ -1,11 +1,9 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
-
 const CACHE_SECONDS = parseInt(process.env.SEO_CACHE_SECONDS || '600', 10);
 
 /**
- * Vercel Serverless Function Handler
+ * Express.js Handler
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function handleCoreSitemap(req, res) {
   try {
     const now = new Date().toISOString();
     const baseUrl = `https://www.ailydian.com`;
@@ -40,3 +38,5 @@ ${urlEntries}
     res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Internal Server Error</error>');
   }
 }
+
+module.exports = { handleCoreSitemap };
