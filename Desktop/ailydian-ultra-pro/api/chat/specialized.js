@@ -1,5 +1,5 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
-require('dotenv').config();
+// Note: Vercel automatically loads environment variables, no dotenv needed
 const OpenAI = require('openai');
 
 // HIDDEN AI MODELS - User never knows
