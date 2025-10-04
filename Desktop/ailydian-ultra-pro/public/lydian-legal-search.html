@@ -1828,17 +1828,13 @@ async function sendMessage() {
         // Enhanced system prompt with Knowledge Graph context
         const enhancedSystemPrompt = `Sen Türk hukuku konusunda uzman bir yapay zeka asistanısın. Kullanıcılara hukuki konularda profesyonel, doğru ve güvenilir bilgiler sunuyorsun. Azure AI güçlü altyapısı ile çalışıyorsun.${knowledgeContext ? `\n\nKnowledge Graph Veritabanı (Neo4j):\n${knowledgeContext}` : ''}`;
 
-        const response = await fetch('http://localhost:3100/api/chat', {
+        const response = await fetch('/api/chat-demo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 model: aiModel,
                 message: text,
-                temperature: temperature,
-                max_tokens: maxTokens,
-                useAzure: aiModel.startsWith('azure-'),
-                legalMode: true,
-                systemPrompt: enhancedSystemPrompt
+                language: currentLang || 'tr'
             })
         });
 
