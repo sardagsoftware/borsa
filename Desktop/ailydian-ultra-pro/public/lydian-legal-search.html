@@ -1734,7 +1734,7 @@ async function sendMessage() {
 
     // Get user settings
     const settings = JSON.parse(localStorage.getItem('legalAI_settings') || '{}');
-    const aiModel = settings.aiModel || 'azure-gpt-4-turbo'; // Use Azure GPT-4 Turbo - Enterprise grade
+    const aiModel = settings.aiModel || 'premium-model-1'; // Enterprise AI model
     const temperature = settings.temperature || 0.7;
     const maxTokens = settings.maxTokens || 4096;
 
@@ -2437,7 +2437,7 @@ function showSettingsModal() {
     // Default settings
     const defaultSettings = {
         language: settings.language || 'tr',
-        aiModel: settings.aiModel || 'azure-gpt-4-turbo',
+        aiModel: settings.aiModel || 'premium-model-1',
         temperature: settings.temperature || 0.7,
         maxTokens: settings.maxTokens || 2000,
         autoSave: settings.autoSave !== false,
@@ -2476,7 +2476,7 @@ function showSettingsModal() {
                     </h3>
 
                     <!-- AI Model Selection HIDDEN - Backend uses Claude 3.5 Sonnet (Anthropic) -->
-                    <input type="hidden" id="settingsAIModel" value="azure-gpt-4-turbo">
+                    <input type="hidden" id="settingsAIModel" value="premium-model-1">
 
                     <div style="margin-bottom: 16px;">
                         <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;"><span data-i18n="settingsTemperatureLabel">Temperature (Yaratıcılık)</span>: ${defaultSettings.temperature}</label>
@@ -2641,8 +2641,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const settings = JSON.parse(localStorage.getItem('legalAI_settings') || '{}');
 
     // FORCE Azure as default AI model
-    if (!settings.aiModel || !settings.aiModel.startsWith('azure-')) {
-        settings.aiModel = 'azure-gpt-4-turbo';
+    if (!settings.aiModel || !settings.aiModel.startsWith('premium-')) {
+        settings.aiModel = 'premium-model-1';
         localStorage.setItem('legalAI_settings', JSON.stringify(settings));
     }
 

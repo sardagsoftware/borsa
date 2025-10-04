@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { message, model = 'azure-gpt-4-turbo', language = 'tr' } = req.body;
+    const { message, model = 'premium-model-1', language = 'tr' } = req.body;
 
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
@@ -38,7 +38,7 @@ Merhaba! Ben LyDian Hukuk AI asistanınızım. Şu anda **demo modunda** çalı�
 **Demo Yanıt:**
 Türk hukuku konusunda profesyonel destek sağlıyorum. Gerçek sistemde aşağıdaki özelliklere erişebilirsiniz:
 
-✅ **23+ AI Model** (Azure GPT-4o, Claude 3, Gemini 2.0, vb.)
+✅ **23+ Premium AI Model** (Enterprise düzey yapay zeka modelleri)
 ✅ **8 Dil Desteği** (TR, EN, DE, FR, ES, AR, RU, ZH)
 ✅ **Hukuki Bilgi Bankası** (Neo4j Knowledge Graph)
 ✅ **İçtihat Analizi** (Yargıtay, Danıştay kararları)
@@ -65,7 +65,7 @@ Hello! I'm your LyDian Legal AI assistant. Currently running in **demo mode**.
 **Demo Response:**
 I provide professional support on Turkish law. In the full system, you'll have access to:
 
-✅ **23+ AI Models** (Azure GPT-4o, Claude 3, Gemini 2.0, etc.)
+✅ **23+ Premium AI Models** (Enterprise-grade artificial intelligence)
 ✅ **8 Language Support** (TR, EN, DE, FR, ES, AR, RU, ZH)
 ✅ **Legal Knowledge Base** (Neo4j Knowledge Graph)
 ✅ **Case Law Analysis** (Court of Cassation, Council of State decisions)
