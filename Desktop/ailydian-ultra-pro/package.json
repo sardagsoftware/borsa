@@ -1,6 +1,7 @@
 {
   "name": "ailydian-ultra-pro",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.15.9",
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
