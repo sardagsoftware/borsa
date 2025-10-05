@@ -1279,6 +1279,17 @@ body {
                         </div>
                         <span>Healthcare Data Engineering</span>
                     </div>
+                    <div class="specialization-item" onclick="showPanel('drug-discovery')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v8m-4-4h8"/>
+                                <circle cx="9" cy="9" r="1.5"/>
+                                <circle cx="15" cy="15" r="1.5"/>
+                            </svg>
+                        </div>
+                        <span>Drug Discovery Platform</span>
+                    </div>
                 </div>
             </div>
 
@@ -9709,3 +9720,86 @@ async function checkInteractions() {
         </div>
     </div>
 
+
+    <!-- 💊 Drug Discovery Platform Modal -->
+    <div id="drugDiscoveryModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <div>
+                    <h2>💊 Drug Discovery Platform</h2>
+                    <p>AI-Powered Compound Search • Clinical Trial Matching • Biomarker Analysis</p>
+                </div>
+                <button class="modal-close" onclick="closePanel('drugDiscoveryModal', event)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Market Impact Banner -->
+                <div style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border-left: 4px solid #F59E0B;">
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #92400E; margin-bottom: 0.75rem;">$2.1T Global Pharmaceutical Market</h4>
+                    <p style="font-size: 0.875rem; color: #78350F; line-height: 1.6; margin-bottom: 0.75rem;">
+                        Drug Discovery Platform accelerates drug development from <strong>10-15 years to 3-5 years</strong>, 
+                        reduces costs from <strong>$2.6B to $800M-1.2B</strong>, and increases success rate from <strong>10% to 40-50%</strong>.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: rgba(255, 255, 255, 0.6); padding: 0.75rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.25rem; font-weight: 700; color: #92400E;">155M+</div>
+                            <div style="font-size: 0.75rem; color: #78350F;">PubChem Compounds</div>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.6); padding: 0.75rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.25rem; font-weight: 700; color: #92400E;">450K+</div>
+                            <div style="font-size: 0.75rem; color: #78350F;">Clinical Trials</div>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.6); padding: 0.75rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.25rem; font-weight: 700; color: #92400E;">40%</div>
+                            <div style="font-size: 0.75rem; color: #78350F;">Cost Reduction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coming Soon Section -->
+                <div style="background: #F9FAFB; padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid #E5E7EB;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">🚧 Coming Soon</h3>
+                    <p style="font-size: 1rem; color: #4B5563; margin-bottom: 1.5rem; line-height: 1.6;">
+                        Full Drug Discovery Platform UI is under development.<br/>
+                        Backend APIs are ready at: <code style="background: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-family: monospace; color: #0EA5E9;">/api/medical/drug-discovery/*</code>
+                    </p>
+                    
+                    <!-- Feature Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; text-align: left;">
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #F59E0B; margin-bottom: 0.5rem;">💊 Compound Search</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">PubChem integration (155M compounds), molecular similarity, drug-drug interactions</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #F59E0B; margin-bottom: 0.5rem;">🔬 Clinical Trial Matching</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">ClinicalTrials.gov (450K trials), patient eligibility, biomarker-based matching</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #F59E0B; margin-bottom: 0.5rem;">🧬 Biomarker Analysis</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">PD-L1, HER2, EGFR, BCR-ABL interpretation, targeted therapy recommendations</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #F59E0B; margin-bottom: 0.5rem;">📊 AI Success Rate</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">40-50% clinical trial success (vs 10% traditional), 3-5 year timeline (vs 10-15)</p>
+                        </div>
+                    </div>
+
+                    <!-- Backend Endpoints -->
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border: 1px solid #E5E7EB;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #1F2937; margin-bottom: 1rem; text-align: left;">Available Backend Endpoints:</h4>
+                        <div style="text-align: left; font-family: monospace; font-size: 0.75rem; color: #4B5563; line-height: 1.8;">
+                            <div><span style="color: #F59E0B; font-weight: 600;">POST</span> /api/medical/drug-discovery/compound-search</div>
+                            <div><span style="color: #F59E0B; font-weight: 600;">POST</span> /api/medical/drug-discovery/clinical-trial-match</div>
+                            <div><span style="color: #F59E0B; font-weight: 600;">POST</span> /api/medical/drug-discovery/biomarker-analysis</div>
+                            <div><span style="color: #0EA5E9; font-weight: 600;">GET</span> /api/medical/drug-discovery/database-stats</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
