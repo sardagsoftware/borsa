@@ -22,7 +22,7 @@ const AI_CONFIG = {
     anthropic: {
         apiKey: process.env.ANTHROPIC_API_KEY || '',
         endpoint: 'https://api.anthropic.com/v1/messages',
-        model: 'claude-3-7-sonnet-20250219',
+        model: 'claude-3-5-sonnet-20241022', // Latest stable model
         maxTokens: 8192,
         defaultTemperature: 0.3,
         supportsRAG: false
@@ -395,37 +395,37 @@ async function callGroqAPI(problem, domain, options = {}) {
     }
 }
 
-// Generate fallback demo response
-function generateFallbackResponse(problem, domain) {
-    console.log('⚠️ Using fallback demo response');
-
-    const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
-
-    const reasoningChain = [
-        `${domainConfig.name} alanında problemi analiz ediyorum`,
-        'İlgili teorileri ve yaklaşımları belirliyorum',
-        'Adım adım çözüm planı oluşturuyorum',
-        'Her adımda doğrulama yapıyorum',
-        'Sonucu optimize ediyorum'
-    ];
-
-    const solution = `# ${domainConfig.icon} ${domainConfig.name} Çözümü\n\n**Problem:** ${problem}\n\n## Analiz\n\nBu problem ${domainConfig.name.toLowerCase()} alanına aittir ve aşağıdaki yaklaşımla çözülebilir:\n\n### Adımlar\n\n1. **Problemi Tanımlama**: Sorunun net bir şekilde anlaşılması\n2. **Yöntem Belirleme**: ${domainConfig.capabilities[0]} kullanarak yaklaşım\n3. **Uygulama**: Adım adım çözüm\n4. **Doğrulama**: Sonucun kontrolü\n\n## Sonuç\n\nÇözüm başarıyla tamamlandı.\n\n**Yetenekler Kullanılan:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** Bu bir demo yanıttır. Gerçek Azure LyDian IQ API entegrasyonu için API anahtarı gereklidir.`;
-
-    return {
-        success: true,
-        domain: domain,
-        problem: problem,
-        reasoningChain: reasoningChain,
-        solution: solution,
-        metadata: {
-            responseTime: (Math.random() * 5 + 5).toFixed(2),
-            tokensUsed: Math.floor(Math.random() * 2000 + 500),
-            model: 'Demo Mode',
-            confidence: 0.95,
-            mode: 'demo'
-        }
-    };
-}
+// REMOVED: // Generate fallback demo response
+// REMOVED: function generateFallbackResponse(problem, domain) {
+// REMOVED:     console.log('⚠️ Using fallback demo response');
+// REMOVED: 
+// REMOVED:     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
+// REMOVED: 
+// REMOVED:     const reasoningChain = [
+// REMOVED:         `${domainConfig.name} alanında problemi analiz ediyorum`,
+// REMOVED:         'İlgili teorileri ve yaklaşımları belirliyorum',
+// REMOVED:         'Adım adım çözüm planı oluşturuyorum',
+// REMOVED:         'Her adımda doğrulama yapıyorum',
+// REMOVED:         'Sonucu optimize ediyorum'
+// REMOVED:     ];
+// REMOVED: 
+// REMOVED:     const solution = `# ${domainConfig.icon} ${domainConfig.name} Çözümü\n\n**Problem:** ${problem}\n\n## Analiz\n\nBu problem ${domainConfig.name.toLowerCase()} alanına aittir ve aşağıdaki yaklaşımla çözülebilir:\n\n### Adımlar\n\n1. **Problemi Tanımlama**: Sorunun net bir şekilde anlaşılması\n2. **Yöntem Belirleme**: ${domainConfig.capabilities[0]} kullanarak yaklaşım\n3. **Uygulama**: Adım adım çözüm\n4. **Doğrulama**: Sonucun kontrolü\n\n## Sonuç\n\nÇözüm başarıyla tamamlandı.\n\n**Yetenekler Kullanılan:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** Bu bir demo yanıttır. Gerçek Azure LyDian IQ API entegrasyonu için API anahtarı gereklidir.`;
+// REMOVED: 
+// REMOVED:     return {
+// REMOVED:         success: true,
+// REMOVED:         domain: domain,
+// REMOVED:         problem: problem,
+// REMOVED:         reasoningChain: reasoningChain,
+// REMOVED:         solution: solution,
+// REMOVED:         metadata: {
+// REMOVED:             responseTime: (Math.random() * 5 + 5).toFixed(2),
+// REMOVED:             tokensUsed: Math.floor(Math.random() * 2000 + 500),
+// REMOVED:             model: 'Demo Mode',
+// REMOVED:             confidence: 0.95,
+// REMOVED:             mode: 'demo'
+// REMOVED:         }
+// REMOVED:     };
+// REMOVED: }
 
 // ========== API Handler ==========
 module.exports = async (req, res) => {
