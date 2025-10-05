@@ -1240,6 +1240,16 @@ body {
                         </div>
                         <span>Pediatric Safety System</span>
                     </div>
+                    <div class="specialization-item" onclick="showPanel('drug-discovery')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <path d="M12 9v4"/>
+                                <path d="M12 17h.01"/>
+                            </svg>
+                        </div>
+                        <span>Drug Discovery Platform</span>
+                    </div>
                 </div>
             </div>
 
@@ -2691,7 +2701,9 @@ function showPanel(panelType) {
         'neuro-health-index': 'neuroHealthIndexModal',
         'neuro-risk': 'neuroRiskModal',
         'neuro-twin': 'neuroTwinModal',
-        'neuro-clinician': 'neuroClinicianModal'
+        'neuro-clinician': 'neuroClinicianModal',
+        // Drug Discovery Platform
+        'drug-discovery': 'drugDiscoveryModal'
     };
 
     const modalId = panelMap[panelType];
@@ -6150,6 +6162,326 @@ async function analyzeRareDisease() {
     }
 }
 
+// ============================================================
+// 💊 DRUG DISCOVERY PLATFORM - PubChem + Clinical Trials
+// ============================================================
+
+// Tab Switching Function
+function switchDrugDiscoveryTab(tabName) {
+    // Hide all tabs
+    document.getElementById('compoundSearchTab').style.display = 'none';
+    document.getElementById('clinicalTrialTab').style.display = 'none';
+    document.getElementById('biomarkerTab').style.display = 'none';
+
+    // Reset all tab button styles
+    document.getElementById('tabCompoundSearch').style.background = '#F3F4F6';
+    document.getElementById('tabCompoundSearch').style.color = '#6B7280';
+    document.getElementById('tabClinicalTrial').style.background = '#F3F4F6';
+    document.getElementById('tabClinicalTrial').style.color = '#6B7280';
+    document.getElementById('tabBiomarker').style.background = '#F3F4F6';
+    document.getElementById('tabBiomarker').style.color = '#6B7280';
+
+    // Show selected tab
+    if (tabName === 'compound') {
+        document.getElementById('compoundSearchTab').style.display = 'block';
+        document.getElementById('tabCompoundSearch').style.background = 'linear-gradient(135deg, #8B5CF6, #7C3AED)';
+        document.getElementById('tabCompoundSearch').style.color = 'white';
+    } else if (tabName === 'trial') {
+        document.getElementById('clinicalTrialTab').style.display = 'block';
+        document.getElementById('tabClinicalTrial').style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        document.getElementById('tabClinicalTrial').style.color = 'white';
+    } else if (tabName === 'biomarker') {
+        document.getElementById('biomarkerTab').style.display = 'block';
+        document.getElementById('tabBiomarker').style.background = 'linear-gradient(135deg, #F59E0B, #D97706)';
+        document.getElementById('tabBiomarker').style.color = 'white';
+    }
+}
+
+// Compound Search Function
+async function searchCompound() {
+    const compoundName = document.getElementById('compoundName').value.trim();
+    const searchType = document.getElementById('compoundSearchType').value;
+
+    if (!compoundName) {
+        return alert('Please enter a compound name');
+    }
+
+    const button = event.target;
+    button.disabled = true;
+    button.innerHTML = '🔬 Searching PubChem...';
+
+    try {
+        const response = await fetch('/api/medical/drug-discovery/compound-search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ compoundName, searchType })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display compound information
+        const resultsHTML = `
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 1rem;">✓ Compound Found</h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="background: #F9FAFB; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #6B7280; margin-bottom: 0.25rem;">COMPOUND NAME</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.compound.name}</div>
+                    </div>
+                    <div style="background: #F9FAFB; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #6B7280; margin-bottom: 0.25rem;">PUBCHEM CID</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.compound.pubchemCID}</div>
+                    </div>
+                </div>
+
+                <div style="background: #F0F9FF; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <div style="font-size: 0.875rem; font-weight: 600; color: #1E40AF; margin-bottom: 0.5rem;">Molecular Information</div>
+                    <div style="font-size: 0.8125rem; color: #1E3A8A;">
+                        <p><strong>Formula:</strong> ${data.compound.formula}</p>
+                        <p><strong>Molecular Weight:</strong> ${data.compound.molecularWeight}</p>
+                        <p><strong>Mechanism:</strong> ${data.compound.mechanism}</p>
+                    </div>
+                </div>
+
+                <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <div style="font-size: 0.875rem; font-weight: 600; color: #92400E; margin-bottom: 0.5rem;">🎯 Targets</div>
+                    <div style="font-size: 0.8125rem; color: #78350F;">
+                        ${data.compound.targets.map(t => `<span style="background: white; padding: 0.25rem 0.75rem; border-radius: 12px; margin-right: 0.5rem; display: inline-block; margin-bottom: 0.5rem;">${t}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div style="background: #DBEAFE; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <div style="font-size: 0.875rem; font-weight: 600; color: #1E40AF; margin-bottom: 0.5rem;">📋 Indications</div>
+                    <div style="font-size: 0.8125rem; color: #1E3A8A;">
+                        ${data.compound.indications.map(ind => `<p style="margin: 0.25rem 0;">• ${ind}</p>`).join('')}
+                    </div>
+                </div>
+
+                ${data.similarCompounds.length > 0 ? `
+                    <div style="background: #F9FAFB; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">🔗 Similar Compounds</div>
+                        <div style="font-size: 0.8125rem; color: #6B7280;">
+                            ${data.similarCompounds.map(sc => `<p style="margin: 0.25rem 0;">• ${sc.name} (${sc.similarity}% similarity)</p>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
+        document.getElementById('compoundResults').innerHTML = resultsHTML;
+        document.getElementById('compoundResults').style.display = 'block';
+        document.getElementById('compoundResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        button.innerHTML = '✓ Search Complete';
+        button.style.background = 'linear-gradient(135deg, #059669, #047857)';
+
+    } catch (error) {
+        console.error('Compound search error:', error);
+        alert('Search failed: ' + error.message);
+        button.disabled = false;
+        button.innerHTML = '🔬 Search PubChem Database';
+    }
+}
+
+// Clinical Trial Matching Function
+async function matchClinicalTrial() {
+    const condition = document.getElementById('trialCondition').value.trim();
+    const age = parseInt(document.getElementById('trialAge').value);
+    const biomarkerInput = document.getElementById('trialBiomarker').value.trim();
+
+    if (!condition) {
+        return alert('Please enter a medical condition');
+    }
+
+    // Parse biomarker (e.g., "PD-L1: 60%")
+    const biomarkers = {};
+    if (biomarkerInput) {
+        const parts = biomarkerInput.split(':');
+        if (parts.length === 2) {
+            biomarkers[parts[0].trim()] = parts[1].trim();
+        }
+    }
+
+    const button = event.target;
+    button.disabled = true;
+    button.innerHTML = '🏥 Searching ClinicalTrials.gov...';
+
+    try {
+        const response = await fetch('/api/medical/drug-discovery/clinical-trial-match', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ condition, age, biomarkers, priorTherapies: [] })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display matching trials
+        const trialsHTML = data.trials.map((trial, index) => `
+            <div style="background: ${index === 0 ? '#F0F9FF' : 'white'}; padding: 1.5rem; border-radius: 12px; border: 1px solid ${index === 0 ? '#3B82F6' : '#E5E7EB'}; margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: between; align-items: start; margin-bottom: 0.75rem;">
+                    <h4 style="font-size: 1rem; font-weight: 700; color: #111827; margin: 0; flex: 1;">${trial.title}</h4>
+                    <div style="background: ${trial.matchScore >= 70 ? '#10B981' : trial.matchScore >= 50 ? '#F59E0B' : '#6B7280'}; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-left: 1rem;">
+                        ${trial.matchScore}% Match
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 0.75rem;">
+                    <div style="background: #F9FAFB; padding: 0.5rem; border-radius: 6px; font-size: 0.8125rem;">
+                        <div style="color: #6B7280; font-size: 0.75rem;">NCT ID</div>
+                        <div style="color: #111827; font-weight: 600;">${trial.nctId}</div>
+                    </div>
+                    <div style="background: #F9FAFB; padding: 0.5rem; border-radius: 6px; font-size: 0.8125rem;">
+                        <div style="color: #6B7280; font-size: 0.75rem;">Phase</div>
+                        <div style="color: #111827; font-weight: 600;">${trial.phase}</div>
+                    </div>
+                    <div style="background: #F9FAFB; padding: 0.5rem; border-radius: 6px; font-size: 0.8125rem;">
+                        <div style="color: #6B7280; font-size: 0.75rem;">Status</div>
+                        <div style="color: #111827; font-weight: 600;">${trial.status}</div>
+                    </div>
+                </div>
+
+                <div style="background: ${trial.recommendationLevel === 'HIGH' ? '#D1FAE5' : trial.recommendationLevel === 'MEDIUM' ? '#FEF3C7' : '#F3F4F6'}; padding: 0.75rem; border-radius: 8px; margin-bottom: 0.75rem;">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: ${trial.recommendationLevel === 'HIGH' ? '#047857' : trial.recommendationLevel === 'MEDIUM' ? '#92400E' : '#4B5563'}; margin-bottom: 0.25rem;">
+                        ${trial.recommendationLevel} RECOMMENDATION
+                    </div>
+                    <div style="font-size: 0.8125rem; color: #374151;">
+                        ${trial.matchReasons.map(reason => `<p style="margin: 0.25rem 0;">✓ ${reason}</p>`).join('')}
+                    </div>
+                </div>
+
+                ${trial.eligibilityCriteria ? `
+                    <div style="font-size: 0.8125rem; color: #6B7280;">
+                        <strong>Eligibility:</strong> ${trial.eligibilityCriteria}
+                    </div>
+                ` : ''}
+            </div>
+        `).join('');
+
+        const resultsHTML = `
+            <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                <div style="font-size: 0.875rem; font-weight: 700; color: #1E40AF;">
+                    ✓ Found ${data.patient.eligibleTrials} matching clinical trial(s) for ${data.patient.condition}
+                </div>
+            </div>
+            ${trialsHTML}
+        `;
+
+        document.getElementById('clinicalTrialResults').innerHTML = resultsHTML;
+        document.getElementById('clinicalTrialResults').style.display = 'block';
+        document.getElementById('clinicalTrialResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        button.innerHTML = '✓ Search Complete';
+        button.style.background = 'linear-gradient(135deg, #059669, #047857)';
+
+    } catch (error) {
+        console.error('Clinical trial matching error:', error);
+        alert('Search failed: ' + error.message);
+        button.disabled = false;
+        button.innerHTML = '🏥 Find Matching Clinical Trials';
+    }
+}
+
+// Biomarker Analysis Function
+async function analyzeBiomarker() {
+    const biomarkerName = document.getElementById('biomarkerName').value;
+    const testResult = document.getElementById('biomarkerValue').value.trim();
+    const cancerType = document.getElementById('biomarkerCancerType').value.trim();
+
+    if (!testResult || !cancerType) {
+        return alert('Please enter test result and cancer type');
+    }
+
+    const button = event.target;
+    button.disabled = true;
+    button.innerHTML = '🧬 Analyzing Biomarker...';
+
+    try {
+        const response = await fetch('/api/medical/drug-discovery/biomarker-analysis', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ biomarkerName, testResult, cancerType })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display biomarker analysis results
+        const resultsHTML = `
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 1rem;">✓ Biomarker Analysis Complete</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                    <div style="background: #F0F9FF; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #1E40AF; margin-bottom: 0.25rem;">BIOMARKER</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.biomarker.biomarker}</div>
+                    </div>
+                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #92400E; margin-bottom: 0.25rem;">TEST RESULT</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.biomarker.testResult}</div>
+                    </div>
+                    <div style="background: #F3F4F6; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #4B5563; margin-bottom: 0.25rem;">CANCER TYPE</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.biomarker.cancerType}</div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.75rem;">📊 Interpretation</h4>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin-bottom: 0.5rem;"><strong>Result:</strong> ${data.biomarker.interpretation.interpretation}</p>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin: 0;"><strong>Clinical Significance:</strong> ${data.biomarker.interpretation.clinicalSignificance}</p>
+                </div>
+
+                <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #374151; margin-bottom: 0.75rem;">💊 Recommended Targeted Therapies</h4>
+                    ${data.recommendedTherapies.map(therapy => `
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB; margin-bottom: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                <div style="font-size: 0.9375rem; font-weight: 600; color: #111827;">${therapy.drug}</div>
+                                <div style="background: ${therapy.fdaApproved ? '#10B981' : '#F59E0B'}; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+                                    ${therapy.fdaApproved ? 'FDA Approved' : 'Off-Label'}
+                                </div>
+                            </div>
+                            <p style="font-size: 0.8125rem; color: #6B7280; margin: 0;"><strong>Indication:</strong> ${therapy.indication}</p>
+                        </div>
+                    `).join('')}
+                </div>
+
+                ${data.companionDiagnostics ? `
+                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px; border-left: 4px solid #F59E0B;">
+                        <div style="font-size: 0.875rem; font-weight: 700; color: #92400E; margin-bottom: 0.5rem;">🔬 Companion Diagnostic</div>
+                        <p style="font-size: 0.8125rem; color: #78350F; margin: 0;">${data.companionDiagnostics}</p>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
+        document.getElementById('biomarkerResults').innerHTML = resultsHTML;
+        document.getElementById('biomarkerResults').style.display = 'block';
+        document.getElementById('biomarkerResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        button.innerHTML = '✓ Analysis Complete';
+        button.style.background = 'linear-gradient(135deg, #059669, #047857)';
+
+    } catch (error) {
+        console.error('Biomarker analysis error:', error);
+        alert('Analysis failed: ' + error.message);
+        button.disabled = false;
+        button.innerHTML = '🧬 Analyze Biomarker & Get Therapy Recommendations';
+    }
+}
+
 // Mental Health Triage Analysis
 async function analyzeMentalHealth() {
     const concern = document.getElementById('mentalHealthConcern').value.trim();
@@ -8162,6 +8494,149 @@ async function calculatePediatricDose() {
 
                 <div id="pedResults" style="display: none; margin-top: 1.5rem;">
                     <!-- Results populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════════════════
+         💊 DRUG DISCOVERY PLATFORM MODAL - PubChem + Clinical Trials + Biomarkers
+         ═══════════════════════════════════════════════════════════════════════════════════ -->
+    <div id="drugDiscoveryModal" class="modal">
+        <div class="modal-content" style="max-width: 1100px;">
+            <div class="modal-header">
+                <div>
+                    <h2 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">💊 Drug Discovery Platform</h2>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: var(--text-secondary);">PubChem 111M Compounds • ClinicalTrials.gov 450K+ Trials • DrugBank 15K+ Drugs</p>
+                </div>
+                <button class="modal-close" onclick="closePanel('drugDiscoveryModal', event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Market Impact Banner -->
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: start;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 1rem; color: #1E40AF; flex-shrink: 0;">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <div>
+                            <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.5rem;">$2.1 Trillion Global Pharmaceutical Market</h4>
+                            <p style="font-size: 0.875rem; color: #1E3A8A; line-height: 1.5;">AI-powered drug discovery reduces development time from 10-15 years to 3-5 years, cutting costs from $2.6B to ~$500M per drug. This platform integrates molecular screening, clinical trial matching, and biomarker analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #E5E7EB;">
+                    <button id="tabCompoundSearch" onclick="switchDrugDiscoveryTab('compound')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        🔬 Compound Search
+                    </button>
+                    <button id="tabClinicalTrial" onclick="switchDrugDiscoveryTab('trial')" style="padding: 0.75rem 1.5rem; background: #F3F4F6; color: #6B7280; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        🏥 Clinical Trials
+                    </button>
+                    <button id="tabBiomarker" onclick="switchDrugDiscoveryTab('biomarker')" style="padding: 0.75rem 1.5rem; background: #F3F4F6; color: #6B7280; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        🧬 Biomarker Analysis
+                    </button>
+                </div>
+
+                <!-- Tab 1: Compound Search -->
+                <div id="compoundSearchTab" style="display: block;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🔬 Molecular Compound Search (PubChem)</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Compound Name</label>
+                            <input type="text" id="compoundName" placeholder="e.g., pembrolizumab, aspirin, metformin, imatinib" value="pembrolizumab" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Search Type</label>
+                            <select id="compoundSearchType" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="exact_match">Exact Match</option>
+                                <option value="similarity">Similarity Search</option>
+                                <option value="substructure">Substructure Search</option>
+                            </select>
+                        </div>
+
+                        <button onclick="searchCompound()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            🔬 Search PubChem Database
+                        </button>
+                    </div>
+
+                    <div id="compoundResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Clinical Trial Match -->
+                <div id="clinicalTrialTab" style="display: none;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🏥 Clinical Trial Matching (ClinicalTrials.gov)</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Medical Condition</label>
+                            <input type="text" id="trialCondition" placeholder="e.g., Non-Small Cell Lung Cancer, Diabetes Type 2" value="Non-Small Cell Lung Cancer" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Patient Age</label>
+                                <input type="number" id="trialAge" placeholder="62" value="62" min="0" max="120" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Biomarker Value</label>
+                                <input type="text" id="trialBiomarker" placeholder="PD-L1: 60%" value="PD-L1: 60%" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                        </div>
+
+                        <button onclick="matchClinicalTrial()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10B981, #059669); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            🏥 Find Matching Clinical Trials
+                        </button>
+                    </div>
+
+                    <div id="clinicalTrialResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Biomarker Analysis -->
+                <div id="biomarkerTab" style="display: none;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🧬 Biomarker Analysis & Targeted Therapy</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Biomarker Name</label>
+                            <select id="biomarkerName" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="PD-L1">PD-L1 (Programmed Death-Ligand 1)</option>
+                                <option value="HER2">HER2 (Human Epidermal Growth Factor Receptor 2)</option>
+                                <option value="BCR-ABL">BCR-ABL (Philadelphia Chromosome)</option>
+                                <option value="EGFR">EGFR (Epidermal Growth Factor Receptor)</option>
+                            </select>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Test Result Value</label>
+                                <input type="text" id="biomarkerValue" placeholder="65" value="65" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Cancer Type</label>
+                                <input type="text" id="biomarkerCancerType" placeholder="NSCLC" value="NSCLC" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                        </div>
+
+                        <button onclick="analyzeBiomarker()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            🧬 Analyze Biomarker & Get Therapy Recommendations
+                        </button>
+                    </div>
+
+                    <div id="biomarkerResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>

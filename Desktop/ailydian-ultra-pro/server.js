@@ -17017,6 +17017,10 @@ app.use('/api/medical/explainable-ai', hipaaAuditMiddleware, explainableAI);
 const pediatricSafety = require('./api/medical/pediatric-safety');
 app.use('/api/medical/pediatric-safety', hipaaAuditMiddleware, medicalTokenGovernor, pediatricSafety);
 
+// 💊 Drug Discovery Platform - Molecular Screening & Clinical Trial Matching
+const drugDiscovery = require('./api/medical/drug-discovery');
+app.use('/api/medical/drug-discovery', hipaaAuditMiddleware, drugDiscovery);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
