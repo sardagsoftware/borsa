@@ -1260,6 +1260,15 @@ body {
                         </div>
                         <span>Genomics & Precision Medicine</span>
                     </div>
+                    <div class="specialization-item" onclick="showPanel('clinical-decision')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/>
+                                <path d="M12 2v6h6"/>
+                            </svg>
+                        </div>
+                        <span>Clinical Decision Support</span>
+                    </div>
                 </div>
             </div>
 
@@ -2715,7 +2724,9 @@ function showPanel(panelType) {
         // Drug Discovery Platform
         'drug-discovery': 'drugDiscoveryModal',
         // Genomics & Precision Medicine
-        'genomics': 'genomicsModal'
+        'genomics': 'genomicsModal',
+        // Clinical Decision Support
+        'clinical-decision': 'clinicalDecisionModal'
     };
 
     const modalId = panelMap[panelType];
@@ -9149,6 +9160,490 @@ async function calculatePediatricDose() {
             </div>
         </div>
     </div>
+
+    <!-- 🩺 Clinical Decision Support System Modal -->
+    <div id="clinicalDecisionModal" class="modal">
+        <div class="modal-content" style="max-width: 1100px;">
+            <div class="modal-header">
+                <div>
+                    <h2 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">🩺 Clinical Decision Support System</h2>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: var(--text-secondary);">UpToDate 33K Topics • NICE 2K Guidelines • WHO 500 Drugs • DrugBank 1.5M Interactions</p>
+                </div>
+                <button class="modal-close" onclick="closePanel('clinicalDecisionModal', event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Market Impact Banner -->
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0066CC; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: start;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 1rem; color: #1E40AF; flex-shrink: 0;">
+                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/>
+                            <path d="M12 2v6h6"/>
+                        </svg>
+                        <div>
+                            <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.5rem;">$2.1 Billion CDSS Market (12.8% CAGR)</h4>
+                            <p style="font-size: 0.875rem; color: #1E3A8A; line-height: 1.5;">Clinical decision support reduces diagnostic errors by 41%, improves guideline adherence to 67%, and prevents 52% of adverse drug events. This system integrates evidence-based protocols from UpToDate, NICE, WHO, AHA, CDC, and DrugBank for real-time clinical guidance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #E5E7EB;">
+                    <button id="tabDifferentialDx" onclick="switchCDSSTab('differential')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #0066CC, #00A3E0); color: white; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        🩺 Differential Diagnosis
+                    </button>
+                    <button id="tabTreatmentProtocol" onclick="switchCDSSTab('treatment')" style="padding: 0.75rem 1.5rem; background: #F3F4F6; color: #6B7280; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        💊 Treatment Protocol
+                    </button>
+                    <button id="tabDrugInteractions" onclick="switchCDSSTab('interactions')" style="padding: 0.75rem 1.5rem; background: #F3F4F6; color: #6B7280; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        ⚠️ Drug Interactions
+                    </button>
+                </div>
+
+                <!-- Tab 1: Differential Diagnosis -->
+                <div id="differentialDxTab" style="display: block;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🩺 Differential Diagnosis Engine</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Chief Complaint</label>
+                            <input type="text" id="chiefComplaint" placeholder="e.g., chest pain, headache, fever" value="chest pain" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Symptoms (comma-separated)</label>
+                            <input type="text" id="symptoms" placeholder="e.g., chest pain, dyspnea, diaphoresis, nausea" value="chest pain, dyspnea, diaphoresis, nausea" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Patient Age</label>
+                                <input type="number" id="patientAge" placeholder="62" value="62" min="0" max="120" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Sex</label>
+                                <select id="patientSex" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Risk Factors (comma-separated)</label>
+                            <input type="text" id="riskFactors" placeholder="e.g., hypertension, diabetes, smoking" value="hypertension, diabetes, smoking" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <button onclick="diagnoseDifferential()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #0066CC, #00A3E0); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            🩺 Generate Differential Diagnosis (UpToDate + NICE)
+                        </button>
+                    </div>
+
+                    <div id="differentialResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Treatment Protocol -->
+                <div id="treatmentProtocolTab" style="display: none;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">💊 Evidence-Based Treatment Protocols</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Condition</label>
+                            <select id="treatmentCondition" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="Acute Coronary Syndrome">Acute Coronary Syndrome (STEMI)</option>
+                                <option value="Community-Acquired Pneumonia">Community-Acquired Pneumonia (CAP)</option>
+                                <option value="Type 2 Diabetes Mellitus">Type 2 Diabetes Mellitus</option>
+                                <option value="Bacterial Meningitis">Bacterial Meningitis</option>
+                                <option value="Deep Vein Thrombosis">Deep Vein Thrombosis (DVT)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Severity</label>
+                            <select id="severity" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="mild">Mild</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="severe">Severe</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Comorbidities (comma-separated, optional)</label>
+                            <input type="text" id="comorbidities" placeholder="e.g., chronic kidney disease, heart failure" value="chronic kidney disease" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Allergies (comma-separated, optional)</label>
+                            <input type="text" id="allergies" placeholder="e.g., penicillin, sulfa" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <button onclick="getProtocol()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10B981, #059669); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            💊 Get Treatment Protocol (AHA/CDC/WHO)
+                        </button>
+                    </div>
+
+                    <div id="treatmentResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Drug Interactions -->
+                <div id="drugInteractionsTab" style="display: none;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">⚠️ Drug-Drug Interaction Checker</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Medications (one per line or comma-separated)</label>
+                            <textarea id="medications" placeholder="e.g.,&#10;Warfarin 5mg&#10;Ibuprofen 600mg&#10;Lisinopril 10mg&#10;Spironolactone 25mg" rows="5" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem; font-family: inherit;">Warfarin 5mg, Ibuprofen 600mg, Lisinopril 10mg, Spironolactone 25mg</textarea>
+                        </div>
+
+                        <button onclick="checkInteractions()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            ⚠️ Check Drug Interactions (DrugBank)
+                        </button>
+                    </div>
+
+                    <div id="interactionResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+// ============================================================
+// CLINICAL DECISION SUPPORT SYSTEM - JAVASCRIPT FUNCTIONS
+// ============================================================
+
+// Tab Switching
+function switchCDSSTab(tab) {
+    // Hide all tabs
+    document.getElementById('differentialDxTab').style.display = 'none';
+    document.getElementById('treatmentProtocolTab').style.display = 'none';
+    document.getElementById('drugInteractionsTab').style.display = 'none';
+
+    // Reset all tab buttons
+    document.getElementById('tabDifferentialDx').style.background = '#F3F4F6';
+    document.getElementById('tabDifferentialDx').style.color = '#6B7280';
+    document.getElementById('tabTreatmentProtocol').style.background = '#F3F4F6';
+    document.getElementById('tabTreatmentProtocol').style.color = '#6B7280';
+    document.getElementById('tabDrugInteractions').style.background = '#F3F4F6';
+    document.getElementById('tabDrugInteractions').style.color = '#6B7280';
+
+    // Show selected tab
+    if (tab === 'differential') {
+        document.getElementById('differentialDxTab').style.display = 'block';
+        document.getElementById('tabDifferentialDx').style.background = 'linear-gradient(135deg, #0066CC, #00A3E0)';
+        document.getElementById('tabDifferentialDx').style.color = 'white';
+    } else if (tab === 'treatment') {
+        document.getElementById('treatmentProtocolTab').style.display = 'block';
+        document.getElementById('tabTreatmentProtocol').style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        document.getElementById('tabTreatmentProtocol').style.color = 'white';
+    } else if (tab === 'interactions') {
+        document.getElementById('drugInteractionsTab').style.display = 'block';
+        document.getElementById('tabDrugInteractions').style.background = 'linear-gradient(135deg, #F59E0B, #D97706)';
+        document.getElementById('tabDrugInteractions').style.color = 'white';
+    }
+}
+
+// Differential Diagnosis
+async function diagnoseDifferential() {
+    const chiefComplaint = document.getElementById('chiefComplaint').value;
+    const symptomsStr = document.getElementById('symptoms').value;
+    const age = parseInt(document.getElementById('patientAge').value);
+    const sex = document.getElementById('patientSex').value;
+    const riskFactorsStr = document.getElementById('riskFactors').value;
+
+    const symptoms = symptomsStr.split(',').map(s => s.trim()).filter(s => s);
+    const riskFactors = riskFactorsStr ? riskFactorsStr.split(',').map(s => s.trim()).filter(s => s) : [];
+
+    if (!chiefComplaint || symptoms.length === 0 || !age || !sex) {
+        alert('Please fill in all required fields');
+        return;
+    }
+
+    const resultsDiv = document.getElementById('differentialResults');
+    resultsDiv.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+            <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #0066CC; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+            <p style="margin-top: 1rem; color: #6B7280;">Analyzing symptoms with UpToDate + NICE guidelines...</p>
+        </div>
+    `;
+    resultsDiv.style.display = 'block';
+
+    try {
+        const response = await fetch('/api/medical/clinical-decision/differential-diagnosis', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chiefComplaint, symptoms, age, sex, riskFactors })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            resultsDiv.innerHTML = `
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB;">
+                    <h3 style="font-size: 1.125rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">🎯 Top Diagnosis</h3>
+
+                    <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #0066CC; margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 1rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.5rem;">${data.topDiagnosis.condition}</h4>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <p style="font-size: 0.75rem; color: #1E3A8A; font-weight: 500;">Probability</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #1E40AF;">${data.topDiagnosis.probability}</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; color: #1E3A8A; font-weight: 500;">ICD-10</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #1E40AF;">${data.topDiagnosis.icd10}</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; color: #1E3A8A; font-weight: 500;">Urgency</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #DC2626;">${data.topDiagnosis.urgency}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #EF4444; margin-bottom: 0.75rem;">🚩 Red Flags</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #374151; font-size: 0.875rem; line-height: 1.8;">
+                            ${data.topDiagnosis.redFlags.map(flag => `<li>${flag}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #0066CC; margin-bottom: 0.75rem;">📋 Next Steps</h4>
+                        <ol style="margin: 0; padding-left: 1.5rem; color: #374151; font-size: 0.875rem; line-height: 1.8;">
+                            ${data.topDiagnosis.nextSteps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #6B7280; margin-bottom: 0.75rem;">🔬 Differential Diagnoses</h4>
+                        ${data.differentialDiagnosis.slice(0, 5).map((dx, i) => `
+                            <div style="padding: 0.75rem; background: #F9FAFB; border-radius: 8px; margin-bottom: 0.5rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600; color: #374151;">${i + 1}. ${dx.condition}</span>
+                                    <span style="font-size: 0.875rem; color: #0066CC; font-weight: 600;">${dx.probabilityScore}%</span>
+                                </div>
+                                <p style="font-size: 0.75rem; color: #6B7280; margin-top: 0.25rem;">${dx.matchedSymptoms}/${dx.totalSymptoms} symptoms matched • ${dx.category}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px; border-left: 4px solid #F59E0B;">
+                        <p style="font-size: 0.875rem; color: #92400E; line-height: 1.6;"><strong>💡 Clinical Pearl:</strong> ${data.clinicalPearl}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
+        }
+    } catch (error) {
+        resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
+    }
+}
+
+// Treatment Protocol
+async function getProtocol() {
+    const condition = document.getElementById('treatmentCondition').value;
+    const severity = document.getElementById('severity').value;
+    const comorbiditiesStr = document.getElementById('comorbidities').value;
+    const allergiesStr = document.getElementById('allergies').value;
+
+    const comorbidities = comorbiditiesStr ? comorbiditiesStr.split(',').map(s => s.trim()).filter(s => s) : [];
+    const allergies = allergiesStr ? allergiesStr.split(',').map(s => s.trim()).filter(s => s) : [];
+
+    const resultsDiv = document.getElementById('treatmentResults');
+    resultsDiv.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+            <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #10B981; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+            <p style="margin-top: 1rem; color: #6B7280;">Loading evidence-based treatment protocol...</p>
+        </div>
+    `;
+    resultsDiv.style.display = 'block';
+
+    try {
+        const response = await fetch('/api/medical/clinical-decision/treatment-protocol', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ condition, severity, comorbidities, allergies })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            resultsDiv.innerHTML = `
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB;">
+                    <div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #10B981; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 700; color: #065F46; margin-bottom: 0.5rem;">${data.condition}</h3>
+                        <p style="font-size: 0.875rem; color: #047857;"><strong>Guideline:</strong> ${data.guideline}</p>
+                        <p style="font-size: 0.875rem; color: #047857;"><strong>Evidence Level:</strong> ${data.evidenceLevel}</p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #10B981; margin-bottom: 0.75rem;">💉 First-Line Treatment</h4>
+                        ${data.treatmentPlan.firstLine.map((tx, i) => `
+                            <div style="padding: 1rem; background: #F9FAFB; border-radius: 8px; margin-bottom: 0.75rem; border-left: 3px solid #10B981;">
+                                <h5 style="font-weight: 600; color: #374151; margin-bottom: 0.5rem;">${i + 1}. ${tx.intervention}</h5>
+                                <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 0.25rem;"><strong>Evidence:</strong> ${tx.evidence}</p>
+                                <p style="font-size: 0.875rem; color: #059669;"><strong>Benefit:</strong> ${tx.mortality_reduction || tx.efficacy || 'Standard of care'}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${data.treatmentPlan.secondLine && data.treatmentPlan.secondLine.length > 0 ? `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #F59E0B; margin-bottom: 0.75rem;">📊 Second-Line Treatment</h4>
+                        ${data.treatmentPlan.secondLine.map((tx, i) => `
+                            <div style="padding: 1rem; background: #FEF3C7; border-radius: 8px; margin-bottom: 0.75rem; border-left: 3px solid #F59E0B;">
+                                <h5 style="font-weight: 600; color: #374151; margin-bottom: 0.5rem;">${i + 1}. ${tx.intervention}</h5>
+                                <p style="font-size: 0.875rem; color: #78350F;"><strong>Indication:</strong> ${tx.indication || tx.evidence}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+
+                    ${data.treatmentPlan.contraindications && data.treatmentPlan.contraindications.length > 0 ? `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #EF4444; margin-bottom: 0.75rem;">⚠️ Contraindications</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #DC2626; font-size: 0.875rem; line-height: 1.8;">
+                            ${data.treatmentPlan.contraindications.map(ci => `<li>${ci}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #6B7280; margin-bottom: 0.75rem;">📈 Quality Indicators</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #374151; font-size: 0.875rem; line-height: 1.8;">
+                            ${data.qualityMetrics.map(metric => `<li>${metric}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div style="background: #DBEAFE; padding: 1rem; border-radius: 8px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                        <p style="font-size: 0.875rem; color: #1E3A8A;"><strong>🔄 Follow-Up:</strong> ${data.followUp}</p>
+                    </div>
+
+                    ${data.warnings && data.warnings.length > 0 ? `
+                    <div style="background: #FEE2E2; padding: 1rem; border-radius: 8px; border-left: 4px solid #EF4444;">
+                        <p style="font-size: 0.875rem; color: #991B1B; font-weight: 600; margin-bottom: 0.5rem;">⚡ Warnings:</p>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #991B1B; font-size: 0.875rem; line-height: 1.6;">
+                            ${data.warnings.map(warning => `<li>${warning}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+        } else {
+            resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
+        }
+    } catch (error) {
+        resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
+    }
+}
+
+// Drug Interactions
+async function checkInteractions() {
+    const medicationsStr = document.getElementById('medications').value;
+    const medications = medicationsStr.split(/[\n,]/).map(s => s.trim()).filter(s => s);
+
+    if (medications.length < 2) {
+        alert('Please enter at least 2 medications');
+        return;
+    }
+
+    const resultsDiv = document.getElementById('interactionResults');
+    resultsDiv.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+            <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #F59E0B; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+            <p style="margin-top: 1rem; color: #6B7280;">Checking DrugBank for interactions...</p>
+        </div>
+    `;
+    resultsDiv.style.display = 'block';
+
+    try {
+        const response = await fetch('/api/medical/clinical-decision/drug-interactions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ medications })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            const severityColor = {
+                'HIGH': '#EF4444',
+                'MODERATE': '#F59E0B',
+                'LOW': '#10B981'
+            };
+
+            resultsDiv.innerHTML = `
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB;">
+                    <div style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F59E0B; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 700; color: #92400E; margin-bottom: 0.5rem;">Drug Interaction Analysis</h3>
+                        <p style="font-size: 0.875rem; color: #78350F; margin-bottom: 0.5rem;"><strong>Medications:</strong> ${data.medicationList.join(', ')}</p>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <p style="font-size: 0.75rem; color: #78350F; font-weight: 500;">Total Interactions</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #92400E;">${data.totalInteractions}</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; color: #DC2626; font-weight: 500;">Major</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #DC2626;">${data.interactionBreakdown.major}</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; color: #F59E0B; font-weight: 500;">Moderate</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #F59E0B;">${data.interactionBreakdown.moderate}</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; color: #10B981; font-weight: 500;">Minor</p>
+                                <p style="font-size: 1.125rem; font-weight: 700; color: #10B981;">${data.interactionBreakdown.minor}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${data.detectedInteractions.length > 0 ? `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #EF4444; margin-bottom: 0.75rem;">🚨 Detected Interactions</h4>
+                        ${data.detectedInteractions.map((int, i) => {
+                            const borderColor = int.severity === 'MAJOR' ? '#EF4444' : int.severity === 'MODERATE' ? '#F59E0B' : '#6B7280';
+                            const bgColor = int.severity === 'MAJOR' ? '#FEE2E2' : int.severity === 'MODERATE' ? '#FEF3C7' : '#F3F4F6';
+                            return `
+                            <div style="padding: 1rem; background: ${bgColor}; border-radius: 8px; margin-bottom: 0.75rem; border-left: 4px solid ${borderColor};">
+                                <h5 style="font-weight: 700; color: #1F2937; margin-bottom: 0.5rem;">${i + 1}. ${int.drug1} + ${int.drug2}</h5>
+                                <p style="font-size: 0.875rem; color: #374151; margin-bottom: 0.25rem;"><strong>Severity:</strong> <span style="color: ${borderColor}; font-weight: 700;">${int.severity}</span></p>
+                                <p style="font-size: 0.875rem; color: #374151; margin-bottom: 0.25rem;"><strong>Mechanism:</strong> ${int.mechanism}</p>
+                                <p style="font-size: 0.875rem; color: #374151; margin-bottom: 0.25rem;"><strong>Clinical Effect:</strong> ${int.clinicalEffect}</p>
+                                <p style="font-size: 0.875rem; color: #DC2626; margin-bottom: 0.25rem;"><strong>⚠️ Recommendation:</strong> ${int.recommendation}</p>
+                                <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 0.25rem;"><strong>Monitoring:</strong> ${int.monitoring}</p>
+                                <p style="font-size: 0.875rem; color: #6B7280;"><strong>Evidence:</strong> ${int.evidence} | <strong>Incidence:</strong> ${int.incidence}</p>
+                            </div>
+                        `}).join('')}
+                    </div>
+                    ` : '<p style="color: #10B981; padding: 1rem; background: #D1FAE5; border-radius: 8px;">✅ No significant drug interactions detected</p>'}
+
+                    <div style="background: #DBEAFE; padding: 1rem; border-radius: 8px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                        <p style="font-size: 0.875rem; color: #1E3A8A;"><strong>💡 Clinical Action:</strong> ${data.clinicalAction}</p>
+                    </div>
+
+                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px; border-left: 4px solid #F59E0B;">
+                        <p style="font-size: 0.875rem; color: #92400E;"><strong>👨‍⚕️ Pharmacist Consult:</strong> ${data.pharmacistConsult}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
+        }
+    } catch (error) {
+        resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
+    }
+}
+</script>
 
 </body>
 </html>
