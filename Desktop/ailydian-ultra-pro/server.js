@@ -17040,6 +17040,10 @@ app.use('/api/medical/health-data-engineering', hipaaAuditMiddleware, healthData
 const radiologyAI = require('./api/medical/radiology-ai');
 app.use('/api/medical/radiology-ai', hipaaAuditMiddleware, radiologyAI);
 
+// 💊 Pharmacy & Drug Information - Drug Database/Interactions/Prescriptions
+const pharmacyDrugInfo = require('./api/medical/pharmacy-drug-info');
+app.use('/api/medical/pharmacy-drug-info', hipaaAuditMiddleware, pharmacyDrugInfo);
+
 // 📝 Medical NLP & Clinical Documentation - SOAP Notes/ICD-10 Coding/NER
 const medicalNLP = require('./api/medical/medical-nlp');
 app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);

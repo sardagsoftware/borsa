@@ -295,6 +295,12 @@
                 <h3>Health Data Engineering</h3>
                 <p>FHIR patient data, DICOM imaging, genomics analysis, IoT telemetry</p>
             </div>
+
+            <div class="module-card" onclick="loadModule('pharmacy')">
+                <div class="module-icon">💊</div>
+                <h3>Pharmacy & Drug Information</h3>
+                <p>Drug database, medication interactions, prescription management, dosage calculator</p>
+            </div>
         </div>
 
         <div class="workspace">
@@ -375,6 +381,9 @@
                     break;
                 case 'data':
                     content.innerHTML = getDataUI();
+                    break;
+                case 'pharmacy':
+                    content.innerHTML = getPharmacyUI();
                     break;
             }
         }
@@ -495,6 +504,56 @@
             `;
         }
 
+        // Pharmacy & Drug Information UI
+        function getPharmacyUI() {
+            return `
+                <h2 style="color: #667eea; margin-bottom: 25px;">💊 Pharmacy & Drug Information</h2>
+
+                <div class="input-group">
+                    <label>Drug Search</label>
+                    <input type="text" id="drugSearch" placeholder="Search medication by name, class, or indication...">
+                </div>
+
+                <button class="btn" onclick="searchDrug()">🔍 Search Drug Database</button>
+
+                <hr style="margin: 30px 0; border: none; border-top: 2px solid #eee;">
+
+                <div class="input-group">
+                    <label>Drug Interaction Check</label>
+                    <input type="text" id="drug1" placeholder="First medication">
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="drug2" placeholder="Second medication">
+                </div>
+
+                <button class="btn" onclick="checkInteraction()">⚠️ Check Drug Interaction</button>
+
+                <hr style="margin: 30px 0; border: none; border-top: 2px solid #eee;">
+
+                <div class="input-group">
+                    <label>Generate Prescription</label>
+                    <input type="text" id="condition" placeholder="Medical condition (e.g., Hypertension)">
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="allergies" placeholder="Allergies (comma-separated, optional)">
+                </div>
+
+                <button class="btn" onclick="generatePrescription()">📝 Generate Prescription</button>
+
+                <div style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 12px;">
+                    <h3 style="color: #333; margin-bottom: 15px;">🏥 Platform Features:</h3>
+                    <ul style="color: #666; line-height: 2;">
+                        <li>✅ 10,000+ Drug Database (FDA Approved)</li>
+                        <li>✅ Major Drug Interaction Detection</li>
+                        <li>✅ Evidence-Based Prescription Protocols</li>
+                        <li>✅ Weight & Renal Dosage Adjustment</li>
+                    </ul>
+                </div>
+            `;
+        }
+
         // API Calls
         async function analyzeImage() {
             showLoading();
@@ -562,6 +621,57 @@
                 const response = await fetch(`${API_BASE}/api/medical/health-data-engineering/fhir-patients?name=John&birthdate=1960-05-15`);
                 const data = await response.json();
                 displayDataResults(data);
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        // Pharmacy API Functions
+        async function searchDrug() {
+            showLoading();
+            try {
+                const searchTerm = document.getElementById('drugSearch').value;
+                const response = await fetch(`${API_BASE}/api/medical/pharmacy-drug-info/drug-search?search=${encodeURIComponent(searchTerm)}`);
+                const data = await response.json();
+                displayPharmacyResults(data);
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function checkInteraction() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/pharmacy-drug-info/interaction-check`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        medications: [
+                            document.getElementById('drug1').value,
+                            document.getElementById('drug2').value
+                        ]
+                    })
+                });
+                const data = await response.json();
+                displayPharmacyResults(data);
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function generatePrescription() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/pharmacy-drug-info/generate-prescription`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        condition: document.getElementById('condition').value,
+                        allergies: document.getElementById('allergies').value.split(',').map(a => a.trim()).filter(a => a)
+                    })
+                });
+                const data = await response.json();
+                displayPharmacyResults(data);
             } catch (error) {
                 showError(error.message);
             }
@@ -644,6 +754,81 @@
                     <p>${JSON.stringify(data, null, 2)}</p>
                 </div>
             `;
+        }
+
+        function displayPharmacyResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+
+            let html = '<h3>💊 Pharmacy & Drug Information Results</h3>';
+
+            // Drug Search Results
+            if (data.drugs) {
+                html += `<div class="result-item"><h4>🔍 Drug Search Results (${data.total} found)</h4>`;
+                data.drugs.slice(0, 5).forEach(drug => {
+                    html += `
+                        <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                            <p><strong>${drug.name}</strong> (${drug.generic})</p>
+                            <p><strong>Brand:</strong> ${drug.brand}</p>
+                            <p><strong>Class:</strong> ${drug.class}</p>
+                            <p><strong>Indication:</strong> ${drug.indication}</p>
+                            <p><strong>Dosage:</strong> ${drug.dose}</p>
+                            <p><span class="badge badge-success">${drug.category}</span> <span class="badge badge-${drug.fdaApproved ? 'success' : 'warning'}">${drug.fdaApproved ? 'FDA Approved' : 'Not Approved'}</span></p>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            // Drug Interaction Results
+            if (data.interactions) {
+                html += `<div class="result-item"><h4>⚠️ Drug Interaction Check (${data.totalInteractions} interactions)</h4>`;
+                data.interactions.forEach(interaction => {
+                    const severityColor = interaction.severity === 'Major' ? 'danger' : interaction.severity === 'Moderate' ? 'warning' : 'info';
+                    html += `
+                        <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                            <p><strong>${interaction.drug1} + ${interaction.drug2}</strong></p>
+                            <p><span class="badge badge-${severityColor}">${interaction.severity}</span></p>
+                            <p><strong>Effect:</strong> ${interaction.effect}</p>
+                            <p><strong>Mechanism:</strong> ${interaction.mechanism}</p>
+                            <p><strong>Recommendation:</strong> ${interaction.recommendation}</p>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            // Prescription Results
+            if (data.prescription) {
+                const rx = data.prescription;
+                html += `
+                    <div class="result-item">
+                        <h4>📝 Generated Prescription</h4>
+                        <p><strong>Medication:</strong> ${rx.medication}</p>
+                        <p><strong>Dosage:</strong> ${rx.dosage}</p>
+                        <p><strong>Frequency:</strong> ${rx.frequency}</p>
+                        <p><strong>Route:</strong> ${rx.route}</p>
+                        <p><strong>Duration:</strong> ${rx.duration}</p>
+                        <p><strong>Instructions:</strong> ${rx.instructions}</p>
+                        ${rx.warnings.length > 0 ? '<p><strong>Warnings:</strong><ul>' + rx.warnings.map(w => `<li>${w}</li>`).join('') + '</ul></p>' : ''}
+                    </div>
+                `;
+            }
+
+            // Platform Stats
+            if (data.platformStats) {
+                html += `
+                    <div class="result-item">
+                        <h4>🏥 Platform Statistics</h4>
+                        <p><strong>Total Drugs:</strong> ${data.platformStats.totalDrugs}</p>
+                        <p><strong>Drug Categories:</strong> ${data.platformStats.drugCategories}</p>
+                        <p><strong>Known Interactions:</strong> ${data.platformStats.knownInteractions}</p>
+                        <p><strong>FDA Approved:</strong> ${data.platformStats.fdaApproved}%</p>
+                    </div>
+                `;
+            }
+
+            resultsDiv.innerHTML = html;
         }
 
         function showLoading() {
