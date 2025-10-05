@@ -16950,10 +16950,12 @@ app.get(`/${process.env.INDEXNOW_KEY_ID || 'ailydian-indexnow-2025'}.txt`, index
 // ==================================================
 // ⚖️ LEGAL AI ROUTES
 // ==================================================
+const legalAIAPI = require('./api/legal-ai');  // ✅ Direct legal AI API
 const legalAIRoutes = require('./routes/legal-ai-routes');
 const azureMultimodalRoutes = require('./routes/azure-multimodal-routes');
 app.use('/api/azure/legal', azureMultimodalRoutes);
-app.use('/api/legal-ai', legalAIRoutes);
+app.use('/api/legal-ai', legalAIAPI);  // ✅ Use direct API for chat
+app.use('/api/legal-services', legalAIRoutes);  // Keep other services
 
 // 🗄️ Knowledge Graph API (Neo4j)
 const knowledgeGraphAPI = require('./api/knowledge-graph');
@@ -17024,6 +17026,10 @@ app.use('/api/medical/drug-discovery', hipaaAuditMiddleware, drugDiscovery);
 // 🧬 Genomics & Precision Medicine Platform - Variant Interpretation & Pharmacogenomics
 const genomicsPrecisionMedicine = require('./api/medical/genomics-precision-medicine');
 app.use('/api/medical/genomics', hipaaAuditMiddleware, genomicsPrecisionMedicine);
+
+// 🩺 Clinical Decision Support System - Differential Diagnosis & Treatment Protocols
+const clinicalDecisionSupport = require('./api/medical/clinical-decision-support');
+app.use('/api/medical/clinical-decision', hipaaAuditMiddleware, clinicalDecisionSupport);
 
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
