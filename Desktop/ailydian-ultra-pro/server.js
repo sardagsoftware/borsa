@@ -17028,7 +17028,7 @@ const genomicsPrecisionMedicine = require('./api/medical/genomics-precision-medi
 app.use('/api/medical/genomics', hipaaAuditMiddleware, genomicsPrecisionMedicine);
 
 // 🩺 Clinical Decision Support System - Differential Diagnosis & Treatment Protocols
-const clinicalDecisionSupport = require('./api/medical/clinical-decision-support');
+const clinicalDecisionSupport = require('./api/medical/clinical-decision');
 app.use('/api/medical/clinical-decision', hipaaAuditMiddleware, clinicalDecisionSupport);
 
 // 🏥 Healthcare Data Engineering Platform - FHIR/DICOM/Genomics/IoT
