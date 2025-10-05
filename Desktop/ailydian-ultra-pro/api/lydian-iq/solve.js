@@ -1,10 +1,12 @@
 // ========================================
 // LyDian IQ Reasoning Engine - API
-// Version: 2.0.0 - Sardag Edition
+// Version: 2.0.1 - Sardag Edition
 // Real AI Integration with Anthropic Claude & OpenAI
+// Vercel Serverless Compatible (Node.js 18+ native fetch)
 // ========================================
 
-const fetch = require('node-fetch');
+// Use native fetch (Node.js 18+) - no external dependencies needed
+// In Node.js 18+, fetch is globally available
 
 // LyDian IQ Configuration - Azure-First Multi-Provider with RAG
 const AI_CONFIG = {
