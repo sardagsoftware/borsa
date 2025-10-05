@@ -17036,6 +17036,10 @@ app.use('/api/medical/clinical-decision', hipaaAuditMiddleware, clinicalDecision
 const healthDataEngineering = require('./api/medical/health-data-engineering');
 app.use('/api/medical/health-data-engineering', hipaaAuditMiddleware, healthDataEngineering);
 
+// 🔬 Radiology AI & Medical Imaging Analysis - Cancer/Fracture Detection
+const radiologyAI = require('./api/medical/radiology-ai');
+app.use('/api/medical/radiology-ai', hipaaAuditMiddleware, radiologyAI);
+
 // 📝 Medical NLP & Clinical Documentation - SOAP Notes/ICD-10 Coding/NER
 const medicalNLP = require('./api/medical/medical-nlp');
 app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);

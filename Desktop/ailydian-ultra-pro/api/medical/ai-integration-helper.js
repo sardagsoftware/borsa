@@ -473,6 +473,134 @@ Format as JSON with entity categories and confidence scores.`;
 }
 
 /**
+ * Generate Radiology Report using GPT-4o Vision or Claude 3.5 Sonnet
+ */
+async function generateRadiologyReportAI(imageDescription, clinicalQuestion, patientHistory) {
+    try {
+        const prompt = `You are an expert radiologist. Analyze the following medical image and provide a comprehensive radiology report:
+
+Image Description: ${imageDescription}
+Clinical Question: ${clinicalQuestion}
+Patient History: ${JSON.stringify(patientHistory)}
+
+Provide a structured radiology report with:
+1. Technique
+2. Findings (detailed description)
+3. Differential Diagnosis (top 3 possibilities with probability)
+4. Recommendations (next steps, additional imaging, clinical correlation)
+5. Critical Findings (if any urgent/emergent findings)
+
+Format as JSON with structure:
+{
+  "analysis": {
+    "technique": "...",
+    "findings": ["..."],
+    "impression": "..."
+  },
+  "differentialDiagnosis": [
+    {
+      "diagnosis": "...",
+      "probability": "High/Moderate/Low",
+      "supportingFindings": ["..."]
+    }
+  ],
+  "recommendations": ["..."],
+  "criticalFindings": ["..."],
+  "confidence": 0.95
+}`;
+
+        // Try Azure OpenAI first (PRIMARY - with Service Principal)
+        if (azureOpenAI) {
+            try {
+                const completion = await azureOpenAI.chat.completions.create({
+                    messages: [{
+                        role: 'system',
+                        content: 'You are an expert radiologist AI assistant specializing in medical image interpretation.'
+                    }, {
+                        role: 'user',
+                        content: prompt
+                    }],
+                    temperature: 0.2, // Low temperature for medical accuracy
+                    max_tokens: 2048,
+                    response_format: { type: 'json_object' }
+                });
+
+                const responseText = completion.choices[0].message.content;
+                const parsedResponse = JSON.parse(responseText);
+
+                return {
+                    success: true,
+                    aiProvider: 'Azure Radiology AI (Service Principal)', // Model name hidden
+                    ...parsedResponse
+                };
+            } catch (azureError) {
+                console.warn('⚠️ Azure OpenAI error, falling back to Anthropic:', azureError.message);
+            }
+        }
+
+        // Fallback to Anthropic Claude
+        if (process.env.ANTHROPIC_API_KEY) {
+            try {
+                const message = await anthropic.messages.create({
+                    model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022',
+                    max_tokens: 2048,
+                    temperature: 0.2,
+                    messages: [{
+                        role: 'user',
+                        content: prompt
+                    }]
+                });
+
+                const responseText = message.content[0].text;
+                const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+
+                if (jsonMatch) {
+                    const parsedResponse = JSON.parse(jsonMatch[0]);
+                    return {
+                        success: true,
+                        aiProvider: 'Advanced Radiology AI', // Model name hidden
+                        ...parsedResponse
+                    };
+                }
+            } catch (anthropicError) {
+                console.warn('⚠️ Anthropic error, falling back to OpenAI:', anthropicError.message);
+            }
+        }
+
+        // Fallback to OpenAI
+        if (process.env.OPENAI_API_KEY) {
+            const completion = await openai.chat.completions.create({
+                model: process.env.OPENAI_MODEL || 'gpt-4o',
+                messages: [{
+                    role: 'system',
+                    content: 'You are an expert radiologist AI assistant specializing in medical image interpretation.'
+                }, {
+                    role: 'user',
+                    content: prompt
+                }],
+                temperature: 0.2,
+                max_tokens: 2048,
+                response_format: { type: 'json_object' }
+            });
+
+            const responseText = completion.choices[0].message.content;
+            const parsedResponse = JSON.parse(responseText);
+
+            return {
+                success: true,
+                aiProvider: 'Clinical Imaging AI', // Model name hidden
+                ...parsedResponse
+            };
+        }
+
+        return null;
+    } catch (error) {
+        console.error('❌ Radiology AI Error:', error.message);
+        return null;
+    }
+}
+
+/**
  * Check if real AI is available
  */
 function isRealAIAvailable() {
@@ -490,5 +618,6 @@ module.exports = {
     generateSOAPNotesAI,
     extractICD10CodesAI,
     extractClinicalEntitiesAI,
+    generateRadiologyReportAI,
     isRealAIAvailable
 };
