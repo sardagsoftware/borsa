@@ -17035,6 +17035,10 @@ app.use('/api/medical/clinical-decision', hipaaAuditMiddleware, clinicalDecision
 const healthDataEngineering = require('./api/medical/health-data-engineering');
 app.use('/api/medical/health-data-engineering', hipaaAuditMiddleware, healthDataEngineering);
 
+// 📝 Medical NLP & Clinical Documentation - SOAP Notes/ICD-10 Coding/NER
+const medicalNLP = require('./api/medical/medical-nlp');
+app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
