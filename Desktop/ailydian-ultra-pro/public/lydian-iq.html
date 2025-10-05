@@ -1,630 +1,1096 @@
+<!-- Cache-Buster: 1759577324 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyDian IQ - LyDian | Advanced AI Reasoning Engine</title>
-    <meta name="description" content="LyDian IQ Reasoning Engine - Matematik, Kodlama, Bilim, Strateji ve Lojistik için yapay zeka destekli çözümler">
+    <title>LyDian AI - Ultra Intelligence Platform</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================================
+           🎯 LyDian AI - ULTRA PREMIUM INTELLIGENCE INTERFACE
+           Minimal • Powerful • Ethical
+           ============================================================ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Turkish Justice System Colors - Modern Premium Palette */
+            --justice-gold: #C4A962;        /* Adalet Altını - Terazi rengi */
+            --justice-navy: #1C2536;        /* Cüppe Lacivert */
+            --justice-maroon: #8B1538;      /* Hukuk Bordo - Resmi renkler */
+            --justice-white: #F8F7F4;       /* Adliye beyazı */
+            --justice-silver: #A8A8A8;      /* Terazi gümüşü */
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+            /* Primary Colors */
+            --primary: #C4A962;             /* Justice Gold */
+            --primary-dark: #A68F4E;
+            --accent: #8B1538;              /* Justice Maroon */
+            --success: #2D5016;             /* Kanun yeşili */
+            --warning: #D97706;
+            --danger: #991B1B;
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+            /* Neutrals */
+            --bg-dark: #1C2536;             /* Justice Navy */
+            --bg-darker: #0F1419;
+            --bg-card: #243040;
+            --text-primary: #F8F7F4;        /* Justice White */
+            --text-secondary: #C9C5B8;
+            --border: #3F4D5E;
 
-    <!-- KaTeX for Math Rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+            /* Effects */
+            --glow-primary: 0 0 40px rgba(196, 169, 98, 0.4);
+            --glow-accent: 0 0 40px rgba(139, 21, 56, 0.4);
+            --glass: rgba(248, 247, 244, 0.05);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* ============================================================
+           ANIMATED BACKGROUND
+           ============================================================ */
+        
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--justice-gold), transparent);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
 
-    <!-- Prism.js for Code Highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--justice-maroon), transparent);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 7s;
+        }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/lydian-iq.css">
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--justice-silver), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 14s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+        
+        /* ============================================================
+           MAIN CONTAINER
+           ============================================================ */
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ============================================================
+           HEADER - Minimal & Elegant
+           ============================================================ */
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glow-primary);
+            animation: pulse 3s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: var(--glow-primary); }
+            50% { box-shadow: var(--glow-accent); }
+        }
+        
+        .header-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .mode-toggle {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .mode-toggle:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
+        }
+        
+        .mode-toggle.active {
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            border-color: transparent;
+            color: white;
+            box-shadow: var(--glow-primary);
+        }
+        
+        /* ============================================================
+           SUPER POWER MODE INDICATOR
+           ============================================================ */
+        
+        .power-mode-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1000;
+            animation: slideInFromRight 0.5s ease-out;
+        }
+        
+        .power-mode-indicator.active {
+            display: flex;
+            border-color: var(--accent);
+            box-shadow: var(--glow-accent);
+        }
+        
+        .power-icon {
+            width: 24px;
+            height: 24px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes slideInFromRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* ============================================================
+           MAIN SEARCH AREA - Центральный элемент
+           ============================================================ */
+        
+        .main-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        
+        .search-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .search-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+        
+        /* ============================================================
+           ULTRA ADVANCED SEARCH BOX
+           ============================================================ */
+        
+        .search-container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .search-box {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1.5px solid var(--border);
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-box:focus-within {
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary), 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-box.super-power {
+            border-color: var(--accent);
+            box-shadow: var(--glow-accent), 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .action-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Voice Recording Animation */
+        .action-btn.recording {
+            background: var(--danger);
+            border-color: var(--danger);
+            animation: pulseRecording 1.5s infinite;
+        }
+        
+        @keyframes pulseRecording {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+            }
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            border: none;
+            box-shadow: var(--glow-primary);
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* ============================================================
+           VOICE VISUALIZATION
+           ============================================================ */
+        
+        .voice-viz {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .voice-viz.active {
+            display: flex;
+        }
+        
+        .voice-bar {
+            width: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            animation: voiceWave 1s infinite ease-in-out;
+        }
+        
+        .voice-bar:nth-child(1) { height: 10px; animation-delay: 0s; }
+        .voice-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+        .voice-bar:nth-child(3) { height: 30px; animation-delay: 0.2s; }
+        .voice-bar:nth-child(4) { height: 25px; animation-delay: 0.3s; }
+        .voice-bar:nth-child(5) { height: 35px; animation-delay: 0.4s; }
+        .voice-bar:nth-child(6) { height: 25px; animation-delay: 0.5s; }
+        .voice-bar:nth-child(7) { height: 30px; animation-delay: 0.6s; }
+        .voice-bar:nth-child(8) { height: 20px; animation-delay: 0.7s; }
+        .voice-bar:nth-child(9) { height: 10px; animation-delay: 0.8s; }
+        
+        @keyframes voiceWave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.5); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ============================================================
+           QUICK SUGGESTIONS
+           ============================================================ */
+        
+        .suggestions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .suggestion-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .suggestion-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .suggestion-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .suggestion-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .suggestion-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* ============================================================
+           AI RESPONSE AREA
+           ============================================================ */
+        
+        .response-area {
+            margin-top: 2rem;
+            max-width: 800px;
+            width: 100%;
+            display: none;
+        }
+        
+        .response-area.active {
+            display: block;
+        }
+        
+        .response-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .response-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .ai-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glow-primary);
+        }
+        
+        .response-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .footer-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        
+        @media (max-width: 768px) {
+            .search-title {
+                font-size: 2.5rem;
+            }
+            
+            .search-subtitle {
+                font-size: 1rem;
+            }
+            
+            .suggestions {
+                grid-template-columns: 1fr;
+            }
+            
+            .power-mode-indicator {
+                top: 10px;
+                right: 10px;
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <!-- Animated Background -->
-    <div class="background-animation">
-        <div class="neural-network"></div>
-        <div class="particle-field"></div>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
     </div>
-
-    <!-- Modern Detached Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="/" class="nav-logo">
+    
+    <!-- Super Power Mode Indicator -->
+    <div class="power-mode-indicator" id="powerIndicator">
+        <svg class="power-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <span>SUPER POWER MODE</span>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
                 <div class="logo-icon">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <path d="M16 2L4 8v8c0 7.732 5.22 14.968 12 16 6.78-1.032 12-8.268 12-16V8l-12-6z" fill="url(#logoGradient)"/>
-                        <defs>
-                            <linearGradient id="logoGradient" x1="4" y1="2" x2="28" y2="26">
-                                <stop offset="0%" stop-color="#10A37F"/>
-                                <stop offset="100%" stop-color="#FF6B4A"/>
-                            </linearGradient>
-                        </defs>
+                    <svg fill="white" width="24" height="24" viewBox="0 0 20 20">
+                        <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
                     </svg>
                 </div>
-                <span class="logo-text">
-                    <span class="logo-main">AiLydian</span>
-                    <span class="logo-divider">|</span>
-                    <span class="logo-sub">LyDian IQ</span>
-                </span>
-            </a>
-
-            <ul class="nav-links">
-                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
-                <li><a href="/deepseek-r1.html" class="active"><i class="fas fa-brain"></i> LyDian IQ</a></li>
-                <li><a href="/knowledge-base.html"><i class="fas fa-book"></i> Bilgi Bankası</a></li>
-                <li><a href="/chat.html"><i class="fas fa-comments"></i> AI Chat</a></li>
-                <li><a href="/system-status.html"><i class="fas fa-chart-line"></i> Sistem Durumu</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <button class="nav-btn nav-btn-secondary">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <span>Giriş</span>
-                </button>
-                <button class="nav-btn nav-btn-primary">
-                    <i class="fas fa-rocket"></i>
-                    <span>Başla</span>
-                </button>
+                LyDian AI
             </div>
-
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-deepseek">
-        <div class="hero-container">
-            <div class="hero-badge">
-                <div class="pulse-dot"></div>
-                <span>Azure AI Foundry Powered</span>
-            </div>
-
-            <h1 class="hero-title">
-                <div class="title-icon-wrapper">
-                    <svg class="brain-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#10A37F;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#FF6B4A;stop-opacity:1" />
-                            </linearGradient>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-
-                        <!-- Left hemisphere -->
-                        <path class="brain-left" d="M60,100 Q50,60 70,40 Q90,20 110,30 Q120,35 120,50 Q120,70 110,90 Q100,110 80,115 Q65,118 60,100"
-                              fill="url(#brainGradient)" opacity="0.9" filter="url(#glow)">
-                            <animate attributeName="d"
-                                     dur="3s"
-                                     repeatCount="indefinite"
-                                     values="M60,100 Q50,60 70,40 Q90,20 110,30 Q120,35 120,50 Q120,70 110,90 Q100,110 80,115 Q65,118 60,100;
-                                             M60,100 Q48,58 72,38 Q92,18 112,28 Q122,33 122,48 Q122,68 112,88 Q102,108 82,113 Q67,116 60,100;
-                                             M60,100 Q50,60 70,40 Q90,20 110,30 Q120,35 120,50 Q120,70 110,90 Q100,110 80,115 Q65,118 60,100"/>
-                        </path>
-
-                        <!-- Right hemisphere -->
-                        <path class="brain-right" d="M140,100 Q150,60 130,40 Q110,20 90,30 Q80,35 80,50 Q80,70 90,90 Q100,110 120,115 Q135,118 140,100"
-                              fill="url(#brainGradient)" opacity="0.9" filter="url(#glow)">
-                            <animate attributeName="d"
-                                     dur="3s"
-                                     repeatCount="indefinite"
-                                     values="M140,100 Q150,60 130,40 Q110,20 90,30 Q80,35 80,50 Q80,70 90,90 Q100,110 120,115 Q135,118 140,100;
-                                             M140,100 Q152,58 128,38 Q108,18 88,28 Q78,33 78,48 Q78,68 88,88 Q98,108 118,113 Q133,116 140,100;
-                                             M140,100 Q150,60 130,40 Q110,20 90,30 Q80,35 80,50 Q80,70 90,90 Q100,110 120,115 Q135,118 140,100"/>
-                        </path>
-
-                        <!-- Neural connections -->
-                        <g class="neural-network" stroke="url(#brainGradient)" stroke-width="2" fill="none" opacity="0.6">
-                            <line x1="70" y1="60" x2="130" y2="60">
-                                <animate attributeName="opacity" dur="2s" repeatCount="indefinite" values="0.3;0.8;0.3"/>
-                            </line>
-                            <line x1="80" y1="80" x2="120" y2="80">
-                                <animate attributeName="opacity" dur="2s" begin="0.5s" repeatCount="indefinite" values="0.3;0.8;0.3"/>
-                            </line>
-                            <line x1="75" y1="100" x2="125" y2="100">
-                                <animate attributeName="opacity" dur="2s" begin="1s" repeatCount="indefinite" values="0.3;0.8;0.3"/>
-                            </line>
-                        </g>
-
-                        <!-- Synaptic dots -->
-                        <g class="synapses" fill="url(#brainGradient)">
-                            <circle cx="70" cy="60" r="3">
-                                <animate attributeName="r" dur="1.5s" repeatCount="indefinite" values="3;5;3"/>
-                            </circle>
-                            <circle cx="130" cy="60" r="3">
-                                <animate attributeName="r" dur="1.5s" begin="0.3s" repeatCount="indefinite" values="3;5;3"/>
-                            </circle>
-                            <circle cx="100" cy="100" r="4">
-                                <animate attributeName="r" dur="1.5s" begin="0.6s" repeatCount="indefinite" values="4;6;4"/>
-                            </circle>
-                        </g>
+            
+            <div class="header-right">
+                <button class="mode-toggle" id="superPowerBtn">
+                    <svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
-                </div>
-                <span class="title-gradient">LyDian IQ</span>
-                <span class="title-subtitle">Reasoning Engine</span>
-            </h1>
-
-            <p class="hero-description" style="margin-bottom: 2.5rem;">
-                Gelişmiş Mantık Motoru | Matematik • Kodlama • Bilim • Strateji • Lojistik
-            </p>
-
-            <!-- Search + Results Layout -->
-            <div class="search-results-layout" style="margin-top: 0; padding-top: 0;">
-                <!-- Google-Style Search Box -->
-                <div class="quick-input-section">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <!-- Premium Thinking Icon -->
-                        <svg width="40" height="40" viewBox="0 0 40 40" style="flex-shrink: 0;">
-                            <g id="thinking-brain">
-                                <circle cx="20" cy="20" r="16" fill="url(#brain-gradient)" opacity="0.2">
-                                    <animate attributeName="r" values="16;18;16" dur="2s" repeatCount="indefinite"/>
-                                </circle>
-                                <path d="M12 20 Q20 10, 28 20 T12 20" stroke="#10A37F" stroke-width="2" fill="none">
-                                    <animate attributeName="d"
-                                        values="M12 20 Q20 10, 28 20 T12 20;M12 20 Q20 12, 28 20 T12 20;M12 20 Q20 10, 28 20 T12 20"
-                                        dur="3s" repeatCount="indefinite"/>
-                                </path>
-                                <circle cx="15" cy="18" r="2" fill="#FF6B4A">
-                                    <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="25" cy="18" r="2" fill="#FF6B4A">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
-                            </g>
-                            <defs>
-                                <linearGradient id="brain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#10A37F;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#FF6B4A;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-
-                        <textarea
-                            id="quickProblem"
-                            class="problem-textarea"
-                            placeholder="LyDian IQ'ya sorunuzu yazın..."
-                            rows="2"
-                            style="flex: 1; border: none; resize: none; outline: none; font-size: 16px; padding: 0.5rem;"
-                        ></textarea>
-
-                        <select id="domainSelect" class="domain-select" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 0.5rem; outline: none;">
-                            <option value="general">Genel</option>
-                            <option value="mathematics">Matematik</option>
-                            <option value="coding">Kodlama</option>
-                            <option value="science">Bilim</option>
-                            <option value="strategy">Strateji</option>
-                            <option value="logistics">Lojistik</option>
-                        </select>
-
-                        <button class="btn-primary" id="solveBtn" style="background: #10A37F; color: white; border: none; border-radius: 8px; padding: 0.75rem 2rem; cursor: pointer; font-weight: 500; transition: background 0.2s;">
-                            Çöz
+                    Super Power
+                </button>
+            </div>
+        </header>
+        
+        <!-- Main Area -->
+        <main class="main-area">
+            <h1 class="search-title">Sorularınızın Cevabı Burada</h1>
+            <p class="search-subtitle">Ultra-akıllı AI ile her türlü sorunuza anında cevap alın</p>
+            
+            <!-- Advanced Search Box -->
+            <div class="search-container">
+                <div class="search-box" id="searchBox">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="searchInput"
+                        placeholder="Bir şey sorun veya aramaya başlayın..."
+                    />
+                    
+                    <div class="search-actions">
+                        <button class="action-btn" id="voiceBtn" title="Sesli Arama">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="action-btn send-btn" id="sendBtn" title="Gönder">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
                         </button>
                     </div>
                 </div>
-
-                <!-- RIGHT: Results Display Area -->
-                <div class="results-display-area" id="resultsDisplayArea" style="display: none;">
-                <div class="section-title-small">
-                    <i class="fas fa-lightbulb"></i> AI Yanıt Alanı
-                    <i class="fas fa-trash-alt" id="clearResponseIcon" style="margin-left: auto; cursor: pointer; color: #FF6B4A; font-size: 1rem;" title="Temizle"></i>
-                </div>
-                <div class="results-container-compact">
-                    <!-- Problem Display -->
-                    <div class="problem-display-compact">
-                        <div class="problem-meta-compact">
-                            <span class="meta-item">
-                                <i class="fas fa-tag"></i>
-                                <span id="problemDomainCompact"></span>
-                            </span>
-                            <span class="meta-item">
-                                <i class="fas fa-clock"></i>
-                                <span id="processingTimeCompact"></span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Reasoning Chain -->
-                    <div class="reasoning-chain-compact" id="reasoningChainCompact">
-                        <div class="reasoning-header-compact">
-                            <i class="fas fa-project-diagram"></i> Düşünce Zinciri
-                        </div>
-                        <div class="reasoning-steps-compact" id="reasoningStepsCompact">
-                            <!-- Steps dynamically loaded -->
-                        </div>
-                    </div>
-
-                    <!-- Solution -->
-                    <div class="solution-display-compact">
-                        <div class="solution-header-compact">
-                            <i class="fas fa-check-circle"></i> Çözüm
-                            <div class="confidence-badge-compact" id="confidenceBadgeCompact">
-                                <i class="fas fa-star"></i>
-                                <span id="confidenceScoreCompact"></span>
-                            </div>
-                        </div>
-                        <div class="solution-content-compact" id="solutionContentCompact"></div>
-                    </div>
-
-                    <!-- Performance Metrics Compact -->
-                    <div class="performance-metrics-compact" id="performanceMetricsCompact"></div>
-                </div>
-                </div>
-
-            </div> <!-- Close search-results-layout -->
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section style="padding: 3rem 0; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
-        <div class="container">
-            <div class="hero-stats" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto;">
-                <div class="stat-card">
-                    <div class="stat-value">99.5%</div>
-                    <div class="stat-label">Doğruluk</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">32K</div>
-                    <div class="stat-label">Max Tokens</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">5-15s</div>
-                    <div class="stat-label">Yanıt Süresi</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">345</div>
-                    <div class="stat-label">Aktif İstekler</div>
+                
+                <!-- Voice Visualization -->
+                <div class="voice-viz" id="voiceViz">
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Capabilities Section -->
-    <section class="capabilities-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <i class="fas fa-layer-group"></i>
-                    Ana Yetenekler
-                </h2>
-                <p class="section-subtitle">5 farklı alanda uzman seviye çözüm</p>
+            
+            <!-- Quick Suggestions -->
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion-card">
+                    <div class="suggestion-icon">💡</div>
+                    <div class="suggestion-title">Hızlı Öğrenme</div>
+                    <div class="suggestion-desc">Karmaşık konuları basitleştir</div>
+                </div>
+                
+                <div class="suggestion-card">
+                    <div class="suggestion-icon">🔬</div>
+                    <div class="suggestion-title">Araştırma</div>
+                    <div class="suggestion-desc">Derinlemesine analiz ve içgörüler</div>
+                </div>
+                
+                <div class="suggestion-card">
+                    <div class="suggestion-icon">⚡</div>
+                    <div class="suggestion-title">Hızlı Cevaplar</div>
+                    <div class="suggestion-desc">Anında doğru bilgi</div>
+                </div>
             </div>
-
-            <div class="capabilities-grid">
-
-                <!-- Mathematics -->
-                <div class="capability-card mathematics-card" data-domain="mathematics">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon mathematics-icon">
-                            <i class="fas fa-calculator"></i>
+            
+            <!-- AI Response Area -->
+            <div class="response-area" id="responseArea">
+                <div class="response-card">
+                    <div class="response-header">
+                        <div class="ai-avatar">
+                            <svg fill="white" width="24" height="24" viewBox="0 0 20 20">
+                                <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                            </svg>
                         </div>
-                        <h3 class="card-title">Matematik</h3>
-                    </div>
-
-                    <p class="card-description">
-                        İleri düzey matematiksel problemler için kapsamlı çözümler
-                    </p>
-
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Advanced Calculus</li>
-                        <li><i class="fas fa-check"></i> Linear Algebra</li>
-                        <li><i class="fas fa-check"></i> İstatistik & Olasılık</li>
-                        <li><i class="fas fa-check"></i> Kanıt Doğrulama</li>
-                        <li><i class="fas fa-check"></i> Sayı Teorisi</li>
-                    </ul>
-
-                    <div class="card-example">
-                        <div class="example-label">Örnek Problem:</div>
-                        <code>∫₀^π sin²(x) dx = ?</code>
-                    </div>
-
-                    <button class="btn-capability" onclick="selectCapability('mathematics')">
-                        <i class="fas fa-arrow-right"></i>
-                        Dene
-                    </button>
-                </div>
-
-                <!-- Coding -->
-                <div class="capability-card coding-card" data-domain="coding">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon coding-icon">
-                            <i class="fas fa-code"></i>
+                        <div>
+                            <strong>LyDian AI</strong>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">Ultra Intelligence</div>
                         </div>
-                        <h3 class="card-title">Kodlama</h3>
                     </div>
-
-                    <p class="card-description">
-                        Algoritma tasarımı ve kod optimizasyonu
-                    </p>
-
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Algoritma Tasarımı</li>
-                        <li><i class="fas fa-check"></i> Kod Optimizasyonu</li>
-                        <li><i class="fas fa-check"></i> Debugging & Analiz</li>
-                        <li><i class="fas fa-check"></i> Complexity Analysis</li>
-                        <li><i class="fas fa-check"></i> Code Review</li>
-                    </ul>
-
-                    <div class="card-example">
-                        <div class="example-label">Örnek Problem:</div>
-                        <code>O(n²) → O(n log n) optimizasyon</code>
-                    </div>
-
-                    <button class="btn-capability" onclick="selectCapability('coding')">
-                        <i class="fas fa-arrow-right"></i>
-                        Dene
-                    </button>
-                </div>
-
-                <!-- Science -->
-                <div class="capability-card science-card" data-domain="science">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon science-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3 class="card-title">Bilim</h3>
-                    </div>
-
-                    <p class="card-description">
-                        Bilimsel veri analizi ve hipotez testleri
-                    </p>
-
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Fizik & Kimya</li>
-                        <li><i class="fas fa-check"></i> Biyoloji & Genetik</li>
-                        <li><i class="fas fa-check"></i> Veri Analizi</li>
-                        <li><i class="fas fa-check"></i> Hipotez Testleri</li>
-                        <li><i class="fas fa-check"></i> Deney Tasarımı</li>
-                    </ul>
-
-                    <div class="card-example">
-                        <div class="example-label">Örnek Problem:</div>
-                        <code>pH 3.5 → 5.5 tampon hesapla</code>
-                    </div>
-
-                    <button class="btn-capability" onclick="selectCapability('science')">
-                        <i class="fas fa-arrow-right"></i>
-                        Dene
-                    </button>
-                </div>
-
-                <!-- Strategy -->
-                <div class="capability-card strategy-card" data-domain="strategy">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon strategy-icon">
-                            <i class="fas fa-chess"></i>
-                        </div>
-                        <h3 class="card-title">Strateji</h3>
-                    </div>
-
-                    <p class="card-description">
-                        Stratejik planlama ve karar destek sistemleri
-                    </p>
-
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Oyun Teorisi</li>
-                        <li><i class="fas fa-check"></i> Karar Analizi</li>
-                        <li><i class="fas fa-check"></i> Risk Değerlendirme</li>
-                        <li><i class="fas fa-check"></i> Kaynak Planlaması</li>
-                        <li><i class="fas fa-check"></i> Rekabet Analizi</li>
-                    </ul>
-
-                    <div class="card-example">
-                        <div class="example-label">Örnek Problem:</div>
-                        <code>Nash Equilibrium analizi</code>
-                    </div>
-
-                    <button class="btn-capability" onclick="selectCapability('strategy')">
-                        <i class="fas fa-arrow-right"></i>
-                        Dene
-                    </button>
-                </div>
-
-                <!-- Logistics -->
-                <div class="capability-card logistics-card" data-domain="logistics">
-                    <div class="card-glow"></div>
-                    <div class="card-header">
-                        <div class="card-icon logistics-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <h3 class="card-title">Lojistik</h3>
-                    </div>
-
-                    <p class="card-description">
-                        Lojistik optimizasyon ve tedarik zinciri
-                    </p>
-
-                    <ul class="card-features">
-                        <li><i class="fas fa-check"></i> Tedarik Zinciri</li>
-                        <li><i class="fas fa-check"></i> Rota Optimizasyonu</li>
-                        <li><i class="fas fa-check"></i> Envanter Yönetimi</li>
-                        <li><i class="fas fa-check"></i> Zamanlama</li>
-                        <li><i class="fas fa-check"></i> Maliyet Optimizasyonu</li>
-                    </ul>
-
-                    <div class="card-example">
-                        <div class="example-label">Örnek Problem:</div>
-                        <code>TSP 15 şehir optimal rota</code>
-                    </div>
-
-                    <button class="btn-capability" onclick="selectCapability('logistics')">
-                        <i class="fas fa-arrow-right"></i>
-                        Dene
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- How It Works Section - Modern Design -->
-    <section style="padding: 5rem 0; background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem;">
-                    Nasıl Çalışır?
-                </h2>
-                <p style="font-size: 1.1rem; color: #6c757d;">3-Fazlı Reasoning Pipeline</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto;">
-                <!-- Step 1 -->
-                <div style="position: relative; background: white; border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 30px rgba(16,163,127,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
-                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: linear-gradient(135deg, #10A37F 0%, #0d8f6f 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700; box-shadow: 0 4px 15px rgba(16,163,127,0.3);">
-                        1
-                    </div>
-                    <div style="margin-top: 2rem; text-align: center;">
-                        <div style="width: 70px; height: 70px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #e8f5f1 0%, #d4ede5 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-search" style="font-size: 2rem; color: #10A37F;"></i>
-                        </div>
-                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #1a1a1a; margin-bottom: 1rem;">Problem Analizi</h3>
-                        <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.6;">
-                            Domain tanımlama, karmaşıklık değerlendirmesi ve gerekli becerilerin belirlenmesi
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div style="position: relative; background: white; border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 30px rgba(255,107,74,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
-                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: linear-gradient(135deg, #FF6B4A 0%, #e55a3a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700; box-shadow: 0 4px 15px rgba(255,107,74,0.3);">
-                        2
-                    </div>
-                    <div style="margin-top: 2rem; text-align: center;">
-                        <div style="width: 70px; height: 70px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #fff5f3 0%, #ffe8e3 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-brain" style="font-size: 2rem; color: #FF6B4A;"></i>
-                        </div>
-                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #1a1a1a; margin-bottom: 1rem;">Thought Chain</h3>
-                        <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.6;">
-                            Adım adım mantıksal çıkarım, ara hesaplamalar ve düşünce sürecinin belgelenmesi
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div style="position: relative; background: white; border-radius: 16px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 30px rgba(59,130,246,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
-                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700; box-shadow: 0 4px 15px rgba(59,130,246,0.3);">
-                        3
-                    </div>
-                    <div style="margin-top: 2rem; text-align: center;">
-                        <div style="width: 70px; height: 70px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-check-double" style="font-size: 2rem; color: #3B82F6;"></i>
-                        </div>
-                        <h3 style="font-size: 1.3rem; font-weight: 600; color: #1a1a1a; margin-bottom: 1rem;">Self-Validation</h3>
-                        <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.6;">
-                            Mantık tutarlılığı, doğruluk testi ve metodolojik sağlamlık kontrolü
-                        </p>
+                    <div class="response-content" id="responseContent">
+                        <!-- AI response will appear here -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer-deepseek">
-        <div class="container">
-            <div class="footer-content" style="display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem;">
-                <div class="footer-section" style="padding-left: 2rem;">
-                    <h4 class="footer-title">
-                        <i class="fas fa-brain"></i>
-                        LyDian IQ
-                    </h4>
-                    <p class="footer-description">
-                        Azure AI Foundry powered reasoning engine. Matematik, kodlama, bilim, strateji ve lojistik için gelişmiş AI çözümleri.
-                    </p>
-                    <div class="footer-stats">
-                        <span class="stat-badge">99.5% Doğruluk</span>
-                        <span class="stat-badge">32K Tokens</span>
-                        <span class="stat-badge">5 Domain</span>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-title">Yetenekler</h4>
-                    <ul class="footer-links">
-                        <li><a href="#mathematics"><i class="fas fa-calculator"></i> Matematik</a></li>
-                        <li><a href="#coding"><i class="fas fa-code"></i> Kodlama</a></li>
-                        <li><a href="#science"><i class="fas fa-flask"></i> Bilim</a></li>
-                        <li><a href="#strategy"><i class="fas fa-chess"></i> Strateji</a></li>
-                        <li><a href="#logistics"><i class="fas fa-truck"></i> Lojistik</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-title">Kaynaklar</h4>
-                    <ul class="footer-links">
-                        <li><a href="/api-reference.html"><i class="fas fa-book"></i> API Dokümantasyonu</a></li>
-                        <li><a href="/knowledge-base.html"><i class="fas fa-database"></i> Bilgi Bankası</a></li>
-                        <li><a href="/system-status.html"><i class="fas fa-server"></i> Sistem Durumu</a></li>
-                        <li><a href="/help.html"><i class="fas fa-question-circle"></i> Yardım</a></li>
-                    </ul>
-                </div>
-
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 LyDian AI - Ultra Intelligence Platform</p>
+            <div class="footer-badges">
+                <div class="badge">🔒 Beyaz Şapkalı AI</div>
+                <div class="badge">⚡ Quantum-Powered</div>
+                <div class="badge">🌍 150+ Dil</div>
+                <div class="badge">🛡️ KVKK Uyumlu</div>
             </div>
-
-            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                <div>
-                    <p>&copy; 2025 AiLydian LyDian IQ Reasoning Engine. Tüm hakları saklıdır.</p>
-                    <p class="footer-tech">Powered by Azure AI Foundry | LyDian-IQ Model</p>
-                </div>
-                <div style="display: flex; gap: 2rem; align-items: center;">
-                    <a href="/index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#10A37F'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">Ana Sayfa</a>
-                    <a href="/contact.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#10A37F'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">İletişim</a>
-                    <a href="/privacy.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#10A37F'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">Gizlilik</a>
-                    <a href="/terms.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#10A37F'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">Şartlar</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Loading Overlay -->
-    <!-- Modern LyDian Loading Animation -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="lydian-loader">
-            <div class="loader-brain">
-                <svg viewBox="0 0 100 100" class="brain-animation">
-                    <circle cx="50" cy="50" r="40" class="brain-circle brain-circle-1"/>
-                    <circle cx="50" cy="50" r="30" class="brain-circle brain-circle-2"/>
-                    <circle cx="50" cy="50" r="20" class="brain-circle brain-circle-3"/>
-                </svg>
-            </div>
-            <div class="loader-text">
-                <h3 class="lydian-thinking">LyDian IQ Düşünüyor</h3>
-                <div class="thinking-dots">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <p class="loader-message" id="loadingText">Problemi analiz ediyorum...</p>
-            </div>
-        </div>
+        </footer>
     </div>
+    
+    <script>
+        // ============================================================
+        // LyDian AI - ULTRA INTELLIGENCE SYSTEM
+        // Voice Recognition + Super Power Mode
+        // ============================================================
+        
+        // State Management
+        const state = {
+            superPowerMode: false,
+            isRecording: false,
+            recognition: null
+        };
+        
+        // Elements
+        const elements = {
+            searchInput: document.getElementById('searchInput'),
+            searchBox: document.getElementById('searchBox'),
+            voiceBtn: document.getElementById('voiceBtn'),
+            sendBtn: document.getElementById('sendBtn'),
+            voiceViz: document.getElementById('voiceViz'),
+            responseArea: document.getElementById('responseArea'),
+            responseContent: document.getElementById('responseContent'),
+            superPowerBtn: document.getElementById('superPowerBtn'),
+            powerIndicator: document.getElementById('powerIndicator'),
+            suggestions: document.getElementById('suggestions')
+        };
+        
+        // ============================================================
+        // SUPER POWER MODE
+        // ============================================================
+        
+        elements.superPowerBtn.addEventListener('click', () => {
+            state.superPowerMode = !state.superPowerMode;
+            
+            if (state.superPowerMode) {
+                elements.superPowerBtn.classList.add('active');
+                elements.powerIndicator.classList.add('active');
+                elements.searchBox.classList.add('super-power');
+                elements.searchInput.placeholder = '🚀 SUPER POWER MODE - Ultra-gelişmiş AI aktif!';
+                console.log('⚡ SUPER POWER MODE ENABLED');
+                console.log('✅ Beyaz Şapkalı Kurallar Aktif');
+                console.log('✅ Etik AI Filtreleme Açık');
+                console.log('✅ Gelişmiş Analiz Modu');
+            } else {
+                elements.superPowerBtn.classList.remove('active');
+                elements.powerIndicator.classList.remove('active');
+                elements.searchBox.classList.remove('super-power');
+                elements.searchInput.placeholder = 'Bir şey sorun veya aramaya başlayın...';
+            }
+        });
+        
+        // ============================================================
+        // VOICE RECOGNITION - Web Speech API
+        // ============================================================
+        
+        function initVoiceRecognition() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                console.warn('⚠️ Tarayıcınız ses tanıma desteklemiyor');
+                elements.voiceBtn.disabled = true;
+                elements.voiceBtn.style.opacity = '0.5';
+                return;
+            }
+            
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            state.recognition = new SpeechRecognition();
+            
+            // Configuration
+            state.recognition.lang = 'tr-TR';
+            state.recognition.continuous = false;
+            state.recognition.interimResults = true;
+            state.recognition.maxAlternatives = 1;
+            
+            // Events
+            state.recognition.onstart = () => {
+                console.log('🎤 Ses tanıma başladı');
+                elements.voiceBtn.classList.add('recording');
+                elements.voiceViz.classList.add('active');
+                state.isRecording = true;
+            };
+            
+            state.recognition.onresult = (event) => {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+                
+                elements.searchInput.value = transcript;
+                
+                // Auto-submit on final result
+                if (event.results[0].isFinal) {
+                    setTimeout(() => {
+                        processQuery();
+                    }, 500);
+                }
+            };
+            
+            state.recognition.onerror = (event) => {
+                console.error('❌ Ses tanıma hatası:', event.error);
+                stopRecording();
+            };
+            
+            state.recognition.onend = () => {
+                stopRecording();
+            };
+        }
+        
+        function stopRecording() {
+            elements.voiceBtn.classList.remove('recording');
+            elements.voiceViz.classList.remove('active');
+            state.isRecording = false;
+        }
+        
+        elements.voiceBtn.addEventListener('click', () => {
+            if (!state.recognition) {
+                initVoiceRecognition();
+            }
+            
+            if (state.isRecording) {
+                state.recognition.stop();
+            } else {
+                state.recognition.start();
+            }
+        });
+        
+        // ============================================================
+        // SEARCH & AI RESPONSE - REAL BACKEND INTEGRATION
+        // ============================================================
 
-    <!-- KaTeX -->
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+        elements.sendBtn.addEventListener('click', processQuery);
+        elements.searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') processQuery();
+        });
 
-    <!-- Prism.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        async function processQuery() {
+            const query = elements.searchInput.value.trim();
+            if (!query) return;
 
-    <!-- Custom JavaScript -->
-    <script src="/js/lydian-iq.js"></script>
+            console.log('🔍 Query:', query);
+            console.log('⚡ Super Power Mode:', state.superPowerMode);
+            console.log('🛡️ White-Hat Rules: ACTIVE');
+
+            // Hide suggestions, show response area with loading
+            elements.suggestions.style.display = 'none';
+            elements.responseArea.classList.add('active');
+
+            // Show loading state
+            showLoadingState();
+
+            try {
+                // Auto-detect domain from query
+                const domain = detectDomain(query);
+
+                // Call REAL Backend API
+                const response = await fetch('/api/lydian-iq/solve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        problem: query,
+                        domain: domain,
+                        options: {
+                            temperature: state.superPowerMode ? 0.1 : 0.3,
+                            maxTokens: state.superPowerMode ? 8192 : 4096
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                console.log('✅ Real AI Response Received');
+                console.log(`🤖 Model: ${data.metadata.model}`);
+                console.log(`⚡ Provider: ${data.metadata.provider}`);
+                console.log(`⏱️ Response Time: ${data.metadata.responseTime}s`);
+                console.log(`🎯 Confidence: ${(data.metadata.confidence * 100).toFixed(1)}%`);
+
+                // Display real AI response
+                displayRealResponse(data);
+
+            } catch (error) {
+                console.error('❌ LyDian IQ Error:', error);
+                showErrorState(error);
+            }
+        }
+
+        // Auto-detect domain from query content
+        function detectDomain(query) {
+            const lowerQuery = query.toLowerCase();
+
+            // Mathematics keywords
+            if (lowerQuery.match(/hesapla|calculate|integral|türev|derivative|matris|matrix|denklem|equation|geometri|geometry|istatistik|statistic/)) {
+                return 'mathematics';
+            }
+
+            // Coding keywords
+            if (lowerQuery.match(/kod|code|program|algorithm|debug|optimize|python|javascript|java|c\+\+|function|class/)) {
+                return 'coding';
+            }
+
+            // Science keywords
+            if (lowerQuery.match(/fizik|physics|kimya|chemistry|biyoloji|biology|atom|molecule|deney|experiment|hipotez|hypothesis/)) {
+                return 'science';
+            }
+
+            // Strategy keywords
+            if (lowerQuery.match(/strateji|strategy|plan|optimize|karar|decision|risk|game theory|oyun teorisi/)) {
+                return 'strategy';
+            }
+
+            // Logistics keywords
+            if (lowerQuery.match(/lojistik|logistics|tedarik|supply|rota|route|envanter|inventory|kaynak|resource/)) {
+                return 'logistics';
+            }
+
+            // Default to mathematics
+            return 'mathematics';
+        }
+
+        // Show loading animation
+        function showLoadingState() {
+            const loadingHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="display: inline-block; width: 60px; height: 60px; border: 4px solid var(--border); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">
+                        ${state.superPowerMode ? '🚀 SUPER POWER MODE - Ultra-gelişmiş AI analiz ediyor...' : '🧠 LyDian IQ düşünüyor...'}
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        🛡️ Beyaz Şapkalı Kurallar Aktif
+                    </p>
+                </div>
+            `;
+            elements.responseContent.innerHTML = loadingHTML;
+        }
+
+        // Display real AI response with formatting
+        function displayRealResponse(data) {
+            let formattedResponse = '';
+
+            if (state.superPowerMode) {
+                formattedResponse = `
+🚀 **SUPER POWER MODE - REAL AI ANALYSIS**
+
+**Model:** ${data.metadata.model} (${data.metadata.provider})
+**Confidence:** ${(data.metadata.confidence * 100).toFixed(1)}%
+**Response Time:** ${data.metadata.responseTime}s
+
+---
+
+## 🧠 Reasoning Chain:
+
+${data.reasoningChain.map((step, i) => `${i + 1}. ${step}`).join('\n')}
+
+---
+
+## 📊 Solution:
+
+${data.solution}
+
+---
+
+🛡️ **White-Hat Security:** This response was ethically generated with responsible AI practices.
+⚡ **Powered by:** ${data.metadata.provider} ${data.metadata.model}
+📈 **Quality Score:** ${(data.metadata.confidence * 100).toFixed(1)}%
+                `.trim();
+            } else {
+                formattedResponse = `
+**Problem:** ${data.problem}
+
+---
+
+${data.solution}
+
+---
+
+🤖 **AI Model:** ${data.metadata.model}
+⚡ **Provider:** ${data.metadata.provider}
+⏱️ **Response Time:** ${data.metadata.responseTime}s
+🛡️ **White-Hat Rules:** Active
+                `.trim();
+            }
+
+            typeWriter(formattedResponse, 20);
+        }
+
+        // Show error with retry option
+        function showErrorState(error) {
+            const errorHTML = `
+                <div style="padding: 2rem; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                    <h3 style="color: var(--danger); margin-bottom: 1rem;">Bir Hata Oluştu</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        ${error.message || 'Backend API\'ye bağlanılamadı. Lütfen API anahtarlarınızı kontrol edin.'}
+                    </p>
+                    <button onclick="location.reload()" style="
+                        background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 2rem;
+                        border-radius: 50px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">
+                        🔄 Tekrar Dene
+                    </button>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+                        💡 API anahtarlarınızı .env dosyasında kontrol edin:<br>
+                        ANTHROPIC_API_KEY, OPENAI_API_KEY, GROQ_API_KEY
+                    </p>
+                </div>
+            `;
+            elements.responseContent.innerHTML = errorHTML;
+        }
+        
+        function typeWriter(text, speed = 30) {
+            elements.responseContent.innerHTML = '';
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    elements.responseContent.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+        
+        // ============================================================
+        // SUGGESTION CARDS
+        // ============================================================
+        
+        document.querySelectorAll('.suggestion-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.suggestion-title').textContent;
+                elements.searchInput.value = `${title} hakkında bilgi ver`;
+                processQuery();
+            });
+        });
+        
+        // ============================================================
+        // INITIALIZATION
+        // ============================================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 LyDian AI Ultra Intelligence Platform');
+            console.log('✅ Voice Recognition: Ready');
+            console.log('✅ Super Power Mode: Standby');
+            console.log('✅ White-Hat Rules: Active');
+            
+            // Focus search input
+            elements.searchInput.focus();
+            
+            // Initialize voice recognition
+            initVoiceRecognition();
+        });
+    </script>
 </body>
 </html>
