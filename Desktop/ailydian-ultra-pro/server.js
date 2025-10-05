@@ -42,6 +42,13 @@ const FirildakAIEngine = require('./ai-integrations/firildak-ai-engine');
 // 🔍 API HEALTH MONITORING SYSTEM
 const APIHealthMonitor = require('./monitoring/api-health-monitor');
 
+// 🎯 TOKEN GOVERNOR SYSTEM - PHASE A-I COMPLETE
+const { initializeTokenGovernor, tokenGovernorMiddleware, getTokenGovernorStatus } = require('./lib/middleware/tokenGovernorMiddleware');
+
+// 🏥 HIPAA AUDIT LOGGER - BEYAZ ŞAPKALI (White-Hat Security)
+const { initializeAuditLogger } = require('./lib/security/hipaa-audit-logger');
+const { hipaaAuditMiddleware, hipaaAuditErrorHandler } = require('./lib/middleware/hipaa-audit-middleware');
+
 // 🛡️ SECURITY MIDDLEWARE
 const { initializeSecurity } = require('./middleware/security');
 const { setupRateLimiting } = require('./middleware/rate-limit');
@@ -7163,7 +7170,7 @@ const PORT = process.env.PORT || 3100;
 
 // Only start server if not in cluster master mode
 if (shouldStartServer) {
-  server.listen(PORT, () => {
+  server.listen(PORT, async () => {
   console.log('🚀 AILYDIAN ULTRA PRO SERVER BAŞLATILDI!');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log(`✅ Server Status: ACTIVE`);
@@ -7174,6 +7181,26 @@ if (shouldStartServer) {
   console.log(`📂 Categories: ${[...new Set(aiModels.map(m => m.category))].length} categories`);
   console.log(`🏢 Providers: ${[...new Set(aiModels.map(m => m.provider))].length} providers`);
   console.log(`📊 Memory Usage: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`);
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+  // 🎯 Initialize Token Governor System
+  try {
+    console.log('🎯 Initializing Token Governor System...');
+    await initializeTokenGovernor();
+    console.log('✅ Token Governor: ACTIVE (5 models, TPM management, fail-safe sentinels)');
+  } catch (error) {
+    console.warn('⚠️  Token Governor initialization failed (running without governance):', error.message);
+  }
+
+  // 🏥 Initialize HIPAA Audit Logger
+  try {
+    console.log('🏥 Initializing HIPAA Audit Logger...');
+    await initializeAuditLogger();
+    console.log('✅ HIPAA Audit Logger: ACTIVE (6-year retention, tamper-evident, GDPR/KVKK compliant)');
+  } catch (error) {
+    console.error('❌ HIPAA Audit Logger initialization failed:', error.message);
+  }
+
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('🎯 API Endpoints:');
   console.log(`   GET  /api/models     - AI modelleri listesi`);
@@ -7186,9 +7213,10 @@ if (shouldStartServer) {
   console.log(`   POST /api/translate  - Çoklu dil çeviri servisi`);
   console.log(`   GET  /api/languages  - Desteklenen diller`);
   console.log(`   POST /api/smoke-test - Sistem smoke testleri`);
-  console.log('   🩺 MEDICAL AI APIs:');
+  console.log('   🩺 MEDICAL AI APIs (Token Governor Protected):');
   console.log(`   POST /api/medical/chat - Medical AI chat (8 specializations, 10 languages)`);
   console.log(`   GET  /api/medical/specializations - Available medical specializations`);
+  console.log(`   GET  /api/token-governor/status - Token Governor dashboard`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 });
 
@@ -9627,12 +9655,13 @@ apolloServer.applyMiddleware({
 // Apply tenant middleware to API routes
 // Multi-tenant middleware setup (skip for translation endpoints and auth routes)
 app.use('/api', (req, res, next) => {
-  // Skip tenant middleware for UI translation endpoint, auth routes, legal AI routes, and Neuro Health AI routes
+  // Skip tenant middleware for UI translation endpoint, auth routes, legal AI routes, and Medical AI routes
   if (req.path.startsWith('/translate/ui/') ||
       req.path.startsWith('/auth/') ||
       req.path.startsWith('/azure/legal/') ||
       req.path.startsWith('/legal-ai/') ||
-      req.path.startsWith('/neuro/')) {  // Fixed: removed /api/ prefix since we're already in /api route
+      req.path.startsWith('/neuro/') ||
+      req.path.startsWith('/medical/')) {  // Added Medical AI bypass
     return next();
   }
   return tenantMiddleware(req, res, next);
@@ -16942,6 +16971,47 @@ app.use('/api/neuro/health-index', neuroHealthIndex);
 app.use('/api/neuro/risk-assessment', neuroRiskAssessment);
 app.use('/api/neuro/digital-twin', neuroDigitalTwin);
 app.use('/api/neuro/clinician-portal', neuroClinicianPortal);
+
+// 🔬 Medical AI APIs with Token Governor Integration
+const rareDiseaseAssistant = require('./api/medical/rare-disease-assistant');
+const mentalHealthTriage = require('./api/medical/mental-health-triage');
+const emergencyTriage = require('./api/medical/emergency-triage');
+const sepsisEarlyWarning = require('./api/medical/sepsis-early-warning');
+const multimodalDataFusion = require('./api/medical/multimodal-data-fusion');
+const maternalFetalHealth = require('./api/medical/maternal-fetal-health');
+
+// 🎯 Token Governor Status Endpoint
+app.get('/api/token-governor/status', async (req, res) => {
+  try {
+    const status = await getTokenGovernorStatus();
+    res.json({
+      success: true,
+      ...status
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+// 🏥 MEDICAL AI ROUTES - BEYAZ ŞAPKALI (White-Hat Security)
+// Apply HIPAA Audit Middleware + Token Governor to all Medical AI endpoints
+const medicalTokenGovernor = tokenGovernorMiddleware({ defaultModel: 'claude-sonnet-4-5', defaultPriority: 'P0_clinical' });
+
+// 🛡️ HIPAA Audit + Token Governor + Route Handler
+// ✅ Redis now active - Token Governor enabled
+app.use('/api/medical/rare-disease-assistant', hipaaAuditMiddleware, medicalTokenGovernor, rareDiseaseAssistant);
+app.use('/api/medical/mental-health-triage', hipaaAuditMiddleware, medicalTokenGovernor, mentalHealthTriage);
+app.use('/api/medical/emergency-triage', hipaaAuditMiddleware, medicalTokenGovernor, emergencyTriage);
+app.use('/api/medical/sepsis-early-warning', hipaaAuditMiddleware, medicalTokenGovernor, sepsisEarlyWarning);
+app.use('/api/medical/multimodal-data-fusion', hipaaAuditMiddleware, medicalTokenGovernor, multimodalDataFusion);
+app.use('/api/medical/maternal-fetal-health', hipaaAuditMiddleware, medicalTokenGovernor, maternalFetalHealth);
+
+// 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
+// Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
+app.use('/api/medical', hipaaAuditErrorHandler);
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {
