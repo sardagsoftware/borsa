@@ -46,6 +46,7 @@
 
 const express = require('express');
 const router = express.Router();
+const aiHelper = require('./ai-integration-helper');
 
 // ========================================
 // DIFFERENTIAL DIAGNOSIS DATABASE
@@ -626,9 +627,30 @@ router.post('/differential-diagnosis', async (req, res) => {
             });
         }
 
-        const result = generateDifferentialDiagnosis(chiefComplaint, symptoms, age, sex, riskFactors || []);
+        // 🔥 REAL AI INTEGRATION: Try Claude 3.5 Sonnet first
+        const aiResult = await aiHelper.generateDifferentialDiagnosisAI(
+            chiefComplaint, symptoms, age, sex, riskFactors || []
+        );
 
-        res.json(result);
+        // If real AI available and successful, enhance local result with AI insights
+        if (aiResult && aiResult.success) {
+            const localResult = generateDifferentialDiagnosis(chiefComplaint, symptoms, age, sex, riskFactors || []);
+
+            return res.json({
+                ...localResult,
+                aiEnhanced: true,
+                aiProvider: aiResult.aiProvider,
+                aiInsights: {
+                    differentialDiagnoses: aiResult.differentialDiagnoses,
+                    reasoning: aiResult.reasoning
+                },
+                dataSource: 'Hybrid: Local Medical Database + Real AI Engine'
+            });
+        }
+
+        // Fallback to local database
+        const result = generateDifferentialDiagnosis(chiefComplaint, symptoms, age, sex, riskFactors || []);
+        res.json({ ...result, dataSource: 'Local Database (Demo Mode)' });
 
     } catch (error) {
         console.error('Differential Diagnosis Error:', error);
