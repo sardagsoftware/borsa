@@ -556,6 +556,42 @@ body {
     display: inline-block;
 }
 
+/* Language Toggle Button */
+.lang-toggle-btn {
+    padding: 0.5rem 0.875rem;
+    background: var(--bg-tertiary);
+    border: var(--border-light);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.75rem;
+}
+
+.lang-toggle-btn:hover {
+    background: var(--bg-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.lang-toggle-btn span {
+    line-height: 1;
+}
+
+#langIcon {
+    font-size: 1.25rem;
+}
+
+#langText {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
 .export-btn {
     padding: 0.5rem 1rem;
     background: var(--gradient-primary);
@@ -998,22 +1034,81 @@ body {
    ============================================================ */
 
 @media (max-width: 768px) {
+    /* 📱 Mobil: Sidebar başlangıçta KAPALI */
     .sidebar {
         position: fixed;
-        left: 0;
+        left: -280px; /* Kapalı pozisyon */
         top: 0;
         bottom: 0;
         z-index: 1000;
+        transition: left 0.3s ease-in-out;
+    }
+
+    /* Sidebar açık durumu */
+    .sidebar.mobile-open {
+        left: 0;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Overlay (sidebar açıkken arka plan) */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Sidebar toggle butonu mobilde her zaman görünsün */
+    .sidebar-toggle {
+        display: flex;
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 1001;
+        background: var(--accent-green);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
+        width: 44px;
+        height: 44px;
+    }
+
+    .sidebar-toggle:hover {
+        background: var(--accent-green-bright);
+        transform: scale(1.05);
+    }
+
+    /* Ana içerik mobilde full width */
+    .main-chat {
+        margin-left: 0 !important;
     }
 
     .input-area {
         left: 0;
         padding: 1rem;
+        width: 100%;
     }
 
     .messages-container {
         padding: 1rem;
         padding-bottom: 160px;
+        padding-top: 70px; /* Hamburger menu için boşluk */
     }
 
     .message-content {
@@ -1023,15 +1118,41 @@ body {
     .quick-actions {
         grid-template-columns: 1fr;
     }
+
+    /* Header mobilde compact - toggle butonu için boşluk */
+    .chat-header {
+        padding: 0.75rem 1rem 0.75rem 60px; /* Sol padding artırıldı */
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .header-title {
+        font-size: 1.1rem;
+    }
+
+    .chat-title {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chat-mode-selector {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+    }
 }
     </style>
 
-    <!-- Export Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <!-- Export Libraries - Using CDN.jsdelivr.net (CSP Compliant) -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 </head>
 <body>
+    <!-- 📱 Mobil Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <!-- Sidebar: Conversation History -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -1043,7 +1164,7 @@ body {
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            <span>Yeni Sohbet</span>
+            <span data-i18n="newChat">New Chat</span>
         </button>
 
         <div class="conversations-list" id="conversationsList">
@@ -1057,7 +1178,7 @@ body {
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                 </svg>
-                <span>Hesabım</span>
+                <span data-i18n="userMenuAccount">My Account</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron">
                     <polyline points="6 9 12 15 18 9"/>
                 </svg>
@@ -1068,7 +1189,7 @@ body {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                     </svg>
-                    <span data-i18n="menuProfile">Profilim</span>
+                    <span data-i18n="menuProfile">My Profile</span>
                 </div>
                 <div class="user-dropdown-item" id="archiveMenuItem">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1076,14 +1197,14 @@ body {
                         <rect x="1" y="3" width="22" height="5"/>
                         <line x1="10" y1="12" x2="14" y2="12"/>
                     </svg>
-                    <span data-i18n="menuArchive">Arşiv</span>
+                    <span data-i18n="menuArchive">Archive</span>
                 </div>
                 <div class="user-dropdown-item" id="settingsMenuItem">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="3"/>
                         <path d="M12 1v6m0 6v6m-9-9h6m6 0h6"/>
                     </svg>
-                    <span data-i18n="menuSettings">Ayarlar</span>
+                    <span data-i18n="menuSettings">Settings</span>
                 </div>
                 <div class="user-dropdown-divider"></div>
                 <div class="user-dropdown-item" id="logoutMenuItem">
@@ -1092,7 +1213,7 @@ body {
                         <polyline points="16 17 21 12 16 7"/>
                         <line x1="21" y1="12" x2="9" y2="12"/>
                     </svg>
-                    <span data-i18n="menuLogout">Çıkış Yap</span>
+                    <span data-i18n="menuLogout">Logout</span>
                 </div>
             </div>
         </div>
@@ -1110,10 +1231,16 @@ body {
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
-                <h1 class="chat-title">LyDian Hukuk AI</h1>
+                <h1 class="chat-title" data-i18n="legalAI">LyDian Legal AI</h1>
             </div>
 
             <div class="header-right">
+                <!-- Language Toggle Button -->
+                <button class="lang-toggle-btn" id="langToggle" onclick="toggleLanguage()" title="Change Language">
+                    <span id="langIcon">🇹🇷</span>
+                    <span id="langText">TR</span>
+                </button>
+
                 <div class="export-btn-container">
                     <button class="export-btn" id="exportBtn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1121,7 +1248,7 @@ body {
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                        <span data-i18n="exportShare">Dışa Aktar</span>
+                        <span data-i18n="exportShare">Export</span>
                     </button>
                     <div class="export-dropdown" id="exportDropdown">
                         <button class="export-dropdown-item" onclick="exportToPDF()">
@@ -1129,7 +1256,7 @@ body {
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
                             </svg>
-                            <span data-i18n="exportPDF">PDF Olarak Kaydet</span>
+                            <span data-i18n="exportPDF">Save as PDF</span>
                         </button>
                         <button class="export-dropdown-item" onclick="exportToDOCX()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1139,7 +1266,7 @@ body {
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                                 <line x1="10" y1="9" x2="8" y2="9"></line>
                             </svg>
-                            <span data-i18n="exportDOCX">Word Olarak Kaydet</span>
+                            <span data-i18n="exportWord">Save as Word</span>
                         </button>
                         <button class="export-dropdown-item" onclick="exportToTXT()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1148,7 +1275,7 @@ body {
                                 <line x1="16" y1="13" x2="8" y2="13"></line>
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                             </svg>
-                            <span data-i18n="exportTXT">Metin Olarak Kaydet</span>
+                            <span data-i18n="exportText">Save as Text</span>
                         </button>
                         <div class="export-dropdown-divider"></div>
                         <button class="export-dropdown-item" onclick="copyShareLink()">
@@ -1180,8 +1307,8 @@ body {
             <div class="empty-state" id="emptyState">
                 <div class="welcome-section">
                     <div class="welcome-icon">⚖️</div>
-                    <h2 class="welcome-title" data-i18n="welcomeTitle">LyDian Hukuk AI'ye Hoş Geldiniz</h2>
-                    <p class="welcome-subtitle" data-i18n="welcomeSubtitle">Hukuki sorularınız için yapay zeka destekli danışmanlık</p>
+                    <h2 class="welcome-title" data-i18n="welcomeTitle">Welcome to LyDian Legal AI</h2>
+                    <p class="welcome-subtitle" data-i18n="welcomeSubtitle">AI-powered legal consultation for your legal questions</p>
                 </div>
 
                 <div class="quick-actions">
@@ -1192,8 +1319,8 @@ body {
                                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionLawSearch">Kanun Maddesi Ara</div>
-                        <div class="quick-action-desc" data-i18n="quickActionLawSearchDesc">TMK, TCK, TTK, İK maddelerine erişin</div>
+                        <div class="quick-action-title" data-i18n="quickActionLawSearch">Search Legal Articles</div>
+                        <div class="quick-action-desc" data-i18n="quickActionLawSearchDesc">Access TMK, TCK, TTK, İK articles</div>
                     </div>
 
                     <div class="quick-action-card" data-action="case-law">
@@ -1204,8 +1331,8 @@ body {
                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionCaseLaw">İçtihat Ara</div>
-                        <div class="quick-action-desc" data-i18n="quickActionCaseLawDesc">Yargıtay ve Danıştay kararları</div>
+                        <div class="quick-action-title" data-i18n="quickActionCaseLaw">Search Case Law</div>
+                        <div class="quick-action-desc" data-i18n="quickActionCaseLawDesc">Supreme Court and Council of State decisions</div>
                     </div>
 
                     <div class="quick-action-card" data-action="contract">
@@ -1218,8 +1345,8 @@ body {
                                 <polyline points="10 9 9 9 8 9"></polyline>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionContract">Sözleşme Taslağı</div>
-                        <div class="quick-action-desc" data-i18n="quickActionContractDesc">Hızlı sözleşme oluşturun</div>
+                        <div class="quick-action-title" data-i18n="quickActionContract">Contract Draft</div>
+                        <div class="quick-action-desc" data-i18n="quickActionContractDesc">Create contracts quickly</div>
                     </div>
 
                     <div class="quick-action-card" data-action="precedent">
@@ -1229,8 +1356,8 @@ body {
                                 <path d="m21 21-4.35-4.35"></path>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionPrecedent">Emsal Araştırma</div>
-                        <div class="quick-action-desc" data-i18n="quickActionPrecedentDesc">Benzer davalara göz atın</div>
+                        <div class="quick-action-title" data-i18n="quickActionPrecedent">Precedent Research</div>
+                        <div class="quick-action-desc" data-i18n="quickActionPrecedentDesc">Browse similar cases</div>
                     </div>
                 </div>
             </div>
@@ -1258,7 +1385,8 @@ body {
                     <textarea
                         class="message-input"
                         id="messageInput"
-                        placeholder="Hukuki sorunuzu yazın..."
+                        placeholder="Type your legal question..."
+                        data-i18n-placeholder="inputPlaceholder"
                         rows="1"
                     ></textarea>
 
@@ -1347,9 +1475,16 @@ function applyTranslations() {
         messageInput.placeholder = t('searchPlaceholder') || 'Hukuki sorunuzu yazın...';
     }
 
-    // 🌍 AUTO-TRANSLATE ALL ELEMENTS WITH data-i18n
-    // ✅ HER ŞEYİ ÇEVİR - DOM BOZMADAN
+    // 🌍 AUTO-TRANSLATE ALL ELEMENTS WITH data-i18n (EXCEPT DROPDOWN ITEMS)
+    // ✅ DROPDOWN ELEMENTLERİNİ ATLA - DOM manipülasyonu yapma
+    const userDropdownElement = document.getElementById('userDropdown');
+
     document.querySelectorAll('[data-i18n]').forEach(element => {
+        // ⚠️ SKIP: User dropdown içindeki elementleri atla
+        if (userDropdownElement && userDropdownElement.contains(element)) {
+            return; // Dropdown içi - çevirme!
+        }
+
         const key = element.getAttribute('data-i18n');
         const translatedText = t(key);
 
@@ -1370,7 +1505,31 @@ function applyTranslations() {
         }
     });
 
+    // ✅ DROPDOWN İÇİNİ AYRICA ÇEVİR (DOM manipülasyonu yapmadan)
+    if (userDropdownElement) {
+        userDropdownElement.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translatedText = t(key);
+            if (translatedText && translatedText !== key && element.children.length === 0) {
+                element.textContent = translatedText;
+            }
+        });
+    }
+
     console.log(`✅ Dil değiştirildi: ${currentLang}`);
+    // ✅ UPDATE LANGUAGE BUTTON
+    const langIcon = document.getElementById('langIcon');
+    const langText = document.getElementById('langText');
+    if (langIcon && langText) {
+        if (currentLang === 'tr') {
+            langIcon.textContent = '🇹🇷';
+            langText.textContent = 'TR';
+        } else {
+            langIcon.textContent = '🇬🇧';
+            langText.textContent = 'EN';
+        }
+    }
+
 }
 
 // Change language function - KESIN KÖKTEN ÇÖZÜM - V4 (User Dropdown Fix)
@@ -1419,22 +1578,42 @@ function changeLanguage(lang, event) {
         modalAfter.style.pointerEvents = 'auto';
     }
 
-    // ✅ RESTORE: User Dropdown (KÖKTEN ÇÖZÜM!)
-    const userDropdownAfter = document.getElementById('userDropdown');
-    const userMenuBtnAfter = document.getElementById('userMenuBtn');
+    // ✅ RESTORE: User Dropdown (DOUBLE FIX - Immediate + Delayed)
+    // Immediate restore (hemen)
+    const userDropdownImmediate = document.getElementById('userDropdown');
+    const userMenuBtnImmediate = document.getElementById('userMenuBtn');
 
-    if (wasUserDropdownActive && userDropdownAfter) {
-        userDropdownAfter.classList.add('active');
-        console.log(`✅ User dropdown RESTORED - active class eklendi`);
+    if (wasUserDropdownActive && userDropdownImmediate) {
+        userDropdownImmediate.classList.add('active');
     }
-    if (wasUserBtnActive && userMenuBtnAfter) {
-        userMenuBtnAfter.classList.add('active');
-        console.log(`✅ User menu button RESTORED - active class eklendi`);
+    if (wasUserBtnActive && userMenuBtnImmediate) {
+        userMenuBtnImmediate.classList.add('active');
     }
+
+    // Delayed restore (DOM manipulation tamamlandıktan sonra tekrar)
+    setTimeout(() => {
+        const userDropdownAfter = document.getElementById('userDropdown');
+        const userMenuBtnAfter = document.getElementById('userMenuBtn');
+
+        if (wasUserDropdownActive && userDropdownAfter) {
+            userDropdownAfter.classList.add('active');
+            console.log(`✅ User dropdown RESTORED (delayed) - active class eklendi`);
+        }
+        if (wasUserBtnActive && userMenuBtnAfter) {
+            userMenuBtnAfter.classList.add('active');
+            console.log(`✅ User menu button RESTORED (delayed) - active class eklendi`);
+        }
+    }, 150);
 
     console.log(`✅ Dil değiştirildi: ${lang} - Tüm UI durumu korundu`);
 
     return false;
+}
+
+// Toggle language function for button click
+function toggleLanguage() {
+    const newLang = currentLang === 'tr' ? 'en' : 'tr';
+    changeLanguage(newLang);
 }
 
 // 🗑️ DEPRECATED: reattachDropdownListeners() artık gerekli değil
@@ -1469,11 +1648,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(`🌍 Active Language: ${currentLang}`);
 });
 
+// 📱 Window resize handler - mobil/desktop geçişlerini yönet
+window.addEventListener('resize', () => {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    // Desktop'a geçildiğinde mobil sınıflarını temizle
+    if (window.innerWidth > 768) {
+        sidebar.classList.remove('mobile-open');
+        sidebarOverlay.classList.remove('active');
+    }
+});
+
 // Event Listeners
 function setupEventListeners() {
-    // Sidebar Toggle
+    // Sidebar Toggle (Mobil uyumlu)
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
     sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('collapsed');
+        // Mobil ekranlarda (768px altı)
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('mobile-open');
+            sidebarOverlay.classList.toggle('active');
+        } else {
+            // Desktop'ta normal collapse
+            sidebar.classList.toggle('collapsed');
+        }
+    });
+
+    // Overlay'e tıklandığında sidebar'ı kapat (mobil)
+    sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('mobile-open');
+        sidebarOverlay.classList.remove('active');
     });
 
     // New Chat
@@ -1514,13 +1720,13 @@ function setupEventListeners() {
         userDropdown.classList.toggle('active');
     });
 
-    // Close user menu when clicking outside (but NOT when settings modal is open!)
+    // Close user menu when clicking outside
     document.addEventListener('click', (e) => {
         const settingsModal = document.getElementById('settingsModal');
         const isModalOpen = settingsModal && settingsModal.style.display === 'flex';
 
-        // ✅ KÖKTEN FIX: Settings modal açıkken dropdown'ı kapatma!
-        if (!isModalOpen) {
+        // ✅ FIX: Dropdown dışına tıklandığında kapat, içine tıklandığında açık bırak
+        if (!isModalOpen && !userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
             userMenuBtn.classList.remove('active');
             userDropdown.classList.remove('active');
         }
@@ -1692,10 +1898,22 @@ function startNewConversation() {
     saveConversations();
     renderConversations();
     renderMessages();
+
+    // 📱 Mobilde sidebar'ı kapat
+    if (window.innerWidth <= 768) {
+        sidebar.classList.remove('mobile-open');
+        document.getElementById('sidebarOverlay').classList.remove('active');
+    }
 }
 
 // Load Conversation
 function loadConversation(id) {
+    // 📱 Mobilde sidebar'ı kapat
+    if (window.innerWidth <= 768) {
+        sidebar.classList.remove('mobile-open');
+        document.getElementById('sidebarOverlay').classList.remove('active');
+    }
+
     const conv = state.conversations.find(c => c.id === id);
     if (conv) {
         state.currentConversationId = id;
@@ -1823,18 +2041,36 @@ async function sendMessage() {
         }
     }
 
-    // Call AI Chat API with Azure power (PORT 3100)
+    // Call AI Chat API with Azure power + Real Legal Database
     try {
-        // Enhanced system prompt with Knowledge Graph context
-        const enhancedSystemPrompt = `Sen Türk hukuku konusunda uzman bir yapay zeka asistanısın. Kullanıcılara hukuki konularda profesyonel, doğru ve güvenilir bilgiler sunuyorsun. Azure AI güçlü altyapısı ile çalışıyorsun.${knowledgeContext ? `\n\nKnowledge Graph Veritabanı (Neo4j):\n${knowledgeContext}` : ''}`;
+        // 🌍 Language-specific system prompts
+        const systemPrompts = {
+            tr: `Sen Türk hukuku konusunda uzman bir yapay zeka asistanısın. Türkiye Cumhuriyeti yasalarını, Yargıtay ve Danıştay içtihatlarını bilen ve doğru hukuki danışmanlık sunan bir AI'sın. Azure AI güçlü altyapısı ile çalışıyorsun.${knowledgeContext ? `\n\n📚 Emsal İçtihat Veritabanı (Neo4j):\n${knowledgeContext}` : ''}`,
+            en: `You are an expert AI legal assistant. You provide accurate legal consultation based on Turkish Republic laws, Supreme Court (Yargıtay) and Council of State (Danıştay) precedents. Powered by Azure AI infrastructure.${knowledgeContext ? `\n\n📚 Legal Precedents Database (Neo4j):\n${knowledgeContext}` : ''}`,
+            de: `Sie sind ein KI-Rechtsexperte. Sie bieten genaue Rechtsberatung basierend auf den Gesetzen der Türkischen Republik und relevanten Präzedenzfällen. Angetrieben von Azure AI.${knowledgeContext ? `\n\n📚 Rechtsdatenbank (Neo4j):\n${knowledgeContext}` : ''}`,
+            fr: `Vous êtes un assistant juridique IA expert. Vous fournissez des conseils juridiques précis basés sur les lois de la République turque et les précédents pertinents. Alimenté par Azure AI.${knowledgeContext ? `\n\n📚 Base de données juridique (Neo4j):\n${knowledgeContext}` : ''}`,
+            es: `Eres un asistente legal de IA experto. Proporcionas consultas legales precisas basadas en las leyes de la República Turca y precedentes relevantes. Impulsado por Azure AI.${knowledgeContext ? `\n\n📚 Base de datos legal (Neo4j):\n${knowledgeContext}` : ''}`
+        };
 
-        const response = await fetch('/api/chat-demo', {
+        const systemPrompt = systemPrompts[currentLang] || systemPrompts['en'];
+
+        // ✅ Use real legal AI endpoint with security
+        const response = await fetch('/api/legal-ai', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Language': currentLang || 'en'
+            },
             body: JSON.stringify({
-                model: aiModel,
                 message: text,
-                language: currentLang || 'tr'
+                language: currentLang || 'en',
+                systemPrompt: systemPrompt,
+                knowledgeContext: knowledgeContext,
+                settings: {
+                    model: aiModel,
+                    temperature: temperature,
+                    maxTokens: maxTokens
+                }
             })
         });
 
@@ -2010,13 +2246,23 @@ function hideTypingIndicator() {
 
 // Quick Actions
 function handleQuickAction(action) {
-    const prompts = {
-        'law-search': 'Türk Medeni Kanunu madde 185 hakkında bilgi verir misin?',
-        'case-law': 'Yargıtay 2. Hukuk Dairesi boşanma davası içtihatlarını göster',
-        'contract': 'Basit bir kira sözleşmesi taslağı hazırla',
-        'precedent': 'İş kazası tazminat davaları için emsal kararlar neler?'
+    // ✅ Multi-language quick action prompts
+    const promptsMap = {
+        tr: {
+            'law-search': 'Türk Medeni Kanunu madde 185 hakkında bilgi verir misin?',
+            'case-law': 'Yargıtay 2. Hukuk Dairesi boşanma davası içtihatlarını göster',
+            'contract': 'Basit bir kira sözleşmesi taslağı hazırla',
+            'precedent': 'İş kazası tazminat davaları için emsal kararlar neler?'
+        },
+        en: {
+            'law-search': 'Can you provide information about Article 185 of Turkish Civil Code?',
+            'case-law': 'Show me Supreme Court 2nd Civil Chamber divorce case precedents',
+            'contract': 'Draft a simple rental agreement',
+            'precedent': 'What are the precedent cases for workplace accident compensation lawsuits?'
+        }
     };
 
+    const prompts = promptsMap[currentLang] || promptsMap.tr;
     const prompt = prompts[action];
     if (prompt) {
         messageInput.value = prompt;
@@ -2947,6 +3193,7 @@ style.textContent = `
 }
 `;
 document.head.appendChild(style);
+
 
     </script>
 </body>
