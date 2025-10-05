@@ -1269,6 +1269,16 @@ body {
                         </div>
                         <span>Clinical Decision Support</span>
                     </div>
+                    <div class="specialization-item" onclick="showPanel('health-data-eng')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 3h18v18H3z"/>
+                                <path d="M12 8v8m-4-4h8"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <span>Healthcare Data Engineering</span>
+                    </div>
                 </div>
             </div>
 
@@ -2726,7 +2736,9 @@ function showPanel(panelType) {
         // Genomics & Precision Medicine
         'genomics': 'genomicsModal',
         // Clinical Decision Support
-        'clinical-decision': 'clinicalDecisionModal'
+        'clinical-decision': 'clinicalDecisionModal',
+        // Healthcare Data Engineering
+        'health-data-eng': 'healthDataEngModal'
     };
 
     const modalId = panelMap[panelType];
@@ -9647,3 +9659,53 @@ async function checkInteractions() {
 
 </body>
 </html>
+
+    <!-- 🏥 Healthcare Data Engineering Platform Modal (Basic) -->
+    <div id="healthDataEngModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <div>
+                    <h2 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">🏥 Healthcare Data Engineering Platform</h2>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: var(--text-secondary);">FHIR Data Lake • DICOM Pipeline • Genomics • IoT Telemetry</p>
+                </div>
+                <button class="modal-close" onclick="closePanel('healthDataEngModal', event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="background: linear-gradient(135deg, #E0F2FE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #0EA5E9; margin-bottom: 1.5rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #075985; margin-bottom: 0.5rem;">$377B+ Total Addressable Market by 2027</h4>
+                    <p style="font-size: 0.875rem; color: #0C4A6E; line-height: 1.5;">Healthcare Data Engineering integrates FHIR-compliant EHR data, DICOM medical imaging (350GB/day), genomic VCF files, and real-time IoT telemetry. Clinical impact: +28% diagnostic accuracy, +45% treatment personalization, -35% readmissions.</p>
+                </div>
+
+                <div style="background: #F9FAFB; padding: 2rem; border-radius: 12px; text-align: center;">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🚧 Coming Soon</h3>
+                    <p style="color: #6B7280; margin-bottom: 1.5rem;">Full Healthcare Data Engineering UI is under development.</p>
+                    <p style="font-size: 0.875rem; color: #6B7280;">Backend APIs are ready at:<br/><code style="background: #E5E7EB; padding: 0.25rem 0.5rem; border-radius: 4px;">/api/medical/health-data-engineering/*</code></p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; text-align: left;">
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #0EA5E9; margin-bottom: 0.5rem;">🏥 FHIR Data Lake</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">Patient search, EHR integration, FHIR R4</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #0EA5E9; margin-bottom: 0.5rem;">📊 DICOM Pipeline</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">CT/MR/CR imaging, 350GB/day capacity</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #0EA5E9; margin-bottom: 0.5rem;">🧬 Genomics Processing</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">VCF analysis, variant annotation, PGx</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: #0EA5E9; margin-bottom: 0.5rem;">📱 IoT Telemetry</h4>
+                            <p style="font-size: 0.75rem; color: #6B7280;">CGM, ECG, BP monitoring, SignalR streaming</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
