@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "echo 'No build required - Serverless Functions'",
+  "outputDirectory": "public",
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -36,7 +38,24 @@
   ],
   "functions": {
     "api/**/*.js": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "memory": 1024,
+      "runtime": "nodejs20.x"
+    },
+    "api/medical/**/*.js": {
+      "maxDuration": 60,
+      "memory": 1024,
+      "runtime": "nodejs20.x"
+    },
+    "api/legal-ai.js": {
+      "maxDuration": 60,
+      "memory": 1024,
+      "runtime": "nodejs20.x"
+    },
+    "api/chat/**/*.js": {
+      "maxDuration": 60,
+      "memory": 1024,
+      "runtime": "nodejs20.x"
     }
   },
   "headers": [
@@ -69,9 +88,29 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://api.openai.com https://*.anthropic.com https://api.groq.com https://*.azure.com https://*.openai.azure.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://api.openai.com https://*.anthropic.com https://api.groq.com https://*.azure.com https://*.openai.azure.com https://generativelanguage.googleapis.com https://*.googleapis.com; frame-ancestors 'none';"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
