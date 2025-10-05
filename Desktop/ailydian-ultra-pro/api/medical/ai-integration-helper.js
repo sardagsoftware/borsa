@@ -8,15 +8,47 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const OpenAI = require('openai');
 const { AzureOpenAI } = require('@azure/openai');
-const { DefaultAzureCredential } = require('@azure/identity');
+const { DefaultAzureCredential, ClientSecretCredential } = require('@azure/identity');
 
-// Initialize Azure OpenAI client (PRIMARY PROVIDER)
-const azureOpenAI = process.env.AZURE_OPENAI_ENDPOINT ? new AzureOpenAI({
-    endpoint: process.env.AZURE_OPENAI_ENDPOINT,
-    apiKey: process.env.AZURE_OPENAI_API_KEY,
-    apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview',
-    deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4o'
-}) : null;
+// Initialize Azure OpenAI client (PRIMARY PROVIDER) using Service Principal Authentication
+let azureOpenAI = null;
+
+if (process.env.AZURE_OPENAI_ENDPOINT) {
+    try {
+        // Azure Service Principal Authentication (PRIORITY 1)
+        // Uses existing AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID from Vercel
+        if (process.env.AZURE_CLIENT_ID && process.env.AZURE_CLIENT_SECRET && process.env.AZURE_TENANT_ID) {
+            const credential = new ClientSecretCredential(
+                process.env.AZURE_TENANT_ID,
+                process.env.AZURE_CLIENT_ID,
+                process.env.AZURE_CLIENT_SECRET
+            );
+
+            azureOpenAI = new AzureOpenAI({
+                endpoint: process.env.AZURE_OPENAI_ENDPOINT,
+                credential: credential,
+                apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview',
+                deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4'
+            });
+
+            console.log('✅ Azure OpenAI initialized with Service Principal (Enterprise-Grade Security)');
+        }
+        // Fallback to API Key if Service Principal not available
+        else if (process.env.AZURE_OPENAI_API_KEY) {
+            azureOpenAI = new AzureOpenAI({
+                endpoint: process.env.AZURE_OPENAI_ENDPOINT,
+                apiKey: process.env.AZURE_OPENAI_API_KEY,
+                apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview',
+                deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4'
+            });
+
+            console.log('✅ Azure OpenAI initialized with API Key');
+        }
+    } catch (error) {
+        console.warn('⚠️ Azure OpenAI initialization failed:', error.message);
+        azureOpenAI = null;
+    }
+}
 
 // Initialize Anthropic Claude (SECONDARY PROVIDER)
 const anthropic = new Anthropic({
@@ -139,8 +171,8 @@ Format as JSON with structure:
   "warnings": [...]
 }`;
 
-        // Try Azure OpenAI first (PRIMARY)
-        if (azureOpenAI && process.env.AZURE_OPENAI_API_KEY) {
+        // Try Azure OpenAI first (PRIMARY - using Service Principal)
+        if (azureOpenAI) {
             try {
                 const completion = await azureOpenAI.chat.completions.create({
                     messages: [{
@@ -160,7 +192,7 @@ Format as JSON with structure:
 
                 return {
                     success: true,
-                    aiProvider: 'Azure Medical AI', // Model name hidden for security
+                    aiProvider: 'Azure Medical AI (Service Principal)', // Model name hidden for security
                     ...parsedResponse
                 };
             } catch (azureError) {
@@ -444,7 +476,11 @@ Format as JSON with entity categories and confidence scores.`;
  * Check if real AI is available
  */
 function isRealAIAvailable() {
-    return !!(process.env.ANTHROPIC_API_KEY && process.env.OPENAI_API_KEY);
+    const hasAzureOpenAI = azureOpenAI !== null;
+    const hasAnthropic = !!process.env.ANTHROPIC_API_KEY;
+    const hasOpenAI = !!process.env.OPENAI_API_KEY;
+
+    return hasAzureOpenAI || hasAnthropic || hasOpenAI;
 }
 
 module.exports = {
