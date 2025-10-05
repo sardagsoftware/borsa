@@ -17009,6 +17009,14 @@ app.use('/api/medical/sepsis-early-warning', hipaaAuditMiddleware, medicalTokenG
 app.use('/api/medical/multimodal-data-fusion', hipaaAuditMiddleware, medicalTokenGovernor, multimodalDataFusion);
 app.use('/api/medical/maternal-fetal-health', hipaaAuditMiddleware, medicalTokenGovernor, maternalFetalHealth);
 
+// 🧠 Explainable AI Dashboard - FDA/EMA Requirement
+const explainableAI = require('./api/medical/explainable-ai');
+app.use('/api/medical/explainable-ai', hipaaAuditMiddleware, explainableAI);
+
+// 👶 Pediatric Drug Safety & Developmental Monitoring
+const pediatricSafety = require('./api/medical/pediatric-safety');
+app.use('/api/medical/pediatric-safety', hipaaAuditMiddleware, medicalTokenGovernor, pediatricSafety);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);

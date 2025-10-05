@@ -1220,6 +1220,26 @@ body {
                         </div>
                         <span>Maternal-Fetal Health</span>
                     </div>
+                    <div class="specialization-item" onclick="showPanel('explainable-ai')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <span>Explainable AI Dashboard</span>
+                    </div>
+                    <div class="specialization-item" onclick="showPanel('pediatric-safety')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/>
+                                <path d="M12 12v9"/>
+                            </svg>
+                        </div>
+                        <span>Pediatric Safety System</span>
+                    </div>
                 </div>
             </div>
 
@@ -2664,6 +2684,8 @@ function showPanel(panelType) {
         'sepsis-warning': 'sepsisWarningModal',
         'multimodal-fusion': 'multimodalFusionModal',
         'maternal-fetal': 'maternalFetalModal',
+        'explainable-ai': 'explainableAIModal',
+        'pediatric-safety': 'pediatricSafetyModal',
         // Neuro Health AI Panels
         'neuro-imaging': 'neuroImagingModal',
         'neuro-health-index': 'neuroHealthIndexModal',
@@ -6300,6 +6322,169 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 🧠 EXPLAINABLE AI DASHBOARD FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════
+async function testExplainableAI() {
+    const resultsDiv = document.getElementById('xaiResults');
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #3B82F6; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Generating AI explanation with SHAP values...</p></div>';
+
+    try {
+        const response = await fetch('/api/medical/explainable-ai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                modelId: document.getElementById('xaiModelId').value,
+                input: {
+                    heart_rate: parseInt(document.getElementById('xaiHeartRate').value),
+                    temperature: parseFloat(document.getElementById('xaiTemperature').value),
+                    wbc_count: parseFloat(document.getElementById('xaiWBC').value),
+                    lactate: 3.2,
+                    respiratory_rate: 24,
+                    blood_pressure: 90
+                },
+                prediction: 0.82,
+                demographics: { age: 65, gender: 'male', race: 'caucasian' },
+                explainationType: 'comprehensive'
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.explanation) {
+            const exp = data.explanation;
+            resultsDiv.innerHTML = `
+                <div style="background: var(--bg-secondary); border-radius: 10px; padding: 1.5rem; border-left: 4px solid #3B82F6;">
+                    <h3 style="font-size: 1rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">🔬 ${exp.modelInfo.name}</h3>
+
+                    <div style="background: ${exp.prediction.riskLevel === 'HIGH' ? '#FEE2E2' : '#D1FAE5'}; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="font-size: 0.875rem; font-weight: 600; color: ${exp.prediction.riskLevel === 'HIGH' ? '#991B1B' : '#065F46'};">
+                            Risk Level: ${exp.prediction.riskLevel} (${(exp.prediction.value * 100).toFixed(1)}%)
+                        </div>
+                        <div style="font-size: 0.75rem; color: ${exp.prediction.riskLevel === 'HIGH' ? '#7F1D1D' : '#064E3B'}; margin-top: 0.5rem;">
+                            Confidence: ${(exp.prediction.confidence * 100).toFixed(1)}%
+                        </div>
+                    </div>
+
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: #374151; margin: 1.5rem 0 0.75rem 0;">✅ Top Contributing Features (SHAP Values)</h4>
+                    ${exp.shap.topFeatures.slice(0, 5).map((f, i) => `
+                        <div style="background: white; padding: 0.75rem; border-radius: 6px; margin-bottom: 0.5rem; border-left: 3px solid ${f.impact === 'increases' ? '#EF4444' : '#10B981'};">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.875rem; font-weight: 600;">${f.feature}</span>
+                                <span style="font-size: 0.75rem; color: ${f.impact === 'increases' ? '#DC2626' : '#059669'};">${f.impact} risk by ${f.percentage}%</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #6B7280; margin-top: 0.25rem;">Value: ${f.value}</div>
+                        </div>
+                    `).join('')}
+
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: #374151; margin: 1.5rem 0 0.75rem 0;">⚖️ Fairness Analysis</h4>
+                    <div style="background: ${exp.fairness.overallFairness === 'FAIR' ? '#D1FAE5' : '#FEE2E2'}; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.875rem; font-weight: 600; color: ${exp.fairness.overallFairness === 'FAIR' ? '#065F46' : '#991B1B'};">
+                            Overall: ${exp.fairness.overallFairness}
+                        </div>
+                        <div style="font-size: 0.75rem; color: #4B5563; margin-top: 0.5rem;">
+                            ${Object.entries(exp.fairness.metrics).map(([key, val]) => `${key}: ${val.status}`).join(' • ')}
+                        </div>
+                    </div>
+
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: #374151; margin: 1.5rem 0 0.75rem 0;">💡 Counterfactual Scenarios</h4>
+                    ${exp.counterfactuals.slice(0, 3).map(cf => `
+                        <div style="background: #F3F4F6; padding: 0.75rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                            <div style="font-size: 0.875rem; font-weight: 600; color: #1F2937;">${cf.change}</div>
+                            <div style="font-size: 0.75rem; color: #059669; margin-top: 0.25rem;">Risk Reduction: ${cf.riskReduction}</div>
+                            <div style="font-size: 0.75rem; color: #6B7280;">Intervention: ${cf.intervention}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            throw new Error(data.error || 'Failed to generate explanation');
+        }
+    } catch (error) {
+        resultsDiv.innerHTML = `<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 👶 PEDIATRIC SAFETY SYSTEM FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════
+async function calculatePediatricDose() {
+    const resultsDiv = document.getElementById('pedResults');
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #F59E0B; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Calculating safe pediatric dose...</p></div>';
+
+    try {
+        const response = await fetch('/api/medical/pediatric-safety/dose-calculator', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                medication: document.getElementById('pedMedication').value,
+                age: parseInt(document.getElementById('pedAge').value),
+                ageUnit: 'months',
+                weight: parseFloat(document.getElementById('pedWeight').value),
+                indication: document.getElementById('pedIndication').value
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.dosing) {
+            const d = data.dosing;
+            resultsDiv.innerHTML = `
+                <div style="background: var(--bg-secondary); border-radius: 10px; padding: 1.5rem; border-left: 4px solid #F59E0B;">
+                    <h3 style="font-size: 1rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">💊 ${d.drug}</h3>
+
+                    <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="font-size: 0.875rem; color: #6B7280; margin-bottom: 0.5rem;">Patient: ${d.patient.ageMonths} months old, ${d.patient.weightKg} kg</div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: #059669;">Recommended Dose: ${d.dosing.recommendedDose} mg</div>
+                        <div style="font-size: 0.875rem; color: #6B7280; margin-top: 0.5rem;">
+                            Frequency: ${d.dosing.frequency} • Route: ${d.dosing.route}
+                        </div>
+                        <div style="font-size: 0.875rem; color: #6B7280;">
+                            Daily Maximum: ${d.dailyMax} mg
+                        </div>
+                    </div>
+
+                    ${d.offLabel ? `
+                        <div style="background: #FEF3C7; padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; border-left: 3px solid #F59E0B;">
+                            <div style="font-size: 0.75rem; font-weight: 600; color: #92400E;">⚠️ OFF-LABEL USE</div>
+                            <div style="font-size: 0.75rem; color: #78350F; margin-top: 0.25rem;">${d.offLabelReason}</div>
+                        </div>
+                    ` : ''}
+
+                    <div style="background: ${d.safetyFlag === 'SAFE' ? '#D1FAE5' : '#FEE2E2'}; padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem;">
+                        <div style="font-size: 0.75rem; font-weight: 600; color: ${d.safetyFlag === 'SAFE' ? '#065F46' : '#991B1B'};">
+                            Safety Status: ${d.safetyFlag}
+                        </div>
+                    </div>
+
+                    ${d.warnings && d.warnings.length > 0 ? `
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem;">⚠️ Warnings & Precautions</h4>
+                        ${d.warnings.map(w => `
+                            <div style="background: #FEE2E2; padding: 0.75rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                                <div style="font-size: 0.75rem; font-weight: 600; color: #991B1B;">[${w.severity}] ${w.message}</div>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+
+                    ${d.interactions && d.interactions.length > 0 ? `
+                        <h4 style="font-size: 0.875rem; font-weight: 600; color: #374151; margin: 1rem 0 0.5rem 0;">🔗 Drug Interactions</h4>
+                        <div style="font-size: 0.75rem; color: #6B7280;">
+                            ${d.interactions.join(' • ')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        } else {
+            throw new Error(data.error || 'Failed to calculate dose');
+        }
+    } catch (error) {
+        resultsDiv.innerHTML = `<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`;
+    }
+}
+
     </script>
 
     <!-- ============================================ -->
@@ -7829,6 +8014,154 @@ document.head.appendChild(style);
 
                 <div id="maternalFetalResults" style="display: none; margin-top: 1.5rem;">
                     <!-- Results will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════════════════
+         🧠 EXPLAINABLE AI DASHBOARD MODAL - FDA/EMA Requirement
+         ═══════════════════════════════════════════════════════════════════════════════════ -->
+    <div id="explainableAIModal" class="modal">
+        <div class="modal-content" style="max-width: 1200px;">
+            <div class="modal-header">
+                <h2>🧠 Explainable AI Dashboard - Model Transparency</h2>
+                <button class="modal-close" onclick="closePanel('explainableAIModal', event)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid #3B82F6;">
+                    <p style="color: #1E3A8A; font-size: 0.875rem; margin: 0;">
+                        <strong>🔬 FDA/EMA Regulatory Compliance:</strong> All medical AI predictions must provide interpretable explanations using SHAP values, fairness metrics, and counterfactual reasoning. Required for clinical deployment under FDA Section 513(f)(2) and EU MDR Article 22.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 10px; border-left: 3px solid #10B981;">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #059669; margin-bottom: 0.5rem;">✅ SHAP Values</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Game-theory based feature attribution explaining which patient features contributed most to the AI's prediction</div>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 10px; border-left: 3px solid #F59E0B;">
+                        <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #D97706; margin-bottom: 0.5rem;">⚖️ Fairness Analysis</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Bias detection across protected attributes (age, gender, race) with demographic parity and calibration metrics</div>
+                    </div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); testExplainableAI();">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Select AI Model for Explanation</label>
+                        <select id="xaiModelId" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                            <option value="sepsis-prediction">Sepsis Early Warning (High-Risk Prediction)</option>
+                            <option value="emergency-triage">Emergency Triage (ESI Level Assignment)</option>
+                            <option value="mental-health">Mental Health Risk Assessment</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Heart Rate (bpm)</label>
+                            <input type="number" id="xaiHeartRate" placeholder="125" value="125" min="40" max="220" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Temperature (°C)</label>
+                            <input type="number" id="xaiTemperature" placeholder="38.5" value="38.5" min="35" max="42" step="0.1" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">WBC Count (×10⁹/L)</label>
+                            <input type="number" id="xaiWBC" placeholder="15" value="15" min="1" max="50" step="0.1" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 1rem;">
+                        🔬 Generate Explainable AI Report
+                    </button>
+                </form>
+
+                <div id="xaiResults" style="display: none; margin-top: 1.5rem;">
+                    <!-- Results populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════════════════
+         👶 PEDIATRIC SAFETY SYSTEM MODAL - Drug Dosing & Developmental Monitoring
+         ═══════════════════════════════════════════════════════════════════════════════════ -->
+    <div id="pediatricSafetyModal" class="modal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h2>👶 Pediatric Safety System</h2>
+                <button class="modal-close" onclick="closePanel('pediatricSafetyModal', event)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid #F59E0B;">
+                    <p style="color: #92400E; font-size: 0.875rem; margin: 0;">
+                        <strong>⚠️ Pediatric Drug Safety Crisis:</strong> 45% of pediatric prescriptions are off-label. 83% lack adequate dosing data. This AI system uses Harriet Lane Handbook + FDA approval data to prevent medication errors—the #1 cause of pediatric adverse events.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #059669;">💊</div>
+                        <div style="font-size: 0.875rem; font-weight: 600; color: #374151; margin-top: 0.5rem;">Dose Calculator</div>
+                        <div style="font-size: 0.75rem; color: var(--text-tertiary);">Age/weight-based dosing</div>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #DC2626;">🧸</div>
+                        <div style="font-size: 0.875rem; font-weight: 600; color: #374151; margin-top: 0.5rem;">Developmental Screening</div>
+                        <div style="font-size: 0.75rem; color: var(--text-tertiary);">CDC/AAP milestones (M-CHAT-R/F)</div>
+                    </div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); calculatePediatricDose();">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">💊 Pediatric Dose Calculator</h4>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Medication</label>
+                            <select id="pedMedication" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                                <option value="amoxicillin">Amoxicillin (Antibiotic)</option>
+                                <option value="acetaminophen">Acetaminophen (Fever/Pain)</option>
+                                <option value="ibuprofen">Ibuprofen (NSAID)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Indication</label>
+                            <select id="pedIndication" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                                <option value="standard">Standard Dosing</option>
+                                <option value="highDose">High-Dose (Resistant Infection)</option>
+                                <option value="oral">Oral</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Age (months)</label>
+                            <input type="number" id="pedAge" placeholder="18" value="18" min="0" max="216" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem;">Weight (kg)</label>
+                            <input type="number" id="pedWeight" placeholder="11.5" value="11.5" min="1" max="150" step="0.1" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 1rem;">
+                        💊 Calculate Safe Pediatric Dose
+                    </button>
+                </form>
+
+                <div id="pedResults" style="display: none; margin-top: 1.5rem;">
+                    <!-- Results populated by JavaScript -->
                 </div>
             </div>
         </div>
