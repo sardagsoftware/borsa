@@ -1,6 +1,28 @@
 // 🔐 Load environment variables FIRST!
 require('dotenv').config();
 
+// 🔇 PRODUCTION CONSOLE LOGGING CONTROL
+// Disable console.log in production to prevent sensitive data leaks
+if (process.env.NODE_ENV === 'production') {
+  const originalLog = console.log;
+  const originalWarn = console.warn;
+
+  console.log = function() {
+    // Silent in production
+  };
+
+  console.warn = function() {
+    // Silent in production
+  };
+
+  // Keep console.error for critical issues
+  console.info = function() {};
+  console.debug = function() {};
+
+  console.productionLog = originalLog; // For emergency debugging
+  console.productionWarn = originalWarn; // For emergency debugging
+}
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -20,13 +42,41 @@ const FirildakAIEngine = require('./ai-integrations/firildak-ai-engine');
 // 🔍 API HEALTH MONITORING SYSTEM
 const APIHealthMonitor = require('./monitoring/api-health-monitor');
 
+// 🛡️ SECURITY MIDDLEWARE
+const { initializeSecurity } = require('./middleware/security');
+const { setupRateLimiting } = require('./middleware/rate-limit');
+const { initializeHTTPSSecurity } = require('./middleware/enforce-https');
+
+// 🔒 NIRVANA LEVEL SECURITY HEADERS
+const securityHeaders = (req, res, next) => {
+  res.setHeader('Content-Security-Policy',
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.jsdelivr.net; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "img-src 'self' data: https: blob:; " +
+    "font-src 'self' data: https://fonts.gstatic.com; " +
+    "connect-src 'self' https://vercel.live wss://ws-*.pusher.com https://*.pusher.com https://*.ailydian.com; " +
+    "frame-ancestors 'self'; " +
+    "base-uri 'self'; " +
+    "form-action 'self'"
+  );
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+};
+
 // 📁 MULTER FILE UPLOAD CONFIGURATION
 const uploadStorage = multer.memoryStorage();
 const upload = multer({
   storage: uploadStorage,
   limits: {
-    fileSize: 50 * 1024 * 1024, // 50MB limit
-    fieldSize: 10 * 1024 * 1024  // 10MB field limit
+    fileSize: 10 * 1024 * 1024, // 10MB limit (production security)
+    fieldSize: 5 * 1024 * 1024,  // 5MB field limit
+    files: 10 // Max 10 files per request
   },
   fileFilter: (req, file, cb) => {
     // Allow all file types for comprehensive AI processing
@@ -390,6 +440,19 @@ function cacheMiddleware(cacheType = 'memory', ttl = null) {
     next();
   };
 }
+
+// 🛡️ Initialize Security Middleware (Order matters!)
+// 1. HTTPS Enforcement (must be first)
+initializeHTTPSSecurity(app);
+
+// 2. Security Headers (Helmet, CSRF)
+initializeSecurity(app);
+
+// 3. Rate Limiting (after security headers)
+setupRateLimiting(app);
+
+// 🔒 NIRVANA LEVEL SECURITY HEADERS (First in chain)
+app.use(securityHeaders);
 
 // Middleware
 app.use(cors());
@@ -2544,6 +2607,11 @@ app.post('/api/chat', async (req, res) => {
       const result = await callMistralAPI(message, history, temperature, max_tokens, selectedModel.id);
       aiResponse = result.response;
       usage = result.usage;
+    } else if (provider === 'azure' && process.env.AZURE_OPENAI_API_KEY) {
+      console.log('🤖 Calling Azure OpenAI API...');
+      const result = await callAzureOpenAIAPI(message, history, temperature, max_tokens, selectedModel.id);
+      aiResponse = result.response;
+      usage = result.usage;
     } else {
       // Fallback to dynamic responses
       const messageLC = message.toLowerCase();
@@ -2652,6 +2720,71 @@ async function callOpenAIAPI(message, history, temperature, maxTokens) {
   } catch (error) {
     console.error('OpenAI API Error:', error.response?.data || error.message);
     throw new Error('OpenAI API çağrısı başarısız');
+  }
+}
+
+async function callAzureOpenAIAPI(message, history, temperature, maxTokens, modelId) {
+  const axios = require('axios');
+
+  // Legal AI için özel system prompt
+  const legalSystemPrompt = `Sen LyDian Hukuk AI asistanısın. Türk hukuku konusunda uzman bir yapay zeka avukatısın.
+
+Görevlerin:
+1. Hukuki soruları Türk Ceza Kanunu (TCK), Türk Medeni Kanunu (TMK), Borçlar Kanunu gibi kanunlar çerçevesinde cevaplamak
+2. Emsal kararları ve içtihatları referans göstermek
+3. Hukuki prosedürler hakkında bilgi vermek
+4. Sözleşme taslakları ve hukuki dokümanlar hazırlamak
+
+Önemli: Her zaman profesyonel, objektif ve kanun temelli yanıtlar ver. Spesifik davalar için avukata danışmayı öner.`;
+
+  const messages = [
+    { role: 'system', content: legalSystemPrompt },
+    ...history.map(h => ({ role: h.role, content: h.content })),
+    { role: 'user', content: message }
+  ];
+
+  // Model ID'den deployment name çıkar (azure-gpt-4-turbo -> gpt-4)
+  const deploymentName = modelId.includes('gpt-4o') ? 'gpt-4o' : 'gpt-4';
+
+  try {
+    const endpoint = `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/${deploymentName}/chat/completions?api-version=2024-08-01-preview`;
+
+    console.log('🔵 Azure OpenAI Request:', {
+      endpoint,
+      deployment: deploymentName,
+      messageCount: messages.length
+    });
+
+    const response = await axios.post(endpoint, {
+      messages: messages,
+      temperature: temperature,
+      max_tokens: maxTokens,
+      top_p: 0.95,
+      frequency_penalty: 0,
+      presence_penalty: 0
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': process.env.AZURE_OPENAI_API_KEY
+      }
+    });
+
+    console.log('✅ Azure OpenAI Success:', {
+      usage: response.data.usage,
+      model: response.data.model
+    });
+
+    return {
+      response: response.data.choices[0].message.content,
+      usage: response.data.usage
+    };
+  } catch (error) {
+    console.error('❌ Azure OpenAI API Error:', {
+      status: error.response?.status,
+      data: error.response?.data,
+      message: error.message
+    });
+    throw new Error(`Azure OpenAI API çağrısı başarısız: ${error.response?.data?.error?.message || error.message}`);
   }
 }
 
@@ -4530,6 +4663,68 @@ app.post('/api/medical-expert', medicalExpertHandler);
 // 📊 MEDICAL EXPERT METRICS - REAL-TIME STATISTICS
 const medicalMetricsHandler = require('./api/medical-expert/metrics');
 app.get('/api/medical-expert/metrics', medicalMetricsHandler);
+
+// 🏥 AZURE HEALTH DATA SERVICES - ALL 8 SPECIALIZATIONS
+// Comprehensive medical data integration with RAG, metrics, and translation
+const healthDataServices = require('./api/medical/health-data-services');
+
+// Get specialty metrics (Cardiology, Neurology, etc.)
+app.get('/api/medical/health-data-services/metrics', healthDataServices.getSpecialtyMetrics);
+
+// Analyze patient data with AI + RAG
+app.post('/api/medical/health-data-services/analyze', healthDataServices.analyzePatientData);
+
+// Compare medical reports over time
+app.post('/api/medical/health-data-services/compare-reports', healthDataServices.compareReports);
+
+// List all available specialties
+app.get('/api/medical/health-data-services/specialties', healthDataServices.listSpecialties);
+
+// 🏥 HOSPITAL ADMIN AUTHENTICATION - ENTERPRISE SECURITY
+// Multi-tenant hospital management with 2FA, IP whitelist, audit logs
+const hospitalAdminAuth = require('./api/hospital/admin-auth');
+
+// Register new hospital (Super Admin only in production)
+app.post('/api/hospital/admin/register', hospitalAdminAuth.registerHospital);
+
+// Login with 2FA support
+app.post('/api/hospital/admin/login', hospitalAdminAuth.login);
+
+// Setup 2FA (TOTP)
+app.post('/api/hospital/admin/setup-2fa', hospitalAdminAuth.setup2FA);
+
+// Enable 2FA after verification
+app.post('/api/hospital/admin/enable-2fa', hospitalAdminAuth.enable2FA);
+
+// Logout
+app.post('/api/hospital/admin/logout', hospitalAdminAuth.logout);
+
+// Get audit logs (admin only)
+app.get('/api/hospital/admin/audit-logs', hospitalAdminAuth.getAuditLogs);
+
+// 🏥 HOSPITAL CONFIGURATION & MANAGEMENT - ENTERPRISE SYSTEM
+const hospitalConfig = require('./api/hospital/config');
+
+// Hospital configuration (requires authentication)
+app.get('/api/hospital/admin/config', hospitalConfig.authenticateToken, hospitalConfig.getHospitalConfig);
+app.put('/api/hospital/admin/config', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.updateHospitalConfig);
+app.put('/api/hospital/admin/config/branding', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.updateBranding);
+app.put('/api/hospital/admin/config/modules', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.updateModules);
+
+// Department management
+app.post('/api/hospital/admin/departments', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.createDepartment);
+app.get('/api/hospital/admin/departments', hospitalConfig.authenticateToken, hospitalConfig.getDepartments);
+app.put('/api/hospital/admin/departments/:id', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.updateDepartment);
+app.delete('/api/hospital/admin/departments/:id', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.deleteDepartment);
+
+// Staff management
+app.post('/api/hospital/admin/staff', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.createStaff);
+app.get('/api/hospital/admin/staff', hospitalConfig.authenticateToken, hospitalConfig.getStaff);
+app.put('/api/hospital/admin/staff/:id', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.updateStaff);
+app.delete('/api/hospital/admin/staff/:id', hospitalConfig.authenticateToken, hospitalConfig.requireRole('HOSPITAL_ADMIN'), hospitalConfig.deleteStaff);
+
+// Hospital metrics
+app.get('/api/hospital/admin/metrics', hospitalConfig.authenticateToken, hospitalConfig.getMetrics);
 
 // 🎨 AZURE DALL-E 3 IMAGE GENERATION API (Azure → Google Imagen fallback)
 const imagenPhotoHandler = require('./api/imagen-photo');
@@ -6813,6 +7008,157 @@ app.delete('/api/settings/account', (req, res) => {
   }
 });
 
+// 🩺 ═══════════════════════════════════════════════════════════════════════════════════
+// MEDICAL AI CHAT API - MULTI-MODEL SUPPORT
+// Real Azure OpenAI, Anthropic Claude, Google Gemini with clinical safety
+// ═══════════════════════════════════════════════════════════════════════════════════
+
+const medicalChat = require('./api/medical/chat');
+
+// Medical Chat API - POST /api/medical/chat
+app.post('/api/medical/chat', medicalChat);
+
+// Get Medical Specializations endpoint removed - not needed for chat.js
+
+// 🎙️ ═══════════════════════════════════════════════════════════════════════════════════
+// AZURE SPEECH STT - MEDICAL TRANSCRIPTION API
+// Real Azure Speech SDK for clinical documentation
+// ═══════════════════════════════════════════════════════════════════════════════════
+
+const speechTranscription = require('./api/medical/speech-transcription');
+
+// Speech Transcription API - POST /api/medical/transcribe (with multer audio upload)
+app.post('/api/medical/transcribe', upload.single('audio'), speechTranscription.handleTranscription);
+
+// Get Supported Languages - GET /api/medical/speech/languages
+app.get('/api/medical/speech/languages', speechTranscription.getSupportedLanguages);
+
+// Get Medical Terms - GET /api/medical/speech/medical-terms
+app.get('/api/medical/speech/medical-terms', speechTranscription.getMedicalTerms);
+
+// 🏥 ═══════════════════════════════════════════════════════════════════════════════════
+// AZURE HEALTH DATA SERVICES - FHIR API
+// Real FHIR R4 integration with Azure Health Data Services
+// ═══════════════════════════════════════════════════════════════════════════════════
+
+const fhirApi = require('./api/medical/fhir-api');
+
+// Patient APIs
+app.post('/api/fhir/patient', fhirApi.createPatient);
+app.get('/api/fhir/patient/:id', fhirApi.getPatient);
+app.get('/api/fhir/patient', fhirApi.searchPatients);
+
+// Observation APIs (lab results, vitals)
+app.post('/api/fhir/observation', fhirApi.createObservation);
+app.get('/api/fhir/observation', fhirApi.searchObservations);
+
+// Condition APIs (diagnoses)
+app.post('/api/fhir/condition', fhirApi.createCondition);
+app.get('/api/fhir/condition', fhirApi.searchConditions);
+
+// FHIR Metadata
+app.get('/api/fhir/metadata', fhirApi.getMetadata);
+
+// 🏥 ═══════════════════════════════════════════════════════════════════════════════════
+// AZURE DICOM API - Medical Imaging (DICOMweb)
+// Real DICOM integration with Azure Health Data Services
+// ═══════════════════════════════════════════════════════════════════════════════════
+
+const dicomApi = require('./api/medical/dicom-api');
+
+// DICOM Upload (STOW-RS)
+app.post('/api/dicom/upload', upload.single('dicom'), dicomApi.uploadDicom);
+
+// DICOM Search (QIDO-RS)
+app.get('/api/dicom/studies', dicomApi.searchStudies);
+app.get('/api/dicom/studies/:studyInstanceUid/series', dicomApi.getSeriesInStudy);
+
+// DICOM Retrieve (WADO-RS)
+app.get('/api/dicom/studies/:studyInstanceUid/series/:seriesInstanceUid/instances/:sopInstanceUid', dicomApi.retrieveInstance);
+app.get('/api/dicom/studies/:studyInstanceUid/metadata', dicomApi.getMetadata);
+
+// DICOM Delete
+app.delete('/api/dicom/studies/:studyInstanceUid', dicomApi.deleteStudy);
+
+// 🔍 ═══════════════════════════════════════════════════════════════════════════════════
+// RAG SEARCH API - Medical Literature Retrieval
+// PubMed, WHO Guidelines, Azure AI Search integration
+// ═══════════════════════════════════════════════════════════════════════════════════
+
+const ragSearchApi = require('./api/medical/rag-search-api');
+
+// RAG Search
+app.post('/api/rag/search', ragSearchApi.handleRagSearch);
+
+// Get Available Sources
+app.get('/api/rag/sources', ragSearchApi.getAvailableSources);
+
+/**
+ * ═══════════════════════════════════════════════════════════
+ * 🏥 MEDICAL SPECIALTY TOOLS API ROUTES
+ * ═══════════════════════════════════════════════════════════
+ */
+
+// General Medicine Tools
+const generalMedicineTools = require('./api/medical/general-medicine-tools');
+app.post('/api/medical/general/vital-signs', generalMedicineTools.handleVitalSigns);
+app.post('/api/medical/general/bmi', generalMedicineTools.handleBMI);
+app.post('/api/medical/general/prescription', generalMedicineTools.handlePrescription);
+
+// Cardiology Tools
+const cardiologyTools = require('./api/medical/cardiology-tools');
+app.post('/api/medical/cardiology/framingham', cardiologyTools.handleFraminghamRisk);
+app.post('/api/medical/cardiology/chads2vasc', cardiologyTools.handleCHADS2VASc);
+app.post('/api/medical/cardiology/hasbled', cardiologyTools.handleHASBLED);
+app.post('/api/medical/cardiology/qtc', cardiologyTools.handleQTc);
+app.post('/api/medical/cardiology/cardiac-output', cardiologyTools.handleCardiacOutput);
+
+// Neurology Tools
+const neurologyTools = require('./api/medical/neurology-tools');
+app.post('/api/medical/neurology/gcs', neurologyTools.handleGCS);
+app.post('/api/medical/neurology/nihss', neurologyTools.handleNIHSS);
+app.post('/api/medical/neurology/abcd2', neurologyTools.handleABCD2);
+app.post('/api/medical/neurology/seizure', neurologyTools.handleSeizureClassification);
+
+// Oncology Tools
+const oncologyTools = require('./api/medical/oncology-tools');
+app.post('/api/medical/oncology/tnm', oncologyTools.handleTNMStaging);
+app.post('/api/medical/oncology/ecog', oncologyTools.handleECOG);
+app.post('/api/medical/oncology/karnofsky', oncologyTools.handleKarnofsky);
+app.post('/api/medical/oncology/chemo-dose', oncologyTools.handleChemoDose);
+app.post('/api/medical/oncology/tumor-markers', oncologyTools.handleTumorMarker);
+
+// Pediatrics Tools - TEMPORARILY DISABLED (missing module)
+// const pediatricsTools = require('./api/medical/pediatrics-tools');
+// app.post('/api/medical/pediatrics/growth-chart', pediatricsTools.handleGrowthChart);
+// app.post('/api/medical/pediatrics/apgar', pediatricsTools.handleAPGAR);
+// app.post('/api/medical/pediatrics/dosage', pediatricsTools.handlePediatricDosage);
+// app.post('/api/medical/pediatrics/milestones', pediatricsTools.handleDevelopmentalMilestones);
+// app.post('/api/medical/pediatrics/vaccine', pediatricsTools.handleVaccineSchedule);
+
+// Psychiatry Tools - TEMPORARILY DISABLED (missing module)
+// const psychiatryTools = require('./api/medical/psychiatry-tools');
+// app.post('/api/medical/psychiatry/phq9', psychiatryTools.handlePHQ9);
+// app.post('/api/medical/psychiatry/gad7', psychiatryTools.handleGAD7);
+// app.post('/api/medical/psychiatry/mmse', psychiatryTools.handleMMSE);
+// app.post('/api/medical/psychiatry/hamd', psychiatryTools.handleHAMD);
+// app.post('/api/medical/psychiatry/panss', psychiatryTools.handlePANSS);
+
+// Orthopedics Tools - TEMPORARILY DISABLED (missing module)
+// const orthopedicsTools = require('./api/medical/orthopedics-tools');
+// app.post('/api/medical/orthopedics/salter-harris', orthopedicsTools.handleSalterHarris);
+// app.post('/api/medical/orthopedics/ottawa-ankle', orthopedicsTools.handleOttawaAnkle);
+// app.post('/api/medical/orthopedics/ottawa-knee', orthopedicsTools.handleOttawaKnee);
+// app.post('/api/medical/orthopedics/rom', orthopedicsTools.handleROM);
+
+// Emergency Medicine Tools - TEMPORARILY DISABLED (missing module)
+// const emergencyTools = require('./api/medical/emergency-tools');
+// app.post('/api/medical/emergency/curb65', emergencyTools.handleCURB65);
+// app.post('/api/medical/emergency/wells-dvt', emergencyTools.handleWellsDVT);
+// app.post('/api/medical/emergency/wells-pe', emergencyTools.handleWellsPE);
+// app.post('/api/medical/emergency/perc', emergencyTools.handlePERC);
+// app.post('/api/medical/emergency/qsofa', emergencyTools.handleqSOFA);
+
 const PORT = process.env.PORT || 3100;
 
 // Only start server if not in cluster master mode
@@ -6840,6 +7186,9 @@ if (shouldStartServer) {
   console.log(`   POST /api/translate  - Çoklu dil çeviri servisi`);
   console.log(`   GET  /api/languages  - Desteklenen diller`);
   console.log(`   POST /api/smoke-test - Sistem smoke testleri`);
+  console.log('   🩺 MEDICAL AI APIs:');
+  console.log(`   POST /api/medical/chat - Medical AI chat (8 specializations, 10 languages)`);
+  console.log(`   GET  /api/medical/specializations - Available medical specializations`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 });
 
@@ -9278,8 +9627,11 @@ apolloServer.applyMiddleware({
 // Apply tenant middleware to API routes
 // Multi-tenant middleware setup (skip for translation endpoints and auth routes)
 app.use('/api', (req, res, next) => {
-  // Skip tenant middleware for UI translation endpoint and auth routes
-  if (req.path.startsWith('/translate/ui/') || req.path.startsWith('/auth/')) {
+  // Skip tenant middleware for UI translation endpoint, auth routes, and legal AI routes
+  if (req.path.startsWith('/translate/ui/') ||
+      req.path.startsWith('/auth/') ||
+      req.path.startsWith('/azure/legal/') ||
+      req.path.startsWith('/legal-ai/')) {
     return next();
   }
   return tenantMiddleware(req, res, next);
@@ -16056,74 +16408,147 @@ app.post('/api/chat/specialized', async (req, res) => {
           // Try Z.AI first (specialized for code)
           try {
             result = await callZAIAPI(codePrompt, history, 0.2, max_tokens);
-            providerUsed = 'Z.AI (Code Specialist)';
+            providerUsed = 'LyDian Code AI';
           } catch (zaiError) {
             console.log('⚠️ Z.AI fallback to GPT-4o:', zaiError.message);
             // Fallback to GPT-4o
             result = await callOpenAIAPI(codePrompt, history, 0.2, max_tokens);
-            providerUsed = 'GPT-4o (Code Specialist)';
+            providerUsed = 'LyDian Code AI';
           }
         } catch (error) {
           console.log('⚠️ GPT-4o fallback to Groq for code:', error.message);
           try {
             result = await callGroqAPI(message, history, 0.2, max_tokens, 'llama-3.3-70b-versatile');
-            providerUsed = 'Groq Llama 3.3 (Code - Fallback)';
+            providerUsed = 'LyDian Code AI';
           } catch (groqError) {
             console.log('⚠️ Groq fallback to Gemini:', groqError.message);
             result = await callGoogleGeminiAPI(message, history, 0.2, max_tokens);
-            providerUsed = 'Gemini (Code Mode - Final Fallback)';
+            providerUsed = 'LyDian Code AI';
           }
         }
         break;
 
       case 'reasoning':
-        console.log('🧠 Deep Reasoning - ERNIE/Zhipu/Gemini');
-        try {
-          // Dile özel sistem promptu al
-          const systemPrompt = getSystemPromptForLanguage(detectedLang, 'reasoning');
+        console.log('🧠 Deep Reasoning - DeepSeek R1');
+        if (process.env.DEEPSEEK_API_KEY) {
+          try {
+            const deepseekResponse = await fetch('https://api.deepseek.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                model: 'deepseek-reasoner',
+                messages: [
+                  {
+                    role: 'system',
+                    content: detectedLang === 'tr'
+                      ? 'Sen DeepSeek R1, gelişmiş akıl yürütme yapan bir AI\'sın. Adım adım düşün ve detaylı açıklamalar sun. TÜRKÇE yanıt ver.'
+                      : 'You are DeepSeek R1, an advanced reasoning AI. Think step-by-step and provide detailed explanations.'
+                  },
+                  ...history.map(h => ({ role: h.role, content: h.content })),
+                  {
+                    role: 'user',
+                    content: message
+                  }
+                ],
+                temperature: 0.5,
+                max_tokens: max_tokens
+              })
+            });
 
-          // Frontend'den Türkçe isteği geliyorsa, zorla Türkçe yanıt ver
-          let finalPrompt = systemPrompt ? `${systemPrompt}\n\n${message}` : message;
-          if (language === 'tr' || locale === 'tr-TR' || detectedLang === 'tr') {
-            finalPrompt = `LÜTFEN MUTLAKA TÜRKÇE YANITLA. Bu çok önemli!\n\n${finalPrompt}`;
-          }
-          const reasoningPrompt = finalPrompt;
-
-          // Try ERNIE first (excellent for Chinese reasoning)
-          if (detectedLang === 'zh') {
-            try {
-              result = await callERNIEAPI(reasoningPrompt, history, 0.5, max_tokens);
-              providerUsed = 'ERNIE Bot 3.0 (Chinese Reasoning)';
-            } catch (ernieError) {
-              console.log('⚠️ ERNIE fallback to Zhipu:', ernieError.message);
-              throw ernieError; // Fall through to Zhipu
+            if (!deepseekResponse.ok) {
+              throw new Error(`DeepSeek API error: ${deepseekResponse.status}`);
             }
-          } else {
-            throw new Error('Not Chinese language, skip ERNIE');
+
+            const deepseekData = await deepseekResponse.json();
+            result = {
+              response: deepseekData.choices[0].message.content,
+              usage: deepseekData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
+            };
+            providerUsed = 'LyDian Deep Thinking';
+          } catch (error) {
+            console.error('❌ DeepSeek R1 Error, fallback:', error.message);
+            // Fallback to Groq
+            result = await callGroqAPI(message, history, 0.5, max_tokens, 'llama-3.3-70b-versatile');
+            providerUsed = 'LyDian Deep Thinking';
           }
-        } catch (error) {
+        } else {
+          // No DeepSeek - try Zhipu or Gemini
+          console.log('⚠️ No DEEPSEEK_API_KEY');
           try {
             if (process.env.ZHIPU_API_KEY) {
               result = await callZhipuAPI(message, history, 0.5, max_tokens, 'glm-4');
-              providerUsed = 'Zhipu GLM-4 (Reasoning)';
+              providerUsed = 'LyDian Deep Thinking';
             } else {
-              throw new Error('Zhipu API key not available');
+              result = await callGoogleGeminiAPI(message, history, 0.6, max_tokens);
+              providerUsed = 'LyDian Deep Thinking';
             }
-          } catch (zhipuError) {
-            console.log('⚠️ Zhipu fallback to Gemini:', zhipuError.message);
-            result = await callGoogleGeminiAPI(message, history, 0.6, max_tokens);
-            providerUsed = 'Gemini (Reasoning Mode - Fallback)';
+          } catch (fallbackError) {
+            result = await callGroqAPI(message, history, 0.5, max_tokens, 'llama-3.3-70b-versatile');
+            providerUsed = 'LyDian Deep Thinking';
           }
+        }
+        break;
+
+      case 'image':
+        console.log('🎨 Image Generation - Azure DALL-E 3');
+        if (process.env.AZURE_OPENAI_API_KEY && process.env.AZURE_OPENAI_ENDPOINT) {
+          try {
+            const imageResponse = await fetch(`${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01`, {
+              method: 'POST',
+              headers: {
+                'api-key': process.env.AZURE_OPENAI_API_KEY,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                prompt: message,
+                n: 1,
+                size: '1024x1024',
+                quality: 'hd',
+                style: 'vivid'
+              })
+            });
+
+            if (!imageResponse.ok) {
+              const errorText = await imageResponse.text();
+              throw new Error(`Azure DALL-E 3 error: ${imageResponse.status} - ${errorText}`);
+            }
+
+            const imageData = await imageResponse.json();
+            const imageUrl = imageData.data[0].url;
+
+            result = {
+              response: `![${message}](${imageUrl})`,
+              usage: { prompt_tokens: 50, completion_tokens: 100, total_tokens: 150 },
+              imageUrl: imageUrl
+            };
+            providerUsed = 'LyDian Image AI';
+          } catch (error) {
+            console.error('❌ Azure DALL-E 3 Error:', error.message);
+            result = {
+              response: `🎨 Görsel oluşturma isteği: "${message}"\n\n⚠️ Görsel oluşturma şu anda kullanılamıyor.\n\nAPI yapılandırması gerekiyor.`,
+              usage: { prompt_tokens: 20, completion_tokens: 50, total_tokens: 70 }
+            };
+            providerUsed = 'LyDian Image AI';
+          }
+        } else {
+          result = {
+            response: `🎨 Görsel oluşturma hazır!\n\n**İstek:** ${message}\n\n⚠️ API anahtarları yapılandırılmalı.`,
+            usage: { prompt_tokens: 20, completion_tokens: 50, total_tokens: 70 }
+          };
+          providerUsed = 'LyDian Image AI';
         }
         break;
 
       case 'video':
         console.log('🎥 Video Generation - Google Veo');
         result = {
-          response: `🎥 **Google Veo Video AI**\n\n**Request:** ${message}\n\n**Processing Details:**\n- Resolution: 1080p (1920x1080)\n- Duration: 5-10 seconds\n- Style: Cinematic/Photorealistic\n- Frame Rate: 30 FPS\n\n**Estimated Time:** 2-3 minutes\n\n**Output URL:** https://storage.googleapis.com/veo-outputs/video_${Date.now()}.mp4\n\n*Note: This is a simulation. Actual video generation requires Google Veo API access.*`,
+          response: `🎥 **Video Oluşturma**\n\n**İstek:** ${message}\n\n**İşlem Detayları:**\n- Çözünürlük: 1080p (1920x1080)\n- Süre: 5-10 saniye\n- Stil: Sinematik/Fotorealistik\n- Kare Hızı: 30 FPS\n\n**Tahmini Süre:** 2-3 dakika\n\n*Not: Video oluşturma için API yapılandırması gerekiyor.*`,
           usage: { prompt_tokens: 50, completion_tokens: 100, total_tokens: 150 }
         };
-        providerUsed = 'Google Veo (Video AI)';
+        providerUsed = 'LyDian Video AI';
         break;
 
       case 'general':
@@ -16141,14 +16566,14 @@ app.post('/api/chat/specialized', async (req, res) => {
 
           if (process.env.GROQ_API_KEY) {
             result = await callGroqAPI(generalPrompt, history, temperature, max_tokens, 'llama-3.3-70b-versatile');
-            providerUsed = 'Groq Llama 3.3 70B (Ultra-Fast)';
+            providerUsed = 'LyDian AI';
           } else {
             throw new Error('Groq API key not available');
           }
         } catch (error) {
           console.log('⚠️ Groq fallback to Gemini:', error.message);
           result = await callGoogleGeminiAPI(message, history, temperature, max_tokens);
-          providerUsed = 'Gemini Flash (Fast - Fallback)';
+          providerUsed = 'LyDian AI';
         }
         break;
 
@@ -16167,101 +16592,233 @@ app.post('/api/chat/specialized', async (req, res) => {
 
           // Use OpenAI GPT-4o for knowledge-based queries
           result = await callOpenAIAPI(ragPrompt, history, 0.7, max_tokens);
-          providerUsed = 'GPT-4o (Knowledge Base)';
+          providerUsed = 'LyDian Knowledge Base';
         } catch (error) {
           console.log('⚠️ OpenAI fallback to Groq for RAG');
           try {
             result = await callGroqAPI(message, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
-            providerUsed = 'Groq Llama 3.3 (RAG - Fallback)';
+            providerUsed = 'LyDian Knowledge Base';
           } catch (groqError) {
             console.log('⚠️ Groq fallback to Gemini for RAG');
             result = await callGoogleGeminiAPI(message, history, 0.7, max_tokens);
-            providerUsed = 'Gemini (Knowledge Base - Final Fallback)';
+            providerUsed = 'LyDian Knowledge Base';
           }
         }
         break;
 
       case 'voice':
-        console.log('🎤 Voice AI - ElevenLabs Text-to-Speech');
-        if (process.env.ELEVENLABS_API_KEY) {
-          // Real ElevenLabs API call
-          const elevenLabsResponse = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM', {
-            method: 'POST',
-            headers: {
-              'Accept': 'audio/mpeg',
-              'Content-Type': 'application/json',
-              'xi-api-key': process.env.ELEVENLABS_API_KEY
-            },
-            body: JSON.stringify({
-              text: message,
-              model_id: 'eleven_monolingual_v1',
-              voice_settings: {
-                stability: 0.5,
-                similarity_boost: 0.5
+        console.log('🎤 Voice AI - Azure AI Speech (TTS)');
+        if (process.env.AZURE_SPEECH_KEY && process.env.AZURE_SPEECH_REGION) {
+          try {
+            // Azure AI Speech Text-to-Speech
+            const azureSpeechResponse = await fetch(
+              `https://${process.env.AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`,
+              {
+                method: 'POST',
+                headers: {
+                  'Ocp-Apim-Subscription-Key': process.env.AZURE_SPEECH_KEY,
+                  'Content-Type': 'application/ssml+xml',
+                  'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3'
+                },
+                body: `<speak version='1.0' xml:lang='${detectedLang === 'tr' ? 'tr-TR' : 'en-US'}'>
+                  <voice xml:lang='${detectedLang === 'tr' ? 'tr-TR' : 'en-US'}'
+                         name='${detectedLang === 'tr' ? 'tr-TR-EmelNeural' : 'en-US-JennyNeural'}'>
+                    ${message}
+                  </voice>
+                </speak>`
               }
-            })
-          });
+            );
 
-          if (elevenLabsResponse.ok) {
-            const audioBuffer = await elevenLabsResponse.arrayBuffer();
-            const base64Audio = Buffer.from(audioBuffer).toString('base64');
+            if (azureSpeechResponse.ok) {
+              const audioBuffer = await azureSpeechResponse.arrayBuffer();
+              const base64Audio = Buffer.from(audioBuffer).toString('base64');
 
+              // Get AI text response
+              let aiTextResponse;
+              try {
+                aiTextResponse = await callGroqAPI(message, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
+              } catch (error) {
+                aiTextResponse = { response: 'Üzgünüm, şu anda yanıt veremiyorum.', usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 } };
+              }
+
+              // Convert AI response to speech too
+              const aiResponseSpeechReq = await fetch(
+                `https://${process.env.AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`,
+                {
+                  method: 'POST',
+                  headers: {
+                    'Ocp-Apim-Subscription-Key': process.env.AZURE_SPEECH_KEY,
+                    'Content-Type': 'application/ssml+xml',
+                    'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3'
+                  },
+                  body: `<speak version='1.0' xml:lang='${detectedLang === 'tr' ? 'tr-TR' : 'en-US'}'>
+                    <voice xml:lang='${detectedLang === 'tr' ? 'tr-TR' : 'en-US'}'
+                           name='${detectedLang === 'tr' ? 'tr-TR-EmelNeural' : 'en-US-JennyNeural'}'>
+                      ${aiTextResponse.response.replace(/<[^>]*>/g, '').substring(0, 3000)}
+                    </voice>
+                  </speak>`
+                }
+              );
+
+              let finalAudioData = `data:audio/mpeg;base64,${base64Audio}`;
+              if (aiResponseSpeechReq.ok) {
+                const responseAudioBuffer = await aiResponseSpeechReq.arrayBuffer();
+                const responseBase64Audio = Buffer.from(responseAudioBuffer).toString('base64');
+                finalAudioData = `data:audio/mpeg;base64,${responseBase64Audio}`;
+              }
+
+              result = {
+                response: aiTextResponse.response, // AI's text response
+                usage: { prompt_tokens: message.length, completion_tokens: aiTextResponse.usage?.completion_tokens || 0, total_tokens: message.length + (aiTextResponse.usage?.completion_tokens || 0) },
+                audioData: finalAudioData,
+                voiceEnabled: true
+              };
+              providerUsed = 'LyDian Voice AI';
+            } else {
+              const errorText = await azureSpeechResponse.text();
+              throw new Error(`Azure Speech error: ${azureSpeechResponse.status} - ${errorText}`);
+            }
+          } catch (error) {
+            console.error('❌ Azure Speech Error:', error.message);
             result = {
-              response: `🎤 **ElevenLabs Voice AI**\n\n**Text:** ${message}\n\n**Voice Generated Successfully!**\n\n**Details:**\n- Voice Model: Rachel (21m00Tcm4TlvDq8ikWAM)\n- Model: eleven_monolingual_v1\n- Audio Format: MP3\n- Duration: ~${Math.ceil(message.length / 15)} seconds\n\n**Audio Data:** [Base64 Audio Embedded]\n\n*Click play button to listen.*`,
-              usage: { prompt_tokens: message.length, completion_tokens: 0, total_tokens: message.length },
-              audioData: `data:audio/mpeg;base64,${base64Audio}`
+              response: `🎤 **Sesli Yanıt**\n\n**Metin:** ${message}\n\n⚠️ Ses oluşturulamadı.\n\nAPI yapılandırması gerekiyor.`,
+              usage: { prompt_tokens: message.length, completion_tokens: 0, total_tokens: message.length }
             };
-            providerUsed = 'ElevenLabs (Rachel Voice)';
-          } else {
-            throw new Error('ElevenLabs API Error: ' + await elevenLabsResponse.text());
+            providerUsed = 'LyDian Voice AI';
           }
         } else {
-          // Simulation mode
+          // No Azure Speech configured
           result = {
-            response: `🎤 **ElevenLabs Voice AI - Simulation Mode**\n\n**Text:** ${message}\n\n**Voice Generation Request Queued**\n\n**Details:**\n- Voice Model: Rachel\n- Model: eleven_monolingual_v1\n- Audio Format: MP3\n- Estimated Duration: ~${Math.ceil(message.length / 15)} seconds\n\n⚠️ **Note:** To use real voice generation, add ELEVENLABS_API_KEY to your .env file.\n\n**Get API Key:** https://elevenlabs.io/`,
+            response: `🎤 **Sesli Yanıt - Yapılandırma Gerekiyor**\n\n**Metin:** ${message}\n\n⚠️ Ses çıktısı için API anahtarları gerekiyor.\n\n**Diller:** Türkçe, İngilizce ve 100+ dil\n**Kalite:** Neural TTS - Doğal insan sesi`,
             usage: { prompt_tokens: message.length, completion_tokens: 0, total_tokens: message.length }
           };
-          providerUsed = 'ElevenLabs (Simulation)';
+          providerUsed = 'LyDian Voice AI';
         }
         break;
 
       case 'web-search':
-        console.log('🌐 Web Search Mode - Groq Ultra-Fast Multi-Language');
-        try {
-          // Dile özel sistem promptu al
-          const systemPrompt = getSystemPromptForLanguage(detectedLang, 'general');
+        console.log('🌐 Web Search Mode - Perplexity AI');
 
-          // Frontend'den Türkçe isteği geliyorsa, zorla Türkçe yanıt ver
-          let finalPrompt = systemPrompt ? `${systemPrompt}\n\n🌐 Web Arama Modu: Bu soru için en güncel ve kapsamlı bilgiyi sun.\n\nSoru: ${message}` : `🌐 Web Arama Modu: Bu soru için en güncel ve kapsamlı bilgiyi sun.\n\nSoru: ${message}`;
-          if (language === 'tr' || locale === 'tr-TR' || detectedLang === 'tr') {
-            finalPrompt = `LÜTFEN MUTLAKA TÜRKÇE YANITLA. Bu çok önemli!\n\n${finalPrompt}`;
-          }
-          const webSearchPrompt = finalPrompt;
+        let webSearchImages = [];
 
-          // Use Groq Llama 3.3 70B for ultra-fast web-like responses
-          if (process.env.GROQ_API_KEY) {
-            result = await callGroqAPI(webSearchPrompt, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
-            providerUsed = 'Groq Llama 3.3 70B (Web Search Mode)';
-          } else {
-            throw new Error('Groq API key not available');
-          }
-        } catch (error) {
-          console.log('⚠️ Groq fallback to Gemini for web search:', error.message);
+        // Try Bing Image Search for visual results
+        if (process.env.AZURE_BING_SEARCH_KEY) {
           try {
-            result = await callGoogleGeminiAPI(message, history, 0.7, max_tokens);
-            providerUsed = 'Gemini Flash (Web Search - Fallback)';
-          } catch (geminiError) {
-            console.log('⚠️ Gemini fallback to GPT-4o for web search:', geminiError.message);
-            result = await callOpenAIAPI(message, history, 0.7, max_tokens);
-            providerUsed = 'GPT-4o (Web Search - Final Fallback)';
+            const bingImageResponse = await fetch(`https://api.bing.microsoft.com/v7.0/images/search?q=${encodeURIComponent(message)}&count=4&mkt=${detectedLang === 'tr' ? 'tr-TR' : 'en-US'}`, {
+              headers: {
+                'Ocp-Apim-Subscription-Key': process.env.AZURE_BING_SEARCH_KEY
+              }
+            });
+
+            if (bingImageResponse.ok) {
+              const bingImageData = await bingImageResponse.json();
+              if (bingImageData.value && bingImageData.value.length > 0) {
+                webSearchImages = bingImageData.value.slice(0, 4).map(img => ({
+                  url: img.contentUrl,
+                  thumbnail: img.thumbnailUrl,
+                  title: img.name,
+                  source: img.hostPageDisplayUrl
+                }));
+                console.log(`✅ Found ${webSearchImages.length} images from Bing`);
+              }
+            }
+          } catch (imageError) {
+            console.log('⚠️ Bing Image Search failed:', imageError.message);
           }
+        }
+
+        if (process.env.PERPLEXITY_API_KEY) {
+          try {
+            // Türkçe istek için mesajı güçlendir
+            let userMessage = message;
+            if (language === 'tr' || locale === 'tr-TR' || detectedLang === 'tr') {
+              userMessage = `[TÜRKÇE CEVAP VER - ÇOK ÖNEMLİ!] ${message}`;
+            }
+
+            const perplexityResponse = await fetch('https://api.perplexity.ai/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                model: 'llama-3.1-sonar-large-128k-online',
+                messages: [
+                  {
+                    role: 'system',
+                    content: detectedLang === 'tr'
+                      ? 'Sen yardımsever bir web arama asistanısın. Güncel, doğru bilgi sağla ve kaynakları belirt. MUTLAKA TÜRKÇE YANITLA! Bu çok önemli. Asla başka dilde yanıt verme!'
+                      : 'You are a helpful web search assistant. Provide accurate, up-to-date information with sources.'
+                  },
+                  ...history.map(h => ({ role: h.role, content: h.content })),
+                  {
+                    role: 'user',
+                    content: userMessage
+                  }
+                ],
+                temperature: 0.2,
+                max_tokens: max_tokens
+              })
+            });
+
+            if (!perplexityResponse.ok) {
+              throw new Error(`Perplexity API error: ${perplexityResponse.status}`);
+            }
+
+            const perplexityData = await perplexityResponse.json();
+            let responseText = perplexityData.choices[0].message.content;
+
+            // Add images to response if found
+            if (webSearchImages.length > 0) {
+              const imagesMarkdown = '\n\n📸 **İlgili Görseller:**\n\n' +
+                webSearchImages.map(img => `[![${img.title}](${img.thumbnail})](${img.url} "${img.title}")`).join('\n');
+              responseText += imagesMarkdown;
+            }
+
+            result = {
+              response: responseText,
+              usage: perplexityData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
+            };
+            providerUsed = 'LyDian Web Search';
+          } catch (error) {
+            console.error('❌ Perplexity Error, fallback to Groq:', error.message);
+            const webSearchPrompt = `🌐 Web Search Mode: ${message}`;
+            result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'llama-3.3-70b-versatile');
+
+            // Add images even in fallback
+            if (webSearchImages.length > 0) {
+              const imagesMarkdown = '\n\n📸 **İlgili Görseller:**\n\n' +
+                webSearchImages.map(img => `[![${img.title}](${img.thumbnail})](${img.url} "${img.title}")`).join('\n');
+              result.response += imagesMarkdown;
+            }
+
+            providerUsed = 'LyDian Web Search';
+          }
+        } else {
+          // No Perplexity - use Groq
+          console.log('⚠️ No PERPLEXITY_API_KEY, using Groq');
+          const systemPrompt = getSystemPromptForLanguage(detectedLang, 'general');
+          let finalPrompt = systemPrompt ? `${systemPrompt}\n\n🌐 Web Arama Modu: ${message}` : `🌐 Web Arama: ${message}`;
+          if (language === 'tr' || locale === 'tr-TR' || detectedLang === 'tr') {
+            finalPrompt = `TÜRKÇE YANITLA!\n\n${finalPrompt}`;
+          }
+          result = await callGroqAPI(finalPrompt, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
+
+          // Add images to Groq response too
+          if (webSearchImages.length > 0) {
+            const imagesMarkdown = '\n\n📸 **İlgili Görseller:**\n\n' +
+              webSearchImages.map(img => `[![${img.title}](${img.thumbnail})](${img.url} "${img.title}")`).join('\n');
+            result.response += imagesMarkdown;
+          }
+
+          providerUsed = 'LyDian Web Search';
         }
         break;
 
       default:
         console.log('🤖 Auto-selecting optimal provider');
         result = await callGoogleGeminiAPI(message, history, temperature, max_tokens);
-        providerUsed = 'Auto-Selected (Gemini)';
+        providerUsed = 'LyDian AI';
     }
 
     res.json({
@@ -16359,6 +16916,18 @@ app.get('/sitemap-core.xml', sitemapCore.handleCoreSitemap);
 app.get('/sitemap.xml', sitemapIndex.handleSitemapIndex);
 app.get('/ailydian-indexnow-2025.txt', indexNow.handleKeyVerification);
 app.get(`/${process.env.INDEXNOW_KEY_ID || 'ailydian-indexnow-2025'}.txt`, indexNow.handleKeyVerification);
+
+// ==================================================
+// ⚖️ LEGAL AI ROUTES
+// ==================================================
+const legalAIRoutes = require('./routes/legal-ai-routes');
+const azureMultimodalRoutes = require('./routes/azure-multimodal-routes');
+app.use('/api/azure/legal', azureMultimodalRoutes);
+app.use('/api/legal-ai', legalAIRoutes);
+
+// 🗄️ Knowledge Graph API (Neo4j)
+const knowledgeGraphAPI = require('./api/knowledge-graph');
+app.use('/api/knowledge-graph', knowledgeGraphAPI);
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {

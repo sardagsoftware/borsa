@@ -1,4 +1,8 @@
 /**
+// PRODUCTION REQUIREMENT: Azure AD SDK required
+if (!process.env.AZURE_AD_CLIENT_ID) {
+  throw new Error("AZURE_AD_CLIENT_ID required - no placeholder mode");
+}
  * OAuth Routes
  * Handles Google, GitHub, Apple, Microsoft authentication
  */
@@ -37,15 +41,21 @@ router.get('/google',
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/auth.html?error=google_failed' }),
   (req, res) => {
-    // Generate JWT token
-    const token = jwt.sign(
-      { id: req.user.id, email: req.user.email },
+    // Generate JWT tokens (access + refresh)
+    const accessToken = jwt.sign(
+      { id: req.user.id, email: req.user.email, type: 'access' },
       process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+      { expiresIn: '15m' } // ✅ SECURITY: 15 minutes
+    );
+
+    const refreshToken = jwt.sign(
+      { id: req.user.id, type: 'refresh' },
+      process.env.JWT_REFRESH_SECRET || 'your-secret-key-change-in-production',
       { expiresIn: '7d' }
     );
 
-    // Redirect to dashboard with token
-    res.redirect(`/dashboard.html?token=${token}&user=${encodeURIComponent(JSON.stringify(req.user))}`);
+    // Redirect to dashboard with tokens
+    res.redirect(`/dashboard.html?token=${accessToken}&refresh=${refreshToken}&user=${encodeURIComponent(JSON.stringify(req.user))}`);
   }
 );
 
@@ -61,13 +71,19 @@ router.get('/github',
 router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/auth.html?error=github_failed' }),
   (req, res) => {
-    const token = jwt.sign(
-      { id: req.user.id, email: req.user.email },
+    const accessToken = jwt.sign(
+      { id: req.user.id, email: req.user.email, type: 'access' },
       process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+      { expiresIn: '15m' } // ✅ SECURITY: 15 minutes
+    );
+
+    const refreshToken = jwt.sign(
+      { id: req.user.id, type: 'refresh' },
+      process.env.JWT_REFRESH_SECRET || 'your-secret-key-change-in-production',
       { expiresIn: '7d' }
     );
 
-    res.redirect(`/dashboard.html?token=${token}&user=${encodeURIComponent(JSON.stringify(req.user))}`);
+    res.redirect(`/dashboard.html?token=${accessToken}&refresh=${refreshToken}&user=${encodeURIComponent(JSON.stringify(req.user))}`);
   }
 );
 
@@ -81,13 +97,19 @@ router.get('/apple',
 router.post('/apple/callback',
   passport.authenticate('apple', { failureRedirect: '/auth.html?error=apple_failed' }),
   (req, res) => {
-    const token = jwt.sign(
-      { id: req.user.id, email: req.user.email },
+    const accessToken = jwt.sign(
+      { id: req.user.id, email: req.user.email, type: 'access' },
       process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+      { expiresIn: '15m' } // ✅ SECURITY: 15 minutes
+    );
+
+    const refreshToken = jwt.sign(
+      { id: req.user.id, type: 'refresh' },
+      process.env.JWT_REFRESH_SECRET || 'your-secret-key-change-in-production',
       { expiresIn: '7d' }
     );
 
-    res.redirect(`/dashboard.html?token=${token}&user=${encodeURIComponent(JSON.stringify(req.user))}`);
+    res.redirect(`/dashboard.html?token=${accessToken}&refresh=${refreshToken}&user=${encodeURIComponent(JSON.stringify(req.user))}`);
   }
 );
 

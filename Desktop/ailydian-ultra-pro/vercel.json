@@ -39,23 +39,7 @@
   "functions": {
     "api/**/*.js": {
       "maxDuration": 60,
-      "memory": 1024,
-      "runtime": "nodejs20.x"
-    },
-    "api/medical/**/*.js": {
-      "maxDuration": 60,
-      "memory": 1024,
-      "runtime": "nodejs20.x"
-    },
-    "api/legal-ai.js": {
-      "maxDuration": 60,
-      "memory": 1024,
-      "runtime": "nodejs20.x"
-    },
-    "api/chat/**/*.js": {
-      "maxDuration": 60,
-      "memory": 1024,
-      "runtime": "nodejs20.x"
+      "memory": 1024
     }
   },
   "headers": [
@@ -97,7 +81,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "value": "https://ailydian-ultra-pro.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
@@ -106,6 +90,10 @@
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
         }
       ]
     }
