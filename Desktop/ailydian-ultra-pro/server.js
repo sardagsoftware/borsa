@@ -17031,6 +17031,10 @@ app.use('/api/medical/genomics', hipaaAuditMiddleware, genomicsPrecisionMedicine
 const clinicalDecisionSupport = require('./api/medical/clinical-decision-support');
 app.use('/api/medical/clinical-decision', hipaaAuditMiddleware, clinicalDecisionSupport);
 
+// 🏥 Healthcare Data Engineering Platform - FHIR/DICOM/Genomics/IoT
+const healthDataEngineering = require('./api/medical/health-data-engineering');
+app.use('/api/medical/health-data-engineering', hipaaAuditMiddleware, healthDataEngineering);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
