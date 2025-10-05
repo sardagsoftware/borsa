@@ -1250,6 +1250,16 @@ body {
                         </div>
                         <span>Drug Discovery Platform</span>
                     </div>
+                    <div class="specialization-item" onclick="showPanel('genomics')">
+                        <div class="specialization-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                                <path d="M12 6v12M6 12h12"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <span>Genomics & Precision Medicine</span>
+                    </div>
                 </div>
             </div>
 
@@ -2703,7 +2713,9 @@ function showPanel(panelType) {
         'neuro-twin': 'neuroTwinModal',
         'neuro-clinician': 'neuroClinicianModal',
         // Drug Discovery Platform
-        'drug-discovery': 'drugDiscoveryModal'
+        'drug-discovery': 'drugDiscoveryModal',
+        // Genomics & Precision Medicine
+        'genomics': 'genomicsModal'
     };
 
     const modalId = panelMap[panelType];
@@ -6482,6 +6494,322 @@ async function analyzeBiomarker() {
     }
 }
 
+// ============================================================================
+// 🧬 GENOMICS & PRECISION MEDICINE FUNCTIONS
+// ============================================================================
+
+// Tab Switching for Genomics Platform
+function switchGenomicsTab(tabName) {
+    // Hide all tabs
+    document.getElementById('variantInterpretationTab').style.display = 'none';
+    document.getElementById('pharmacogenomicsTab').style.display = 'none';
+    document.getElementById('diseaseRiskTab').style.display = 'none';
+
+    // Reset all tab button styles
+    document.getElementById('tabVariantInterpretation').style.background = '#F3F4F6';
+    document.getElementById('tabVariantInterpretation').style.color = '#6B7280';
+    document.getElementById('tabPharmacogenomics').style.background = '#F3F4F6';
+    document.getElementById('tabPharmacogenomics').style.color = '#6B7280';
+    document.getElementById('tabDiseaseRisk').style.background = '#F3F4F6';
+    document.getElementById('tabDiseaseRisk').style.color = '#6B7280';
+
+    // Show selected tab
+    if (tabName === 'variant') {
+        document.getElementById('variantInterpretationTab').style.display = 'block';
+        document.getElementById('tabVariantInterpretation').style.background = 'linear-gradient(135deg, #8B5CF6, #7C3AED)';
+        document.getElementById('tabVariantInterpretation').style.color = 'white';
+    } else if (tabName === 'pharmacogenomics') {
+        document.getElementById('pharmacogenomicsTab').style.display = 'block';
+        document.getElementById('tabPharmacogenomics').style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        document.getElementById('tabPharmacogenomics').style.color = 'white';
+    } else if (tabName === 'disease') {
+        document.getElementById('diseaseRiskTab').style.display = 'block';
+        document.getElementById('tabDiseaseRisk').style.background = 'linear-gradient(135deg, #F59E0B, #D97706)';
+        document.getElementById('tabDiseaseRisk').style.color = 'white';
+    }
+}
+
+// Variant Interpretation Function
+async function interpretVariant() {
+    const gene = document.getElementById('variantGene').value;
+    const variant = document.getElementById('variantHGVS').value.trim();
+    const patientAge = parseInt(document.getElementById('variantAge').value);
+    const patientSex = document.getElementById('variantSex').value;
+    const familyHistory = document.getElementById('variantFamilyHistory').value;
+
+    if (!variant) {
+        return alert('Please enter a variant (HGVS nomenclature)');
+    }
+
+    const button = event.target;
+    button.disabled = true;
+    button.innerHTML = '🧬 Interpreting Variant...';
+
+    try {
+        const response = await fetch('/api/medical/genomics/variant-interpretation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ gene, variant, patientAge, patientSex, familyHistory })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display variant interpretation results
+        const resultsHTML = `
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 1rem;">✓ Variant Interpretation Complete</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                    <div style="background: #F0F9FF; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #1E40AF; margin-bottom: 0.25rem;">GENE</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.variant.gene}</div>
+                    </div>
+                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #92400E; margin-bottom: 0.25rem;">VARIANT</div>
+                        <div style="font-size: 0.875rem; font-weight: 600; color: #111827;">${data.variant.variant}</div>
+                    </div>
+                    <div style="background: ${data.variant.clinicalSignificance === 'Pathogenic' ? '#FEE2E2' : '#D1FAE5'}; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: ${data.variant.clinicalSignificance === 'Pathogenic' ? '#991B1B' : '#065F46'}; margin-bottom: 0.25rem;">CLASSIFICATION</div>
+                        <div style="font-size: 0.875rem; font-weight: 600; color: #111827;">${data.variant.clinicalSignificance}</div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.75rem;">🧬 Variant Details</h4>
+                    <div style="font-size: 0.875rem; color: #1E3A8A; line-height: 1.6;">
+                        <p style="margin: 0.5rem 0;"><strong>Type:</strong> ${data.variant.type}</p>
+                        <p style="margin: 0.5rem 0;"><strong>rsID:</strong> ${data.variant.rsID}</p>
+                        <p style="margin: 0.5rem 0;"><strong>Allele Frequency:</strong> ${data.variant.alleleFrequency}</p>
+                        <p style="margin: 0.5rem 0;"><strong>ACMG Classification:</strong> ${data.variant.acmgClassification}</p>
+                    </div>
+                </div>
+
+                <div style="background: #FEF3C7; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F59E0B; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #92400E; margin-bottom: 0.75rem;">🩺 Associated Disease</h4>
+                    <p style="font-size: 0.875rem; color: #78350F; margin-bottom: 0.5rem;"><strong>${data.disease.name}</strong></p>
+                    <p style="font-size: 0.875rem; color: #78350F; margin: 0.25rem 0;"><strong>Inheritance:</strong> ${data.disease.inheritance}</p>
+                    <p style="font-size: 0.875rem; color: #78350F; margin: 0.25rem 0;"><strong>Penetrance:</strong> ${data.disease.penetrance}</p>
+                </div>
+
+                ${data.personalizedRisk ? `
+                    <div style="background: #FEE2E2; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #DC2626; margin-bottom: 1rem;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; color: #991B1B; margin-bottom: 0.75rem;">⚠️ Personalized Risk Assessment</h4>
+                        ${data.personalizedRisk.breastCancer ? `<p style="font-size: 0.875rem; color: #7F1D1D; margin: 0.25rem 0;"><strong>Breast Cancer Risk:</strong> ${data.personalizedRisk.breastCancer}</p>` : ''}
+                        ${data.personalizedRisk.ovarianCancer ? `<p style="font-size: 0.875rem; color: #7F1D1D; margin: 0.25rem 0;"><strong>Ovarian Cancer Risk:</strong> ${data.personalizedRisk.ovarianCancer}</p>` : ''}
+                        ${data.personalizedRisk.ageOfOnset ? `<p style="font-size: 0.875rem; color: #7F1D1D; margin: 0.25rem 0;"><strong>Typical Age of Onset:</strong> ${data.personalizedRisk.ageOfOnset}</p>` : ''}
+                    </div>
+                ` : ''}
+
+                <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #374151; margin-bottom: 0.75rem;">📋 ACMG Evidence Criteria</h4>
+                    ${data.evidence.map(e => `<p style="font-size: 0.8125rem; color: #6B7280; margin: 0.5rem 0;">• ${e}</p>`).join('')}
+                </div>
+
+                <div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #10B981;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #065F46; margin-bottom: 0.75rem;">💡 Clinical Recommendations</h4>
+                    ${data.recommendations.map(r => `<p style="font-size: 0.8125rem; color: #047857; margin: 0.5rem 0;">• ${r}</p>`).join('')}
+                </div>
+            </div>
+        `;
+
+        document.getElementById('variantResults').innerHTML = resultsHTML;
+        document.getElementById('variantResults').style.display = 'block';
+        document.getElementById('variantResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        button.innerHTML = '✓ Interpretation Complete';
+        button.style.background = 'linear-gradient(135deg, #059669, #047857)';
+
+    } catch (error) {
+        console.error('Variant interpretation error:', error);
+        alert('Interpretation failed: ' + error.message);
+        button.disabled = false;
+        button.innerHTML = '🧬 Interpret Variant (ClinVar + dbSNP + gnomAD)';
+    }
+}
+
+// Pharmacogenomics Analysis Function
+async function analyzePharmacogenomics() {
+    const gene = document.getElementById('pharmacogene').value;
+    const phenotype = document.getElementById('metabolizerPhenotype').value;
+    const medicationsInput = document.getElementById('currentMedications').value.trim();
+
+    if (!medicationsInput) {
+        return alert('Please enter current medications');
+    }
+
+    const medications = medicationsInput.split(',').map(m => m.trim());
+
+    const button = event.target;
+    button.disabled = true;
+    button.innerHTML = '💊 Analyzing Drug-Gene Interactions...';
+
+    try {
+        const response = await fetch('/api/medical/genomics/pharmacogenomics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ gene, phenotype, medications })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display pharmacogenomics results
+        const resultsHTML = `
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 1rem;">✓ Pharmacogenomics Analysis Complete</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                    <div style="background: #F0F9FF; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #1E40AF; margin-bottom: 0.25rem;">GENE</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.gene.name} (${data.gene.chromosome})</div>
+                    </div>
+                    <div style="background: #FEF3C7; padding: 1rem; border-radius: 8px;">
+                        <div style="font-size: 0.75rem; color: #92400E; margin-bottom: 0.25rem;">PHENOTYPE</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #111827;">${data.patientPhenotype}</div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.75rem;">🧬 Gene Information</h4>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin: 0.5rem 0;"><strong>Function:</strong> ${data.gene.function}</p>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin: 0.5rem 0;"><strong>Substrates:</strong> ${data.gene.substrates.join(', ')}</p>
+                </div>
+
+                <div style="background: #FEF3C7; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F59E0B; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #92400E; margin-bottom: 0.75rem;">📊 Phenotype Details</h4>
+                    <p style="font-size: 0.875rem; color: #78350F; margin: 0.5rem 0;"><strong>Frequency:</strong> ${data.phenotypeData.frequency}</p>
+                    <p style="font-size: 0.875rem; color: #78350F; margin: 0.5rem 0;"><strong>Genotype:</strong> ${data.phenotypeData.genotype}</p>
+                    <p style="font-size: 0.875rem; color: #78350F; margin: 0.5rem 0;"><strong>Clinical Impact:</strong> ${data.phenotypeData.clinicalImpact}</p>
+                </div>
+
+                <div style="background: #FEE2E2; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #DC2626; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #991B1B; margin-bottom: 0.75rem;">💊 Affected Medications (FDA/CPIC Recommendations)</h4>
+                    ${data.affectedMedications.map(med => `
+                        <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem;">
+                            <p style="font-size: 0.9375rem; font-weight: 600; color: #111827; margin-bottom: 0.5rem;">${med.medication}</p>
+                            <p style="font-size: 0.8125rem; color: #7F1D1D; margin: 0;"><strong>Recommendation:</strong> ${med.recommendation}</p>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #374151; margin-bottom: 0.75rem;">⚠️ FDA Labels & Warnings</h4>
+                    <p style="font-size: 0.8125rem; color: #6B7280;">${data.fdaLabels.join(', ')}</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #10B981;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #065F46; margin-bottom: 0.75rem;">💡 Clinical Actionability</h4>
+                    <p style="font-size: 0.875rem; color: #047857; margin: 0.5rem 0;"><strong>Level:</strong> ${data.clinicalActionability.level}</p>
+                    <p style="font-size: 0.875rem; color: #047857; margin: 0.5rem 0;"><strong>Action:</strong> ${data.clinicalActionability.action}</p>
+                    <p style="font-size: 0.875rem; color: #047857; margin: 0.5rem 0;"><strong>CPIC Guideline:</strong> ${data.cpicGuideline}</p>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('pharmacogenomicsResults').innerHTML = resultsHTML;
+        document.getElementById('pharmacogenomicsResults').style.display = 'block';
+        document.getElementById('pharmacogenomicsResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        button.innerHTML = '✓ Analysis Complete';
+        button.style.background = 'linear-gradient(135deg, #059669, #047857)';
+
+    } catch (error) {
+        console.error('Pharmacogenomics analysis error:', error);
+        alert('Analysis failed: ' + error.message);
+        button.disabled = false;
+        button.innerHTML = '💊 Analyze Drug-Gene Interactions (PharmGKB)';
+    }
+}
+
+// Disease Risk Assessment Function
+async function assessDiseaseRisk() {
+    const disease = document.getElementById('diseaseType').value;
+    const patientAge = parseInt(document.getElementById('diseaseAge').value);
+    const firstDegreeAffected = parseInt(document.getElementById('familyAffected').value);
+    const earlyOnset = document.getElementById('earlyOnset').checked;
+
+    const familyHistory = {
+        firstDegree: firstDegreeAffected,
+        earlyOnset: earlyOnset
+    };
+
+    const button = event.target;
+    button.disabled = true;
+    button.innerHTML = '🩺 Assessing Disease Risk...';
+
+    try {
+        const response = await fetch('/api/medical/genomics/disease-risk', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ disease, patientAge, familyHistory })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display disease risk assessment results
+        const resultsHTML = `
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 1rem;">✓ Disease Risk Assessment Complete</h3>
+
+                <div style="background: #F0F9FF; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.75rem;">🩺 ${data.disease}</h4>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin: 0.5rem 0;"><strong>Genes:</strong> ${data.genes.join(', ')}</p>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin: 0.5rem 0;"><strong>Inheritance:</strong> ${data.inheritance}</p>
+                    <p style="font-size: 0.875rem; color: #1E3A8A; margin: 0.5rem 0;"><strong>Prevalence:</strong> ${data.prevalence}</p>
+                </div>
+
+                <div style="background: #FEE2E2; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #DC2626; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #991B1B; margin-bottom: 0.75rem;">⚠️ Lifetime Cancer Risks</h4>
+                    ${Object.entries(data.lifetimeRisks).map(([cancer, risk]) =>
+                        `<p style="font-size: 0.875rem; color: #7F1D1D; margin: 0.5rem 0;"><strong>${cancer}:</strong> ${risk}</p>`
+                    ).join('')}
+                </div>
+
+                <div style="background: #FEF3C7; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #F59E0B; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #92400E; margin-bottom: 0.75rem;">👨‍👩‍👧 Family History Strength</h4>
+                    <p style="font-size: 0.875rem; color: #78350F;">${data.familyHistoryStrength}</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #10B981; margin-bottom: 1rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #065F46; margin-bottom: 0.75rem;">🔬 Screening Recommendations</h4>
+                    ${data.screening.map(s => `<p style="font-size: 0.8125rem; color: #047857; margin: 0.5rem 0;">• ${s}</p>`).join('')}
+                </div>
+
+                <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="font-size: 0.875rem; font-weight: 700; color: #374151; margin-bottom: 0.75rem;">🧬 Genetic Testing Recommendation</h4>
+                    <p style="font-size: 0.875rem; color: #6B7280; margin: 0.5rem 0;"><strong>Recommended:</strong> ${data.geneticTesting.recommended ? 'Yes' : 'No'}</p>
+                    <p style="font-size: 0.875rem; color: #6B7280; margin: 0.5rem 0;"><strong>Genes to Test:</strong> ${data.geneticTesting.genes.join(', ')}</p>
+                    <p style="font-size: 0.875rem; color: #6B7280; margin: 0.5rem 0;"><strong>Methodology:</strong> ${data.geneticTesting.methodology}</p>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('diseaseRiskResults').innerHTML = resultsHTML;
+        document.getElementById('diseaseRiskResults').style.display = 'block';
+        document.getElementById('diseaseRiskResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        button.innerHTML = '✓ Assessment Complete';
+        button.style.background = 'linear-gradient(135deg, #059669, #047857)';
+
+    } catch (error) {
+        console.error('Disease risk assessment error:', error);
+        alert('Assessment failed: ' + error.message);
+        button.disabled = false;
+        button.innerHTML = '🩺 Assess Genetic Disease Risk (OMIM)';
+    }
+}
+
 // Mental Health Triage Analysis
 async function analyzeMentalHealth() {
     const concern = document.getElementById('mentalHealthConcern').value.trim();
@@ -8635,6 +8963,186 @@ async function calculatePediatricDose() {
                     </div>
 
                     <div id="biomarkerResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🧬 Genomics & Precision Medicine Platform Modal -->
+    <div id="genomicsModal" class="modal">
+        <div class="modal-content" style="max-width: 1100px;">
+            <div class="modal-header">
+                <div>
+                    <h2 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">🧬 Genomics & Precision Medicine Platform</h2>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: var(--text-secondary);">ClinVar 600K Variants • dbSNP 700M SNPs • gnomAD 125K Exomes • PharmGKB 7K Drug-Gene Pairs</p>
+                </div>
+                <button class="modal-close" onclick="closePanel('genomicsModal', event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Market Impact Banner -->
+                <div style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3B82F6; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: start;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 1rem; color: #1E40AF; flex-shrink: 0;">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <div>
+                            <h4 style="font-size: 0.875rem; font-weight: 700; color: #1E40AF; margin-bottom: 0.5rem;">$28 Billion Precision Medicine Market (11.2% CAGR)</h4>
+                            <p style="font-size: 0.875rem; color: #1E3A8A; line-height: 1.5;">92% of patients carry actionable genetic variants. This platform integrates ACMG/AMP variant interpretation, pharmacogenomics (FDA/CPIC guidelines), and inherited disease risk assessment to enable personalized medicine at scale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #E5E7EB;">
+                    <button id="tabVariantInterpretation" onclick="switchGenomicsTab('variant')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        🧬 Variant Interpretation
+                    </button>
+                    <button id="tabPharmacogenomics" onclick="switchGenomicsTab('pharmacogenomics')" style="padding: 0.75rem 1.5rem; background: #F3F4F6; color: #6B7280; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        💊 Pharmacogenomics
+                    </button>
+                    <button id="tabDiseaseRisk" onclick="switchGenomicsTab('disease')" style="padding: 0.75rem 1.5rem; background: #F3F4F6; color: #6B7280; border: none; border-radius: 8px 8px 0 0; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                        🩺 Disease Risk
+                    </button>
+                </div>
+
+                <!-- Tab 1: Variant Interpretation -->
+                <div id="variantInterpretationTab" style="display: block;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🧬 Variant Interpretation (ACMG/AMP Guidelines)</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Gene</label>
+                            <select id="variantGene" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="BRCA1">BRCA1 (Breast/Ovarian Cancer)</option>
+                                <option value="BRCA2">BRCA2 (Breast/Ovarian Cancer)</option>
+                                <option value="F5">F5 (Factor V Leiden - Thrombophilia)</option>
+                                <option value="HFE">HFE (Hereditary Hemochromatosis)</option>
+                                <option value="APOE">APOE (Alzheimer's Disease)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Variant (HGVS Nomenclature)</label>
+                            <input type="text" id="variantHGVS" placeholder="e.g., c.68_69delAG, c.1691G>A, c.845G>A, c.388T>C" value="c.68_69delAG" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Patient Age</label>
+                                <input type="number" id="variantAge" placeholder="35" value="35" min="0" max="120" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Sex</label>
+                                <select id="variantSex" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Family History</label>
+                                <select id="variantFamilyHistory" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                    <option value="positive">Positive</option>
+                                    <option value="negative">Negative</option>
+                                    <option value="unknown">Unknown</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button onclick="interpretVariant()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            🧬 Interpret Variant (ClinVar + dbSNP + gnomAD)
+                        </button>
+                    </div>
+
+                    <div id="variantResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Pharmacogenomics -->
+                <div id="pharmacogenomicsTab" style="display: none;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">💊 Pharmacogenomics (FDA/CPIC Guidelines)</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Pharmacogene</label>
+                            <select id="pharmacogene" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="CYP2D6">CYP2D6 (Codeine, Tamoxifen, Metoprolol)</option>
+                                <option value="CYP2C19">CYP2C19 (Clopidogrel, PPIs, SSRIs)</option>
+                                <option value="TPMT">TPMT (Azathioprine, 6-Mercaptopurine)</option>
+                                <option value="VKORC1">VKORC1 (Warfarin Sensitivity)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Metabolizer Phenotype</label>
+                            <select id="metabolizerPhenotype" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="Poor Metabolizer (PM)">Poor Metabolizer (PM)</option>
+                                <option value="Intermediate Metabolizer (IM)">Intermediate Metabolizer (IM)</option>
+                                <option value="Normal Metabolizer (NM)">Normal Metabolizer (NM)</option>
+                                <option value="Ultrarapid Metabolizer (UM)">Ultrarapid Metabolizer (UM)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Current Medications (comma-separated)</label>
+                            <input type="text" id="currentMedications" placeholder="e.g., Codeine, Tramadol, Metoprolol" value="Codeine, Tramadol, Metoprolol" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                        </div>
+
+                        <button onclick="analyzePharmacogenomics()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10B981, #059669); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            💊 Analyze Drug-Gene Interactions (PharmGKB)
+                        </button>
+                    </div>
+
+                    <div id="pharmacogenomicsResults" style="display: none;">
+                        <!-- Results populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Inherited Disease Risk -->
+                <div id="diseaseRiskTab" style="display: none;">
+                    <div style="background: #F9FAFB; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1rem;">🩺 Inherited Disease Risk Assessment</h3>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Disease Syndrome</label>
+                            <select id="diseaseType" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                                <option value="Lynch Syndrome">Lynch Syndrome (Hereditary Colorectal Cancer)</option>
+                                <option value="Familial Hypercholesterolemia">Familial Hypercholesterolemia (FH)</option>
+                            </select>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">Patient Age</label>
+                                <input type="number" id="diseaseAge" placeholder="45" value="45" min="0" max="120" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #6B7280; font-size: 0.875rem; font-weight: 500;">First-Degree Relatives Affected</label>
+                                <input type="number" id="familyAffected" placeholder="2" value="2" min="0" max="10" style="width: 100%; padding: 0.75rem; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.875rem;">
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: flex; align-items: center; color: #6B7280; font-size: 0.875rem; font-weight: 500; cursor: pointer;">
+                                <input type="checkbox" id="earlyOnset" checked style="margin-right: 0.5rem; width: 1rem; height: 1rem;">
+                                Early-Onset Disease (&lt;50 years in family member)
+                            </label>
+                        </div>
+
+                        <button onclick="assessDiseaseRisk()" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.875rem;">
+                            🩺 Assess Genetic Disease Risk (OMIM)
+                        </button>
+                    </div>
+
+                    <div id="diseaseRiskResults" style="display: none;">
                         <!-- Results populated by JavaScript -->
                     </div>
                 </div>
