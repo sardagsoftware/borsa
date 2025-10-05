@@ -9627,11 +9627,12 @@ apolloServer.applyMiddleware({
 // Apply tenant middleware to API routes
 // Multi-tenant middleware setup (skip for translation endpoints and auth routes)
 app.use('/api', (req, res, next) => {
-  // Skip tenant middleware for UI translation endpoint, auth routes, and legal AI routes
+  // Skip tenant middleware for UI translation endpoint, auth routes, legal AI routes, and Neuro Health AI routes
   if (req.path.startsWith('/translate/ui/') ||
       req.path.startsWith('/auth/') ||
       req.path.startsWith('/azure/legal/') ||
-      req.path.startsWith('/legal-ai/')) {
+      req.path.startsWith('/legal-ai/') ||
+      req.path.startsWith('/neuro/')) {  // Fixed: removed /api/ prefix since we're already in /api route
     return next();
   }
   return tenantMiddleware(req, res, next);
@@ -16928,6 +16929,19 @@ app.use('/api/legal-ai', legalAIRoutes);
 // 🗄️ Knowledge Graph API (Neo4j)
 const knowledgeGraphAPI = require('./api/knowledge-graph');
 app.use('/api/knowledge-graph', knowledgeGraphAPI);
+
+// 🧠 Neuro Health AI APIs
+const neuroImagingAnalysis = require('./api/neuro/imaging-analysis');
+const neuroHealthIndex = require('./api/neuro/health-index');
+const neuroRiskAssessment = require('./api/neuro/risk-assessment');
+const neuroDigitalTwin = require('./api/neuro/digital-twin');
+const neuroClinicianPortal = require('./api/neuro/clinician-portal');
+
+app.use('/api/neuro/imaging-analysis', neuroImagingAnalysis);
+app.use('/api/neuro/health-index', neuroHealthIndex);
+app.use('/api/neuro/risk-assessment', neuroRiskAssessment);
+app.use('/api/neuro/digital-twin', neuroDigitalTwin);
+app.use('/api/neuro/clinician-portal', neuroClinicianPortal);
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {
