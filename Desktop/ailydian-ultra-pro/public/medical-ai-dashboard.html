@@ -301,6 +301,12 @@
                 <h3>Pharmacy & Drug Information</h3>
                 <p>Drug database, medication interactions, prescription management, dosage calculator</p>
             </div>
+
+            <div class="module-card" onclick="loadModule('laboratory')">
+                <div class="module-icon">🔬</div>
+                <h3>Clinical Laboratory AI</h3>
+                <p>Lab result interpretation, critical value detection, CBC/metabolic/liver/thyroid panels</p>
+            </div>
         </div>
 
         <div class="workspace">
@@ -384,6 +390,9 @@
                     break;
                 case 'pharmacy':
                     content.innerHTML = getPharmacyUI();
+                    break;
+                case 'laboratory':
+                    content.innerHTML = getLaboratoryUI();
                     break;
             }
         }
@@ -554,6 +563,64 @@
             `;
         }
 
+        // Clinical Laboratory AI UI
+        function getLaboratoryUI() {
+            return `
+                <h2 style="color: #667eea; margin-bottom: 25px;">🔬 Clinical Laboratory AI</h2>
+
+                <div class="input-group">
+                    <label>Complete Blood Count (CBC)</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="number" id="wbc" placeholder="WBC (K/uL)" step="0.1">
+                        <input type="number" id="hemoglobin" placeholder="Hemoglobin (g/dL)" step="0.1">
+                        <input type="number" id="platelets" placeholder="Platelets (K/uL)" step="1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Metabolic Panel</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="number" id="glucose" placeholder="Glucose (mg/dL)" step="1">
+                        <input type="number" id="creatinine" placeholder="Creatinine (mg/dL)" step="0.1">
+                        <input type="number" id="potassium" placeholder="Potassium (mEq/L)" step="0.1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Liver Function</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="number" id="alt" placeholder="ALT (U/L)" step="1">
+                        <input type="number" id="ast" placeholder="AST (U/L)" step="1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Patient Info (optional)</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="number" id="patientAge" placeholder="Age">
+                        <select id="patientSex">
+                            <option value="">Select Sex</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="interpretLabResults()">🔍 Interpret Lab Results</button>
+
+                <div style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 12px;">
+                    <h3 style="color: #333; margin-bottom: 15px;">🧪 Platform Capabilities:</h3>
+                    <ul style="color: #666; line-height: 2;">
+                        <li>✅ AI-Powered Result Interpretation</li>
+                        <li>✅ Critical Value Detection & Alerts</li>
+                        <li>✅ 30+ Laboratory Test Panels</li>
+                        <li>✅ Clinical Differential Diagnosis Suggestions</li>
+                        <li>✅ Evidence-Based Workup Recommendations</li>
+                    </ul>
+                </div>
+            `;
+        }
+
         // API Calls
         async function analyzeImage() {
             showLoading();
@@ -672,6 +739,38 @@
                 });
                 const data = await response.json();
                 displayPharmacyResults(data);
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        // Laboratory AI Functions
+        async function interpretLabResults() {
+            showLoading();
+            try {
+                const labResults = {};
+
+                // Collect lab values from inputs
+                if (document.getElementById('wbc').value) labResults.wbc = parseFloat(document.getElementById('wbc').value);
+                if (document.getElementById('hemoglobin').value) labResults.hemoglobin = parseFloat(document.getElementById('hemoglobin').value);
+                if (document.getElementById('platelets').value) labResults.platelets = parseFloat(document.getElementById('platelets').value);
+                if (document.getElementById('glucose').value) labResults.glucose = parseFloat(document.getElementById('glucose').value);
+                if (document.getElementById('creatinine').value) labResults.creatinine = parseFloat(document.getElementById('creatinine').value);
+                if (document.getElementById('potassium').value) labResults.potassium = parseFloat(document.getElementById('potassium').value);
+                if (document.getElementById('alt').value) labResults.alt = parseFloat(document.getElementById('alt').value);
+                if (document.getElementById('ast').value) labResults.ast = parseFloat(document.getElementById('ast').value);
+
+                const response = await fetch(`${API_BASE}/api/medical/clinical-laboratory-ai/interpret-results`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        labResults,
+                        patientAge: document.getElementById('patientAge').value || null,
+                        patientSex: document.getElementById('patientSex').value || null
+                    })
+                });
+                const data = await response.json();
+                displayLaboratoryResults(data);
             } catch (error) {
                 showError(error.message);
             }
@@ -824,6 +923,98 @@
                         <p><strong>Drug Categories:</strong> ${data.platformStats.drugCategories}</p>
                         <p><strong>Known Interactions:</strong> ${data.platformStats.knownInteractions}</p>
                         <p><strong>FDA Approved:</strong> ${data.platformStats.fdaApproved}%</p>
+                    </div>
+                `;
+            }
+
+            resultsDiv.innerHTML = html;
+        }
+
+        function displayLaboratoryResults(data) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+
+            let html = '<h3>🔬 Clinical Laboratory AI Results</h3>';
+
+            // Summary
+            html += `
+                <div class="result-item">
+                    <h4>📊 Analysis Summary</h4>
+                    <p><strong>Total Tests:</strong> ${data.summary.totalTests}</p>
+                    <p><strong>Abnormal Results:</strong> ${data.summary.abnormalResults}</p>
+                    <p><strong>Critical Values:</strong> ${data.summary.criticalValues}</p>
+                    <p><strong>Clinical Interpretations:</strong> ${data.summary.clinicalInterpretations}</p>
+                </div>
+            `;
+
+            // Critical Values (if any)
+            if (data.criticalValues && data.criticalValues.length > 0) {
+                html += '<div class="result-item" style="border-left-color: #dc3545;"><h4>🚨 CRITICAL VALUES DETECTED</h4>';
+                data.criticalValues.forEach(cv => {
+                    html += `
+                        <div style="background: #fff3cd; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #dc3545;">
+                            <p><strong>${cv.test}:</strong> ${cv.value} ${cv.unit}</p>
+                            <p><strong>Severity:</strong> <span class="badge badge-danger">${cv.severity}</span></p>
+                            <p><strong>Message:</strong> ${cv.message}</p>
+                            <p><strong>Action:</strong> ${cv.action}</p>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            // Abnormal Results
+            if (data.abnormalResults && data.abnormalResults.length > 0) {
+                html += '<div class="result-item"><h4>⚠️ Abnormal Results</h4>';
+                data.abnormalResults.forEach(result => {
+                    const statusColor = result.status === 'low' ? 'info' : 'warning';
+                    html += `
+                        <div style="background: #f8f9fa; padding: 10px; margin: 8px 0; border-radius: 6px;">
+                            <p><strong>${result.test}:</strong> ${result.value} ${result.unit}</p>
+                            <p><strong>Reference:</strong> ${result.referenceRange}</p>
+                            <p><span class="badge badge-${statusColor}">${result.status.toUpperCase()}</span></p>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            // Clinical Interpretations
+            if (data.clinicalInterpretations && data.clinicalInterpretations.length > 0) {
+                html += '<div class="result-item"><h4>🩺 Clinical Interpretations</h4>';
+                data.clinicalInterpretations.forEach(interp => {
+                    const urgencyColor = interp.urgency === 'critical' ? 'danger' : interp.urgency === 'high' ? 'warning' : 'info';
+                    html += `
+                        <div style="background: #e7f3ff; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                            <p><strong>Condition:</strong> ${interp.condition} <span class="badge badge-${urgencyColor}">${interp.urgency}</span></p>
+                            <p><strong>Finding:</strong> ${interp.finding}</p>
+                            <p><strong>Differential Diagnoses:</strong></p>
+                            <ul>${interp.differentials.map(d => `<li>${d}</li>`).join('')}</ul>
+                            <p><strong>Recommended Workup:</strong></p>
+                            <ul>${interp.workup.map(w => `<li>${w}</li>`).join('')}</ul>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            // Recommendations
+            if (data.recommendations && data.recommendations.length > 0) {
+                html += '<div class="result-item"><h4>💡 Recommendations</h4><ul>';
+                data.recommendations.forEach(rec => {
+                    html += `<li>${rec}</li>`;
+                });
+                html += '</ul></div>';
+            }
+
+            // AI Analysis Info
+            if (data.aiAnalysis) {
+                html += `
+                    <div class="result-item">
+                        <h4>🤖 AI Analysis</h4>
+                        <p><strong>Provider:</strong> ${data.aiAnalysis.provider}</p>
+                        <p><strong>Confidence:</strong> ${(data.aiAnalysis.confidence * 100).toFixed(1)}%</p>
+                        <p><strong>Processing Time:</strong> ${data.aiAnalysis.processingTime}</p>
                     </div>
                 `;
             }

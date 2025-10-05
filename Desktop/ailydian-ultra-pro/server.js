@@ -17044,6 +17044,10 @@ app.use('/api/medical/radiology-ai', hipaaAuditMiddleware, radiologyAI);
 const pharmacyDrugInfo = require('./api/medical/pharmacy-drug-info');
 app.use('/api/medical/pharmacy-drug-info', hipaaAuditMiddleware, pharmacyDrugInfo);
 
+// 🔬 Clinical Laboratory AI - Lab Results Interpretation/Critical Values
+const clinicalLaboratoryAI = require('./api/medical/clinical-laboratory-ai');
+app.use('/api/medical/clinical-laboratory-ai', hipaaAuditMiddleware, clinicalLaboratoryAI);
+
 // 📝 Medical NLP & Clinical Documentation - SOAP Notes/ICD-10 Coding/NER
 const medicalNLP = require('./api/medical/medical-nlp');
 app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);
