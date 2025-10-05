@@ -17021,6 +17021,10 @@ app.use('/api/medical/pediatric-safety', hipaaAuditMiddleware, medicalTokenGover
 const drugDiscovery = require('./api/medical/drug-discovery');
 app.use('/api/medical/drug-discovery', hipaaAuditMiddleware, drugDiscovery);
 
+// 🧬 Genomics & Precision Medicine Platform - Variant Interpretation & Pharmacogenomics
+const genomicsPrecisionMedicine = require('./api/medical/genomics-precision-medicine');
+app.use('/api/medical/genomics', hipaaAuditMiddleware, genomicsPrecisionMedicine);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
