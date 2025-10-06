@@ -1561,8 +1561,22 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             // VOICE BUTTON EVENT LISTENER
             // ============================================================
 
-            elements.voiceBtn.addEventListener('click', () => {
+            elements.voiceBtn.addEventListener('click', async () => {
                 console.log('🎤 Voice button clicked');
+
+                // First, request microphone permission explicitly
+                try {
+                    console.log('🎤 Requesting microphone permission...');
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    console.log('✅ Microphone permission granted');
+
+                    // Stop the stream immediately (we just needed permission)
+                    stream.getTracks().forEach(track => track.stop());
+                } catch (permError) {
+                    console.error('❌ Microphone permission denied:', permError);
+                    alert('🎤 Mikrofon İzni Reddedildi!\n\nLütfen:\n1. Tarayıcı ayarlarından bu siteye mikrofon izni verin\n2. Chrome: chrome://settings/content/microphone\n3. Sayfayı yenileyin ve tekrar deneyin');
+                    return;
+                }
 
                 if (!state.recognition) {
                     console.log('🎤 Initializing voice recognition...');
@@ -1585,11 +1599,7 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
                     }
                 } catch (error) {
                     console.error('❌ Voice recognition error:', error);
-                    if (error.name === 'NotAllowedError' || error.message.includes('not-allowed')) {
-                        alert('Mikrofon izni gerekli! Lütfen:\n1. Tarayıcı adres çubuğundaki mikrofon ikonuna tıklayın\n2. "İzin ver" seçeneğini seçin\n3. Sayfayı yenileyin');
-                    } else {
-                        alert('Ses tanıma başlatılamadı. Mikrofon izni verilmiş mi kontrol edin.');
-                    }
+                    alert('Ses tanıma başlatılamadı: ' + error.message);
                 }
             });
 
