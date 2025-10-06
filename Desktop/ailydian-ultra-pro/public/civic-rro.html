@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRO - Risk & Resilience OS | Ailydian CIG</title>
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --lydian-accent: #7C5CFF;
+            --lydian-bg-primary: #0B0F19;
+            --lydian-bg-secondary: #121826;
+            --lydian-bg-tertiary: #1B2233;
+            --lydian-text-primary: #FFFFFF;
+            --lydian-text-secondary: #B8C1D9;
+            --lydian-border: rgba(124, 92, 255, 0.2);
+            --rro-red: #EF4444;
+            --rro-orange: #F59E0B;
+            --rro-green: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--lydian-bg-primary);
+            color: var(--lydian-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: var(--lydian-bg-secondary);
+            border-bottom: 1px solid var(--lydian-border);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: var(--lydian-accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        .hero {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(124, 92, 255, 0.1));
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .hero-icon {
+            margin: 0 auto 1rem;
+            width: 64px;
+            height: 64px;
+            color: var(--rro-red);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--rro-red), var(--lydian-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-panel {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--lydian-text-secondary);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .stat-value.critical {
+            color: var(--rro-red);
+        }
+
+        .stat-value.warning {
+            color: var(--rro-orange);
+        }
+
+        .stat-value.normal {
+            color: var(--rro-green);
+        }
+
+        .map-container {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: 500px;
+        }
+
+        #map {
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .alerts-section {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-item {
+            background: var(--lydian-bg-tertiary);
+            border-left: 4px solid var(--rro-red);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .alert-item.warning {
+            border-left-color: var(--rro-orange);
+        }
+
+        .alert-item.info {
+            border-left-color: #3B82F6;
+        }
+
+        .alert-content h4 {
+            color: var(--lydian-text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-meta {
+            color: var(--lydian-text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .alert-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--rro-red);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--rro-orange);
+        }
+
+        .badge-info {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .resource-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--lydian-accent);
+        }
+
+        .resource-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .resource-status {
+            font-size: 0.9rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--rro-green);
+            transition: width 0.3s;
+        }
+
+        .progress-fill.critical {
+            background: var(--rro-red);
+        }
+
+        .progress-fill.warning {
+            background: var(--rro-orange);
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Leaflet Popup Custom Style */
+        .leaflet-popup-content-wrapper {
+            background: var(--lydian-bg-secondary);
+            color: var(--lydian-text-primary);
+            border-radius: 8px;
+            border: 1px solid var(--lydian-border);
+        }
+
+        .leaflet-popup-tip {
+            background: var(--lydian-bg-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">Ailydian CIG</a>
+            <nav class="nav-links">
+                <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
+                <a href="/civic-rro.html" class="nav-link" style="color: var(--rro-red);">RRO</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <h1 class="hero-title">Risk & Resilience OS</h1>
+        <p class="hero-subtitle">
+            Multi-Hazard Early Warning • Resource Allocation • Real-Time Incident Tracking
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Stats Panel -->
+            <div class="stats-panel">
+                <h3 class="section-title">
+                    <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    System Status
+                </h3>
+
+                <div class="stat-row">
+                    <span class="stat-label">Active Alerts</span>
+                    <span class="stat-value critical" id="active-alerts">3</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Response Time</span>
+                    <span class="stat-value normal" id="response-time">94s</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Coverage Area</span>
+                    <span class="stat-value normal">47 Districts</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Resources Deployed</span>
+                    <span class="stat-value warning" id="deployed-resources">67%</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">System Uptime</span>
+                    <span class="stat-value normal">99.94%</span>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <!-- Active Alerts -->
+        <div class="alerts-section">
+            <h3 class="section-title">
+                <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                </svg>
+                Active Alerts
+            </h3>
+
+            <div id="alerts-container">
+                <div class="alert-item">
+                    <div class="alert-content">
+                        <h4>
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                            </svg>
+                            Wildfire Risk - Sector 7
+                        </h4>
+                        <p>High wind conditions detected. Elevated fire risk in forested areas.</p>
+                        <div class="alert-meta">
+                            <strong>Location:</strong> 41.0082°N, 28.9784°E • <strong>Priority:</strong> Critical • <strong>ETA:</strong> 2h 15m
+                        </div>
+                    </div>
+                    <span class="alert-badge badge-critical">CRITICAL</span>
+                </div>
+
+                <div class="alert-item warning">
+                    <div class="alert-content">
+                        <h4>
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                            </svg>
+                            Flood Warning - District 12
+                        </h4>
+                        <p>Heavy rainfall expected. River levels rising. Evacuate low-lying areas.</p>
+                        <div class="alert-meta">
+                            <strong>Location:</strong> 40.9922°N, 29.0215°E • <strong>Priority:</strong> High • <strong>ETA:</strong> 4h 30m
+                        </div>
+                    </div>
+                    <span class="alert-badge badge-warning">WARNING</span>
+                </div>
+
+                <div class="alert-item info">
+                    <div class="alert-content">
+                        <h4>
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Earthquake Drill - Zone 3
+                        </h4>
+                        <p>Scheduled earthquake preparedness drill. All personnel report to stations.</p>
+                        <div class="alert-meta">
+                            <strong>Location:</strong> Multiple zones • <strong>Type:</strong> Drill • <strong>Start:</strong> Tomorrow 10:00
+                        </div>
+                    </div>
+                    <span class="alert-badge badge-info">INFO</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>First Responders</h4>
+                        <p class="resource-status">284 / 350 Available</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 81%"></div>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>Emergency Vehicles</h4>
+                        <p class="resource-status">47 / 75 Deployed</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill warning" style="width: 63%"></div>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>Shelters</h4>
+                        <p class="resource-status">12 / 18 Activated</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 67%"></div>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>Supply Depots</h4>
+                        <p class="resource-status">89% Stock Level</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 89%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Leaflet Map (Istanbul center)
+        const map = L.map('map').setView([41.0082, 28.9784], 10);
+
+        // Dark theme tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        // Add hazard markers
+        const hazards = [
+            {
+                coords: [41.0082, 28.9784],
+                type: 'wildfire',
+                title: 'Wildfire Risk - Sector 7',
+                description: 'High wind conditions detected',
+                severity: 'critical'
+            },
+            {
+                coords: [40.9922, 29.0215],
+                type: 'flood',
+                title: 'Flood Warning - District 12',
+                description: 'Heavy rainfall expected',
+                severity: 'warning'
+            },
+            {
+                coords: [41.0255, 28.9744],
+                type: 'earthquake',
+                title: 'Earthquake Drill - Zone 3',
+                description: 'Scheduled preparedness drill',
+                severity: 'info'
+            }
+        ];
+
+        // Custom icon colors
+        const iconColors = {
+            critical: '#EF4444',
+            warning: '#F59E0B',
+            info: '#3B82F6'
+        };
+
+        hazards.forEach(hazard => {
+            const color = iconColors[hazard.severity];
+            const marker = L.circleMarker(hazard.coords, {
+                radius: 12,
+                fillColor: color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+
+            marker.bindPopup(`
+                <div style="padding: 0.5rem;">
+                    <h4 style="margin-bottom: 0.5rem;">${hazard.title}</h4>
+                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${hazard.description}</p>
+                    <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${color}20; color: ${color}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+                        ${hazard.severity}
+                    </span>
+                </div>
+            `);
+        });
+
+        // Simulate real-time updates
+        setInterval(() => {
+            const alerts = Math.floor(Math.random() * 3) + 2;
+            document.getElementById('active-alerts').textContent = alerts;
+
+            const responseTime = Math.floor(Math.random() * 40) + 80;
+            document.getElementById('response-time').textContent = responseTime + 's';
+
+            const deployed = Math.floor(Math.random() * 20) + 60;
+            document.getElementById('deployed-resources').textContent = deployed + '%';
+        }, 5000);
+    </script>
+</body>
+</html>
