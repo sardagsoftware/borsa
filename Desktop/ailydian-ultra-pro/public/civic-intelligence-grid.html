@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Intelligence Grid - Ailydian</title>
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        /* Lydian Theme Variables */
+        :root {
+            --lydian-accent: #7C5CFF;
+            --lydian-accent-light: #9B7FFF;
+            --lydian-accent-dark: #6344E6;
+            --lydian-bg-primary: #0B0F19;
+            --lydian-bg-secondary: #121826;
+            --lydian-bg-tertiary: #1B2233;
+            --lydian-text-primary: #FFFFFF;
+            --lydian-text-secondary: #B8C1D9;
+            --lydian-text-muted: #7A8499;
+            --lydian-border: rgba(124, 92, 255, 0.2);
+            --lydian-glow: rgba(124, 92, 255, 0.4);
+            --lydian-success: #10B981;
+            --lydian-warning: #F59E0B;
+            --lydian-error: #EF4444;
+            --lydian-info: #3B82F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--lydian-bg-primary);
+            color: var(--lydian-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--lydian-bg-secondary);
+            border-bottom: 1px solid var(--lydian-border);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(18, 24, 38, 0.95);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--lydian-accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--lydian-accent), var(--lydian-accent-light));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--lydian-accent), var(--lydian-accent-light), #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--lydian-text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--lydian-accent), var(--lydian-accent-dark));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px var(--lydian-glow);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--lydian-glow);
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            max-width: 1400px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--lydian-accent);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--lydian-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--lydian-text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .stat-badge.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--lydian-success);
+        }
+
+        /* Module Grid */
+        .modules-section {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--lydian-text-primary);
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--module-color), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--module-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--module-glow);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .module-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--lydian-text-primary);
+        }
+
+        .module-description {
+            font-size: 0.95rem;
+            color: var(--lydian-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .module-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .module-stat {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .module-stat-label {
+            font-size: 0.75rem;
+            color: var(--lydian-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .module-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--module-color);
+        }
+
+        /* Module Color Schemes */
+        .module-card[data-module="rro"] {
+            --module-color: #EF4444;
+            --module-glow: rgba(239, 68, 68, 0.3);
+        }
+
+        .module-card[data-module="phn"] {
+            --module-color: #10B981;
+            --module-glow: rgba(16, 185, 129, 0.3);
+        }
+
+        .module-card[data-module="sci"] {
+            --module-color: #F59E0B;
+            --module-glow: rgba(245, 158, 11, 0.3);
+        }
+
+        .module-card[data-module="umo"] {
+            --module-color: #3B82F6;
+            --module-glow: rgba(59, 130, 246, 0.3);
+        }
+
+        .module-card[data-module="ebb"] {
+            --module-color: #8B5CF6;
+            --module-glow: rgba(139, 92, 246, 0.3);
+        }
+
+        .module-card[data-module="tode"] {
+            --module-color: #EC4899;
+            --module-glow: rgba(236, 72, 153, 0.3);
+        }
+
+        .module-card[data-module="cc"] {
+            --module-color: #14B8A6;
+            --module-glow: rgba(20, 184, 166, 0.3);
+        }
+
+        .module-card[data-module="svf"] {
+            --module-color: #7C5CFF;
+            --module-glow: rgba(124, 92, 255, 0.3);
+        }
+
+        .module-card[data-module="map"] {
+            --module-color: #06B6D4;
+            --module-glow: rgba(6, 182, 212, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--lydian-bg-secondary);
+            border-top: 1px solid var(--lydian-border);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--lydian-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">🌐</span>
+                <span>Ailydian CIG</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/docs.html" class="nav-link">Docs</a>
+                <a href="/dashboard.html" class="nav-link">Dashboard</a>
+                <a href="/chat.html" class="nav-link">AI Chat</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Civic Intelligence Grid</h1>
+        <p class="hero-subtitle">
+            AI-Powered Urban Management & Resilience Platform
+            <br>Privacy-First, Attestable, Real-Time Decision Support
+        </p>
+        <a href="#modules" class="hero-cta">
+            <span>Explore Modules</span>
+            <span>→</span>
+        </a>
+    </section>
+
+    <!-- Stats Panel -->
+    <section class="stats-panel">
+        <div class="stat-card">
+            <div class="stat-value" id="uptime-stat">99.9%</div>
+            <div class="stat-label">System Uptime</div>
+            <span class="stat-badge success">Operational</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="latency-stat">124ms</div>
+            <div class="stat-label">Avg Response Time</div>
+            <span class="stat-badge success">Excellent</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="proof-stat">95.8%</div>
+            <div class="stat-label">Proof Coverage</div>
+            <span class="stat-badge success">Target Met</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="privacy-stat">0</div>
+            <div class="stat-label">Privacy Violations</div>
+            <span class="stat-badge success">Secure</span>
+        </div>
+    </section>
+
+    <!-- Modules Grid -->
+    <section class="modules-section" id="modules">
+        <h2 class="section-title">Platform Modules</h2>
+        <div class="module-grid">
+            <!-- RRO Module -->
+            <div class="module-card" data-module="rro" onclick="location.href='/civic-rro.html'">
+                <span class="module-icon">🚨</span>
+                <h3 class="module-name">Risk & Resilience OS</h3>
+                <p class="module-description">
+                    Multi-hazard early warning system with resource allocation optimization for disaster response.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Alert Latency</div>
+                        <div class="module-stat-value">&lt;120s</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Active Alerts</div>
+                        <div class="module-stat-value" id="rro-alerts">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHN Module -->
+            <div class="module-card" data-module="phn" onclick="location.href='/civic-phn.html'">
+                <span class="module-icon">🏥</span>
+                <h3 class="module-name">Public Health Nowcasting</h3>
+                <p class="module-description">
+                    Real-time disease nowcasting with differential privacy protection and medical supply forecasting.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Nowcast MAPE</div>
+                        <div class="module-stat-value">6.4%</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Regions</div>
+                        <div class="module-stat-value">47</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCI Module -->
+            <div class="module-card" data-module="sci" onclick="location.href='/civic-sci.html'">
+                <span class="module-icon">📦</span>
+                <h3 class="module-name">Supply Chain Integrity</h3>
+                <p class="module-description">
+                    End-to-end supply chain tracking with anomaly detection and counterfeit prevention.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Tracked Lots</div>
+                        <div class="module-stat-value">12.4K</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Anomalies</div>
+                        <div class="module-stat-value" id="sci-anomalies">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UMO Module -->
+            <div class="module-card" data-module="umo" onclick="location.href='/civic-umo.html'">
+                <span class="module-icon">🚗</span>
+                <h3 class="module-name">Urban Mobility Orchestrator</h3>
+                <p class="module-description">
+                    RL-based route optimization with real-time traffic prediction and multi-modal journey planning.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Decision Time</div>
+                        <div class="module-stat-value">187ms</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Routes/Day</div>
+                        <div class="module-stat-value">8.9K</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EBB Module -->
+            <div class="module-card" data-module="ebb" onclick="location.href='/civic-ebb.html'">
+                <span class="module-icon">⚡</span>
+                <h3 class="module-name">Energy Balancing Brain</h3>
+                <p class="module-description">
+                    Grid energy balancing with edge-friendly demand response and renewable integration.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Edge Latency</div>
+                        <div class="module-stat-value">94ms</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Grid Health</div>
+                        <div class="module-stat-value">98%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODE Module -->
+            <div class="module-card" data-module="tode" onclick="location.href='/civic-tode.html'">
+                <span class="module-icon">💎</span>
+                <h3 class="module-name">Trusted Open Data Exchange</h3>
+                <p class="module-description">
+                    Data marketplace with granular access control, royalty accounting, and privacy compliance.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Datasets</div>
+                        <div class="module-stat-value">247</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Grants</div>
+                        <div class="module-stat-value">1.2K</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CC Module -->
+            <div class="module-card" data-module="cc" onclick="location.href='/civic-cc.html'">
+                <span class="module-icon">🤖</span>
+                <h3 class="module-name">Civic Copilot</h3>
+                <p class="module-description">
+                    Attestable AI assistant with RAG, multi-language support, and proof-backed answers.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Query Time</div>
+                        <div class="module-stat-value">624ms</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Proofs</div>
+                        <div class="module-stat-value">96%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SVF Module -->
+            <div class="module-card" data-module="svf" onclick="location.href='/civic-svf.html'">
+                <span class="module-icon">🏭</span>
+                <h3 class="module-name">Synthetic Data Factory</h3>
+                <p class="module-description">
+                    Privacy-preserving synthetic data generation with differential privacy and utility validation.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Jobs Today</div>
+                        <div class="module-stat-value">18</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Success Rate</div>
+                        <div class="module-stat-value">99.4%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAP Module -->
+            <div class="module-card" data-module="map" onclick="location.href='/civic-map.html'">
+                <span class="module-icon">🔐</span>
+                <h3 class="module-name">Model Attestation & Proof</h3>
+                <p class="module-description">
+                    AI transparency layer with Merkle tree proofs and SGX enclave attestation support.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Proofs Logged</div>
+                        <div class="module-stat-value">1.2M</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Coverage</div>
+                        <div class="module-stat-value">95.8%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/docs.html" class="footer-link">Documentation</a>
+            <a href="/api.html" class="footer-link">API Reference</a>
+            <a href="https://github.com/ailydian/cig" class="footer-link">GitHub</a>
+            <a href="/status.html" class="footer-link">System Status</a>
+        </div>
+        <p>&copy; 2025 Ailydian. All rights reserved. | Privacy-First AI Platform</p>
+    </footer>
+
+    <script>
+        // Simulate real-time stats updates
+        function updateStats() {
+            // Uptime (always high)
+            const uptime = (99.8 + Math.random() * 0.2).toFixed(1);
+            document.getElementById('uptime-stat').textContent = uptime + '%';
+
+            // Latency (random fluctuation)
+            const latency = Math.floor(100 + Math.random() * 100);
+            document.getElementById('latency-stat').textContent = latency + 'ms';
+
+            // Proof coverage
+            const proof = (95 + Math.random() * 2).toFixed(1);
+            document.getElementById('proof-stat').textContent = proof + '%';
+
+            // Alerts (random 0-3)
+            const alerts = Math.floor(Math.random() * 4);
+            document.getElementById('rro-alerts').textContent = alerts;
+
+            // Anomalies (random 0-5)
+            const anomalies = Math.floor(Math.random() * 6);
+            document.getElementById('sci-anomalies').textContent = anomalies;
+        }
+
+        // Update stats every 5 seconds
+        setInterval(updateStats, 5000);
+
+        // Initial update
+        updateStats();
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
