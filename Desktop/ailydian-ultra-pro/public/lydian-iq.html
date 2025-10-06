@@ -3,9 +3,22 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>LyDian AI - Ultra Intelligence Platform</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="LyDian IQ">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LyDian IQ">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#C4A962">
+    <meta name="description" content="LyDian AI Ultra Intelligence Platform - Professional AI Assistant with White-Hat Ethics">
+
+    <!-- Icons -->
     <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1704,7 +1717,120 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
                     });
                 }
             });
+
+            // ============================================================
+            // PWA SERVICE WORKER REGISTRATION
+            // ============================================================
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then((registration) => {
+                            console.log('✅ Service Worker registered:', registration.scope);
+                        })
+                        .catch((error) => {
+                            console.error('❌ Service Worker registration failed:', error);
+                        });
+                });
+            }
+
+            // ============================================================
+            // PWA INSTALL PROMPT
+            // ============================================================
+
+            let deferredPrompt;
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent default browser install prompt
+                e.preventDefault();
+                deferredPrompt = e;
+
+                // Show custom install button
+                showInstallButton();
+                console.log('📱 PWA Install prompt ready');
+            });
+
+            function showInstallButton() {
+                const installBtn = document.createElement('button');
+                installBtn.id = 'pwa-install-btn';
+                installBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Ana Ekrana Ekle
+                `;
+                installBtn.style.cssText = `
+                    position: fixed;
+                    bottom: 2rem;
+                    right: 2rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 1rem 1.5rem;
+                    background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                    color: white;
+                    border: none;
+                    border-radius: 50px;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    cursor: pointer;
+                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.3);
+                    z-index: 1000;
+                    transition: all 0.3s ease;
+                    animation: pulse-install 2s infinite;
+                `;
+
+                installBtn.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log(`📱 PWA install outcome: ${outcome}`);
+
+                        if (outcome === 'accepted') {
+                            console.log('✅ PWA installed successfully');
+                        }
+
+                        deferredPrompt = null;
+                        installBtn.remove();
+                    }
+                });
+
+                installBtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 12px 40px rgba(196, 169, 98, 0.5)';
+                });
+
+                installBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '0 8px 32px rgba(196, 169, 98, 0.3)';
+                });
+
+                document.body.appendChild(installBtn);
+            }
+
+            // Listen for app installed event
+            window.addEventListener('appinstalled', () => {
+                console.log('✅ LyDian IQ PWA has been installed!');
+                const installBtn = document.getElementById('pwa-install-btn');
+                if (installBtn) installBtn.remove();
+            });
         });
+
+        // PWA Install Button Animation
+        const installStyle = document.createElement('style');
+        installStyle.textContent = `
+            @keyframes pulse-install {
+                0%, 100% {
+                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.3);
+                }
+                50% {
+                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.6);
+                }
+            }
+        `;
+        document.head.appendChild(installStyle);
     </script>
 </body>
 </html>
