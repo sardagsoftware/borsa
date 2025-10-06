@@ -17056,6 +17056,10 @@ app.use('/api/medical/vital-signs-monitoring', hipaaAuditMiddleware, vitalSignsM
 const medicalNLP = require('./api/medical/medical-nlp');
 app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);
 
+// 🔔 Advanced Real-Time Notification System - Integrated with all Medical Modules
+const notificationSystem = require('./api/medical/notification-system');
+app.use('/api/medical/notification-system', hipaaAuditMiddleware, notificationSystem);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
