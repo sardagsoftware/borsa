@@ -17072,6 +17072,10 @@ app.use('/api/medical/patient-portal', hipaaAuditMiddleware, patientPortal);
 const pacsSystem = require('./api/medical/pacs-system');
 app.use('/api/medical/pacs-system', hipaaAuditMiddleware, pacsSystem);
 
+// 💰 Medical Billing & Revenue Cycle Management AI
+const billingRCM = require('./api/medical/billing-rcm');
+app.use('/api/medical/billing-rcm', hipaaAuditMiddleware, billingRCM);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
