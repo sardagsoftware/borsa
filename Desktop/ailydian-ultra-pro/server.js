@@ -17064,6 +17064,10 @@ app.use('/api/medical/notification-system', hipaaAuditMiddleware, notificationSy
 const telemedicinePlatform = require('./api/medical/telemedicine-platform');
 app.use('/api/medical/telemedicine-platform', hipaaAuditMiddleware, telemedicinePlatform);
 
+// 👤 Patient Portal & Personal Health Records (PHR) Platform
+const patientPortal = require('./api/medical/patient-portal');
+app.use('/api/medical/patient-portal', hipaaAuditMiddleware, patientPortal);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
