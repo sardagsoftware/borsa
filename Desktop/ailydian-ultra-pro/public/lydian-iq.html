@@ -1245,15 +1245,20 @@
         // ============================================================
         
         function initVoiceRecognition() {
+            console.log('🎤 Checking voice recognition support...');
+
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                console.warn('⚠️ Tarayıcınız ses tanıma desteklemiyor');
+                console.error('❌ Speech Recognition not supported in this browser');
                 elements.voiceBtn.disabled = true;
                 elements.voiceBtn.style.opacity = '0.5';
-                return;
+                elements.voiceBtn.title = 'Tarayıcınız ses tanıma desteklemiyor';
+                return false;
             }
-            
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            state.recognition = new SpeechRecognition();
+
+            try {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                state.recognition = new SpeechRecognition();
+                console.log('✅ Speech Recognition initialized');
             
             // Configuration
             state.recognition.lang = 'tr-TR';
@@ -1291,8 +1296,17 @@
             };
             
             state.recognition.onend = () => {
+                console.log('🎤 Ses tanıma sona erdi');
                 stopRecording();
             };
+
+            console.log('✅ Voice recognition fully configured');
+            return true;
+
+            } catch (error) {
+                console.error('❌ Error initializing voice recognition:', error);
+                return false;
+            }
         }
         
         function stopRecording() {
@@ -1302,14 +1316,30 @@
         }
         
         elements.voiceBtn.addEventListener('click', () => {
+            console.log('🎤 Voice button clicked');
+
             if (!state.recognition) {
+                console.log('🎤 Initializing voice recognition...');
                 initVoiceRecognition();
             }
-            
-            if (state.isRecording) {
-                state.recognition.stop();
-            } else {
-                state.recognition.start();
+
+            if (!state.recognition) {
+                console.error('❌ Voice recognition not available');
+                alert('Ses tanıma tarayıcınız tarafından desteklenmiyor. Lütfen Chrome, Edge veya Safari kullanın.');
+                return;
+            }
+
+            try {
+                if (state.isRecording) {
+                    console.log('🛑 Stopping recording...');
+                    state.recognition.stop();
+                } else {
+                    console.log('🎤 Starting recording...');
+                    state.recognition.start();
+                }
+            } catch (error) {
+                console.error('❌ Voice recognition error:', error);
+                alert('Ses tanıma başlatılamadı. Mikrofon izni verilmiş mi kontrol edin.');
             }
         });
         
