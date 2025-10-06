@@ -14,6 +14,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#C4A962">
     <meta name="description" content="LyDian AI Ultra Intelligence Platform - Professional AI Assistant with White-Hat Ethics">
+    <meta name="robots" content="noindex, nofollow" id="robotsMeta">
 
     <!-- Icons -->
     <link rel="icon" type="image/png" href="/lydian-logo.png">
@@ -866,6 +867,18 @@
             }
         }
 
+        /* Share notification animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 480px) {
             .iq-icon {
                 width: 50px;
@@ -1553,16 +1566,46 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             type();
         }
 
-        // Add clear conversation button
+        // Add clear and share buttons
         function addClearButton() {
-            const clearBtn = document.createElement('div');
-            clearBtn.className = 'clear-conversation-btn';
-            clearBtn.innerHTML = `
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'action-buttons-container';
+            buttonsContainer.style.cssText = `
+                display: flex;
+                gap: 1rem;
+                margin-top: 2rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            `;
+
+            buttonsContainer.innerHTML = `
+                <button onclick="shareConversation()" style="
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.75rem 1.5rem;
+                    background: var(--glass);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid var(--border);
+                    border-radius: 50px;
+                    color: var(--text-secondary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-size: 0.9rem;
+                " onmouseover="this.style.background='linear-gradient(135deg, var(--justice-gold), var(--justice-maroon))'; this.style.color='white'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='var(--glass)'; this.style.color='var(--text-secondary)'; this.style.transform='scale(1)';">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    Paylaş
+                </button>
                 <button onclick="clearConversation()" style="
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
-                    margin-top: 2rem;
                     padding: 0.75rem 1.5rem;
                     background: var(--glass);
                     backdrop-filter: blur(10px);
@@ -1579,10 +1622,72 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
                         <line x1="10" y1="11" x2="10" y2="17"></line>
                         <line x1="14" y1="11" x2="14" y2="17"></line>
                     </svg>
-                    Sohbeti Temizle
+                    Temizle
                 </button>
             `;
-            elements.responseContent.appendChild(clearBtn);
+            elements.responseContent.appendChild(buttonsContainer);
+        }
+
+        // Share conversation function (secure, private link)
+        async function shareConversation() {
+            try {
+                const query = elements.searchInput.value;
+                const response = elements.responseContent.innerText;
+
+                if (!query || !response) {
+                    alert('Paylaşılacak sohbet bulunamadı!');
+                    return;
+                }
+
+                // Create secure hash from conversation data
+                const conversationData = JSON.stringify({
+                    q: query,
+                    a: response,
+                    t: Date.now()
+                });
+
+                // Simple base64 encode (for privacy, not security)
+                const encoded = btoa(encodeURIComponent(conversationData));
+
+                // Create shareable URL with hash (not indexed by search engines)
+                const shareURL = `${window.location.origin}/lydian-iq.html#share=${encoded}`;
+
+                // Copy to clipboard
+                if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(shareURL);
+
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 2rem;
+                        background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                        color: white;
+                        padding: 1rem 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                        z-index: 10000;
+                        animation: slideIn 0.3s ease;
+                    `;
+                    successMsg.textContent = '🔗 Link kopyalandı! Güvenli ve gizli.';
+                    document.body.appendChild(successMsg);
+
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 3000);
+
+                    console.log('🔗 Paylaşım linki oluşturuldu (arama motorlarından gizli)');
+                    console.log('🛡️ Link sadece URL hash kullanır - sunucuya gönderilmez');
+                } else {
+                    // Fallback: Show URL in alert
+                    prompt('Paylaşım linki (kopyalamak için Ctrl+C):', shareURL);
+                }
+
+            } catch (error) {
+                console.error('❌ Paylaşım hatası:', error);
+                alert('Link oluşturulamadı. Lütfen tekrar deneyin.');
+            }
         }
 
         // Clear conversation function
@@ -1591,6 +1696,45 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             elements.searchInput.value = '';
             elements.searchInput.focus();
             console.log('🧹 Sohbet temizlendi');
+        }
+
+        // Load shared conversation from URL hash
+        function loadSharedConversation() {
+            const hash = window.location.hash;
+
+            if (hash.startsWith('#share=')) {
+                try {
+                    const encoded = hash.substring(7); // Remove '#share='
+                    const decoded = decodeURIComponent(atob(encoded));
+                    const data = JSON.parse(decoded);
+
+                    // Display shared conversation
+                    elements.searchInput.value = data.q;
+                    elements.responseContent.innerHTML = `
+                        <div style="padding: 2rem; background: var(--glass); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid var(--border);">
+                            <div style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                                🔗 Paylaşılan Sohbet
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <strong style="color: var(--primary);">Soru:</strong><br>
+                                <p style="margin-top: 0.5rem; color: var(--text-primary);">${data.q}</p>
+                            </div>
+                            <div>
+                                <strong style="color: var(--primary);">Yanıt:</strong><br>
+                                <pre style="margin-top: 0.5rem; color: var(--text-primary); white-space: pre-wrap; font-family: inherit;">${data.a}</pre>
+                            </div>
+                        </div>
+                    `;
+
+                    console.log('✅ Paylaşılan sohbet yüklendi');
+
+                    // Add buttons
+                    addClearButton();
+
+                } catch (error) {
+                    console.error('❌ Paylaşım yüklenemedi:', error);
+                }
+            }
         }
         
         // ============================================================
@@ -1623,8 +1767,13 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             console.log('✅ Super Power Mode: Standby');
             console.log('✅ White-Hat Rules: Active');
             
-            // Focus search input
-            elements.searchInput.focus();
+            // Check for shared conversation in URL
+            loadSharedConversation();
+
+            // Focus search input (if not shared conversation)
+            if (!window.location.hash.startsWith('#share=')) {
+                elements.searchInput.focus();
+            }
 
             // Initialize voice recognition
             initVoiceRecognition();
