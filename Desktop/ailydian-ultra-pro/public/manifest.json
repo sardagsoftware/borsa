@@ -1,7 +1,7 @@
 {
   "name": "LyDian IQ - Ultra Intelligence",
   "short_name": "LyDian IQ",
-  "description": "LyDian AI Ultra Intelligence Platform - Professional AI Assistant with White-Hat Ethics",
+  "description": "Yapay Zeka ile Geleceği Keşfedin - Premium AI Asistan",
   "start_url": "/lydian-iq.html",
   "display": "standalone",
   "background_color": "#1C2536",
@@ -13,36 +13,43 @@
   "categories": ["productivity", "education", "utilities"],
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/lydian-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/lydian-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "/lydian-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ],
   "screenshots": [
     {
-      "src": "/icon-512.png",
+      "src": "/lydian-logo.png",
       "sizes": "512x512",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "LyDian IQ Ana Ekran"
     }
   ],
   "shortcuts": [
@@ -53,11 +60,24 @@
       "url": "/lydian-iq.html",
       "icons": [
         {
-          "src": "/icon-192.png",
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Hukuk AI",
+      "short_name": "Hukuk",
+      "description": "Hukuki danışmanlık",
+      "url": "/lydian-legal-search.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
           "sizes": "192x192"
         }
       ]
     }
   ],
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7"
 }

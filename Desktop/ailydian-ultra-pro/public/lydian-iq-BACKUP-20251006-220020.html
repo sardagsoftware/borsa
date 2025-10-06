@@ -1283,8 +1283,6 @@
                 <a href="#" class="footer-link" data-modal="security">Güvenlik</a>
                 <span class="footer-separator">|</span>
                 <a href="#" class="footer-link" data-modal="ethics">Beyaz Şapkalı AI</a>
-                <span class="footer-separator">|</span>
-                <a href="https://www.ailydian.com" class="footer-link" target="_blank" rel="noopener noreferrer">LyDian Menü</a>
             </div>
         </footer>
     </div>
@@ -4248,17 +4246,13 @@ ${response}
             // Open modals
             document.querySelectorAll('.footer-link').forEach(link => {
                 link.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const modalName = link.getAttribute('data-modal');
-                    // Only prevent default for modal links, not external links
-                    if (modalName) {
-                        e.preventDefault();
-                        const modal = document.getElementById(`${modalName}Modal`);
-                        if (modal) {
-                            modal.classList.add('active');
-                            console.log(`🔓 Modal opened: ${modalName}`);
-                        }
+                    const modal = document.getElementById(`${modalName}Modal`);
+                    if (modal) {
+                        modal.classList.add('active');
+                        console.log(`🔓 Modal opened: ${modalName}`);
                     }
-                    // External links (without data-modal) will work normally
                 });
             });
 
@@ -4301,9 +4295,9 @@ ${response}
 
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js')
+                    navigator.serviceWorker.register('/sw.js')
                         .then((registration) => {
-                            console.log('✅ LyDian IQ Service Worker registered:', registration.scope);
+                            console.log('✅ Service Worker registered:', registration.scope);
                         })
                         .catch((error) => {
                             console.error('❌ Service Worker registration failed:', error);
@@ -4317,32 +4311,13 @@ ${response}
 
             let deferredPrompt;
 
-            // Check if PWA is already installed
-            function isPWAInstalled() {
-                // Check if running as standalone PWA
-                if (window.matchMedia('(display-mode: standalone)').matches) {
-                    return true;
-                }
-                // Check if installed on iOS
-                if (window.navigator.standalone === true) {
-                    return true;
-                }
-                // Check localStorage flag
-                if (localStorage.getItem('pwa-installed') === 'true') {
-                    return true;
-                }
-                return false;
-            }
-
-            // Only show install button if not installed
-            if (!isPWAInstalled()) {
-                showInstallButton();
-            }
-
             window.addEventListener('beforeinstallprompt', (e) => {
                 // Prevent default browser install prompt
                 e.preventDefault();
                 deferredPrompt = e;
+
+                // Show custom install button
+                showInstallButton();
                 console.log('📱 PWA Install prompt ready');
             });
 
@@ -4374,43 +4349,23 @@ ${response}
                     border-radius: 50%;
                     cursor: pointer;
                     box-shadow: 0 8px 32px rgba(196, 169, 98, 0.4);
-                    z-index: 999;
+                    z-index: 1000;
                     transition: all 0.3s ease;
                     animation: pulse-install 2s infinite;
                 `;
 
-                // Mobile responsive adjustment
-                if (window.innerWidth <= 768) {
-                    installBtn.style.bottom = '6rem'; // Higher position on mobile to avoid text overlap
-                    installBtn.style.right = '1rem';
-                    installBtn.style.width = '48px';
-                    installBtn.style.height = '48px';
-                }
-
                 installBtn.addEventListener('click', async () => {
-                    // Open PWA install modal with platform instructions
-                    const pwaModal = document.getElementById('pwaInstallModal');
-                    if (pwaModal) {
-                        pwaModal.classList.add('active');
-                        console.log('📱 PWA Install modal opened');
-                    }
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log(`📱 PWA install outcome: ${outcome}`);
 
-                    // Also trigger native install prompt if available (for Chrome/Edge desktop)
-                    if (deferredPrompt && (navigator.userAgent.includes('Chrome') || navigator.userAgent.includes('Edg'))) {
-                        setTimeout(async () => {
-                            deferredPrompt.prompt();
-                            const { outcome } = await deferredPrompt.userChoice;
-                            console.log(`📱 PWA install outcome: ${outcome}`);
+                        if (outcome === 'accepted') {
+                            console.log('✅ PWA installed successfully');
+                        }
 
-                            if (outcome === 'accepted') {
-                                console.log('✅ PWA installed successfully');
-                                localStorage.setItem('pwa-installed', 'true');
-                                pwaModal.classList.remove('active');
-                                installBtn.remove();
-                            }
-
-                            deferredPrompt = null;
-                        }, 500);
+                        deferredPrompt = null;
+                        installBtn.remove();
                     }
                 });
 
@@ -4452,170 +4407,5 @@ ${response}
 
     <!-- 🚀 LyDian IQ Enhancements v2.0 - JavaScript Module -->
     <script src="/js/lydian-iq-enhancements.js"></script>
-
-    <!-- 📱 PWA Install Modal -->
-    <div id="pwaInstallModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
-            <button class="modal-close" onclick="document.getElementById('pwaInstallModal').classList.remove('active')">&times;</button>
-
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="margin: 0 auto 1.5rem; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
-                    <img src="/lydian-logo.svg" alt="LyDian" style="width: 100%; height: 100%; object-fit: contain; animation: pulse 2s infinite;" />
-                </div>
-                <h2 class="modal-title" style="margin-bottom: 0.5rem;">📱 LyDian IQ Mobil Uygulama</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 0;">Yapay Zeka ile Geleceği Keşfedin</p>
-            </div>
-
-            <div class="modal-body">
-                <!-- iOS Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">🍎</div>
-                        <h3>iPhone & iPad (Safari)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Safari tarayıcısında bu sayfayı açın</li>
-                        <li>Alt kısımdaki <strong>Paylaş</strong> butonuna <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> dokunun</li>
-                        <li><strong>"Ana Ekrana Ekle"</strong> seçeneğini seçin</li>
-                        <li><strong>"Ekle"</strong> butonuna basın</li>
-                        <li>✅ Ana ekranınızda LyDian IQ simgesi görünecek!</li>
-                    </ol>
-                </div>
-
-                <!-- Android Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">🤖</div>
-                        <h3>Android (Chrome)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Chrome tarayıcısında bu sayfayı açın</li>
-                        <li>Sağ üstteki <strong>3 nokta menü</strong> ⋮ butonuna dokunun</li>
-                        <li><strong>"Ana ekrana ekle"</strong> veya <strong>"Uygulama yükle"</strong> seçeneğini seçin</li>
-                        <li><strong>"Yükle"</strong> veya <strong>"Ekle"</strong> butonuna basın</li>
-                        <li>✅ Ana ekranınızda LyDian IQ uygulaması görünecek!</li>
-                    </ol>
-                </div>
-
-                <!-- Huawei Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">🌸</div>
-                        <h3>Huawei (Tarayıcı)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Huawei tarayıcısında bu sayfayı açın</li>
-                        <li>Menü butonuna (⋮ veya ☰) dokunun</li>
-                        <li><strong>"Ana ekrana ekle"</strong> seçeneğini bulun</li>
-                        <li>İsim ve konum ayarlarını yapın</li>
-                        <li>✅ Ana ekranınızda LyDian IQ simgesi görünecek!</li>
-                    </ol>
-                </div>
-
-                <!-- Desktop Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">💻</div>
-                        <h3>Bilgisayar (Chrome/Edge)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Chrome veya Edge tarayıcısında bu sayfayı açın</li>
-                        <li>Adres çubuğunun sağındaki <strong>yükle ikonu</strong> ⊕ butonuna tıklayın</li>
-                        <li>Veya menüden (⋮) <strong>"Yükle LyDian IQ"</strong> seçeneğini seçin</li>
-                        <li><strong>"Yükle"</strong> butonuna tıklayın</li>
-                        <li>✅ Masaüstünüzde veya uygulama menüsünde LyDian IQ görünecek!</li>
-                    </ol>
-                </div>
-
-                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(196, 169, 98, 0.1); border-radius: 12px; border: 1px solid rgba(196, 169, 98, 0.3);">
-                    <h4 style="margin-bottom: 1rem; color: var(--justice-gold); display: flex; align-items: center; gap: 0.5rem;">
-                        <span>🌟</span> PWA Avantajları
-                    </h4>
-                    <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                        <li>⚡ Daha hızlı yükleme ve çalışma</li>
-                        <li>📴 Offline erişim desteği</li>
-                        <li>🔔 Bildirim desteği (yakında)</li>
-                        <li>📱 Tam ekran uygulama deneyimi</li>
-                        <li>💾 Az depolama alanı kullanımı</li>
-                        <li>🔒 Güvenli ve güncel</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PWA Platform Card Styles -->
-    <style>
-        .pwa-platform-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(196, 169, 98, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .pwa-platform-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(196, 169, 98, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .pwa-platform-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(196, 169, 98, 0.2);
-        }
-
-        .pwa-platform-icon {
-            font-size: 2.5rem;
-            line-height: 1;
-        }
-
-        .pwa-platform-header h3 {
-            margin: 0;
-            color: var(--justice-gold);
-            font-size: 1.3rem;
-        }
-
-        .pwa-steps {
-            margin: 0;
-            padding-left: 1.5rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .pwa-steps li {
-            margin-bottom: 0.75rem;
-        }
-
-        .pwa-steps li:last-child {
-            margin-bottom: 0;
-            color: var(--justice-gold);
-            font-weight: 600;
-        }
-
-        .pwa-steps strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .pwa-platform-card {
-                padding: 1rem;
-            }
-
-            .pwa-platform-icon {
-                font-size: 2rem;
-            }
-
-            .pwa-platform-header h3 {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
 </body>
 </html>

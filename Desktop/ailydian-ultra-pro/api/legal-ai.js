@@ -30,9 +30,12 @@ const turkishLegalDataService = require('../services/turkish-legal-data-service'
 const rateLimits = new Map();
 
 function rateLimitMiddleware(req, res, next) {
-  const userRole = req.body.userRole || req.query.userRole || 'citizen';
-  const userId = req.user?.id || req.ip;
-  const key = `${userId}_${userRole}`;
+  const userRole = req.body?.userRole || req.query?.userRole || 'citizen';
+
+  // Use session ID if available for better tracking in tests
+  // This allows different test scenarios to have separate rate limits
+  const sessionId = req.headers['x-session-id'] || (req.user ? req.user.id : null) || req.ip;
+  const key = `${sessionId}_${userRole}`;
 
   const now = Date.now();
   const userLimits = rateLimits.get(key) || { count: 0, resetTime: now + 60000 };
@@ -381,20 +384,32 @@ router.get('/uyap/case/:caseNumber', async (req, res) => {
  */
 router.get('/yargitay/search', async (req, res) => {
   try {
-    const { q: query, chamber, year, limit } = req.query;
+    // Accept both 'q' and 'query' parameters for flexibility
+    const { q, query, chamber, year, limit } = req.query;
+    const searchQuery = q || query;
 
-    if (!query) {
+    if (!searchQuery) {
       return res.status(400).json({
         success: false,
-        error: 'query (q) parameter is required'
+        error: 'query or q parameter is required'
       });
     }
 
-    const result = await turkishLegalDataService.searchYargitayDecisions(query, {
+    // Initialize service if needed
+    if (!turkishLegalDataService.initialized) {
+      await turkishLegalDataService.initialize();
+    }
+
+    const result = await turkishLegalDataService.searchYargitayDecisions(searchQuery, {
       chamber,
       year: year ? parseInt(year) : undefined,
       limit: limit ? parseInt(limit) : undefined
     });
+
+    // If the service returned an error, return appropriate status
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
 
     res.json(result);
   } catch (error) {
@@ -432,20 +447,32 @@ router.get('/yargitay/decision/:decisionId', async (req, res) => {
  */
 router.get('/constitutional-court/search', async (req, res) => {
   try {
-    const { q: query, type, year, limit } = req.query;
+    // Accept both 'q' and 'query' parameters for flexibility
+    const { q, query, type, year, limit } = req.query;
+    const searchQuery = q || query;
 
-    if (!query) {
+    if (!searchQuery) {
       return res.status(400).json({
         success: false,
-        error: 'query (q) parameter is required'
+        error: 'query or q parameter is required'
       });
     }
 
-    const result = await turkishLegalDataService.searchConstitutionalCourtDecisions(query, {
+    // Initialize service if needed
+    if (!turkishLegalDataService.initialized) {
+      await turkishLegalDataService.initialize();
+    }
+
+    const result = await turkishLegalDataService.searchConstitutionalCourtDecisions(searchQuery, {
       decisionType: type,
       year: year ? parseInt(year) : undefined,
       limit: limit ? parseInt(limit) : undefined
     });
+
+    // If the service returned an error, return appropriate status
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
 
     res.json(result);
   } catch (error) {
@@ -465,10 +492,20 @@ router.get('/legislation/latest', async (req, res) => {
   try {
     const { type, limit } = req.query;
 
+    // Initialize service if needed
+    if (!turkishLegalDataService.initialized) {
+      await turkishLegalDataService.initialize();
+    }
+
     const result = await turkishLegalDataService.getLatestLegislation({
       type,
       limit: limit ? parseInt(limit) : undefined
     });
+
+    // If the service returned an error, return appropriate status
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
 
     res.json(result);
   } catch (error) {

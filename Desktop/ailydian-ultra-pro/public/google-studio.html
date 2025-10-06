@@ -483,27 +483,27 @@
 
         // Capability Card Actions
         function startAzureChat() {
-            ailydiansStudio.activeModel = 'azure';
-            ailydiansStudio.showChat();
-            ailydiansStudio.addMessage('assistant', 'Azure AI Suite\'e hoş geldiniz! GPT-4 Turbo, Document Intelligence ve Quantum hesaplama yeteneklerini kullanabiliriz. Size nasıl yardımcı olabilirim?');
+            lydiansStudio.activeModel = 'azure';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'Azure AI Suite\'e hoş geldiniz! GPT-4 Turbo, Document Intelligence ve Quantum hesaplama yeteneklerini kullanabiliriz. Size nasıl yardımcı olabilirim?');
         }
 
         function startGoogleChat() {
-            ailydiansStudio.activeModel = 'google';
-            ailydiansStudio.showChat();
-            ailydiansStudio.addMessage('assistant', 'Google Vertex AI aktif! Gemini Ultra ve PaLM 2 modelleri ile multimodal AI deneyimini başlatalım. Hangi konuda yardım istiyorsunuz?');
+            lydiansStudio.activeModel = 'google';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'Google Vertex AI aktif! Gemini Ultra ve PaLM 2 modelleri ile multimodal AI deneyimini başlatalım. Hangi konuda yardım istiyorsunuz?');
         }
 
         function startClaudeChat() {
-            ailydiansStudio.activeModel = 'claude';
-            ailydiansStudio.showChat();
-            ailydiansStudio.addMessage('assistant', 'Anthropic Claude 3 Opus ile tanışın! Güvenli, etik ve gelişmiş reasoning yetenekleri ile size yardımcı olmaya hazırım. Ne öğrenmek istiyorsunuz?');
+            lydiansStudio.activeModel = 'claude';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'Anthropic Claude 3 Opus ile tanışın! Güvenli, etik ve gelişmiş reasoning yetenekleri ile size yardımcı olmaya hazırım. Ne öğrenmek istiyorsunuz?');
         }
 
         function startOrchestrationChat() {
-            ailydiansStudio.activeModel = 'orchestration';
-            ailydiansStudio.showChat();
-            ailydiansStudio.addMessage('assistant', 'AI Orchestration modu aktif! En uygun AI modelini otomatik olarak seçeceğim ve en iyi sonuçları elde etmek için paralel işlem yönetimi kullanacağım.');
+            lydiansStudio.activeModel = 'orchestration';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'AI Orchestration modu aktif! En uygun AI modelini otomatik olarak seçeceğim ve en iyi sonuçları elde etmek için paralel işlem yönetimi kullanacağım.');
         }
 
         function showAnalytics() {
@@ -515,13 +515,13 @@
         }
 
         // Initialize AiLydians Studio Interface
-        let ailydiansStudio;
+        let lydiansStudio;
         document.addEventListener('DOMContentLoaded', () => {
-            ailydiansStudio = new AiLydiansStudioInterface();
+            lydiansStudio = new AiLydiansStudioInterface();
 
             // Initialize FirildakApp if available
             if (window.FirildakApp) {
-                ailydiansStudio.firildakApp = new FirildakApp();
+                lydiansStudio.firildakApp = new FirildakApp();
             }
         });
     </script>

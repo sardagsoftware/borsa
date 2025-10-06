@@ -6,11 +6,22 @@
     <link rel="icon" type="image/png" href="/lydian-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Ailydian Ultra Pro</title>
+    <title>Dashboard - LyDian Ultra Pro</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+        }
+    </style>
 
     <style>
         * {
@@ -54,13 +65,15 @@
         }
 
         .logo {
-            font-size: 1.75rem;
+            font-family: 'Righteous', cursive;
+            font-size: 2.25rem;
             font-weight: 900 !important;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 3rem;
+            letter-spacing: 0.08em;
         }
 
         .nav-menu {
@@ -284,7 +297,7 @@
     <div class="dashboard">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="logo">Ailydian</div>
+            <div class="logo">LyDian</div>
 
             <nav class="nav-menu">
                 <div class="nav-item active">Dashboard</div>

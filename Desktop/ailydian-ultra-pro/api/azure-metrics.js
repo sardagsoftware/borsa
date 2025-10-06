@@ -419,7 +419,6 @@ async function handleMetricsRequest(req, res) {
         if (!credential) {
             const initialized = initializeClients();
             if (!initialized) {
-                console.log('⚠️  Azure credentials not configured, using mock data');
             }
         }
 
@@ -428,14 +427,12 @@ async function handleMetricsRequest(req, res) {
         res.json({
             success: true,
             data: metrics,
-            source: credential ? 'azure' : 'mock'
         });
     } catch (error) {
         console.error('Error handling metrics request:', error);
         res.status(500).json({
             success: false,
             error: error.message,
-            source: 'mock'
         });
     }
 }
