@@ -544,6 +544,213 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--justice-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--justice-gold);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--justice-maroon);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .footer-separator {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        /* ============================================================
+           MODAL STYLES
+           ============================================================ */
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            animation: modalSlideUp 0.4s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: var(--glass);
+            color: var(--justice-maroon);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-body {
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .policy-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            animation: sectionFadeIn 0.5s ease-out;
+        }
+
+        @keyframes sectionFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .policy-section h3 {
+            color: var(--justice-gold);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .policy-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .policy-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--justice-gold);
+            font-weight: bold;
+        }
+
+        /* Modal scroll styling */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--glass);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--justice-gold);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--justice-maroon);
+        }
         
         /* ============================================================
            RESPONSIVE - MOBILE OPTIMIZATION
@@ -796,7 +1003,179 @@
         <!-- Footer -->
         <footer class="footer">
             <p>Türkiye'de geliştirilmiştir | Sardag</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link" data-modal="privacy">Gizlilik</a>
+                <span class="footer-separator">|</span>
+                <a href="#" class="footer-link" data-modal="security">Güvenlik</a>
+                <span class="footer-separator">|</span>
+                <a href="#" class="footer-link" data-modal="ethics">Beyaz Şapkalı AI</a>
+            </div>
         </footer>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" data-close="privacy">&times;</button>
+            <h2 class="modal-title">🔒 Gizlilik Politikası</h2>
+            <div class="modal-body">
+                <div class="policy-section">
+                    <h3>Veri Toplama ve Kullanımı</h3>
+                    <p>LyDian IQ, kullanıcı gizliliğini en üst düzeyde korur. Sorgu verileriniz:</p>
+                    <ul>
+                        <li>Yalnızca AI analizi için işlenir</li>
+                        <li>Üçüncü taraflarla paylaşılmaz</li>
+                        <li>Kişisel kimlik bilgileri toplanmaz</li>
+                        <li>Şifreli bağlantılar (HTTPS) üzerinden iletilir</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Çerez Kullanımı</h3>
+                    <p>Sistemimiz minimal çerez kullanır:</p>
+                    <ul>
+                        <li>Oturum yönetimi için teknik çerezler</li>
+                        <li>Kullanıcı tercihleri (tema, dil)</li>
+                        <li>Analitik çerezler kullanılmaz</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Veri Saklama</h3>
+                    <p>Sorgular ve yanıtlar:</p>
+                    <ul>
+                        <li>Kalıcı olarak saklanmaz</li>
+                        <li>Oturum sonunda silinir</li>
+                        <li>Veri tabanına kaydedilmez</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Haklarınız</h3>
+                    <ul>
+                        <li>Verilerinize erişim hakkı</li>
+                        <li>Veri silme talebi hakkı</li>
+                        <li>İşleme itiraz hakkı</li>
+                        <li>KVKK uyumlu süreçler</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Modal -->
+    <div class="modal" id="securityModal">
+        <div class="modal-content">
+            <button class="modal-close" data-close="security">&times;</button>
+            <h2 class="modal-title">🛡️ Güvenlik</h2>
+            <div class="modal-body">
+                <div class="policy-section">
+                    <h3>Enterprise-Grade Güvenlik</h3>
+                    <p>LyDian IQ, kurumsal düzeyde güvenlik protokolleri kullanır:</p>
+                    <ul>
+                        <li>End-to-end şifreleme (TLS 1.3)</li>
+                        <li>Zero-knowledge mimari</li>
+                        <li>Secure AI inference pipeline</li>
+                        <li>Rate limiting ve DDoS koruması</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>AI Model Güvenliği</h3>
+                    <p>Yapay zeka modellerimiz:</p>
+                    <ul>
+                        <li>Sandbox ortamında çalışır</li>
+                        <li>Input sanitization (XSS/injection koruması)</li>
+                        <li>Output validation ve filtreleme</li>
+                        <li>Adversarial attack koruması</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Altyapı Güvenliği</h3>
+                    <ul>
+                        <li>Azure Cloud infrastrüktürü</li>
+                        <li>ISO 27001 sertifikalı veri merkezleri</li>
+                        <li>Düzenli güvenlik denetimleri</li>
+                        <li>Otomatik yedekleme sistemleri</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Güvenlik İhlali Protokolü</h3>
+                    <p>Herhangi bir güvenlik ihlali durumunda:</p>
+                    <ul>
+                        <li>Anında kullanıcı bildirimi</li>
+                        <li>48 saat içinde şeffaf raporlama</li>
+                        <li>Otomatik sistem izolasyonu</li>
+                        <li>Forensic analiz ve düzeltme</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ethics Modal -->
+    <div class="modal" id="ethicsModal">
+        <div class="modal-content">
+            <button class="modal-close" data-close="ethics">&times;</button>
+            <h2 class="modal-title">⚖️ Beyaz Şapkalı AI - Etik İlkeler</h2>
+            <div class="modal-body">
+                <div class="policy-section">
+                    <h3>Beyaz Şapkalı Yaklaşım</h3>
+                    <p>LyDian IQ, etik yapay zeka kullanımını taahhüt eder:</p>
+                    <ul>
+                        <li>Zararlı içerik üretilmez</li>
+                        <li>Yanıltıcı bilgi verilmez</li>
+                        <li>Ayrımcılık yapılmaz</li>
+                        <li>Telif haklarına saygı gösterilir</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>AI Şeffaflığı</h3>
+                    <p>Kullanıcılarımız her zaman bilir ki:</p>
+                    <ul>
+                        <li>AI ile konuşuyorsunuz (insan değil)</li>
+                        <li>Yanıtlar algoritmik üretilir</li>
+                        <li>Hatalar mümkündür</li>
+                        <li>Kritik kararlar için uzman danışın</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Sorumlu AI Kullanımı</h3>
+                    <ul>
+                        <li>Bias detection ve azaltma</li>
+                        <li>Çeşitlilik ve kapsayıcılık</li>
+                        <li>Erişilebilirlik standartları</li>
+                        <li>Sürdürülebilir AI altyapısı</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Yasaklı Kullanımlar</h3>
+                    <p>LyDian IQ aşağıdaki amaçlarla kullanılamaz:</p>
+                    <ul>
+                        <li>İllegal aktiviteler</li>
+                        <li>Kötü amaçlı yazılım/hack</li>
+                        <li>Dezenformasyon</li>
+                        <li>Spam veya manipülasyon</li>
+                        <li>Telif ihlali</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h3>Etik AI Sertifikasyonu</h3>
+                    <ul>
+                        <li>IEEE AI Ethics standartlarına uyum</li>
+                        <li>EU AI Act uyumlu tasarım</li>
+                        <li>Responsible AI ilkelerine bağlılık</li>
+                        <li>Düzenli etik denetimler</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script>
@@ -1141,9 +1520,59 @@ ${data.solution}
             
             // Focus search input
             elements.searchInput.focus();
-            
+
             // Initialize voice recognition
             initVoiceRecognition();
+
+            // ============================================================
+            // MODAL FUNCTIONALITY
+            // ============================================================
+
+            // Open modals
+            document.querySelectorAll('.footer-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalName = link.getAttribute('data-modal');
+                    const modal = document.getElementById(`${modalName}Modal`);
+                    if (modal) {
+                        modal.classList.add('active');
+                        console.log(`🔓 Modal opened: ${modalName}`);
+                    }
+                });
+            });
+
+            // Close modals via close button
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const closeName = btn.getAttribute('data-close');
+                    const modal = document.getElementById(`${closeName}Modal`);
+                    if (modal) {
+                        modal.classList.remove('active');
+                        console.log(`🔒 Modal closed: ${closeName}`);
+                    }
+                });
+            });
+
+            // Close modals on outside click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                        console.log('🔒 Modal closed (outside click)');
+                    }
+                });
+            });
+
+            // Close modals on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const activeModals = document.querySelectorAll('.modal.active');
+                    activeModals.forEach(modal => {
+                        modal.classList.remove('active');
+                        console.log('🔒 Modal closed (ESC key)');
+                    });
+                }
+            });
         });
     </script>
 </body>
