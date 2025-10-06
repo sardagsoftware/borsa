@@ -17048,6 +17048,10 @@ app.use('/api/medical/pharmacy-drug-info', hipaaAuditMiddleware, pharmacyDrugInf
 const clinicalLaboratoryAI = require('./api/medical/clinical-laboratory-ai');
 app.use('/api/medical/clinical-laboratory-ai', hipaaAuditMiddleware, clinicalLaboratoryAI);
 
+// 🩺 Vital Signs Monitoring & Real-Time Patient Telemetry
+const vitalSignsMonitoring = require('./api/medical/vital-signs-monitoring');
+app.use('/api/medical/vital-signs-monitoring', hipaaAuditMiddleware, vitalSignsMonitoring);
+
 // 📝 Medical NLP & Clinical Documentation - SOAP Notes/ICD-10 Coding/NER
 const medicalNLP = require('./api/medical/medical-nlp');
 app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);
