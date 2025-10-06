@@ -11,7 +11,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800;900&display=swap');
 
 .ailydian-logo {
-    font-family: 'Orbitron', 'Exo 2', sans-serif;
+    font-family: 'Righteous', cursive !important;
     font-weight: 600;
     font-size: 28px;
     color: #0d7377;
@@ -33,7 +33,7 @@
    ======================================== */
 
 .ailydian-logo .letter-a {
-    font-family: 'Orbitron', monospace;
+    font-family: 'Righteous', cursive !important;
     font-weight: 900;
     font-size: 1.3em;
     color: #14a085;
@@ -45,7 +45,7 @@
 }
 
 .ailydian-logo .letter-i {
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Righteous', cursive !important;
     font-weight: 400;
     font-size: 0.9em;
     color: #7fb069;
@@ -56,7 +56,7 @@
 }
 
 .ailydian-logo .letter-l {
-    font-family: 'Orbitron', monospace;
+    font-family: 'Righteous', cursive !important;
     font-weight: 900;
     font-size: 1.3em;
     color: #0d7377;
@@ -69,7 +69,7 @@
 }
 
 .ailydian-logo .letter-ydians {
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Righteous', cursive !important;
     font-weight: 500;
     font-size: 1em;
     color: #a7c957;
@@ -161,7 +161,7 @@
    ======================================== */
 
 .ailydian-logo-chat {
-    font-family: 'Orbitron', 'Exo 2', sans-serif;
+    font-family: 'Righteous', cursive !important;
     font-weight: 700;
     font-size: 24px;
     color: #0d7377;
@@ -228,7 +228,7 @@
    ======================================== */
 
 .ailydian-logo-homepage {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Righteous', cursive !important;
     font-weight: 800;
     font-size: 48px;
     background: linear-gradient(135deg, #14a085, #0d7377, #7fb069);
@@ -294,7 +294,7 @@
     justify-content: center;
     align-items: center;
     gap: 4px;
-    font-family: 'Orbitron', monospace;
+    font-family: 'Righteous', cursive !important;
     font-weight: 800;
     font-size: 24px;
 }

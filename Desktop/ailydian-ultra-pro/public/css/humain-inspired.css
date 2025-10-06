@@ -40,9 +40,9 @@
     --ailydian-orange-ghost: #fff8f0;
 
     /* === CHATGPT TYPOGRAPHY SYSTEM === */
-    --font-chatgpt: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --font-chatgpt: 'Righteous', cursive;
     --font-mono: "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Source Code Pro", monospace;
-    --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-display: 'Righteous', cursive;
 
     /* Font Weights - ChatGPT Style */
     --font-weight-light: 300;
@@ -292,7 +292,7 @@ body {
 }
 
 .ailydian-logo-text {
-    font-family: var(--font-display);
+    font-family: 'Righteous', cursive !important;
     font-size: var(--text-2xl);
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.02em;
@@ -373,7 +373,7 @@ body {
 }
 
 .humain-hero-title {
-    font-family: var(--font-display);
+    font-family: 'Righteous', cursive !important;
     font-size: var(--text-9xl);
     font-weight: var(--font-weight-heavy);
     line-height: 0.9;
@@ -588,7 +588,7 @@ body {
 }
 
 .humain-capability-title {
-    font-family: var(--font-display);
+    font-family: 'Righteous', cursive !important;
     font-size: var(--text-xl);
     font-weight: var(--font-weight-bold);
     color: var(--asana-text-primary);
