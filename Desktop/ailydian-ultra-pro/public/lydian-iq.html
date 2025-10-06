@@ -1362,8 +1362,14 @@
                 // Auto-detect domain from query
                 const domain = detectDomain(query);
 
+                // Get base URL (works in both browser and PWA standalone mode)
+                const baseURL = window.location.origin || 'https://www.ailydian.com';
+                const apiURL = `${baseURL}/api/lydian-iq/solve`;
+
+                console.log(`🔗 API URL: ${apiURL}`);
+
                 // Call REAL Backend API
-                const response = await fetch('/api/lydian-iq/solve', {
+                const response = await fetch(apiURL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1500,12 +1506,13 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
 
         // Show error with retry option
         function showErrorState(error) {
+            const isPWA = window.matchMedia('(display-mode: standalone)').matches;
             const errorHTML = `
                 <div style="padding: 2rem; text-align: center;">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
-                    <h3 style="color: var(--danger); margin-bottom: 1rem;">Bir Hata Oluştu</h3>
+                    <h3 style="color: var(--danger); margin-bottom: 1rem;">Bağlantı Hatası</h3>
                     <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                        ${error.message || 'Backend API\'ye bağlanılamadı. Lütfen API anahtarlarınızı kontrol edin.'}
+                        ${error.message || 'API bağlantısı kurulamadı. Lütfen internet bağlantınızı kontrol edin.'}
                     </p>
                     <button onclick="location.reload()" style="
                         background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
@@ -1519,8 +1526,9 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
                         🔄 Tekrar Dene
                     </button>
                     <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
-                        💡 API anahtarlarınızı .env dosyasında kontrol edin:<br>
-                        ANTHROPIC_API_KEY, OPENAI_API_KEY, GROQ_API_KEY
+                        ${isPWA ? '📱 Mobil Uygulama Modu • ' : ''}
+                        💡 İnternet bağlantınızı kontrol edin<br>
+                        API: ${window.location.origin}/api/lydian-iq/solve
                     </p>
                 </div>
             `;
@@ -1602,7 +1610,15 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
         // ============================================================
         
         document.addEventListener('DOMContentLoaded', () => {
+            // Detect PWA standalone mode
+            const isPWA = window.matchMedia('(display-mode: standalone)').matches;
+            const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/.test(navigator.userAgent);
+
             console.log('🚀 LyDian AI Ultra Intelligence Platform');
+            console.log(`📱 Mode: ${isPWA ? 'PWA Standalone (Mobile App)' : 'Browser'}`);
+            console.log(`🌐 Origin: ${window.location.origin}`);
+            console.log(`📊 Platform: ${isIOS ? 'iOS' : isAndroid ? 'Android' : 'Desktop'}`);
             console.log('✅ Voice Recognition: Ready');
             console.log('✅ Super Power Mode: Standby');
             console.log('✅ White-Hat Rules: Active');
