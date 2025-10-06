@@ -17084,9 +17084,14 @@ app.use('/api/medical/clinical-trials', hipaaAuditMiddleware, clinicalTrials);
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
 
-// 🏭 CIVIC INTELLIGENCE GRID (CIG) - SYNTHETIC DATA FACTORY API
+// 🏭 CIVIC INTELLIGENCE GRID (CIG) - API MODULES
 const cigSvfAPI = require('./api/cig-svf');
-app.use('/api/cig-svf', cigSvfAPI);
+const cigMapAPI = require('./api/cig-map');
+const cigAtgAPI = require('./api/cig-atg');
+
+app.use('/api/cig-svf', cigSvfAPI);  // Sentetik Veri Fabrikası
+app.use('/api/map', cigMapAPI);      // Model Doğrulama ve Kanıt
+app.use('/api/atg', cigAtgAPI);      // Otomatik Güven Ağı
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {

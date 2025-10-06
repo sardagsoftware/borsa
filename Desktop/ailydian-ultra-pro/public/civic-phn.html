@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHN - Public Health Nowcasting | Ailydian CIG</title>
+    <title>HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG</title>
     <link rel="stylesheet" href="/css/animated-logo.css">
     <link rel="stylesheet" href="/css/humain-inspired.css">
     <style>
@@ -580,10 +580,10 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="/" class="logo">Ailydian CIG</a>
+            <a href="/" class="logo">Lydian CIG</a>
             <nav class="nav-links">
-                <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
-                <a href="/civic-phn.html" class="nav-link" style="color: var(--phn-pink);">PHN</a>
+                <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/civic-phn.html" class="nav-link" style="color: var(--phn-pink);">HST</a>
                 <a href="/" class="nav-link">Ana Sayfa</a>
             </nav>
         </div>
@@ -592,12 +592,12 @@
     <!-- Hero -->
     <section class="hero">
         <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h4m0 0V4m0 4l-4-4"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
         </svg>
-        <h1 class="hero-title">Public Health Nowcasting</h1>
+        <h1 class="hero-title">Halk Sağlığı Tahmin Sistemi</h1>
         <p class="hero-subtitle">
-            Real-Time Disease Surveillance • Privacy-Preserved Analytics • AI-Powered Predictions • Medical Supply Forecasting
+            Gerçek Zamanlı Hastalık İzleme • Gizlilik Korumalı Analitik • Yapay Zeka Destekli Tahminler • Tıbbi Malzeme Öngörüsü
         </p>
     </section>
 
@@ -605,23 +605,23 @@
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-value" id="active-cases">2,847</div>
-            <div class="stat-label">Active Cases (7-day)</div>
-            <div class="stat-trend trend-down" id="cases-trend">▼ 12.4% vs last week</div>
+            <div class="stat-label">Aktif Vakalar (7 günlük)</div>
+            <div class="stat-trend trend-down" id="cases-trend">▼ Geçen haftaya göre %12.4</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="r-value">0.87</div>
-            <div class="stat-label">Reproduction Rate (R)</div>
-            <div class="stat-trend trend-down" id="r-trend">▼ Below epidemic threshold</div>
+            <div class="stat-label">Bulaşma Oranı (R)</div>
+            <div class="stat-trend trend-down" id="r-trend">▼ Salgın eşiğinin altında</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="hospital-capacity">73%</div>
-            <div class="stat-label">Hospital Capacity</div>
-            <div class="stat-trend trend-up" id="capacity-trend">▲ 5.2% vs yesterday</div>
+            <div class="stat-label">Hastane Kapasitesi</div>
+            <div class="stat-trend trend-up" id="capacity-trend">▲ Dünkü değere göre %5.2</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="regions-monitored">147</div>
-            <div class="stat-label">Regions Monitored</div>
-            <div class="stat-trend" style="color: var(--phn-pink);">Real-time data feed</div>
+            <div class="stat-label">İzlenen Bölgeler</div>
+            <div class="stat-trend" style="color: var(--phn-pink);">Canlı veri akışı</div>
         </div>
     </div>
 
@@ -636,12 +636,12 @@
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
-                        Disease Incidence Nowcast
+                        Hastalık Görülme Sıklığı Tahmini
                     </h3>
                     <div class="time-selector">
-                        <button class="time-btn" data-range="7">7D</button>
-                        <button class="time-btn active" data-range="14">14D</button>
-                        <button class="time-btn" data-range="30">30D</button>
+                        <button class="time-btn" data-range="7">7G</button>
+                        <button class="time-btn active" data-range="14">14G</button>
+                        <button class="time-btn" data-range="30">30G</button>
                     </div>
                 </div>
                 <div class="chart-container">
@@ -653,7 +653,7 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
-                    Protected by Differential Privacy (DP ε=1.5)
+                    Diferansiyel Gizlilik ile Korunuyor (DP ε=1.5)
                 </div>
             </div>
 
@@ -663,7 +663,7 @@
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                     </svg>
-                    Health Alerts
+                    Sağlık Uyarıları
                 </h3>
 
                 <div id="alerts-container">
@@ -673,15 +673,15 @@
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                                 </svg>
-                                Flu Outbreak - District 7
+                                Grip Salgını - 7. Bölge
                             </div>
-                            <span class="alert-badge badge-critical">CRITICAL</span>
+                            <span class="alert-badge badge-critical">KRİTİK</span>
                         </div>
                         <div class="alert-description">
-                            Seasonal influenza cases exceed epidemic threshold. Enhanced surveillance active.
+                            Mevsimsel grip vakaları salgın eşiğini aştı. Gelişmiş gözetim sistemi aktif.
                         </div>
                         <div class="alert-meta">
-                            <strong>Predicted Peak:</strong> 3-5 days • <strong>Confidence:</strong> 94%
+                            <strong>Tahmini Zirve:</strong> 3-5 gün • <strong>Güven:</strong> %94
                         </div>
                     </div>
 
@@ -691,15 +691,15 @@
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
-                                Hospital Capacity - Region 3
+                                Hastane Kapasitesi - 3. Bölge
                             </div>
-                            <span class="alert-badge badge-warning">WARNING</span>
+                            <span class="alert-badge badge-warning">UYARI</span>
                         </div>
                         <div class="alert-description">
-                            ICU capacity at 85%. Consider resource reallocation from neighboring regions.
+                            YBÜ kapasitesi %85'te. Komşu bölgelerden kaynak tahsisi değerlendirilebilir.
                         </div>
                         <div class="alert-meta">
-                            <strong>Forecast:</strong> Stable • <strong>Action:</strong> Monitor
+                            <strong>Tahmin:</strong> Stabil • <strong>Aksiyon:</strong> İzle
                         </div>
                     </div>
 
@@ -709,15 +709,15 @@
                                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
-                                Vaccine Campaign - District 12
+                                Aşı Kampanyası - 12. Bölge
                             </div>
-                            <span class="alert-badge badge-info">INFO</span>
+                            <span class="alert-badge badge-info">BİLGİ</span>
                         </div>
                         <div class="alert-description">
-                            Vaccination coverage reached 78%. On track to meet target by month end.
+                            Aşılama kapsamı %78'e ulaştı. Ay sonuna kadar hedefe ulaşılacak.
                         </div>
                         <div class="alert-meta">
-                            <strong>Target:</strong> 85% • <strong>Deadline:</strong> 23 days
+                            <strong>Hedef:</strong> %85 • <strong>Son Tarih:</strong> 23 gün
                         </div>
                     </div>
                 </div>
@@ -730,7 +730,7 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                 </svg>
-                Regional Health Metrics
+                Bölgesel Sağlık Metrikleri
             </h2>
             <div class="regional-grid">
                 <div class="region-card">
@@ -740,21 +740,21 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                         <div class="region-info">
-                            <h4>Central District</h4>
-                            <p>Population: 1.2M</p>
+                            <h4>Merkez İlçe</h4>
+                            <p>Nüfus: 1.2M</p>
                         </div>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">Active Cases</span>
+                        <span class="metric-label">Aktif Vakalar</span>
                         <span class="metric-value high">847</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">R Number</span>
+                        <span class="metric-label">R Sayısı</span>
                         <span class="metric-value medium">1.12</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">ICU Capacity</span>
-                        <span class="metric-value medium">68%</span>
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value medium">%68</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill warning" style="width: 68%"></div>
@@ -768,21 +768,21 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                         <div class="region-info">
-                            <h4>Northern Region</h4>
-                            <p>Population: 890K</p>
+                            <h4>Kuzey Bölgesi</h4>
+                            <p>Nüfus: 890K</p>
                         </div>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">Active Cases</span>
+                        <span class="metric-label">Aktif Vakalar</span>
                         <span class="metric-value low">312</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">R Number</span>
+                        <span class="metric-label">R Sayısı</span>
                         <span class="metric-value low">0.78</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">ICU Capacity</span>
-                        <span class="metric-value low">42%</span>
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value low">%42</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill normal" style="width: 42%"></div>
@@ -796,21 +796,21 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                         <div class="region-info">
-                            <h4>Eastern Zone</h4>
-                            <p>Population: 1.5M</p>
+                            <h4>Doğu Bölgesi</h4>
+                            <p>Nüfus: 1.5M</p>
                         </div>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">Active Cases</span>
+                        <span class="metric-label">Aktif Vakalar</span>
                         <span class="metric-value high">1,124</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">R Number</span>
+                        <span class="metric-label">R Sayısı</span>
                         <span class="metric-value high">1.34</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">ICU Capacity</span>
-                        <span class="metric-value critical">89%</span>
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value critical">%89</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill critical" style="width: 89%"></div>
@@ -824,21 +824,21 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                         <div class="region-info">
-                            <h4>Western Area</h4>
-                            <p>Population: 720K</p>
+                            <h4>Batı Bölgesi</h4>
+                            <p>Nüfus: 720K</p>
                         </div>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">Active Cases</span>
+                        <span class="metric-label">Aktif Vakalar</span>
                         <span class="metric-value medium">564</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">R Number</span>
+                        <span class="metric-label">R Sayısı</span>
                         <span class="metric-value medium">0.95</span>
                     </div>
                     <div class="metric-row">
-                        <span class="metric-label">ICU Capacity</span>
-                        <span class="metric-value low">51%</span>
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value low">%51</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill normal" style="width: 51%"></div>
@@ -853,62 +853,62 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                 </svg>
-                Medical Supply Forecast (30-day)
+                Tıbbi Malzeme Tahmini (30 günlük)
             </h2>
             <div class="supply-forecast">
                 <div class="supply-item">
                     <div class="supply-info">
-                        <div class="supply-name">PPE (Masks, Gloves, Gowns)</div>
-                        <div class="supply-meta">Current Stock: 247,500 units • Daily Usage: 8,200 units</div>
+                        <div class="supply-name">KKD (Maske, Eldiven, Önlük)</div>
+                        <div class="supply-meta">Mevcut Stok: 247.500 adet • Günlük Kullanım: 8.200 adet</div>
                         <div class="progress-bar">
                             <div class="progress-fill normal" style="width: 78%"></div>
                         </div>
                     </div>
                     <div class="supply-status">
-                        <div class="supply-level" style="color: var(--phn-green);">78%</div>
-                        <div class="supply-trend" style="color: var(--phn-green);">▲ Sufficient</div>
+                        <div class="supply-level" style="color: var(--phn-green);">%78</div>
+                        <div class="supply-trend" style="color: var(--phn-green);">▲ Yeterli</div>
                     </div>
                 </div>
 
                 <div class="supply-item">
                     <div class="supply-info">
-                        <div class="supply-name">Ventilators & ICU Equipment</div>
-                        <div class="supply-meta">Available: 142 units • In Use: 87 units • Reserve: 55 units</div>
+                        <div class="supply-name">Ventilatör & YBÜ Ekipmanları</div>
+                        <div class="supply-meta">Mevcut: 142 adet • Kullanımda: 87 adet • Yedek: 55 adet</div>
                         <div class="progress-bar">
                             <div class="progress-fill warning" style="width: 61%"></div>
                         </div>
                     </div>
                     <div class="supply-status">
-                        <div class="supply-level" style="color: var(--phn-orange);">61%</div>
-                        <div class="supply-trend" style="color: var(--phn-orange);">▼ Monitor</div>
+                        <div class="supply-level" style="color: var(--phn-orange);">%61</div>
+                        <div class="supply-trend" style="color: var(--phn-orange);">▼ İzle</div>
                     </div>
                 </div>
 
                 <div class="supply-item">
                     <div class="supply-info">
-                        <div class="supply-name">Vaccines & Medications</div>
-                        <div class="supply-meta">Stock: 94,200 doses • Forecast Demand: 112,000 doses</div>
+                        <div class="supply-name">Aşılar & İlaçlar</div>
+                        <div class="supply-meta">Stok: 94.200 doz • Tahmin Edilen Talep: 112.000 doz</div>
                         <div class="progress-bar">
                             <div class="progress-fill critical" style="width: 84%"></div>
                         </div>
                     </div>
                     <div class="supply-status">
-                        <div class="supply-level" style="color: var(--phn-red);">84%</div>
-                        <div class="supply-trend" style="color: var(--phn-red);">▼ Reorder Soon</div>
+                        <div class="supply-level" style="color: var(--phn-red);">%84</div>
+                        <div class="supply-trend" style="color: var(--phn-red);">▼ Yakında Sipariş</div>
                     </div>
                 </div>
 
                 <div class="supply-item">
                     <div class="supply-info">
-                        <div class="supply-name">Testing Kits (PCR, Rapid)</div>
-                        <div class="supply-meta">Available: 67,800 kits • Daily Tests: 2,400 • Capacity: OK</div>
+                        <div class="supply-name">Test Kitleri (PCR, Hızlı)</div>
+                        <div class="supply-meta">Mevcut: 67.800 kit • Günlük Test: 2.400 • Kapasite: Uygun</div>
                         <div class="progress-bar">
                             <div class="progress-fill normal" style="width: 72%"></div>
                         </div>
                     </div>
                     <div class="supply-status">
-                        <div class="supply-level" style="color: var(--phn-green);">72%</div>
-                        <div class="supply-trend" style="color: var(--phn-green);">▲ Stable</div>
+                        <div class="supply-level" style="color: var(--phn-green);">%72</div>
+                        <div class="supply-trend" style="color: var(--phn-green);">▲ Stabil</div>
                     </div>
                 </div>
             </div>
@@ -986,7 +986,7 @@
 
             const casesTrend = (Math.random() * 20 - 10).toFixed(1);
             const casesEl = document.getElementById('cases-trend');
-            casesEl.textContent = `${casesTrend > 0 ? '▲' : '▼'} ${Math.abs(casesTrend)}% vs last week`;
+            casesEl.textContent = `${casesTrend > 0 ? '▲' : '▼'} Geçen haftaya göre %${Math.abs(casesTrend)}`;
             casesEl.className = `stat-trend ${casesTrend > 0 ? 'trend-up' : 'trend-down'}`;
 
             // R Value
@@ -995,20 +995,20 @@
 
             const rTrend = document.getElementById('r-trend');
             if (rValue < 1.0) {
-                rTrend.textContent = '▼ Below epidemic threshold';
+                rTrend.textContent = '▼ Salgın eşiğinin altında';
                 rTrend.className = 'stat-trend trend-down';
             } else {
-                rTrend.textContent = '▲ Above epidemic threshold';
+                rTrend.textContent = '▲ Salgın eşiğinin üstünde';
                 rTrend.className = 'stat-trend trend-up';
             }
 
             // Hospital Capacity
             const capacity = Math.floor(Math.random() * 15) + 68;
-            document.getElementById('hospital-capacity').textContent = capacity + '%';
+            document.getElementById('hospital-capacity').textContent = '%' + capacity;
 
             const capacityTrend = (Math.random() * 10 - 5).toFixed(1);
             const capacityEl = document.getElementById('capacity-trend');
-            capacityEl.textContent = `${capacityTrend > 0 ? '▲' : '▼'} ${Math.abs(capacityTrend)}% vs yesterday`;
+            capacityEl.textContent = `${capacityTrend > 0 ? '▲' : '▼'} Dünkü değere göre %${Math.abs(capacityTrend)}`;
             capacityEl.className = `stat-trend ${capacityTrend > 0 ? 'trend-up' : 'trend-down'}`;
         }
 
@@ -1017,24 +1017,24 @@
             const alerts = [
                 {
                     type: 'warning',
-                    badge: 'WARNING',
-                    title: 'COVID-19 Cluster - Workplace 5',
-                    description: 'Small cluster detected. Contact tracing initiated.',
-                    meta: '<strong>Cases:</strong> 7 • <strong>Status:</strong> Contained'
+                    badge: 'UYARI',
+                    title: 'COVID-19 Kümesi - İşyeri 5',
+                    description: 'Küçük küme tespit edildi. Temas izleme başlatıldı.',
+                    meta: '<strong>Vakalar:</strong> 7 • <strong>Durum:</strong> Kontrol Altında'
                 },
                 {
                     type: 'normal',
-                    badge: 'INFO',
-                    title: 'Health Screening - Schools',
-                    description: 'Routine health screening completed. All clear.',
-                    meta: '<strong>Screened:</strong> 1,247 students • <strong>Result:</strong> Normal'
+                    badge: 'BİLGİ',
+                    title: 'Sağlık Taraması - Okullar',
+                    description: 'Rutin sağlık taraması tamamlandı. Her şey normal.',
+                    meta: '<strong>Taranan:</strong> 1.247 öğrenci • <strong>Sonuç:</strong> Normal'
                 },
                 {
                     type: 'warning',
-                    badge: 'WARNING',
-                    title: 'Supply Alert - District 9',
-                    description: 'Rapid test kits running low. Resupply scheduled.',
-                    meta: '<strong>Current:</strong> 890 kits • <strong>ETA:</strong> 2 days'
+                    badge: 'UYARI',
+                    title: 'Malzeme Uyarısı - 9. Bölge',
+                    description: 'Hızlı test kitleri azalıyor. Tedarik planlandı.',
+                    meta: '<strong>Mevcut:</strong> 890 kit • <strong>Varış:</strong> 2 gün'
                 }
             ];
 

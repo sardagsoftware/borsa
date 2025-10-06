@@ -319,7 +319,7 @@
         </svg>
         <h1 class="hero-title">Sentetik Veri Fabrikası</h1>
         <p class="hero-subtitle">
-            Privacy-First Synthetic Data Generation • Differential Privacy • Utility Validation • PII Protection
+            Gizlilik Öncelikli Sentetik Veri Üretimi • Diferansiyel Gizlilik • Fayda Doğrulaması • Kişisel Veri Koruması
         </p>
     </section>
 
@@ -327,19 +327,19 @@
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-value" id="total-jobs">0</div>
-            <div class="stat-label">Total Jobs Created</div>
+            <div class="stat-label">Oluşturulan Toplam İş</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="active-jobs">0</div>
-            <div class="stat-label">Active Jobs</div>
+            <div class="stat-label">Aktif İşler</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="success-rate">99.4%</div>
-            <div class="stat-label">Success Rate</div>
+            <div class="stat-label">Başarı Oranı</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" id="total-rows">0</div>
-            <div class="stat-label">Rows Generated</div>
+            <div class="stat-label">Üretilen Satır</div>
         </div>
     </div>
 
@@ -353,40 +353,40 @@
                     <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
-                    Create Synthetic Data Job
+                    Sentetik Veri İşi Oluştur
                 </h2>
 
                 <form id="create-job-form">
                     <div class="form-group">
-                        <label class="form-label">Domain</label>
+                        <label class="form-label">Veri Alanı</label>
                         <select class="form-select" id="domain" required>
-                            <option value="">Select domain...</option>
-                            <option value="finance">Finance</option>
-                            <option value="health">Healthcare</option>
-                            <option value="travel">Travel</option>
-                            <option value="media">Media</option>
-                            <option value="energy">Energy</option>
+                            <option value="">Alan seçiniz...</option>
+                            <option value="finance">Finans</option>
+                            <option value="health">Sağlık</option>
+                            <option value="travel">Seyahat</option>
+                            <option value="media">Medya</option>
+                            <option value="energy">Enerji</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Volume (rows)</label>
+                        <label class="form-label">Hacim (satır)</label>
                         <input type="number" class="form-input" id="volume" min="100" max="10000000" value="10000" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Privacy: Epsilon (DP)</label>
+                        <label class="form-label">Gizlilik: Epsilon (DP)</label>
                         <input type="number" class="form-input" id="epsilon" min="1.0" max="10.0" step="0.1" value="2.5" required>
-                        <small style="color: var(--lydian-text-secondary);">Higher = Less private, More utility</small>
+                        <small style="color: var(--lydian-text-secondary);">Yüksek = Daha az gizli, Daha fazla fayda</small>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Privacy: k-Anonymity</label>
+                        <label class="form-label">Gizlilik: k-Anonimlik</label>
                         <input type="number" class="form-input" id="kAnon" min="5" max="100" value="15" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Output Format</label>
+                        <label class="form-label">Çıktı Formatı</label>
                         <select class="form-select" id="format">
                             <option value="parquet">Parquet</option>
                             <option value="csv">CSV</option>
@@ -394,7 +394,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn" id="create-btn">Create Job</button>
+                    <button type="submit" class="btn" id="create-btn">İş Oluştur</button>
                 </form>
             </div>
 
@@ -404,7 +404,7 @@
                     <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                     </svg>
-                    API Example
+                    API Örneği
                 </h2>
 
                 <div class="code-block" id="api-example">POST /api/cig-svf/v1/jobs
@@ -431,11 +431,11 @@ Content-Type: application/json
                 <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
-                Active Jobs
+                Aktif İşler
             </h2>
             <div id="jobs-container">
                 <p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem;">
-                    No jobs yet. Create your first synthetic data job above.
+                    Henüz iş yok. Yukarıdan ilk sentetik veri işinizi oluşturun.
                 </p>
             </div>
         </div>
@@ -481,7 +481,7 @@ Content-Type: application/json
 
             const btn = document.getElementById('create-btn');
             btn.disabled = true;
-            btn.textContent = 'Creating...';
+            btn.textContent = 'Oluşturuluyor...';
 
             try {
                 const response = await fetch('/api/cig-svf/v1/jobs', {
@@ -513,11 +513,11 @@ Content-Type: application/json
                     form.reset();
                 }
             } catch (error) {
-                console.error('Error creating job:', error);
-                alert('Failed to create job. Please try again.');
+                console.error('İş oluşturma hatası:', error);
+                alert('İş oluşturulamadı. Lütfen tekrar deneyin.');
             } finally {
                 btn.disabled = false;
-                btn.textContent = 'Create Job';
+                btn.textContent = 'İş Oluştur';
             }
         });
 
@@ -542,7 +542,7 @@ Content-Type: application/json
                         }
                     }
                 } catch (error) {
-                    console.error('Error polling job:', error);
+                    console.error('İş sorgulama hatası:', error);
                     clearInterval(interval);
                 }
             }, 2000);
@@ -556,7 +556,7 @@ Content-Type: application/json
             const container = document.getElementById('jobs-container');
 
             if (jobs.length === 0) {
-                container.innerHTML = '<p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem;">No jobs yet.</p>';
+                container.innerHTML = '<p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem;">Henüz iş yok.</p>';
                 return;
             }
 
@@ -565,7 +565,7 @@ Content-Type: application/json
                     <div class="job-info">
                         <h4>${j.id}</h4>
                         <div class="job-meta">
-                            Domain: ${j.domain} • Volume: ${j.volume.toLocaleString()} rows •
+                            Alan: ${j.domain} • Hacim: ${j.volume.toLocaleString()} satır •
                             ε=${j.privacy.epsilon} k=${j.privacy.kAnon}
                         </div>
                         ${j.progress > 0 ? `

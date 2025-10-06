@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UMO - Urban Mobility Orchestrator | Ailydian CIG</title>
+    <title>KMO - Kentsel Mobilite Orkestratörü | Ailydian CIG</title>
     <link rel="stylesheet" href="/css/animated-logo.css">
     <link rel="stylesheet" href="/css/humain-inspired.css">
     <!-- Leaflet.js -->
@@ -591,189 +591,189 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Başlık -->
     <header class="header">
         <div class="header-content">
             <a href="/" class="logo">Ailydian CIG</a>
             <nav class="nav-links">
-                <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
-                <a href="/civic-umo.html" class="nav-link" style="color: var(--umo-indigo);">UMO</a>
-                <a href="/" class="nav-link">Home</a>
+                <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/civic-umo.html" class="nav-link" style="color: var(--umo-indigo);">KMO</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero -->
+    <!-- Kapak -->
     <section class="hero">
         <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
         </svg>
-        <h1 class="hero-title">Urban Mobility Orchestrator</h1>
+        <h1 class="hero-title">Kentsel Mobilite Orkestratörü</h1>
         <p class="hero-subtitle">
-            AI-Powered Route Optimization • Real-Time Traffic Flow • Multi-Modal Journey Planning
+            Yapay Zeka Destekli Rota Optimizasyonu • Gerçek Zamanlı Trafik Akışı • Çok Modlu Seyahat Planlama
         </p>
     </section>
 
-    <!-- Live Stats -->
+    <!-- Canlı İstatistikler -->
     <div class="stats-grid">
         <div class="stat-card">
             <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
             </svg>
             <div class="stat-value" id="avg-speed">42</div>
-            <div class="stat-label">Avg Speed (km/h)</div>
+            <div class="stat-label">Ortalama Hız (km/sa)</div>
         </div>
         <div class="stat-card">
             <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <div class="stat-value" id="congestion">32<span style="font-size: 1rem;">%</span></div>
-            <div class="stat-label">Congestion Level</div>
+            <div class="stat-label">Tıkanıklık Seviyesi</div>
         </div>
         <div class="stat-card">
             <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
             </svg>
-            <div class="stat-value" id="routes-today">14.2<span style="font-size: 1rem;">K</span></div>
-            <div class="stat-label">Routes Today</div>
+            <div class="stat-value" id="routes-today">14.2<span style="font-size: 1rem;">B</span></div>
+            <div class="stat-label">Bugünkü Rotalar</div>
         </div>
         <div class="stat-card">
             <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
             </svg>
-            <div class="stat-value" id="active-vehicles">2.8<span style="font-size: 1rem;">K</span></div>
-            <div class="stat-label">Active Vehicles</div>
+            <div class="stat-value" id="active-vehicles">2.8<span style="font-size: 1rem;">B</span></div>
+            <div class="stat-label">Aktif Araçlar</div>
         </div>
         <div class="stat-card">
             <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <div class="stat-value" id="incidents">7</div>
-            <div class="stat-label">Active Incidents</div>
+            <div class="stat-label">Aktif Olaylar</div>
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Ana İçerik -->
     <div class="container">
-        <!-- Dashboard Grid -->
+        <!-- Kontrol Paneli -->
         <div class="dashboard-grid">
-            <!-- Traffic Map -->
+            <!-- Trafik Haritası -->
             <div class="map-container">
                 <div class="map-header">
                     <div class="map-title">
                         <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                         </svg>
-                        Live Traffic Flow
+                        Canlı Trafik Akışı
                     </div>
                     <div class="map-legend">
                         <div class="legend-item">
                             <div class="legend-dot" style="background: var(--umo-green);"></div>
-                            <span>Smooth</span>
+                            <span>Akıcı</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-dot" style="background: var(--umo-yellow);"></div>
-                            <span>Moderate</span>
+                            <span>Orta</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-dot" style="background: var(--umo-red);"></div>
-                            <span>Congested</span>
+                            <span>Tıkanık</span>
                         </div>
                     </div>
                 </div>
                 <div id="map"></div>
             </div>
 
-            <!-- Route Optimizer -->
+            <!-- Rota Optimize Edici -->
             <div class="route-panel">
                 <h3 class="section-title">
                     <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
                     </svg>
-                    Multi-Modal Journey Planner
+                    Çok Modlu Seyahat Planlayıcı
                 </h3>
 
                 <form id="route-form">
                     <div class="form-group">
-                        <label class="form-label">From</label>
-                        <input type="text" class="form-input" id="from" placeholder="Enter starting location" value="Taksim Square" required>
+                        <label class="form-label">Nereden</label>
+                        <input type="text" class="form-input" id="from" placeholder="Başlangıç noktasını girin" value="Taksim Meydanı" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">To</label>
-                        <input type="text" class="form-input" id="to" placeholder="Enter destination" value="Sultanahmet" required>
+                        <label class="form-label">Nereye</label>
+                        <input type="text" class="form-input" id="to" placeholder="Varış noktasını girin" value="Sultanahmet" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Travel Mode</label>
+                        <label class="form-label">Ulaşım Modu</label>
                         <select class="form-select" id="mode">
-                            <option value="multimodal">Multi-Modal (Recommended)</option>
-                            <option value="car">Car</option>
-                            <option value="public">Public Transit</option>
-                            <option value="bike">Bike</option>
-                            <option value="walk">Walk</option>
+                            <option value="multimodal">Çok Modlu (Önerilen)</option>
+                            <option value="car">Otomobil</option>
+                            <option value="public">Toplu Taşıma</option>
+                            <option value="bike">Bisiklet</option>
+                            <option value="walk">Yürüyüş</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Optimization Priority</label>
+                        <label class="form-label">Optimizasyon Önceliği</label>
                         <select class="form-select" id="priority">
-                            <option value="fastest">Fastest Route</option>
-                            <option value="eco">Most Eco-Friendly</option>
-                            <option value="cheap">Cheapest</option>
-                            <option value="avoid-traffic">Avoid Traffic</option>
+                            <option value="fastest">En Hızlı Rota</option>
+                            <option value="eco">En Çevre Dostu</option>
+                            <option value="cheap">En Ucuz</option>
+                            <option value="avoid-traffic">Trafikten Kaçın</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn" id="plan-btn">Plan Journey</button>
+                    <button type="submit" class="btn" id="plan-btn">Seyahat Planla</button>
                 </form>
 
                 <div class="route-result" id="route-result">
                     <div class="route-info">
                         <div class="route-metric">
                             <div class="route-metric-value" id="route-duration">24</div>
-                            <div class="route-metric-label">Minutes</div>
+                            <div class="route-metric-label">Dakika</div>
                         </div>
                         <div class="route-metric">
                             <div class="route-metric-value" id="route-distance">8.2</div>
-                            <div class="route-metric-label">Kilometers</div>
+                            <div class="route-metric-label">Kilometre</div>
                         </div>
                         <div class="route-metric">
                             <div class="route-metric-value" id="route-cost">₺12</div>
-                            <div class="route-metric-label">Est. Cost</div>
+                            <div class="route-metric-label">Tahmini Maliyet</div>
                         </div>
                     </div>
 
                     <div class="route-steps" id="route-steps">
-                        <!-- Steps will be inserted here -->
+                        <!-- Adımlar buraya eklenecek -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Live Incidents -->
+        <!-- Canlı Olaylar -->
         <div class="incidents-section">
             <h3 class="section-title">
                 <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                 </svg>
-                Live Traffic Incidents
+                Canlı Trafik Olayları
             </h3>
             <div class="incidents-grid" id="incidents-container">
-                <!-- Incidents will be inserted here -->
+                <!-- Olaylar buraya eklenecek -->
             </div>
         </div>
 
-        <!-- Traffic Flow Analysis -->
+        <!-- Trafik Akış Analizi -->
         <div class="traffic-flow-section">
             <h3 class="section-title">
                 <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
-                Major Routes Traffic Flow
+                Ana Yollar Trafik Akışı
             </h3>
             <div class="flow-grid" id="flow-container">
-                <!-- Flow cards will be inserted here -->
+                <!-- Akış kartları buraya eklenecek -->
             </div>
         </div>
     </div>
@@ -792,28 +792,28 @@
         // Traffic routes data
         const trafficRoutes = [
             {
-                name: 'D100 Highway East',
+                name: 'D100 Otoyolu Doğu',
                 coords: [[41.0082, 28.9784], [41.0150, 29.0500]],
                 status: 'smooth',
                 speed: 65,
                 vehicles: 340
             },
             {
-                name: 'Bosphorus Bridge',
+                name: 'Boğaziçi Köprüsü',
                 coords: [[41.0392, 29.0086], [41.0444, 29.0250]],
                 status: 'congested',
                 speed: 25,
                 vehicles: 890
             },
             {
-                name: 'E5 Corridor',
+                name: 'E5 Koridoru',
                 coords: [[41.0200, 28.8500], [41.0200, 29.1000]],
                 status: 'moderate',
                 speed: 45,
                 vehicles: 520
             },
             {
-                name: 'Coastal Road',
+                name: 'Sahil Yolu',
                 coords: [[41.0050, 28.9600], [41.0250, 29.0000]],
                 status: 'smooth',
                 speed: 55,
@@ -828,6 +828,12 @@
             congested: '#EF4444'
         };
 
+        const statusLabels = {
+            smooth: 'Akıcı',
+            moderate: 'Orta',
+            congested: 'Tıkanık'
+        };
+
         // Draw routes on map
         trafficRoutes.forEach(route => {
             const polyline = L.polyline(route.coords, {
@@ -840,11 +846,11 @@
                 <div style="padding: 0.5rem;">
                     <h4 style="margin-bottom: 0.5rem;">${route.name}</h4>
                     <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">
-                        Speed: ${route.speed} km/h<br>
-                        Active Vehicles: ${route.vehicles}
+                        Hız: ${route.speed} km/sa<br>
+                        Aktif Araçlar: ${route.vehicles}
                     </p>
                     <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${routeColors[route.status]}20; color: ${routeColors[route.status]}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
-                        ${route.status}
+                        ${statusLabels[route.status]}
                     </span>
                 </div>
             `);
@@ -855,26 +861,26 @@
             {
                 coords: [41.0392, 29.0086],
                 type: 'accident',
-                title: 'Vehicle Accident',
-                description: 'Minor collision on Bosphorus Bridge. Right lane blocked.',
+                title: 'Araç Kazası',
+                description: 'Boğaziçi Köprüsü\'nde küçük çarpışma. Sağ şerit kapalı.',
                 severity: 'critical',
-                reportedAt: '15 min ago'
+                reportedAt: '15 dakika önce'
             },
             {
                 coords: [41.0150, 29.0500],
                 type: 'construction',
-                title: 'Road Construction',
-                description: 'Lane closure for maintenance. Expect delays.',
+                title: 'Yol Çalışması',
+                description: 'Bakım için şerit kapatma. Gecikmeler beklenebilir.',
                 severity: 'warning',
-                reportedAt: '2 hours ago'
+                reportedAt: '2 saat önce'
             },
             {
                 coords: [41.0250, 29.0000],
                 type: 'event',
-                title: 'Special Event',
-                description: 'Concert at stadium. Heavy traffic expected.',
+                title: 'Özel Etkinlik',
+                description: 'Stadyumda konser. Yoğun trafik bekleniyor.',
                 severity: 'normal',
-                reportedAt: '30 min ago'
+                reportedAt: '30 dakika önce'
             }
         ];
 
@@ -901,7 +907,7 @@
                     <h4 style="margin-bottom: 0.5rem;">${incident.title}</h4>
                     <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${incident.description}</p>
                     <div style="font-size: 0.8rem; color: var(--lydian-text-secondary);">
-                        Reported ${incident.reportedAt}
+                        Bildirilme: ${incident.reportedAt}
                     </div>
                 </div>
             `);
@@ -928,11 +934,11 @@
                             </div>
                             <div class="incident-description">${incident.description}</div>
                             <div class="incident-meta">
-                                <span>Reported: ${incident.reportedAt}</span>
-                                <span>Lat: ${incident.coords[0].toFixed(4)}, Lng: ${incident.coords[1].toFixed(4)}</span>
+                                <span>Bildirilme: ${incident.reportedAt}</span>
+                                <span>Konum: ${incident.coords[0].toFixed(4)}, ${incident.coords[1].toFixed(4)}</span>
                             </div>
                         </div>
-                        <span class="incident-badge badge-${incident.severity}">${incident.severity.toUpperCase()}</span>
+                        <span class="incident-badge badge-${incident.severity}">${incident.severity === 'critical' ? 'KRİTİK' : incident.severity === 'warning' ? 'UYARI' : 'NORMAL'}</span>
                     </div>
                 `;
             }).join('');
@@ -949,15 +955,15 @@
                     <div class="flow-card">
                         <div class="flow-header">
                             <div class="flow-route">${route.name}</div>
-                            <div class="flow-status status-${route.status}">${route.status.toUpperCase()}</div>
+                            <div class="flow-status status-${route.status}">${statusLabels[route.status].toUpperCase()}</div>
                         </div>
                         <div class="flow-metrics">
                             <div class="flow-metric">
-                                <span>Avg Speed</span>
-                                <span>${route.speed} km/h</span>
+                                <span>Ortalama Hız</span>
+                                <span>${route.speed} km/sa</span>
                             </div>
                             <div class="flow-metric">
-                                <span>Vehicles</span>
+                                <span>Araçlar</span>
                                 <span>${route.vehicles}</span>
                             </div>
                         </div>
@@ -977,17 +983,17 @@
             const result = document.getElementById('route-result');
 
             btn.disabled = true;
-            btn.textContent = 'Planning Route...';
+            btn.textContent = 'Rota Planlanıyor...';
 
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             // Mock route steps
             const steps = [
-                { mode: 'walk', instruction: 'Walk to Taksim Metro Station', distance: '350m', duration: '4 min' },
-                { mode: 'metro', instruction: 'Take M2 Line towards Yenikapı', distance: '3.2km', duration: '8 min' },
-                { mode: 'tram', instruction: 'Transfer to T1 Tram at Şişhane', distance: '4.1km', duration: '11 min' },
-                { mode: 'walk', instruction: 'Walk to Sultanahmet Square', distance: '250m', duration: '3 min' }
+                { mode: 'walk', instruction: 'Taksim Metro İstasyonu\'na yürüyün', distance: '350m', duration: '4 dakika' },
+                { mode: 'metro', instruction: 'Yenikapı yönüne M2 Metro hattına binin', distance: '3.2km', duration: '8 dakika' },
+                { mode: 'tram', instruction: 'Şişhane\'de T1 Tramvay\'a aktarma yapın', distance: '4.1km', duration: '11 dakika' },
+                { mode: 'walk', instruction: 'Sultanahmet Meydanı\'na yürüyün', distance: '250m', duration: '3 dakika' }
             ];
 
             const stepsHtml = steps.map(step => {
@@ -997,13 +1003,19 @@
                     tram: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>'
                 };
 
+                const modeLabels = {
+                    walk: 'Yürüyüş',
+                    metro: 'Metro',
+                    tram: 'Tramvay'
+                };
+
                 return `
                     <div class="route-step">
                         <svg class="step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             ${icons[step.mode]}
                         </svg>
                         <div class="step-content">
-                            <div class="step-mode">${step.mode}</div>
+                            <div class="step-mode">${modeLabels[step.mode]}</div>
                             <div class="step-instruction">${step.instruction}</div>
                             <div class="incident-meta">
                                 <span>${step.distance}</span>
@@ -1021,7 +1033,7 @@
 
             result.classList.add('active');
             btn.disabled = false;
-            btn.textContent = 'Plan Journey';
+            btn.textContent = 'Seyahat Planla';
         });
 
         // Simulate real-time stat updates
@@ -1033,10 +1045,10 @@
             document.getElementById('congestion').innerHTML = congestion + '<span style="font-size: 1rem;">%</span>';
 
             const routes = (Math.random() * 2 + 13).toFixed(1);
-            document.getElementById('routes-today').innerHTML = routes + '<span style="font-size: 1rem;">K</span>';
+            document.getElementById('routes-today').innerHTML = routes + '<span style="font-size: 1rem;">B</span>';
 
             const vehicles = (Math.random() * 0.5 + 2.5).toFixed(1);
-            document.getElementById('active-vehicles').innerHTML = vehicles + '<span style="font-size: 1rem;">K</span>';
+            document.getElementById('active-vehicles').innerHTML = vehicles + '<span style="font-size: 1rem;">B</span>';
 
             const incidentCount = Math.floor(Math.random() * 5) + 5;
             document.getElementById('incidents').textContent = incidentCount;
