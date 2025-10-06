@@ -134,50 +134,133 @@
         }
         
         /* ============================================================
-           HEADER - Minimal & Elegant
+           HEADER - Compact with Super Power Button Only
            ============================================================ */
-        
+
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
-            padding: 1.5rem 0;
-            margin-bottom: 3rem;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            padding: 1rem 2rem;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--glow-primary);
-            animation: pulse 3s infinite ease-in-out;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: var(--glow-primary); }
-            50% { box-shadow: var(--glow-accent); }
-        }
-        
         .header-right {
             display: flex;
             gap: 1rem;
             align-items: center;
+        }
+
+        /* ============================================================
+           PREMIUM IQ LOGO - Above Search Box
+           ============================================================ */
+
+        .iq-logo {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .iq-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .iq-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(218, 165, 32, 0.3));
+        }
+
+        /* Animated brain neurons */
+        .neuron {
+            fill: var(--justice-gold);
+            animation: neuronPulse 2s infinite ease-in-out;
+        }
+
+        .neuron:nth-child(1) { animation-delay: 0s; }
+        .neuron:nth-child(2) { animation-delay: 0.3s; }
+        .neuron:nth-child(3) { animation-delay: 0.6s; }
+        .neuron:nth-child(4) { animation-delay: 0.9s; }
+        .neuron:nth-child(5) { animation-delay: 1.2s; }
+        .neuron:nth-child(6) { animation-delay: 1.5s; }
+
+        @keyframes neuronPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Synaptic connections */
+        .synapse {
+            stroke: var(--justice-gold);
+            stroke-width: 1.5;
+            opacity: 0.6;
+            animation: synapseFlow 3s infinite ease-in-out;
+        }
+
+        .synapse:nth-child(7) { animation-delay: 0s; }
+        .synapse:nth-child(8) { animation-delay: 0.5s; }
+        .synapse:nth-child(9) { animation-delay: 1s; }
+        .synapse:nth-child(10) { animation-delay: 1.5s; }
+        .synapse:nth-child(11) { animation-delay: 2s; }
+        .synapse:nth-child(12) { animation-delay: 2.5s; }
+
+        @keyframes synapseFlow {
+            0%, 100% {
+                opacity: 0.3;
+                stroke-width: 1.5;
+            }
+            50% {
+                opacity: 0.8;
+                stroke-width: 2;
+            }
+        }
+
+        /* IQ Circle rotating */
+        .iq-circle {
+            stroke: var(--justice-gold);
+            stroke-width: 2;
+            fill: none;
+            animation: rotateCircle 20s linear infinite;
+            transform-origin: 50px 50px;
+        }
+
+        @keyframes rotateCircle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .iq-title {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .iq-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         
         .mode-toggle {
@@ -495,12 +578,25 @@
 
             .header {
                 padding: 1rem;
-                flex-direction: column;
-                gap: 1rem;
             }
 
-            .logo {
-                font-size: 1.2rem;
+            .iq-icon {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 1rem;
+            }
+
+            .iq-title {
+                font-size: 2rem;
+            }
+
+            .iq-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+
+            .iq-logo {
+                margin-bottom: 2rem;
             }
 
             .main-area {
@@ -566,8 +662,17 @@
         }
 
         @media (max-width: 480px) {
-            .logo {
-                font-size: 1rem;
+            .iq-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .iq-title {
+                font-size: 1.5rem;
+            }
+
+            .iq-subtitle {
+                font-size: 0.75rem;
             }
 
             .search-box {
@@ -611,17 +716,8 @@
     
     <!-- Main Container -->
     <div class="container">
-        <!-- Header -->
+        <!-- Header with Super Power Button -->
         <header class="header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <svg fill="white" width="24" height="24" viewBox="0 0 20 20">
-                        <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
-                    </svg>
-                </div>
-                LyDian AI
-            </div>
-            
             <div class="header-right">
                 <button class="mode-toggle" id="superPowerBtn">
                     <svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24">
@@ -631,9 +727,38 @@
                 </button>
             </div>
         </header>
-        
+
         <!-- Main Area -->
         <main class="main-area">
+            <!-- Premium IQ Logo -->
+            <div class="iq-logo">
+                <div class="iq-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Brain neurons pattern for IQ -->
+                        <g class="neuron-group">
+                            <circle cx="50" cy="30" r="4" class="neuron" />
+                            <circle cx="35" cy="45" r="4" class="neuron" />
+                            <circle cx="65" cy="45" r="4" class="neuron" />
+                            <circle cx="30" cy="65" r="4" class="neuron" />
+                            <circle cx="50" cy="70" r="4" class="neuron" />
+                            <circle cx="70" cy="65" r="4" class="neuron" />
+
+                            <line x1="50" y1="30" x2="35" y2="45" class="synapse" />
+                            <line x1="50" y1="30" x2="65" y2="45" class="synapse" />
+                            <line x1="35" y1="45" x2="30" y2="65" class="synapse" />
+                            <line x1="35" y1="45" x2="50" y2="70" class="synapse" />
+                            <line x1="65" y1="45" x2="50" y2="70" class="synapse" />
+                            <line x1="65" y1="45" x2="70" y2="65" class="synapse" />
+                        </g>
+
+                        <!-- IQ Circle outline -->
+                        <circle cx="50" cy="50" r="45" class="iq-circle" />
+                    </svg>
+                </div>
+                <h1 class="iq-title">LyDian IQ</h1>
+                <p class="iq-subtitle">Ultra Intelligence Reasoning</p>
+            </div>
+
             <!-- Advanced Search Box -->
             <div class="search-container">
                 <div class="search-box" id="searchBox">
