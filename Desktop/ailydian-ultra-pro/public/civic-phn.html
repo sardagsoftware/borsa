@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
     <link rel="stylesheet" href="/css/animated-logo.css">
     <link rel="stylesheet" href="/css/humain-inspired.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/righteous/v17/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         :root {
-            --lydian-accent: #7C5CFF;
-            --lydian-accent-light: #9B7FFF;
-            --lydian-bg-primary: #0B0F19;
-            --lydian-bg-secondary: #121826;
-            --lydian-bg-tertiary: #1B2233;
-            --lydian-text-primary: #FFFFFF;
-            --lydian-text-secondary: #B8C1D9;
-            --lydian-border: rgba(124, 92, 255, 0.2);
+            --lydian-accent: #10A37F;
+            --lydian-accent-light: #0D8F6E;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
             --phn-pink: #EC4899;
             --phn-pink-light: #F472B6;
             --phn-green: #10B981;
@@ -39,29 +47,40 @@
         }
 
         .header {
-            background: var(--lydian-bg-secondary);
-            border-bottom: 1px solid var(--lydian-border);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 100;
-            backdrop-filter: blur(10px);
+            width: calc(100% - 80px);
+            max-width: 1400px;
         }
 
         .header-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--lydian-border);
         }
 
         .logo {
             font-family: 'Righteous', cursive;
             font-size: 1.5rem;
-            color: var(--lydian-accent);
+            color: #000000;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
         }
 
         .nav-links {
@@ -81,9 +100,9 @@
         }
 
         .hero {
-            padding: 4rem 2rem;
+            padding: 8rem 2rem 4rem;
             text-align: center;
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(124, 92, 255, 0.1));
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
         }
 
         .hero-icon {
@@ -97,7 +116,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--phn-pink), var(--lydian-accent));
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -121,15 +140,16 @@
         .stat-card {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
             text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .stat-card:hover {
             transform: translateY(-4px);
-            border-color: var(--phn-pink);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
         }
 
         .stat-value {
@@ -189,8 +209,9 @@
         .chart-card {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .chart-header {
@@ -223,7 +244,7 @@
             padding: 0.5rem 1rem;
             background: var(--lydian-bg-tertiary);
             border: 1px solid var(--lydian-border);
-            border-radius: 6px;
+            border-radius: 8px;
             color: var(--lydian-text-secondary);
             font-size: 0.9rem;
             font-weight: 600;
@@ -232,13 +253,14 @@
         }
 
         .time-btn:hover {
-            border-color: var(--phn-pink);
-            color: var(--phn-pink);
+            background: rgba(16, 163, 127, 0.05);
+            border-color: var(--lydian-accent);
+            color: var(--lydian-accent);
         }
 
         .time-btn.active {
-            background: var(--phn-pink);
-            border-color: var(--phn-pink);
+            background: var(--lydian-accent);
+            border-color: var(--lydian-accent);
             color: white;
         }
 
@@ -299,8 +321,9 @@
         .alerts-panel {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .alert-item {
@@ -392,14 +415,15 @@
         .region-card {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 1.5rem;
             transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .region-card:hover {
-            border-color: var(--phn-pink);
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
         }
 
         .region-header {
@@ -462,8 +486,9 @@
         .supply-forecast {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .supply-item {
@@ -537,12 +562,12 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: rgba(236, 72, 153, 0.1);
-            border: 1px solid var(--phn-pink);
-            border-radius: 6px;
+            background: rgba(16, 163, 127, 0.1);
+            border: 1px solid var(--lydian-accent);
+            border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--phn-pink);
+            color: var(--lydian-accent);
             margin-top: 0.5rem;
         }
 
@@ -558,6 +583,19 @@
         }
 
         @media (max-width: 768px) {
+            .header {
+                width: calc(100% - 40px);
+                top: 10px;
+            }
+
+            .header-content {
+                padding: 0.75rem 1rem;
+            }
+
+            .hero {
+                padding: 7rem 1rem 3rem;
+            }
+
             .hero-title {
                 font-size: 2rem;
             }
@@ -580,10 +618,15 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="/" class="logo">Lydian CIG</a>
+            <a href="/" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
             <nav class="nav-links">
                 <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
-                <a href="/civic-phn.html" class="nav-link" style="color: var(--phn-pink);">HST</a>
+                <a href="/civic-phn.html" class="nav-link" style="color: var(--lydian-accent);">HST</a>
                 <a href="/" class="nav-link">Ana Sayfa</a>
             </nav>
         </div>

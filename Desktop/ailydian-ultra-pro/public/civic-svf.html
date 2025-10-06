@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVF - Sentetik Veri Fabrikası | Ailydian CIG</title>
-    <link rel="stylesheet" href="/css/animated-logo.css">
-    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <title>SVF - Sentetik Veri Fabrikası | LyDian CIG</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         :root {
-            --lydian-accent: #7C5CFF;
-            --lydian-accent-light: #9B7FFF;
-            --lydian-bg-primary: #0B0F19;
-            --lydian-bg-secondary: #121826;
-            --lydian-bg-tertiary: #1B2233;
-            --lydian-text-primary: #FFFFFF;
-            --lydian-text-secondary: #B8C1D9;
-            --lydian-border: rgba(124, 92, 255, 0.2);
-            --svf-blue: #3B82F6;
+            --lydian-accent: #10A37F;
+            --lydian-accent-light: #0D8F6E;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
+            --svf-blue: #10A37F;
         }
 
         * {
@@ -35,29 +42,40 @@
         }
 
         .header {
-            background: var(--lydian-bg-secondary);
-            border-bottom: 1px solid var(--lydian-border);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            max-width: 1400px;
+            width: calc(100% - 80px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 72px;
         }
 
         .logo {
             font-family: 'Righteous', cursive;
             font-size: 1.5rem;
-            color: var(--lydian-accent);
+            color: #000000;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links {
@@ -77,9 +95,9 @@
         }
 
         .hero {
-            padding: 4rem 2rem;
+            padding: 8rem 2rem 4rem;
             text-align: center;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(124, 92, 255, 0.1));
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
         }
 
         .hero-icon {
@@ -93,7 +111,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--svf-blue), var(--lydian-accent));
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -115,11 +133,18 @@
         }
 
         .stat-card {
-            background: var(--lydian-bg-secondary);
+            background: var(--lydian-bg-primary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.12);
+            transform: translateY(-2px);
         }
 
         .stat-value {
@@ -157,10 +182,11 @@
         }
 
         .form-card {
-            background: var(--lydian-bg-secondary);
+            background: var(--lydian-bg-primary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .form-group {
@@ -186,23 +212,25 @@
 
         .form-input:focus, .form-select:focus {
             outline: none;
-            border-color: var(--svf-blue);
+            border-color: #10A37F;
+            box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
         }
 
         .btn {
             padding: 0.75rem 2rem;
-            background: var(--svf-blue);
+            background: #10A37F;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .btn:hover {
-            background: var(--lydian-accent);
+            background: #0D8F6E;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
         }
 
         .btn:disabled {
@@ -211,21 +239,28 @@
         }
 
         .jobs-list {
-            background: var(--lydian-bg-secondary);
+            background: var(--lydian-bg-primary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .job-item {
             background: var(--lydian-bg-tertiary);
             border: 1px solid var(--lydian-border);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .job-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
         }
 
         .job-info h4 {
@@ -268,7 +303,7 @@
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: var(--lydian-bg-primary);
+            background: #E5E7EB;
             border-radius: 4px;
             overflow: hidden;
             margin-top: 0.5rem;
@@ -276,14 +311,14 @@
 
         .progress-fill {
             height: 100%;
-            background: var(--svf-blue);
+            background: #10A37F;
             transition: width 0.3s;
         }
 
         .code-block {
             background: var(--lydian-bg-tertiary);
             border: 1px solid var(--lydian-border);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 1.5rem;
             font-family: 'Monaco', 'Courier New', monospace;
             font-size: 0.9rem;
@@ -303,10 +338,16 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="/" class="logo">Ailydian CIG</a>
+            <a href="/" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                LyDian
+            </a>
             <nav class="nav-links">
                 <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
-                <a href="/civic-svf.html" class="nav-link" style="color: var(--svf-blue);">SVF</a>
+                <a href="/civic-svf.html" class="nav-link" style="color: #10A37F; font-weight: 700;">SVF</a>
                 <a href="/" class="nav-link">Ana Sayfa</a>
             </nav>
         </div>

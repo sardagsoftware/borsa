@@ -4,21 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAP - Model Doğrulama ve Kanıt | Ailydian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
     <link rel="stylesheet" href="/css/animated-logo.css">
     <link rel="stylesheet" href="/css/humain-inspired.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(data:font/woff2;base64,d09GMgABAAAAABcAAA4AAAAANAAAABagAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbhHYcg0oGYACDahEICp1sm0kLOAABNgIkA4M8BCAFhGIHIBuLKlGUcFIB2c8KbJN5/YqoQomh1IzQGvf//5vZGbnJQgRK0AqkVbIZlZ5WqaZ6F14l1/v/czRJtNHGQXDKOPA0yTANrLMJtCjABl0JoV1ww6dbjadBDWi5p/f0tLdWLgE16EQCAWmPLy9POOGRv+P/+VsnJTmzIjvkJndM3v/3u89998zdd8/MvfeCAAALARgAKMBHBm4CwJgE8Dd1E0CqDADGGhAAATw+bBOIAwQXITBbADcB8P8pWQuBJRAdD0CW0JgRmA0cA3A/BNAtgN78hgD2AACQZQAA9AdCJGwEBJiGAAIYAugPBBiN8wKGYZxhOWcC53oEnB85X3veeN567vle8r32XPRc8px0nPWcdBx3bHpqHqRPAMABKVgSUAAAqAKgAkACABVOAAgAKABQAaABQAeAAQATACpItQDUCEAjAI0BaAKgKQDNAGgOQAsAWgLQCoCWArQMoOUAtBygFQC0DqB1AK0HaAMAbQRoE0BbANoK0DaAQgCFAdoB0E6AdgG0G6C9AO0DaD9ABwA6CNAhgA4DdASgowAdA+g4QCcAOgnQKYBOA3QGoLMAnQPoPEAXALoI0CWALgN0BaCrAF0D6DpANwC6CdAtgG4DdAeguwD9A9A/AD0A6CFAD//zIPhfI/+m9QSgpwA9A+g5QC8AegnQK4BeA/QGoLcAvQPoPUD/APQBoCc8XgD0EqBXAL0G6A1AbwF6B9B7gP4B6ANATwB6CtAzgJ4D9AKglwC9Aug1QG8AegvQO4DeA/QPQB8AegLQU4CeAfQcoI8APQPoI0CfAPoE0GeAvgD0FaCvAH0F6BtA3wD6DtAPgH4A9BOgnwD9AuiX4uAR8QAAqAIoNzcnJ/dVAVRUWZnXAQBJ8pxDUgAAlqyHDgCQpLJSCQBQZKVSAQBQWblUagGAKiszlwCQpcqS//z/5pRFR2aUBUd1Vpz+P5S0XhEARebkXgcAyEpepQQAqKhcWQYAFFmpVAAAVFYulVoAoMrKzCUAZKmy5L//v3NJdGRGWXBUZ8Xp/0NJ6xUBUGROrnUA5P/9v5JXKQEAKipXlgEARVYqFQAAVZVLpRYAqLIycwlAWarMm///3P+flJKRWRUdGV0Z/X///0K56pUBIClz/v/5/2oBoArn/1dkTq4FAKyFb2F1ZCwsLB8fP/8XlpaAAACQoQBArwFyb2RjcnQAAAEAAAA4g0VuZGVjaW1hbAEAAAA4g1RydWVUeXBlIHJhcGkAggAAgC4AAAAJAAAACQAAAJlpaWlpaWlpaWlpbW1tbW1tbW1tbW1iYmJiYmJiYmJiYmNjY2NjY2NjY2Njb29vb29vb29vb29wcHBwcHBwcHBwYXN0dGFibGVfbWF0Y2g=) format('woff2');
+            unicode-range: U+0000-00FF;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         :root {
-            --lydian-accent: #7C5CFF;
-            --lydian-accent-light: #9B7FFF;
-            --lydian-bg-primary: #0B0F19;
-            --lydian-bg-secondary: #121826;
-            --lydian-bg-tertiary: #1B2233;
-            --lydian-text-primary: #FFFFFF;
-            --lydian-text-secondary: #B8C1D9;
-            --lydian-border: rgba(124, 92, 255, 0.2);
-            --map-green: #10B981;
+            --lydian-accent: #10A37F;
+            --lydian-accent-light: #0D8F6E;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
+            --map-green: #10A37F;
             --map-amber: #F59E0B;
             --map-red: #EF4444;
         }
@@ -37,13 +46,19 @@
         }
 
         .header {
-            background: var(--lydian-bg-secondary);
-            border-bottom: 1px solid var(--lydian-border);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--lydian-border);
+            border-radius: 20px;
+            padding: 1rem 0;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 100;
-            backdrop-filter: blur(10px);
+            width: calc(100% - 80px);
+            max-width: 1400px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
 
         .header-content {
@@ -58,8 +73,16 @@
         .logo {
             font-family: 'Righteous', cursive;
             font-size: 1.5rem;
-            color: var(--lydian-accent);
+            color: #000000;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
         }
 
         .nav-links {
@@ -79,9 +102,9 @@
         }
 
         .hero {
-            padding: 4rem 2rem;
+            padding: 6rem 2rem 4rem;
             text-align: center;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(124, 92, 255, 0.1));
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
         }
 
         .hero-icon {
@@ -95,7 +118,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--map-green), var(--lydian-accent));
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -119,14 +142,16 @@
         .stat-card {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.12);
         }
 
         .stat-icon {
@@ -178,8 +203,9 @@
         .card {
             background: var(--lydian-bg-secondary);
             border: 1px solid var(--lydian-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .full-width {
@@ -209,7 +235,7 @@
 
         .proof-table td {
             padding: 1rem;
-            border-bottom: 1px solid rgba(124, 92, 255, 0.1);
+            border-bottom: 1px solid var(--lydian-border);
             color: var(--lydian-text-secondary);
         }
 
@@ -243,12 +269,12 @@
         .hash-display {
             font-family: 'Monaco', 'Courier New', monospace;
             font-size: 0.85rem;
-            color: var(--lydian-accent-light);
+            color: var(--lydian-accent);
             cursor: pointer;
         }
 
         .hash-display:hover {
-            color: var(--lydian-accent);
+            color: var(--lydian-accent-light);
         }
 
         .merkle-tree {
@@ -273,8 +299,9 @@
         }
 
         .merkle-node:hover rect {
-            stroke: var(--lydian-accent);
+            stroke: #10A37F;
             stroke-width: 2;
+            fill: rgba(16, 163, 127, 0.15);
         }
 
         .merkle-node text {
@@ -285,7 +312,7 @@
             display: flex;
             justify-content: space-between;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(124, 92, 255, 0.1);
+            border-bottom: 1px solid var(--lydian-border);
         }
 
         .metric-row:last-child {
@@ -344,7 +371,7 @@
 
         .btn {
             padding: 0.75rem 2rem;
-            background: var(--map-green);
+            background: #10A37F;
             color: white;
             border: none;
             border-radius: 8px;
@@ -354,8 +381,9 @@
         }
 
         .btn:hover {
-            background: var(--lydian-accent);
+            background: #0D8F6E;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
         }
 
         .btn-secondary {
@@ -385,12 +413,25 @@
         }
 
         @media (max-width: 768px) {
+            .header {
+                width: calc(100% - 40px);
+                top: 10px;
+            }
+
             .content-grid {
                 grid-template-columns: 1fr;
             }
 
+            .hero {
+                padding: 5rem 2rem 3rem;
+            }
+
             .hero-title {
                 font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
             }
         }
     </style>
@@ -399,7 +440,12 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <a href="/" class="logo">Ailydian CIG</a>
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
             <nav class="nav-links">
                 <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
                 <a href="/docs.html" class="nav-link">Dokümantasyon</a>
@@ -755,10 +801,10 @@ Response:
                     const rightChild = nextLevel[idx * 2 + 1];
 
                     if (leftChild) {
-                        svgContent += `<line x1="${node.x}" y1="${node.y + 25}" x2="${leftChild.x}" y2="${leftChild.y - 25}" stroke="rgba(124, 92, 255, 0.3)" stroke-width="2"/>`;
+                        svgContent += `<line x1="${node.x}" y1="${node.y + 25}" x2="${leftChild.x}" y2="${leftChild.y - 25}" stroke="rgba(0, 0, 0, 0.15)" stroke-width="2"/>`;
                     }
                     if (rightChild) {
-                        svgContent += `<line x1="${node.x}" y1="${node.y + 25}" x2="${rightChild.x}" y2="${rightChild.y - 25}" stroke="rgba(124, 92, 255, 0.3)" stroke-width="2"/>`;
+                        svgContent += `<line x1="${node.x}" y1="${node.y + 25}" x2="${rightChild.x}" y2="${rightChild.y - 25}" stroke="rgba(0, 0, 0, 0.15)" stroke-width="2"/>`;
                     }
                 });
             }
@@ -767,17 +813,17 @@ Response:
             levels.forEach((level, levelIdx) => {
                 level.forEach(node => {
                     const isLeaf = levelIdx === levels.length - 1;
-                    const fillColor = isLeaf ? 'rgba(16, 185, 129, 0.2)' : 'rgba(124, 92, 255, 0.2)';
-                    const strokeColor = isLeaf ? '#10B981' : '#7C5CFF';
+                    const fillColor = isLeaf ? 'rgba(16, 163, 127, 0.1)' : 'rgba(16, 163, 127, 0.05)';
+                    const strokeColor = isLeaf ? '#10A37F' : 'rgba(0, 0, 0, 0.2)';
 
                     svgContent += `
                         <g class="merkle-node" data-hash="${node.hash}">
                             <rect x="${node.x - 40}" y="${node.y - 20}" width="80" height="40"
                                   rx="8" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5"/>
                             <text x="${node.x}" y="${node.y}" text-anchor="middle"
-                                  dy="0.35em" fill="#FFFFFF" font-size="12" font-weight="600">${node.label}</text>
+                                  dy="0.35em" fill="#000000" font-size="12" font-weight="600">${node.label}</text>
                             <text x="${node.x}" y="${node.y + 35}" text-anchor="middle"
-                                  fill="#B8C1D9" font-size="9" font-family="monospace">${node.hash}</text>
+                                  fill="#4B5563" font-size="9" font-family="monospace">${node.hash}</text>
                         </g>
                     `;
                 });

@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akıllı Şehir Platformu - Ailydian</title>
+    <title>Akıllı Şehir Platformu - LyDian</title>
     <link rel="stylesheet" href="/css/animated-logo.css">
     <link rel="stylesheet" href="/css/humain-inspired.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-        /* Lydian Theme Variables */
+        /* Lydian White Theme Variables */
         :root {
-            --lydian-accent: #7C5CFF;
-            --lydian-accent-light: #9B7FFF;
-            --lydian-accent-dark: #6344E6;
-            --lydian-bg-primary: #0B0F19;
-            --lydian-bg-secondary: #121826;
-            --lydian-bg-tertiary: #1B2233;
-            --lydian-text-primary: #FFFFFF;
-            --lydian-text-secondary: #B8C1D9;
-            --lydian-text-muted: #7A8499;
-            --lydian-border: rgba(124, 92, 255, 0.2);
-            --lydian-glow: rgba(124, 92, 255, 0.4);
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
             --lydian-success: #10B981;
             --lydian-warning: #F59E0B;
             --lydian-error: #EF4444;
@@ -36,57 +48,65 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--lydian-bg-primary);
-            color: var(--lydian-text-primary);
+            background: var(--white);
+            color: var(--gray-900);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Header */
+        /* Header - Lydian Detached Box Style */
         .header {
-            background: var(--lydian-bg-secondary);
-            border-bottom: 1px solid var(--lydian-border);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(18, 24, 38, 0.95);
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            max-width: 1400px;
+            width: calc(100% - 80px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            padding: 0;
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 72px;
         }
 
         .logo {
-            font-family: 'Righteous', cursive;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--lydian-accent);
+            font-family: 'Righteous', cursive !important;
+            font-size: 2.25rem;
+            font-weight: 900 !important;
+            color: var(--black);
             text-decoration: none;
+            letter-spacing: 0.08em !important;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--lydian-accent), var(--lydian-accent-light));
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         .logo-icon svg {
-            color: white;
+            width: 32px;
+            height: 32px;
+            fill: var(--black);
         }
 
         .nav-links {
@@ -96,29 +116,32 @@
         }
 
         .nav-link {
-            color: var(--lydian-text-secondary);
+            color: var(--gray-700);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
             font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
         .nav-link:hover {
-            color: var(--lydian-accent);
+            color: var(--black);
+            background: rgba(16, 163, 127, 0.1);
         }
 
         /* Hero Section */
         .hero {
             max-width: 1400px;
-            margin: 0 auto;
+            margin: 120px auto 0;
             padding: 4rem 2rem 2rem 2rem;
             text-align: center;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--lydian-accent), var(--lydian-accent-light), #FFFFFF);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -128,7 +151,7 @@
 
         .hero-subtitle {
             font-size: 1.25rem;
-            color: var(--lydian-text-secondary);
+            color: var(--gray-600);
             max-width: 700px;
             margin: 0 auto 2rem;
             font-weight: 400;
@@ -138,20 +161,21 @@
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            background: linear-gradient(135deg, var(--lydian-accent), var(--lydian-accent-dark));
+            background: var(--primary);
             color: white;
             padding: 1rem 2rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 20px var(--lydian-glow);
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
         }
 
         .hero-cta:hover {
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--lydian-glow);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.4);
         }
 
         /* Stats Panel */
@@ -165,29 +189,31 @@
         }
 
         .stat-card {
-            background: var(--lydian-bg-secondary);
-            border: 1px solid var(--lydian-border);
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 16px;
             padding: 1.5rem;
             text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .stat-card:hover {
             transform: translateY(-4px);
-            border-color: var(--lydian-accent);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
         }
 
         .stat-value {
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--lydian-accent);
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 0.95rem;
-            color: var(--lydian-text-secondary);
+            color: var(--gray-600);
             font-weight: 500;
         }
 
@@ -217,7 +243,7 @@
             font-weight: 700;
             margin-bottom: 2rem;
             text-align: center;
-            color: var(--lydian-text-primary);
+            color: var(--black);
         }
 
         .module-grid {
@@ -227,14 +253,15 @@
         }
 
         .module-card {
-            background: var(--lydian-bg-secondary);
-            border: 1px solid var(--lydian-border);
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 20px;
             padding: 2rem;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .module-card::before {
@@ -257,7 +284,7 @@
         .module-card:hover {
             transform: translateY(-8px);
             border-color: var(--module-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--module-glow);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         }
 
         .module-icon {
@@ -270,12 +297,12 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--lydian-text-primary);
+            color: var(--black);
         }
 
         .module-description {
             font-size: 0.95rem;
-            color: var(--lydian-text-secondary);
+            color: var(--gray-600);
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
@@ -418,11 +445,11 @@
         <div class="header-content">
             <a href="/" class="logo">
                 <span class="logo-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 21V13H6V21H3ZM8 21V9H11V21H8ZM13 21V5H16V21H13ZM18 21V1H21V21H18Z"/>
                     </svg>
                 </span>
-                <span>Ailydian AŞP</span>
+                <span>LyDian</span>
             </a>
             <nav class="nav-links">
                 <a href="/" class="nav-link">Ana Sayfa</a>
