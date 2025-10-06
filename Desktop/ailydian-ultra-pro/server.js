@@ -17068,6 +17068,10 @@ app.use('/api/medical/telemedicine-platform', hipaaAuditMiddleware, telemedicine
 const patientPortal = require('./api/medical/patient-portal');
 app.use('/api/medical/patient-portal', hipaaAuditMiddleware, patientPortal);
 
+// 📁 Medical Imaging PACS (Picture Archiving and Communication System)
+const pacsSystem = require('./api/medical/pacs-system');
+app.use('/api/medical/pacs-system', hipaaAuditMiddleware, pacsSystem);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
