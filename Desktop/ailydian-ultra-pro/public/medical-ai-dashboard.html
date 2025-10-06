@@ -637,6 +637,12 @@
                 <h3>Vital Signs Monitoring</h3>
                 <p>Real-time patient telemetry, NEWS2/MEWS scores, wearable integration, early warning system</p>
             </div>
+
+            <div class="module-card" onclick="loadModule('telemedicine')">
+                <div class="module-icon">🏥</div>
+                <h3>Telemedicine Platform</h3>
+                <p>Virtual consultations, remote monitoring, e-prescriptions, video calls, appointment scheduling</p>
+            </div>
         </div>
 
         <div class="workspace">
@@ -907,6 +913,145 @@
 
         // ========== END NOTIFICATION SYSTEM ==========
 
+        // ========== TELEMEDICINE PLATFORM UI ==========
+
+        function getTelemedicineUI() {
+            return `
+                <h2 style="color: #667eea; margin-bottom: 25px;">🏥 Telemedicine & Remote Patient Monitoring</h2>
+
+                <div class="input-group">
+                    <label>Schedule Virtual Consultation</label>
+                    <input type="text" id="patientName" placeholder="Patient Name" />
+                    <select id="providerId">
+                        <option value="DR001">Dr. Sarah Johnson - Family Medicine</option>
+                        <option value="DR002">Dr. Michael Chen - Cardiology</option>
+                        <option value="DR003">Dr. Emily Rodriguez - Psychiatry</option>
+                        <option value="DR004">Dr. James Williams - Dermatology</option>
+                    </select>
+                    <select id="consultationType">
+                        <option value="initial">Initial Consultation (30 min - $150)</option>
+                        <option value="follow_up">Follow-up Visit (15 min - $75)</option>
+                        <option value="urgent">Urgent Care (20 min - $200)</option>
+                        <option value="chronic">Chronic Care (25 min - $125)</option>
+                    </select>
+                    <input type="datetime-local" id="appointmentTime" />
+                    <textarea id="reason" placeholder="Reason for visit" rows="3"></textarea>
+                </div>
+
+                <button class="btn" onclick="scheduleTelemedicineAppointment()">📅 Schedule Appointment</button>
+                <button class="btn" onclick="viewTelemedicineProviders()">👨‍⚕️ View All Providers</button>
+                <button class="btn" onclick="getTelemedicineStats()">📊 Platform Statistics</button>
+            `;
+        }
+
+        async function scheduleTelemedicineAppointment() {
+            showLoading();
+            try {
+                const appointmentTime = document.getElementById('appointmentTime').value;
+                const response = await fetch(`${API_BASE}/api/medical/telemedicine-platform/schedule-appointment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        patientId: 'PT001',
+                        patientName: document.getElementById('patientName').value || 'Test Patient',
+                        providerId: document.getElementById('providerId').value,
+                        consultationType: document.getElementById('consultationType').value,
+                        scheduledTime: appointmentTime ? new Date(appointmentTime).toISOString() : new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+                        reason: document.getElementById('reason').value || 'General consultation',
+                        symptoms: []
+                    })
+                });
+
+                const data = await response.json();
+                displayTelemedicineResults(data, 'appointment');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function viewTelemedicineProviders() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/telemedicine-platform/providers`);
+                const data = await response.json();
+                displayTelemedicineResults(data, 'providers');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function getTelemedicineStats() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/telemedicine-platform/platform-stats`);
+                const data = await response.json();
+                displayTelemedicineResults(data, 'stats');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        function displayTelemedicineResults(data, type) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+
+            let html = '<h3>🏥 Telemedicine Results</h3>';
+
+            if (type === 'appointment' && data.success) {
+                html += `
+                    <div class="result-item">
+                        <h4>✅ Appointment Scheduled Successfully</h4>
+                        <p><strong>Confirmation Code:</strong> ${data.confirmationCode}</p>
+                        <p><strong>Patient:</strong> ${data.appointment.patientName}</p>
+                        <p><strong>Provider:</strong> ${data.appointment.provider.name} (${data.appointment.provider.specialty})</p>
+                        <p><strong>Scheduled Time:</strong> ${new Date(data.appointment.scheduledTime).toLocaleString()}</p>
+                        <p><strong>Duration:</strong> ${data.appointment.duration} minutes</p>
+                        <p><strong>Video Room ID:</strong> ${data.appointment.videoRoomId}</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>📋 Next Steps:</h4>
+                        ${data.nextSteps.map(step => `<p>• ${step}</p>`).join('')}
+                    </div>
+                `;
+            } else if (type === 'providers' && data.success) {
+                html += `<div class="result-item"><h4>👨‍⚕️ Available Providers (${data.total})</h4></div>`;
+                data.providers.forEach((provider, i) => {
+                    html += `
+                        <div class="result-item">
+                            <h4>${i + 1}. ${provider.name}</h4>
+                            <p><strong>Specialty:</strong> ${provider.specialty}</p>
+                            <p><strong>Rating:</strong> ${provider.rating} ⭐ (${provider.totalConsultations} consultations)</p>
+                            <p><strong>Experience:</strong> ${provider.yearsExperience} years</p>
+                            <p><strong>Languages:</strong> ${provider.languages.join(', ')}</p>
+                            <p><strong>Availability:</strong> ${provider.availability}</p>
+                            <p><strong>Status:</strong> <span style="color: ${provider.status === 'available' ? 'green' : 'orange'}">${provider.status.toUpperCase()}</span></p>
+                        </div>
+                    `;
+                });
+            } else if (type === 'stats' && data.success) {
+                html += `
+                    <div class="result-item">
+                        <h4>📊 Platform Statistics</h4>
+                        <p><strong>Total Providers:</strong> ${data.platformStats.totalProviders}</p>
+                        <p><strong>Active Providers:</strong> ${data.platformStats.activeProviders}</p>
+                        <p><strong>Avg Consultation Duration:</strong> ${data.platformStats.averageConsultationDuration}</p>
+                        <p><strong>Patient Satisfaction:</strong> ${data.platformStats.patientSatisfaction}</p>
+                        <p><strong>Provider Utilization:</strong> ${data.platformStats.providerUtilization}</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>💰 Market Impact</h4>
+                        <p><strong>Cost Savings Per Visit:</strong> ${data.marketImpact.costSavingsPerVisit}</p>
+                        <p><strong>No-Show Reduction:</strong> ${data.marketImpact.noShowReduction}</p>
+                        <p><strong>Access to Rural Care:</strong> ${data.marketImpact.accessToRuralCare}</p>
+                    </div>
+                `;
+            }
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // ========== END TELEMEDICINE PLATFORM ==========
+
         // Load platform statistics
         async function loadStats() {
             const stats = [
@@ -964,6 +1109,9 @@
                     break;
                 case 'vitals':
                     content.innerHTML = getVitalSignsUI();
+                    break;
+                case 'telemedicine':
+                    content.innerHTML = getTelemedicineUI();
                     break;
             }
         }

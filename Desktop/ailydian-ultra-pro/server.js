@@ -17060,6 +17060,10 @@ app.use('/api/medical/medical-nlp', hipaaAuditMiddleware, medicalNLP);
 const notificationSystem = require('./api/medical/notification-system');
 app.use('/api/medical/notification-system', hipaaAuditMiddleware, notificationSystem);
 
+// 🏥 Telemedicine & Remote Patient Monitoring Platform
+const telemedicinePlatform = require('./api/medical/telemedicine-platform');
+app.use('/api/medical/telemedicine-platform', hipaaAuditMiddleware, telemedicinePlatform);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
