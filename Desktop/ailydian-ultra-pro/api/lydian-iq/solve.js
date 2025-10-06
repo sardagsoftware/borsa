@@ -397,37 +397,37 @@ async function callGroqAPI(problem, domain, options = {}) {
     }
 }
 
-// REMOVED: // Generate fallback demo response
-// REMOVED: function generateFallbackResponse(problem, domain) {
-// REMOVED:     console.log('⚠️ Using fallback demo response');
-// REMOVED: 
-// REMOVED:     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
-// REMOVED: 
-// REMOVED:     const reasoningChain = [
-// REMOVED:         `${domainConfig.name} alanında problemi analiz ediyorum`,
-// REMOVED:         'İlgili teorileri ve yaklaşımları belirliyorum',
-// REMOVED:         'Adım adım çözüm planı oluşturuyorum',
-// REMOVED:         'Her adımda doğrulama yapıyorum',
-// REMOVED:         'Sonucu optimize ediyorum'
-// REMOVED:     ];
-// REMOVED: 
-// REMOVED:     const solution = `# ${domainConfig.icon} ${domainConfig.name} Çözümü\n\n**Problem:** ${problem}\n\n## Analiz\n\nBu problem ${domainConfig.name.toLowerCase()} alanına aittir ve aşağıdaki yaklaşımla çözülebilir:\n\n### Adımlar\n\n1. **Problemi Tanımlama**: Sorunun net bir şekilde anlaşılması\n2. **Yöntem Belirleme**: ${domainConfig.capabilities[0]} kullanarak yaklaşım\n3. **Uygulama**: Adım adım çözüm\n4. **Doğrulama**: Sonucun kontrolü\n\n## Sonuç\n\nÇözüm başarıyla tamamlandı.\n\n**Yetenekler Kullanılan:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** Bu bir demo yanıttır. Gerçek Azure LyDian IQ API entegrasyonu için API anahtarı gereklidir.`;
-// REMOVED: 
-// REMOVED:     return {
-// REMOVED:         success: true,
-// REMOVED:         domain: domain,
-// REMOVED:         problem: problem,
-// REMOVED:         reasoningChain: reasoningChain,
-// REMOVED:         solution: solution,
-// REMOVED:         metadata: {
-// REMOVED:             responseTime: (Math.random() * 5 + 5).toFixed(2),
-// REMOVED:             tokensUsed: Math.floor(Math.random() * 2000 + 500),
-// REMOVED:             model: 'Demo Mode',
-// REMOVED:             confidence: 0.95,
-// REMOVED:             mode: 'demo'
-// REMOVED:         }
-// REMOVED:     };
-// REMOVED: }
+// Generate fallback demo response (when no API keys available)
+function generateFallbackResponse(problem, domain) {
+    console.log('⚠️ No API keys configured - returning error message');
+
+    const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
+
+    const reasoningChain = [
+        'API konfigürasyonu kontrol ediliyor',
+        'Alternatif çözüm yolları araştırılıyor',
+        'Sistem yöneticisine bilgi veriliyor'
+    ];
+
+    const solution = `# ⚠️ API Konfigürasyonu Gerekli\n\n**Problem:** ${problem}\n\n## Durum\n\nLyDian IQ API'si şu anda kullanılamıyor. Lütfen sistem yöneticisiyle iletişime geçin.\n\n### Gereksinimler\n\n1. **API Anahtarı**: En az bir AI provider API anahtarı gereklidir\n2. **Desteklenen Providers**: Claude, OpenAI, Groq\n3. **Konfigürasyon**: .env dosyasında API anahtarlarını ayarlayın\n\n## Çözüm\n\nSistem yöneticisi tarafından API anahtarları yapılandırıldıktan sonra ${domainConfig.name} alanındaki sorular yanıtlanabilecektir.\n\n**Mevcut Yetenekler:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** API konfigürasyonu tamamlandıktan sonra production modunda çalışacaktır.`;
+
+    return {
+        success: false,
+        domain: domain,
+        problem: problem,
+        reasoningChain: reasoningChain,
+        solution: solution,
+        error: 'API anahtarı yapılandırması gerekli. Lütfen sistem yöneticisiyle iletişime geçin.',
+        metadata: {
+            responseTime: '0.05',
+            tokensUsed: 0,
+            model: 'Configuration Required',
+            provider: 'System',
+            confidence: 0.0,
+            mode: 'error'
+        }
+    };
+}
 
 // ========== API Handler ==========
 module.exports = async (req, res) => {

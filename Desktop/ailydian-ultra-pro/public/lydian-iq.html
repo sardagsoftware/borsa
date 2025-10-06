@@ -1435,11 +1435,19 @@
                     })
                 });
 
+                const data = await response.json();
+
+                // Check if API returned error (e.g., no API keys configured)
+                if (!data.success && data.error) {
+                    console.warn('⚠️ API Configuration Issue:', data.error);
+                    // Display error message from API
+                    displayRealResponse(data);
+                    return;
+                }
+
                 if (!response.ok) {
                     throw new Error(`API Error: ${response.status} ${response.statusText}`);
                 }
-
-                const data = await response.json();
 
                 // ✅ AI Response received (model details encrypted for security)
                 console.log('✅ LyDian IQ Response Received');
