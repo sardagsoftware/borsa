@@ -1293,6 +1293,14 @@
             state.recognition.onerror = (event) => {
                 console.error('❌ Ses tanıma hatası:', event.error);
                 stopRecording();
+
+                if (event.error === 'not-allowed') {
+                    alert('🎤 Mikrofon İzni Gerekli!\n\nLütfen şu adımları izleyin:\n1. Tarayıcı adres çubuğundaki mikrofon simgesine tıklayın\n2. "İzin ver" (Allow) seçeneğini seçin\n3. Sayfayı yenileyin (F5 veya Cmd+R)\n\nNot: Mikrofon izni vermeden ses tanıma çalışmaz.');
+                } else if (event.error === 'no-speech') {
+                    console.log('⚠️ Ses algılanamadı');
+                } else if (event.error === 'audio-capture') {
+                    alert('🎤 Mikrofon bulunamadı!\n\nLütfen:\n1. Mikrofonunuzun takılı olduğundan emin olun\n2. Başka uygulamaların mikrofonu kullanmadığını kontrol edin');
+                }
             };
             
             state.recognition.onend = () => {
@@ -1315,42 +1323,13 @@
             state.isRecording = false;
         }
         
-        elements.voiceBtn.addEventListener('click', () => {
-            console.log('🎤 Voice button clicked');
+        // Voice button event listener will be added in DOMContentLoaded
 
-            if (!state.recognition) {
-                console.log('🎤 Initializing voice recognition...');
-                initVoiceRecognition();
-            }
-
-            if (!state.recognition) {
-                console.error('❌ Voice recognition not available');
-                alert('Ses tanıma tarayıcınız tarafından desteklenmiyor. Lütfen Chrome, Edge veya Safari kullanın.');
-                return;
-            }
-
-            try {
-                if (state.isRecording) {
-                    console.log('🛑 Stopping recording...');
-                    state.recognition.stop();
-                } else {
-                    console.log('🎤 Starting recording...');
-                    state.recognition.start();
-                }
-            } catch (error) {
-                console.error('❌ Voice recognition error:', error);
-                alert('Ses tanıma başlatılamadı. Mikrofon izni verilmiş mi kontrol edin.');
-            }
-        });
-        
         // ============================================================
         // SEARCH & AI RESPONSE - REAL BACKEND INTEGRATION
         // ============================================================
 
-        elements.sendBtn.addEventListener('click', processQuery);
-        elements.searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') processQuery();
-        });
+        // Search button and Enter key listeners will be added in DOMContentLoaded
 
         async function processQuery() {
             const query = elements.searchInput.value.trim();
@@ -1577,6 +1556,51 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
 
             // Initialize voice recognition
             initVoiceRecognition();
+
+            // ============================================================
+            // VOICE BUTTON EVENT LISTENER
+            // ============================================================
+
+            elements.voiceBtn.addEventListener('click', () => {
+                console.log('🎤 Voice button clicked');
+
+                if (!state.recognition) {
+                    console.log('🎤 Initializing voice recognition...');
+                    initVoiceRecognition();
+                }
+
+                if (!state.recognition) {
+                    console.error('❌ Voice recognition not available');
+                    alert('Ses tanıma tarayıcınız tarafından desteklenmiyor. Lütfen Chrome, Edge veya Safari kullanın.');
+                    return;
+                }
+
+                try {
+                    if (state.isRecording) {
+                        console.log('🛑 Stopping recording...');
+                        state.recognition.stop();
+                    } else {
+                        console.log('🎤 Starting recording...');
+                        state.recognition.start();
+                    }
+                } catch (error) {
+                    console.error('❌ Voice recognition error:', error);
+                    if (error.name === 'NotAllowedError' || error.message.includes('not-allowed')) {
+                        alert('Mikrofon izni gerekli! Lütfen:\n1. Tarayıcı adres çubuğundaki mikrofon ikonuna tıklayın\n2. "İzin ver" seçeneğini seçin\n3. Sayfayı yenileyin');
+                    } else {
+                        alert('Ses tanıma başlatılamadı. Mikrofon izni verilmiş mi kontrol edin.');
+                    }
+                }
+            });
+
+            // ============================================================
+            // SEARCH BUTTON & ENTER KEY
+            // ============================================================
+
+            elements.sendBtn.addEventListener('click', processQuery);
+            elements.searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') processQuery();
+            });
 
             // ============================================================
             // MODAL FUNCTIONALITY
