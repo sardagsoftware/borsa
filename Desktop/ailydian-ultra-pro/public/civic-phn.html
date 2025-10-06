@@ -959,44 +959,109 @@
     </div>
 
     <script>
-        // Nowcasting Chart Data
-        const chartData = {
-            '7': [
-                { label: 'Mon', value: 387 },
-                { label: 'Tue', value: 412 },
-                { label: 'Wed', value: 394 },
-                { label: 'Thu', value: 428 },
-                { label: 'Fri', value: 445 },
-                { label: 'Sat', value: 402 },
-                { label: 'Sun', value: 379 }
-            ],
-            '14': [
-                { label: 'W1', value: 2847 },
-                { label: 'W2', value: 3124 },
-                { label: 'W3', value: 2956 },
-                { label: 'W4', value: 3287 },
-                { label: 'W5', value: 3456 },
-                { label: 'W6', value: 3189 },
-                { label: 'W7', value: 2934 },
-                { label: 'W8', value: 2847 }
-            ],
-            '30': [
-                { label: 'Jan', value: 12450 },
-                { label: 'Feb', value: 13780 },
-                { label: 'Mar', value: 11920 },
-                { label: 'Apr', value: 14560 },
-                { label: 'May', value: 13240 },
-                { label: 'Jun', value: 11890 }
-            ]
-        };
-
+        // Global state
         let currentRange = '14';
+        let forecastData = null;
+        let isLoading = false;
 
-        // Render Chart
+        // Loading state helper
+        function setLoadingState(elementId, isLoading) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = isLoading ? 'Yükleniyor...' : element.textContent;
+            }
+        }
+
+        // Error handler
+        function handleError(error, context) {
+            console.error(`${context} hatası:`, error);
+            // Show user-friendly error without exposing sensitive info
+            return null;
+        }
+
+        // API: Load Metrics
+        async function loadMetrics() {
+            try {
+                setLoadingState('active-cases', true);
+                const response = await fetch('/api/phn/v1/metrics');
+                const data = await response.json();
+
+                if (data.success && data.metrics) {
+                    updateMetricsCards(data.metrics);
+                }
+            } catch (error) {
+                handleError(error, 'Metrik yükleme');
+            }
+        }
+
+        // Update metrics cards
+        function updateMetricsCards(metrics) {
+            // Active Cases
+            if (metrics.activeCases) {
+                document.getElementById('active-cases').textContent = metrics.activeCases.toLocaleString();
+
+                const trendEl = document.getElementById('cases-trend');
+                const trend = metrics.casesTrend || 0;
+                trendEl.textContent = `${trend > 0 ? '▲' : '▼'} Geçen haftaya göre %${Math.abs(trend)}`;
+                trendEl.className = `stat-trend ${trend > 0 ? 'trend-up' : 'trend-down'}`;
+            }
+
+            // R Value
+            if (metrics.rValue !== undefined) {
+                document.getElementById('r-value').textContent = metrics.rValue.toFixed(2);
+
+                const rTrendEl = document.getElementById('r-trend');
+                if (metrics.rValue < 1.0) {
+                    rTrendEl.textContent = '▼ Salgın eşiğinin altında';
+                    rTrendEl.className = 'stat-trend trend-down';
+                } else {
+                    rTrendEl.textContent = '▲ Salgın eşiğinin üstünde';
+                    rTrendEl.className = 'stat-trend trend-up';
+                }
+            }
+
+            // Hospital Capacity
+            if (metrics.hospitalCapacity !== undefined) {
+                document.getElementById('hospital-capacity').textContent = '%' + metrics.hospitalCapacity;
+
+                const capacityTrendEl = document.getElementById('capacity-trend');
+                const capacityTrend = metrics.capacityTrend || 0;
+                capacityTrendEl.textContent = `${capacityTrend > 0 ? '▲' : '▼'} Dünkü değere göre %${Math.abs(capacityTrend)}`;
+                capacityTrendEl.className = `stat-trend ${capacityTrend > 0 ? 'trend-up' : 'trend-down'}`;
+            }
+
+            // Regions Monitored
+            if (metrics.regionsMonitored) {
+                document.getElementById('regions-monitored').textContent = metrics.regionsMonitored;
+            }
+        }
+
+        // API: Load Forecasts
+        async function loadForecasts() {
+            try {
+                const response = await fetch('/api/phn/v1/forecasts');
+                const data = await response.json();
+
+                if (data.success && data.forecasts) {
+                    forecastData = data.forecasts;
+                    renderChart(currentRange);
+                }
+            } catch (error) {
+                handleError(error, 'Tahmin yükleme');
+            }
+        }
+
+        // Render Chart with real data
         function renderChart(range) {
-            const data = chartData[range];
-            const maxValue = Math.max(...data.map(d => d.value));
             const chartContainer = document.getElementById('nowcast-chart');
+
+            if (!forecastData || !forecastData[range]) {
+                chartContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--lydian-text-secondary);">Veriler yükleniyor...</div>';
+                return;
+            }
+
+            const data = forecastData[range];
+            const maxValue = Math.max(...data.map(d => d.value));
 
             chartContainer.innerHTML = data.map(item => {
                 const height = (item.value / maxValue) * 100;
@@ -1011,6 +1076,171 @@
             }).join('');
         }
 
+        // API: Load Diseases (for regional data)
+        async function loadDiseases() {
+            try {
+                const response = await fetch('/api/phn/v1/diseases');
+                const data = await response.json();
+
+                if (data.success && data.diseases) {
+                    updateRegionalData(data.diseases);
+                }
+            } catch (error) {
+                handleError(error, 'Hastalık verisi yükleme');
+            }
+        }
+
+        // Update regional cards with disease data
+        function updateRegionalData(diseases) {
+            const regionalCards = document.querySelectorAll('.region-card');
+
+            diseases.slice(0, regionalCards.length).forEach((disease, index) => {
+                const card = regionalCards[index];
+                if (!card) return;
+
+                // Update region name if available
+                if (disease.region) {
+                    const regionName = card.querySelector('.region-info h4');
+                    if (regionName) regionName.textContent = disease.region;
+                }
+
+                // Update metrics
+                const metrics = card.querySelectorAll('.metric-value');
+                if (metrics[0] && disease.cases !== undefined) {
+                    metrics[0].textContent = disease.cases.toLocaleString();
+                    metrics[0].className = `metric-value ${disease.cases > 1000 ? 'high' : disease.cases > 500 ? 'medium' : 'low'}`;
+                }
+                if (metrics[1] && disease.rValue !== undefined) {
+                    metrics[1].textContent = disease.rValue.toFixed(2);
+                    metrics[1].className = `metric-value ${disease.rValue > 1.2 ? 'high' : disease.rValue > 0.9 ? 'medium' : 'low'}`;
+                }
+                if (metrics[2] && disease.icuCapacity !== undefined) {
+                    metrics[2].textContent = '%' + disease.icuCapacity;
+                    metrics[2].className = `metric-value ${disease.icuCapacity > 80 ? 'high' : disease.icuCapacity > 60 ? 'medium' : 'low'}`;
+                }
+
+                // Update progress bar
+                const progressBar = card.querySelector('.progress-fill');
+                if (progressBar && disease.icuCapacity !== undefined) {
+                    progressBar.style.width = disease.icuCapacity + '%';
+                    progressBar.className = `progress-fill ${disease.icuCapacity > 80 ? 'critical' : disease.icuCapacity > 60 ? 'warning' : 'normal'}`;
+                }
+            });
+        }
+
+        // API: Load Hospital Capacity
+        async function loadHospitals() {
+            try {
+                const response = await fetch('/api/phn/v1/hospitals');
+                const data = await response.json();
+
+                if (data.success && data.hospitals) {
+                    updateSupplyForecast(data.hospitals);
+                }
+            } catch (error) {
+                handleError(error, 'Hastane kapasitesi yükleme');
+            }
+        }
+
+        // Update supply forecast with hospital data
+        function updateSupplyForecast(hospitals) {
+            if (!hospitals || hospitals.length === 0) return;
+
+            const supplyItems = document.querySelectorAll('.supply-item');
+
+            hospitals.slice(0, supplyItems.length).forEach((hospital, index) => {
+                const item = supplyItems[index];
+                if (!item) return;
+
+                // Update supply levels based on hospital data
+                if (hospital.supplies) {
+                    const level = hospital.supplies.level || 70;
+                    const levelEl = item.querySelector('.supply-level');
+                    const progressFill = item.querySelector('.progress-fill');
+                    const trendEl = item.querySelector('.supply-trend');
+
+                    if (levelEl) {
+                        levelEl.textContent = '%' + level;
+                        levelEl.style.color = level > 80 ? 'var(--phn-green)' : level > 50 ? 'var(--phn-orange)' : 'var(--phn-red)';
+                    }
+
+                    if (progressFill) {
+                        progressFill.style.width = level + '%';
+                        progressFill.className = `progress-fill ${level > 80 ? 'normal' : level > 50 ? 'warning' : 'critical'}`;
+                    }
+
+                    if (trendEl) {
+                        const trend = hospital.supplies.trend || 'stable';
+                        const trendText = trend === 'up' ? '▲ Yeterli' : trend === 'down' ? '▼ Yakında Sipariş' : '▲ Stabil';
+                        trendEl.textContent = trendText;
+                        trendEl.style.color = trend === 'up' ? 'var(--phn-green)' : trend === 'down' ? 'var(--phn-red)' : 'var(--phn-orange)';
+                    }
+                }
+            });
+        }
+
+        // API: Load Alerts
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/phn/v1/alerts');
+                const data = await response.json();
+
+                if (data.success && data.alerts) {
+                    updateAlerts(data.alerts);
+                }
+            } catch (error) {
+                handleError(error, 'Uyarı yükleme');
+            }
+        }
+
+        // Update alerts panel
+        function updateAlerts(alerts) {
+            const container = document.getElementById('alerts-container');
+            if (!container || !alerts || alerts.length === 0) return;
+
+            const severityMap = {
+                'critical': { badge: 'KRİTİK', badgeClass: 'badge-critical' },
+                'warning': { badge: 'UYARI', badgeClass: 'badge-warning' },
+                'info': { badge: 'BİLGİ', badgeClass: 'badge-info' }
+            };
+
+            container.innerHTML = alerts.slice(0, 5).map(alert => {
+                const severity = severityMap[alert.severity] || severityMap.info;
+                const alertClass = alert.severity === 'critical' ? 'critical' : alert.severity === 'warning' ? 'warning' : 'normal';
+
+                return `
+                    <div class="alert-item ${alertClass}">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${alert.severity === 'critical' ? 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' : 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'}"/>
+                                </svg>
+                                ${alert.title}
+                            </div>
+                            <span class="alert-badge ${severity.badgeClass}">${severity.badge}</span>
+                        </div>
+                        <div class="alert-description">${alert.description}</div>
+                        <div class="alert-meta">${alert.metadata || ''}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // API: Load Heatmap (optional, for future map integration)
+        async function loadHeatmap() {
+            try {
+                const response = await fetch('/api/phn/v1/heatmap');
+                const data = await response.json();
+
+                if (data.success && data.heatmap) {
+                    // Future: Update map visualization
+                    console.log('Heatmap data loaded:', data.heatmap);
+                }
+            } catch (error) {
+                handleError(error, 'Isı haritası yükleme');
+            }
+        }
+
         // Time Range Selector
         document.querySelectorAll('.time-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1021,103 +1251,34 @@
             });
         });
 
-        // Real-time Updates
-        function updateStats() {
-            // Active Cases
-            const cases = Math.floor(Math.random() * 500) + 2600;
-            document.getElementById('active-cases').textContent = cases.toLocaleString();
+        // Load all data
+        async function loadAllData() {
+            if (isLoading) return;
+            isLoading = true;
 
-            const casesTrend = (Math.random() * 20 - 10).toFixed(1);
-            const casesEl = document.getElementById('cases-trend');
-            casesEl.textContent = `${casesTrend > 0 ? '▲' : '▼'} Geçen haftaya göre %${Math.abs(casesTrend)}`;
-            casesEl.className = `stat-trend ${casesTrend > 0 ? 'trend-up' : 'trend-down'}`;
-
-            // R Value
-            const rValue = (Math.random() * 0.5 + 0.7).toFixed(2);
-            document.getElementById('r-value').textContent = rValue;
-
-            const rTrend = document.getElementById('r-trend');
-            if (rValue < 1.0) {
-                rTrend.textContent = '▼ Salgın eşiğinin altında';
-                rTrend.className = 'stat-trend trend-down';
-            } else {
-                rTrend.textContent = '▲ Salgın eşiğinin üstünde';
-                rTrend.className = 'stat-trend trend-up';
-            }
-
-            // Hospital Capacity
-            const capacity = Math.floor(Math.random() * 15) + 68;
-            document.getElementById('hospital-capacity').textContent = '%' + capacity;
-
-            const capacityTrend = (Math.random() * 10 - 5).toFixed(1);
-            const capacityEl = document.getElementById('capacity-trend');
-            capacityEl.textContent = `${capacityTrend > 0 ? '▲' : '▼'} Dünkü değere göre %${Math.abs(capacityTrend)}`;
-            capacityEl.className = `stat-trend ${capacityTrend > 0 ? 'trend-up' : 'trend-down'}`;
-        }
-
-        // Simulate new alert
-        function addRandomAlert() {
-            const alerts = [
-                {
-                    type: 'warning',
-                    badge: 'UYARI',
-                    title: 'COVID-19 Kümesi - İşyeri 5',
-                    description: 'Küçük küme tespit edildi. Temas izleme başlatıldı.',
-                    meta: '<strong>Vakalar:</strong> 7 • <strong>Durum:</strong> Kontrol Altında'
-                },
-                {
-                    type: 'normal',
-                    badge: 'BİLGİ',
-                    title: 'Sağlık Taraması - Okullar',
-                    description: 'Rutin sağlık taraması tamamlandı. Her şey normal.',
-                    meta: '<strong>Taranan:</strong> 1.247 öğrenci • <strong>Sonuç:</strong> Normal'
-                },
-                {
-                    type: 'warning',
-                    badge: 'UYARI',
-                    title: 'Malzeme Uyarısı - 9. Bölge',
-                    description: 'Hızlı test kitleri azalıyor. Tedarik planlandı.',
-                    meta: '<strong>Mevcut:</strong> 890 kit • <strong>Varış:</strong> 2 gün'
-                }
-            ];
-
-            const randomAlert = alerts[Math.floor(Math.random() * alerts.length)];
-            const container = document.getElementById('alerts-container');
-
-            const alertHTML = `
-                <div class="alert-item ${randomAlert.type}" style="animation: slideIn 0.5s;">
-                    <div class="alert-header">
-                        <div class="alert-title">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            ${randomAlert.title}
-                        </div>
-                        <span class="alert-badge badge-${randomAlert.type === 'critical' ? 'critical' : randomAlert.type === 'warning' ? 'warning' : 'info'}">${randomAlert.badge}</span>
-                    </div>
-                    <div class="alert-description">${randomAlert.description}</div>
-                    <div class="alert-meta">${randomAlert.meta}</div>
-                </div>
-            `;
-
-            container.insertAdjacentHTML('afterbegin', alertHTML);
-
-            // Keep only last 5 alerts
-            const allAlerts = container.querySelectorAll('.alert-item');
-            if (allAlerts.length > 5) {
-                allAlerts[allAlerts.length - 1].remove();
+            try {
+                await Promise.all([
+                    loadMetrics(),
+                    loadForecasts(),
+                    loadDiseases(),
+                    loadHospitals(),
+                    loadAlerts(),
+                    loadHeatmap()
+                ]);
+            } catch (error) {
+                handleError(error, 'Veri yükleme');
+            } finally {
+                isLoading = false;
             }
         }
 
-        // Initialize
-        renderChart(currentRange);
-        updateStats();
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllData();
 
-        // Update stats every 5 seconds
-        setInterval(updateStats, 5000);
-
-        // Add random alert every 15 seconds
-        setInterval(addRandomAlert, 15000);
+            // Auto-refresh every 60 seconds (medical data updates slower)
+            setInterval(loadAllData, 60000);
+        });
 
         // Add slide-in animation
         const style = document.createElement('style');

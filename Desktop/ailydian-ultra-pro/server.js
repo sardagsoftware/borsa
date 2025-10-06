@@ -17088,10 +17088,16 @@ app.use('/api/medical', hipaaAuditErrorHandler);
 const cigSvfAPI = require('./api/cig-svf');
 const cigMapAPI = require('./api/cig-map');
 const cigAtgAPI = require('./api/cig-atg');
+const cigRroAPI = require('./api/cig-rro');
+const cigUmoAPI = require('./api/cig-umo');
+const cigPhnAPI = require('./api/cig-phn');
 
-app.use('/api/cig-svf', cigSvfAPI);  // Sentetik Veri Fabrikası
+app.use('/api/svf', cigSvfAPI);      // Sentetik Veri Fabrikası
 app.use('/api/map', cigMapAPI);      // Model Doğrulama ve Kanıt
 app.use('/api/atg', cigAtgAPI);      // Otomatik Güven Ağı
+app.use('/api/rro', cigRroAPI);      // Risk ve Dayanıklılık İşletim Sistemi
+app.use('/api/umo', cigUmoAPI);      // Kentsel Mobilite Orkestratörü
+app.use('/api/phn', cigPhnAPI);      // Halk Sağlığı Nowcasting
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {

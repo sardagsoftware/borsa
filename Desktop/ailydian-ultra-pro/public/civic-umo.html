@@ -820,37 +820,10 @@
             maxZoom: 20
         }).addTo(map);
 
-        // Traffic routes data
-        const trafficRoutes = [
-            {
-                name: 'D100 Otoyolu Doğu',
-                coords: [[41.0082, 28.9784], [41.0150, 29.0500]],
-                status: 'smooth',
-                speed: 65,
-                vehicles: 340
-            },
-            {
-                name: 'Boğaziçi Köprüsü',
-                coords: [[41.0392, 29.0086], [41.0444, 29.0250]],
-                status: 'congested',
-                speed: 25,
-                vehicles: 890
-            },
-            {
-                name: 'E5 Koridoru',
-                coords: [[41.0200, 28.8500], [41.0200, 29.1000]],
-                status: 'moderate',
-                speed: 45,
-                vehicles: 520
-            },
-            {
-                name: 'Sahil Yolu',
-                coords: [[41.0050, 28.9600], [41.0250, 29.0000]],
-                status: 'smooth',
-                speed: 55,
-                vehicles: 280
-            }
-        ];
+        // Global state
+        let trafficRoutes = [];
+        let trafficPolylines = [];
+        let incidentMarkers = [];
 
         // Route colors
         const routeColors = {
@@ -865,108 +838,214 @@
             congested: 'Tıkanık'
         };
 
-        // Draw routes on map
-        trafficRoutes.forEach(route => {
-            const polyline = L.polyline(route.coords, {
-                color: routeColors[route.status],
-                weight: 5,
-                opacity: 0.7
-            }).addTo(map);
+        // Security: Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
 
-            polyline.bindPopup(`
-                <div style="padding: 0.5rem;">
-                    <h4 style="margin-bottom: 0.5rem;">${route.name}</h4>
-                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">
-                        Hız: ${route.speed} km/sa<br>
-                        Aktif Araçlar: ${route.vehicles}
-                    </p>
-                    <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${routeColors[route.status]}20; color: ${routeColors[route.status]}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
-                        ${statusLabels[route.status]}
-                    </span>
-                </div>
-            `);
-        });
+        // Security: Validate input
+        function validateInput(value, maxLength = 200) {
+            if (typeof value !== 'string') return false;
+            if (value.length > maxLength) return false;
+            if (/<script|javascript:|on\w+=/i.test(value)) return false;
+            return true;
+        }
 
-        // Incident markers
-        const incidents = [
-            {
-                coords: [41.0392, 29.0086],
-                type: 'accident',
-                title: 'Araç Kazası',
-                description: 'Boğaziçi Köprüsü\'nde küçük çarpışma. Sağ şerit kapalı.',
-                severity: 'critical',
-                reportedAt: '15 dakika önce'
-            },
-            {
-                coords: [41.0150, 29.0500],
-                type: 'construction',
-                title: 'Yol Çalışması',
-                description: 'Bakım için şerit kapatma. Gecikmeler beklenebilir.',
-                severity: 'warning',
-                reportedAt: '2 saat önce'
-            },
-            {
-                coords: [41.0250, 29.0000],
-                type: 'event',
-                title: 'Özel Etkinlik',
-                description: 'Stadyumda konser. Yoğun trafik bekleniyor.',
-                severity: 'normal',
-                reportedAt: '30 dakika önce'
+        // Load traffic data from API
+        async function loadTrafficData() {
+            try {
+                const response = await fetch('/api/umo/v1/traffic');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load traffic data');
+                }
+
+                // Clear existing polylines
+                trafficPolylines.forEach(p => map.removeLayer(p));
+                trafficPolylines = [];
+
+                // Update global state
+                trafficRoutes = data.routes || [];
+
+                // Draw traffic routes on map
+                trafficRoutes.forEach(route => {
+                    const polyline = L.polyline(route.coords, {
+                        color: routeColors[route.status],
+                        weight: 5,
+                        opacity: 0.7
+                    }).addTo(map);
+
+                    polyline.bindPopup(`
+                        <div style="padding: 0.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">${escapeHtml(route.name)}</h4>
+                            <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                Hız: ${parseInt(route.speed)} km/sa<br>
+                                Aktif Araçlar: ${parseInt(route.vehicles)}
+                            </p>
+                            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${routeColors[route.status]}20; color: ${routeColors[route.status]}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+                                ${statusLabels[route.status]}
+                            </span>
+                        </div>
+                    `);
+
+                    trafficPolylines.push(polyline);
+                });
+
+                // Render traffic flow cards
+                renderTrafficFlow();
+
+                // Update stats
+                updateStats(data.stats);
+
+            } catch (error) {
+                console.error('Trafik verisi yükleme hatası:', error);
+                showError('Trafik verileri yüklenirken bir hata oluştu. Lütfen tekrar deneyin.');
             }
-        ];
+        }
 
-        const incidentIcons = {
-            critical: '#EF4444',
-            warning: '#F59E0B',
-            normal: '#10B981'
-        };
+        // Load transit status from API
+        async function loadTransitData() {
+            try {
+                const response = await fetch('/api/umo/v1/transit');
+                const data = await response.json();
 
-        incidents.forEach(incident => {
-            const color = incidentIcons[incident.severity];
-            const marker = L.circleMarker(incident.coords, {
-                radius: 10,
-                fillColor: color,
-                color: '#fff',
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.9,
-                className: 'pulse'
-            }).addTo(map);
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load transit data');
+                }
 
-            marker.bindPopup(`
-                <div style="padding: 0.5rem;">
-                    <h4 style="margin-bottom: 0.5rem;">${incident.title}</h4>
-                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${incident.description}</p>
-                    <div style="font-size: 0.8rem; color: var(--lydian-text-secondary);">
-                        Bildirilme: ${incident.reportedAt}
-                    </div>
-                </div>
-            `);
-        });
+                // Handle transit data (can be used for route planning)
+                return data.transit || [];
 
-        // Render incidents list
-        function renderIncidents() {
-            const container = document.getElementById('incidents-container');
-            container.innerHTML = incidents.map(incident => {
-                const iconMap = {
-                    accident: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',
-                    construction: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>',
-                    event: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>'
+            } catch (error) {
+                console.error('Toplu taşıma verisi yükleme hatası:', error);
+                return [];
+            }
+        }
+
+        // Load parking data from API
+        async function loadParkingData() {
+            try {
+                const response = await fetch('/api/umo/v1/parking');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load parking data');
+                }
+
+                // Add parking markers to map
+                const parkingData = data.parking || [];
+                parkingData.forEach(parking => {
+                    const marker = L.marker(parking.coords, {
+                        icon: L.divIcon({
+                            className: 'parking-icon',
+                            html: `<div style="background: #10A37F; color: white; padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 12px;">P</div>`
+                        })
+                    }).addTo(map);
+
+                    marker.bindPopup(`
+                        <div style="padding: 0.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">${escapeHtml(parking.name)}</h4>
+                            <p style="font-size: 0.9rem;">
+                                Müsait: ${parseInt(parking.available)}/${parseInt(parking.total)}<br>
+                                Ücret: ₺${parseFloat(parking.price).toFixed(2)}/saat
+                            </p>
+                        </div>
+                    `);
+                });
+
+            } catch (error) {
+                console.error('Otopark verisi yükleme hatası:', error);
+            }
+        }
+
+        // Load congestion heatmap from API
+        async function loadCongestionData() {
+            try {
+                const response = await fetch('/api/umo/v1/congestion');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load congestion data');
+                }
+
+                // Clear existing incident markers
+                incidentMarkers.forEach(m => map.removeLayer(m));
+                incidentMarkers = [];
+
+                const incidents = data.incidents || [];
+
+                // Incident icons
+                const incidentIcons = {
+                    critical: '#EF4444',
+                    warning: '#F59E0B',
+                    normal: '#10B981'
                 };
 
+                incidents.forEach(incident => {
+                    const color = incidentIcons[incident.severity] || incidentIcons.normal;
+                    const marker = L.circleMarker(incident.coords, {
+                        radius: 10,
+                        fillColor: color,
+                        color: '#fff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.9,
+                        className: 'pulse'
+                    }).addTo(map);
+
+                    marker.bindPopup(`
+                        <div style="padding: 0.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">${escapeHtml(incident.title)}</h4>
+                            <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${escapeHtml(incident.description)}</p>
+                            <div style="font-size: 0.8rem; color: var(--lydian-text-secondary);">
+                                Bildirilme: ${escapeHtml(incident.reportedAt)}
+                            </div>
+                        </div>
+                    `);
+
+                    incidentMarkers.push(marker);
+                });
+
+                // Render incidents list
+                renderIncidents(incidents);
+
+            } catch (error) {
+                console.error('Tıkanıklık verisi yükleme hatası:', error);
+            }
+        }
+
+        // Render incidents list
+        function renderIncidents(incidents) {
+            const container = document.getElementById('incidents-container');
+
+            if (!incidents || incidents.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--lydian-text-secondary); padding: 2rem;">Şu anda aktif olay bulunmuyor.</div>';
+                return;
+            }
+
+            const iconMap = {
+                accident: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',
+                construction: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>',
+                event: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>'
+            };
+
+            container.innerHTML = incidents.map(incident => {
                 return `
                     <div class="incident-card ${incident.severity}">
                         <div class="incident-content">
                             <div class="incident-header">
                                 <svg class="incident-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    ${iconMap[incident.type]}
+                                    ${iconMap[incident.type] || iconMap.event}
                                 </svg>
-                                <div class="incident-title">${incident.title}</div>
+                                <div class="incident-title">${escapeHtml(incident.title)}</div>
                             </div>
-                            <div class="incident-description">${incident.description}</div>
+                            <div class="incident-description">${escapeHtml(incident.description)}</div>
                             <div class="incident-meta">
-                                <span>Bildirilme: ${incident.reportedAt}</span>
-                                <span>Konum: ${incident.coords[0].toFixed(4)}, ${incident.coords[1].toFixed(4)}</span>
+                                <span>Bildirilme: ${escapeHtml(incident.reportedAt)}</span>
+                                <span>Konum: ${parseFloat(incident.coords[0]).toFixed(4)}, ${parseFloat(incident.coords[1]).toFixed(4)}</span>
                             </div>
                         </div>
                         <span class="incident-badge badge-${incident.severity}">${incident.severity === 'critical' ? 'KRİTİK' : incident.severity === 'warning' ? 'UYARI' : 'NORMAL'}</span>
@@ -978,24 +1057,30 @@
         // Render traffic flow
         function renderTrafficFlow() {
             const container = document.getElementById('flow-container');
+
+            if (!trafficRoutes || trafficRoutes.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--lydian-text-secondary); padding: 2rem;">Yükleniyor...</div>';
+                return;
+            }
+
             container.innerHTML = trafficRoutes.map(route => {
                 const capacity = 100;
-                const usage = (route.vehicles / 10);
+                const usage = Math.min((route.vehicles / 10), 100);
 
                 return `
                     <div class="flow-card">
                         <div class="flow-header">
-                            <div class="flow-route">${route.name}</div>
+                            <div class="flow-route">${escapeHtml(route.name)}</div>
                             <div class="flow-status status-${route.status}">${statusLabels[route.status].toUpperCase()}</div>
                         </div>
                         <div class="flow-metrics">
                             <div class="flow-metric">
                                 <span>Ortalama Hız</span>
-                                <span>${route.speed} km/sa</span>
+                                <span>${parseInt(route.speed)} km/sa</span>
                             </div>
                             <div class="flow-metric">
                                 <span>Araçlar</span>
-                                <span>${route.vehicles}</span>
+                                <span>${parseInt(route.vehicles)}</span>
                             </div>
                         </div>
                         <div class="progress-bar">
@@ -1006,9 +1091,47 @@
             }).join('');
         }
 
+        // Update stats
+        function updateStats(stats) {
+            if (!stats) return;
+
+            if (stats.avgSpeed !== undefined) {
+                document.getElementById('avg-speed').textContent = parseInt(stats.avgSpeed);
+            }
+            if (stats.congestion !== undefined) {
+                document.getElementById('congestion').innerHTML = parseInt(stats.congestion) + '<span style="font-size: 1rem;">%</span>';
+            }
+            if (stats.routesToday !== undefined) {
+                document.getElementById('routes-today').innerHTML = parseFloat(stats.routesToday).toFixed(1) + '<span style="font-size: 1rem;">B</span>';
+            }
+            if (stats.activeVehicles !== undefined) {
+                document.getElementById('active-vehicles').innerHTML = parseFloat(stats.activeVehicles).toFixed(1) + '<span style="font-size: 1rem;">B</span>';
+            }
+            if (stats.incidents !== undefined) {
+                document.getElementById('incidents').textContent = parseInt(stats.incidents);
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            const container = document.getElementById('incidents-container');
+            container.innerHTML = `<div style="text-align: center; color: var(--umo-red); padding: 2rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px;">${escapeHtml(message)}</div>`;
+        }
+
         // Handle route planning
         document.getElementById('route-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const fromInput = document.getElementById('from').value;
+            const toInput = document.getElementById('to').value;
+            const mode = document.getElementById('mode').value;
+            const priority = document.getElementById('priority').value;
+
+            // Validate inputs
+            if (!validateInput(fromInput) || !validateInput(toInput)) {
+                alert('Geçersiz giriş. Lütfen tekrar deneyin.');
+                return;
+            }
 
             const btn = document.getElementById('plan-btn');
             const result = document.getElementById('route-result');
@@ -1016,92 +1139,98 @@
             btn.disabled = true;
             btn.textContent = 'Rota Planlanıyor...';
 
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            try {
+                const response = await fetch('/api/umo/v1/routes/plan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        from: fromInput,
+                        to: toInput,
+                        mode: mode,
+                        priority: priority
+                    })
+                });
 
-            // Mock route steps
-            const steps = [
-                { mode: 'walk', instruction: 'Taksim Metro İstasyonu\'na yürüyün', distance: '350m', duration: '4 dakika' },
-                { mode: 'metro', instruction: 'Yenikapı yönüne M2 Metro hattına binin', distance: '3.2km', duration: '8 dakika' },
-                { mode: 'tram', instruction: 'Şişhane\'de T1 Tramvay\'a aktarma yapın', distance: '4.1km', duration: '11 dakika' },
-                { mode: 'walk', instruction: 'Sultanahmet Meydanı\'na yürüyün', distance: '250m', duration: '3 dakika' }
-            ];
+                const data = await response.json();
 
-            const stepsHtml = steps.map(step => {
-                const icons = {
-                    walk: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>',
-                    metro: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>',
-                    tram: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>'
-                };
+                if (!data.success) {
+                    throw new Error(data.message || 'Rota planlanamadı');
+                }
 
-                const modeLabels = {
-                    walk: 'Yürüyüş',
-                    metro: 'Metro',
-                    tram: 'Tramvay'
-                };
+                // Render route steps
+                const steps = data.route.steps || [];
+                const stepsHtml = steps.map(step => {
+                    const icons = {
+                        walk: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>',
+                        metro: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>',
+                        tram: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>',
+                        bus: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>',
+                        car: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
+                        bike: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>'
+                    };
 
-                return `
-                    <div class="route-step">
-                        <svg class="step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            ${icons[step.mode]}
-                        </svg>
-                        <div class="step-content">
-                            <div class="step-mode">${modeLabels[step.mode]}</div>
-                            <div class="step-instruction">${step.instruction}</div>
-                            <div class="incident-meta">
-                                <span>${step.distance}</span>
-                                <span>${step.duration}</span>
+                    const modeLabels = {
+                        walk: 'Yürüyüş',
+                        metro: 'Metro',
+                        tram: 'Tramvay',
+                        bus: 'Otobüs',
+                        car: 'Otomobil',
+                        bike: 'Bisiklet'
+                    };
+
+                    return `
+                        <div class="route-step">
+                            <svg class="step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                ${icons[step.mode] || icons.walk}
+                            </svg>
+                            <div class="step-content">
+                                <div class="step-mode">${modeLabels[step.mode] || escapeHtml(step.mode)}</div>
+                                <div class="step-instruction">${escapeHtml(step.instruction)}</div>
+                                <div class="incident-meta">
+                                    <span>${escapeHtml(step.distance)}</span>
+                                    <span>${escapeHtml(step.duration)}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
 
-            document.getElementById('route-steps').innerHTML = stepsHtml;
-            document.getElementById('route-duration').textContent = '26';
-            document.getElementById('route-distance').textContent = '7.9';
-            document.getElementById('route-cost').textContent = '₺12';
+                document.getElementById('route-steps').innerHTML = stepsHtml;
+                document.getElementById('route-duration').textContent = parseInt(data.route.totalDuration);
+                document.getElementById('route-distance').textContent = parseFloat(data.route.totalDistance).toFixed(1);
+                document.getElementById('route-cost').textContent = '₺' + parseFloat(data.route.estimatedCost).toFixed(0);
 
-            result.classList.add('active');
-            btn.disabled = false;
-            btn.textContent = 'Seyahat Planla';
+                result.classList.add('active');
+
+            } catch (error) {
+                console.error('Rota planlama hatası:', error);
+                alert('Rota planlanırken bir hata oluştu. Lütfen tekrar deneyin.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Seyahat Planla';
+            }
         });
 
-        // Simulate real-time stat updates
+        // Initialize - Load all data
+        async function initialize() {
+            await Promise.all([
+                loadTrafficData(),
+                loadTransitData(),
+                loadParkingData(),
+                loadCongestionData()
+            ]);
+        }
+
+        // Auto-refresh every 30 seconds
         setInterval(() => {
-            const avgSpeed = Math.floor(Math.random() * 15) + 35;
-            document.getElementById('avg-speed').textContent = avgSpeed;
+            loadTrafficData();
+            loadCongestionData();
+        }, 30000);
 
-            const congestion = Math.floor(Math.random() * 30) + 20;
-            document.getElementById('congestion').innerHTML = congestion + '<span style="font-size: 1rem;">%</span>';
-
-            const routes = (Math.random() * 2 + 13).toFixed(1);
-            document.getElementById('routes-today').innerHTML = routes + '<span style="font-size: 1rem;">B</span>';
-
-            const vehicles = (Math.random() * 0.5 + 2.5).toFixed(1);
-            document.getElementById('active-vehicles').innerHTML = vehicles + '<span style="font-size: 1rem;">B</span>';
-
-            const incidentCount = Math.floor(Math.random() * 5) + 5;
-            document.getElementById('incidents').textContent = incidentCount;
-        }, 5000);
-
-        // Initialize
-        renderIncidents();
-        renderTrafficFlow();
-
-        // Update traffic flow every 10 seconds
-        setInterval(() => {
-            trafficRoutes.forEach(route => {
-                route.speed = Math.floor(Math.random() * 40) + 30;
-                route.vehicles = Math.floor(Math.random() * 400) + 200;
-
-                if (route.speed > 50) route.status = 'smooth';
-                else if (route.speed > 35) route.status = 'moderate';
-                else route.status = 'congested';
-            });
-
-            renderTrafficFlow();
-        }, 10000);
+        // Initialize on page load
+        initialize();
     </script>
 </body>
 </html>

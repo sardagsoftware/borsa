@@ -587,81 +587,374 @@
     </div>
 
     <script>
-        // Leaflet Harita Başlat (İstanbul merkez)
-        const map = L.map('map').setView([41.0082, 28.9784], 10);
-
-        // Açık tema harita karoları
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-            subdomains: 'abcd',
-            maxZoom: 20
-        }).addTo(map);
-
-        // Tehlike işaretleyicilerini ekle
-        const hazards = [
-            {
-                coords: [41.0082, 28.9784],
-                type: 'wildfire',
-                title: 'Orman Yangını Riski - Sektör 7',
-                description: 'Yüksek rüzgar koşulları tespit edildi',
-                severity: 'critical'
-            },
-            {
-                coords: [40.9922, 29.0215],
-                type: 'flood',
-                title: 'Sel Uyarısı - İlçe 12',
-                description: 'Şiddetli yağış bekleniyor',
-                severity: 'warning'
-            },
-            {
-                coords: [41.0255, 28.9744],
-                type: 'earthquake',
-                title: 'Deprem Tatbikatı - Bölge 3',
-                description: 'Planlanmış hazırlık tatbikatı',
-                severity: 'info'
-            }
-        ];
-
-        // Özel ikon renkleri
+        // ==========================================
+        // GLOBAL STATE AND CONFIGURATION
+        // ==========================================
+        let map;
+        let mapMarkers = [];
+        const AUTO_REFRESH_INTERVAL = 30000; // 30 seconds
         const iconColors = {
             critical: '#EF4444',
             warning: '#F59E0B',
-            info: '#3B82F6'
+            info: '#3B82F6',
+            normal: '#10B981'
         };
 
-        hazards.forEach(hazard => {
-            const color = iconColors[hazard.severity];
-            const marker = L.circleMarker(hazard.coords, {
-                radius: 12,
-                fillColor: color,
-                color: '#fff',
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
+        // ==========================================
+        // UTILITY FUNCTIONS
+        // ==========================================
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') return unsafe;
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function showLoadingState(elementId, isLoading) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (isLoading) {
+                    element.innerHTML = '<span style="color: var(--lydian-text-secondary);">Yükleniyor...</span>';
+                }
+            }
+        }
+
+        function showErrorState(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = `<span style="color: var(--rro-red);">Hata: ${escapeHtml(message)}</span>`;
+            }
+        }
+
+        // ==========================================
+        // API FETCH FUNCTIONS
+        // ==========================================
+        async function loadRisks() {
+            try {
+                showLoadingState('active-alerts', true);
+                const response = await fetch('/api/rro/v1/risks');
+                const data = await response.json();
+
+                if (data.success && data.risks) {
+                    updateRiskStats(data.risks);
+                    return data.risks;
+                } else {
+                    throw new Error(data.error || 'Risk verileri yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Risk yükleme hatası:', error);
+                showErrorState('active-alerts', error.message);
+                return [];
+            }
+        }
+
+        async function loadMapData() {
+            try {
+                const response = await fetch('/api/rro/v1/map-data');
+                const data = await response.json();
+
+                if (data.success && data.markers) {
+                    updateMap(data.markers);
+                    return data.markers;
+                } else {
+                    throw new Error(data.error || 'Harita verileri yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Harita verileri yükleme hatası:', error);
+                // Don't show error on map, just log it
+                return [];
+            }
+        }
+
+        async function loadAlerts() {
+            try {
+                const alertsContainer = document.getElementById('alerts-container');
+                if (alertsContainer) {
+                    alertsContainer.innerHTML = '<p style="color: var(--lydian-text-secondary);">Yükleniyor...</p>';
+                }
+
+                const response = await fetch('/api/rro/v1/alerts');
+                const data = await response.json();
+
+                if (data.success && data.alerts) {
+                    updateAlerts(data.alerts);
+                    return data.alerts;
+                } else {
+                    throw new Error(data.error || 'Uyarılar yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Uyarı yükleme hatası:', error);
+                const alertsContainer = document.getElementById('alerts-container');
+                if (alertsContainer) {
+                    alertsContainer.innerHTML = `<p style="color: var(--rro-red);">Hata: ${escapeHtml(error.message)}</p>`;
+                }
+                return [];
+            }
+        }
+
+        async function loadInfrastructure() {
+            try {
+                const response = await fetch('/api/rro/v1/infrastructure');
+                const data = await response.json();
+
+                if (data.success && data.resources) {
+                    updateInfrastructure(data.resources);
+                    return data.resources;
+                } else {
+                    throw new Error(data.error || 'Altyapı verileri yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Altyapı verileri yükleme hatası:', error);
+                // Don't break the UI, just log the error
+                return null;
+            }
+        }
+
+        // ==========================================
+        // UI UPDATE FUNCTIONS
+        // ==========================================
+        function updateRiskStats(risks) {
+            // Count active critical alerts
+            const criticalCount = risks.filter(r => r.severity === 'critical' || r.priority === 'critical').length;
+            const alertElement = document.getElementById('active-alerts');
+            if (alertElement) {
+                alertElement.textContent = criticalCount;
+                alertElement.className = 'stat-value ' + (criticalCount > 5 ? 'critical' : criticalCount > 2 ? 'warning' : 'normal');
+            }
+
+            // Update response time if provided
+            if (risks.responseTime) {
+                const responseElement = document.getElementById('response-time');
+                if (responseElement) {
+                    responseElement.textContent = escapeHtml(risks.responseTime);
+                }
+            }
+
+            // Update deployed resources if provided
+            if (risks.deployedPercentage) {
+                const deployedElement = document.getElementById('deployed-resources');
+                if (deployedElement) {
+                    deployedElement.textContent = risks.deployedPercentage + '%';
+                    const percentage = parseInt(risks.deployedPercentage);
+                    deployedElement.className = 'stat-value ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : 'normal');
+                }
+            }
+        }
+
+        function updateMap(markers) {
+            // Clear existing markers
+            mapMarkers.forEach(marker => map.removeLayer(marker));
+            mapMarkers = [];
+
+            // Validate and add new markers
+            if (!Array.isArray(markers)) {
+                console.error('Invalid markers data:', markers);
+                return;
+            }
+
+            markers.forEach(markerData => {
+                // Validate marker data
+                if (!markerData.coords || !Array.isArray(markerData.coords) || markerData.coords.length !== 2) {
+                    console.warn('Invalid marker coordinates:', markerData);
+                    return;
+                }
+
+                const [lat, lng] = markerData.coords;
+                if (isNaN(lat) || isNaN(lng)) {
+                    console.warn('Invalid lat/lng values:', markerData);
+                    return;
+                }
+
+                const severity = markerData.severity || 'info';
+                const color = iconColors[severity] || iconColors.info;
+
+                const marker = L.circleMarker([lat, lng], {
+                    radius: 12,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                // Escape all user-provided content
+                const title = escapeHtml(markerData.title || 'Bilinmeyen Olay');
+                const description = escapeHtml(markerData.description || 'Açıklama yok');
+                const severityText = escapeHtml(severity.toUpperCase());
+
+                marker.bindPopup(`
+                    <div style="padding: 0.5rem;">
+                        <h4 style="margin-bottom: 0.5rem;">${title}</h4>
+                        <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${description}</p>
+                        <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${color}20; color: ${color}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+                            ${severityText}
+                        </span>
+                    </div>
+                `);
+
+                mapMarkers.push(marker);
+            });
+        }
+
+        function updateAlerts(alerts) {
+            const alertsContainer = document.getElementById('alerts-container');
+            if (!alertsContainer) return;
+
+            if (!Array.isArray(alerts) || alerts.length === 0) {
+                alertsContainer.innerHTML = '<p style="color: var(--lydian-text-secondary);">Aktif uyarı bulunmuyor.</p>';
+                return;
+            }
+
+            const severityIcons = {
+                critical: '<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>',
+                warning: '<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>',
+                info: '<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+            };
+
+            const alertsHtml = alerts.map(alert => {
+                const severity = alert.severity || alert.priority || 'info';
+                const severityClass = severity === 'critical' ? '' : severity === 'warning' ? 'warning' : 'info';
+                const badgeClass = `badge-${severity}`;
+                const icon = severityIcons[severity] || severityIcons.info;
+
+                const title = escapeHtml(alert.title || 'Başlıksız Uyarı');
+                const description = escapeHtml(alert.description || alert.message || 'Açıklama yok');
+                const location = escapeHtml(alert.location || 'Bilinmiyor');
+                const priority = escapeHtml(alert.priority || severity);
+                const metadata = alert.metadata || alert.estimatedTime || '';
+
+                return `
+                    <div class="alert-item ${severityClass}">
+                        <div class="alert-content">
+                            <h4>
+                                ${icon}
+                                ${title}
+                            </h4>
+                            <p>${description}</p>
+                            <div class="alert-meta">
+                                <strong>Konum:</strong> ${location} • <strong>Öncelik:</strong> ${priority}${metadata ? ' • ' + escapeHtml(metadata) : ''}
+                            </div>
+                        </div>
+                        <span class="alert-badge ${badgeClass}">${escapeHtml(severity.toUpperCase())}</span>
+                    </div>
+                `;
+            }).join('');
+
+            alertsContainer.innerHTML = alertsHtml;
+        }
+
+        function updateInfrastructure(resources) {
+            if (!resources || typeof resources !== 'object') {
+                console.warn('Invalid infrastructure data:', resources);
+                return;
+            }
+
+            // Update first responders
+            if (resources.firstResponders) {
+                const { available, total, percentage } = resources.firstResponders;
+                const card = document.querySelector('.resource-card:nth-child(1)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `${available} / ${total} Hazır`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+
+            // Update emergency vehicles
+            if (resources.emergencyVehicles) {
+                const { deployed, total, percentage } = resources.emergencyVehicles;
+                const card = document.querySelector('.resource-card:nth-child(2)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `${deployed} / ${total} Görevde`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+
+            // Update shelters
+            if (resources.shelters) {
+                const { active, total, percentage } = resources.shelters;
+                const card = document.querySelector('.resource-card:nth-child(3)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `${active} / ${total} Aktif`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+
+            // Update supply depots
+            if (resources.supplyDepots) {
+                const { percentage } = resources.supplyDepots;
+                const card = document.querySelector('.resource-card:nth-child(4)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `%${percentage} Stok Seviyesi`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+        }
+
+        // ==========================================
+        // INITIALIZATION AND AUTO-REFRESH
+        // ==========================================
+        async function loadAllData() {
+            try {
+                // Load all data in parallel
+                await Promise.all([
+                    loadRisks(),
+                    loadMapData(),
+                    loadAlerts(),
+                    loadInfrastructure()
+                ]);
+            } catch (error) {
+                console.error('Veri yükleme hatası:', error);
+            }
+        }
+
+        function initializeMap() {
+            // Leaflet Harita Başlat (İstanbul merkez)
+            map = L.map('map').setView([41.0082, 28.9784], 10);
+
+            // Açık tema harita karoları
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+                subdomains: 'abcd',
+                maxZoom: 20
             }).addTo(map);
+        }
 
-            marker.bindPopup(`
-                <div style="padding: 0.5rem;">
-                    <h4 style="margin-bottom: 0.5rem;">${hazard.title}</h4>
-                    <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${hazard.description}</p>
-                    <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${color}20; color: ${color}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
-                        ${hazard.severity}
-                    </span>
-                </div>
-            `);
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize map
+            initializeMap();
+
+            // Load initial data
+            await loadAllData();
+
+            // Set up auto-refresh every 30 seconds
+            setInterval(loadAllData, AUTO_REFRESH_INTERVAL);
+
+            console.log('RRO Dashboard initialized with auto-refresh every', AUTO_REFRESH_INTERVAL / 1000, 'seconds');
         });
-
-        // Gerçek zamanlı güncellemeleri simüle et
-        setInterval(() => {
-            const alerts = Math.floor(Math.random() * 3) + 2;
-            document.getElementById('active-alerts').textContent = alerts;
-
-            const responseTime = Math.floor(Math.random() * 40) + 80;
-            document.getElementById('response-time').textContent = responseTime + 's';
-
-            const deployed = Math.floor(Math.random() * 20) + 60;
-            document.getElementById('deployed-resources').textContent = deployed + '%';
-        }, 5000);
     </script>
 </body>
 </html>
