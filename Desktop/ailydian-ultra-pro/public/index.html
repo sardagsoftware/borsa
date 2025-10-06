@@ -196,6 +196,108 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* Horizontal Mega Menu */
+        .nav-preview-mega {
+            min-width: 580px;
+            max-width: 580px;
+            left: auto;
+            right: 0;
+            transform: translateY(-10px);
+        }
+
+        .nav-links li:hover .nav-preview-mega {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .preview-content-mega {
+            text-align: left;
+        }
+
+        .mega-menu-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mega-menu-header h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0;
+        }
+
+        .mega-menu-header p {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin: 0;
+        }
+
+        .mega-menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .mega-menu-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mega-column-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6B7280;
+            padding: 0.5rem 0;
+        }
+
+        .mega-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #374151;
+            transition: all 0.2s ease;
+        }
+
+        .mega-menu-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
+        }
+
+        .mega-menu-item svg {
+            flex-shrink: 0;
+            opacity: 0.7;
+        }
+
+        .mega-menu-item div {
+            flex: 1;
+        }
+
+        .mega-menu-item strong {
+            display: block;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.125rem;
+        }
+
+        .mega-menu-item small {
+            display: block;
+            font-size: 0.75rem;
+            color: #6B7280;
+            opacity: 0.9;
+        }
+
         .preview-content {
             text-align: center;
         }
@@ -1860,84 +1962,89 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" onclick="return false;">Civic Intelligence</a>
-                    <div class="nav-preview">
-                        <div class="preview-content">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                            <h4>Civic Intelligence Grid</h4>
-                            <p>Akıllı Şehir & Kurumsal AI Platform</p>
-                            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                                <a href="/civic-intelligence-grid.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; background: rgba(124, 92, 255, 0.15); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s; border: 1px solid rgba(124, 92, 255, 0.3);" onmouseover="this.style.background='rgba(124, 92, 255, 0.25)'; this.style.borderColor='rgba(124, 92, 255, 0.5)'" onmouseout="this.style.background='rgba(124, 92, 255, 0.15)'; this.style.borderColor='rgba(124, 92, 255, 0.3)'">
-                                    <svg style="width: 20px; height: 20px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Platform Genel Bakış</strong><br>
-                                        <small style="opacity: 0.8;">15 Modül - Real-Time Dashboard</small>
-                                    </div>
-                                </a>
-                                <div style="padding: 0.5rem 0; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(124, 92, 255, 0.2);">
-                                    <small style="opacity: 0.6; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Platform Modülleri</small>
+                    <a href="#" onclick="return false;">Akıllı Şehir</a>
+                    <div class="nav-preview nav-preview-mega">
+                        <div class="preview-content-mega">
+                            <div class="mega-menu-header">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 36px; height: 36px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                <div>
+                                    <h4>Civic Intelligence Grid</h4>
+                                    <p>Akıllı Şehir & Kurumsal AI Platform</p>
                                 </div>
-                                <a href="/civic-svf.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='rgba(59, 130, 246, 0.2)'" onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'">
-                                    <svg style="width: 18px; height: 18px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Sentetik Veri Fabrikası</strong><br>
-                                        <small style="opacity: 0.8;">SVF - Privacy-First Data Generation</small>
-                                    </div>
-                                </a>
-                                <a href="/civic-map.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.2)'" onmouseout="this.style.background='rgba(16, 185, 129, 0.1)'">
-                                    <svg style="width: 18px; height: 18px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Model Attestation & Proof</strong><br>
-                                        <small style="opacity: 0.8;">MAP - AI Güvenilirlik Doğrulama</small>
-                                    </div>
-                                </a>
-                                <a href="/civic-atg.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='rgba(245, 158, 11, 0.2)'" onmouseout="this.style.background='rgba(245, 158, 11, 0.1)'">
-                                    <svg style="width: 18px; height: 18px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Automated Trust Graph</strong><br>
-                                        <small style="opacity: 0.8;">ATG - Güven Ağı Otomasyonu</small>
-                                    </div>
-                                </a>
-                                <div style="padding: 0.5rem 0; margin-bottom: 0.5rem; margin-top: 0.5rem; border-bottom: 1px solid rgba(124, 92, 255, 0.2);">
-                                    <small style="opacity: 0.6; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Civic Intelligence</small>
+                            </div>
+                            <div class="mega-menu-grid">
+                                <div class="mega-menu-column">
+                                    <div class="mega-column-header">Platform</div>
+                                    <a href="/civic-intelligence-grid.html" class="mega-menu-item" style="border-left: 3px solid #7C5CFF;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Platform Genel Bakış</strong>
+                                            <small>15 Modül Dashboard</small>
+                                        </div>
+                                    </a>
+                                    <div class="mega-column-header" style="margin-top: 1rem;">Veri & Güvenlik</div>
+                                    <a href="/civic-svf.html" class="mega-menu-item" style="border-left: 3px solid #3B82F6;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Sentetik Veri</strong>
+                                            <small>Privacy-First Generation</small>
+                                        </div>
+                                    </a>
+                                    <a href="/civic-map.html" class="mega-menu-item" style="border-left: 3px solid #10B981;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Model Attestation</strong>
+                                            <small>AI Güvenilirlik</small>
+                                        </div>
+                                    </a>
+                                    <a href="/civic-atg.html" class="mega-menu-item" style="border-left: 3px solid #F59E0B;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Trust Graph</strong>
+                                            <small>Güven Ağı Otomasyonu</small>
+                                        </div>
+                                    </a>
                                 </div>
-                                <a href="/civic-rro.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='rgba(239, 68, 68, 0.2)'" onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'">
-                                    <svg style="width: 18px; height: 18px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Risk & Resilience OS</strong><br>
-                                        <small style="opacity: 0.8;">RRO - Afet Yönetimi & Erken Uyarı</small>
-                                    </div>
-                                </a>
-                                <a href="/civic-umo.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='rgba(99, 102, 241, 0.2)'" onmouseout="this.style.background='rgba(99, 102, 241, 0.1)'">
-                                    <svg style="width: 18px; height: 18px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Urban Mobility Orchestrator</strong><br>
-                                        <small style="opacity: 0.8;">UMO - Akıllı Trafik Yönetimi</small>
-                                    </div>
-                                </a>
-                                <a href="/civic-phn.html" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.2s;" onmouseover="this.style.background='rgba(236, 72, 153, 0.2)'" onmouseout="this.style.background='rgba(236, 72, 153, 0.1)'">
-                                    <svg style="width: 18px; height: 18px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                                    </svg>
-                                    <div style="flex: 1;">
-                                        <strong>Public Health Nowcasting</strong><br>
-                                        <small style="opacity: 0.8;">PHN - Halk Sağlığı Tahmin Sistemi</small>
-                                    </div>
-                                </a>
+                                <div class="mega-menu-column">
+                                    <div class="mega-column-header">Şehir Yönetimi</div>
+                                    <a href="/civic-rro.html" class="mega-menu-item" style="border-left: 3px solid #EF4444;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Risk & Resilience</strong>
+                                            <small>Afet Yönetimi</small>
+                                        </div>
+                                    </a>
+                                    <a href="/civic-umo.html" class="mega-menu-item" style="border-left: 3px solid #6366F1;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Urban Mobility</strong>
+                                            <small>Trafik Yönetimi</small>
+                                        </div>
+                                    </a>
+                                    <a href="/civic-phn.html" class="mega-menu-item" style="border-left: 3px solid #EC4899;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Public Health</strong>
+                                            <small>Sağlık Tahmin Sistemi</small>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
