@@ -156,7 +156,7 @@
 
         .iq-logo {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             animation: fadeInDown 0.8s ease-out;
         }
 
@@ -172,9 +172,9 @@
         }
 
         .iq-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
         }
 
         .iq-icon svg {
@@ -231,36 +231,14 @@
             }
         }
 
-        /* IQ Circle rotating */
-        .iq-circle {
-            stroke: var(--justice-gold);
-            stroke-width: 2;
-            fill: none;
-            animation: rotateCircle 20s linear infinite;
-            transform-origin: 50px 50px;
-        }
-
-        @keyframes rotateCircle {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .iq-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: -1.5px;
             background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .iq-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            margin: 0;
         }
         
         .mode-toggle {
@@ -342,7 +320,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            padding: 4rem 0 2rem;
+            padding: 2rem 0 2rem;
         }
         
         /* ============================================================
@@ -581,26 +559,21 @@
             }
 
             .iq-icon {
-                width: 90px;
-                height: 90px;
-                margin-bottom: 1rem;
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0.75rem;
             }
 
             .iq-title {
-                font-size: 2rem;
-            }
-
-            .iq-subtitle {
-                font-size: 0.9rem;
-                letter-spacing: 1px;
+                font-size: 1.75rem;
             }
 
             .iq-logo {
-                margin-bottom: 2rem;
+                margin-bottom: 1.25rem;
             }
 
             .main-area {
-                padding: 2rem 0 1rem;
+                padding: 1.5rem 0 1rem;
             }
 
             .search-container {
@@ -663,16 +636,21 @@
 
         @media (max-width: 480px) {
             .iq-icon {
-                width: 70px;
-                height: 70px;
+                width: 50px;
+                height: 50px;
+                margin-bottom: 0.5rem;
             }
 
             .iq-title {
                 font-size: 1.5rem;
             }
 
-            .iq-subtitle {
-                font-size: 0.75rem;
+            .iq-logo {
+                margin-bottom: 1rem;
+            }
+
+            .main-area {
+                padding: 1rem 0 1rem;
             }
 
             .search-box {
@@ -750,13 +728,9 @@
                             <line x1="65" y1="45" x2="50" y2="70" class="synapse" />
                             <line x1="65" y1="45" x2="70" y2="65" class="synapse" />
                         </g>
-
-                        <!-- IQ Circle outline -->
-                        <circle cx="50" cy="50" r="45" class="iq-circle" />
                     </svg>
                 </div>
                 <h1 class="iq-title">LyDian IQ</h1>
-                <p class="iq-subtitle">Ultra Intelligence Reasoning</p>
             </div>
 
             <!-- Advanced Search Box -->
