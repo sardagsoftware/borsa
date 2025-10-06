@@ -664,6 +664,26 @@
             }
         }
 
+        async function generateSOAPNotes() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/medical-nlp/soap-notes-generation`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        clinicalText: document.getElementById('clinicalText').value,
+                        patientInfo: { provider: 'Dr. Jane Smith, MD' },
+                        encounterType: 'office_visit'
+                    })
+                });
+
+                const data = await response.json();
+                displayNLPResults(data, 'soap');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
         async function extractICD10() {
             showLoading();
             try {
@@ -676,7 +696,44 @@
                 });
 
                 const data = await response.json();
-                displayNLPResults(data);
+                displayNLPResults(data, 'icd10');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function extractEntities() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/medical-nlp/clinical-ner`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        clinicalText: document.getElementById('clinicalText').value
+                    })
+                });
+
+                const data = await response.json();
+                displayNLPResults(data, 'ner');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function analyzeRadiologyReport() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/medical-nlp/radiology-report-analysis`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        reportText: document.getElementById('clinicalText').value,
+                        modality: 'Chest X-ray'
+                    })
+                });
+
+                const data = await response.json();
+                displayNLPResults(data, 'radiology');
             } catch (error) {
                 showError(error.message);
             }
@@ -821,25 +878,186 @@
             `;
         }
 
-        function displayNLPResults(data) {
+        function displayNLPResults(data, type = 'icd10') {
             const resultsDiv = document.getElementById('results');
             resultsDiv.classList.remove('hidden');
 
-            resultsDiv.innerHTML = `
-                <h3>📝 Medical NLP Results</h3>
-                <div class="result-item">
-                    <h4>ICD-10 Codes Extracted: ${data.totalCodes}</h4>
-                    <p><strong>Coding Accuracy:</strong> ${data.codingAccuracy}</p>
-                </div>
-                ${data.extractedCodes.map(code => `
+            let html = '<h3>📝 Medical NLP Results</h3>';
+
+            // SOAP Notes Generation Results
+            if (type === 'soap' && data.generatedSOAPNote) {
+                const soap = data.generatedSOAPNote;
+                html += `
                     <div class="result-item">
-                        <h4>${code.code} - ${code.description}</h4>
-                        <p><strong>Matched Text:</strong> "${code.matchedText}"</p>
-                        <p><strong>Category:</strong> <span class="badge badge-info">${code.category}</span></p>
-                        <p><strong>Confidence:</strong> ${(code.confidence * 100).toFixed(1)}%</p>
+                        <h4>📋 SOAP Note Generated</h4>
+                        <p><strong>Encounter Type:</strong> ${data.encounterType}</p>
+                        <p><strong>Processing Time:</strong> ${data.processingTime}</p>
+                        <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(1)}%</p>
+                        <p><strong>AI Model:</strong> ${data.aiModel}</p>
                     </div>
-                `).join('')}
-            `;
+
+                    <div class="result-item">
+                        <h4>S - Subjective</h4>
+                        <p><strong>Chief Complaint:</strong> ${soap.subjective.chiefComplaint}</p>
+                        <p><strong>HPI:</strong> ${soap.subjective.historyOfPresentIllness}</p>
+                        <p><strong>Medications:</strong> ${soap.subjective.medications.join(', ')}</p>
+                        <p><strong>PMH:</strong> ${soap.subjective.pastMedicalHistory.join(', ')}</p>
+                    </div>
+
+                    <div class="result-item">
+                        <h4>O - Objective</h4>
+                        <p><strong>Vital Signs:</strong></p>
+                        <ul>
+                            <li>BP: ${soap.objective.vitalSigns.bloodPressure}</li>
+                            <li>HR: ${soap.objective.vitalSigns.heartRate}</li>
+                            <li>Temp: ${soap.objective.vitalSigns.temperature}</li>
+                            <li>RR: ${soap.objective.vitalSigns.respiratoryRate}</li>
+                            <li>SpO2: ${soap.objective.vitalSigns.oxygenSaturation}</li>
+                        </ul>
+                        ${soap.objective.labResults.length > 0 ? `
+                            <p><strong>Labs:</strong></p>
+                            <ul>
+                                ${soap.objective.labResults.map(lab => `<li>${lab.test}: ${lab.value} ${lab.flag ? `<span class="badge badge-danger">${lab.flag}</span>` : ''}</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                    </div>
+
+                    <div class="result-item">
+                        <h4>A - Assessment</h4>
+                        ${soap.assessment.diagnoses.map((dx, i) => `
+                            <p><strong>${i + 1}. ${dx.diagnosis}</strong></p>
+                            <p>ICD-10: ${dx.icd10} | Severity: <span class="badge badge-${dx.severity === 'Critical' ? 'danger' : dx.severity === 'Moderate' ? 'warning' : 'info'}">${dx.severity}</span> | Confidence: ${(dx.confidence * 100).toFixed(1)}%</p>
+                        `).join('')}
+                    </div>
+
+                    <div class="result-item">
+                        <h4>P - Plan</h4>
+                        <p><strong>Treatments:</strong></p>
+                        <ul>
+                            ${soap.plan.treatments.slice(0, 5).map(tx => `<li>${tx}</li>`).join('')}
+                        </ul>
+                        <p><strong>Follow-up:</strong> ${soap.plan.followUp}</p>
+                    </div>
+                `;
+            }
+
+            // ICD-10 Coding Results
+            else if (type === 'icd10' && data.extractedCodes) {
+                html += `
+                    <div class="result-item">
+                        <h4>🏥 ICD-10 Codes Extracted: ${data.totalCodes}</h4>
+                        <p><strong>Coding Accuracy:</strong> ${data.codingAccuracy}</p>
+                        <p><strong>AI Model:</strong> ${data.aiModel}</p>
+                        ${data.complianceCheck ? `
+                            <p><strong>Compliance:</strong> <span class="badge badge-success">${data.complianceCheck.passed ? 'Passed' : 'Failed'}</span></p>
+                            <p><strong>Revenue Optimization:</strong> ${data.complianceCheck.reimbursementOptimization}</p>
+                        ` : ''}
+                    </div>
+                    ${data.extractedCodes.map(code => `
+                        <div class="result-item">
+                            <h4>${code.code} - ${code.description}</h4>
+                            <p><strong>Matched Text:</strong> "${code.matchedText}"</p>
+                            <p><strong>Category:</strong> <span class="badge badge-info">${code.category}</span></p>
+                            <p><strong>Confidence:</strong> ${(code.confidence * 100).toFixed(1)}%</p>
+                        </div>
+                    `).join('')}
+                `;
+            }
+
+            // Clinical NER Results
+            else if (type === 'ner' && data.extractedEntities) {
+                html += `
+                    <div class="result-item">
+                        <h4>🧬 Clinical Entities Extracted: ${data.totalEntities}</h4>
+                        <p><strong>Entity Categories:</strong> ${data.entityCategories}</p>
+                        <p><strong>NER Model:</strong> ${data.nerModel}</p>
+                        <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(1)}%</p>
+                    </div>
+                `;
+
+                const entities = data.extractedEntities;
+                if (entities.diseases && entities.diseases.length > 0) {
+                    html += `
+                        <div class="result-item">
+                            <h4>🦠 Diseases</h4>
+                            ${entities.diseases.map(e => `<p><span class="badge badge-danger">${e.entity}</span> (confidence: ${(e.confidence * 100).toFixed(1)}%)</p>`).join('')}
+                        </div>
+                    `;
+                }
+
+                if (entities.medications && entities.medications.length > 0) {
+                    html += `
+                        <div class="result-item">
+                            <h4>💊 Medications</h4>
+                            ${entities.medications.map(e => `<p><span class="badge badge-success">${e.entity}</span> (confidence: ${(e.confidence * 100).toFixed(1)}%)</p>`).join('')}
+                        </div>
+                    `;
+                }
+
+                if (entities.procedures && entities.procedures.length > 0) {
+                    html += `
+                        <div class="result-item">
+                            <h4>🔬 Procedures</h4>
+                            ${entities.procedures.map(e => `<p><span class="badge badge-info">${e.entity}</span> (confidence: ${(e.confidence * 100).toFixed(1)}%)</p>`).join('')}
+                        </div>
+                    `;
+                }
+
+                if (entities.symptoms && entities.symptoms.length > 0) {
+                    html += `
+                        <div class="result-item">
+                            <h4>🩺 Symptoms</h4>
+                            ${entities.symptoms.map(e => `<p><span class="badge badge-warning">${e.entity}</span> (confidence: ${(e.confidence * 100).toFixed(1)}%)</p>`).join('')}
+                        </div>
+                    `;
+                }
+            }
+
+            // Radiology Report Analysis Results
+            else if (type === 'radiology' && data.structuredAnalysis) {
+                const analysis = data.structuredAnalysis;
+                html += `
+                    <div class="result-item">
+                        <h4>📊 Radiology Report Analysis</h4>
+                        <p><strong>Modality:</strong> ${data.modality}</p>
+                        <p><strong>AI Model:</strong> ${data.aiModel}</p>
+                        <p><strong>Processing Time:</strong> ${data.processingTime}</p>
+                    </div>
+
+                    <div class="result-item">
+                        <h4>Indication</h4>
+                        <p>${analysis.indication}</p>
+                    </div>
+
+                    <div class="result-item">
+                        <h4>Findings</h4>
+                        <p><strong>Heart:</strong> ${analysis.findings.heart}</p>
+                        <p><strong>Lungs:</strong> ${analysis.findings.lungs}</p>
+                        <p><strong>Mediastinum:</strong> ${analysis.findings.mediastinum}</p>
+                    </div>
+
+                    <div class="result-item">
+                        <h4>Impression</h4>
+                        <ul>
+                            ${analysis.impression.map(imp => `<li>${imp}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    ${data.criticalFindings && data.criticalFindings.length > 0 ? `
+                        <div class="result-item" style="border-left-color: #dc3545;">
+                            <h4>🚨 Critical Findings</h4>
+                            ${data.criticalFindings.map(cf => `<p class="badge badge-danger">${cf}</p>`).join('')}
+                        </div>
+                    ` : ''}
+
+                    <div class="result-item">
+                        <h4>Follow-up</h4>
+                        <p>${data.recommendedFollowUp}</p>
+                    </div>
+                `;
+            }
+
+            resultsDiv.innerHTML = html;
         }
 
         function displayDataResults(data) {
