@@ -17076,6 +17076,10 @@ app.use('/api/medical/pacs-system', hipaaAuditMiddleware, pacsSystem);
 const billingRCM = require('./api/medical/billing-rcm');
 app.use('/api/medical/billing-rcm', hipaaAuditMiddleware, billingRCM);
 
+// 🔬 Clinical Trials Management & Research Platform
+const clinicalTrials = require('./api/medical/clinical-trials');
+app.use('/api/medical/clinical-trials', hipaaAuditMiddleware, clinicalTrials);
+
 // 🛡️ HIPAA Audit Error Handler (must be AFTER all medical routes)
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);

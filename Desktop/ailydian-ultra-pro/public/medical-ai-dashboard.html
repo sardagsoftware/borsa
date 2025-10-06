@@ -661,6 +661,12 @@
                 <h3>Medical Billing & RCM</h3>
                 <p>AI claims validation, denial prediction, revenue cycle analytics, coding compliance, AR management, appeals</p>
             </div>
+
+            <div class="module-card" onclick="loadModule('trials')">
+                <div class="module-icon">🔬</div>
+                <h3>Clinical Trials Management</h3>
+                <p>Trial registry, patient recruitment, adverse events, regulatory compliance (FDA/EMA), site management, analytics</p>
+            </div>
         </div>
 
         <div class="workspace">
@@ -1139,6 +1145,9 @@
                     break;
                 case 'billing':
                     content.innerHTML = getBillingUI();
+                    break;
+                case 'trials':
+                    content.innerHTML = getTrialsUI();
                     break;
             }
         }
@@ -3762,6 +3771,153 @@
                     `;
                 } else {
                     showError(data.error || 'Failed to search CPT codes');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+
+        // ============================================================================
+        // CLINICAL TRIALS MANAGEMENT UI
+        // ============================================================================
+
+        function getTrialsUI() {
+            return `
+                <h2>🔬 Clinical Trials Management & Research Platform</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                    <button class="btn" onclick="viewTrials()">📋 View Trials</button>
+                    <button class="btn" onclick="viewTrialAnalytics()">📊 Analytics</button>
+                    <button class="btn" onclick="viewAdverseEvents()">⚠️ Adverse Events</button>
+                </div>
+                <div id="trialsResults" style="margin-top: 30px;"></div>
+            `;
+        }
+
+        async function viewTrials() {
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/clinical-trials/trials`);
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('trialsResults').innerHTML = `
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+                            <h3 style="color: white; margin: 0;">Total Trials: ${data.total}</h3>
+                        </div>
+                        ${data.trials.map(trial => `
+                            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h3 style="color: #667eea;">${trial.trialId}: ${trial.title}</h3>
+                                <p><strong>Phase:</strong> ${trial.phase} | <strong>Status:</strong> ${trial.status}</p>
+                                <p><strong>Condition:</strong> ${trial.condition}</p>
+                                <p><strong>Enrollment:</strong> ${trial.enrollment.current}/${trial.enrollment.target}</p>
+                                <p><strong>Sites:</strong> ${trial.sites.length} | <strong>Adverse Events:</strong> ${trial.adverseEvents.total} (${trial.adverseEvents.serious} serious)</p>
+                                <button class="btn" onclick="viewTrialDetails('${trial.trialId}')">View Details</button>
+                            </div>
+                        `).join('')}
+                    `;
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+
+        async function viewTrialDetails(trialId) {
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/clinical-trials/trials/${trialId}`);
+                const data = await response.json();
+                if (data.success) {
+                    const trial = data.trial;
+                    const metrics = data.metrics;
+                    document.getElementById('trialsResults').innerHTML = `
+                        <button class="btn" onclick="viewTrials()" style="margin-bottom: 20px;">← Back</button>
+                        <div style="background: white; padding: 25px; border-radius: 12px;">
+                            <h2>${trial.title}</h2>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+                                <div><strong>Trial ID:</strong> ${trial.trialId}</div>
+                                <div><strong>Phase:</strong> ${trial.phase}</div>
+                                <div><strong>Status:</strong> ${trial.status}</div>
+                                <div><strong>Sponsor:</strong> ${trial.sponsor}</div>
+                                <div><strong>PI:</strong> ${trial.principalInvestigator}</div>
+                                <div><strong>Start:</strong> ${trial.startDate}</div>
+                            </div>
+                            <h4>Metrics</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0;">
+                                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;"><strong>Enrollment:</strong> ${metrics.enrollmentRate}</div>
+                                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;"><strong>Progress:</strong> ${metrics.trialProgress}</div>
+                                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;"><strong>Withdrawal:</strong> ${metrics.withdrawalRate}</div>
+                                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;"><strong>SAE Rate:</strong> ${metrics.seriousAERate}</div>
+                            </div>
+                            <h4>Sites (${trial.sites.length})</h4>
+                            ${trial.sites.map(site => `
+                                <div style="background: #f8f9fa; padding: 12px; margin: 8px 0; border-radius: 6px;">
+                                    <strong>${site.name}</strong> - ${site.location} | Status: ${site.status} | Enrolled: ${site.enrolled}/${site.target}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+
+        async function viewTrialAnalytics() {
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/clinical-trials/analytics`);
+                const data = await response.json();
+                if (data.success) {
+                    const a = data.analytics;
+                    document.getElementById('trialsResults').innerHTML = `
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+                            <h3 style="color: white; margin: 0;">Clinical Trials Analytics</h3>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div style="background: white; padding: 20px; border-radius: 12px;">
+                                <h4 style="color: #666;">Total Trials</h4>
+                                <p style="font-size: 2em; color: #667eea; margin: 0;">${a.totalTrials}</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 12px;">
+                                <h4 style="color: #666;">Active Trials</h4>
+                                <p style="font-size: 2em; color: #28a745; margin: 0;">${a.activeTrials}</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 12px;">
+                                <h4 style="color: #666;">Enrollment Rate</h4>
+                                <p style="font-size: 2em; color: #ffc107; margin: 0;">${a.enrollmentRate}</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 12px;">
+                                <h4 style="color: #666;">Total Enrolled</h4>
+                                <p style="font-size: 2em; color: #667eea; margin: 0;">${a.totalEnrollment}</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 12px;">
+                                <h4 style="color: #666;">Adverse Events</h4>
+                                <p style="font-size: 2em; color: #dc3545; margin: 0;">${a.totalAdverseEvents}</p>
+                                <p style="font-size: 0.9em; color: #666;">Serious: ${a.seriousAdverseEvents}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        }
+
+        async function viewAdverseEvents() {
+            try {
+                const response = await fetch(`${API_BASE}/api/medical/clinical-trials/adverse-events`);
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('trialsResults').innerHTML = `
+                        <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+                            <h3 style="color: white; margin: 0;">⚠️ Adverse Events (${data.total})</h3>
+                        </div>
+                        ${data.adverseEvents.map(ae => `
+                            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid ${ae.severity === 'SERIOUS' ? '#dc3545' : '#ffc107'};">
+                                <h4 style="color: ${ae.severity === 'SERIOUS' ? '#dc3545' : '#ffc107'};">${ae.term}</h4>
+                                <p><strong>Trial:</strong> ${ae.trialId} | <strong>Participant:</strong> ${ae.participantId}</p>
+                                <p><strong>Severity:</strong> ${ae.severity} | <strong>Relatedness:</strong> ${ae.relatedness}</p>
+                                <p><strong>Onset:</strong> ${ae.onset} | <strong>Outcome:</strong> ${ae.outcome}</p>
+                                ${ae.reported ? `<p style="color: #28a745;">✅ Reported to: ${ae.reportedTo.join(', ')}</p>` : ''}
+                            </div>
+                        `).join('')}
+                    `;
                 }
             } catch (error) {
                 showError('Network error: ' + error.message);
