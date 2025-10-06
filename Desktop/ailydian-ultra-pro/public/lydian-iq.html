@@ -1482,7 +1482,7 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
                 `.trim();
             }
 
-            typeWriter(formattedResponse, 20);
+            typeWriter(formattedResponse, 10);
         }
 
         // Show error with retry option
@@ -1514,19 +1514,62 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             elements.responseContent.innerHTML = errorHTML;
         }
         
-        function typeWriter(text, speed = 30) {
+        function typeWriter(text, speed = 10) {
             elements.responseContent.innerHTML = '';
             let i = 0;
-            
+
             function type() {
                 if (i < text.length) {
                     elements.responseContent.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(type, speed);
+                } else {
+                    // Add clear button after typing completes
+                    addClearButton();
                 }
             }
-            
+
             type();
+        }
+
+        // Add clear conversation button
+        function addClearButton() {
+            const clearBtn = document.createElement('div');
+            clearBtn.className = 'clear-conversation-btn';
+            clearBtn.innerHTML = `
+                <button onclick="clearConversation()" style="
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-top: 2rem;
+                    padding: 0.75rem 1.5rem;
+                    background: var(--glass);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid var(--border);
+                    border-radius: 50px;
+                    color: var(--text-secondary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-size: 0.9rem;
+                " onmouseover="this.style.background='linear-gradient(135deg, var(--justice-gold), var(--justice-maroon))'; this.style.color='white'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='var(--glass)'; this.style.color='var(--text-secondary)'; this.style.transform='scale(1)';">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
+                    Sohbeti Temizle
+                </button>
+            `;
+            elements.responseContent.appendChild(clearBtn);
+        }
+
+        // Clear conversation function
+        function clearConversation() {
+            elements.responseContent.innerHTML = '';
+            elements.searchInput.value = '';
+            elements.searchInput.focus();
+            console.log('🧹 Sohbet temizlendi');
         }
         
         // ============================================================
