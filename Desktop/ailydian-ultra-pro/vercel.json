@@ -4,6 +4,30 @@
   "outputDirectory": "public",
   "rewrites": [
     {
+      "source": "/api/rro/:path*",
+      "destination": "/api/civic?module=rro&path=:path*"
+    },
+    {
+      "source": "/api/umo/:path*",
+      "destination": "/api/civic?module=umo&path=:path*"
+    },
+    {
+      "source": "/api/phn/:path*",
+      "destination": "/api/civic?module=phn&path=:path*"
+    },
+    {
+      "source": "/api/svf/:path*",
+      "destination": "/api/civic?module=svf&path=:path*"
+    },
+    {
+      "source": "/api/map/:path*",
+      "destination": "/api/civic?module=map&path=:path*"
+    },
+    {
+      "source": "/api/atg/:path*",
+      "destination": "/api/civic?module=atg&path=:path*"
+    },
+    {
       "source": "/api/:path*",
       "destination": "/api/:path*"
     },
