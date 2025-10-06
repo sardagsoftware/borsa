@@ -257,28 +257,9 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 2rem 0;
-        }
-        
-        .search-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 1rem;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .search-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 3rem;
-            font-weight: 400;
+            padding: 4rem 0 2rem;
         }
         
         /* ============================================================
@@ -430,53 +411,7 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* ============================================================
-           QUICK SUGGESTIONS
-           ============================================================ */
-        
-        .suggestions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-            max-width: 800px;
-            width: 100%;
-        }
-        
-        .suggestion-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .suggestion-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        }
-        
-        .suggestion-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .suggestion-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        
-        .suggestion-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
+
         /* ============================================================
            AI RESPONSE AREA
            ============================================================ */
@@ -635,9 +570,6 @@
         
         <!-- Main Area -->
         <main class="main-area">
-            <h1 class="search-title">Sorularınızın Cevabı Burada</h1>
-            <p class="search-subtitle">Ultra-akıllı AI ile her türlü sorunuza anında cevap alın</p>
-            
             <!-- Advanced Search Box -->
             <div class="search-container">
                 <div class="search-box" id="searchBox">
@@ -676,28 +608,7 @@
                     <div class="voice-bar"></div>
                 </div>
             </div>
-            
-            <!-- Quick Suggestions -->
-            <div class="suggestions" id="suggestions">
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">💡</div>
-                    <div class="suggestion-title">Hızlı Öğrenme</div>
-                    <div class="suggestion-desc">Karmaşık konuları basitleştir</div>
-                </div>
-                
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">🔬</div>
-                    <div class="suggestion-title">Araştırma</div>
-                    <div class="suggestion-desc">Derinlemesine analiz ve içgörüler</div>
-                </div>
-                
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">⚡</div>
-                    <div class="suggestion-title">Hızlı Cevaplar</div>
-                    <div class="suggestion-desc">Anında doğru bilgi</div>
-                </div>
-            </div>
-            
+
             <!-- AI Response Area -->
             <div class="response-area" id="responseArea">
                 <div class="response-card">
@@ -754,8 +665,7 @@
             responseArea: document.getElementById('responseArea'),
             responseContent: document.getElementById('responseContent'),
             superPowerBtn: document.getElementById('superPowerBtn'),
-            powerIndicator: document.getElementById('powerIndicator'),
-            suggestions: document.getElementById('suggestions')
+            powerIndicator: document.getElementById('powerIndicator')
         };
         
         // ============================================================
@@ -872,8 +782,7 @@
             console.log('⚡ Super Power Mode:', state.superPowerMode);
             console.log('🛡️ White-Hat Rules: ACTIVE');
 
-            // Hide suggestions, show response area with loading
-            elements.suggestions.style.display = 'none';
+            // Show response area with loading
             elements.responseArea.classList.add('active');
 
             // Show loading state
