@@ -17084,6 +17084,10 @@ app.use('/api/medical/clinical-trials', hipaaAuditMiddleware, clinicalTrials);
 // Express 5.x: use /api/medical without /* wildcard - it catches all sub-routes
 app.use('/api/medical', hipaaAuditErrorHandler);
 
+// 🏭 CIVIC INTELLIGENCE GRID (CIG) - SYNTHETIC DATA FACTORY API
+const cigSvfAPI = require('./api/cig-svf');
+app.use('/api/cig-svf', cigSvfAPI);
+
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {
   res.status(404).json({
