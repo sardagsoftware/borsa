@@ -274,7 +274,7 @@
         
         .power-mode-indicator {
             position: fixed;
-            top: 20px;
+            top: 80px;
             right: 20px;
             background: var(--glass);
             backdrop-filter: blur(10px);
@@ -292,6 +292,18 @@
             display: flex;
             border-color: var(--accent);
             box-shadow: var(--glow-accent);
+            animation: pulseLydianMod 5s ease-in-out infinite;
+        }
+
+        @keyframes pulseLydianMod {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: var(--glow-accent);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 60px rgba(139, 21, 56, 0.6);
+            }
         }
         
         .power-icon {
@@ -824,7 +836,7 @@
             }
 
             .power-mode-indicator {
-                top: 10px;
+                top: 70px;
                 right: 10px;
                 padding: 0.5rem 1rem;
                 font-size: 0.85rem;
@@ -891,12 +903,12 @@
         <div class="gradient-orb orb-3"></div>
     </div>
     
-    <!-- Super Power Mode Indicator -->
+    <!-- LyDian MOD Indicator -->
     <div class="power-mode-indicator" id="powerIndicator">
         <svg class="power-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
-        <span>SUPER POWER MODE</span>
+        <span>LYDIAN MOD</span>
     </div>
     
     <!-- Main Container -->
