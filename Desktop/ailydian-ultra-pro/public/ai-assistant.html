@@ -1,6 +1,9 @@
+<!-- Cache-Buster: 1759577324 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LyDian AI Assistant - Enterprise Virtual Intelligence Agent</title>
@@ -246,35 +249,6 @@
 
         .send-button:hover {
             background: var(--asana-green-light);
-            transform: translateY(-2px);
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .language-btn {
-            background: var(--asana-green-ghost);
-            border: 2px solid var(--asana-green-light);
-            color: var(--asana-green-primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .language-btn.active {
-            background: var(--asana-green-primary);
-            color: white;
-        }
-
-        .language-btn:hover {
             transform: translateY(-2px);
         }
 
@@ -549,18 +523,6 @@
                 <p class="chat-subtitle">Herhangi bir konuda soru sorabilir, expert sistem seçebilirsiniz</p>
             </div>
 
-            <!-- Language Selector -->
-            <div class="language-selector">
-                <button class="language-btn active" data-lang="tr">🇹🇷 Türkçe</button>
-                <button class="language-btn" data-lang="en">🇺🇸 English</button>
-                <button class="language-btn" data-lang="de">🇩🇪 Deutsch</button>
-                <button class="language-btn" data-lang="fr">🇫🇷 Français</button>
-                <button class="language-btn" data-lang="es">🇪🇸 Español</button>
-                <button class="language-btn" data-lang="ar">🇸🇦 العربية</button>
-                <button class="language-btn" data-lang="zh">🇨🇳 中文</button>
-                <button class="language-btn" data-lang="ja">🇯🇵 日本語</button>
-            </div>
-
             <div class="chat-input-area">
                 <textarea
                     class="chat-input"
@@ -577,7 +539,6 @@
 
     <script>
         let selectedExpert = null;
-        let selectedLanguage = 'tr';
 
         // Expert selection
         function selectExpert(expertType) {
@@ -608,15 +569,6 @@
                 'Merhaba! Hangi konuda yardım istiyorsunuz?';
         }
 
-        // Language selection
-        document.querySelectorAll('.language-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                selectedLanguage = this.dataset.lang;
-            });
-        });
-
         // Send message
         function sendMessage() {
             const message = document.getElementById('userMessage').value.trim();
@@ -638,11 +590,11 @@
                 document.getElementById('userMessage').value = '';
 
                 // Show response (in a real implementation, this would be an actual AI response)
-                showAIResponse(message, selectedExpert, selectedLanguage);
+                showAIResponse(message, selectedExpert);
             }, 2000);
         }
 
-        function showAIResponse(message, expert, language) {
+        function showAIResponse(message, expert) {
             // Create response display (simplified for demo)
             const responseArea = document.createElement('div');
             responseArea.style.marginTop = '20px';
@@ -697,6 +649,9 @@
             });
         }, 2000);
     </script>
+
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
 
     <!-- ⚪ LyDian Projects FAB -->
     <script src="/js/projects-fab.js"></script>

@@ -1,3 +1,4 @@
+<!-- Cache-Buster: 1759577324 -->
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -436,29 +437,6 @@
             font-size: 0.9rem;
         }
 
-        /* Language Selector */
-        .language-selector {
-            position: fixed;
-            top: 80px;
-            right: var(--space-md);
-            z-index: 900;
-        }
-
-        .language-btn {
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            padding: var(--space-sm) var(--space-md);
-            border-radius: var(--radius);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition-fast);
-        }
-
-        .language-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
         /* Loading States */
         .loading {
             display: inline-block;
@@ -512,7 +490,7 @@
 
         /* Print Styles */
         @media print {
-            .header, .language-selector, .btn {
+            .header, .btn {
                 display: none !important;
             }
 
@@ -552,22 +530,6 @@
             </button>
         </nav>
     </header>
-
-    <!-- Language Selector -->
-    <div class="language-selector">
-        <select class="language-btn" id="language-selector" aria-label="Select language">
-            <option value="en">🇺🇸 English</option>
-            <option value="tr">🇹🇷 Türkçe</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="ko">🇰🇷 한국어</option>
-            <option value="zh">🇨🇳 中文</option>
-            <option value="ar">🇸🇦 العربية</option>
-            <option value="hi">🇮🇳 हिन्दी</option>
-        </select>
-    </div>
 
     <!-- Main Content -->
     <main id="main-content" role="main">
@@ -759,10 +721,6 @@
                 try {
                     this.currentLanguage = langCode;
                     localStorage.setItem('ailydian_language', langCode);
-
-                    // Update language selector
-                    const selector = document.getElementById('language-selector');
-                    if (selector) selector.value = langCode;
 
                     // Update HTML lang attribute
                     document.documentElement.lang = langCode;
@@ -961,14 +919,6 @@
                     // Update system status
                     await this.updateSystemStatus();
 
-                    // Set up language selector
-                    const languageSelector = document.getElementById('language-selector');
-                    if (languageSelector) {
-                        languageSelector.addEventListener('change', (e) => {
-                            this.setLanguage(e.target.value);
-                        });
-                    }
-
                     // Set up periodic status updates
                     setInterval(() => this.updateSystemStatus(), 30000);
 
@@ -1031,5 +981,8 @@
       ]
     }
     </script>
+
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
 </body>
 </html>

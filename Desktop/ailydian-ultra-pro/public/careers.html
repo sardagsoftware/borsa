@@ -1,9 +1,24 @@
+<!-- Cache-Buster: 1759577324 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers - LyDian | Join Our AI Innovation Team</title>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,7 +26,7 @@
         body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; }
         .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
-        .logo { font-family: 'Righteous', cursive; font-size: 2.25rem; color: #000; text-decoration: none; text-shadow: 0 0 20px rgba(16,163,127,0.6); }
+        .logo { font-family: 'Righteous', cursive !important; font-size: 2.25rem; color: #000; text-decoration: none;  }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--gray-700); text-decoration: none; }
         .btn-primary { background: var(--black); color: var(--white); padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; }
@@ -39,7 +54,7 @@
         .footer { padding: 4rem 2rem 2rem; background: var(--gray-900); color: var(--gray-500); }
         .footer-container { max-width: 1400px; margin: 0 auto; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
-        .footer-logo { font-family: 'Righteous', cursive; font-size: 2rem; color: white; text-shadow: 0 0 20px rgba(16,163,127,0.6); }
+        .footer-logo { font-family: 'Righteous', cursive !important; font-size: 2rem; color: white;  }
         .footer-column h3 { color: white; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1.5rem; }
         .footer-links { list-style: none; }
         .footer-links li { margin-bottom: 1rem; }
@@ -52,7 +67,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo">LyDian</a>
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">LyDian</a>
             <ul class="nav-links"><li><a href="/chat.html">LyDian AI</a></li><li><a href="/about.html">Hakkımızda</a></li></ul>
             <div><a href="/contact.html" class="btn-primary">İletişim</a></div>
         </div>

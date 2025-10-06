@@ -62,7 +62,28 @@
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Markdown & LaTeX Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-go.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-rust.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
     <style>
         /* ============================================================
            🎯 LyDian AI - ULTRA PREMIUM INTELLIGENCE INTERFACE
@@ -307,12 +328,26 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
+        /* Icon-only buttons (no text) */
+        .mode-toggle.icon-only {
+            padding: 0.65rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            justify-content: center;
+        }
+
+        .mode-toggle.icon-only .power-btn-text {
+            display: none;
+        }
+
         .mode-toggle:hover {
             border-color: var(--primary);
             color: var(--text-primary);
+            transform: scale(1.05);
         }
-        
+
         .mode-toggle.active {
             background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
             border-color: transparent;
@@ -977,14 +1012,23 @@
     
     <!-- Main Container -->
     <div class="container">
-        <!-- Header with Super Power Button -->
+        <!-- Header with Theme, History & Super Power Buttons -->
         <header class="header">
             <div class="header-right">
-                <button class="mode-toggle" id="superPowerBtn">
+                <button class="mode-toggle icon-only" id="themeToggleBtn" title="Tema Değiştir" style="margin-right: 0.5rem;">
+                    <svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24" id="themeIcon">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+                <button class="mode-toggle icon-only" id="historyBtn" title="Sohbet Geçmişi" style="margin-right: 0.5rem;">
+                    <svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </button>
+                <button class="mode-toggle icon-only" id="superPowerBtn" title="LyDian MOD">
                     <svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
-                    <span class="power-btn-text">LyDian MOD</span>
                 </button>
             </div>
         </header>
@@ -1264,7 +1308,14 @@
         const state = {
             superPowerMode: false,
             isRecording: false,
-            recognition: null
+            recognition: null,
+            currentConversation: {
+                query: '',
+                response: '',
+                timestamp: null,
+                domain: ''
+            },
+            conversationHistory: []
         };
         
         // Elements
@@ -1594,22 +1645,65 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             elements.responseContent.innerHTML = errorHTML;
         }
         
+        // Render Markdown with LaTeX support
+        function renderMarkdownWithLatex(text) {
+            // Configure marked for GitHub-flavored markdown
+            marked.setOptions({
+                gfm: true,
+                breaks: true,
+                headerIds: false,
+                mangle: false
+            });
+
+            // Convert markdown to HTML
+            const html = marked.parse(text);
+
+            // Create a temporary div to render the content
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            // Apply syntax highlighting to code blocks
+            tempDiv.querySelectorAll('pre code').forEach((block) => {
+                Prism.highlightElement(block);
+            });
+
+            return tempDiv.innerHTML;
+        }
+
         function typeWriter(text, speed = 10) {
             elements.responseContent.innerHTML = '';
-            let i = 0;
 
-            function type() {
-                if (i < text.length) {
-                    elements.responseContent.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    // Add clear button after typing completes
-                    addClearButton();
-                }
+            // Render markdown and LaTeX
+            const renderedHTML = renderMarkdownWithLatex(text);
+
+            // Set the rendered content
+            elements.responseContent.innerHTML = renderedHTML;
+
+            // Render LaTeX math formulas
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(elements.responseContent, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '\\(', right: '\\)', display: false}
+                    ],
+                    throwOnError: false,
+                    strict: false
+                });
             }
 
-            type();
+            // Add smooth fade-in animation
+            elements.responseContent.style.opacity = '0';
+            setTimeout(() => {
+                elements.responseContent.style.transition = 'opacity 0.3s ease';
+                elements.responseContent.style.opacity = '1';
+            }, 50);
+
+            // Add action buttons after rendering
+            setTimeout(() => {
+                addClearButton();
+            }, 100);
         }
 
         // Add compact action buttons (WhatsApp, Share, Download, Clear)
@@ -1625,6 +1719,45 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
             `;
 
             buttonsContainer.innerHTML = `
+                <button onclick="rateResponse('positive')" id="thumbsUpBtn" title="Beğendim" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    padding: 0;
+                    background: var(--glass);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid var(--border);
+                    border-radius: 50%;
+                    color: var(--text-secondary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                " onmouseover="if(!this.classList.contains('rated')) { this.style.background='#10B981'; this.style.color='white'; this.style.transform='scale(1.1)'; }" onmouseout="if(!this.classList.contains('rated')) { this.style.background='var(--glass)'; this.style.color='var(--text-secondary)'; this.style.transform='scale(1)'; }">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                    </svg>
+                </button>
+                <button onclick="rateResponse('negative')" id="thumbsDownBtn" title="Beğenmedim" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    padding: 0;
+                    background: var(--glass);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid var(--border);
+                    border-radius: 50%;
+                    color: var(--text-secondary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                " onmouseover="if(!this.classList.contains('rated')) { this.style.background='#EF4444'; this.style.color='white'; this.style.transform='scale(1.1)'; }" onmouseout="if(!this.classList.contains('rated')) { this.style.background='var(--glass)'; this.style.color='var(--text-secondary)'; this.style.transform='scale(1)'; }">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
+                    </svg>
+                </button>
+                <div style="width: 1px; height: 30px; background: var(--border); margin: 0 0.25rem;"></div>
                 <button onclick="shareToWhatsApp()" title="WhatsApp'ta Paylaş" style="
                     display: flex;
                     align-items: center;
@@ -1902,11 +2035,302 @@ ${response}
         }
 
         // Clear conversation function
+        // Rate response function
+        function rateResponse(rating) {
+            const thumbsUpBtn = document.getElementById('thumbsUpBtn');
+            const thumbsDownBtn = document.getElementById('thumbsDownBtn');
+
+            if (!thumbsUpBtn || !thumbsDownBtn) return;
+
+            // Prevent multiple ratings
+            if (thumbsUpBtn.classList.contains('rated') || thumbsDownBtn.classList.contains('rated')) {
+                console.log('Already rated this response');
+                return;
+            }
+
+            // Store rating in localStorage for analytics
+            const ratings = JSON.parse(localStorage.getItem('lydian-ratings') || '[]');
+            ratings.push({
+                rating: rating,
+                timestamp: new Date().toISOString(),
+                query: elements.searchInput.value || state.lastQuery
+            });
+            localStorage.setItem('lydian-ratings', JSON.stringify(ratings));
+
+            // Visual feedback
+            if (rating === 'positive') {
+                thumbsUpBtn.classList.add('rated');
+                thumbsUpBtn.style.background = '#10B981';
+                thumbsUpBtn.style.color = 'white';
+                thumbsUpBtn.style.transform = 'scale(1.15)';
+                thumbsDownBtn.style.opacity = '0.3';
+                thumbsDownBtn.style.pointerEvents = 'none';
+                console.log('Response rated: Positive');
+            } else {
+                thumbsDownBtn.classList.add('rated');
+                thumbsDownBtn.style.background = '#EF4444';
+                thumbsDownBtn.style.color = 'white';
+                thumbsDownBtn.style.transform = 'scale(1.15)';
+                thumbsUpBtn.style.opacity = '0.3';
+                thumbsUpBtn.style.pointerEvents = 'none';
+                console.log('Response rated: Negative');
+            }
+
+            // Show thank you message
+            setTimeout(() => {
+                const message = document.createElement('div');
+                message.style.cssText = `
+                    position: fixed;
+                    bottom: 2rem;
+                    right: 2rem;
+                    background: var(--bg-card);
+                    border: 1px solid var(--gold);
+                    border-radius: 12px;
+                    padding: 1rem 1.5rem;
+                    color: var(--text-primary);
+                    font-size: 0.9rem;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                    z-index: 9999;
+                    animation: slideInRight 0.3s ease;
+                `;
+                message.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>Geri bildiriminiz için teşekkürler!</span>
+                    </div>
+                `;
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    message.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => message.remove(), 300);
+                }, 2000);
+            }, 200);
+        }
+
         function clearConversation() {
             elements.responseContent.innerHTML = '';
             elements.searchInput.value = '';
             elements.searchInput.focus();
-            console.log('🧹 Sohbet temizlendi');
+            console.log('Conversation cleared');
+        }
+
+        // ============================================================
+        // CONVERSATION HISTORY SYSTEM
+        // ============================================================
+
+        // Save conversation to history
+        function saveConversationToHistory(query, response, domain) {
+            const conversation = {
+                id: Date.now(),
+                query: query,
+                response: response,
+                domain: domain,
+                timestamp: new Date().toISOString(),
+                superPowerMode: state.superPowerMode
+            };
+
+            // Get existing history
+            const history = JSON.parse(localStorage.getItem('lydian-history') || '[]');
+
+            // Add new conversation at the beginning
+            history.unshift(conversation);
+
+            // Keep only last 50 conversations
+            const trimmedHistory = history.slice(0, 50);
+
+            // Save to localStorage
+            localStorage.setItem('lydian-history', JSON.stringify(trimmedHistory));
+
+            console.log('Conversation saved to history');
+        }
+
+        // Load conversation from history
+        function loadConversationFromHistory(conversationId) {
+            const history = JSON.parse(localStorage.getItem('lydian-history') || '[]');
+            const conversation = history.find(c => c.id === conversationId);
+
+            if (conversation) {
+                // Display the conversation
+                elements.searchInput.value = conversation.query;
+                elements.responseContent.innerHTML = renderMarkdownWithLatex(conversation.response);
+
+                // Render LaTeX if present
+                if (typeof renderMathInElement !== 'undefined') {
+                    renderMathInElement(elements.responseContent, {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false}
+                        ],
+                        throwOnError: false
+                    });
+                }
+
+                // Add action buttons
+                addClearButton();
+
+                console.log('Loaded conversation from history');
+            }
+        }
+
+        // Show history modal
+        function showHistoryModal() {
+            const history = JSON.parse(localStorage.getItem('lydian-history') || '[]');
+
+            let modal = document.getElementById('history-modal');
+
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'history-modal';
+                modal.style.cssText = `
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    backdrop-filter: blur(10px);
+                    z-index: 10000;
+                    align-items: center;
+                    justify-content: center;
+                    overflow-y: auto;
+                    padding: 2rem;
+                `;
+
+                document.body.appendChild(modal);
+
+                // Close on outside click
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+
+            // Build history list
+            let historyHTML = '';
+
+            if (history.length === 0) {
+                historyHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 1rem;">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p>Henüz kayıtlı sohbet yok</p>
+                    </div>
+                `;
+            } else {
+                historyHTML = history.map(conv => `
+                    <div onclick="loadConversationFromHistory(${conv.id}); document.getElementById('history-modal').style.display='none';" style="
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-color);
+                        border-radius: 12px;
+                        padding: 1rem;
+                        margin-bottom: 1rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    " onmouseover="this.style.borderColor='var(--gold)'; this.style.transform='translateX(4px)';" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='translateX(0)';">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                            <div style="flex: 1;">
+                                <div style="color: var(--text-primary); font-weight: 500; margin-bottom: 0.25rem;">
+                                    ${conv.query.substring(0, 80)}${conv.query.length > 80 ? '...' : ''}
+                                </div>
+                                <div style="color: var(--text-muted); font-size: 0.75rem;">
+                                    ${new Date(conv.timestamp).toLocaleString('tr-TR')}
+                                    ${conv.superPowerMode ? ' • LyDian MOD' : ''}
+                                </div>
+                            </div>
+                            <button onclick="event.stopPropagation(); deleteConversation(${conv.id});" style="
+                                background: transparent;
+                                border: none;
+                                color: var(--text-secondary);
+                                cursor: pointer;
+                                padding: 0.25rem;
+                                transition: color 0.3s ease;
+                            " onmouseover="this.style.color='#EF4444';" onmouseout="this.style.color='var(--text-secondary)';">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            modal.innerHTML = `
+                <div style="
+                    background: var(--bg-dark);
+                    border: 1px solid var(--border-color);
+                    border-radius: 16px;
+                    padding: 2rem;
+                    max-width: 600px;
+                    width: 100%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                ">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h2 style="color: var(--gold); font-size: 1.5rem; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Sohbet Geçmişi
+                        </h2>
+                        <button onclick="document.getElementById('history-modal').style.display='none'" style="
+                            background: transparent;
+                            border: none;
+                            color: var(--text-secondary);
+                            cursor: pointer;
+                            font-size: 1.5rem;
+                            padding: 0;
+                            width: 32px;
+                            height: 32px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        ">×</button>
+                    </div>
+                    <div>${historyHTML}</div>
+                    ${history.length > 0 ? `
+                        <button onclick="clearAllHistory()" style="
+                            width: 100%;
+                            padding: 0.75rem;
+                            background: transparent;
+                            border: 1px solid var(--border-color);
+                            border-radius: 8px;
+                            color: var(--text-secondary);
+                            cursor: pointer;
+                            font-size: 0.9rem;
+                            transition: all 0.3s ease;
+                            margin-top: 1rem;
+                        " onmouseover="this.style.borderColor='#EF4444'; this.style.color='#EF4444';" onmouseout="this.style.borderColor='var(--border-color)'; this.style.color='var(--text-secondary)';">
+                            Tüm Geçmişi Temizle
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+        }
+
+        // Delete single conversation
+        function deleteConversation(conversationId) {
+            const history = JSON.parse(localStorage.getItem('lydian-history') || '[]');
+            const filteredHistory = history.filter(c => c.id !== conversationId);
+            localStorage.setItem('lydian-history', JSON.stringify(filteredHistory));
+            showHistoryModal(); // Refresh the modal
+        }
+
+        // Clear all history
+        function clearAllHistory() {
+            if (confirm('Tüm sohbet geçmişini silmek istediğinizden emin misiniz?')) {
+                localStorage.removeItem('lydian-history');
+                document.getElementById('history-modal').style.display = 'none';
+                console.log('All conversation history cleared');
+            }
         }
 
         // Load shared conversation from URL hash
@@ -1977,7 +2401,262 @@ ${response}
             console.log('✅ Voice Recognition: Ready');
             console.log('✅ Super Power Mode: Standby');
             console.log('✅ White-Hat Rules: Active');
-            
+
+            // ============================================================
+            // THEME TOGGLE SYSTEM
+            // ============================================================
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+
+            // Theme color configurations
+            const themes = {
+                dark: {
+                    '--bg-dark': '#0A0F1E',
+                    '--bg-darker': '#050812',
+                    '--bg-card': 'rgba(20, 28, 48, 0.95)',
+                    '--bg-glass': 'rgba(20, 28, 48, 0.7)',
+                    '--text-primary': '#FFFFFF',
+                    '--text-secondary': '#B8C5D6',
+                    '--text-muted': '#8B96A5',
+                    '--border-color': 'rgba(196, 169, 98, 0.2)',
+                    '--gold': '#C4A962',
+                    '--gold-light': '#D4B972',
+                    '--gold-dark': '#B49952',
+                    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>'
+                },
+                light: {
+                    '--bg-dark': '#FFFFFF',
+                    '--bg-darker': '#F8F9FA',
+                    '--bg-card': 'rgba(255, 255, 255, 0.95)',
+                    '--bg-glass': 'rgba(248, 249, 250, 0.7)',
+                    '--text-primary': '#1C2536',
+                    '--text-secondary': '#4A5568',
+                    '--text-muted': '#718096',
+                    '--border-color': 'rgba(196, 169, 98, 0.3)',
+                    '--gold': '#B49952',
+                    '--gold-light': '#C4A962',
+                    '--gold-dark': '#A38942',
+                    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>'
+                }
+            };
+
+            // Load saved theme or use system preference
+            const savedTheme = localStorage.getItem('lydian-theme') ||
+                (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+
+            function setTheme(theme) {
+                const config = themes[theme];
+
+                // Apply CSS variables
+                Object.entries(config).forEach(([key, value]) => {
+                    if (key.startsWith('--')) {
+                        document.documentElement.style.setProperty(key, value);
+                    }
+                });
+
+                // Update button icon
+                themeIcon.innerHTML = config.icon;
+
+                // Save preference
+                localStorage.setItem('lydian-theme', theme);
+
+                // Add smooth transition
+                document.documentElement.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+                setTimeout(() => {
+                    document.documentElement.style.transition = '';
+                }, 300);
+
+                console.log(`Theme switched to: ${theme}`);
+            }
+
+            // Initialize theme on load
+            setTheme(savedTheme);
+
+            // Toggle theme on button click
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = localStorage.getItem('lydian-theme') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS SYSTEM
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                // Ctrl/Cmd + Enter: Submit query
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    if (elements.searchInput.value.trim()) {
+                        handleSearch();
+                    }
+                }
+
+                // Ctrl/Cmd + K: Clear conversation (new conversation)
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    clearConversation();
+                }
+
+                // Ctrl/Cmd + L: Focus on input
+                if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                    e.preventDefault();
+                    elements.searchInput.focus();
+                    elements.searchInput.select();
+                }
+
+                // Ctrl/Cmd + /: Show keyboard shortcuts help
+                if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+                    e.preventDefault();
+                    showKeyboardShortcuts();
+                }
+
+                // Esc: Clear input or close modals
+                if (e.key === 'Escape') {
+                    const shortcutsModal = document.getElementById('keyboard-shortcuts-modal');
+                    if (shortcutsModal && shortcutsModal.style.display === 'flex') {
+                        shortcutsModal.style.display = 'none';
+                    } else {
+                        elements.searchInput.value = '';
+                        elements.searchInput.focus();
+                    }
+                }
+            });
+
+            // Show keyboard shortcuts modal
+            function showKeyboardShortcuts() {
+                // Check if modal already exists
+                let modal = document.getElementById('keyboard-shortcuts-modal');
+
+                if (!modal) {
+                    // Create modal
+                    modal = document.createElement('div');
+                    modal.id = 'keyboard-shortcuts-modal';
+                    modal.style.cssText = `
+                        display: none;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.8);
+                        backdrop-filter: blur(10px);
+                        z-index: 10000;
+                        align-items: center;
+                        justify-content: center;
+                    `;
+
+                    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+                    const cmdKey = isMac ? '⌘' : 'Ctrl';
+
+                    modal.innerHTML = `
+                        <div style="
+                            background: var(--bg-card);
+                            border: 1px solid var(--border-color);
+                            border-radius: 16px;
+                            padding: 2rem;
+                            max-width: 500px;
+                            width: 90%;
+                        ">
+                            <h2 style="
+                                color: var(--gold);
+                                font-size: 1.5rem;
+                                margin-bottom: 1.5rem;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.5rem;
+                            ">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                                </svg>
+                                Keyboard Shortcuts
+                            </h2>
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-secondary);">Submit Query</span>
+                                    <kbd style="
+                                        background: var(--bg-glass);
+                                        border: 1px solid var(--border-color);
+                                        border-radius: 6px;
+                                        padding: 0.25rem 0.75rem;
+                                        font-family: monospace;
+                                        color: var(--gold);
+                                    ">${cmdKey} + Enter</kbd>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-secondary);">New Conversation</span>
+                                    <kbd style="
+                                        background: var(--bg-glass);
+                                        border: 1px solid var(--border-color);
+                                        border-radius: 6px;
+                                        padding: 0.25rem 0.75rem;
+                                        font-family: monospace;
+                                        color: var(--gold);
+                                    ">${cmdKey} + K</kbd>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-secondary);">Focus Input</span>
+                                    <kbd style="
+                                        background: var(--bg-glass);
+                                        border: 1px solid var(--border-color);
+                                        border-radius: 6px;
+                                        padding: 0.25rem 0.75rem;
+                                        font-family: monospace;
+                                        color: var(--gold);
+                                    ">${cmdKey} + L</kbd>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-secondary);">Show Shortcuts</span>
+                                    <kbd style="
+                                        background: var(--bg-glass);
+                                        border: 1px solid var(--border-color);
+                                        border-radius: 6px;
+                                        padding: 0.25rem 0.75rem;
+                                        font-family: monospace;
+                                        color: var(--gold);
+                                    ">${cmdKey} + /</kbd>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-secondary);">Close / Clear</span>
+                                    <kbd style="
+                                        background: var(--bg-glass);
+                                        border: 1px solid var(--border-color);
+                                        border-radius: 6px;
+                                        padding: 0.25rem 0.75rem;
+                                        font-family: monospace;
+                                        color: var(--gold);
+                                    ">Esc</kbd>
+                                </div>
+                            </div>
+                            <button onclick="document.getElementById('keyboard-shortcuts-modal').style.display='none'" style="
+                                margin-top: 1.5rem;
+                                width: 100%;
+                                padding: 0.75rem;
+                                background: linear-gradient(135deg, var(--gold), var(--gold-light));
+                                color: var(--bg-dark);
+                                border: none;
+                                border-radius: 8px;
+                                font-weight: 600;
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+                            ">Close</button>
+                        </div>
+                    `;
+
+                    document.body.appendChild(modal);
+
+                    // Close on outside click
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+                }
+
+                // Show modal
+                modal.style.display = 'flex';
+                console.log('⌨️ Keyboard shortcuts displayed');
+            }
+
             // Check for shared conversation in URL
             loadSharedConversation();
 
@@ -2129,13 +2808,14 @@ ${response}
             function showInstallButton() {
                 const installBtn = document.createElement('button');
                 installBtn.id = 'pwa-install-btn';
+                installBtn.title = 'Mobil Uygulama Olarak İndir';
                 installBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        <path d="M12 10v4"></path>
+                        <polyline points="9 12 12 15 15 12"></polyline>
                     </svg>
-                    Ana Ekrana Ekle
                 `;
                 installBtn.style.cssText = `
                     position: fixed;
@@ -2143,16 +2823,16 @@ ${response}
                     right: 2rem;
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem;
-                    padding: 1rem 1.5rem;
+                    justify-content: center;
+                    width: 56px;
+                    height: 56px;
+                    padding: 0;
                     background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
                     color: white;
                     border: none;
-                    border-radius: 50px;
-                    font-weight: 600;
-                    font-size: 0.9rem;
+                    border-radius: 50%;
                     cursor: pointer;
-                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.3);
+                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.4);
                     z-index: 1000;
                     transition: all 0.3s ease;
                     animation: pulse-install 2s infinite;

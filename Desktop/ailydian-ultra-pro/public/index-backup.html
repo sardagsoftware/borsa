@@ -1,6 +1,9 @@
+<!-- Cache-Buster: 1759577324 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LyDian - Enterprise AI Platform</title>
@@ -3567,22 +3570,7 @@
             </div>
 
             <!-- Language Selector -->
-            <div class="language-selector" onclick="toggleLanguage()">
-                <i class="ph ph-globe"></i>
-                <span id="currentLang">TR</span>
-            </div>
-
-            <!-- Status Indicator -->
-            <div class="status-indicator">
-                <div class="status-dot"></div>
-                <span id="status-text">ACTIVE</span>
-            </div>
-
-            <!-- Settings Icon -->
-            <div class="settings-icon" onclick="toggleSettings()" title="Ayarlar">
-                <i class="ph ph-gear"></i>
-            </div>
-        </div>
+            
     </header>
 
     <!-- Main Container -->
@@ -5744,18 +5732,18 @@
             if (sender === 'user') {
                 messageDiv.innerHTML = `
                     <div style="display: flex; gap: 1rem; margin-bottom: 1rem; justify-content: flex-end;">
-                        <div style="background: var(--gradient-primary); padding: 1rem 1.5rem; border-radius: 16px 16px 4px 16px; color: white; max-width: 80%; box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);">
+                        <div >
                             <p style="margin: 0; line-height: 1.5;">${content}</p>
                             <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.5rem; text-align: right;">${timestamp}</div>
                         </div>
-                        <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #0f1419, #1a1a1a); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0;">👤</div>
+                        <div >👤</div>
                     </div>
                 `;
             } else {
                 messageDiv.innerHTML = `
                     <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                        <div style="width: 36px; height: 36px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0;">🤖</div>
-                        <div style="background: ${isError ? 'linear-gradient(135deg, #ff4757, #ff3742)' : 'white'}; padding: 1rem 1.5rem; border-radius: 16px 16px 16px 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); max-width: 80%; ${isError ? 'color: white;' : 'color: #0f1419;'}">
+                        <div >🤖</div>
+                        <div >
                             <div style="margin: 0; line-height: 1.5; white-space: pre-wrap;">${content.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre style="background: rgba(15, 20, 25, 0.05); padding: 1rem; border-radius: 8px; margin: 0.5rem 0; overflow-x: auto;"><code>$2</code></pre>')}</div>
                             <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 0.5rem;">${timestamp}</div>
                         </div>
@@ -5777,7 +5765,7 @@
             typingDiv.id = 'typingIndicator';
             typingDiv.innerHTML = `
                 <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="width: 36px; height: 36px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0;">🤖</div>
+                    <div >🤖</div>
                     <div style="background: white; padding: 1rem 1.5rem; border-radius: 16px 16px 16px 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                         <div style="display: flex; gap: 4px; align-items: center;">
                             <span style="color: #5c6975;">Yazıyor</span>
@@ -7525,7 +7513,7 @@
         <!-- Chat Header -->
         <div class="chat-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--primary-glow);">
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <div style="width: 48px; height: 48px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">🤖</div>
+                <div >🤖</div>
                 <div>
                     <h2 style="color: #0f1419; font-size: 1.5rem; font-weight: 700; margin: 0;">AiLydian AI Asistan</h2>
                     <p style="color: #5c6975; font-size: 0.875rem; margin: 0;">150+ AI Model • Çok Dilli • Real-time</p>
@@ -7550,7 +7538,7 @@
         <div class="chat-messages" id="chatMessages" style="height: 400px; overflow-y: auto; padding: 1rem; background: #fafbfc; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(255, 115, 0, 0.05);">
             <!-- Welcome Message -->
             <div class="message ai-message" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                <div style="width: 36px; height: 36px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0;">🤖</div>
+                <div >🤖</div>
                 <div style="background: white; padding: 1rem 1.5rem; border-radius: 16px 16px 16px 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); max-width: 80%;">
                     <p style="margin: 0; color: #0f1419; line-height: 1.5;">
                         Merhaba! Ben AiLydian AI asistanınızım. Size nasıl yardımcı olabilirim?
@@ -7600,7 +7588,7 @@
                 <button
                     id="sendButton"
                     onclick="sendMessage()"
-                    style="width: 56px; height: 56px; background: var(--gradient-primary); border: none; border-radius: 12px; color: white; font-size: 24px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);"
+                    
                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(255, 115, 0, 0.4)'"
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(var(--primary-rgb), 0.3)'"
                 >
