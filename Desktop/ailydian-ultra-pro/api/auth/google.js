@@ -9,10 +9,7 @@ module.exports = async (req, res) => {
     const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || `${process.env.VERCEL_URL || 'http://localhost:5001'}/api/auth/google/callback`;
 
     if (!GOOGLE_CLIENT_ID) {
-      return res.status(500).json({
-        success: false,
-        error: 'Google OAuth not configured'
-      });
+      return res.redirect(302, '/auth.html?error=oauth_not_configured&provider=google');
     }
 
     const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');

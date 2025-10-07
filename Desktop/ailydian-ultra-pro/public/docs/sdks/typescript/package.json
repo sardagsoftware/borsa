@@ -1,0 +1,43 @@
+{
+  "name": "@lydian/sdk",
+  "version": "1.0.0",
+  "description": "Official TypeScript/JavaScript SDK for Lydian AI Platform",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "jest",
+    "lint": "eslint src --ext .ts"
+  },
+  "keywords": [
+    "lydian",
+    "ai",
+    "smart-cities",
+    "insan-iq",
+    "lydian-iq",
+    "api-client"
+  ],
+  "author": "Lydian AI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lydian/typescript-sdk"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

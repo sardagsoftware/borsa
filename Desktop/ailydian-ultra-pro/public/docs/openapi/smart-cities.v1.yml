@@ -1,0 +1,1477 @@
+openapi: 3.1.0
+info:
+  title: LyDian Smart Cities API
+  version: 1.0.0
+  description: |
+    Enterprise-grade API for smart city management, IoT asset monitoring, and urban intelligence.
+
+    ## Features
+    - Real-time city asset management (traffic lights, sensors, cameras)
+    - Comprehensive metrics tracking (traffic, energy, air quality, water)
+    - Event and alert management for security and disaster response
+    - Multi-tenant support with OAuth2 and API Key authentication
+
+    ## Rate Limits
+    - Standard tier: 1000 requests/hour
+    - Premium tier: 10000 requests/hour
+    - Enterprise tier: Custom limits
+
+  contact:
+    name: LyDian API Support
+    email: api-support@lydian.com
+    url: https://lydian.com/support
+  license:
+    name: Commercial
+    url: https://lydian.com/terms
+  termsOfService: https://lydian.com/terms
+
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+
+servers:
+  - url: https://api.lydian.com/v1/smart-cities
+    description: Production server
+  - url: https://api-staging.lydian.com/v1/smart-cities
+    description: Staging server
+  - url: http://localhost:3000/v1/smart-cities
+    description: Development server
+
+security:
+  - oauth2: []
+  - apiKey: []
+  - hmacAuth: []
+
+tags:
+  - name: Cities
+    description: City resource management
+  - name: Assets
+    description: IoT asset management (sensors, cameras, traffic lights)
+  - name: Metrics
+    description: City metrics and analytics
+  - name: Events
+    description: City event tracking
+  - name: Alerts
+    description: Alert management
+
+paths:
+  /cities:
+    post:
+      operationId: createCity
+      summary: Create a new city
+      description: Register a new smart city in the platform
+      tags:
+        - Cities
+      security:
+        - oauth2: [cities:write]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCityRequest'
+            examples:
+              istanbul:
+                summary: Istanbul Smart City
+                value:
+                  name: Istanbul
+                  country: TR
+                  timezone: Europe/Istanbul
+                  coordinates:
+                    latitude: 41.0082
+                    longitude: 28.9784
+                  population: 15462452
+                  metadata:
+                    mayor: Example Mayor
+                    founded: 330
+      responses:
+        '201':
+          description: City created successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URL of the created city
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      operationId: listCities
+      summary: List cities
+      description: Retrieve a paginated list of cities
+      tags:
+        - Cities
+      security:
+        - oauth2: [cities:read]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: country
+          in: query
+          description: Filter by ISO country code
+          schema:
+            type: string
+            pattern: '^[A-Z]{2}$'
+          example: TR
+        - name: search
+          in: query
+          description: Search cities by name
+          schema:
+            type: string
+            minLength: 2
+          example: Istanbul
+      responses:
+        '200':
+          description: List of cities
+          headers:
+            Link:
+              schema:
+                type: string
+              description: Pagination links (next, prev)
+              example: '<https://api.lydian.com/v1/smart-cities/cities?cursor=xyz&limit=50>; rel="next"'
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - pagination
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/City'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /cities/{cityId}:
+    get:
+      operationId: getCity
+      summary: Get city details
+      description: Retrieve detailed information about a specific city
+      tags:
+        - Cities
+      security:
+        - oauth2: [cities:read]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/CityId'
+      responses:
+        '200':
+          description: City details
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /cities/{cityId}/assets:
+    post:
+      operationId: registerAsset
+      summary: Register a city asset
+      description: Register a new IoT asset (sensor, camera, traffic light) in the city
+      tags:
+        - Assets
+      security:
+        - oauth2: [assets:write]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/CityId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssetRequest'
+            examples:
+              trafficLight:
+                summary: Traffic Light
+                value:
+                  type: traffic_light
+                  name: TL-001-Taksim
+                  location:
+                    latitude: 41.0369
+                    longitude: 28.9850
+                  status: active
+                  metadata:
+                    intersection: Taksim Square
+                    lanes: 4
+              airQualitySensor:
+                summary: Air Quality Sensor
+                value:
+                  type: air_quality_sensor
+                  name: AQ-001-Besiktas
+                  location:
+                    latitude: 41.0422
+                    longitude: 29.0088
+                  status: active
+                  metadata:
+                    manufacturer: SensorTech
+                    model: AQ-Pro-2000
+      responses:
+        '201':
+          description: Asset registered successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+    get:
+      operationId: listAssets
+      summary: List city assets
+      description: Retrieve a paginated list of assets for a city
+      tags:
+        - Assets
+      security:
+        - oauth2: [assets:read]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/CityId'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: type
+          in: query
+          description: Filter by asset type
+          schema:
+            $ref: '#/components/schemas/AssetType'
+        - name: status
+          in: query
+          description: Filter by status
+          schema:
+            type: string
+            enum: [active, inactive, maintenance, error]
+      responses:
+        '200':
+          description: List of assets
+          headers:
+            Link:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - pagination
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Asset'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /cities/{cityId}/metrics:
+    get:
+      operationId: getCityMetrics
+      summary: Get city metrics
+      description: Retrieve metrics for traffic, energy, air quality, or water usage
+      tags:
+        - Metrics
+      security:
+        - oauth2: [metrics:read]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/CityId'
+        - name: kind
+          in: query
+          required: true
+          description: Type of metric to retrieve
+          schema:
+            type: string
+            enum: [traffic, energy, air, water]
+        - name: from
+          in: query
+          required: true
+          description: Start timestamp (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+          example: '2025-10-07T00:00:00Z'
+        - name: to
+          in: query
+          required: true
+          description: End timestamp (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+          example: '2025-10-07T23:59:59Z'
+        - name: granularity
+          in: query
+          description: Time granularity for aggregation
+          schema:
+            type: string
+            enum: [minute, hour, day, week, month]
+            default: hour
+      responses:
+        '200':
+          description: City metrics
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /events:
+    post:
+      operationId: reportEvent
+      summary: Report a city event
+      description: Report a security, disaster, or other city event
+      tags:
+        - Events
+      security:
+        - oauth2: [events:write]
+        - apiKey: []
+        - hmacAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventRequest'
+            examples:
+              security:
+                summary: Security Event
+                value:
+                  cityId: city_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+                  type: security
+                  severity: high
+                  title: Unauthorized access detected
+                  description: Multiple failed authentication attempts
+                  location:
+                    latitude: 41.0082
+                    longitude: 28.9784
+                  timestamp: '2025-10-07T12:00:00Z'
+              disaster:
+                summary: Disaster Event
+                value:
+                  cityId: city_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+                  type: disaster
+                  severity: critical
+                  title: Earthquake detected
+                  description: 5.2 magnitude earthquake
+                  location:
+                    latitude: 41.0082
+                    longitude: 28.9784
+                  timestamp: '2025-10-07T12:00:00Z'
+      responses:
+        '201':
+          description: Event reported successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+    get:
+      operationId: listEvents
+      summary: List events
+      description: Retrieve a paginated list of city events
+      tags:
+        - Events
+      security:
+        - oauth2: [events:read]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: cityId
+          in: query
+          description: Filter by city ID
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter by event type
+          schema:
+            type: string
+            enum: [security, disaster, traffic, maintenance, other]
+        - name: severity
+          in: query
+          description: Filter by severity
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+        - name: from
+          in: query
+          description: Start timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          description: End timestamp
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: List of events
+          headers:
+            Link:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - pagination
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /alerts:
+    post:
+      operationId: createAlert
+      summary: Create an alert
+      description: Create a new alert for city monitoring
+      tags:
+        - Alerts
+      security:
+        - oauth2: [alerts:write]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAlertRequest'
+      responses:
+        '201':
+          description: Alert created successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+    get:
+      operationId: listAlerts
+      summary: List alerts
+      description: Retrieve a paginated list of alerts
+      tags:
+        - Alerts
+      security:
+        - oauth2: [alerts:read]
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: cityId
+          in: query
+          description: Filter by city ID
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by alert status
+          schema:
+            type: string
+            enum: [active, resolved, acknowledged]
+      responses:
+        '200':
+          description: List of alerts
+          headers:
+            Link:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - pagination
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with authorization code and client credentials flows
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.lydian.com/oauth2/authorize
+          tokenUrl: https://auth.lydian.com/oauth2/token
+          refreshUrl: https://auth.lydian.com/oauth2/refresh
+          scopes:
+            cities:read: Read city information
+            cities:write: Create and modify cities
+            assets:read: Read asset information
+            assets:write: Register and modify assets
+            metrics:read: Read city metrics
+            events:read: Read city events
+            events:write: Report city events
+            alerts:read: Read alerts
+            alerts:write: Create alerts
+        clientCredentials:
+          tokenUrl: https://auth.lydian.com/oauth2/token
+          scopes:
+            cities:read: Read city information
+            cities:write: Create and modify cities
+            assets:read: Read asset information
+            assets:write: Register and modify assets
+            metrics:read: Read city metrics
+            events:read: Read city events
+            events:write: Report city events
+            alerts:read: Read alerts
+            alerts:write: Create alerts
+
+    apiKey:
+      type: apiKey
+      name: X-API-Key
+      in: header
+      description: API key for authentication. Obtain from https://console.lydian.com
+
+    hmacAuth:
+      type: apiKey
+      name: X-HMAC-Signature
+      in: header
+      description: |
+        HMAC-SHA256 signature for request authentication.
+
+        Signature calculation:
+        1. Create canonical request: `{method}\n{path}\n{timestamp}\n{body_sha256}`
+        2. Sign with secret: `HMAC-SHA256(secret, canonical_request)`
+        3. Encode as hex
+
+        Required headers:
+        - X-HMAC-Signature: The HMAC signature
+        - X-HMAC-Timestamp: Unix timestamp (must be within 300s)
+        - X-HMAC-Algorithm: HMAC-SHA256
+
+  parameters:
+    CityId:
+      name: cityId
+      in: path
+      required: true
+      description: Unique city identifier (ULID format)
+      schema:
+        type: string
+        pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+      example: city_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+
+    Cursor:
+      name: cursor
+      in: query
+      description: Pagination cursor for next page
+      schema:
+        type: string
+        format: byte
+      example: eyJpZCI6ImNpdHlfMDFISjVLM00yTjVQNlE3UjhTOVQwVjFXMlgiLCJvZmZzZXQiOjUwfQ==
+
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of items to return (1-100)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 50
+      example: 50
+
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      description: UUID v4 for idempotent requests. Prevents duplicate operations.
+      required: false
+      schema:
+        type: string
+        format: uuid
+      example: 550e8400-e29b-41d4-a716-446655440000
+
+  headers:
+    X-RateLimit-Limit:
+      description: Maximum number of requests allowed per hour
+      schema:
+        type: integer
+      example: 1000
+
+    X-RateLimit-Remaining:
+      description: Number of requests remaining in current window
+      schema:
+        type: integer
+      example: 999
+
+    X-RateLimit-Reset:
+      description: Unix timestamp when the rate limit resets
+      schema:
+        type: integer
+        format: int64
+      example: 1696680000
+
+  schemas:
+    City:
+      type: object
+      required:
+        - id
+        - name
+        - country
+        - timezone
+        - coordinates
+        - population
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+          description: Unique city identifier (ULID)
+          example: city_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          example: Istanbul
+        country:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: ISO 3166-1 alpha-2 country code
+          example: TR
+        timezone:
+          type: string
+          description: IANA timezone identifier
+          example: Europe/Istanbul
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        population:
+          type: integer
+          minimum: 0
+          example: 15462452
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Custom metadata for the city
+        createdAt:
+          type: string
+          format: date-time
+          example: '2025-10-07T10:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2025-10-07T10:00:00Z'
+
+    CreateCityRequest:
+      type: object
+      required:
+        - name
+        - country
+        - timezone
+        - coordinates
+        - population
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        country:
+          type: string
+          pattern: '^[A-Z]{2}$'
+        timezone:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        population:
+          type: integer
+          minimum: 0
+        metadata:
+          type: object
+          additionalProperties: true
+
+    Asset:
+      type: object
+      required:
+        - id
+        - cityId
+        - type
+        - name
+        - location
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          pattern: '^asset_[0-9A-HJKMNP-TV-Z]{26}$'
+          example: asset_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+        cityId:
+          type: string
+          pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+        type:
+          $ref: '#/components/schemas/AssetType'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        location:
+          $ref: '#/components/schemas/Coordinates'
+        status:
+          type: string
+          enum: [active, inactive, maintenance, error]
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateAssetRequest:
+      type: object
+      required:
+        - type
+        - name
+        - location
+        - status
+      properties:
+        type:
+          $ref: '#/components/schemas/AssetType'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        location:
+          $ref: '#/components/schemas/Coordinates'
+        status:
+          type: string
+          enum: [active, inactive, maintenance, error]
+        metadata:
+          type: object
+          additionalProperties: true
+
+    AssetType:
+      type: string
+      enum:
+        - traffic_light
+        - speed_camera
+        - cctv_camera
+        - air_quality_sensor
+        - noise_sensor
+        - parking_sensor
+        - street_light
+        - water_meter
+        - energy_meter
+        - weather_station
+      example: traffic_light
+
+    MetricsResponse:
+      type: object
+      required:
+        - cityId
+        - kind
+        - from
+        - to
+        - granularity
+        - data
+      properties:
+        cityId:
+          type: string
+        kind:
+          type: string
+          enum: [traffic, energy, air, water]
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+        granularity:
+          type: string
+          enum: [minute, hour, day, week, month]
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricDataPoint'
+
+    MetricDataPoint:
+      type: object
+      required:
+        - timestamp
+        - value
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        value:
+          type: number
+          format: double
+        unit:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+
+    Event:
+      type: object
+      required:
+        - id
+        - cityId
+        - type
+        - severity
+        - title
+        - timestamp
+        - createdAt
+      properties:
+        id:
+          type: string
+          pattern: '^event_[0-9A-HJKMNP-TV-Z]{26}$'
+          example: event_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+        cityId:
+          type: string
+          pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+        type:
+          type: string
+          enum: [security, disaster, traffic, maintenance, other]
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+        location:
+          $ref: '#/components/schemas/Coordinates'
+        timestamp:
+          type: string
+          format: date-time
+          description: When the event occurred
+        createdAt:
+          type: string
+          format: date-time
+          description: When the event was reported
+
+    CreateEventRequest:
+      type: object
+      required:
+        - cityId
+        - type
+        - severity
+        - title
+        - timestamp
+      properties:
+        cityId:
+          type: string
+          pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+        type:
+          type: string
+          enum: [security, disaster, traffic, maintenance, other]
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+        location:
+          $ref: '#/components/schemas/Coordinates'
+        timestamp:
+          type: string
+          format: date-time
+
+    Alert:
+      type: object
+      required:
+        - id
+        - cityId
+        - title
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          pattern: '^alert_[0-9A-HJKMNP-TV-Z]{26}$'
+          example: alert_01HJ5K3M2N5P6Q7R8S9T0V1W2X
+        cityId:
+          type: string
+          pattern: '^alert_[0-9A-HJKMNP-TV-Z]{26}$'
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+        status:
+          type: string
+          enum: [active, resolved, acknowledged]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+
+    CreateAlertRequest:
+      type: object
+      required:
+        - cityId
+        - title
+      properties:
+        cityId:
+          type: string
+          pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+
+    Coordinates:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+          example: 41.0082
+        longitude:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+          example: 28.9784
+
+    PaginationInfo:
+      type: object
+      required:
+        - hasNext
+        - hasPrev
+      properties:
+        hasNext:
+          type: boolean
+          description: Whether there is a next page
+        hasPrev:
+          type: boolean
+          description: Whether there is a previous page
+        nextCursor:
+          type: string
+          format: byte
+          description: Cursor for the next page
+        prevCursor:
+          type: string
+          format: byte
+          description: Cursor for the previous page
+        total:
+          type: integer
+          description: Total count (optional, may be expensive to compute)
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+            - correlationId
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              example: VALIDATION_ERROR
+            message:
+              type: string
+              description: Human-readable error message
+              example: Invalid request parameters
+            details:
+              type: array
+              description: Detailed validation errors
+              items:
+                type: object
+                required:
+                  - path
+                  - issue
+                properties:
+                  path:
+                    type: string
+                    description: JSON path to the field with error
+                    example: coordinates.latitude
+                  issue:
+                    type: string
+                    description: Description of the issue
+                    example: Must be between -90 and 90
+            correlationId:
+              type: string
+              format: uuid
+              description: Unique ID for tracking this error
+              example: 550e8400-e29b-41d4-a716-446655440000
+            timestamp:
+              type: string
+              format: date-time
+              example: '2025-10-07T10:00:00Z'
+
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: VALIDATION_ERROR
+              message: Invalid request parameters
+              details:
+                - path: coordinates.latitude
+                  issue: Must be between -90 and 90
+              correlationId: 550e8400-e29b-41d4-a716-446655440000
+              timestamp: '2025-10-07T10:00:00Z'
+
+    Unauthorized:
+      description: Unauthorized - invalid or missing credentials
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+          example: Bearer realm="LyDian API", error="invalid_token"
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: Invalid or missing authentication credentials
+              correlationId: 550e8400-e29b-41d4-a716-446655440000
+              timestamp: '2025-10-07T10:00:00Z'
+
+    NotFound:
+      description: Resource not found
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: NOT_FOUND
+              message: The requested resource was not found
+              correlationId: 550e8400-e29b-41d4-a716-446655440000
+              timestamp: '2025-10-07T10:00:00Z'
+
+    Conflict:
+      description: Conflict - duplicate idempotency key or resource already exists
+      headers:
+        Location:
+          schema:
+            type: string
+            format: uri
+          description: Location of the existing resource
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: DUPLICATE_REQUEST
+              message: Request with this idempotency key already processed
+              correlationId: 550e8400-e29b-41d4-a716-446655440000
+              timestamp: '2025-10-07T10:00:00Z'
+
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until rate limit resets
+          example: 3600
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+            example: 0
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: Rate limit exceeded. Please retry after 3600 seconds.
+              correlationId: 550e8400-e29b-41d4-a716-446655440000
+              timestamp: '2025-10-07T10:00:00Z'
+
+    InternalServerError:
+      description: Internal server error
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INTERNAL_ERROR
+              message: An internal server error occurred
+              correlationId: 550e8400-e29b-41d4-a716-446655440000
+              timestamp: '2025-10-07T10:00:00Z'
+
+webhooks:
+  cityCreated:
+    post:
+      summary: City Created Event
+      description: |
+        Triggered when a new city is created.
+
+        Webhook signature validation:
+        1. Extract X-Lydian-Signature and X-Lydian-Timestamp headers
+        2. Construct payload: `{timestamp}.{request_body}`
+        3. Compute HMAC-SHA256 with your webhook secret
+        4. Compare computed signature with X-Lydian-Signature
+        5. Verify timestamp is within 300 seconds
+      operationId: onCityCreated
+      tags:
+        - Webhooks
+      parameters:
+        - name: X-Lydian-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+          example: sha256=5d41402abc4b2a76b9719d911017c592
+        - name: X-Lydian-Timestamp
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 1696680000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - eventId
+                - eventType
+                - timestamp
+                - data
+              properties:
+                eventId:
+                  type: string
+                  format: uuid
+                eventType:
+                  type: string
+                  enum: [city.created]
+                timestamp:
+                  type: string
+                  format: date-time
+                data:
+                  $ref: '#/components/schemas/City'
+      responses:
+        '200':
+          description: Webhook received successfully
+
+  assetCreated:
+    post:
+      summary: Asset Created Event
+      description: Triggered when a new asset is registered
+      operationId: onAssetCreated
+      tags:
+        - Webhooks
+      parameters:
+        - name: X-Lydian-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Lydian-Timestamp
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - eventId
+                - eventType
+                - timestamp
+                - data
+              properties:
+                eventId:
+                  type: string
+                  format: uuid
+                eventType:
+                  type: string
+                  enum: [asset.created]
+                timestamp:
+                  type: string
+                  format: date-time
+                data:
+                  $ref: '#/components/schemas/Asset'
+      responses:
+        '200':
+          description: Webhook received successfully
+
+  alertTriggered:
+    post:
+      summary: Alert Triggered Event
+      description: Triggered when a new alert is created
+      operationId: onAlertTriggered
+      tags:
+        - Webhooks
+      parameters:
+        - name: X-Lydian-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Lydian-Timestamp
+          in: header
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - eventId
+                - eventType
+                - timestamp
+                - data
+              properties:
+                eventId:
+                  type: string
+                  format: uuid
+                eventType:
+                  type: string
+                  enum: [alert.triggered]
+                timestamp:
+                  type: string
+                  format: date-time
+                data:
+                  $ref: '#/components/schemas/Alert'
+      responses:
+        '200':
+          description: Webhook received successfully

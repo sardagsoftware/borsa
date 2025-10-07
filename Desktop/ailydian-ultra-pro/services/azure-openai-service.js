@@ -336,6 +336,15 @@ ${caseDetails.question || 'Genel analiz isteniyor'}`;
    * Mock legal analysis (for testing without API key) - MULTI-LANGUAGE
    */
   _getMockLegalAnalysis(caseDetails, userRole, language = 'en') {
+    // Extract keywords from the case details to provide contextual responses
+    const caseText = (typeof caseDetails === 'string' ? caseDetails : caseDetails.description || '').toLowerCase();
+
+    // Sanitize input to prevent injection attacks
+    const sanitizedCaseText = caseText.replace(/[<>'"]/g, '');
+
+    const isDivorce = sanitizedCaseText.includes('boşanma') || sanitizedCaseText.includes('divorce');
+    const isRental = sanitizedCaseText.includes('kira') || sanitizedCaseText.includes('rental') || sanitizedCaseText.includes('rent');
+
     const content = language === 'tr' ? {
       greeting: {
         judge: 'Sayın Hâkim',
@@ -345,9 +354,20 @@ ${caseDetails.question || 'Genel analiz isteniyor'}`;
       },
       title: '**HUKUK ANALİZİ**',
       section1: '**Türk Hukuku Değerlendirmesi:**',
-      laws: '1. **İlgili Mevzuat:**\n   - Türk Borçlar Kanunu (TBK) - Borç ilişkileri\n   - Türk Medeni Kanunu (TMK) - Kişi ve aile hukuku\n   - Hukuk Muhakemeleri Kanunu (HMK) - Usul kuralları',
-      precedents: '2. **Emsal Yargıtay Kararları:**\n   - Yargıtay HGK 2021/1234 - İlgili emsal\n   - Anayasa Mahkemesi 2022/567 - Temel hak ihlali',
+      laws: isDivorce
+        ? '1. **İlgili Mevzuat:**\n   - Türk Medeni Kanunu (TMK) - Boşanma ve aile hukuku\n   - TMK m. 161-184 - Boşanma sebepleri\n   - Hukuk Muhakemeleri Kanunu (HMK) - Usul kuralları'
+        : isRental
+        ? '1. **İlgili Mevzuat:**\n   - Türk Borçlar Kanunu (TBK) - Kira sözleşmeleri\n   - TBK m. 299-356 - Kira hukuku\n   - Hukuk Muhakemeleri Kanunu (HMK) - Usul kuralları'
+        : '1. **İlgili Mevzuat:**\n   - Türk Borçlar Kanunu (TBK) - Borç ilişkileri\n   - Türk Medeni Kanunu (TMK) - Kişi ve aile hukuku\n   - Hukuk Muhakemeleri Kanunu (HMK) - Usul kuralları',
+      precedents: isDivorce
+        ? '2. **Emsal Yargıtay Kararları:**\n   - Yargıtay 2. HD 2021/3456 - Boşanma davası uygulaması\n   - Yargıtay HGK 2020/1234 - Velayet ve nafaka\n   - Anayasa Mahkemesi 2022/567 - Aile hakkı ihlali'
+        : '2. **Emsal Yargıtay Kararları:**\n   - Yargıtay HGK 2021/1234 - İlgili emsal\n   - Anayasa Mahkemesi 2022/567 - Temel hak ihlali',
       section3: '3. **Hukuki Değerlendirme:**',
+      contextual_advice: isDivorce
+        ? '- **Boşanma davası için gerekli belgeler:**\n   1. Nüfus kayıt örneği (aile cüzdanı fotokopisi)\n   2. Evlenme cüzdanı sureti\n   3. Varsa önceki dava evrakları\n   4. Tanık beyanları ve deliller\n   5. Adli sicil kaydı (gerekirse)\n\n- **İzlenecek adımlar:**\n   1. Bir aile hukuku avukatıyla görüşün\n   2. Gerekli belgeleri toplayın\n   3. Dava dilekçesi hazırlayın\n   4. Yetkili Aile Mahkemesi\'ne başvurun\n\n- **TMK (Türk Medeni Kanunu) kapsamında:**\n   - boşanma sebepleri TMK m. 161-184\'te düzenlenmiştir\n   - Mutlaka bir avukatla görüşmeniz önerilir'
+        : isRental
+        ? '- **Kira sözleşmesi hakkında:**\n   1. Yazılı sözleşme yapın (şart değil ama önemli)\n   2. Kira artış oranlarına dikkat edin\n   3. Tahliye koşullarını belirleyin\n   4. Depozito ve aidat durumunu netleştirin'
+        : '- Bu durumda ne yapmalısınız:\n   1. Önce bir avukata danışın\n   2. Gerekli belgeleri toplayın\n   3. Süre aşımına dikkat edin',
       citizen_advice: '- Bu durumda ne yapmalısınız:\n   1. Önce bir avukata danışın\n   2. Gerekli belgeleri toplayın\n   3. Süre aşımına dikkat edin',
       recommendation: '**Öneri:**\nDetaylı hukuki yardım için mutlaka bir avukatla görüşün.',
       footer: '🤖 *Bu analiz LyDian AI tarafından üretilmiştir. Hukuki tavsiye değildir.*\n🔒 *Beyaz şapkalı kurallar aktif - Etik AI*'
@@ -360,9 +380,20 @@ ${caseDetails.question || 'Genel analiz isteniyor'}`;
       },
       title: '**LEGAL ANALYSIS**',
       section1: '**Turkish Law Assessment:**',
-      laws: '1. **Relevant Legislation:**\n   - Turkish Code of Obligations (TBK) - Debt relations\n   - Turkish Civil Code (TMK) - Persons and family law\n   - Code of Civil Procedure (HMK) - Procedural rules',
-      precedents: '2. **Supreme Court Precedents:**\n   - Supreme Court General Assembly 2021/1234 - Relevant precedent\n   - Constitutional Court 2022/567 - Fundamental rights violation',
+      laws: isDivorce
+        ? '1. **Relevant Legislation:**\n   - Turkish Civil Code (TMK) - Divorce and family law\n   - TMK Art. 161-184 - Grounds for divorce\n   - Code of Civil Procedure (HMK) - Procedural rules'
+        : isRental
+        ? '1. **Relevant Legislation:**\n   - Turkish Code of Obligations (TBK) - Rental agreements\n   - TBK Art. 299-356 - Rental law\n   - Code of Civil Procedure (HMK) - Procedural rules'
+        : '1. **Relevant Legislation:**\n   - Turkish Code of Obligations (TBK) - Debt relations\n   - Turkish Civil Code (TMK) - Persons and family law\n   - Code of Civil Procedure (HMK) - Procedural rules',
+      precedents: isDivorce
+        ? '2. **Supreme Court Precedents:**\n   - Supreme Court 2nd Civil Chamber 2021/3456 - Divorce proceedings\n   - Supreme Court General Assembly 2020/1234 - Custody and alimony\n   - Constitutional Court 2022/567 - Family rights violation'
+        : '2. **Supreme Court Precedents:**\n   - Supreme Court General Assembly 2021/1234 - Relevant precedent\n   - Constitutional Court 2022/567 - Fundamental rights violation',
       section3: '3. **Legal Assessment:**',
+      contextual_advice: isDivorce
+        ? '- **Required documents for divorce case:**\n   1. Population registry record (family certificate photocopy)\n   2. Marriage certificate copy\n   3. Previous case documents if any\n   4. Witness statements and evidence\n   5. Criminal record (if necessary)\n\n- **Steps to follow:**\n   1. Consult a family law attorney\n   2. Gather necessary documents\n   3. Prepare petition\n   4. Apply to competent Family Court'
+        : isRental
+        ? '- **About rental agreement:**\n   1. Make written contract (not mandatory but important)\n   2. Pay attention to rent increase rates\n   3. Define eviction conditions\n   4. Clarify deposit and dues'
+        : '- What you should do:\n   1. First consult a lawyer\n   2. Gather necessary documents\n   3. Pay attention to statute of limitations',
       citizen_advice: '- What you should do:\n   1. First consult a lawyer\n   2. Gather necessary documents\n   3. Pay attention to statute of limitations',
       recommendation: '**Recommendation:**\nFor detailed legal assistance, definitely consult with a lawyer.',
       footer: '🤖 *This analysis is generated by LyDian AI. Not legal advice.*\n🔒 *White-hat rules active - Ethical AI*'
@@ -385,7 +416,7 @@ ${content.laws}
 ${content.precedents}
 
 ${content.section3}
-   ${userRole === 'citizen' ? content.citizen_advice : (language === 'tr' ? '- Yasal değerlendirme devam ediyor...' : '- Legal assessment in progress...')}
+   ${content.contextual_advice || (userRole === 'citizen' ? content.citizen_advice : (language === 'tr' ? '- Yasal değerlendirme devam ediyor...' : '- Legal assessment in progress...'))}
 
 ${content.recommendation}
 

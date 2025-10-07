@@ -16957,6 +16957,14 @@ app.post('/api/lydian-iq/solve', async (req, res) => {
       error: 'Internal server error',
       message: 'LyDian IQ API hatası'
     });
+// 🔒 CSRF Token Endpoint
+app.get("/api/csrf-token", (req, res) => {
+  if (!req.session) req.session = {};
+  const csrfToken = require("crypto").randomBytes(32).toString("hex");
+  req.session.csrfToken = csrfToken;
+  res.json({ csrfToken });
+});
+
   }
 });
 

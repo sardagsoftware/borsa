@@ -9,10 +9,7 @@ module.exports = async (req, res) => {
     const MICROSOFT_REDIRECT_URI = process.env.MICROSOFT_REDIRECT_URI || `${process.env.VERCEL_URL || 'http://localhost:5001'}/api/auth/microsoft/callback`;
 
     if (!MICROSOFT_CLIENT_ID) {
-      return res.status(500).json({
-        success: false,
-        error: 'Microsoft OAuth not configured'
-      });
+      return res.redirect(302, '/auth.html?error=oauth_not_configured&provider=microsoft');
     }
 
     const authUrl = new URL('https://login.microsoftonline.com/common/oauth2/v2.0/authorize');

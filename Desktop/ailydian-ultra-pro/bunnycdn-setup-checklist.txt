@@ -1,0 +1,313 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🐰 BUNNYCDN KURULUM CHECKLİSTİ - Ailydian.com
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📅 Tarih: 5 Ekim 2025
+⏱️ Tahmini Süre: 60 dakika
+🎯 Hedef: Zero downtime CDN migration
+🔒 Güvenlik: Beyaz şapka kuralları
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 ÖN HAZIRLIK (10 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Mevcut sistem yedekleme
+    └─ vercel inspect > vercel-backup.txt
+    └─ dig www.ailydian.com > dns-backup.txt
+    └─ curl -I https://www.ailydian.com > headers-backup.txt
+
+[ ] 2. UptimeRobot monitoring aktif et
+    └─ Monitor: https://www.ailydian.com
+    └─ Monitor: https://www.ailydian.com/api/health
+    └─ Interval: 1 dakika
+    └─ Alert: Email + SMS
+
+[ ] 3. Mevcut performans metrikleri kaydet
+    └─ TTFB: curl -w "%{time_starttransfer}" www.ailydian.com
+    └─ Cache: curl -I www.ailydian.com | grep cache
+    └─ Headers: curl -I www.ailydian.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 ADIM 1: BUNNYCDN HESABI (5 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. https://bunny.net → Sign Up
+    └─ Email: admin@ailydian.com
+    └─ Password: [Güçlü şifre]
+
+[ ] 2. 2FA aktif et (ZORUNLU)
+    └─ Google Authenticator
+
+[ ] 3. Payment method ekle
+    └─ Credit card
+    └─ Free credit: $10
+
+[ ] 4. API key oluştur
+    └─ Dashboard → Account → API → Generate
+    └─ API Key kaydet: ________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📦 ADIM 2: PULL ZONE OLUŞTUR (5 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Dashboard → CDN → Add Pull Zone
+    └─ Name: ailydian-prod
+    └─ Origin: https://ailydian-6avnx8zcg-emrahsardag-yandexcoms-projects.vercel.app
+    └─ Type: Standard
+
+[ ] 2. Edge Locations seç
+    └─ ✅ Europe (Frankfurt, London, Paris, Amsterdam)
+    └─ ✅ US East (New York, Washington DC)
+    └─ ✅ US West (Los Angeles, Seattle)
+
+[ ] 3. Advanced Settings
+    └─ Cache Time: 3600 (1 hour)
+    └─ Browser Cache: 86400 (1 day)
+    └─ Query String Sort: ✅ Enabled
+    └─ Cookies: Forward All
+
+[ ] 4. Security Settings
+    └─ Origin Shield: ✅ Enabled
+    └─ DDoS Protection: ✅ Enabled
+
+[ ] 5. Pull Zone URL kaydet
+    └─ URL: ailydian-prod.b-cdn.net
+    └─ Zone ID: ________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 ADIM 3: TEST DOMAIN (10 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Add Custom Hostname
+    └─ Hostname: test-cdn.ailydian.com
+    └─ SSL: Let's Encrypt (Auto)
+    └─ Wait 5-10 min for SSL
+
+[ ] 2. DNS test kaydı ekle
+    └─ Type: CNAME
+    └─ Host: test-cdn
+    └─ Value: ailydian-prod.b-cdn.net
+    └─ TTL: 300
+
+[ ] 3. DNS propagation check
+    └─ dig test-cdn.ailydian.com +short
+    └─ Beklenen: ailydian-prod.b-cdn.net
+
+[ ] 4. SSL test
+    └─ curl -I https://test-cdn.ailydian.com
+    └─ Beklenen: HTTP/2 200
+
+[ ] 5. API test
+    └─ curl https://test-cdn.ailydian.com/api/health
+    └─ Beklenen: {"status":"OK"}
+
+[ ] 6. Cache test
+    └─ curl -I https://test-cdn.ailydian.com/ | grep x-cache
+    └─ İlk: MISS, İkinci: HIT
+
+[ ] 7. Performance test
+    └─ curl -w "TTFB: %{time_starttransfer}s" test-cdn.ailydian.com
+    └─ Beklenen: < 100ms
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛡️ ADIM 4: SECURITY RULES (15 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Edge Rule: Block Bad Bots
+    └─ IF User-Agent contains "bot" (except googlebot, bingbot)
+    └─ Action: Deny (403)
+
+[ ] 2. Edge Rule: Rate Limiting
+    └─ IF Request > 100 in 60s (same IP)
+    └─ Action: Deny (429)
+
+[ ] 3. Edge Rule: API Rate Limiting
+    └─ IF URL starts "/api/" AND Request > 30 in 60s
+    └─ Action: Deny (429)
+
+[ ] 4. Edge Rule: SQL Injection
+    └─ IF URL contains "SELECT", "UNION", "DROP", etc.
+    └─ Action: Deny (403)
+
+[ ] 5. Edge Rule: XSS Protection
+    └─ IF URL contains "<script", "javascript:", etc.
+    └─ Action: Deny (403)
+
+[ ] 6. Edge Rule: Force HTTPS
+    └─ IF Protocol = "http"
+    └─ Action: Redirect HTTPS (301)
+
+[ ] 7. Custom Headers
+    └─ Strict-Transport-Security: max-age=31536000
+    └─ X-Frame-Options: DENY
+    └─ X-Content-Type-Options: nosniff
+    └─ Referrer-Policy: strict-origin-when-cross-origin
+    └─ Permissions-Policy: camera=(), microphone=()
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ ADIM 5: CACHE OPTIMIZATION (10 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Cache Rule: Static Files (1 year)
+    └─ IF URL ends .jpg,.png,.css,.js,.woff2
+    └─ Cache: 31536000
+
+[ ] 2. Cache Rule: HTML (1 hour)
+    └─ IF URL ends .html OR URL is "/"
+    └─ Cache: 3600
+
+[ ] 3. Cache Rule: API (No Cache)
+    └─ IF URL starts "/api/"
+    └─ Cache: 0
+
+[ ] 4. Cache Rule: Media (1 month)
+    └─ IF URL ends .mp4,.webm,.mov
+    └─ Cache: 2592000
+
+[ ] 5. Compression
+    └─ ✅ Brotli Compression
+    └─ ✅ Gzip Compression
+    └─ ✅ WebP Optimization
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔄 ADIM 6: DNS MIGRATION (15 dakika) ⚠️ KRİTİK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Production hostname ekle
+    └─ Hostname: www.ailydian.com
+    └─ SSL: Let's Encrypt
+    └─ Wait 10 min for SSL
+
+[ ] 2. TTL'yi düşür (1 saat ÖNCE)
+    └─ Domain registrar
+    └─ CNAME www → vercel (mevcut)
+    └─ TTL: 300 → 60
+    └─ KAYDET ve 1 saat bekle!
+
+[ ] 3. DNS'i değiştir (Migration)
+    └─ Domain registrar
+    └─ CNAME www → ailydian-prod.b-cdn.net
+    └─ TTL: 60
+    └─ KAYDET
+
+[ ] 4. Propagation check (2-5 dakika)
+    └─ dig www.ailydian.com +short
+    └─ Beklenen: ailydian-prod.b-cdn.net
+
+[ ] 5. Validation
+    └─ curl -I https://www.ailydian.com
+    └─ ✅ HTTP/2 200
+    └─ ✅ x-cache: HIT
+    └─ ✅ x-pull-zone: ailydian-prod
+    └─ curl https://www.ailydian.com/api/health
+    └─ ✅ {"status":"OK"}
+
+[ ] 6. Monitoring (15 dakika)
+    └─ UptimeRobot: %100 uptime
+    └─ BunnyCDN Dashboard: Requests increasing
+    └─ No errors
+
+[ ] 7. TTL'yi yükselt (sorun yoksa)
+    └─ Domain registrar
+    └─ TTL: 60 → 3600
+    └─ KAYDET
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ VALIDATION & TESTING (10 dakika)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ ] 1. Fonksiyonellik Testi
+    └─ Homepage: curl www.ailydian.com | grep "LyDian"
+    └─ API: curl www.ailydian.com/api/health
+    └─ Medical: curl www.ailydian.com/medical-expert.html
+    └─ Legal: curl www.ailydian.com/lydian-legal-search.html
+
+[ ] 2. Performance Testi
+    └─ TTFB: curl -w "TTFB: %{time_starttransfer}" www.ailydian.com
+    └─ Cache: curl -I www.ailydian.com | grep x-cache
+    └─ Lighthouse: npx lighthouse https://www.ailydian.com
+
+[ ] 3. Security Testi
+    └─ SSL: openssl s_client -connect www.ailydian.com:443
+    └─ Headers: curl -I www.ailydian.com | grep -i strict
+    └─ WAF: curl "www.ailydian.com/?id=1%20UNION%20SELECT"
+    └─ Rate limit: 150 request test
+
+[ ] 4. Monitoring Check
+    └─ BunnyCDN: Cache hit > %80
+    └─ UptimeRobot: %100 uptime
+    └─ Response time: < 100ms
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚨 ROLLBACK PLANI (Acil Durum)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SORUN VARSA (Site açılmıyor, hatalar, yavaşlık):
+
+[ ] 1. DNS'i hemen geri al (30 saniye)
+    └─ Domain registrar
+    └─ CNAME www → 273140a7bc1139dc.vercel-dns-016.com
+    └─ TTL: 60
+    └─ KAYDET
+    └─ 1-2 dakika bekle, eski haline döner
+
+[ ] 2. Cache purge
+    └─ BunnyCDN → Purge All Cache
+
+[ ] 3. Support
+    └─ BunnyCDN: support@bunny.net
+    └─ Live Chat: 24/7
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 BEKLENEN SONUÇLAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ÖNCE (Vercel Only):
+├─ TTFB: ~200ms
+├─ Cache Hit: %30
+├─ DDoS: ❌
+├─ WAF: ❌
+└─ Maliyet: $20-40/ay
+
+SONRA (BunnyCDN):
+├─ TTFB: ~50ms (4x hızlı) ✅
+├─ Cache Hit: %90+ (3x iyi) ✅
+├─ DDoS: ✅
+├─ WAF: ✅
+└─ Maliyet: $5-10/ay (75% tasarruf) ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 NOTLAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BunnyCDN API Key: ________________
+Pull Zone ID: ________________
+Pull Zone URL: ailydian-prod.b-cdn.net
+Test Domain: test-cdn.ailydian.com
+Production Domain: www.ailydian.com
+
+Migration Başlangıç: ____/____/____ __:__
+Migration Bitiş: ____/____/____ __:__
+Toplam Süre: _______ dakika
+
+Sorun Yaşandı mı?: [ ] Evet  [✅] Hayır
+Rollback Yapıldı mı?: [ ] Evet  [✅] Hayır
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ KURULUM TAMAMLANDI!
+
+İmza: ________________  Tarih: ____/____/____
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

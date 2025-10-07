@@ -121,7 +121,7 @@
         }
 
         .logo {
-            font-family: 'Righteous', cursive !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 2.25rem;
             font-weight: 900 !important;
             color: #000000;
@@ -632,25 +632,99 @@
             z-index: 10;
         }
 
-        .typewriter-text {
-            display: inline-block;
+        /* 3D Hero Styles - Dark Neon Gradient Background */
+        .hero-3d {
             position: relative;
-            transition: color 0.3s ease;
+            overflow: hidden;
+            background: linear-gradient(135deg,
+                #000000 0%,
+                #0a0e1a 20%,
+                #0d1117 40%,
+                #001a14 70%,
+                #000d0f 100%
+            );
+        }
+
+        .hero-3d-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-3d-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                rgba(16, 163, 127, 0.05) 40%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Animated neon gradient flow overlay */
+        .hero-3d-overlay::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                linear-gradient(45deg,
+                    transparent 0%,
+                    rgba(16, 163, 127, 0.08) 25%,
+                    transparent 50%,
+                    rgba(100, 252, 255, 0.08) 75%,
+                    transparent 100%
+                );
+            animation: gradient-flow 15s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content-center {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-text-center {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title-static {
+            font-size: 4rem;
             font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            text-shadow: 0 4px 30px rgba(16, 163, 127, 0.5), 0 0 50px rgba(100, 252, 255, 0.3);
         }
 
-        .typewriter-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1em;
-            background-color: #10A37F;
-            margin-left: 2px;
-            animation: cursorBlink 0.8s ease-in-out infinite;
-        }
-
-        @keyframes cursorBlink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
+        .hero-title-static .highlight {
+            background: linear-gradient(135deg, #10A37F 0%, #64fcff 50%, #00fff5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(16, 163, 127, 0.8)) drop-shadow(0 0 40px rgba(100, 252, 255, 0.5));
         }
 
         .hero-title-gradient {
@@ -663,9 +737,34 @@
         .hero-description {
             font-size: 1.25rem;
             line-height: 1.6;
-            color: #4B5563;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 2.5rem;
             animation: fadeInUp 0.8s ease-out 0.4s both;
+            min-height: 80px;
+        }
+
+        .hero-typewriter {
+            position: relative;
+        }
+
+        #typewriter-text {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.4em;
+            background: #ffffff;
+            margin-left: 4px;
+            animation: cursor-blink 1s ease-in-out infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes cursor-blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         .hero-cta {
@@ -1520,7 +1619,7 @@
         }
 
         .footer-logo {
-            font-family: 'Righteous', cursive !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 2rem;
             font-weight: 900 !important;
             color: #FFFFFF;
@@ -1669,7 +1768,7 @@
             }
 
             .logo {
-                font-family: 'Righteous', cursive !important;
+                font-family: 'Inter', sans-serif !important;
                 font-size: 1.75rem;
                 font-weight: 900 !important;
                 letter-spacing: 0.08em !important;
@@ -1885,8 +1984,8 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px;">
-                <img src="/lydian-logo.png" alt="LyDian Logo" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
                 LyDian
             </a>
 
@@ -2111,160 +2210,32 @@
         </div>
     </nav>
 
-    <!-- Live Stats Bar -->
-    <div class="live-stats-bar">
-        <div class="stat-item-compact">
-            <span class="stat-number-compact" id="live-models-top">52</span>
-            <span class="stat-label-compact">Models</span>
-        </div>
-        <div class="stat-item-compact">
-            <span class="stat-number-compact" id="live-uptime-top">99.97</span>
-            <span class="stat-label-compact">% Uptime</span>
-        </div>
-        <div class="stat-item-compact">
-            <span class="stat-number-compact" id="live-requests-top">1,247</span>
-            <span class="stat-label-compact">Req/min</span>
-        </div>
-    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background">
-            <div class="hero-gradient"></div>
-        </div>
+    <!-- Hero Section with 3D -->
+    <section class="hero hero-3d">
+        <!-- Three.js Canvas Background -->
+        <canvas id="hero3DCanvas" class="hero-3d-canvas"></canvas>
 
-        <div class="hero-content">
-            <div class="hero-text">
+        <!-- Gradient Overlay -->
+        <div class="hero-3d-overlay"></div>
+
+        <!-- Content -->
+        <div class="hero-content hero-content-center">
+            <div class="hero-text-center">
                 <div class="hero-badge">
                     <span class="hero-badge-dot"></span>
                     <span>Yapay Zeka ile Güçlendirilmiş Platform</span>
                 </div>
 
-                <h1 class="hero-title">
-                    <span class="typewriter-text" id="typewriter-text"></span>
-                    <span class="typewriter-cursor"></span>
+                <h1 class="hero-title hero-title-static">
+                    LyDian <span class="highlight">AI Platform</span>
                 </h1>
 
-                <p class="hero-description">
-                    Gelişmiş yapay zeka modelleriyle desteklenen LyDian,
-                    iş süreçlerinizi optimize eder ve yaratıcılığınızı sınırsız hale getirir.
+                <p class="hero-description hero-typewriter">
+                    <span id="typewriter-text"></span>
+                    <span class="typewriter-cursor"></span>
                 </p>
-
-                <div class="hero-cta">
-                    <a href="/chat.html" class="btn btn-primary btn-large">Ücretsiz Başlayın</a>
-                    <a href="#features" class="btn btn-secondary btn-large">Özellikleri Keşfedin</a>
-                </div>
             </div>
-
-            <div class="hero-visual">
-                <!-- Global AI Ecosystem Visualization -->
-                <div class="global-ai-ecosystem">
-                    <!-- Central LyDian Hub -->
-                    <div class="central-hub">
-                        <div class="hub-pulse"></div>
-                        <div class="hub-ring hub-ring-1"></div>
-                        <div class="hub-ring hub-ring-2"></div>
-                        <div class="hub-ring hub-ring-3"></div>
-                        <div class="hub-core">
-                            <svg viewBox="0 0 100 100" class="hub-logo">
-                                <defs>
-                                    <linearGradient id="hubGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FFFFFF"/>
-                                        <stop offset="100%" style="stop-color:#F3F4F6"/>
-                                    </linearGradient>
-                                </defs>
-                                <circle cx="50" cy="50" r="35" fill="url(#hubGradient)" opacity="0.3"/>
-                                <circle cx="50" cy="50" r="25" fill="none" stroke="#FFFFFF" stroke-width="2"/>
-                                <circle cx="50" cy="50" r="15" fill="#FFFFFF"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <!-- Orbiting AI Models -->
-                    <div class="orbit-container orbit-1">
-                        <div class="ai-node node-chat" data-label="AI Chat">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="8" y="12" width="24" height="16" rx="3" stroke="#10B981" stroke-width="2" fill="none"/>
-                                <path d="M16 20L20 16L24 20" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="20" cy="24" r="1.5" fill="#10B981"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="orbit-container orbit-2">
-                        <div class="ai-node node-image" data-label="Image Gen">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="10" y="10" width="20" height="20" rx="3" stroke="#8B5CF6" stroke-width="2" fill="none"/>
-                                <circle cx="16" cy="16" r="2" fill="#8B5CF6"/>
-                                <path d="M10 26L16 20L22 26L26 22L30 26" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="orbit-container orbit-3">
-                        <div class="ai-node node-code" data-label="Code AI">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M15 14L11 20L15 26" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M25 14L29 20L25 26" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <line x1="22" y1="12" x2="18" y2="28" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="orbit-container orbit-4">
-                        <div class="ai-node node-analytics" data-label="Analytics">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M12 26V22M20 26V16M28 26V20" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
-                                <rect x="10" y="12" width="20" height="16" rx="2" stroke="#F59E0B" stroke-width="2" fill="none"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="orbit-container orbit-5">
-                        <div class="ai-node node-voice" data-label="Voice AI">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 12V28M16 16V24M24 16V24M12 18V22M28 18V22" stroke="#EC4899" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="orbit-container orbit-6">
-                        <div class="ai-node node-video" data-label="Video AI">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <rect x="10" y="14" width="16" height="12" rx="2" stroke="#EF4444" stroke-width="2" fill="none"/>
-                                <path d="M26 17L30 14V26L26 23" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <!-- Data Flow Particles -->
-                    <div class="data-stream stream-1"></div>
-                    <div class="data-stream stream-2"></div>
-                    <div class="data-stream stream-3"></div>
-                    <div class="data-stream stream-4"></div>
-                    <div class="data-stream stream-5"></div>
-                    <div class="data-stream stream-6"></div>
-
-                    <!-- Global Connection Lines -->
-                    <svg class="connection-lines" viewBox="0 0 600 600">
-                        <defs>
-                            <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#10B981;stop-opacity:0" />
-                                <stop offset="50%" style="stop-color:#10B981;stop-opacity:0.6" />
-                                <stop offset="100%" style="stop-color:#10B981;stop-opacity:0" />
-                            </linearGradient>
-                        </defs>
-                        <path class="connection-path" d="M 300 300 Q 450 200 500 150" stroke="url(#lineGradient1)" stroke-width="2" fill="none" />
-                        <path class="connection-path" d="M 300 300 Q 450 350 500 400" stroke="url(#lineGradient1)" stroke-width="2" fill="none" />
-                        <path class="connection-path" d="M 300 300 Q 150 200 100 150" stroke="url(#lineGradient1)" stroke-width="2" fill="none" />
-                        <path class="connection-path" d="M 300 300 Q 150 350 100 400" stroke="url(#lineGradient1)" stroke-width="2" fill="none" />
-                        <path class="connection-path" d="M 300 300 L 300 100" stroke="url(#lineGradient1)" stroke-width="2" fill="none" />
-                        <path class="connection-path" d="M 300 300 L 300 500" stroke="url(#lineGradient1)" stroke-width="2" fill="none" />
-                    </svg>
-
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -2735,7 +2706,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo">LyDian</div>
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
                     <p class="footer-description">
                         Yapay zeka teknolojileriyle geleceği şekillendiren,
                         yenilikçi çözümler sunan AI platformu.
@@ -2916,63 +2887,7 @@
             });
         });
 
-        // Typewriter effect with color transitions
-        (function() {
-            const texts = [
-                'Yapay zeka ile geleceği şekillendirin',
-                'AI ile sınırsız yaratıcılık',
-                'Gelişmiş yapay zeka modelleri',
-                'İş süreçlerinizi optimize edin'
-            ];
-            const colors = ['#10A37F', '#1A1A1A', '#FF6B4A'];
-            let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let colorIndex = 0;
-            const typewriterElement = document.getElementById('typewriter-text');
-
-            function typeWriter() {
-                const currentText = texts[textIndex];
-
-                if (isDeleting) {
-                    // Delete character
-                    charIndex--;
-                    typewriterElement.textContent = currentText.substring(0, charIndex);
-
-                    if (charIndex === 0) {
-                        isDeleting = false;
-                        textIndex = (textIndex + 1) % texts.length;
-                        colorIndex = (colorIndex + 1) % colors.length;
-                        setTimeout(typeWriter, 500);
-                        return;
-                    }
-                } else {
-                    // Type character
-                    charIndex++;
-                    typewriterElement.textContent = currentText.substring(0, charIndex);
-
-                    // Update color smoothly as typing
-                    const progress = charIndex / currentText.length;
-                    typewriterElement.style.color = colors[colorIndex];
-
-                    if (charIndex === currentText.length) {
-                        // Wait before deleting
-                        setTimeout(() => {
-                            isDeleting = true;
-                            typeWriter();
-                        }, 2500);
-                        return;
-                    }
-                }
-
-                // Typing speed
-                const typingSpeed = isDeleting ? 50 : 100;
-                setTimeout(typeWriter, typingSpeed);
-            }
-
-            // Start typewriter effect
-            setTimeout(typeWriter, 1000);
-        })();
+        // Three.js 3D Hero Animation - Typewriter removed, using static title
 
         // Video loading and autoplay handler
         (function() {
@@ -3252,6 +3167,199 @@
     <script src="/js/mobile-menu-handler.js"></script>
     <!-- Cyborg Orbital Controller - Dr. Lydia Sentinel -->
     <script src="/js/cyborg-orbital-controller.js"></script>
+
+    <!-- Three.js Library (unpkg - CSP compliant) -->
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+
+    <script>
+        // ========== THREE.JS 3D HERO ANIMATION - Enhanced Dynamic Flows ==========
+
+        let scene, camera, renderer, mesh;
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+
+        // Initialize Three.js
+        function initHero3D() {
+            const canvas = document.getElementById('hero3DCanvas');
+            if (!canvas) return; // Exit if canvas not found
+
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // Scene with dark background and neon fog
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.0008);
+
+            // Camera - positioned for optimal view of all particle systems
+            camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            camera.position.z = 8;
+            camera.position.y = 1;
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0x000000, 0);
+
+            // Create Main Geometry - Double Layer for prominence
+            // Outer layer - bright wireframe
+            const geometry1 = new THREE.IcosahedronGeometry(3.5, 2);
+            const material1 = new THREE.MeshStandardMaterial({
+                color: 0x10A37F,
+                emissive: 0x10A37F,
+                emissiveIntensity: 0.8,
+                wireframe: true,
+                transparent: true,
+                opacity: 1.0,
+                metalness: 0.5,
+                roughness: 0.2
+            });
+
+            mesh = new THREE.Mesh(geometry1, material1);
+            scene.add(mesh);
+
+            // Inner layer - glowing core
+            const geometry2 = new THREE.IcosahedronGeometry(3.2, 1);
+            const material2 = new THREE.MeshStandardMaterial({
+                color: 0x64fcff,
+                emissive: 0x64fcff,
+                emissiveIntensity: 1.2,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.6,
+                metalness: 0.8,
+                roughness: 0.1
+            });
+
+            const innerMesh = new THREE.Mesh(geometry2, material2);
+            mesh.add(innerMesh);
+
+            // Rocket and AI Brain removed - keeping only rotating mesh
+
+            // Neon lights for dark background
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+            scene.add(ambientLight);
+
+            const pointLight1 = new THREE.PointLight(0x10A37F, 5, 100);
+            pointLight1.position.set(8, 8, 8);
+            scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0x64fcff, 5, 100);
+            pointLight2.position.set(-8, -8, 8);
+            scene.add(pointLight2);
+
+            const pointLight3 = new THREE.PointLight(0x00fff5, 4, 100);
+            pointLight3.position.set(0, -10, 5);
+            scene.add(pointLight3);
+
+            const pointLight4 = new THREE.PointLight(0x10A37F, 3, 80);
+            pointLight4.position.set(-8, 8, -5);
+            scene.add(pointLight4);
+
+            // Event listeners
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousemove', onMouseMove);
+        }
+
+        // Particles and flow lines functions removed - keeping only main mesh
+
+        // Mouse move handler - more responsive
+        function onMouseMove(event) {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            targetRotationY = mouseX * Math.PI * 0.5;
+            targetRotationX = mouseY * Math.PI * 0.5;
+        }
+
+        // Window resize handler
+        function onWindowResize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(width, height);
+        }
+
+        // Animation loop - Only rotating main mesh
+        function animate3DHero() {
+            requestAnimationFrame(animate3DHero);
+
+            const time = Date.now() * 0.001;
+
+            // Auto-rotate main mesh (smooth, elegant)
+            mesh.rotation.x += 0.002;
+            mesh.rotation.y += 0.004;
+
+            // Smooth mouse following
+            mesh.rotation.x += (targetRotationX - mesh.rotation.x) * 0.05;
+            mesh.rotation.y += (targetRotationY - mesh.rotation.y) * 0.05;
+
+            // Subtle pulsing effect for main mesh
+            const scale = 1 + Math.sin(time * 0.8) * 0.06;
+            mesh.scale.set(scale, scale, scale);
+
+            renderer.render(scene, camera);
+        }
+
+        // Start 3D Hero Animation
+        if (document.getElementById('hero3DCanvas')) {
+            window.addEventListener('load', () => {
+                initHero3D();
+                animate3DHero();
+            });
+        }
+
+        // Premium Typewriter Effect for Description
+        (function() {
+            const text = "Gelişmiş yapay zeka modelleriyle desteklenen LyDian, iş süreçlerinizi optimize eder ve yaratıcılığınızı sınırsız hale getirir.";
+            let charIndex = 0;
+            let isDeleting = false;
+            const typewriterElement = document.getElementById('typewriter-text');
+
+            if (!typewriterElement) return;
+
+            function typeWriter() {
+                if (isDeleting) {
+                    // Delete character
+                    charIndex--;
+                    typewriterElement.textContent = text.substring(0, charIndex);
+
+                    if (charIndex === 0) {
+                        isDeleting = false;
+                        setTimeout(typeWriter, 500);
+                        return;
+                    }
+                } else {
+                    // Type character
+                    charIndex++;
+                    typewriterElement.textContent = text.substring(0, charIndex);
+
+                    if (charIndex === text.length) {
+                        // Wait before deleting
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeWriter();
+                        }, 3000);
+                        return;
+                    }
+                }
+
+                // Typing/deleting speed
+                const speed = isDeleting ? 30 : 60;
+                setTimeout(typeWriter, speed);
+            }
+
+            // Start typewriter after page loads
+            setTimeout(typeWriter, 1000);
+        })();
+    </script>
 </body>
 </html>
 <!-- FORCE RELOAD 1759578258544006000 -->

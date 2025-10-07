@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-10-04T16:07:49Z",
+  "frontDoorEndpoint": "ailydian-production-fd-endpoint.z01.azurefd.net",
+  "verification": {
+    "method": "TXT-asuid",
+    "records": [
+      {"type":"TXT","host":"_dnsauth.ailydian.com","value":"<from_azure>","ttl":300},
+      {"type":"TXT","host":"_dnsauth.travel.ailydian.com","value":"<from_azure>","ttl":300},
+      {"type":"TXT","host":"_dnsauth.blockchain.ailydian.com","value":"<from_azure>","ttl":300},
+      {"type":"TXT","host":"_dnsauth.borsa.ailydian.com","value":"<from_azure>","ttl":300},
+      {"type":"TXT","host":"_dnsauth.video.ailydian.com","value":"<from_azure>","ttl":300},
+      {"type":"TXT","host":"_dnsauth.newsai.earth","value":"<from_azure>","ttl":300}
+    ]
+  },
+  "cname": [
+    {"type":"CNAME","host":"travel","value":"ailydian-production-fd-endpoint.z01.azurefd.net","ttl":300,"domain":"ailydian.com"},
+    {"type":"CNAME","host":"blockchain","value":"ailydian-production-fd-endpoint.z01.azurefd.net","ttl":300,"domain":"ailydian.com"},
+    {"type":"CNAME","host":"video","value":"ailydian-production-fd-endpoint.z01.azurefd.net","ttl":300,"domain":"ailydian.com"},
+    {"type":"CNAME","host":"borsa","value":"ailydian-production-fd-endpoint.z01.azurefd.net","ttl":300,"domain":"ailydian.com"},
+    {"type":"ALIAS","host":"@","value":"ailydian-production-fd-endpoint.z01.azurefd.net","ttl":300,"domain":"newsai.earth"},
+    {"type":"ALIAS","host":"@","value":"ailydian-production-fd-endpoint.z01.azurefd.net","ttl":300,"domain":"ailydian.com"}
+  ],
+  "post_change_checks": [
+    "dig +short CNAME travel.ailydian.com",
+    "dig +short CNAME borsa.ailydian.com",
+    "curl -I https://ailydian.com | grep -i azure",
+    "curl -f https://ailydian.com/api/health"
+  ],
+  "rollback_plan": [
+    "Restore records from /Users/sardag/Desktop/ailydian-ultra-pro/ops/preflight-dns.json",
+    "Delete current Vercel DNS records",
+    "Recreate old records via Vercel API"
+  ]
+}

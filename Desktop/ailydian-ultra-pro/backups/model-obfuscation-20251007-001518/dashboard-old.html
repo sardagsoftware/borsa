@@ -1,0 +1,458 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiLydian Enterprise Dashboard - Master Control Center</title>
+
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="/css/dashboard-core.css">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- 🏢 ENTERPRISE DASHBOARD HEADER -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <div class="ailydian-logo ailydian-logo-dashboard">
+                <span class="letter-a">A</span>i<span class="letter-l">L</span>ydian
+                <span class="dashboard-badge">ENTERPRISE</span>
+            </div>
+
+            <nav class="header-nav">
+                <button class="nav-item active" data-module="overview">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Overview</span>
+                </button>
+                <button class="nav-item" data-module="security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </button>
+                <button class="nav-item" data-module="ai-management">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Management</span>
+                </button>
+                <button class="nav-item" data-module="trading">
+                    <i class="fas fa-chart-candlestick"></i>
+                    <span>Trading Hub</span>
+                </button>
+                <button class="nav-item" data-module="maps">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Location Intel</span>
+                </button>
+                <button class="nav-item" data-module="weather">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span>Weather & Agri</span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <!-- Global Search -->
+            <div class="global-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Global arama..." id="globalSearch">
+            </div>
+
+            <!-- Notifications -->
+            <div class="notification-center">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-header">
+                        <h3>Bildirimler</h3>
+                        <button class="mark-all-read">Tümünü Okundu İşaretle</button>
+                    </div>
+                    <div class="notification-list">
+                        <div class="notification-item unread">
+                            <div class="notification-icon security">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Güvenlik Uyarısı</h4>
+                                <p>Anormal giriş denemesi tespit edildi</p>
+                                <span class="notification-time">2 dakika önce</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Sistem Güncellemesi</h4>
+                                <p>AI modelleri başarıyla güncellendi</p>
+                                <span class="notification-time">15 dakika önce</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="user-profile">
+                <button class="profile-btn" id="profileBtn">
+                    <img src="/assets/avatar-default.png" alt="User Avatar" class="avatar">
+                    <span class="username">SARDAG</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-info">
+                        <img src="/assets/avatar-default.png" alt="User Avatar" class="avatar-large">
+                        <div class="profile-details">
+                            <h3>SARDAG</h3>
+                            <p>System Administrator</p>
+                            <span class="role-badge">ENTERPRISE ADMIN</span>
+                        </div>
+                    </div>
+                    <div class="profile-menu">
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Profil Ayarları</span>
+                        </a>
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-key"></i>
+                            <span>Güvenlik Ayarları</span>
+                        </a>
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-palette"></i>
+                            <span>Tema Ayarları</span>
+                        </a>
+                        <div class="divider"></div>
+                        <a href="#" class="profile-menu-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Çıkış Yap</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🏢 ENTERPRISE DASHBOARD MAIN CONTAINER -->
+    <main class="dashboard-main">
+        <!-- 📊 EXECUTIVE OVERVIEW MODULE -->
+        <div class="dashboard-module active" id="overview-module">
+            <div class="module-header">
+                <h1>Executive Overview</h1>
+                <div class="module-controls">
+                    <button class="control-btn" id="refreshData">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Yenile</span>
+                    </button>
+                    <button class="control-btn" id="exportReport">
+                        <i class="fas fa-download"></i>
+                        <span>Rapor İndir</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card revenue">
+                    <div class="kpi-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Toplam Gelir</h3>
+                        <div class="kpi-value">$2.4M</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+15.3%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kpi-card users">
+                    <div class="kpi-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Aktif Kullanıcılar</h3>
+                        <div class="kpi-value">89,234</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8.7%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kpi-card performance">
+                    <div class="kpi-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Sistem Performansı</h3>
+                        <div class="kpi-value">98.7%</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+2.1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kpi-card security">
+                    <div class="kpi-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Güvenlik Skoru</h3>
+                        <div class="kpi-value">95.2%</div>
+                        <div class="kpi-change neutral">
+                            <i class="fas fa-minus"></i>
+                            <span>0.0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Gelir Analizi</h3>
+                        <select class="chart-period">
+                            <option value="7d">Son 7 Gün</option>
+                            <option value="30d" selected>Son 30 Gün</option>
+                            <option value="90d">Son 90 Gün</option>
+                        </select>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Kullanıcı Aktivitesi</h3>
+                        <div class="chart-legend">
+                            <span class="legend-item active">
+                                <span class="legend-color"></span>
+                                <span>Aktif</span>
+                            </span>
+                            <span class="legend-item new">
+                                <span class="legend-color"></span>
+                                <span>Yeni</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="userActivityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="system-status-grid">
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>API Sağlığı</h3>
+                        <span class="status-indicator healthy"></span>
+                    </div>
+                    <div class="status-content">
+                        <div class="status-metric">
+                            <span class="metric-label">Uptime</span>
+                            <span class="metric-value">99.98%</span>
+                        </div>
+                        <div class="status-metric">
+                            <span class="metric-label">Response Time</span>
+                            <span class="metric-value">142ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>Database</h3>
+                        <span class="status-indicator healthy"></span>
+                    </div>
+                    <div class="status-content">
+                        <div class="status-metric">
+                            <span class="metric-label">Connections</span>
+                            <span class="metric-value">47/100</span>
+                        </div>
+                        <div class="status-metric">
+                            <span class="metric-label">Query Time</span>
+                            <span class="metric-value">23ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-header">
+                        <h3>AI Models</h3>
+                        <span class="status-indicator healthy"></span>
+                    </div>
+                    <div class="status-content">
+                        <div class="status-metric">
+                            <span class="metric-label">Active Models</span>
+                            <span class="metric-value">12/15</span>
+                        </div>
+                        <div class="status-metric">
+                            <span class="metric-label">Inference Time</span>
+                            <span class="metric-value">89ms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔒 SECURITY CENTER MODULE -->
+        <div class="dashboard-module" id="security-module">
+            <div class="module-header">
+                <h1>Security Center</h1>
+                <div class="security-level">
+                    <span class="security-badge high">HIGH SECURITY</span>
+                </div>
+            </div>
+
+            <div class="security-overview">
+                <div class="threat-level">
+                    <div class="threat-indicator low">
+                        <div class="threat-circle"></div>
+                        <div class="threat-info">
+                            <h3>Threat Level: LOW</h3>
+                            <p>Sistem güvenli durumda</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-metrics">
+                    <div class="security-metric">
+                        <h4>Active Connections</h4>
+                        <span class="metric-number">1,247</span>
+                    </div>
+                    <div class="security-metric">
+                        <h4>Blocked Threats</h4>
+                        <span class="metric-number">89</span>
+                    </div>
+                    <div class="security-metric">
+                        <h4>Failed Logins</h4>
+                        <span class="metric-number">12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🤖 AI MANAGEMENT MODULE -->
+        <div class="dashboard-module" id="ai-management-module">
+            <div class="module-header">
+                <h1>AI Management Center</h1>
+                <div class="ai-status">
+                    <span class="ai-badge active">15 MODELS ACTIVE</span>
+                </div>
+            </div>
+
+            <div class="ai-overview">
+                <div class="ai-models-grid">
+                    <div class="ai-model-card">
+                        <div class="model-header">
+                            <h3>GPT-4 Turbo</h3>
+                            <span class="model-status active">ACTIVE</span>
+                        </div>
+                        <div class="model-metrics">
+                            <div class="metric">
+                                <span class="label">Requests/min</span>
+                                <span class="value">1,247</span>
+                            </div>
+                            <div class="metric">
+                                <span class="label">Avg Response</span>
+                                <span class="value">1.2s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📈 TRADING HUB MODULE -->
+        <div class="dashboard-module" id="trading-module">
+            <div class="module-header">
+                <h1>Financial Trading Hub</h1>
+                <div class="market-status">
+                    <span class="market-badge open">MARKETS OPEN</span>
+                </div>
+            </div>
+
+            <div class="trading-overview">
+                <div class="market-summary">
+                    <h3>Market Summary</h3>
+                    <div class="market-indices">
+                        <div class="index-card">
+                            <h4>S&P 500</h4>
+                            <span class="index-value">4,567.89</span>
+                            <span class="index-change positive">+1.23%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🗺️ LOCATION INTELLIGENCE MODULE -->
+        <div class="dashboard-module" id="maps-module">
+            <div class="module-header">
+                <h1>Location Intelligence</h1>
+                <div class="location-status">
+                    <span class="location-badge">GLOBAL TRACKING</span>
+                </div>
+            </div>
+
+            <div class="maps-container">
+                <div id="azureMap" class="azure-map"></div>
+            </div>
+        </div>
+
+        <!-- 🌤️ WEATHER & AGRICULTURE MODULE -->
+        <div class="dashboard-module" id="weather-module">
+            <div class="module-header">
+                <h1>Weather & Agricultural Intelligence</h1>
+                <div class="weather-status">
+                    <span class="weather-badge">GLOBAL MONITORING</span>
+                </div>
+            </div>
+
+            <div class="weather-overview">
+                <div class="weather-current">
+                    <h3>Current Conditions</h3>
+                    <div class="weather-widget">
+                        <div class="weather-location">İstanbul, TR</div>
+                        <div class="weather-temp">22°C</div>
+                        <div class="weather-desc">Partly Cloudy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 🚨 ALERT SYSTEM -->
+    <div class="alert-container" id="alertContainer"></div>
+
+    <!-- 🔄 LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="ailydian-spinner">
+                <div class="spinner-letter">A</div>
+                <div class="spinner-letter">i</div>
+                <div class="spinner-letter">L</div>
+            </div>
+            <div class="loading-text">Enterprise Dashboard Yükleniyor...</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/js/dashboard-core.js"></script>
+    <script src="/js/status-indicators.js"></script>
+    <script src="/js/chart-manager.js"></script>
+    <script src="/js/notification-system.js"></script>
+</body>
+</html>

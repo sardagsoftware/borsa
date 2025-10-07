@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toplantı Analizi | Ailydian AI</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --gray-800: #1F2937;
+            --gray-700: #374151;
+            --gray-500: #6B7280;
+            --gray-300: #D1D5DB;
+            --gray-200: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-white);
+            color: var(--gray-800);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-gray) 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .breadcrumb {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-hover);
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(16, 163, 127, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: var(--bg-gray);
+            border: 1px solid var(--gray-300);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: var(--gray-800);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--gray-300);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg-gray);
+        }
+
+        .upload-zone:hover {
+            border-color: var(--primary);
+            background: rgba(16, 163, 127, 0.05);
+        }
+
+        .upload-zone i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .analyze-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            border: none;
+            padding: 1.25rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 163, 127, 0.3);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background: var(--bg-gray);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        .results-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .participant-card {
+            background: var(--bg-gray);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .participant-name {
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .sentiment-bar {
+            height: 8px;
+            background: var(--gray-300);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .sentiment-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.5s;
+        }
+
+        .action-item {
+            background: rgba(16, 163, 127, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--gray-300);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-users"></i> Toplantı Analizi</h1>
+                <div class="breadcrumb">
+                    <a href="/ai-advisor-hub.html">AI Danışman Hub</a> / <span>Toplantı İçgörüleri</span>
+                </div>
+            </div>
+            <div class="status-badge">
+                BETA
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <div class="card-title">Toplantı Kaydı</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Toplantı Başlığı</label>
+                        <input type="text" id="meetingTitle" placeholder="Örn: Q4 Strateji Toplantısı">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Transkript veya Notlar</label>
+                        <textarea id="transcript" placeholder="Toplantı transkriptini veya notlarınızı buraya yapıştırın..."></textarea>
+                    </div>
+
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Ses veya Video Kaydı Yükleyin</h3>
+                        <p style="color: var(--gray-500); margin-top: 0.5rem;">
+                            MP3, WAV, MP4 formatları desteklenir
+                        </p>
+                        <input type="file" id="fileInput" accept="audio/*,video/*" style="display: none;">
+                    </div>
+                </div>
+
+                <button class="analyze-btn" id="analyzeBtn">
+                    <i class="fas fa-brain"></i> AI ile Analiz Et
+                </button>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="card-title">Anlık Metrikler</div>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="meetingCount">0</div>
+                            <div class="metric-label">Analiz Edilen</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">5 dk</div>
+                            <div class="metric-label">Ort. Süre</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">98%</div>
+                            <div class="metric-label">Doğruluk</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">3</div>
+                            <div class="metric-label">Aktif Model</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loading" id="loadingSection">
+                    <div class="spinner"></div>
+                    <p style="color: var(--gray-500);">Azure AI toplantıyı analiz ediyor...</p>
+                </div>
+
+                <div class="results-section" id="resultsSection">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="card-title">Özet</div>
+                        </div>
+                        <div id="summaryContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section" id="detailsSection">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--accent), #D97706);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-title">Katılımcı Analizi</div>
+                </div>
+                <div id="participantsContent"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="card-title">Aksiyon Maddeleri</div>
+                </div>
+                <div id="actionsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loadingSection = document.getElementById('loadingSection');
+        const resultsSection = document.getElementById('resultsSection');
+        const detailsSection = document.getElementById('detailsSection');
+
+        let uploadedFile = null;
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.style.borderColor = 'var(--primary)';
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.style.borderColor = 'var(--gray-300)';
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                uploadedFile = file;
+                uploadZone.querySelector('h3').textContent = file.name;
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                uploadedFile = file;
+                uploadZone.querySelector('h3').textContent = file.name;
+            }
+        });
+
+        analyzeBtn.addEventListener('click', async () => {
+            const title = document.getElementById('meetingTitle').value;
+            const transcript = document.getElementById('transcript').value;
+
+            if (!title && !transcript && !uploadedFile) {
+                alert('Lütfen en az bir veri kaynağı sağlayın');
+                return;
+            }
+
+            loadingSection.style.display = 'block';
+            resultsSection.style.display = 'none';
+            detailsSection.style.display = 'none';
+
+            try {
+                const formData = new FormData();
+                if (title) formData.append('title', title);
+                if (transcript) formData.append('transcript', transcript);
+                if (uploadedFile) formData.append('file', uploadedFile);
+
+                const response = await fetch('/api/meeting/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                loadingSection.style.display = 'none';
+                displayResults(result);
+
+                const count = parseInt(document.getElementById('meetingCount').textContent);
+                document.getElementById('meetingCount').textContent = count + 1;
+            } catch (error) {
+                console.error('Analiz hatası:', error);
+                loadingSection.style.display = 'none';
+                alert('Analiz sırasında bir hata oluştu');
+            }
+        });
+
+        function displayResults(data) {
+            document.getElementById('summaryContent').innerHTML = `
+                <p style="line-height: 1.8; color: var(--gray-700);">${data.summary || 'Özet oluşturuluyor...'}</p>
+            `;
+
+            if (data.participants && data.participants.length > 0) {
+                document.getElementById('participantsContent').innerHTML = data.participants.map(p => `
+                    <div class="participant-card">
+                        <div class="participant-name">${p.name}</div>
+                        <p style="color: var(--gray-500); font-size: 0.9rem;">Konuşma Süresi: ${p.speakTime || '10%'}</p>
+                        <p style="color: var(--gray-500); font-size: 0.9rem;">Duygu: ${p.sentiment || 'Pozitif'}</p>
+                        <div class="sentiment-bar">
+                            <div class="sentiment-fill" style="width: ${p.sentimentScore || 75}%"></div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            if (data.actions && data.actions.length > 0) {
+                document.getElementById('actionsContent').innerHTML = data.actions.map((action, i) => `
+                    <div class="action-item">
+                        <strong>${i + 1}. ${action.task || action}</strong>
+                        ${action.assignee ? `<p style="color: var(--gray-500); font-size: 0.9rem; margin-top: 0.5rem;">Sorumlu: ${action.assignee}</p>` : ''}
+                        ${action.deadline ? `<p style="color: var(--gray-500); font-size: 0.9rem;">Tarih: ${action.deadline}</p>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            resultsSection.style.display = 'block';
+            detailsSection.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

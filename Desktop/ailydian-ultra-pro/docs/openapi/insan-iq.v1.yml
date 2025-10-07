@@ -1,0 +1,663 @@
+openapi: 3.1.0
+info:
+  title: LyDian İnsan IQ API
+  version: 1.0.0
+  description: |
+    Enterprise-grade Human Intelligence API for persona management, skill marketplace, and AI assistants.
+
+    ## Features
+    - Dynamic persona creation and management
+    - Skill marketplace for reusable capabilities
+    - AI assistant orchestration with session management
+    - Real-time state synchronization
+
+    ## Rate Limits
+    - Standard tier: 1000 requests/hour
+    - Premium tier: 10000 requests/hour
+    - Enterprise tier: Custom limits
+
+  contact:
+    name: LyDian API Support
+    email: api-support@lydian.com
+    url: https://lydian.com/support
+  license:
+    name: Commercial
+    url: https://lydian.com/terms
+
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+
+servers:
+  - url: https://api.lydian.com/v1/insan-iq
+    description: Production server
+  - url: https://api-staging.lydian.com/v1/insan-iq
+    description: Staging server
+
+security:
+  - oauth2: []
+  - apiKey: []
+
+tags:
+  - name: Personas
+    description: Persona management
+  - name: Skills
+    description: Skill marketplace
+  - name: Assistants
+    description: AI assistant orchestration
+
+paths:
+  /personas:
+    post:
+      operationId: createPersona
+      summary: Create a persona
+      tags: [Personas]
+      security:
+        - oauth2: [personas:write]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePersonaRequest'
+      responses:
+        '201':
+          description: Persona created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Persona'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+    get:
+      operationId: listPersonas
+      summary: List personas
+      tags: [Personas]
+      security:
+        - oauth2: [personas:read]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: List of personas
+          headers:
+            Link:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, pagination]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Persona'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /personas/{personaId}:
+    get:
+      operationId: getPersona
+      summary: Get persona details
+      tags: [Personas]
+      parameters:
+        - name: personaId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^persona_[0-9A-HJKMNP-TV-Z]{26}$'
+      responses:
+        '200':
+          description: Persona details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Persona'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /skills:
+    post:
+      operationId: publishSkill
+      summary: Publish a skill
+      tags: [Skills]
+      security:
+        - oauth2: [skills:write]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSkillRequest'
+      responses:
+        '201':
+          description: Skill published
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+    get:
+      operationId: listSkills
+      summary: List skills
+      tags: [Skills]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of skills
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, pagination]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Skill'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+
+  /skills/{skillId}:
+    get:
+      operationId: getSkill
+      summary: Get skill details
+      tags: [Skills]
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^skill_[0-9A-HJKMNP-TV-Z]{26}$'
+      responses:
+        '200':
+          description: Skill details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /assistants:
+    post:
+      operationId: createAssistant
+      summary: Create an assistant
+      tags: [Assistants]
+      security:
+        - oauth2: [assistants:write]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssistantRequest'
+      responses:
+        '201':
+          description: Assistant created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assistant'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /assistants/{assistantId}:
+    get:
+      operationId: getAssistant
+      summary: Get assistant details
+      tags: [Assistants]
+      parameters:
+        - name: assistantId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^asst_[0-9A-HJKMNP-TV-Z]{26}$'
+      responses:
+        '200':
+          description: Assistant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assistant'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /assistants/{assistantId}/sessions:
+    post:
+      operationId: createSession
+      summary: Create an assistant session
+      tags: [Assistants]
+      security:
+        - oauth2: [sessions:write]
+      parameters:
+        - name: assistantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionRequest'
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+
+  /assistants/{assistantId}/sessions/{sessionId}:
+    get:
+      operationId: getSession
+      summary: Get session details
+      tags: [Assistants]
+      parameters:
+        - name: assistantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^sess_[0-9A-HJKMNP-TV-Z]{26}$'
+      responses:
+        '200':
+          description: Session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+
+  /assistants/{assistantId}/state:
+    get:
+      operationId: getAssistantState
+      summary: Get assistant state
+      tags: [Assistants]
+      parameters:
+        - name: assistantId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assistant state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssistantState'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.lydian.com/oauth2/authorize
+          tokenUrl: https://auth.lydian.com/oauth2/token
+          scopes:
+            personas:read: Read personas
+            personas:write: Create personas
+            skills:read: Read skills
+            skills:write: Publish skills
+            assistants:read: Read assistants
+            assistants:write: Create assistants
+            sessions:write: Create sessions
+    apiKey:
+      type: apiKey
+      name: X-API-Key
+      in: header
+
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      schema:
+        type: string
+        format: uuid
+
+    Cursor:
+      name: cursor
+      in: query
+      schema:
+        type: string
+
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 50
+
+  headers:
+    X-RateLimit-Limit:
+      description: Rate limit
+      schema:
+        type: integer
+
+    X-RateLimit-Remaining:
+      description: Remaining requests
+      schema:
+        type: integer
+
+    X-RateLimit-Reset:
+      description: Reset timestamp
+      schema:
+        type: integer
+
+  schemas:
+    Persona:
+      type: object
+      required: [id, name, traits, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^persona_[0-9A-HJKMNP-TV-Z]{26}$'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        traits:
+          type: object
+          additionalProperties: true
+        skills:
+          type: array
+          items:
+            type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    CreatePersonaRequest:
+      type: object
+      required: [name, traits]
+      properties:
+        name:
+          type: string
+        traits:
+          type: object
+          additionalProperties: true
+        skills:
+          type: array
+          items:
+            type: string
+
+    Skill:
+      type: object
+      required: [id, name, category, version, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^skill_[0-9A-HJKMNP-TV-Z]{26}$'
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        parameters:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateSkillRequest:
+      type: object
+      required: [name, category, version]
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        parameters:
+          type: object
+
+    Assistant:
+      type: object
+      required: [id, personaId, name, status, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^asst_[0-9A-HJKMNP-TV-Z]{26}$'
+        personaId:
+          type: string
+        name:
+          type: string
+        instructions:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, paused]
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateAssistantRequest:
+      type: object
+      required: [personaId, name]
+      properties:
+        personaId:
+          type: string
+        name:
+          type: string
+        instructions:
+          type: string
+
+    Session:
+      type: object
+      required: [id, assistantId, status, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^sess_[0-9A-HJKMNP-TV-Z]{26}$'
+        assistantId:
+          type: string
+        status:
+          type: string
+          enum: [active, completed, failed]
+        metadata:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateSessionRequest:
+      type: object
+      properties:
+        metadata:
+          type: object
+
+    AssistantState:
+      type: object
+      required: [assistantId, status, lastUpdated]
+      properties:
+        assistantId:
+          type: string
+        status:
+          type: string
+        state:
+          type: object
+          additionalProperties: true
+        lastUpdated:
+          type: string
+          format: date-time
+
+    PaginationInfo:
+      type: object
+      required: [hasNext, hasPrev]
+      properties:
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        nextCursor:
+          type: string
+        prevCursor:
+          type: string
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message, correlationId]
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            correlationId:
+              type: string
+              format: uuid
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    TooManyRequests:
+      description: Too many requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+webhooks:
+  personaCreated:
+    post:
+      summary: Persona Created Event
+      operationId: onPersonaCreated
+      parameters:
+        - name: X-Lydian-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Lydian-Timestamp
+          in: header
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [eventId, eventType, timestamp, data]
+              properties:
+                eventId:
+                  type: string
+                  format: uuid
+                eventType:
+                  type: string
+                  enum: [persona.created]
+                timestamp:
+                  type: string
+                  format: date-time
+                data:
+                  $ref: '#/components/schemas/Persona'
+      responses:
+        '200':
+          description: OK

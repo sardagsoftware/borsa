@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bütünsel Sağlık Orkestratörü | Ailydian AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --success: #10A37F;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-white);
+            color: var(--gray-900);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-gray) 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .breadcrumb {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-hover);
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(16, 163, 127, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--gray-300);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg-gray);
+        }
+
+        .upload-zone:hover {
+            border-color: var(--primary);
+            background: rgba(16, 163, 127, 0.05);
+        }
+
+        .upload-zone i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-zone.dragover {
+            border-color: var(--primary);
+            background: rgba(16, 163, 127, 0.1);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .voice-recorder {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .record-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .record-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+        }
+
+        .record-btn.recording {
+            background: linear-gradient(135deg, #10b981, #059669);
+            animation: recordingPulse 1.5s infinite;
+        }
+
+        @keyframes recordingPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.8); }
+        }
+
+        .waveform {
+            height: 100px;
+            background: var(--bg-input);
+            border-radius: 0.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 1rem;
+        }
+
+        .waveform-bar {
+            width: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: waveAnimation 1s infinite ease-in-out;
+        }
+
+        @keyframes waveAnimation {
+            0%, 100% { height: 20px; }
+            50% { height: 60px; }
+        }
+
+        .analyze-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 1.25rem 2rem;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .metric-card {
+            background: var(--bg-input);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .results-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .results-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) 0deg, var(--accent) 0deg, var(--bg-input) 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: '';
+            width: 120px;
+            height: 120px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .score-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .recommendation {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .recommendation h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(99, 102, 241, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-heartbeat"></i> Bütünsel Sağlık Orkestratörü</h1>
+                <div class="breadcrumb">
+                    <a href="/ai-advisor-hub.html">AI Danışman Hub</a> / <span>Sağlık Analizi</span>
+                </div>
+            </div>
+            <div class="status-badge">
+                <span>SİSTEM AKTİF</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <!-- Left Column: Input -->
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="card-title">Görsel Analiz</div>
+                    </div>
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Yemek Fotoğrafı Yükleyin</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                            Besin değeri, kalori ve sağlık etkisi analizi için
+                        </p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    </div>
+                    <img id="previewImage" class="preview-image" alt="Önizleme">
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="card-title">Ses Analizi</div>
+                    </div>
+                    <div class="voice-recorder">
+                        <button class="record-btn" id="recordBtn">
+                            <i class="fas fa-microphone"></i>
+                            <span>Kayıt Başlat</span>
+                        </button>
+                        <div class="waveform" id="waveform">
+                            <div class="waveform-bar" style="animation-delay: 0s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.1s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.2s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.3s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.4s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.5s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.6s;"></div>
+                            <div class="waveform-bar" style="animation-delay: 0.7s;"></div>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            <i class="fas fa-info-circle"></i> Ses tonunuzdan stres, uyku kalitesi ve genel sağlık durumunuz analiz edilecek
+                        </p>
+                    </div>
+                </div>
+
+                <button class="analyze-btn" id="analyzeBtn">
+                    <i class="fas fa-brain"></i> AI ile Analiz Et
+                </button>
+            </div>
+
+            <!-- Right Column: Metrics & Results -->
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-title">Anlık Metrikler</div>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="accuracyMetric">99.8%</div>
+                            <div class="metric-label">Doğruluk Oranı</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="responseMetric">1.2s</div>
+                            <div class="metric-label">Yanıt Süresi</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="analysisMetric">0</div>
+                            <div class="metric-label">Bugünkü Analiz</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="modelMetric">5</div>
+                            <div class="metric-label">Aktif Model</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loading" id="loadingSection">
+                    <div class="spinner"></div>
+                    <p style="color: var(--text-secondary);">Azure AI modelleri analiz ediyor...</p>
+                </div>
+
+                <div class="results-section" id="resultsSection">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="card-title">Sağlık Skoru</div>
+                        </div>
+                        <div class="score-circle" id="scoreCircle">
+                            <div class="score-text" id="scoreText">--</div>
+                        </div>
+
+                        <div class="results-card">
+                            <h3 style="color: var(--accent); margin-bottom: 1rem;">
+                                <i class="fas fa-utensils"></i> Besin Analizi
+                            </h3>
+                            <div id="nutritionResults">
+                                <p style="color: var(--text-secondary);">Henüz analiz yapılmadı</p>
+                            </div>
+                        </div>
+
+                        <div class="results-card">
+                            <h3 style="color: var(--primary); margin-bottom: 1rem;">
+                                <i class="fas fa-brain"></i> Stres & Uyku Analizi
+                            </h3>
+                            <div id="voiceResults">
+                                <p style="color: var(--text-secondary);">Henüz analiz yapılmadı</p>
+                            </div>
+                        </div>
+
+                        <div class="recommendation">
+                            <h4><i class="fas fa-lightbulb"></i> AI Önerileri</h4>
+                            <div id="recommendations">
+                                <p>Analiz tamamlandığında kişiselleştirilmiş öneriler görünecek</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let uploadedImage = null;
+        let audioRecording = null;
+        let mediaRecorder = null;
+        let audioChunks = [];
+
+        // Upload Zone
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const previewImage = document.getElementById('previewImage');
+        const recordBtn = document.getElementById('recordBtn');
+        const waveform = document.getElementById('waveform');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loadingSection = document.getElementById('loadingSection');
+        const resultsSection = document.getElementById('resultsSection');
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                handleImageUpload(file);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleImageUpload(file);
+            }
+        });
+
+        function handleImageUpload(file) {
+            uploadedImage = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+            checkAnalyzeButton();
+        }
+
+        // Voice Recording
+        recordBtn.addEventListener('click', async () => {
+            if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    mediaRecorder.ondataavailable = (e) => {
+                        audioChunks.push(e.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        audioRecording = audioBlob;
+                        audioChunks = [];
+                        checkAnalyzeButton();
+                    };
+
+                    mediaRecorder.start();
+                    recordBtn.classList.add('recording');
+                    recordBtn.innerHTML = '<i class="fas fa-stop"></i> <span>Kaydı Durdur</span>';
+                    waveform.style.display = 'flex';
+                } catch (err) {
+                    alert('Mikrofon erişimi reddedildi: ' + err.message);
+                }
+            } else {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                recordBtn.classList.remove('recording');
+                recordBtn.innerHTML = '<i class="fas fa-microphone"></i> <span>Kayıt Başlat</span>';
+                waveform.style.display = 'none';
+            }
+        });
+
+        function checkAnalyzeButton() {
+            analyzeBtn.disabled = !uploadedImage && !audioRecording;
+        }
+
+        // Analysis
+        analyzeBtn.addEventListener('click', async () => {
+            if (!uploadedImage && !audioRecording) {
+                alert('Lütfen en az bir veri türü (görsel veya ses) yükleyin');
+                return;
+            }
+
+            loadingSection.style.display = 'block';
+            resultsSection.style.display = 'none';
+
+            try {
+                const formData = new FormData();
+                if (uploadedImage) formData.append('image', uploadedImage);
+                if (audioRecording) formData.append('audio', audioRecording);
+
+                const response = await fetch('/api/health/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                loadingSection.style.display = 'none';
+                resultsSection.style.display = 'block';
+
+                displayResults(result);
+                updateMetrics();
+            } catch (error) {
+                console.error('Analiz hatası:', error);
+                loadingSection.style.display = 'none';
+                alert('Analiz sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+            }
+        });
+
+        function displayResults(data) {
+            // Skor
+            const score = data.healthScore || 85;
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreText = document.getElementById('scoreText');
+            scoreText.textContent = score;
+
+            const degrees = (score / 100) * 360;
+            scoreCircle.style.background = `conic-gradient(var(--accent) 0deg, var(--accent) ${degrees}deg, var(--bg-input) ${degrees}deg)`;
+
+            // Besin Analizi
+            if (data.nutrition) {
+                document.getElementById('nutritionResults').innerHTML = `
+                    <p><strong>Kalori:</strong> ${data.nutrition.calories || 'N/A'} kcal</p>
+                    <p><strong>Protein:</strong> ${data.nutrition.protein || 'N/A'}g</p>
+                    <p><strong>Karbonhidrat:</strong> ${data.nutrition.carbs || 'N/A'}g</p>
+                    <p><strong>Yağ:</strong> ${data.nutrition.fat || 'N/A'}g</p>
+                    <p style="margin-top: 1rem; color: var(--accent);">${data.nutrition.verdict || ''}</p>
+                `;
+            }
+
+            // Ses Analizi
+            if (data.voice) {
+                document.getElementById('voiceResults').innerHTML = `
+                    <p><strong>Stres Seviyesi:</strong> ${data.voice.stressLevel || 'Orta'}</p>
+                    <p><strong>Uyku Kalitesi:</strong> ${data.voice.sleepQuality || 'İyi'}</p>
+                    <p><strong>Enerji:</strong> ${data.voice.energyLevel || '%75'}</p>
+                    <p style="margin-top: 1rem; color: var(--primary);">${data.voice.verdict || ''}</p>
+                `;
+            }
+
+            // Öneriler
+            if (data.recommendations && data.recommendations.length > 0) {
+                document.getElementById('recommendations').innerHTML = data.recommendations
+                    .map(r => `<p style="margin-bottom: 0.5rem;">• ${r}</p>`)
+                    .join('');
+            }
+        }
+
+        function updateMetrics() {
+            const currentAnalysis = parseInt(document.getElementById('analysisMetric').textContent);
+            document.getElementById('analysisMetric').textContent = currentAnalysis + 1;
+        }
+    </script>
+</body>
+</html>

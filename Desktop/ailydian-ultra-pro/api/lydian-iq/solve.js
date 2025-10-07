@@ -57,37 +57,52 @@ const AI_CONFIG = {
     timeout: 60000 // 60 seconds
 };
 
-// Domain-specific capabilities
+// Language response mapping - CRITICAL: AI must respond in selected language
+const LANGUAGE_PROMPTS = {
+    'tr-TR': 'ZORUNLU: TÜM CEVAPLARI TÜRKÇE VER. You MUST respond ONLY in Turkish language. Tüm açıklamalar, akıl yürütmeler ve çözümler Türkçe olmalıdır.',
+    'en-US': 'MANDATORY: RESPOND ONLY IN ENGLISH. You MUST respond in English language only. All explanations, reasoning, and solutions must be in English.',
+    'en-GB': 'MANDATORY: RESPOND ONLY IN ENGLISH. You MUST respond in English language only. All explanations, reasoning, and solutions must be in English.',
+    'de-DE': 'ZWINGEND: ANTWORTE NUR AUF DEUTSCH. You MUST respond ONLY in German language. Alle Erklärungen, Überlegungen und Lösungen müssen auf Deutsch sein.',
+    'fr-FR': 'OBLIGATOIRE: RÉPONDEZ UNIQUEMENT EN FRANÇAIS. You MUST respond ONLY in French language. Toutes les explications, raisonnements et solutions doivent être en français.',
+    'es-ES': 'OBLIGATORIO: RESPONDE SOLO EN ESPAÑOL. You MUST respond ONLY in Spanish language. Todas las explicaciones, razonamientos y soluciones deben estar en español.',
+    'it-IT': 'OBBLIGATORIO: RISPONDI SOLO IN ITALIANO. You MUST respond ONLY in Italian language. Tutte le spiegazioni, ragionamenti e soluzioni devono essere in italiano.',
+    'ru-RU': 'ОБЯЗАТЕЛЬНО: ОТВЕЧАЙ ТОЛЬКО НА РУССКОМ. You MUST respond ONLY in Russian language. Все объяснения, рассуждения и решения должны быть на русском языке.',
+    'zh-CN': '强制性：仅用中文回答。You MUST respond ONLY in Chinese language. 所有解释、推理和解决方案都必须使用中文。',
+    'ja-JP': '必須：日本語のみで回答してください。You MUST respond ONLY in Japanese language. すべての説明、推論、解決策は日本語でなければなりません。',
+    'ar-SA': 'إلزامي: أجب فقط بالعربية. You MUST respond ONLY in Arabic language. يجب أن تكون جميع التفسيرات والاستدلالات والحلول بالعربية.'
+};
+
+// Domain-specific capabilities - LANGUAGE NEUTRAL
 const DOMAIN_CAPABILITIES = {
     mathematics: {
-        name: 'Matematik',
+        name: 'Mathematics',
         icon: '🧮',
         capabilities: ['Advanced Calculus', 'Linear Algebra', 'Statistics', 'Proof Verification'],
-        systemPrompt: 'Sen bir uzman matematik profesörüsün. Problemleri adım adım çöz, her adımı açıkla ve matematiksel doğruluğu garanti et.'
+        systemPrompt: 'You are an expert mathematics professor. Solve problems step-by-step, explain each step clearly, and guarantee mathematical accuracy.'
     },
     coding: {
-        name: 'Kodlama',
+        name: 'Coding',
         icon: '💻',
         capabilities: ['Algorithm Design', 'Code Optimization', 'Debugging', 'Code Review'],
-        systemPrompt: 'Sen bir uzman yazılım mühendisisin. Kod problemlerini analiz et, optimize et ve en iyi pratikleri uygula.'
+        systemPrompt: 'You are an expert software engineer. Analyze code problems, optimize solutions, and apply best practices.'
     },
     science: {
-        name: 'Bilim',
+        name: 'Science',
         icon: '🔬',
         capabilities: ['Physics', 'Chemistry', 'Biology', 'Data Analysis'],
-        systemPrompt: 'Sen bir uzman bilim insanısın. Bilimsel fenomenleri açıkla, hipotezler oluştur ve deneysel verileri analiz et.'
+        systemPrompt: 'You are an expert scientist. Explain scientific phenomena, formulate hypotheses, and analyze experimental data.'
     },
     strategy: {
-        name: 'Strateji',
+        name: 'Strategy',
         icon: '♟️',
         capabilities: ['Game Theory', 'Decision Making', 'Optimization', 'Risk Analysis'],
-        systemPrompt: 'Sen bir strateji uzmanısın. Alternatifleri değerlendir, risk-fayda analizi yap ve optimal stratejiler öner.'
+        systemPrompt: 'You are a strategy expert. Evaluate alternatives, perform risk-benefit analysis, and suggest optimal strategies.'
     },
     logistics: {
-        name: 'Lojistik',
+        name: 'Logistics',
         icon: '📦',
         capabilities: ['Supply Chain', 'Route Optimization', 'Inventory Management', 'Resource Allocation'],
-        systemPrompt: 'Sen bir lojistik uzmanısın. Kaynak dağılımını optimize et, rota planlaması yap ve verimliliği artır.'
+        systemPrompt: 'You are a logistics expert. Optimize resource allocation, plan routes, and improve efficiency.'
     }
 };
 
@@ -182,9 +197,10 @@ function cleanSolution(text) {
 }
 
 // Call Anthropic Claude API (Primary)
-async function callClaudeAPI(problem, domain, options = {}) {
+async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) {
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = AI_CONFIG.anthropic;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
         model: config.model,
@@ -193,13 +209,14 @@ async function callClaudeAPI(problem, domain, options = {}) {
         messages: [
             {
                 role: 'user',
-                content: `${domainConfig.systemPrompt}\n\n${problem}`
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}\n\nUser Question: ${problem}`
             }
         ]
     };
 
-    console.log(`🧠 Calling Claude API for domain: ${domain}`);
+    console.log(`🧠 Calling Claude API for domain: ${domain}, language: ${language}`);
     console.log(`📝 Problem length: ${problem.length} chars`);
+    console.log(`🌍 Response language: ${language}`);
 
     const startTime = Date.now();
 
@@ -252,20 +269,21 @@ async function callClaudeAPI(problem, domain, options = {}) {
 }
 
 // Call OpenAI API (Fallback)
-async function callOpenAIAPI(problem, domain, options = {}) {
+async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) {
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = AI_CONFIG.openai;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
         model: config.model,
         messages: [
             {
                 role: 'system',
-                content: domainConfig.systemPrompt
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
             },
             {
                 role: 'user',
-                content: problem
+                content: `User Question: ${problem}`
             }
         ],
         max_tokens: options.maxTokens || config.maxTokens,
@@ -325,20 +343,21 @@ async function callOpenAIAPI(problem, domain, options = {}) {
 }
 
 // Call Groq API (Ultra-Fast)
-async function callGroqAPI(problem, domain, options = {}) {
+async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = AI_CONFIG.groq;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
         model: config.model,
         messages: [
             {
                 role: 'system',
-                content: domainConfig.systemPrompt
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
             },
             {
                 role: 'user',
-                content: problem
+                content: `User Question: ${problem}`
             }
         ],
         max_tokens: options.maxTokens || config.maxTokens,
@@ -398,7 +417,7 @@ async function callGroqAPI(problem, domain, options = {}) {
 }
 
 // Generate fallback demo response (when no API keys available)
-function generateFallbackResponse(problem, domain) {
+function generateFallbackResponse(problem, domain, language = 'tr-TR') {
     console.log('⚠️ No API keys configured - returning error message');
 
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
@@ -448,7 +467,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const { problem, domain = 'mathematics', options = {} } = req.body;
+        const { problem, domain = 'mathematics', language = 'tr-TR', options = {} } = req.body;
 
         // Validate request
         const validation = validateRequest(req.body);
@@ -465,33 +484,35 @@ module.exports = async (req, res) => {
         console.log(`🧠 LyDian IQ Request`);
         console.log(`📍 IP: ${clientIp}`);
         console.log(`🎯 Domain: ${domain}`);
+        console.log(`🌍 Language: ${language}`);
         console.log(`📝 Problem: ${problem.substring(0, 100)}...`);
         console.log(`${'='.repeat(60)}\n`);
 
         let result;
 
-        // Multi-Provider AI Strategy: Claude → OpenAI → Groq → Demo
+        // Multi-Provider AI Strategy: GROQ → OpenAI → Claude → Demo
         // With retry mechanism for network errors
+        // Note: Using GROQ first since it has a valid API key
         try {
-            // Try Claude first (best for reasoning)
-            if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20) {
-                console.log('🎯 Strategy: Using Claude (Primary) with retry');
-                result = await retryWithBackoff(() => callClaudeAPI(problem, domain, options));
+            // Try Groq first (ultra-fast & valid key)
+            if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20 && !AI_CONFIG.groq.apiKey.includes('YOUR_')) {
+                console.log('🎯 Strategy: Using Groq LLaMA (Primary - Valid Key) with retry');
+                result = await retryWithBackoff(() => callGroqAPI(problem, domain, language, options));
             }
             // Fallback to OpenAI
-            else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20) {
-                console.log('🎯 Strategy: Using OpenAI GPT-4 (Fallback) with retry');
-                result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, options));
+            else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20 && !AI_CONFIG.openai.apiKey.includes('YOUR_')) {
+                console.log('🎯 Strategy: Using OpenAI GPT-4 (Fallback - Valid Key) with retry');
+                result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, language, options));
             }
-            // Ultra-fast Groq
-            else if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20) {
-                console.log('🎯 Strategy: Using Groq LLaMA (Fast) with retry');
-                result = await retryWithBackoff(() => callGroqAPI(problem, domain, options));
+            // Try Claude (if key is valid)
+            else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20 && !AI_CONFIG.anthropic.apiKey.includes('YOUR_')) {
+                console.log('🎯 Strategy: Using Claude (Tertiary - Valid Key) with retry');
+                result = await retryWithBackoff(() => callClaudeAPI(problem, domain, language, options));
             }
             // No API keys available
             else {
-                console.log('ℹ️ No API keys configured, using demo mode');
-                result = generateFallbackResponse(problem, domain);
+                console.log('ℹ️ No valid API keys configured, using demo mode');
+                result = generateFallbackResponse(problem, domain, language);
             }
         } catch (apiError) {
             console.error('⚠️ Primary API failed after retries, trying fallback:', apiError.message);
@@ -500,16 +521,16 @@ module.exports = async (req, res) => {
             try {
                 if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20) {
                     console.log('🔄 Fallback: Trying OpenAI with retry...');
-                    result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, options));
+                    result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, language, options));
                 } else if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20) {
                     console.log('🔄 Fallback: Trying Groq with retry...');
-                    result = await retryWithBackoff(() => callGroqAPI(problem, domain, options));
+                    result = await retryWithBackoff(() => callGroqAPI(problem, domain, language, options));
                 } else {
                     throw new Error('All API providers failed');
                 }
             } catch (fallbackError) {
                 console.error('⚠️ All APIs failed after retries, using demo mode:', fallbackError.message);
-                result = generateFallbackResponse(problem, domain);
+                result = generateFallbackResponse(problem, domain, language);
             }
         }
 
