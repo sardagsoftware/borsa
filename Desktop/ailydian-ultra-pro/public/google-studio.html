@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AiLydians Studio - Enterprise AI Platform</title>
-    <meta name="description" content="AiLydians Studio - Enterprise AI Platform - Azure, Google, OpenAI, Claude tüm AI modelleri tek platformda">
+    <meta name="description" content="AiLydians Studio - Enterprise AI Platform - Azure, Google, OpenAI, Enterprise AI tüm AI modelleri tek platformda">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Google Fonts - Material Design Icons -->
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/firildak-premium.css">
 
     <style>
-        /* AiLydian Studio Specific Overrides */
+        /* LyDian Studio Specific Overrides */
         body {
             margin: 0;
             padding: 0;
@@ -89,7 +89,7 @@
                 </a>
                 <a href="#" class="google-nav-item">
                     <span class="material-symbols-outlined google-nav-icon">chat</span>
-                    Claude Enterprise Setup
+                    Enterprise AI Enterprise Setup
                 </a>
             </div>
 
@@ -106,7 +106,7 @@
                 </a>
                 <a href="#" class="google-nav-item">
                     <span class="material-symbols-outlined google-nav-icon">biotech</span>
-                    Anthropic Claude
+                    Advanced AI Platform Enterprise AI
                 </a>
                 <a href="#" class="google-nav-item">
                     <span class="material-symbols-outlined google-nav-icon">bolt</span>
@@ -142,7 +142,7 @@
             <div id="welcomeScreen" class="google-chat-container">
                 <div style="text-align: center; margin-bottom: 48px;">
                     <h1 style="font-size: 48px; font-weight: 400; color: var(--google-text-primary); margin-bottom: 16px;">
-                        AiLydian'a Hoş Geldiniz
+                        LyDian'a Hoş Geldiniz
                     </h1>
                     <p style="font-size: 20px; color: var(--google-text-secondary); max-width: 600px; margin: 0 auto;">
                         Dünyanın en gelişmiş AI platformu ile tanışın. Azure, Google, OpenAI ve daha fazlası tek çatı altında.
@@ -189,19 +189,19 @@
                         </div>
                     </div>
 
-                    <!-- Anthropic Claude Card -->
-                    <div class="google-capability-card" onclick="startClaudeChat()">
+                    <!-- Advanced AI Platform Enterprise AI Card -->
+                    <div class="google-capability-card" onclick="startEnterprise AIChat()">
                         <div class="google-capability-header">
                             <div class="google-capability-icon">
                                 <span class="material-symbols-outlined">psychology</span>
                             </div>
-                            <div class="google-capability-title">Anthropic Claude</div>
+                            <div class="google-capability-title">Advanced AI Platform Enterprise AI</div>
                         </div>
                         <div class="google-capability-description">
-                            Claude 3 Opus ve Sonnet ile güvenli, etik ve gelişmiş reasoning yetenekleri
+                            Premium Intelligence Model ve Sonnet ile güvenli, etik ve gelişmiş reasoning yetenekleri
                         </div>
                         <div class="google-capability-tags">
-                            <span class="google-tag">Claude 3 Opus</span>
+                            <span class="google-tag">Premium Intelligence Model</span>
                             <span class="google-tag">Constitutional AI</span>
                             <span class="google-tag">200K Context</span>
                             <span class="google-tag">Güvenlik</span>
@@ -278,7 +278,7 @@
                     <textarea
                         id="chatInput"
                         class="google-chat-input"
-                        placeholder="AiLydian'a sorunuzu yazın..."
+                        placeholder="LyDian'a sorunuzu yazın..."
                         rows="1"
                     ></textarea>
                     <button class="google-send-button" id="sendButton" disabled>
@@ -494,10 +494,10 @@
             lydiansStudio.addMessage('assistant', 'Google Vertex AI aktif! Gemini Ultra ve PaLM 2 modelleri ile multimodal AI deneyimini başlatalım. Hangi konuda yardım istiyorsunuz?');
         }
 
-        function startClaudeChat() {
-            lydiansStudio.activeModel = 'claude';
+        function startEnterprise AIChat() {
+            lydiansStudio.activeModel = 'enterprise-ai';
             lydiansStudio.showChat();
-            lydiansStudio.addMessage('assistant', 'Anthropic Claude 3 Opus ile tanışın! Güvenli, etik ve gelişmiş reasoning yetenekleri ile size yardımcı olmaya hazırım. Ne öğrenmek istiyorsunuz?');
+            lydiansStudio.addMessage('assistant', 'Advanced AI Platform Premium Intelligence Model ile tanışın! Güvenli, etik ve gelişmiş reasoning yetenekleri ile size yardımcı olmaya hazırım. Ne öğrenmek istiyorsunuz?');
         }
 
         function startOrchestrationChat() {
@@ -525,5 +525,6 @@
             }
         });
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

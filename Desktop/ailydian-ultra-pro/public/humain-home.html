@@ -127,7 +127,7 @@
 
             <p class="lydians-hero-description slide-up">
                 Just ask, and tasks are automated right where your team works.
-                Experience the future of AI with Azure, Google, OpenAI, and Claude integration.
+                Experience the future of AI with Azure, Google, OpenAI, and Enterprise AI integration.
             </p>
 
             <!-- Chat Interface -->
@@ -204,17 +204,17 @@
                     </div>
                 </div>
 
-                <!-- Anthropic Claude -->
-                <div class="lydians-capability-card" onclick="openClaudeStudio()">
+                <!-- Advanced AI Platform Enterprise AI -->
+                <div class="lydians-capability-card" onclick="openEnterprise AIStudio()">
                     <div class="lydians-capability-icon">
                         <span class="material-icons">psychology</span>
                     </div>
-                    <h4 class="lydians-capability-title">Anthropic Claude</h4>
+                    <h4 class="lydians-capability-title">Advanced AI Platform Enterprise AI</h4>
                     <p class="lydians-capability-description">
-                        Claude 3 Opus ve Sonnet ile güvenli, etik ve gelişmiş reasoning yetenekleri. 200K context window ile uzun dökümanlar.
+                        Premium Intelligence Model ve Sonnet ile güvenli, etik ve gelişmiş reasoning yetenekleri. 200K context window ile uzun dökümanlar.
                     </p>
                     <div class="lydians-capability-tags">
-                        <span class="lydians-tag">Claude 3 Opus</span>
+                        <span class="lydians-tag">Premium Intelligence Model</span>
                         <span class="lydians-tag">Constitutional AI</span>
                         <span class="lydians-tag">200K Context</span>
                         <span class="lydians-tag">Güvenlik</span>
@@ -372,7 +372,7 @@
                 const examples = [
                     "Azure AI ile document intelligence kullanarak bu PDF'i analiz et",
                     "Google Gemini ile bu görseli açıkla ve içeriğini özetle",
-                    "Claude ile bu kodu review et ve iyileştirme önerileri ver",
+                    "Enterprise AI ile bu kodu review et ve iyileştirme önerileri ver",
                     "Tüm AI modellerini karşılaştırarak en iyi cevabı ver",
                     "Bu veriyi analiz edip predictive model oluştur"
                 ];
@@ -391,8 +391,8 @@
             window.open('/studio?model=google', '_blank');
         }
 
-        function openClaudeStudio() {
-            window.open('/studio?model=claude', '_blank');
+        function openEnterprise AIStudio() {
+            window.open('/studio?model=enterprise-ai', '_blank');
         }
 
         function openOrchestrationStudio() {
@@ -486,9 +486,9 @@
                             <i class="material-icons">search</i>
                             Google AI Gemini
                         </a></li>
-                        <li><a href="/studio?model=claude" target="_blank">
+                        <li><a href="/studio?model=enterprise-ai" target="_blank">
                             <i class="material-icons">psychology</i>
-                            Anthropic Claude
+                            Advanced AI Platform Enterprise AI
                         </a></li>
                         <li><a href="/chat" target="_blank">
                             <i class="material-icons">chat</i>
@@ -686,7 +686,7 @@
             background: linear-gradient(45deg,
                 var(--asana-green-primary) 0%,
                 var(--color-gpt-blue) 25%,
-                var(--color-claude-orange) 50%,
+                var(--color-enterprise-ai-orange) 50%,
                 var(--color-gemini-blue) 75%,
                 var(--asana-green-primary) 100%);
             height: 100%;
@@ -946,5 +946,6 @@
         }
     </style>
 
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

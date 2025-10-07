@@ -57,7 +57,7 @@
     <!-- Icons -->
     <link rel="icon" type="image/png" href="/lydian-logo.png">
     <link rel="apple-touch-icon" href="/lydian-logo.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/lydian-manifest.json">
     
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1122,6 +1122,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Animated Background -->
@@ -4301,7 +4302,7 @@ ${response}
 
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js')
+                    navigator.serviceWorker.register('/lydian-iq-sw.js')
                         .then((registration) => {
                             console.log('✅ LyDian IQ Service Worker registered:', registration.scope);
                         })
@@ -4617,5 +4618,9 @@ ${response}
             }
         }
     </style>
+
+    <!-- 🚀 PWA Installation Manager -->
+    <script src="/lydian-iq-pwa-perfect.js"></script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

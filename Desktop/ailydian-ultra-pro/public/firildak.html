@@ -9,6 +9,14 @@
     <title>fırıldak - LyDian</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --neon-primary: #FF6B4A; --neon-secondary: #FF8A6B; --neon-accent: #E64A2E;
@@ -29,6 +37,7 @@
             position: relative;
         }
         .logo {
+            font-family: 'Righteous', cursive;
             font-size: 3rem; font-weight: 800; margin-bottom: 3rem;
             background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
             -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
@@ -134,6 +143,7 @@
             .spinner { width: 150px; height: 150px; }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -239,5 +249,6 @@
             spinner.style.filter = `hue-rotate(${angle}deg)`;
         });
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

@@ -10,6 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
         * {
             margin: 0;
             padding: 0;
@@ -102,6 +110,7 @@
         }
 
         .logo {
+            font-family: 'Righteous', cursive;
             font-size: 1.75rem;
             font-weight: 900 !important;
             background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
@@ -438,6 +447,7 @@
             background: var(--justice-maroon);
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Animated Background -->
@@ -797,5 +807,6 @@
         console.log('⚖️ LyDian Hukuk AI v2 - Modern arayüz yüklendi!');
         console.log('Çeviri 🌍 | GDPR 🛡️ | Dava Analizi 📊 | Hukuki Arama 🔍');
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic FHIR Dashboard - LyDian Medical AI</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* LyDian Justice Colors */
+            --justice-gold: #C4A962;
+            --justice-maroon: #8B1538;
+            --justice-dark: #1C2536;
+            --justice-light: #E5D4A6;
+
+            /* Medical Blue Colors */
+            --medical-primary: #0066CC;
+            --medical-secondary: #00A3E0;
+            --medical-accent: #4FC3F7;
+
+            /* Status Colors */
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --info: #3B82F6;
+
+            /* Neutral */
+            --bg-dark: #0F172A;
+            --bg-card: rgba(30, 41, 59, 0.95);
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: rgba(196, 169, 98, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--justice-dark) 0%, var(--bg-dark) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .epic-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--medical-primary), var(--medical-accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge.healthy {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-badge.unhealthy {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(196, 169, 98, 0.2);
+            border-color: var(--justice-gold);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon.patients { background: linear-gradient(135deg, #10B981, #059669); }
+        .stat-icon.observations { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .stat-icon.appointments { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .stat-icon.medications { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--justice-gold);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(196, 169, 98, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(196, 169, 98, 0.1);
+            color: var(--justice-gold);
+            border: 1px solid var(--justice-gold);
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--justice-gold);
+            box-shadow: 0 0 0 3px rgba(196, 169, 98, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        /* Results */
+        .results-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            border-color: var(--justice-gold);
+            transform: translateX(4px);
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .result-title {
+            font-weight: 600;
+            color: var(--justice-gold);
+        }
+
+        .result-id {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        .result-details {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border);
+            border-top-color: var(--justice-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-title">
+                <div class="epic-logo">🏥</div>
+                <div>
+                    <h1>Epic FHIR Dashboard</h1>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Enterprise Healthcare Integration Platform
+                    </p>
+                </div>
+            </div>
+            <div class="status-badge healthy" id="connectionStatus">
+                <span>●</span> Connected
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon patients">👥</div>
+            <div class="stat-label">Total Patients</div>
+            <div class="stat-value" id="statPatients">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon observations">📊</div>
+            <div class="stat-label">Observations</div>
+            <div class="stat-value" id="statObservations">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon appointments">📅</div>
+            <div class="stat-label">Appointments</div>
+            <div class="stat-value" id="statAppointments">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon medications">💊</div>
+            <div class="stat-label">Medications</div>
+            <div class="stat-value" id="statMedications">0</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Patient Search Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    <span>👤</span> Patient Search
+                </h2>
+            </div>
+
+            <form id="patientSearchForm">
+                <div class="form-group">
+                    <label class="form-label">Search By</label>
+                    <select class="form-select" id="searchType">
+                        <option value="name">Name</option>
+                        <option value="identifier">Patient ID</option>
+                        <option value="birthdate">Birth Date</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Search Value</label>
+                    <input type="text" class="form-input" id="searchValue" placeholder="Enter search term..." required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span>🔍</span> Search Patients
+                </button>
+            </form>
+
+            <div class="loading" id="patientLoading">
+                <div class="spinner"></div>
+                <p>Searching Epic FHIR...</p>
+            </div>
+
+            <div class="results-container" id="patientResults"></div>
+        </div>
+
+        <!-- Create Appointment Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    <span>📅</span> Create Appointment
+                </h2>
+            </div>
+
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label class="form-label">Patient ID</label>
+                    <input type="text" class="form-input" id="appointmentPatientId" placeholder="e.g., Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Practitioner ID</label>
+                    <input type="text" class="form-input" id="appointmentPractitionerId" placeholder="e.g., eM9p6LqBXvUrX8rLj-_1qPgB" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Start Date & Time</label>
+                    <input type="datetime-local" class="form-input" id="appointmentStart" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">End Date & Time</label>
+                    <input type="datetime-local" class="form-input" id="appointmentEnd" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Appointment Type</label>
+                    <select class="form-select" id="appointmentType">
+                        <option value="routine">Routine Check-up</option>
+                        <option value="followup">Follow-up</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="walkin">Walk-in</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span>➕</span> Create Appointment
+                </button>
+            </form>
+
+            <div class="loading" id="appointmentLoading">
+                <div class="spinner"></div>
+                <p>Creating appointment...</p>
+            </div>
+
+            <div class="results-container" id="appointmentResults"></div>
+        </div>
+
+        <!-- Observation Query Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    <span>📊</span> Patient Observations
+                </h2>
+            </div>
+
+            <form id="observationForm">
+                <div class="form-group">
+                    <label class="form-label">Patient ID</label>
+                    <input type="text" class="form-input" id="observationPatientId" placeholder="Enter patient ID..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" id="observationCategory">
+                        <option value="">All Categories</option>
+                        <option value="vital-signs">Vital Signs</option>
+                        <option value="laboratory">Laboratory</option>
+                        <option value="imaging">Imaging</option>
+                        <option value="exam">Physical Exam</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span>📈</span> Get Observations
+                </button>
+            </form>
+
+            <div class="loading" id="observationLoading">
+                <div class="spinner"></div>
+                <p>Loading observations...</p>
+            </div>
+
+            <div class="results-container" id="observationResults"></div>
+        </div>
+
+        <!-- Medication Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    <span>💊</span> Medications
+                </h2>
+            </div>
+
+            <form id="medicationForm">
+                <div class="form-group">
+                    <label class="form-label">Patient ID</label>
+                    <input type="text" class="form-input" id="medicationPatientId" placeholder="Enter patient ID..." required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span>💊</span> Get Medications
+                </button>
+            </form>
+
+            <div class="loading" id="medicationLoading">
+                <div class="spinner"></div>
+                <p>Loading medications...</p>
+            </div>
+
+            <div class="results-container" id="medicationResults"></div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = '/api/medical/epic-fhir-integration';
+
+        // Helper function for API calls
+        async function callEpicAPI(action, params = {}, data = null) {
+            try {
+                const response = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action, params, data })
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Unknown error');
+                }
+
+                return result.data;
+            } catch (error) {
+                console.error('Epic API Error:', error);
+                throw error;
+            }
+        }
+
+        // Check connection status
+        async function checkConnection() {
+            try {
+                const status = await callEpicAPI('healthCheck');
+                const badge = document.getElementById('connectionStatus');
+
+                if (status.status === 'healthy') {
+                    badge.className = 'status-badge healthy';
+                    badge.innerHTML = '<span>●</span> Connected';
+                } else {
+                    badge.className = 'status-badge unhealthy';
+                    badge.innerHTML = '<span>●</span> Disconnected';
+                }
+            } catch (error) {
+                const badge = document.getElementById('connectionStatus');
+                badge.className = 'status-badge unhealthy';
+                badge.innerHTML = '<span>●</span> Error';
+            }
+        }
+
+        // Patient Search
+        document.getElementById('patientSearchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const searchType = document.getElementById('searchType').value;
+            const searchValue = document.getElementById('searchValue').value;
+            const loading = document.getElementById('patientLoading');
+            const results = document.getElementById('patientResults');
+
+            loading.style.display = 'block';
+            results.innerHTML = '';
+
+            try {
+                const params = { [searchType]: searchValue };
+                const data = await callEpicAPI('searchPatients', params);
+
+                loading.style.display = 'none';
+
+                if (data.entry && data.entry.length > 0) {
+                    results.innerHTML = data.entry.map(entry => {
+                        const patient = entry.resource;
+                        const name = patient.name?.[0];
+                        const fullName = name ? `${name.given?.join(' ')} ${name.family}` : 'Unknown';
+
+                        return `
+                            <div class="result-item">
+                                <div class="result-header">
+                                    <div class="result-title">${fullName}</div>
+                                    <div class="result-id">${patient.id}</div>
+                                </div>
+                                <div class="result-details">
+                                    👤 Gender: ${patient.gender || 'N/A'}<br>
+                                    🎂 Birth Date: ${patient.birthDate || 'N/A'}<br>
+                                    📞 Phone: ${patient.telecom?.find(t => t.system === 'phone')?.value || 'N/A'}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    // Update stats
+                    document.getElementById('statPatients').textContent = data.total || data.entry.length;
+                } else {
+                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No patients found</p>';
+                }
+            } catch (error) {
+                loading.style.display = 'none';
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+            }
+        });
+
+        // Create Appointment
+        document.getElementById('appointmentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const patientId = document.getElementById('appointmentPatientId').value;
+            const practitionerId = document.getElementById('appointmentPractitionerId').value;
+            const start = document.getElementById('appointmentStart').value;
+            const end = document.getElementById('appointmentEnd').value;
+            const type = document.getElementById('appointmentType').value;
+
+            const loading = document.getElementById('appointmentLoading');
+            const results = document.getElementById('appointmentResults');
+
+            loading.style.display = 'block';
+            results.innerHTML = '';
+
+            try {
+                const appointmentData = {
+                    resourceType: 'Appointment',
+                    status: 'proposed',
+                    participant: [
+                        {
+                            actor: {
+                                reference: `Patient/${patientId}`
+                            },
+                            required: 'required',
+                            status: 'needs-action'
+                        },
+                        {
+                            actor: {
+                                reference: `Practitioner/${practitionerId}`
+                            },
+                            required: 'required',
+                            status: 'accepted'
+                        }
+                    ],
+                    start: new Date(start).toISOString(),
+                    end: new Date(end).toISOString(),
+                    appointmentType: {
+                        coding: [{
+                            code: type,
+                            display: type.charAt(0).toUpperCase() + type.slice(1)
+                        }]
+                    }
+                };
+
+                const data = await callEpicAPI('createAppointment', {}, appointmentData);
+
+                loading.style.display = 'none';
+
+                results.innerHTML = `
+                    <div class="result-item" style="border-color: var(--success);">
+                        <div class="result-header">
+                            <div class="result-title">✅ Appointment Created</div>
+                            <div class="result-id">${data.id}</div>
+                        </div>
+                        <div class="result-details">
+                            📅 Start: ${new Date(start).toLocaleString()}<br>
+                            ⏰ End: ${new Date(end).toLocaleString()}<br>
+                            📋 Type: ${type}<br>
+                            👤 Patient: ${patientId}
+                        </div>
+                    </div>
+                `;
+
+                // Clear form
+                e.target.reset();
+            } catch (error) {
+                loading.style.display = 'none';
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+            }
+        });
+
+        // Get Observations
+        document.getElementById('observationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const patientId = document.getElementById('observationPatientId').value;
+            const category = document.getElementById('observationCategory').value;
+
+            const loading = document.getElementById('observationLoading');
+            const results = document.getElementById('observationResults');
+
+            loading.style.display = 'block';
+            results.innerHTML = '';
+
+            try {
+                const params = { patientId, category: category || null };
+                const data = await callEpicAPI('getObservations', params);
+
+                loading.style.display = 'none';
+
+                if (data.entry && data.entry.length > 0) {
+                    results.innerHTML = data.entry.map(entry => {
+                        const obs = entry.resource;
+                        const value = obs.valueQuantity
+                            ? `${obs.valueQuantity.value} ${obs.valueQuantity.unit}`
+                            : obs.valueString || 'N/A';
+
+                        return `
+                            <div class="result-item">
+                                <div class="result-header">
+                                    <div class="result-title">${obs.code?.text || 'Observation'}</div>
+                                    <div class="result-id">${obs.id}</div>
+                                </div>
+                                <div class="result-details">
+                                    📊 Value: ${value}<br>
+                                    📅 Date: ${new Date(obs.effectiveDateTime || obs.issued).toLocaleString()}<br>
+                                    📋 Category: ${obs.category?.[0]?.coding?.[0]?.display || 'N/A'}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    document.getElementById('statObservations').textContent = data.total || data.entry.length;
+                } else {
+                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No observations found</p>';
+                }
+            } catch (error) {
+                loading.style.display = 'none';
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+            }
+        });
+
+        // Get Medications
+        document.getElementById('medicationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const patientId = document.getElementById('medicationPatientId').value;
+
+            const loading = document.getElementById('medicationLoading');
+            const results = document.getElementById('medicationResults');
+
+            loading.style.display = 'block';
+            results.innerHTML = '';
+
+            try {
+                const params = { patientId };
+                const data = await callEpicAPI('getMedications', params);
+
+                loading.style.display = 'none';
+
+                if (data.entry && data.entry.length > 0) {
+                    results.innerHTML = data.entry.map(entry => {
+                        const med = entry.resource;
+                        const medication = med.medicationCodeableConcept?.text || med.medicationCodeableConcept?.coding?.[0]?.display || 'Unknown';
+
+                        return `
+                            <div class="result-item">
+                                <div class="result-header">
+                                    <div class="result-title">💊 ${medication}</div>
+                                    <div class="result-id">${med.id}</div>
+                                </div>
+                                <div class="result-details">
+                                    📋 Status: ${med.status}<br>
+                                    📅 Date: ${new Date(med.authoredOn).toLocaleString()}<br>
+                                    💉 Dosage: ${med.dosageInstruction?.[0]?.text || 'N/A'}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    document.getElementById('statMedications').textContent = data.total || data.entry.length;
+                } else {
+                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No medications found</p>';
+                }
+            } catch (error) {
+                loading.style.display = 'none';
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+            }
+        });
+
+        // Initialize
+        checkConnection();
+        setInterval(checkConnection, 60000); // Check every minute
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

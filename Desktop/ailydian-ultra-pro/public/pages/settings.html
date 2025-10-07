@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings - AiLydian Ultra Pro</title>
+    <title>Settings - LyDian Ultra Pro</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link href="/styles/common.css" rel="stylesheet">
@@ -673,7 +673,7 @@
                 <div class="settings-section" id="preferences">
                     <div class="section-title">Preferences</div>
                     <div class="section-description">
-                        Customize your experience with AiLydian Ultra Pro.
+                        Customize your experience with LyDian Ultra Pro.
                     </div>
 
                     <div class="setting-group">
@@ -951,13 +951,13 @@
 
         function downloadBackupCodes() {
             const codes = Array.from(document.querySelectorAll('.backup-code')).map(el => el.textContent);
-            const content = 'AiLydian Ultra Pro - Backup Codes\n\n' + codes.join('\n');
+            const content = 'LyDian Ultra Pro - Backup Codes\n\n' + codes.join('\n');
 
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'ailydian-backup-codes.txt';
+            a.download = 'LyDian-backup-codes.txt';
             a.click();
             URL.revokeObjectURL(url);
         }
