@@ -1,0 +1,115 @@
+{
+  "app": {
+    "title": "LyDian 医疗人工智能",
+    "subtitle": "健康智能专家",
+    "description": "先进的多专科医疗人工智能助手"
+  },
+  "header": {
+    "newConsultation": "新咨询",
+    "emergencyNumbers": "紧急电话",
+    "languageSelector": "语言"
+  },
+  "sidebar": {
+    "logo": "LyDian 医疗人工智能",
+    "toggleSidebar": "切换侧边栏"
+  },
+  "disclaimer": {
+    "title": "医疗免责声明",
+    "text": "本人工智能助手仅提供一般医疗信息。请始终咨询合格的医疗专业人员进行诊断和治疗。遇到紧急情况,请立即拨打急救服务电话。",
+    "understand": "我明白"
+  },
+  "specialties": {
+    "title": "医学专科",
+    "generalMedicine": "全科医学",
+    "cardiology": "心脏病学",
+    "neurology": "神经学",
+    "oncology": "肿瘤学",
+    "pediatrics": "儿科",
+    "psychiatry": "精神病学",
+    "orthopedics": "骨科",
+    "radiology": "放射学",
+    "emergency": "急诊医学",
+    "dermatology": "皮肤科"
+  },
+  "tools": {
+    "title": "医疗工具",
+    "ragSearch": "RAG 搜索",
+    "ragSearchDesc": "搜索PubMed和指南",
+    "dicomUpload": "DICOM 上传",
+    "dicomUploadDesc": "医学影像分析",
+    "fhirPatient": "FHIR 患者",
+    "fhirPatientDesc": "患者数据管理",
+    "speechTranscription": "语音转写",
+    "speechTranscriptionDesc": "语音转文本医疗记录",
+    "translation": "医学翻译",
+    "translationDesc": "多语言医疗文本"
+  },
+  "chat": {
+    "inputPlaceholder": "描述您的症状、提出医学问题或上传医学图像...",
+    "sendButton": "发送",
+    "voiceInput": "语音输入",
+    "fileUpload": "上传文件",
+    "clearChat": "清除聊天",
+    "newChat": "新对话",
+    "thinking": "人工智能正在分析...",
+    "typing": "正在输入..."
+  },
+  "calculators": {
+    "general": {
+      "title": "一般医学计算器",
+      "subtitle": "生命体征和BMI评估",
+      "vitalSigns": "生命体征",
+      "systolic": "收缩压 (mmHg)",
+      "diastolic": "舒张压 (mmHg)",
+      "heartRate": "心率 (次/分)",
+      "temperature": "体温 (°C)",
+      "spO2": "血氧饱和度 (%)",
+      "respRate": "呼吸频率 (/分)",
+      "bodyMetrics": "身体指标",
+      "weight": "体重 (kg)",
+      "height": "身高 (m)",
+      "patientInfo": "患者信息",
+      "patientName": "患者姓名",
+      "age": "年龄",
+      "gender": "性别",
+      "male": "男",
+      "female": "女",
+      "other": "其他",
+      "medications": "药物 (JSON格式)",
+      "physician": "医生信息",
+      "physicianName": "医生姓名",
+      "licenseNumber": "执照号码",
+      "calculate": "计算",
+      "results": "结果"
+    }
+  },
+  "buttons": {
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "confirm": "确认",
+    "clear": "清除",
+    "reset": "重置",
+    "upload": "上传",
+    "download": "下载",
+    "print": "打印",
+    "export": "导出",
+    "import": "导入"
+  },
+  "status": {
+    "loading": "加载中...",
+    "processing": "处理中...",
+    "analyzing": "分析中...",
+    "saving": "保存中...",
+    "success": "成功!",
+    "error": "发生错误",
+    "warning": "警告",
+    "info": "信息"
+  }
+}

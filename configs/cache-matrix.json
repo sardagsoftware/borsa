@@ -1,0 +1,160 @@
+{
+  "version": "1.0.0",
+  "description": "Cache strategy matrix for Ailydian Ultra Pro",
+  "rules": [
+    {
+      "type": "html",
+      "patterns": ["**/*.html"],
+      "browser": {
+        "maxAge": 60,
+        "staleWhileRevalidate": 30,
+        "mustRevalidate": true
+      },
+      "cdn": {
+        "sMaxAge": 60,
+        "staleWhileRevalidate": 30,
+        "public": true
+      },
+      "notes": "Short cache for HTML to ensure freshness while allowing stale-while-revalidate"
+    },
+    {
+      "type": "static-js",
+      "patterns": ["**/*.js", "!**/sw.js", "!**/service-worker.js"],
+      "browser": {
+        "maxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "cdn": {
+        "sMaxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "notes": "Long cache for JS with immutable flag (versioned with hash)"
+    },
+    {
+      "type": "static-css",
+      "patterns": ["**/*.css"],
+      "browser": {
+        "maxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "cdn": {
+        "sMaxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "notes": "Long cache for CSS with immutable flag (versioned with hash)"
+    },
+    {
+      "type": "images",
+      "patterns": ["**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.webp", "**/*.avif", "**/*.svg", "**/*.ico"],
+      "browser": {
+        "maxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "cdn": {
+        "sMaxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "notes": "Long cache for images (should be versioned or use CDN with query params)"
+    },
+    {
+      "type": "fonts",
+      "patterns": ["**/*.woff", "**/*.woff2", "**/*.ttf", "**/*.eot"],
+      "browser": {
+        "maxAge": 31536000,
+        "immutable": true,
+        "public": true,
+        "crossorigin": "anonymous"
+      },
+      "cdn": {
+        "sMaxAge": 31536000,
+        "immutable": true,
+        "public": true
+      },
+      "notes": "Long cache for fonts with crossorigin support"
+    },
+    {
+      "type": "api-get",
+      "patterns": ["/api/**"],
+      "methods": ["GET"],
+      "browser": {
+        "maxAge": 0,
+        "mustRevalidate": true
+      },
+      "cdn": {
+        "sMaxAge": 60,
+        "staleWhileRevalidate": 30,
+        "public": false
+      },
+      "notes": "Short CDN cache for GET APIs, no browser cache"
+    },
+    {
+      "type": "api-post",
+      "patterns": ["/api/**"],
+      "methods": ["POST", "PUT", "PATCH", "DELETE"],
+      "browser": {
+        "maxAge": 0,
+        "noStore": true
+      },
+      "cdn": {
+        "maxAge": 0,
+        "noStore": true
+      },
+      "notes": "No caching for mutation APIs"
+    },
+    {
+      "type": "service-worker",
+      "patterns": ["**/sw.js", "**/service-worker.js"],
+      "browser": {
+        "maxAge": 0,
+        "mustRevalidate": true
+      },
+      "cdn": {
+        "maxAge": 0,
+        "mustRevalidate": true
+      },
+      "notes": "No caching for service workers (must be fresh)"
+    },
+    {
+      "type": "manifest",
+      "patterns": ["**/manifest.json", "**/*-manifest.json"],
+      "browser": {
+        "maxAge": 3600,
+        "mustRevalidate": true
+      },
+      "cdn": {
+        "sMaxAge": 3600,
+        "mustRevalidate": true
+      },
+      "notes": "1-hour cache for PWA manifests"
+    }
+  ],
+  "slo": {
+    "cacheHitRatio": 0.8,
+    "description": "Target: >80% cache hit ratio for static assets"
+  },
+  "monitoring": {
+    "metrics": [
+      "x-vercel-cache (HIT/MISS/BYPASS)",
+      "age header",
+      "cache-control header",
+      "cdn-cache-control header"
+    ],
+    "alerts": [
+      "Alert if cache hit ratio drops below 70%",
+      "Alert if TTFB from edge exceeds 200ms"
+    ]
+  },
+  "notes": {
+    "versioning": "All static assets should include hash in filename for cache busting",
+    "staleWhileRevalidate": "Allows serving stale content while fetching fresh copy in background",
+    "immutable": "Indicates resource will never change (safe for aggressive caching)",
+    "sMaxAge": "Shared cache (CDN) TTL, overrides max-age for CDN",
+    "mustRevalidate": "Must check origin if expired (no stale serving)"
+  }
+}

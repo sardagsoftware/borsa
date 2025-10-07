@@ -1,0 +1,150 @@
+{
+  "version": 2,
+  "buildCommand": "echo 'No build required - Serverless Functions'",
+  "outputDirectory": "public",
+  "rewrites": [
+    {
+      "source": "/api/rro/:path*",
+      "destination": "/api/civic?module=rro&path=:path*"
+    },
+    {
+      "source": "/api/umo/:path*",
+      "destination": "/api/civic?module=umo&path=:path*"
+    },
+    {
+      "source": "/api/phn/:path*",
+      "destination": "/api/civic?module=phn&path=:path*"
+    },
+    {
+      "source": "/api/svf/:path*",
+      "destination": "/api/civic?module=svf&path=:path*"
+    },
+    {
+      "source": "/api/map/:path*",
+      "destination": "/api/civic?module=map&path=:path*"
+    },
+    {
+      "source": "/api/atg/:path*",
+      "destination": "/api/civic?module=atg&path=:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/public/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/public/sitemap-index.xml"
+    },
+    {
+      "source": "/sitemap-index.xml",
+      "destination": "/public/sitemap-index.xml"
+    },
+    {
+      "source": "/sitemap-core.xml",
+      "destination": "/public/sitemap-core.xml"
+    },
+    {
+      "source": "/ailydian-indexnow-2025.txt",
+      "destination": "/public/ailydian-indexnow-2025.txt"
+    },
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/public/:path*"
+    }
+  ],
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self'; frame-ancestors 'none';"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=30"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://ailydian.com, https://www.ailydian.com, https://ailydian-ultra-pro.vercel.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

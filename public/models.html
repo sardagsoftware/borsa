@@ -1,0 +1,2298 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian AI Models - Access powerful AI models for text, vision, audio, and more">
+    <meta name="keywords" content="AI models, GPT, Gemini, Enterprise AI, machine learning">
+    <title>AI Models - LyDian | GPT-4, Enterprise AI 3.5, Gemini 2.0 & More</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 2.25rem;
+            font-weight: 900 !important;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-800);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========== HERO SECTION ========== */
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+            padding-top: 72px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16, 163, 127, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== MODELS SECTION ========== */
+
+        .models-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .models-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .model-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .model-card.lydian-turbo::before {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+        }
+
+        .model-card.lydian-pro::before {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        .model-card.lydian-vision::before {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        .model-card.gpt4::before {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+
+        .model-card.gemini::before {
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+        }
+
+        .model-card.enterprise-ai::before {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        }
+
+        .model-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .model-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-card.lydian-turbo .model-icon {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+        }
+
+        .model-card.lydian-pro .model-icon {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        .model-card.lydian-vision .model-icon {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        .model-card.gpt4 .model-icon {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+
+        .model-card.gemini .model-icon {
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+        }
+
+        .model-card.enterprise-ai .model-icon {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        }
+
+        .model-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .model-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .model-provider {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            font-weight: 600;
+        }
+
+        .model-description {
+            font-size: 1rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+        }
+
+        .model-stat {
+            text-align: center;
+        }
+
+        .model-stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .model-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 2s ease;
+            animation: progressAnimation 2s ease-in-out;
+        }
+
+        .model-card.lydian-turbo .progress-fill {
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+        }
+
+        .model-card.lydian-pro .progress-fill {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+        }
+
+        .model-card.lydian-vision .progress-fill {
+            background: linear-gradient(90deg, #f97316, #ef4444);
+        }
+
+        .model-card.gpt4 .progress-fill {
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+        }
+
+        .model-card.gemini .progress-fill {
+            background: linear-gradient(90deg, #10b981, #14b8a6);
+        }
+
+        .model-card.enterprise-ai .progress-fill {
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+        }
+
+        @keyframes progressAnimation {
+            from { width: 0; }
+        }
+
+        .circular-progress {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .circular-progress svg {
+            transform: rotate(-90deg);
+        }
+
+        .circular-progress circle {
+            fill: none;
+            stroke-width: 6;
+        }
+
+        .circular-progress .bg-circle {
+            stroke: var(--gray-200);
+        }
+
+        .circular-progress .progress-circle {
+            stroke-linecap: round;
+            transition: stroke-dashoffset 2s ease;
+        }
+
+        .model-card.lydian-turbo .progress-circle {
+            stroke: url(#gradient-turbo);
+        }
+
+        .model-card.lydian-pro .progress-circle {
+            stroke: url(#gradient-pro);
+        }
+
+        .model-card.lydian-vision .progress-circle {
+            stroke: url(#gradient-vision);
+        }
+
+        .model-card.gpt4 .progress-circle {
+            stroke: url(#gradient-gpt4);
+        }
+
+        .model-card.gemini .progress-circle {
+            stroke: url(#gradient-gemini);
+        }
+
+        .model-card.enterprise-ai .progress-circle {
+            stroke: url(#gradient-enterprise-ai);
+        }
+
+        .model-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .model-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            animation: fadeInLeft 0.5s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .model-features li svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .model-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            background: var(--gray-50);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-try {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-card.lydian-turbo .btn-try {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+        }
+
+        .model-card.lydian-pro .btn-try {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        .model-card.lydian-vision .btn-try {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        .model-card.gpt4 .btn-try {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+
+        .model-card.gemini .btn-try {
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+        }
+
+        .model-card.enterprise-ai .btn-try {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        }
+
+        .btn-try::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-try:hover::before {
+            left: 100%;
+        }
+
+        .btn-try:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========== USE CASES SECTION ========== */
+
+        .use-cases-section {
+            padding: 6rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--black);
+            margin-bottom: 3rem;
+        }
+
+        .use-cases-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .use-case-card {
+            padding: 2rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .use-case-card:nth-child(1) .use-case-icon {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+        }
+
+        .use-case-card:nth-child(2) .use-case-icon {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        .use-case-card:nth-child(3) .use-case-icon {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+        }
+
+        .use-case-card:nth-child(4) .use-case-icon {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+        }
+
+        .use-case-card:nth-child(5) .use-case-icon {
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+        }
+
+        .use-case-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .use-case-card p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* ========== COMPARISON TABLE ========== */
+
+        .comparison-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .comparison-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr repeat(6, 1fr);
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: var(--gray-900);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr repeat(6, 1fr);
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .table-row:hover {
+            background: linear-gradient(90deg, rgba(16, 163, 127, 0.05), transparent);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .table-cell-title {
+            font-weight: 600;
+            color: var(--black);
+            justify-content: flex-start;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            animation: checkPop 0.5s ease;
+        }
+
+        @keyframes checkPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* ========== PERFORMANCE BENCHMARKS ========== */
+
+        .benchmarks-section {
+            padding: 6rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .benchmarks-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benchmark-item {
+            margin-bottom: 3rem;
+        }
+
+        .benchmark-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .benchmark-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .benchmark-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .benchmark-bar-container {
+            display: grid;
+            grid-template-columns: 150px 1fr 80px;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+
+        .benchmark-model-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .benchmark-bar {
+            height: 32px;
+            background: var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .benchmark-bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: width 2s ease;
+        }
+
+        .benchmark-score {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--gray-700);
+            text-align: right;
+        }
+
+        /* ========== CODE SHOWCASE ========== */
+
+        .showcase-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .code-example {
+            background: var(--gray-900);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .code-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .code-lang {
+            font-size: 0.875rem;
+            color: var(--gray-400);
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        pre {
+            margin: 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: var(--gray-300);
+        }
+
+        .code-keyword {
+            color: #c792ea;
+        }
+
+        .code-string {
+            color: #c3e88d;
+        }
+
+        .code-function {
+            color: #82aaff;
+        }
+
+        .code-comment {
+            color: #546e7a;
+            font-style: italic;
+        }
+
+        .code-property {
+            color: #f07178;
+        }
+
+        /* ========== FOOTER ========== */
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 2rem;
+            font-weight: 900 !important;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em !important;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-800);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ========== SCROLL ANIMATIONS ========== */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== LANGUAGE CONTENT ========== */
+
+        [lang]:not([lang="tr"]) {
+            display: none;
+        }
+
+        body.lang-en [lang="tr"] {
+            display: none;
+        }
+
+        body.lang-en [lang="en"] {
+            display: block;
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .table-header,
+            .table-row {
+                grid-template-columns: 2fr repeat(6, 1fr);
+                font-size: 0.75rem;
+            }
+
+            .benchmark-bar-container {
+                grid-template-columns: 120px 1fr 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.125rem;
+            }
+
+            .models-grid,
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-header,
+            .table-row {
+                grid-template-columns: 1fr;
+            }
+
+            .table-header > *:not(:first-child),
+            .table-row > *:not(:first-child) {
+                display: none;
+            }
+
+            .benchmark-bar-container {
+                grid-template-columns: 1fr;
+            }
+
+            .benchmark-score {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Gradients -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="gradient-turbo" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="gradient-pro" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="gradient-vision" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="gradient-gpt4" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="gradient-gemini" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="gradient-enterprise-ai" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
+
+            <ul class="nav-links">
+                <li><a href="/chat.html" lang="tr">LyDian AI</a><a href="/chat.html" lang="en">LyDian AI</a></li>
+                <li><a href="/docs.html" lang="tr">Dokümantasyon</a><a href="/docs.html" lang="en">Documentation</a></li>
+                <li><a href="/api-reference.html" lang="tr">API</a><a href="/api-reference.html" lang="en">API</a></li>
+                <li><a href="/developers.html" lang="tr">Geliştiriciler</a><a href="/developers.html" lang="en">Developers</a></li>
+                <li><a href="/models.html" lang="tr">Modeller</a><a href="/models.html" lang="en">Models</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="/auth.html" class="btn btn-secondary" lang="tr">Giriş Yap</a>
+                <a href="/auth.html" class="btn btn-secondary" lang="en">Sign In</a>
+                <a href="/chat.html" class="btn btn-primary" lang="tr">Şimdi Dene</a>
+                <a href="/chat.html" class="btn btn-primary" lang="en">Try Now</a>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge" lang="tr">
+                150+ Premium AI Modeli
+            </div>
+            <div class="hero-badge" lang="en">
+                150+ Premium AI Models
+            </div>
+
+            <h1 class="hero-title">
+                <span class="hero-title-gradient" lang="tr">Güçlü AI Modelleri</span>
+                <span class="hero-title-gradient" lang="en">Powerful AI Models</span><br>
+                <span lang="tr">Her Görev İçin</span>
+                <span lang="en">For Every Task</span>
+            </h1>
+
+            <p class="hero-description" lang="tr">
+                Dünyanın en gelişmiş yapay zeka modellerine erişin. Metin üretiminden görsel oluşturmaya, ihtiyacınız için mükemmel modeli bulun.
+            </p>
+            <p class="hero-description" lang="en">
+                Access the world's most advanced AI models. From text generation to image creation, find the perfect model for your needs.
+            </p>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models-section">
+        <div class="models-container">
+            <div class="models-grid">
+                <!-- Model 1: LyDian Turbo -->
+                <div class="model-card lydian-turbo fade-in">
+                    <div class="model-header">
+                        <div class="model-icon">
+                            <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <div class="model-info">
+                            <h3>LyDian Turbo</h3>
+                            <div class="model-provider">LyDian AI</div>
+                        </div>
+                    </div>
+                    <p class="model-description" lang="tr">
+                        Hız ve verimlilik için optimize edilmiş ultra hızlı genel amaçlı model. Sohbet, içerik üretimi ve hızlı görevler için mükemmel.
+                    </p>
+                    <p class="model-description" lang="en">
+                        Ultra-fast general purpose model optimized for speed and efficiency. Perfect for chat, content generation, and quick tasks.
+                    </p>
+                    <div class="model-stats">
+                        <div class="model-stat">
+                            <div class="model-stat-value counter" data-target="500">0</div>
+                            <div class="model-stat-label" lang="tr">Token/sn</div>
+                            <div class="model-stat-label" lang="en">Tokens/s</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="model-stat-value">128K</div>
+                            <div class="model-stat-label" lang="tr">Bağlam</div>
+                            <div class="model-stat-label" lang="en">Context</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 64%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="circular-progress">
+                                <svg width="60" height="60">
+                                    <circle class="bg-circle" cx="30" cy="30" r="26"></circle>
+                                    <circle class="progress-circle" cx="30" cy="30" r="26"
+                                            stroke-dasharray="163.36" stroke-dashoffset="16.34"></circle>
+                                </svg>
+                            </div>
+                            <div class="model-stat-value counter" data-target="94">0</div>
+                            <div class="model-stat-label" lang="tr">Doğruluk</div>
+                            <div class="model-stat-label" lang="en">Accuracy</div>
+                        </div>
+                    </div>
+                    <ul class="model-features">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Hızlı yanıt süreleri (1 saniyenin altında)</span>
+                            <span lang="en">Fast response times (under 1 second)</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Çoklu dil desteği (100+ dil)</span>
+                            <span lang="en">Multi-language support (100+ languages)</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Kod üretimi ve hata ayıklama</span>
+                            <span lang="en">Code generation and debugging</span>
+                        </li>
+                    </ul>
+                    <div class="model-actions">
+                        <a href="/chat.html" class="btn btn-try" lang="tr">Şimdi Dene</a>
+                        <a href="/chat.html" class="btn btn-try" lang="en">Try Now</a>
+                        <a href="/docs.html#turbo" class="btn btn-outline" lang="tr">Daha Fazla</a>
+                        <a href="/docs.html#turbo" class="btn btn-outline" lang="en">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Model 2: LyDian Pro -->
+                <div class="model-card lydian-pro fade-in">
+                    <div class="model-header">
+                        <div class="model-icon">
+                            <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <div class="model-info">
+                            <h3>LyDian Pro</h3>
+                            <div class="model-provider">LyDian AI</div>
+                        </div>
+                    </div>
+                    <p class="model-description" lang="tr">
+                        Karmaşık görevler için gelişmiş akıl yürütme modeli. Analiz, araştırma, teknik yazım ve profesyonel uygulamalar için en iyi.
+                    </p>
+                    <p class="model-description" lang="en">
+                        Advanced reasoning model for complex tasks. Best for analysis, research, technical writing, and professional applications.
+                    </p>
+                    <div class="model-stats">
+                        <div class="model-stat">
+                            <div class="model-stat-value counter" data-target="300">0</div>
+                            <div class="model-stat-label" lang="tr">Token/sn</div>
+                            <div class="model-stat-label" lang="en">Tokens/s</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="model-stat-value">200K</div>
+                            <div class="model-stat-label" lang="tr">Bağlam</div>
+                            <div class="model-stat-label" lang="en">Context</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="circular-progress">
+                                <svg width="60" height="60">
+                                    <circle class="bg-circle" cx="30" cy="30" r="26"></circle>
+                                    <circle class="progress-circle" cx="30" cy="30" r="26"
+                                            stroke-dasharray="163.36" stroke-dashoffset="4.90"></circle>
+                                </svg>
+                            </div>
+                            <div class="model-stat-value counter" data-target="97">0</div>
+                            <div class="model-stat-label" lang="tr">Doğruluk</div>
+                            <div class="model-stat-label" lang="en">Accuracy</div>
+                        </div>
+                    </div>
+                    <ul class="model-features">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Gelişmiş akıl yürütme ve analiz</span>
+                            <span lang="en">Advanced reasoning and analysis</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Uzun doküman işleme (200K token)</span>
+                            <span lang="en">Long document processing (200K tokens)</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Teknik ve bilimsel uzmanlık</span>
+                            <span lang="en">Technical and scientific expertise</span>
+                        </li>
+                    </ul>
+                    <div class="model-actions">
+                        <a href="/chat.html" class="btn btn-try" lang="tr">Şimdi Dene</a>
+                        <a href="/chat.html" class="btn btn-try" lang="en">Try Now</a>
+                        <a href="/docs.html#pro" class="btn btn-outline" lang="tr">Daha Fazla</a>
+                        <a href="/docs.html#pro" class="btn btn-outline" lang="en">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Model 3: LyDian Vision -->
+                <div class="model-card lydian-vision fade-in">
+                    <div class="model-header">
+                        <div class="model-icon">
+                            <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div class="model-info">
+                            <h3>LyDian Vision</h3>
+                            <div class="model-provider">LyDian AI</div>
+                        </div>
+                    </div>
+                    <p class="model-description" lang="tr">
+                        Hem metin hem de görselleri anlayan çok modlu yapay zeka. Görselleri analiz edin, açıklamalar oluşturun ve görsellerden bilgi çıkarın.
+                    </p>
+                    <p class="model-description" lang="en">
+                        Multimodal AI that understands both text and images. Analyze images, generate descriptions, and extract information from visuals.
+                    </p>
+                    <div class="model-stats">
+                        <div class="model-stat">
+                            <div class="model-stat-value counter" data-target="250">0</div>
+                            <div class="model-stat-label" lang="tr">Token/sn</div>
+                            <div class="model-stat-label" lang="en">Tokens/s</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="model-stat-value">128K</div>
+                            <div class="model-stat-label" lang="tr">Bağlam</div>
+                            <div class="model-stat-label" lang="en">Context</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 64%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="circular-progress">
+                                <svg width="60" height="60">
+                                    <circle class="bg-circle" cx="30" cy="30" r="26"></circle>
+                                    <circle class="progress-circle" cx="30" cy="30" r="26"
+                                            stroke-dasharray="163.36" stroke-dashoffset="8.17"></circle>
+                                </svg>
+                            </div>
+                            <div class="model-stat-value counter" data-target="95">0</div>
+                            <div class="model-stat-label" lang="tr">Doğruluk</div>
+                            <div class="model-stat-label" lang="en">Accuracy</div>
+                        </div>
+                    </div>
+                    <ul class="model-features">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Görsel anlama ve analiz</span>
+                            <span lang="en">Image understanding and analysis</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">OCR ve metin çıkarma</span>
+                            <span lang="en">OCR and text extraction</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Görsel soru cevaplama</span>
+                            <span lang="en">Visual question answering</span>
+                        </li>
+                    </ul>
+                    <div class="model-actions">
+                        <a href="/chat.html" class="btn btn-try" lang="tr">Şimdi Dene</a>
+                        <a href="/chat.html" class="btn btn-try" lang="en">Try Now</a>
+                        <a href="/docs.html#vision" class="btn btn-outline" lang="tr">Daha Fazla</a>
+                        <a href="/docs.html#vision" class="btn btn-outline" lang="en">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Model 4: GPT-4 Turbo -->
+                <div class="model-card gpt4 fade-in">
+                    <div class="model-header">
+                        <div class="model-icon">
+                            <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <div class="model-info">
+                            <h3>GPT-4 Turbo</h3>
+                            <div class="model-provider">OpenAI via Azure</div>
+                        </div>
+                    </div>
+                    <p class="model-description" lang="tr">
+                        OpenAI'dan sektör lideri model. Yaratıcı görevlerde, detaylı talimatlarda ve karmaşık problem çözmede mükemmel.
+                    </p>
+                    <p class="model-description" lang="en">
+                        Industry-leading model from OpenAI. Exceptional at creative tasks, detailed instructions, and complex problem-solving.
+                    </p>
+                    <div class="model-stats">
+                        <div class="model-stat">
+                            <div class="model-stat-value counter" data-target="200">0</div>
+                            <div class="model-stat-label" lang="tr">Token/sn</div>
+                            <div class="model-stat-label" lang="en">Tokens/s</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="model-stat-value">128K</div>
+                            <div class="model-stat-label" lang="tr">Bağlam</div>
+                            <div class="model-stat-label" lang="en">Context</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 64%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="circular-progress">
+                                <svg width="60" height="60">
+                                    <circle class="bg-circle" cx="30" cy="30" r="26"></circle>
+                                    <circle class="progress-circle" cx="30" cy="30" r="26"
+                                            stroke-dasharray="163.36" stroke-dashoffset="6.53"></circle>
+                                </svg>
+                            </div>
+                            <div class="model-stat-value counter" data-target="96">0</div>
+                            <div class="model-stat-label" lang="tr">Doğruluk</div>
+                            <div class="model-stat-label" lang="en">Accuracy</div>
+                        </div>
+                    </div>
+                    <ul class="model-features">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Yaratıcı yazma ve hikaye anlatımı</span>
+                            <span lang="en">Creative writing and storytelling</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Karmaşık akıl yürütme ve planlama</span>
+                            <span lang="en">Complex reasoning and planning</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Fonksiyon çağırma ve araç kullanımı</span>
+                            <span lang="en">Function calling and tool use</span>
+                        </li>
+                    </ul>
+                    <div class="model-actions">
+                        <a href="/chat.html" class="btn btn-try" lang="tr">Şimdi Dene</a>
+                        <a href="/chat.html" class="btn btn-try" lang="en">Try Now</a>
+                        <a href="/docs.html#gpt4" class="btn btn-outline" lang="tr">Daha Fazla</a>
+                        <a href="/docs.html#gpt4" class="btn btn-outline" lang="en">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Model 5: Gemini Pro -->
+                <div class="model-card gemini fade-in">
+                    <div class="model-header">
+                        <div class="model-icon">
+                            <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                            </svg>
+                        </div>
+                        <div class="model-info">
+                            <h3>Gemini Pro</h3>
+                            <div class="model-provider">Google</div>
+                        </div>
+                    </div>
+                    <p class="model-description" lang="tr">
+                        Google'ın en yetenekli yapay zeka modeli. Bağlamı anlamada, nüanslı konuşmalarda ve çok modlu görevlerde mükemmel.
+                    </p>
+                    <p class="model-description" lang="en">
+                        Google's most capable AI model. Excels at understanding context, nuanced conversations, and multimodal tasks.
+                    </p>
+                    <div class="model-stats">
+                        <div class="model-stat">
+                            <div class="model-stat-value counter" data-target="250">0</div>
+                            <div class="model-stat-label" lang="tr">Token/sn</div>
+                            <div class="model-stat-label" lang="en">Tokens/s</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="model-stat-value">1M+</div>
+                            <div class="model-stat-label" lang="tr">Bağlam</div>
+                            <div class="model-stat-label" lang="en">Context</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="circular-progress">
+                                <svg width="60" height="60">
+                                    <circle class="bg-circle" cx="30" cy="30" r="26"></circle>
+                                    <circle class="progress-circle" cx="30" cy="30" r="26"
+                                            stroke-dasharray="163.36" stroke-dashoffset="8.17"></circle>
+                                </svg>
+                            </div>
+                            <div class="model-stat-value counter" data-target="95">0</div>
+                            <div class="model-stat-label" lang="tr">Doğruluk</div>
+                            <div class="model-stat-label" lang="en">Accuracy</div>
+                        </div>
+                    </div>
+                    <ul class="model-features">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Devasa 1M+ token bağlam penceresi</span>
+                            <span lang="en">Massive 1M+ token context window</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Çok modlu (metin, görsel, video, ses)</span>
+                            <span lang="en">Multimodal (text, image, video, audio)</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Gerçek zamanlı işleme yetenekleri</span>
+                            <span lang="en">Real-time processing capabilities</span>
+                        </li>
+                    </ul>
+                    <div class="model-actions">
+                        <a href="/chat.html" class="btn btn-try" lang="tr">Şimdi Dene</a>
+                        <a href="/chat.html" class="btn btn-try" lang="en">Try Now</a>
+                        <a href="/docs.html#gemini" class="btn btn-outline" lang="tr">Daha Fazla</a>
+                        <a href="/docs.html#gemini" class="btn btn-outline" lang="en">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Model 6: Ultra Intelligence Model -->
+                <div class="model-card enterprise-ai fade-in">
+                    <div class="model-header">
+                        <div class="model-icon">
+                            <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <div class="model-info">
+                            <h3>Ultra Intelligence Model</h3>
+                            <div class="model-provider">Advanced AI Platform</div>
+                        </div>
+                    </div>
+                    <p class="model-description" lang="tr">
+                        Advanced AI Platform'in en zeki modeli. Düşünceli, nüanslı ve detaylı analiz, yazma ve kodlama görevlerinde mükemmel.
+                    </p>
+                    <p class="model-description" lang="en">
+                        Advanced AI Platform's most intelligent model. Thoughtful, nuanced, and excels at detailed analysis, writing, and coding tasks.
+                    </p>
+                    <div class="model-stats">
+                        <div class="model-stat">
+                            <div class="model-stat-value counter" data-target="200">0</div>
+                            <div class="model-stat-label" lang="tr">Token/sn</div>
+                            <div class="model-stat-label" lang="en">Tokens/s</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="model-stat-value">200K</div>
+                            <div class="model-stat-label" lang="tr">Bağlam</div>
+                            <div class="model-stat-label" lang="en">Context</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="model-stat">
+                            <div class="circular-progress">
+                                <svg width="60" height="60">
+                                    <circle class="bg-circle" cx="30" cy="30" r="26"></circle>
+                                    <circle class="progress-circle" cx="30" cy="30" r="26"
+                                            stroke-dasharray="163.36" stroke-dashoffset="4.90"></circle>
+                                </svg>
+                            </div>
+                            <div class="model-stat-value counter" data-target="97">0</div>
+                            <div class="model-stat-label" lang="tr">Doğruluk</div>
+                            <div class="model-stat-label" lang="en">Accuracy</div>
+                        </div>
+                    </div>
+                    <ul class="model-features">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Güvenlik için Constitutional AI</span>
+                            <span lang="en">Constitutional AI for safety</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Analiz ve araştırmada mükemmel</span>
+                            <span lang="en">Excellent at analysis and research</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span lang="tr">Uzun form içerik üretimi</span>
+                            <span lang="en">Long-form content generation</span>
+                        </li>
+                    </ul>
+                    <div class="model-actions">
+                        <a href="/chat.html" class="btn btn-try" lang="tr">Şimdi Dene</a>
+                        <a href="/chat.html" class="btn btn-try" lang="en">Try Now</a>
+                        <a href="/docs.html#enterprise-ai" class="btn btn-outline" lang="tr">Daha Fazla</a>
+                        <a href="/docs.html#enterprise-ai" class="btn btn-outline" lang="en">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases-section">
+        <h2 class="section-title fade-in" lang="tr">Gerçek Dünya Kullanım Alanları</h2>
+        <h2 class="section-title fade-in" lang="en">Real-World Use Cases</h2>
+        <div class="use-cases-grid">
+            <div class="use-case-card fade-in">
+                <div class="use-case-icon">
+                    <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                </div>
+                <h3 lang="tr">İçerik Üretimi</h3>
+                <h3 lang="en">Content Generation</h3>
+                <p lang="tr">
+                    Blog yazıları, sosyal medya içerikleri, ürün açıklamaları ve pazarlama metinleri oluşturun. Markanızın sesini koruyarak hızlı ve kaliteli içerik üretin.
+                </p>
+                <p lang="en">
+                    Create blog posts, social media content, product descriptions, and marketing copy. Generate fast, quality content while maintaining your brand voice.
+                </p>
+            </div>
+
+            <div class="use-case-card fade-in">
+                <div class="use-case-icon">
+                    <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </div>
+                <h3 lang="tr">Kod Yardımcısı</h3>
+                <h3 lang="en">Code Assistance</h3>
+                <p lang="tr">
+                    Kod yazın, hata ayıklayın, optimizasyon önerileri alın ve dokümantasyon oluşturun. Tüm popüler programlama dillerinde destek.
+                </p>
+                <p lang="en">
+                    Write code, debug, get optimization suggestions, and generate documentation. Support for all popular programming languages.
+                </p>
+            </div>
+
+            <div class="use-case-card fade-in">
+                <div class="use-case-icon">
+                    <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                </div>
+                <h3 lang="tr">Görsel Analizi</h3>
+                <h3 lang="en">Image Analysis</h3>
+                <p lang="tr">
+                    Görselleri analiz edin, nesneleri tanıyın, metin çıkarın ve görsel içerik hakkında detaylı bilgi alın.
+                </p>
+                <p lang="en">
+                    Analyze images, recognize objects, extract text, and get detailed information about visual content.
+                </p>
+            </div>
+
+            <div class="use-case-card fade-in">
+                <div class="use-case-icon">
+                    <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h3 lang="tr">Veri İşleme</h3>
+                <h3 lang="en">Data Processing</h3>
+                <p lang="tr">
+                    Büyük veri setlerini analiz edin, içgörüler çıkarın, raporlar oluşturun ve veri görselleştirme önerileri alın.
+                </p>
+                <p lang="en">
+                    Analyze large datasets, extract insights, generate reports, and get data visualization suggestions.
+                </p>
+            </div>
+
+            <div class="use-case-card fade-in">
+                <div class="use-case-icon">
+                    <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                    </svg>
+                </div>
+                <h3 lang="tr">Çeviri</h3>
+                <h3 lang="en">Translation</h3>
+                <p lang="tr">
+                    100+ dilde profesyonel çeviri yapın. Bağlamı koruyan, doğal ve akıcı çeviriler alın.
+                </p>
+                <p lang="en">
+                    Professional translation in 100+ languages. Get natural, fluent translations that preserve context.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <h2 class="section-title fade-in" lang="tr">Model Karşılaştırması</h2>
+        <h2 class="section-title fade-in" lang="en">Model Comparison</h2>
+        <div class="comparison-wrapper">
+            <div class="comparison-table fade-in">
+                <div class="table-header">
+                    <div lang="tr">Özellik</div>
+                    <div lang="en">Feature</div>
+                    <div>LyDian Turbo</div>
+                    <div>LyDian Pro</div>
+                    <div>LyDian Vision</div>
+                    <div>GPT-4 Turbo</div>
+                    <div>Gemini Pro</div>
+                    <div>Enterprise AI 3.5</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-cell-title" lang="tr">Metin Üretimi</div>
+                    <div class="table-cell table-cell-title" lang="en">Text Generation</div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-cell-title" lang="tr">Kod Üretimi</div>
+                    <div class="table-cell table-cell-title" lang="en">Code Generation</div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-cell-title" lang="tr">Görsel Anlama</div>
+                    <div class="table-cell table-cell-title" lang="en">Image Understanding</div>
+                    <div class="table-cell">-</div>
+                    <div class="table-cell">-</div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-cell-title" lang="tr">Fonksiyon Çağırma</div>
+                    <div class="table-cell table-cell-title" lang="en">Function Calling</div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-cell-title">JSON Mode</div>
+                    <div class="table-cell table-cell-title">JSON Mode</div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-cell-title" lang="tr">Streaming</div>
+                    <div class="table-cell table-cell-title" lang="en">Streaming</div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="table-cell"><svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Benchmarks -->
+    <section class="benchmarks-section">
+        <h2 class="section-title fade-in" lang="tr">Performans Karşılaştırması</h2>
+        <h2 class="section-title fade-in" lang="en">Performance Benchmarks</h2>
+        <div class="benchmarks-container">
+            <div class="benchmark-item fade-in">
+                <div class="benchmark-header">
+                    <div class="benchmark-name" lang="tr">Yanıt Hızı (token/saniye)</div>
+                    <div class="benchmark-name" lang="en">Response Speed (tokens/sec)</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Turbo</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >500+ tok/s</div>
+                    </div>
+                    <div class="benchmark-score">500</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Pro</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >300+ tok/s</div>
+                    </div>
+                    <div class="benchmark-score">300</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">Gemini Pro</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >250+ tok/s</div>
+                    </div>
+                    <div class="benchmark-score">250</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">GPT-4 Turbo</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >200+ tok/s</div>
+                    </div>
+                    <div class="benchmark-score">200</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">Enterprise AI 3.5</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >200+ tok/s</div>
+                    </div>
+                    <div class="benchmark-score">200</div>
+                </div>
+            </div>
+
+            <div class="benchmark-item fade-in">
+                <div class="benchmark-header">
+                    <div class="benchmark-name" lang="tr">Bağlam Penceresi</div>
+                    <div class="benchmark-name" lang="en">Context Window</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">Gemini Pro</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >1M+ tokens</div>
+                    </div>
+                    <div class="benchmark-score">1M+</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Pro</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >200K tokens</div>
+                    </div>
+                    <div class="benchmark-score">200K</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">Enterprise AI 3.5</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >200K tokens</div>
+                    </div>
+                    <div class="benchmark-score">200K</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">GPT-4 Turbo</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >128K tokens</div>
+                    </div>
+                    <div class="benchmark-score">128K</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Turbo</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >128K tokens</div>
+                    </div>
+                    <div class="benchmark-score">128K</div>
+                </div>
+            </div>
+
+            <div class="benchmark-item fade-in">
+                <div class="benchmark-header">
+                    <div class="benchmark-name" lang="tr">Doğruluk Skoru</div>
+                    <div class="benchmark-name" lang="en">Accuracy Score</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Pro</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >97%</div>
+                    </div>
+                    <div class="benchmark-score">97%</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">Enterprise AI 3.5</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >97%</div>
+                    </div>
+                    <div class="benchmark-score">97%</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">GPT-4 Turbo</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >96%</div>
+                    </div>
+                    <div class="benchmark-score">96%</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Vision</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >95%</div>
+                    </div>
+                    <div class="benchmark-score">95%</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">Gemini Pro</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >95%</div>
+                    </div>
+                    <div class="benchmark-score">95%</div>
+                </div>
+                <div class="benchmark-bar-container">
+                    <div class="benchmark-model-name">LyDian Turbo</div>
+                    <div class="benchmark-bar">
+                        <div class="benchmark-bar-fill" >94%</div>
+                    </div>
+                    <div class="benchmark-score">94%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Showcase -->
+    <section class="showcase-section">
+        <h2 class="section-title fade-in" lang="tr">API Kullanım Örneği</h2>
+        <h2 class="section-title fade-in" lang="en">API Usage Example</h2>
+        <div class="showcase-container">
+            <div class="code-example fade-in">
+                <div class="code-header">
+                    <div class="code-title" lang="tr">LyDian API ile Hızlı Başlangıç</div>
+                    <div class="code-title" lang="en">Quick Start with LyDian API</div>
+                    <div class="code-lang">JavaScript</div>
+                </div>
+                <pre><code><span class="code-comment">// Initialize LyDian API client</span>
+<span class="code-keyword">const</span> <span class="code-function">LyDian</span> = <span class="code-keyword">require</span>(<span class="code-string">'@lydian/sdk'</span>);
+
+<span class="code-keyword">const</span> client = <span class="code-keyword">new</span> <span class="code-function">LyDian</span>({
+  <span class="code-property">apiKey</span>: <span class="code-string">'your-api-key'</span>
+});
+
+<span class="code-comment">// Use LyDian Pro for advanced reasoning</span>
+<span class="code-keyword">const</span> response = <span class="code-keyword">await</span> client.<span class="code-function">chat</span>({
+  <span class="code-property">model</span>: <span class="code-string">'lydian-pro'</span>,
+  <span class="code-property">messages</span>: [
+    { <span class="code-property">role</span>: <span class="code-string">'user'</span>, <span class="code-property">content</span>: <span class="code-string">'Explain quantum computing'</span> }
+  ],
+  <span class="code-property">temperature</span>: <span class="code-string">0.7</span>,
+  <span class="code-property">max_tokens</span>: <span class="code-string">1000</span>
+});
+
+console.<span class="code-function">log</span>(response.<span class="code-property">choices</span>[<span class="code-string">0</span>].<span class="code-property">message</span>.<span class="code-property">content</span>);
+
+<span class="code-comment">// Use LyDian Vision for image analysis</span>
+<span class="code-keyword">const</span> visionResponse = <span class="code-keyword">await</span> client.<span class="code-function">vision</span>({
+  <span class="code-property">model</span>: <span class="code-string">'lydian-vision'</span>,
+  <span class="code-property">image</span>: <span class="code-string">'base64_encoded_image'</span>,
+  <span class="code-property">prompt</span>: <span class="code-string">'What objects are in this image?'</span>
+});
+
+console.<span class="code-function">log</span>(visionResponse.<span class="code-property">description</span>);</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <p class="footer-description" lang="tr">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                    <p class="footer-description" lang="en">
+                        AI platform shaping the future with artificial intelligence technologies and offering innovative solutions.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 lang="tr">Ürünler</h3>
+                    <h3 lang="en">Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="/chat.html" lang="tr">AI Sohbet</a><a href="/chat.html" lang="en">AI Chat</a></li>
+                        <li><a href="/image-generation.html" lang="tr">Görsel Oluşturma</a><a href="/image-generation.html" lang="en">Image Generation</a></li>
+                        <li><a href="/video-ai.html" lang="tr">Video AI</a><a href="/video-ai.html" lang="en">Video AI</a></li>
+                        <li><a href="/api.html" lang="tr">API</a><a href="/api.html" lang="en">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 lang="tr">Çözümler</h3>
+                    <h3 lang="en">Solutions</h3>
+                    <ul class="footer-links">
+                        <li><a href="/enterprise.html">Enterprise</a></li>
+                        <li><a href="/education.html" lang="tr">Eğitim</a><a href="/education.html" lang="en">Education</a></li>
+                        <li><a href="/research.html" lang="tr">Araştırma</a><a href="/research.html" lang="en">Research</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 lang="tr">Şirket</h3>
+                    <h3 lang="en">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html" lang="tr">Hakkımızda</a><a href="/about.html" lang="en">About</a></li>
+                        <li><a href="/careers.html" lang="tr">Kariyer</a><a href="/careers.html" lang="en">Careers</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html" lang="tr">İletişim</a><a href="/contact.html" lang="en">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 lang="tr">Destek</h3>
+                    <h3 lang="en">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="/help.html" lang="tr">Yardım Merkezi</a><a href="/help.html" lang="en">Help Center</a></li>
+                        <li><a href="/api-reference.html" lang="tr">API Referansı</a><a href="/api-reference.html" lang="en">API Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright" lang="tr">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-copyright" lang="en">
+                    © 2025 LyDian. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html" lang="tr">Gizlilik Politikası</a>
+                    <a href="/privacy.html" lang="en">Privacy Policy</a>
+                    <a href="/terms.html" lang="tr">Kullanım Koşulları</a>
+                    <a href="/terms.html" lang="en">Terms of Service</a>
+                    <a href="/cookies.html" lang="tr">Çerezler</a>
+                    <a href="/cookies.html" lang="en">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Trigger counter animations
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.target);
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < target) {
+                                counter.textContent = Math.floor(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        };
+
+                        updateCounter();
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate progress bars when visible
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('.progress-fill, .benchmark-bar-fill');
+                    fills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.model-stats, .benchmark-item').forEach(el => {
+            progressObserver.observe(el);
+        });
+    </script>
+
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

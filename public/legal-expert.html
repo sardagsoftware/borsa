@@ -1,0 +1,506 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Expert AI - LyDian | Professional Legal Intelligence Assistant</title>
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <link rel="stylesheet" href="/css/chat-LyDian.css">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body class="chat-body">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="LyDian-logo-chat">
+                <span class="letter-a">A</span>i<span class="letter-l">L</span>ydians
+                <span class="LyDian-beta">HUKUK</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="/chat" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Ana Chat'e Dön
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-chat">
+        <!-- Specialized Header -->
+        <div class="specialist-header">
+            <div class="specialist-icon">
+                <i class="fas fa-gavel"></i>
+            </div>
+            <div class="specialist-info">
+                <h1>Hukuk Uzmanı AI</h1>
+                <p>Hukuki danışmanlık, mevzuat analizi ve yasal süreçler konularında uzmanlaşmış AI asistanınız</p>
+            </div>
+        </div>
+
+        <!-- Legal Disclaimer -->
+        <div class="legal-disclaimer">
+            <div class="disclaimer-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="disclaimer-text">
+                <strong>Yasal Uyarı:</strong> Bu AI asistan genel bilgilendirme amaçlı olup, profesyonel hukuki danışmanlık yerine geçmez.
+                Önemli hukuki kararlar için mutlaka lisanslı bir avukatla görüşünüz.
+            </div>
+        </div>
+
+        <!-- Expertise Areas -->
+        <div class="expertise-areas">
+            <h3>Uzmanlık Alanları</h3>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <i class="fas fa-building"></i>
+                    <h4>Ticaret Hukuku</h4>
+                    <p>Şirket kuruluşu, ortaklık sözleşmeleri, ticari anlaşmalar</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-home"></i>
+                    <h4>Emlak Hukuku</h4>
+                    <p>Tapu işlemleri, kira sözleşmeleri, emlak alım-satımı</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Aile Hukuku</h4>
+                    <p>Boşanma, velayet, nafaka, miras hukuku</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h4>İş Hukuku</h4>
+                    <p>İş sözleşmeleri, işçi hakları, iş güvenliği</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Ceza Hukuku</h4>
+                    <p>Suç türleri, cezai sorumluluk, savunma stratejileri</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h4>Sözleşme Hukuku</h4>
+                    <p>Sözleşme hazırlama, revize, hukuki geçerlilik</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h3>Hızlı İşlemler</h3>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="sendPredefinedMessage('Sözleşme hazırlamak istiyorum. Hangi bilgilere ihtiyacınız var?')">
+                    <i class="fas fa-file-contract"></i>
+                    Sözleşme Hazırla
+                </button>
+                <button class="action-btn" onclick="sendPredefinedMessage('Hukuki bir problemi hakkında danışmanlık alabilir miyim?')">
+                    <i class="fas fa-question-circle"></i>
+                    Hukuki Danışma
+                </button>
+                <button class="action-btn" onclick="sendPredefinedMessage('Mevzuat hakkında bilgi almak istiyorum')">
+                    <i class="fas fa-book"></i>
+                    Mevzuat Sorgusu
+                </button>
+                <button class="action-btn" onclick="sendPredefinedMessage('Yasal süreç hakkında bilgi verebilir misiniz?')">
+                    <i class="fas fa-balance-scale"></i>
+                    Süreç Bilgisi
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Messages will be dynamically added here -->
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <div class="text-input-wrapper">
+                    <textarea
+                        id="messageInput"
+                        placeholder="Hukuki sorunuzu detaylı bir şekilde yazın..."
+                        rows="1"
+                        maxlength="5000"
+                    ></textarea>
+                </div>
+                <button class="send-btn" id="sendBtn" title="Gönder">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="input-info">
+                <span class="char-counter" id="charCounter">0/5000</span>
+                <span class="input-hint">Enter ile gönder, Shift+Enter ile yeni satır</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Specialized legal AI functionality
+        const specialistType = 'legal-expert';
+        const specialistName = 'Hukuk Uzmanı AI';
+
+        function sendPredefinedMessage(message) {
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (!message) return;
+
+            // Add user message to chat
+            addMessageToChat(message, 'user');
+
+            // Clear input
+            messageInput.value = '';
+            updateCharCounter();
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Send to specialized legal AI endpoint
+            fetch('/api/legal-expert/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    specialist: specialistType,
+                    context: 'legal_consultation'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                if (data.success) {
+                    addMessageToChat(data.response, 'assistant', true);
+                } else {
+                    addMessageToChat('Üzgünüm, şu anda bir teknik sorun yaşıyorum. Lütfen tekrar deneyin.', 'assistant');
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                console.error('Error:', error);
+                addMessageToChat('Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.', 'assistant');
+            });
+        }
+
+        function addMessageToChat(message, sender, isLegal = false) {
+            const chatContainer = document.getElementById('chatContainer');
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+
+            if (sender === 'assistant' && isLegal) {
+                messageDiv.innerHTML = `
+                    <div class="message-header">
+                        <div class="specialist-badge">
+                            <i class="fas fa-gavel"></i>
+                            Hukuk Uzmanı AI
+                        </div>
+                        <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                    </div>
+                    <div class="message-content">${message}</div>
+                    <div class="legal-footer">
+                        <small><i class="fas fa-info-circle"></i> Bu yanıt genel bilgilendirme amaçlıdır ve profesyonel hukuki danışmanlık yerine geçmez.</small>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-content">${message}</div>
+                    <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                `;
+            }
+
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = `
+                <div class="specialist-badge">
+                    <i class="fas fa-gavel"></i>
+                    Hukuk Uzmanı AI
+                </div>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+
+            document.getElementById('chatContainer').appendChild(indicator);
+            document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        function updateCharCounter() {
+            const messageInput = document.getElementById('messageInput');
+            const charCounter = document.getElementById('charCounter');
+            charCounter.textContent = `${messageInput.value.length}/5000`;
+        }
+
+        // Event listeners
+        document.getElementById('messageInput').addEventListener('input', updateCharCounter);
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
+        // Auto-resize textarea
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        // Initial welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                addMessageToChat(
+                    'Merhaba! Ben LyDians Hukuk Uzmanı AI\'ıyım. Hukuki sorularınızda size yardımcı olmaktan memnuniyet duyarım. ' +
+                    'Lütfen sorunu detaylı bir şekilde açıklayın ki size en doğru bilgiyi verebilmem. ' +
+                    'Unutmayın, verdiğim bilgiler genel niteliktedir ve profesyonel hukuki danışmanlık yerine geçmez.',
+                    'assistant',
+                    true
+                );
+            }, 1000);
+        });
+    </script>
+
+    <style>
+        .specialist-header {
+            background: linear-gradient(135deg, var(--asana-green-primary), var(--asana-green-light));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .specialist-icon {
+            font-size: 3rem;
+            opacity: 0.9;
+        }
+
+        .specialist-info h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .specialist-info p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .legal-disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: #856404;
+        }
+
+        .disclaimer-icon {
+            color: #f39c12;
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        .expertise-areas {
+            margin: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .expertise-areas h3 {
+            margin-bottom: 1rem;
+            color: var(--asana-green-primary);
+            font-weight: 600;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .expertise-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--asana-green-primary);
+        }
+
+        .expertise-card i {
+            font-size: 1.5rem;
+            color: var(--asana-green-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .expertise-card h4 {
+            margin: 0.5rem 0;
+            color: var(--chat-text);
+            font-weight: 600;
+        }
+
+        .expertise-card p {
+            margin: 0;
+            color: var(--chat-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .quick-actions {
+            margin: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .quick-actions h3 {
+            margin-bottom: 1rem;
+            color: var(--asana-green-primary);
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--chat-text);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            background: var(--asana-green-primary);
+            border-color: var(--asana-green-primary);
+            color: white;
+        }
+
+        .specialist-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--asana-green-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .legal-footer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legal-footer small {
+            color: #f39c12;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .typing-indicator {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--asana-green-primary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .specialist-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

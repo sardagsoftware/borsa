@@ -1,0 +1,296 @@
+{
+  "dashboard": {
+    "title": "Token Governor - Production Monitoring",
+    "version": "1.0.0",
+    "refresh_interval": "10s",
+    "panels": [
+      {
+        "id": "tpm-utilization",
+        "title": "TPM Utilization by Model",
+        "type": "timeseries",
+        "queries": [
+          {
+            "metric": "token_bucket.available",
+            "groupBy": ["model"],
+            "aggregation": "avg"
+          },
+          {
+            "metric": "token_bucket.capacity",
+            "groupBy": ["model"],
+            "aggregation": "max"
+          }
+        ],
+        "visualization": {
+          "chart_type": "line",
+          "y_axis": "tokens",
+          "legend": true
+        }
+      },
+      {
+        "id": "request-acceptance-rate",
+        "title": "Request Acceptance Rate",
+        "type": "stat",
+        "queries": [
+          {
+            "metric": "token_bucket.accepted_requests",
+            "aggregation": "sum"
+          },
+          {
+            "metric": "token_bucket.rejected_requests",
+            "aggregation": "sum"
+          }
+        ],
+        "visualization": {
+          "value": "ratio",
+          "format": "percentage",
+          "threshold": {
+            "green": 95,
+            "yellow": 85,
+            "red": 75
+          }
+        }
+      },
+      {
+        "id": "queue-lengths",
+        "title": "Priority Queue Lengths",
+        "type": "bar",
+        "queries": [
+          {
+            "metric": "token_bucket.queue_length",
+            "groupBy": ["priority", "model"],
+            "aggregation": "avg"
+          }
+        ],
+        "visualization": {
+          "stacked": true,
+          "y_axis": "jobs_queued"
+        }
+      },
+      {
+        "id": "output-cap-triggers",
+        "title": "Output Cap Continuation Triggers",
+        "type": "timeseries",
+        "queries": [
+          {
+            "metric": "output_limiter.continuation_triggered",
+            "groupBy": ["model"],
+            "aggregation": "count"
+          }
+        ],
+        "visualization": {
+          "chart_type": "area",
+          "alert_threshold": 100
+        }
+      },
+      {
+        "id": "checkpoint-resume",
+        "title": "Checkpoint & Resume Activity",
+        "type": "table",
+        "queries": [
+          {
+            "metric": "resume_engine.jobs",
+            "fields": ["jobId", "status", "processedChunks", "totalChunks", "completionPct"],
+            "orderBy": "updatedAt desc",
+            "limit": 10
+          }
+        ]
+      },
+      {
+        "id": "circuit-breaker-state",
+        "title": "Circuit Breaker States",
+        "type": "status_map",
+        "queries": [
+          {
+            "metric": "sentinel.circuit_breaker_state",
+            "groupBy": ["model"]
+          }
+        ],
+        "visualization": {
+          "states": {
+            "CLOSED": "green",
+            "HALF_OPEN": "yellow",
+            "OPEN": "red"
+          }
+        }
+      },
+      {
+        "id": "retry-backoff-latency",
+        "title": "Retry Backoff Latency Distribution",
+        "type": "histogram",
+        "queries": [
+          {
+            "metric": "sentinel.total_backoff_ms",
+            "groupBy": ["model"],
+            "aggregation": "percentile",
+            "percentiles": [50, 90, 95, 99]
+          }
+        ],
+        "visualization": {
+          "buckets": 20,
+          "x_axis": "latency_ms"
+        }
+      },
+      {
+        "id": "rag-compression-ratio",
+        "title": "RAG Context Compression Ratio",
+        "type": "gauge",
+        "queries": [
+          {
+            "metric": "rag.compression_ratio",
+            "aggregation": "avg"
+          }
+        ],
+        "visualization": {
+          "min": 0,
+          "max": 1,
+          "target": 0.7,
+          "format": "percentage"
+        }
+      },
+      {
+        "id": "mapreduce-throughput",
+        "title": "Map-Reduce Throughput",
+        "type": "timeseries",
+        "queries": [
+          {
+            "metric": "mapreduce.chunks_per_second",
+            "groupBy": ["jobId"],
+            "aggregation": "avg"
+          },
+          {
+            "metric": "mapreduce.tokens_per_second",
+            "groupBy": ["jobId"],
+            "aggregation": "avg"
+          }
+        ],
+        "visualization": {
+          "chart_type": "line",
+          "dual_axis": true
+        }
+      },
+      {
+        "id": "streaming-flush-latency",
+        "title": "Streaming Flush Latency",
+        "type": "timeseries",
+        "queries": [
+          {
+            "metric": "streaming.avg_flush_latency_ms",
+            "aggregation": "avg"
+          },
+          {
+            "metric": "streaming.max_flush_latency_ms",
+            "aggregation": "max"
+          }
+        ],
+        "visualization": {
+          "chart_type": "line",
+          "alert_threshold": 20
+        }
+      },
+      {
+        "id": "model-health-status",
+        "title": "Model Health Status",
+        "type": "status_grid",
+        "queries": [
+          {
+            "metric": "health_monitor.status",
+            "groupBy": ["model"]
+          },
+          {
+            "metric": "health_monitor.consecutive_failures",
+            "groupBy": ["model"]
+          }
+        ],
+        "visualization": {
+          "states": {
+            "HEALTHY": "green",
+            "UNHEALTHY": "red",
+            "ERROR": "orange",
+            "UNKNOWN": "gray"
+          }
+        }
+      },
+      {
+        "id": "token-consumption-rate",
+        "title": "Token Consumption Rate (TPM)",
+        "type": "timeseries",
+        "queries": [
+          {
+            "metric": "token_bucket.tokens_consumed",
+            "groupBy": ["model"],
+            "aggregation": "rate_per_minute"
+          }
+        ],
+        "visualization": {
+          "chart_type": "area",
+          "stacked": false,
+          "y_axis": "tokens_per_minute"
+        }
+      }
+    ],
+    "alerts": [
+      {
+        "id": "high-rejection-rate",
+        "name": "High Token Request Rejection Rate",
+        "condition": "token_bucket.rejected_requests / token_bucket.total_requests > 0.05",
+        "duration": "5m",
+        "severity": "warning",
+        "notification": ["slack", "email"]
+      },
+      {
+        "id": "circuit-breaker-open",
+        "name": "Circuit Breaker Opened",
+        "condition": "sentinel.circuit_breaker_state == 'OPEN'",
+        "duration": "1m",
+        "severity": "critical",
+        "notification": ["slack", "pagerduty"]
+      },
+      {
+        "id": "queue-buildup",
+        "name": "Job Queue Buildup",
+        "condition": "sum(token_bucket.queue_length) > 100",
+        "duration": "10m",
+        "severity": "warning",
+        "notification": ["slack"]
+      },
+      {
+        "id": "output-cap-frequent",
+        "name": "Frequent Output Cap Triggers",
+        "condition": "count(output_limiter.continuation_triggered) > 50 per hour",
+        "duration": "1h",
+        "severity": "info",
+        "notification": ["slack"]
+      },
+      {
+        "id": "model-unhealthy",
+        "name": "Model Health Check Failed",
+        "condition": "health_monitor.consecutive_failures >= 3",
+        "duration": "3m",
+        "severity": "critical",
+        "notification": ["slack", "pagerduty"]
+      }
+    ],
+    "variables": [
+      {
+        "name": "model",
+        "label": "AI Model",
+        "type": "multi-select",
+        "options": [
+          "claude-sonnet-4-5",
+          "gpt-4-turbo",
+          "gpt-4o",
+          "gemini-pro",
+          "deepseek-r1"
+        ],
+        "default": ["claude-sonnet-4-5"]
+      },
+      {
+        "name": "priority",
+        "label": "Priority Class",
+        "type": "select",
+        "options": ["P0_clinical", "P1_user", "P2_batch"],
+        "default": "P1_user"
+      }
+    ]
+  }
+}

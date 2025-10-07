@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-10-07T08:26:27Z",
+  "target": "http://localhost:3100",
+  "policy": "ZERO_TOLERANCE",
+  "statistics": {
+    "total_tests": 30,
+    "passed": 13,
+    "failed": 17,
+    "pass_rate": 43
+  },
+  "severity": {
+    "critical": 6,
+    "high": 4,
+    "medium": 5,
+    "low": 2
+  },
+  "compliance": {
+    "owasp_top_10": false,
+    "pci_dss": false,
+    "iso_27001": false
+  },
+  "deployment_approved": false
+}

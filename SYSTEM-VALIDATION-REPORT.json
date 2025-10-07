@@ -1,0 +1,234 @@
+{
+  "passed": 20,
+  "failed": 0,
+  "errors": [],
+  "warnings": [],
+  "tests": [
+    {
+      "name": "Redis SET",
+      "passed": true,
+      "message": "Successfully stored test value",
+      "details": {},
+      "timestamp": "2025-10-07T18:36:49.800Z"
+    },
+    {
+      "name": "Redis GET",
+      "passed": true,
+      "message": "Successfully retrieved test value",
+      "details": {
+        "retrieved": {
+          "test": true,
+          "timestamp": 1759862209575
+        }
+      },
+      "timestamp": "2025-10-07T18:36:50.009Z"
+    },
+    {
+      "name": "Redis DEL",
+      "passed": true,
+      "message": "Successfully deleted test value",
+      "details": {},
+      "timestamp": "2025-10-07T18:36:50.142Z"
+    },
+    {
+      "name": "Redis SETEX",
+      "passed": true,
+      "message": "Successfully set value with TTL",
+      "details": {},
+      "timestamp": "2025-10-07T18:36:50.275Z"
+    },
+    {
+      "name": "/api/models - MISS",
+      "passed": true,
+      "message": "Status: 200, Response time: 146ms",
+      "details": {
+        "status": 200,
+        "cacheHeader": "MISS",
+        "responseTime": 146,
+        "modelsCount": 23
+      },
+      "timestamp": "2025-10-07T18:36:50.561Z"
+    },
+    {
+      "name": "/api/models - HIT",
+      "passed": true,
+      "message": "Status: 200, Cache: HIT, Speedup: 2.0x",
+      "details": {
+        "status": 200,
+        "cacheHeader": "HIT",
+        "responseTime": 74,
+        "speedup": "1.97"
+      },
+      "timestamp": "2025-10-07T18:36:50.736Z"
+    },
+    {
+      "name": "/api/models - Structure",
+      "passed": true,
+      "message": "Response structure is valid",
+      "details": {
+        "hasModels": true,
+        "modelsCount": 23
+      },
+      "timestamp": "2025-10-07T18:36:50.736Z"
+    },
+    {
+      "name": "/api/health - MISS",
+      "passed": true,
+      "message": "Status: 200, Response time: 138ms",
+      "details": {
+        "status": 200,
+        "cacheHeader": "MISS",
+        "responseTime": 138,
+        "healthStatus": "healthy"
+      },
+      "timestamp": "2025-10-07T18:36:50.942Z"
+    },
+    {
+      "name": "/api/health - HIT",
+      "passed": true,
+      "message": "Status: 200, Cache: HIT",
+      "details": {
+        "status": 200,
+        "cacheHeader": "HIT",
+        "responseTime": 71,
+        "healthStatus": "healthy"
+      },
+      "timestamp": "2025-10-07T18:36:51.115Z"
+    },
+    {
+      "name": "/api/health - Structure",
+      "passed": true,
+      "message": "Health check response is valid",
+      "details": {
+        "status": "healthy",
+        "hasTimestamp": true,
+        "hasModelsCount": true
+      },
+      "timestamp": "2025-10-07T18:36:51.115Z"
+    },
+    {
+      "name": "/api/translate - MISS",
+      "passed": true,
+      "message": "Status: 200, Response time: 137ms",
+      "details": {
+        "status": 200,
+        "cacheHeader": "MISS",
+        "responseTime": 137,
+        "hasTranslation": true
+      },
+      "timestamp": "2025-10-07T18:36:51.321Z"
+    },
+    {
+      "name": "/api/translate - HIT",
+      "passed": true,
+      "message": "Status: 200, Cache: HIT, Speedup: 1.9x",
+      "details": {
+        "status": 200,
+        "cacheHeader": "HIT",
+        "responseTime": 72,
+        "speedup": "1.90",
+        "sameTranslation": true
+      },
+      "timestamp": "2025-10-07T18:36:51.494Z"
+    },
+    {
+      "name": "/api/translate - Structure",
+      "passed": "Hello World",
+      "message": "Translation response is valid",
+      "details": {
+        "hasSuccess": true,
+        "hasData": true,
+        "hasTranslated": true,
+        "hasSourceLang": true,
+        "hasTargetLang": true
+      },
+      "timestamp": "2025-10-07T18:36:51.494Z"
+    },
+    {
+      "name": "404 Handling",
+      "passed": true,
+      "message": "Returns proper error status (400)",
+      "details": {
+        "status": 400,
+        "isClientError": true
+      },
+      "timestamp": "2025-10-07T18:36:51.498Z"
+    },
+    {
+      "name": "Invalid Method",
+      "passed": true,
+      "message": "Returns proper error for invalid method (400)",
+      "details": {
+        "status": 400,
+        "isClientError": true
+      },
+      "timestamp": "2025-10-07T18:36:51.504Z"
+    },
+    {
+      "name": "Performance - models",
+      "passed": true,
+      "message": "Hit response time: 72ms (target: <100ms)",
+      "details": {
+        "missTime": 137,
+        "hitTime": 72,
+        "speedup": "1.90",
+        "meetsTarget": true
+      },
+      "timestamp": "2025-10-07T18:36:51.897Z"
+    },
+    {
+      "name": "Performance - health",
+      "passed": true,
+      "message": "Hit response time: 68ms (target: <100ms)",
+      "details": {
+        "missTime": 140,
+        "hitTime": 68,
+        "speedup": "2.06",
+        "meetsTarget": true
+      },
+      "timestamp": "2025-10-07T18:36:52.158Z"
+    },
+    {
+      "name": "Performance - Average",
+      "passed": true,
+      "message": "Average cache hit time: 70ms (target: <100ms)",
+      "details": {
+        "averageHitTime": "70.00",
+        "results": [
+          {
+            "endpoint": "models",
+            "missTime": 137,
+            "hitTime": 72,
+            "speedup": "1.90",
+            "target": 100
+          },
+          {
+            "endpoint": "health",
+            "missTime": 140,
+            "hitTime": 68,
+            "speedup": "2.06",
+            "target": 100
+          }
+        ]
+      },
+      "timestamp": "2025-10-07T18:36:52.158Z"
+    },
+    {
+      "name": "Cache SET before invalidation",
+      "passed": true,
+      "message": "Value stored successfully",
+      "details": {},
+      "timestamp": "2025-10-07T18:36:52.291Z"
+    },
+    {
+      "name": "Cache invalidation",
+      "passed": true,
+      "message": "Value invalidated successfully",
+      "details": {
+        "beforeDel": true,
+        "afterDel": false
+      },
+      "timestamp": "2025-10-07T18:36:52.424Z"
+    }
+  ]
+}

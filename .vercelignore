@@ -1,0 +1,67 @@
+# Development files
+node_modules
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs
+server.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test files
+test-results
+playwright-report
+*.spec.js
+*.test.js
+
+# IDE
+.vscode
+.idea
+.DS_Store
+*.swp
+*.swo
+
+# Documentation
+*.md
+!README.md
+docs
+
+# Backup files
+*backup*
+*BACKUP*
+*.bak
+*.tar.gz
+
+# Azure services (local only)
+azure-services
+monitoring
+
+# Apps (using separate repos)
+apps
+
+# Multi-language libraries (local only)
+multi-language-libraries
+
+# Infrastructure (local only)
+infra
+
+# Database (local only)
+database
+
+# Backend (local only, if separate)
+backend
+
+# Security (local only)
+security
+
+# AI integrations (local only, if not needed)
+ai-integrations
+
+# Large files
+*.tar.gz
+*.zip
+*.rar

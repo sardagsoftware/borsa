@@ -1,0 +1,56 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "predicateType": "https://slsa.dev/provenance/v0.2",
+  "subject": [
+    {
+      "name": "ailydian-ultra-pro",
+      "digest": {
+        "sha256": "b02de92a026d283464a215096064d7b17424c5d8"
+      }
+    }
+  ],
+  "predicate": {
+    "builder": {
+      "id": "https://github.com/sardagsoftware/borsa/actions"
+    },
+    "buildType": "https://github.com/Attestations/GitHubActionsWorkflow@v1",
+    "invocation": {
+      "configSource": {
+        "uri": "git+https://github.com/sardagsoftware/borsa@refs/heads/main",
+        "digest": {
+          "sha256": "b02de92a026d283464a215096064d7b17424c5d8"
+        },
+        "entryPoint": "npm run build"
+      },
+      "parameters": {},
+      "environment": {
+        "github_run_id": "manual-build",
+        "github_actor": "manual",
+        "github_event_name": "manual"
+      }
+    },
+    "buildConfig": {
+      "version": "1.0.0",
+      "timestamp": "2025-10-07T11:03:20Z"
+    },
+    "metadata": {
+      "buildInvocationId": "manual-20251007-140313",
+      "buildStartedOn": "2025-10-07T11:03:20Z",
+      "buildFinishedOn": "2025-10-07T11:03:20Z",
+      "completeness": {
+        "parameters": true,
+        "environment": false,
+        "materials": true
+      },
+      "reproducible": false
+    },
+    "materials": [
+      {
+        "uri": "git+https://github.com/sardagsoftware/borsa",
+        "digest": {
+          "sha256": "b02de92a026d283464a215096064d7b17424c5d8"
+        }
+      }
+    ]
+  }
+}

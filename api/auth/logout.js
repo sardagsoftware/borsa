@@ -1,0 +1,76 @@
+// ============================================
+// 🚪 LOGOUT
+// Delete session from Redis and clear cookies
+// ============================================
+
+const { deleteSession } = require('../../lib/auth/redis-session-store');
+
+module.exports = async (req, res) => {
+    // CORS Headers
+    const allowedOrigins = [
+        'https://www.ailydian.com',
+        'https://ailydian.com',
+        'https://ailydian-ultra-pro.vercel.app',
+        'http://localhost:3000',
+        'http://localhost:3100'
+    ];
+
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
+    if (req.method !== 'POST') {
+        return res.status(405).json({ success: false, error: 'Method not allowed' });
+    }
+
+    try {
+        // Get session ID from cookie
+        const cookies = req.headers.cookie || '';
+        const sessionIdMatch = cookies.match(/sessionId=([^;]+)/);
+
+        if (sessionIdMatch) {
+            const sessionId = sessionIdMatch[1];
+
+            // Delete session from Redis
+            await deleteSession(sessionId);
+
+            console.log('[Logout] Session deleted:', sessionId);
+        }
+
+        // Clear cookies
+        res.setHeader('Set-Cookie', [
+            'sessionId=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0',
+            'userId=; Secure; SameSite=Lax; Path=/; Max-Age=0',
+            'userName=; Secure; SameSite=Lax; Path=/; Max-Age=0'
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            message: 'Logged out successfully'
+        });
+
+    } catch (error) {
+        console.error('[Logout] Error:', error.message);
+
+        // Still clear cookies even if Redis fails
+        res.setHeader('Set-Cookie', [
+            'sessionId=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0',
+            'userId=; Secure; SameSite=Lax; Path=/; Max-Age=0',
+            'userName=; Secure; SameSite=Lax; Path=/; Max-Age=0'
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            message: 'Logged out'
+        });
+    }
+};

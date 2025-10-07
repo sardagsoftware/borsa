@@ -1,0 +1,38 @@
+# Ailydian Enterprise - Robots.txt
+# Generated: 2025-10-03
+
+User-agent: *
+Allow: /
+
+Disallow: /api/private/
+Disallow: /admin/
+Disallow: /dashboard/private/
+
+# Sitemaps
+Sitemap: https://www.ailydian.com/sitemap-index.xml
+Sitemap: https://www.ailydian.com/sitemap-core.xml
+
+# Search Engine Bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Crawl-delay
+Crawl-delay: 1

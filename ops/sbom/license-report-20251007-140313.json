@@ -1,0 +1,2352 @@
+{
+  "name": "ailydian-ultra-pro",
+  "version": "1.0.0",
+  "dependencies": [
+    {
+      "name": "@ailydian/ai-adapters",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/ai-adapters"
+    },
+    {
+      "name": "@ailydian/ai-rag",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/ai-rag"
+    },
+    {
+      "name": "@ailydian/ai-routing",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/ai-routing"
+    },
+    {
+      "name": "@ailydian/multi-cloud",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/multi-cloud"
+    },
+    {
+      "name": "@ailydian/multi-region",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/multi-region"
+    },
+    {
+      "name": "@ailydian/privacy",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/privacy"
+    },
+    {
+      "name": "@ailydian/quality-est",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/quality-est"
+    },
+    {
+      "name": "@ailydian/rl-feedback",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/rl-feedback"
+    },
+    {
+      "name": "@ailydian/semantic-cache",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../packages/semantic-cache"
+    },
+    {
+      "name": "@ailydian/web",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../../apps/web"
+    },
+    {
+      "name": "@anthropic-ai/sdk",
+      "version": "0.65.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@anthropic-ai+sdk@0.65.0_zod@3.25.76/node_modules/@anthropic-ai/sdk"
+    },
+    {
+      "name": "@apollo/cache-control-types",
+      "version": "1.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/cache-control-types/-/cache-control-types-1.0.3.tgz"
+    },
+    {
+      "name": "@apollo/client",
+      "version": "3.13.9",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/client/-/client-3.13.9.tgz"
+    },
+    {
+      "name": "@apollo/protobufjs",
+      "version": "1.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/protobufjs/-/protobufjs-1.2.2.tgz"
+    },
+    {
+      "name": "@apollo/server-gateway-interface",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/server-gateway-interface/-/server-gateway-interface-2.0.0.tgz"
+    },
+    {
+      "name": "@apollo/server",
+      "version": "5.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@apollo+server@5.0.0_graphql@16.11.0/node_modules/@apollo/server"
+    },
+    {
+      "name": "@apollo/usage-reporting-protobuf",
+      "version": "4.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/usage-reporting-protobuf/-/usage-reporting-protobuf-4.1.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.createhash",
+      "version": "3.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.createhash/-/utils.createhash-3.0.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.dropunuseddefinitions",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.dropunuseddefinitions/-/utils.dropunuseddefinitions-2.0.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.fetcher",
+      "version": "3.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.fetcher/-/utils.fetcher-3.1.0.tgz"
+    },
+    {
+      "name": "@apollo/utils.isnodelike",
+      "version": "3.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.isnodelike/-/utils.isnodelike-3.0.0.tgz"
+    },
+    {
+      "name": "@apollo/utils.keyvaluecache",
+      "version": "4.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.keyvaluecache/-/utils.keyvaluecache-4.0.0.tgz"
+    },
+    {
+      "name": "@apollo/utils.logger",
+      "version": "3.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.logger/-/utils.logger-3.0.0.tgz"
+    },
+    {
+      "name": "@apollo/utils.printwithreducedwhitespace",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.printwithreducedwhitespace/-/utils.printwithreducedwhitespace-2.0.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.removealiases",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.removealiases/-/utils.removealiases-2.0.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.sortast",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.sortast/-/utils.sortast-2.0.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.stripsensitiveliterals",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.stripsensitiveliterals/-/utils.stripsensitiveliterals-2.0.1.tgz"
+    },
+    {
+      "name": "@apollo/utils.usagereporting",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.usagereporting/-/utils.usagereporting-2.1.0.tgz"
+    },
+    {
+      "name": "@apollo/utils.withrequired",
+      "version": "3.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollo/utils.withrequired/-/utils.withrequired-3.0.0.tgz"
+    },
+    {
+      "name": "@apollographql/apollo-tools",
+      "version": "0.5.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollographql/apollo-tools/-/apollo-tools-0.5.4.tgz"
+    },
+    {
+      "name": "@apollographql/graphql-playground-html",
+      "version": "1.6.27",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollographql/graphql-playground-html/-/graphql-playground-html-1.6.27.tgz"
+    },
+    {
+      "name": "@apollographql/graphql-upload-8-fork",
+      "version": "8.1.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@apollographql/graphql-upload-8-fork/-/graphql-upload-8-fork-8.1.4.tgz"
+    },
+    {
+      "name": "@azure/ai-form-recognizer",
+      "version": "5.1.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+ai-form-recognizer@5.1.0/node_modules/@azure/ai-form-recognizer"
+    },
+    {
+      "name": "@azure/arm-containerservice",
+      "version": "22.3.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-containerservice@22.3.0/node_modules/@azure/arm-containerservice"
+    },
+    {
+      "name": "@azure/arm-frontdoor",
+      "version": "5.3.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-frontdoor@5.3.0/node_modules/@azure/arm-frontdoor"
+    },
+    {
+      "name": "@azure/arm-monitor",
+      "version": "7.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-monitor@7.0.0/node_modules/@azure/arm-monitor"
+    },
+    {
+      "name": "@azure/arm-rediscache",
+      "version": "8.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-rediscache@8.2.0/node_modules/@azure/arm-rediscache"
+    },
+    {
+      "name": "@azure/arm-resources",
+      "version": "7.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-resources@7.0.0/node_modules/@azure/arm-resources"
+    },
+    {
+      "name": "@azure/arm-search",
+      "version": "3.3.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-search@3.3.0/node_modules/@azure/arm-search"
+    },
+    {
+      "name": "@azure/arm-signalr",
+      "version": "5.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-signalr@5.2.0/node_modules/@azure/arm-signalr"
+    },
+    {
+      "name": "@azure/arm-sql",
+      "version": "10.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+arm-sql@10.0.0/node_modules/@azure/arm-sql"
+    },
+    {
+      "name": "@azure/cognitiveservices-computervision",
+      "version": "8.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+cognitiveservices-computervision@8.2.0/node_modules/@azure/cognitiveservices-computervision"
+    },
+    {
+      "name": "@azure/core-asynciterator-polyfill",
+      "version": "1.0.2",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+core-asynciterator-polyfill@1.0.2/node_modules/@azure/core-asynciterator-polyfill"
+    },
+    {
+      "name": "@azure/core-http",
+      "version": "1.2.6",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+core-http@1.2.6/node_modules/@azure/core-http"
+    },
+    {
+      "name": "@azure/cosmos",
+      "version": "4.5.1",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+cosmos@4.5.1/node_modules/@azure/cosmos"
+    },
+    {
+      "name": "@azure/identity",
+      "version": "4.12.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+identity@4.12.0/node_modules/@azure/identity"
+    },
+    {
+      "name": "@azure/keyvault-secrets",
+      "version": "4.10.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+keyvault-secrets@4.10.0/node_modules/@azure/keyvault-secrets"
+    },
+    {
+      "name": "@azure/monitor-opentelemetry-exporter",
+      "version": "1.0.0-preview.6",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+monitor-opentelemetry-exporter@1.0.0-preview.6/node_modules/@azure/monitor-opentelemetry-exporter"
+    },
+    {
+      "name": "@azure/monitor-opentelemetry",
+      "version": "1.14.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/monitor-opentelemetry/-/monitor-opentelemetry-1.14.0.tgz"
+    },
+    {
+      "name": "@azure/ms-rest-js",
+      "version": "2.7.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/ms-rest-js/-/ms-rest-js-2.7.0.tgz"
+    },
+    {
+      "name": "@azure/msal-browser",
+      "version": "4.24.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/msal-browser/-/msal-browser-4.24.0.tgz"
+    },
+    {
+      "name": "@azure/msal-common",
+      "version": "15.13.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/msal-common/-/msal-common-15.13.0.tgz"
+    },
+    {
+      "name": "@azure/msal-node",
+      "version": "3.8.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/msal-node/-/msal-node-3.8.0.tgz"
+    },
+    {
+      "name": "@azure/openai",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+openai@2.0.0/node_modules/@azure/openai"
+    },
+    {
+      "name": "@azure/opentelemetry-instrumentation-azure-sdk",
+      "version": "1.0.0-beta.9",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/opentelemetry-instrumentation-azure-sdk/-/opentelemetry-instrumentation-azure-sdk-1.0.0-beta.9.tgz"
+    },
+    {
+      "name": "@azure/storage-blob",
+      "version": "12.28.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@azure+storage-blob@12.28.0/node_modules/@azure/storage-blob"
+    },
+    {
+      "name": "@azure/storage-common",
+      "version": "12.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@azure/storage-common/-/storage-common-12.0.0.tgz"
+    },
+    {
+      "name": "@babel/plugin-proposal-export-namespace-from",
+      "version": "7.18.9",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@babel/plugin-proposal-export-namespace-from/-/plugin-proposal-export-namespace-from-7.18.9.tgz"
+    },
+    {
+      "name": "@babel/plugin-syntax-export-namespace-from",
+      "version": "7.8.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@babel/plugin-syntax-export-namespace-from/-/plugin-syntax-export-namespace-from-7.8.3.tgz"
+    },
+    {
+      "name": "@dabh/diagnostics",
+      "version": "2.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@dabh/diagnostics/-/diagnostics-2.0.6.tgz"
+    },
+    {
+      "name": "@devhigley/parse-proxy",
+      "version": "1.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@devhigley/parse-proxy/-/parse-proxy-1.0.3.tgz"
+    },
+    {
+      "name": "@img/colour",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@img+colour@1.0.0/node_modules/@img/colour"
+    },
+    {
+      "name": "@img/sharp-darwin-arm64",
+      "version": "0.34.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.3.tgz"
+    },
+    {
+      "name": "@img/sharp-libvips-darwin-arm64",
+      "version": "1.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.0.tgz"
+    },
+    {
+      "name": "@ioredis/commands",
+      "version": "1.4.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@ioredis/commands/-/commands-1.4.0.tgz"
+    },
+    {
+      "name": "@josephg/resolvable",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@josephg/resolvable/-/resolvable-1.0.1.tgz"
+    },
+    {
+      "name": "@mapbox/node-pre-gyp",
+      "version": "1.0.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.11.tgz"
+    },
+    {
+      "name": "@microsoft/applicationinsights-web-snippet",
+      "version": "1.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@microsoft/applicationinsights-web-snippet/-/applicationinsights-web-snippet-1.2.2.tgz"
+    },
+    {
+      "name": "@noble/hashes",
+      "version": "1.8.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@noble/hashes/-/hashes-1.8.0.tgz"
+    },
+    {
+      "name": "@opencensus/web-types",
+      "version": "0.0.7",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@opencensus+web-types@0.0.7/node_modules/@opencensus/web-types"
+    },
+    {
+      "name": "@opentelemetry/api",
+      "version": "1.9.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@opentelemetry+api@1.9.0/node_modules/@opentelemetry/api"
+    },
+    {
+      "name": "@opentelemetry/context-base",
+      "version": "0.10.2",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@opentelemetry+context-base@0.10.2/node_modules/@opentelemetry/context-base"
+    },
+    {
+      "name": "@opentelemetry/exporter-logs-otlp-grpc",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-logs-otlp-grpc/-/exporter-logs-otlp-grpc-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-logs-otlp-http",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-logs-otlp-http/-/exporter-logs-otlp-http-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-logs-otlp-proto",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-logs-otlp-proto/-/exporter-logs-otlp-proto-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-metrics-otlp-grpc",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-metrics-otlp-grpc/-/exporter-metrics-otlp-grpc-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-metrics-otlp-proto",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-metrics-otlp-proto/-/exporter-metrics-otlp-proto-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-prometheus",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-prometheus/-/exporter-prometheus-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-trace-otlp-grpc",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-trace-otlp-grpc/-/exporter-trace-otlp-grpc-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-trace-otlp-http",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-trace-otlp-http/-/exporter-trace-otlp-http-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-trace-otlp-proto",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-trace-otlp-proto/-/exporter-trace-otlp-proto-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/exporter-zipkin",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/exporter-zipkin/-/exporter-zipkin-2.1.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-bunyan",
+      "version": "0.50.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-bunyan/-/instrumentation-bunyan-0.50.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mongodb",
+      "version": "0.57.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-mongodb/-/instrumentation-mongodb-0.57.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mysql",
+      "version": "0.50.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-mysql/-/instrumentation-mysql-0.50.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-pg",
+      "version": "0.57.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-pg/-/instrumentation-pg-0.57.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-redis-4",
+      "version": "0.49.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-redis-4/-/instrumentation-redis-4-0.49.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-redis",
+      "version": "0.53.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-redis/-/instrumentation-redis-0.53.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-winston",
+      "version": "0.49.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/instrumentation-winston/-/instrumentation-winston-0.49.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/otlp-grpc-exporter-base",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/otlp-grpc-exporter-base/-/otlp-grpc-exporter-base-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/propagator-b3",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/propagator-b3/-/propagator-b3-2.1.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/propagator-jaeger",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/propagator-jaeger/-/propagator-jaeger-2.1.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/redis-common",
+      "version": "0.38.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/redis-common/-/redis-common-0.38.2.tgz"
+    },
+    {
+      "name": "@opentelemetry/resource-detector-azure",
+      "version": "0.7.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/resource-detector-azure/-/resource-detector-azure-0.7.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/sdk-node",
+      "version": "0.204.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/sdk-node/-/sdk-node-0.204.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/sdk-trace-node",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@opentelemetry+sdk-trace-node@2.1.0_@opentelemetry+api@1.9.0/node_modules/@opentelemetry/sdk-trace-node"
+    },
+    {
+      "name": "@opentelemetry/sdk-trace-web",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/sdk-trace-web/-/sdk-trace-web-2.1.0.tgz"
+    },
+    {
+      "name": "@opentelemetry/sql-common",
+      "version": "0.41.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@opentelemetry/sql-common/-/sql-common-0.41.2.tgz"
+    },
+    {
+      "name": "@opentelemetry/tracing",
+      "version": "0.10.2",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@opentelemetry+tracing@0.10.2/node_modules/@opentelemetry/tracing"
+    },
+    {
+      "name": "@paralleldrive/cuid2",
+      "version": "2.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@paralleldrive/cuid2/-/cuid2-2.2.2.tgz"
+    },
+    {
+      "name": "@playwright/test",
+      "version": "1.55.1",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@playwright+test@1.55.1/node_modules/@playwright/test"
+    },
+    {
+      "name": "@sendgrid/client",
+      "version": "8.1.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@sendgrid/client/-/client-8.1.6.tgz"
+    },
+    {
+      "name": "@sendgrid/helpers",
+      "version": "8.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@sendgrid/helpers/-/helpers-8.0.0.tgz"
+    },
+    {
+      "name": "@sendgrid/mail",
+      "version": "8.1.6",
+      "license": "UNKNOWN",
+      "resolved": "file:../.pnpm/@sendgrid+mail@8.1.6/node_modules/@sendgrid/mail"
+    },
+    {
+      "name": "@so-ric/colorspace",
+      "version": "1.1.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@so-ric/colorspace/-/colorspace-1.1.6.tgz"
+    },
+    {
+      "name": "@types/accepts",
+      "version": "1.3.7",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/accepts/-/accepts-1.3.7.tgz"
+    },
+    {
+      "name": "@types/bunyan",
+      "version": "1.8.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/bunyan/-/bunyan-1.8.11.tgz"
+    },
+    {
+      "name": "@types/content-disposition",
+      "version": "0.5.9",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/content-disposition/-/content-disposition-0.5.9.tgz"
+    },
+    {
+      "name": "@types/cookies",
+      "version": "0.9.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/cookies/-/cookies-0.9.1.tgz"
+    },
+    {
+      "name": "@types/fs-capacitor",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/fs-capacitor/-/fs-capacitor-2.0.0.tgz"
+    },
+    {
+      "name": "@types/http-assert",
+      "version": "1.5.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/http-assert/-/http-assert-1.5.6.tgz"
+    },
+    {
+      "name": "@types/keygrip",
+      "version": "1.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/keygrip/-/keygrip-1.0.6.tgz"
+    },
+    {
+      "name": "@types/koa-compose",
+      "version": "3.2.8",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/koa-compose/-/koa-compose-3.2.8.tgz"
+    },
+    {
+      "name": "@types/koa",
+      "version": "3.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/koa/-/koa-3.0.0.tgz"
+    },
+    {
+      "name": "@types/mysql",
+      "version": "2.15.27",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/mysql/-/mysql-2.15.27.tgz"
+    },
+    {
+      "name": "@types/pg-pool",
+      "version": "2.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/pg-pool/-/pg-pool-2.0.6.tgz"
+    },
+    {
+      "name": "@types/shimmer",
+      "version": "1.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/shimmer/-/shimmer-1.2.0.tgz"
+    },
+    {
+      "name": "@types/webrtc",
+      "version": "0.0.37",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@types/webrtc/-/webrtc-0.0.37.tgz"
+    },
+    {
+      "name": "@wry/caches",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@wry/caches/-/caches-1.0.1.tgz"
+    },
+    {
+      "name": "@wry/context",
+      "version": "0.7.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@wry/context/-/context-0.7.4.tgz"
+    },
+    {
+      "name": "@wry/trie",
+      "version": "0.5.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@wry/trie/-/trie-0.5.0.tgz"
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "version": "0.8.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.8.11.tgz"
+    },
+    {
+      "name": "abbrev",
+      "version": "1.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz"
+    },
+    {
+      "name": "accepts",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/accepts/-/accepts-2.0.0.tgz"
+    },
+    {
+      "name": "agent-base",
+      "version": "6.0.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
+    },
+    {
+      "name": "ailydian-azure-functions",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:../infra/azure-functions"
+    },
+    {
+      "name": "apollo-cache-control",
+      "version": "0.15.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-cache-control/-/apollo-cache-control-0.15.0.tgz"
+    },
+    {
+      "name": "apollo-datasource",
+      "version": "0.10.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-datasource/-/apollo-datasource-0.10.0.tgz"
+    },
+    {
+      "name": "apollo-graphql",
+      "version": "0.9.7",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-graphql/-/apollo-graphql-0.9.7.tgz"
+    },
+    {
+      "name": "apollo-link",
+      "version": "1.2.14",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-link/-/apollo-link-1.2.14.tgz"
+    },
+    {
+      "name": "apollo-reporting-protobuf",
+      "version": "0.8.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-reporting-protobuf/-/apollo-reporting-protobuf-0.8.0.tgz"
+    },
+    {
+      "name": "apollo-server-caching",
+      "version": "0.7.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-server-caching/-/apollo-server-caching-0.7.0.tgz"
+    },
+    {
+      "name": "apollo-server-core",
+      "version": "2.26.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-server-core/-/apollo-server-core-2.26.2.tgz"
+    },
+    {
+      "name": "apollo-server-env",
+      "version": "3.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-server-env/-/apollo-server-env-3.2.0.tgz"
+    },
+    {
+      "name": "apollo-server-errors",
+      "version": "2.5.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-server-errors/-/apollo-server-errors-2.5.0.tgz"
+    },
+    {
+      "name": "apollo-server-express",
+      "version": "2.26.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/apollo-server-express@2.26.2_graphql@16.11.0/node_modules/apollo-server-express"
+    },
+    {
+      "name": "apollo-server-plugin-base",
+      "version": "0.14.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-server-plugin-base/-/apollo-server-plugin-base-0.14.0.tgz"
+    },
+    {
+      "name": "apollo-server-types",
+      "version": "0.10.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-server-types/-/apollo-server-types-0.10.0.tgz"
+    },
+    {
+      "name": "apollo-tracing",
+      "version": "0.16.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-tracing/-/apollo-tracing-0.16.0.tgz"
+    },
+    {
+      "name": "apollo-utilities",
+      "version": "1.3.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/apollo-utilities/-/apollo-utilities-1.3.4.tgz"
+    },
+    {
+      "name": "append-field",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/append-field/-/append-field-1.0.0.tgz"
+    },
+    {
+      "name": "applicationinsights",
+      "version": "3.12.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/applicationinsights@3.12.0/node_modules/applicationinsights"
+    },
+    {
+      "name": "aproba",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/aproba/-/aproba-2.1.0.tgz"
+    },
+    {
+      "name": "are-we-there-yet",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/are-we-there-yet/-/are-we-there-yet-2.0.0.tgz"
+    },
+    {
+      "name": "argparse",
+      "version": "1.0.10",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/argparse/-/argparse-1.0.10.tgz"
+    },
+    {
+      "name": "array-flatten",
+      "version": "1.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz"
+    },
+    {
+      "name": "asap",
+      "version": "2.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/asap/-/asap-2.0.6.tgz"
+    },
+    {
+      "name": "asynckit",
+      "version": "0.4.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
+    },
+    {
+      "name": "axios",
+      "version": "1.12.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/axios@1.12.2/node_modules/axios"
+    },
+    {
+      "name": "backo2",
+      "version": "1.0.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/backo2/-/backo2-1.0.2.tgz"
+    },
+    {
+      "name": "base32.js",
+      "version": "0.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/base32.js/-/base32.js-0.0.1.tgz"
+    },
+    {
+      "name": "bcrypt",
+      "version": "5.1.1",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/bcrypt@5.1.1/node_modules/bcrypt"
+    },
+    {
+      "name": "bcryptjs",
+      "version": "3.0.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/bcryptjs@3.0.2/node_modules/bcryptjs"
+    },
+    {
+      "name": "bent",
+      "version": "7.3.12",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/bent/-/bent-7.3.12.tgz"
+    },
+    {
+      "name": "better-sqlite3",
+      "version": "12.4.1",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/better-sqlite3@12.4.1/node_modules/better-sqlite3"
+    },
+    {
+      "name": "body-parser",
+      "version": "2.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/body-parser@2.2.0/node_modules/body-parser"
+    },
+    {
+      "name": "boolbase",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
+    },
+    {
+      "name": "buffer-equal-constant-time",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz"
+    },
+    {
+      "name": "bytesish",
+      "version": "0.4.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/bytesish/-/bytesish-0.4.4.tgz"
+    },
+    {
+      "name": "camelcase",
+      "version": "5.3.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz"
+    },
+    {
+      "name": "canvas",
+      "version": "3.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/canvas@3.2.0/node_modules/canvas"
+    },
+    {
+      "name": "caseless",
+      "version": "0.12.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz"
+    },
+    {
+      "name": "cheerio-select",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/cheerio-select/-/cheerio-select-2.1.0.tgz"
+    },
+    {
+      "name": "cheerio",
+      "version": "1.1.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/cheerio@1.1.2/node_modules/cheerio"
+    },
+    {
+      "name": "chromium-bidi",
+      "version": "9.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/chromium-bidi/-/chromium-bidi-9.1.0.tgz"
+    },
+    {
+      "name": "cluster-key-slot",
+      "version": "1.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/cluster-key-slot/-/cluster-key-slot-1.1.2.tgz"
+    },
+    {
+      "name": "color-support",
+      "version": "1.1.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/color-support/-/color-support-1.1.3.tgz"
+    },
+    {
+      "name": "combined-stream",
+      "version": "1.0.8",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz"
+    },
+    {
+      "name": "console-control-strings",
+      "version": "1.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/console-control-strings/-/console-control-strings-1.1.0.tgz"
+    },
+    {
+      "name": "content-disposition",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/content-disposition/-/content-disposition-1.0.0.tgz"
+    },
+    {
+      "name": "content-type",
+      "version": "1.0.5",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz"
+    },
+    {
+      "name": "cookie-parser",
+      "version": "1.4.7",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/cookie-parser@1.4.7/node_modules/cookie-parser"
+    },
+    {
+      "name": "cookie-signature",
+      "version": "1.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.2.2.tgz"
+    },
+    {
+      "name": "cookie",
+      "version": "1.0.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/cookie@1.0.2/node_modules/cookie"
+    },
+    {
+      "name": "core-js-pure",
+      "version": "3.45.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.45.1.tgz"
+    },
+    {
+      "name": "cors",
+      "version": "2.8.5",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/cors@2.8.5/node_modules/cors"
+    },
+    {
+      "name": "cosmiconfig",
+      "version": "9.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-9.0.0.tgz"
+    },
+    {
+      "name": "csrf",
+      "version": "3.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/csrf/-/csrf-3.1.0.tgz"
+    },
+    {
+      "name": "css-select",
+      "version": "5.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/css-select/-/css-select-5.2.2.tgz"
+    },
+    {
+      "name": "css-what",
+      "version": "6.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/css-what/-/css-what-6.2.2.tgz"
+    },
+    {
+      "name": "cssfilter",
+      "version": "0.0.10",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/cssfilter/-/cssfilter-0.0.10.tgz"
+    },
+    {
+      "name": "csstype",
+      "version": "3.1.3",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/csstype@3.1.3/node_modules/csstype"
+    },
+    {
+      "name": "csurf",
+      "version": "1.11.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/csurf@1.11.0/node_modules/csurf"
+    },
+    {
+      "name": "csv-stringify",
+      "version": "1.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/csv-stringify/-/csv-stringify-1.1.2.tgz"
+    },
+    {
+      "name": "decamelize",
+      "version": "1.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/decamelize/-/decamelize-1.2.0.tgz"
+    },
+    {
+      "name": "decompress-response",
+      "version": "6.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/decompress-response/-/decompress-response-6.0.0.tgz"
+    },
+    {
+      "name": "deep-extend",
+      "version": "0.6.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz"
+    },
+    {
+      "name": "deepmerge",
+      "version": "4.3.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz"
+    },
+    {
+      "name": "delayed-stream",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz"
+    },
+    {
+      "name": "delegates",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/delegates/-/delegates-1.0.0.tgz"
+    },
+    {
+      "name": "denque",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/denque/-/denque-2.1.0.tgz"
+    },
+    {
+      "name": "deprecated-decorator",
+      "version": "0.1.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/deprecated-decorator/-/deprecated-decorator-0.1.6.tgz"
+    },
+    {
+      "name": "destroy",
+      "version": "1.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz"
+    },
+    {
+      "name": "detect-libc",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.0.tgz"
+    },
+    {
+      "name": "devtools-protocol",
+      "version": "0.0.1495869",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/devtools-protocol/-/devtools-protocol-0.0.1495869.tgz"
+    },
+    {
+      "name": "dezalgo",
+      "version": "1.0.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/dezalgo/-/dezalgo-1.0.4.tgz"
+    },
+    {
+      "name": "diagnostic-channel-publishers",
+      "version": "1.0.8",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/diagnostic-channel-publishers/-/diagnostic-channel-publishers-1.0.8.tgz"
+    },
+    {
+      "name": "diagnostic-channel",
+      "version": "1.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/diagnostic-channel/-/diagnostic-channel-1.1.1.tgz"
+    },
+    {
+      "name": "dijkstrajs",
+      "version": "1.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/dijkstrajs/-/dijkstrajs-1.0.3.tgz"
+    },
+    {
+      "name": "dingbat-to-unicode",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/dingbat-to-unicode/-/dingbat-to-unicode-1.0.1.tgz"
+    },
+    {
+      "name": "docusign-esign",
+      "version": "8.4.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/docusign-esign@8.4.0/node_modules/docusign-esign"
+    },
+    {
+      "name": "dompurify",
+      "version": "3.2.7",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/dompurify@3.2.7/node_modules/dompurify"
+    },
+    {
+      "name": "ecdsa-sig-formatter",
+      "version": "1.0.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz"
+    },
+    {
+      "name": "enabled",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/enabled/-/enabled-2.0.0.tgz"
+    },
+    {
+      "name": "encoding-sniffer",
+      "version": "0.2.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/encoding-sniffer/-/encoding-sniffer-0.2.1.tgz"
+    },
+    {
+      "name": "env-paths",
+      "version": "2.2.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/env-paths/-/env-paths-2.2.1.tgz"
+    },
+    {
+      "name": "error-ex",
+      "version": "1.3.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/error-ex/-/error-ex-1.3.4.tgz"
+    },
+    {
+      "name": "eventemitter3",
+      "version": "3.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/eventemitter3/-/eventemitter3-3.1.2.tgz"
+    },
+    {
+      "name": "expand-template",
+      "version": "2.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/expand-template/-/expand-template-2.0.3.tgz"
+    },
+    {
+      "name": "express-rate-limit",
+      "version": "8.1.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/express-rate-limit@8.1.0_express@5.1.0/node_modules/express-rate-limit"
+    },
+    {
+      "name": "express-session",
+      "version": "1.18.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/express-session@1.18.2/node_modules/express-session"
+    },
+    {
+      "name": "express",
+      "version": "5.1.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/express@5.1.0/node_modules/express"
+    },
+    {
+      "name": "extend",
+      "version": "3.0.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz"
+    },
+    {
+      "name": "find-up",
+      "version": "4.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz"
+    },
+    {
+      "name": "fix-esm",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/fix-esm/-/fix-esm-1.0.1.tgz"
+    },
+    {
+      "name": "fn.name",
+      "version": "1.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/fn.name/-/fn.name-1.1.0.tgz"
+    },
+    {
+      "name": "follow-redirects",
+      "version": "1.15.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.11.tgz"
+    },
+    {
+      "name": "form-data",
+      "version": "4.0.4",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/form-data@4.0.4/node_modules/form-data"
+    },
+    {
+      "name": "formidable",
+      "version": "3.5.4",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/formidable@3.5.4/node_modules/formidable"
+    },
+    {
+      "name": "forwarded",
+      "version": "0.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz"
+    },
+    {
+      "name": "fs-capacitor",
+      "version": "2.0.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/fs-capacitor/-/fs-capacitor-2.0.4.tgz"
+    },
+    {
+      "name": "fs-minipass",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/fs-minipass/-/fs-minipass-2.1.0.tgz"
+    },
+    {
+      "name": "gauge",
+      "version": "3.0.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/gauge/-/gauge-3.0.2.tgz"
+    },
+    {
+      "name": "gaxios",
+      "version": "7.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/gaxios/-/gaxios-7.1.2.tgz"
+    },
+    {
+      "name": "gcp-metadata",
+      "version": "7.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-7.0.1.tgz"
+    },
+    {
+      "name": "geoip-lite",
+      "version": "1.4.10",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/geoip-lite@1.4.10/node_modules/geoip-lite"
+    },
+    {
+      "name": "github-from-package",
+      "version": "0.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/github-from-package/-/github-from-package-0.0.0.tgz"
+    },
+    {
+      "name": "google-auth-library",
+      "version": "10.4.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/google-auth-library@10.4.0/node_modules/google-auth-library"
+    },
+    {
+      "name": "google-logging-utils",
+      "version": "1.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-1.1.1.tgz"
+    },
+    {
+      "name": "graphql-extensions",
+      "version": "0.16.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/graphql-extensions/-/graphql-extensions-0.16.0.tgz"
+    },
+    {
+      "name": "graphql-request",
+      "version": "6.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/graphql-request/-/graphql-request-6.1.0.tgz"
+    },
+    {
+      "name": "graphql-scalars",
+      "version": "1.24.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/graphql-scalars@1.24.2_graphql@16.11.0/node_modules/graphql-scalars"
+    },
+    {
+      "name": "graphql-tools",
+      "version": "9.0.20",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/graphql-tools@9.0.20_@types+react@18.3.25_graphql@16.11.0_react-dom@18.3.1_react@18.3.1__reac_o5l5sbctclzurx2gcrl66zzjyy/node_modules/graphql-tools"
+    },
+    {
+      "name": "graphql",
+      "version": "16.11.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/graphql@16.11.0/node_modules/graphql"
+    },
+    {
+      "name": "gtoken",
+      "version": "8.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/gtoken/-/gtoken-8.0.0.tgz"
+    },
+    {
+      "name": "has-unicode",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/has-unicode/-/has-unicode-2.0.1.tgz"
+    },
+    {
+      "name": "helmet",
+      "version": "7.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/helmet@7.2.0/node_modules/helmet"
+    },
+    {
+      "name": "hoist-non-react-statics",
+      "version": "3.3.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz"
+    },
+    {
+      "name": "https-proxy-agent",
+      "version": "4.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-4.0.0.tgz"
+    },
+    {
+      "name": "immediate",
+      "version": "3.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/immediate/-/immediate-3.0.6.tgz"
+    },
+    {
+      "name": "ini",
+      "version": "1.3.8",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/ini/-/ini-1.3.8.tgz"
+    },
+    {
+      "name": "ioredis",
+      "version": "5.8.1",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/ioredis@5.8.1/node_modules/ioredis"
+    },
+    {
+      "name": "ip-address",
+      "version": "5.9.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/ip-address/-/ip-address-5.9.4.tgz"
+    },
+    {
+      "name": "ipaddr.js",
+      "version": "1.9.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz"
+    },
+    {
+      "name": "is-promise",
+      "version": "4.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz"
+    },
+    {
+      "name": "is-stream",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-2.0.1.tgz"
+    },
+    {
+      "name": "isomorphic-dompurify",
+      "version": "2.28.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/isomorphic-dompurify@2.28.0_canvas@3.2.0_postcss@8.5.6/node_modules/isomorphic-dompurify"
+    },
+    {
+      "name": "jsbn",
+      "version": "1.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/jsbn/-/jsbn-1.1.0.tgz"
+    },
+    {
+      "name": "json-parse-even-better-errors",
+      "version": "2.3.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz"
+    },
+    {
+      "name": "json-schema-to-ts",
+      "version": "3.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/json-schema-to-ts/-/json-schema-to-ts-3.1.1.tgz"
+    },
+    {
+      "name": "jsonwebtoken",
+      "version": "9.0.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/jsonwebtoken@9.0.2/node_modules/jsonwebtoken"
+    },
+    {
+      "name": "jszip",
+      "version": "3.10.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/jszip/-/jszip-3.10.1.tgz"
+    },
+    {
+      "name": "jwa",
+      "version": "1.4.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/jwa/-/jwa-1.4.2.tgz"
+    },
+    {
+      "name": "jws",
+      "version": "3.2.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/jws/-/jws-3.2.2.tgz"
+    },
+    {
+      "name": "kuler",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/kuler/-/kuler-2.0.0.tgz"
+    },
+    {
+      "name": "lazy",
+      "version": "1.0.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lazy/-/lazy-1.0.11.tgz"
+    },
+    {
+      "name": "lie",
+      "version": "3.3.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lie/-/lie-3.3.0.tgz"
+    },
+    {
+      "name": "lines-and-columns",
+      "version": "1.2.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
+    },
+    {
+      "name": "locate-path",
+      "version": "5.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/locate-path/-/locate-path-5.0.0.tgz"
+    },
+    {
+      "name": "lodash.defaults",
+      "version": "4.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.defaults/-/lodash.defaults-4.2.0.tgz"
+    },
+    {
+      "name": "lodash.get",
+      "version": "4.4.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
+    },
+    {
+      "name": "lodash.includes",
+      "version": "4.3.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz"
+    },
+    {
+      "name": "lodash.isarguments",
+      "version": "3.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz"
+    },
+    {
+      "name": "lodash.isboolean",
+      "version": "3.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz"
+    },
+    {
+      "name": "lodash.isinteger",
+      "version": "4.0.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz"
+    },
+    {
+      "name": "lodash.isnumber",
+      "version": "3.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz"
+    },
+    {
+      "name": "lodash.isplainobject",
+      "version": "4.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz"
+    },
+    {
+      "name": "lodash.isstring",
+      "version": "4.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.isstring/-/lodash.isstring-4.0.1.tgz"
+    },
+    {
+      "name": "lodash.once",
+      "version": "4.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz"
+    },
+    {
+      "name": "lodash.sortby",
+      "version": "4.7.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lodash.sortby/-/lodash.sortby-4.7.0.tgz"
+    },
+    {
+      "name": "loglevel",
+      "version": "1.9.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/loglevel/-/loglevel-1.9.2.tgz"
+    },
+    {
+      "name": "lop",
+      "version": "0.4.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lop/-/lop-0.4.2.tgz"
+    },
+    {
+      "name": "lru-cache",
+      "version": "6.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz"
+    },
+    {
+      "name": "make-dir",
+      "version": "3.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/make-dir/-/make-dir-3.1.0.tgz"
+    },
+    {
+      "name": "mammoth",
+      "version": "1.11.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/mammoth@1.11.0/node_modules/mammoth"
+    },
+    {
+      "name": "merge-descriptors",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-2.0.0.tgz"
+    },
+    {
+      "name": "microsoft-cognitiveservices-speech-sdk",
+      "version": "1.46.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/microsoft-cognitiveservices-speech-sdk@1.46.0/node_modules/microsoft-cognitiveservices-speech-sdk"
+    },
+    {
+      "name": "mime",
+      "version": "1.6.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
+    },
+    {
+      "name": "mimic-response",
+      "version": "3.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/mimic-response/-/mimic-response-3.1.0.tgz"
+    },
+    {
+      "name": "minipass",
+      "version": "5.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/minipass/-/minipass-5.0.0.tgz"
+    },
+    {
+      "name": "minizlib",
+      "version": "2.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/minizlib/-/minizlib-2.1.2.tgz"
+    },
+    {
+      "name": "multer",
+      "version": "2.0.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/multer@2.0.2/node_modules/multer"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/nanoid@3.3.11/node_modules/nanoid"
+    },
+    {
+      "name": "napi-build-utils",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-2.0.0.tgz"
+    },
+    {
+      "name": "negotiator",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/negotiator/-/negotiator-1.0.0.tgz"
+    },
+    {
+      "name": "neo4j-driver-bolt-connection",
+      "version": "6.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/neo4j-driver-bolt-connection/-/neo4j-driver-bolt-connection-6.0.0.tgz"
+    },
+    {
+      "name": "neo4j-driver-core",
+      "version": "6.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/neo4j-driver-core/-/neo4j-driver-core-6.0.0.tgz"
+    },
+    {
+      "name": "neo4j-driver",
+      "version": "6.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/neo4j-driver@6.0.0/node_modules/neo4j-driver"
+    },
+    {
+      "name": "nice-grpc-client-middleware-retry",
+      "version": "3.1.12",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/nice-grpc-client-middleware-retry/-/nice-grpc-client-middleware-retry-3.1.12.tgz"
+    },
+    {
+      "name": "node-abi",
+      "version": "3.77.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/node-abi/-/node-abi-3.77.0.tgz"
+    },
+    {
+      "name": "node-cache",
+      "version": "5.1.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/node-cache@5.1.2/node_modules/node-cache"
+    },
+    {
+      "name": "node-ensure",
+      "version": "0.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/node-ensure/-/node-ensure-0.0.0.tgz"
+    },
+    {
+      "name": "nodemailer",
+      "version": "7.0.6",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/nodemailer@7.0.6/node_modules/nodemailer"
+    },
+    {
+      "name": "nopt",
+      "version": "5.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/nopt/-/nopt-5.0.0.tgz"
+    },
+    {
+      "name": "npmlog",
+      "version": "5.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/npmlog/-/npmlog-5.0.1.tgz"
+    },
+    {
+      "name": "nth-check",
+      "version": "2.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/nth-check/-/nth-check-2.1.1.tgz"
+    },
+    {
+      "name": "oauth",
+      "version": "0.10.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/oauth/-/oauth-0.10.2.tgz"
+    },
+    {
+      "name": "object-path",
+      "version": "0.11.8",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/object-path/-/object-path-0.11.8.tgz"
+    },
+    {
+      "name": "on-headers",
+      "version": "1.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/on-headers/-/on-headers-1.1.0.tgz"
+    },
+    {
+      "name": "one-time",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/one-time/-/one-time-1.0.0.tgz"
+    },
+    {
+      "name": "openai",
+      "version": "5.23.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/openai@5.23.2_ws@8.18.3_zod@3.25.76/node_modules/openai"
+    },
+    {
+      "name": "optimism",
+      "version": "0.18.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/optimism/-/optimism-0.18.1.tgz"
+    },
+    {
+      "name": "option",
+      "version": "0.2.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/option/-/option-0.2.4.tgz"
+    },
+    {
+      "name": "p-limit",
+      "version": "2.3.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/p-limit/-/p-limit-2.3.0.tgz"
+    },
+    {
+      "name": "p-locate",
+      "version": "4.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/p-locate/-/p-locate-4.1.0.tgz"
+    },
+    {
+      "name": "p-try",
+      "version": "2.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz"
+    },
+    {
+      "name": "pako",
+      "version": "1.0.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz"
+    },
+    {
+      "name": "parse-json",
+      "version": "5.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/parse-json/-/parse-json-5.2.0.tgz"
+    },
+    {
+      "name": "parse5-htmlparser2-tree-adapter",
+      "version": "7.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/parse5-htmlparser2-tree-adapter/-/parse5-htmlparser2-tree-adapter-7.1.0.tgz"
+    },
+    {
+      "name": "parse5-parser-stream",
+      "version": "7.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/parse5-parser-stream/-/parse5-parser-stream-7.1.2.tgz"
+    },
+    {
+      "name": "passport-apple",
+      "version": "2.0.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/passport-apple@2.0.2/node_modules/passport-apple"
+    },
+    {
+      "name": "passport-github2",
+      "version": "0.1.12",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/passport-github2@0.1.12/node_modules/passport-github2"
+    },
+    {
+      "name": "passport-google-oauth20",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/passport-google-oauth20@2.0.0/node_modules/passport-google-oauth20"
+    },
+    {
+      "name": "passport-oauth2",
+      "version": "1.8.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/passport-oauth2/-/passport-oauth2-1.8.0.tgz"
+    },
+    {
+      "name": "passport-strategy",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/passport-strategy/-/passport-strategy-1.0.0.tgz"
+    },
+    {
+      "name": "passport",
+      "version": "0.7.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/passport@0.7.0/node_modules/passport"
+    },
+    {
+      "name": "path-exists",
+      "version": "4.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/path-exists/-/path-exists-4.0.0.tgz"
+    },
+    {
+      "name": "path-to-regexp",
+      "version": "8.3.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-8.3.0.tgz"
+    },
+    {
+      "name": "path",
+      "version": "0.12.7",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/path@0.12.7/node_modules/path"
+    },
+    {
+      "name": "pause",
+      "version": "0.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/pause/-/pause-0.0.1.tgz"
+    },
+    {
+      "name": "pdf-parse",
+      "version": "1.1.1",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/pdf-parse@1.1.1/node_modules/pdf-parse"
+    },
+    {
+      "name": "prebuild-install",
+      "version": "7.1.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/prebuild-install/-/prebuild-install-7.1.3.tgz"
+    },
+    {
+      "name": "priorityqueuejs",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/priorityqueuejs/-/priorityqueuejs-2.0.0.tgz"
+    },
+    {
+      "name": "process",
+      "version": "0.11.10",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
+    },
+    {
+      "name": "proxy-addr",
+      "version": "2.0.7",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.7.tgz"
+    },
+    {
+      "name": "psl",
+      "version": "1.15.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/psl@1.15.0/node_modules/psl"
+    },
+    {
+      "name": "puppeteer-core",
+      "version": "24.22.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-24.22.3.tgz"
+    },
+    {
+      "name": "puppeteer",
+      "version": "24.22.3",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/puppeteer@24.22.3_typescript@5.9.3/node_modules/puppeteer"
+    },
+    {
+      "name": "qrcode",
+      "version": "1.5.4",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/qrcode@1.5.4/node_modules/qrcode"
+    },
+    {
+      "name": "qs",
+      "version": "6.14.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/qs/-/qs-6.14.0.tgz"
+    },
+    {
+      "name": "querystringify",
+      "version": "2.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/querystringify@2.2.0/node_modules/querystringify"
+    },
+    {
+      "name": "rate-limit-redis",
+      "version": "4.2.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/rate-limit-redis@4.2.2_express-rate-limit@8.1.0_express@5.1.0_/node_modules/rate-limit-redis"
+    },
+    {
+      "name": "rate-limiter-flexible",
+      "version": "5.0.5",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/rate-limiter-flexible@5.0.5/node_modules/rate-limiter-flexible"
+    },
+    {
+      "name": "rc",
+      "version": "1.2.8",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/rc/-/rc-1.2.8.tgz"
+    },
+    {
+      "name": "redis-errors",
+      "version": "1.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/redis-errors/-/redis-errors-1.2.0.tgz"
+    },
+    {
+      "name": "redis-parser",
+      "version": "3.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/redis-parser/-/redis-parser-3.0.0.tgz"
+    },
+    {
+      "name": "rehackt",
+      "version": "0.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/rehackt/-/rehackt-0.1.0.tgz"
+    },
+    {
+      "name": "require-main-filename",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/require-main-filename/-/require-main-filename-2.0.0.tgz"
+    },
+    {
+      "name": "requires-port",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/requires-port@1.0.0/node_modules/requires-port"
+    },
+    {
+      "name": "rndm",
+      "version": "1.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/rndm/-/rndm-1.2.0.tgz"
+    },
+    {
+      "name": "router",
+      "version": "2.2.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/router/-/router-2.2.0.tgz"
+    },
+    {
+      "name": "sax",
+      "version": "1.4.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/sax/-/sax-1.4.1.tgz"
+    },
+    {
+      "name": "scheduler",
+      "version": "0.23.2",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/scheduler@0.23.2/node_modules/scheduler"
+    },
+    {
+      "name": "semaphore",
+      "version": "1.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/semaphore/-/semaphore-1.1.0.tgz"
+    },
+    {
+      "name": "set-blocking",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz"
+    },
+    {
+      "name": "setimmediate",
+      "version": "1.0.5",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz"
+    },
+    {
+      "name": "sha.js",
+      "version": "2.4.12",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/sha.js/-/sha.js-2.4.12.tgz"
+    },
+    {
+      "name": "sharp",
+      "version": "0.34.4",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/sharp@0.34.4/node_modules/sharp"
+    },
+    {
+      "name": "shimmer",
+      "version": "1.2.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/shimmer/-/shimmer-1.2.1.tgz"
+    },
+    {
+      "name": "signal-exit",
+      "version": "3.0.7",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz"
+    },
+    {
+      "name": "simple-concat",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/simple-concat/-/simple-concat-1.0.1.tgz"
+    },
+    {
+      "name": "simple-get",
+      "version": "4.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/simple-get/-/simple-get-4.0.1.tgz"
+    },
+    {
+      "name": "speakeasy",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/speakeasy@2.0.0/node_modules/speakeasy"
+    },
+    {
+      "name": "sprintf-js",
+      "version": "1.0.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
+    },
+    {
+      "name": "stack-trace",
+      "version": "0.0.10",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/stack-trace/-/stack-trace-0.0.10.tgz"
+    },
+    {
+      "name": "standard-as-callback",
+      "version": "2.1.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/standard-as-callback/-/standard-as-callback-2.1.0.tgz"
+    },
+    {
+      "name": "strip-json-comments",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz"
+    },
+    {
+      "name": "stripe",
+      "version": "19.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/stripe@19.0.0_@types+node@20.19.19/node_modules/stripe"
+    },
+    {
+      "name": "subscriptions-transport-ws",
+      "version": "0.9.19",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.19.tgz"
+    },
+    {
+      "name": "symbol-observable",
+      "version": "4.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-4.0.0.tgz"
+    },
+    {
+      "name": "tar",
+      "version": "6.2.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/tar/-/tar-6.2.1.tgz"
+    },
+    {
+      "name": "text-hex",
+      "version": "1.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/text-hex/-/text-hex-1.0.0.tgz"
+    },
+    {
+      "name": "to-buffer",
+      "version": "1.2.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/to-buffer/-/to-buffer-1.2.1.tgz"
+    },
+    {
+      "name": "ts-algebra",
+      "version": "2.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/ts-algebra/-/ts-algebra-2.0.0.tgz"
+    },
+    {
+      "name": "ts-invariant",
+      "version": "0.10.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/ts-invariant/-/ts-invariant-0.10.3.tgz"
+    },
+    {
+      "name": "tsscmp",
+      "version": "1.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/tsscmp/-/tsscmp-1.0.6.tgz"
+    },
+    {
+      "name": "tunnel-agent",
+      "version": "0.6.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.6.0.tgz"
+    },
+    {
+      "name": "tunnel",
+      "version": "0.0.6",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/tunnel/-/tunnel-0.0.6.tgz"
+    },
+    {
+      "name": "type-is",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/type-is/-/type-is-2.0.1.tgz"
+    },
+    {
+      "name": "typed-query-selector",
+      "version": "2.12.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/typed-query-selector/-/typed-query-selector-2.12.0.tgz"
+    },
+    {
+      "name": "uid2",
+      "version": "0.0.4",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/uid2/-/uid2-0.0.4.tgz"
+    },
+    {
+      "name": "universalify",
+      "version": "0.2.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/universalify@0.2.0/node_modules/universalify"
+    },
+    {
+      "name": "url-parse",
+      "version": "1.5.10",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/url-parse@1.5.10/node_modules/url-parse"
+    },
+    {
+      "name": "util.promisify",
+      "version": "1.1.3",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/util.promisify/-/util.promisify-1.1.3.tgz"
+    },
+    {
+      "name": "utils-merge",
+      "version": "1.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz"
+    },
+    {
+      "name": "uuid",
+      "version": "13.0.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/uuid@13.0.0/node_modules/uuid"
+    },
+    {
+      "name": "validator",
+      "version": "13.15.15",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/validator@13.15.15/node_modules/validator"
+    },
+    {
+      "name": "vary",
+      "version": "1.1.2",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
+    },
+    {
+      "name": "weaviate-client",
+      "version": "3.9.0",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/weaviate-client@3.9.0/node_modules/weaviate-client"
+    },
+    {
+      "name": "webdriver-bidi-protocol",
+      "version": "0.2.11",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/webdriver-bidi-protocol/-/webdriver-bidi-protocol-0.2.11.tgz"
+    },
+    {
+      "name": "which-module",
+      "version": "2.0.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/which-module/-/which-module-2.0.1.tgz"
+    },
+    {
+      "name": "wide-align",
+      "version": "1.1.5",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/wide-align/-/wide-align-1.1.5.tgz"
+    },
+    {
+      "name": "winston",
+      "version": "3.18.3",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/winston@3.18.3/node_modules/winston"
+    },
+    {
+      "name": "ws",
+      "version": "8.18.3",
+      "license": "UNKNOWN",
+      "resolved": "file:.pnpm/ws@8.18.3/node_modules/ws"
+    },
+    {
+      "name": "xml2js",
+      "version": "0.5.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.5.0.tgz"
+    },
+    {
+      "name": "xmlbuilder",
+      "version": "10.1.1",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-10.1.1.tgz"
+    },
+    {
+      "name": "xss",
+      "version": "1.0.15",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/xss/-/xss-1.0.15.tgz"
+    },
+    {
+      "name": "yallist",
+      "version": "4.0.0",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz"
+    },
+    {
+      "name": "zen-observable-ts",
+      "version": "1.2.5",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/zen-observable-ts/-/zen-observable-ts-1.2.5.tgz"
+    },
+    {
+      "name": "zen-observable",
+      "version": "0.8.15",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/zen-observable/-/zen-observable-0.8.15.tgz"
+    },
+    {
+      "name": "zod",
+      "version": "3.25.76",
+      "license": "UNKNOWN",
+      "resolved": "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+<!-- Quick i18n implementation script - Add this before closing     <script src="/js/mobile-menu-handler.js"></script>
+</body> tag -->
+<script>
+// 🌍 TR/EN Translation System
+const translations = {
+    tr: {
+        // Page title
+        pageTitle: "LyDian Hukuk AI - Hukuki Danışmanlık Asistanı",
+
+        // Sidebar
+        newChat: "Yeni Sohbet",
+        chatHistory: "Geçmiş Sohbetler",
+
+        // Header
+        legalAI: "LyDian Hukuk AI",
+
+        // Welcome section
+        welcomeTitle: "LyDian Hukuk AI'ye Hoş Geldiniz",
+        welcomeSubtitle: "Hukuki sorularınız için yapay zeka destekli danışmanlık",
+
+        // Quick actions
+        quickActionLawSearch: "Kanun Maddesi Ara",
+        quickActionCaseLaw: "İçtihat Ara",
+        quickActionContract: "Sözleşme Taslağı",
+        quickActionPrecedent: "Emsal Araştırma",
+
+        // Input placeholder
+        inputPlaceholder: "Hukuki sorunuzu yazın...",
+
+        // Buttons
+        sendButton: "Gönder",
+        uploadImage: "Görsel Yükle",
+        uploadDocument: "Doküman Yükle",
+        voiceRecord: "Sesli Kayıt"
+    },
+    en: {
+        // Page title
+        pageTitle: "LyDian Legal AI - Legal Consultation Assistant",
+
+        // Sidebar
+        newChat: "New Chat",
+        chatHistory: "Chat History",
+
+        // Header
+        legalAI: "LyDian Legal AI",
+
+        // Welcome section
+        welcomeTitle: "Welcome to LyDian Legal AI",
+        welcomeSubtitle: "AI-powered legal consultation for your legal questions",
+
+        // Quick actions
+        quickActionLawSearch: "Search Legal Articles",
+        quickActionCaseLaw: "Search Case Law",
+        quickActionContract: "Contract Draft",
+        quickActionPrecedent: "Precedent Research",
+
+        // Input placeholder
+        inputPlaceholder: "Type your legal question...",
+
+        // Buttons
+        sendButton: "Send",
+        uploadImage: "Upload Image",
+        uploadDocument: "Upload Document",
+        voiceRecord: "Voice Record"
+    }
+};
+
+// Current language (default: English)
+let currentLang = 'en';
+
+// Translate function
+function t(key) {
+    return translations[currentLang][key] || key;
+}
+
+// Update page with translations
+function updateTranslations() {
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = translations[currentLang][key];
+            } else {
+                el.textContent = translations[currentLang][key];
+            }
+        }
+    });
+
+    // Update document title
+    document.title = t('pageTitle');
+
+    // Update HTML lang attribute
+    document.documentElement.lang = currentLang;
+
+    // Save to localStorage
+    localStorage.setItem('lyDianLang', currentLang);
+}
+
+// Toggle language
+function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'tr' : 'en';
+    updateTranslations();
+}
+
+// Initialize language from localStorage
+function initLanguage() {
+    const savedLang = localStorage.getItem('lyDianLang');
+    if (savedLang && translations[savedLang]) {
+        currentLang = savedLang;
+    }
+    updateTranslations();
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', initLanguage);
+</script>

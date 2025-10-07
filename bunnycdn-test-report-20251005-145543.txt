@@ -1,0 +1,47 @@
+BunnyCDN Validation Report - test-cdn.ailydian.com
+Generated:  5 Eki 2025 Paz +03 14:55:43
+
+TEST 1: DNS Resolution
+Result: 216.150.16.129
+Status: ❌ FAIL - Expected: *.b-cdn.net, Got: 216.150.16.129
+
+TEST 2: HTTPS/SSL
+Result:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Status: ❌ FAIL
+
+TEST 3: Cache Functionality
+First request: 
+Second request: 
+Status: ⚠️  WARNING - No cache HIT detected
+
+TEST 4: Performance
+TTFB: 0.215436s
+Status: ⚠️  WARNING - Slow (> 200ms)
+
+TEST 5: API Functionality
+Response: The deployment could not be found on Vercel.
+
+DEPLOYMENT_NOT_FOUND
+
+fra1::qdrkn-1759665345585-1ec5c5268763
+Status: ❌ FAIL
+
+TEST 6: Security Headers
+✅ HSTS: Present
+❌ X-Frame-Options: Missing
+❌ X-Content-Type-Options: Missing
+
+TEST 7: Content Delivery
+Status: ⚠️  WARNING - Content verification inconclusive
+
+TEST 8: BunnyCDN Detection
+⚠️  Pull Zone header not found
+⚠️  Cache status header not found
+
+
+SUMMARY
+Domain: test-cdn.ailydian.com
+TTFB: 0.215436s (215ms)
+Pull Zone: Not detected
+Cache Status: Unknown
+Test completed:  5 Eki 2025 Paz +03 14:55:46

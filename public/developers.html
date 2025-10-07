@@ -1,0 +1,1050 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Developer Portal - SDK'lar, API araçları ve entegrasyon kılavuzları">
+    <title>Developers - LyDian | API & Integration Resources</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 2.25rem;
+            font-weight: 900 !important;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-800);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+            padding-top: 72px;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .hero-code {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: var(--gray-900);
+            border-radius: 16px;
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            text-align: left;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .code-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot:nth-child(1) { background: #FF5F56; }
+        .code-dot:nth-child(2) { background: #FFBD2E; }
+        .code-dot:nth-child(3) { background: #27C93F; }
+
+        .code-keyword { color: #C586C0; }
+        .code-string { color: #CE9178; }
+        .code-function { color: #DCDCAA; }
+        .code-comment { color: #6A9955; }
+
+        /* SDK CARDS */
+        .sdk-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .sdk-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .sdk-card {
+            padding: 2.5rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .sdk-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .sdk-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .sdk-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .sdk-version {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .sdk-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .sdk-install {
+            background: var(--gray-900);
+            color: var(--gray-300);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-download {
+            width: 100%;
+            justify-content: center;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-download:hover {
+            background: var(--primary-hover);
+        }
+
+        /* QUICKSTART */
+        .quickstart-section {
+            padding: 6rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .quickstart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quickstart-steps {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .step-content {
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        .code-example {
+            background: var(--gray-900);
+            color: var(--gray-300);
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        /* COMMUNITY */
+        .community-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .community-grid {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .community-card {
+            padding: 2rem;
+            background: var(--gray-50);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .community-card:hover {
+            background: var(--white);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .community-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .community-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .community-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .community-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-community {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-community:hover {
+            gap: 0.75rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 2rem;
+            font-weight: 900 !important;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em !important;
+            line-height: 1.7;
+            color: var(--gray-500);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.125rem;
+            }
+
+            .sdk-grid,
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
+
+            <ul class="nav-links">
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/docs.html">Dokümantasyon</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+                <li><a href="/developers.html">Geliştiriciler</a></li>
+                <li><a href="/models.html">Modeller</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="/auth.html" class="btn btn-secondary">Giriş Yap</a>
+                <a href="/chat.html" class="btn btn-primary">Şimdi Dene</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-gradient">Geliştirici</span> merkezi
+            </h1>
+            <p class="hero-description">
+                LyDian AI'yı uygulamalarınıza entegre edin. Kapsamlı SDK'lar,
+                API dokümantasyonu ve kod örnekleri ile dakikalar içinde başlayın.
+            </p>
+
+            <div class="hero-code">
+                <div class="code-header">
+                    <div class="code-dot"></div>
+                    <div class="code-dot"></div>
+                    <div class="code-dot"></div>
+                </div>
+                <code><span class="code-keyword">import</span> { LyDian } <span class="code-keyword">from</span> <span class="code-string">'@lydian/sdk'</span>;
+
+<span class="code-keyword">const</span> <span class="code-function">client</span> = <span class="code-keyword">new</span> LyDian({
+  apiKey: <span class="code-string">'sk-lydian-...'</span>
+});
+
+<span class="code-keyword">const</span> <span class="code-function">response</span> = <span class="code-keyword">await</span> client.chat.create({
+  model: <span class="code-string">'lydian-turbo'</span>,
+  messages: [{ role: <span class="code-string">'user'</span>, content: <span class="code-string">'Merhaba!'</span> }]
+});
+
+console.log(response.content);</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDK Section -->
+    <section class="sdk-section">
+        <div class="section-header">
+            <h2 class="section-title">SDK Kütüphaneleri</h2>
+            <p class="section-description">
+                Favori programlama diliniz için resmi SDK'larımızı kullanın
+            </p>
+        </div>
+
+        <div class="sdk-grid">
+            <div class="sdk-card">
+                <div class="sdk-icon">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">Node.js</h3>
+                <div class="sdk-version">v2.1.0</div>
+                <p class="sdk-description">
+                    TypeScript desteği ile tam tip güvenli Node.js SDK. Express, Next.js ve diğer framework'lerle uyumlu.
+                </p>
+                <div class="sdk-install">npm install @lydian/sdk</div>
+                <a href="#" class="btn btn-download">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    İndir
+                </a>
+            </div>
+
+            <div class="sdk-card">
+                <div class="sdk-icon">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 4.983 7.647 4.983l.006 2.055h4.363v.617H5.92s-2.927-.332-2.927 5.282 2.555 5.45 2.555 5.45h1.524v-2.141s-.083-2.554 2.513-2.554zm-.056-5.74a.784.784 0 1 1 0-1.57.784.784 0 1 1 0 1.57z"/>
+                        <path d="M18.452 7.532h-1.524v2.141s.083 2.554-2.513 2.554h-4.328s-2.432-.04-2.432 2.35v3.951s-.369 2.391 4.409 2.391c4.573 0 4.288-1.983 4.288-1.983l-.006-2.054h-4.363v-.617h6.097s2.927.332 2.927-5.282-2.555-5.451-2.555-5.451zm-3.981 10.436a.784.784 0 1 1 0 1.57.784.784 0 1 1 0-1.57z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">Python</h3>
+                <div class="sdk-version">v2.0.5</div>
+                <p class="sdk-description">
+                    Async/await desteği ile modern Python SDK. Django, Flask ve FastAPI ile tam entegrasyon.
+                </p>
+                <div class="sdk-install">pip install lydian</div>
+                <a href="#" class="btn btn-download">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    İndir
+                </a>
+            </div>
+
+            <div class="sdk-card">
+                <div class="sdk-icon">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zM.047 11.306c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.059-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.094.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.13.198-.28.315-.444H10.47c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 0 1 .292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 0 1-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.655-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.075 1.91-1.706 3.236-1.95 1.145-.2 2.237-.07 3.2.571.88.587 1.413 1.413 1.52 2.49.023.197.047.397.058.595z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">Go</h3>
+                <div class="sdk-version">v1.8.2</div>
+                <p class="sdk-description">
+                    Yüksek performanslı Go SDK. Concurrency desteği ve minimal memory footprint ile üretim ortamları için optimize edilmiş.
+                </p>
+                <div class="sdk-install">go get github.com/lydian/sdk-go</div>
+                <a href="#" class="btn btn-download">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    İndir
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quickstart Section -->
+    <section class="quickstart-section">
+        <div class="quickstart-container">
+            <div class="section-header">
+                <h2 class="section-title">Hızlı Başlangıç</h2>
+                <p class="section-description">
+                    5 dakikada ilk AI entegrasyonunuzu yapın
+                </p>
+            </div>
+
+            <div class="quickstart-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">API Anahtarı Alın</h3>
+                    <p class="step-content">
+                        Dashboard'dan API anahtarınızı oluşturun. Her proje için ayrı anahtarlar kullanabilirsiniz.
+                    </p>
+                    <div class="code-example">
+<span class="code-comment"># Dashboard'da API Keys bölümünden yeni anahtar oluşturun</span>
+API_KEY=<span class="code-string">"sk-lydian-..."</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">SDK'yı Kurun</h3>
+                    <p class="step-content">
+                        Favori programlama diliniz için SDK'yı paket yöneticiniz ile kurun.
+                    </p>
+                    <div class="code-example">
+<span class="code-comment"># Node.js</span>
+npm install @lydian/sdk
+
+<span class="code-comment"># Python</span>
+pip install lydian
+
+<span class="code-comment"># Go</span>
+go get github.com/lydian/sdk-go
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">İlk Çağrınızı Yapın</h3>
+                    <p class="step-content">
+                        Birkaç satır kod ile AI modellerine erişin ve yanıt almaya başlayın.
+                    </p>
+                    <div class="code-example">
+<span class="code-keyword">const</span> { LyDian } = <span class="code-keyword">require</span>(<span class="code-string">'@lydian/sdk'</span>);
+
+<span class="code-keyword">const</span> client = <span class="code-keyword">new</span> LyDian({
+  apiKey: process.env.LYDIAN_API_KEY
+});
+
+<span class="code-keyword">async function</span> <span class="code-function">main</span>() {
+  <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> client.chat.create({
+    model: <span class="code-string">'lydian-turbo'</span>,
+    messages: [{
+      role: <span class="code-string">'user'</span>,
+      content: <span class="code-string">'LyDian API nasıl kullanılır?'</span>
+    }]
+  });
+
+  console.log(response.content);
+}
+
+main();
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Dokümantasyonu İnceleyin</h3>
+                    <p class="step-content">
+                        API referansı, kod örnekleri ve best practices için kapsamlı dokümantasyonumuzu inceleyin.
+                    </p>
+                    <a href="/api-reference.html" class="btn btn-primary" style="margin-top: 1rem;">
+                        API Dokümantasyonu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="sdk-section" style="background: var(--gray-50);">
+        <div class="section-header">
+            <h2 class="section-title">📚 API Documentation</h2>
+            <p class="section-description">
+                Comprehensive guides, concepts, tutorials ve best practices for LyDian platform
+            </p>
+        </div>
+
+        <div class="sdk-grid">
+            <!-- Smart Cities Documentation -->
+            <div class="sdk-card">
+                <div class="sdk-icon" style="background: linear-gradient(135deg, #0EA5E9, #06B6D4);">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v8.72c0 4.67-3.19 9.04-8 10.32-4.81-1.28-8-5.65-8-10.32v-8.72l8-3.6z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">Smart Cities API</h3>
+                <div class="sdk-version">12 Docs Available</div>
+                <p class="sdk-description">
+                    IoT sensors, metrics, alerts, traffic, energy ve smart city infrastructure documentation
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="/docs/en/guides/smart-cities-getting-started.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📖 Guides (4)
+                    </a>
+                    <a href="/docs/en/concepts/smart-cities-architecture.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        🧠 Concepts (2)
+                    </a>
+                    <a href="/docs/en/tutorials/smart-cities-traffic-dashboard.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        🎯 Tutorials (1)
+                    </a>
+                    <a href="/docs/en/cookbooks/smart-cities-iot-patterns.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📝 Cookbooks (1)
+                    </a>
+                </div>
+            </div>
+
+            <!-- İnsan IQ Documentation -->
+            <div class="sdk-card">
+                <div class="sdk-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">İnsan IQ API</h3>
+                <div class="sdk-version">2 Docs Available</div>
+                <p class="sdk-description">
+                    AI personas, skill assessments, learning paths, reasoning engine ve intelligent assistants
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="/docs/en/guides/insan-iq-getting-started.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📖 Guides (2)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🧠 Concepts (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🎯 Tutorials (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        📝 Cookbooks (Coming Soon)
+                    </a>
+                </div>
+            </div>
+
+            <!-- LyDian IQ Documentation -->
+            <div class="sdk-card">
+                <div class="sdk-icon" style="background: linear-gradient(135deg, #F59E0B, #F97316);">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h8l-2 8 10-12h-8z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">LyDian IQ API</h3>
+                <div class="sdk-version">2 Docs Available</div>
+                <p class="sdk-description">
+                    Knowledge graphs, signal processing, event correlation, reasoning workflows ve analytics
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="/docs/en/guides/lydian-iq-getting-started.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📖 Guides (2)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🧠 Concepts (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🎯 Tutorials (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        📝 Cookbooks (Coming Soon)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View All Documentation Button -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/docs.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                View All Documentation →
+            </a>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="section-header">
+            <h2 class="section-title">Geliştirici Topluluğu</h2>
+            <p class="section-description">
+                Binlerce geliştiriciyle birlikte LyDian ekosisteminin bir parçası olun
+            </p>
+        </div>
+
+        <div class="community-grid">
+            <div class="community-card">
+                <div class="community-icon-wrapper">
+                    <svg class="community-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                </div>
+                <h3 class="community-title">GitHub Organizasyonu</h3>
+                <p class="community-description">
+                    Açık kaynak SDK'lar, örnek projeler ve katkıda bulunma fırsatları
+                </p>
+                <a href="#" class="btn-community">
+                    GitHub'da Gör
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="community-card">
+                <div class="community-icon-wrapper">
+                    <svg class="community-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                    </svg>
+                </div>
+                <h3 class="community-title">Discord Topluluğu</h3>
+                <p class="community-description">
+                    Gerçek zamanlı destek, tartışmalar ve networking için topluluğumuza katılın
+                </p>
+                <a href="#" class="btn-community">
+                    Discord'a Katıl
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="community-card">
+                <div class="community-icon-wrapper">
+                    <svg class="community-icon" fill="white" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                    </svg>
+                </div>
+                <h3 class="community-title">Blog & Tutorials</h3>
+                <p class="community-description">
+                    Kapsamlı kılavuzlar, case study'ler ve best practice'ler
+                </p>
+                <a href="#" class="btn-community">
+                    Blog'u Ziyaret Et
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <p class="footer-description">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ürünler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
+                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+                        <li><a href="/video-ai.html">Video AI</a></li>
+                        <li><a href="/api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Geliştiriciler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/developers.html">Developer Portal</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                        <li><a href="/docs.html">Dokümantasyon</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Şirket</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html">Hakkımızda</a></li>
+                        <li><a href="/careers.html">Kariyer</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Yasal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/privacy.html">Gizlilik</a></li>
+                        <li><a href="/terms.html">Koşullar</a></li>
+                        <li><a href="/cookies.html">Çerezler</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Gizlilik Politikası</a>
+                    <a href="/terms.html">Kullanım Koşulları</a>
+                    <a href="/cookies.html">Çerezler</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

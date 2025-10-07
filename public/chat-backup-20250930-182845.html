@@ -1,0 +1,331 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiLydians - AI Assistant Chat</title>
+    <link rel="stylesheet" href="/css/ailydians-inspired.css">
+    <link rel="stylesheet" href="/css/chat-ailydian.css">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="chat-body">
+    <!-- Toggle Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="ailydian-logo-chat">
+                <span class="letter-a">A</span>i<span class="letter-l">L</span>ydian
+                <span class="ailydian-beta">CHAT</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- New Chat Button -->
+            <button class="new-chat-btn" id="newChatBtn">
+                <i class="fas fa-plus"></i>
+                <span>Yeni Sohbet</span>
+            </button>
+
+            <!-- Chat History -->
+            <div class="chat-history">
+                <h3>Geçmiş Konuşmalar</h3>
+                <div class="history-list" id="historyList">
+                    <!-- Chat history items will be dynamically added -->
+                </div>
+            </div>
+
+            <!-- AiLydians Section -->
+            <div class="menu-section">
+                <h3>AiLydians</h3>
+                <a href="/chat" class="menu-link active">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat</span>
+                </a>
+                <a href="/ai-assistant" target="_blank" class="menu-link">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Asistan</span>
+                </a>
+                <a href="/legal-expert" target="_blank" class="menu-link">
+                    <i class="fas fa-gavel"></i>
+                    <span>Hukuk Uzmanı</span>
+                </a>
+                <a href="/medical-expert" target="_blank" class="menu-link">
+                    <i class="fas fa-stethoscope"></i>
+                    <span>Tıp Uzmanı</span>
+                </a>
+                <a href="/developer-expert" target="_blank" class="menu-link">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Kod Geliştirici</span>
+                </a>
+            </div>
+
+            <!-- Projeler Section -->
+            <div class="menu-section">
+                <h3>Projeler</h3>
+                <div class="project-dropdown">
+                    <button class="dropdown-toggle" id="projectsToggle">
+                        <i class="fas fa-folder"></i>
+                        <span>Tüm Projeler</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="project-links" id="projectLinks">
+                        <a href="http://tourism.ailydian.com" target="_blank" class="project-link">
+                            <i class="fas fa-plane"></i>
+                            <span>Tourism AI</span>
+                        </a>
+                        <a href="http://sentinel.ailydian.com" target="_blank" class="project-link">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Sentinel OSS</span>
+                        </a>
+                        <a href="http://fintech.ailydian.com" target="_blank" class="project-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>FinTech AI</span>
+                        </a>
+                        <a href="http://health.ailydian.com" target="_blank" class="project-link">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Health AI</span>
+                        </a>
+                        <a href="http://education.ailydian.com" target="_blank" class="project-link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Education AI</span>
+                        </a>
+                        <a href="http://api.ailydian.com" target="_blank" class="project-link">
+                            <i class="fas fa-code"></i>
+                            <span>API Gateway</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="main-chat" id="mainChat">
+        <!-- Top Header -->
+        <div class="chat-header">
+            <div class="header-left">
+                <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>AiLydians - AI Assistant</h1>
+                <div class="chat-status">
+                    <span class="status-indicator active"></span>
+                    <span>Çevrimiçi</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- User Avatar -->
+                <div class="user-menu" id="userMenu">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="user-info">
+                                <div class="user-name">Emrah</div>
+                                <div class="user-email">emrah@ailydian.com</div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            Profil
+                        </a>
+                        <a href="/settings" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Ayarlar
+                        </a>
+                        <a href="/tokens" class="dropdown-item">
+                            <i class="fas fa-coins"></i>
+                            Token Bakiyesi
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Çıkış Yap
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-content">
+                    <div class="welcome-logo">
+                        <div class="ailydian-logo-large">
+                            <span class="letter-a">A</span>i<span class="letter-l">L</span>ydians
+                        </div>
+                        <p class="welcome-subtitle">Bugün aklında neler var?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="messages-container" id="messagesContainer" style="display: none;">
+                <!-- Messages will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <!-- AI Features Quick Access -->
+                <div class="ai-features-container">
+                    <button class="feature-btn" id="aiPlusBtn" title="AI Özellikler">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="features-dropdown" id="featuresDropdown">
+                        <!-- File Upload -->
+                        <div class="feature-option" data-feature="file">
+                            <i class="fas fa-paperclip"></i>
+                            <span>Dosya Ekle</span>
+                        </div>
+                        <!-- Voice Input -->
+                        <div class="feature-option" data-feature="voice">
+                            <i class="fas fa-microphone"></i>
+                            <span>Sesli Mesaj</span>
+                        </div>
+                        <!-- Image Generation -->
+                        <div class="feature-option" data-feature="image">
+                            <i class="fas fa-image"></i>
+                            <span>Görsel Oluştur</span>
+                        </div>
+                        <!-- Code Generation -->
+                        <div class="feature-option" data-feature="code">
+                            <i class="fas fa-code"></i>
+                            <span>Kod Geliştir</span>
+                        </div>
+                        <!-- Translation -->
+                        <div class="feature-option" data-feature="translate">
+                            <i class="fas fa-language"></i>
+                            <span>Çeviri</span>
+                        </div>
+                        <!-- Document Analysis -->
+                        <div class="feature-option" data-feature="document">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Doküman Analizi</span>
+                        </div>
+                        <!-- Vision Analysis -->
+                        <div class="feature-option" data-feature="vision">
+                            <i class="fas fa-eye"></i>
+                            <span>Görüntü Analizi</span>
+                        </div>
+                        <!-- Audio Processing -->
+                        <div class="feature-option" data-feature="audio">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ses İşleme</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Input Elements -->
+                <input type="file" id="fileInput" multiple accept="image/*,audio/*,.pdf,.doc,.docx,.txt" style="display: none;">
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+
+                <!-- Voice Language Selection -->
+                <div class="voice-language-selector" id="voiceSelector" style="display: none;">
+                    <div class="language-grid">
+                        <div class="language-option" data-lang="tr-TR">
+                            <i class="fas fa-globe"></i>
+                            <span>Türkçe</span>
+                        </div>
+                        <div class="language-option" data-lang="en-US">
+                            <i class="fas fa-language"></i>
+                            <span>English</span>
+                        </div>
+                        <div class="language-option" data-lang="ar-SA">
+                            <i class="fas fa-comment-dots"></i>
+                            <span>العربية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Input -->
+                <div class="text-input-wrapper">
+                    <textarea
+                        id="messageInput"
+                        placeholder="AiLydians'a bir mesaj gönderin..."
+                        rows="1"
+                        maxlength="5000"
+                    ></textarea>
+
+                    <!-- AI Model Selector -->
+                    <div class="model-selector" id="modelSelector">
+                        <div class="selected-model" id="selectedModel">
+                            <i class="fas fa-robot"></i>
+                            <span>AiLydians</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="model-dropdown" id="modelDropdown">
+                            <div class="model-option" data-model="ai-assistant" data-icon="fas fa-robot">
+                                <i class="fas fa-robot"></i>
+                                <span>AiLydians</span>
+                                <small>Genel AI Asistan</small>
+                            </div>
+                            <div class="model-option" data-model="azure-gpt-4o" data-icon="fab fa-microsoft">
+                                <i class="fab fa-microsoft"></i>
+                                <span>Azure GPT-4 Omni</span>
+                                <small>Microsoft Enterprise AI</small>
+                            </div>
+                            <div class="model-option" data-model="zai-developer" data-icon="fas fa-code">
+                                <i class="fas fa-code"></i>
+                                <span>Z.AI Developer</span>
+                                <small>Kod Geliştirici</small>
+                            </div>
+                            <div class="model-option" data-model="deepseek-r1" data-icon="fas fa-brain">
+                                <i class="fas fa-brain"></i>
+                                <span>DeepSeek R1</span>
+                                <small>Advanced Reasoning</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Send Button -->
+                <button class="send-btn" id="sendBtn" title="Gönder">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+            <!-- Character Counter -->
+            <div class="input-info">
+                <span class="char-counter" id="charCounter">0/5000</span>
+                <span class="input-hint">Enter ile gönder, Shift+Enter ile yeni satır</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="ailydian-spinner">
+                <div class="spinner-letter">A</div>
+                <div class="spinner-letter">i</div>
+                <div class="spinner-letter">L</div>
+            </div>
+            <div class="loading-text">AiLydians düşünüyor...</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/js/ailydian-search-animation.js"></script>
+    <script src="/js/status-indicators.js"></script>
+    <script src="/js/chat-ailydian.js"></script>
+</body>
+</html>

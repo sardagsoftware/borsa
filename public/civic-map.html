@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAP - Model Doğrulama ve Kanıt | LyDian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(data:font/woff2;base64,d09GMgABAAAAABcAAA4AAAAANAAAABagAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbhHYcg0oGYACDahEICp1sm0kLOAABNgIkA4M8BCAFhGIHIBuLKlGUcFIB2c8KbJN5/YqoQomh1IzQGvf//5vZGbnJQgRK0AqkVbIZlZ5WqaZ6F14l1/v/czRJtNHGQXDKOPA0yTANrLMJtCjABl0JoV1ww6dbjadBDWi5p/f0tLdWLgE16EQCAWmPLy9POOGRv+P/+VsnJTmzIjvkJndM3v/3u89998zdd8/MvfeCAAALARgAKMBHBm4CwJgE8Dd1E0CqDADGGhAAATw+bBOIAwQXITBbADcB8P8pWQuBJRAdD0CW0JgRmA0cA3A/BNAtgN78hgD2AACQZQAA9AdCJGwEBJiGAAIYAugPBBiN8wKGYZxhOWcC53oEnB85X3veeN567vle8r32XPRc8px0nPWcdBx3bHpqHqRPAMABKVgSUAAAqAKgAkACABVOAAgAKABQAaABQAeAAQATACpItQDUCEAjAI0BaAKgKQDNAGgOQAsAWgLQCoCWArQMoOUAtBygFQC0DqB1AK0HaAMAbQRoE0BbANoK0DaAQgCFAdoB0E6AdgG0G6C9AO0DaD9ABwA6CNAhgA4DdASgowAdA+g4QCcAOgnQKYBOA3QGoLMAnQPoPEAXALoI0CWALgN0BaCrAF0D6DpANwC6CdAtgG4DdAeguwD9A9A/AD0A6CFAD//zIPhfI/+m9QSgpwA9A+g5QC8AegnQK4BeA/QGoLcAvQPoPUD/APQBoCc8XgD0EqBXAL0G6A1AbwF6B9B7gP4B6ANATwB6CtAzgJ4D9AKglwC9Aug1QG8AegvQO4DeA/QPQB8AegLQU4CeAfQcoI8APQPoI0CfAPoE0GeAvgD0FaCvAH0F6BtA3wD6DtAPgH4A9BOgnwD9AuiX4uAR8QAAqAIoNzcnJ/dVAVRUWZnXAQBJ8pxDUgAAlqyHDgCQpLJSCQBQZKVSAQBQWblUagGAKiszlwCQpcqS//z/5pRFR2aUBUd1Vpz+P5S0XhEARebkXgcAyEpepQQAqKhcWQYAFFmpVAAAVFYulVoAoMrKzCUAZKmy5L//v3NJdGRGWXBUZ8Xp/0NJ6xUBUGROrnUA5P/9v5JXKQEAKipXlgEARVYqFQAAVZVLpRYAqLIycwlAWarMm///3P+flJKRWRUdGV0Z/X///0K56pUBIClz/v/5/2oBoArn/1dkTq4FAKyFb2F1ZCwsLB8fP/8XlpaAAACQoQBArwFyb2RjcnQAAAEAAAA4g0VuZGVjaW1hbAEAAAA4g1RydWVUeXBlIHJhcGkAggAAgC4AAAAJAAAACQAAAJlpaWlpaWlpaWlpbW1tbW1tbW1tbW1iYmJiYmJiYmJiYmNjY2NjY2NjY2Njb29vb29vb29vb29wcHBwcHBwcHBwYXN0dGFibGVfbWF0Y2g=) format('woff2');
+            unicode-range: U+0000-00FF;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --lydian-accent: #10A37F;
+            --lydian-accent-light: #0D8F6E;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
+            --map-green: #10A37F;
+            --map-amber: #F59E0B;
+            --map-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--lydian-bg-primary);
+            color: var(--lydian-text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--lydian-border);
+            border-radius: 20px;
+            padding: 1rem 0;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: calc(100% - 80px);
+            max-width: 1400px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: #000000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        .hero {
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
+        }
+
+        .hero-icon {
+            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
+            color: var(--map-green);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--lydian-text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: -3rem auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.12);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1rem;
+            color: var(--map-green);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--map-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--lydian-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .proof-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .proof-table thead {
+            background: var(--lydian-bg-tertiary);
+        }
+
+        .proof-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--lydian-text-primary);
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .proof-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--lydian-border);
+            color: var(--lydian-text-secondary);
+        }
+
+        .proof-table tbody tr:hover {
+            background: var(--lydian-bg-tertiary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-verified {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--map-green);
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--map-amber);
+        }
+
+        .status-failed {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--map-red);
+        }
+
+        .hash-display {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--lydian-accent);
+            cursor: pointer;
+        }
+
+        .hash-display:hover {
+            color: var(--lydian-accent-light);
+        }
+
+        .merkle-tree {
+            margin-top: 2rem;
+        }
+
+        .merkle-container {
+            padding: 2rem;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .merkle-svg {
+            width: 100%;
+            min-height: 400px;
+        }
+
+        .merkle-node {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .merkle-node:hover rect {
+            stroke: #10A37F;
+            stroke-width: 2;
+            fill: rgba(16, 163, 127, 0.15);
+        }
+
+        .merkle-node text {
+            pointer-events: none;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--lydian-text-secondary);
+            font-weight: 500;
+        }
+
+        .metric-value {
+            color: var(--lydian-text-primary);
+            font-weight: 700;
+        }
+
+        .metric-value.green {
+            color: var(--map-green);
+        }
+
+        .sgx-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .sgx-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--map-green);
+            box-shadow: 0 0 10px var(--map-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .code-block {
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre;
+            color: var(--lydian-text-secondary);
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            background: #10A37F;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #0D8F6E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--lydian-bg-tertiary);
+            color: var(--lydian-text-primary);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-input {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            color: var(--lydian-text-primary);
+            font-family: inherit;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--map-green);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                width: calc(100% - 40px);
+                top: 10px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 5rem 2rem 3rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
+            <nav class="nav-links">
+                <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/docs.html" class="nav-link">Dokümantasyon</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        <h1 class="hero-title">Model Doğrulama ve Kanıt Sistemi</h1>
+        <p class="hero-subtitle">
+            Kriptografik Model Doğrulama • Merkle Ağacı Kanıtları • SGX Güvenlik Bölgeleri • Bütünlük Garantisi
+        </p>
+    </section>
+
+    <!-- Live Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div class="stat-value" id="verified-models">147</div>
+            <div class="stat-label">Kanıtlı Modeller</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+            </svg>
+            <div class="stat-value" id="coverage">99.8%</div>
+            <div class="stat-label">Doğrulama Kapsamı</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+            </svg>
+            <div class="stat-value" id="sgx-enclaves">12</div>
+            <div class="stat-label">SGX Güvenlik Bölgeleri</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            <div class="stat-value" id="daily-verifications">3.2K</div>
+            <div class="stat-label">Günlük Doğrulamalar</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- SGX Status & Metrics -->
+        <div class="content-grid">
+            <!-- SGX Enclave Status -->
+            <div class="card">
+                <h2 class="section-title">
+                    <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                    SGX Güvenlik Bölgesi Durumu
+                </h2>
+
+                <div class="sgx-status">
+                    <div class="sgx-indicator"></div>
+                    <span style="color: var(--map-green); font-weight: 600;">Tüm Bölgeler Aktif</span>
+                </div>
+
+                <div class="metric-row">
+                    <span class="metric-label">Toplam Bölge</span>
+                    <span class="metric-value green">12</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Çevrimiçi</span>
+                    <span class="metric-value green">12</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Bellek Kullanımı</span>
+                    <span class="metric-value">64GB / 128GB</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Ortalama Yük</span>
+                    <span class="metric-value">42%</span>
+                </div>
+            </div>
+
+            <!-- Coverage Metrics -->
+            <div class="card">
+                <h2 class="section-title">
+                    <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Kanıt Kapsam Metrikleri
+                </h2>
+
+                <div class="metric-row">
+                    <span class="metric-label">Toplam Modeller</span>
+                    <span class="metric-value">147</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Doğrulanmış</span>
+                    <span class="metric-value green">147</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Beklemede</span>
+                    <span class="metric-value">0</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Kapsam Oranı</span>
+                    <span class="metric-value green">99.8%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Ortalama Doğrulama Süresi</span>
+                    <span class="metric-value">1.2s</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proof Logs Table -->
+        <div class="card full-width">
+            <h2 class="section-title">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+                Model Doğrulama Kayıtları
+            </h2>
+
+            <div class="filter-group">
+                <input type="text" class="filter-input" id="filter-model" placeholder="Model adı ile filtrele...">
+                <select class="filter-input" id="filter-status" style="flex: 0.5;">
+                    <option value="">Tüm Durumlar</option>
+                    <option value="verified">Doğrulandı</option>
+                    <option value="pending">Beklemede</option>
+                    <option value="failed">Başarısız</option>
+                </select>
+                <button class="btn" onclick="refreshProofs()">Yenile</button>
+            </div>
+
+            <div class="table-container">
+                <table class="proof-table">
+                    <thead>
+                        <tr>
+                            <th>Model Adı</th>
+                            <th>Doğrulama Zamanı</th>
+                            <th>Kanıt Hash</th>
+                            <th>SGX Bölgesi</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody id="proof-logs">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Merkle Tree Visualization -->
+        <div class="card full-width merkle-tree">
+            <h2 class="section-title">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                </svg>
+                Merkle Ağacı Kanıt Yapısı
+            </h2>
+
+            <div class="merkle-container">
+                <svg class="merkle-svg" id="merkle-tree-svg" viewBox="0 0 800 450"></svg>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--lydian-text-primary);">Kök Hash</h3>
+                <div class="code-block" id="root-hash">0xa7f5c9d2e4b1f8a6c3d7e9f2b4a8c6d9e1f3a5b7c9d2e4f6a8b1c3d5e7f9a2b4</div>
+            </div>
+        </div>
+
+        <!-- Attestation Analytics Charts -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin: 2rem 0;">
+            <!-- Verification Timeline -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; grid-column: span 2;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; color: var(--lydian-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                    </svg>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Doğrulama Zaman Çizelgesi</h3>
+                </div>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="verificationTimelineChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Model Types Distribution -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; color: #3B82F6;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Model Türleri</h3>
+                </div>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="modelTypesChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Success Rate -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Başarı Oranı</h3>
+                </div>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="successRateChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Documentation -->
+        <div class="content-grid">
+            <div class="card">
+                <h2 class="section-title">
+                    <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    Kanıt Sorgulama API
+                </h2>
+
+                <div class="code-block">GET /api/cig-map/v1/proofs/{modelId}
+
+Response:
+{
+  "modelId": "gpt-4",
+  "timestamp": "2025-10-06T12:00:00Z",
+  "proofHash": "0xa7f5c9...",
+  "merkleRoot": "0xd4e8f3...",
+  "sgxEnclave": "enclave-03",
+  "status": "verified"
+}</div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">
+                    <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                    </svg>
+                    Doğrulama API
+                </h2>
+
+                <div class="code-block">POST /api/cig-map/v1/verify
+
+Body:
+{
+  "modelId": "gpt-4",
+  "proofHash": "0xa7f5c9...",
+  "merkleProof": [...]
+}
+
+Response:
+{
+  "valid": true,
+  "merkleRoot": "0xd4e8f3...",
+  "verified": true
+}</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample proof data
+        const sampleProofs = [
+            {
+                modelId: 'gpt-4',
+                timestamp: new Date(Date.now() - 3600000).toISOString(),
+                proofHash: '0xa7f5c9d2e4b1f8a6c3d7e9f2b4a8c6d9e1f3a5b7c9d2e4f6a8b1c3d5e7f9a2b4',
+                sgxEnclave: 'enclave-03',
+                status: 'verified'
+            },
+            {
+                modelId: 'premium-intelligence-v2',
+                timestamp: new Date(Date.now() - 7200000).toISOString(),
+                proofHash: '0xb8c6d3e5f2a9b7c4d8e1f9a3b5c7d9e2f4a6b8c1d3e5f7a9b2c4d6e8f1a3b5',
+                sgxEnclave: 'enclave-07',
+                status: 'verified'
+            },
+            {
+                modelId: 'gemini-pro',
+                timestamp: new Date(Date.now() - 10800000).toISOString(),
+                proofHash: '0xc9d7e4f3a1b8c5d9e2f1a4b6c8d1e3f5a7b9c2d4e6f8a1b3c5d7e9f2a4b6c8',
+                sgxEnclave: 'enclave-01',
+                status: 'verified'
+            },
+            {
+                modelId: 'mistral-large',
+                timestamp: new Date(Date.now() - 14400000).toISOString(),
+                proofHash: '0xd1e8f5a2b9c6d3e1f4a7b1c4d6e9f2a5b8c1d3e6f9a2b4c7d1e3f6a9b2c5d8',
+                sgxEnclave: 'enclave-05',
+                status: 'verified'
+            },
+            {
+                modelId: 'llama-3-70b',
+                timestamp: new Date(Date.now() - 18000000).toISOString(),
+                proofHash: '0xe2f9a3c1d7e4f1a8b2c5d9e3f6a1b4c7d1e4f7a2b5c8d2e5f8a3b6c9d3e6f9',
+                sgxEnclave: 'enclave-09',
+                status: 'verified'
+            },
+            {
+                modelId: 'deepseek-r1',
+                timestamp: new Date(Date.now() - 21600000).toISOString(),
+                proofHash: '0xf3a1b4c7d2e5f8a3b6c9d4e7f1a4b7c1d4e7f2a5b8c2d5e8f3a6b9c4d7e1f4',
+                sgxEnclave: 'enclave-11',
+                status: 'verified'
+            }
+        ];
+
+        // Initialize proof logs
+        function initProofLogs() {
+            const tbody = document.getElementById('proof-logs');
+            tbody.innerHTML = sampleProofs.map(proof => `
+                <tr>
+                    <td style="font-weight: 600; color: var(--lydian-text-primary);">${proof.modelId}</td>
+                    <td>${new Date(proof.timestamp).toLocaleString('tr-TR')}</td>
+                    <td><span class="hash-display" onclick="copyHash('${proof.proofHash}')" title="Kopyalamak için tıklayın">${proof.proofHash.substring(0, 16)}...</span></td>
+                    <td>${proof.sgxEnclave}</td>
+                    <td><span class="status-badge status-${proof.status}">Doğrulandı</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // Copy hash to clipboard
+        function copyHash(hash) {
+            navigator.clipboard.writeText(hash);
+            alert('Hash panoya kopyalandı!');
+        }
+
+        // Refresh proofs
+        async function refreshProofs() {
+            try {
+                const response = await fetch('/api/cig-map/v1/proofs');
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update stats
+                    document.getElementById('verified-models').textContent = data.stats.verified;
+                    document.getElementById('daily-verifications').textContent =
+                        (data.stats.daily / 1000).toFixed(1) + 'K';
+
+                    // Update table if needed
+                    // initProofLogs();
+                }
+            } catch (error) {
+                console.log('API simülasyonu - gerçek API henüz mevcut değil');
+            }
+        }
+
+        // Draw Merkle Tree
+        function drawMerkleTree() {
+            const svg = document.getElementById('merkle-tree-svg');
+            const width = 800;
+            const height = 450;
+
+            // Tree structure (simplified 3-level)
+            const levels = [
+                [{ x: 400, y: 50, label: 'Root', hash: '0xa7f5c9...' }],
+                [
+                    { x: 250, y: 150, label: 'H1', hash: '0xb8c6d3...' },
+                    { x: 550, y: 150, label: 'H2', hash: '0xc9d7e4...' }
+                ],
+                [
+                    { x: 150, y: 250, label: 'H3', hash: '0xd1e8f5...' },
+                    { x: 350, y: 250, label: 'H4', hash: '0xe2f9a3...' },
+                    { x: 450, y: 250, label: 'H5', hash: '0xf3a1b4...' },
+                    { x: 650, y: 250, label: 'H6', hash: '0xa4b7c1...' }
+                ],
+                [
+                    { x: 100, y: 370, label: 'M1', hash: '0x1a2b3c...' },
+                    { x: 200, y: 370, label: 'M2', hash: '0x4d5e6f...' },
+                    { x: 300, y: 370, label: 'M3', hash: '0x7g8h9i...' },
+                    { x: 400, y: 370, label: 'M4', hash: '0xj1k2l3...' },
+                    { x: 500, y: 370, label: 'M5', hash: '0xm4n5o6...' },
+                    { x: 600, y: 370, label: 'M6', hash: '0xp7q8r9...' },
+                    { x: 700, y: 370, label: 'M7', hash: '0xs1t2u3...' }
+                ]
+            ];
+
+            let svgContent = '';
+
+            // Draw connections
+            for (let i = 0; i < levels.length - 1; i++) {
+                const currentLevel = levels[i];
+                const nextLevel = levels[i + 1];
+
+                currentLevel.forEach((node, idx) => {
+                    const leftChild = nextLevel[idx * 2];
+                    const rightChild = nextLevel[idx * 2 + 1];
+
+                    if (leftChild) {
+                        svgContent += `<line x1="${node.x}" y1="${node.y + 25}" x2="${leftChild.x}" y2="${leftChild.y - 25}" stroke="rgba(0, 0, 0, 0.15)" stroke-width="2"/>`;
+                    }
+                    if (rightChild) {
+                        svgContent += `<line x1="${node.x}" y1="${node.y + 25}" x2="${rightChild.x}" y2="${rightChild.y - 25}" stroke="rgba(0, 0, 0, 0.15)" stroke-width="2"/>`;
+                    }
+                });
+            }
+
+            // Draw nodes
+            levels.forEach((level, levelIdx) => {
+                level.forEach(node => {
+                    const isLeaf = levelIdx === levels.length - 1;
+                    const fillColor = isLeaf ? 'rgba(16, 163, 127, 0.1)' : 'rgba(16, 163, 127, 0.05)';
+                    const strokeColor = isLeaf ? '#10A37F' : 'rgba(0, 0, 0, 0.2)';
+
+                    svgContent += `
+                        <g class="merkle-node" data-hash="${node.hash}">
+                            <rect x="${node.x - 40}" y="${node.y - 20}" width="80" height="40"
+                                  rx="8" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5"/>
+                            <text x="${node.x}" y="${node.y}" text-anchor="middle"
+                                  dy="0.35em" fill="#000000" font-size="12" font-weight="600">${node.label}</text>
+                            <text x="${node.x}" y="${node.y + 35}" text-anchor="middle"
+                                  fill="#4B5563" font-size="9" font-family="monospace">${node.hash}</text>
+                        </g>
+                    `;
+                });
+            });
+
+            svg.innerHTML = svgContent;
+
+            // Add hover events
+            document.querySelectorAll('.merkle-node').forEach(node => {
+                node.addEventListener('click', function() {
+                    const hash = this.getAttribute('data-hash');
+                    copyHash(hash);
+                });
+            });
+        }
+
+        // Filter proofs
+        document.getElementById('filter-model').addEventListener('input', filterProofs);
+        document.getElementById('filter-status').addEventListener('change', filterProofs);
+
+        function filterProofs() {
+            const modelFilter = document.getElementById('filter-model').value.toLowerCase();
+            const statusFilter = document.getElementById('filter-status').value;
+
+            const rows = document.querySelectorAll('#proof-logs tr');
+            rows.forEach(row => {
+                const modelName = row.cells[0].textContent.toLowerCase();
+                const status = row.cells[4].textContent.toLowerCase();
+
+                const matchModel = !modelFilter || modelName.includes(modelFilter);
+                const matchStatus = !statusFilter || status.includes(statusFilter);
+
+                row.style.display = matchModel && matchStatus ? '' : 'none';
+            });
+        }
+
+        // Update stats periodically
+        function updateStats() {
+            const verifiedCount = parseInt(document.getElementById('verified-models').textContent);
+            const dailyCount = parseFloat(document.getElementById('daily-verifications').textContent);
+
+            // Simulate gradual increase
+            if (Math.random() > 0.7) {
+                document.getElementById('verified-models').textContent = verifiedCount + 1;
+            }
+
+            if (Math.random() > 0.5) {
+                document.getElementById('daily-verifications').textContent =
+                    (dailyCount + Math.random() * 0.1).toFixed(1) + 'K';
+            }
+        }
+
+        // Initialize
+        initProofLogs();
+        drawMerkleTree();
+
+        // Update stats every 5 seconds
+        setInterval(updateStats, 5000);
+
+        // Simulate real-time updates
+        setInterval(() => {
+            if (Math.random() > 0.8) {
+                refreshProofs();
+            }
+        }, 10000);
+    </script>
+
+    <!-- Chart.js for Attestation Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
+
+    <!-- Model Attestation Charts -->
+    <script>
+        async function initAttestationCharts() {
+            // Wait for CivicCharts library to load
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts not loaded yet, retrying...');
+                setTimeout(initAttestationCharts, 500);
+                return;
+            }
+
+            try {
+                // Fetch attestation analytics
+                const attestData = await window.CivicCharts.fetchData('/attestation/analytics');
+
+                if (attestData) {
+                    // Verification Timeline (Line Chart)
+                    if (attestData.verificationTimeline) {
+                        window.CivicCharts.createLineChart('verificationTimelineChart', {
+                            data: {
+                                labels: attestData.verificationTimeline.map(t => t.timestamp),
+                                datasets: [{
+                                    label: 'Günlük Doğrulamalar',
+                                    data: attestData.verificationTimeline.map(t => t.count),
+                                    borderColor: '#10A37F',
+                                    backgroundColor: 'rgba(16, 163, 127, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                }]
+                            },
+                            showLegend: true
+                        });
+                    }
+
+                    // Model Types Distribution (Doughnut)
+                    if (attestData.modelTypes) {
+                        window.CivicCharts.createDoughnutChart('modelTypesChart', {
+                            data: {
+                                labels: Object.keys(attestData.modelTypes),
+                                datasets: [{
+                                    data: Object.values(attestData.modelTypes),
+                                    backgroundColor: [
+                                        '#10A37F',
+                                        '#3B82F6',
+                                        '#F59E0B',
+                                        '#EC4899',
+                                        '#8B5CF6'
+                                    ]
+                                }]
+                            },
+                            legendPosition: 'bottom'
+                        });
+                    }
+
+                    // Verification Success Rate (Bar Chart)
+                    if (attestData.successRate) {
+                        window.CivicCharts.createBarChart('successRateChart', {
+                            data: {
+                                labels: ['Başarılı', 'Başarısız', 'Beklemede'],
+                                datasets: [{
+                                    label: 'Doğrulama Durumu',
+                                    data: [
+                                        attestData.successRate.success,
+                                        attestData.successRate.failed,
+                                        attestData.successRate.pending
+                                    ],
+                                    backgroundColor: ['#10B981', '#EF4444', '#F59E0B']
+                                }]
+                            },
+                            showLegend: false
+                        });
+                    }
+
+                    console.log('✅ Model attestation charts initialized');
+                }
+
+                // Set up real-time updates
+                window.CivicCharts.startRealTimeUpdates('verificationTimelineChart', '/attestation/analytics', 30000);
+
+            } catch (error) {
+                console.error('Attestation charts initialization error:', error);
+            }
+        }
+
+        // Initialize charts when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAttestationCharts);
+        } else {
+            initAttestationCharts();
+        }
+    </script>
+
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

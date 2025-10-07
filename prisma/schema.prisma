@@ -1,0 +1,155 @@
+// ============================================
+// 🗄️ AILYDIAN ULTRA PRO - DATABASE SCHEMA
+// Supabase PostgreSQL with Prisma ORM
+// Phase 3: Database & Persistence
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// 👤 USERS TABLE
+// ============================================
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  avatarUrl String?  @map("avatar_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  conversations Conversation[]
+  messages      Message[]
+  files         File[]
+  preferences   Preference?
+  usageLogs     UsageLog[]
+
+  @@map("users")
+}
+
+// ============================================
+// 💬 CONVERSATIONS TABLE
+// ============================================
+
+model Conversation {
+  id            String    @id @default(uuid())
+  userId        String    @map("user_id")
+  title         String?   @db.VarChar(500)
+  domain        String?   @db.VarChar(50)
+  language      String?   @db.VarChar(10)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  lastMessageAt DateTime? @map("last_message_at")
+
+  // Relations
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages Message[]
+  files    File[]
+
+  @@index([userId])
+  @@index([lastMessageAt])
+  @@map("conversations")
+}
+
+// ============================================
+// 💬 MESSAGES TABLE
+// ============================================
+
+model Message {
+  id             String   @id @default(uuid())
+  conversationId String   @map("conversation_id")
+  userId         String   @map("user_id")
+  role           String   @db.VarChar(20) // 'user' or 'assistant'
+  content        String   @db.Text
+  metadata       Json?    @db.JsonB // AI model, response time, provider, etc.
+  fileReferences Json?    @map("file_references") @db.JsonB // Array of file IDs
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  // Relations
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("messages")
+}
+
+// ============================================
+// 📁 FILES TABLE
+// ============================================
+
+model File {
+  id             String   @id @default(uuid())
+  userId         String   @map("user_id")
+  conversationId String?  @map("conversation_id")
+  filename       String   @db.VarChar(500)
+  fileType       String   @map("file_type") @db.VarChar(100)
+  fileSize       Int      @map("file_size")
+  storageUrl     String   @map("storage_url") @db.Text // S3/Azure Blob URL
+  analysisResult Json?    @map("analysis_result") @db.JsonB // Vision/PDF analysis
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([conversationId])
+  @@index([createdAt])
+  @@map("files")
+}
+
+// ============================================
+// ⚙️ USER PREFERENCES TABLE
+// ============================================
+
+model Preference {
+  userId              String   @id @map("user_id")
+  defaultLanguage     String   @default("tr-TR") @map("default_language") @db.VarChar(10)
+  defaultDomain       String   @default("mathematics") @map("default_domain") @db.VarChar(50)
+  preferredAiProvider String?  @map("preferred_ai_provider") @db.VarChar(50) // 'groq', 'openai', 'claude'
+  theme               String   @default("light") @db.VarChar(20)
+  settings            Json?    @db.JsonB // Additional custom settings
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("preferences")
+}
+
+// ============================================
+// 📊 USAGE LOGS TABLE (Analytics)
+// ============================================
+
+model UsageLog {
+  id           String   @id @default(uuid())
+  userId       String?  @map("user_id")
+  endpoint     String   @db.VarChar(200)
+  requestData  Json?    @map("request_data") @db.JsonB
+  responseTime Int?     @map("response_time") // milliseconds
+  aiProvider   String?  @map("ai_provider") @db.VarChar(50)
+  aiModel      String?  @map("ai_model") @db.VarChar(100)
+  tokensUsed   Int?     @map("tokens_used")
+  costUsd      Decimal? @map("cost_usd") @db.Decimal(10, 6)
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([endpoint])
+  @@index([createdAt])
+  @@index([aiProvider])
+  @@map("usage_logs")
+}
