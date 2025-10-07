@@ -119,6 +119,9 @@ importers:
       express:
         specifier: ^5.1.0
         version: 5.1.0
+      express-rate-limit:
+        specifier: ^8.1.0
+        version: 8.1.0(express@5.1.0)
       express-session:
         specifier: ^1.18.2
         version: 1.18.2
@@ -147,8 +150,8 @@ importers:
         specifier: ^7.1.0
         version: 7.2.0
       ioredis:
-        specifier: ^5.8.0
-        version: 5.8.0
+        specifier: ^5.8.1
+        version: 5.8.1
       isomorphic-dompurify:
         specifier: ^2.28.0
         version: 2.28.0(canvas@3.2.0)(postcss@8.5.6)
@@ -200,6 +203,9 @@ importers:
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
+      rate-limit-redis:
+        specifier: ^4.2.2
+        version: 4.2.2(express-rate-limit@8.1.0(express@5.1.0))
       rate-limiter-flexible:
         specifier: ^5.0.3
         version: 5.0.5
@@ -215,6 +221,9 @@ importers:
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
+      validator:
+        specifier: ^13.15.15
+        version: 13.15.15
       weaviate-client:
         specifier: ^3.9.0
         version: 3.9.0
@@ -2576,6 +2585,12 @@ packages:
     resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
     engines: {node: '>=6'}
 
+  express-rate-limit@8.1.0:
+    resolution: {integrity: sha512-4nLnATuKupnmwqiJc27b4dCFmB/T60ExgmtDD7waf4LdrbJ8CPZzZRHYErDYNhoz+ql8fUdYwM/opf90PoPAQA==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      express: '>= 4.11'
+
   express-session@1.18.2:
     resolution: {integrity: sha512-SZjssGQC7TzTs9rpPDuUrR23GNZ9+2+IkA/+IJWmvQilTr5OSliEHGF+D9scbIpdC6yGtTI0/VhaHoVes2AN/A==}
     engines: {node: '>= 0.8.0'}
@@ -3006,8 +3021,8 @@ packages:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
     engines: {node: '>= 0.4'}
 
-  ioredis@5.8.0:
-    resolution: {integrity: sha512-AUXbKn9gvo9hHKvk6LbZJQSKn/qIfkWXrnsyL9Yrf+oeXmla9Nmf6XEumOddyhM8neynpK5oAV6r9r99KBuwzA==}
+  ioredis@5.8.1:
+    resolution: {integrity: sha512-Qho8TgIamqEPdgiMadJwzRMW3TudIg6vpg4YONokGDudy4eqRIJtDbVX72pfLBcWxvbn3qm/40TyGUObdW4tLQ==}
     engines: {node: '>=12.22.0'}
 
   ip-address@10.0.1:
@@ -3955,6 +3970,12 @@ packages:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
 
+  rate-limit-redis@4.2.2:
+    resolution: {integrity: sha512-0SGzpSCZQgkJuUK5AqGaUkgwTMaujWIek0PwlZBDsdNIcasrJae8AC47tP5UHayqDcocJxtogL6DnZFTLoruUw==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      express-rate-limit: '>= 6'
+
   rate-limiter-flexible@5.0.5:
     resolution: {integrity: sha512-+/dSQfo+3FYwYygUs/V2BBdwGa9nFtakDwKt4l0bnvNB53TNT++QSFewwHX9qXrZJuMe9j+TUaU21lm5ARgqdQ==}
 
@@ -4613,6 +4634,10 @@ packages:
   uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
+
+  validator@13.15.15:
+    resolution: {integrity: sha512-BgWVbCI72aIQy937xbawcs+hrVaN/CZ2UwutgaJ36hGqRrLNM+f5LUT/YPRbo8IV/ASeFzXszezV+y2+rq3l8A==}
+    engines: {node: '>= 0.10'}
 
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
@@ -7540,6 +7565,11 @@ snapshots:
 
   expand-template@2.0.3: {}
 
+  express-rate-limit@8.1.0(express@5.1.0):
+    dependencies:
+      express: 5.1.0
+      ip-address: 10.0.1
+
   express-session@1.18.2:
     dependencies:
       cookie: 0.7.2
@@ -8154,7 +8184,7 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.1.0
 
-  ioredis@5.8.0:
+  ioredis@5.8.1:
     dependencies:
       '@ioredis/commands': 1.4.0
       cluster-key-slot: 1.1.2
@@ -9166,6 +9196,10 @@ snapshots:
 
   range-parser@1.2.1: {}
 
+  rate-limit-redis@4.2.2(express-rate-limit@8.1.0(express@5.1.0)):
+    dependencies:
+      express-rate-limit: 8.1.0(express@5.1.0)
+
   rate-limiter-flexible@5.0.5: {}
 
   raw-body@2.5.2:
@@ -9962,6 +9996,8 @@ snapshots:
   uuid@8.3.2: {}
 
   uuid@9.0.1: {}
+
+  validator@13.15.15: {}
 
   vary@1.1.2: {}
 
