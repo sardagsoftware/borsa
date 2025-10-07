@@ -716,6 +716,35 @@
 
                 <div id="trust-graph"></div>
 
+                <!-- Trust Analytics Charts -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <!-- Trust Score Distribution -->
+                    <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <svg style="width: 24px; height: 24px; color: var(--lydian-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Güven Skoru Dağılımı</h3>
+                        </div>
+                        <div style="height: 300px; position: relative;">
+                            <canvas id="trustDistributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Trust Trends -->
+                    <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <svg style="width: 24px; height: 24px; color: #3B82F6;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                            </svg>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Güven Trendleri</h3>
+                        </div>
+                        <div style="height: 300px; position: relative;">
+                            <canvas id="trustTrendsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="graph-legend">
                     <div class="legend-item">
                         <div class="legend-dot high"></div>
@@ -1154,5 +1183,85 @@
             simulation.alpha(0.3).restart();
         });
     </script>
+
+    <!-- Chart.js for Trust Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
+
+    <!-- Trust Graph Analytics Charts -->
+    <script>
+        async function initTrustAnalyticsCharts() {
+            // Wait for CivicCharts library to load
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts not loaded yet, retrying...');
+                setTimeout(initTrustAnalyticsCharts, 500);
+                return;
+            }
+
+            try {
+                // Fetch trust graph analytics
+                const trustData = await window.CivicCharts.fetchData('/trust/analytics');
+
+                if (trustData) {
+                    // Trust Score Distribution (Bar Chart)
+                    if (trustData.scoreDistribution) {
+                        window.CivicCharts.createBarChart('trustDistributionChart', {
+                            data: {
+                                labels: Object.keys(trustData.scoreDistribution),
+                                datasets: [{
+                                    label: 'Varlık Sayısı',
+                                    data: Object.values(trustData.scoreDistribution),
+                                    backgroundColor: [
+                                        '#EF4444',
+                                        '#F59E0B',
+                                        '#FBBF24',
+                                        '#10B981',
+                                        '#10A37F'
+                                    ]
+                                }]
+                            },
+                            showLegend: false
+                        });
+                    }
+
+                    // Trust Trends Over Time (Line Chart)
+                    if (trustData.trustTrends) {
+                        window.CivicCharts.createLineChart('trustTrendsChart', {
+                            data: {
+                                labels: trustData.trustTrends.map(t => t.timestamp),
+                                datasets: [{
+                                    label: 'Ortalama Güven Skoru',
+                                    data: trustData.trustTrends.map(t => t.avgTrust),
+                                    borderColor: '#10A37F',
+                                    backgroundColor: 'rgba(16, 163, 127, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                }]
+                            },
+                            showLegend: true
+                        });
+                    }
+
+                    console.log('✅ Trust analytics charts initialized');
+                }
+
+                // Set up real-time updates
+                window.CivicCharts.startRealTimeUpdates('trustDistributionChart', '/trust/analytics', 30000);
+
+            } catch (error) {
+                console.error('Trust analytics charts initialization error:', error);
+            }
+        }
+
+        // Initialize charts when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTrustAnalyticsCharts);
+        } else {
+            initTrustAnalyticsCharts();
+        }
+    </script>
+
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

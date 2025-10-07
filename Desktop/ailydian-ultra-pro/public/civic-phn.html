@@ -767,6 +767,54 @@
             </div>
         </div>
 
+        <!-- Health Metrics Charts from Civic API -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin: 2rem 0;">
+            <!-- Hospital Capacity Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Hastane Doluluk Oranı
+                    </h3>
+                </div>
+                <div style="height: 300px; position: relative; padding: 1rem;">
+                    <canvas id="hospitalCapacityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Epidemiology Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Epidemiyoloji Verileri
+                    </h3>
+                </div>
+                <div style="height: 300px; position: relative; padding: 1rem;">
+                    <canvas id="epidemiologyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Environmental Health Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Çevresel Sağlık
+                    </h3>
+                </div>
+                <div style="height: 300px; position: relative; padding: 1rem;">
+                    <canvas id="environmentalHealthChart"></canvas>
+                </div>
+            </div>
+        </div>
+
         <!-- Regional Health Metrics -->
         <section>
             <h2 class="section-title">
@@ -1296,5 +1344,106 @@
         `;
         document.head.appendChild(style);
     </script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
+
+    <script>
+        // Initialize Health Metrics Charts
+        async function initHealthCharts() {
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts library not loaded yet, retrying...');
+                setTimeout(initHealthCharts, 500);
+                return;
+            }
+
+            console.log('🏥 Initializing Public Health Charts...');
+
+            try {
+                // Fetch health data from Civic API
+                const healthData = await window.CivicCharts.fetchData('/health/metrics');
+
+                if (healthData) {
+                    // 1. Hospital Capacity Gauge Chart
+                    if (healthData.healthcareCapacity) {
+                        const capacity = healthData.healthcareCapacity;
+                        const occupancyPercent = parseFloat(capacity.occupancyRate);
+
+                        window.CivicCharts.createDoughnutChart('hospitalCapacityChart', {
+                            data: {
+                                labels: ['Dolu', 'Boş'],
+                                datasets: [{
+                                    data: [occupancyPercent, 100 - occupancyPercent],
+                                    backgroundColor: ['#EF4444', '#10B981']
+                                }]
+                            },
+                            legendPosition: 'bottom'
+                        });
+                    }
+
+                    // 2. Epidemiology Trend Line Chart
+                    if (healthData.epidemiologyData) {
+                        const epi = healthData.epidemiologyData;
+
+                        window.CivicCharts.createBarChart('epidemiologyChart', {
+                            data: {
+                                labels: ['Grip Vakaları', 'COVID Vakaları', 'Aşılama Oranı'],
+                                datasets: [{
+                                    label: 'Sağlık Metrikleri',
+                                    data: [epi.fluCases, epi.covidCases, parseFloat(epi.vaccinationRate)],
+                                    backgroundColor: ['#F59E0B', '#EF4444', '#10B981']
+                                }]
+                            },
+                            showLegend: false
+                        });
+                    }
+
+                    // 3. Environmental Health Radar
+                    if (healthData.environmentalHealth) {
+                        const env = healthData.environmentalHealth;
+
+                        window.CivicCharts.createRadarChart('environmentalHealthChart', {
+                            data: {
+                                labels: ['Hava Kalitesi', 'Su Kalitesi', 'Gürültü Seviyesi'],
+                                datasets: [{
+                                    label: 'Çevresel Sağlık',
+                                    data: [
+                                        100 - env.airQualityIndex, // Reverse scale (lower is better)
+                                        env.waterQuality === 'excellent' ? 95 : 70,
+                                        100 - env.noiseLevel
+                                    ],
+                                    backgroundColor: 'rgba(236, 72, 153, 0.2)',
+                                    borderColor: '#EC4899',
+                                    pointBackgroundColor: '#EC4899'
+                                }]
+                            }
+                        });
+                    }
+                }
+
+                // Start real-time updates
+                window.CivicCharts.startRealTimeUpdates('hospitalCapacityChart', '/health/metrics', 60000);
+
+                console.log('✅ Public Health charts initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing health charts:', error);
+            }
+        }
+
+        // Initialize charts when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                initHealthCharts();
+            });
+        } else {
+            initHealthCharts();
+        }
+    </script>
+
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

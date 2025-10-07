@@ -14,7 +14,7 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- AiLydians Inspired CSS Framework -->
+    <!-- LyDians Inspired CSS Framework -->
     <link rel="stylesheet" href="/css/ailydians-inspired.css">
 
     <!-- Chart.js for Analytics -->
@@ -295,11 +295,11 @@
     <div class="analytics-dashboard">
         <!-- Sidebar -->
         <aside class="analytics-sidebar">
-            <!-- AiLydian Logo -->
+            <!-- LyDian Logo -->
             <div style="padding: 0 1.5rem 2rem 1.5rem;">
                 <a href="/" class="lydian-logo">
                     <div class="lydian-logo-text">
-                        <span class="letter-a">A</span>iLydian
+                        LyDian
                         <span class="lydian-beta">BETA</span>
                     </div>
                 </a>
@@ -454,8 +454,8 @@
                     <div class="model-info">
                         <div class="model-status"></div>
                         <div>
-                            <div class="model-name">Claude 3 Opus</div>
-                            <div class="model-provider">Anthropic</div>
+                            <div class="model-name">Premium Intelligence Model</div>
+                            <div class="model-provider">Advanced AI Platform</div>
                         </div>
                     </div>
                     <div class="model-usage">
@@ -517,7 +517,7 @@
                     costsData: {
                         azure: 156.43,
                         google: 98.21,
-                        anthropic: 67.18,
+                        advanced-ai-platform: 67.18,
                         other: 26.00
                     }
                 });
@@ -587,7 +587,7 @@
                 this.costsChart = new Chart(costsCtx, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Azure', 'Google', 'Anthropic', 'Other'],
+                        labels: ['Azure', 'Google', 'Advanced AI Platform', 'Other'],
                         datasets: [{
                             data: [],
                             backgroundColor: [
@@ -621,7 +621,7 @@
                 this.costsChart.data.datasets[0].data = [
                     costsData.azure || 0,
                     costsData.google || 0,
-                    costsData.anthropic || 0,
+                    costsData.advanced-ai-platform || 0,
                     costsData.other || 0
                 ];
                 this.costsChart.update();
@@ -664,5 +664,6 @@
             });
         });
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

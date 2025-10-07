@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMO - Kentsel Mobilite Orkestratörü | Ailydian CIG</title>
+    <title>KMO - Kentsel Mobilite Orkestratörü | LyDian CIG</title>
     <link rel="icon" type="image/png" href="/lydian-logo.png">
     <link rel="apple-touch-icon" href="/lydian-logo.png">
     <link rel="stylesheet" href="/css/animated-logo.css">
@@ -615,6 +615,7 @@
             animation: pulse 2s ease-in-out infinite;
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Başlık -->
@@ -807,7 +808,32 @@
                 <!-- Akış kartları buraya eklenecek -->
             </div>
         </div>
+
+        <!-- Traffic Charts -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <!-- 24 Hour Traffic Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--lydian-text-primary);">24 Saatlik Trafik Yoğunluğu</h3>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="trafficTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Public Transport Usage Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--lydian-text-primary);">Toplu Taşıma Kullanımı</h3>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="publicTransportChart"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
 
     <script>
         // Initialize Leaflet Map (Istanbul center)
@@ -1213,13 +1239,79 @@
             }
         });
 
+        // Initialize charts with Civic API data
+        async function initializeCharts() {
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts library not loaded yet, retrying...');
+                setTimeout(initializeCharts, 500);
+                return;
+            }
+
+            console.log('🚗 Initializing Urban Mobility Charts...');
+
+            try {
+                // Fetch traffic data from Civic API
+                const trafficData = await window.CivicCharts.fetchData('/traffic/realtime');
+
+                if (trafficData && Array.isArray(trafficData)) {
+                    // 1. Traffic Trend Line Chart (24 hours)
+                    window.CivicCharts.createLineChart('trafficTrendChart', {
+                        data: {
+                            labels: trafficData.map(d => d.hour),
+                            datasets: [
+                                {
+                                    label: 'Tıkanıklık (%)',
+                                    data: trafficData.map(d => d.congestion),
+                                    borderColor: '#EF4444',
+                                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                },
+                                {
+                                    label: 'Ortalama Hız (km/sa)',
+                                    data: trafficData.map(d => d.avgSpeed),
+                                    borderColor: '#10A37F',
+                                    backgroundColor: 'rgba(16, 163, 127, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                }
+                            ]
+                        },
+                        showLegend: true
+                    });
+
+                    // 2. Public Transport Bar Chart
+                    window.CivicCharts.createBarChart('publicTransportChart', {
+                        data: {
+                            labels: trafficData.slice(0, 12).map(d => d.hour),
+                            datasets: [{
+                                label: 'Aktif Araçlar',
+                                data: trafficData.slice(0, 12).map(d => d.publicTransport),
+                                backgroundColor: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#EC4899', '#8B5CF6', '#14B8A6', '#6366F1', '#F59E0B', '#10A37F', '#7C5CFF', '#FF6B4A']
+                            }]
+                        },
+                        showLegend: false
+                    });
+                }
+
+                // Start real-time updates
+                window.CivicCharts.startRealTimeUpdates('trafficTrendChart', '/traffic/realtime', 30000);
+
+                console.log('✅ Urban Mobility charts initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing traffic charts:', error);
+            }
+        }
+
         // Initialize - Load all data
         async function initialize() {
             await Promise.all([
                 loadTrafficData(),
                 loadTransitData(),
                 loadParkingData(),
-                loadCongestionData()
+                loadCongestionData(),
+                initializeCharts()
             ]);
         }
 
@@ -1230,7 +1322,12 @@
         }, 30000);
 
         // Initialize on page load
-        initialize();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initialize);
+        } else {
+            initialize();
+        }
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

@@ -54,16 +54,23 @@ const { initializeSecurity } = require('./middleware/security');
 const { setupRateLimiting } = require('./middleware/rate-limit');
 const { initializeHTTPSSecurity } = require('./middleware/enforce-https');
 
+// 🔐 ENTERPRISE SECURITY & COMPLIANCE - PHASE F
+const { authenticate, requireRole, requirePermission, securityHeaders: newSecurityHeaders } = require('./middleware/api-auth');
+const { rateLimiter, ddosProtection, concurrentLimiter, adaptiveThrottling } = require('./middleware/rate-limiter');
+const { maskPIIInLogs, encryptResponse, decryptRequest } = require('./middleware/encryption');
+const { auditMiddleware, getAuditLogger, EVENT_TYPES, SEVERITY } = require('./middleware/audit-logger');
+const { complianceHeaders, requireConsent, getComplianceManager } = require('./middleware/gdpr-kvkk-compliance');
+
 // 🔒 NIRVANA LEVEL SECURITY HEADERS
 const securityHeaders = (req, res, next) => {
   res.setHeader('Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.jsdelivr.net; " +
-    "script-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.jsdelivr.net https://unpkg.com https://d3js.org; " +
+    "script-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://d3js.org; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net; " +
     "img-src 'self' data: https: blob:; " +
-    "font-src 'self' data: https://fonts.gstatic.com; " +
-    "connect-src 'self' https://vercel.live wss://ws-*.pusher.com https://*.pusher.com https://*.ailydian.com; " +
+    "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
+    "connect-src 'self' https://vercel.live https://*.pusher.com https://*.ailydian.com https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://cdn.jsdelivr.net https://fonts.gstatic.com https://d3js.org; " +
     "frame-ancestors 'self'; " +
     "base-uri 'self'; " +
     "form-action 'self'"
@@ -462,10 +469,46 @@ setupRateLimiting(app);
 // 🔒 NIRVANA LEVEL SECURITY HEADERS (First in chain)
 app.use(securityHeaders);
 
-// Middleware
+// 🔐 PHASE F: ENTERPRISE SECURITY & COMPLIANCE LAYER
+// Order matters: DDoS → Audit → Auth → Rate Limit → Compliance
+
+// 1. DDoS Protection (First line of defense)
+app.use(ddosProtection({
+  maxRequestsPerIP: 1000,
+  windowSeconds: 60,
+  banDuration: 3600
+}));
+
+// 2. Adaptive Throttling (Attack detection)
+app.use(adaptiveThrottling());
+
+// 3. Audit Logging (Log all requests)
+app.use(auditMiddleware({
+  console: process.env.NODE_ENV !== 'production',
+  signLogs: process.env.NODE_ENV === 'production'
+}));
+
+// 4. Middleware
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+
+// 5. Authentication & Authorization (After body parsing)
+app.use(authenticate);
+
+// 6. Rate Limiting (Role-based limits)
+app.use(rateLimiter());
+
+// 7. Concurrent Request Limiting
+app.use(concurrentLimiter());
+
+// 8. GDPR/KVKK Compliance Headers
+app.use(complianceHeaders);
+
+// 9. PII Masking in Logs
+app.use(maskPIIInLogs);
+
+// 10. Static file serving
 app.use(express.static('public'));
 
 // 🤖 FIRILDAK AI ENGINE INITIALIZATION
@@ -9656,13 +9699,25 @@ apolloServer.applyMiddleware({
 // Apply tenant middleware to API routes
 // Multi-tenant middleware setup (skip for translation endpoints and auth routes)
 app.use('/api', (req, res, next) => {
-  // Skip tenant middleware for UI translation endpoint, auth routes, legal AI routes, and Medical AI routes
+  // Skip tenant middleware for UI translation endpoint, auth routes, legal AI routes, Medical AI routes, and Civic Intelligence Grid
   if (req.path.startsWith('/translate/ui/') ||
       req.path.startsWith('/auth/') ||
       req.path.startsWith('/azure/legal/') ||
       req.path.startsWith('/legal-ai/') ||
       req.path.startsWith('/neuro/') ||
-      req.path.startsWith('/medical/')) {  // Added Medical AI bypass
+      req.path.startsWith('/medical/') ||
+      req.path.startsWith('/civic/') ||     // Civic Intelligence Grid - Unified API
+      req.path.startsWith('/umo/') ||       // Urban Mobility Orchestrator
+      req.path.startsWith('/phn/') ||       // Public Health Nowcasting
+      req.path.startsWith('/rro/') ||       // Risk & Resilience OS
+      req.path.startsWith('/atg/') ||       // Automated Trust Graph
+      req.path.startsWith('/svf/') ||       // Synthetic Data Factory
+      req.path === '/smart-cities/health' ||  // Smart Cities health check
+      req.path === '/insan-iq/health' ||      // İnsan IQ health check
+      req.path === '/lydian-iq/health' ||     // LyDian IQ health check
+      req.path === '/azure/health' ||         // Azure services health check
+      req.path === '/token-governor/status' || // Token Governor status
+      req.path.startsWith('/metrics/')) {     // Metrics & monitoring endpoints
     return next();
   }
   return tenantMiddleware(req, res, next);
@@ -16999,6 +17054,50 @@ app.get('/api/token-governor/status', async (req, res) => {
   }
 });
 
+// 🏙️ Smart Cities Health Endpoint
+app.get('/api/smart-cities/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'smart-cities',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    capabilities: ['iot-data', 'analytics', 'predictions']
+  });
+});
+
+// 🧠 İnsan IQ Health Endpoint
+app.get('/api/insan-iq/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'insan-iq',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    capabilities: ['emotion-detection', 'empathy', 'conversation', 'crisis-management']
+  });
+});
+
+// ⚖️ LyDian IQ Health Endpoint
+app.get('/api/lydian-iq/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'lydian-iq',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    capabilities: ['document-analysis', 'contract-review', 'compliance', 'legal-research']
+  });
+});
+
+// ☁️ Azure Services Health Endpoint
+app.get('/api/azure/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'azure-services',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    services: ['cognitive-services', 'openai', 'search', 'translator']
+  });
+});
+
 // 🏥 MEDICAL AI ROUTES - BEYAZ ŞAPKALI (White-Hat Security)
 // Apply HIPAA Audit Middleware + Token Governor to all Medical AI endpoints
 const medicalTokenGovernor = tokenGovernorMiddleware({ defaultModel: 'claude-sonnet-4-5', defaultPriority: 'P0_clinical' });
@@ -17092,12 +17191,18 @@ const cigRroAPI = require('./api/cig-rro');
 const cigUmoAPI = require('./api/cig-umo');
 const cigPhnAPI = require('./api/cig-phn');
 
+// 🏙️ NEW: Civic Intelligence Grid - Unified Real-Time API
+const civicAPI = require('./api/civic-api');
+
 app.use('/api/svf', cigSvfAPI);      // Sentetik Veri Fabrikası
 app.use('/api/map', cigMapAPI);      // Model Doğrulama ve Kanıt
 app.use('/api/atg', cigAtgAPI);      // Otomatik Güven Ağı
 app.use('/api/rro', cigRroAPI);      // Risk ve Dayanıklılık İşletim Sistemi
 app.use('/api/umo', cigUmoAPI);      // Kentsel Mobilite Orkestratörü
 app.use('/api/phn', cigPhnAPI);      // Halk Sağlığı Nowcasting
+
+// 🏙️ Unified Civic Intelligence API - Real-time Smart City Data
+app.use('/api/civic', civicAPI);
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {

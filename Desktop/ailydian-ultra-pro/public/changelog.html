@@ -13,6 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
         :root {
             --primary: #ff7300;
             --primary-dark: #e65f00;
@@ -69,6 +77,7 @@
         }
 
         .logo {
+            font-family: 'Righteous', cursive;
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -391,6 +400,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -417,7 +427,7 @@
             <!-- Hero Section -->
             <section class="hero">
                 <h1>Güncelleme Geçmişi</h1>
-                <p>AiLydian Enterprise AI Platform'un tüm güncellemeleri, yenilikler ve iyileştirmeler</p>
+                <p>LyDian Enterprise AI Platform'un tüm güncellemeleri, yenilikler ve iyileştirmeler</p>
             </section>
 
             <!-- Version 2.1.0 -->
@@ -496,7 +506,7 @@
                         <li class="change-item">
                             <div class="change-icon icon-improved">↗</div>
                             <div class="change-content">
-                                <div class="change-description">AiLydians Lightning Speed Optimizasyonu</div>
+                                <div class="change-description">LyDians Lightning Speed Optimizasyonu</div>
                                 <div class="change-details">Ultra hızlı inference ile 0.8s altında yanıt süreleri</div>
                             </div>
                         </li>
@@ -593,14 +603,14 @@
                             <div class="change-icon icon-new">+</div>
                             <div class="change-content">
                                 <div class="change-description">Premium Orange Theme</div>
-                                <div class="change-details">AiLydians-inspired modern tasarım, glassmorphism effektleri ve responsive layout</div>
+                                <div class="change-details">LyDians-inspired modern tasarım, glassmorphism effektleri ve responsive layout</div>
                             </div>
                         </li>
                         <li class="change-item">
                             <div class="change-icon icon-new">+</div>
                             <div class="change-content">
                                 <div class="change-description">Multi-AI Provider Support</div>
-                                <div class="change-details">AiLydians, OpenAI, Anthropic, Google ve Azure AI modelleri tek platformda</div>
+                                <div class="change-details">LyDians, OpenAI, Advanced AI Platform, Google ve Azure AI modelleri tek platformda</div>
                             </div>
                         </li>
                     </ul>
@@ -725,5 +735,6 @@
             observer.observe(card);
         });
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

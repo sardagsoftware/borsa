@@ -14,34 +14,34 @@
     <meta name="theme-color" content="#6366f1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="AiLydian Enterprise">
-    <meta name="application-name" content="AiLydian Enterprise">
+    <meta name="apple-mobile-web-app-title" content="LyDian Enterprise">
+    <meta name="application-name" content="LyDian Enterprise">
     <meta name="msapplication-TileColor" content="#6366f1">
     <meta name="msapplication-config" content="/browserconfig.xml">
 
     <!-- SEO Meta Tags -->
-    <title>AiLydian Enterprise AI Platform - Global Scale AI Solutions | Microsoft Azure, Google, Z.AI Integration</title>
+    <title>LyDian Enterprise AI Platform - Global Scale AI Solutions | Microsoft Azure, Google, Z.AI Integration</title>
     <meta name="description" content="Enterprise-grade AI platform integrating Microsoft Azure AI, Google Gemini, and Z.AI services. 23 AI models, 84 languages, real-time processing, global deployment. Mobile-responsive, SEO-optimized, browser-compatible.">
     <meta name="keywords" content="enterprise AI, Microsoft Azure, Google Gemini, Z.AI, artificial intelligence, machine learning, AI platform, multi-language, global AI, enterprise solutions">
-    <meta name="author" content="AiLydian Enterprise">
-    <meta name="generator" content="AiLydian Enterprise Platform v2.0">
+    <meta name="author" content="LyDian Enterprise">
+    <meta name="generator" content="LyDian Enterprise Platform v2.0">
 
     <!-- Open Graph Meta -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="AiLydian Enterprise AI Platform - Global Scale Solutions">
+    <meta property="og:title" content="LyDian Enterprise AI Platform - Global Scale Solutions">
     <meta property="og:description" content="Enterprise AI platform with Microsoft Azure, Google Gemini, Z.AI integration. 23 models, 84 languages, global deployment.">
     <meta property="og:image" content="/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://ailydian.com">
-    <meta property="og:site_name" content="AiLydian Enterprise">
+    <meta property="og:site_name" content="LyDian Enterprise">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card Meta -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@ailydian">
     <meta name="twitter:site" content="@ailydian">
-    <meta name="twitter:title" content="AiLydian Enterprise AI Platform">
+    <meta name="twitter:title" content="LyDian Enterprise AI Platform">
     <meta name="twitter:description" content="Global enterprise AI solutions with Azure, Google, Z.AI integration">
     <meta name="twitter:image" content="/assets/twitter-card.jpg">
 
@@ -50,14 +50,14 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "AiLydian Enterprise AI Platform",
+      "name": "LyDian Enterprise AI Platform",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Any",
       "description": "Enterprise AI platform integrating Microsoft Azure, Google Gemini, and Z.AI services",
       "url": "https://ailydian.com",
       "author": {
         "@type": "Organization",
-        "name": "AiLydian Enterprise"
+        "name": "LyDian Enterprise"
       },
       "offers": {
         "@type": "Offer",
@@ -87,6 +87,14 @@
 
     <!-- Critical CSS -->
     <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
         /* CSS Variables for Global Theming */
         :root {
             /* Enterprise Color Palette */
@@ -231,6 +239,7 @@
         }
 
         .logo {
+            font-family: 'Righteous', cursive;
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
@@ -512,8 +521,8 @@
     <!-- Header -->
     <header class="header" role="banner">
         <nav class="nav container" role="navigation" aria-label="Main navigation">
-            <a href="/" class="logo" aria-label="AiLydian Enterprise Home">
-                🚀 AiLydian Enterprise
+            <a href="/" class="logo" aria-label="LyDian Enterprise Home">
+                🚀 LyDian Enterprise
             </a>
 
             <ul class="nav-links" id="nav-links">
@@ -666,7 +675,7 @@
     <!-- JavaScript -->
     <script>
         // Global State Management
-        const AiLydian = {
+        const LyDian = {
             currentLanguage: 'en',
             isLoading: false,
             features: [],
@@ -922,7 +931,7 @@
                     // Set up periodic status updates
                     setInterval(() => this.updateSystemStatus(), 30000);
 
-                    console.log('🚀 AiLydian Enterprise Platform initialized successfully');
+                    console.log('🚀 LyDian Enterprise Platform initialized successfully');
 
                 } catch (error) {
                     console.error('Initialization failed:', error);
@@ -932,9 +941,9 @@
 
         // Initialize when DOM is ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => AiLydian.init());
+            document.addEventListener('DOMContentLoaded', () => LyDian.init());
         } else {
-            AiLydian.init();
+            LyDian.init();
         }
 
         // Service Worker Registration for PWA
@@ -966,7 +975,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "AiLydian Enterprise",
+      "name": "LyDian Enterprise",
       "url": "https://ailydian.com",
       "logo": "https://ailydian.com/assets/logo.png",
       "description": "Enterprise AI platform integrating Microsoft Azure, Google Gemini, and Z.AI services",
@@ -984,5 +993,6 @@
 
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>
