@@ -26,8 +26,8 @@ module.exports = async (req, res) => {
 
       // ===== SECURITY & RESILIENCE =====
       rate_limiting: true,        // PHASE 1: Enabled
-      idempotency_keys: false,    // PHASE 2: To be enabled
-      webhook_signature_validation: false, // PHASE 2: To be enabled
+      idempotency_keys: true,     // PHASE 2: Enabled
+      webhook_signature_validation: true, // PHASE 2: Enabled
       csrf_protection: true,      // Already implemented
 
       // ===== OBSERVABILITY =====
