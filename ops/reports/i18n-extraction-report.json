@@ -1,0 +1,922 @@
+{
+  "timestamp": "2025-10-07T18:57:13.108Z",
+  "statistics": {
+    "filesScanned": 137,
+    "stringsExtracted": 0,
+    "keysMapped": 8548,
+    "categories": {
+      "nav": 129,
+      "footer": 14,
+      "cta": 436,
+      "hero": 85,
+      "forms": 462,
+      "errors": 29,
+      "stats": 377,
+      "common": 7,
+      "content": 7009
+    }
+  },
+  "categories": {
+    "nav": {
+      "count": 129,
+      "samples": [
+        {
+          "key": "nav.menu",
+          "text": "Menu",
+          "occurrences": 10
+        },
+        {
+          "key": "nav.service_unavailable",
+          "text": "Service Unavailable",
+          "occurrences": 1
+        },
+        {
+          "key": "nav.genel",
+          "text": "Genel",
+          "occurrences": 2
+        },
+        {
+          "key": "nav.genel_bakis",
+          "text": "Genel Bakış",
+          "occurrences": 1
+        },
+        {
+          "key": "nav.kimlik_dogrulama",
+          "text": "Kimlik Doğrulama",
+          "occurrences": 4
+        }
+      ]
+    },
+    "footer": {
+      "count": 14,
+      "samples": [
+        {
+          "key": "footer.yapay_zeka_teknolojileriyle_gelecegi_sek",
+          "text": "Yapay zeka teknolojileriyle geleceği şekillendiren, yenilikçi çözümler sunan AI platformu.",
+          "occurrences": 16
+        },
+        {
+          "key": "footer.2025_lydian_tum_haklari_saklidir",
+          "text": "© 2025 LyDian. Tüm hakları saklıdır.",
+          "occurrences": 23
+        },
+        {
+          "key": "footer.dunya_capinda_bilgi_portali_65_milyon_ma",
+          "text": "Dünya çapında bilgi portalı. 65 milyon makale, 84 dil, 67 uzmanlık alanı.",
+          "occurrences": 1
+        },
+        {
+          "key": "footer.hizli_erisim",
+          "text": "Hızlı Erişim",
+          "occurrences": 1
+        },
+        {
+          "key": "footer.v2_1_sardag_edition",
+          "text": "v2.1 Sardag Edition",
+          "occurrences": 1
+        }
+      ]
+    },
+    "cta": {
+      "count": 436,
+      "samples": [
+        {
+          "key": "cta.giris_yap",
+          "text": "Giriş Yap",
+          "occurrences": 16
+        },
+        {
+          "key": "cta.simdi_dene",
+          "text": "Şimdi Dene",
+          "occurrences": 21
+        },
+        {
+          "key": "cta.ucretsiz_baslayin",
+          "text": "Ücretsiz Başlayın",
+          "occurrences": 2
+        },
+        {
+          "key": "cta.girisimcilik",
+          "text": "Girişimcilik",
+          "occurrences": 1
+        },
+        {
+          "key": "cta.girisimcilik_yardimci_pilotu",
+          "text": "Girişimcilik Yardımcı Pilotu",
+          "occurrences": 1
+        }
+      ]
+    },
+    "hero": {
+      "count": 85,
+      "samples": [
+        {
+          "key": "hero.hakkimizda",
+          "text": "Hakkımızda",
+          "occurrences": 31
+        },
+        {
+          "key": "hero.yapay_zeka_teknolojileriyle_gelecegi_sek",
+          "text": "Yapay zeka teknolojileriyle geleceği şekillendiren ekip. İnovasyon, güven ve mükemmellik odaklı çalışıyoruz.",
+          "occurrences": 1
+        },
+        {
+          "key": "hero.gelismis_dil_modelleriyle_desteklenen_ly",
+          "text": "Gelişmiş dil modelleriyle desteklenen LyDian AI Sohbet, karmaşık sorularınızı anlar, detaylı yanıtlar üretir ve yaratıcı çözümler sunar.",
+          "occurrences": 1
+        },
+        {
+          "key": "hero.lydian_api_yi_kullanarak_guclu_ai_yetene",
+          "text": "LyDian API'yi kullanarak güçlü AI yeteneklerini uygulamalarınıza entegre edin. RESTful API, SDK'lar ve kapsamlı dokümantasyon ile hemen başlayın.",
+          "occurrences": 1
+        },
+        {
+          "key": "hero.uptime_sla",
+          "text": "Uptime SLA",
+          "occurrences": 2
+        }
+      ]
+    },
+    "forms": {
+      "count": 462,
+      "samples": [
+        {
+          "key": "forms.about_us_lydian_next_generation_ai_platf",
+          "text": "About Us - LyDian | Next-Generation AI Platform",
+          "occurrences": 1
+        },
+        {
+          "key": "forms.platform_fikri_olusturuldu_ve_ilk_protot",
+          "text": "Platform fikri oluşturuldu ve ilk prototip çalışmaları başladı. Temel mimari ve teknoloji yığını belirlendi.",
+          "occurrences": 1
+        },
+        {
+          "key": "forms.platform_lansmani",
+          "text": "Platform Lansmanı",
+          "occurrences": 1
+        },
+        {
+          "key": "forms.dunyada_i_lk_multimodal_ai_danismanlik_p",
+          "text": "Dünyada İlk Multimodal AI Danışmanlık Platformu",
+          "occurrences": 1
+        },
+        {
+          "key": "forms.adaptive",
+          "text": "Adaptive",
+          "occurrences": 1
+        }
+      ]
+    },
+    "errors": {
+      "count": 29,
+      "samples": [
+        {
+          "key": "errors.error_codes",
+          "text": "Error Codes",
+          "occurrences": 2
+        },
+        {
+          "key": "errors.errors",
+          "text": "Errors",
+          "occurrences": 1
+        },
+        {
+          "key": "errors.error_handling",
+          "text": "Error Handling",
+          "occurrences": 1
+        },
+        {
+          "key": "errors.uyari_gecikmesi",
+          "text": "Uyarı Gecikmesi",
+          "occurrences": 1
+        },
+        {
+          "key": "errors.hata_escapehtml_message",
+          "text": "Hata: ${escapeHtml(message)}",
+          "occurrences": 1
+        }
+      ]
+    },
+    "stats": {
+      "count": 377,
+      "samples": [
+        {
+          "key": "stats.99_5",
+          "text": "99.5%",
+          "occurrences": 2
+        },
+        {
+          "key": "stats.dogruluk_orani",
+          "text": "Doğruluk Oranı",
+          "occurrences": 5
+        },
+        {
+          "key": "stats.2s",
+          "text": "<2s",
+          "occurrences": 1
+        },
+        {
+          "key": "stats.yanit_suresi",
+          "text": "Yanıt Süresi",
+          "occurrences": 4
+        },
+        {
+          "key": "stats.140",
+          "text": "140+",
+          "occurrences": 1
+        }
+      ]
+    },
+    "common": {
+      "count": 7,
+      "samples": [
+        {
+          "key": "common.aciklama_i_stege_bagli",
+          "text": "Açıklama (İsteğe Bağlı)",
+          "occurrences": 1
+        },
+        {
+          "key": "common.aciklama",
+          "text": "açıklama",
+          "occurrences": 5
+        },
+        {
+          "key": "common.aciklama_1",
+          "text": "Açıklama",
+          "occurrences": 1
+        },
+        {
+          "key": "common.acik_kaynak_sdk_lar_ornek_projeler_ve_ka",
+          "text": "Açık kaynak SDK'lar, örnek projeler ve katkıda bulunma fırsatları",
+          "occurrences": 1
+        },
+        {
+          "key": "common.acik",
+          "text": "Açık",
+          "occurrences": 3
+        }
+      ]
+    },
+    "content": {
+      "count": 7009,
+      "samples": [
+        {
+          "key": "content.lydian_ai",
+          "text": "LyDian AI",
+          "occurrences": 29
+        },
+        {
+          "key": "content.dokumantasyon",
+          "text": "Dokümantasyon",
+          "occurrences": 25
+        },
+        {
+          "key": "content.gelistiriciler",
+          "text": "Geliştiriciler",
+          "occurrences": 19
+        },
+        {
+          "key": "content.modeller",
+          "text": "Modeller",
+          "occurrences": 13
+        },
+        {
+          "key": "content.hi_kayemi_z",
+          "text": "HİKAYEMİZ",
+          "occurrences": 1
+        }
+      ]
+    }
+  },
+  "topStrings": [
+    {
+      "text": "width=device-width, initial-scale=1.0",
+      "icuKey": "content.width_device_width_initial_scale_1_0",
+      "category": "content",
+      "occurrences": 96,
+      "files": [
+        "public/about.html",
+        "public/ai-advisor-hub.html",
+        "public/ai-assistant.html",
+        "public/ai-chat.html",
+        "public/ai-cultural-advisor.html",
+        "public/ai-decision-matrix.html",
+        "public/ai-health-orchestrator.html",
+        "public/ai-knowledge-assistant.html",
+        "public/ai-learning-path.html",
+        "public/ai-life-coach.html",
+        "public/ai-meeting-insights.html",
+        "public/ai-startup-accelerator.html",
+        "public/analytics.html",
+        "public/api-reference.html",
+        "public/api.html",
+        "public/auth.html",
+        "public/azure-dashboard.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/changelog.html",
+        "public/chat.html",
+        "public/civic-atg.html",
+        "public/civic-intelligence-grid.html",
+        "public/civic-map.html",
+        "public/civic-phn.html",
+        "public/civic-rro.html",
+        "public/civic-svf.html",
+        "public/civic-umo.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/cookies.html",
+        "public/cost-dashboard.html",
+        "public/cyborg-demo.html",
+        "public/cyborg-orbital-full.html",
+        "public/dashboard.html",
+        "public/developers.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/epic-fhir-dashboard.html",
+        "public/files.html",
+        "public/firildak-ai.html",
+        "public/firildak.html",
+        "public/forgot-password.html",
+        "public/google-studio.html",
+        "public/help.html",
+        "public/hero-3d-lydian.html",
+        "public/hero-cinematic-demo.html",
+        "public/hero-particles-lydian.html",
+        "public/hero-video-demo-1-neural.html",
+        "public/hero-video-demo-2-particles.html",
+        "public/hero-video-demo-3-matrix.html",
+        "public/hero-video-demo-4-abstract.html",
+        "public/hero-video-demos-index.html",
+        "public/humain-home.html",
+        "public/i18n/MEDICAL-EXPERT-INTEGRATION.html",
+        "public/image-generation.html",
+        "public/index-new.html",
+        "public/index.html",
+        "public/knowledge-base.html",
+        "public/legal-expert.html",
+        "public/lydian-hukukai-pro.html",
+        "public/lydian-hukukai-v2.html",
+        "public/lydian-hukukai.html",
+        "public/lydian-legal-chat.html",
+        "public/lydian-legal-search-BACKUP-20251004-022408.html",
+        "public/lydian-legal-search-BACKUP-20251005-235806.html",
+        "public/lydian-legal-search-BACKUP-20251006.html",
+        "public/lydian-legal-search.html",
+        "public/lydian-offline.html",
+        "public/medical-ai-dashboard.html",
+        "public/medical-ai.html",
+        "public/medical-expert-BACKUP-20251004.html",
+        "public/medical-expert-BACKUP-20251005-022225.html",
+        "public/medical-expert.html",
+        "public/models.html",
+        "public/monitoring.html",
+        "public/pages/notifications.html",
+        "public/pages/settings.html",
+        "public/pages/users.html",
+        "public/privacy.html",
+        "public/realistic-characters-demo.html",
+        "public/research.html",
+        "public/reset-password.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/system-status.html",
+        "public/terms.html",
+        "public/test-auto-translate.html",
+        "public/test-chat-api.html",
+        "public/test-language-system.html",
+        "public/test-legal.html",
+        "public/test-translation.html",
+        "public/tokens.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": ", sources: [",
+      "icuKey": "content.sources",
+      "category": "content",
+      "occurrences": 68,
+      "files": [
+        "public/js/knowledge-categories-data.js"
+      ]
+    },
+    {
+      "text": ", title:",
+      "icuKey": "content.title",
+      "category": "content",
+      "occurrences": 66,
+      "files": [
+        "public/js/knowledge-categories-data.js",
+        "public/js/lydian-iq-pwa-universal.js"
+      ]
+    },
+    {
+      "text": ", description:",
+      "icuKey": "content.description_2",
+      "category": "content",
+      "occurrences": 62,
+      "files": [
+        "public/js/knowledge-categories-data.js"
+      ]
+    },
+    {
+      "text": ", dataCount:",
+      "icuKey": "content.datacount",
+      "category": "content",
+      "occurrences": 62,
+      "files": [
+        "public/js/knowledge-categories-data.js"
+      ]
+    },
+    {
+      "text": "fill=",
+      "icuKey": "content.fill",
+      "category": "content",
+      "occurrences": 56,
+      "files": [
+        "public/js/ailydian-search-animation.js",
+        "public/js/lydian-iq-enhancements.js",
+        "public/js/lydian-iq-pwa-universal.js",
+        "public/js/lydian-pwa-installer.js",
+        "public/js/medical/app.js",
+        "public/js/medical/ui-components.js",
+        "public/js/neuro-health-api-integration.js",
+        "public/js/theme-manager.js",
+        "public/js/voice-module.js"
+      ]
+    },
+    {
+      "text": "stroke=",
+      "icuKey": "content.stroke_1",
+      "category": "content",
+      "occurrences": 47,
+      "files": [
+        "public/js/ailydian-search-animation.js",
+        "public/js/lydian-iq-enhancements.js",
+        "public/js/lydian-iq-pwa-universal.js",
+        "public/js/lydian-pwa-installer.js",
+        "public/js/medical/app.js",
+        "public/js/medical/ui-components.js",
+        "public/js/neuro-health-api-integration.js",
+        "public/js/theme-manager.js"
+      ]
+    },
+    {
+      "text": "stroke-width=",
+      "icuKey": "content.stroke_width",
+      "category": "content",
+      "occurrences": 45,
+      "files": [
+        "public/js/ailydian-search-animation.js",
+        "public/js/lydian-iq-enhancements.js",
+        "public/js/lydian-iq-pwa-universal.js",
+        "public/js/lydian-pwa-installer.js",
+        "public/js/medical/app.js",
+        "public/js/medical/ui-components.js",
+        "public/js/neuro-health-api-integration.js"
+      ]
+    },
+    {
+      "text": "height=",
+      "icuKey": "content.height",
+      "category": "content",
+      "occurrences": 44,
+      "files": [
+        "public/js/ailydian-search-animation.js",
+        "public/js/lydian-iq-enhancements.js",
+        "public/js/lydian-iq-pwa-universal.js",
+        "public/js/lydian-pwa-installer.js",
+        "public/js/medical/app.js",
+        "public/js/medical/ui-components.js",
+        "public/js/neuro-health-api-integration.js",
+        "public/js/voice-module.js"
+      ]
+    },
+    {
+      "text": "viewBox=",
+      "icuKey": "content.viewbox",
+      "category": "content",
+      "occurrences": 43,
+      "files": [
+        "public/js/ailydian-search-animation.js",
+        "public/js/lydian-iq-enhancements.js",
+        "public/js/lydian-iq-pwa-universal.js",
+        "public/js/lydian-pwa-installer.js",
+        "public/js/medical/app.js",
+        "public/js/medical/ui-components.js",
+        "public/js/neuro-health-api-integration.js",
+        "public/js/theme-manager.js",
+        "public/js/voice-module.js"
+      ]
+    },
+    {
+      "text": "click",
+      "icuKey": "content.click",
+      "category": "content",
+      "occurrences": 40,
+      "files": [
+        "public/js/chat-ailydian.js",
+        "public/js/cyborg-orbital-controller.js",
+        "public/js/dashboard-core.js",
+        "public/js/firildak-app.js",
+        "public/js/lydian-iq.js",
+        "public/js/lydian-pwa-installer.js",
+        "public/js/medical/app.js",
+        "public/js/mobile-menu-handler.js",
+        "public/js/theme-manager.js",
+        "public/js/voice-module.js"
+      ]
+    },
+    {
+      "text": "Hakkımızda",
+      "icuKey": "hero.hakkimizda",
+      "category": "hero",
+      "occurrences": 31,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/cookies.html",
+        "public/developers.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/help.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/terms.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": "error",
+      "icuKey": "errors.error",
+      "category": "errors",
+      "occurrences": 30,
+      "files": [
+        "public/js/api-integrations.js",
+        "public/js/chat-ailydian.js",
+        "public/js/knowledge-base.js",
+        "public/js/lydian-iq.js",
+        "public/js/medical/app.js",
+        "public/js/medical/epic-fhir.js",
+        "public/js/medical/pwa-manager.js",
+        "public/js/three.min.js"
+      ]
+    },
+    {
+      "text": "LyDian AI",
+      "icuKey": "content.lydian_ai",
+      "category": "content",
+      "occurrences": 29,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/cookies.html",
+        "public/developers.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/help.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/lydian-iq-BACKUP-20251006-220020.html",
+        "public/lydian-iq.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/terms.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": "AI Sohbet",
+      "icuKey": "content.ai_sohbet",
+      "category": "content",
+      "occurrences": 27,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/civic-intelligence-grid.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/cookies.html",
+        "public/developers.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/help.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/terms.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": "Destek",
+      "icuKey": "content.destek",
+      "category": "content",
+      "occurrences": 27,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/help.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": "> <div class=",
+      "icuKey": "forms.div_class",
+      "category": "forms",
+      "occurrences": 27,
+      "files": [
+        "public/js/chat-ailydian.js",
+        "public/js/dashboard-core.js",
+        "public/js/firildak-app.js",
+        "public/js/knowledge-base.js",
+        "public/js/lydian-iq-enhancements.js",
+        "public/js/lydian-iq.js",
+        "public/js/medical/ui-components.js",
+        "public/js/projects-fab.js"
+      ]
+    },
+    {
+      "text": "Enterprise",
+      "icuKey": "content.enterprise",
+      "category": "content",
+      "occurrences": 26,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/google-studio.html",
+        "public/help.html",
+        "public/humain-home.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/tokens.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": "Çerezler",
+      "icuKey": "content.cerezler",
+      "category": "content",
+      "occurrences": 26,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/cookies.html",
+        "public/developers.html",
+        "public/docs.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/help.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/terms.html",
+        "public/video-ai.html"
+      ]
+    },
+    {
+      "text": "LyDian Logo",
+      "icuKey": "content.lydian_logo",
+      "category": "content",
+      "occurrences": 26,
+      "files": [
+        "public/about.html",
+        "public/ai-chat.html",
+        "public/api-reference.html",
+        "public/billing.html",
+        "public/blog.html",
+        "public/careers.html",
+        "public/chat.html",
+        "public/console.html",
+        "public/contact.html",
+        "public/cookies.html",
+        "public/developers.html",
+        "public/education.html",
+        "public/enterprise.html",
+        "public/help.html",
+        "public/image-generation.html",
+        "public/index.html",
+        "public/medical-expert-BACKUP-20251004.html",
+        "public/models.html",
+        "public/privacy.html",
+        "public/research.html",
+        "public/settings.html",
+        "public/status.html",
+        "public/system-status.html",
+        "public/terms.html",
+        "public/video-ai.html"
+      ]
+    }
+  ],
+  "filesCovered": [
+    "public/about.html",
+    "public/ai-advisor-hub.html",
+    "public/ai-assistant.html",
+    "public/ai-chat.html",
+    "public/ai-cultural-advisor.html",
+    "public/ai-decision-matrix.html",
+    "public/ai-health-orchestrator.html",
+    "public/ai-knowledge-assistant.html",
+    "public/ai-learning-path.html",
+    "public/ai-life-coach.html",
+    "public/ai-meeting-insights.html",
+    "public/ai-startup-accelerator.html",
+    "public/analytics.html",
+    "public/api-reference.html",
+    "public/api.html",
+    "public/auth.html",
+    "public/azure-dashboard.html",
+    "public/billing.html",
+    "public/blog.html",
+    "public/careers.html",
+    "public/changelog.html",
+    "public/chat.html",
+    "public/civic-atg.html",
+    "public/civic-intelligence-grid.html",
+    "public/civic-map.html",
+    "public/civic-phn.html",
+    "public/civic-rro.html",
+    "public/civic-svf.html",
+    "public/civic-umo.html",
+    "public/console.html",
+    "public/contact.html",
+    "public/cookies.html",
+    "public/cost-dashboard.html",
+    "public/cyborg-demo.html",
+    "public/cyborg-orbital-full.html",
+    "public/dashboard.html",
+    "public/developers.html",
+    "public/docs.html",
+    "public/education.html",
+    "public/enterprise-index.html",
+    "public/enterprise.html",
+    "public/epic-fhir-dashboard.html",
+    "public/files.html",
+    "public/firildak-ai.html",
+    "public/firildak.html",
+    "public/forgot-password.html",
+    "public/google-studio.html",
+    "public/help.html",
+    "public/hero-3d-lydian.html",
+    "public/hero-cinematic-demo.html",
+    "public/hero-particles-lydian.html",
+    "public/hero-video-demo-1-neural.html",
+    "public/hero-video-demo-2-particles.html",
+    "public/hero-video-demo-3-matrix.html",
+    "public/hero-video-demo-4-abstract.html",
+    "public/hero-video-demos-index.html",
+    "public/humain-home.html",
+    "public/i18n/MEDICAL-EXPERT-INTEGRATION.html",
+    "public/image-generation.html",
+    "public/index-new.html",
+    "public/index.html",
+    "public/js/ailydian-search-animation.js",
+    "public/js/api-integrations.js",
+    "public/js/azure-insights-browser.js",
+    "public/js/chat-ailydian.js",
+    "public/js/civic-charts-lib.js",
+    "public/js/csrf-token.js",
+    "public/js/cyborg-orbital-controller.js",
+    "public/js/dashboard-core.js",
+    "public/js/firildak-app.js",
+    "public/js/geo-language.js",
+    "public/js/hero-cinematic-controller.js",
+    "public/js/hero-ecosystem-controller.js",
+    "public/js/hero-realistic-controller.js",
+    "public/js/i18n-manager.js",
+    "public/js/knowledge-base.js",
+    "public/js/knowledge-categories-data.js",
+    "public/js/language-manager.js",
+    "public/js/lydian-iq-enhancements.js",
+    "public/js/lydian-iq-pwa-universal.js",
+    "public/js/lydian-iq.js",
+    "public/js/lydian-pwa-installer.js",
+    "public/js/medical/api-client.js",
+    "public/js/medical/app.js",
+    "public/js/medical/epic-fhir.js",
+    "public/js/medical/medical-tools.js",
+    "public/js/medical/pwa-manager.js",
+    "public/js/medical/state-management.js",
+    "public/js/medical/ui-components.js",
+    "public/js/mobile-menu-handler.js",
+    "public/js/neuro-health-api-integration.js",
+    "public/js/projects-fab.js",
+    "public/js/status-indicators.js",
+    "public/js/theme-manager.js",
+    "public/js/three.min.js",
+    "public/js/title-case.js",
+    "public/js/voice-module.js",
+    "public/js/xss-protection.js",
+    "public/knowledge-base.html",
+    "public/legal-expert.html",
+    "public/lydian-hukukai-pro.html",
+    "public/lydian-hukukai-v2.html",
+    "public/lydian-hukukai.html",
+    "public/lydian-iq-BACKUP-20251006-220020.html",
+    "public/lydian-iq.html",
+    "public/lydian-legal-chat.html",
+    "public/lydian-legal-search-BACKUP-20251004-022408.html",
+    "public/lydian-legal-search-BACKUP-20251005-235806.html",
+    "public/lydian-legal-search-BACKUP-20251006.html",
+    "public/lydian-legal-search.html",
+    "public/lydian-offline.html",
+    "public/medical-ai-dashboard.html",
+    "public/medical-ai.html",
+    "public/medical-expert-BACKUP-20251004.html",
+    "public/medical-expert-BACKUP-20251005-022225.html",
+    "public/medical-expert.html",
+    "public/models.html",
+    "public/monitoring.html",
+    "public/pages/notifications.html",
+    "public/pages/settings.html",
+    "public/pages/users.html",
+    "public/privacy.html",
+    "public/realistic-characters-demo.html",
+    "public/research.html",
+    "public/reset-password.html",
+    "public/settings.html",
+    "public/status.html",
+    "public/system-status.html",
+    "public/terms.html",
+    "public/test-auto-translate.html",
+    "public/test-chat-api.html",
+    "public/test-language-system.html",
+    "public/test-legal.html",
+    "public/test-translation.html",
+    "public/tokens.html",
+    "public/video-ai.html"
+  ]
+}

@@ -1,10 +1,16 @@
 // 🔒 LyDian IQ - Universal Service Worker
-// Version: 3.1 - CDN Bypass Fixed
-// Compatible: All browsers, all devices
+// Version: 3.2 - iOS & Android Cross-Platform Optimized
+// Compatible: All browsers, all devices (iOS, Android, Desktop)
 // White-Hat Security: Active
+// iOS PWA: Fully compatible with iOS 11.3+
+// Android PWA: Fully compatible with Android 5.0+
 
-const CACHE_VERSION = 'lydian-iq-v3.1-20251007-cdn-fix';
+const CACHE_VERSION = 'lydian-iq-v3.2-20251007-ios-android-fix';
 const CACHE_NAME = `${CACHE_VERSION}`;
+
+// Detect iOS device for specific handling
+const isIOS = /iPad|iPhone|iPod/.test(self.navigator.userAgent) ||
+              (self.navigator.platform === 'MacIntel' && self.navigator.maxTouchPoints > 1);
 
 // 🎯 Critical Assets (Always cache)
 const CRITICAL_ASSETS = [
@@ -100,17 +106,24 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // 🎯 Strategy: Network First with Cache Fallback
+    // 🎯 Strategy: Network First with Cache Fallback (iOS & Android optimized)
     event.respondWith(
-        fetch(request)
+        fetch(request, {
+            // iOS Safari timeout fix
+            signal: isIOS ? undefined : request.signal,
+            cache: 'no-store' // Prevent double caching on iOS
+        })
             .then((response) => {
                 // Clone response before caching
                 const responseToCache = response.clone();
 
-                // Cache successful responses
-                if (response.status === 200) {
+                // Cache successful responses (iOS-safe)
+                if (response.status === 200 && response.type !== 'opaque') {
                     caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(request, responseToCache);
+                        // iOS-safe cache put with error handling
+                        cache.put(request, responseToCache).catch((err) => {
+                            console.warn('⚠️ Cache put failed (iOS safe):', err);
+                        });
                     });
                 }
 
@@ -126,8 +139,14 @@ self.addEventListener('fetch', (event) => {
                         }
 
                         // If HTML page, show offline page
-                        if (request.headers.get('accept').includes('text/html')) {
-                            return caches.match('/lydian-offline.html');
+                        if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
+                            return caches.match('/lydian-offline.html').then((offlinePage) => {
+                                return offlinePage || new Response('Offline', {
+                                    status: 503,
+                                    statusText: 'Service Unavailable',
+                                    headers: new Headers({ 'Content-Type': 'text/html' })
+                                });
+                            });
                         }
 
                         // For other resources, return empty response

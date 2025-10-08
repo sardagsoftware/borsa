@@ -1,0 +1,1809 @@
+{
+  "totalTests": 7,
+  "passed": 6,
+  "failed": 0,
+  "warnings": 300,
+  "vulnerabilities": [
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "tr/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "en/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "de/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "fr/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "es/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ar/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ru/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "it/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "ja/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/content.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/content.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/content.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/content.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/content.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/cta.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onclick=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onDuration =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "onfidence=\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "ont =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "ontSize =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/index.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/stats.json",
+      "vector": "ontent =\",\n  \""
+    },
+    {
+      "type": "XSS",
+      "severity": "HIGH",
+      "file": "zh-CN/stats.json",
+      "vector": "ontent =\",\n  \""
+    }
+  ],
+  "timestamp": "2025-10-07T19:41:33.912Z"
+}

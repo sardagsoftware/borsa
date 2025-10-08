@@ -1,0 +1,488 @@
+/**
+ * 🌍 LyDian i18n RTL Support v2.0
+ *
+ * Right-to-Left (RTL) styles for Arabic language support
+ *
+ * Features:
+ * - Automatic text direction based on [dir="rtl"]
+ * - Mirrored layouts for navigation, cards, forms
+ * - RTL-safe icons and buttons
+ * - Flex/Grid RTL adjustments
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="/css/i18n-rtl.css">
+ *   <!-- Automatically applies when html[dir="rtl"] -->
+ *
+ * @author LyDian AI Platform
+ * @license MIT
+ * @version 2.0.0
+ */
+
+/* ============================
+   BASE RTL ADJUSTMENTS
+   ============================ */
+
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ============================
+   TYPOGRAPHY
+   ============================ */
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+    text-align: right;
+}
+
+[dir="rtl"] p,
+[dir="rtl"] li,
+[dir="rtl"] td,
+[dir="rtl"] label {
+    text-align: right;
+}
+
+/* ============================
+   LAYOUT & SPACING
+   ============================ */
+
+/* Swap padding-left and padding-right */
+[dir="rtl"] .pl-1 { padding-right: 0.25rem; padding-left: 0; }
+[dir="rtl"] .pl-2 { padding-right: 0.5rem; padding-left: 0; }
+[dir="rtl"] .pl-3 { padding-right: 0.75rem; padding-left: 0; }
+[dir="rtl"] .pl-4 { padding-right: 1rem; padding-left: 0; }
+[dir="rtl"] .pl-5 { padding-right: 1.25rem; padding-left: 0; }
+[dir="rtl"] .pl-6 { padding-right: 1.5rem; padding-left: 0; }
+
+[dir="rtl"] .pr-1 { padding-left: 0.25rem; padding-right: 0; }
+[dir="rtl"] .pr-2 { padding-left: 0.5rem; padding-right: 0; }
+[dir="rtl"] .pr-3 { padding-left: 0.75rem; padding-right: 0; }
+[dir="rtl"] .pr-4 { padding-left: 1rem; padding-right: 0; }
+[dir="rtl"] .pr-5 { padding-left: 1.25rem; padding-right: 0; }
+[dir="rtl"] .pr-6 { padding-left: 1.5rem; padding-right: 0; }
+
+/* Swap margin-left and margin-right */
+[dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+[dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+
+[dir="rtl"] .ml-1 { margin-right: 0.25rem; margin-left: 0; }
+[dir="rtl"] .ml-2 { margin-right: 0.5rem; margin-left: 0; }
+[dir="rtl"] .ml-3 { margin-right: 0.75rem; margin-left: 0; }
+[dir="rtl"] .ml-4 { margin-right: 1rem; margin-left: 0; }
+
+[dir="rtl"] .mr-1 { margin-left: 0.25rem; margin-right: 0; }
+[dir="rtl"] .mr-2 { margin-left: 0.5rem; margin-right: 0; }
+[dir="rtl"] .mr-3 { margin-left: 0.75rem; margin-right: 0; }
+[dir="rtl"] .mr-4 { margin-left: 1rem; margin-right: 0; }
+
+/* ============================
+   FLEXBOX RTL
+   ============================ */
+
+[dir="rtl"] .flex-row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .justify-start {
+    justify-content: flex-end;
+}
+
+[dir="rtl"] .justify-end {
+    justify-content: flex-start;
+}
+
+[dir="rtl"] .items-start {
+    align-items: flex-end;
+}
+
+[dir="rtl"] .items-end {
+    align-items: flex-start;
+}
+
+/* ============================
+   GRID RTL
+   ============================ */
+
+[dir="rtl"] .grid {
+    direction: rtl;
+}
+
+/* ============================
+   NAVIGATION
+   ============================ */
+
+[dir="rtl"] nav ul,
+[dir="rtl"] .menu {
+    text-align: right;
+}
+
+[dir="rtl"] nav li,
+[dir="rtl"] .menu-item {
+    float: right;
+}
+
+[dir="rtl"] .nav-item {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .nav-item:first-child {
+    margin-left: 0;
+}
+
+/* Breadcrumbs */
+[dir="rtl"] .breadcrumb {
+    direction: rtl;
+}
+
+[dir="rtl"] .breadcrumb-separator::before {
+    content: "◄";
+}
+
+/* ============================
+   FORMS
+   ============================ */
+
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] input[type="checkbox"],
+[dir="rtl"] input[type="radio"] {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .form-label {
+    text-align: right;
+}
+
+[dir="rtl"] .form-group {
+    text-align: right;
+}
+
+/* ============================
+   BUTTONS & ICONS
+   ============================ */
+
+[dir="rtl"] button,
+[dir="rtl"] .btn {
+    direction: rtl;
+}
+
+/* Icon positioning in buttons */
+[dir="rtl"] .btn-icon-left {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+[dir="rtl"] .btn-icon-right {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+/* Arrows */
+[dir="rtl"] .arrow-right::after {
+    content: "←";
+}
+
+[dir="rtl"] .arrow-left::before {
+    content: "→";
+}
+
+/* ============================
+   CARDS & CONTAINERS
+   ============================ */
+
+[dir="rtl"] .card {
+    text-align: right;
+}
+
+[dir="rtl"] .card-header {
+    text-align: right;
+}
+
+[dir="rtl"] .card-body {
+    text-align: right;
+}
+
+[dir="rtl"] .card-footer {
+    text-align: right;
+}
+
+/* ============================
+   MODALS & DROPDOWNS
+   ============================ */
+
+[dir="rtl"] .modal {
+    direction: rtl;
+}
+
+[dir="rtl"] .modal-header {
+    text-align: right;
+}
+
+[dir="rtl"] .modal-body {
+    text-align: right;
+}
+
+[dir="rtl"] .modal-close {
+    left: 1rem;
+    right: auto;
+}
+
+[dir="rtl"] .dropdown-menu {
+    text-align: right;
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .dropdown-item {
+    text-align: right;
+}
+
+/* ============================
+   TABLES
+   ============================ */
+
+[dir="rtl"] table {
+    direction: rtl;
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+    text-align: right;
+}
+
+[dir="rtl"] thead th {
+    text-align: right;
+}
+
+/* ============================
+   LISTS
+   ============================ */
+
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+    padding-right: 2rem;
+    padding-left: 0;
+}
+
+[dir="rtl"] li {
+    text-align: right;
+}
+
+/* ============================
+   ANIMATIONS (MIRROR)
+   ============================ */
+
+[dir="rtl"] .slide-in-left {
+    animation-name: slide-in-right;
+}
+
+[dir="rtl"] .slide-in-right {
+    animation-name: slide-in-left;
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ============================
+   SIDEBAR
+   ============================ */
+
+[dir="rtl"] .sidebar {
+    right: 0;
+    left: auto;
+}
+
+[dir="rtl"] .sidebar-left {
+    right: 0;
+    left: auto;
+}
+
+[dir="rtl"] .sidebar-right {
+    left: 0;
+    right: auto;
+}
+
+/* ============================
+   TOOLTIPS
+   ============================ */
+
+[dir="rtl"] .tooltip {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .tooltip-right {
+    left: auto;
+    right: 100%;
+}
+
+[dir="rtl"] .tooltip-left {
+    right: auto;
+    left: 100%;
+}
+
+/* ============================
+   BADGES & TAGS
+   ============================ */
+
+[dir="rtl"] .badge {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .tag {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* ============================
+   PROGRESS BARS
+   ============================ */
+
+[dir="rtl"] .progress-bar {
+    direction: rtl;
+}
+
+[dir="rtl"] .progress-fill {
+    right: 0;
+    left: auto;
+}
+
+/* ============================
+   CHAT & MESSAGES
+   ============================ */
+
+[dir="rtl"] .chat-message {
+    text-align: right;
+}
+
+[dir="rtl"] .chat-message-left {
+    text-align: right;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+[dir="rtl"] .chat-message-right {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* ============================
+   PAGINATION
+   ============================ */
+
+[dir="rtl"] .pagination {
+    direction: rtl;
+}
+
+[dir="rtl"] .page-prev::before {
+    content: "→";
+}
+
+[dir="rtl"] .page-next::after {
+    content: "←";
+}
+
+/* ============================
+   UTILITY CLASSES
+   ============================ */
+
+[dir="rtl"] .text-left {
+    text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+    text-align: left !important;
+}
+
+[dir="rtl"] .float-left {
+    float: right !important;
+}
+
+[dir="rtl"] .float-right {
+    float: left !important;
+}
+
+/* ============================
+   RESPONSIVE RTL ADJUSTMENTS
+   ============================ */
+
+@media (max-width: 768px) {
+    [dir="rtl"] .mobile-nav {
+        right: 0;
+        left: auto;
+    }
+
+    [dir="rtl"] .mobile-menu-toggle {
+        left: 1rem;
+        right: auto;
+    }
+}
+
+/* ============================
+   CUSTOM RTL FIXES
+   ============================ */
+
+/* Fix for specific LyDian components */
+[dir="rtl"] .hero-section {
+    text-align: right;
+}
+
+[dir="rtl"] .feature-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .cta-button {
+    direction: rtl;
+}
+
+[dir="rtl"] .footer {
+    text-align: right;
+}
+
+/* ============================
+   PRINT RTL
+   ============================ */
+
+@media print {
+    [dir="rtl"] {
+        direction: rtl;
+        text-align: right;
+    }
+}

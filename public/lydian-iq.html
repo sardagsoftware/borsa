@@ -56,7 +56,18 @@
 
     <!-- Icons -->
     <link rel="icon" type="image/png" href="/lydian-logo.png">
+
+    <!-- Apple Touch Icons - iOS PWA Support (Multiple Sizes) -->
     <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/lydian-logo.png">
+
+    <!-- iOS PWA Startup Images -->
+    <link rel="apple-touch-startup-image" href="/lydian-logo.png">
+
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/lydian-manifest.json">
     
     <!-- Premium Fonts -->
@@ -4568,6 +4579,145 @@ ${response}
                 console.log('📱 PWA Install prompt ready');
             });
 
+            // Detect iOS device
+            function isIOSDevice() {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            }
+
+            // Detect Android device
+            function isAndroidDevice() {
+                return /Android/.test(navigator.userAgent);
+            }
+
+            // Show iOS-specific install instructions
+            function showIOSInstallInstructions() {
+                const modal = document.createElement('div');
+                modal.id = 'ios-install-modal';
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.85);
+                    backdrop-filter: blur(10px);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    animation: fadeIn 0.3s ease;
+                    padding: 1rem;
+                `;
+
+                modal.innerHTML = `
+                    <div style="
+                        background: linear-gradient(135deg, #1C2536 0%, #0F1419 100%);
+                        border: 2px solid var(--justice-gold);
+                        border-radius: 20px;
+                        padding: 2rem;
+                        max-width: 500px;
+                        width: 100%;
+                        box-shadow: 0 20px 60px rgba(196, 169, 98, 0.3);
+                        animation: slideUp 0.4s ease;
+                    ">
+                        <div style="text-align: center; margin-bottom: 1.5rem;">
+                            <div style="
+                                width: 80px;
+                                height: 80px;
+                                margin: 0 auto 1rem;
+                                background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                                border-radius: 20px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            ">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                    <path d="M12 6v8"></path>
+                                    <polyline points="9 11 12 14 15 11"></polyline>
+                                </svg>
+                            </div>
+                            <h2 style="color: var(--justice-gold); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                                📱 LyDian IQ'yu iOS'a Yükle
+                            </h2>
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                                iOS Cihazınıza Ücretsiz Mobil Uygulama Olarak Ekleyin
+                            </p>
+                        </div>
+
+                        <div style="
+                            background: rgba(0, 0, 0, 0.3);
+                            border: 1px solid rgba(196, 169, 98, 0.2);
+                            border-radius: 12px;
+                            padding: 1.5rem;
+                            margin-bottom: 1.5rem;
+                        ">
+                            <ol style="
+                                color: white;
+                                line-height: 1.8;
+                                padding-left: 1.2rem;
+                                margin: 0;
+                            ">
+                                <li style="margin-bottom: 0.8rem;">
+                                    Safari'de <strong style="color: var(--justice-gold);">Paylaş</strong> butonuna basın
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--justice-gold)" stroke-width="2" style="vertical-align: middle; margin-left: 4px;">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                        <polyline points="16 6 12 2 8 6"></polyline>
+                                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                                    </svg>
+                                </li>
+                                <li style="margin-bottom: 0.8rem;">
+                                    <strong style="color: var(--justice-gold);">"Ana Ekrana Ekle"</strong> seçeneğini seçin
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--justice-gold)" stroke-width="2" style="vertical-align: middle; margin-left: 4px;">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                    </svg>
+                                </li>
+                                <li>
+                                    <strong style="color: var(--justice-gold);">"Ekle"</strong> butonuna basın ve kullanmaya başlayın! ✨
+                                </li>
+                            </ol>
+                        </div>
+
+                        <button onclick="document.getElementById('ios-install-modal').remove()" style="
+                            width: 100%;
+                            padding: 1rem;
+                            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                            color: white;
+                            border: none;
+                            border-radius: 12px;
+                            font-size: 1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 10px 30px rgba(196, 169, 98, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                            Anladım, Kapatabilirsiniz
+                        </button>
+
+                        <p style="
+                            text-align: center;
+                            color: rgba(255, 255, 255, 0.5);
+                            font-size: 0.75rem;
+                            margin-top: 1rem;
+                            margin-bottom: 0;
+                        ">
+                            💡 Bu talimatlar sadece Safari'de çalışır. Chrome için Google Play Store'u kullanın.
+                        </p>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+
+                // Close on backdrop click
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            }
+
             function showInstallButton() {
                 // Find header-right to insert button
                 const headerRight = document.querySelector('.header-right');
@@ -4587,7 +4737,13 @@ ${response}
                 `;
 
                 installBtn.addEventListener('click', async () => {
-                    // Trigger native install prompt directly - no alerts, just action
+                    // iOS Device - Show manual instructions
+                    if (isIOSDevice()) {
+                        showIOSInstallInstructions();
+                        return;
+                    }
+
+                    // Android/Desktop - Use native install prompt
                     if (deferredPrompt) {
                         try {
                             deferredPrompt.prompt();
@@ -4605,8 +4761,12 @@ ${response}
                             console.error('PWA install error:', error);
                         }
                     } else {
-                        // Platform doesn't support native install prompt
-                        console.log('ℹ️ Native PWA install not available on this platform');
+                        // Fallback for other platforms
+                        if (isAndroidDevice()) {
+                            alert('📱 Android: Tarayıcı menüsünden "Ana ekrana ekle" seçeneğini kullanın.');
+                        } else {
+                            console.log('ℹ️ Native PWA install not available on this platform');
+                        }
                     }
                 });
 
