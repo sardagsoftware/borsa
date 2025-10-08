@@ -106,12 +106,12 @@
       width: min(300px, calc(100vw - 40px));
       background: rgba(20, 20, 20, 0.92);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(196, 169, 98, 0.15);
+      border: 1px solid rgba(16, 163, 127, 0.15);
       border-radius: 12px;
       padding: 14px 16px;
       box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(196, 169, 98, 0.08);
+        0 0 0 1px rgba(16, 163, 127, 0.08);
       z-index: 10000;
       animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
@@ -127,14 +127,14 @@
     .pwa-banner-icon {
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, #C4A962 0%, #B89952 100%);
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #000;
+      color: #fff;
       flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(196, 169, 98, 0.25);
+      box-shadow: 0 2px 8px rgba(16, 163, 127, 0.25);
       position: relative;
       overflow: hidden;
     }
@@ -210,27 +210,27 @@
 
     .pwa-btn-primary {
       flex: 1;
-      background: linear-gradient(135deg, #C4A962 0%, #B89952 100%);
-      color: #000;
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+      color: #fff;
       border: none;
-      padding: 9px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      box-shadow: 0 2px 8px rgba(196, 169, 98, 0.25);
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(16, 163, 127, 0.25);
       position: relative;
       overflow: hidden;
     }
 
     .pwa-btn-primary svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
 
     .pwa-btn-primary::before {
@@ -255,7 +255,8 @@
 
     .pwa-btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(196, 169, 98, 0.4);
+      box-shadow: 0 6px 16px rgba(16, 163, 127, 0.4);
+      background: linear-gradient(135deg, #0D8F6E 0%, #0B7A5E 100%);
     }
 
     .pwa-btn-primary:active {
@@ -332,8 +333,13 @@
       .pwa-btn-primary,
       .pwa-btn-secondary {
         width: 100%;
-        padding: 8px 14px;
-        font-size: 12px;
+        padding: 7px 12px;
+        font-size: 11px;
+      }
+
+      .pwa-btn-primary svg {
+        width: 12px;
+        height: 12px;
       }
     }
   `;
