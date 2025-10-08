@@ -1,4 +1,4 @@
-<!-- Cache-Buster: 1759577324 -->
+<!-- Cache-Buster: 1759941900 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -12,19 +12,16 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fonts - Inline critical fonts for instant load -->
     <style>
-        /* Righteous font for Logo - Inline for instant load */
         @font-face {
             font-family: 'Righteous';
             font-style: normal;
             font-weight: 400;
             font-display: block;
             src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
-            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -63,8 +60,7 @@
             overflow-x: hidden;
         }
 
-        /* ========== NAVIGATION ========== */
-
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -73,7 +69,6 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
@@ -94,12 +89,12 @@
         }
 
         .logo {
-            font-family: 'Inter', sans-serif !important;
+            font-family: 'Inter', sans-serif;
             font-size: 2.25rem;
-            font-weight: 900 !important;
+            font-weight: 900;
             color: #000000;
             text-decoration: none;
-            letter-spacing: 0.08em !important;
+            letter-spacing: 0.08em;
             display: flex;
             align-items: center;
         }
@@ -123,12 +118,6 @@
             color: var(--black);
         }
 
-        .nav-cta {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
         .btn {
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -143,16 +132,6 @@
             gap: 0.5rem;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--gray-700);
-        }
-
-        .btn-secondary:hover {
-            background: var(--gray-100);
-            color: var(--black);
-        }
-
         .btn-primary {
             background: var(--black);
             color: var(--white);
@@ -161,60 +140,17 @@
         .btn-primary:hover {
             background: var(--gray-800);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* ========== HERO SECTION ========== */
-
+        /* Hero */
         .hero {
             min-height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
             background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
             padding-top: 72px;
-        }
-
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .hero-gradient {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(16, 163, 127, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -300px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-            50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
         }
 
         .hero-content {
@@ -230,10 +166,8 @@
             font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
-            letter-spacing: -0.04em;
             color: var(--black);
             margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero-title-gradient {
@@ -245,18 +179,15 @@
 
         .hero-description {
             font-size: 1.25rem;
-            line-height: 1.6;
             color: var(--gray-600);
             max-width: 700px;
             margin: 0 auto 2rem;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .search-bar {
             max-width: 600px;
             margin: 0 auto;
             position: relative;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .search-input {
@@ -265,7 +196,6 @@
             border: 2px solid var(--gray-300);
             border-radius: 12px;
             font-size: 1rem;
-            font-family: inherit;
             transition: all 0.2s ease;
         }
 
@@ -275,32 +205,37 @@
             box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
         }
 
-        .search-icon {
+        .search-results {
             position: absolute;
-            right: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray-400);
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
-        .search-icon svg {
-            width: 24px;
-            height: 24px;
+        .search-results.active {
+            display: block;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        /* ========== CATEGORIES SECTION ========== */
+        .search-result-item:hover {
+            background: var(--gray-50);
+        }
 
+        /* Categories */
         .categories-section {
             padding: 6rem 2rem;
             background: var(--white);
@@ -321,11 +256,6 @@
             font-weight: 800;
             color: var(--black);
             margin-bottom: 1rem;
-        }
-
-        .section-description {
-            font-size: 1.125rem;
-            color: var(--gray-600);
         }
 
         .categories-grid {
@@ -360,12 +290,6 @@
             margin-bottom: 1.5rem;
         }
 
-        .category-icon svg {
-            width: 28px;
-            height: 28px;
-            color: white;
-        }
-
         .category-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -376,40 +300,13 @@
         .category-description {
             font-size: 1rem;
             color: var(--gray-600);
-            line-height: 1.7;
             margin-bottom: 1rem;
         }
 
-        .category-link {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.2s ease;
-        }
-
-        .category-link:hover {
-            gap: 0.75rem;
-        }
-
-        /* ========== POPULAR ARTICLES SECTION ========== */
-
+        /* Articles */
         .articles-section {
             padding: 6rem 2rem;
             background: var(--gray-50);
-        }
-
-        .articles-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .articles-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
         }
 
         .article-item {
@@ -422,6 +319,7 @@
             justify-content: space-between;
             transition: all 0.3s ease;
             cursor: pointer;
+            margin-bottom: 1rem;
         }
 
         .article-item:hover {
@@ -430,38 +328,16 @@
             border-color: var(--primary);
         }
 
-        .article-content {
-            flex: 1;
-        }
-
         .article-title {
             font-size: 1.125rem;
             font-weight: 600;
             color: var(--black);
-            margin-bottom: 0.5rem;
         }
 
-        .article-meta {
-            font-size: 0.875rem;
-            color: var(--gray-500);
-        }
-
-        .article-icon {
-            width: 24px;
-            height: 24px;
-            color: var(--gray-400);
-        }
-
-        /* ========== VIDEO TUTORIALS SECTION ========== */
-
+        /* Videos */
         .videos-section {
             padding: 6rem 2rem;
             background: var(--white);
-        }
-
-        .videos-container {
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
         .videos-grid {
@@ -476,7 +352,6 @@
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .video-card:hover {
@@ -484,37 +359,10 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
-        .video-thumbnail {
+        .video-embed {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .play-button {
-            width: 64px;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .video-card:hover .play-button {
-            transform: scale(1.1);
-            background: var(--white);
-        }
-
-        .play-button svg {
-            width: 28px;
-            height: 28px;
-            color: var(--black);
-            margin-left: 4px;
+            aspect-ratio: 16/9;
+            background: #000;
         }
 
         .video-content {
@@ -524,664 +372,260 @@
         .video-title {
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--black);
             margin-bottom: 0.5rem;
         }
 
-        .video-description {
-            font-size: 0.95rem;
-            color: var(--gray-600);
-            margin-bottom: 1rem;
-        }
-
-        .video-duration {
-            font-size: 0.875rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* ========== COMMUNITY SECTION ========== */
-
-        .community-section {
-            padding: 6rem 2rem;
-            background: var(--gray-50);
-        }
-
-        .community-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .community-cta {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            color: var(--white);
-        }
-
-        .community-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .community-description {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .btn-white {
-            background: var(--white);
-            color: var(--black);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
-        }
-
-        .btn-white:hover {
-            background: var(--gray-100);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        /* ========== FOOTER ========== */
-
-        .footer {
-            padding: 4rem 2rem 2rem;
-            background: var(--gray-900);
-            color: var(--gray-400);
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-brand {
-            padding-right: 2rem;
-        }
-
-        .footer-logo {
-            font-family: 'Inter', sans-serif !important;
-            font-size: 2rem;
-            font-weight: 900 !important;
-            color: #FFFFFF;
-            margin-bottom: 1rem;
-            letter-spacing: 0.08em !important;
-        }
-
-        .footer-description {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--gray-500);
-            margin-bottom: 2rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: var(--gray-800);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-400);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .footer-column h3 {
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--gray-500);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid var(--gray-800);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-copyright {
-            font-size: 0.875rem;
-            color: var(--gray-500);
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-legal a {
-            color: var(--gray-500);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-legal a:hover {
-            color: var(--white);
-        }
-
-        /* ========== RESPONSIVE ========== */
-
-        @media (max-width: 1024px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
-            .nav-links,
-            .nav-cta {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .hero-title {
                 font-size: 2.5rem;
             }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .categories-grid,
             .videos-grid {
                 grid-template-columns: 1fr;
             }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
-    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
-
+            <a href="/" class="logo"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; margin-right: 8px;">LyDian</a>
             <ul class="nav-links">
                 <li><a href="/chat.html">LyDian AI</a></li>
-                <li><a href="/docs.html">Dokümantasyon</a></li>
+                <li><a href="/lydian-iq.html">LydianIQ</a></li>
                 <li><a href="/api-reference.html">API</a></li>
-                <li><a href="/developers.html">Geliştiriciler</a></li>
                 <li><a href="/models.html">Modeller</a></li>
             </ul>
-
-            <div class="nav-cta">
-                <a href="/auth.html" class="btn btn-secondary">Giriş Yap</a>
-                <a href="/chat.html" class="btn btn-primary">Şimdi Dene</a>
+            <div>
+                <a href="/auth.html" class="btn btn-primary">Giriş Yap</a>
             </div>
-
-            <button class="mobile-menu-btn" aria-label="Menu">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-background">
-            <div class="hero-gradient"></div>
-        </div>
-
         <div class="hero-content">
             <h1 class="hero-title">
                 <span class="hero-title-gradient">Size nasıl yardımcı olabiliriz?</span>
             </h1>
             <p class="hero-description">
-                Dokümantasyon, rehberler ve sık sorulan soruları keşfedin
+                LyDian platformunu keşfedin - 23 AI modeli, 12 uzman sistem
             </p>
-
             <div class="search-bar">
                 <input type="text" class="search-input" placeholder="Yardım konularında ara..." id="helpSearch">
-                <div class="search-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </div>
+                <div class="search-results" id="searchResults"></div>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
+    <!-- Categories -->
     <section class="categories-section">
         <div class="categories-container">
             <div class="section-header">
                 <h2 class="section-title">Popüler Konular</h2>
-                <p class="section-description">Size en uygun kategoriden başlayın</p>
             </div>
-
             <div class="categories-grid">
-                <div class="category-card fade-in">
+                <div class="category-card" onclick="window.location.href='/chat.html'">
                     <div class="category-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                         </svg>
                     </div>
-                    <h3 class="category-title">Başlangıç</h3>
+                    <h3 class="category-title">AI Chat</h3>
                     <p class="category-description">
-                        LyDian'a başlamak için gereken her şey. İlk adımlar, hesap oluşturma ve temel özellikler.
+                        23 AI modeli ile sohbet edin - Claude, GPT-4, Gemini, DeepSeek ve daha fazlası
                     </p>
-                    <a href="#" class="category-link">
-                        Rehbere git
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
 
-                <div class="category-card fade-in">
+                <div class="category-card" onclick="window.location.href='/lydian-iq.html'">
                     <div class="category-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">LydianIQ</h3>
+                    <p class="category-description">
+                        Gelişmiş problem çözme ve analiz sistemi - Multimodal AI desteği
+                    </p>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='/api-reference.html'">
+                    <div class="category-icon">
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                         </svg>
                     </div>
                     <h3 class="category-title">API Dokümantasyonu</h3>
                     <p class="category-description">
-                        RESTful API, entegrasyon rehberleri ve kod örnekleri. Geliştiriciler için kapsamlı kılavuz.
+                        RESTful API, WebSocket, GraphQL entegrasyonları ve kod örnekleri
                     </p>
-                    <a href="#" class="category-link">
-                        API'yi keşfet
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
 
-                <div class="category-card fade-in">
+                <div class="category-card" onclick="window.location.href='/models.html'">
                     <div class="category-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                         </svg>
                     </div>
-                    <h3 class="category-title">Faturalandırma</h3>
+                    <h3 class="category-title">AI Modelleri</h3>
                     <p class="category-description">
-                        Abonelik planları, ödeme yöntemleri ve fatura detayları hakkında bilgi edinin.
+                        23 farklı AI modeli - Her model için özellikler ve kullanım senaryoları
                     </p>
-                    <a href="#" class="category-link">
-                        Detayları gör
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <div class="category-card fade-in">
-                    <div class="category-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        </svg>
-                    </div>
-                    <h3 class="category-title">Güvenlik</h3>
-                    <p class="category-description">
-                        Hesap güvenliği, veri gizliliği ve güvenlik en iyi uygulamaları.
-                    </p>
-                    <a href="#" class="category-link">
-                        Güvenlik rehberi
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Popular Articles Section -->
+    <!-- Articles -->
     <section class="articles-section">
-        <div class="articles-container">
+        <div class="categories-container">
             <div class="section-header">
-                <h2 class="section-title">Popüler Makaleler</h2>
-                <p class="section-description">En çok okunan yardım makaleleri</p>
+                <h2 class="section-title">Hızlı Başlangıç Rehberleri</h2>
             </div>
-
-            <div class="articles-list">
-                <div class="article-item fade-in">
-                    <div class="article-content">
-                        <h3 class="article-title">LyDian'a nasıl başlarım?</h3>
-                        <p class="article-meta">Başlangıç • 5 dakika okuma</p>
+            <div>
+                <div class="article-item" onclick="window.location.href='/chat.html'">
+                    <div>
+                        <h3 class="article-title">🤖 İlk AI Chat Konuşmanızı Başlatın</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">Claude, GPT-4, Gemini ve 23 model ile tanışın</p>
                     </div>
-                    <svg class="article-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
                 </div>
-
-                <div class="article-item fade-in">
-                    <div class="article-content">
-                        <h3 class="article-title">API anahtarımı nasıl oluştururum?</h3>
-                        <p class="article-meta">API • 3 dakika okuma</p>
+                <div class="article-item" onclick="window.location.href='/lydian-iq.html'">
+                    <div>
+                        <h3 class="article-title">💡 LydianIQ ile Problem Çözme</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">Multimodal AI ile görsel, ses ve metin analizi</p>
                     </div>
-                    <svg class="article-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
                 </div>
-
-                <div class="article-item fade-in">
-                    <div class="article-content">
-                        <h3 class="article-title">Hangi AI modeli benim için uygun?</h3>
-                        <p class="article-meta">Modeller • 7 dakika okuma</p>
+                <div class="article-item" onclick="window.location.href='/api-reference.html'">
+                    <div>
+                        <h3 class="article-title">🔌 API Entegrasyonu</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">RESTful API ile uygulamanıza LyDian'ı entegre edin</p>
                     </div>
-                    <svg class="article-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
                 </div>
-
-                <div class="article-item fade-in">
-                    <div class="article-content">
-                        <h3 class="article-title">Fatura ve ödeme seçenekleri</h3>
-                        <p class="article-meta">Faturalandırma • 4 dakika okuma</p>
+                <div class="article-item" onclick="window.location.href='/models.html'">
+                    <div>
+                        <h3 class="article-title">🧠 Hangi Model Benim İçin Uygun?</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">23 modelin karşılaştırması ve kullanım önerileri</p>
                     </div>
-                    <svg class="article-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
                 </div>
-
-                <div class="article-item fade-in">
-                    <div class="article-content">
-                        <h3 class="article-title">İki faktörlü kimlik doğrulama nasıl etkinleştirilir?</h3>
-                        <p class="article-meta">Güvenlik • 3 dakika okuma</p>
+                <div class="article-item" onclick="window.location.href='/auth.html'">
+                    <div>
+                        <h3 class="article-title">🔒 Hesap ve Güvenlik</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">OAuth, API anahtarları ve güvenlik ayarları</p>
                     </div>
-                    <svg class="article-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Tutorials Section -->
+    <!-- Videos -->
     <section class="videos-section">
-        <div class="videos-container">
+        <div class="categories-container">
             <div class="section-header">
-                <h2 class="section-title">Video Eğitimleri</h2>
-                <p class="section-description">Adım adım görsel rehberler</p>
+                <h2 class="section-title">Platform Özellikleri</h2>
             </div>
-
             <div class="videos-grid">
-                <div class="video-card fade-in">
-                    <div class="video-thumbnail">
-                        <div class="play-button">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </div>
-                    </div>
+                <div class="video-card" onclick="window.location.href='/chat.html'">
                     <div class="video-content">
-                        <h3 class="video-title">LyDian'a Giriş</h3>
-                        <p class="video-description">Platform özelliklerine genel bakış ve ilk adımlar</p>
-                        <span class="video-duration">8 dakika</span>
+                        <h3 class="video-title">🤖 23 AI Modeli</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Claude Sonnet 4.5, GPT-4o, Gemini Pro, DeepSeek R1, Mistral, Llama</p>
+                        <span style="color: var(--primary); font-weight: 600;">Şimdi Dene →</span>
                     </div>
                 </div>
-
-                <div class="video-card fade-in">
-                    <div class="video-thumbnail">
-                        <div class="play-button">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </div>
-                    </div>
+                <div class="video-card" onclick="window.location.href='/lydian-iq.html'">
                     <div class="video-content">
-                        <h3 class="video-title">API Entegrasyonu</h3>
-                        <p class="video-description">API'yi uygulamanıza nasıl entegre edebileceğinizi öğrenin</p>
-                        <span class="video-duration">12 dakika</span>
+                        <h3 class="video-title">💡 LydianIQ</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Multimodal problem çözme - Görsel, ses ve metin analizi</p>
+                        <span style="color: var(--primary); font-weight: 600;">Keşfet →</span>
                     </div>
                 </div>
-
-                <div class="video-card fade-in">
-                    <div class="video-thumbnail">
-                        <div class="play-button">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </div>
-                    </div>
+                <div class="video-card" onclick="window.location.href='/video-ai.html'">
                     <div class="video-content">
-                        <h3 class="video-title">Gelişmiş Özellikler</h3>
-                        <p class="video-description">Uzman kullanıcılar için ipuçları ve püf noktalar</p>
-                        <span class="video-duration">15 dakika</span>
+                        <h3 class="video-title">🎬 Video AI</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Google Veo - AI ile video oluşturma ve düzenleme</p>
+                        <span style="color: var(--primary); font-weight: 600;">Video Üret →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/image-generation.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">🎨 Görsel Oluşturma</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">DALL-E, Midjourney, Stable Diffusion entegrasyonu</p>
+                        <span style="color: var(--primary); font-weight: 600;">Görsel Üret →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/research.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">🔬 Araştırma Asistanı</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Web araştırması, RAG ve vektör arama</p>
+                        <span style="color: var(--primary); font-weight: 600;">Araştır →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/api-reference.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">⚡ Real-time API</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">REST, WebSocket, GraphQL - 50+ endpoint</p>
+                        <span style="color: var(--primary); font-weight: 600;">API Docs →</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Community Section -->
-    <section class="community-section">
-        <div class="community-container">
-            <div class="community-cta fade-in">
-                <h2 class="community-title">Topluluğa Katılın</h2>
-                <p class="community-description">
-                    Diğer kullanıcılarla bağlantı kurun, sorular sorun ve deneyimlerinizi paylaşın
-                </p>
-                <a href="#" class="btn-white">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                    </svg>
-                    Discord'a Katıl
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="company" class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
-                    <p class="footer-description">
-                        Yapay zeka teknolojileriyle geleceği şekillendiren,
-                        yenilikçi çözümler sunan AI platformu.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                                <circle cx="4" cy="4" r="2"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="GitHub">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Ürünler</h3>
-                    <ul class="footer-links">
-                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
-                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
-                        <li><a href="/video-ai.html">Video AI</a></li>
-                        <li><a href="/api.html">API</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Çözümler</h3>
-                    <ul class="footer-links">
-                        <li><a href="/enterprise.html">Enterprise</a></li>
-                        <li><a href="/education.html">Eğitim</a></li>
-                        <li><a href="/research.html">Araştırma</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Şirket</h3>
-                    <ul class="footer-links">
-                        <li><a href="/about.html">Hakkımızda</a></li>
-                        <li><a href="/careers.html">Kariyer</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
-                        <li><a href="/contact.html">İletişim</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Destek</h3>
-                    <ul class="footer-links">
-                        <li><a href="/help.html">Yardım Merkezi</a></li>
-                        <li><a href="/api-reference.html">API Referansı</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-copyright">
-                    © 2025 LyDian. Tüm hakları saklıdır.
-                </div>
-                <div class="footer-legal">
-                    <a href="/privacy.html">Gizlilik Politikası</a>
-                    <a href="/terms.html">Kullanım Koşulları</a>
-                    <a href="/cookies.html">Çerezler</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navbar scroll
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Real search functionality
+        const searchInput = document.getElementById('helpSearch');
+        const searchResults = document.getElementById('searchResults');
+
+        const searchableContent = [
+            { title: 'AI Chat', description: '23 AI modeli ile sohbet', url: '/chat.html' },
+            { title: 'LydianIQ', description: 'Problem çözme sistemi', url: '/lydian-iq.html' },
+            { title: 'API Dokümantasyonu', description: 'RESTful API referansı', url: '/api-reference.html' },
+            { title: 'Modeller', description: '23 AI modeli listesi', url: '/models.html' },
+            { title: 'Video AI', description: 'Google Veo entegrasyonu', url: '/video-ai.html' },
+            { title: 'Görsel Oluşturma', description: 'DALL-E, Stable Diffusion', url: '/image-generation.html' },
+            { title: 'Araştırma', description: 'Web araştırma ve RAG', url: '/research.html' },
+            { title: 'Giriş Yap', description: 'OAuth ve hesap yönetimi', url: '/auth.html' }
+        ];
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                return;
+            }
+
+            const results = searchableContent.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.description.toLowerCase().includes(query)
+            );
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <div class="search-result-item" onclick="window.location.href='${item.url}'">
+                        <h4 style="font-weight: 600; margin-bottom: 0.25rem;">${item.title}</h4>
+                        <p style="font-size: 0.875rem; color: var(--gray-600);">${item.description}</p>
+                    </div>
+                `).join('');
+                searchResults.classList.add('active');
             } else {
-                navbar.classList.remove('scrolled');
+                searchResults.innerHTML = '<div class="search-result-item">Sonuç bulunamadı</div>';
+                searchResults.classList.add('active');
             }
         });
 
-        // Search functionality
-        document.getElementById('helpSearch').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            // Implement search logic here
-            console.log('Searching for:', searchTerm);
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
-    <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-bar')) {
+                searchResults.classList.remove('active');
             }
-        })();
+        });
     </script>
-
 </body>
 </html>
