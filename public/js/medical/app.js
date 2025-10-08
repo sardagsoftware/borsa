@@ -1,3 +1,11 @@
+
+// Production console log suppression
+if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+  console.log = function() {};
+  console.debug = function() {};
+  console.info = function() {};
+}
+
 /**
  * LyDian Medical AI - Main Application Entry Point
  * Initializes all modules and handles core application logic
@@ -137,7 +145,7 @@ async function sendMessage() {
         // Add AI response
         if (response.success) {
             const aiMessage = window.MedicalState.addMessage('ai', response.message, {
-                model: response.model,
+                engine: response.model,
                 tokens: response.usage
             });
             MedicalUI.renderMessage(aiMessage);

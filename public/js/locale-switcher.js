@@ -42,7 +42,8 @@
         'ru': { name: 'Russian', flag: '🇷🇺', nativeName: 'Русский' },
         'it': { name: 'Italian', flag: '🇮🇹', nativeName: 'Italiano' },
         'ja': { name: 'Japanese', flag: '🇯🇵', nativeName: '日本語' },
-        'zh-CN': { name: 'Chinese', flag: '🇨🇳', nativeName: '中文' }
+        'zh-CN': { name: 'Chinese', flag: '🇨🇳', nativeName: '中文' },
+        'az': { name: 'Azerbaijani', flag: '🇦🇿', nativeName: 'Azərbaycan' }
     };
 
     // ============================

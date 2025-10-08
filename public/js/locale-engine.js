@@ -33,7 +33,7 @@
     // ============================
 
     const CONFIG = {
-        supportedLocales: ['tr', 'en', 'de', 'fr', 'es', 'ar', 'ru', 'it', 'ja', 'zh-CN'],
+        supportedLocales: ['tr', 'en', 'de', 'fr', 'es', 'ar', 'ru', 'it', 'ja', 'zh-CN', 'az'],
         defaultLocale: 'tr',
         fallbackLocale: 'en',
         cookieName: 'ailydian_locale',

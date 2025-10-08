@@ -1,3 +1,11 @@
+
+// Production console log suppression
+if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+  console.log = function() {};
+  console.debug = function() {};
+  console.info = function() {};
+}
+
 /**
  * 💬 CHAT.AILYDIAN.COM JAVASCRIPT
  * Modern AI Chat Interface with Real-time Features
@@ -405,7 +413,7 @@ class AiLydianChat {
             },
             body: JSON.stringify({
                 message: message,
-                model: this.currentModel,
+                engine: this.currentModel,
                 conversation_id: this.currentConversation?.id,
                 timestamp: new Date().toISOString()
             })
@@ -548,7 +556,7 @@ class AiLydianChat {
     // Model Selection
     selectModel(modelOption) {
         const modelData = {
-            model: modelOption.dataset.model,
+            engine: modelOption.dataset.model,
             icon: modelOption.dataset.icon,
             name: modelOption.querySelector('span').textContent
         };
@@ -1257,7 +1265,7 @@ class AiLydianChat {
     selectCapability(capability) {
         // Set appropriate model based on capability
         const capabilityModelMap = {
-            'azure': 'azure-gpt-4o',
+            'azure': 'azure-Advanced AIo',
             'google': 'google-gemini-pro',
             'zai': 'zai-developer',
             'deepseek': 'deepseek-r1',

@@ -11,7 +11,25 @@
     <link rel="icon" type="image/png" href="/lydian-logo.png">
 
     <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
-    <script src="/js/geo-language.js"></script>
+    <script src="/js/geo-language.js">
+// Mask sensitive API response data
+function maskApiResponse(response) {
+  if (response && typeof response === 'object') {
+    // Mask model information
+    if (response.model) response.model = 'ai-engine';
+    if (response.engine) response.engine = 'ai-engine';
+    if (response.provider) response.provider = 'ai-provider';
+
+    // Mask headers
+    if (response.headers) {
+      delete response.headers['x-request-id'];
+      delete response.headers['openai-'];
+      delete response.headers['anthropic-'];
+    }
+  }
+  return response;
+}
+</script>
 
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3624,7 +3642,7 @@ body {
             messages: [],
             currentChatId: null,
             isTyping: false,
-            selectedModel: 'enterprise-ai',  // Default: Premium AI
+            selectedengine: 'enterprise-ai',  // Default: Premium AI
             selectedAiType: 'general'  // 🎯 Track specialized AI mode
         };
 
@@ -4213,7 +4231,7 @@ body {
                 let requestBody = {
                     message: message,
                     aiType: state.selectedAiType,
-                    model: state.selectedModel || 'primary',
+                    engine: state.selectedModel || 'primary',
                     temperature: 0.7,
                     max_tokens: 4000,
                     history: cleanHistory,
@@ -4766,7 +4784,7 @@ body {
                         'Content-Language': 'tr'
                     },
                     body: JSON.stringify({
-                        model: 'llama', // Llama 3.3 70B as primary model
+                        engine: 'llama', // Llama 3.3 70B as primary model
                         message: lastUserMessage,
                         temperature: 0.9,
                         max_tokens: 8000, // Maximum detail
@@ -5136,5 +5154,34 @@ body {
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
     <script src="/js/mobile-menu-handler.js"></script>
+
+    <!-- 🌍 LyDian i18n System - Auto-integrated -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+    </script>
+
 </body>
 </html>

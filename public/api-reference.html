@@ -1215,6 +1215,7 @@
                 <div class="sidebar-title">Başlarken</div>
                 <ul class="sidebar-nav">
                     <li><a href="#getting-started" class="active">Giriş</a></li>
+                    <li><a href="#api-explorer">Interactive API Explorer</a></li>
                     <li><a href="#authentication">Authentication</a></li>
                     <li><a href="#base-url">Base URL</a></li>
                 </ul>
@@ -1263,6 +1264,123 @@
                     <div class="highlight-box-content">
                         API anahtarınızı asla herkese açık repositorylerde paylaşmayın. Environment
                         variables kullanarak güvenli bir şekilde saklayın ve sadece güvendiğiniz uygulamalarda kullanın.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive API Explorer -->
+            <section id="api-explorer" class="section">
+                <div class="section-header">
+                    <span class="section-badge">🚀 Interactive</span>
+                    <h2 class="section-title">Interactive API Explorer</h2>
+                    <p class="section-description">
+                        Swagger UI ile tüm API endpoint'lerini gerçek zamanlı test edebilir, request/response örneklerini görebilir ve
+                        OpenAPI spesifikasyonunu indirebilirsiniz. Tarayıcınızdan direkt API çağrıları yaparak hızlıca test edin.
+                    </p>
+                </div>
+
+                <div class="endpoint-card">
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="8" fill="#85ea2d"/>
+                            <path d="M24 12L36 18V30L24 36L12 30V18L24 12Z" stroke="white" stroke-width="2" fill="none"/>
+                            <path d="M24 24L18 27V21L24 18L30 21V27L24 24Z" fill="white"/>
+                        </svg>
+                        <div>
+                            <h3 class="subtitle" style="margin: 0;">Swagger UI - OpenAPI Explorer</h3>
+                            <p style="color: #64748b; margin: 0.25rem 0 0 0;">
+                                Tüm endpoint'leri keşfedin, parametreleri test edin ve gerçek zamanlı yanıtlar alın
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%); padding: 2rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                            <div>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.25rem;">OpenAPI 3.0 Specification</h4>
+                                <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 0.875rem;">
+                                    ✅ 3 Core Modules • ✅ 9 API Endpoints • ✅ Full Schema Documentation
+                                </p>
+                            </div>
+                            <a href="/api-docs.html"
+                               style="display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: #10A37F; padding: 0.875rem 1.75rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.2s;"
+                               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)';"
+                               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                                Swagger UI'yi Aç
+                            </a>
+                        </div>
+                    </div>
+
+                    <h4 class="subtitle">Neler Yapabilirsiniz?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="padding: 1rem; background: #f8fafc; border-radius: 0.5rem; border-left: 3px solid #10A37F;">
+                            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🔍 API Keşfi</div>
+                            <div style="font-size: 0.875rem; color: #64748b;">Tüm endpoint'leri, parametreleri ve response şemalarını inceleyin</div>
+                        </div>
+                        <div style="padding: 1rem; background: #f8fafc; border-radius: 0.5rem; border-left: 3px solid #49cc90;">
+                            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🧪 Canlı Test</div>
+                            <div style="font-size: 0.875rem; color: #64748b;">API Key ile authentication yaparak gerçek zamanlı test edin</div>
+                        </div>
+                        <div style="padding: 1rem; background: #f8fafc; border-radius: 0.5rem; border-left: 3px solid #fca130;">
+                            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">📥 Spec İndirme</div>
+                            <div style="font-size: 0.875rem; color: #64748b;">OpenAPI YAML dosyasını indirip kendi araçlarınızda kullanın</div>
+                        </div>
+                    </div>
+
+                    <h4 class="subtitle">Modüller</h4>
+                    <table class="param-table">
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Endpoints</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Smart Cities</code></td>
+                                <td>3 endpoints</td>
+                                <td>Akıllı şehir verileri (cities, sensors, analytics)</td>
+                            </tr>
+                            <tr>
+                                <td><code>İnsan IQ</code></td>
+                                <td>3 endpoints</td>
+                                <td>Persona yönetimi ve davranış analizi</td>
+                            </tr>
+                            <tr>
+                                <td><code>LyDian IQ</code></td>
+                                <td>3 endpoints</td>
+                                <td>AI trading sinyalleri ve tahminler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: #fef3c7; border-radius: 0.5rem; border-left: 3px solid #f59e0b;">
+                        <div style="font-weight: 600; color: #92400e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            API Anahtarı Gerekli
+                        </div>
+                        <div style="font-size: 0.875rem; color: #78350f;">
+                            Swagger UI'da "Authorize" butonuna tıklayarak API anahtarınızı girin.
+                            Yukarıdaki "API Anahtarınız" bölümünden anahtarınızı kopyalayabilirsiniz.
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1rem;">
+                        <a href="/docs/api/openapi.yaml" download
+                           style="display: inline-flex; align-items: center; gap: 0.5rem; color: #10A37F; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border: 2px solid #10A37F; border-radius: 0.5rem; transition: all 0.2s;"
+                           onmouseover="this.style.background='#10A37F'; this.style.color='white';"
+                           onmouseout="this.style.background='transparent'; this.style.color='#10A37F';">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            OpenAPI Spec İndir (YAML)
+                        </a>
                     </div>
                 </div>
             </section>
@@ -2081,5 +2199,34 @@ response = requests.<span class="code-function">post</span>(url, json=data, head
         });
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
+
+    <!-- 🌍 LyDian i18n System - Auto-integrated -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+    </script>
+
 </body>
 </html>

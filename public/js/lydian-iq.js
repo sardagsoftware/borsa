@@ -1,3 +1,11 @@
+
+// Production console log suppression
+if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+  console.log = function() {};
+  console.debug = function() {};
+  console.info = function() {};
+}
+
 // ========================================
 // LyDian IQ Reasoning Engine - Frontend
 // Version: 1.0.0 - Sardag Edition
@@ -522,7 +530,7 @@ class DeepSeekR1Frontend {
                 reasoningChain: [
                     'Stratejik hedefleri belirliyorum',
                     'Alternatifleri değerlendiriyorum',
-                    'Risk-fayda analizini yapıyorum',
+                    'Ri[REDACTED]fayda analizini yapıyorum',
                     'Optimal stratejiyi seçiyorum',
                     'Uygulama planını oluşturuyorum'
                 ],

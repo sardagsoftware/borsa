@@ -2283,7 +2283,25 @@
 
         // Initial update after 1 second
         setTimeout(updateLiveStats, 1000);
-    </script>
+    
+// Mask sensitive API response data
+function maskApiResponse(response) {
+  if (response && typeof response === 'object') {
+    // Mask model information
+    if (response.model) response.model = 'ai-engine';
+    if (response.engine) response.engine = 'ai-engine';
+    if (response.provider) response.provider = 'ai-provider';
+
+    // Mask headers
+    if (response.headers) {
+      delete response.headers['x-request-id'];
+      delete response.headers['openai-'];
+      delete response.headers['anthropic-'];
+    }
+  }
+  return response;
+}
+</script>
                 </div>
             </div>
 
@@ -2523,7 +2541,7 @@
                     <svg fill="none" stroke="#10A37F" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                     </svg>
-                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">OpenAI GPT-4</h4>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">OpenAI Advanced AI</h4>
                     <p style="font-size: 0.875rem; color: #9CA3AF;">En güçlü dil modeli</p>
                 </div>
                 <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">
@@ -3184,8 +3202,9 @@
     <!-- Cyborg Orbital Controller - Dr. Lydia Sentinel -->
     <script src="/js/cyborg-orbital-controller.js"></script>
 
-    <!-- Three.js Library (Local - CSP compliant) -->
-    <script src="/js/three.min.js"></script>
+    <!-- 🚀 PHASE L: Code Splitting - Lazy Loading Utilities -->
+    <script src="/js/lazy-loader.js"></script>
+    <script src="/js/route-loader.js"></script>
 
     <script>
         // ========== THREE.JS 3D HERO ANIMATION - Enhanced Dynamic Flows ==========
@@ -3324,11 +3343,54 @@
             renderer.render(scene, camera);
         }
 
-        // Start 3D Hero Animation
+        // 🚀 PHASE L: Lazy Load Three.js (589 KB saved from initial bundle)
         if (document.getElementById('hero3DCanvas')) {
-            window.addEventListener('load', () => {
-                initHero3D();
-                animate3DHero();
+            window.addEventListener('load', async () => {
+                // Lazy load Three.js on user interaction
+                const events = ['mousedown', 'touchstart', 'keydown', 'wheel', 'scroll'];
+                let loaded = false;
+
+                const loadAndInit = async () => {
+                    if (loaded) return;
+                    loaded = true;
+
+                    // Remove event listeners
+                    events.forEach(event => {
+                        document.removeEventListener(event, loadAndInit, { passive: true });
+                    });
+
+                    console.log('[LazyLoad] 🎬 User interaction detected, loading Three.js (589 KB)...');
+                    const startTime = performance.now();
+
+                    try {
+                        // Load Three.js dynamically
+                        await LazyLoader.loadThreeJS();
+
+                        const loadTime = Math.round(performance.now() - startTime);
+                        console.log(`[LazyLoad] ✅ Three.js loaded in ${loadTime}ms, initializing 3D scene...`);
+
+                        // Initialize 3D scene
+                        initHero3D();
+                        animate3DHero();
+                    } catch (error) {
+                        console.error('[LazyLoad] ❌ Failed to load Three.js:', error);
+                    }
+                };
+
+                // Add event listeners for first user interaction
+                events.forEach(event => {
+                    document.addEventListener(event, loadAndInit, { passive: true, once: true });
+                });
+
+                // Fallback: Load after 3 seconds if no interaction
+                setTimeout(() => {
+                    if (!loaded) {
+                        console.log('[LazyLoad] ⏰ Timeout (3s), loading Three.js...');
+                        loadAndInit();
+                    }
+                }, 3000);
+
+                console.log('[LazyLoad] 🎯 Three.js will load on first user interaction (scroll, click, touch, key)');
             });
         }
 

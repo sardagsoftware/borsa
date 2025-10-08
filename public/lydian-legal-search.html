@@ -1254,7 +1254,25 @@ h1, h2, h3 {
     </style>
 
     <!-- Export Libraries - Using CDN.jsdelivr.net (CSP Compliant) -->
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js">
+// Mask sensitive API response data
+function maskApiResponse(response) {
+  if (response && typeof response === 'object') {
+    // Mask model information
+    if (response.model) response.model = 'ai-engine';
+    if (response.engine) response.engine = 'ai-engine';
+    if (response.provider) response.provider = 'ai-provider';
+
+    // Mask headers
+    if (response.headers) {
+      delete response.headers['x-request-id'];
+      delete response.headers['openai-'];
+      delete response.headers['anthropic-'];
+    }
+  }
+  return response;
+}
+</script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 </head>
@@ -2176,7 +2194,7 @@ async function sendMessage() {
                 systemPrompt: systemPrompt,
                 knowledgeContext: knowledgeContext,
                 settings: {
-                    model: aiModel,
+                    engine: aiModel,
                     temperature: temperature,
                     maxTokens: maxTokens
                 }
@@ -2247,7 +2265,7 @@ function renderMessages() {
         // Clean AI response from any model badges or technical headers
         let cleanContent = msg.content;
         if (!isUser) {
-            // Remove "✨ **Azure GPT-4 Turbo Yanıtı**" and similar patterns
+            // Remove "✨ **Azure Advanced AI Turbo Yanıtı**" and similar patterns
             cleanContent = cleanContent
                 .replace(/✨\s*\*\*Azure\s+GPT[^*]*\*\*/gi, '')
                 .replace(/✨\s*\*\*.*?Turbo.*?Yanıt[^*]*\*\*/gi, '')
@@ -2573,7 +2591,7 @@ async function handleImageUpload(event) {
                 id: (Date.now() + 2).toString(),
                 role: 'ai',
                 content: analysisContent,
-                model: 'Azure Computer Vision',
+                engine: 'Azure Computer Vision',
                 timestamp: new Date().toISOString()
             };
 
@@ -2646,7 +2664,7 @@ async function handleDocumentUpload(event) {
                 id: (Date.now() + 2).toString(),
                 role: 'ai',
                 content: analysisContent,
-                model: 'Azure Document Intelligence',
+                engine: 'Azure Document Intelligence',
                 timestamp: new Date().toISOString()
             };
 
@@ -2792,7 +2810,7 @@ function showSettingsModal() {
     // Default settings
     const defaultSettings = {
         language: settings.language || 'tr',
-        aiModel: settings.aiModel || 'premium-model-1',
+        aiengine: settings.aiModel || 'premium-model-1',
         temperature: settings.temperature || 0.7,
         maxTokens: settings.maxTokens || 2000,
         autoSave: settings.autoSave !== false,
@@ -2950,7 +2968,7 @@ function closeSettingsModal() {
 function saveSettings() {
     const settings = {
         language: document.getElementById('settingsLanguage').value,
-        aiModel: document.getElementById('settingsAIModel').value,
+        aiengine: document.getElementById('settingsAIModel').value,
         temperature: parseFloat(document.getElementById('settingsTemperature').value),
         maxTokens: parseInt(document.getElementById('settingsMaxTokens').value),
         autoSave: document.getElementById('settingsAutoSave').checked,
@@ -3307,5 +3325,34 @@ document.head.appendChild(style);
 
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
+
+    <!-- 🌍 LyDian i18n System - Auto-integrated -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+    </script>
+
 </body>
 </html>
