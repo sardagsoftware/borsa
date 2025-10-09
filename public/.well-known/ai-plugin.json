@@ -1,0 +1,19 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "LyDian AI Ecosystem",
+  "name_for_model": "lydian_ai",
+  "description_for_human": "Enterprise AI platform providing advanced solutions for healthcare, legal, civic intelligence, and financial technology with multi-modal capabilities.",
+  "description_for_model": "LyDian AI is an enterprise-grade artificial intelligence ecosystem offering specialized AI modules: LyDian IQ (multi-modal assistant with vision, voice, reasoning), Medical Expert AI (healthcare diagnosis support with FHIR integration), HukukAI (Turkish legal research), Civic Intelligence Grid (smart city solutions), and Quantum Pro (financial market analysis). The platform provides REST APIs with comprehensive documentation, supports 20+ languages, and maintains strict white-hat compliance with enterprise security standards.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.ailydian.com/api-docs.html",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://www.ailydian.com/lydian-logo.png",
+  "contact_email": "info@ailydian.com",
+  "legal_info_url": "https://www.ailydian.com/terms.html",
+  "privacy_policy_url": "https://www.ailydian.com/privacy.html"
+}

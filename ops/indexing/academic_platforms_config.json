@@ -1,0 +1,290 @@
+{
+  "academic_ai_platforms": {
+    "version": "1.0.0",
+    "updated": "2025-10-09T15:00:00Z",
+    "domain": "www.ailydian.com",
+    "policy": "white-hat-ethical-academic",
+    "compliance": ["HTTPS", "robots.txt", "open-access", "proper-citation"]
+  },
+
+  "platforms": {
+    "arxiv": {
+      "name": "arXiv.org",
+      "type": "academic_preprint",
+      "status": "not_applicable",
+      "reason": "arXiv is for research paper submissions, not web indexing",
+      "alternative": "Publish research papers about LyDian AI system to arXiv",
+      "submission_url": "https://arxiv.org/submit",
+      "categories": ["cs.AI", "cs.CL", "cs.LG", "cs.HC"],
+      "note": "arXiv does not crawl websites - it's a paper repository"
+    },
+
+    "huggingface": {
+      "name": "Hugging Face",
+      "type": "ml_model_repository",
+      "status": "ready_for_integration",
+      "methods": {
+        "1_organization_profile": {
+          "url": "https://huggingface.co/organizations/new",
+          "steps": [
+            "Create organization: lydian-ai",
+            "Add organization description from llms.txt",
+            "Link website: https://www.ailydian.com",
+            "Upload models or datasets if applicable"
+          ]
+        },
+        "2_model_cards": {
+          "description": "Publish model cards for LyDian AI models",
+          "format": "Markdown with YAML frontmatter",
+          "include": [
+            "Model architecture",
+            "Training data",
+            "Ethical considerations",
+            "Limitations",
+            "Citation"
+          ]
+        },
+        "3_spaces": {
+          "description": "Create Hugging Face Spaces for demos",
+          "link_to_website": "https://www.ailydian.com/lydian-iq.html",
+          "ethical_note": "Always credit and link back to source"
+        }
+      },
+      "discovery": {
+        "robots_txt": "Not needed - manual submission",
+        "api": "https://huggingface.co/api/organizations",
+        "user_agent": "Not applicable for manual platform"
+      }
+    },
+
+    "semantic_scholar": {
+      "name": "Semantic Scholar",
+      "type": "academic_search_engine",
+      "status": "auto_discovery_enabled",
+      "vendor": "Allen Institute for AI",
+      "user_agent": "SemanticScholarBot",
+      "discovery_method": "Automatic web crawling",
+      "robots_txt_config": {
+        "user_agent": "SemanticScholarBot",
+        "allow": "/"
+      },
+      "optimization": {
+        "structured_data": "Use schema.org/ScholarlyArticle for research content",
+        "meta_tags": [
+          "citation_title",
+          "citation_author",
+          "citation_publication_date",
+          "citation_journal_title"
+        ]
+      }
+    },
+
+    "google_scholar": {
+      "name": "Google Scholar",
+      "type": "academic_search_engine",
+      "status": "auto_discovery_enabled",
+      "vendor": "Google",
+      "user_agent": "Googlebot",
+      "discovery_method": "Automatic via Google Search",
+      "robots_txt_config": {
+        "user_agent": "Googlebot",
+        "allow": "/"
+      },
+      "optimization": {
+        "meta_tags": [
+          "<meta name=\"citation_title\" content=\"...\">",
+          "<meta name=\"citation_author\" content=\"Emrah Şardağ\">",
+          "<meta name=\"citation_publication_date\" content=\"2025\">",
+          "<meta name=\"citation_pdf_url\" content=\"...\">"
+        ],
+        "note": "Add citation meta tags to research/documentation pages"
+      }
+    },
+
+    "papers_with_code": {
+      "name": "Papers with Code",
+      "type": "ml_research_platform",
+      "status": "manual_submission_available",
+      "submission_url": "https://paperswithcode.com/about",
+      "method": "Link research papers with code implementations",
+      "ethical_approach": "Only submit if you have published peer-reviewed papers",
+      "requirements": [
+        "Published paper (arXiv, conference, journal)",
+        "Open-source code repository",
+        "Reproducible results",
+        "Proper documentation"
+      ]
+    },
+
+    "ieee_xplore": {
+      "name": "IEEE Xplore",
+      "type": "academic_database",
+      "status": "publication_required",
+      "method": "Publish papers in IEEE conferences/journals",
+      "submission_url": "https://www.ieee.org/publications/",
+      "note": "Requires peer-reviewed publication in IEEE venues"
+    },
+
+    "dblp": {
+      "name": "DBLP Computer Science Bibliography",
+      "type": "academic_bibliography",
+      "status": "auto_index_on_publication",
+      "method": "Automatic indexing of published CS papers",
+      "submission_url": "https://dblp.org/faq/How+can+I+submit+meta+data",
+      "note": "DBLP indexes published papers from conferences/journals"
+    },
+
+    "researchgate": {
+      "name": "ResearchGate",
+      "type": "academic_social_network",
+      "status": "manual_profile_creation",
+      "profile_url": "https://www.researchgate.net/signup",
+      "method": "Create researcher profile",
+      "link_to_website": "Add www.ailydian.com to profile",
+      "ethical_note": "Only claim authorship of actual research contributions"
+    },
+
+    "kaggle": {
+      "name": "Kaggle",
+      "type": "data_science_platform",
+      "status": "ready_for_integration",
+      "profile_url": "https://www.kaggle.com/",
+      "methods": {
+        "datasets": "Publish open datasets (if applicable)",
+        "notebooks": "Share analysis notebooks",
+        "competitions": "Participate in ML competitions",
+        "models": "Publish trained models"
+      },
+      "link_to_website": "Add www.ailydian.com to profile bio"
+    },
+
+    "github": {
+      "name": "GitHub",
+      "type": "code_repository",
+      "status": "assumed_active",
+      "discovery": {
+        "user_agent": "github-camo",
+        "robots_txt": "Allow: /"
+      },
+      "optimization": {
+        "readme": "Link to www.ailydian.com in README.md",
+        "website_field": "Add www.ailydian.com to repository website field",
+        "topics": ["ai", "machine-learning", "healthcare-ai", "legal-tech", "smart-cities"]
+      }
+    },
+
+    "openai_model_spec": {
+      "name": "OpenAI Model Spec",
+      "type": "ai_training_data",
+      "status": "configured",
+      "methods": [
+        "robots.txt allows GPTBot ✅",
+        "RSS feed for updates ✅",
+        "OpenAI plugin manifest ✅",
+        "Structured data (JSON-LD) ✅"
+      ]
+    },
+
+    "common_crawl": {
+      "name": "Common Crawl",
+      "type": "web_archive",
+      "status": "auto_discovery_enabled",
+      "user_agent": "CCBot",
+      "robots_txt_config": {
+        "user_agent": "CCBot",
+        "allow": "/"
+      },
+      "note": "Common Crawl automatically archives web content, used by many AI models for training"
+    },
+
+    "internet_archive": {
+      "name": "Internet Archive (Wayback Machine)",
+      "type": "web_archive",
+      "status": "auto_crawl_enabled",
+      "user_agent": "ia_archiver",
+      "robots_txt_config": {
+        "user_agent": "ia_archiver",
+        "allow": "/"
+      },
+      "manual_save": "https://web.archive.org/save/https://www.ailydian.com"
+    },
+
+    "zenodo": {
+      "name": "Zenodo",
+      "type": "research_data_repository",
+      "status": "manual_upload_available",
+      "upload_url": "https://zenodo.org/",
+      "use_case": "Archive datasets, code, documentation with DOI",
+      "ethical_approach": "Open access, proper licensing, FAIR principles",
+      "integration": "Link Zenodo DOIs to www.ailydian.com documentation"
+    }
+  },
+
+  "robots_txt_additions": {
+    "academic_crawlers": [
+      {
+        "user_agent": "SemanticScholarBot",
+        "directive": "Allow: /"
+      },
+      {
+        "user_agent": "ia_archiver",
+        "directive": "Allow: /"
+      },
+      {
+        "user_agent": "archive.org_bot",
+        "directive": "Allow: /"
+      }
+    ]
+  },
+
+  "meta_tags_for_academic_pages": {
+    "research_pages": [
+      "<meta name=\"citation_title\" content=\"LyDian AI: Multi-Modal Enterprise AI Platform\">",
+      "<meta name=\"citation_author\" content=\"Şardağ, Emrah\">",
+      "<meta name=\"citation_publication_date\" content=\"2025\">",
+      "<meta name=\"citation_online_date\" content=\"2025-10-09\">",
+      "<meta name=\"citation_language\" content=\"en\">",
+      "<meta name=\"citation_keywords\" content=\"AI, Healthcare, Legal Tech, Smart Cities, Multi-Modal AI\">"
+    ]
+  },
+
+  "ethical_guidelines": {
+    "do": [
+      "✅ Only claim authorship of your own work",
+      "✅ Properly cite and credit all sources",
+      "✅ Use open licenses (MIT, Apache, CC-BY) where appropriate",
+      "✅ Provide reproducible results",
+      "✅ Follow FAIR data principles (Findable, Accessible, Interoperable, Reusable)",
+      "✅ Respect robots.txt and crawl-delay",
+      "✅ Link back to original sources"
+    ],
+    "dont": [
+      "❌ Submit fake papers or plagiarized content",
+      "❌ Game citation metrics",
+      "❌ Create duplicate profiles",
+      "❌ Spam academic platforms",
+      "❌ Misrepresent credentials or affiliations",
+      "❌ Use blackhat SEO techniques"
+    ]
+  },
+
+  "implementation_priority": {
+    "immediate": [
+      "Update robots.txt with academic crawlers",
+      "Add citation meta tags to research pages",
+      "Create Hugging Face organization",
+      "Save homepage to Internet Archive"
+    ],
+    "short_term": [
+      "Publish research papers to arXiv (if applicable)",
+      "Create Kaggle profile and share datasets",
+      "Create ResearchGate profile",
+      "Upload documentation to Zenodo"
+    ],
+    "long_term": [
+      "Submit papers to IEEE conferences",
+      "Build Papers with Code integrations",
+      "Contribute to open-source ML community"
+    ]
+  }
+}

@@ -23,29 +23,76 @@ User-agent: Slurp
 Allow: /
 
 # AI/LLM Crawlers
+# OpenAI
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+# Google AI
 User-agent: Google-Extended
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
+# Anthropic
 User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+# Common Crawl
 User-agent: CCBot
 Allow: /
 
+# Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 
-# Sitemap location
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Groq
+User-agent: GroqBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# Academic & Research Crawlers
+# Semantic Scholar (Allen Institute for AI)
+User-agent: SemanticScholarBot
+Allow: /
+
+# Internet Archive (Wayback Machine)
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+# Common Crawl (used by many AI models)
+# Already allowed via CCBot above
+
+# Sitemap and Feed locations
 Sitemap: https://www.ailydian.com/sitemap.xml
+Sitemap: https://www.ailydian.com/feed/updates.xml
 
 # Crawl-delay (optional, prevents server overload)
 Crawl-delay: 1

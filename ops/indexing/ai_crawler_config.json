@@ -1,0 +1,205 @@
+{
+  "ai_crawlers_config": {
+    "version": "1.0.0",
+    "updated": "2025-10-09T14:50:00Z",
+    "domain": "www.ailydian.com",
+    "policy": "white-hat-only",
+    "compliance": ["HTTPS", "robots.txt", "sitemap.xml", "RSS"]
+  },
+
+  "user_agents": {
+    "allowed": [
+      {
+        "name": "GPTBot",
+        "vendor": "OpenAI",
+        "purpose": "ChatGPT web browsing and training",
+        "user_agent": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)",
+        "crawl_delay": 1,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "ChatGPT-User",
+        "vendor": "OpenAI",
+        "purpose": "ChatGPT user-initiated queries",
+        "user_agent": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ChatGPT-User/1.0; +https://openai.com/bot)",
+        "crawl_delay": 0,
+        "rate_limit": "none"
+      },
+      {
+        "name": "anthropic-ai",
+        "vendor": "Anthropic",
+        "purpose": "Claude AI training and research",
+        "user_agent": "anthropic-ai",
+        "crawl_delay": 1,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "Claude-Web",
+        "vendor": "Anthropic",
+        "purpose": "Claude web search capabilities",
+        "user_agent": "Claude-Web",
+        "crawl_delay": 0,
+        "rate_limit": "none"
+      },
+      {
+        "name": "Google-Extended",
+        "vendor": "Google",
+        "purpose": "Gemini AI and Bard training",
+        "user_agent": "Google-Extended",
+        "crawl_delay": 1,
+        "rate_limit": "low"
+      },
+      {
+        "name": "GoogleOther",
+        "vendor": "Google",
+        "purpose": "Gemini and AI-powered features",
+        "user_agent": "GoogleOther",
+        "crawl_delay": 1,
+        "rate_limit": "low"
+      },
+      {
+        "name": "PerplexityBot",
+        "vendor": "Perplexity AI",
+        "purpose": "Perplexity search indexing",
+        "user_agent": "PerplexityBot",
+        "crawl_delay": 2,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "YouBot",
+        "vendor": "You.com",
+        "purpose": "You.com AI search",
+        "user_agent": "YouBot",
+        "crawl_delay": 2,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "Applebot-Extended",
+        "vendor": "Apple",
+        "purpose": "Apple Intelligence and Spotlight",
+        "user_agent": "Applebot-Extended",
+        "crawl_delay": 1,
+        "rate_limit": "low"
+      },
+      {
+        "name": "ClaudeBot",
+        "vendor": "Anthropic",
+        "purpose": "Claude web crawler",
+        "user_agent": "ClaudeBot",
+        "crawl_delay": 1,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "Groq",
+        "vendor": "Groq",
+        "purpose": "Groq AI inference engine",
+        "user_agent": "GroqBot",
+        "crawl_delay": 2,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "Diffbot",
+        "vendor": "Diffbot",
+        "purpose": "Knowledge graph extraction",
+        "user_agent": "Diffbot",
+        "crawl_delay": 2,
+        "rate_limit": "moderate"
+      },
+      {
+        "name": "cohere-ai",
+        "vendor": "Cohere",
+        "purpose": "Cohere AI training",
+        "user_agent": "cohere-ai",
+        "crawl_delay": 2,
+        "rate_limit": "moderate"
+      }
+    ],
+
+    "blocked": []
+  },
+
+  "discovery_endpoints": {
+    "sitemap": "https://www.ailydian.com/sitemap.xml",
+    "rss_feed": "https://www.ailydian.com/feed/updates.xml",
+    "robots_txt": "https://www.ailydian.com/robots.txt",
+    "llms_txt": "https://www.ailydian.com/llms.txt",
+    "structured_data": [
+      "https://www.ailydian.com/organization.jsonld",
+      "https://www.ailydian.com/faq.jsonld"
+    ]
+  },
+
+  "ai_platform_registration": {
+    "openai": {
+      "status": "pending_manual",
+      "registration_url": "https://platform.openai.com/data-partnerships",
+      "method": "data_partnership_request",
+      "required_info": {
+        "domain": "www.ailydian.com",
+        "content_type": "AI research, healthcare, legal, civic tech",
+        "update_frequency": "daily",
+        "rss_feed": "https://www.ailydian.com/feed/updates.xml"
+      }
+    },
+
+    "google_gemini": {
+      "status": "auto_propagation",
+      "method": "search_console_verification",
+      "verification_tag": "uOX46mMt8jOnRKed-lgBRMhKglAgJyyyXHRP884w1jc",
+      "search_console_property": "https://www.ailydian.com/",
+      "note": "Gemini auto-indexes verified Search Console properties"
+    },
+
+    "anthropic": {
+      "status": "robots_txt_configured",
+      "method": "user_agent_allowlist",
+      "user_agents": ["anthropic-ai", "Claude-Web", "ClaudeBot"],
+      "verification": "via robots.txt Allow directive"
+    },
+
+    "perplexity": {
+      "status": "rss_configured",
+      "method": "rss_feed_discovery",
+      "feed_url": "https://www.ailydian.com/feed/updates.xml",
+      "meta_tag": "added_to_html"
+    },
+
+    "you_com": {
+      "status": "rss_configured",
+      "method": "rss_feed_discovery",
+      "feed_url": "https://www.ailydian.com/feed/updates.xml",
+      "submit_url": "https://you.com/search?q=site:www.ailydian.com"
+    },
+
+    "groq": {
+      "status": "robots_txt_configured",
+      "method": "user_agent_allowlist",
+      "user_agents": ["GroqBot"],
+      "verification": "via robots.txt Allow directive"
+    },
+
+    "brave": {
+      "status": "sitemap_configured",
+      "method": "web_discovery",
+      "submit_url": "https://search.brave.com/search?q=site:www.ailydian.com",
+      "note": "Brave uses independent index"
+    }
+  },
+
+  "meta_tags_required": {
+    "rss_feed": "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"LyDian AI Updates\" href=\"https://www.ailydian.com/feed/updates.xml\">",
+    "ai_discovery": "<meta name=\"robots\" content=\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">",
+    "openai_plugin": "<!-- OpenAI plugin manifest: https://www.ailydian.com/.well-known/ai-plugin.json -->"
+  },
+
+  "monitoring": {
+    "check_frequency": "daily",
+    "endpoints_to_monitor": [
+      "https://www.ailydian.com/feed/updates.xml",
+      "https://www.ailydian.com/robots.txt",
+      "https://www.ailydian.com/sitemap.xml"
+    ],
+    "expected_http_status": 200,
+    "alert_on_errors": true
+  }
+}
