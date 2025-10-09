@@ -1,0 +1,52 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Pre-deployment validation
+        run: |
+          echo "Running feed validation..."
+          python ops/feed_validator.py --feed all
+
+          echo "Running security audit..."
+          python ops/security_audit.py
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+
+      - name: Verify deployment
+        run: |
+          echo "Verifying deployment..."
+          sleep 10  # Wait for deployment to propagate
+
+          # Verify feeds are accessible
+          curl -f https://www.ailydian.com/feed/ai_models.json || exit 1
+          curl -f https://www.ailydian.com/feed/ai_models.rss || exit 1
+          curl -f https://www.ailydian.com/llms.txt || exit 1
+
+          echo "✅ All feeds are accessible!"

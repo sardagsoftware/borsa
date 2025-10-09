@@ -1,0 +1,70 @@
+name: Feed Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/feed/**'
+      - 'public/llms.txt'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'public/feed/**'
+      - 'public/llms.txt'
+  schedule:
+    - cron: '0 4 * * *'  # Daily at 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  validate-feeds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run feed validator
+        run: |
+          python ops/feed_validator.py --feed all
+        id: validation
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: feed-validation-report
+          path: ops/artifacts/feed_validation_report.json
+
+      - name: Run security audit
+        run: |
+          python ops/security_audit.py
+        id: security
+
+      - name: Upload security report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-audit-report
+          path: ops/artifacts/SECURITY_AUDIT_REPORT.json
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ Feed validation or security audit failed. Please review the artifacts.'
+            })
