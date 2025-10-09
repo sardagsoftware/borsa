@@ -153,6 +153,21 @@ structured_data_available:
 
 ---
 
+# DISCOVERY FEED
+discovery_feed:
+  name: LyDian Discovery – Global AI Model Feed
+  description: Curated list of new AI/LLM models from HuggingFace, arXiv, Open LLM Leaderboard, ModelScope, and official catalogs
+  json_feed: https://www.ailydian.com/feed/ai_models.json
+  rss_feed: https://www.ailydian.com/feed/ai_models.rss
+  huggingface_repo: https://huggingface.co/datasets/lydian-ai/lydian-discovery-feed
+  update_frequency: daily
+  total_models: 30+
+  sources: [HuggingFace, arXiv, ModelScope, OpenAI, Anthropic, Google, Meta, Mistral]
+  license: CC-BY-4.0
+  contact: discovery@ailydian.com
+
+---
+
 # LAST UPDATED
 last_modified: 2025-10-09
-version: 1.0
+version: 1.1

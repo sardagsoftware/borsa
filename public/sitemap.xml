@@ -240,4 +240,26 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- Discovery Feeds (AI Model Discovery) -->
+  <url>
+    <loc>https://www.ailydian.com/llms.txt</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.ailydian.com/feed/ai_models.json</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.ailydian.com/feed/ai_models.rss</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
