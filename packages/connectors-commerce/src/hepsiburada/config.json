@@ -1,0 +1,23 @@
+{
+  "id": "hepsiburada",
+  "name": "Hepsiburada",
+  "vendor": "Hepsiburada",
+  "version": "1.0.0",
+  "mode": "seller_api",
+  "status": "production",
+  "tosUrl": "https://merchant.hepsiburada.com/terms",
+  "privacyUrl": "https://merchant.hepsiburada.com/privacy",
+  "documentation": "https://developer.hepsiburada.com",
+  "supportEmail": "merchant-support@hepsiburada.com",
+  "webhookUrl": "/webhooks/hepsiburada",
+  "auth": {
+    "strategy": "api_key",
+    "headerName": "Authorization"
+  },
+  "defaultRateLimit": {
+    "maxRequests": 8,
+    "windowMs": 1000,
+    "burstSize": 16,
+    "strategy": "token_bucket"
+  }
+}

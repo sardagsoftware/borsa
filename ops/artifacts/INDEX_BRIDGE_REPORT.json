@@ -1,0 +1,87 @@
+{
+  "generated_at": "2025-10-09T13:46:52.101663Z",
+  "policy_compliance": "White-Hat \u00b7 0 Mock \u00b7 Secrets Masked \u00b7 API-based",
+  "platforms": {
+    "google": {
+      "platform": "Google Search Console",
+      "timestamp": "2025-10-09T13:46:52.059275Z",
+      "urls_checked": 0,
+      "indexed_count": 0,
+      "not_indexed_count": 0,
+      "error_count": 0,
+      "details": [],
+      "quota_info": {},
+      "policy_compliance": "White-Hat \u00b7 0 Mock \u00b7 Secrets Masked \u00b7 API-based"
+    },
+    "bing": {
+      "platform": "Bing Webmaster",
+      "timestamp": "2025-10-09T13:46:52.059963Z",
+      "urls_checked": 0,
+      "indexed_count": 0,
+      "not_indexed_count": 0,
+      "error_count": 0,
+      "details": [],
+      "quota_info": {},
+      "policy_compliance": "White-Hat \u00b7 0 Mock \u00b7 Secrets Masked \u00b7 API-based"
+    },
+    "yandex": {
+      "platform": "Yandex Webmaster",
+      "timestamp": "2025-10-09T13:46:52.060158Z",
+      "urls_checked": 0,
+      "indexed_count": 0,
+      "not_indexed_count": 0,
+      "error_count": 0,
+      "details": [],
+      "quota_info": {},
+      "policy_compliance": "White-Hat \u00b7 0 Mock \u00b7 Secrets Masked \u00b7 API-based"
+    }
+  },
+  "summary": {
+    "total_urls_monitored": 6,
+    "urls": [
+      "https://www.ailydian.com/",
+      "https://www.ailydian.com/llms.txt",
+      "https://www.ailydian.com/feed/ai_models.json",
+      "https://www.ailydian.com/feed/ai_models.rss",
+      "https://www.ailydian.com/lydian-iq.html",
+      "https://www.ailydian.com/api-docs.html"
+    ],
+    "total_platforms": 3,
+    "total_indexed": 0,
+    "total_not_indexed": 0,
+    "total_errors": 0,
+    "average_indexed_rate": 0
+  },
+  "url_matrix": {
+    "https://www.ailydian.com/": {
+      "google": null,
+      "bing": null,
+      "yandex": null
+    },
+    "https://www.ailydian.com/llms.txt": {
+      "google": null,
+      "bing": null,
+      "yandex": null
+    },
+    "https://www.ailydian.com/feed/ai_models.json": {
+      "google": null,
+      "bing": null,
+      "yandex": null
+    },
+    "https://www.ailydian.com/feed/ai_models.rss": {
+      "google": null,
+      "bing": null,
+      "yandex": null
+    },
+    "https://www.ailydian.com/lydian-iq.html": {
+      "google": null,
+      "bing": null,
+      "yandex": null
+    },
+    "https://www.ailydian.com/api-docs.html": {
+      "google": null,
+      "bing": null,
+      "yandex": null
+    }
+  }
+}

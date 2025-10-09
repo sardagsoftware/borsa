@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "baseUrl": ".",
+    "paths": {
+      "@lydian/app-sdk": ["./packages/app-sdk/src"],
+      "@lydian/connectors-core": ["./packages/connectors-core/src"],
+      "@lydian/connectors-commerce": ["./packages/connectors-commerce/src"],
+      "@lydian/connectors-classifieds": ["./packages/connectors-classifieds/src"],
+      "@lydian/connectors-crossborder": ["./packages/connectors-crossborder/src"],
+      "@lydian/connectors-delivery": ["./packages/connectors-delivery/src"],
+      "@lydian/connectors-grocery": ["./packages/connectors-grocery/src"],
+      "@lydian/connectors-travel": ["./packages/connectors-travel/src"],
+      "@lydian/connectors-finance": ["./packages/connectors-finance/src"],
+      "@lydian/lydian-iq-core": ["./packages/lydian-iq-core/src"],
+      "@lydian/schema": ["./packages/schema/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build", ".next", "coverage"]
+}

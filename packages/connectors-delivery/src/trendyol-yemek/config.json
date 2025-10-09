@@ -1,0 +1,42 @@
+{
+  "id": "trendyol-yemek",
+  "name": "Trendyol Yemek",
+  "vendor": "Trendyol",
+  "version": "1.0.0",
+  "mode": "partner_required",
+  "status": "disabled",
+  "tosUrl": "https://www.trendyolyemek.com/kullanim-kosullari",
+  "privacyUrl": "https://www.trendyolyemek.com/gizlilik-politikasi",
+  "documentation": "https://partner.trendyolyemek.com/docs",
+  "supportEmail": "partner@trendyolyemek.com",
+  "webhookUrl": "/webhooks/trendyol-yemek",
+  "auth": {
+    "strategy": "api_key",
+    "headerName": "Authorization"
+  },
+  "defaultRateLimit": {
+    "maxRequests": 10,
+    "windowMs": 1000,
+    "burstSize": 20,
+    "strategy": "token_bucket"
+  },
+  "legalGate": {
+    "requiresPartnerApproval": true,
+    "approvalProcess": "Apply at https://partner.trendyolyemek.com/basvuru",
+    "complianceNotes": [
+      "Partner API access only - no scraping",
+      "KVKK compliant data handling",
+      "Restaurant consent required for all operations",
+      "Order data retention: 30 days",
+      "Menu images must comply with Trendyol guidelines",
+      "Delivery zones must be pre-approved"
+    ]
+  },
+  "features": {
+    "supportsWebhooks": true,
+    "supportsBulkOperations": true,
+    "supportsRealTimeTracking": true,
+    "supportsPromotions": true,
+    "supportsCampaigns": true
+  }
+}

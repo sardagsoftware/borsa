@@ -10,12 +10,17 @@
  */
 
 // For Vercel serverless functions, we need to use a different approach
-const Groq = require('groq-sdk');
-
-// Initialize Groq client (similar to Lydian IQ)
-const groq = process.env.GROQ_API_KEY ? new Groq({
-  apiKey: process.env.GROQ_API_KEY
-}) : null;
+// Try to load Groq SDK if available
+let Groq, groq;
+try {
+  Groq = require('groq-sdk');
+  groq = process.env.GROQ_API_KEY ? new Groq({
+    apiKey: process.env.GROQ_API_KEY
+  }) : null;
+} catch (e) {
+  // Groq SDK not available, will use mock responses
+  groq = null;
+}
 
 // Mock legal responses for demo/fallback
 const mockLegalResponses = {

@@ -1,0 +1,153 @@
+# ========================================
+# LYDIAN-IQ DEPENDABOT CONFIGURATION
+# ========================================
+# Purpose: Automated dependency updates with security focus
+# Compliance: Supply chain security, OWASP Top 10
+# Version: 1.0
+
+version: 2
+updates:
+  # ========== NPM (Main Application) ==========
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "03:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "lydian-iq/security-team"
+    assignees:
+      - "lydian-iq/platform-team"
+    labels:
+      - "dependencies"
+      - "security"
+      - "automated"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+    # Security updates only for production dependencies
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    # Ignore major version updates for critical packages (manual review required)
+    ignore:
+      - dependency-name: "express"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@azure/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@prisma/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "openai"
+        update-types: ["version-update:semver-major"]
+    # Group security updates together
+    groups:
+      security-patches:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      azure-sdk:
+        patterns:
+          - "@azure/*"
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "playwright"
+
+  # ========== NPM (Logistics Connectors Package) ==========
+  - package-ecosystem: "npm"
+    directory: "/packages/connectors-logistics"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "lydian-iq/logistics-team"
+    labels:
+      - "dependencies"
+      - "logistics"
+      - "automated"
+    commit-message:
+      prefix: "deps(logistics)"
+
+  # ========== GitHub Actions ==========
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "05:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "lydian-iq/devops-team"
+    labels:
+      - "dependencies"
+      - "ci-cd"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    # Group GitHub Actions updates
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  # ========== Docker ==========
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "06:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "lydian-iq/devops-team"
+    labels:
+      - "dependencies"
+      - "docker"
+      - "infrastructure"
+    commit-message:
+      prefix: "docker"
+
+# ========================================
+# DEPENDABOT CONFIGURATION NOTES
+# ========================================
+#
+# Security Update Strategy:
+# 1. Daily checks for npm packages (security-critical)
+# 2. Weekly checks for GitHub Actions and Docker
+# 3. Automatic grouping of patch updates
+# 4. Manual review required for major version updates
+#
+# PR Limits:
+# - NPM (main): 10 PRs (high priority)
+# - NPM (packages): 5 PRs per package
+# - GitHub Actions: 5 PRs
+# - Docker: 3 PRs
+#
+# Review Assignment:
+# - Security updates → @lydian-iq/security-team
+# - Platform dependencies → @lydian-iq/platform-team
+# - CI/CD updates → @lydian-iq/devops-team
+# - Logistics packages → @lydian-iq/logistics-team
+#
+# Ignored Major Updates (require manual review):
+# - express (API framework)
+# - @azure/* (Azure SDK breaking changes)
+# - @prisma/* (database ORM)
+# - openai (AI SDK breaking changes)
+#
+# Grouping Strategy:
+# - Security patches grouped by severity
+# - Azure SDK updates grouped together
+# - Playwright updates grouped together
+# - GitHub Actions updates grouped together
+#
+# ========================================

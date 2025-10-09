@@ -1,0 +1,28 @@
+{
+  "name": "@lydian/schema",
+  "version": "1.0.0",
+  "description": "Lydian Unified Schema - Zod schemas for multi-vendor data harmonization",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "openapi:generate": "ts-node src/openapi-generator.ts"
+  },
+  "dependencies": {
+    "zod": "^3.22.4",
+    "zod-to-json-schema": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

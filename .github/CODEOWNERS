@@ -1,0 +1,205 @@
+# ========================================
+# LYDIAN-IQ CODEOWNERS
+# ========================================
+# Purpose: Define code review requirements and ownership
+# Compliance: SOC 2, ISO 27001, NIST SSDF
+# Version: 1.0
+#
+# Syntax:
+# pattern @owner1 @owner2
+#
+# Owners are automatically requested for review when someone
+# opens a pull request that modifies matching files.
+#
+# Reference: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# ========================================
+
+# ========== Default Owners ==========
+# Default owners for all files (unless overridden below)
+* @lydian-iq/platform-team
+
+# ========== Security & Compliance ==========
+# Security-critical files require security team review
+/lib/security/ @lydian-iq/security-team @lydian-iq/platform-team
+/security/ @lydian-iq/security-team @lydian-iq/platform-team
+/tools/signing/ @lydian-iq/security-team @lydian-iq/devops-team
+/config/security/ @lydian-iq/security-team
+
+# Compliance documentation (DPIA, DPA, GDPR)
+/docs/compliance/ @lydian-iq/legal-team @lydian-iq/security-team
+/docs/privacy/ @lydian-iq/legal-team @lydian-iq/security-team
+**/DPIA.md @lydian-iq/legal-team @lydian-iq/security-team
+**/DPA.md @lydian-iq/legal-team @lydian-iq/security-team
+**/GDPR-DPA.md @lydian-iq/legal-team @lydian-iq/security-team
+**/PDPL.md @lydian-iq/legal-team @lydian-iq/security-team
+
+# Sanctions policy (legal + security)
+**/sanctions.json @lydian-iq/legal-team @lydian-iq/security-team
+
+# ========== CI/CD & Infrastructure ==========
+# GitHub Actions workflows
+/.github/workflows/ @lydian-iq/devops-team @lydian-iq/platform-team
+/.github/dependabot.yml @lydian-iq/devops-team
+/.github/CODEOWNERS @lydian-iq/platform-team @lydian-iq/security-team
+
+# Docker and infrastructure
+/docker-compose.yml @lydian-iq/devops-team @lydian-iq/platform-team
+/Dockerfile @lydian-iq/devops-team
+/infra/ @lydian-iq/devops-team @lydian-iq/platform-team
+**/docker-compose*.yml @lydian-iq/devops-team
+
+# ========== API Discovery & Vendor Integration ==========
+# API discovery registry (legal gate enforcement)
+/docs/api-discovery/ @lydian-iq/integration-team @lydian-iq/legal-team
+**/apidex.json @lydian-iq/integration-team @lydian-iq/legal-team
+
+# Logistics vendor integration
+/packages/connectors-logistics/ @lydian-iq/logistics-team @lydian-iq/integration-team
+/docs/logistics/ @lydian-iq/logistics-team
+
+# Commerce vendor integration (future)
+/packages/connectors-commerce/ @lydian-iq/commerce-team @lydian-iq/integration-team
+/docs/commerce/ @lydian-iq/commerce-team
+
+# ========== Database & Schema ==========
+# Database migrations (require platform + backend review)
+/database/migrations/ @lydian-iq/backend-team @lydian-iq/platform-team
+/infra/prisma/schema.prisma @lydian-iq/backend-team @lydian-iq/platform-team
+
+# Vault seed (credentials template)
+/docs/api-discovery/.env.vaultseed @lydian-iq/security-team @lydian-iq/devops-team
+
+# ========== Authentication & Authorization ==========
+# Auth middleware and endpoints
+/middleware/auth/ @lydian-iq/backend-team @lydian-iq/security-team
+/api/auth/ @lydian-iq/backend-team @lydian-iq/security-team
+/lib/auth/ @lydian-iq/backend-team @lydian-iq/security-team
+
+# OAuth integrations
+**/oauth*.js @lydian-iq/backend-team @lydian-iq/security-team
+**/oauth*.ts @lydian-iq/backend-team @lydian-iq/security-team
+
+# ========== Rate Limiting & Middleware ==========
+/middleware/rate-limit*.js @lydian-iq/backend-team @lydian-iq/platform-team
+/middleware/security*.js @lydian-iq/backend-team @lydian-iq/security-team
+/middleware/session*.js @lydian-iq/backend-team @lydian-iq/security-team
+
+# ========== Frontend (Public Files) ==========
+# Public HTML files (require frontend + security review for XSS)
+/public/*.html @lydian-iq/frontend-team
+/public/js/ @lydian-iq/frontend-team
+
+# Service workers (PWA)
+/public/*-sw.js @lydian-iq/frontend-team @lydian-iq/platform-team
+/public/manifest*.json @lydian-iq/frontend-team
+
+# ========== AI & ML Integration ==========
+# AI brain and orchestration
+/ai-brain/ @lydian-iq/ai-team @lydian-iq/platform-team
+/api/lydian-iq/ @lydian-iq/ai-team @lydian-iq/backend-team
+/api/medical/ai*.js @lydian-iq/ai-team @lydian-iq/medical-team
+
+# ========== Testing ==========
+# Playwright tests
+/tests/ @lydian-iq/qa-team @lydian-iq/platform-team
+/playwright*.config.ts @lydian-iq/qa-team
+/tests/smoke/ @lydian-iq/qa-team
+/tests/security/ @lydian-iq/qa-team @lydian-iq/security-team
+
+# ========== Package Management ==========
+# Package.json changes (require platform review for dependency changes)
+/package.json @lydian-iq/platform-team @lydian-iq/devops-team
+/pnpm-lock.yaml @lydian-iq/platform-team
+/package-lock.json @lydian-iq/platform-team
+
+# ========== Documentation ==========
+# Technical documentation
+/docs/ @lydian-iq/platform-team
+/README.md @lydian-iq/platform-team
+/wiki/ @lydian-iq/platform-team
+
+# API documentation
+/docs/api/ @lydian-iq/backend-team @lydian-iq/platform-team
+/public/api-reference.html @lydian-iq/backend-team @lydian-iq/frontend-team
+
+# ========== Critical Configuration Files ==========
+# Environment configuration (require security review)
+/.env.example @lydian-iq/security-team @lydian-iq/devops-team
+/.env.production.template @lydian-iq/security-team @lydian-iq/devops-team
+
+# Server configuration
+/server.js @lydian-iq/backend-team @lydian-iq/platform-team
+/vercel.json @lydian-iq/devops-team @lydian-iq/platform-team
+
+# ========================================
+# TEAM DEFINITIONS
+# ========================================
+#
+# GitHub teams referenced in this file:
+#
+# @lydian-iq/platform-team
+#   - Overall platform architecture and stability
+#   - Default reviewers for most changes
+#
+# @lydian-iq/security-team
+#   - Security-critical code (auth, encryption, SSRF, webhooks)
+#   - Compliance documentation (DPIA, DPA, GDPR)
+#   - Sanctions policy enforcement
+#
+# @lydian-iq/devops-team
+#   - CI/CD workflows and automation
+#   - Infrastructure (Docker, Kubernetes, cloud)
+#   - Secrets management (Vault)
+#
+# @lydian-iq/backend-team
+#   - API endpoints and middleware
+#   - Database migrations and schema
+#   - Authentication and authorization
+#
+# @lydian-iq/frontend-team
+#   - HTML, CSS, JavaScript (public/)
+#   - PWA and service workers
+#   - Client-side security (CSP, XSS)
+#
+# @lydian-iq/ai-team
+#   - AI/ML model integration (OpenAI, Azure AI)
+#   - Lydian-IQ reasoning engine
+#   - Medical AI systems
+#
+# @lydian-iq/legal-team
+#   - Legal compliance (KVKK, GDPR, PDPL)
+#   - Vendor contracts and partnerships
+#   - Data processing agreements (DPA)
+#
+# @lydian-iq/integration-team
+#   - Vendor API integrations (commerce, logistics, delivery)
+#   - API discovery and apidex.json
+#   - Legal gate enforcement
+#
+# @lydian-iq/logistics-team
+#   - Logistics connectors (Aras, Yurtiçi, UPS, etc.)
+#   - Shipping and tracking integrations
+#
+# @lydian-iq/commerce-team
+#   - E-commerce connectors (Trendyol, Hepsiburada, etc.)
+#   - Product catalog and order management
+#
+# @lydian-iq/qa-team
+#   - Test automation (Playwright)
+#   - Quality assurance and smoke tests
+#
+# @lydian-iq/medical-team
+#   - Medical AI integrations
+#   - HIPAA/healthcare compliance
+#
+# ========================================
+# NOTES
+# ========================================
+#
+# 1. Order matters: Last matching pattern takes precedence
+# 2. All teams are placeholders - replace with actual GitHub teams
+# 3. Individual reviewers can be specified as @username
+# 4. At least one owner from each team must approve changes
+# 5. CODEOWNERS enforcement requires branch protection rules
+#
+# ========================================

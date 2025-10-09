@@ -1,0 +1,23 @@
+{
+  "id": "trendyol",
+  "name": "Trendyol",
+  "vendor": "Trendyol",
+  "version": "1.0.0",
+  "mode": "seller_api",
+  "status": "production",
+  "tosUrl": "https://partner.trendyol.com/terms",
+  "privacyUrl": "https://partner.trendyol.com/privacy",
+  "documentation": "https://developers.trendyol.com",
+  "supportEmail": "merchant-support@trendyol.com",
+  "webhookUrl": "/webhooks/trendyol",
+  "auth": {
+    "strategy": "api_key",
+    "headerName": "Authorization"
+  },
+  "defaultRateLimit": {
+    "maxRequests": 10,
+    "windowMs": 1000,
+    "burstSize": 20,
+    "strategy": "token_bucket"
+  }
+}

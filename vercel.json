@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "alias": ["www.ailydian.com", "ailydian.com"],
   "buildCommand": "echo 'No build required - Serverless Functions'",
   "outputDirectory": "public",
   "cleanUrls": true,

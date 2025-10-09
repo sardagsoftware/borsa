@@ -1,0 +1,111 @@
+# ========================================
+# PROMETHEUS CONFIGURATION
+# Metrics collection for Lydian SDK
+# ========================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'lydian-dev'
+    environment: 'local'
+
+# Alertmanager configuration (optional)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them
+rule_files:
+  # - "alerts/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # ========== Prometheus Self-Monitoring ==========
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus'
+
+  # ========== Gateway API ==========
+  - job_name: 'gateway-api'
+    static_configs:
+      - targets: ['host.docker.internal:3100']
+        labels:
+          service: 'gateway'
+          app: 'lydian-gateway'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # ========== Orchestrator ==========
+  - job_name: 'orchestrator'
+    static_configs:
+      - targets: ['host.docker.internal:3200']
+        labels:
+          service: 'orchestrator'
+          app: 'lydian-orchestrator'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # ========== Chat UI (Next.js) ==========
+  - job_name: 'chat-ui'
+    static_configs:
+      - targets: ['host.docker.internal:3001']
+        labels:
+          service: 'chat'
+          app: 'lydian-chat'
+    metrics_path: '/api/metrics'
+    scrape_interval: 30s
+
+  # ========== Console Dashboard ==========
+  - job_name: 'console'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+        labels:
+          service: 'console'
+          app: 'lydian-console'
+    metrics_path: '/api/metrics'
+    scrape_interval: 30s
+
+  # ========== Postgres Exporter (if installed) ==========
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+        labels:
+          service: 'postgres'
+          database: 'lydian'
+
+  # ========== Redis Exporter (if installed) ==========
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+        labels:
+          service: 'redis'
+          cache: 'main'
+
+  # ========== Node Exporter (system metrics) ==========
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          service: 'node'
+          instance: 'localhost'
+
+  # ========== Temporal ==========
+  - job_name: 'temporal'
+    static_configs:
+      - targets: ['temporal:7233']
+        labels:
+          service: 'temporal'
+          component: 'server'
+
+  # ========== Kafka (JMX Exporter if configured) ==========
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka-exporter:9308']
+        labels:
+          service: 'kafka'
+          cluster: 'lydian-kafka-cluster-1'

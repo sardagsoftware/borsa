@@ -43,6 +43,12 @@ monitoring
 # Apps (using separate repos)
 apps
 
+# Packages (SDK development, not for production)
+packages
+
+# Services (microservices development, not for production)
+services
+
 # Multi-language libraries (local only)
 multi-language-libraries
 

@@ -1,6 +1,8 @@
 /**
  * 🌐 KNOWLEDGE GRAPH API - Precedents Endpoint
- * GET /api/knowledge-graph/precedents/[article]
+ * GET /api/knowledge-graph/precedents?article=XXX
+ * OR
+ * GET /api/knowledge-graph/precedents/ARTICLE (via path parsing)
  * Vercel Serverless Function - Neo4j Integration
  */
 
@@ -64,20 +66,31 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { article } = req.query;
+    // Support both query parameter and path-based article
+    // Path: /api/knowledge-graph/precedents/TCK%20141
+    // Query: /api/knowledge-graph/precedents?article=TCK%20141
+    let article = req.query.article;
+
+    // If no query param, try to extract from URL path
+    if (!article && req.url) {
+      const pathMatch = req.url.match(/\/precedents\/([^?]+)/);
+      if (pathMatch && pathMatch[1]) {
+        article = decodeURIComponent(pathMatch[1]);
+      }
+    }
 
     if (!article) {
       return res.status(400).json({
         success: false,
-        error: 'article parameter is required'
+        error: 'article parameter is required (query or path)'
       });
     }
 
-    // Decode article (comes URL encoded)
+    // Decode article if it comes URL encoded
     const decodedArticle = decodeURIComponent(article);
 
     // TODO: When Neo4j is configured, use real service
-    // const knowledgeGraph = require('../../../services/neo4j-knowledge-graph');
+    // const knowledgeGraph = require('../../services/neo4j-knowledge-graph');
     // const precedents = await knowledgeGraph.searchPrecedents(decodedArticle);
 
     // For now, use mock data

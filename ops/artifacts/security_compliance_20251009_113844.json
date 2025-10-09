@@ -1,0 +1,79 @@
+{
+  "timestamp": "2025-10-09T11:38:44.753832",
+  "domain": "www.ailydian.com",
+  "base_url": "https://www.ailydian.com",
+  "checks": {
+    "HTTPS Enforcement": {
+      "check": "HTTPS Enforcement",
+      "passed": true,
+      "http_url": "http://www.ailydian.com",
+      "final_url": "https://www.ailydian.com/",
+      "status_code": 200
+    },
+    "HSTS Header": {
+      "check": "HSTS Header",
+      "passed": true,
+      "header_value": "max-age=63072000; includeSubDomains; preload"
+    },
+    "robots.txt Compliance": {
+      "check": "robots.txt Compliance",
+      "passed": true,
+      "url": "https://www.ailydian.com/robots.txt",
+      "validations": {
+        "accessible": true,
+        "has_user_agent": true,
+        "has_sitemap": true,
+        "allows_crawling": true,
+        "has_ai_crawlers": true
+      }
+    },
+    "sitemap.xml Validation": {
+      "check": "sitemap.xml Validation",
+      "passed": true,
+      "url": "https://www.ailydian.com/sitemap.xml",
+      "validations": {
+        "accessible": true,
+        "valid_xml": true,
+        "url_count": 32,
+        "has_urls": true,
+        "all_https": true
+      }
+    },
+    "Canonical URL": {
+      "check": "Canonical URL",
+      "passed": true,
+      "canonical_url": "https://www.ailydian.com/",
+      "uses_https": true
+    },
+    "No-Index Violations": {
+      "check": "No-Index Violations",
+      "passed": true,
+      "noindex_in_meta": false,
+      "noindex_in_header": false
+    },
+    "Crawl Budget Optimization": {
+      "check": "Crawl Budget Optimization",
+      "passed": true,
+      "has_crawl_delay": true,
+      "crawl_delay_value": 1,
+      "is_optimal": true
+    },
+    "Security Headers": {
+      "check": "Security Headers",
+      "passed": true,
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self'; frame-ancestors 'none';",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload"
+      },
+      "present_count": 5,
+      "total_count": 5
+    }
+  },
+  "violations": [],
+  "warnings": [],
+  "passed": 8,
+  "failed": 0
+}

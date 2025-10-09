@@ -1,0 +1,47 @@
+{
+  "name": "@lydian-iq/connectors-logistics",
+  "version": "1.0.0",
+  "description": "Lydian-IQ Logistics Connectors (Aras, Yurtiçi, UPS, Hepsijet, MNG, Sürat)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "logistics",
+    "shipping",
+    "cargo",
+    "aras",
+    "yurtici",
+    "ups",
+    "hepsijet",
+    "mng",
+    "surat",
+    "turkey"
+  ],
+  "author": "Lydian AI Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "@lydian-iq/connectors-core": "^1.0.0"
+  }
+}

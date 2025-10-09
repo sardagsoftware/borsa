@@ -1,0 +1,215 @@
+{
+  "audit_timestamp": "2025-10-09T14:26:41.989234Z",
+  "policy_compliance": "White-Hat \u00b7 0 Mock \u00b7 Secrets Masked \u00b7 TOS Compliant",
+  "checks": {
+    "PII Detection": [
+      {
+        "name": "PII Check: public/llms.txt",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:41.990962Z",
+        "details": {
+          "file": "public/llms.txt",
+          "clean": true
+        }
+      },
+      {
+        "name": "PII Check: public/feed/ai_models.json",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:41.992592Z",
+        "details": {
+          "file": "public/feed/ai_models.json",
+          "clean": true
+        }
+      },
+      {
+        "name": "PII Check: public/feed/ai_models.rss",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:41.993556Z",
+        "details": {
+          "file": "public/feed/ai_models.rss",
+          "clean": true
+        }
+      }
+    ],
+    "Security Headers": [
+      {
+        "name": "Headers: https://www.ailydian.com/",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:42.444435Z",
+        "details": {
+          "url": "https://www.ailydian.com/",
+          "all_present": true
+        }
+      },
+      {
+        "name": "Headers: https://www.ailydian.com/robots.txt",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:42.721776Z",
+        "details": {
+          "url": "https://www.ailydian.com/robots.txt",
+          "all_present": true
+        }
+      },
+      {
+        "name": "Headers: https://www.ailydian.com/sitemap.xml",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:43.000703Z",
+        "details": {
+          "url": "https://www.ailydian.com/sitemap.xml",
+          "all_present": true
+        }
+      },
+      {
+        "name": "Headers: https://www.ailydian.com/llms.txt",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:43.281943Z",
+        "details": {
+          "url": "https://www.ailydian.com/llms.txt",
+          "all_present": true
+        }
+      },
+      {
+        "name": "Headers: https://www.ailydian.com/feed/ai_models.json",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:43.421732Z",
+        "details": {
+          "url": "https://www.ailydian.com/feed/ai_models.json",
+          "all_present": true
+        }
+      },
+      {
+        "name": "Headers: https://www.ailydian.com/feed/ai_models.rss",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:43.754834Z",
+        "details": {
+          "url": "https://www.ailydian.com/feed/ai_models.rss",
+          "all_present": true
+        }
+      }
+    ],
+    "HTTPS Enforcement": [
+      {
+        "name": "HTTP to HTTPS Redirect",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:43.942970Z",
+        "details": {
+          "http_url": "http://www.ailydian.com",
+          "redirects_to": "https://www.ailydian.com/"
+        }
+      },
+      {
+        "name": "HSTS Header",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.055287Z",
+        "details": {
+          "max_age": 63072000,
+          "hsts_value": "max-age=63072000; includeSubDomains; preload"
+        }
+      }
+    ],
+    "robots.txt": [
+      {
+        "name": "Feed Allowed: /llms.txt",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178629Z",
+        "details": {
+          "path": "/llms.txt",
+          "allowed": true
+        }
+      },
+      {
+        "name": "Feed Allowed: /feed/ai_models.json",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178716Z",
+        "details": {
+          "path": "/feed/ai_models.json",
+          "allowed": true
+        }
+      },
+      {
+        "name": "Feed Allowed: /feed/ai_models.rss",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178746Z",
+        "details": {
+          "path": "/feed/ai_models.rss",
+          "allowed": true
+        }
+      },
+      {
+        "name": "Sitemap Declaration",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178771Z",
+        "details": {
+          "has_sitemap": true
+        }
+      }
+    ],
+    "TOS Compliance": [
+      {
+        "name": "Google Indexing API",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178839Z",
+        "details": {
+          "reason": "Using official API with Service Account authentication"
+        }
+      },
+      {
+        "name": "Bing Webmaster API",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178861Z",
+        "details": {
+          "reason": "Using official API with API key authentication"
+        }
+      },
+      {
+        "name": "Yandex Webmaster API",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178880Z",
+        "details": {
+          "reason": "Using official API with OAuth authentication"
+        }
+      },
+      {
+        "name": "Hugging Face",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178903Z",
+        "details": {
+          "reason": "Dataset licensed under CC BY 4.0, proper attribution"
+        }
+      },
+      {
+        "name": "Feed Content",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.178922Z",
+        "details": {
+          "reason": "All model data from public sources, proper licenses"
+        }
+      }
+    ],
+    "License Compliance": [
+      {
+        "name": "Metadata License",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.180553Z",
+        "details": {
+          "license": "CC-BY-4.0"
+        }
+      },
+      {
+        "name": "Model Licenses",
+        "status": "PASS",
+        "timestamp": "2025-10-09T14:26:44.180638Z",
+        "details": {
+          "total_models": 30,
+          "all_have_license": true
+        }
+      }
+    ]
+  },
+  "summary": {
+    "total_checks": 22,
+    "passed": 22,
+    "failed": 0,
+    "warnings": 0
+  }
+}

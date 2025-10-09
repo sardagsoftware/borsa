@@ -1,0 +1,70 @@
+{
+  "name": "lydian-sdk-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lydian IQ - Türkiye'nin Legal Multi-Sektör Application SDK'si",
+  "author": "Ailydian Ultra Pro Team",
+  "license": "PROPRIETARY",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:gateway": "turbo run dev --filter=@lydian/gateway",
+    "dev:orchestrator": "turbo run dev --filter=@lydian/orchestrator",
+    "dev:console": "turbo run dev --filter=@lydian/console",
+    "dev:chat": "turbo run dev --filter=@lydian/chat",
+    "build": "turbo run build",
+    "build:packages": "turbo run build --filter='./packages/*'",
+    "build:services": "turbo run build --filter='./services/*'",
+    "build:apps": "turbo run build --filter='./apps/*'",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:contract": "turbo run test:contract",
+    "test:e2e": "turbo run test:e2e",
+    "test:load": "k6 run tests/load/api-load-test.js",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "db:migrate": "cd services/gateway && pnpm run db:migrate",
+    "db:seed": "cd services/gateway && pnpm run db:seed",
+    "docker:up": "docker-compose -f infra/docker-compose/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f infra/docker-compose/docker-compose.yml down",
+    "docker:logs": "docker-compose -f infra/docker-compose/docker-compose.yml logs -f",
+    "vault:login": "sh scripts/vault-login.sh",
+    "vault:seed": "sh scripts/seed-secrets.sh",
+    "smoke": "sh scripts/smoke-test.sh",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "turbo": "^1.11.3",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {},
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "apps/*"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}

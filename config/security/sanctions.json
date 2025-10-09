@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-10-09T21:00:00Z",
+  "description": "International sanctions compliance policy for Lydian-IQ connectors",
+  "regions": {
+    "RU": {
+      "sanctioned": true,
+      "data_residency": "ru_only",
+      "status": "sandbox_only",
+      "reason": "International sanctions compliance (US/EU/UK)",
+      "restrictions": {
+        "production_deployment": false,
+        "payment_processing": false,
+        "data_export": false,
+        "api_keys_storage": "local_only"
+      },
+      "allowed_operations": ["test", "development", "research"],
+      "vendors": ["wildberries", "ozon", "yandex-market", "avito", "yandex-eats"]
+    },
+    "BY": {
+      "sanctioned": true,
+      "data_residency": "ru_only",
+      "status": "disabled",
+      "reason": "International sanctions compliance",
+      "restrictions": {
+        "production_deployment": false,
+        "payment_processing": false,
+        "data_export": false,
+        "connector_registration": false
+      },
+      "allowed_operations": [],
+      "vendors": []
+    },
+    "TR": {
+      "sanctioned": false,
+      "data_residency": "regional",
+      "status": "enabled",
+      "compliance": ["KVKK", "GDPR"],
+      "vendors": ["trendyol", "hepsiburada", "getir", "trendyol-yemek", "yemeksepeti", "migros", "sahibinden", "arabam"]
+    },
+    "EU": {
+      "sanctioned": false,
+      "data_residency": "regional",
+      "status": "enabled",
+      "compliance": ["GDPR", "ePrivacy"],
+      "countries": ["DE", "AT", "NL", "BG", "CY"],
+      "vendors": [
+        "zalando", "otto", "lieferando", "rewe", "check24",
+        "willhaben", "lieferando-at", "foodora", "billa", "gurkerl", "shoepping",
+        "bol", "coolblue", "marktplaats", "thuisbezorgd", "ah-nl", "picnic",
+        "emag-bg", "olx-bg", "glovo", "ebag-bg"
+      ]
+    },
+    "MENA": {
+      "sanctioned": false,
+      "data_residency": "regional",
+      "status": "enabled",
+      "compliance": ["PDPL"],
+      "countries": ["AZ", "QA", "SA", "CY"],
+      "vendors": [
+        "tapaz", "turboaz", "wolt", "boltfood",
+        "talabat", "snoonu", "carrefour-qa", "lulu-qa",
+        "noon", "haraj", "hungerstation", "mrsool", "nana",
+        "bazaraki", "foody", "wolt-cy", "alphamega"
+      ]
+    }
+  },
+  "policy": {
+    "version": "1.0",
+    "rules": [
+      {
+        "id": "SANC-001",
+        "rule": "Connector with sanctioned:true MUST NOT be deployed to production",
+        "severity": "critical",
+        "check_on": ["ci", "deploy", "registration"],
+        "enforcement": "block"
+      },
+      {
+        "id": "SANC-002",
+        "rule": "RU/BY connectors MUST use region-locked storage (data_residency=ru_only)",
+        "severity": "critical",
+        "check_on": ["runtime", "data_write"],
+        "enforcement": "block"
+      },
+      {
+        "id": "SANC-003",
+        "rule": "RU/BY connectors MUST be feature-flagged and disabled by default",
+        "severity": "high",
+        "check_on": ["ci", "deploy"],
+        "enforcement": "warn"
+      },
+      {
+        "id": "SANC-004",
+        "rule": "Payment processing MUST be disabled for sanctioned regions",
+        "severity": "critical",
+        "check_on": ["runtime", "transaction"],
+        "enforcement": "block"
+      },
+      {
+        "id": "SANC-005",
+        "rule": "Data export from sanctioned regions MUST be blocked",
+        "severity": "critical",
+        "check_on": ["runtime", "data_export"],
+        "enforcement": "block"
+      }
+    ],
+    "audit": {
+      "log_all_checks": true,
+      "retention_days": 365,
+      "alert_on_violation": true,
+      "pager_duty_integration": true
+    }
+  },
+  "ci_integration": {
+    "pre_deploy_check": true,
+    "fail_on_violation": true,
+    "report_format": "json",
+    "output_path": "compliance-report.json"
+  }
+}

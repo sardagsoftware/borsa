@@ -1,0 +1,832 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-10-09T20:30:00Z",
+  "metadata": {
+    "purpose": "Lydian-IQ multi-sector/multi-country connector API registry",
+    "retention_days": 7,
+    "compliance": ["KVKK", "GDPR", "PDPL"],
+    "governance": "white-hat, legal-first, 0-tolerance",
+    "total_vendors": 48,
+    "public_api_count": 18,
+    "partner_required_count": 25,
+    "sandbox_only_count": 5
+  },
+  "vendors": [
+    {
+      "vendor": "trendyol",
+      "country": "TR",
+      "vertical": "commerce",
+      "status": "public_api",
+      "signup_url": "https://developers.trendyol.com/",
+      "docs_url": "https://developers.trendyol.com/",
+      "postman_url": "https://api.postman.com/collections/36945960-f299f4ac-3cc4-4046-9265-3ca292b35deb?access_key=PMAT-01JP73Q6C4P7EJV2P4WF4MVN3E",
+      "auth": "basic",
+      "notes": "Resmi koleksiyon; partner panelinden API Key/Secret gerekli.",
+      "legal": {
+        "tos_url": "https://developers.trendyol.com/",
+        "privacy_url": "https://developers.trendyol.com/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "hepsiburada",
+      "country": "TR",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://merchantsupport.hepsiburada.com/",
+      "docs_url": "https://merchantsupport.hepsiburada.com/s/integration",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Partner program başvurusu gerekli. Merchant panel erişimi zorunlu.",
+      "legal": {
+        "tos_url": "https://www.hepsiburada.com/magaza-sozlesmesi",
+        "privacy_url": "https://www.hepsiburada.com/gizlilik-ve-guvenlik",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "getir",
+      "country": "TR",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://restaurants.getir.com/",
+      "docs_url": "https://restaurants.getir.com/api-docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Restaurant partner başvurusu gerekli. API erişimi partner onayı sonrası.",
+      "legal": {
+        "tos_url": "https://www.getir.com/kurumsal/",
+        "privacy_url": "https://www.getir.com/gizlilik-politikasi/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "trendyol-yemek",
+      "country": "TR",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://www.trendyolyemek.com/restoran",
+      "docs_url": "https://developers.trendyol.com/",
+      "postman_url": null,
+      "auth": "basic",
+      "notes": "Trendyol ekosistemi. Restaurant partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.trendyolyemek.com/sozlesmeler",
+        "privacy_url": "https://www.trendyolyemek.com/gizlilik",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "yemeksepeti",
+      "country": "TR",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://www.yemeksepeti.com/restaurant",
+      "docs_url": "https://partner-api.yemeksepeti.com/docs",
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Restaurant partnership gerekli. API Key partner dashboard'dan alınır.",
+      "legal": {
+        "tos_url": "https://www.yemeksepeti.com/sozlesmeler",
+        "privacy_url": "https://www.yemeksepeti.com/gizlilik-bildirimi",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "migros",
+      "country": "TR",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.migrosanal.com/kurumsal",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "B2B partnership gerekli. API dokümantasyonu partner sözleşmesi sonrası paylaşılır.",
+      "legal": {
+        "tos_url": "https://www.migrosanal.com/gizlilik-politikasi",
+        "privacy_url": "https://www.migrosanal.com/gizlilik-politikasi",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "sahibinden",
+      "country": "TR",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://api.sahibinden.com/",
+      "docs_url": "https://api.sahibinden.com/documentation",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "API erişimi partner başvurusu ile sağlanır. Ücretli plan seçenekleri mevcut.",
+      "legal": {
+        "tos_url": "https://www.sahibinden.com/sozlesme",
+        "privacy_url": "https://www.sahibinden.com/gizlilik",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "arabam",
+      "country": "TR",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://www.arabam.com/kurumsal",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "B2B partnership gerekli. API dokümantasyonu contact/BD üzerinden.",
+      "legal": {
+        "tos_url": "https://www.arabam.com/sozlesmeler",
+        "privacy_url": "https://www.arabam.com/gizlilik",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "temu",
+      "country": "TR",
+      "vertical": "commerce",
+      "status": "affiliate",
+      "signup_url": "https://seller.temu.com/",
+      "docs_url": "https://seller-api.temu.com/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Seller registration gerekli. Global platform, TR marketplace mevcut.",
+      "legal": {
+        "tos_url": "https://www.temu.com/terms-of-use.html",
+        "privacy_url": "https://www.temu.com/privacy-policy.html",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "tapaz",
+      "country": "AZ",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://www.tap.az/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Azerbaijan'ın en büyük ilan sitesi. API erişimi için contact/BD gerekli.",
+      "legal": {
+        "tos_url": "https://www.tap.az/rules",
+        "privacy_url": "https://www.tap.az/rules",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "turboaz",
+      "country": "AZ",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://turbo.az/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Araç ilanları platformu. API için contact gerekli.",
+      "legal": {
+        "tos_url": "https://turbo.az/info/rules",
+        "privacy_url": "https://turbo.az/info/rules",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "wolt",
+      "country": "AZ",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://wolt.com/en/about/merchant",
+      "docs_url": "https://partner-docs.wolt.com/",
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Partner portal erişimi gerekli. Multi-country (AZ, CY, global).",
+      "legal": {
+        "tos_url": "https://wolt.com/en/terms",
+        "privacy_url": "https://wolt.com/en/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "boltfood",
+      "country": "AZ",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://food.bolt.eu/en-ee/merchant/",
+      "docs_url": "https://partner-api.bolt.eu/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Partner dashboard erişimi gerekli. Multi-country platform.",
+      "legal": {
+        "tos_url": "https://bolt.eu/en/legal/",
+        "privacy_url": "https://bolt.eu/en/privacy/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "talabat",
+      "country": "QA",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://vendors.talabat.com/",
+      "docs_url": "https://vendors.talabat.com/api-docs",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "MENA region leader. Vendor partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.talabat.com/qatar/terms-and-conditions",
+        "privacy_url": "https://www.talabat.com/qatar/privacy-policy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "snoonu",
+      "country": "QA",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://www.snoonu.com/vendors",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Qatar delivery platform. API için vendor başvurusu gerekli.",
+      "legal": {
+        "tos_url": "https://www.snoonu.com/terms",
+        "privacy_url": "https://www.snoonu.com/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "carrefour-qa",
+      "country": "QA",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.carrefourqatar.com/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "B2B partnership gerekli. Global Carrefour API sistemi.",
+      "legal": {
+        "tos_url": "https://www.carrefourqatar.com/terms",
+        "privacy_url": "https://www.carrefourqatar.com/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "lulu-qa",
+      "country": "QA",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.luluhypermarket.com/en-qa/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "MENA grocery chain. B2B API için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.luluhypermarket.com/terms",
+        "privacy_url": "https://www.luluhypermarket.com/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "noon",
+      "country": "SA",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://sell.noon.com/",
+      "docs_url": "https://sellercenter.noon.com/api/documentation",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "MENA e-commerce leader. Seller registration + API approval gerekli.",
+      "legal": {
+        "tos_url": "https://www.noon.com/saudi-en/terms-and-conditions/",
+        "privacy_url": "https://www.noon.com/saudi-en/privacy-policy/",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "haraj",
+      "country": "SA",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://haraj.com.sa/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Saudi Arabia classifieds. API için contact/BD gerekli.",
+      "legal": {
+        "tos_url": "https://haraj.com.sa/terms",
+        "privacy_url": "https://haraj.com.sa/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "hungerstation",
+      "country": "SA",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://hungerstation.com/sa/en/vendors",
+      "docs_url": "https://partner-api.hungerstation.com/docs",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Saudi delivery platform. Vendor partnership gerekli.",
+      "legal": {
+        "tos_url": "https://hungerstation.com/terms",
+        "privacy_url": "https://hungerstation.com/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "mrsool",
+      "country": "SA",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://www.mrsool.co/en/vendors",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Saudi delivery app. API için vendor başvurusu gerekli.",
+      "legal": {
+        "tos_url": "https://www.mrsool.co/terms",
+        "privacy_url": "https://www.mrsool.co/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "nana",
+      "country": "SA",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.nanadirect.com/sa-en/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Saudi quick commerce. B2B partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.nanadirect.com/terms",
+        "privacy_url": "https://www.nanadirect.com/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "bazaraki",
+      "country": "CY",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://www.bazaraki.com/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Cyprus classifieds leader. API için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.bazaraki.com/rules/",
+        "privacy_url": "https://www.bazaraki.com/privacy/",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "foody",
+      "country": "CY",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://www.foody.com.cy/restaurant-partners",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Cyprus food delivery. Restaurant partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.foody.com.cy/terms",
+        "privacy_url": "https://www.foody.com.cy/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "wolt-cy",
+      "country": "CY",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://wolt.com/en/cyp/merchant",
+      "docs_url": "https://partner-docs.wolt.com/",
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Wolt Cyprus operations. Global partner API kullanır.",
+      "legal": {
+        "tos_url": "https://wolt.com/en/terms",
+        "privacy_url": "https://wolt.com/en/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "alphamega",
+      "country": "CY",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.alphamega.com.cy/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Cyprus supermarket chain. B2B API için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.alphamega.com.cy/terms",
+        "privacy_url": "https://www.alphamega.com.cy/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "wildberries",
+      "country": "RU",
+      "vertical": "commerce",
+      "status": "sandbox_only",
+      "signup_url": "https://seller.wildberries.ru/",
+      "docs_url": "https://openapi.wildberries.ru/",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Russia's largest e-commerce. SANCTIONS GATE: Sandbox only, data residency=ru_only.",
+      "legal": {
+        "tos_url": "https://www.wildberries.ru/services/terms-of-use",
+        "privacy_url": "https://www.wildberries.ru/services/privacy-policy",
+        "data_residency": "ru_only"
+      }
+    },
+    {
+      "vendor": "ozon",
+      "country": "RU",
+      "vertical": "commerce",
+      "status": "sandbox_only",
+      "signup_url": "https://seller.ozon.ru/",
+      "docs_url": "https://docs.ozon.ru/api/seller/",
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Russia e-commerce #2. SANCTIONS GATE: Sandbox only, data residency=ru_only.",
+      "legal": {
+        "tos_url": "https://www.ozon.ru/info/seller-terms/",
+        "privacy_url": "https://www.ozon.ru/info/privacy/",
+        "data_residency": "ru_only"
+      }
+    },
+    {
+      "vendor": "yandex-market",
+      "country": "RU",
+      "vertical": "commerce",
+      "status": "sandbox_only",
+      "signup_url": "https://partner.market.yandex.ru/",
+      "docs_url": "https://yandex.ru/dev/market/",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Yandex marketplace. SANCTIONS GATE: Sandbox only, data residency=ru_only.",
+      "legal": {
+        "tos_url": "https://yandex.ru/legal/market_termsofuse/",
+        "privacy_url": "https://yandex.ru/legal/confidential/",
+        "data_residency": "ru_only"
+      }
+    },
+    {
+      "vendor": "avito",
+      "country": "RU",
+      "vertical": "classifieds",
+      "status": "sandbox_only",
+      "signup_url": "https://www.avito.ru/",
+      "docs_url": "https://api.avito.ru/docs/",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Russia classifieds leader. SANCTIONS GATE: Sandbox only, data residency=ru_only.",
+      "legal": {
+        "tos_url": "https://www.avito.ru/company/about/terms_of_use",
+        "privacy_url": "https://www.avito.ru/company/about/confidentiality",
+        "data_residency": "ru_only"
+      }
+    },
+    {
+      "vendor": "zalando",
+      "country": "DE",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://www.zalando.de/partner/",
+      "docs_url": "https://partner.zalando.com/integration/api",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "EU fashion leader. Partner program başvurusu gerekli.",
+      "legal": {
+        "tos_url": "https://www.zalando.de/agb/",
+        "privacy_url": "https://www.zalando.de/datenschutz/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "otto",
+      "country": "DE",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://www.otto.market/",
+      "docs_url": "https://api.otto.market/docs",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Germany e-commerce. Marketplace seller registration gerekli.",
+      "legal": {
+        "tos_url": "https://www.otto.de/agb/",
+        "privacy_url": "https://www.otto.de/datenschutz/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "lieferando",
+      "country": "DE",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://restaurants.lieferando.de/",
+      "docs_url": "https://partner-api.lieferando.de/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Just Eat Takeaway platform (DE). Restaurant partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.lieferando.de/agb",
+        "privacy_url": "https://www.lieferando.de/datenschutz",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "rewe",
+      "country": "DE",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.rewe.de/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Germany grocery chain. B2B partnership için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.rewe.de/agb/",
+        "privacy_url": "https://www.rewe.de/datenschutz/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "check24",
+      "country": "DE",
+      "vertical": "comparison",
+      "status": "partner_required",
+      "signup_url": "https://www.check24.de/partner/",
+      "docs_url": "https://api.check24.de/docs",
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Germany comparison platform. Partner program başvurusu gerekli.",
+      "legal": {
+        "tos_url": "https://www.check24.de/agb/",
+        "privacy_url": "https://www.check24.de/datenschutz/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "emag-bg",
+      "country": "BG",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://marketplace.emag.bg/",
+      "docs_url": "https://marketplace-api.emag.bg/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Bulgaria e-commerce leader. Marketplace seller registration gerekli.",
+      "legal": {
+        "tos_url": "https://www.emag.bg/info/terms",
+        "privacy_url": "https://www.emag.bg/info/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "olx-bg",
+      "country": "BG",
+      "vertical": "classifieds",
+      "status": "public_api",
+      "signup_url": "https://www.olx.bg/",
+      "docs_url": "https://www.olx.bg/api/",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "OLX Bulgaria. Public API mevcut, rate limits var.",
+      "legal": {
+        "tos_url": "https://www.olx.bg/terms/",
+        "privacy_url": "https://www.olx.bg/privacy/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "glovo",
+      "country": "BG",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://glovoapp.com/bg/en/partners/",
+      "docs_url": "https://api-docs.glovoapp.com/",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Multi-country delivery platform. Partner registration gerekli.",
+      "legal": {
+        "tos_url": "https://glovoapp.com/legal/terms/",
+        "privacy_url": "https://glovoapp.com/legal/privacy/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "ebg-bg",
+      "country": "BG",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://www.ebag.bg/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Bulgaria online retailer. B2B API için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.ebag.bg/terms",
+        "privacy_url": "https://www.ebag.bg/privacy",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "willhaben",
+      "country": "AT",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://www.willhaben.at/",
+      "docs_url": "https://api.willhaben.at/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Austria classifieds leader. API erişimi için başvuru gerekli.",
+      "legal": {
+        "tos_url": "https://www.willhaben.at/iad/impressum/agb",
+        "privacy_url": "https://www.willhaben.at/iad/impressum/datenschutz",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "lieferando-at",
+      "country": "AT",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://restaurants.lieferando.at/",
+      "docs_url": "https://partner-api.lieferando.at/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Just Eat Takeaway Austria. Restaurant partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.lieferando.at/agb",
+        "privacy_url": "https://www.lieferando.at/datenschutz",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "foodora",
+      "country": "AT",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://partner.foodora.at/",
+      "docs_url": "https://partner-docs.foodora.com/",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Foodora Austria (Delivery Hero group). Partner portal gerekli.",
+      "legal": {
+        "tos_url": "https://www.foodora.at/contents/terms-and-conditions.htm",
+        "privacy_url": "https://www.foodora.at/contents/privacy.htm",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "billa",
+      "country": "AT",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.billa.at/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Austria grocery chain. B2B API için REWE Group contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.billa.at/agb",
+        "privacy_url": "https://www.billa.at/datenschutz",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "gurkerl",
+      "country": "AT",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.gurkerl.at/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Austria online grocery (REWE group). B2B partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.gurkerl.at/agb",
+        "privacy_url": "https://www.gurkerl.at/datenschutz",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "shoepping",
+      "country": "AT",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://www.shoepping.at/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Austria fashion marketplace. Seller registration için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.shoepping.at/agb",
+        "privacy_url": "https://www.shoepping.at/datenschutz",
+        "data_residency": "regional"
+      }
+    },
+    {
+      "vendor": "bol",
+      "country": "NL",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://partnerplatform.bol.com/",
+      "docs_url": "https://api.bol.com/retailer/public/redoc/v10/",
+      "postman_url": null,
+      "auth": "bearer",
+      "notes": "Netherlands e-commerce leader. Partner platform registration gerekli.",
+      "legal": {
+        "tos_url": "https://www.bol.com/nl/nl/m/algemene-voorwaarden/",
+        "privacy_url": "https://www.bol.com/nl/nl/m/privacy-statement/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "coolblue",
+      "country": "NL",
+      "vertical": "commerce",
+      "status": "partner_required",
+      "signup_url": "https://www.coolblue.nl/business",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Netherlands electronics retailer. B2B partnership için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.coolblue.nl/algemene-voorwaarden",
+        "privacy_url": "https://www.coolblue.nl/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "marktplaats",
+      "country": "NL",
+      "vertical": "classifieds",
+      "status": "partner_required",
+      "signup_url": "https://www.marktplaats.nl/",
+      "docs_url": "https://api.marktplaats.nl/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Netherlands classifieds (eBay Classifieds Group). API erişimi başvuru gerektirir.",
+      "legal": {
+        "tos_url": "https://www.marktplaats.nl/i/help/over-marktplaats/voorwaarden-en-privacybeleid/",
+        "privacy_url": "https://www.marktplaats.nl/i/help/over-marktplaats/voorwaarden-en-privacybeleid/privacyverklaring/",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "thuisbezorgd",
+      "country": "NL",
+      "vertical": "delivery",
+      "status": "partner_required",
+      "signup_url": "https://restaurants.thuisbezorgd.nl/",
+      "docs_url": "https://partner-api.thuisbezorgd.nl/docs",
+      "postman_url": null,
+      "auth": "oauth2",
+      "notes": "Just Eat Takeaway Netherlands. Restaurant partnership gerekli.",
+      "legal": {
+        "tos_url": "https://www.thuisbezorgd.nl/info/algemene-voorwaarden",
+        "privacy_url": "https://www.thuisbezorgd.nl/info/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "ah-nl",
+      "country": "NL",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.ah.nl/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Albert Heijn (Ahold Delhaize). B2B API için corporate contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.ah.nl/algemene-voorwaarden",
+        "privacy_url": "https://www.ah.nl/privacy",
+        "data_residency": "global"
+      }
+    },
+    {
+      "vendor": "picnic",
+      "country": "NL",
+      "vertical": "grocery",
+      "status": "partner_required",
+      "signup_url": "https://www.picnic.app/nl/",
+      "docs_url": null,
+      "postman_url": null,
+      "auth": "apiKey",
+      "notes": "Netherlands online grocery (app-only). B2B partnership için contact gerekli.",
+      "legal": {
+        "tos_url": "https://www.picnic.app/nl/terms",
+        "privacy_url": "https://www.picnic.app/nl/privacy",
+        "data_residency": "global"
+      }
+    }
+  ]
+}

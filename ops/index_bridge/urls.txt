@@ -1,0 +1,13 @@
+# LyDian AI - Discovery Feed URLs for Index Submission
+# PHASE D: INDEX TRIGGER
+# One URL per line
+
+# Core discovery files
+https://www.ailydian.com/llms.txt
+https://www.ailydian.com/feed/ai_models.json
+https://www.ailydian.com/feed/ai_models.rss
+
+# Main pages (optional - add if needed)
+# https://www.ailydian.com/
+# https://www.ailydian.com/lydian-iq.html
+# https://www.ailydian.com/api-docs.html

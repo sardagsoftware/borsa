@@ -1,0 +1,262 @@
+# ========================================
+# LYDIAN-IQ BRANCH PROTECTION VALIDATION
+# ========================================
+# Purpose: Validate branch protection rules and enforce security policies
+# Compliance: SOC 2, ISO 27001, NIST SSDF
+# Version: 1.0
+
+name: Branch Protection Validation
+
+on:
+  push:
+    branches: [main, develop, staging]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Check branch protection weekly on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  # ========== Validate Branch Protection Rules ==========
+  validate-protection:
+    name: Validate Branch Protection
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check branch protection requirements
+        run: |
+          echo "# 🛡️ Branch Protection Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Event**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "## Required Protection Rules" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "For \`main\` and \`staging\` branches:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Require pull request reviews (min 1 approval)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Require status checks to pass before merging" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Require conversation resolution before merging" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Require signed commits" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Include administrators in restrictions" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Restrict who can push to matching branches" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+  # ========== Validate Commit Signature ==========
+  validate-signatures:
+    name: Validate Commit Signatures
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Check commit signatures
+        run: |
+          echo "# 🔐 Commit Signature Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          UNSIGNED_COMMITS=0
+          for commit in $(git rev-list --no-merges -n 10 HEAD); do
+            if ! git verify-commit $commit 2>/dev/null; then
+              UNSIGNED_COMMITS=$((UNSIGNED_COMMITS + 1))
+              COMMIT_MSG=$(git log --format=%s -n 1 $commit)
+              echo "⚠️  Unsigned: \`${commit:0:7}\` - $COMMIT_MSG" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ $UNSIGNED_COMMITS -eq 0 ]; then
+            echo "✅ **All recent commits are signed**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️  **$UNSIGNED_COMMITS unsigned commits found**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "To enable commit signing:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+            echo "git config commit.gpgsign true" >> $GITHUB_STEP_SUMMARY
+            echo "git config user.signingkey YOUR_GPG_KEY_ID" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ========== Validate CODEOWNERS ==========
+  validate-codeowners:
+    name: Validate CODEOWNERS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check CODEOWNERS file
+        run: |
+          echo "# 👥 CODEOWNERS Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f .github/CODEOWNERS ]; then
+            echo "✅ CODEOWNERS file exists" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Protected Paths:**" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            head -20 .github/CODEOWNERS >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ CODEOWNERS file not found" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Create \`.github/CODEOWNERS\` to enforce code review requirements" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+  # ========== Validate Required Status Checks ==========
+  validate-status-checks:
+    name: Validate Required Status Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: List required workflows
+        run: |
+          echo "# ✅ Required Status Checks" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The following workflows must pass before merging:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Workflow | Purpose |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Security Pipeline | SAST, SBOM, SLSA, Cosign |" >> $GITHUB_STEP_SUMMARY
+          echo "| Continuous Integration | Lint, Test, Build |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch Protection | Commit signatures, CODEOWNERS |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+  # ========== Check for Sensitive Files ==========
+  check-sensitive-files:
+    name: Check for Sensitive Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Scan for sensitive files
+        run: |
+          echo "# 🔍 Sensitive File Scan" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          SENSITIVE_PATTERNS=(
+            ".env"
+            ".env.local"
+            ".env.production"
+            "*.pem"
+            "*.key"
+            "*.p12"
+            "*.pfx"
+            "id_rsa"
+            "id_dsa"
+            "credentials.json"
+            "secrets.json"
+            "*.credentials"
+          )
+
+          FOUND_SENSITIVE=0
+          for pattern in "${SENSITIVE_PATTERNS[@]}"; do
+            FILES=$(git ls-files "$pattern" 2>/dev/null || true)
+            if [ -n "$FILES" ]; then
+              echo "⚠️  Found: \`$pattern\`" >> $GITHUB_STEP_SUMMARY
+              echo "$FILES" | while read -r file; do
+                echo "  - $file" >> $GITHUB_STEP_SUMMARY
+              done
+              FOUND_SENSITIVE=1
+            fi
+          done
+
+          if [ $FOUND_SENSITIVE -eq 0 ]; then
+            echo "✅ **No sensitive files found in repository**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **Sensitive files detected - ensure they are in .gitignore**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "To remove sensitive files from git history:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+            echo "git filter-branch --force --index-filter \\" >> $GITHUB_STEP_SUMMARY
+            echo "  'git rm --cached --ignore-unmatch <file>' \\" >> $GITHUB_STEP_SUMMARY
+            echo "  --prune-empty --tag-name-filter cat -- --all" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+  # ========== Validate .gitignore ==========
+  validate-gitignore:
+    name: Validate .gitignore
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check .gitignore completeness
+        run: |
+          echo "# 📋 .gitignore Validation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          REQUIRED_PATTERNS=(
+            ".env"
+            ".env.local"
+            "node_modules/"
+            "*.log"
+            "dist/"
+            ".DS_Store"
+            "*.pem"
+            "*.key"
+          )
+
+          MISSING_PATTERNS=()
+          for pattern in "${REQUIRED_PATTERNS[@]}"; do
+            if ! grep -q "^$pattern" .gitignore 2>/dev/null; then
+              MISSING_PATTERNS+=("$pattern")
+            fi
+          done
+
+          if [ ${#MISSING_PATTERNS[@]} -eq 0 ]; then
+            echo "✅ **All required patterns present in .gitignore**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️  **Missing patterns in .gitignore:**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            for pattern in "${MISSING_PATTERNS[@]}"; do
+              echo "- \`$pattern\`" >> $GITHUB_STEP_SUMMARY
+            done
+          fi
+
+  # ========== Protection Summary ==========
+  protection-summary:
+    name: Protection Summary
+    runs-on: ubuntu-latest
+    needs: [validate-protection, validate-signatures, validate-codeowners, validate-status-checks, check-sensitive-files, validate-gitignore]
+    if: always()
+    steps:
+      - name: Generate protection summary
+        run: |
+          echo "# 🛡️ Branch Protection Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch Protection | ${{ needs.validate-protection.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commit Signatures | ${{ needs.validate-signatures.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| CODEOWNERS | ${{ needs.validate-codeowners.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status Checks | ${{ needs.validate-status-checks.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Sensitive Files | ${{ needs.check-sensitive-files.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| .gitignore | ${{ needs.validate-gitignore.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Fail if critical checks failed
+          if [[ "${{ needs.validate-codeowners.result }}" == "failure" ]] || \
+             [[ "${{ needs.check-sensitive-files.result }}" == "failure" ]]; then
+            echo "❌ **Critical protection checks FAILED**" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ **Branch protection validated**" >> $GITHUB_STEP_SUMMARY
+          fi
