@@ -4,7 +4,8 @@
 // ==========================================
 
 const helmet = require('helmet');
-const csrf = require('csurf');
+// const csrf = require('csurf'); // ❌ DEPRECATED - Replaced with custom implementation
+const { csrfProtection, injectCSRFToken, generateCSRFToken } = require('../security/csrf-protection');
 const cookieParser = require('cookie-parser');
 
 // Production environment check
@@ -18,7 +19,9 @@ function setupHelmet(app) {
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
+                // SECURITY FIX: Removed 'unsafe-eval' - major XSS risk
+                // Removed 'unsafe-inline' - use nonces for inline scripts if needed
+                scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
                 scriptSrcAttr: ["'unsafe-inline'", "'unsafe-hashes'"],
                 styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
                 fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
@@ -49,33 +52,31 @@ function setupHelmet(app) {
 }
 
 // ==========================================
-// CSRF PROTECTION
+// CSRF PROTECTION - MODERN IMPLEMENTATION
 // ==========================================
 function setupCSRF(app) {
     // Cookie parser is required for CSRF
     app.use(cookieParser());
 
-    // CSRF protection middleware
-    const csrfProtection = csrf({
-        cookie: {
-            httpOnly: true,
-            secure: isProduction,
-            sameSite: 'strict'
-        }
-    });
+    // Inject CSRF token into all responses
+    app.use(injectCSRFToken);
 
-    // Apply CSRF to specific routes (not to API endpoints for now)
+    // Apply CSRF protection to specific routes
     app.use('/api/auth/login', csrfProtection);
     app.use('/api/auth/register', csrfProtection);
     app.use('/api/auth/reset-password', csrfProtection);
     app.use('/api/settings', csrfProtection);
+    app.use('/api/admin', csrfProtection);
+    app.use('/api/payment', csrfProtection); // Protect payment endpoints
 
     // CSRF token endpoint for frontend
-    app.get('/api/csrf-token', csrfProtection, (req, res) => {
-        res.json({ csrfToken: req.csrfToken() });
+    app.get('/api/csrf-token', (req, res) => {
+        const sessionId = req.session?.id || req.cookies?.sessionId || 'default';
+        const token = generateCSRFToken(sessionId);
+        res.json({ csrfToken: token });
     });
 
-    console.log('🛡️ CSRF protection active for auth and settings routes');
+    console.log('🛡️ Modern CSRF protection active (csurf deprecated → custom implementation)');
 }
 
 // ==========================================

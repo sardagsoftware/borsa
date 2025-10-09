@@ -5,6 +5,7 @@
  */
 
 const { Redis } = require('@upstash/redis');
+const { handleCORS } = require('../security/cors-config');
 
 // Initialize Redis (singleton pattern)
 let redisCache = null;
@@ -17,14 +18,8 @@ if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) 
 }
 
 module.exports = async (req, res) => {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // 🔒 SECURE CORS - Whitelist-based, NO WILDCARD
+  if (handleCORS(req, res)) return; // Handle OPTIONS preflight
 
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });

@@ -143,3 +143,8 @@ public/*.backup*
 # Performance baselines (may contain sensitive URLs/paths)
 ops/reports/WEB-VITALS-*.md
 ops/reports/baseline-*.json
+
+# Security: Dangerous files with hardcoded credentials
+test-connection-formats.js
+test-connection-formats.js.DANGEROUS.backup
+*.DANGEROUS.*

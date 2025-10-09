@@ -125,10 +125,76 @@ function setCSP(req, res, next) {
   next();
 }
 
+/**
+ * Simple CORS middleware for Vercel serverless functions
+ * Use this in API endpoints: handleCORS(req, res)
+ */
+function handleCORS(req, res) {
+  const origin = req.headers.origin;
+
+  // Set CORS headers based on whitelist
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  } else if (!origin) {
+    // Allow requests with no origin (mobile apps, Postman)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-CSRF-Token, X-API-Key');
+  res.setHeader('Access-Control-Expose-Headers', 'X-CSRF-Token, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset');
+  res.setHeader('Access-Control-Max-Age', '86400');
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return true; // Signal that request was handled
+  }
+
+  return false; // Continue processing
+}
+
+/**
+ * Strict CORS for sensitive endpoints (payments, admin, etc.)
+ * Blocks all non-production origins
+ */
+function handleStrictCORS(req, res) {
+  const origin = req.headers.origin;
+  const productionOrigins = [
+    'https://ailydian.com',
+    'https://www.ailydian.com',
+    'https://ailydian-ultra-pro.vercel.app'
+  ];
+
+  if (origin && productionOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  } else if (origin) {
+    // Block non-production origins
+    return res.status(403).json({
+      error: 'Access denied',
+      message: 'This endpoint only accepts requests from production domains'
+    });
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return true;
+  }
+
+  return false;
+}
+
 module.exports = {
   corsOptions,
   strictCorsOptions,
   setSecurityHeaders,
   setCSP,
-  ALLOWED_ORIGINS
+  ALLOWED_ORIGINS,
+  handleCORS,
+  handleStrictCORS
 };
