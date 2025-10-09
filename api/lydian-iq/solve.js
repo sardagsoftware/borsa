@@ -804,4 +804,3 @@ async function handleRequest(req, res) {
     console.log(`✅ Response sent: ${result.metadata.responseTime}s`);
     return res.status(200).json(result);
 }
-# LyDian IQ - Production Fix v2.0.2
