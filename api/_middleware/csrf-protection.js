@@ -121,6 +121,27 @@ function csrfMiddleware(req, res, next) {
         return next();
     }
 
+    // 🔧 TRUSTED ORIGINS: Skip CSRF for trusted domains
+    const trustedOrigins = [
+        'localhost',
+        '127.0.0.1',
+        'www.ailydian.com',
+        'ailydian.com',
+        'ailydian-ultra-pro.vercel.app',
+        'ailydian.vercel.app'
+    ];
+
+    const isTrustedOrigin = trustedOrigins.some(origin =>
+        req.headers.host?.includes(origin) ||
+        req.headers.origin?.includes(origin) ||
+        req.headers.referer?.includes(origin)
+    );
+
+    if (isTrustedOrigin) {
+        console.log('[CSRF] 🔓 Trusted origin detected - CSRF check skipped');
+        return next();
+    }
+
     // Get session ID
     const sessionId = csrfProtection.getSessionId(req);
 

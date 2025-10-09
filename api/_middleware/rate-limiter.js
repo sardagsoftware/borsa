@@ -142,6 +142,19 @@ function rateLimitMiddleware(req, res, next) {
     }
 
     const clientIP = rateLimiter.getClientIP(req);
+
+    // 🔧 DEVELOPMENT MODE: Skip rate limiting for localhost
+    const isLocalhost = clientIP === '::1' ||
+                       clientIP === '127.0.0.1' ||
+                       clientIP.includes('localhost') ||
+                       req.headers.host?.includes('localhost') ||
+                       req.headers.host?.includes('127.0.0.1');
+
+    if (isLocalhost) {
+        console.log('[Rate Limiter] 🔓 Localhost detected - Rate limit skipped for development');
+        return next();
+    }
+
     const result = rateLimiter.checkLimit(clientIP);
 
     // Add rate limit headers (standard headers)

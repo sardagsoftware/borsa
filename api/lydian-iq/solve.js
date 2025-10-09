@@ -569,8 +569,8 @@ const { csrfMiddleware } = require('../_middleware/csrf-protection');
 // Import Redis cache (optional - graceful degradation)
 let redisCache = null;
 try {
-    const redisCacheModule = require('../../lib/cache/redis-cache');
-    redisCache = redisCacheModule.redisCache;
+    const RedisCacheClass = require('../../lib/cache/redis-cache');
+    redisCache = new RedisCacheClass({ keyPrefix: 'lydian-iq:' });
     console.log('✅ Redis cache module loaded');
 } catch (error) {
     console.warn('⚠️ Redis cache module failed to load:', error.message);
@@ -582,6 +582,13 @@ try {
         set: async () => false,
         getStats: async () => ({ enabled: false, message: 'Redis cache disabled' })
     };
+}
+
+// Helper function to create composite cache key
+function createCacheKey(problem, domain, language) {
+    const crypto = require('crypto');
+    const composite = `${domain}:${language}:${problem.substring(0, 200)}`;
+    return crypto.createHash('sha256').update(composite).digest('hex');
 }
 
 // Environment check (Beyaz Şapkalı - Hide errors in production)
@@ -737,7 +744,8 @@ async function handleRequest(req, res) {
         }
 
         // ⚡ Try to get from Redis cache first
-        const cachedResult = await redisCache.get(enhancedProblem, domain, language);
+        const cacheKey = createCacheKey(enhancedProblem, domain, language);
+        const cachedResult = await redisCache.get(cacheKey);
         if (cachedResult) {
             console.log('⚡ Returning cached response');
             return res.status(200).json(cachedResult);
@@ -789,8 +797,8 @@ async function handleRequest(req, res) {
             }
         }
 
-    // ⚡ Cache the result for future requests
-    await redisCache.set(enhancedProblem, domain, language, result);
+    // ⚡ Cache the result for future requests (reuse the cacheKey from above)
+    await redisCache.set(cacheKey, result, 3600);
 
     // Return result
     console.log(`✅ Response sent: ${result.metadata.responseTime}s`);

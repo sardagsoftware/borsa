@@ -12,6 +12,7 @@
 
 const session = require('express-session');
 const Redis = require('ioredis');
+const { EventEmitter } = require('events');
 
 // Environment check
 const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
@@ -21,8 +22,9 @@ const useRedis = process.env.REDIS_URL || process.env.UPSTASH_REDIS_REST_URL;
  * Custom Redis Session Store
  * Compatible with express-session
  */
-class RedisSessionStore {
+class RedisSessionStore extends EventEmitter {
     constructor(client) {
+        super();
         this.client = client;
         this.prefix = 'sess:';
         this.ttl = 86400; // 24 hours in seconds
