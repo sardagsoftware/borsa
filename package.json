@@ -75,6 +75,7 @@
     "graphql": "^16.11.0",
     "graphql-scalars": "^1.24.2",
     "graphql-tools": "^9.0.20",
+    "groq-sdk": "^0.33.0",
     "helmet": "^7.1.0",
     "ioredis": "^5.8.1",
     "isomorphic-dompurify": "^2.28.0",
