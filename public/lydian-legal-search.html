@@ -2135,7 +2135,7 @@ async function sendMessage() {
                 const lang = matchObj.lang;
 
                 // Neo4j'den emsal davaları getir (multi-language support)
-                const kgResponse = await fetch(`http://localhost:3100/api/knowledge-graph/precedents/${encodeURIComponent(article)}`);
+                const kgResponse = await fetch(`/api/knowledge-graph/precedents/${encodeURIComponent(article)}`);
                 const kgData = await kgResponse.json();
 
                 if (kgData.success && kgData.precedents && kgData.precedents.length > 0) {
@@ -2523,7 +2523,7 @@ async function transcribeAudio(audioBlob) {
         formData.append('audio', audioBlob, 'recording.wav');
         formData.append('language', 'tr-TR'); // Turkish language support
 
-        const response = await fetch('http://localhost:3100/api/speech/transcribe', {
+        const response = await fetch('/api/speech/transcribe', {
             method: 'POST',
             body: formData
         });
@@ -2559,7 +2559,7 @@ async function handleImageUpload(event) {
         const formData = new FormData();
         formData.append('image', file);
 
-        const response = await fetch('http://localhost:3100/api/azure/legal/computer-vision', {
+        const response = await fetch('/api/azure/legal/computer-vision', {
             method: 'POST',
             body: formData
         });
@@ -2628,7 +2628,7 @@ async function handleDocumentUpload(event) {
         formData.append('file', file);
         formData.append('documentType', 'legal'); // Legal document type
 
-        const response = await fetch('http://localhost:3100/api/azure/legal/document-intelligence', {
+        const response = await fetch('/api/azure/legal/document-intelligence', {
             method: 'POST',
             body: formData
         });
