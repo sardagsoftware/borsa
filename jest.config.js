@@ -1,0 +1,68 @@
+/**
+ * Jest Configuration
+ * Integration and Unit Tests
+ */
+
+export default {
+  // Test environment
+  testEnvironment: 'node',
+
+  // Use ES modules
+  extensionsToTreatAsEsm: ['.js'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
+  transform: {},
+
+  // Test match patterns
+  testMatch: [
+    '**/tests/**/*.test.js',
+    '**/tests/**/*.spec.js',
+  ],
+
+  // Coverage
+  collectCoverageFrom: [
+    'middleware/**/*.js',
+    'api/**/*.js',
+    'lib/**/*.js',
+    '!**/node_modules/**',
+    '!**/tests/**',
+  ],
+
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+
+  // Setup files
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
+
+  // Timeout
+  testTimeout: 30000,
+
+  // Verbose output
+  verbose: true,
+
+  // Clear mocks between tests
+  clearMocks: true,
+  resetMocks: true,
+  restoreMocks: true,
+
+  // Globals
+  globals: {
+    'NODE_ENV': 'test',
+  },
+
+  // Module paths
+  modulePaths: ['<rootDir>'],
+
+  // Max workers (parallel test execution)
+  maxWorkers: '50%',
+
+  // Bail on first failure (optional)
+  bail: false,
+
+  // Force exit after tests complete
+  forceExit: true,
+
+  // Detect open handles
+  detectOpenHandles: true,
+};

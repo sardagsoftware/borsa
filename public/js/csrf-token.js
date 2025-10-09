@@ -81,10 +81,10 @@
       const token = await getCSRFToken();
 
       if (token) {
-        // Add CSRF token to headers
+        // Add CSRF token to headers (must match backend: x-csrf-token)
         options.headers = {
           ...options.headers,
-          'CSRF-Token': token
+          'x-csrf-token': token
         };
       }
     }
@@ -114,7 +114,7 @@
       const token = await getCSRFToken();
 
       if (token) {
-        this.setRequestHeader('CSRF-Token', token);
+        this.setRequestHeader('x-csrf-token', token);
       }
     }
 

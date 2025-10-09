@@ -133,19 +133,15 @@ function csrfMiddleware(req, res, next) {
     const validation = csrfProtection.validateToken(token, sessionId);
 
     if (!validation.valid) {
-        console.warn(`[CSRF] ⚠️ CSRF validation failed: ${validation.error}`);
+        console.error(`[CSRF] 🚨 CSRF validation failed: ${validation.error}`);
 
-        // For now, just log warnings - don't block requests
-        // This allows gradual rollout without breaking existing clients
-        // TODO: Enable blocking after all clients are updated
-        console.warn('[CSRF] ⚠️ Request would be blocked (currently in monitoring mode)');
-
-        // In strict mode, uncomment this to block:
-        // return res.status(403).json({
-        //     success: false,
-        //     error: 'CSRF validation failed',
-        //     message: 'İstek doğrulanamadı. Lütfen sayfayı yenileyin.'
-        // });
+        // ✅ PRODUCTION MODE ACTIVE - Blocking invalid requests
+        return res.status(403).json({
+            success: false,
+            error: 'CSRF validation failed',
+            message: 'İstek doğrulanamadı. Lütfen sayfayı yenileyin.',
+            code: 'CSRF_VALIDATION_FAILED'
+        });
     }
 
     console.log(`[CSRF] ✅ Request validated (session: ${sessionId.substring(0, 8)}...)`);

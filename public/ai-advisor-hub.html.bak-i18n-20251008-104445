@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Advisor Hub - LyDian Ultra Pro</title>
+    <meta name="description" content="Dünyada ilk multimodal AI danışmanlık platformu - Yaşam koçluğu, kariyer, sağlık, girişimcilik ve daha fazlası">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/lydian-favicon.png" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* LyDian Brand Colors */
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --primary-light: #1ABC9C;
+            --accent: #FF6B4A;
+            --accent-orange: #F59E0B;
+            --accent-pink: #EC4899;
+            --success: #10A37F;
+
+            /* Neutrals */
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F3F4F6;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --border: #E5E7EB;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-glow: 0 0 30px rgba(16, 163, 127, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-white);
+            color: var(--gray-900);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(16, 163, 127, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 74, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--gray-700);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Modules Grid */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Module Card */
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--module-color), var(--module-color-alt));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(16, 163, 127, 0.25);
+            border-color: var(--module-color);
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Module Colors - LyDian Palette */
+        .module-card:nth-child(1) { --module-color: #10A37F; --module-color-alt: #0D8F6E; }
+        .module-card:nth-child(2) { --module-color: #FF6B4A; --module-color-alt: #F59E0B; }
+        .module-card:nth-child(3) { --module-color: #10A37F; --module-color-alt: #1ABC9C; }
+        .module-card:nth-child(4) { --module-color: #FF6B4A; --module-color-alt: #EC4899; }
+        .module-card:nth-child(5) { --module-color: #10A37F; --module-color-alt: #0D8F6E; }
+        .module-card:nth-child(6) { --module-color: #FF6B4A; --module-color-alt: #F59E0B; }
+        .module-card:nth-child(7) { --module-color: #10A37F; --module-color-alt: #1ABC9C; }
+        .module-card:nth-child(8) { --module-color: #FF6B4A; --module-color-alt: #F97316; }
+
+        .module-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--module-color), var(--module-color-alt));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .module-info {
+            flex: 1;
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .module-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .module-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .module-features li i {
+            color: var(--module-color);
+            font-size: 1rem;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .meta-item i {
+            color: var(--module-color);
+        }
+
+        .module-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--module-color), var(--module-color-alt));
+            color: white;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--module-color);
+            color: var(--module-color);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-live {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status-beta {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .status-soon {
+            background: rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .quick-actions h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-action-btn {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quick-action-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .quick-action-btn i {
+            font-size: 2rem;
+            color: var(--primary-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .quick-action-btn span {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Stagger animation delays */
+        .module-card:nth-child(1) { animation-delay: 0.1s; }
+        .module-card:nth-child(2) { animation-delay: 0.2s; }
+        .module-card:nth-child(3) { animation-delay: 0.3s; }
+        .module-card:nth-child(4) { animation-delay: 0.4s; }
+        .module-card:nth-child(5) { animation-delay: 0.5s; }
+        .module-card:nth-child(6) { animation-delay: 0.6s; }
+        .module-card:nth-child(7) { animation-delay: 0.7s; }
+        .module-card:nth-child(8) { animation-delay: 0.8s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Security Badge */
+        .security-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .security-badge i {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">
+                <i class="fas fa-sparkles"></i>
+                <span>Dünyada İlk Multimodal AI Danışmanlık Platformu</span>
+            </div>
+            <h1>AI Advisor Hub</h1>
+            <p>Yapay zeka destekli yaşam koçluğu, kariyer danışmanlığı, sağlık rehberliği ve daha fazlası - Tek platformda, kişiselleştirilmiş, güvenli</p>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                <div class="stat-value">99.5%</div>
+                <div class="stat-label">Doğruluk Oranı</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="stat-value">&lt;2s</div>
+                <div class="stat-label">Yanıt Süresi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-globe-americas"></i></div>
+                <div class="stat-value">140+</div>
+                <div class="stat-label">Dil Desteği</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Güvenli</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2>
+                <i class="fas fa-bolt"></i>
+                Hızlı Başlangıç
+            </h2>
+            <div class="quick-actions-grid">
+                <div class="quick-action-btn" onclick="startQuickSession('health')">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Sağlık Analizi</span>
+                </div>
+                <div class="quick-action-btn" onclick="startQuickSession('career')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Kariyer Planı</span>
+                </div>
+                <div class="quick-action-btn" onclick="startQuickSession('decision')">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Karar Desteği</span>
+                </div>
+                <div class="quick-action-btn" onclick="startQuickSession('startup')">
+                    <i class="fas fa-rocket"></i>
+                    <span>Girişimcilik</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules Grid -->
+        <div class="modules-grid">
+            <!-- Module 1: Bütünsel Sağlık Orkestratörü -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Bütünsel Sağlık Orkestratörü</h3>
+                        <p class="module-subtitle">Fiziksel + Zihinsel + Finansal + Sosyal Denge</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-live">
+                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                        CANLI
+                    </span>
+                </div>
+                <p class="module-description">
+                    Fotoğraf, ses ve veri analiziyle yaşam kalitenizi ölçer, sağlık metriklerinizi takip eder ve kişiselleştirilmiş sağlık önerileri sunar.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Yemek fotoğrafı → besin değeri analizi</li>
+                    <li><i class="fas fa-check-circle"></i> Ses tonu → stres seviyesi takibi</li>
+                    <li><i class="fas fa-check-circle"></i> Finansal stres → sağlık korelasyonu</li>
+                    <li><i class="fas fa-check-circle"></i> Sosyal bağlantı kalite skoru</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>5-10 dk</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>99.6% doğruluk</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('health-orchestrator')">
+                        <i class="fas fa-play"></i>
+                        Analiz Başlat
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('health')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 2: Karar Matrisi AI -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Karar Matrisi AI</h3>
+                        <p class="module-subtitle">Çok Kriterli Karar Verme Desteği</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-live">
+                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                        CANLI
+                    </span>
+                </div>
+                <p class="module-description">
+                    Ev alma, iş değiştirme, eğitim seçimi gibi büyük kararlarda AHP algoritması ve gelecek senaryo simülasyonuyla en iyi seçeneği bulun.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Otomatik AHP analizi</li>
+                    <li><i class="fas fa-check-circle"></i> 5 yıllık gelecek projeksiyonu</li>
+                    <li><i class="fas fa-check-circle"></i> Paydaş etki değerlendirmesi</li>
+                    <li><i class="fas fa-check-circle"></i> Geri dönülebilirlik skoru</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>10-15 dk</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-powered</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('decision-matrix')">
+                        <i class="fas fa-play"></i>
+                        Karar Analizi
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('decision')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 3: Toplantı Analizi -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Gerçek Zamanlı Toplantı Analizi</h3>
+                        <p class="module-subtitle">Karar Çıkarma & Eylem Planı</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-beta">
+                        <i class="fas fa-flask"></i>
+                        BETA
+                    </span>
+                </div>
+                <p class="module-description">
+                    Toplantı sırasında transkripsiyon, karar tespiti, eylem planı oluşturma ve kişiselleştirilmiş takip e-postaları.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Çok konuşmacı duygu takibi</li>
+                    <li><i class="fas fa-check-circle"></i> Ekran paylaşımı içerik çıkarma</li>
+                    <li><i class="fas fa-check-circle"></i> Otomatik follow-up e-postalar</li>
+                    <li><i class="fas fa-check-circle"></i> Toplantı etkinlik skoru</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-microphone"></i>
+                        <span>Real-time</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-language"></i>
+                        <span>10+ dil</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('meeting-insights')">
+                        <i class="fas fa-play"></i>
+                        Kayıt Başlat
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('meeting')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 4: Startup Hızlandırıcı -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Girişimcilik Yardımcı Pilotu</h3>
+                        <p class="module-subtitle">Fikirden Exit'e AI Danışman</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-beta">
+                        <i class="fas fa-flask"></i>
+                        BETA
+                    </span>
+                </div>
+                <p class="module-description">
+                    Startup fikri doğrulama, MVP şartnamesi, pitch deck eleştirisi, finansal model ve yatırımcı eşleştirme.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Fikir doğrulama skoru (pazar + zamanlama)</li>
+                    <li><i class="fas fa-check-circle"></i> Otomatik MVP specification</li>
+                    <li><i class="fas fa-check-circle"></i> Pitch deck AI critique</li>
+                    <li><i class="fas fa-check-circle"></i> Finansal senaryo testleri</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>TAM/SAM/SOM</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-funnel-dollar"></i>
+                        <span>VC insights</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('startup-accelerator')">
+                        <i class="fas fa-play"></i>
+                        Fikir Doğrula
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('startup')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 5: Akıllı Yaşam Koçu -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Akıllı Yaşam Koçu</h3>
+                        <p class="module-subtitle">Kişiselleştirilmiş Yaşam Planı</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-live">
+                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                        CANLI
+                    </span>
+                </div>
+                <p class="module-description">
+                    Hedeflerinize ulaşmak için kişiselleştirilmiş 6 aylık eylem planı, alışkanlık önerileri ve başarı metrikleri oluşturur.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Durum değerlendirmesi ve hazırlık skoru</li>
+                    <li><i class="fas fa-check-circle"></i> 6 aylık fazlara ayrılmış eylem planı</li>
+                    <li><i class="fas fa-check-circle"></i> Günlük/haftalık alışkanlık önerileri</li>
+                    <li><i class="fas fa-check-circle"></i> Ölçülebilir başarı metrikleri</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>5-10 dk</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-powered</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('life-coach')">
+                        <i class="fas fa-play"></i>
+                        Plan Oluştur
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('life-coach')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 6: Öğrenme Yolu Oluşturucu -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Öğrenme Yol Haritası</h3>
+                        <p class="module-subtitle">Kişiselleştirilmiş Eğitim Planı</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-live">
+                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                        CANLI
+                    </span>
+                </div>
+                <p class="module-description">
+                    Öğrenmek istediğiniz konuda seviye bazlı öğrenme fazları, kaynak önerileri ve pratik projelerle detaylı yol haritası oluşturur.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Seviye bazlı öğrenme fazları</li>
+                    <li><i class="fas fa-check-circle"></i> Kaynak önerileri (video/kitap/kurs)</li>
+                    <li><i class="fas fa-check-circle"></i> Pratik proje önerileri</li>
+                    <li><i class="fas fa-check-circle"></i> Haftalık çalışma programı</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>3-12 ay</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Adaptive</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('learning-path')">
+                        <i class="fas fa-play"></i>
+                        Yol Haritası Oluştur
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('learning')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 7: Kültürel Adaptasyon -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Kültürel Uyum Danışmanı</h3>
+                        <p class="module-subtitle">Kültürlerarası Uyum Rehberi</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-live">
+                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                        CANLI
+                    </span>
+                </div>
+                <p class="module-description">
+                    Yurt dışı iş, eğitim ve göç için kültürel farklar, iş görgü kuralları, sosyal normlar ve haftalık uyum yol haritası sunar.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Kültürel farklar ve uyum zorluğu analizi</li>
+                    <li><i class="fas fa-check-circle"></i> İş görgü kuralları ve toplantı protokolü</li>
+                    <li><i class="fas fa-check-circle"></i> Sosyal normlar ve tabu'lar</li>
+                    <li><i class="fas fa-check-circle"></i> Haftalık uyum yol haritası</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-globe-americas"></i>
+                        <span>Tüm ülkeler</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-powered</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('cultural-advisor')">
+                        <i class="fas fa-play"></i>
+                        Rehber Oluştur
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('cultural')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module 8: Bilgi Sentez Motoru -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="module-info">
+                        <h3 class="module-title">Bilgi Tabanı Asistanı</h3>
+                        <p class="module-subtitle">Detaylı Bilgi Analizi</p>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span class="status-badge status-live">
+                        <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                        CANLI
+                    </span>
+                </div>
+                <p class="module-description">
+                    Herhangi bir konuda detaylı, yapılandırılmış bilgi analizi, pratik örnekler, uygulama adımları ve kaynak önerileri sunar.
+                </p>
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Özet ve detaylı açıklama</li>
+                    <li><i class="fas fa-check-circle"></i> Pratik örnekler ve kullanım senaryoları</li>
+                    <li><i class="fas fa-check-circle"></i> Uygulama adımları</li>
+                    <li><i class="fas fa-check-circle"></i> Kaynak önerileri ve takip soruları</li>
+                </ul>
+                <div class="module-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Güven skoru</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-powered</span>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-primary" onclick="launchModule('knowledge-assistant')">
+                        <i class="fas fa-play"></i>
+                        Analiz Et
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewDemo('knowledge')">
+                        <i class="fas fa-eye"></i>
+                        Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Footer -->
+        <div class="security-footer">
+            <div class="security-badges">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ISO 27001 Sertifikalı</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>GDPR & KVKK Uyumlu</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-user-shield"></i>
+                    <span>End-to-End Encryption</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-server"></i>
+                    <span>Azure Sovereign Cloud</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-check-double"></i>
+                    <span>SOC 2 Type II</span>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 1rem;">
+                © 2025 LyDian Ultra Pro. Tüm hakları saklıdır. Verileriniz güvende, asla 3. taraflarla paylaşılmaz.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Security Protection Layer
+        (function() {
+            // Disable right-click
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            document.addEventListener('keydown', e => {
+                if (e.key === 'F12' ||
+                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                    (e.ctrlKey && e.key === 'U')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Console protection
+            const noop = () => {};
+            ['log', 'debug', 'info', 'warn', 'error', 'trace', 'dir', 'dirxml', 'group', 'groupCollapsed', 'groupEnd', 'clear', 'count', 'countReset', 'assert', 'profile', 'profileEnd', 'time', 'timeLog', 'timeEnd', 'timeStamp', 'table', 'exception'].forEach(method => {
+                if (typeof console !== 'undefined' && typeof console[method] !== 'undefined') {
+                    console[method] = noop;
+                }
+            });
+
+            // Detect DevTools
+            const devtools = {isOpen: false};
+            const element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: function() {
+                    devtools.isOpen = true;
+                    if (devtools.isOpen) {
+                        window.location.href = 'about:blank';
+                    }
+                }
+            });
+            setInterval(() => { console.log(element); }, 1000);
+        })();
+
+        // Module Launch Functions
+        function launchModule(moduleName) {
+            // Removed logging for security
+
+            // Show loading state
+            event.target.innerHTML = '<span class="loading"></span> Başlatılıyor...';
+            event.target.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                switch(moduleName) {
+                    case 'health-orchestrator':
+                        window.location.href = '/ai-health-orchestrator.html';
+                        break;
+                    case 'decision-matrix':
+                        window.location.href = '/ai-decision-matrix.html';
+                        break;
+                    case 'meeting-insights':
+                        window.location.href = '/ai-meeting-insights.html';
+                        break;
+                    case 'startup-accelerator':
+                        window.location.href = '/ai-startup-accelerator.html';
+                        break;
+                    case 'life-coach':
+                        window.location.href = '/ai-life-coach.html';
+                        break;
+                    case 'learning-path':
+                        window.location.href = '/ai-learning-path.html';
+                        break;
+                    case 'cultural-advisor':
+                        window.location.href = '/ai-cultural-advisor.html';
+                        break;
+                    case 'knowledge-assistant':
+                        window.location.href = '/ai-knowledge-assistant.html';
+                        break;
+                    default:
+                        alert('Modül hazırlanıyor...');
+                        event.target.innerHTML = '<i class="fas fa-play"></i> Analiz Başlat';
+                        event.target.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function viewDemo(type) {
+            alert(`${type} demo videosu yakında eklenecek`);
+        }
+
+        function joinWaitlist(module) {
+            const email = prompt('E-posta adresinizi girin (bekleme listesine ekleneceksiniz):');
+            if (email && email.includes('@')) {
+                alert('✅ Başarıyla eklendi! Modül hazır olduğunda bilgilendirileceksiniz.');
+                // TODO: API call to save email
+            }
+        }
+
+        function startQuickSession(type) {
+            // Security: Logging disabled
+            switch(type) {
+                case 'health':
+                    launchModule('health-orchestrator');
+                    break;
+                case 'career':
+                    launchModule('life-coach');
+                    break;
+                case 'decision':
+                    launchModule('decision-matrix');
+                    break;
+                case 'startup':
+                    launchModule('startup-accelerator');
+                    break;
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        launchModule('health-orchestrator');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        launchModule('decision-matrix');
+                        break;
+                }
+            }
+        });
+
+        // Analytics - Protected
+        // Version info obfuscated for security
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

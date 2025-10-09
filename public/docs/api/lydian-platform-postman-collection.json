@@ -1,0 +1,519 @@
+{
+  "info": {
+    "name": "LyDian Platform API",
+    "description": "Complete API collection for LyDian Platform with Smart Cities, İnsan IQ, and LyDian IQ modules. Includes all authentication methods: API Key, OAuth2/JWT, and HMAC-SHA256.\n\n## Getting Started\n\n1. Import this collection into Postman\n2. Set up environment variables (see Variables tab)\n3. Choose your authentication method\n4. Start making requests!\n\n## Authentication Methods\n\n- **API Key**: Simple header-based authentication (X-API-Key)\n- **OAuth2/JWT**: Token-based authentication (Authorization: Bearer)\n- **HMAC-SHA256**: Enterprise-grade request signing\n\n## Documentation\n\n- API Reference: https://lydian.ai/api-reference.html\n- Developer Portal: https://lydian.ai/developers.html\n- Interactive Explorer: https://lydian.ai/api-docs.html",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "lydian-platform",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1",
+      "type": "string",
+      "description": "API Base URL (change to https://api.lydian.ai/v1 for production)"
+    },
+    {
+      "key": "apiKey",
+      "value": "lyd_your_api_key_here",
+      "type": "string",
+      "description": "Your API Key from dashboard"
+    },
+    {
+      "key": "bearerToken",
+      "value": "your_jwt_token_here",
+      "type": "string",
+      "description": "Your JWT Bearer token"
+    },
+    {
+      "key": "hmacClientId",
+      "value": "your_client_id",
+      "type": "string",
+      "description": "Your HMAC Client ID"
+    },
+    {
+      "key": "hmacSecret",
+      "value": "your_hmac_secret",
+      "type": "string",
+      "description": "Your HMAC Secret"
+    }
+  ],
+  "item": [
+    {
+      "name": "Smart Cities API",
+      "description": "IoT sensors, metrics, alerts, traffic, energy and smart city infrastructure management",
+      "item": [
+        {
+          "name": "List Cities",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "API Key authentication"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/smart-cities/cities?limit=10&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["smart-cities", "cities"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of results to return (max 100)"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of all registered smart cities with their metadata"
+          },
+          "response": []
+        },
+        {
+          "name": "Get City Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/smart-cities/cities/:cityId",
+              "host": ["{{baseUrl}}"],
+              "path": ["smart-cities", "cities", ":cityId"],
+              "variable": [
+                {
+                  "key": "cityId",
+                  "value": "uuid-here",
+                  "description": "City UUID"
+                }
+              ]
+            },
+            "description": "Get detailed information about a specific city including population, coordinates, timezone, and infrastructure metrics"
+          },
+          "response": []
+        },
+        {
+          "name": "Create City",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}",
+                "type": "text",
+                "description": "Unique key to prevent duplicate requests"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Istanbul\",\n  \"coordinates\": {\n    \"latitude\": 41.0082,\n    \"longitude\": 28.9784\n  },\n  \"population\": 15840900,\n  \"timezone\": \"Europe/Istanbul\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/smart-cities/cities",
+              "host": ["{{baseUrl}}"],
+              "path": ["smart-cities", "cities"]
+            },
+            "description": "Register a new smart city in the platform"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "İnsan IQ API",
+      "description": "Persona management, behavioral analytics, and user profiling",
+      "item": [
+        {
+          "name": "List Personas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/insan-iq/personas?limit=10&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["insan-iq", "personas"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Retrieve a list of all personas with their behavioral profiles"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Persona Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/insan-iq/personas/:personaId",
+              "host": ["{{baseUrl}}"],
+              "path": ["insan-iq", "personas", ":personaId"],
+              "variable": [
+                {
+                  "key": "personaId",
+                  "value": "uuid-here"
+                }
+              ]
+            },
+            "description": "Get detailed persona information including behavioral traits, preferences, and analytics"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Persona",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tech-Savvy Professional\",\n  \"traits\": {\n    \"interests\": [\"technology\", \"innovation\", \"AI\"],\n    \"behavior\": \"early-adopter\",\n    \"engagement_level\": \"high\"\n  },\n  \"demographic\": {\n    \"age_range\": \"25-40\",\n    \"location\": \"urban\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/insan-iq/personas",
+              "host": ["{{baseUrl}}"],
+              "path": ["insan-iq", "personas"]
+            },
+            "description": "Create a new persona profile for behavioral analysis"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "LyDian IQ API",
+      "description": "AI-powered trading signals, predictions, and market analytics",
+      "item": [
+        {
+          "name": "List Signals",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/lydian-iq/signals?limit=10&offset=0&confidence_min=0.7",
+              "host": ["{{baseUrl}}"],
+              "path": ["lydian-iq", "signals"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "confidence_min",
+                  "value": "0.7",
+                  "description": "Minimum confidence score (0-1)"
+                }
+              ]
+            },
+            "description": "Retrieve AI-generated trading signals with confidence scores and metadata"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Signal Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/lydian-iq/signals/:signalId",
+              "host": ["{{baseUrl}}"],
+              "path": ["lydian-iq", "signals", ":signalId"],
+              "variable": [
+                {
+                  "key": "signalId",
+                  "value": "uuid-here"
+                }
+              ]
+            },
+            "description": "Get detailed information about a specific trading signal including analysis and predictions"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Prediction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"BTC/USDT\",\n  \"timeframe\": \"1h\",\n  \"analysis_type\": \"technical\",\n  \"indicators\": [\"RSI\", \"MACD\", \"BB\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/lydian-iq/predictions",
+              "host": ["{{baseUrl}}"],
+              "path": ["lydian-iq", "predictions"]
+            },
+            "description": "Request AI-powered prediction for a trading pair"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication Examples",
+      "description": "Examples of different authentication methods",
+      "item": [
+        {
+          "name": "API Key Auth Example",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Simple API Key in header"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/smart-cities/cities?limit=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["smart-cities", "cities"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Example using API Key authentication - simplest method, recommended for server-to-server"
+          },
+          "response": []
+        },
+        {
+          "name": "JWT Bearer Auth Example",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{bearerToken}}",
+                "type": "text",
+                "description": "JWT token in Authorization header"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/smart-cities/cities?limit=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["smart-cities", "cities"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Example using JWT Bearer token - recommended for user-facing applications with OAuth2"
+          },
+          "response": []
+        },
+        {
+          "name": "HMAC Auth Example",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// HMAC-SHA256 signature generation",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "const method = pm.request.method;",
+                  "const path = pm.request.url.getPath();",
+                  "const timestamp = Math.floor(Date.now() / 1000).toString();",
+                  "const body = pm.request.body.raw || '';",
+                  "",
+                  "// Calculate body hash",
+                  "const bodyHash = CryptoJS.SHA256(body).toString();",
+                  "",
+                  "// Create canonical string",
+                  "const canonical = `${method}\\n${path}\\n${timestamp}\\n${bodyHash}`;",
+                  "",
+                  "// Generate signature",
+                  "const secret = pm.environment.get('hmacSecret');",
+                  "const signature = CryptoJS.HmacSHA256(canonical, secret).toString();",
+                  "",
+                  "// Set headers",
+                  "pm.request.headers.add({",
+                  "  key: 'X-Client-ID',",
+                  "  value: pm.environment.get('hmacClientId')",
+                  "});",
+                  "pm.request.headers.add({",
+                  "  key: 'X-Timestamp',",
+                  "  value: timestamp",
+                  "});",
+                  "pm.request.headers.add({",
+                  "  key: 'X-Signature',",
+                  "  value: `sha256=${signature}`",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/smart-cities/cities?limit=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["smart-cities", "cities"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Example using HMAC-SHA256 signature - highest security, recommended for enterprise/B2B. The pre-request script automatically generates the signature."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/../../health",
+          "host": ["{{baseUrl}}"],
+          "path": ["..", "..", "health"]
+        },
+        "description": "Health check endpoint - no authentication required"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global pre-request script",
+          "console.log('Request to:', pm.request.url.toString());"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global test script",
+          "pm.test('Response time is less than 2000ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+          "});",
+          "",
+          "pm.test('Status code is successful', function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+          "});"
+        ]
+      }
+    }
+  ]
+}

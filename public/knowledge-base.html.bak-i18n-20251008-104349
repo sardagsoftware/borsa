@@ -1,0 +1,506 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - LyDian | AI-Powered Information Hub</title>
+    <meta name="description" content="65 Milyon Makale • 84 Dil • 67 Uzmanlık Alanı - Tarım, Uzay, Tıp, İklim ve daha fazlası">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/knowledge-base.css">
+
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#10A37F">
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/index.html" class="navbar-logo">
+                <i class="fas fa-brain"></i>
+                <span>LyDian</span>
+            </a>
+
+            <div class="navbar-menu" id="navbarMenu">
+                <a href="/index.html" class="navbar-item">
+                    <i class="fas fa-home"></i> Ana Sayfa
+                </a>
+                <a href="/knowledge-base.html" class="navbar-item active">
+                    <i class="fas fa-book"></i> Bilgi Bankası
+                </a>
+                <a href="/chat.html" class="navbar-item">
+                    <i class="fas fa-comments"></i> AI Chat
+                </a>
+                <a href="/dashboard.html" class="navbar-item">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+                <a href="/api-reference.html" class="navbar-item">
+                    <i class="fas fa-code"></i> API Docs
+                </a>
+            </div>
+
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Search -->
+    <section class="knowledge-hero">
+        <div class="knowledge-hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles"></div>
+        </div>
+
+        <div class="knowledge-hero-content">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                <span>Dünya Çapında Bilgi Portalı</span>
+            </div>
+
+            <h1 class="hero-title">
+                <i class="fas fa-book-open"></i>
+                <span class="hero-title-gradient">Bilgi Bankası</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                65 Milyon Makale • 84 Dil • 67 Uzmanlık Alanı
+            </p>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number" id="totalArticles">65M+</div>
+                    <div class="hero-stat-label">Makale</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">84</div>
+                    <div class="hero-stat-label">Dil</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">67</div>
+                    <div class="hero-stat-label">Uzmanlık</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">99.95%</div>
+                    <div class="hero-stat-label">Doğruluk</div>
+                </div>
+            </div>
+
+            <!-- Advanced Search Box -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input
+                        type="text"
+                        id="knowledgeSearch"
+                        class="search-input"
+                        placeholder="Tarım, Uzay, Tıp, İklim... herhangi bir konu hakkında sor"
+                        autocomplete="off"
+                    >
+                    <button class="voice-search-btn" id="voiceSearchBtn" title="Sesli Arama">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-arrow-right"></i>
+                        Ara
+                    </button>
+                </div>
+
+                <!-- Search Filters -->
+                <div class="search-filters">
+                    <select id="languageFilter" class="filter-select">
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="zh">🇨🇳 中文</option>
+                    </select>
+
+                    <select id="domainFilter" class="filter-select">
+                        <option value="all">Tüm Alanlar</option>
+                        <option value="agriculture">Tarım & Hayvancılık</option>
+                        <option value="space">Uzay & Astronomi</option>
+                        <option value="medicine">Tıp & Sağlık</option>
+                        <option value="climate">İklim & Çevre</option>
+                        <option value="technology">Teknoloji & Mühendislik</option>
+                        <option value="science">Bilim & Araştırma</option>
+                    </select>
+
+                    <button class="advanced-filter-btn" id="advancedFilterBtn">
+                        <i class="fas fa-sliders-h"></i>
+                        Gelişmiş Filtreler
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Categories -->
+    <section class="knowledge-categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-layer-group"></i>
+                    Uzmanlık Alanları
+                </h2>
+                <p class="section-subtitle">67 farklı kategoride milyonlarca makale ve kaynak</p>
+            </div>
+
+            <div class="categories-grid" id="categoriesGrid">
+
+                <!-- Agriculture & Livestock -->
+                <div class="category-card" data-category="agriculture" data-count="25000000">
+                    <div class="category-icon agriculture-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="category-title">Tarım & Hayvancılık</h3>
+                    <p class="category-description">Ziraat, veterinerlik, tarımsal teknoloji</p>
+                    <div class="category-stats">
+                        <span class="category-count">25M veri</span>
+                        <span class="category-sources">FAO, USDA, CGIAR</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('agriculture')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Space & Astronomy -->
+                <div class="category-card" data-category="space" data-count="5000000">
+                    <div class="category-icon space-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="category-title">Uzay & Astronomi</h3>
+                    <p class="category-description">NASA, ESA, SpaceX araştırmaları</p>
+                    <div class="category-stats">
+                        <span class="category-count">5M veri</span>
+                        <span class="category-sources">NASA, ESA, SpaceX</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('space')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Medicine & Health -->
+                <div class="category-card" data-category="medicine" data-count="35000000">
+                    <div class="category-icon medicine-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="category-title">Tıp & Sağlık</h3>
+                    <p class="category-description">Klinik araştırmalar, ilaç bilimi, cerrahi</p>
+                    <div class="category-stats">
+                        <span class="category-count">35M veri</span>
+                        <span class="category-sources">PubMed, WHO, NIH</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('medicine')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Climate & Environment -->
+                <div class="category-card" data-category="climate" data-count="8000000">
+                    <div class="category-icon climate-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3 class="category-title">İklim & Çevre</h3>
+                    <p class="category-description">İklim değişikliği, hava durumu, ekosistem</p>
+                    <div class="category-stats">
+                        <span class="category-count">8M veri</span>
+                        <span class="category-sources">IPCC, NOAA, NASA</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('climate')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Technology & Engineering -->
+                <div class="category-card" data-category="technology" data-count="12000000">
+                    <div class="category-icon technology-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="category-title">Teknoloji & Mühendislik</h3>
+                    <p class="category-description">AI, IoT, robotik, yazılım geliştirme</p>
+                    <div class="category-stats">
+                        <span class="category-count">12M veri</span>
+                        <span class="category-sources">IEEE, ACM, arXiv</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('technology')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Science & Research -->
+                <div class="category-card" data-category="science" data-count="18000000">
+                    <div class="category-icon science-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="category-title">Bilim & Araştırma</h3>
+                    <p class="category-description">Fizik, kimya, biyoloji, matematik</p>
+                    <div class="category-stats">
+                        <span class="category-count">18M veri</span>
+                        <span class="category-sources">Nature, Science, Springer</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('science')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Education & Learning -->
+                <div class="category-card" data-category="education" data-count="10000000">
+                    <div class="category-icon education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="category-title">Eğitim & Öğrenme</h3>
+                    <p class="category-description">Pedagoji, kurslar, akademik içerik</p>
+                    <div class="category-stats">
+                        <span class="category-count">10M veri</span>
+                        <span class="category-sources">UNESCO, Coursera, Khan</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('education')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Business & Economics -->
+                <div class="category-card" data-category="business" data-count="7000000">
+                    <div class="category-icon business-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="category-title">İş & Ekonomi</h3>
+                    <p class="category-description">Finans, yönetim, pazar analizi</p>
+                    <div class="category-stats">
+                        <span class="category-count">7M veri</span>
+                        <span class="category-sources">IMF, World Bank, Bloomberg</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('business')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+                <!-- Law & Justice -->
+                <div class="category-card" data-category="law" data-count="4000000">
+                    <div class="category-icon law-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="category-title">Hukuk & Adalet</h3>
+                    <p class="category-description">Yasal mevzuat, içtihat, hukuk teorisi</p>
+                    <div class="category-stats">
+                        <span class="category-count">4M veri</span>
+                        <span class="category-sources">UN, ICC, Mevzuat</span>
+                    </div>
+                    <button class="category-btn" onclick="exploreCategory('law')">
+                        <i class="fas fa-arrow-right"></i>
+                        Keşfet
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="view-all-categories">
+                <button class="view-all-btn" id="viewAllCategoriesBtn">
+                    <i class="fas fa-th"></i>
+                    Tüm 67 Kategoriyi Görüntüle
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section (Initially Hidden) -->
+    <section class="search-results-section" id="searchResultsSection" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="results-title">Arama Sonuçları</h2>
+                <div class="results-info">
+                    <span id="resultsCount">0 sonuç bulundu</span>
+                    <span class="results-time" id="resultsTime">0.0 saniye</span>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be dynamically loaded here -->
+            </div>
+
+            <div class="results-pagination" id="resultsPagination">
+                <!-- Pagination controls -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant Integration -->
+    <section class="ai-assistant-section">
+        <div class="container">
+            <div class="ai-assistant-card">
+                <div class="ai-assistant-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="ai-assistant-content">
+                    <h3 class="ai-assistant-title">AI Asistan ile Konuş</h3>
+                    <p class="ai-assistant-description">
+                        Bilgi Bankası'nı AI destekli sohbetle keşfedin. Sorularınızı doğal dilde sorun,
+                        detaylı yanıtlar ve kaynak önerileri alın.
+                    </p>
+                    <button class="ai-assistant-btn" onclick="openAIChat()">
+                        <i class="fas fa-comments"></i>
+                        AI Chat Başlat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Sources -->
+    <section class="data-sources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-database"></i>
+                    Veri Kaynakları
+                </h2>
+                <p class="section-subtitle">Güvenilir ve güncel bilgi kaynakları</p>
+            </div>
+
+            <div class="sources-grid">
+                <div class="source-card">
+                    <div class="source-logo">
+                        <i class="fab fa-wikipedia-w"></i>
+                    </div>
+                    <h4 class="source-name">Wikipedia</h4>
+                    <p class="source-stats">61M+ makale • 309 dil</p>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-logo">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h4 class="source-name">PubMed</h4>
+                    <p class="source-stats">35M+ tıbbi makale</p>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-logo">
+                        <i class="fas fa-space-shuttle"></i>
+                    </div>
+                    <h4 class="source-name">NASA</h4>
+                    <p class="source-stats">Uzay araştırmaları</p>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-logo">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4 class="source-name">NOAA</h4>
+                    <p class="source-stats">İklim verileri</p>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-logo">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4 class="source-name">FAO</h4>
+                    <p class="source-stats">Tarım & gıda</p>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-logo">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4 class="source-name">Springer</h4>
+                    <p class="source-stats">14M+ akademik</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">
+                        <i class="fas fa-brain"></i>
+                        LyDian
+                    </h4>
+                    <p class="footer-description">
+                        Dünya çapında bilgi portalı. 65 milyon makale, 84 dil, 67 uzmanlık alanı.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Hızlı Erişim</h4>
+                    <ul class="footer-links">
+                        <li><a href="/index.html">Ana Sayfa</a></li>
+                        <li><a href="/knowledge-base.html">Bilgi Bankası</a></li>
+                        <li><a href="/chat.html">AI Chat</a></li>
+                        <li><a href="/api-reference.html">API Docs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Kaynaklar</h4>
+                    <ul class="footer-links">
+                        <li><a href="#agriculture">Tarım</a></li>
+                        <li><a href="#space">Uzay</a></li>
+                        <li><a href="#medicine">Tıp</a></li>
+                        <li><a href="#climate">İklim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">İletişim</h4>
+                    <ul class="footer-links">
+                        <li><a href="/contact.html">Bize Ulaşın</a></li>
+                        <li><a href="/help.html">Yardım</a></li>
+                        <li><a href="/privacy.html">Gizlilik</a></li>
+                        <li><a href="/terms.html">Şartlar</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 LyDian Ultimate Knowledge Base. Tüm hakları saklıdır.</p>
+                <p class="footer-version">v2.1 Sardag Edition</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <p>Bilgiler yükleniyor...</p>
+        </div>
+    </div>
+
+    <!-- Category Data -->
+    <script src="/js/knowledge-categories-data.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/knowledge-base.js"></script>
+
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

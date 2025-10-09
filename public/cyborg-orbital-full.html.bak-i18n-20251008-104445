@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Dr. Lydia Sentinel - LyDian Cyborg Orbital Hero</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/cyborg-orbital-hero.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: #0a0e27;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cyborg Orbital Hero Section -->
+    <section class="hero-cyborg-orbital">
+        <div class="hero-cyborg-content">
+
+            <!-- Left Side: Text Content -->
+            <div class="cyborg-text-content">
+                <div class="cyborg-hero-badge">
+                    <span>✨</span>
+                    İnsan-AI Hibriti
+                </div>
+
+                <h1 class="cyborg-hero-title">
+                    Dr. Lydia Sentinel
+                </h1>
+
+                <div class="cyborg-typewriter-wrapper">
+                    <div class="cyborg-typewriter" id="cyborg-typewriter"></div>
+                </div>
+
+                <p class="cyborg-hero-subtitle">
+                    Yapay zekayı anlamak için kendini dönüştüren bilim insanı.
+                    Artık hem insan sezgisine hem AI gücüne sahip.
+                    <br><br>
+                    <strong>LyDian, onun vizyonunun ürünü.</strong>
+                    <br>
+                    Yarı İnsan, Yarı AI - Tam Güç, Tam Kontrol.
+                </p>
+
+                <div class="cyborg-hero-cta">
+                    <a href="/chat.html" class="cyborg-btn cyborg-btn-primary">
+                        🚀 Hemen Başla
+                    </a>
+                    <a href="/about.html" class="cyborg-btn cyborg-btn-secondary">
+                        📖 Daha Fazla Bilgi
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Cyborg + Orbital System -->
+            <div class="cyborg-orbital-container">
+
+                <!-- Cyborg Character -->
+                <div class="cyborg-character-center">
+                    <!-- Aura -->
+                    <div class="cyborg-aura"></div>
+
+                    <!-- Hair (behind head) -->
+                    <div class="cyborg-hair">
+                        <div class="hair-strand"></div>
+                        <div class="hair-strand"></div>
+                        <div class="hair-strand"></div>
+                        <div class="hair-strand"></div>
+                        <div class="hair-strand"></div>
+                    </div>
+
+                    <!-- Head -->
+                    <div class="cyborg-head">
+                        <!-- Human Face (Left) -->
+                        <div class="cyborg-face-human"></div>
+
+                        <!-- Mechanical Face (Right) -->
+                        <div class="cyborg-face-mech">
+                            <div class="cyborg-circuits"></div>
+                        </div>
+
+                        <!-- Human Eye (Left) -->
+                        <div class="cyborg-eye-human"></div>
+
+                        <!-- Mechanical Eye (Right) -->
+                        <div class="cyborg-eye-mech">
+                            <div class="cyborg-eye-ring"></div>
+                        </div>
+
+                        <!-- Nose -->
+                        <div class="cyborg-nose"></div>
+
+                        <!-- Mouth -->
+                        <div class="cyborg-mouth"></div>
+                    </div>
+
+                    <!-- Neck & Shoulders -->
+                    <div class="cyborg-neck"></div>
+                    <div class="cyborg-collar"></div>
+                    <div class="cyborg-shoulders"></div>
+
+                    <!-- Human Arm (Left) -->
+                    <div class="cyborg-arm-human">
+                        <div class="cyborg-hand-human"></div>
+                    </div>
+
+                    <!-- Mechanical Arm (Right) -->
+                    <div class="cyborg-arm-mech">
+                        <div class="mech-joint mech-joint-1"></div>
+                        <div class="mech-joint mech-joint-2"></div>
+                        <div class="cyborg-hand-mech">
+                            <div class="mech-finger"></div>
+                            <div class="mech-finger"></div>
+                            <div class="mech-finger"></div>
+                            <div class="mech-finger"></div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Particles -->
+                    <div class="tech-particle"></div>
+                    <div class="tech-particle"></div>
+                    <div class="tech-particle"></div>
+                </div>
+
+                <!-- AI Orbital System -->
+                <div class="ai-orbital-system">
+                    <!-- Orbital Rings -->
+                    <div class="orbital-ring orbital-ring-1"></div>
+                    <div class="orbital-ring orbital-ring-2"></div>
+
+                    <!-- AI Nodes will be created by JavaScript -->
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Info Panel -->
+    <div style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 300px;
+        font-size: 0.875rem;
+        z-index: 1000;
+        border: 1px solid rgba(64, 156, 255, 0.3);
+    ">
+        <h3 style="margin-bottom: 12px; color: #64fcff;">🤖 Dr. Lydia Sentinel</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;">✨ <strong>Split Face:</strong> İnsan + AI</li>
+            <li style="margin-bottom: 8px;">👁️ <strong>Glowing Eye:</strong> Mekanik taraf</li>
+            <li style="margin-bottom: 8px;">💪 <strong>Mech Arm:</strong> Teknolojik güç</li>
+            <li style="margin-bottom: 8px;">🌀 <strong>Orbital AI:</strong> 4 servis</li>
+        </ul>
+        <p style="margin-top: 16px; font-size: 0.75rem; opacity: 0.7;">
+            Karaktere tıklayarak hikayesini öğrenin!
+        </p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/js/cyborg-orbital-controller.js"></script>
+
+</body>
+</html>

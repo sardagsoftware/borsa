@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - AiLydian Ultra Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(16, 163, 127, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(196, 169, 98, 0.1) 0%, transparent 50%);
+            animation: pulse 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Offline icon */
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .offline-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 20px rgba(16, 163, 127, 0.3));
+        }
+
+        /* Cloud icon */
+        .cloud {
+            fill: #10A37F;
+            opacity: 0.3;
+        }
+
+        .cloud-slash {
+            fill: #C4A962;
+            stroke: #C4A962;
+            stroke-width: 2;
+        }
+
+        /* Title */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10A37F 0%, #C4A962 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Status message */
+        .status {
+            background: rgba(16, 163, 127, 0.1);
+            border: 1px solid rgba(16, 163, 127, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .status-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status-text {
+            font-size: 1rem;
+            color: #10A37F;
+            font-weight: 600;
+        }
+
+        /* Action buttons */
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Features list */
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            color: #10A37F;
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        /* Network status indicator */
+        .network-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(16, 163, 127, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 163, 127, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .network-status.online {
+            background: rgba(16, 163, 127, 0.2);
+            border-color: rgba(16, 163, 127, 0.3);
+        }
+
+        .network-status.offline {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10A37F;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .network-status.offline .status-dot {
+            background: #ef4444;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .network-status {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Offline icon -->
+        <div class="offline-icon">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cloud -->
+                <path class="cloud" d="M90,50 C90,44.5 86.5,40 81,40 C80,35 76,31 71,31 C65,31 60,36 60,42 C55,42 51,46 51,51 C51,56 55,60 60,60 L85,60 C89.4,60 93,56.4 93,52 C93,50.9 92.5,50 92,49.2" />
+                <!-- Slash through cloud -->
+                <line class="cloud-slash" x1="45" y1="70" x2="95" y2="30" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <!-- Title -->
+        <h1>Şu Anda Çevrimdışısınız</h1>
+
+        <!-- Subtitle -->
+        <p class="subtitle">
+            İnternet bağlantınız yok gibi görünüyor.<br>
+            Bağlantınızı kontrol edin ve tekrar deneyin.
+        </p>
+
+        <!-- Status -->
+        <div class="status">
+            <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span class="status-text" id="statusText">Bağlantı kontrol ediliyor...</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn btn-primary" onclick="location.reload()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Yeniden Dene
+            </button>
+            <a href="/" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Ana Sayfaya Dön
+            </a>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="feature-text">Önbelleklenmiş sayfalar çevrimdışı kullanılabilir</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="feature-text">Bağlantı yeniden kurulduğunda otomatik senkronize olur</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="feature-text">Verileriniz güvende ve yedeklendi</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network status indicator -->
+    <div class="network-status" id="networkStatus">
+        <span class="status-dot"></span>
+        <span id="networkText">Çevrimdışı</span>
+    </div>
+
+    <script>
+        // Network status monitoring
+        function updateNetworkStatus() {
+            const isOnline = navigator.onLine;
+            const networkStatus = document.getElementById('networkStatus');
+            const networkText = document.getElementById('networkText');
+            const statusText = document.getElementById('statusText');
+
+            if (isOnline) {
+                networkStatus.classList.remove('offline');
+                networkStatus.classList.add('online');
+                networkText.textContent = 'Çevrimiçi';
+                statusText.textContent = 'Bağlantı yeniden kuruldu! Sayfa yenileniyor...';
+
+                // Auto-reload after 2 seconds when back online
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                networkStatus.classList.remove('online');
+                networkStatus.classList.add('offline');
+                networkText.textContent = 'Çevrimdışı';
+                statusText.textContent = 'Bağlantı kontrol ediliyor...';
+            }
+        }
+
+        // Listen for online/offline events
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        // Check status on load
+        updateNetworkStatus();
+
+        // Retry connection every 5 seconds
+        setInterval(() => {
+            if (!navigator.onLine) {
+                console.log('[Offline] Checking connection...');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian - Language System Test</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #047857;
+            margin-bottom: 30px;
+        }
+
+        .language-selector {
+            margin-bottom: 30px;
+        }
+
+        .test-elements {
+            display: grid;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .test-item {
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+
+        .test-item h3 {
+            margin-top: 0;
+            color: #047857;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            margin: 5px 0;
+        }
+
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            width: auto;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #059669;
+        }
+
+        .status {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+            color: #dc2626;
+        }
+
+        .success {
+            color: #047857;
+        }
+
+        .api-test {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f1f5f9;
+            border-radius: 12px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metric {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #10b981;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        /* RTL Support Test */
+        .rtl-test {
+            direction: ltr;
+            transition: direction 0.3s ease;
+        }
+
+        .rtl-test.rtl-mode {
+            direction: rtl;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 data-translate="welcome">🌍 LyDian Enterprise Multilingual System Test</h1>
+
+        <!-- Language Selector will be created here -->
+        
+
+        <!-- Performance Metrics -->
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value" id="currentLangMetric">TR</div>
+                <div class="metric-label">Current Language</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="supportedLangsMetric">8</div>
+                <div class="metric-label">Supported Languages</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="translationTimeMetric">0ms</div>
+                <div class="metric-label">Translation Time</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="cacheHitsMetric">0</div>
+                <div class="metric-label">Cache Hits</div>
+            </div>
+        </div>
+
+        <!-- API Integration Test -->
+        <div class="api-test">
+            <h3>🔗 API Integration Test</h3>
+            <button onclick="testTranslationAPI()">Test Microsoft Translation</button>
+            <button onclick="testGoogleTranslate()">Test Google Translate</button>
+            <button onclick="testZAI()">Test Z.AI Processing</button>
+            <button onclick="testMixtral()">Test Mixtral AI</button>
+
+            <div class="status" id="apiStatus">
+                <strong>API Status:</strong> Ready for testing
+            </div>
+
+            <div id="apiResults" style="margin-top: 15px;">
+                <!-- API test results will appear here -->
+            </div>
+        </div>
+
+        <!-- Performance Monitor -->
+        <div class="api-test">
+            <h3>📊 Performance Monitor</h3>
+            <button onclick="startPerformanceTest()">Start Performance Test</button>
+            <button onclick="clearCache()">Clear Translation Cache</button>
+
+            <div id="performanceResults" style="margin-top: 15px;">
+                <!-- Performance results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the language system -->
+    <script src="js/translations.js"></script>
+    <script src="js/api-integrations.js"></script>
+    <script src="js/language-manager.js"></script>
+
+    <script>
+        // Test functions
+        let testStartTime = 0;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Starting Language System Test...');
+
+            // Update system status
+            document.getElementById('statusText').textContent = 'System Loaded Successfully';
+
+            // Add language change observer for metrics
+            if (window.languageManager) {
+                window.languageManager.addObserver(updateMetrics);
+                updateMetrics(window.languageManager.getCurrentLanguage());
+
+                // Add language change observer for RTL testing
+                window.languageManager.addObserver((newLang) => {
+                    const rtlTest = document.getElementById('rtlTest');
+                    if (LANGUAGE_CONFIG[newLang]?.rtl) {
+                        rtlTest.classList.add('rtl-mode');
+                    } else {
+                        rtlTest.classList.remove('rtl-mode');
+                    }
+                });
+            }
+        });
+
+        function updateMetrics(language) {
+            testStartTime = performance.now();
+
+            document.getElementById('currentLangMetric').textContent = language.toUpperCase();
+
+            if (window.languageManager) {
+                const metrics = window.languageManager.getPerformanceMetrics();
+                document.getElementById('supportedLangsMetric').textContent = metrics.supportedLanguages;
+                document.getElementById('cacheHitsMetric').textContent = metrics.cacheSize;
+            }
+
+            // Calculate translation time
+            setTimeout(() => {
+                const translationTime = Math.round(performance.now() - testStartTime);
+                document.getElementById('translationTimeMetric').textContent = translationTime + 'ms';
+            }, 100);
+        }
+
+        // API Test Functions
+        async function testTranslationAPI() {
+            const statusEl = document.getElementById('apiStatus');
+            const resultsEl = document.getElementById('apiResults');
+
+            statusEl.innerHTML = '<strong>API Status:</strong> Testing Microsoft Translation...';
+
+            try {
+                if (window.languageManager?.apiManager) {
+                    const result = await window.languageManager.apiManager.translateWithMicrosoft(
+                        'Hello, how are you?', 'tr', 'en'
+                    );
+
+                    statusEl.innerHTML = '<strong>API Status:</strong> ✅ Microsoft Translation Success';
+                    resultsEl.innerHTML = `
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 5px 0;">
+                            <strong>Microsoft Translation Result:</strong><br>
+                            Original: "Hello, how are you?"<br>
+                            Translated: "${result.translations[0].text}"<br>
+                            Language: ${result.translations[0].to}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusEl.innerHTML = '<strong>API Status:</strong> ❌ Microsoft Translation Failed';
+                resultsEl.innerHTML = `<div style="background: #fef2f2; color: #dc2626; padding: 15px; border-radius: 8px;">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testGoogleTranslate() {
+            const statusEl = document.getElementById('apiStatus');
+            const resultsEl = document.getElementById('apiResults');
+
+            statusEl.innerHTML = '<strong>API Status:</strong> Testing Google Translate...';
+
+            try {
+                if (window.languageManager?.apiManager) {
+                    const result = await window.languageManager.apiManager.translateWithGoogle(
+                        'Merhaba, nasılsınız?', 'en', 'tr'
+                    );
+
+                    statusEl.innerHTML = '<strong>API Status:</strong> ✅ Google Translate Success';
+                    resultsEl.innerHTML = `
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 5px 0;">
+                            <strong>Google Translate Result:</strong><br>
+                            Original: "Merhaba, nasılsınız?"<br>
+                            Translated: "${result.data.translations[0].translatedText}"<br>
+                            Detected Language: ${result.data.translations[0].detectedSourceLanguage}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusEl.innerHTML = '<strong>API Status:</strong> ❌ Google Translate Failed';
+                resultsEl.innerHTML = `<div style="background: #fef2f2; color: #dc2626; padding: 15px; border-radius: 8px;">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testZAI() {
+            const statusEl = document.getElementById('apiStatus');
+            const resultsEl = document.getElementById('apiResults');
+
+            statusEl.innerHTML = '<strong>API Status:</strong> Testing Z.AI Processing...';
+
+            try {
+                if (window.languageManager?.apiManager) {
+                    const result = await window.languageManager.apiManager.processWithZAI(
+                        'This is a great AI platform with excellent multilingual support!', 'analyze', 'en'
+                    );
+
+                    statusEl.innerHTML = '<strong>API Status:</strong> ✅ Z.AI Processing Success';
+                    resultsEl.innerHTML = `
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 5px 0;">
+                            <strong>Z.AI Analysis Result:</strong><br>
+                            Sentiment: ${result.analysis.sentiment.label} (${Math.round(result.analysis.sentiment.score * 100)}%)<br>
+                            Entities: ${result.analysis.entities.length} detected<br>
+                            Keywords: ${result.analysis.keywords.join(', ')}<br>
+                            Processing Time: ${result.analysis.processing_time}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusEl.innerHTML = '<strong>API Status:</strong> ❌ Z.AI Processing Failed';
+                resultsEl.innerHTML = `<div style="background: #fef2f2; color: #dc2626; padding: 15px; border-radius: 8px;">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testMixtral() {
+            const statusEl = document.getElementById('apiStatus');
+            const resultsEl = document.getElementById('apiResults');
+
+            statusEl.innerHTML = '<strong>API Status:</strong> Testing Mixtral AI...';
+
+            try {
+                if (window.languageManager?.apiManager) {
+                    const result = await window.languageManager.apiManager.generateWithMixtral(
+                        'Explain the benefits of multilingual AI systems', 'en'
+                    );
+
+                    statusEl.innerHTML = '<strong>API Status:</strong> ✅ Mixtral AI Success';
+                    resultsEl.innerHTML = `
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 5px 0;">
+                            <strong>Mixtral AI Response:</strong><br>
+                            Model: ${result.model}<br>
+                            Response: "${result.choices[0].message.content}"<br>
+                            Tokens Used: ${result.usage.total_tokens}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                statusEl.innerHTML = '<strong>API Status:</strong> ❌ Mixtral AI Failed';
+                resultsEl.innerHTML = `<div style="background: #fef2f2; color: #dc2626; padding: 15px; border-radius: 8px;">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function startPerformanceTest() {
+            const resultsEl = document.getElementById('performanceResults');
+            resultsEl.innerHTML = '<div>🚀 Starting performance test...</div>';
+
+            const languages = ['tr', 'en', 'de', 'fr', 'es', 'ar', 'zh', 'ja'];
+            const testResults = [];
+
+            for (const lang of languages) {
+                const startTime = performance.now();
+
+                if (window.languageManager) {
+                    await window.languageManager.changeLanguage(lang);
+                    await new Promise(resolve => setTimeout(resolve, 100)); // Wait for UI update
+                }
+
+                const endTime = performance.now();
+                testResults.push({
+                    language: lang,
+                    time: Math.round(endTime - startTime),
+                    config: LANGUAGE_CONFIG[lang]
+                });
+            }
+
+            // Display results
+            const avgTime = Math.round(testResults.reduce((sum, r) => sum + r.time, 0) / testResults.length);
+
+            resultsEl.innerHTML = `
+                <div style="background: white; padding: 15px; border-radius: 8px;">
+                    <strong>Performance Test Results:</strong><br>
+                    Average Language Switch Time: ${avgTime}ms<br>
+                    Fastest: ${Math.min(...testResults.map(r => r.time))}ms<br>
+                    Slowest: ${Math.max(...testResults.map(r => r.time))}ms<br><br>
+                    <strong>Individual Results:</strong><br>
+                    ${testResults.map(r => `${r.config.flag} ${r.config.name}: ${r.time}ms`).join('<br>')}
+                </div>
+            `;
+        }
+
+        function clearCache() {
+            if (window.languageManager?.apiManager) {
+                window.languageManager.apiManager.cache.clear();
+                document.getElementById('cacheHitsMetric').textContent = '0';
+                document.getElementById('performanceResults').innerHTML =
+                    '<div style="background: #ecfdf5; color: #047857; padding: 15px; border-radius: 8px;">✅ Translation cache cleared successfully</div>';
+            }
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{
+  "name": "AiLydian Ultra Pro - Enterprise AI Platform",
+  "short_name": "AiLydian Pro",
+  "description": "Ultra-powerful AI platform with multi-model support, advanced analytics, and enterprise features",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e27",
+  "theme_color": "#10A37F",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["productivity", "business", "utilities", "education"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "AiLydian Ultra Pro Main Interface"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "AiLydian Ultra Pro Dashboard"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Chat",
+      "short_name": "Chat",
+      "description": "Open AI Chat Interface",
+      "url": "/chat.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "LyDian IQ",
+      "short_name": "IQ",
+      "description": "Advanced AI Problem Solving",
+      "url": "/lydian-iq.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Enterprise Dashboard",
+      "url": "/dashboard-old.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Models",
+      "short_name": "Models",
+      "description": "AI Model Selection",
+      "url": "/models.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

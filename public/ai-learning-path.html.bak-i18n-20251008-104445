@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenme Yol Haritası | LyDian AI</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-white); color: var(--gray-900); }
+        .header { background: linear-gradient(135deg, var(--bg-white), var(--bg-gray)); padding: 2rem; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 2rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        .breadcrumb { color: var(--gray-500); font-size: 0.9rem; margin-top: 0.5rem; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .status-badge { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 600; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card { background: var(--bg-white); border-radius: 1rem; padding: 2rem; border: 1px solid var(--gray-200); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; color: var(--gray-700); font-weight: 500; margin-bottom: 0.5rem; }
+        input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; font-family: inherit; }
+        button { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 1rem 2rem; border: none; border-radius: 0.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
+        button:hover { transform: translateY(-2px); }
+        .results { display: none; margin-top: 2rem; }
+        .results.show { display: block; }
+        .phase-card { background: var(--bg-gray); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid var(--primary); }
+        .resource-item { background: var(--bg-white); padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border: 1px solid var(--gray-200); }
+        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>📚 Öğrenme Yol Haritası</h1>
+                <div class="breadcrumb"><a href="/ai-advisor-hub.html">AI Advisor Hub</a> / Öğrenme</div>
+            </div>
+            <span class="status-badge">CANLI</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <h2 style="margin-bottom: 1.5rem;">Kişiselleştirilmiş Öğrenme Planı</h2>
+                    <form id="learningForm">
+                        <div class="form-group">
+                            <label>Ne Öğrenmek İstiyorsunuz?</label>
+                            <input type="text" id="topic" required placeholder="Örn: Python programlama, Dijital pazarlama">
+                        </div>
+                        <div class="form-group">
+                            <label>Mevcut Seviyeniz</label>
+                            <select id="currentLevel" required>
+                                <option value="Başlangıç">Başlangıç</option>
+                                <option value="Temel">Temel</option>
+                                <option value="Orta">Orta</option>
+                                <option value="İleri">İleri</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Hedef Seviye</label>
+                            <select id="targetLevel" required>
+                                <option value="Temel">Temel</option>
+                                <option value="Orta">Orta</option>
+                                <option value="İleri">İleri</option>
+                                <option value="Uzman">Uzman</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Haftalık Zaman</label>
+                            <select id="timeCommitment">
+                                <option value="2-5 saat">2-5 saat</option>
+                                <option value="5-10 saat" selected>5-10 saat</option>
+                                <option value="10-20 saat">10-20 saat</option>
+                                <option value="20+ saat">20+ saat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Öğrenme Stili</label>
+                            <select id="learningStyle">
+                                <option value="Görsel">Görsel (Video, infografik)</option>
+                                <option value="İşitsel">İşitsel (Podcast, audio)</option>
+                                <option value="Kinestetik">Kinestetik (Pratik, proje)</option>
+                                <option value="Karma" selected>Karma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Hedef Açıklama (Opsiyonel)</label>
+                            <textarea id="goalDescription" placeholder="Bu beceriyi neden öğrenmek istiyorsunuz?"></textarea>
+                        </div>
+                        <button type="submit" id="analyzeBtn">
+                            <i class="fas fa-route"></i> AI ile Yol Haritası Oluştur
+                        </button>
+                    </form>
+                </div>
+                <div class="results" id="results"></div>
+            </div>
+            <div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">✨ Ne Sunuyoruz?</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Fazlara ayrılmış plan</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Kaynak önerileri</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Pratik projeleri</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Çalışma programı</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Kilometre taşları</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('learningForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('analyzeBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Analiz ediliyor...';
+            
+            try {
+                const response = await fetch('/api/learning-path/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        topic: document.getElementById('topic').value,
+                        currentLevel: document.getElementById('currentLevel').value,
+                        targetLevel: document.getElementById('targetLevel').value,
+                        timeCommitment: document.getElementById('timeCommitment').value,
+                        learningStyle: document.getElementById('learningStyle').value,
+                        goalDescription: document.getElementById('goalDescription').value
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    displayResults(data);
+                } else {
+                    alert('Hata: ' + (data.error || 'Bilinmeyen hata'));
+                }
+            } catch (error) {
+                alert('Hata: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-route"></i> AI ile Yol Haritası Oluştur';
+            }
+        });
+        
+        function displayResults(data) {
+            const results = document.getElementById('results');
+            let html = '<div class="card"><h2>📚 Öğrenme Yol Haritanız</h2>';
+            
+            if (data.pathOverview) {
+                html += `<p style="margin: 1rem 0; padding: 1rem; background: var(--bg-gray); border-radius: 0.5rem;">
+                    <strong>Süre:</strong> ${data.pathOverview.estimatedDuration}<br>
+                    <strong>Zorluk:</strong> ${data.pathOverview.difficultyLevel}<br>
+                    <strong>Çıktılar:</strong> ${data.pathOverview.learningOutcomes.join(', ')}
+                </p>`;
+            }
+            
+            if (data.phases) {
+                html += '<h3 style="margin-top: 2rem;">📅 Öğrenme Fazları</h3>';
+                data.phases.forEach(phase => {
+                    html += `<div class="phase-card">
+                        <h4 style="color: var(--primary);">${phase.phase}</h4>
+                        <p style="margin: 0.5rem 0;"><strong>Süre:</strong> ${phase.duration}</p>
+                        <p><strong>Hedefler:</strong></p>
+                        <ul>${phase.objectives.map(o => `<li>${o}</li>`).join('')}</ul>
+                        ${phase.resources ? `<p style="margin-top: 1rem;"><strong>Kaynaklar:</strong></p>` : ''}
+                        ${phase.resources ? phase.resources.slice(0, 3).map(r => `
+                            <div class="resource-item">
+                                <strong>${r.title}</strong> (${r.type})<br>
+                                <small>${r.estimatedTime} - ${r.difficulty}</small>
+                            </div>
+                        `).join('') : ''}
+                    </div>`;
+                });
+            }
+            
+            html += '</div>';
+            results.innerHTML = html;
+            results.classList.add('show');
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

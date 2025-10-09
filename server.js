@@ -51,6 +51,7 @@ const { hipaaAuditMiddleware, hipaaAuditErrorHandler } = require('./lib/middlewa
 
 // 🛡️ SECURITY MIDDLEWARE
 const { initializeSecurity } = require('./middleware/security');
+const { setupSessionManagement } = require('./middleware/session-manager');
 const { setupRateLimiting } = require('./middleware/rate-limit');
 const { initializeHTTPSSecurity } = require('./middleware/enforce-https');
 
@@ -481,6 +482,9 @@ initializeHTTPSSecurity(app);
 // 2. Security Headers (Helmet, CSRF)
 initializeSecurity(app);
 
+// 2.5. Session Management (Redis-backed, secure cookies)
+setupSessionManagement(app);
+
 // 3. Rate Limiting (after security headers)
 setupRateLimiting(app);
 
@@ -530,7 +534,43 @@ app.use(complianceHeaders);
 // 9. PII Masking in Logs
 app.use(maskPIIInLogs);
 
-// 10. Static file serving
+// 🚀 CACHE HEADERS MIDDLEWARE - Performance Optimization (Phase J)
+// Implements intelligent caching strategy based on resource type
+const cacheControl = (req, res, next) => {
+  const path = req.path;
+
+  // Versioned static assets (immutable) - assets with ?v= query parameter
+  if (path.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)\?v=/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  // JavaScript & CSS files (1 hour, serve stale for 24 hours while revalidating)
+  else if (path.match(/\.(js|css)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+  }
+  // Images (1 day cache)
+  else if (path.match(/\.(png|jpg|jpeg|gif|svg|webp|avif|ico)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+  }
+  // Fonts (1 year - fonts rarely change)
+  else if (path.match(/\.(woff|woff2|ttf|eot)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  // HTML pages (always revalidate)
+  else if (path.match(/\.html?$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+  }
+  // API endpoints (5 minutes, serve stale for 10 minutes while revalidating)
+  else if (path.startsWith('/api/')) {
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
+  }
+
+  next();
+};
+
+// 10. Cache Headers
+app.use(cacheControl);
+
+// 11. Static file serving
 app.use(express.static('public'));
 
 // 🤖 FIRILDAK AI ENGINE INITIALIZATION

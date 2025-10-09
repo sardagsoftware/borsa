@@ -2,6 +2,8 @@
   "version": 2,
   "buildCommand": "echo 'No build required - Serverless Functions'",
   "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/api/rro/:path*",
@@ -50,6 +52,10 @@
     {
       "source": "/ailydian-indexnow-2025.txt",
       "destination": "/public/ailydian-indexnow-2025.txt"
+    },
+    {
+      "source": "/dashboard-sardag",
+      "destination": "/public/dashboard-sardag.html"
     },
     {
       "source": "/",
@@ -123,19 +129,23 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://ailydian.com, https://www.ailydian.com, https://ailydian-ultra-pro.vercel.app"
+          "value": "https://ailydian.com, https://www.ailydian.com, https://ailydian-ultra-pro.vercel.app, https://ailydian.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
+          "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
+          "value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
         },
         {
           "key": "Access-Control-Allow-Credentials",
           "value": "true"
+        },
+        {
+          "key": "Access-Control-Max-Age",
+          "value": "86400"
         },
         {
           "key": "Cache-Control",
