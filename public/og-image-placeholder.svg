@@ -1,0 +1,88 @@
+<svg width="1200" height="628" viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+  <!-- OpenGraph Image Placeholder for Social Media -->
+
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0F1C;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#121826;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A2332;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00B4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0080FF;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glow Effect -->
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="628" fill="url(#bgGradient)"/>
+
+  <!-- Decorative Grid Pattern -->
+  <g opacity="0.05">
+    <path d="M 0 0 L 1200 0 L 1200 628 L 0 628 Z" fill="none" stroke="#00B4FF" stroke-width="1"/>
+    <line x1="0" y1="157" x2="1200" y2="157" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="0" y1="314" x2="1200" y2="314" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="0" y1="471" x2="1200" y2="471" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="628" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="628" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="900" y1="0" x2="900" y2="628" stroke="#00B4FF" stroke-width="0.5"/>
+  </g>
+
+  <!-- Main Logo Circle -->
+  <circle cx="300" cy="314" r="120" fill="none" stroke="url(#blueGradient)" stroke-width="4" opacity="0.6"/>
+  <circle cx="300" cy="314" r="90" fill="none" stroke="url(#blueGradient)" stroke-width="3" opacity="0.4"/>
+
+  <!-- Neural Network Center -->
+  <circle cx="300" cy="314" r="25" fill="url(#blueGradient)" filter="url(#glow2)"/>
+
+  <!-- Network Nodes -->
+  <circle cx="240" cy="280" r="15" fill="#00B4FF" opacity="0.7"/>
+  <circle cx="360" cy="280" r="15" fill="#00B4FF" opacity="0.7"/>
+  <circle cx="240" cy="348" r="15" fill="#00B4FF" opacity="0.7"/>
+  <circle cx="360" cy="348" r="15" fill="#00B4FF" opacity="0.7"/>
+
+  <!-- Connection Lines -->
+  <line x1="300" y1="314" x2="240" y2="280" stroke="#00B4FF" stroke-width="2" opacity="0.5"/>
+  <line x1="300" y1="314" x2="360" y2="280" stroke="#00B4FF" stroke-width="2" opacity="0.5"/>
+  <line x1="300" y1="314" x2="240" y2="348" stroke="#00B4FF" stroke-width="2" opacity="0.5"/>
+  <line x1="300" y1="314" x2="360" y2="348" stroke="#00B4FF" stroke-width="2" opacity="0.5"/>
+
+  <!-- Main Text -->
+  <text x="700" y="260" font-family="Inter, sans-serif" font-size="72" font-weight="800"
+        fill="#FFFFFF" letter-spacing="-1">LyDian AI</text>
+
+  <!-- Subtitle -->
+  <text x="700" y="320" font-family="Inter, sans-serif" font-size="32" font-weight="400"
+        fill="#00B4FF" letter-spacing="1">Intelligence for Every Domain</text>
+
+  <!-- Feature Pills -->
+  <g>
+    <!-- Pill 1 -->
+    <rect x="700" y="360" width="180" height="40" rx="20" fill="#00B4FF" opacity="0.2"/>
+    <text x="790" y="387" font-family="Inter, sans-serif" font-size="16" font-weight="600"
+          fill="#00B4FF" text-anchor="middle">20+ Languages</text>
+
+    <!-- Pill 2 -->
+    <rect x="900" y="360" width="180" height="40" rx="20" fill="#00B4FF" opacity="0.2"/>
+    <text x="990" y="387" font-family="Inter, sans-serif" font-size="16" font-weight="600"
+          fill="#00B4FF" text-anchor="middle">Multi-Model AI</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="700" y="510" font-family="Inter, sans-serif" font-size="24" font-weight="400"
+        fill="#FFFFFF" opacity="0.6">www.ailydian.com</text>
+
+  <!-- Small Logo Badge -->
+  <circle cx="1100" cy="528" r="40" fill="#121826" stroke="#00B4FF" stroke-width="2"/>
+  <circle cx="1100" cy="528" r="15" fill="url(#blueGradient)"/>
+</svg>

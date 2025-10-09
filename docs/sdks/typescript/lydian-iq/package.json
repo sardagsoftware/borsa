@@ -1,0 +1,41 @@
+{
+  "name": "@lydian/lydian-iq-sdk",
+  "version": "1.0.0",
+  "description": "TypeScript/JavaScript SDK for LyDian IQ API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "lydian",
+    "lydian-iq",
+    "signals",
+    "knowledge-graph",
+    "insights",
+    "ai",
+    "api",
+    "sdk"
+  ],
+  "author": "LyDian Platform",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lydian/sdks.git",
+    "directory": "typescript/lydian-iq"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

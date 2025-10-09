@@ -1,0 +1,102 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is LyDian AI Ecosystem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI Ecosystem is a multilingual artificial intelligence platform that provides advanced AI solutions including natural language processing, computer vision, speech recognition, and decision support systems. It supports over 20 languages including Turkish, English, and Azerbaijani, and is built on Microsoft Azure infrastructure with integration of leading AI models like GPT-4, Gemini, and Claude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What languages does LyDian AI support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI supports over 20 languages including Turkish, English, Azerbaijani, Russian, German, French, Spanish, Italian, Portuguese, Arabic, Chinese, Japanese, Korean, and more. The platform uses advanced multilingual models to provide accurate translations and natural language understanding across all supported languages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What AI models does LyDian use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI Ecosystem integrates multiple state-of-the-art AI models including OpenAI GPT-4 Turbo, Google Gemini Pro, and Anthropic Claude 3.5 Sonnet. This hybrid approach allows the platform to leverage the strengths of different models for optimal performance across various tasks and languages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is RAG technology in LyDian?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RAG (Retrieval-Augmented Generation) is a technology that enhances AI responses by retrieving relevant information from external knowledge bases before generating answers. LyDian uses Azure AI Search with vector embeddings to access real-time data sources, ensuring accurate and up-to-date responses rather than relying solely on pre-trained model knowledge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is LyDian AI secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, LyDian AI is built with enterprise-grade security following OWASP Top 10 standards. It includes CSRF protection, two-factor authentication (2FA), OAuth 2.0 integration, session management, DDoS protection, rate limiting, suspicious activity detection, and end-to-end encryption. All security implementations follow white-hat ethical principles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is LyDian IQ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian IQ is the core AI assistant module that allows users to ask questions in natural language and receive real-time responses. It features 20+ language support, vision AI for image analysis, speech AI for voice interaction, document processing (PDF, DOCX, Excel), and Chain-of-Thought reasoning for complex problem-solving."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries does LyDian serve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI serves multiple industries including finance (Quantum Pro for trading), healthcare (Medical AI for clinical decision support), legal (Legal AI for Turkish law research), smart cities (Smart City modules for urban management), and media production (Video AI for content creation). Each module is tailored to specific industry requirements and compliance standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is LyDian Medical AI HIPAA compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, LyDian Medical AI is designed with HIPAA compliance in mind, implementing necessary security and privacy controls for handling protected health information (PHI). However, it is important to note that LyDian Medical AI is a decision support tool and does not replace professional medical advice, diagnosis, or treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I integrate LyDian AI into my application?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI provides a comprehensive RESTful API with detailed documentation available at ailydian.com/api-docs.html. The platform supports multiple integration methods including REST API, WebSocket for real-time communication, and Server-Sent Events (SSE) for streaming responses. Developer documentation and SDKs are available in the developer portal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the pricing model for LyDian AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI offers flexible pricing models including free tier for developers, pay-as-you-go based on API usage, and enterprise plans with custom pricing. Specific pricing details and quotas are available on the website at ailydian.com/pricing. Contact info@ailydian.com for enterprise inquiries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does LyDian AI work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI is a Progressive Web App (PWA) that supports limited offline functionality. While core features require internet connectivity to access AI models and real-time data, the PWA can cache previously accessed content and provide basic functionality offline. The app automatically syncs when connectivity is restored."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who founded LyDian AI and when?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LyDian AI Ecosystem was founded in 2024 by Emrah Şardağ in Turkey. The platform was created with the vision of making advanced artificial intelligence accessible to users worldwide through multilingual support and ethical AI principles."
+      }
+    }
+  ]
+}

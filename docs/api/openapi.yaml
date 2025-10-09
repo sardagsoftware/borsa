@@ -1,0 +1,854 @@
+openapi: 3.0.3
+info:
+  title: LyDian Platform API
+  description: |
+    # LyDian Platform API Documentation
+
+    Welcome to the LyDian Platform API. This API provides access to three core modules:
+
+    - **Smart Cities**: IoT device management, real-time metrics, city analytics
+    - **İnsan IQ**: AI persona management, skill marketplace, assistant sessions
+    - **LyDian IQ**: Real-time signal ingestion, knowledge graph, AI insights
+
+    ## Authentication
+
+    The API supports three authentication methods:
+
+    1. **API Key** - Simple key-based authentication
+       - Header: `X-API-Key: lyd_your_api_key`
+       - Best for: Server-to-server, automated scripts
+
+    2. **OAuth2/JWT** - Token-based authentication
+       - Header: `Authorization: Bearer your_jwt_token`
+       - Best for: Web apps, mobile apps, user-facing applications
+
+    3. **HMAC Signature** - Cryptographic signature authentication
+       - Headers: `X-HMAC-Signature`, `X-HMAC-Timestamp`, `X-HMAC-Algorithm`, `X-HMAC-Key-ID`
+       - Best for: High-security integrations, financial applications
+
+    ## Rate Limiting
+
+    All endpoints are rate-limited. Rate limit information is returned in response headers:
+
+    - `X-RateLimit-Limit`: Total requests allowed per hour
+    - `X-RateLimit-Remaining`: Remaining requests in current window
+    - `X-RateLimit-Reset`: Unix timestamp when the limit resets
+
+    When rate limit is exceeded, the API returns `429 Too Many Requests` with a `Retry-After` header.
+
+    ## Idempotency
+
+    POST requests support idempotency via the `Idempotency-Key` header.
+    If you retry a request with the same key, you'll receive a `409 Conflict` response.
+
+    ## Pagination
+
+    List endpoints support cursor-based pagination:
+
+    - `limit`: Number of results (1-100, default 50)
+    - `cursor`: Pagination cursor (from previous response)
+
+    Pagination info is returned via the `Link` header (RFC 5988).
+
+    ## Error Handling
+
+    All errors follow a standard format:
+
+    ```json
+    {
+      "error": {
+        "code": "ERROR_CODE",
+        "message": "Human-readable error message",
+        "details": [...],
+        "correlationId": "unique-id-for-debugging",
+        "timestamp": "2025-10-08T12:00:00.000Z"
+      }
+    }
+    ```
+
+    Common error codes:
+    - `MISSING_API_KEY` - API key not provided
+    - `INVALID_API_KEY` - Invalid or revoked API key
+    - `RATE_LIMIT_EXCEEDED` - Too many requests
+    - `VALIDATION_ERROR` - Invalid request parameters
+    - `NOT_FOUND` - Resource not found
+
+  version: 1.0.0
+  contact:
+    name: LyDian API Support
+    email: api@lydian.com
+    url: https://docs.lydian.com
+  license:
+    name: Proprietary
+    url: https://lydian.com/terms
+
+servers:
+  - url: https://api.lydian.com/v1
+    description: Production server
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+
+tags:
+  - name: Smart Cities
+    description: IoT device management and city analytics
+  - name: İnsan IQ
+    description: AI persona and assistant management
+  - name: LyDian IQ
+    description: Real-time signal ingestion and knowledge graph
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+  - HmacAuth: []
+
+paths:
+  /smart-cities/cities:
+    post:
+      tags:
+        - Smart Cities
+      summary: Create a new city
+      description: |
+        Creates a new city record with coordinates, population, and timezone.
+
+        **Idempotency:** This endpoint supports idempotency via the `Idempotency-Key` header.
+
+        **Rate Limit:** Counts towards your hourly API limit.
+      operationId: createCity
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CityCreate'
+            examples:
+              istanbul:
+                summary: Istanbul example
+                value:
+                  name: Istanbul
+                  coordinates:
+                    latitude: 41.0082
+                    longitude: 28.9784
+                  population: 15840900
+                  timezone: Europe/Istanbul
+      responses:
+        '201':
+          description: City created successfully
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+    get:
+      tags:
+        - Smart Cities
+      summary: List cities
+      description: |
+        Returns a paginated list of cities.
+
+        **Pagination:** Use the `cursor` parameter for pagination.
+        The `Link` header contains the URL for the next page.
+      operationId: listCities
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: List of cities
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Link:
+              description: Pagination link (RFC 5988)
+              schema:
+                type: string
+              example: </api/v1/smart-cities/cities?cursor=abc123&limit=50>; rel="next"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/City'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /smart-cities/cities/{cityId}:
+    get:
+      tags:
+        - Smart Cities
+      summary: Get city by ID
+      description: Returns a single city by its ID
+      operationId: getCityById
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          description: City ID (e.g., city_abc123...)
+          schema:
+            type: string
+            pattern: '^city_[A-Za-z0-9_-]{24}$'
+      responses:
+        '200':
+          description: City details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /smart-cities/cities/{cityId}/metrics:
+    get:
+      tags:
+        - Smart Cities
+      summary: Get city metrics
+      description: Returns real-time metrics for a city (traffic, energy, air quality, water)
+      operationId: getCityMetrics
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: City metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CityMetrics'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /insan-iq/personas:
+    post:
+      tags:
+        - İnsan IQ
+      summary: Create a new persona
+      description: Creates a new AI persona with personality and expertise
+      operationId: createPersona
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonaCreate'
+            examples:
+              turkish:
+                summary: Turkish AI Assistant
+                value:
+                  name: AI Asistan
+                  personality: Yardımsever ve bilgili
+                  expertise: ["teknoloji", "yazılım", "yapay zeka"]
+                  language: tr
+                  description: Türkçe AI asistan
+      responses:
+        '201':
+          description: Persona created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Persona'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+    get:
+      tags:
+        - İnsan IQ
+      summary: List personas
+      description: Returns a paginated list of personas with optional language filter
+      operationId: listPersonas
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Cursor'
+        - name: language
+          in: query
+          description: Filter by language code (tr, en, de, fr, es, it, ar, zh, ja, ru)
+          schema:
+            type: string
+            enum: [tr, en, de, fr, es, it, ar, zh, ja, ru]
+      responses:
+        '200':
+          description: List of personas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  personas:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Persona'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+  /insan-iq/personas/{personaId}:
+    get:
+      tags:
+        - İnsan IQ
+      summary: Get persona by ID
+      operationId: getPersonaById
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - name: personaId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Persona details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Persona'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /lydian-iq/signals:
+    post:
+      tags:
+        - LyDian IQ
+      summary: Ingest a signal
+      description: |
+        Ingests a real-time signal/event for analytics.
+
+        Signals are processed for knowledge graph construction and AI insights.
+      operationId: ingestSignal
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+        - HmacAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignalCreate'
+            examples:
+              market:
+                summary: Market event
+                value:
+                  signalType: market_event
+                  source: binance
+                  timestamp: "2025-10-08T12:00:00.000Z"
+                  payload:
+                    symbol: BTC/USD
+                    price: 50000
+                    volume: 1000
+                  metadata:
+                    exchange: binance
+      responses:
+        '201':
+          description: Signal ingested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Signal'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+    get:
+      tags:
+        - LyDian IQ
+      summary: List signals
+      description: Returns a paginated list of signals with optional type filter
+      operationId: listSignals
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Cursor'
+        - name: signalType
+          in: query
+          description: Filter by signal type
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of signals
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signals:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Signal'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: |
+        API Key authentication. Get your API key from the dashboard.
+
+        Example: `X-API-Key: lyd_abc123def456...`
+
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        OAuth2/JWT authentication. Obtain a JWT token via the OAuth2 flow.
+
+        Example: `Authorization: Bearer eyJhbGciOiJIUzI1NiIs...`
+
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: X-HMAC-Signature
+      description: |
+        HMAC signature authentication. Requires multiple headers:
+
+        - `X-HMAC-Signature`: HMAC-SHA256 signature
+        - `X-HMAC-Timestamp`: Unix timestamp
+        - `X-HMAC-Algorithm`: HMAC-SHA256
+        - `X-HMAC-Key-ID`: Your HMAC key ID
+
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      description: Unique key for idempotent requests (UUID recommended)
+      schema:
+        type: string
+        format: uuid
+      example: 550e8400-e29b-41d4-a716-446655440000
+
+    Limit:
+      name: limit
+      in: query
+      description: Number of results to return (1-100)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 50
+
+    Cursor:
+      name: cursor
+      in: query
+      description: Pagination cursor from previous response
+      schema:
+        type: string
+
+  headers:
+    X-RateLimit-Limit:
+      description: Total requests allowed per hour
+      schema:
+        type: integer
+      example: 1000
+
+    X-RateLimit-Remaining:
+      description: Remaining requests in current window
+      schema:
+        type: integer
+      example: 999
+
+    X-RateLimit-Reset:
+      description: Unix timestamp when the limit resets
+      schema:
+        type: integer
+      example: 1696780800
+
+  schemas:
+    CityCreate:
+      type: object
+      required:
+        - name
+        - coordinates
+        - population
+        - timezone
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          example: Istanbul
+        coordinates:
+          type: object
+          required:
+            - latitude
+            - longitude
+          properties:
+            latitude:
+              type: number
+              format: double
+              minimum: -90
+              maximum: 90
+              example: 41.0082
+            longitude:
+              type: number
+              format: double
+              minimum: -180
+              maximum: 180
+              example: 28.9784
+        population:
+          type: integer
+          minimum: 1
+          example: 15840900
+        timezone:
+          type: string
+          example: Europe/Istanbul
+
+    City:
+      allOf:
+        - $ref: '#/components/schemas/CityCreate'
+        - type: object
+          required:
+            - cityId
+            - createdAt
+            - updatedAt
+          properties:
+            cityId:
+              type: string
+              pattern: '^city_[A-Za-z0-9_-]{24}$'
+              example: city_abc123def456ghi789jkl012
+            createdAt:
+              type: string
+              format: date-time
+              example: "2025-10-08T12:00:00.000Z"
+            updatedAt:
+              type: string
+              format: date-time
+              example: "2025-10-08T12:00:00.000Z"
+
+    CityMetrics:
+      type: object
+      properties:
+        cityId:
+          type: string
+        metrics:
+          type: object
+          properties:
+            traffic:
+              type: object
+              properties:
+                congestionLevel:
+                  type: number
+                  format: double
+                  example: 65.5
+                averageSpeed:
+                  type: number
+                  example: 45.2
+            energy:
+              type: object
+              properties:
+                consumption:
+                  type: number
+                  example: 1250000
+                renewablePercentage:
+                  type: number
+                  example: 35.8
+            airQuality:
+              type: object
+              properties:
+                aqi:
+                  type: integer
+                  example: 75
+                pm25:
+                  type: number
+                  example: 25.5
+            water:
+              type: object
+              properties:
+                consumption:
+                  type: number
+                  example: 500000
+                quality:
+                  type: string
+                  example: good
+
+    PersonaCreate:
+      type: object
+      required:
+        - name
+        - personality
+        - expertise
+        - language
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          example: AI Asistan
+        personality:
+          type: string
+          minLength: 1
+          example: Yardımsever ve bilgili
+        expertise:
+          type: array
+          items:
+            type: string
+          example: ["teknoloji", "yazılım", "yapay zeka"]
+        language:
+          type: string
+          enum: [tr, en, de, fr, es, it, ar, zh, ja, ru]
+          example: tr
+        description:
+          type: string
+          example: Türkçe konuşan AI asistan
+
+    Persona:
+      allOf:
+        - $ref: '#/components/schemas/PersonaCreate'
+        - type: object
+          required:
+            - personaId
+            - createdAt
+            - updatedAt
+          properties:
+            personaId:
+              type: string
+              example: persona_abc123def456ghi789
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+
+    SignalCreate:
+      type: object
+      required:
+        - signalType
+        - source
+        - timestamp
+        - payload
+      properties:
+        signalType:
+          type: string
+          example: market_event
+        source:
+          type: string
+          example: binance
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-10-08T12:00:00.000Z"
+        payload:
+          type: object
+          example:
+            symbol: BTC/USD
+            price: 50000
+            volume: 1000
+        metadata:
+          type: object
+          example:
+            exchange: binance
+
+    Signal:
+      allOf:
+        - $ref: '#/components/schemas/SignalCreate'
+        - type: object
+          required:
+            - signalId
+            - createdAt
+          properties:
+            signalId:
+              type: string
+              example: signal_abc123def456ghi789
+            createdAt:
+              type: string
+              format: date-time
+
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 50
+        cursor:
+          type: string
+          nullable: true
+          example: eyJpZCI6ImFiYzEyMyJ9
+        hasMore:
+          type: boolean
+          example: true
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+            - correlationId
+            - timestamp
+          properties:
+            code:
+              type: string
+              example: VALIDATION_ERROR
+            message:
+              type: string
+              example: Invalid request parameters
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: coordinates.latitude
+                  issue:
+                    type: string
+                    example: Must be between -90 and 90
+            correlationId:
+              type: string
+              example: abc123def456ghi789
+            timestamp:
+              type: string
+              format: date-time
+              example: "2025-10-08T12:00:00.000Z"
+
+  responses:
+    BadRequest:
+      description: Bad Request - Invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: VALIDATION_ERROR
+              message: Invalid request parameters
+              details:
+                - path: coordinates.latitude
+                  issue: Must be between -90 and 90
+              correlationId: abc123def456ghi789
+              timestamp: "2025-10-08T12:00:00.000Z"
+
+    Unauthorized:
+      description: Unauthorized - Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: MISSING_API_KEY
+              message: API key is required. Provide X-API-Key header.
+              correlationId: abc123def456ghi789
+              timestamp: "2025-10-08T12:00:00.000Z"
+
+    NotFound:
+      description: Not Found - Resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: NOT_FOUND
+              message: Resource not found
+              correlationId: abc123def456ghi789
+              timestamp: "2025-10-08T12:00:00.000Z"
+
+    Conflict:
+      description: Conflict - Duplicate request (idempotency key already used)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: DUPLICATE_REQUEST
+              message: Request with this idempotency key already processed
+              correlationId: abc123def456ghi789
+              timestamp: "2025-10-08T12:00:00.000Z"
+
+    TooManyRequests:
+      description: Too Many Requests - Rate limit exceeded
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying
+          schema:
+            type: integer
+          example: 60
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: Rate limit exceeded. Please try again later.
+              correlationId: abc123def456ghi789
+              timestamp: "2025-10-08T12:00:00.000Z"
