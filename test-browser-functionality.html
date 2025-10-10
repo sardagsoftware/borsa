@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Legal AI - Browser Functionality Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        .test-section h2 {
+            color: #374151;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .test-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background: #f9fafb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .test-item.pass {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+        }
+        .test-item.fail {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+        }
+        .test-item.pending {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+        .icon {
+            font-size: 20px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-test {
+            background: #10b981;
+            color: white;
+            margin-right: 10px;
+        }
+        .btn-test:hover {
+            background: #059669;
+        }
+        .test-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .summary h2 {
+            margin-bottom: 10px;
+        }
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 LyDian Legal AI - Browser Functionality Test</h1>
+        <p class="subtitle">Tüm frontend fonksiyonlarını test et</p>
+
+        <div class="summary" id="summary">
+            <h2>Test Özeti</h2>
+            <div class="score" id="score">-</div>
+            <div id="summaryText">Testleri başlatmak için butona tıklayın</div>
+        </div>
+
+        <!-- Test 1: Page Load -->
+        <div class="test-section">
+            <h2><span class="icon">🚀</span>1. Sayfa Yükleme Testi</h2>
+            <div id="test1-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest1()">Test Et</button>
+                <button class="btn btn-primary" onclick="window.open('http://localhost:3100/lydian-legal-search.html', '_blank')">
+                    Sayfayı Aç
+                </button>
+            </div>
+        </div>
+
+        <!-- Test 2: User Dropdown -->
+        <div class="test-section">
+            <h2><span class="icon">👤</span>2. User Dropdown Testi</h2>
+            <div id="test2-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest2()">Test Et</button>
+            </div>
+            <div class="result" style="display:none;" id="test2-manual">
+                <strong>Manuel Test:</strong><br>
+                1. Sayfayı aç<br>
+                2. "Hesabım" butonuna tıkla<br>
+                3. Dropdown açılmalı (Profilim, Arşiv, Ayarlar, Çıkış Yap)<br>
+                4. Dropdown dışına tıkla, kapanmalı
+            </div>
+        </div>
+
+        <!-- Test 3: Export Dropdown -->
+        <div class="test-section">
+            <h2><span class="icon">📤</span>3. Export Dropdown Testi</h2>
+            <div id="test3-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest3()">Test Et</button>
+            </div>
+            <div class="result" style="display:none;" id="test3-manual">
+                <strong>Manuel Test:</strong><br>
+                1. Sayfayı aç<br>
+                2. "Dışa Aktar & Paylaş" butonuna tıkla<br>
+                3. Dropdown açılmalı (PDF, Word, Metin olarak kaydet)<br>
+                4. Dropdown dışına tıkla, kapanmalı
+            </div>
+        </div>
+
+        <!-- Test 4: TR Button -->
+        <div class="test-section">
+            <h2><span class="icon">🇹🇷</span>4. Dil Değiştirme (TR Button)</h2>
+            <div id="test4-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest4()">Test Et</button>
+            </div>
+            <div class="result" style="display:none;" id="test4-manual">
+                <strong>Manuel Test:</strong><br>
+                1. Sayfayı aç (TR modunda başlamalı)<br>
+                2. TR butonuna tıkla<br>
+                3. Dil EN'e dönmeli (button: 🇬🇧 EN)<br>
+                4. İçerikler İngilizce'ye çevrilmeli<br>
+                5. Tekrar tıkla, TR'ye dönmeli
+            </div>
+        </div>
+
+        <!-- Test 5: AI Chat -->
+        <div class="test-section">
+            <h2><span class="icon">🤖</span>5. AI Sohbet Testi</h2>
+            <div id="test5-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest5()">Backend Test</button>
+            </div>
+            <div class="result" style="display:none;" id="test5-manual">
+                <strong>Manuel Test:</strong><br>
+                1. Sayfayı aç<br>
+                2. Input'a bir hukuki soru yaz: "Kıdem tazminatı nedir?"<br>
+                3. Send butonuna tıkla veya Enter'a bas<br>
+                4. Loading indicator görünmeli<br>
+                5. AI yanıtı gelip görünmeli (Groq LLaMA 3.3 70B)<br>
+                6. Yanıt Türkçe ve detaylı olmalı
+            </div>
+        </div>
+
+        <!-- Test 6: Page Refresh -->
+        <div class="test-section">
+            <h2><span class="icon">🔄</span>6. Sayfa Yenileme Testi</h2>
+            <div id="test6-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest6()">Test Et</button>
+            </div>
+            <div class="result" style="display:none;" id="test6-manual">
+                <strong>Manuel Test:</strong><br>
+                1. Sayfayı aç<br>
+                2. Bir soru sor ve yanıt al<br>
+                3. F5 veya Cmd+R ile sayfayı yenile<br>
+                4. ✅ Sayfa boş (empty state) görünmeli<br>
+                5. ❌ Önceki sohbet GÖRÜNMEMELI<br>
+                6. Sidebar'da conversation listesinde kayıtlı olmalı
+            </div>
+        </div>
+
+        <!-- Test 7: Console Errors -->
+        <div class="test-section">
+            <h2><span class="icon">🐛</span>7. Console Hata Kontrolü</h2>
+            <div id="test7-result">
+                <div class="test-item pending">
+                    <span class="icon">⏳</span>
+                    <span>Henüz test edilmedi</span>
+                </div>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-test" onclick="runTest7()">Test Et</button>
+            </div>
+            <div class="result" style="display:none;" id="test7-manual">
+                <strong>Manuel Test:</strong><br>
+                1. Sayfayı aç<br>
+                2. F12 ile Developer Tools'u aç<br>
+                3. Console tab'ına git<br>
+                4. ✅ 0 Error olmalı<br>
+                5. ⚠️ Warning'ler kabul edilebilir<br>
+                6. Sayfayı kullan (click, type, send message)<br>
+                7. Yine 0 Error olmalı
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            test1: null,
+            test2: null,
+            test3: null,
+            test4: null,
+            test5: null,
+            test6: null,
+            test7: null
+        };
+
+        function updateSummary() {
+            const total = 7;
+            const tested = Object.values(testResults).filter(r => r !== null).length;
+            const passed = Object.values(testResults).filter(r => r === true).length;
+            const failed = Object.values(testResults).filter(r => r === false).length;
+
+            const score = tested > 0 ? Math.round((passed / tested) * 100) : 0;
+            document.getElementById('score').textContent = `${passed}/${tested} (${score}%)`;
+            document.getElementById('summaryText').textContent =
+                `✅ Passed: ${passed} | ❌ Failed: ${failed} | ⏳ Pending: ${total - tested}`;
+        }
+
+        async function runTest1() {
+            const result = document.getElementById('test1-result');
+            result.innerHTML = '<div class="test-item"><span class="icon">⏳</span><span>Testing...</span></div>';
+
+            try {
+                // Test server health
+                const response = await fetch('http://localhost:3100/api/health');
+                const data = await response.json();
+
+                if (data.status === 'healthy') {
+                    testResults.test1 = true;
+                    result.innerHTML = `
+                        <div class="test-item pass">
+                            <span class="icon">✅</span>
+                            <span>Server sağlıklı - ${data.server} v${data.version}</span>
+                        </div>
+                        <div class="result">
+                            Status: ${data.status}<br>
+                            Server: ${data.server}<br>
+                            Version: ${data.version}<br>
+                            Models: ${data.models_count}<br>
+                            Uptime: ${Math.round(data.uptime)}s
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Server unhealthy');
+                }
+            } catch (error) {
+                testResults.test1 = false;
+                result.innerHTML = `
+                    <div class="test-item fail">
+                        <span class="icon">❌</span>
+                        <span>Server'a bağlanılamadı</span>
+                    </div>
+                    <div class="result">Error: ${error.message}</div>
+                `;
+            }
+
+            updateSummary();
+        }
+
+        function runTest2() {
+            const result = document.getElementById('test2-result');
+            const manual = document.getElementById('test2-manual');
+            manual.style.display = 'block';
+
+            testResults.test2 = null; // Requires manual verification
+            result.innerHTML = `
+                <div class="test-item pending">
+                    <span class="icon">👁️</span>
+                    <span>Manuel test gerekli - Talimatları takip edin</span>
+                </div>
+            `;
+            updateSummary();
+        }
+
+        function runTest3() {
+            const result = document.getElementById('test3-result');
+            const manual = document.getElementById('test3-manual');
+            manual.style.display = 'block';
+
+            testResults.test3 = null;
+            result.innerHTML = `
+                <div class="test-item pending">
+                    <span class="icon">👁️</span>
+                    <span>Manuel test gerekli - Talimatları takip edin</span>
+                </div>
+            `;
+            updateSummary();
+        }
+
+        function runTest4() {
+            const result = document.getElementById('test4-result');
+            const manual = document.getElementById('test4-manual');
+            manual.style.display = 'block';
+
+            testResults.test4 = null;
+            result.innerHTML = `
+                <div class="test-item pending">
+                    <span class="icon">👁️</span>
+                    <span>Manuel test gerekli - Talimatları takip edin</span>
+                </div>
+            `;
+            updateSummary();
+        }
+
+        async function runTest5() {
+            const result = document.getElementById('test5-result');
+            const manual = document.getElementById('test5-manual');
+            result.innerHTML = '<div class="test-item"><span class="icon">⏳</span><span>Testing backend...</span></div>';
+
+            try {
+                const response = await fetch('http://localhost:3100/api/legal-ai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: 'Test query', language: 'tr' })
+                });
+
+                const data = await response.json();
+
+                if (data.success || data.response) {
+                    testResults.test5 = true;
+                    result.innerHTML = `
+                        <div class="test-item pass">
+                            <span class="icon">✅</span>
+                            <span>Backend AI çalışıyor - ${data.model}</span>
+                        </div>
+                        <div class="result">
+                            Model: ${data.model}<br>
+                            Tokens: ${data.tokensUsed}<br>
+                            Response length: ${data.response?.length || 0} chars
+                        </div>
+                    `;
+                    manual.style.display = 'block';
+                } else {
+                    throw new Error('No response from AI');
+                }
+            } catch (error) {
+                testResults.test5 = false;
+                result.innerHTML = `
+                    <div class="test-item fail">
+                        <span class="icon">❌</span>
+                        <span>AI backend hatası</span>
+                    </div>
+                    <div class="result">Error: ${error.message}</div>
+                `;
+            }
+
+            updateSummary();
+        }
+
+        function runTest6() {
+            const result = document.getElementById('test6-result');
+            const manual = document.getElementById('test6-manual');
+            manual.style.display = 'block';
+
+            testResults.test6 = null;
+            result.innerHTML = `
+                <div class="test-item pending">
+                    <span class="icon">👁️</span>
+                    <span>Manuel test gerekli - Talimatları takip edin</span>
+                </div>
+            `;
+            updateSummary();
+        }
+
+        function runTest7() {
+            const result = document.getElementById('test7-result');
+            const manual = document.getElementById('test7-manual');
+            manual.style.display = 'block';
+
+            testResults.test7 = null;
+            result.innerHTML = `
+                <div class="test-item pending">
+                    <span class="icon">👁️</span>
+                    <span>Manuel test gerekli - Talimatları takip edin</span>
+                </div>
+            `;
+            updateSummary();
+        }
+
+        // Initialize
+        updateSummary();
+    </script>
+</body>
+</html>
