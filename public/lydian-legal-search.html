@@ -2247,8 +2247,16 @@ async function sendMessage() {
 
             // Rate limit error - show user-friendly message
             if (response.status === 429) {
-                const retryAfter = data.retryAfter || 900; // default 15 minutes
-                const minutes = Math.ceil(retryAfter / 60);
+                // Safely parse retryAfter, default to 900 seconds (15 minutes)
+                let retryAfterSeconds = 900; // default
+
+                if (data && typeof data.retryAfter === 'number' && !isNaN(data.retryAfter)) {
+                    retryAfterSeconds = data.retryAfter;
+                } else if (data && typeof data.retryAfter === 'string') {
+                    retryAfterSeconds = parseInt(data.retryAfter, 10) || 900;
+                }
+
+                const minutes = Math.ceil(retryAfterSeconds / 60);
                 const errorMsg = currentLang === 'tr'
                     ? `Çok fazla istek gönderdiniz. Lütfen ${minutes} dakika sonra tekrar deneyin.`
                     : `Too many requests. Please try again in ${minutes} minutes.`;
