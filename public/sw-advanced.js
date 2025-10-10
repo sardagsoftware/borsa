@@ -34,13 +34,10 @@ const CACHE_NAMES = {
   API: `ailydian-api-v${CACHE_VERSION}`
 };
 
-// Static assets to precache
+// Static assets to precache (only essential files to avoid errors)
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
   '/offline.html',
   '/manifest.json',
-  '/favicon.ico',
 
   // Core CSS (Phase M - common CSS)
   '/css/global-lydian-branding.css',
