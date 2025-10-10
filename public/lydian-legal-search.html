@@ -2030,7 +2030,7 @@ function renderConversations() {
     conversationsList.innerHTML = state.conversations.map(conv => `
         <div class="conversation-item ${conv.id === state.currentConversationId ? 'active' : ''}"
              data-id="${conv.id}">
-            <div class="conversation-title">${conv.title}</div>
+            <div class="conversation-title">${escapeHtml(conv.title)}</div>
             <div class="conversation-date">${formatDate(conv.date)}</div>
         </div>
     `).join('');
@@ -2327,7 +2327,7 @@ function renderMessages() {
             <div class="message ${msg.role}" style="position: relative; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px;">
                 ${avatarHTML}
                 <div class="message-content" style="flex: 1;">
-                    <div class="message-bubble" style="position: relative; padding: 12px 16px; border-radius: 12px; background: ${isUser ? 'var(--primary-accent)' : 'var(--bg-secondary)'}; color: ${isUser ? '#ffffff' : 'var(--text-primary)'};">
+                    <div class="message-bubble" style="position: relative; padding: 12px 16px; border-radius: 12px; background: transparent; color: var(--text-primary); border: 1px solid ${isUser ? 'var(--primary-accent)' : 'rgba(196, 169, 98, 0.2)'};">
                         ${escapeHtml(cleanContent)}
                     </div>
                     <div class="message-time" style="font-size: 12px; color: var(--text-tertiary); margin-top: 4px;">${time}</div>
