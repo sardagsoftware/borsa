@@ -17338,6 +17338,12 @@ app.use('/api/legal-services', legalAIRoutes);  // Keep other services
 const knowledgeGraphAPI = require('./api/knowledge-graph');
 app.use('/api/knowledge-graph', knowledgeGraphAPI);
 
+// 📚 Knowledge Base API (Wikipedia + PubMed + NASA + Azure)
+const knowledgeSearchAPI = require('./api/knowledge/search');
+const knowledgeChatAPI = require('./api/knowledge/chat');
+app.post('/api/knowledge/search', knowledgeSearchAPI);
+app.post('/api/knowledge/chat', knowledgeChatAPI);
+
 // 🧠 Neuro Health AI APIs
 const neuroImagingAnalysis = require('./api/neuro/imaging-analysis');
 const neuroHealthIndex = require('./api/neuro/health-index');
