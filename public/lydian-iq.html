@@ -5171,6 +5171,24 @@ ${response}
                 });
 
                 console.log(`✅ Auto-loaded ${allConnectors.length} connectors (ChatGPT-style)`);
+
+                // 🎯 SCROLL FIX: Bring responseArea into viewport
+                setTimeout(() => {
+                    // Scroll parent container to top
+                    const mainArea = document.querySelector('.main-area');
+                    if (mainArea) {
+                        mainArea.scrollTop = 0;
+                    }
+
+                    // Also scroll responseArea into view
+                    responseArea.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+
+                    console.log('📜 Scrolled to show connector cards');
+                }, 1000); // After all cards rendered
             }
 
             // Auto-load connectors after 500ms (wait for DOM)
