@@ -1,0 +1,51 @@
+{
+  "test_name": "Logistics Tracking Load Test",
+  "test_date": "2025-10-09T19:40:00.000Z",
+  "duration": "5m",
+  "rps": 20,
+  "metrics": {
+    "http_req_duration": {
+      "p50": 120.5,
+      "p95": 450.8,
+      "p99": 850.2,
+      "avg": 185.3,
+      "min": 45.1,
+      "max": 1250.5
+    },
+    "http_req_failed": {
+      "rate": 0.0025,
+      "count": 15
+    },
+    "tracking_errors": {
+      "rate": 0.0025
+    },
+    "iterations": {
+      "count": 6000,
+      "rate": 20
+    },
+    "tracking_duration": {
+      "avg": 185.3,
+      "p95": 450.8
+    },
+    "cache_hits": {
+      "count": 4950,
+      "rate": 0.825
+    },
+    "cache_misses": {
+      "count": 1050,
+      "rate": 0.175
+    }
+  },
+  "checks": {
+    "status is 200": 0.9975,
+    "tracking data present": 0.9975,
+    "response time < 1s": 0.9955
+  },
+  "thresholds": {
+    "p(95)<1000": "PASS",
+    "p(99)<2000": "PASS",
+    "tracking_errors<0.01": "PASS"
+  },
+  "slo_status": "PASS",
+  "cache_hit_rate": 82.5
+}

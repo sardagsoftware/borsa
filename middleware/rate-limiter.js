@@ -339,6 +339,12 @@ function concurrentLimiter() {
   const activRequests = new Map();
 
   return (req, res, next) => {
+    // Skip concurrent limiting in development mode
+    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    if (isDevelopment) {
+      return next();
+    }
+
     const user = req.user || { role: 'GUEST', id: 'anonymous' };
     const limits = RATE_LIMITS[user.role] || RATE_LIMITS.GUEST;
     const key = user.id;

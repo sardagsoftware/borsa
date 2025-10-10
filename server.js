@@ -2702,12 +2702,12 @@ app.get('/api/models', async (req, res) => {
 app.use('/api', apiLimiter);
 
 // 🔒 AI ENDPOINT RATE LIMITING - Stricter for expensive AI operations (30 req/15min)
+// Note: Middleware applied to /api/chat automatically covers all sub-routes
 app.use('/api/chat', aiLimiter);
-app.use('/api/chat/*', aiLimiter);
-app.use('/api/lydian-iq/*', aiLimiter);
-app.use('/api/medical/*', aiLimiter);
-app.use('/api/ai/*', aiLimiter);
-app.use('/api/stream/*', aiLimiter);
+app.use('/api/lydian-iq', aiLimiter);
+app.use('/api/medical', aiLimiter);
+app.use('/api/ai', aiLimiter);
+app.use('/api/stream', aiLimiter);
 
 // 🔒 FILE UPLOAD RATE LIMITING - Prevent abuse (10 uploads/hour)
 app.use('/api/upload', uploadLimiter);
@@ -3749,9 +3749,98 @@ app.get('/api/health', async (req, res) => {
 const healthCheck = require('./api/health-check');
 app.get('/api/health/detailed', healthCheck.detailedHealthCheck);
 
+// 🚩 Feature Flags Endpoint - Canary Deployment Support
+app.get('/ops/canary/feature-flags.json', (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  const flagsPath = path.join(__dirname, 'ops', 'canary', 'feature-flags.json');
+
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes cache
+
+  fs.readFile(flagsPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Failed to read feature-flags.json:', err);
+      return res.status(500).json({
+        error: 'Failed to load feature flags',
+        version: '1.0.0',
+        flags: {} // Empty fallback
+      });
+    }
+
+    try {
+      // Validate JSON before sending
+      const parsed = JSON.parse(data);
+      res.json(parsed);
+    } catch (parseErr) {
+      console.error('Invalid feature-flags.json:', parseErr);
+      res.status(500).json({
+        error: 'Invalid feature flags format',
+        version: '1.0.0',
+        flags: {}
+      });
+    }
+  });
+});
+
+// 📊 Feature Flags Monitoring Endpoint
+app.post('/api/monitoring/feature-flags', (req, res) => {
+  // Accept monitoring data from feature flags system
+  const { flag, value, reason, userBucket, timestamp } = req.body;
+
+  // Log for analytics (in production, send to monitoring service)
+  console.log('🚩 Feature Flag Evaluation:', {
+    flag,
+    value,
+    reason,
+    userBucket,
+    timestamp: new Date(timestamp).toISOString()
+  });
+
+  // Respond with 204 No Content (fire-and-forget)
+  res.status(204).end();
+});
+
 // 🔵 Azure Metrics API - Real Azure Data Integration
 const azureMetrics = require('./api/azure-metrics');
 app.get('/api/azure/metrics', azureMetrics.handleMetricsRequest);
+
+// 🔌 Connectors API - E-commerce, Delivery, Logistics (ChatGPT-style tool calling)
+const connectorsAPI = require('./api/connectors/execute');
+app.get('/api/connectors/list', connectorsAPI.listConnectors);
+app.post('/api/connectors/execute', connectorsAPI.executeAction);
+
+// 🎯 Intent-First Natural Language API Endpoints
+// Finance - Loan Comparison
+const loanAPI = require('./api/finance/loan/compare');
+app.post('/api/finance/loan/compare', loanAPI.compareLoan);
+
+// Travel - Hotel/Flight Search
+const travelAPI = require('./api/travel/search');
+app.post('/api/travel/search', travelAPI.searchTrip);
+
+// Economy - Price Optimization
+const economyAPI = require('./api/economy/optimize');
+app.post('/api/economy/optimize', economyAPI.optimizePrice);
+
+// Insights - Price Trend Analysis
+const insightsAPI = require('./api/insights/price-trend');
+app.get('/api/insights/price-trend', insightsAPI.getPriceTrend);
+
+// ESG - Carbon Footprint Calculation
+const esgAPI = require('./api/esg/calculate-carbon');
+app.post('/api/esg/calculate-carbon', esgAPI.calculateCarbon);
+
+// UI Telemetry - Track intent parsing & action execution
+const telemetryAPI = require('./api/ui-telemetry');
+app.post('/api/ui-telemetry', telemetryAPI.recordTelemetry);
+app.get('/api/telemetry/stats', telemetryAPI.getTelemetryStats);
+
+// Feature Flags - Control feature availability
+const featureFlagsAPI = require('./api/monitoring/feature-flags');
+app.get('/api/monitoring/feature-flags', featureFlagsAPI.getFeatureFlags);
+app.get('/api/monitoring/feature-flags/:featureKey', featureFlagsAPI.checkFeature);
+app.put('/api/monitoring/feature-flags/:featureKey', featureFlagsAPI.updateFeatureFlag);
 
 // Google Veo Video Generation API
 app.post('/api/video/generate', async (req, res) => {

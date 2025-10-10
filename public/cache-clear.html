@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Cache Temizle - Lydian IQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .card {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        h1 { color: #C4A962; }
+        button {
+            background: #C4A962;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover { background: #d4b972; }
+        .success { color: #4CAF50; }
+        .warning { color: #ff9800; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔄 Cache Temizleme</h1>
+        <p class="warning">Değişiklikler görünmüyorsa cache'i temizleyin:</p>
+        
+        <h3>Manuel Temizleme:</h3>
+        <ol>
+            <li><strong>Chrome/Edge:</strong> Cmd + Shift + R (Mac) veya Ctrl + Shift + R (Windows)</li>
+            <li><strong>Safari:</strong> Cmd + Option + E (Cache temizle) sonra Cmd + R</li>
+            <li><strong>Firefox:</strong> Cmd + Shift + R (Mac) veya Ctrl + F5 (Windows)</li>
+        </ol>
+
+        <h3>Otomatik Temizleme:</h3>
+        <button onclick="clearCache()">🗑️ Cache Temizle ve Yenile</button>
+        <button onclick="clearServiceWorkers()">⚙️ Service Workers Temizle</button>
+        <button onclick="goToLydianIQ()">🚀 Lydian IQ'ya Git</button>
+
+        <div id="status" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function showStatus(msg, isSuccess = true) {
+            document.getElementById('status').innerHTML = 
+                `<p class="${isSuccess ? 'success' : 'warning'}">${msg}</p>`;
+        }
+
+        async function clearCache() {
+            try {
+                // Clear all caches
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    showStatus('✅ Cache temizlendi! Sayfa yenileniyor...');
+                }
+                
+                // Clear localStorage and sessionStorage
+                localStorage.clear();
+                sessionStorage.clear();
+                
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 1000);
+            } catch (e) {
+                showStatus('⚠️ Hata: ' + e.message, false);
+            }
+        }
+
+        async function clearServiceWorkers() {
+            try {
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(registrations.map(reg => reg.unregister()));
+                    showStatus('✅ Service Workers temizlendi! Sayfayı yenileyin.');
+                } else {
+                    showStatus('⚠️ Service Worker desteklenmiyor', false);
+                }
+            } catch (e) {
+                showStatus('⚠️ Hata: ' + e.message, false);
+            }
+        }
+
+        function goToLydianIQ() {
+            // Add timestamp to force reload
+            window.location.href = `/lydian-iq.html?t=${Date.now()}`;
+        }
+
+        // Auto-clear on load
+        if (window.location.search.includes('auto=1')) {
+            clearCache();
+        }
+    </script>
+</body>
+</html>

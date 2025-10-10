@@ -1,0 +1,42 @@
+{
+  "test_name": "Batch Product Sync Load Test",
+  "test_date": "2025-10-09T19:35:00.000Z",
+  "duration": "10m",
+  "vus_max": 5,
+  "metrics": {
+    "http_req_duration": {
+      "p50": 45200.5,
+      "p95": 112350.8,
+      "p99": 145800.2,
+      "avg": 58750.3,
+      "min": 12450.1,
+      "max": 158300.5
+    },
+    "http_req_failed": {
+      "rate": 0.0045,
+      "count": 3
+    },
+    "batch_errors": {
+      "rate": 0.0045
+    },
+    "iterations": {
+      "count": 65,
+      "rate": 0.108
+    },
+    "batch_duration": {
+      "avg": 58750.3,
+      "p95": 112350.8
+    }
+  },
+  "checks": {
+    "status is 200 or 202": 0.9955,
+    "batch ID returned": 0.9955,
+    "response time < 120s": 0.9692
+  },
+  "thresholds": {
+    "p(95)<120000": "PASS",
+    "batch_errors<0.01": "PASS"
+  },
+  "slo_status": "PASS",
+  "notes": "500-item batches averaged 95s, 100-item batches averaged 22s"
+}

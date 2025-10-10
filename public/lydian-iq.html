@@ -1,4 +1,4 @@
-<!-- Cache-Buster: 1759577324 -->
+<!-- Cache-Buster: 1760042334 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -115,6 +115,12 @@ function maskApiResponse(response) {
 
     <!-- 🚀 LyDian IQ Enhancements v2.0 -->
     <link rel="stylesheet" href="/css/lydian-iq-enhancements.css">
+
+    <!-- 🎯 Intent-First Natural Language UI -->
+    <link rel="stylesheet" href="/css/intent-ui.css">
+
+    <!-- 🔌 Connector Integration -->
+    <link rel="stylesheet" href="/css/connector-integration.css">
 
     <style>
         /* ============================================================
@@ -1210,7 +1216,7 @@ function maskApiResponse(response) {
         <!-- Main Area -->
         <main class="main-area">
             <!-- Premium IQ Logo -->
-            <div class="iq-logo">
+            <div class="iq-logo" style="display: none;">
                 <div class="iq-icon">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Brain neurons pattern for IQ -->
@@ -1235,7 +1241,7 @@ function maskApiResponse(response) {
             </div>
 
             <!-- Advanced Search Box -->
-            <div class="search-container">
+            <div class="search-container" style="display: none;">
                 <div class="search-box" id="searchBox">
                     <input 
                         type="text" 
@@ -1294,7 +1300,7 @@ function maskApiResponse(response) {
             </div>
 
             <!-- AI Response Area -->
-            <div class="response-area" id="responseArea">
+            <div class="response-area" id="responseArea" style="display: none;">
                 <div class="response-card">
                     <div class="response-header">
                         <div class="ai-avatar">
@@ -1311,6 +1317,11 @@ function maskApiResponse(response) {
                         <!-- AI response will appear here -->
                     </div>
                 </div>
+            </div>
+
+            <!-- 🎯 Intent-First Natural Language Chat Interface -->
+            <div id="intent-chat-container" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px; height: calc(100vh - 180px); display: block; z-index: 1000;">
+                <!-- IntentChat will be initialized here -->
             </div>
         </main>
         
@@ -4870,6 +4881,91 @@ ${response}
 
     <!-- 🔒 CSRF Protection -->
     <script src="/js/csrf-token.js"></script>
+
+    <!-- 🎯 Intent-First Natural Language System -->
+    <script src="/js/intent-dictionaries.js"></script>
+    <script src="/js/intent-engine.js"></script>
+    <script src="/js/intent-ui.js"></script>
+
+    <!-- 🚀 Intent Chat Initialization -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Wait for DOM to be fully loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initIntentChat);
+            } else {
+                initIntentChat();
+            }
+
+            function initIntentChat() {
+                // Get current locale from i18n system or default to 'tr'
+                const currentLocale = window.i18n?.getCurrentLocale?.() || 'tr';
+
+                // Initialize Intent Chat
+                const intentChat = new IntentChat('intent-chat-container', {
+                    locale: currentLocale,
+                    apiBaseUrl: '/api',
+                    onAction: function(action, result) {
+                        console.log('🎯 Action completed:', action, result);
+                    }
+                });
+
+                // Add toggle button to enable/disable Intent UI
+                const header = document.querySelector('.header .header-right');
+                if (header) {
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'mode-toggle icon-only';
+                    toggleBtn.id = 'intentUIToggle';
+                    toggleBtn.title = 'Intent-First UI (Doğal Dil Arayüzü)';
+                    toggleBtn.style.marginRight = '0.5rem';
+                    toggleBtn.innerHTML = `
+                        <svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        </svg>
+                    `;
+
+                    // Insert before the super power button
+                    const superPowerBtn = document.getElementById('superPowerBtn');
+                    if (superPowerBtn) {
+                        header.insertBefore(toggleBtn, superPowerBtn);
+                    } else {
+                        header.appendChild(toggleBtn);
+                    }
+
+                    // Toggle functionality
+                    let intentUIVisible = false;
+                    toggleBtn.addEventListener('click', function() {
+                        intentUIVisible = !intentUIVisible;
+                        const container = document.getElementById('intent-chat-container');
+                        const responseArea = document.getElementById('responseArea');
+
+                        if (intentUIVisible) {
+                            container.style.display = 'block';
+                            if (responseArea) responseArea.style.display = 'none';
+                            toggleBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                            toggleBtn.style.color = 'white';
+                        } else {
+                            container.style.display = 'none';
+                            if (responseArea) responseArea.style.display = 'block';
+                            toggleBtn.style.background = '';
+                            toggleBtn.style.color = '';
+                        }
+                    });
+
+                    console.log('🎯 Intent-First UI initialized. Click the chat icon to toggle.');
+                }
+
+                // Store globally for debugging
+                window.intentChat = intentChat;
+            }
+        })();
+    </script>
+
+    <!-- 🔌 Connector Integration Scripts -->
+    <script src="/js/connector-manager.js"></script>
+    <script src="/js/connector-dock-panel.js"></script>
 
 </body>
 </html>

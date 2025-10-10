@@ -1,0 +1,16 @@
+{
+  "name": "@lydian-iq/companion-core",
+  "version": "3.0.0",
+  "description": "Federated Learning orchestrator for Lydian-IQ Companion PWA",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": ["federated-learning", "privacy", "machine-learning"],
+  "author": "Lydian-IQ Team",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}

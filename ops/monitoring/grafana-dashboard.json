@@ -1,0 +1,326 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "lydian-iq-prod",
+    "title": "Lydian-IQ v3.0 Production",
+    "tags": ["lydian-iq", "production", "v3"],
+    "timezone": "browser",
+    "schemaVersion": 38,
+    "version": 1,
+    "refresh": "30s",
+    "panels": [
+      {
+        "id": 1,
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+        "type": "graph",
+        "title": "Request Rate (RPS)",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{service=\"lydian-iq-api\"}[5m])",
+            "legendFormat": "{{method}} {{path}}"
+          }
+        ],
+        "yaxes": [
+          { "format": "reqps", "label": "Requests/sec" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 2,
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+        "type": "graph",
+        "title": "Response Time (p50/p95/p99)",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{service=\"lydian-iq-api\"}[5m]))",
+            "legendFormat": "p50"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{service=\"lydian-iq-api\"}[5m]))",
+            "legendFormat": "p95"
+          },
+          {
+            "expr": "histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{service=\"lydian-iq-api\"}[5m]))",
+            "legendFormat": "p99"
+          }
+        ],
+        "yaxes": [
+          { "format": "s", "label": "Duration" },
+          { "format": "short" }
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "evaluator": { "params": [2], "type": "gt" },
+              "operator": { "type": "and" },
+              "query": { "params": ["p95", "5m", "now"] },
+              "reducer": { "params": [], "type": "avg" },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "1m",
+          "handler": 1,
+          "name": "High p95 Latency",
+          "noDataState": "no_data",
+          "notifications": []
+        }
+      },
+      {
+        "id": 3,
+        "gridPos": { "x": 0, "y": 8, "w": 6, "h": 6 },
+        "type": "stat",
+        "title": "Error Rate (24h)",
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total{service=\"lydian-iq-api\",status=~\"5..\"}[24h])) / sum(rate(http_requests_total{service=\"lydian-iq-api\"}[24h])) * 100",
+            "legendFormat": "Error %"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "orientation": "auto",
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"]
+          },
+          "textMode": "auto"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 0.5 },
+                { "color": "red", "value": 1.0 }
+              ]
+            },
+            "unit": "percent"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "gridPos": { "x": 6, "y": 8, "w": 6, "h": 6 },
+        "type": "stat",
+        "title": "Active Pods",
+        "targets": [
+          {
+            "expr": "count(kube_pod_info{namespace=\"production\",pod=~\"lydian-iq-api.*\"})",
+            "legendFormat": "Pods"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "orientation": "auto"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "yellow", "value": 2 },
+                { "color": "green", "value": 3 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 5,
+        "gridPos": { "x": 12, "y": 8, "w": 6, "h": 6 },
+        "type": "stat",
+        "title": "Cache Hit Rate",
+        "targets": [
+          {
+            "expr": "sum(rate(cache_hits_total{service=\"lydian-iq-api\"}[5m])) / (sum(rate(cache_hits_total{service=\"lydian-iq-api\"}[5m])) + sum(rate(cache_misses_total{service=\"lydian-iq-api\"}[5m]))) * 100"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "yellow", "value": 70 },
+                { "color": "green", "value": 80 }
+              ]
+            },
+            "unit": "percent"
+          }
+        }
+      },
+      {
+        "id": 6,
+        "gridPos": { "x": 18, "y": 8, "w": 6, "h": 6 },
+        "type": "stat",
+        "title": "Rate Limit Rejections",
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total{service=\"lydian-iq-api\",status=\"429\"}[5m]))",
+            "legendFormat": "429/sec"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 5 },
+                { "color": "red", "value": 20 }
+              ]
+            },
+            "unit": "reqps"
+          }
+        }
+      },
+      {
+        "id": 7,
+        "gridPos": { "x": 0, "y": 14, "w": 12, "h": 8 },
+        "type": "graph",
+        "title": "CPU & Memory Usage",
+        "targets": [
+          {
+            "expr": "rate(container_cpu_usage_seconds_total{namespace=\"production\",pod=~\"lydian-iq-api.*\"}[5m]) * 100",
+            "legendFormat": "CPU % - {{pod}}"
+          },
+          {
+            "expr": "container_memory_working_set_bytes{namespace=\"production\",pod=~\"lydian-iq-api.*\"} / 1024 / 1024 / 1024",
+            "legendFormat": "Memory GB - {{pod}}"
+          }
+        ],
+        "yaxes": [
+          { "format": "percent", "label": "CPU %" },
+          { "format": "decgbytes", "label": "Memory" }
+        ]
+      },
+      {
+        "id": 8,
+        "gridPos": { "x": 12, "y": 14, "w": 12, "h": 8 },
+        "type": "graph",
+        "title": "Database Connections",
+        "targets": [
+          {
+            "expr": "pg_stat_database_numbackends{datname=\"lydian_iq_v3\"}",
+            "legendFormat": "Active Connections"
+          },
+          {
+            "expr": "pg_settings_max_connections",
+            "legendFormat": "Max Connections"
+          }
+        ],
+        "yaxes": [
+          { "format": "short", "label": "Connections" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 9,
+        "gridPos": { "x": 0, "y": 22, "w": 12, "h": 8 },
+        "type": "graph",
+        "title": "Endpoint Performance (p95)",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{service=\"lydian-iq-api\",path=~\"/api/.*\"}[5m]))",
+            "legendFormat": "{{path}}"
+          }
+        ],
+        "yaxes": [
+          { "format": "s", "label": "Duration (p95)" },
+          { "format": "short" }
+        ]
+      },
+      {
+        "id": 10,
+        "gridPos": { "x": 12, "y": 22, "w": 12, "h": 8 },
+        "type": "table",
+        "title": "Top Endpoints by Traffic",
+        "targets": [
+          {
+            "expr": "topk(10, sum by(path, method) (rate(http_requests_total{service=\"lydian-iq-api\"}[5m])))",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": { "Time": true },
+              "indexByName": {},
+              "renameByName": {
+                "method": "Method",
+                "path": "Endpoint",
+                "Value": "RPS"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "gridPos": { "x": 0, "y": 30, "w": 24, "h": 8 },
+        "type": "graph",
+        "title": "Privacy Budget Consumption (Differential Privacy)",
+        "targets": [
+          {
+            "expr": "dp_privacy_budget_consumed{service=\"lydian-iq-api\"}",
+            "legendFormat": "{{endpoint}} - epsilon consumed"
+          },
+          {
+            "expr": "dp_privacy_budget_total{service=\"lydian-iq-api\"}",
+            "legendFormat": "{{endpoint}} - epsilon total"
+          }
+        ],
+        "yaxes": [
+          { "format": "short", "label": "Privacy Budget (ε)" },
+          { "format": "short" }
+        ]
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "namespace",
+          "type": "constant",
+          "current": {
+            "value": "production",
+            "text": "production"
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "datasource": "Prometheus",
+          "enable": true,
+          "expr": "ALERTS{alertstate=\"firing\",service=\"lydian-iq-api\"}",
+          "iconColor": "red",
+          "name": "Alerts",
+          "tagKeys": "alertname,severity"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": ["10s", "30s", "1m", "5m", "15m", "30m", "1h"]
+    }
+  }
+}

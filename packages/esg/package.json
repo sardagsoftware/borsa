@@ -1,0 +1,16 @@
+{
+  "name": "@lydian-iq/esg",
+  "version": "3.0.0",
+  "description": "ESG and Carbon Intelligence for Lydian-IQ",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": ["esg", "carbon", "sustainability", "green"],
+  "author": "Lydian-IQ Team",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}

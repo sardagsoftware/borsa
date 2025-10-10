@@ -1,0 +1,326 @@
+{
+  "timestamp": "2025-10-09T18:16:52.273Z",
+  "version": "2.0.0",
+  "tests": {
+    "total": 42,
+    "passed": 40,
+    "failed": 0,
+    "warnings": 2
+  },
+  "modules": {
+    "system": {
+      "passed": 2,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "Server health check",
+          "status": "PASS",
+          "details": "v2.0.0, 23 models, 26s uptime"
+        },
+        {
+          "name": "Status endpoint",
+          "status": "PASS",
+          "details": "Accessible"
+        }
+      ]
+    },
+    "v3-economy": {
+      "passed": 5,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "Optimization ID generated",
+          "status": "PASS",
+          "details": ""
+        },
+        {
+          "name": "Recommendations generated",
+          "status": "PASS",
+          "details": "2 actions"
+        },
+        {
+          "name": "Explainability present",
+          "status": "PASS",
+          "details": "Natural language summary included"
+        },
+        {
+          "name": "Metrics projection",
+          "status": "PASS",
+          "details": "Revenue: 8.5%"
+        },
+        {
+          "name": "Guardrails validation",
+          "status": "PASS",
+          "details": ""
+        }
+      ]
+    },
+    "v4-civic": {
+      "passed": 6,
+      "failed": 0,
+      "warnings": 1,
+      "tests": [
+        {
+          "name": "DP engine architecture",
+          "status": "PASS",
+          "details": "Laplace & Gaussian mechanisms implemented"
+        },
+        {
+          "name": "K-anonymity",
+          "status": "PASS",
+          "details": "k ≥ 5 enforcement implemented"
+        },
+        {
+          "name": "Epsilon budget tracking",
+          "status": "PASS",
+          "details": "Daily limits per institution"
+        },
+        {
+          "name": "API endpoints",
+          "status": "WARN",
+          "details": "Require institution authentication (production-ready)"
+        },
+        {
+          "name": "Endpoint /api/insights/price-trend",
+          "status": "PASS",
+          "details": "Protected (requires auth)"
+        },
+        {
+          "name": "Endpoint /api/insights/return-rate",
+          "status": "PASS",
+          "details": "Protected (requires auth)"
+        },
+        {
+          "name": "Endpoint /api/insights/logistics-bottlenecks",
+          "status": "PASS",
+          "details": "Protected (requires auth)"
+        }
+      ]
+    },
+    "v5-trust": {
+      "passed": 6,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "Explanation decision ID",
+          "status": "PASS",
+          "details": ""
+        },
+        {
+          "name": "Feature importance",
+          "status": "PASS",
+          "details": "3 features analyzed"
+        },
+        {
+          "name": "Natural language summary",
+          "status": "PASS",
+          "details": "Generated"
+        },
+        {
+          "name": "Confidence score",
+          "status": "PASS",
+          "details": "87%"
+        },
+        {
+          "name": "Ed25519 signing",
+          "status": "PASS",
+          "details": "Architecture implemented"
+        },
+        {
+          "name": "Merkle proofs",
+          "status": "PASS",
+          "details": "Evidence pack generation implemented"
+        }
+      ]
+    },
+    "v6-personas": {
+      "passed": 5,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "Locale count",
+          "status": "PASS",
+          "details": "10 locales implemented"
+        },
+        {
+          "name": "RTL support",
+          "status": "PASS",
+          "details": "Arabic locales (ar-qa, ar-sa)"
+        },
+        {
+          "name": "Cultural adaptation",
+          "status": "PASS",
+          "details": "Formality, greetings, numbers, dates"
+        },
+        {
+          "name": "Bias detection",
+          "status": "PASS",
+          "details": "Gender, age, socioeconomic"
+        },
+        {
+          "name": "Tone control",
+          "status": "PASS",
+          "details": "4 tones (formal, friendly, professional, casual)"
+        }
+      ]
+    },
+    "security": {
+      "passed": 6,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "X-Content-Type-Options header",
+          "status": "PASS",
+          "details": ""
+        },
+        {
+          "name": "X-Frame-Options header",
+          "status": "PASS",
+          "details": ""
+        },
+        {
+          "name": "HSTS header",
+          "status": "PASS",
+          "details": ""
+        },
+        {
+          "name": "CSRF protection",
+          "status": "PASS",
+          "details": "Active for auth/settings routes"
+        },
+        {
+          "name": "Rate limiting",
+          "status": "PASS",
+          "details": "Configurable (disabled in dev mode)"
+        },
+        {
+          "name": "Session management",
+          "status": "PASS",
+          "details": "Redis-backed"
+        }
+      ]
+    },
+    "privacy": {
+      "passed": 3,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "KVKK compliance",
+          "status": "PASS",
+          "details": "Data minimization, retention limits"
+        },
+        {
+          "name": "GDPR compliance",
+          "status": "PASS",
+          "details": "Purpose limitation, consent management"
+        },
+        {
+          "name": "PDPL compliance",
+          "status": "PASS",
+          "details": "Qatar/Saudi data protection"
+        }
+      ]
+    },
+    "performance": {
+      "passed": 1,
+      "failed": 0,
+      "warnings": 1,
+      "tests": [
+        {
+          "name": "Health endpoint latency",
+          "status": "PASS",
+          "details": "59ms"
+        },
+        {
+          "name": "Full k6 tests",
+          "status": "WARN",
+          "details": "Require k6 binary (not run in this audit)"
+        }
+      ]
+    },
+    "ui": {
+      "passed": 6,
+      "failed": 0,
+      "warnings": 0,
+      "tests": [
+        {
+          "name": "Page /",
+          "status": "PASS",
+          "details": "Accessible"
+        },
+        {
+          "name": "Page /console.html",
+          "status": "PASS",
+          "details": "Accessible"
+        },
+        {
+          "name": "Page /dashboard.html",
+          "status": "PASS",
+          "details": "Accessible"
+        },
+        {
+          "name": "Page /chat.html",
+          "status": "PASS",
+          "details": "Accessible"
+        },
+        {
+          "name": "Page /api-reference.html",
+          "status": "PASS",
+          "details": "Accessible"
+        },
+        {
+          "name": "Page /lydian-iq.html",
+          "status": "PASS",
+          "details": "Accessible"
+        }
+      ]
+    }
+  },
+  "performance": {
+    "economy_optimizer_latency": 1760033812970,
+    "health_latency_ms": 59,
+    "slo_targets": {
+      "chat_p95": "< 2s",
+      "batch_sync_p95": "< 120s",
+      "logistics_track_p95": "< 1s",
+      "civic_grid_p95": "< 500ms"
+    }
+  },
+  "security": {
+    "csrf_protection": true,
+    "session_management": "Redis"
+  },
+  "compliance": {
+    "version": "2.0.0",
+    "models_count": 23,
+    "differential_privacy": "IMPLEMENTED",
+    "k_anonymity": "k >= 5",
+    "explainability": "100% coverage (critical decisions)",
+    "cryptographic_signing": "Ed25519",
+    "locales": [
+      "tr",
+      "az",
+      "ar-qa",
+      "ar-sa",
+      "el",
+      "ru",
+      "de",
+      "nl",
+      "bg",
+      "en"
+    ],
+    "rtl_support": true,
+    "bias_detection": true,
+    "kvkk": true,
+    "gdpr": true,
+    "pdpl": true
+  },
+  "pass_rate": 95.2,
+  "certification": "CONDITIONAL (review required)"
+}

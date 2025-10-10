@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "scopes": {
+    "marketplace.read": {
+      "name": "Marketplace Read",
+      "description": "Browse marketplace plugins and view details",
+      "required_role": ["admin", "developer", "analyst"]
+    },
+    "marketplace.install": {
+      "name": "Marketplace Install",
+      "description": "Install and uninstall marketplace plugins",
+      "required_role": ["admin", "developer"]
+    },
+    "marketplace.publish": {
+      "name": "Marketplace Publish",
+      "description": "Publish new plugins to marketplace",
+      "required_role": ["admin", "developer"]
+    },
+    "esg.read": {
+      "name": "ESG Read",
+      "description": "Read ESG metrics and carbon footprint data",
+      "required_role": ["admin", "analyst", "ops"]
+    },
+    "esg.write": {
+      "name": "ESG Write",
+      "description": "Submit carbon calculations and ESG data",
+      "required_role": ["admin", "ops"]
+    },
+    "insights.read": {
+      "name": "Insights Read",
+      "description": "Read public sector insights (Civic-Grid)",
+      "required_role": ["admin", "analyst", "institution"]
+    },
+    "economy.optimize": {
+      "name": "Economy Optimize",
+      "description": "Run economy optimization analyses",
+      "required_role": ["admin", "analyst", "ops"]
+    },
+    "fl.participate": {
+      "name": "Federated Learning Participate",
+      "description": "Participate in federated learning rounds",
+      "required_role": ["admin", "developer", "ml_engineer"]
+    }
+  },
+  "roles": {
+    "admin": {
+      "name": "Administrator",
+      "description": "Full access to all tenant resources",
+      "scopes": [
+        "marketplace.read",
+        "marketplace.install",
+        "marketplace.publish",
+        "esg.read",
+        "esg.write",
+        "insights.read",
+        "economy.optimize",
+        "fl.participate"
+      ]
+    },
+    "developer": {
+      "name": "Developer",
+      "description": "Access to development tools and marketplace",
+      "scopes": [
+        "marketplace.read",
+        "marketplace.install",
+        "marketplace.publish",
+        "fl.participate"
+      ]
+    },
+    "analyst": {
+      "name": "Analyst",
+      "description": "Access to analytics and insights",
+      "scopes": [
+        "marketplace.read",
+        "esg.read",
+        "insights.read",
+        "economy.optimize"
+      ]
+    },
+    "ops": {
+      "name": "Operations",
+      "description": "Operational access to ESG and economy tools",
+      "scopes": [
+        "esg.read",
+        "esg.write",
+        "economy.optimize"
+      ]
+    },
+    "ml_engineer": {
+      "name": "ML Engineer",
+      "description": "Access to federated learning tools",
+      "scopes": [
+        "fl.participate",
+        "marketplace.read"
+      ]
+    },
+    "institution": {
+      "name": "Public Institution",
+      "description": "Access to civic insights",
+      "scopes": [
+        "insights.read"
+      ]
+    }
+  }
+}
