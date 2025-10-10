@@ -1807,11 +1807,29 @@ const sendBtn = document.getElementById('sendBtn');
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
     await loadTranslations(); // 🌍 Load translations first
+
+    // 🧹 Clean state on page load - ensure fresh start
+    // Remove any cached/rendered messages from DOM
+    const messagesContainer = document.getElementById('messagesContainer');
+    const emptyState = document.getElementById('emptyState');
+    if (messagesContainer && emptyState) {
+        // Remove all dynamically added messages (keep only empty state)
+        const existingMessages = messagesContainer.querySelectorAll('.message');
+        existingMessages.forEach(msg => msg.remove());
+        // Ensure empty state is visible
+        emptyState.style.display = 'flex';
+    }
+
+    // Ensure state is clean
+    state.currentConversationId = null;
+    state.messages = [];
+
     loadUserData();
     loadConversations();
     setupEventListeners();
     console.log('✅ LyDian Hukuk AI Chat Yüklendi');
     console.log(`🌍 Active Language: ${currentLang}`);
+    console.log('🧹 Temiz durum başlatıldı (no cached messages)');
 });
 
 // 📱 Window resize handler - mobil/desktop geçişlerini yönet
