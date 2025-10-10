@@ -1116,6 +1116,40 @@ h1, h2, h3 {
     box-shadow: 0 4px 12px rgba(196, 169, 98, 0.4);
 }
 
+/* 🎤 VOICE RECORDING ANIMATIONS */
+#voiceBtn.recording {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    border-color: #ef4444 !important;
+    animation: pulse-recording 1.5s ease-in-out infinite;
+}
+
+#voiceBtn.recording svg {
+    color: white !important;
+    stroke: white !important;
+}
+
+@keyframes pulse-recording {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+        transform: scale(1.05);
+    }
+}
+
+#voiceBtn.processing {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+    border-color: #3b82f6 !important;
+    animation: spin-processing 1s linear infinite;
+}
+
+@keyframes spin-processing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .send-btn {
     background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon)) !important;
     color: white;
@@ -2461,7 +2495,14 @@ async function handleVoiceInput() {
     if (!isRecording) {
         // Start recording
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const stream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true
+                }
+            });
+
             mediaRecorder = new MediaRecorder(stream);
             audioChunks = [];
 
@@ -2470,8 +2511,29 @@ async function handleVoiceInput() {
             };
 
             mediaRecorder.onstop = async () => {
+                // Show processing state
+                voiceBtn.classList.remove('recording');
+                voiceBtn.classList.add('processing');
+                voiceBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                `;
+
                 const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
                 await transcribeAudio(audioBlob);
+
+                // Reset button after processing
+                voiceBtn.classList.remove('processing');
+                voiceBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                `;
 
                 // Stop all tracks
                 stream.getTracks().forEach(track => track.stop());
@@ -2480,18 +2542,26 @@ async function handleVoiceInput() {
             mediaRecorder.start();
             isRecording = true;
 
-            // Visual feedback
-            voiceBtn.style.background = '#ef4444';
+            // Visual feedback with animation
+            voiceBtn.classList.add('recording');
             voiceBtn.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
                     <rect x="6" y="6" width="12" height="12" rx="2"/>
                 </svg>
             `;
 
-            console.log('🎤 Ses kaydı başladı...');
+            console.log('🎤 Ses kaydı başladı... (Türkçe hukuk terimleri aktif)');
         } catch (error) {
             console.error('❌ Mikrofon erişim hatası:', error);
-            alert('Mikrofon erişimi reddedildi. Lütfen tarayıcı ayarlarından izin verin.');
+            let errorMsg = 'Mikrofon erişimi reddedildi. ';
+            if (error.name === 'NotAllowedError') {
+                errorMsg += 'Lütfen tarayıcı ayarlarından mikrofon izni verin.';
+            } else if (error.name === 'NotFoundError') {
+                errorMsg += 'Mikrofon bulunamadı. Lütfen bir mikrofon bağlayın.';
+            } else {
+                errorMsg += error.message;
+            }
+            alert(errorMsg);
         }
     } else {
         // Stop recording
@@ -2499,18 +2569,10 @@ async function handleVoiceInput() {
             mediaRecorder.stop();
             isRecording = false;
 
-            // Reset button
-            voiceBtn.style.background = '';
-            voiceBtn.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                    <line x1="12" y1="19" x2="12" y2="23"/>
-                    <line x1="8" y1="23" x2="16" y2="23"/>
-                </svg>
-            `;
+            // Remove recording animation
+            voiceBtn.classList.remove('recording');
 
-            console.log('🎤 Ses kaydı durdu, transkript ediliyor...');
+            console.log('🎤 Ses kaydı durdu, hukuki transkript işleniyor...');
         }
     }
 }
@@ -2521,12 +2583,18 @@ async function transcribeAudio(audioBlob) {
 
         const formData = new FormData();
         formData.append('audio', audioBlob, 'recording.wav');
-        formData.append('language', 'tr-TR'); // Turkish language support
+        formData.append('language', 'tr-TR'); // Turkish legal language support
 
-        const response = await fetch('/api/speech/transcribe', {
+        // 🏛️ LEGAL-SPECIFIC SPEECH-TO-TEXT API
+        const response = await fetch('/api/speech/transcribe-legal', {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'include'
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
 
         const data = await response.json();
         hideTypingIndicator();
@@ -2534,14 +2602,43 @@ async function transcribeAudio(audioBlob) {
         if (data.success && data.text) {
             messageInput.value = data.text;
             messageInput.focus();
-            console.log('✅ Transkript tamamlandı:', data.text);
+
+            // Show legal entities found (if any)
+            if (data.legalEntities) {
+                const { legalTerms, caseTypes, courts } = data.legalEntities;
+                const foundTerms = [];
+
+                if (legalTerms?.length > 0) foundTerms.push(`Hukuki terimler: ${legalTerms.join(', ')}`);
+                if (caseTypes?.length > 0) foundTerms.push(`Dava türleri: ${caseTypes.join(', ')}`);
+                if (courts?.length > 0) foundTerms.push(`Mahkemeler: ${courts.join(', ')}`);
+
+                if (foundTerms.length > 0) {
+                    console.log('🔍 Tespit edilen hukuki kavramlar:', foundTerms.join(' | '));
+                }
+            }
+
+            console.log('✅ Hukuki transkript tamamlandı:', data.text);
+            console.log(`📊 Güven skoru: ${Math.round(data.confidence * 100)}%`);
         } else {
-            throw new Error(data.error || 'Transkript başarısız');
+            throw new Error(data.error || data.message || 'Transkript başarısız');
         }
     } catch (error) {
         hideTypingIndicator();
         console.error('❌ Transkript hatası:', error);
-        alert('Ses transkript hatası: ' + error.message);
+
+        // User-friendly error messages
+        let errorMessage = 'Ses tanıma hatası: ';
+        if (error.message.includes('not configured')) {
+            errorMessage += 'Azure Speech servisi yapılandırılmamış. Lütfen yazarak soru sorun.';
+        } else if (error.message.includes('403')) {
+            errorMessage += 'Erişim engellendi. Lütfen sayfayı yenileyin.';
+        } else if (error.message.includes('500')) {
+            errorMessage += 'Sunucu hatası. Lütfen daha sonra tekrar deneyin.';
+        } else {
+            errorMessage += error.message;
+        }
+
+        alert(errorMessage);
     }
 }
 
