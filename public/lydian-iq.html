@@ -4964,6 +4964,8 @@ ${response}
     </script>
 
     <!-- 🔌 Connector Integration Scripts -->
+    <script src="/js/intent-normalize.js"></script>
+    <script src="/js/intent-engine.js"></script>
     <script src="/js/connector-manager.js"></script>
     <script src="/js/connector-dock-panel.js"></script>
 
@@ -5035,15 +5037,43 @@ ${response}
                 responseArea.appendChild(messageDiv);
             }
 
-            // Helper: Parse connector intents
+            // 🧠 Enhanced Intent Parsing with IntentEngine
             function parseConnectorIntent(userMessage) {
-                const message = userMessage.toLowerCase();
+                // Use robust intent engine if available
+                if (window.IntentEngine) {
+                    const intents = window.IntentEngine.parseUtterance(userMessage, 0.55);
 
-                // Vendor name detection
+                    if (intents && intents.length > 0) {
+                        const topIntent = intents[0];
+
+                        // Map vendor param to connectorId
+                        const vendorMap = {
+                            'trendyol': 'trendyol-tr',
+                            'hepsiburada': 'hepsiburada-tr',
+                            'migros': 'migros-tr',
+                            'wolt': 'wolt-tr',
+                            'ups': 'ups-global'
+                        };
+
+                        const connectorId = topIntent.params?.vendor
+                            ? vendorMap[topIntent.params.vendor.toLowerCase()]
+                            : null;
+
+                        return {
+                            intent: topIntent.intent,
+                            connectorId,
+                            params: topIntent.params,
+                            confidence: topIntent.confidence,
+                            locale: window.IntentEngine.detectLocale(userMessage)
+                        };
+                    }
+                }
+
+                // Fallback: simple keyword matching
+                const message = userMessage.toLowerCase();
                 const vendors = {
                     'trendyol': 'trendyol-tr',
                     'hepsiburada': 'hepsiburada-tr',
-                    'hepsi': 'hepsiburada-tr',
                     'migros': 'migros-tr',
                     'wolt': 'wolt-tr',
                     'ups': 'ups-global'
@@ -5051,24 +5081,16 @@ ${response}
 
                 for (const [keyword, connectorId] of Object.entries(vendors)) {
                     if (message.includes(keyword)) {
-                        return {
-                            connectorId,
-                            action: detectAction(message)
-                        };
+                        let action = 'connector.show';
+                        if (message.includes('fiyat')) action = 'price.sync';
+                        if (message.includes('stok')) action = 'inventory.sync';
+                        if (message.includes('kargo')) action = 'shipment.track';
+
+                        return { intent: action, connectorId, params: {}, confidence: 0.6, locale: 'tr' };
                     }
                 }
 
                 return null;
-            }
-
-            // Helper: Detect action type
-            function detectAction(message) {
-                if (message.includes('fiyat') || message.includes('price')) return 'price.sync';
-                if (message.includes('stok') || message.includes('inventory')) return 'inventory.sync';
-                if (message.includes('sipariş') || message.includes('order')) return 'order.create';
-                if (message.includes('kargo') || message.includes('shipment')) return 'shipment.track';
-                if (message.includes('göster') || message.includes('show')) return 'connector.show';
-                return 'connector.info';
             }
 
             // Listen for chat submissions (if intentChat exists)

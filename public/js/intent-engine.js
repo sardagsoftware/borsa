@@ -1,273 +1,114 @@
 /**
- * 🧠 Intent Engine - Natural Language → Action Mapping (Vanilla JS)
- * Lightweight NLU for Turkish-first, multi-locale support
- *
- * @author LyDian AI - Ultra Intelligence Platform
+ * 🧠 Intent Parsing Engine - Natural Language to Actions
+ * Slash-free intent detection with fuzzy matching and synonym support
  */
 
 (function(window) {
   'use strict';
 
-  // Import dictionaries (will be loaded separately)
-  const IntentDictionaries = window.IntentDictionaries || {};
+  if (!window.IntentNormalize) {
+    console.error('❌ IntentNormalize module not loaded!');
+    return;
+  }
 
-  /**
-   * Parse user utterance into intents
-   * Returns top 3 scored intents
-   */
-  function parseUtterance(utterance, locale = 'tr') {
-    if (!utterance || utterance.trim().length < 3) {
-      return [];
+  const { safeText, toTRLower, normalize, extractVendor, extractTrackingNo, extractAmount, extractTerm, extractPercent } = window.IntentNormalize;
+
+  const INTENTS = [
+    {
+      id: 'shipment.track',
+      patterns: [
+        /(?:aras|hepsijet|yurtiçi|yurtici|mng|sürat|surat|ups|dhl)\s+kargo\s+(\d{10,})/i,
+        /(\d{10,})\s+(?:numaralı|numarali|nolu)?\s*(?:kargo|gönderi)/i,
+        /kargo\s+(?:takip|sorgula|nerede)\s+(\d{10,})/i
+      ],
+      extract: (match) => ({ vendor: extractVendor(match), trackingNo: extractTrackingNo(match) }),
+      score: 0.95
+    },
+    {
+      id: 'price.sync',
+      patterns: [
+        /(trendyol|hepsiburada|migros|a101|bim|şok|sok)\s+fiyat/i,
+        /fiyat.*?(trendyol|hepsiburada)/i,
+        /%([\d.]+)\s+(?:indirim|düş|dus)/i
+      ],
+      extract: (match) => ({ vendor: extractVendor(match), percent: extractPercent(match) }),
+      score: 0.90
+    },
+    {
+      id: 'inventory.sync',
+      patterns: [
+        /(trendyol|hepsiburada|migros|a101|bim)\s+stok/i,
+        /stok.*?(senkronize|güncel|sync)/i
+      ],
+      extract: (match) => ({ vendor: extractVendor(match) }),
+      score: 0.88
+    },
+    {
+      id: 'connector.show',
+      patterns: [
+        /(trendyol|hepsiburada|migros|wolt|ups)\s+(?:göster|goster|bilgi)/i,
+        /(?:göster|goster)\s+(trendyol|hepsiburada|migros|wolt|ups)/i
+      ],
+      extract: (match) => ({ vendor: extractVendor(match) }),
+      score: 0.80
+    },
+    {
+      id: 'loan.compare',
+      patterns: [
+        /([\d.]+)\s*(?:bin|k|tl)?\s*([\d]+)\s*(?:ay|aylık)/i,
+        /kredi\s+(?:karşılaştır|kıyasla)/i
+      ],
+      extract: (match) => ({ amount: extractAmount(match), term: extractTerm(match) }),
+      score: 0.92
     }
+  ];
 
-    const normalized = normalizeText(utterance, locale);
-    const localePatterns = IntentDictionaries.patterns?.[locale] || IntentDictionaries.patterns?.tr || [];
+  function parseUtterance(utterance, minScore = 0.55) {
+    const cleaned = safeText(utterance);
+    if (!cleaned) return [];
 
     const results = [];
 
-    // Try pattern matching
-    for (const pattern of localePatterns) {
-      const match = normalized.match(pattern.re);
+    for (const intent of INTENTS) {
+      let maxScore = 0;
+      let bestMatch = null;
 
-      if (match) {
-        const params = extractParams(match, pattern.params);
-        const score = calculateScore(match, pattern);
+      for (const pattern of intent.patterns) {
+        const match = pattern.exec(cleaned);
+        if (match) {
+          maxScore = intent.score;
+          bestMatch = match;
+          break;
+        }
+      }
 
+      if (maxScore >= minScore) {
+        const params = bestMatch ? intent.extract(bestMatch) : {};
         results.push({
-          action: pattern.action,
-          score: score,
-          params: params,
-          locale: locale,
-          reason: pattern.reason || getDefaultReason(pattern.action, locale)
+          intent: intent.id,
+          confidence: maxScore,
+          params,
+          raw: cleaned
         });
       }
     }
 
-    // Fallback: keyword-based matching
-    if (results.length === 0) {
-      const keywordIntents = matchByKeywords(normalized, locale);
-      results.push(...keywordIntents);
-    }
-
-    // Sort by score (descending) and return top 3
-    return results
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3);
+    return results.sort((a, b) => b.confidence - a.confidence).slice(0, 3);
   }
 
-  /**
-   * Normalize text for matching
-   * - Lowercase (TR-aware)
-   * - Trim whitespace
-   * - Normalize Turkish characters
-   */
-  function normalizeText(text, locale) {
-    let normalized = text.trim();
-
-    if (locale === 'tr') {
-      // Turkish-specific lowercasing
-      normalized = normalized
-        .replace(/İ/g, 'i')
-        .replace(/I/g, 'ı')
-        .toLowerCase();
-    } else {
-      normalized = normalized.toLowerCase();
-    }
-
-    return normalized;
+  function detectLocale(text) {
+    const safe = safeText(text);
+    if (/[ğüşiöçİĞÜŞÖÇ]/.test(safe)) return 'tr';
+    if (/[\u0600-\u06FF]/.test(safe)) return 'ar';
+    return 'en';
   }
 
-  /**
-   * Extract parameters from regex match
-   */
-  function extractParams(match, paramNames) {
-    const params = {};
-
-    // Skip first element (full match), map to param names
-    paramNames.forEach((name, index) => {
-      const value = match[index + 1];
-      if (value !== undefined) {
-        params[name] = parseValue(name, value);
-      }
-    });
-
-    return params;
-  }
-
-  /**
-   * Parse value based on param name
-   */
-  function parseValue(paramName, value) {
-    // Amount/Money
-    if (paramName === 'amount') {
-      return parseFloat(value.replace(/\./g, '').replace(/,/g, '.'));
-    }
-
-    // Numbers
-    if (paramName === 'term' || paramName === 'days' || paramName === 'pax') {
-      return parseInt(value, 10);
-    }
-
-    // Vendor normalization
-    if (paramName === 'vendor') {
-      return normalizeVendor(value);
-    }
-
-    return value.trim();
-  }
-
-  /**
-   * Normalize vendor names
-   */
-  function normalizeVendor(vendor) {
-    const vendorMap = {
-      'hepsijet': 'hepsijet',
-      'aras': 'aras',
-      'yurtiçi': 'yurtici',
-      'yurtici': 'yurtici',
-      'mng': 'mng',
-      'sürat': 'surat',
-      'surat': 'surat',
-      'ups': 'ups'
-    };
-
-    return vendorMap[vendor.toLowerCase()] || vendor;
-  }
-
-  /**
-   * Calculate confidence score
-   */
-  function calculateScore(match, pattern) {
-    let score = 0.7; // Base score
-
-    // Boost score based on match quality
-    const matchedGroups = match.slice(1).filter(g => g !== undefined).length;
-    score += matchedGroups * 0.05;
-
-    // Cap at 0.99
-    return Math.min(score, 0.99);
-  }
-
-  /**
-   * Fallback: keyword-based matching
-   */
-  function matchByKeywords(text, locale) {
-    const localeSynonyms = IntentDictionaries.synonyms?.[locale] || IntentDictionaries.synonyms?.tr || {};
-    const results = [];
-
-    // Shipment tracking
-    if (localeSynonyms.shipment?.some(kw => text.includes(kw)) &&
-        localeSynonyms.track?.some(kw => text.includes(kw))) {
-      results.push({
-        action: 'shipment.track',
-        score: 0.6,
-        params: {},
-        locale: locale,
-        reason: 'Kargo takibi sorgusu tespit edildi'
-      });
-    }
-
-    // Loan comparison
-    if (localeSynonyms.loan?.some(kw => text.includes(kw))) {
-      results.push({
-        action: 'loan.compare',
-        score: 0.6,
-        params: {},
-        locale: locale,
-        reason: 'Kredi karşılaştırma sorgusu'
-      });
-    }
-
-    // Price optimization
-    if (localeSynonyms.price?.some(kw => text.includes(kw)) &&
-        (text.includes('optimiz') || text.includes('arttır') || text.includes('düşür'))) {
-      results.push({
-        action: 'economy.optimize',
-        score: 0.6,
-        params: {},
-        locale: locale,
-        reason: 'Fiyat optimizasyonu isteği'
-      });
-    }
-
-    // Trip search
-    if (localeSynonyms.trip?.some(kw => text.includes(kw))) {
-      results.push({
-        action: 'trip.search',
-        score: 0.6,
-        params: {},
-        locale: locale,
-        reason: 'Seyahat/otel arama'
-      });
-    }
-
-    // ESG carbon calculation
-    if (localeSynonyms.esg?.some(kw => text.includes(kw))) {
-      results.push({
-        action: 'esg.calculate-carbon',
-        score: 0.6,
-        params: {},
-        locale: locale,
-        reason: 'Karbon ayak izi hesaplama'
-      });
-    }
-
-    return results;
-  }
-
-  /**
-   * Get default reason text by action
-   */
-  function getDefaultReason(action, locale) {
-    const reasons = {
-      'shipment.track': {
-        tr: 'Kargo takibi',
-        en: 'Shipment tracking',
-        ar: 'تتبع الشحنة'
-      },
-      'loan.compare': {
-        tr: 'Kredi karşılaştırma',
-        en: 'Loan comparison',
-        ar: 'مقارنة القروض'
-      },
-      'economy.optimize': {
-        tr: 'Fiyat optimizasyonu',
-        en: 'Price optimization',
-        ar: 'تحسين السعر'
-      },
-      'trip.search': {
-        tr: 'Seyahat arama',
-        en: 'Trip search',
-        ar: 'البحث عن رحلة'
-      },
-      'esg.calculate-carbon': {
-        tr: 'Karbon hesaplama',
-        en: 'Carbon calculation',
-        ar: 'حساب الكربون'
-      }
-    };
-
-    return reasons[action]?.[locale] || action;
-  }
-
-  /**
-   * Format intent for display
-   */
-  function formatIntentChip(intent) {
-    const action = intent.action.split('.')[1] || intent.action;
-    const params = Object.entries(intent.params)
-      .filter(([k]) => !k.startsWith('_'))
-      .map(([k, v]) => `${v}`)
-      .join(' • ');
-
-    return params ? `${intent.reason}: ${params}` : intent.reason || action;
-  }
-
-  // Export to window
   window.IntentEngine = {
-    parseUtterance: parseUtterance,
-    formatIntentChip: formatIntentChip,
-    normalizeText: normalizeText
+    parseUtterance,
+    detectLocale,
+    INTENTS
   };
+
+  console.log(`✅ Intent Engine loaded (${INTENTS.length} intents)`);
 
 })(window);
