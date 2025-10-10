@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="LyDian - Yapay zeka ile geleceği şekillendirin. Gelişmiş AI modelleri ve daha fazlası.">
     <meta name="keywords" content="AI, yapay zeka, AI Sohbet, Görsel Oluşturma, makine öğrenmesi, derin öğrenme">
-    <title>LyDian - Enterprise AI Platform | Advanced Multi-Model Intelligence</title>
+    <title>LyDian - LyDian Enterprise Platform | Advanced Multi-Model Intelligence</title>
 
     <!-- Phase O: PWA Support -->
     <link rel="manifest" href="/manifest-ailydian.json">
@@ -33,7 +33,7 @@
     <!-- OpenGraph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.ailydian.com/">
-    <meta property="og:title" content="LyDian - Enterprise AI Platform | Advanced Multi-Model Intelligence">
+    <meta property="og:title" content="LyDian - LyDian Enterprise Platform | Advanced Multi-Model Intelligence">
     <meta property="og:description" content="LyDian AI Ecosystem - Multilingual artificial intelligence platform providing advanced AI solutions including NLP, computer vision, speech recognition, and decision support systems. Built on Azure with 20+ language support.">
     <meta property="og:image" content="https://www.ailydian.com/og-image.png">
     <meta property="og:image:alt" content="LyDian AI Ecosystem">
@@ -47,7 +47,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@lydianai">
     <meta name="twitter:creator" content="@lydianai">
-    <meta name="twitter:title" content="LyDian - Enterprise AI Platform | Advanced Multi-Model Intelligence">
+    <meta name="twitter:title" content="LyDian - LyDian Enterprise Platform | Advanced Multi-Model Intelligence">
     <meta name="twitter:description" content="Multilingual AI platform with NLP, computer vision, speech recognition, and decision support systems. 20+ languages supported.">
     <meta name="twitter:image" content="https://www.ailydian.com/og-image.png">
 
@@ -2351,8 +2351,8 @@ function maskApiResponse(response) {
     // Mask headers
     if (response.headers) {
       delete response.headers['x-request-id'];
-      delete response.headers['openai-'];
-      delete response.headers['anthropic-'];
+      delete response.headers['ai-provider-'];
+      delete response.headers['ai-system-'];
     }
   }
   return response;
@@ -2597,7 +2597,7 @@ function maskApiResponse(response) {
                     <svg fill="none" stroke="#10A37F" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin: 0 auto 1rem; display: block;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                     </svg>
-                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">OpenAI Advanced AI</h4>
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem;">Cloud-AI-Provider Advanced AI</h4>
                     <p style="font-size: 0.875rem; color: #9CA3AF;">En güçlü dil modeli</p>
                 </div>
                 <div style="text-align: center; padding: 2rem; background: #111827; border-radius: 16px; border: 1px solid #1F2937;">

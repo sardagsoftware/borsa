@@ -356,13 +356,13 @@
                     <span class="menu-icon">🤖</span>
                     <span>Tüm AI Platformlar</span>
                 </a>
-                <a class="menu-item" data-section="openai">
+                <a class="menu-item" data-section="cloud-ai-provider">
                     <span class="menu-icon">💡</span>
-                    <span>OpenAI / ChatGPT</span>
+                    <span>Cloud-AI-Provider / ChatGPT</span>
                 </a>
                 <a class="menu-item" data-section="gemini">
                     <span class="menu-icon">💎</span>
-                    <span>Google Gemini</span>
+                    <span>Neural G</span>
                 </a>
                 <a class="menu-item" data-section="claude">
                     <span class="menu-icon">🎭</span>
@@ -684,7 +684,7 @@
                             }]
                         },
                         ai_platforms: {
-                            openai: { feed_accessible: true },
+                            cloud-ai-provider: { feed_accessible: true },
                             gemini: { feed_accessible: true },
                             anthropic: { feed_accessible: true },
                             groq: { feed_accessible: true },
@@ -813,8 +813,8 @@
         function updateAIPlatforms(platforms) {
             const container = document.getElementById('aiPlatformsGrid');
             const platformData = [
-                { key: 'openai', name: 'OpenAI', emoji: '🤖' },
-                { key: 'gemini', name: 'Gemini', emoji: '💎' },
+                { key: 'cloud-ai-provider', name: 'Cloud-AI-Provider', emoji: '🤖' },
+                { key: 'gemini', name: 'Neural-G', emoji: '💎' },
                 { key: 'anthropic', name: 'Claude', emoji: '🎭' },
                 { key: 'groq', name: 'Groq', emoji: '⚡' },
                 { key: 'perplexity', name: 'Perplexity', emoji: '🔍' },

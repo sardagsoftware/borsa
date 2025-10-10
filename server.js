@@ -42,6 +42,16 @@ const { sessionConfig } = require('./middleware/session-secure-config'); // Secu
 const SecureErrorHandler = require('./lib/error-handler'); // Stack trace protection
 const { secureUpload, malwareScanMiddleware } = require('./middleware/file-upload-secure'); // File upload security
 
+// 🔒 AI MODEL OBFUSCATION - Trade Secret Protection
+const {
+  obfuscateResponseMiddleware,
+  removeAIHeadersMiddleware,
+  obfuscateConsoleOutput
+} = require('./middleware/ai-model-obfuscator');
+
+// Initialize console obfuscation for production
+obfuscateConsoleOutput();
+
 // 🚀 FIRILDAK AI ENGINE - MULTI-PROVIDER INTEGRATION
 const FirildakAIEngine = require('./ai-integrations/firildak-ai-engine');
 
@@ -9972,6 +9982,10 @@ const apolloServer = new ApolloServer({
 // Express middleware setup
 // 🔒 SECURE CORS - Whitelist only (CVE-CORS-WILDCARD-2025 fix)
 app.use(cors(corsOptions));
+
+// 🔒 AI MODEL OBFUSCATION - Hide AI provider names from all responses
+app.use(obfuscateResponseMiddleware);
+app.use(removeAIHeadersMiddleware);
 
 // 🔒 SECURE SESSION - httpOnly, secure, sameSite flags (SESSION-SECURITY-2025 fix)
 const session = require('express-session');

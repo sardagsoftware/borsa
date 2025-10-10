@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyDian Ultra Pro - Enterprise AI Platform</title>
+    <title>LyDian Ultra Pro - LyDian Enterprise Platform</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Phosphor Icons -->
@@ -525,7 +525,7 @@
             <button class="sidebar-toggle" onclick="toggleSidebar()">
                 <i class="ph ph-sidebar"></i>
             </button>
-            <div class="header-title">Enterprise AI Assistant</div>
+            <div class="header-title">LyDian Enterprise Assistant</div>
             <div class="system-status">
                 <div class="status-indicator"></div>
                 <div class="status-text">All systems operational</div>
@@ -885,7 +885,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     query: query,
-                    models: ['enterprise-ai-3.5-sonnet', 'gpt-4-turbo', 'gemini-ultra', 'llama-3'],
+                    models: ['enterprise-ai-3.5-sonnet', 'premium-model-turbo', 'gemini-ultra', 'llama-3'],
                     mode: 'consensus',
                     temperature: 0.7
                 })

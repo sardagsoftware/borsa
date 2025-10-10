@@ -87,8 +87,8 @@ function maskApiResponse(response) {
     // Mask headers
     if (response.headers) {
       delete response.headers['x-request-id'];
-      delete response.headers['openai-'];
-      delete response.headers['anthropic-'];
+      delete response.headers['ai-provider-'];
+      delete response.headers['ai-system-'];
     }
   }
   return response;
@@ -2168,7 +2168,7 @@ function maskApiResponse(response) {
 
                 // ✅ AI Response received (model details encrypted for security)
                 console.log('✅ LyDian IQ Response Received');
-                console.log('🛡️ Enterprise AI - Secure & Encrypted');
+                console.log('🛡️ LyDian Enterprise - Secure & Encrypted');
                 console.log(`⏱️ Response Time: ${data.metadata.responseTime}s`);
 
                 // Display real AI response

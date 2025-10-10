@@ -6,7 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyDian - Enterprise AI Platform</title>
+    <title>LyDian - LyDian Enterprise Platform</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2310b981'/><path d='M30 35h40v10H30zM25 50h50v8H25zM35 65h30v6H35z' fill='white'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5614,9 +5614,9 @@
             <div class="footer-section">
                 <h3><i class="ph ph-cpu"></i> AI Modeller</h3>
                 <div class="footer-links">
-                    <a href="#" onclick="showModelInfo('gpt')">OpenAI GPT-4</a>
-                    <a href="#" onclick="showModelInfo('enterprise-ai')">Advanced AI Platform Enterprise AI</a>
-                    <a href="#" onclick="showModelInfo('gemini')">Google Gemini</a>
+                    <a href="#" onclick="showModelInfo('gpt')">Premium Model X4</a>
+                    <a href="#" onclick="showModelInfo('enterprise-ai')">Advanced AI Platform LyDian Enterprise</a>
+                    <a href="#" onclick="showModelInfo('gemini')">Neural G</a>
                     <a href="#" onclick="showModelInfo('mixtral')">Mixtral</a>
                     <a href="#" onclick="showModelInfo('all')">Tüm Modeller</a>
                 </div>
@@ -5805,10 +5805,10 @@
             const selectedModel = document.getElementById('aiModelSelect').value;
             const modelNames = {
                 'ailydians-llama': 'AiLydians Llama 3.1',
-                'azure-gpt4': 'Azure GPT-4',
-                'google-gemini': 'Google Gemini',
-                'enterprise-ai-sonnet': 'Enterprise AI 3.5',
-                'openai-gpt4': 'OpenAI GPT-4'
+                'azure-gpt4': 'Azure Advanced-Model-X4',
+                'google-gemini': 'Neural G',
+                'enterprise-ai-sonnet': 'LyDian Enterprise 3.5',
+                'openai-gpt4': 'Premium Model X4'
             };
             document.getElementById('currentModel').textContent = modelNames[selectedModel] || 'AI Model';
         }
@@ -5978,7 +5978,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         query: query,
-                        models: ['enterprise-ai-3.5-sonnet', 'gpt-4-turbo', 'gemini-ultra', 'llama-3'],
+                        models: ['enterprise-ai-3.5-sonnet', 'premium-model-turbo', 'gemini-ultra', 'llama-3'],
                         mode: 'consensus',
                         temperature: 0.7,
                         maxTokens: 2000
@@ -7522,10 +7522,10 @@
             <div class="model-selector" style="display: flex; align-items: center; gap: 1rem;">
                 <select id="aiModelSelect" style="padding: 0.5rem 1rem; border: 1px solid rgba(var(--primary-rgb), 0.2); border-radius: 8px; background: white; color: #0f1419; font-weight: 500;">
                     <option value="ailydians-llama">🔥 AiLydians Llama 3.1 70B</option>
-                    <option value="azure-gpt4">🧠 Azure GPT-4 Turbo</option>
-                    <option value="google-gemini">✨ Google Gemini Pro</option>
+                    <option value="azure-gpt4">🧠 Azure Advanced-Model-X4 Turbo</option>
+                    <option value="google-gemini">✨ Neural G Pro</option>
                     <option value="enterprise-ai-sonnet">🎯 Ultra Intelligence Model</option>
-                    <option value="openai-gpt4">⚡ OpenAI GPT-4</option>
+                    <option value="openai-gpt4">⚡ Premium Model X4</option>
                 </select>
                 <div class="live-indicator" style="display: flex; align-items: center; gap: 0.5rem; color: #00d084; font-size: 0.75rem; font-weight: 600;">
                     <div style="width: 8px; height: 8px; background: #00d084; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>

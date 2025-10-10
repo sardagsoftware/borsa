@@ -7225,8 +7225,8 @@ function maskApiResponse(response) {
     // Mask headers
     if (response.headers) {
       delete response.headers['x-request-id'];
-      delete response.headers['openai-'];
-      delete response.headers['anthropic-'];
+      delete response.headers['ai-provider-'];
+      delete response.headers['ai-system-'];
     }
   }
   return response;

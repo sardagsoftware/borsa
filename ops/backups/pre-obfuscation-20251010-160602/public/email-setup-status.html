@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Setup Status - Ailydian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(31, 41, 55, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9CA3AF;
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+        }
+
+        .status-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .status-card {
+            background: rgba(17, 24, 39, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #6B7280;
+            transition: all 0.3s ease;
+        }
+
+        .status-card.success {
+            border-left-color: #10B981;
+        }
+
+        .status-card.warning {
+            border-left-color: #F59E0B;
+        }
+
+        .status-card.error {
+            border-left-color: #EF4444;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .status-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .status-icon {
+            font-size: 1.5rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+        }
+
+        .status-badge.warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: #F59E0B;
+        }
+
+        .status-badge.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+        }
+
+        .status-description {
+            color: #D1D5DB;
+            line-height: 1.6;
+        }
+
+        .status-details {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #9CA3AF;
+        }
+
+        .critical-action {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+            border: 2px solid #D97706;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .critical-action h2 {
+            color: #FBBF24;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .critical-action p {
+            color: #E5E7EB;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .critical-action .steps {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .critical-action .steps ol {
+            margin-left: 1.5rem;
+            color: #D1D5DB;
+            line-height: 2;
+        }
+
+        .critical-action .steps li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.6);
+        }
+
+        .mx-records {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .mx-record {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: rgba(17, 24, 39, 0.6);
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        .mx-record:last-child {
+            margin-bottom: 0;
+        }
+
+        .mx-record .priority {
+            color: #FBBF24;
+            font-weight: 700;
+        }
+
+        .mx-record .value {
+            color: #10B981;
+        }
+
+        .refresh-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 2px solid #3B82F6;
+            color: #60A5FA;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #FBBF24;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .status-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚖️ LyDian Email Setup</h1>
+        <p class="subtitle">www.ailydian.com - Durum Kontrol Paneli</p>
+
+        <!-- Critical Action -->
+        <div class="critical-action" id="criticalAction" style="display: none;">
+            <h2>🚨 KRİTİK: MX KAYITLARI EKSİK</h2>
+            <p>Email sistemi çalışması için MX (Mail Exchange) kayıtları DNS'e eklenmelidir. Şu anda emailler alınamaz/gönderilemez durumda.</p>
+
+            <div class="mx-records">
+                <h3 style="color: #FBBF24; margin-bottom: 1rem;">Eklenecek MX Kayıtları:</h3>
+                <div class="mx-record">
+                    <span class="priority">Priority: 10</span>
+                    <span class="value">mx.zoho.eu</span>
+                </div>
+                <div class="mx-record">
+                    <span class="priority">Priority: 20</span>
+                    <span class="value">mx2.zoho.eu</span>
+                </div>
+                <div class="mx-record">
+                    <span class="priority">Priority: 50</span>
+                    <span class="value">mx3.zoho.eu</span>
+                </div>
+            </div>
+
+            <div class="steps">
+                <h3 style="color: #FBBF24; margin-bottom: 1rem;">Nasıl Eklerim?</h3>
+                <ol>
+                    <li>Vercel Dashboard'a git</li>
+                    <li>ailydian projesini seç</li>
+                    <li>Settings → Domains</li>
+                    <li>ailydian.com'a tıkla</li>
+                    <li>DNS Records bölümüne git</li>
+                    <li>Add Record butonuna tıkla</li>
+                    <li>Her MX kaydını ekle (Type: MX, Name: @, Value ve Priority yukarıdaki gibi)</li>
+                    <li>15 dakika bekle (DNS propagation)</li>
+                    <li>Bu sayfayı yenile</li>
+                </ol>
+            </div>
+
+            <a href="https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains" target="_blank" class="btn">
+                🔧 Vercel Dashboard'a Git
+            </a>
+        </div>
+
+        <!-- Status Grid -->
+        <div class="status-grid" id="statusGrid">
+            <!-- Status cards will be dynamically inserted here -->
+        </div>
+
+        <!-- Refresh Button -->
+        <button class="refresh-btn" onclick="checkStatus()">
+            <span id="refreshText">🔄 Durumu Kontrol Et</span>
+            <span id="refreshLoading" class="loading" style="display: none;"></span>
+        </button>
+    </div>
+
+    <script>
+        const checks = [
+            {
+                id: 'mx',
+                icon: '📧',
+                title: 'MX Records',
+                description: 'Email alımı için gerekli DNS kayıtları',
+                critical: true
+            },
+            {
+                id: 'txt',
+                icon: '🔐',
+                title: 'Zoho Verification',
+                description: 'Domain doğrulama kaydı',
+                critical: false
+            },
+            {
+                id: 'dns',
+                icon: '🌐',
+                title: 'Domain DNS',
+                description: 'A Record ve domain yönlendirme',
+                critical: false
+            },
+            {
+                id: 'ssl',
+                icon: '🔒',
+                title: 'HTTPS/SSL',
+                description: 'Güvenli bağlantı sertifikası',
+                critical: false
+            },
+            {
+                id: 'dashboard',
+                icon: '📊',
+                title: 'Email Dashboard',
+                description: 'Email yönetim arayüzü',
+                critical: false
+            }
+        ];
+
+        async function checkStatus() {
+            const refreshText = document.getElementById('refreshText');
+            const refreshLoading = document.getElementById('refreshLoading');
+            const statusGrid = document.getElementById('statusGrid');
+            const criticalAction = document.getElementById('criticalAction');
+
+            refreshText.style.display = 'none';
+            refreshLoading.style.display = 'inline-block';
+
+            try {
+                // Check MX Records
+                const mxCheck = await fetch('https://dns.google/resolve?name=ailydian.com&type=MX')
+                    .then(r => r.json())
+                    .then(data => data.Answer && data.Answer.length > 0);
+
+                // Check TXT Records
+                const txtCheck = await fetch('https://dns.google/resolve?name=ailydian.com&type=TXT')
+                    .then(r => r.json())
+                    .then(data => data.Answer && data.Answer.some(a => a.data.includes('zoho-verification')));
+
+                // Check A Records
+                const aCheck = await fetch('https://dns.google/resolve?name=www.ailydian.com&type=A')
+                    .then(r => r.json())
+                    .then(data => data.Answer && data.Answer.length > 0);
+
+                // Check HTTPS
+                const httpsCheck = await fetch('https://www.ailydian.com/email-dashboard', { method: 'HEAD' })
+                    .then(r => r.ok)
+                    .catch(() => false);
+
+                // Check Dashboard
+                const dashboardCheck = httpsCheck; // Same check
+
+                const statuses = {
+                    mx: mxCheck,
+                    txt: txtCheck,
+                    dns: aCheck,
+                    ssl: httpsCheck,
+                    dashboard: dashboardCheck
+                };
+
+                renderStatus(statuses);
+
+                // Show critical action if MX records missing
+                criticalAction.style.display = mxCheck ? 'none' : 'block';
+
+            } catch (error) {
+                console.error('Status check error:', error);
+            }
+
+            refreshText.style.display = 'inline';
+            refreshLoading.style.display = 'none';
+        }
+
+        function renderStatus(statuses) {
+            const statusGrid = document.getElementById('statusGrid');
+            statusGrid.innerHTML = '';
+
+            checks.forEach(check => {
+                const status = statuses[check.id];
+                const statusClass = status ? 'success' : (check.critical ? 'error' : 'warning');
+                const statusText = status ? 'OK' : (check.critical ? 'EKSİK' : 'KONTROL ET');
+
+                const card = document.createElement('div');
+                card.className = `status-card ${statusClass}`;
+                card.innerHTML = `
+                    <div class="status-header">
+                        <div class="status-title">
+                            <span class="status-icon">${check.icon}</span>
+                            ${check.title}
+                        </div>
+                        <div class="status-badge ${statusClass}">
+                            ${statusText}
+                        </div>
+                    </div>
+                    <div class="status-description">
+                        ${check.description}
+                    </div>
+                `;
+                statusGrid.appendChild(card);
+            });
+        }
+
+        // Initial check on page load
+        checkStatus();
+
+        // Auto-refresh every 30 seconds
+        setInterval(checkStatus, 30000);
+    </script>
+</body>
+</html>

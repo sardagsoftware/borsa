@@ -1314,8 +1314,8 @@ function maskApiResponse(response) {
     // Mask headers
     if (response.headers) {
       delete response.headers['x-request-id'];
-      delete response.headers['openai-'];
-      delete response.headers['anthropic-'];
+      delete response.headers['ai-provider-'];
+      delete response.headers['ai-system-'];
     }
   }
   return response;
@@ -2151,7 +2151,7 @@ async function sendMessage() {
 
     // Get user settings
     const settings = JSON.parse(localStorage.getItem('legalAI_settings') || '{}');
-    const aiModel = settings.aiModel || 'premium-model-1'; // Enterprise AI model
+    const aiModel = settings.aiModel || 'premium-model-1'; // LyDian Enterprise model
     const temperature = settings.temperature || 0.7;
     const maxTokens = settings.maxTokens || 4096;
 

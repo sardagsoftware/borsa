@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Connector Network | LyDian AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #E6C67A 0%, #F4D998 50%, #9B7B40 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #888;
+        }
+
+        /* Search */
+        .search-bar {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.5rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(230, 198, 122, 0.4);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+        }
+
+        /* Grid */
+        .connector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Connector Card */
+        .connector-card {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .connector-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(230,198,122,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .connector-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(230,198,122,0.4);
+            box-shadow: 0 12px 28px rgba(230,198,122,0.2);
+        }
+
+        .connector-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .card-logo {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .status-badge {
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .status-sandbox {
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+        }
+
+        .status-partner {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-description {
+            color: #888;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .card-metrics {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .pulse {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.625rem;
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .badge-whitehat {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .badge-kvkk {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .badge-gdpr {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.75rem;
+        }
+
+        .action-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-message {
+            color: #888;
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .connector-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Global Connector Network</h1>
+            <p class="subtitle">Premium integrations with world-class APIs • White-hat verified • KVKK/GDPR compliant</p>
+        </div>
+
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="total-connectors">12</div>
+                <div class="stat-label">Total Connectors</div>
+            </div>
+            <div class="stat-card" style="background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2);">
+                <div class="stat-value" style="color: #10b981;" id="active-connectors">7</div>
+                <div class="stat-label" style="color: #10b981;">Active</div>
+            </div>
+            <div class="stat-card" style="background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.2);">
+                <div class="stat-value" style="color: #3b82f6;">99.8%</div>
+                <div class="stat-label" style="color: #3b82f6;">Avg Uptime</div>
+            </div>
+            <div class="stat-card" style="background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.2);">
+                <div class="stat-value" style="color: #a855f7;">52ms</div>
+                <div class="stat-label" style="color: #a855f7;">Avg Latency</div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input
+                type="text"
+                class="search-input"
+                placeholder="Search connectors by name, country, or description..."
+                id="search-input"
+            />
+        </div>
+
+        <div class="connector-grid" id="connector-grid">
+            <!-- Connectors will be rendered here -->
+        </div>
+    </div>
+
+    <script>
+        // Mock connectors data (abbreviated for demo)
+        const connectors = [
+            {
+                id: 'trendyol-tr',
+                name: 'Trendyol',
+                country: 'TR',
+                flag: '🇹🇷',
+                description: 'Türkiye\'nin en büyük e-ticaret platformu',
+                status: 'active',
+                uptime: 99.9,
+                latency: 45,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: true,
+                icon: '🛒'
+            },
+            {
+                id: 'hepsiburada-tr',
+                name: 'Hepsiburada',
+                country: 'TR',
+                flag: '🇹🇷',
+                description: 'Türkiye\'nin online alışveriş lideri',
+                status: 'active',
+                uptime: 99.95,
+                latency: 38,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: true,
+                icon: '🛍️'
+            },
+            {
+                id: 'a101-tr',
+                name: 'A101',
+                country: 'TR',
+                flag: '🇹🇷',
+                description: 'A101 Market - Türkiye discount market zinciri',
+                status: 'partner',
+                uptime: 98.5,
+                latency: 125,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: false,
+                icon: '🏪'
+            },
+            {
+                id: 'bim-tr',
+                name: 'BİM',
+                country: 'TR',
+                flag: '🇹🇷',
+                description: 'BİM Birleşik Mağazalar - Market zinciri',
+                status: 'sandbox',
+                uptime: 97.2,
+                latency: 156,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: false,
+                icon: '🛒'
+            },
+            {
+                id: 'migros-tr',
+                name: 'Migros',
+                country: 'TR',
+                flag: '🇹🇷',
+                description: 'Türkiye\'nin önde gelen süpermarket zinciri',
+                status: 'active',
+                uptime: 99.1,
+                latency: 89,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: false,
+                icon: '🏬'
+            },
+            {
+                id: 'aras-tr',
+                name: 'Aras Kargo',
+                country: 'TR',
+                flag: '🇹🇷',
+                description: 'Türkiye kargo ve lojistik hizmetleri',
+                status: 'active',
+                uptime: 99.5,
+                latency: 65,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: false,
+                icon: '📦'
+            },
+            {
+                id: 'ups-global',
+                name: 'UPS',
+                country: 'US',
+                flag: '🇺🇸',
+                description: 'Global shipping and logistics',
+                status: 'active',
+                uptime: 99.99,
+                latency: 78,
+                whiteHat: true,
+                kvkk: true,
+                gdpr: true,
+                icon: '🚚'
+            },
+            {
+                id: 'noon-ae',
+                name: 'Noon',
+                country: 'AE',
+                flag: '🇦🇪',
+                description: 'Middle East e-commerce platform',
+                status: 'active',
+                uptime: 99.2,
+                latency: 145,
+                whiteHat: true,
+                kvkk: false,
+                gdpr: false,
+                icon: '🏬'
+            }
+        ];
+
+        // Render connectors
+        function renderConnectors(connectorsToRender = connectors) {
+            const grid = document.getElementById('connector-grid');
+
+            if (connectorsToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🔍</div>
+                        <h3 class="empty-title">No Connectors Found</h3>
+                        <p class="empty-message">No connectors match your current search. Try adjusting your query.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = connectorsToRender.map(c => `
+                <div class="connector-card">
+                    <div class="card-header">
+                        <div class="card-logo">${c.icon}</div>
+                        <div class="status-badge ${c.status === 'active' ? 'status-active' : c.status === 'sandbox' ? 'status-sandbox' : 'status-partner'}">
+                            <span>${c.status === 'active' ? '✅' : c.status === 'sandbox' ? '⚙️' : '🔒'}</span>
+                            <span>${c.status === 'active' ? 'Active' : c.status === 'sandbox' ? 'Sandbox' : 'Partner Required'}</span>
+                        </div>
+                    </div>
+                    <div class="card-title">
+                        ${c.name}
+                        <span>${c.flag}</span>
+                    </div>
+                    <div class="card-description">${c.description}</div>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="pulse"></div>
+                            <span>${c.uptime.toFixed(1)}% uptime</span>
+                        </div>
+                        <div class="metric">
+                            <span>⚡</span>
+                            <span>${c.latency}ms</span>
+                        </div>
+                    </div>
+                    <div class="badges">
+                        ${c.whiteHat ? '<div class="badge badge-whitehat">🛡️ White-Hat</div>' : ''}
+                        ${c.kvkk ? '<div class="badge badge-kvkk">🔐 KVKK</div>' : ''}
+                        ${c.gdpr ? '<div class="badge badge-gdpr">🇪🇺 GDPR</div>' : ''}
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn" onclick="testConnector('${c.id}')">🔌 Test</button>
+                        <button class="action-btn" onclick="viewDocs('${c.id}')">📖 Docs</button>
+                        <button class="action-btn">⚙️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = connectors.filter(c =>
+                c.name.toLowerCase().includes(query) ||
+                c.description.toLowerCase().includes(query) ||
+                c.country.toLowerCase().includes(query)
+            );
+            renderConnectors(filtered);
+        });
+
+        // Actions
+        function testConnector(id) {
+            console.log('Testing connector:', id);
+            alert(`Testing connection to ${id}...`);
+        }
+
+        function viewDocs(id) {
+            console.log('Viewing docs for:', id);
+            alert(`Opening documentation for ${id}...`);
+        }
+
+        // Initial render
+        renderConnectors();
+
+        // Update stats
+        document.getElementById('total-connectors').textContent = connectors.length;
+        document.getElementById('active-connectors').textContent = connectors.filter(c => c.status === 'active').length;
+    </script>
+</body>
+</html>

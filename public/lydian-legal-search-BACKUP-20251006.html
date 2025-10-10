@@ -1964,7 +1964,7 @@ async function sendMessage() {
 
     // Get user settings
     const settings = JSON.parse(localStorage.getItem('legalAI_settings') || '{}');
-    const aiModel = settings.aiModel || 'premium-model-1'; // Enterprise AI model
+    const aiModel = settings.aiModel || 'premium-model-1'; // LyDian Enterprise model
     const temperature = settings.temperature || 0.7;
     const maxTokens = settings.maxTokens || 4096;
 
@@ -2150,7 +2150,7 @@ function renderMessages() {
         // Clean AI response from any model badges or technical headers
         let cleanContent = msg.content;
         if (!isUser) {
-            // Remove "✨ **Azure GPT-4 Turbo Yanıtı**" and similar patterns
+            // Remove "✨ **Azure Advanced-Model-X4 Turbo Yanıtı**" and similar patterns
             cleanContent = cleanContent
                 .replace(/✨\s*\*\*Azure\s+GPT[^*]*\*\*/gi, '')
                 .replace(/✨\s*\*\*.*?Turbo.*?Yanıt[^*]*\*\*/gi, '')

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>🔌 Connector Integration Demo (Internal Testing Only)</title>
+
+    <!-- Connector Integration Styles -->
+    <link rel="stylesheet" href="/css/connector-integration.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0F1419 0%, #1C2536 100%);
+            color: #F8F7F4;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #C4A962 0%, #F4D998 50%, #9B7B40 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .demo-section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #C4A962;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .demo-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .demo-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            background: rgba(196, 169, 98, 0.2);
+            border: 1px solid rgba(196, 169, 98, 0.3);
+            color: #C4A962;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .demo-btn:hover {
+            background: rgba(196, 169, 98, 0.3);
+            border-color: rgba(196, 169, 98, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #C4A962;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .info-box {
+            padding: 16px;
+            border-radius: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .code-block {
+            padding: 16px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #C4A962;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <h1>🔌 Connector Integration Demo</h1>
+        <p class="subtitle">Test the Global Connector Network integration with inline cards and dock panel</p>
+
+        <!-- Stats -->
+        <div class="demo-section">
+            <div class="section-title">📊 Connector Statistics</div>
+            <div class="stats-grid" id="stats-grid"></div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-box">
+            <strong>ℹ️ How to use:</strong><br>
+            • Click any button below to render a connector inline card<br>
+            • Click "Open in Dock" on any card to see the detailed panel<br>
+            • Use the filter buttons to test filtering functionality<br>
+            • All 5 connectors are White-Hat verified and KVKK/GDPR compliant
+        </div>
+
+        <!-- Demo Buttons -->
+        <div class="demo-section">
+            <div class="section-title">🎯 Render Connector Cards</div>
+            <div class="demo-buttons">
+                <button class="demo-btn" onclick="renderConnector('trendyol-tr')">
+                    🛒 Show Trendyol
+                </button>
+                <button class="demo-btn" onclick="renderConnector('hepsiburada-tr')">
+                    🛒 Show Hepsiburada
+                </button>
+                <button class="demo-btn" onclick="renderConnector('migros-tr')">
+                    🏪 Show Migros
+                </button>
+                <button class="demo-btn" onclick="renderConnector('wolt-tr')">
+                    🍔 Show Wolt
+                </button>
+                <button class="demo-btn" onclick="renderConnector('ups-global')">
+                    📦 Show UPS
+                </button>
+                <button class="demo-btn" onclick="renderAllConnectors()">
+                    ⚡ Show All Connectors
+                </button>
+                <button class="demo-btn" onclick="clearCards()">
+                    🗑️ Clear All
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Demo -->
+        <div class="demo-section">
+            <div class="section-title">🔍 Filter Demo</div>
+            <div class="demo-buttons">
+                <button class="demo-btn" onclick="filterByCountry('TR')">
+                    🇹🇷 Turkish Only
+                </button>
+                <button class="demo-btn" onclick="filterByVertical('ecommerce')">
+                    🛒 E-Commerce Only
+                </button>
+                <button class="demo-btn" onclick="filterWhiteHat()">
+                    🛡️ White-Hat Only
+                </button>
+                <button class="demo-btn" onclick="clearFilters()">
+                    ❌ Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Rendered Cards Area -->
+        <div class="demo-section">
+            <div class="section-title">💬 Connector Cards (like in chat)</div>
+            <div class="demo-grid" id="cards-container"></div>
+        </div>
+
+        <!-- Console Log -->
+        <div class="demo-section">
+            <div class="section-title">🔧 Console Output</div>
+            <div class="code-block" id="console-log">
+// Connector Manager initialized
+// Ready to render cards
+            </div>
+        </div>
+    </div>
+
+    <!-- Connector Integration Scripts -->
+    <script src="/js/connector-manager.js"></script>
+    <script src="/js/connector-dock-panel.js"></script>
+
+    <script>
+        // Initialize
+        const manager = window.connectorManager;
+        const cardsContainer = document.getElementById('cards-container');
+        const consoleLog = document.getElementById('console-log');
+        const statsGrid = document.getElementById('stats-grid');
+
+        // Log helper
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            consoleLog.textContent += `\n[${timestamp}] ${message}`;
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }
+
+        // Update stats
+        function updateStats() {
+            const stats = manager.getStats();
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${stats.total}</div>
+                    <div class="stat-label">Total Connectors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.active}</div>
+                    <div class="stat-label">Active</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.avgUptime}%</div>
+                    <div class="stat-label">Avg Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.avgLatency}ms</div>
+                    <div class="stat-label">Avg Latency</div>
+                </div>
+            `;
+        }
+
+        // Render single connector
+        function renderConnector(connectorId) {
+            const connector = manager.getConnector(connectorId);
+            if (!connector) {
+                log(`❌ Connector "${connectorId}" not found`);
+                return;
+            }
+
+            const html = manager.renderInlineCard(connectorId, false);
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = html;
+            cardsContainer.appendChild(wrapper.firstElementChild);
+
+            log(`✅ Rendered ${connector.name} connector`);
+        }
+
+        // Render all connectors
+        function renderAllConnectors() {
+            const connectors = manager.getAllConnectors();
+            connectors.forEach(connector => {
+                renderConnector(connector.id);
+            });
+            log(`✅ Rendered all ${connectors.length} connectors`);
+        }
+
+        // Clear cards
+        function clearCards() {
+            cardsContainer.innerHTML = '';
+            log('🗑️ Cleared all cards');
+        }
+
+        // Filter by country
+        function filterByCountry(country) {
+            manager.updateFilters({ country });
+            const filtered = manager.getFilteredConnectors();
+            log(`🔍 Filtered by country ${country}: ${filtered.length} connectors`);
+
+            clearCards();
+            filtered.forEach(connector => renderConnector(connector.id));
+        }
+
+        // Filter by vertical
+        function filterByVertical(vertical) {
+            manager.updateFilters({ vertical });
+            const filtered = manager.getFilteredConnectors();
+            log(`🔍 Filtered by vertical ${vertical}: ${filtered.length} connectors`);
+
+            clearCards();
+            filtered.forEach(connector => renderConnector(connector.id));
+        }
+
+        // Filter white-hat only
+        function filterWhiteHat() {
+            manager.updateFilters({ whiteHatOnly: true });
+            const filtered = manager.getFilteredConnectors();
+            log(`🔍 Filtered white-hat only: ${filtered.length} connectors`);
+
+            clearCards();
+            filtered.forEach(connector => renderConnector(connector.id));
+        }
+
+        // Clear filters
+        function clearFilters() {
+            manager.updateFilters({
+                country: null,
+                vertical: null,
+                status: null,
+                region: null,
+                whiteHatOnly: false,
+                search: ''
+            });
+            log('❌ Cleared all filters');
+        }
+
+        // Listen to dock toggle events
+        manager.on('dockToggle', (isOpen, connector) => {
+            if (isOpen) {
+                log(`📋 Dock opened for: ${connector.name}`);
+            } else {
+                log('📋 Dock closed');
+            }
+        });
+
+        // Initialize stats on load
+        updateStats();
+        log('✅ Connector Manager initialized');
+        log(`📊 ${manager.getAllConnectors().length} connectors available`);
+    </script>
+</body>
+</html>

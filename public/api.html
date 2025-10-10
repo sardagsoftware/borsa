@@ -270,7 +270,7 @@
                                 <td><span class="param-name">model</span></td>
                                 <td><span class="param-type">string</span></td>
                                 <td>hayır</td>
-                                <td>kullanılacak model (varsayılan: gpt-4)</td>
+                                <td>kullanılacak model (varsayılan: advanced-model-x4)</td>
                             </tr>
                             <tr>
                                 <td><span class="param-name">stream</span></td>
@@ -298,7 +298,7 @@
   },
   body: JSON.stringify({
     message: 'yapay zeka nedir?',
-    model: 'gpt-4',
+    model: 'advanced-model-x4',
     temperature: 0.7
   })
 });
@@ -313,7 +313,7 @@ console.log(data.response);</pre>
                         <pre>{
   "success": true,
   "response": "yapay zeka, makinelerin insan benzeri...",
-  "model": "gpt-4",
+  "model": "advanced-model-x4",
   "tokens": 156,
   "timestamp": "2024-01-15T10:30:00Z"
 }</pre>
@@ -385,9 +385,9 @@ while (true) {
                         <pre>{
   "models": [
     {
-      "id": "gpt-4",
-      "name": "GPT-4 Omni",
-      "provider": "openai",
+      "id": "advanced-model-x4",
+      "name": "Advanced-Model-X4 Omni",
+      "provider": "cloud-ai-provider",
       "capabilities": ["chat", "vision", "code"],
       "max_tokens": 128000
     },
