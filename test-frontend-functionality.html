@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend Functionality Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a2e; color: #eee; }
+        .test-section { margin: 20px 0; padding: 15px; background: #16213e; border-radius: 8px; }
+        .pass { color: #4ade80; }
+        .fail { color: #ef4444; }
+        .pending { color: #fbbf24; }
+        button { margin: 5px; padding: 8px 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Lydian Legal AI - Frontend Functionality Test</h1>
+
+    <div class="test-section">
+        <h2>1. Page Load Test</h2>
+        <p id="pageLoadResult" class="pending">⏳ Testing...</p>
+        <button onclick="testPageLoad()">Run Test</button>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Turkish Content Test</h2>
+        <p id="turkishContentResult" class="pending">⏳ Testing...</p>
+        <button onclick="testTurkishContent()">Run Test</button>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Export Button Test</h2>
+        <p id="exportBtnResult" class="pending">⏳ Testing...</p>
+        <button onclick="testExportButton()">Run Test</button>
+    </div>
+
+    <div class="test-section">
+        <h2>4. User Dropdown Test</h2>
+        <p id="userDropdownResult" class="pending">⏳ Testing...</p>
+        <button onclick="testUserDropdown()">Run Test</button>
+    </div>
+
+    <div class="test-section">
+        <h2>5. AI Send Message Test</h2>
+        <p id="aiSendResult" class="pending">⏳ Testing...</p>
+        <button onclick="testAISend()">Run Test</button>
+    </div>
+
+    <div class="test-section">
+        <button onclick="runAllTests()" style="background: #C4A962; color: #1a1a2e; font-weight: bold; font-size: 16px;">
+            🚀 Run All Tests
+        </button>
+    </div>
+
+    <script>
+        async function testPageLoad() {
+            try {
+                const response = await fetch('http://localhost:3100/lydian-legal-search.html');
+                const html = await response.text();
+
+                if (html.includes('<!DOCTYPE html>') && html.includes('LyDian')) {
+                    document.getElementById('pageLoadResult').className = 'pass';
+                    document.getElementById('pageLoadResult').textContent = '✅ Page loads successfully';
+                    return true;
+                } else {
+                    throw new Error('Page HTML incomplete');
+                }
+            } catch (error) {
+                document.getElementById('pageLoadResult').className = 'fail';
+                document.getElementById('pageLoadResult').textContent = `❌ Failed: ${error.message}`;
+                return false;
+            }
+        }
+
+        async function testTurkishContent() {
+            try {
+                const response = await fetch('http://localhost:3100/lydian-legal-search.html');
+                const html = await response.text();
+
+                const turkishElements = [
+                    'Yeni Sohbet',
+                    'Hesabım',
+                    'Dışa Aktar',
+                    'LyDian Hukuk AI'
+                ];
+
+                let found = 0;
+                for (const text of turkishElements) {
+                    if (html.includes(text)) found++;
+                }
+
+                if (found === turkishElements.length) {
+                    document.getElementById('turkishContentResult').className = 'pass';
+                    document.getElementById('turkishContentResult').textContent = `✅ All ${found}/${turkishElements.length} Turkish elements found`;
+                    return true;
+                } else {
+                    throw new Error(`Only ${found}/${turkishElements.length} Turkish elements found`);
+                }
+            } catch (error) {
+                document.getElementById('turkishContentResult').className = 'fail';
+                document.getElementById('turkishContentResult').textContent = `❌ Failed: ${error.message}`;
+                return false;
+            }
+        }
+
+        async function testExportButton() {
+            try {
+                const response = await fetch('http://localhost:3100/lydian-legal-search.html');
+                const html = await response.text();
+
+                if (html.includes('Dışa Aktar & Paylaş') &&
+                    html.includes('PDF Olarak Kaydet') &&
+                    html.includes('Word Olarak Kaydet')) {
+                    document.getElementById('exportBtnResult').className = 'pass';
+                    document.getElementById('exportBtnResult').textContent = '✅ Export button shows Turkish text';
+                    return true;
+                } else {
+                    throw new Error('Export button still shows English');
+                }
+            } catch (error) {
+                document.getElementById('exportBtnResult').className = 'fail';
+                document.getElementById('exportBtnResult').textContent = `❌ Failed: ${error.message}`;
+                return false;
+            }
+        }
+
+        async function testUserDropdown() {
+            try {
+                const response = await fetch('http://localhost:3100/lydian-legal-search.html');
+                const html = await response.text();
+
+                if (html.includes('userMenuBtn.addEventListener') &&
+                    html.includes('userDropdown.classList.toggle')) {
+                    document.getElementById('userDropdownResult').className = 'pass';
+                    document.getElementById('userDropdownResult').textContent = '✅ User dropdown event listener exists';
+                    return true;
+                } else {
+                    throw new Error('User dropdown event listener missing');
+                }
+            } catch (error) {
+                document.getElementById('userDropdownResult').className = 'fail';
+                document.getElementById('userDropdownResult').textContent = `❌ Failed: ${error.message}`;
+                return false;
+            }
+        }
+
+        async function testAISend() {
+            try {
+                const response = await fetch('http://localhost:3100/api/legal-ai', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Test',
+                        language: 'tr'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.response) {
+                    document.getElementById('aiSendResult').className = 'pass';
+                    document.getElementById('aiSendResult').textContent = `✅ AI API works (Model: ${data.model})`;
+                    return true;
+                } else {
+                    throw new Error('AI API failed');
+                }
+            } catch (error) {
+                document.getElementById('aiSendResult').className = 'fail';
+                document.getElementById('aiSendResult').textContent = `❌ Failed: ${error.message}`;
+                return false;
+            }
+        }
+
+        async function runAllTests() {
+            console.log('🚀 Running all tests...');
+            await testPageLoad();
+            await testTurkishContent();
+            await testExportButton();
+            await testUserDropdown();
+            await testAISend();
+            console.log('✅ All tests completed');
+        }
+
+        // Auto-run on load
+        window.addEventListener('load', runAllTests);
+    </script>
+</body>
+</html>
