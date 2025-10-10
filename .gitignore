@@ -148,3 +148,10 @@ ops/reports/baseline-*.json
 test-connection-formats.js
 test-connection-formats.js.DANGEROUS.backup
 *.DANGEROUS.*
+
+# Secret-containing documentation files (security)
+AZURE-AI-FOUNDRY-SETUP-COMPLETE.md
+VERCEL-ENV-VARIABLES.txt
+ENTERPRISE-IMPLEMENTATION-REPORT-2025-01-02.md
+NEW-AI-APIS-DOCUMENTATION.md
+services/azure-ai-config.js
