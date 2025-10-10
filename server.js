@@ -36,6 +36,12 @@ const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
 const { v4: uuidv4 } = require('uuid');
 
+// 🔒 SECURITY FIXES - PENETRATION TEST 2025-10-10
+const { corsOptions } = require('./security/cors-whitelist'); // CORS whitelist (fixes wildcard)
+const { sessionConfig } = require('./middleware/session-secure-config'); // Secure session flags
+const SecureErrorHandler = require('./lib/error-handler'); // Stack trace protection
+const { secureUpload, malwareScanMiddleware } = require('./middleware/file-upload-secure'); // File upload security
+
 // 🚀 FIRILDAK AI ENGINE - MULTI-PROVIDER INTEGRATION
 const FirildakAIEngine = require('./ai-integrations/firildak-ai-engine');
 
@@ -91,7 +97,8 @@ const securityHeaders = (req, res, next) => {
   next();
 };
 
-// 📁 MULTER FILE UPLOAD CONFIGURATION
+// 📁 MULTER FILE UPLOAD CONFIGURATION (Legacy - replaced by secureUpload)
+// 🔒 SECURITY: Use secureUpload from middleware/file-upload-secure.js instead
 const uploadStorage = multer.memoryStorage();
 const upload = multer({
   storage: uploadStorage,
@@ -4084,25 +4091,11 @@ app.post('/api/search', (req, res) => {
 });
 
 // 📤 COMPREHENSIVE FILE UPLOAD & PROCESSING API
-app.post('/api/upload', (req, res, next) => {
-  upload.single('file')(req, res, (err) => {
-    if (err) {
-      // Handle multer errors
-      if (err.code === 'LIMIT_FILE_SIZE') {
-        return res.status(413).json({
-          success: false,
-          error: 'File too large',
-          message: 'File size exceeds 10MB limit'
-        });
-      }
-      return res.status(400).json({
-        success: false,
-        error: err.message
-      });
-    }
-    next();
-  });
-}, async (req, res) => {
+// 🔒 SECURITY: Using secureUpload with malware scanning
+app.post('/api/upload',
+  secureUpload.single('file'),
+  malwareScanMiddleware,
+  async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -4155,7 +4148,8 @@ app.post('/api/upload', (req, res, next) => {
 });
 
 // 🎤 VOICE INPUT & SPEECH-TO-TEXT API
-app.post('/api/voice/speech-to-text', upload.single('audio'), async (req, res) => {
+// 🔒 SECURITY: Using secureUpload with malware scanning
+app.post('/api/voice/speech-to-text', secureUpload.single('audio'), malwareScanMiddleware, async (req, res) => {
   try {
     const { language = 'tr-TR', continuous = false } = req.body;
 
@@ -7375,8 +7369,9 @@ app.post('/api/medical/chat', medicalChat);
 
 const speechTranscription = require('./api/medical/speech-transcription');
 
-// Speech Transcription API - POST /api/medical/transcribe (with multer audio upload)
-app.post('/api/medical/transcribe', upload.single('audio'), speechTranscription.handleTranscription);
+// Speech Transcription API - POST /api/medical/transcribe (with secure upload)
+// 🔒 SECURITY: Using secureUpload with malware scanning
+app.post('/api/medical/transcribe', secureUpload.single('audio'), malwareScanMiddleware, speechTranscription.handleTranscription);
 
 // Get Supported Languages - GET /api/medical/speech/languages
 app.get('/api/medical/speech/languages', speechTranscription.getSupportedLanguages);
@@ -7415,7 +7410,8 @@ app.get('/api/fhir/metadata', fhirApi.getMetadata);
 const dicomApi = require('./api/medical/dicom-api');
 
 // DICOM Upload (STOW-RS)
-app.post('/api/dicom/upload', upload.single('dicom'), dicomApi.uploadDicom);
+// 🔒 SECURITY: Using secureUpload with malware scanning
+app.post('/api/dicom/upload', secureUpload.single('dicom'), malwareScanMiddleware, dicomApi.uploadDicom);
 
 // DICOM Search (QIDO-RS)
 app.get('/api/dicom/studies', dicomApi.searchStudies);
@@ -9974,12 +9970,12 @@ const apolloServer = new ApolloServer({
 */
 
 // Express middleware setup
-app.use(cors({
-  origin: true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key', 'X-Requested-With']
-}));
+// 🔒 SECURE CORS - Whitelist only (CVE-CORS-WILDCARD-2025 fix)
+app.use(cors(corsOptions));
+
+// 🔒 SECURE SESSION - httpOnly, secure, sameSite flags (SESSION-SECURITY-2025 fix)
+const session = require('express-session');
+app.use(session(sessionConfig));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -17994,16 +17990,11 @@ app.post('/api/marketplace/plugins/:plugin_id/install', async (req, res) => {
   }
 });
 
+// 🔒 GLOBAL ERROR HANDLER - Must be AFTER all routes (STACK-TRACE-EXPOSURE-2025 fix)
+app.use(SecureErrorHandler.middleware());
+
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'API endpoint not found',
-    path: req.path,
-    method: req.method,
-    timestamp: new Date().toISOString()
-  });
-});
+app.use(SecureErrorHandler.notFoundHandler());
 
 // Server startup is handled by the cluster condition above
 
