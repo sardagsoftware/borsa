@@ -2240,6 +2240,29 @@ async function sendMessage() {
             })
         });
 
+        // Handle HTTP errors
+        if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            hideTypingIndicator();
+
+            // Rate limit error - show user-friendly message
+            if (response.status === 429) {
+                const retryAfter = data.retryAfter || 900; // default 15 minutes
+                const minutes = Math.ceil(retryAfter / 60);
+                const errorMsg = currentLang === 'tr'
+                    ? `Çok fazla istek gönderdiniz. Lütfen ${minutes} dakika sonra tekrar deneyin.`
+                    : `Too many requests. Please try again in ${minutes} minutes.`;
+
+                showErrorMessage(errorMsg, 'rate-limit');
+                return;
+            }
+
+            // Other errors
+            const errorMsg = data.error || data.message || 'Bir hata oluştu';
+            showErrorMessage(errorMsg, 'api-error');
+            return;
+        }
+
         const data = await response.json();
 
         // Hide typing indicator
@@ -2274,8 +2297,24 @@ async function sendMessage() {
     } catch (error) {
         hideTypingIndicator();
         console.error('❌ Hata:', error);
-        alert('Bir hata oluştu: ' + error.message);
+        showErrorMessage(error.message, 'network-error');
     }
+}
+
+// Show error message in chat
+function showErrorMessage(message, type = 'error') {
+    const errorMessage = {
+        id: Date.now().toString(),
+        role: 'system',
+        content: `⚠️ ${message}`,
+        timestamp: new Date().toISOString(),
+        type: type
+    };
+
+    state.messages.push(errorMessage);
+    renderMessages();
+    saveCurrentConversation();
+}
 }
 
 // Save Current Conversation
@@ -2299,7 +2338,19 @@ function renderMessages() {
 
     const messagesHTML = state.messages.map((msg, index) => {
         const isUser = msg.role === 'user';
+        const isSystem = msg.role === 'system';
         const time = formatTime(msg.timestamp);
+
+        // System messages (errors, warnings)
+        if (isSystem) {
+            return `
+                <div class="message system" style="margin-bottom: 16px;">
+                    <div style="padding: 12px 16px; border-radius: 8px; background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; color: #dc2626;">
+                        ${escapeHtml(msg.content)}
+                    </div>
+                </div>
+            `;
+        }
 
         // Clean AI response from any model badges or technical headers
         let cleanContent = msg.content;

@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 /**
  * General API rate limiter
  * 100 requests per 15 minutes per IP
+ * DISABLED in development mode for testing
  */
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -19,6 +20,11 @@ const apiLimiter = rateLimit({
   },
   standardHeaders: true, // Return rate limit info in `RateLimit-*` headers
   legacyHeaders: false, // Disable `X-RateLimit-*` headers
+  skip: (req) => {
+    // Skip rate limiting in development mode
+    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    return isDevelopment;
+  },
   handler: (req, res) => {
     res.status(429).json({
       error: 'Rate limit exceeded',
@@ -31,6 +37,7 @@ const apiLimiter = rateLimit({
 /**
  * Strict rate limiter for authentication endpoints
  * 5 requests per 15 minutes per IP
+ * DISABLED in development mode for testing
  */
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -42,6 +49,10 @@ const authLimiter = rateLimit({
   skipSuccessfulRequests: true, // Don't count successful requests
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => {
+    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    return isDevelopment;
+  },
   handler: (req, res) => {
     console.warn(`⚠️ Rate limit exceeded for IP: ${req.ip} on ${req.path}`);
     res.status(429).json({
@@ -55,6 +66,7 @@ const authLimiter = rateLimit({
 /**
  * AI endpoint rate limiter
  * 30 requests per 15 minutes per IP (AI requests are expensive)
+ * DISABLED in development mode for testing
  */
 const aiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -65,6 +77,10 @@ const aiLimiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => {
+    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    return isDevelopment;
+  },
   handler: (req, res) => {
     res.status(429).json({
       error: 'AI rate limit exceeded',
@@ -77,6 +93,7 @@ const aiLimiter = rateLimit({
 /**
  * File upload rate limiter
  * 10 uploads per hour per IP
+ * DISABLED in development mode for testing
  */
 const uploadLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -86,7 +103,11 @@ const uploadLimiter = rateLimit({
     retryAfter: '1 hour'
   },
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
+  skip: (req) => {
+    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    return isDevelopment;
+  }
 });
 
 module.exports = {
