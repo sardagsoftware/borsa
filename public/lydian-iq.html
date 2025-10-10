@@ -4967,5 +4967,216 @@ ${response}
     <script src="/js/connector-manager.js"></script>
     <script src="/js/connector-dock-panel.js"></script>
 
+    <!-- 🔌 Connector Chat Integration -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Wait for connector manager to be ready
+            if (!window.connectorManager) {
+                console.warn('⚠️ Connector Manager not found');
+                return;
+            }
+
+            const manager = window.connectorManager;
+
+            // Helper: Render connector card in chat
+            function renderConnectorInChat(connectorId, compact = false) {
+                const responseArea = document.getElementById('responseArea');
+                if (!responseArea) {
+                    console.warn('⚠️ Response area not found');
+                    return;
+                }
+
+                const html = manager.renderInlineCard(connectorId, compact);
+                const wrapper = document.createElement('div');
+                wrapper.style.marginBottom = '16px';
+                wrapper.innerHTML = html;
+                responseArea.appendChild(wrapper);
+
+                console.log(`✅ Rendered ${connectorId} connector in chat`);
+            }
+
+            // Helper: Render AI message with connector
+            function renderAIMessageWithConnector(message, connectorId) {
+                const responseArea = document.getElementById('responseArea');
+                if (!responseArea) return;
+
+                // Create message bubble
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message-bubble ai-message';
+                messageDiv.style.cssText = `
+                    padding: 16px;
+                    margin-bottom: 16px;
+                    border-radius: 16px;
+                    background: rgba(196, 169, 98, 0.1);
+                    border: 1px solid rgba(196, 169, 98, 0.2);
+                `;
+
+                // Message text
+                const textDiv = document.createElement('div');
+                textDiv.style.cssText = `
+                    color: #F8F7F4;
+                    font-size: 14px;
+                    line-height: 1.6;
+                    margin-bottom: 12px;
+                `;
+                textDiv.textContent = message;
+                messageDiv.appendChild(textDiv);
+
+                // Connector card
+                if (connectorId) {
+                    const cardHtml = manager.renderInlineCard(connectorId, false);
+                    const cardDiv = document.createElement('div');
+                    cardDiv.innerHTML = cardHtml;
+                    messageDiv.appendChild(cardDiv.firstElementChild);
+                }
+
+                responseArea.appendChild(messageDiv);
+            }
+
+            // Helper: Parse connector intents
+            function parseConnectorIntent(userMessage) {
+                const message = userMessage.toLowerCase();
+
+                // Vendor name detection
+                const vendors = {
+                    'trendyol': 'trendyol-tr',
+                    'hepsiburada': 'hepsiburada-tr',
+                    'hepsi': 'hepsiburada-tr',
+                    'migros': 'migros-tr',
+                    'wolt': 'wolt-tr',
+                    'ups': 'ups-global'
+                };
+
+                for (const [keyword, connectorId] of Object.entries(vendors)) {
+                    if (message.includes(keyword)) {
+                        return {
+                            connectorId,
+                            action: detectAction(message)
+                        };
+                    }
+                }
+
+                return null;
+            }
+
+            // Helper: Detect action type
+            function detectAction(message) {
+                if (message.includes('fiyat') || message.includes('price')) return 'price.sync';
+                if (message.includes('stok') || message.includes('inventory')) return 'inventory.sync';
+                if (message.includes('sipariş') || message.includes('order')) return 'order.create';
+                if (message.includes('kargo') || message.includes('shipment')) return 'shipment.track';
+                if (message.includes('göster') || message.includes('show')) return 'connector.show';
+                return 'connector.info';
+            }
+
+            // Listen for chat submissions (if intentChat exists)
+            if (window.intentChat) {
+                const originalHandleSubmit = window.intentChat.handleSubmit;
+
+                window.intentChat.handleSubmit = function(message) {
+                    // Check for connector intent
+                    const intent = parseConnectorIntent(message);
+
+                    if (intent) {
+                        const connector = manager.getConnector(intent.connectorId);
+                        if (connector) {
+                            // Render AI response with connector
+                            renderAIMessageWithConnector(
+                                `İşte ${connector.name} connector bilgileri:`,
+                                intent.connectorId
+                            );
+                            return;
+                        }
+                    }
+
+                    // Fall back to original handler
+                    if (originalHandleSubmit) {
+                        originalHandleSubmit.call(this, message);
+                    }
+                };
+
+                console.log('✅ Connector intent parsing enabled');
+            }
+
+            // Global helper functions for testing
+            window.renderConnectorInChat = renderConnectorInChat;
+            window.renderAIMessageWithConnector = renderAIMessageWithConnector;
+
+            // 🚀 AUTO-LOAD: Show all connectors on page load (ChatGPT-style)
+            function autoLoadConnectors() {
+                const responseArea = document.getElementById('responseArea');
+                if (!responseArea) return;
+
+                // Make response area visible
+                responseArea.style.display = 'block';
+                responseArea.classList.add('active');
+
+                // Welcome message
+                const welcomeDiv = document.createElement('div');
+                welcomeDiv.style.cssText = `
+                    padding: 20px;
+                    margin-bottom: 24px;
+                    border-radius: 16px;
+                    background: linear-gradient(135deg, rgba(196, 169, 98, 0.15) 0%, rgba(196, 169, 98, 0.05) 100%);
+                    border: 1px solid rgba(196, 169, 98, 0.3);
+                `;
+                welcomeDiv.innerHTML = `
+                    <h2 style="color: #C4A962; font-size: 24px; font-weight: 700; margin-bottom: 12px;">
+                        🔌 Global Connector Network
+                    </h2>
+                    <p style="color: rgba(248, 247, 244, 0.8); font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+                        <strong>Beyaz Şapkalı</strong> 5 connector aktif. Tüm entegrasyonlar KVKK/GDPR uyumlu,
+                        official API'ler kullanılıyor. ChatGPT-style inline deneyimi ile tek çatı altında yönetin.
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: rgba(248, 247, 244, 0.6);">
+                        <span>✅ ${manager.getStats().active} Active</span>
+                        <span>⚡ ${manager.getStats().avgLatency}ms Avg Latency</span>
+                        <span>📊 ${manager.getStats().avgUptime}% Uptime</span>
+                        <span>🛡️ 100% White-Hat Verified</span>
+                    </div>
+                `;
+                responseArea.appendChild(welcomeDiv);
+
+                // Render all connectors
+                const allConnectors = manager.getAllConnectors();
+                allConnectors.forEach((connector, index) => {
+                    setTimeout(() => {
+                        renderConnectorInChat(connector.id, false);
+                    }, index * 150); // Stagger animation
+                });
+
+                console.log(`✅ Auto-loaded ${allConnectors.length} connectors (ChatGPT-style)`);
+            }
+
+            // Auto-load connectors after 500ms (wait for DOM)
+            setTimeout(autoLoadConnectors, 500);
+
+            // Example usage logger
+            console.log(`
+🔌 Connector Integration Active
+
+ChatGPT-Style Features:
+• ✅ Auto-loads all connectors on page load
+• ✅ Intent parsing: "trendyol fiyatları göster"
+• ✅ Inline cards with real-time health
+• ✅ Dock panel with detailed view
+• ✅ White-Hat ONLY (KVKK/GDPR compliant)
+
+Natural Language Examples:
+• "trendyol fiyatları göster"
+• "migros stokları"
+• "ups kargo takip"
+
+Console Commands:
+• renderConnectorInChat('trendyol-tr')
+• renderAIMessageWithConnector('Message', 'hepsiburada-tr')
+• manager.openInDock('wolt-tr')
+            `);
+
+        })();
+    </script>
+
 </body>
 </html>

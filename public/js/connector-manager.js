@@ -55,7 +55,7 @@
     {
       id: 'hepsiburada-tr',
       name: 'Hepsiburada',
-      description: 'Turkey's largest online shopping platform with 150M+ visits',
+      description: 'Turkey\'s largest online shopping platform with 150M+ visits',
       country: 'Türkiye',
       countryCode: 'TR',
       region: 'EMEA',
@@ -224,6 +224,9 @@
 
   // Flag emoji helper
   function getFlagEmoji(countryCode) {
+    // Guard against undefined/null
+    if (!countryCode) return '🏳️';
+
     const flagMap = {
       'US': '🇺🇸',
       'TR': '🇹🇷',
