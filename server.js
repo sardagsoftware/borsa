@@ -3803,7 +3803,23 @@ app.get('/ops/canary/feature-flags.json', (req, res) => {
 // 📊 Feature Flags Monitoring Endpoint
 app.post('/api/monitoring/feature-flags', (req, res) => {
   // Accept monitoring data from feature flags system
+  // Validate req.body exists
+  if (!req.body || typeof req.body !== 'object') {
+    return res.status(400).json({
+      error: 'Invalid request body',
+      code: 'INVALID_BODY'
+    });
+  }
+
   const { flag, value, reason, userBucket, timestamp } = req.body;
+
+  // Validate required fields
+  if (!flag) {
+    return res.status(400).json({
+      error: 'Missing required field: flag',
+      code: 'MISSING_FIELD'
+    });
+  }
 
   // Log for analytics (in production, send to monitoring service)
   console.log('🚩 Feature Flag Evaluation:', {
@@ -3811,7 +3827,7 @@ app.post('/api/monitoring/feature-flags', (req, res) => {
     value,
     reason,
     userBucket,
-    timestamp: new Date(timestamp).toISOString()
+    timestamp: timestamp ? new Date(timestamp).toISOString() : new Date().toISOString()
   });
 
   // Respond with 204 No Content (fire-and-forget)
@@ -4103,7 +4119,45 @@ app.post('/api/search', (req, res) => {
 // 📤 COMPREHENSIVE FILE UPLOAD & PROCESSING API
 // 🔒 SECURITY: Using secureUpload with malware scanning
 app.post('/api/upload',
-  secureUpload.single('file'),
+  (req, res, next) => {
+    secureUpload.single('file')(req, res, (err) => {
+      if (err) {
+        // Handle multer errors
+        if (err.code === 'LIMIT_FILE_SIZE') {
+          return res.status(413).json({
+            success: false,
+            error: 'File too large',
+            message: 'Maximum file size is 20MB',
+            code: 'FILE_TOO_LARGE'
+          });
+        }
+        if (err.code === 'LIMIT_FILE_COUNT') {
+          return res.status(400).json({
+            success: false,
+            error: 'Too many files',
+            message: 'Maximum 10 files allowed',
+            code: 'TOO_MANY_FILES'
+          });
+        }
+        if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+          return res.status(400).json({
+            success: false,
+            error: 'Unexpected field',
+            message: err.message,
+            code: 'UNEXPECTED_FIELD'
+          });
+        }
+        // Other multer/validation errors
+        return res.status(400).json({
+          success: false,
+          error: 'File upload failed',
+          message: err.message,
+          code: 'UPLOAD_ERROR'
+        });
+      }
+      next();
+    });
+  },
   malwareScanMiddleware,
   async (req, res) => {
   try {
@@ -10019,6 +10073,9 @@ app.use('/api', (req, res, next) => {
       req.path.startsWith('/rro/') ||       // Risk & Resilience OS
       req.path.startsWith('/atg/') ||       // Automated Trust Graph
       req.path.startsWith('/svf/') ||       // Synthetic Data Factory
+      req.path.startsWith('/search') ||     // 🔍 Search API - Unified Surface
+      req.path === '/capabilities' ||       // System capabilities
+      req.path === '/health' ||             // Health check
       req.path === '/smart-cities/health' ||  // Smart Cities health check
       req.path === '/insan-iq/health' ||      // İnsan IQ health check
       req.path === '/lydian-iq/health' ||     // LyDian IQ health check
@@ -18010,6 +18067,34 @@ app.post('/api/marketplace/plugins/:plugin_id/install', async (req, res) => {
   }
 });
 
+// ═══════════════════════════════════════════════════════════════════════════
+// 🚀 LYDIAN-IQ UNIFIED SURFACE API ENDPOINTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Test endpoint
+app.get('/api/v1/test-unified', require('./api/v1/test-unified'));
+
+// Shipment tracking
+app.post('/api/v1/shipment/track', require('./api/v1/shipment/track'));
+
+// Product sync
+app.post('/api/v1/product/sync', require('./api/v1/product/sync'));
+
+console.log('✅ Lydian-IQ Unified Surface API endpoints registered');
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 🔍 SEARCH API - UNIFIED SURFACE
+// ═══════════════════════════════════════════════════════════════════════════
+
+const SearchController = require('./services/gateway/src/search/SearchController');
+
+// Search endpoint (no rate limiting for now)
+app.get('/api/search', SearchController.search);
+app.get('/api/search/_status', SearchController.status);
+
+console.log('✅ Search API endpoints registered');
+
 // 🔒 GLOBAL ERROR HANDLER - Must be AFTER all routes (STACK-TRACE-EXPOSURE-2025 fix)
 app.use(SecureErrorHandler.middleware());
 
@@ -18020,3 +18105,4 @@ app.use(SecureErrorHandler.notFoundHandler());
 
 // 🚀 Vercel Serverless Function Export
 module.exports = app;
+

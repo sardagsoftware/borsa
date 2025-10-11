@@ -1,346 +1,380 @@
 /**
- * 📚 Intent Dictionaries & Patterns
- * Synonyms and regex patterns for natural language understanding
- *
- * @author LyDian AI - Ultra Intelligence Platform
+ * 📚 Intent Dictionaries - 72 Connectors (TR + International)
+ * 
+ * Vendor mappings, keywords, and domain-specific vocabularies
+ * All lowercase, Turkish-normalized
+ * 
+ * @module intent/dictionaries
  */
 
-/**
- * Synonym dictionaries by locale
- * Turkish is primary, others are essential translations
- */
-export const synonyms = {
-  tr: {
-    shipment: ['kargo', 'gönderi', 'paket', 'kargom', 'takip', 'sevkiyat'],
-    track: ['nerede', 'takip', 'durum', 'sorgula'],
-    vendor: ['hepsijet', 'aras', 'yurtiçi', 'yurtici', 'mng', 'sürat', 'surat', 'ups'],
-    loan: ['kredi', 'faiz', 'taksit', 'borç'],
-    amount: ['tutar', 'miktar', 'para', '₺', 'tl', 'lira'],
-    term: ['vade', 'ay', 'aylık', 'dönem'],
-    price: ['fiyat', 'etiket', 'bedel', 'ücret', 'tarife'],
-    optimize: ['optimiz', 'arttır', 'düşür', 'iyileştir', 'marj'],
-    trip: ['otel', 'uçuş', 'seyahat', 'tatil', 'rezervasyon'],
-    place: ['antalya', 'istanbul', 'izmir', 'bodrum', 'şehir'],
-    esg: ['karbon', 'co2', 'yeşil', 'çevre', 'sürdürülebilir'],
-    insights: ['trend', 'istatistik', 'analiz', 'rapor', 'veri'],
-    product: ['ürün', 'stok', 'envanter', 'katalog'],
-    order: ['sipariş', 'müşteri', 'satış'],
-    menu: ['menü', 'yemek', 'restoran']
-  },
+// ============================================================================
+// 🇹🇷 TURKEY - 23 Connectors
+// ============================================================================
 
-  en: {
-    shipment: ['shipment', 'package', 'delivery', 'parcel', 'cargo'],
-    track: ['track', 'status', 'where', 'locate'],
-    vendor: ['hepsijet', 'aras', 'yurtici', 'mng', 'surat', 'ups'],
-    loan: ['loan', 'credit', 'interest', 'mortgage'],
-    amount: ['amount', 'sum', 'money', 'price'],
-    term: ['term', 'month', 'period', 'duration'],
-    price: ['price', 'cost', 'fee', 'rate'],
-    optimize: ['optimize', 'increase', 'decrease', 'improve', 'margin'],
-    trip: ['hotel', 'flight', 'travel', 'trip', 'vacation'],
-    place: ['antalya', 'istanbul', 'izmir', 'city', 'destination'],
-    esg: ['carbon', 'co2', 'green', 'environment', 'sustainable'],
-    insights: ['trend', 'statistics', 'analysis', 'report', 'data'],
-    product: ['product', 'stock', 'inventory', 'catalog'],
-    order: ['order', 'customer', 'sale'],
-    menu: ['menu', 'food', 'restaurant']
-  },
+export const VENDORS_TR_ECOMMERCE = [
+  // Major marketplaces
+  'trendyol', 'ty', 'trendy',
+  'hepsiburada', 'hb', 'hepsi',
+  'n11', 'n on bir',
+  'temu', 'temu turkey',
+  
+  // Classifieds
+  'sahibinden', 'shb', 'sahibin',
+  'arabam', 'arabam.com',
+];
 
-  ar: {
-    shipment: ['شحنة', 'طرد', 'توصيل', 'بضائع'],
-    track: ['تتبع', 'حالة', 'أين', 'موقع'],
-    vendor: ['hepsijet', 'aras', 'yurtici', 'mng', 'surat', 'ups'],
-    loan: ['قرض', 'ائتمان', 'فائدة'],
-    amount: ['مبلغ', 'مال', 'سعر'],
-    term: ['مدة', 'شهر', 'فترة'],
-    price: ['سعر', 'تكلفة', 'رسوم'],
-    optimize: ['تحسين', 'زيادة', 'تقليل'],
-    trip: ['فندق', 'رحلة', 'سفر', 'إجازة'],
-    place: ['أنطاليا', 'اسطنبول', 'مدينة'],
-    esg: ['كربون', 'أخضر', 'بيئة', 'مستدام'],
-    insights: ['اتجاه', 'إحصائيات', 'تحليل'],
-    product: ['منتج', 'مخزون', 'كتالوج'],
-    order: ['طلب', 'عميل', 'بيع'],
-    menu: ['قائمة', 'طعام', 'مطعم']
-  },
+export const VENDORS_TR_CARGO = [
+  'aras', 'aras kargo',
+  'yurtici', 'yurtiçi', 'yurtiçi kargo',
+  'hepsijet', 'hepsi jet',
+  'mng', 'mng kargo',
+  'surat', 'sürat', 'sürat kargo',
+  'ups', 'ups turkey',
+];
 
-  ru: {
-    shipment: ['посылка', 'доставка', 'груз', 'отправление'],
-    track: ['отслеживание', 'статус', 'где'],
-    vendor: ['hepsijet', 'aras', 'yurtici', 'mng', 'surat', 'ups'],
-    loan: ['кредит', 'заем', 'процент'],
-    amount: ['сумма', 'деньги', 'цена'],
-    term: ['срок', 'месяц', 'период'],
-    price: ['цена', 'стоимость', 'тариф'],
-    optimize: ['оптимизация', 'увеличить', 'уменьшить'],
-    trip: ['отель', 'полет', 'путешествие'],
-    place: ['анталья', 'стамбул', 'город'],
-    esg: ['углерод', 'зеленый', 'экология'],
-    insights: ['тренд', 'статистика', 'анализ'],
-    product: ['продукт', 'запас', 'каталог'],
-    order: ['заказ', 'клиент', 'продажа'],
-    menu: ['меню', 'еда', 'ресторан']
-  },
+export const VENDORS_TR_FOOD = [
+  'getir',
+  'yemeksepeti', 'ysepeti', 'yemek sepeti',
+  'trendyol yemek', 'ty yemek',
+];
 
-  de: {
-    shipment: ['sendung', 'paket', 'lieferung', 'fracht'],
-    track: ['verfolgen', 'status', 'wo'],
-    vendor: ['hepsijet', 'aras', 'yurtici', 'mng', 'surat', 'ups'],
-    loan: ['kredit', 'darlehen', 'zinsen'],
-    amount: ['betrag', 'geld', 'preis'],
-    term: ['laufzeit', 'monat', 'zeitraum'],
-    price: ['preis', 'kosten', 'gebühr'],
-    optimize: ['optimieren', 'erhöhen', 'reduzieren'],
-    trip: ['hotel', 'flug', 'reise', 'urlaub'],
-    place: ['antalya', 'istanbul', 'stadt'],
-    esg: ['kohlenstoff', 'grün', 'umwelt'],
-    insights: ['trend', 'statistik', 'analyse'],
-    product: ['produkt', 'bestand', 'katalog'],
-    order: ['bestellung', 'kunde', 'verkauf'],
-    menu: ['menü', 'essen', 'restaurant']
-  }
+export const VENDORS_TR_GROCERY = [
+  'migros',
+  'carrefoursa', 'carrefour', 'carrefour sa',
+  'a101', 'a yüz bir',
+  'bim', 'bİm',
+  'sok', 'şok', 'şok market',
+];
+
+export const VENDORS_TR_FINANCE = [
+  'hangikredi', 'hangi kredi',
+];
+
+export const VENDORS_TR_TRAVEL = [
+  'jollytur', 'jolly tur',
+  'enuygun', 'en uygun',
+  'trivago', 'trivago turkey',
+];
+
+// ============================================================================
+// 🌍 INTERNATIONAL - 49 Connectors
+// ============================================================================
+
+// 🇦🇿 Azerbaijan (4)
+export const VENDORS_AZ = [
+  'tap.az', 'tap',
+  'turbo.az', 'turbo',
+  'wolt azerbaijan', 'wolt az',
+  'bolt food azerbaijan', 'bolt az',
+];
+
+// 🇶🇦 Qatar (6)
+export const VENDORS_QA = [
+  'talabat qatar', 'talabat qa',
+  'snoonu',
+  'carrefour qatar',
+  'lulu qatar', 'lulu',
+  'wolt qatar',
+  'delivery hero qatar',
+];
+
+// 🇸🇦 Saudi Arabia (7)
+export const VENDORS_SA = [
+  'noon saudi', 'noon sa', 'noon',
+  'haraj',
+  'hungerstation', 'hunger station',
+  'mrsool',
+  'nana',
+  'talabat saudi', 'talabat sa',
+  'carrefour saudi',
+];
+
+// 🇨🇾 Cyprus (5)
+export const VENDORS_CY = [
+  'bazaraki',
+  'foody cyprus', 'foody cy',
+  'wolt cyprus',
+  'alphamega',
+  'deliveroo cyprus',
+];
+
+// 🇷🇺 Russia (6 - SANCTIONED)
+export const VENDORS_RU = [
+  'wildberries', 'wb',
+  'ozon',
+  'yandex market', 'yandex',
+  'avito',
+  'sbermegamarket', 'sber',
+  'lamoda',
+];
+
+// 🇩🇪 Germany (6)
+export const VENDORS_DE = [
+  'zalando', 'zalando de',
+  'otto', 'otto de',
+  'lieferando', 'lieferando de',
+  'rewe',
+  'check24',
+  'gorillas',
+];
+
+// 🇧🇬 Bulgaria (2)
+export const VENDORS_BG = [
+  'emag bulgaria', 'emag bg', 'emag',
+  'olx bulgaria', 'olx bg',
+];
+
+// 🇦🇹 Austria (5)
+export const VENDORS_AT = [
+  'willhaben',
+  'lieferando austria', 'lieferando at',
+  'foodora austria', 'foodora at',
+  'billa',
+  'gurkerl',
+];
+
+// 🇳🇱 Netherlands (5)
+export const VENDORS_NL = [
+  'bol.com', 'bol', 'bol nl',
+  'coolblue',
+  'marktplaats',
+  'thuisbezorgd',
+  'albert heijn', 'ah', 'ah nl',
+];
+
+// 🤖 AI Providers (3)
+export const VENDORS_AI = [
+  'openai', 'gpt', 'chatgpt',
+  'anthropic', 'claude',
+  'google ai', 'gemini', 'google gemini',
+];
+
+// ============================================================================
+// Combined Vendor List (All 72)
+// ============================================================================
+
+export const ALL_VENDORS = [
+  ...VENDORS_TR_ECOMMERCE,
+  ...VENDORS_TR_CARGO,
+  ...VENDORS_TR_FOOD,
+  ...VENDORS_TR_GROCERY,
+  ...VENDORS_TR_FINANCE,
+  ...VENDORS_TR_TRAVEL,
+  ...VENDORS_AZ,
+  ...VENDORS_QA,
+  ...VENDORS_SA,
+  ...VENDORS_CY,
+  ...VENDORS_RU,
+  ...VENDORS_DE,
+  ...VENDORS_BG,
+  ...VENDORS_AT,
+  ...VENDORS_NL,
+  ...VENDORS_AI,
+];
+
+// ============================================================================
+// Action Keywords (Turkish + English)
+// ============================================================================
+
+export const KEYWORDS_SHIPMENT_TRACK = [
+  // Turkish
+  'takip', 'nerede', 'gör', 'sorgula', 'kontrol', 'bul',
+  'kargo', 'gönderi', 'paket',
+  // English
+  'track', 'where', 'check', 'find', 'locate', 'status',
+  'shipment', 'package', 'delivery',
+];
+
+export const KEYWORDS_PRODUCT_SYNC = [
+  // Turkish
+  'ürün', 'senkronize', 'güncelle', 'yükle', 'aktar',
+  'katalog', 'envanter', 'stok',
+  // English
+  'product', 'sync', 'synchronize', 'update', 'upload',
+  'catalog', 'inventory', 'stock',
+];
+
+export const KEYWORDS_PRICE_UPDATE = [
+  // Turkish
+  'fiyat', 'düşür', 'artır', 'güncelle', 'değiştir',
+  'indirim', 'zam', 'ayarla',
+  // English
+  'price', 'decrease', 'increase', 'update', 'change',
+  'discount', 'adjust', 'set',
+];
+
+export const KEYWORDS_INVENTORY_SYNC = [
+  // Turkish
+  'stok', 'envanter', 'senkronize', 'güncelle',
+  'miktar', 'adet',
+  // English
+  'inventory', 'stock', 'sync', 'update',
+  'quantity', 'count',
+];
+
+export const KEYWORDS_MENU_UPDATE = [
+  // Turkish
+  'menü', 'yemek', 'güncelle', 'ekle', 'çıkar',
+  'restoran', 'cafe',
+  // English
+  'menu', 'food', 'update', 'add', 'remove',
+  'restaurant', 'cafe',
+];
+
+export const KEYWORDS_LOAN_COMPARE = [
+  // Turkish
+  'kredi', 'kıyasla', 'karşılaştır', 'bul', 'hesapla',
+  'taksit', 'faiz', 'ödeme',
+  // English
+  'loan', 'compare', 'find', 'calculate',
+  'installment', 'interest', 'payment',
+];
+
+export const KEYWORDS_TRIP_SEARCH = [
+  // Turkish
+  'seyahat', 'tatil', 'uçuş', 'otel', 'tur',
+  'rezervasyon', 'bilet', 'ara', 'bul',
+  // English
+  'travel', 'vacation', 'flight', 'hotel', 'tour',
+  'reservation', 'ticket', 'search', 'find',
+];
+
+export const KEYWORDS_INSIGHTS = [
+  // Turkish
+  'analiz', 'trend', 'rapor', 'grafik', 'istatistik',
+  'göster', 'görüntüle',
+  // English
+  'insight', 'trend', 'report', 'chart', 'analytics',
+  'show', 'display', 'view',
+];
+
+export const KEYWORDS_ESG = [
+  // Turkish
+  'karbon', 'ayak izi', 'emisyon', 'çevre', 'sürdürülebilir',
+  // English
+  'carbon', 'footprint', 'emission', 'environment', 'sustainable',
+  'esg', 'sustainability',
+];
+
+// ============================================================================
+// Domain-Specific Patterns
+// ============================================================================
+
+export const PATTERNS = {
+  // Tracking numbers
+  trackingNumber: /\b\d{10,15}\b/,
+  
+  // Amounts
+  amount: /\d+(?:[.,]\d+)?\s*(?:bin|k|m|tl|usd|eur|₺|\$|€)/i,
+  
+  // Percentages
+  percentage: /(?:yuzde|percent|%)\s*\d+(?:[.,]\d+)?|\d+(?:[.,]\d+)?\s*%/i,
+  
+  // Dates
+  date: /\d{1,2}[./-]\d{1,2}[./-]\d{2,4}/,
+  
+  // Time
+  time: /\d{1,2}:\d{2}(?::\d{2})?/,
 };
 
-/**
- * Intent matching patterns by locale
- * Each pattern has:
- * - action: The action to trigger
- * - re: Regex pattern
- * - params: Parameter names to extract from regex groups
- * - reason: Optional human-readable explanation
- */
-export const patterns = {
-  tr: [
-    // Shipment tracking
-    {
-      action: 'shipment.track',
-      re: /\b(kargo|gönderi|takip|nerede|paket)\b.*?\b(hepsijet|aras|yurtiçi|yurtici|mng|sürat|surat|ups)\b.*?(\d{7,})/i,
-      params: ['_ignore', 'vendor', 'trackingNo'],
-      reason: 'Kargo takibi'
-    },
-    {
-      action: 'shipment.track',
-      re: /\b(hepsijet|aras|yurtiçi|yurtici|mng|sürat|surat|ups)\b.*?(\d{7,})\b.*?\b(takip|nerede|durum)/i,
-      params: ['vendor', 'trackingNo'],
-      reason: 'Kargo sorgulama'
-    },
+// ============================================================================
+// Vendor ID Mapping (normalized name → connector ID)
+// ============================================================================
 
-    // Loan comparison
-    {
-      action: 'loan.compare',
-      re: /\b(kredi|faiz)\b.*?(\d[\d\.]{3,})\s*(?:tl|₺|lira)?\b.*?\b(\d{1,3})\s*(?:ay|aylık)/i,
-      params: ['_ignore', 'amount', 'term'],
-      reason: 'Kredi karşılaştırma'
-    },
-    {
-      action: 'loan.compare',
-      re: /(\d[\d\.]{3,})\s*(?:tl|₺|lira)?\b.*?\b(\d{1,3})\s*(?:ay|aylık).*?\b(kredi|faiz)/i,
-      params: ['amount', 'term'],
-      reason: 'Kredi sorgusu'
-    },
-
-    // Economy/Price optimization
-    {
-      action: 'economy.optimize',
-      re: /\b(fiyat|etiket)\b.*?\b(optimiz|arttır|düşür|iyileştir|marj)\b/i,
-      params: [],
-      reason: 'Fiyat optimizasyonu'
-    },
-    {
-      action: 'economy.optimize',
-      re: /\b(marj)\b.*?%?(\d+)/i,
-      params: ['_ignore', 'marginTarget'],
-      reason: 'Marj hedefi optimizasyonu'
-    },
-
-    // Trip search
-    {
-      action: 'trip.search',
-      re: /\b(otel|seyahat|uçuş|tatil|rezervasyon)\b.*?\b([a-zçğıöşü\s]{3,})\b.*?(\d+)\s*(?:gece|gün)\b.*?(\d+)\s*(?:kişi|pax|yetişkin)/i,
-      params: ['_ignore', 'place', 'days', 'pax'],
-      reason: 'Otel/seyahat arama'
-    },
-
-    // Price trend insights
-    {
-      action: 'insights.price-trend',
-      re: /\b(fiyat)\b.*?\b(trend|istatistik|analiz|grafik)/i,
-      params: [],
-      reason: 'Fiyat trend analizi'
-    },
-
-    // ESG Carbon calculation
-    {
-      action: 'esg.calculate-carbon',
-      re: /\b(karbon|co2|yeşil|çevre)\b.*?\b(hesap|ölç|ayak izi)/i,
-      params: [],
-      reason: 'Karbon ayak izi hesaplama'
-    },
-
-    // Product sync
-    {
-      action: 'product.sync',
-      re: /\b(ürün)\b.*?\b(yayınla|ekle|yükle|senkronize|sync)/i,
-      params: [],
-      reason: 'Ürün yayınlama'
-    },
-
-    // Menu update
-    {
-      action: 'menu.update',
-      re: /\b(menü|yemek)\b.*?\b(güncelle|değiştir|düzenle)/i,
-      params: [],
-      reason: 'Menü güncelleme'
-    }
-  ],
-
-  en: [
-    // Shipment tracking
-    {
-      action: 'shipment.track',
-      re: /\b(track|shipment|package|delivery)\b.*?\b(hepsijet|aras|yurtici|mng|surat|ups)\b.*?(\d{7,})/i,
-      params: ['_ignore', 'vendor', 'trackingNo'],
-      reason: 'Shipment tracking'
-    },
-
-    // Loan comparison
-    {
-      action: 'loan.compare',
-      re: /\b(loan|credit)\b.*?(\d[\d,]{3,})\s*(?:tl|₺)?\b.*?\b(\d{1,3})\s*(?:month|mo)/i,
-      params: ['_ignore', 'amount', 'term'],
-      reason: 'Loan comparison'
-    },
-
-    // Price optimization
-    {
-      action: 'economy.optimize',
-      re: /\b(price|cost)\b.*?\b(optimize|increase|decrease|improve|margin)/i,
-      params: [],
-      reason: 'Price optimization'
-    },
-
-    // Trip search
-    {
-      action: 'trip.search',
-      re: /\b(hotel|flight|travel|trip)\b.*?\b([a-z\s]{3,})\b.*?(\d+)\s*(?:night|day).*?(\d+)\s*(?:person|pax|guest)/i,
-      params: ['_ignore', 'place', 'days', 'pax'],
-      reason: 'Trip search'
-    }
-  ],
-
-  ar: [
-    // Shipment tracking
-    {
-      action: 'shipment.track',
-      re: /\b(تتبع|شحنة|طرد)\b.*?\b(hepsijet|aras|yurtici|mng|surat|ups)\b.*?(\d{7,})/i,
-      params: ['_ignore', 'vendor', 'trackingNo'],
-      reason: 'تتبع الشحنة'
-    },
-
-    // Loan comparison
-    {
-      action: 'loan.compare',
-      re: /\b(قرض|ائتمان)\b.*?(\d[\d,]{3,})\s*(?:tl|₺)?\b.*?\b(\d{1,3})\s*شهر/i,
-      params: ['_ignore', 'amount', 'term'],
-      reason: 'مقارنة القروض'
-    }
-  ],
-
-  ru: [
-    // Shipment tracking
-    {
-      action: 'shipment.track',
-      re: /\b(отслеживание|посылка|доставка)\b.*?\b(hepsijet|aras|yurtici|mng|surat|ups)\b.*?(\d{7,})/i,
-      params: ['_ignore', 'vendor', 'trackingNo'],
-      reason: 'Отслеживание посылки'
-    },
-
-    // Loan comparison
-    {
-      action: 'loan.compare',
-      re: /\b(кредит|заем)\b.*?(\d[\d,]{3,})\s*(?:tl|₺)?\b.*?\b(\d{1,3})\s*(?:месяц)/i,
-      params: ['_ignore', 'amount', 'term'],
-      reason: 'Сравнение кредитов'
-    }
-  ],
-
-  de: [
-    // Shipment tracking
-    {
-      action: 'shipment.track',
-      re: /\b(verfolgen|sendung|paket)\b.*?\b(hepsijet|aras|yurtici|mng|surat|ups)\b.*?(\d{7,})/i,
-      params: ['_ignore', 'vendor', 'trackingNo'],
-      reason: 'Sendungsverfolgung'
-    },
-
-    // Loan comparison
-    {
-      action: 'loan.compare',
-      re: /\b(kredit|darlehen)\b.*?(\d[\d,]{3,})\s*(?:tl|₺)?\b.*?\b(\d{1,3})\s*(?:monat)/i,
-      params: ['_ignore', 'amount', 'term'],
-      reason: 'Kreditvergleich'
-    }
-  ]
+export const VENDOR_ID_MAP: Record<string, string> = {
+  // TR - E-commerce
+  'trendyol': 'trendyol-tr',
+  'ty': 'trendyol-tr',
+  'hepsiburada': 'hepsiburada-tr',
+  'hb': 'hepsiburada-tr',
+  'n11': 'n11-tr',
+  'temu': 'temu-tr',
+  'sahibinden': 'sahibinden-tr',
+  'arabam': 'arabam-tr',
+  
+  // TR - Cargo
+  'aras': 'aras-tr',
+  'aras kargo': 'aras-tr',
+  'yurtici': 'yurtici-tr',
+  'yurtiçi': 'yurtici-tr',
+  'hepsijet': 'hepsijet-tr',
+  'mng': 'mng-tr',
+  'surat': 'surat-tr',
+  'sürat': 'surat-tr',
+  'ups': 'ups-tr',
+  
+  // TR - Food
+  'getir': 'getir-tr',
+  'yemeksepeti': 'yemeksepeti-tr',
+  'trendyol yemek': 'trendyol-yemek-tr',
+  
+  // TR - Grocery
+  'migros': 'migros-tr',
+  'carrefoursa': 'carrefoursa-tr',
+  'a101': 'a101-tr',
+  'bim': 'bim-tr',
+  'sok': 'sok-tr',
+  'şok': 'sok-tr',
+  
+  // TR - Finance
+  'hangikredi': 'hangikredi-tr',
+  
+  // TR - Travel
+  'jollytur': 'jollytur-tr',
+  'enuygun': 'enuygun-tr',
+  'trivago': 'trivago-tr',
+  
+  // International
+  'tap.az': 'tap-az',
+  'turbo.az': 'turbo-az',
+  'wolt azerbaijan': 'wolt-az',
+  'bolt food azerbaijan': 'bolt-food-az',
+  
+  'talabat qatar': 'talabat-qa',
+  'snoonu': 'snoonu-qa',
+  'carrefour qatar': 'carrefour-qa',
+  'lulu': 'lulu-qa',
+  
+  'noon': 'noon-sa',
+  'haraj': 'haraj-sa',
+  'hungerstation': 'hungerstation-sa',
+  'mrsool': 'mrsool-sa',
+  'nana': 'nana-sa',
+  
+  'bazaraki': 'bazaraki-cy',
+  'foody cyprus': 'foody-cy',
+  'wolt cyprus': 'wolt-cy',
+  'alphamega': 'alphamega-cy',
+  
+  'wildberries': 'wildberries-ru',
+  'ozon': 'ozon-ru',
+  'yandex market': 'yandex-market-ru',
+  'avito': 'avito-ru',
+  
+  'zalando': 'zalando-de',
+  'otto': 'otto-de',
+  'lieferando': 'lieferando-de',
+  'rewe': 'rewe-de',
+  'check24': 'check24-de',
+  'gorillas': 'gorillas-de',
+  
+  'emag': 'emag-bg',
+  'olx bulgaria': 'olx-bg',
+  
+  'willhaben': 'willhaben-at',
+  'foodora austria': 'foodora-at',
+  'billa': 'billa-at',
+  'gurkerl': 'gurkerl-at',
+  
+  'bol.com': 'bol-nl',
+  'coolblue': 'coolblue-nl',
+  'marktplaats': 'marktplaats-nl',
+  'thuisbezorgd': 'thuisbezorgd-nl',
+  'albert heijn': 'albert-heijn-nl',
+  
+  'openai': 'openai-ai',
+  'anthropic': 'anthropic-ai',
+  'google ai': 'google-ai',
 };
 
-/**
- * Action metadata (for UI hints, RBAC, etc.)
- */
-export const actionMetadata = {
-  'shipment.track': {
-    category: 'logistics',
-    icon: '📦',
-    requiredParams: ['vendor', 'trackingNo'],
-    optionalParams: [],
-    scopes: []
-  },
-  'loan.compare': {
-    category: 'finance',
-    icon: '💰',
-    requiredParams: ['amount', 'term'],
-    optionalParams: [],
-    scopes: []
-  },
-  'economy.optimize': {
-    category: 'economy',
-    icon: '📈',
-    requiredParams: [],
-    optionalParams: ['marginTarget'],
-    scopes: ['economy.optimize']
-  },
-  'trip.search': {
-    category: 'travel',
-    icon: '✈️',
-    requiredParams: ['place', 'days', 'pax'],
-    optionalParams: ['checkIn', 'checkOut'],
-    scopes: []
-  },
-  'insights.price-trend': {
-    category: 'insights',
-    icon: '📊',
-    requiredParams: [],
-    optionalParams: ['sku', 'category'],
-    scopes: ['insights.read']
-  },
-  'esg.calculate-carbon': {
-    category: 'esg',
-    icon: '🌱',
-    requiredParams: [],
-    optionalParams: ['orderId', 'shipmentId'],
-    scopes: ['esg.read']
-  },
-  'product.sync': {
-    category: 'commerce',
-    icon: '🛍️',
-    requiredParams: ['vendor'],
-    optionalParams: ['sku', 'products'],
-    scopes: ['economy.optimize']
-  },
-  'menu.update': {
-    category: 'delivery',
-    icon: '🍔',
-    requiredParams: ['vendor'],
-    optionalParams: ['menuItems'],
-    scopes: ['economy.optimize']
-  }
-};
+console.log('✅ Intent dictionaries loaded (72 connectors, TR + International)');

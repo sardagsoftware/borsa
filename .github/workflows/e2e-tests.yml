@@ -1,0 +1,356 @@
+name: E2E Tests (Real Endpoints)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, labeled]
+  schedule:
+    # Run daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual triggers
+
+jobs:
+  e2e-tests:
+    name: E2E Tests - 72 Connectors
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    # Skip on PR builds unless labeled
+    if: |
+      github.event_name == 'push' ||
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.pull_request.labels.*.name, 'run-e2e-tests')
+
+    strategy:
+      fail-fast: false
+      matrix:
+        test-suite:
+          - name: 'Turkey (TR)'
+            pattern: 'TURKEY'
+          - name: 'AI Providers'
+            pattern: 'AI PROVIDERS'
+          - name: 'Germany (DE)'
+            pattern: 'GERMANY'
+          - name: 'Netherlands (NL)'
+            pattern: 'NETHERLANDS'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run E2E tests - ${{ matrix.test-suite.name }}
+        env:
+          # ============================================================
+          # 🇹🇷 TURKEY (TR) - Cargo Tracking
+          # ============================================================
+          ARAS_TEST_API_KEY: ${{ secrets.ARAS_TEST_API_KEY }}
+          ARAS_TEST_TRACKING: ${{ secrets.ARAS_TEST_TRACKING }}
+          YURTICI_TEST_API_KEY: ${{ secrets.YURTICI_TEST_API_KEY }}
+          YURTICI_TEST_TRACKING: ${{ secrets.YURTICI_TEST_TRACKING }}
+          MNG_TEST_API_KEY: ${{ secrets.MNG_TEST_API_KEY }}
+          MNG_TEST_TRACKING: ${{ secrets.MNG_TEST_TRACKING }}
+          UPS_TEST_API_KEY: ${{ secrets.UPS_TEST_API_KEY }}
+          UPS_TEST_TRACKING: '1Z999AA10123456784'
+          FEDEX_TEST_API_KEY: ${{ secrets.FEDEX_TEST_API_KEY }}
+          FEDEX_TEST_TRACKING: ${{ secrets.FEDEX_TEST_TRACKING }}
+
+          # ============================================================
+          # 🇹🇷 TURKEY (TR) - E-commerce (Sandbox)
+          # ============================================================
+          TRENDYOL_SANDBOX_API_KEY: ${{ secrets.TRENDYOL_SANDBOX_API_KEY }}
+          HEPSIBURADA_SANDBOX_API_KEY: ${{ secrets.HEPSIBURADA_SANDBOX_API_KEY }}
+          N11_SANDBOX_API_KEY: ${{ secrets.N11_SANDBOX_API_KEY }}
+          TEMU_SANDBOX_API_KEY: ${{ secrets.TEMU_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇹🇷 TURKEY (TR) - Food Delivery (Sandbox)
+          # ============================================================
+          GETIR_SANDBOX_API_KEY: ${{ secrets.GETIR_SANDBOX_API_KEY }}
+          YEMEKSEPETI_SANDBOX_API_KEY: ${{ secrets.YEMEKSEPETI_SANDBOX_API_KEY }}
+          TRENDYOL_YEMEK_SANDBOX_API_KEY: ${{ secrets.TRENDYOL_YEMEK_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇹🇷 TURKEY (TR) - Grocery (Sandbox)
+          # ============================================================
+          MIGROS_SANDBOX_API_KEY: ${{ secrets.MIGROS_SANDBOX_API_KEY }}
+          CARREFOURSA_SANDBOX_API_KEY: ${{ secrets.CARREFOURSA_SANDBOX_API_KEY }}
+          A101_SANDBOX_API_KEY: ${{ secrets.A101_SANDBOX_API_KEY }}
+          BIM_SANDBOX_API_KEY: ${{ secrets.BIM_SANDBOX_API_KEY }}
+          SOK_SANDBOX_API_KEY: ${{ secrets.SOK_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇹🇷 TURKEY (TR) - Classifieds (Sandbox)
+          # ============================================================
+          SAHIBINDEN_SANDBOX_API_KEY: ${{ secrets.SAHIBINDEN_SANDBOX_API_KEY }}
+          ARABAM_SANDBOX_API_KEY: ${{ secrets.ARABAM_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇹🇷 TURKEY (TR) - Travel (Sandbox)
+          # ============================================================
+          JOLLYTUR_SANDBOX_API_KEY: ${{ secrets.JOLLYTUR_SANDBOX_API_KEY }}
+          ENUYGUN_SANDBOX_API_KEY: ${{ secrets.ENUYGUN_SANDBOX_API_KEY }}
+          TRIVAGO_SANDBOX_API_KEY: ${{ secrets.TRIVAGO_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇦🇿 AZERBAIJAN (AZ)
+          # ============================================================
+          TAP_AZ_SANDBOX_API_KEY: ${{ secrets.TAP_AZ_SANDBOX_API_KEY }}
+          TURBO_AZ_SANDBOX_API_KEY: ${{ secrets.TURBO_AZ_SANDBOX_API_KEY }}
+          WOLT_AZ_SANDBOX_API_KEY: ${{ secrets.WOLT_AZ_SANDBOX_API_KEY }}
+          BOLT_FOOD_AZ_SANDBOX_API_KEY: ${{ secrets.BOLT_FOOD_AZ_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇶🇦 QATAR (QA)
+          # ============================================================
+          TALABAT_QA_SANDBOX_API_KEY: ${{ secrets.TALABAT_QA_SANDBOX_API_KEY }}
+          SNOONU_QA_SANDBOX_API_KEY: ${{ secrets.SNOONU_QA_SANDBOX_API_KEY }}
+          WOLT_QA_SANDBOX_API_KEY: ${{ secrets.WOLT_QA_SANDBOX_API_KEY }}
+          CARREFOUR_QA_SANDBOX_API_KEY: ${{ secrets.CARREFOUR_QA_SANDBOX_API_KEY }}
+          LULU_QA_SANDBOX_API_KEY: ${{ secrets.LULU_QA_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇸🇦 SAUDI ARABIA (SA)
+          # ============================================================
+          NOON_SA_SANDBOX_API_KEY: ${{ secrets.NOON_SA_SANDBOX_API_KEY }}
+          HARAJ_SA_SANDBOX_API_KEY: ${{ secrets.HARAJ_SA_SANDBOX_API_KEY }}
+          HUNGERSTATION_SA_SANDBOX_API_KEY: ${{ secrets.HUNGERSTATION_SA_SANDBOX_API_KEY }}
+          MRSOOL_SA_SANDBOX_API_KEY: ${{ secrets.MRSOOL_SA_SANDBOX_API_KEY }}
+          NANA_SA_SANDBOX_API_KEY: ${{ secrets.NANA_SA_SANDBOX_API_KEY }}
+          TALABAT_SA_SANDBOX_API_KEY: ${{ secrets.TALABAT_SA_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇨🇾 CYPRUS (CY)
+          # ============================================================
+          BAZARAKI_CY_SANDBOX_API_KEY: ${{ secrets.BAZARAKI_CY_SANDBOX_API_KEY }}
+          FOODY_CY_SANDBOX_API_KEY: ${{ secrets.FOODY_CY_SANDBOX_API_KEY }}
+          WOLT_CY_SANDBOX_API_KEY: ${{ secrets.WOLT_CY_SANDBOX_API_KEY }}
+          DELIVEROO_CY_SANDBOX_API_KEY: ${{ secrets.DELIVEROO_CY_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇩🇪 GERMANY (DE)
+          # ============================================================
+          ZALANDO_SANDBOX_API_KEY: ${{ secrets.ZALANDO_SANDBOX_API_KEY }}
+          OTTO_SANDBOX_API_KEY: ${{ secrets.OTTO_SANDBOX_API_KEY }}
+          LIEFERANDO_SANDBOX_API_KEY: ${{ secrets.LIEFERANDO_SANDBOX_API_KEY }}
+          GORILLAS_SANDBOX_API_KEY: ${{ secrets.GORILLAS_SANDBOX_API_KEY }}
+          REWE_SANDBOX_API_KEY: ${{ secrets.REWE_SANDBOX_API_KEY }}
+          CHECK24_SANDBOX_API_KEY: ${{ secrets.CHECK24_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇧🇬 BULGARIA (BG)
+          # ============================================================
+          EMAG_BG_SANDBOX_API_KEY: ${{ secrets.EMAG_BG_SANDBOX_API_KEY }}
+          OLX_BG_SANDBOX_API_KEY: ${{ secrets.OLX_BG_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇦🇹 AUSTRIA (AT)
+          # ============================================================
+          WILLHABEN_SANDBOX_API_KEY: ${{ secrets.WILLHABEN_SANDBOX_API_KEY }}
+          LIEFERANDO_AT_SANDBOX_API_KEY: ${{ secrets.LIEFERANDO_AT_SANDBOX_API_KEY }}
+          FOODORA_AT_SANDBOX_API_KEY: ${{ secrets.FOODORA_AT_SANDBOX_API_KEY }}
+          GURKERL_SANDBOX_API_KEY: ${{ secrets.GURKERL_SANDBOX_API_KEY }}
+          BILLA_SANDBOX_API_KEY: ${{ secrets.BILLA_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🇳🇱 NETHERLANDS (NL)
+          # ============================================================
+          BOL_SANDBOX_API_KEY: ${{ secrets.BOL_SANDBOX_API_KEY }}
+          COOLBLUE_SANDBOX_API_KEY: ${{ secrets.COOLBLUE_SANDBOX_API_KEY }}
+          MARKTPLAATS_SANDBOX_API_KEY: ${{ secrets.MARKTPLAATS_SANDBOX_API_KEY }}
+          THUISBEZORGD_SANDBOX_API_KEY: ${{ secrets.THUISBEZORGD_SANDBOX_API_KEY }}
+          ALBERT_HEIJN_SANDBOX_API_KEY: ${{ secrets.ALBERT_HEIJN_SANDBOX_API_KEY }}
+
+          # ============================================================
+          # 🤖 AI PROVIDERS
+          # ============================================================
+          OPENAI_TEST_API_KEY: ${{ secrets.OPENAI_TEST_API_KEY }}
+          ANTHROPIC_TEST_API_KEY: ${{ secrets.ANTHROPIC_TEST_API_KEY }}
+          GOOGLE_AI_TEST_API_KEY: ${{ secrets.GOOGLE_AI_TEST_API_KEY }}
+
+          # ============================================================
+          # CI/CD Configuration
+          # ============================================================
+          CI: 'true'
+          GITHUB_REF: ${{ github.ref }}
+          E2E_USE_SANDBOX: 'true'
+          E2E_RATE_LIMIT_WINDOW: '3600000'
+
+        run: |
+          npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts \
+            -t "${{ matrix.test-suite.pattern }}" \
+            --testTimeout=15000
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results-${{ matrix.test-suite.name }}
+          path: tests/e2e/results.json
+          retention-days: 30
+
+      - name: Check performance targets
+        if: success()
+        run: |
+          if [ -f tests/e2e/results.json ]; then
+            node -e "
+              const results = require('./tests/e2e/results.json');
+
+              if (!results.performance || results.performance.length === 0) {
+                console.log('⏭️  No performance data available');
+                process.exit(0);
+              }
+
+              const failedTargets = results.performance.filter(m => m.p95 > 2000);
+
+              if (failedTargets.length > 0) {
+                console.error('⚠️ Performance targets not met:');
+                failedTargets.forEach(m => {
+                  console.error(\`  - \${m.name}: p95=\${m.p95.toFixed(0)}ms (target: < 2000ms)\`);
+                });
+                process.exit(1);
+              }
+
+              console.log('✅ All performance targets met');
+            "
+          else
+            echo "⏭️  No results file found (tests may have been skipped)"
+          fi
+
+      - name: Comment on PR with results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const resultsPath = 'tests/e2e/results.json';
+
+            if (!fs.existsSync(resultsPath)) {
+              return; // No results file, skip comment
+            }
+
+            const results = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+
+            const { passed, failed, skipped, pending, total } = results.summary;
+
+            const body = `
+            ## 🧪 E2E Test Results - ${{ matrix.test-suite.name }}
+
+            | Status | Count | Percentage |
+            |--------|-------|------------|
+            | ✅ Passed | ${passed} | ${((passed/total)*100).toFixed(1)}% |
+            | ❌ Failed | ${failed} | ${((failed/total)*100).toFixed(1)}% |
+            | ⏭️ Skipped | ${skipped} | ${((skipped/total)*100).toFixed(1)}% |
+            | ⏳ Pending | ${pending} | ${((pending/total)*100).toFixed(1)}% |
+            | **Total** | **${total}** | **100%** |
+
+            ${results.performance && results.performance.length > 0 ? `
+            ### 📈 Performance Metrics
+
+            | Metric | p95 | p99 | Status |
+            |--------|-----|-----|--------|
+            ${results.performance.map(m => {
+              const status = m.p95 < 2000 ? '✅' : '⚠️';
+              return `| ${m.name} | ${m.p95.toFixed(0)}ms | ${m.p99.toFixed(0)}ms | ${status} |`;
+            }).join('\n')}
+            ` : ''}
+
+            ---
+            *E2E tests run with real/sandbox endpoints ONLY - NO MOCK DATA*
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  summary:
+    name: E2E Test Summary
+    runs-on: ubuntu-latest
+    needs: e2e-tests
+    if: always()
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-results
+
+      - name: Generate summary report
+        run: |
+          echo "# 📊 E2E Test Summary - All Regions" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Test Suites" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          total_passed=0
+          total_failed=0
+          total_skipped=0
+          total_pending=0
+
+          for dir in test-results/*/; do
+            if [ -f "$dir/results.json" ]; then
+              suite_name=$(basename "$dir")
+
+              passed=$(jq '.summary.passed' "$dir/results.json")
+              failed=$(jq '.summary.failed' "$dir/results.json")
+              skipped=$(jq '.summary.skipped' "$dir/results.json")
+              pending=$(jq '.summary.pending' "$dir/results.json")
+
+              total_passed=$((total_passed + passed))
+              total_failed=$((total_failed + failed))
+              total_skipped=$((total_skipped + skipped))
+              total_pending=$((total_pending + pending))
+
+              echo "### $suite_name" >> $GITHUB_STEP_SUMMARY
+              echo "- ✅ Passed: $passed" >> $GITHUB_STEP_SUMMARY
+              echo "- ❌ Failed: $failed" >> $GITHUB_STEP_SUMMARY
+              echo "- ⏭️ Skipped: $skipped" >> $GITHUB_STEP_SUMMARY
+              echo "- ⏳ Pending: $pending" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "## 🎯 Overall Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ **Total Passed**: $total_passed/72" >> $GITHUB_STEP_SUMMARY
+          echo "- ❌ **Total Failed**: $total_failed/72" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏭️ **Total Skipped**: $total_skipped/72" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏳ **Total Pending**: $total_pending/72" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Real/Sandbox endpoints ONLY - NO MOCK DATA*" >> $GITHUB_STEP_SUMMARY
+
+      - name: Fail if critical tests failed
+        run: |
+          # Check if any critical tests failed
+          critical_failures=0
+
+          for dir in test-results/*/; do
+            if [ -f "$dir/results.json" ]; then
+              failed=$(jq '.summary.failed' "$dir/results.json")
+              if [ "$failed" -gt 0 ]; then
+                critical_failures=$((critical_failures + failed))
+              fi
+            fi
+          done
+
+          if [ $critical_failures -gt 0 ]; then
+            echo "❌ $critical_failures critical test(s) failed"
+            exit 1
+          fi
+
+          echo "✅ All critical tests passed"

@@ -1,0 +1,41 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "close": "Kapat",
+    "back": "Geri"
+  },
+  "lydianIQ": {
+    "welcome": "Merhaba! Size nasıl yardımcı olabilirim? Kargo takibi, ürün arama, fiyat karşılaştırma ve daha fazlası için bana yazabilirsiniz.",
+    "noIntentFound": "Üzgünüm, isteğinizi anlayamadım. Lütfen daha spesifik bir soru sorun veya desteklenen işlemlerden birini deneyin.",
+    "placeholder": "Kargo takibi, fiyat karşılaştırma, ürün arama...",
+    "sendMessage": "Mesaj gönder"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "dashboard": "Panel",
+    "settings": "Ayarlar",
+    "profile": "Profil",
+    "logout": "Çıkış"
+  },
+  "search": {
+    "placeholder": "Kargo takibi, fiyat karşılaştırma, ürün arama...",
+    "noResults": "Sonuç bulunamadı",
+    "searching": "Aranıyor..."
+  },
+  "actions": {
+    "shipment_track": "Kargo Takip",
+    "product_sync": "Ürün Senkronizasyonu",
+    "price_compare": "Fiyat Karşılaştırma",
+    "loan_compare": "Kredi Karşılaştırma",
+    "trip_search": "Seyahat Arama"
+  }
+}

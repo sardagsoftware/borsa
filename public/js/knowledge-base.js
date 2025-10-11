@@ -224,19 +224,35 @@ async function performSearch() {
 function displaySearchResults(searchTime) {
     if (!elements.resultsGrid) return;
 
+    // Hide categories section
+    const categoriesSection = document.getElementById('knowledgeCategories');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'none';
+    }
+
     // Show results section
     if (elements.searchResultsSection) {
         elements.searchResultsSection.style.display = 'block';
-        elements.searchResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Smooth scroll with delay for better UX
+        setTimeout(() => {
+            elements.searchResultsSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 100);
     }
 
-    // Update results info
+    // Update results info with better formatting
     if (elements.resultsCount) {
-        elements.resultsCount.textContent = `${state.totalResults.toLocaleString('tr-TR')} sonuç bulundu`;
+        const countText = state.totalResults === 1
+            ? '1 sonuç bulundu'
+            : `${state.totalResults.toLocaleString('tr-TR')} sonuç bulundu`;
+        elements.resultsCount.textContent = countText;
     }
 
     if (elements.resultsTime) {
-        elements.resultsTime.textContent = `${searchTime} saniye`;
+        elements.resultsTime.textContent = `${searchTime}s`;
     }
 
     // Clear previous results
@@ -244,10 +260,20 @@ function displaySearchResults(searchTime) {
 
     if (state.searchResults.length === 0) {
         elements.resultsGrid.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-search" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
-                <h3>Sonuç bulunamadı</h3>
+            <div class="no-results-enhanced">
+                <div class="no-results-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Sonuç Bulunamadı</h3>
                 <p>Farklı anahtar kelimeler veya filtreler deneyebilirsiniz.</p>
+                <div class="no-results-actions">
+                    <button onclick="clearSearch()" class="no-results-btn">
+                        <i class="fas fa-redo"></i> Yeni Arama
+                    </button>
+                    <button onclick="backToCategories()" class="no-results-btn secondary">
+                        <i class="fas fa-th"></i> Kategorileri Görüntüle
+                    </button>
+                </div>
             </div>
         `;
         return;
@@ -441,6 +467,7 @@ window.openWithAI = function(resultIndex) {
 
 // ========== Utility Functions ==========
 function showLoading(show) {
+    // Global loading overlay
     if (elements.loadingOverlay) {
         if (show) {
             elements.loadingOverlay.classList.add('active');
@@ -448,6 +475,13 @@ function showLoading(show) {
             elements.loadingOverlay.classList.remove('active');
         }
     }
+
+    // Results section loading
+    const resultsLoading = document.getElementById('resultsLoading');
+    if (resultsLoading) {
+        resultsLoading.style.display = show ? 'block' : 'none';
+    }
+
     state.isLoading = show;
 }
 
@@ -777,6 +811,119 @@ function showSearchSuggestions(query) {
     console.log('💡 Suggestions for:', query);
 }
 
+// ========== UX Enhancement Functions ==========
+
+// Refine Search
+window.refineSearch = function() {
+    console.log('🔍 Refining search...');
+    // Scroll back to search box
+    elements.searchInput?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    elements.searchInput?.focus();
+    showNotification('Arama kriterlerini güncelleyebilirsiniz', 'info');
+};
+
+// Sort Results
+window.sortResults = function(sortBy) {
+    console.log('📊 Sorting by:', sortBy);
+
+    if (!state.searchResults || state.searchResults.length === 0) {
+        return;
+    }
+
+    // Sort results
+    if (sortBy === 'relevance') {
+        state.searchResults.sort((a, b) => (b.relevance || 0) - (a.relevance || 0));
+    } else if (sortBy === 'date') {
+        state.searchResults.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    } else if (sortBy === 'title') {
+        state.searchResults.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    // Re-display
+    elements.resultsGrid.innerHTML = '';
+    state.searchResults.forEach((result, index) => {
+        const resultCard = createResultCard(result, index);
+        elements.resultsGrid.appendChild(resultCard);
+    });
+
+    showNotification('Sonuçlar sıralandı', 'success');
+};
+
+// Export Results
+window.exportResults = function() {
+    console.log('📥 Exporting results...');
+
+    if (!state.searchResults || state.searchResults.length === 0) {
+        showNotification('Dışa aktarılacak sonuç bulunamadı', 'warning');
+        return;
+    }
+
+    // Create CSV content
+    let csv = 'Başlık,URL,Kaynak,Alan,Relevans\n';
+    state.searchResults.forEach(result => {
+        csv += `"${result.title}","${result.url}","${result.source}","${result.domain}","${result.relevance}%"\n`;
+    });
+
+    // Download CSV
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `knowledge-base-search-${Date.now()}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showNotification('Sonuçlar dışa aktarıldı', 'success');
+};
+
+// Clear Search
+window.clearSearch = function() {
+    console.log('🗑️ Clearing search...');
+
+    // Clear state
+    state.currentQuery = '';
+    state.searchResults = [];
+    state.totalResults = 0;
+    state.currentPage = 1;
+
+    // Clear UI
+    if (elements.searchInput) {
+        elements.searchInput.value = '';
+        elements.searchInput.focus();
+    }
+
+    // Hide results, show categories
+    if (elements.searchResultsSection) {
+        elements.searchResultsSection.style.display = 'none';
+    }
+
+    const categoriesSection = document.getElementById('knowledgeCategories');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'block';
+        categoriesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    showNotification('Arama temizlendi', 'success');
+};
+
+// Back to Categories
+window.backToCategories = function() {
+    console.log('⬅️ Back to categories...');
+
+    // Hide results, show categories
+    if (elements.searchResultsSection) {
+        elements.searchResultsSection.style.display = 'none';
+    }
+
+    const categoriesSection = document.getElementById('knowledgeCategories');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'block';
+        categoriesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};
+
 // ========== Add CSS Animations ==========
 const style = document.createElement('style');
 style.textContent = `
@@ -941,7 +1088,290 @@ style.textContent = `
         margin-bottom: 0.5rem;
         color: #374151;
     }
+
+    /* ========== Enhanced Results Section ========== */
+    .search-results-section {
+        background: #f8f9fa;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+
+    .results-header-sticky {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+        border: 1px solid #e5e7eb;
+    }
+
+    .results-info-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .results-title {
+        font-size: 1.75rem;
+        color: #111827;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0;
+    }
+
+    .results-title i {
+        color: #10A37F;
+    }
+
+    .results-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .results-count-badge {
+        padding: 0.5rem 1rem;
+        background: #10A37F;
+        color: white;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .results-time-badge {
+        padding: 0.5rem 1rem;
+        background: #f3f4f6;
+        color: #6b7280;
+        border-radius: 25px;
+        font-size: 0.9rem;
+    }
+
+    .results-quick-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .quick-action-btn {
+        padding: 0.65rem 1.25rem;
+        border: 1px solid #e5e7eb;
+        background: white;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #374151;
+    }
+
+    .quick-action-btn:hover {
+        border-color: #10A37F;
+        background: #f0fdf4;
+        color: #10A37F;
+        transform: translateY(-1px);
+    }
+
+    .quick-action-btn.clear-btn {
+        border-color: #f87171;
+        color: #dc2626;
+    }
+
+    .quick-action-btn.clear-btn:hover {
+        background: #fef2f2;
+        border-color: #dc2626;
+    }
+
+    /* Loading Animation */
+    .results-loading {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .loading-animation {
+        display: inline-block;
+    }
+
+    .loading-dots {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .loading-dots span {
+        width: 12px;
+        height: 12px;
+        background: #10A37F;
+        border-radius: 50%;
+        animation: loadingBounce 1.4s infinite ease-in-out both;
+    }
+
+    .loading-dots span:nth-child(1) {
+        animation-delay: -0.32s;
+    }
+
+    .loading-dots span:nth-child(2) {
+        animation-delay: -0.16s;
+    }
+
+    @keyframes loadingBounce {
+        0%, 80%, 100% {
+            transform: scale(0);
+            opacity: 0.5;
+        }
+        40% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .loading-animation p {
+        color: #6b7280;
+        font-size: 1rem;
+    }
+
+    /* Enhanced Results Grid */
+    .results-grid-enhanced {
+        display: grid;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Enhanced No Results */
+    .no-results-enhanced {
+        text-align: center;
+        padding: 5rem 2rem;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .no-results-icon {
+        font-size: 5rem;
+        color: #d1d5db;
+        margin-bottom: 1.5rem;
+    }
+
+    .no-results-enhanced h3 {
+        font-size: 1.75rem;
+        color: #111827;
+        margin-bottom: 0.75rem;
+    }
+
+    .no-results-enhanced p {
+        color: #6b7280;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .no-results-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .no-results-btn {
+        padding: 0.85rem 1.75rem;
+        border: none;
+        background: #10A37F;
+        color: white;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .no-results-btn:hover {
+        background: #0d8f6f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16,163,127,0.3);
+    }
+
+    .no-results-btn.secondary {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+    .no-results-btn.secondary:hover {
+        background: #e5e7eb;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Back to Explore */
+    .back-to-explore {
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .back-btn {
+        padding: 0.85rem 1.75rem;
+        border: 2px solid #e5e7eb;
+        background: white;
+        color: #374151;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .back-btn:hover {
+        border-color: #10A37F;
+        color: #10A37F;
+        background: #f0fdf4;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .results-info-bar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .results-quick-actions {
+            width: 100%;
+        }
+
+        .quick-action-btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+        }
+
+        .no-results-enhanced {
+            padding: 3rem 1.5rem;
+        }
+
+        .no-results-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .no-results-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
 `;
 document.head.appendChild(style);
 
-console.log('✅ Knowledge Base JavaScript Loaded');
+console.log('✅ Knowledge Base JavaScript Loaded (Enhanced UX v2.1)');

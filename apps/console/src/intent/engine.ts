@@ -1,268 +1,443 @@
 /**
- * 🧠 Intent Engine - Natural Language → Action Mapping
- * Lightweight NLU for Turkish-first, multi-locale support
- *
- * @author LyDian AI - Ultra Intelligence Platform
- * @license Proprietary
+ * 🎯 Intent Recognition Engine
+ * 
+ * ChatGPT-style intent detection with Turkish support
+ * - Regex + Fuzzy matching + Domain priority
+ * - Min score: 0.55
+ * - Top-3 suggestions as chips
+ * 
+ * @module intent/engine
  */
 
-import { synonyms, patterns } from './dictionaries';
+import {
+  normalize,
+  toTRLower,
+  extractTrackingNumber,
+  extractAmount,
+  extractTerm,
+  extractPercentage,
+} from './normalize';
 
-export type Intent = {
-  action: string;              // "shipment.track", "loan.compare", etc.
-  score: number;               // 0..1 confidence
-  params: Record<string, any>; // Extracted parameters
-  locale: string;
-  reason?: string;             // Human-readable explanation
+import {
+  ALL_VENDORS,
+  VENDOR_ID_MAP,
+  KEYWORDS_SHIPMENT_TRACK,
+  KEYWORDS_PRODUCT_SYNC,
+  KEYWORDS_PRICE_UPDATE,
+  KEYWORDS_INVENTORY_SYNC,
+  KEYWORDS_MENU_UPDATE,
+  KEYWORDS_LOAN_COMPARE,
+  KEYWORDS_TRIP_SEARCH,
+  KEYWORDS_INSIGHTS,
+  KEYWORDS_ESG,
+} from './dictionaries';
+
+// ============================================================================
+// Types
+// ============================================================================
+
+export interface IntentMatch {
+  action: string;
+  score: number;
+  params: Record<string, any>;
+  vendor?: string;
+  vendorId?: string;
+  confidence: 'high' | 'medium' | 'low';
+  suggestions?: string[];
+}
+
+export interface IntentResult {
+  matches: IntentMatch[];
+  topMatch: IntentMatch | null;
+  query: string;
+  normalized: string;
+}
+
+// ============================================================================
+// Scoring Weights
+// ============================================================================
+
+const WEIGHTS = {
+  EXACT_VENDOR: 0.4,
+  KEYWORD_MATCH: 0.3,
+  PARAM_EXTRACTED: 0.2,
+  DOMAIN_PRIORITY: 0.1,
 };
 
-/**
- * Parse user utterance into intents
- * Returns top 3 scored intents
- */
-export function parseUtterance(utterance: string, locale: string = 'tr'): Intent[] {
-  if (!utterance || utterance.trim().length < 3) {
-    return [];
+const MIN_SCORE = 0.55;
+
+// ============================================================================
+// Fuzzy Matching (Levenshtein Distance)
+// ============================================================================
+
+function levenshtein(a: string, b: string): number {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+
+  const matrix: number[][] = [];
+
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
   }
 
-  const normalized = normalizeText(utterance, locale);
-  const localePatterns = patterns[locale as keyof typeof patterns] || patterns.tr;
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
 
-  const results: Intent[] = [];
-
-  // Try pattern matching
-  for (const pattern of localePatterns) {
-    const match = normalized.match(pattern.re);
-
-    if (match) {
-      const params = extractParams(match, pattern.params);
-      const score = calculateScore(match, pattern);
-
-      results.push({
-        action: pattern.action,
-        score,
-        params,
-        locale,
-        reason: pattern.reason || getDefaultReason(pattern.action, locale)
-      });
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1, // substitution
+          matrix[i][j - 1] + 1,     // insertion
+          matrix[i - 1][j] + 1      // deletion
+        );
+      }
     }
   }
 
-  // Fallback: keyword-based matching
-  if (results.length === 0) {
-    const keywordIntents = matchByKeywords(normalized, locale);
-    results.push(...keywordIntents);
-  }
-
-  // Sort by score (descending) and return top 3
-  return results
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
+  return matrix[b.length][a.length];
 }
 
-/**
- * Normalize text for matching
- * - Lowercase (TR-aware)
- * - Trim whitespace
- * - Normalize Turkish characters
- */
-function normalizeText(text: string, locale: string): string {
-  let normalized = text.trim();
-
-  if (locale === 'tr') {
-    // Turkish-specific lowercasing
-    normalized = normalized
-      .replace(/İ/g, 'i')
-      .replace(/I/g, 'ı')
-      .toLowerCase();
-  } else {
-    normalized = normalized.toLowerCase();
-  }
-
-  return normalized;
+function fuzzyMatch(query: string, target: string): number {
+  const distance = levenshtein(query, target);
+  const maxLength = Math.max(query.length, target.length);
+  return 1 - (distance / maxLength);
 }
 
-/**
- * Extract parameters from regex match
- */
-function extractParams(match: RegExpMatchArray, paramNames: string[]): Record<string, any> {
-  const params: Record<string, any> = {};
+// ============================================================================
+// Vendor Detection
+// ============================================================================
 
-  // Skip first element (full match), map to param names
-  paramNames.forEach((name, index) => {
-    const value = match[index + 1];
-    if (value !== undefined) {
-      params[name] = parseValue(name, value);
+function detectVendor(normalized: string): { vendor: string; vendorId: string; score: number } | null {
+  let bestMatch: { vendor: string; score: number } | null = null;
+
+  for (const vendor of ALL_VENDORS) {
+    // Exact match
+    if (normalized.includes(vendor)) {
+      bestMatch = { vendor, score: 1.0 };
+      break;
     }
-  });
 
-  return params;
-}
-
-/**
- * Parse value based on param name
- */
-function parseValue(paramName: string, value: string): any {
-  // Amount/Money
-  if (paramName === 'amount') {
-    return parseFloat(value.replace(/\./g, '').replace(/,/g, '.'));
+    // Fuzzy match
+    const words = normalized.split(/\s+/);
+    for (const word of words) {
+      const similarity = fuzzyMatch(word, vendor);
+      if (similarity > 0.8) {
+        if (!bestMatch || similarity > bestMatch.score) {
+          bestMatch = { vendor, score: similarity };
+        }
+      }
+    }
   }
 
-  // Numbers
-  if (paramName === 'term' || paramName === 'days' || paramName === 'pax') {
-    return parseInt(value, 10);
-  }
+  if (!bestMatch) return null;
 
-  // Vendor normalization
-  if (paramName === 'vendor') {
-    return normalizeVendor(value);
-  }
+  const vendorId = VENDOR_ID_MAP[bestMatch.vendor];
+  if (!vendorId) return null;
 
-  return value.trim();
-}
-
-/**
- * Normalize vendor names
- */
-function normalizeVendor(vendor: string): string {
-  const vendorMap: Record<string, string> = {
-    'hepsijet': 'hepsijet',
-    'aras': 'aras',
-    'yurtiçi': 'yurtici',
-    'yurtici': 'yurtici',
-    'mng': 'mng',
-    'sürat': 'surat',
-    'surat': 'surat',
-    'ups': 'ups'
+  return {
+    vendor: bestMatch.vendor,
+    vendorId,
+    score: bestMatch.score,
   };
-
-  return vendorMap[vendor.toLowerCase()] || vendor;
 }
 
-/**
- * Calculate confidence score
- */
-function calculateScore(match: RegExpMatchArray, pattern: any): number {
-  let score = 0.7; // Base score
+// ============================================================================
+// Intent Matchers
+// ============================================================================
 
-  // Boost score based on match quality
-  const matchedGroups = match.slice(1).filter(g => g !== undefined).length;
-  score += matchedGroups * 0.05;
+function matchShipmentTrack(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_SHIPMENT_TRACK.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
 
-  // Cap at 0.99
-  return Math.min(score, 0.99);
-}
+  const trackingNumber = extractTrackingNumber(normalized);
+  const vendor = detectVendor(normalized);
 
-/**
- * Fallback: keyword-based matching
- */
-function matchByKeywords(text: string, locale: string): Intent[] {
-  const localeSynonyms = synonyms[locale as keyof typeof synonyms] || synonyms.tr;
-  const results: Intent[] = [];
+  let score = 0;
+  if (vendor) score += WEIGHTS.EXACT_VENDOR * vendor.score;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+  if (trackingNumber) score += WEIGHTS.PARAM_EXTRACTED;
 
-  // Shipment tracking
-  if (localeSynonyms.shipment.some(kw => text.includes(kw)) &&
-      localeSynonyms.track.some(kw => text.includes(kw))) {
-    results.push({
-      action: 'shipment.track',
-      score: 0.6,
-      params: {},
-      locale,
-      reason: 'Kargo takibi sorgusu tespit edildi'
-    });
-  }
+  if (score < MIN_SCORE) return null;
 
-  // Loan comparison
-  if (localeSynonyms.loan.some(kw => text.includes(kw))) {
-    results.push({
-      action: 'loan.compare',
-      score: 0.6,
-      params: {},
-      locale,
-      reason: 'Kredi karşılaştırma sorgusu'
-    });
-  }
-
-  // Price optimization
-  if (localeSynonyms.price.some(kw => text.includes(kw)) &&
-      (text.includes('optimiz') || text.includes('arttır') || text.includes('düşür'))) {
-    results.push({
-      action: 'economy.optimize',
-      score: 0.6,
-      params: {},
-      locale,
-      reason: 'Fiyat optimizasyonu isteği'
-    });
-  }
-
-  // Trip search
-  if (localeSynonyms.trip.some(kw => text.includes(kw))) {
-    results.push({
-      action: 'trip.search',
-      score: 0.6,
-      params: {},
-      locale,
-      reason: 'Seyahat/otel arama'
-    });
-  }
-
-  // ESG carbon calculation
-  if (localeSynonyms.esg.some(kw => text.includes(kw))) {
-    results.push({
-      action: 'esg.calculate-carbon',
-      score: 0.6,
-      params: {},
-      locale,
-      reason: 'Karbon ayak izi hesaplama'
-    });
-  }
-
-  return results;
-}
-
-/**
- * Get default reason text by action
- */
-function getDefaultReason(action: string, locale: string): string {
-  const reasons: Record<string, Record<string, string>> = {
-    'shipment.track': {
-      tr: 'Kargo takibi',
-      en: 'Shipment tracking',
-      ar: 'تتبع الشحنة'
+  return {
+    action: 'shipment.track',
+    score,
+    params: {
+      trackingNumber,
+      vendor: vendor?.vendorId || null,
     },
-    'loan.compare': {
-      tr: 'Kredi karşılaştırma',
-      en: 'Loan comparison',
-      ar: 'مقارنة القروض'
-    },
-    'economy.optimize': {
-      tr: 'Fiyat optimizasyonu',
-      en: 'Price optimization',
-      ar: 'تحسين السعر'
-    },
-    'trip.search': {
-      tr: 'Seyahat arama',
-      en: 'Trip search',
-      ar: 'البحث عن رحلة'
-    },
-    'esg.calculate-carbon': {
-      tr: 'Karbon hesaplama',
-      en: 'Carbon calculation',
-      ar: 'حساب الكربون'
-    }
+    vendor: vendor?.vendor,
+    vendorId: vendor?.vendorId,
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
   };
-
-  return reasons[action]?.[locale] || action;
 }
 
-/**
- * Format intent for display
- */
-export function formatIntentChip(intent: Intent): string {
-  const action = intent.action.split('.')[1] || intent.action;
-  const params = Object.entries(intent.params)
-    .map(([k, v]) => `${v}`)
-    .join(' • ');
+function matchProductSync(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_PRODUCT_SYNC.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
 
-  return params ? `${intent.reason}: ${params}` : intent.reason || action;
+  const vendor = detectVendor(normalized);
+
+  let score = 0;
+  if (vendor) score += WEIGHTS.EXACT_VENDOR * vendor.score;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'product.sync',
+    score,
+    params: {
+      vendor: vendor?.vendorId || null,
+    },
+    vendor: vendor?.vendor,
+    vendorId: vendor?.vendorId,
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
 }
+
+function matchPriceUpdate(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_PRICE_UPDATE.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  const percentage = extractPercentage(normalized);
+  const vendor = detectVendor(normalized);
+
+  // Detect increase/decrease
+  const isDecrease = /düşür|azalt|indir|decrease|reduce|lower/.test(normalized);
+  const isIncrease = /artır|yükselt|arttır|increase|raise|higher/.test(normalized);
+
+  let score = 0;
+  if (vendor) score += WEIGHTS.EXACT_VENDOR * vendor.score;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+  if (percentage) score += WEIGHTS.PARAM_EXTRACTED;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'price.update',
+    score,
+    params: {
+      vendor: vendor?.vendorId || null,
+      percentage,
+      direction: isDecrease ? 'decrease' : isIncrease ? 'increase' : null,
+    },
+    vendor: vendor?.vendor,
+    vendorId: vendor?.vendorId,
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+function matchInventorySync(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_INVENTORY_SYNC.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  const vendor = detectVendor(normalized);
+
+  let score = 0;
+  if (vendor) score += WEIGHTS.EXACT_VENDOR * vendor.score;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'inventory.sync',
+    score,
+    params: {
+      vendor: vendor?.vendorId || null,
+    },
+    vendor: vendor?.vendor,
+    vendorId: vendor?.vendorId,
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+function matchMenuUpdate(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_MENU_UPDATE.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  const vendor = detectVendor(normalized);
+
+  let score = 0;
+  if (vendor) score += WEIGHTS.EXACT_VENDOR * vendor.score;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'menu.update',
+    score,
+    params: {
+      vendor: vendor?.vendorId || null,
+    },
+    vendor: vendor?.vendor,
+    vendorId: vendor?.vendorId,
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+function matchLoanCompare(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_LOAN_COMPARE.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  const amount = extractAmount(normalized);
+  const term = extractTerm(normalized);
+
+  let score = 0;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+  if (amount) score += WEIGHTS.PARAM_EXTRACTED;
+  if (term) score += WEIGHTS.PARAM_EXTRACTED * 0.5;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'loan.compare',
+    score,
+    params: {
+      amount,
+      term,
+    },
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+function matchTripSearch(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_TRIP_SEARCH.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  const vendor = detectVendor(normalized);
+
+  let score = 0;
+  if (vendor) score += WEIGHTS.EXACT_VENDOR * vendor.score;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'trip.search',
+    score,
+    params: {
+      vendor: vendor?.vendorId || null,
+    },
+    vendor: vendor?.vendor,
+    vendorId: vendor?.vendorId,
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+function matchInsights(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_INSIGHTS.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  // Detect insight type
+  let insightType = 'general';
+  if (/fiyat|price/.test(normalized)) insightType = 'price-trend';
+  if (/stok|inventory/.test(normalized)) insightType = 'inventory-levels';
+  if (/satış|sales/.test(normalized)) insightType = 'sales-performance';
+
+  let score = 0;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+  score += WEIGHTS.DOMAIN_PRIORITY;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: `insights.${insightType}`,
+    score,
+    params: {
+      type: insightType,
+    },
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+function matchESG(normalized: string): IntentMatch | null {
+  const hasKeyword = KEYWORDS_ESG.some(kw => normalized.includes(kw));
+  if (!hasKeyword) return null;
+
+  let score = 0;
+  if (hasKeyword) score += WEIGHTS.KEYWORD_MATCH;
+  score += WEIGHTS.DOMAIN_PRIORITY;
+
+  if (score < MIN_SCORE) return null;
+
+  return {
+    action: 'esg.calculate-carbon',
+    score,
+    params: {},
+    confidence: score > 0.8 ? 'high' : score > 0.65 ? 'medium' : 'low',
+  };
+}
+
+// ============================================================================
+// Main Intent Recognition
+// ============================================================================
+
+export function recognizeIntent(query: string): IntentResult {
+  if (!query || typeof query !== 'string') {
+    return {
+      matches: [],
+      topMatch: null,
+      query: '',
+      normalized: '',
+    };
+  }
+
+  const normalized = normalize(query);
+
+  // Run all matchers
+  const matches: IntentMatch[] = [];
+
+  const shipmentMatch = matchShipmentTrack(normalized);
+  if (shipmentMatch) matches.push(shipmentMatch);
+
+  const productMatch = matchProductSync(normalized);
+  if (productMatch) matches.push(productMatch);
+
+  const priceMatch = matchPriceUpdate(normalized);
+  if (priceMatch) matches.push(priceMatch);
+
+  const inventoryMatch = matchInventorySync(normalized);
+  if (inventoryMatch) matches.push(inventoryMatch);
+
+  const menuMatch = matchMenuUpdate(normalized);
+  if (menuMatch) matches.push(menuMatch);
+
+  const loanMatch = matchLoanCompare(normalized);
+  if (loanMatch) matches.push(loanMatch);
+
+  const tripMatch = matchTripSearch(normalized);
+  if (tripMatch) matches.push(tripMatch);
+
+  const insightsMatch = matchInsights(normalized);
+  if (insightsMatch) matches.push(insightsMatch);
+
+  const esgMatch = matchESG(normalized);
+  if (esgMatch) matches.push(esgMatch);
+
+  // Sort by score (descending)
+  matches.sort((a, b) => b.score - a.score);
+
+  // Top-3 for chip suggestions
+  const topMatch = matches[0] || null;
+  const suggestions = matches.slice(0, 3).map(m => m.action);
+
+  return {
+    matches,
+    topMatch,
+    query,
+    normalized,
+  };
+}
+
+// ============================================================================
+// Export All
+// ============================================================================
+
+export { detectVendor, fuzzyMatch };
+
+console.log('✅ Intent engine loaded (regex + fuzzy + scoring, min=0.55)');

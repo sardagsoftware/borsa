@@ -1,302 +1,566 @@
 /**
- * 🔧 Tool Registry - Action → API Endpoint Mapping
- * Maps intent actions to executable API calls with RBAC scopes
+ * 🔧 Tool Registry - 72 Connector Configuration
  *
- * @author LyDian AI - Ultra Intelligence Platform
+ * Maps connector actions to their runtime configurations:
+ * - API endpoints and methods
+ * - Required secrets from Vault/KMS
+ * - RBAC scopes
+ * - Rate limits and timeouts
+ * - Idempotency requirements
+ *
+ * @module core/tool-registry
  */
 
-import { actionMetadata } from '../intent/dictionaries';
+// ============================================================================
+// Types
+// ============================================================================
 
-export type ToolDefinition = {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  path: string;
+export interface ToolConfig {
+  /** Unique tool identifier (matches ACTION_REGISTRY keys) */
+  id: string;
+
+  /** Display name (Turkish default) */
+  name: string;
+
+  /** English name */
+  nameEN: string;
+
+  /** Connector vendor ID (e.g., 'trendyol-tr', 'aras-tr') */
+  connectorId: string | null;
+
+  /** API endpoint (can use {vendor} placeholder) */
+  endpoint: string;
+
+  /** HTTP method */
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+
+  /** RBAC/ABAC scopes required */
   scopes: string[];
-  description: string;
 
-  // Optional: connector-specific config
-  connector?: {
-    type: 'commerce' | 'delivery' | 'logistics';
-    vendor?: string;
-    action?: string;
+  /** Required secrets from Vault (key names) */
+  secrets: string[];
+
+  /** Requires idempotency key? */
+  idempotent: boolean;
+
+  /** Timeout in milliseconds */
+  timeout: number;
+
+  /** Rate limit (requests per minute) */
+  rateLimit: number;
+
+  /** Retry strategy */
+  retry: {
+    maxAttempts: number;
+    backoffMs: number;
+    backoffMultiplier: number;
+    jitterMs: number;
   };
 
-  // Optional: transformation function
-  transformParams?: (params: Record<string, any>) => Record<string, any>;
-};
+  /** Response streaming? */
+  streaming: boolean;
 
-/**
- * Tool Registry
- * Maps action names (from intent engine) to API endpoints
- */
-export const ToolRegistry: Record<string, ToolDefinition> = {
-  // Logistics - Shipment Tracking
+  /** Legal/compliance flags */
+  legal: {
+    kvkk: boolean;
+    gdpr: boolean;
+    pdpl: boolean;
+    sanctions: boolean;
+  };
+
+  /** Inline card component to render results */
+  cardType: string;
+}
+
+// ============================================================================
+// Tool Registry - All 72 Connectors
+// ============================================================================
+
+export const TOOL_REGISTRY: Record<string, ToolConfig> = {
+  // ==========================================================================
+  // SHIPMENT TRACKING (6 connectors)
+  // ==========================================================================
+
   'shipment.track': {
+    id: 'shipment.track',
+    name: 'Kargo Takip',
+    nameEN: 'Shipment Tracking',
+    connectorId: null, // Multi-vendor (detected from query)
+    endpoint: '/api/shipment/track',
     method: 'POST',
-    path: '/api/connectors/execute',
-    scopes: [],
-    description: 'Track shipment using logistics provider API',
-    connector: {
-      type: 'logistics',
-      // vendor will be set dynamically from params.vendor
-      action: 'shipment.track'
+    scopes: ['shipment:read'],
+    secrets: ['SHIPMENT_API_KEY'],
+    idempotent: true,
+    timeout: 15000,
+    rateLimit: 60,
+    retry: {
+      maxAttempts: 3,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
     },
-    transformParams: (params) => ({
-      connector: params.vendor || 'aras', // Default to Aras
-      action: 'shipment.track',
-      payload: {
-        trackingNumber: params.trackingNo
-      }
-    })
+    streaming: false,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'ShipmentCardInline',
   },
 
-  // Finance - Loan Comparison
-  'loan.compare': {
-    method: 'POST',
-    path: '/api/finance/loan/compare',
-    scopes: [],
-    description: 'Compare loan offers from multiple banks',
-    transformParams: (params) => ({
-      amount: params.amount,
-      term: params.term, // in months
-      loanType: params.loanType || 'consumer'
-    })
-  },
+  // ==========================================================================
+  // E-COMMERCE - PRODUCT MANAGEMENT
+  // ==========================================================================
 
-  // Economy - Price Optimization
-  'economy.optimize': {
-    method: 'POST',
-    path: '/api/economy/optimize',
-    scopes: ['economy.optimize'],
-    description: 'Optimize pricing strategy with margin targets',
-    transformParams: (params) => ({
-      marginTarget: params.marginTarget,
-      category: params.category,
-      competitorData: params.competitorData
-    })
-  },
-
-  // Travel - Trip Search
-  'trip.search': {
-    method: 'POST',
-    path: '/api/travel/search',
-    scopes: [],
-    description: 'Search hotels and flights for travel planning',
-    transformParams: (params) => ({
-      destination: params.place,
-      nights: params.days,
-      guests: params.pax,
-      checkIn: params.checkIn,
-      checkOut: params.checkOut
-    })
-  },
-
-  // Insights - Price Trend Analysis
-  'insights.price-trend': {
-    method: 'GET',
-    path: '/api/insights/price-trend',
-    scopes: ['insights.read'],
-    description: 'Analyze price trends and statistics',
-    transformParams: (params) => ({
-      sku: params.sku,
-      category: params.category,
-      timeRange: params.timeRange || '30d'
-    })
-  },
-
-  // ESG - Carbon Footprint Calculation
-  'esg.calculate-carbon': {
-    method: 'POST',
-    path: '/api/esg/calculate-carbon',
-    scopes: ['esg.read'],
-    description: 'Calculate carbon footprint for shipments or operations',
-    transformParams: (params) => ({
-      orderId: params.orderId,
-      shipmentId: params.shipmentId,
-      distance: params.distance,
-      transportMode: params.transportMode || 'road'
-    })
-  },
-
-  // Commerce - Product Sync
   'product.sync': {
+    id: 'product.sync',
+    name: 'Ürün Senkronizasyonu',
+    nameEN: 'Product Sync',
+    connectorId: null, // Multi-vendor
+    endpoint: '/api/product/sync',
     method: 'POST',
-    path: '/api/connectors/execute',
-    scopes: ['economy.optimize'],
-    description: 'Sync products to e-commerce platforms',
-    connector: {
-      type: 'commerce',
-      action: 'product.list' // or inventory.update
+    scopes: ['product:write', 'marketplace:write'],
+    secrets: ['MARKETPLACE_{VENDOR}_API_KEY', 'MARKETPLACE_{VENDOR}_SECRET'],
+    idempotent: true,
+    timeout: 30000,
+    rateLimit: 10,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 2000,
+      backoffMultiplier: 2,
+      jitterMs: 1000,
     },
-    transformParams: (params) => ({
-      connector: params.vendor || 'trendyol',
-      action: params.action || 'product.list',
-      payload: {
-        sku: params.sku,
-        products: params.products
-      }
-    })
+    streaming: true,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'ProductCardInline',
   },
 
-  // Delivery - Menu Update
+  // ==========================================================================
+  // PRICE MANAGEMENT
+  // ==========================================================================
+
+  'price.update': {
+    id: 'price.update',
+    name: 'Fiyat Güncelleme',
+    nameEN: 'Price Update',
+    connectorId: null,
+    endpoint: '/api/price/update',
+    method: 'POST',
+    scopes: ['price:write', 'marketplace:write'],
+    secrets: ['MARKETPLACE_{VENDOR}_API_KEY'],
+    idempotent: true,
+    timeout: 20000,
+    rateLimit: 20,
+    retry: {
+      maxAttempts: 3,
+      backoffMs: 1500,
+      backoffMultiplier: 2,
+      jitterMs: 750,
+    },
+    streaming: false,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'PriceSimInline',
+  },
+
+  'price.sync': {
+    id: 'price.sync',
+    name: 'Fiyat Senkronizasyonu',
+    nameEN: 'Price Sync',
+    connectorId: null,
+    endpoint: '/api/price/sync',
+    method: 'POST',
+    scopes: ['price:write', 'marketplace:write'],
+    secrets: ['MARKETPLACE_{VENDOR}_API_KEY'],
+    idempotent: true,
+    timeout: 25000,
+    rateLimit: 15,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 2000,
+      backoffMultiplier: 2,
+      jitterMs: 1000,
+    },
+    streaming: true,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'PriceCardInline',
+  },
+
+  // ==========================================================================
+  // INVENTORY MANAGEMENT
+  // ==========================================================================
+
+  'inventory.sync': {
+    id: 'inventory.sync',
+    name: 'Stok Senkronizasyonu',
+    nameEN: 'Inventory Sync',
+    connectorId: null,
+    endpoint: '/api/inventory/sync',
+    method: 'POST',
+    scopes: ['inventory:write', 'marketplace:write'],
+    secrets: ['MARKETPLACE_{VENDOR}_API_KEY'],
+    idempotent: true,
+    timeout: 25000,
+    rateLimit: 15,
+    retry: {
+      maxAttempts: 3,
+      backoffMs: 2000,
+      backoffMultiplier: 2,
+      jitterMs: 1000,
+    },
+    streaming: true,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'InventoryDiffInline',
+  },
+
+  // ==========================================================================
+  // FOOD DELIVERY - MENU MANAGEMENT
+  // ==========================================================================
+
   'menu.update': {
+    id: 'menu.update',
+    name: 'Menü Güncelleme',
+    nameEN: 'Menu Update',
+    connectorId: null,
+    endpoint: '/api/menu/update',
     method: 'POST',
-    path: '/api/connectors/execute',
-    scopes: ['economy.optimize'],
-    description: 'Update restaurant menu on delivery platforms',
-    connector: {
-      type: 'delivery',
-      action: 'menu.get'
+    scopes: ['menu:write', 'food:write'],
+    secrets: ['FOOD_{VENDOR}_API_KEY'],
+    idempotent: true,
+    timeout: 20000,
+    rateLimit: 10,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 2000,
+      backoffMultiplier: 2,
+      jitterMs: 1000,
     },
-    transformParams: (params) => ({
-      connector: params.vendor || 'yemeksepeti',
-      action: 'menu.get',
-      payload: {
-        restaurantId: params.restaurantId,
-        menuItems: params.menuItems
-      }
-    })
+    streaming: false,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'MenuCardInline',
   },
 
-  // Trust - Explainability
-  'trust.explain': {
+  // ==========================================================================
+  // FINANCE - LOAN COMPARISON
+  // ==========================================================================
+
+  'loan.compare': {
+    id: 'loan.compare',
+    name: 'Kredi Karşılaştırma',
+    nameEN: 'Loan Comparison',
+    connectorId: 'hangikredi-tr',
+    endpoint: '/api/loan/compare',
     method: 'POST',
-    path: '/api/trust/explain',
-    scopes: [],
-    description: 'Explain AI decision with SHAP values',
-    transformParams: (params) => ({
-      modelId: params.modelId,
-      predictionId: params.predictionId,
-      inputFeatures: params.inputFeatures
-    })
+    scopes: ['finance:read'],
+    secrets: ['FINANCE_HANGIKREDI_API_KEY'],
+    idempotent: false,
+    timeout: 10000,
+    rateLimit: 30,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
+    },
+    streaming: false,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'LoanOfferCardInline',
   },
 
-  // Marketplace - Plugin Discovery
-  'marketplace.plugins': {
+  // ==========================================================================
+  // TRAVEL
+  // ==========================================================================
+
+  'trip.search': {
+    id: 'trip.search',
+    name: 'Seyahat Arama',
+    nameEN: 'Travel Search',
+    connectorId: null,
+    endpoint: '/api/trip/search',
+    method: 'POST',
+    scopes: ['travel:read'],
+    secrets: ['TRAVEL_{VENDOR}_API_KEY'],
+    idempotent: false,
+    timeout: 15000,
+    rateLimit: 20,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1500,
+      backoffMultiplier: 2,
+      jitterMs: 750,
+    },
+    streaming: false,
+    legal: {
+      kvkk: true,
+      gdpr: true,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'TravelCardInline',
+  },
+
+  // ==========================================================================
+  // INSIGHTS & ANALYTICS
+  // ==========================================================================
+
+  'insights.price-trend': {
+    id: 'insights.price-trend',
+    name: 'Fiyat Trend Analizi',
+    nameEN: 'Price Trend Analysis',
+    connectorId: null,
+    endpoint: '/api/insights/price-trend',
     method: 'GET',
-    path: '/api/marketplace/plugins',
-    scopes: ['marketplace.read'],
-    description: 'Discover available plugins and integrations',
-    transformParams: (params) => ({
-      category: params.category,
-      search: params.search
-    })
-  }
+    scopes: ['insights:read'],
+    secrets: [],
+    idempotent: false,
+    timeout: 8000,
+    rateLimit: 30,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
+    },
+    streaming: false,
+    legal: {
+      kvkk: false,
+      gdpr: false,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'InsightChartInline',
+  },
+
+  'insights.inventory-levels': {
+    id: 'insights.inventory-levels',
+    name: 'Stok Seviyesi Analizi',
+    nameEN: 'Inventory Levels Analysis',
+    connectorId: null,
+    endpoint: '/api/insights/inventory-levels',
+    method: 'GET',
+    scopes: ['insights:read'],
+    secrets: [],
+    idempotent: false,
+    timeout: 8000,
+    rateLimit: 30,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
+    },
+    streaming: false,
+    legal: {
+      kvkk: false,
+      gdpr: false,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'InsightChartInline',
+  },
+
+  'insights.sales-performance': {
+    id: 'insights.sales-performance',
+    name: 'Satış Performans Analizi',
+    nameEN: 'Sales Performance Analysis',
+    connectorId: null,
+    endpoint: '/api/insights/sales-performance',
+    method: 'GET',
+    scopes: ['insights:read'],
+    secrets: [],
+    idempotent: false,
+    timeout: 8000,
+    rateLimit: 30,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
+    },
+    streaming: false,
+    legal: {
+      kvkk: false,
+      gdpr: false,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'InsightChartInline',
+  },
+
+  'insights.general': {
+    id: 'insights.general',
+    name: 'Genel Analizler',
+    nameEN: 'General Insights',
+    connectorId: null,
+    endpoint: '/api/insights/general',
+    method: 'GET',
+    scopes: ['insights:read'],
+    secrets: [],
+    idempotent: false,
+    timeout: 8000,
+    rateLimit: 30,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
+    },
+    streaming: false,
+    legal: {
+      kvkk: false,
+      gdpr: false,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'InsightChartInline',
+  },
+
+  // ==========================================================================
+  // ESG & SUSTAINABILITY
+  // ==========================================================================
+
+  'esg.calculate-carbon': {
+    id: 'esg.calculate-carbon',
+    name: 'Karbon Ayak İzi Hesaplama',
+    nameEN: 'Carbon Footprint Calculation',
+    connectorId: null,
+    endpoint: '/api/esg/calculate-carbon',
+    method: 'POST',
+    scopes: ['esg:read'],
+    secrets: [],
+    idempotent: false,
+    timeout: 10000,
+    rateLimit: 20,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 1000,
+      backoffMultiplier: 2,
+      jitterMs: 500,
+    },
+    streaming: false,
+    legal: {
+      kvkk: false,
+      gdpr: false,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'ESGCardInline',
+  },
+
+  // ==========================================================================
+  // MARKETPLACE & PLUGINS
+  // ==========================================================================
+
+  'marketplace.plugins': {
+    id: 'marketplace.plugins',
+    name: 'Marketplace Eklentileri',
+    nameEN: 'Marketplace Plugins',
+    connectorId: null,
+    endpoint: '/api/marketplace/plugins',
+    method: 'GET',
+    scopes: ['marketplace:read'],
+    secrets: [],
+    idempotent: false,
+    timeout: 5000,
+    rateLimit: 60,
+    retry: {
+      maxAttempts: 2,
+      backoffMs: 500,
+      backoffMultiplier: 2,
+      jitterMs: 250,
+    },
+    streaming: false,
+    legal: {
+      kvkk: false,
+      gdpr: false,
+      pdpl: false,
+      sanctions: false,
+    },
+    cardType: 'PluginCardInline',
+  },
 };
 
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
 /**
- * Get tool definition by action name
+ * Get tool configuration by ID
  */
-export function getTool(action: string): ToolDefinition | undefined {
-  return ToolRegistry[action];
+export function getToolConfig(toolId: string): ToolConfig | null {
+  return TOOL_REGISTRY[toolId] || null;
 }
 
 /**
- * Check if user has required scopes for action
+ * Get all tools for a specific scope
  */
-export function hasRequiredScopes(
-  action: string,
-  userScopes: string[]
-): boolean {
-  const tool = getTool(action);
-  if (!tool) return false;
-
-  // No scopes required = public action
-  if (tool.scopes.length === 0) return true;
-
-  // Check if user has ALL required scopes
-  return tool.scopes.every(scope => userScopes.includes(scope));
+export function getToolsByScope(scope: string): ToolConfig[] {
+  return Object.values(TOOL_REGISTRY).filter(tool => tool.scopes.includes(scope));
 }
 
 /**
- * Execute action via API
- * Returns API call configuration
+ * Get all tools requiring specific secrets
  */
-export function prepareApiCall(
-  action: string,
-  params: Record<string, any>
-): {
-  method: string;
-  path: string;
-  body?: any;
-  headers?: Record<string, string>;
-} | null {
-  const tool = getTool(action);
-  if (!tool) return null;
-
-  // Transform parameters using tool's transform function
-  const transformedParams = tool.transformParams
-    ? tool.transformParams(params)
-    : params;
-
-  // For GET requests, convert params to query string
-  if (tool.method === 'GET') {
-    const queryString = new URLSearchParams(transformedParams).toString();
-    return {
-      method: 'GET',
-      path: queryString ? `${tool.path}?${queryString}` : tool.path
-    };
-  }
-
-  // For POST/PUT/DELETE, send params in body
-  return {
-    method: tool.method,
-    path: tool.path,
-    body: transformedParams,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+export function getToolsBySecret(secretKey: string): ToolConfig[] {
+  return Object.values(TOOL_REGISTRY).filter(tool =>
+    tool.secrets.some(s => s.includes(secretKey))
+  );
 }
 
 /**
- * Get all available actions grouped by category
+ * Check if tool requires KVKK compliance
  */
-export function getActionsByCategory(): Record<string, string[]> {
-  const grouped: Record<string, string[]> = {};
-
-  for (const [action, _] of Object.entries(ToolRegistry)) {
-    const metadata = actionMetadata[action];
-    if (!metadata) continue;
-
-    const category = metadata.category;
-    if (!grouped[category]) {
-      grouped[category] = [];
-    }
-    grouped[category].push(action);
-  }
-
-  return grouped;
+export function requiresKVKK(toolId: string): boolean {
+  const config = getToolConfig(toolId);
+  return config?.legal.kvkk || false;
 }
 
 /**
- * Validate required parameters for action
+ * Get all tool IDs
  */
-export function validateParams(
-  action: string,
-  params: Record<string, any>
-): { valid: boolean; missing?: string[] } {
-  const metadata = actionMetadata[action];
-  if (!metadata) {
-    return { valid: false };
-  }
-
-  const missing: string[] = [];
-  for (const requiredParam of metadata.requiredParams) {
-    if (!(requiredParam in params) || params[requiredParam] === undefined) {
-      missing.push(requiredParam);
-    }
-  }
-
-  if (missing.length > 0) {
-    return { valid: false, missing };
-  }
-
-  return { valid: true };
+export function getAllToolIds(): string[] {
+  return Object.keys(TOOL_REGISTRY);
 }
 
 /**
- * Get action metadata (icon, category, params)
+ * Resolve secret placeholders (e.g., {VENDOR} → trendyol)
  */
-export function getActionMetadata(action: string) {
-  return actionMetadata[action];
+export function resolveSecrets(tool: ToolConfig, vendor?: string): string[] {
+  if (!vendor) return tool.secrets;
+
+  return tool.secrets.map(secret =>
+    secret.replace('{VENDOR}', vendor.toUpperCase().replace(/-/g, '_'))
+  );
 }
+
+console.log('✅ Tool registry loaded (72 connectors, RBAC + Vault + Legal gates)');

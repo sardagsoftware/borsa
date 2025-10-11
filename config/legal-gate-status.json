@@ -1,0 +1,365 @@
+{
+  "defaultStatus": "disabled",
+  "connectors": {
+    "trendyol": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "affiliate_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "hepsiburada": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "seller_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "n11": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "seller_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "temu": {
+      "status": "sandbox_only",
+      "region": "TR",
+      "method": "partnership_pending",
+      "reasonTR": "Resmi ortaklık başvurusu devam ediyor",
+      "reasonEN": "Official partnership application in progress",
+      "partnerRequired": true,
+      "applyUrl": "https://ailydian.com/partnerships/temu",
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "getir": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "api_access",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "yemeksepeti": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "restaurant_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "migros": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "api_access",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "carrefoursa": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "api_access",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "a101": {
+      "status": "sandbox_only",
+      "region": "TR",
+      "method": "feed_access",
+      "reasonTR": "Resmi API erişimi beklemede",
+      "reasonEN": "Official API access pending",
+      "partnerRequired": true,
+      "applyUrl": "https://ailydian.com/partnerships/a101",
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "bim": {
+      "status": "sandbox_only",
+      "region": "TR",
+      "method": "feed_access",
+      "reasonTR": "Resmi API erişimi beklemede",
+      "reasonEN": "Official API access pending",
+      "partnerRequired": true,
+      "applyUrl": "https://ailydian.com/partnerships/bim",
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "sok": {
+      "status": "sandbox_only",
+      "region": "TR",
+      "method": "feed_access",
+      "reasonTR": "Resmi API erişimi beklemede",
+      "reasonEN": "Official API access pending",
+      "partnerRequired": true,
+      "applyUrl": "https://ailydian.com/partnerships/sok",
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "aras": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "tracking_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "yurtici": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "tracking_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "hepsijet": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "tracking_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "mng": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "tracking_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "surat": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "tracking_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "ups": {
+      "status": "partner_ok",
+      "region": "GLOBAL",
+      "method": "tracking_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "sahibinden": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "classified_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "arabam": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "classified_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "hangikredi": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "comparison_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "jolly": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "travel_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "enuygun": {
+      "status": "partner_ok",
+      "region": "TR",
+      "method": "travel_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "trivago": {
+      "status": "partner_ok",
+      "region": "GLOBAL",
+      "method": "meta_search",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "tapaz": {
+      "status": "partner_ok",
+      "region": "AZ",
+      "method": "classified_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "turboaz": {
+      "status": "partner_ok",
+      "region": "AZ",
+      "method": "classified_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "wolt": {
+      "status": "partner_ok",
+      "region": "MULTI",
+      "method": "restaurant_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "boltfood": {
+      "status": "partner_ok",
+      "region": "MULTI",
+      "method": "restaurant_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "talabat": {
+      "status": "partner_ok",
+      "region": "MENA",
+      "method": "restaurant_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "noon": {
+      "status": "partner_ok",
+      "region": "MENA",
+      "method": "marketplace_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "zalando": {
+      "status": "partner_ok",
+      "region": "EU",
+      "method": "affiliate_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "otto": {
+      "status": "partner_ok",
+      "region": "DE",
+      "method": "partner_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "bolcom": {
+      "status": "partner_ok",
+      "region": "NL",
+      "method": "affiliate_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "emag": {
+      "status": "partner_ok",
+      "region": "BG",
+      "method": "marketplace_api",
+      "reasonTR": null,
+      "reasonEN": null,
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "wildberries": {
+      "status": "sandbox_only",
+      "region": "RU",
+      "method": "sanctions_restricted",
+      "reasonTR": "Yaptırımlar nedeniyle sadece sandbox erişimi",
+      "reasonEN": "Sandbox access only due to sanctions",
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "ozon": {
+      "status": "sandbox_only",
+      "region": "RU",
+      "method": "sanctions_restricted",
+      "reasonTR": "Yaptırımlar nedeniyle sadece sandbox erişimi",
+      "reasonEN": "Sandbox access only due to sanctions",
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    },
+    "yandex": {
+      "status": "sandbox_only",
+      "region": "RU",
+      "method": "sanctions_restricted",
+      "reasonTR": "Yaptırımlar nedeniyle sadece sandbox erişimi",
+      "reasonEN": "Sandbox access only due to sanctions",
+      "partnerRequired": false,
+      "applyUrl": null,
+      "updatedAt": "2025-10-10T00:00:00Z"
+    }
+  }
+}

@@ -156,3 +156,10 @@ ENTERPRISE-IMPLEMENTATION-REPORT-2025-01-02.md
 NEW-AI-APIS-DOCUMENTATION.md
 services/azure-ai-config.js
 .ai-obfuscation-map.json
+.env.test
+
+# Secret-containing documentation (excluded for security)
+AZURE-AI-FOUNDRY-SETUP-COMPLETE.md
+VERCEL-ENV-VARIABLES.txt
+ENTERPRISE-IMPLEMENTATION-REPORT-2025-01-02.md
+docs/api-discovery/vendors.apidex.json

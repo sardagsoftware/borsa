@@ -1,256 +1,28 @@
-# ========================================
-# LYDIAN-IQ OWASP ZAP SCAN RULES
-# ========================================
-# Purpose: DAST (Dynamic Application Security Testing) configuration
-# Compliance: OWASP Top 10 2021, PCI DSS, SOC 2
-# Version: 1.0
-#
-# Format: rule_id	threshold	action
-# - rule_id: ZAP scan rule ID
-# - threshold: OFF | LOW | MEDIUM | HIGH
-# - action: IGNORE | WARN | FAIL
-#
-# Reference: https://www.zaproxy.org/docs/alerts/
-# ========================================
-
-# ========== HIGH SEVERITY (FAIL) ==========
-# These vulnerabilities must be fixed before deployment
-
-# SQL Injection (40018)
-40018	HIGH	FAIL
-
-# Cross-Site Scripting (XSS) Reflected (40012)
-40012	HIGH	FAIL
-
-# Cross-Site Scripting (XSS) Stored (40014)
-40014	HIGH	FAIL
-
-# Cross-Site Scripting (XSS) DOM-based (40015)
-40015	HIGH	FAIL
-
-# Path Traversal (6)
-6	HIGH	FAIL
-
-# Remote File Inclusion (7)
-7	HIGH	FAIL
-
-# Server-Side Request Forgery (SSRF) (40046)
-40046	HIGH	FAIL
-
-# XML External Entity (XXE) (90019)
-90019	HIGH	FAIL
-
-# Command Injection (90020)
-90020	HIGH	FAIL
-
-# LDAP Injection (40015)
-40015	HIGH	FAIL
-
-# Server-Side Template Injection (90035)
-90035	HIGH	FAIL
-
-# Insecure Deserialization (90003)
-90003	HIGH	FAIL
-
-# Authentication Bypass (10101)
-10101	HIGH	FAIL
-
-# Broken Access Control (40013)
-40013	HIGH	FAIL
-
-# ========== MEDIUM SEVERITY (WARN → FAIL after grace period) ==========
-# These should be fixed but may have grace period
-
-# Cross-Site Request Forgery (CSRF) (10202)
-10202	MEDIUM	WARN
-
-# Insecure Direct Object Reference (IDOR) (40016)
-40016	MEDIUM	WARN
-
-# Missing Anti-CSRF Tokens (10202)
-10202	MEDIUM	WARN
-
-# Cookie Without Secure Flag (10011)
-10011	MEDIUM	WARN
-
-# Cookie Without HttpOnly Flag (10010)
-10010	MEDIUM	WARN
-
-# Cookie Without SameSite Attribute (10054)
-10054	MEDIUM	WARN
-
-# Content Security Policy (CSP) Missing (10038)
-10038	MEDIUM	WARN
-
-# Content Security Policy (CSP) Weak (10055)
-10055	MEDIUM	WARN
-
-# X-Frame-Options Header Not Set (10020)
-10020	MEDIUM	WARN
-
-# X-Content-Type-Options Header Missing (10021)
-10021	MEDIUM	WARN
-
-# Strict-Transport-Security Header Not Set (10035)
-10035	MEDIUM	WARN
-
-# Application Error Disclosure (90022)
-90022	MEDIUM	WARN
-
-# Information Disclosure - Sensitive Information in URL (10024)
-10024	MEDIUM	WARN
-
-# Information Disclosure - Sensitive Information in HTTP Referrer (10025)
-10025	MEDIUM	WARN
-
-# Session ID in URL Rewrite (3)
-3	MEDIUM	WARN
-
-# Weak Authentication Method (10105)
-10105	MEDIUM	WARN
-
-# User Credentials Transmitted over HTTP (10029)
-10029	MEDIUM	FAIL
-
-# Password Autocomplete in Browser (10012)
-10012	MEDIUM	WARN
-
-# Insecure HTTP Method (90028)
-90028	MEDIUM	WARN
-
-# ========== LOW SEVERITY (WARN) ==========
-# Informational findings that should be reviewed
-
-# Incomplete or No Cache-control Header Set (10015)
-10015	LOW	WARN
-
-# Web Browser XSS Protection Not Enabled (10016)
-10016	LOW	WARN
-
-# Permissions Policy Header Not Set (10063)
-10063	LOW	WARN
-
-# Re-examine Cache-control Directives (10049)
-10049	LOW	WARN
-
-# Charset Mismatch (90011)
-90011	LOW	WARN
-
-# Information Disclosure - Debug Error Messages (10023)
-10023	LOW	WARN
-
-# Information Disclosure - Comments in HTML (10027)
-10027	LOW	WARN
-
-# Timestamp Disclosure (10096)
-10096	LOW	WARN
-
-# Modern Web Application (10109)
-10109	LOW	IGNORE
-
-# ========== IGNORED (FALSE POSITIVES / OUT OF SCOPE) ==========
-
-# Loosely Scoped Cookie (90033) - Allow for dev environment
-90033	LOW	IGNORE
-
-# Private IP Disclosure (2) - Known dev environment
-2	LOW	IGNORE
-
-# Cross-Domain JavaScript Source File Inclusion (10017) - CDN usage
-10017	LOW	IGNORE
-
-# ========================================
-# CUSTOM RULES FOR LYDIAN-IQ
-# ========================================
-
-# ========== API Endpoint Security ==========
-# Enhanced checks for REST API endpoints
-
-# JWT Token Validation (custom)
-# - Verify JWT signature
-# - Check token expiration
-# - Validate issuer/audience
-
-# Rate Limiting (custom)
-# - Verify rate limiting headers present
-# - Test rate limit enforcement
-
-# CORS Configuration (custom)
-# - Verify Access-Control-Allow-Origin not wildcard in production
-# - Check credentials allowed only for trusted origins
-
-# ========== Webhook Security ==========
-# Custom validation for webhook endpoints
-
-# HMAC Signature Validation (custom)
-# - /api/webhooks/* endpoints must verify HMAC-SHA256
-# - Reject requests without X-Signature header
-# - Reject requests with timestamp > 300s old
-
-# ========== SSRF Protection ==========
-# Outbound request validation
-
-# Domain Allowlist (custom)
-# - lib/security/outbound-guard.ts must block:
-#   - file:// protocol
-#   - localhost/127.0.0.1
-#   - Private IP ranges (10.x, 192.168.x, 169.254.x)
-#   - Non-allowlisted domains
-
-# ========== PII Protection ==========
-# KVKK/GDPR compliance checks
-
-# PII in Logs (custom)
-# - No email addresses in logs
-# - No phone numbers in logs
-# - No credit card numbers in logs
-# - No social security numbers in logs
-
-# PII in URLs (custom)
-# - No email in query parameters
-# - No phone in query parameters
-
-# ========================================
-# SCAN CONFIGURATION
-# ========================================
-
-# Active Scan Strength: HIGH
-# Passive Scan: ENABLED
-# Spider Depth: 5
-# Maximum Duration: 30 minutes
-# Thread Count: 10
-
-# Excluded URLs (do not scan):
-# - /api/auth/logout (logout endpoint)
-# - /api/admin/* (admin endpoints, tested separately)
-# - /test-* (test pages)
-# - /_next/* (Next.js internal)
-
-# Authentication Context:
-# - Use session cookie from /api/auth/login
-# - Include CSRF token in headers
-
-# ========================================
-# USAGE
-# ========================================
-#
-# Run OWASP ZAP scan with these rules:
-# ```bash
-# docker run -v $(pwd):/zap/wrk/:rw \
-#   -t owasp/zap2docker-stable zap-baseline.py \
-#   -t https://ailydian.com \
-#   -c .zap/rules.tsv \
-#   -r zap-report.html
-# ```
-#
-# In CI/CD (GitHub Actions):
-# ```yaml
-# - name: Run OWASP ZAP Scan
-#   uses: zaproxy/action-baseline@v0.7.0
-#   with:
-#     target: 'https://ailydian.com'
-#     rules_file_name: '.zap/rules.tsv'
-#     fail_action: true
-# ```
-#
-# ========================================
+# OWASP ZAP Scan Rules Configuration
+# Format: alert_id	threshold	[comment]
+# Thresholds: IGNORE, LOW, MEDIUM, HIGH, OFF
+
+# High Priority Security Issues
+10020	HIGH	# X-Frame-Options Header Not Set
+10021	HIGH	# X-Content-Type-Options Header Missing
+10023	HIGH	# Information Disclosure - Debug Error Messages
+10027	HIGH	# Information Disclosure - Suspicious Comments
+10040	HIGH	# Secure Pages Include Mixed Content
+10054	HIGH	# Cookie Without Secure Flag
+10055	HIGH	# CSP: Wildcard Directive
+10056	HIGH	# X-Debug-Token Information Leak
+10062	HIGH	# PII Disclosure
+10063	HIGH	# Permissions Policy Header Not Set
+10096	HIGH	# Timestamp Disclosure
+10098	HIGH	# Cross-Domain Misconfiguration
+
+# Medium Priority Issues
+10011	MEDIUM	# Cookie Without SameSite Attribute
+10015	MEDIUM	# Re-examine Cache-control Directives
+10017	MEDIUM	# Cross-Domain JavaScript Source File Inclusion
+10019	MEDIUM	# Content-Type Header Missing
+10038	MEDIUM	# Content Security Policy (CSP) Header Not Set
+
+# Low Priority (Informational)
+10010	LOW	# Cookie No HttpOnly Flag
+10012	LOW	# Password Autocomplete in Browser

@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Y�kleniyor...",
+    "error": "Hata",
+    "success": "Ba_ar1l1",
+    "cancel": "0ptal",
+    "confirm": "Onayla",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "D�zenle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "close": "Kapat",
+    "back": "Geri"
+  },
+  "lydianIQ": {
+    "welcome": "Merhaba! Size nasıl yardımcı olabilirim? Kargo takibi, ürün arama, fiyat karşılaştırma ve daha fazlası için bana yazabilirsiniz.",
+    "noIntentFound": "Üzgünüm, isteğinizi anlayamadım. Lütfen daha spesifik bir soru sorun veya desteklenen işlemlerden birini deneyin."
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "dashboard": "Panel",
+    "settings": "Ayarlar",
+    "profile": "Profil",
+    "logout": "�1k1_"
+  },
+  "search": {
+    "placeholder": "Kargo takibi, fiyat kar_1la_t1rma, �r�n arama...",
+    "noResults": "Sonu� bulunamad1",
+    "searching": "Aran1yor..."
+  },
+  "composer": {
+    "placeholder": "Bir mesaj yaz1n... (Shift+Enter yeni sat1r, Enter g�nder)",
+    "send": "G�nder",
+    "attach": "Dosya Ekle",
+    "uploading": "Y�kleniyor..."
+  },
+  "dock": {
+    "history": "Ge�mi_",
+    "favorites": "Favoriler",
+    "settings": "Ayarlar",
+    "collapse": "Daralt",
+    "expand": "Geni_let",
+    "noHistory": "Hen�z ge�mi_ yok",
+    "noFavorites": "Hen�z favori yok"
+  },
+  "actions": {
+    "shipment_track": "Kargo Takip",
+    "product_sync": "�r�n Senkronizasyonu",
+    "price_update": "Fiyat G�ncelleme",
+    "inventory_sync": "Stok Senkronizasyonu",
+    "menu_update": "Men� G�ncelleme",
+    "loan_compare": "Kredi Kar_1la_t1rma",
+    "trip_search": "Seyahat Arama",
+    "insights": "Analizler",
+    "esg_carbon": "Karbon Ayak 0zi"
+  },
+  "cards": {
+    "viewDetails": "Detaylar1 G�r",
+    "addToCart": "Sepete Ekle",
+    "apply": "Ba_vur",
+    "share": "Payla_"
+  },
+  "errors": {
+    "INSUFFICIENT_SCOPES": "Bu i_lemi ger�ekle_tirmek i�in yeterli yetkiniz yok",
+    "RATE_LIMIT_EXCEEDED": "H1z limiti a_1ld1, l�tfen daha sonra tekrar deneyin",
+    "TIMEOUT": "0stek zaman a_1m1na urad1",
+    "NETWORK_ERROR": "A balant1 hatas1",
+    "TOOL_NOT_FOUND": "Ara� yap1land1rmas1 bulunamad1",
+    "EXECUTION_ERROR": "Ara� �al1_t1rmas1 ba_ar1s1z oldu"
+  }
+}

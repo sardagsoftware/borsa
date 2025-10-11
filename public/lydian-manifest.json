@@ -1,84 +1,84 @@
 {
-  "name": "LyDian IQ - Ultra Intelligence",
+  "name": "LyDian IQ - Ultra Intelligence Platform",
   "short_name": "LyDian IQ",
-  "description": "Enterprise-grade AI platform with voice recognition, multi-language support, and advanced reasoning capabilities. Professional AI assistant for iOS and Android.",
+  "description": "Enterprise-grade AI platform with voice recognition, multi-language support, 72 connectors, and advanced reasoning capabilities. Professional AI assistant for iOS, Android, and all browsers.",
   "start_url": "/lydian-iq.html?source=pwa",
   "scope": "/",
   "id": "/lydian-iq",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
   "orientation": "any",
-  "background_color": "#1C2536",
-  "theme_color": "#C4A962",
+  "background_color": "#0a0a0a",
+  "theme_color": "#FFFFFF",
   "dir": "ltr",
   "lang": "tr-TR",
-  "categories": ["productivity", "education", "utilities", "business", "reference"],
+  "categories": ["productivity", "education", "utilities", "business", "reference", "ai"],
   "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "prefer_related_applications": false,
   "related_applications": [],
   "icons": [
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "48x48",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-512.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -92,29 +92,29 @@
   ],
   "screenshots": [
     {
-      "src": "/lydian-logo.png",
+      "src": "/og-image.png",
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "LyDian IQ Main Interface"
+      "label": "LyDian IQ Main Interface - Mobile View"
     },
     {
-      "src": "/lydian-logo.png",
+      "src": "/og-image.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "LyDian IQ Desktop View"
+      "label": "LyDian IQ Desktop View - 72 Connectors"
     }
   ],
   "shortcuts": [
     {
       "name": "New Query",
       "short_name": "Query",
-      "description": "Start a new AI query",
+      "description": "Start a new AI query with Lydian-IQ",
       "url": "/lydian-iq.html",
       "icons": [
         {
-          "src": "/lydian-logo.png",
+          "src": "/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -123,37 +123,37 @@
     {
       "name": "Voice Search",
       "short_name": "Voice",
-      "description": "Start voice search",
+      "description": "Start voice search with AI",
       "url": "/lydian-iq.html?voice=1",
       "icons": [
         {
-          "src": "/lydian-logo.png",
+          "src": "/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "Super Power Mode",
-      "short_name": "Super",
-      "description": "Enable enhanced reasoning",
-      "url": "/lydian-iq.html?superpower=1",
+      "name": "Web Search",
+      "short_name": "Web",
+      "description": "Search with Perplexity AI",
+      "url": "/lydian-iq.html?mode=web",
       "icons": [
         {
-          "src": "/lydian-logo.png",
+          "src": "/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "History",
-      "short_name": "History",
-      "description": "View conversation history",
-      "url": "/lydian-iq.html?history=1",
+      "name": "Connectors",
+      "short_name": "Connect",
+      "description": "Access 72 business connectors",
+      "url": "/lydian-iq.html?mode=connector",
       "icons": [
         {
-          "src": "/lydian-logo.png",
+          "src": "/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -180,13 +180,21 @@
     {
       "action": "/lydian-iq.html",
       "accept": {
-        "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp"],
-        "application/pdf": [".pdf"]
+        "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"],
+        "application/pdf": [".pdf"],
+        "text/*": [".txt", ".md", ".json", ".csv"]
       }
     }
   ],
   "launch_handler": {
     "client_mode": ["navigate-existing", "auto"]
   },
-  "handle_links": "preferred"
+  "handle_links": "preferred",
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "scope_extensions": [
+    {"origin": "https://ailydian.com"},
+    {"origin": "https://*.ailydian.com"}
+  ]
 }

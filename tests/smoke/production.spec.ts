@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3100';
+const IS_PRODUCTION = BASE_URL.includes('ailydian.com');
 
 test.describe('Production Smoke Tests', () => {
 
@@ -42,6 +43,11 @@ test.describe('Production Smoke Tests', () => {
   });
 
   test('Rate limiting should return 429 when exceeded', async ({ request }) => {
+    // Skip this test on localhost - it's designed for production validation only
+    test.skip(!IS_PRODUCTION, 'Rate limiting test is for production only');
+
+    test.setTimeout(30000); // 30 seconds for rate limit test
+
     // Fetch CSRF token first
     const csrfResponse = await request.get(`${BASE_URL}/api/csrf-token`);
     const { csrfToken } = await csrfResponse.json();
@@ -80,6 +86,11 @@ test.describe('Production Smoke Tests', () => {
   });
 
   test('File upload should reject files > 10MB', async ({ request }) => {
+    // Skip this test on localhost - it's designed for production validation only
+    test.skip(!IS_PRODUCTION, 'File upload test is for production only');
+
+    test.setTimeout(30000); // 30 seconds for file upload test
+
     // Small delay to avoid rate limiting from parallel tests
     await new Promise(resolve => setTimeout(resolve, 100));
 

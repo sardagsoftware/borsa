@@ -163,9 +163,11 @@ function rateLimiter(options = {}) {
   } = options;
 
   return async (req, res, next) => {
-    // Skip rate limiting in development mode
+    // Skip rate limiting in development mode (unless explicitly enabled for testing)
     const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    if (isDevelopment) {
+    const forceEnable = process.env.ENABLE_RATE_LIMITING === 'true';
+
+    if (isDevelopment && !forceEnable) {
       return next();
     }
 
@@ -339,9 +341,11 @@ function concurrentLimiter() {
   const activRequests = new Map();
 
   return (req, res, next) => {
-    // Skip concurrent limiting in development mode
+    // Skip concurrent limiting in development mode (unless explicitly enabled for testing)
     const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    if (isDevelopment) {
+    const forceEnable = process.env.ENABLE_RATE_LIMITING === 'true';
+
+    if (isDevelopment && !forceEnable) {
       return next();
     }
 

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian AI Chat: Interact with 23 advanced AI models including GPT-4, Claude, Gemini. Real-time responses, multimodal support, 84 languages. Professional AI assistant platform.">
     <meta name="robots" content="noindex, nofollow">
     <title>LyDian AI - Multi-Model Intelligence Platform</title>
 
@@ -4342,12 +4343,12 @@ body {
                     <div class="message-text">${formatMessage(content)}</div>
                     <div class="message-timestamp">${timeStr} • ${dateStr}</div>
                     ${role === 'assistant' ? `
-                        <div class="message-actions">
-                            <button class="message-action-btn" onclick="copyMessage(this)">
+                        <div class="message-actions" data-testid="message-actions">
+                            <button class="message-action-btn" onclick="copyMessage(this)" data-testid="copy-message-btn" aria-label="Copy message">
                                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                                 Kopyala
                             </button>
-                            <button class="message-action-btn" onclick="regenerateMessage(this)">
+                            <button class="message-action-btn" onclick="regenerateMessage(this)" data-testid="regenerate-message-btn" aria-label="Regenerate message">
                                 <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
                                 Yeniden Oluştur
                             </button>

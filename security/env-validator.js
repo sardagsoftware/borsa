@@ -83,13 +83,24 @@ function getSafeEnvConfig() {
  */
 function validateDatabaseURL(url) {
   if (!url) {
-    throw new Error('Database URL is required');
+    // In test environment, DATABASE_URL is optional
+    if (process.env.NODE_ENV === 'test') {
+      console.log('ℹ️  DATABASE_URL not set (test environment - using SQLite)');
+      return true;
+    }
+    console.warn('⚠️  DATABASE_URL not configured');
+    return false;
   }
 
   // Check if URL contains password in plain text
-  const urlPattern = /^(postgres|mongodb|mysql):\/\/.+/i;
+  const urlPattern = /^(postgres|mongodb|mysql|sqlite):\/\/.+/i;
   if (!urlPattern.test(url)) {
-    throw new Error('Invalid database URL format');
+    // In test/development, accept file:// URLs for SQLite
+    if (url.startsWith('file://') || url.endsWith('.db') || url.endsWith('.sqlite')) {
+      return true;
+    }
+    console.warn('⚠️  Database URL format may be invalid:', maskSensitive('DATABASE_URL', url));
+    return false;
   }
 
   // Warn if URL contains plain text password
@@ -186,9 +197,15 @@ function validateSecurityConfig() {
       validateJWTSecret(process.env.JWT_SECRET);
     }
 
-    // Validate database URLs
+    // Validate database URLs (non-blocking)
     if (process.env.DATABASE_URL) {
-      validateDatabaseURL(process.env.DATABASE_URL);
+      try {
+        validateDatabaseURL(process.env.DATABASE_URL);
+      } catch (err) {
+        console.warn('⚠️  Database URL validation warning:', err.message);
+      }
+    } else {
+      validateDatabaseURL(null); // Check if it's required
     }
 
     // Warn about missing optional but recommended vars
@@ -208,7 +225,12 @@ function validateSecurityConfig() {
     return true;
   } catch (error) {
     console.error('❌ Security configuration validation failed:', error.message);
-    throw error;
+    // Don't throw in test/development environments
+    if (process.env.NODE_ENV === 'production') {
+      throw error;
+    }
+    console.log('⚠️  Continuing in non-production mode...');
+    return false;
   }
 }
 

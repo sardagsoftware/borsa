@@ -175,11 +175,8 @@ async function scanFileForMalware(fileBuffer, filename) {
     }
   }
 
-  // Check 4: File size anomalies
-  const maxSize = MAX_FILE_SIZES[filename] || MAX_FILE_SIZES['default'];
-  if (fileBuffer.length > maxSize) {
-    checks.push(`File too large: ${fileBuffer.length} bytes (max: ${maxSize})`);
-  }
+  // Check 4: File size anomalies (Skip - let multer handle file size limits)
+  // Size validation is handled by multer's fileSize limit
 
   // Return check results
   if (checks.length > 0) {

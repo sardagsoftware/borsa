@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-10T00:00:00Z",
+  "defaultPolicy": "DENY",
+  "allowedHosts": {
+    "turkey_ecommerce": [
+      "api.trendyol.com",
+      "api.hepsiburada.com",
+      "api.n11.com",
+      "api.sahibinden.com",
+      "api.arabam.com"
+    ],
+    "turkey_delivery": [
+      "api.araskargo.com.tr",
+      "api.yurticikargo.com",
+      "api.hepsijet.com",
+      "api.mngkargo.com.tr",
+      "api.suratkargo.com.tr"
+    ]
+  },
+  "blockedPatterns": [
+    "127.0.0.1",
+    "localhost",
+    "169.254.*",
+    "10.*",
+    "192.168.*"
+  ],
+  "enforceHTTPS": true
+}

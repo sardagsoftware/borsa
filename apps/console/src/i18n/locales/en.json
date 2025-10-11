@@ -1,0 +1,72 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "back": "Back"
+  },
+  "lydianIQ": {
+    "welcome": "Hello! How can I help you? You can ask me about shipment tracking, product search, price comparison and more.",
+    "noIntentFound": "Sorry, I couldn't understand your request. Please ask a more specific question or try one of the supported actions."
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "search": {
+    "placeholder": "Track shipment, compare prices, search products...",
+    "noResults": "No results found",
+    "searching": "Searching..."
+  },
+  "composer": {
+    "placeholder": "Type a message... (Shift+Enter new line, Enter send)",
+    "send": "Send",
+    "attach": "Attach File",
+    "uploading": "Uploading..."
+  },
+  "dock": {
+    "history": "History",
+    "favorites": "Favorites",
+    "settings": "Settings",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "noHistory": "No history yet",
+    "noFavorites": "No favorites yet"
+  },
+  "actions": {
+    "shipment_track": "Track Shipment",
+    "product_sync": "Product Sync",
+    "price_update": "Price Update",
+    "inventory_sync": "Inventory Sync",
+    "menu_update": "Menu Update",
+    "loan_compare": "Compare Loans",
+    "trip_search": "Search Travel",
+    "insights": "Insights",
+    "esg_carbon": "Carbon Footprint"
+  },
+  "cards": {
+    "viewDetails": "View Details",
+    "addToCart": "Add to Cart",
+    "apply": "Apply",
+    "share": "Share"
+  },
+  "errors": {
+    "INSUFFICIENT_SCOPES": "Insufficient permissions to execute this action",
+    "RATE_LIMIT_EXCEEDED": "Rate limit exceeded, please try again later",
+    "TIMEOUT": "Request timeout",
+    "NETWORK_ERROR": "Network connection error",
+    "TOOL_NOT_FOUND": "Tool configuration not found",
+    "EXECUTION_ERROR": "Tool execution failed"
+  }
+}
