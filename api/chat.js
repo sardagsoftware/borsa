@@ -211,15 +211,37 @@ const callOpenAIAPI = async (model, messages, temperature, maxTokens) => {
   };
 };
 
+// Secure CORS configuration
+const { allowedOrigins } = require('../security/cors-whitelist');
+
+/**
+ * Secure CORS handler - validates origin against whitelist
+ */
+const handleCORS = (req, res) => {
+  const origin = req.headers.origin;
+
+  // Check if origin is allowed
+  if (!origin || allowedOrigins.includes(origin) || origin.match(/^https:\/\/ailydian-.*\.vercel\.app$/)) {
+    res.setHeader('Access-Control-Allow-Origin', origin || '*');
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
+    return true;
+  }
+  return false;
+};
+
 /**
  * Main Chat Handler
  */
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   // GET - Retrieve chat history
   if (req.method === 'GET') {
