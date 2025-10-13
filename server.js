@@ -32,9 +32,26 @@ const WebSocket = require('ws');
 const multer = require('multer');
 const sharp = require('sharp');
 const fs = require('fs').promises;
+const fsSync = require('fs'); // For sync operations (Swagger YAML loading)
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
 const { v4: uuidv4 } = require('uuid');
+
+// 🔍 SENTRY ERROR TRACKING - Production Monitoring (Beyaz Şapkalı)
+const {
+  initSentry,
+  requestHandler: sentryRequestHandler,
+  tracingHandler: sentryTracingHandler,
+  errorHandler: sentryErrorHandler,
+  captureException: sentryCaptureException
+} = require('./lib/monitoring/sentry');
+
+// 📚 SWAGGER/OPENAPI DOCUMENTATION (Interactive API Docs)
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yaml');
+
+// 📝 WINSTON LOGGER - Global Logging System (Beyaz Şapkalı)
+const logger = require('./lib/logger');
 
 // 🔒 SECURITY FIXES - PENETRATION TEST 2025-10-10
 const { corsOptions } = require('./security/cors-whitelist'); // CORS whitelist (fixes wildcard)
@@ -86,6 +103,12 @@ const { setupFullSecurity, requireAdmin: strictRequireAdmin } = require('./secur
 
 // 🔒 NIRVANA LEVEL SECURITY HEADERS
 const securityHeaders = (req, res, next) => {
+  // Dynamic CSP based on environment
+  const isDev = process.env.NODE_ENV !== 'production';
+  const messagingDomain = isDev
+    ? 'http://localhost:3200 http://localhost:3000'
+    : 'https://messaging.ailydian.com https://www.ailydian.com https://ailydian.com';
+
   res.setHeader('Content-Security-Policy',
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.jsdelivr.net https://unpkg.com https://d3js.org; " +
@@ -94,6 +117,7 @@ const securityHeaders = (req, res, next) => {
     "img-src 'self' data: https: blob:; " +
     "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
     "connect-src 'self' https://vercel.live https://*.pusher.com https://*.ailydian.com https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://cdn.jsdelivr.net https://fonts.gstatic.com https://d3js.org; " +
+    `frame-src 'self' ${messagingDomain}; ` +
     "frame-ancestors 'self'; " +
     "base-uri 'self'; " +
     "form-action 'self'"
@@ -103,7 +127,12 @@ const securityHeaders = (req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+
+  // Dynamic Permissions-Policy
+  const permissionsDomain = isDev
+    ? '(self "http://localhost:3200")'
+    : '(self "https://messaging.ailydian.com")';
+  res.setHeader('Permissions-Policy', `camera=${permissionsDomain}, microphone=${permissionsDomain}, geolocation=${permissionsDomain}`);
   next();
 };
 
@@ -139,6 +168,9 @@ const upload = multer({
 const app = express();
 const server = http.createServer(app);
 
+// 🔍 Initialize Sentry (must be early in the app lifecycle)
+initSentry(app);
+
 // 🚀 ADVANCED CACHING SYSTEM - ENTERPRISE GRADE
 const NodeCache = require('node-cache');
 
@@ -151,8 +183,10 @@ if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) 
     token: process.env.UPSTASH_REDIS_REST_TOKEN,
     automaticDeserialization: true,
   });
-  console.log('✅ Redis Cache: Enabled (Upstash)');
+  logger.info('✅ Redis Cache: Enabled', { provider: 'Upstash' });
+  console.log('✅ Redis Cache: Enabled (Upstash)'); // Keep for backwards compatibility
 } else {
+  logger.warn('⚠️  Redis Cache: Disabled', { reason: 'missing env variables: UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN' });
   console.warn('⚠️  Redis Cache: Disabled (missing env variables)');
   console.warn('   Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to enable');
 }
@@ -511,7 +545,11 @@ setupRateLimiting(app);
 // 4. STRICT-OMEGA Security Integration (CRITICAL & MEDIUM vulnerability fixes)
 setupFullSecurity(app);
 
-// 🔒 NIRVANA LEVEL SECURITY HEADERS (First in chain)
+// 🔍 SENTRY REQUEST TRACKING (Must be first for accurate error tracking)
+app.use(sentryRequestHandler());
+app.use(sentryTracingHandler());
+
+// 🔒 NIRVANA LEVEL SECURITY HEADERS
 app.use(securityHeaders);
 
 // 🔐 PHASE F: ENTERPRISE SECURITY & COMPLIANCE LAYER
@@ -532,6 +570,19 @@ app.use(auditMiddleware({
   console: process.env.NODE_ENV !== 'production',
   signLogs: process.env.NODE_ENV === 'production'
 }));
+
+// 📝 WINSTON REQUEST LOGGING (Beyaz Şapkalı - Sanitized logging)
+app.use((req, res, next) => {
+  const startTime = Date.now();
+
+  // Capture response finish event
+  res.on('finish', () => {
+    const responseTime = Date.now() - startTime;
+    logger.logRequest(req, res.statusCode, responseTime);
+  });
+
+  next();
+});
 
 // 4. Middleware
 // CORS is now handled by setupFullSecurity() with strict whitelist
@@ -3869,6 +3920,12 @@ const telemetryAPI = require('./api/ui-telemetry');
 app.post('/api/ui-telemetry', telemetryAPI.recordTelemetry);
 app.get('/api/telemetry/stats', telemetryAPI.getTelemetryStats);
 
+// Metrics - Token counting, latency measurement, and cost calculation
+const metricsAPI = require('./api/metrics/measure');
+app.post('/api/metrics/measure', metricsAPI.measureMetrics);
+app.get('/api/metrics/summary', metricsAPI.getUsageSummary);
+app.get('/api/metrics/daily', metricsAPI.getDailyMetrics);
+
 // Feature Flags - Control feature availability
 const featureFlagsAPI = require('./api/monitoring/feature-flags');
 app.get('/api/monitoring/feature-flags', featureFlagsAPI.getFeatureFlags);
@@ -5172,6 +5229,10 @@ const webSearch = require('./api/web-search');
 app.get('/api/web-search', webSearch.handleSearch);
 app.post('/api/web-search/clear-cache', webSearch.clearCache);
 app.get('/api/web-search/stats', webSearch.getCacheStats);
+
+// Perplexity Search API - Azure OpenAI Web Search Integration
+const perplexitySearch = require('./api/perplexity-search');
+app.post('/api/perplexity-search', perplexitySearch);
 
 // RAG API - Retrieval-Augmented Generation
 const rag = require('./api/rag');
@@ -7569,6 +7630,22 @@ app.post('/api/medical/oncology/tumor-markers', oncologyTools.handleTumorMarker)
 
 const PORT = process.env.PORT || 3100;
 
+// 📚 SWAGGER UI - INTERACTIVE API DOCUMENTATION (Beyaz Şapkalı - Public APIs only)
+try {
+  const openApiSpec = YAML.parse(fsSync.readFileSync(path.join(__dirname, 'docs', 'openapi.yaml'), 'utf8'));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: "AiLydian API Docs",
+    customfavIcon: "/lydian-logo.png"
+  }));
+  console.log('✅ Swagger UI available at /api-docs');
+} catch (error) {
+  console.warn('⚠️  Swagger UI failed to load:', error.message);
+}
+
+// 🔍 SENTRY ERROR HANDLER (Must be last middleware, before server.listen)
+app.use(sentryErrorHandler());
+
 // Only start server if not in cluster master mode
 if (shouldStartServer) {
   server.listen(PORT, async () => {
@@ -7584,22 +7661,50 @@ if (shouldStartServer) {
   console.log(`📊 Memory Usage: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
+  // 📝 WINSTON STRUCTURED LOGGING (Beyaz Şapkalı)
+  logger.info('🚀 AiLydian Ultra Pro Server Started', {
+    port: PORT,
+    environment: process.env.NODE_ENV || 'development',
+    urls: {
+      local: `http://localhost:${PORT}`,
+      network: `http://127.0.0.1:${PORT}`,
+      websocket: `ws://localhost:${PORT}`
+    },
+    aiModels: {
+      total: aiModels.length,
+      categories: [...new Set(aiModels.map(m => m.category))].length,
+      providers: [...new Set(aiModels.map(m => m.provider))].length
+    },
+    memory: {
+      heapUsed: `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`,
+      heapTotal: `${Math.round(process.memoryUsage().heapTotal / 1024 / 1024)} MB`
+    },
+    nodeVersion: process.version,
+    platform: process.platform
+  });
+
   // 🎯 Initialize Token Governor System
   try {
     console.log('🎯 Initializing Token Governor System...');
+    logger.info('🎯 Initializing Token Governor System');
     await initializeTokenGovernor();
     console.log('✅ Token Governor: ACTIVE (5 models, TPM management, fail-safe sentinels)');
+    logger.info('✅ Token Governor: ACTIVE', { models: 5, features: ['TPM management', 'fail-safe sentinels'] });
   } catch (error) {
     console.warn('⚠️  Token Governor initialization failed (running without governance):', error.message);
+    logger.warn('⚠️  Token Governor initialization failed', { error: error.message, fallback: 'running without governance' });
   }
 
   // 🏥 Initialize HIPAA Audit Logger
   try {
     console.log('🏥 Initializing HIPAA Audit Logger...');
+    logger.info('🏥 Initializing HIPAA Audit Logger');
     await initializeAuditLogger();
     console.log('✅ HIPAA Audit Logger: ACTIVE (6-year retention, tamper-evident, GDPR/KVKK compliant)');
+    logger.info('✅ HIPAA Audit Logger: ACTIVE', { retention: '6 years', features: ['tamper-evident', 'GDPR/KVKK compliant'] });
   } catch (error) {
     console.error('❌ HIPAA Audit Logger initialization failed:', error.message);
+    logger.error('❌ HIPAA Audit Logger initialization failed', { error: error.message });
   }
 
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');

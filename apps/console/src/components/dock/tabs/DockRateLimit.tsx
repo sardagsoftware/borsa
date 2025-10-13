@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useAppStore } from '../../../state/store';
+import { useAppStore, type AppState } from '../../../state/store';
 import { apiFetch } from '../../../lib/api-client';
 
 interface RateLimitData {
@@ -25,7 +25,7 @@ interface RateLimitData {
 }
 
 export default function DockRateLimit() {
-  const dock = useAppStore(state => state.dock);
+  const dock = useAppStore((state: AppState) => state.dock);
   const [rateLimits, setRateLimits] = useState<RateLimitData[]>([]);
   const [loading, setLoading] = useState(true);
 

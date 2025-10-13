@@ -1,0 +1,105 @@
+{
+  "app": {
+    "name": "Ailydian Ultra Pro",
+    "tagline": "Yapay Zeka ile Güçlendirilmiş Platform",
+    "version": "2.0.0"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "dashboard": "Kontrol Paneli",
+    "chat": "Sohbet",
+    "settings": "Ayarlar",
+    "profile": "Profil",
+    "logout": "Çıkış Yap",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol"
+  },
+  "auth": {
+    "login": {
+      "title": "Giriş Yap",
+      "email": "E-posta",
+      "password": "Şifre",
+      "submit": "Giriş",
+      "forgot_password": "Şifremi Unuttum",
+      "no_account": "Hesabınız yok mu?",
+      "sign_up": "Kayıt Ol"
+    },
+    "register": {
+      "title": "Kayıt Ol",
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "password": "Şifre",
+      "confirm_password": "Şifreyi Onayla",
+      "submit": "Kayıt Ol",
+      "have_account": "Zaten hesabınız var mı?",
+      "sign_in": "Giriş Yap"
+    },
+    "errors": {
+      "invalid_credentials": "Geçersiz kimlik bilgileri",
+      "email_exists": "Bu e-posta adresi zaten kullanılıyor",
+      "password_mismatch": "Şifreler eşleşmiyor",
+      "required_field": "Bu alan zorunludur"
+    }
+  },
+  "dashboard": {
+    "welcome": "Hoş Geldiniz",
+    "overview": "Genel Bakış",
+    "recent_activity": "Son Aktiviteler",
+    "quick_actions": "Hızlı İşlemler",
+    "statistics": "İstatistikler"
+  },
+  "chat": {
+    "title": "AI Sohbet",
+    "placeholder": "Mesajınızı yazın...",
+    "send": "Gönder",
+    "new_chat": "Yeni Sohbet",
+    "clear_chat": "Sohbeti Temizle",
+    "model_selector": "Model Seç",
+    "thinking": "Düşünüyor...",
+    "error": "Bir hata oluştu"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "general": "Genel",
+    "appearance": "Görünüm",
+    "language": "Dil",
+    "theme": "Tema",
+    "notifications": "Bildirimler",
+    "privacy": "Gizlilik",
+    "security": "Güvenlik",
+    "save": "Kaydet",
+    "cancel": "İptal"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "warning": "Uyarı",
+    "info": "Bilgi",
+    "confirm": "Onayla",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "export": "Dışa Aktar",
+    "import": "İçe Aktar"
+  },
+  "errors": {
+    "network": "Ağ bağlantısı hatası",
+    "server": "Sunucu hatası",
+    "not_found": "Bulunamadı",
+    "unauthorized": "Yetkisiz erişim",
+    "forbidden": "Erişim engellendi",
+    "validation": "Doğrulama hatası",
+    "generic": "Bir şeyler yanlış gitti"
+  },
+  "models": {
+    "claude": "Claude",
+    "gpt4": "GPT-4",
+    "gemini": "Gemini",
+    "select": "Model Seç"
+  }
+}

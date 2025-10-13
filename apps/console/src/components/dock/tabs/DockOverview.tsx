@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useAppStore } from '../../../state/store';
+import { useAppStore, type AppState } from '../../../state/store';
 import { apiFetch } from '../../../lib/api-client';
 
 interface ConnectorMetrics {
@@ -24,7 +24,7 @@ interface ConnectorMetrics {
 }
 
 export default function DockOverview() {
-  const dock = useAppStore(state => state.dock);
+  const dock = useAppStore((state: AppState) => state.dock);
   const [metrics, setMetrics] = useState<ConnectorMetrics[]>([]);
   const [loading, setLoading] = useState(true);
 

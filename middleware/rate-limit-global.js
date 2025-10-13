@@ -21,9 +21,17 @@ const apiLimiter = rateLimit({
   standardHeaders: true, // Return rate limit info in `RateLimit-*` headers
   legacyHeaders: false, // Disable `X-RateLimit-*` headers
   skip: (req) => {
-    // Skip rate limiting in development mode
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    return isDevelopment;
+    // Skip rate limiting in development and test mode
+    const isDevelopment = process.env.NODE_ENV === 'development' ||
+                          process.env.NODE_ENV === 'test' ||
+                          !process.env.NODE_ENV;
+
+    // Also skip for localhost
+    const isLocalhost = req.ip === '::1' ||
+                        req.ip === '127.0.0.1' ||
+                        req.ip === '::ffff:127.0.0.1';
+
+    return isDevelopment || isLocalhost;
   },
   handler: (req, res) => {
     res.status(429).json({
@@ -50,8 +58,11 @@ const authLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skip: (req) => {
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    return isDevelopment;
+    const isDevelopment = process.env.NODE_ENV === 'development' ||
+                          process.env.NODE_ENV === 'test' ||
+                          !process.env.NODE_ENV;
+    const isLocalhost = req.ip === '::1' || req.ip === '127.0.0.1' || req.ip === '::ffff:127.0.0.1';
+    return isDevelopment || isLocalhost;
   },
   handler: (req, res) => {
     console.warn(`⚠️ Rate limit exceeded for IP: ${req.ip} on ${req.path}`);
@@ -78,8 +89,11 @@ const aiLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skip: (req) => {
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    return isDevelopment;
+    const isDevelopment = process.env.NODE_ENV === 'development' ||
+                          process.env.NODE_ENV === 'test' ||
+                          !process.env.NODE_ENV;
+    const isLocalhost = req.ip === '::1' || req.ip === '127.0.0.1' || req.ip === '::ffff:127.0.0.1';
+    return isDevelopment || isLocalhost;
   },
   handler: (req, res) => {
     res.status(429).json({
@@ -105,8 +119,11 @@ const uploadLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skip: (req) => {
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    return isDevelopment;
+    const isDevelopment = process.env.NODE_ENV === 'development' ||
+                          process.env.NODE_ENV === 'test' ||
+                          !process.env.NODE_ENV;
+    const isLocalhost = req.ip === '::1' || req.ip === '127.0.0.1' || req.ip === '::ffff:127.0.0.1';
+    return isDevelopment || isLocalhost;
   }
 });
 

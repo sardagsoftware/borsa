@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useAppStore } from '../../../state/store';
+import { useAppStore, type AppState } from '../../../state/store';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Header from '../../../components/layout/Header';
 import MessageSurface from '../../../components/chat/MessageSurface';
@@ -18,8 +18,8 @@ import DockPanel from '../../../components/dock/DockPanel';
 import { trackPageView } from '../../../lib/telemetry';
 
 export default function LayoutRoot() {
-  const flags = useAppStore(state => state.flags);
-  const dock = useAppStore(state => state.dock);
+  const flags = useAppStore((state: AppState) => state.flags);
+  const dock = useAppStore((state: AppState) => state.dock);
 
   useEffect(() => {
     // Track page view

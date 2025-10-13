@@ -1,0 +1,292 @@
+{
+  "$schema": "./season-schema.json",
+  "id": "S2",
+  "title": "Echo Storms",
+  "title_localized": {
+    "tr": "Yankı Fırtınaları",
+    "en": "Echo Storms",
+    "ar": "عواصف الصدى",
+    "de": "Echo-Stürme",
+    "ru": "Эхо Бурь",
+    "nl": "Echo Stormen",
+    "bg": "Ехо Бури",
+    "el": "Καταιγίδες Ηχούς"
+  },
+  "theme": "Resonance storms spread across the Eastern Aegean, introducing dynamic weather and acoustic puzzle mechanics",
+  "start": "2026-01-15T00:00:00Z",
+  "end": "2026-03-01T00:00:00Z",
+  "duration_weeks": 6,
+  "status": "scheduled",
+
+  "weeks": [
+    {
+      "week": 1,
+      "start": "2026-01-15T00:00:00Z",
+      "end": "2026-01-22T00:00:00Z",
+      "theme": "Storm Awakening",
+      "events": ["trials-daily", "canyon-night-storm-open"],
+      "objectives": [
+        {"id": "trials-complete-5", "count": 5, "xp": 500},
+        {"id": "canyon-explore", "count": 1, "xp": 300},
+        {"id": "collectibles-storm-1", "count": 10, "xp": 400}
+      ]
+    },
+    {
+      "week": 2,
+      "start": "2026-01-22T00:00:00Z",
+      "end": "2026-01-29T00:00:00Z",
+      "theme": "Sentinel Rising",
+      "events": ["mini-boss-echo-sentinel", "trials-weekly"],
+      "objectives": [
+        {"id": "boss-attempt-sentinel", "count": 1, "xp": 800},
+        {"id": "trials-complete-10", "count": 10, "xp": 600},
+        {"id": "puzzle-frequency-align", "count": 3, "xp": 500}
+      ]
+    },
+    {
+      "week": 3,
+      "start": "2026-01-29T00:00:00Z",
+      "end": "2026-02-05T00:00:00Z",
+      "theme": "Storm Trails",
+      "events": ["photo-contest-storm-trails", "ruins-sand-gale"],
+      "objectives": [
+        {"id": "photo-submit", "count": 1, "xp": 400},
+        {"id": "ruins-sand-explore", "count": 1, "xp": 300},
+        {"id": "puzzle-phase-chain", "count": 3, "xp": 500}
+      ]
+    },
+    {
+      "week": 4,
+      "start": "2026-02-05T00:00:00Z",
+      "end": "2026-02-12T00:00:00Z",
+      "theme": "Cooperative Resonance",
+      "events": ["vendor-sale-10", "co-op-puzzle-week"],
+      "objectives": [
+        {"id": "vendor-purchase", "count": 1, "xp": 200},
+        {"id": "coop-complete", "count": 2, "xp": 700},
+        {"id": "puzzle-echo-triangulation", "count": 3, "xp": 500}
+      ]
+    },
+    {
+      "week": 5,
+      "start": "2026-02-12T00:00:00Z",
+      "end": "2026-02-19T00:00:00Z",
+      "theme": "Sentinel's Fury",
+      "events": ["mini-boss-echo-sentinel-II", "trials-daily"],
+      "objectives": [
+        {"id": "boss-defeat-sentinel", "count": 1, "xp": 1200},
+        {"id": "trials-complete-15", "count": 15, "xp": 800},
+        {"id": "side-quest-1", "count": 1, "xp": 600}
+      ]
+    },
+    {
+      "week": 6,
+      "start": "2026-02-19T00:00:00Z",
+      "end": "2026-03-01T00:00:00Z",
+      "theme": "Storm's End",
+      "events": ["finale-bonus-xp", "echo-storms-finale"],
+      "objectives": [
+        {"id": "finale-cutscene", "count": 1, "xp": 500},
+        {"id": "side-quest-2", "count": 1, "xp": 600},
+        {"id": "season-complete", "count": 1, "xp": 1000}
+      ]
+    }
+  ],
+
+  "cosmetics": [
+    {
+      "id": "costume-echo-01",
+      "name": "Storm Walker",
+      "rarity": "epic",
+      "type": "costume",
+      "unlock_method": "week_2_objectives",
+      "price_ac": 0
+    },
+    {
+      "id": "costume-echo-02",
+      "name": "Sentinel's Shroud",
+      "rarity": "legendary",
+      "type": "costume",
+      "unlock_method": "boss_defeat_sentinel",
+      "price_ac": 0
+    },
+    {
+      "id": "costume-echo-03",
+      "name": "Resonance Cloak",
+      "rarity": "epic",
+      "type": "costume",
+      "unlock_method": "store_bundle",
+      "price_ac": 1200
+    },
+    {
+      "id": "effect-storm-aura",
+      "name": "Storm Aura",
+      "rarity": "epic",
+      "type": "equipment_effect",
+      "unlock_method": "week_4_objectives",
+      "price_ac": 0
+    },
+    {
+      "id": "effect-echo-trail",
+      "name": "Echo Trail",
+      "rarity": "rare",
+      "type": "equipment_effect",
+      "unlock_method": "store_bundle",
+      "price_ac": 800
+    }
+  ],
+
+  "bundles": [
+    {
+      "id": "s2-starter",
+      "name": "Storm Starter Bundle",
+      "week": 2,
+      "price_usd": 9.99,
+      "items": ["costume-echo-01", "effect-echo-trail", "cr-1000"],
+      "discount_percent": 15
+    },
+    {
+      "id": "s2-midseason",
+      "name": "Resonance Bundle",
+      "week": 4,
+      "price_usd": 14.99,
+      "items": ["costume-echo-03", "effect-storm-aura", "cr-2000", "token-cosmetic-1"],
+      "discount_percent": 20
+    },
+    {
+      "id": "s2-finale",
+      "name": "Storm's End Bundle",
+      "week": 6,
+      "price_usd": 19.99,
+      "items": ["costume-echo-02", "effect-storm-aura", "effect-echo-trail", "cr-3000", "title-echo-storm"],
+      "discount_percent": 25
+    }
+  ],
+
+  "biomes": [
+    {
+      "id": "canyon-night-storm",
+      "name": "Canyon Night-Storm",
+      "unlock_week": 1,
+      "features": ["dynamic_weather", "lightning_strikes", "acoustic_puzzles"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "ruins-sand-gale",
+      "name": "Ruins Sand-Gale",
+      "unlock_week": 3,
+      "features": ["sandstorm_visibility", "wind_mechanics", "frequency_puzzles"],
+      "difficulty": "hard"
+    }
+  ],
+
+  "mechanics": {
+    "resonance_link": {
+      "type": "cooperative",
+      "min_players": 1,
+      "max_players": 2,
+      "opt_in": true,
+      "description": "Drop-in cooperative stealth-puzzle mode where players can sync resonance frequencies"
+    },
+    "storm_puzzles": [
+      {
+        "id": "frequency-align",
+        "name": "Frequency Alignment",
+        "description": "Match resonance frequencies by adjusting crystal positions",
+        "difficulty": "easy"
+      },
+      {
+        "id": "phase-chain",
+        "name": "Phase Chain",
+        "description": "Create a chain reaction of phase-locked crystals",
+        "difficulty": "medium"
+      },
+      {
+        "id": "echo-triangulation",
+        "name": "Echo Triangulation",
+        "description": "Use three echo points to triangulate a hidden resonance source",
+        "difficulty": "hard"
+      }
+    ]
+  },
+
+  "mini_bosses": [
+    {
+      "id": "echo-sentinel",
+      "name": "Echo Sentinel",
+      "phases": [
+        {"phase": 1, "hp_percent": 100, "mechanics": ["basic_attacks", "storm_summon"]},
+        {"phase": 2, "hp_percent": 66, "mechanics": ["resonance_shield", "echo_clones"]},
+        {"phase": 3, "hp_percent": 33, "mechanics": ["storm_fury", "area_denial"]}
+      ],
+      "week_appearances": [2, 5],
+      "success_rate_target": 0.55,
+      "rewards": {
+        "xp": 1200,
+        "cr": 500,
+        "cosmetic": "costume-echo-02"
+      }
+    }
+  ],
+
+  "side_quests": [
+    {
+      "id": "whispers-in-storm",
+      "name": "Whispers in the Storm",
+      "unlock_week": 5,
+      "xp_reward": 600,
+      "narrative": "Investigate mysterious voices heard during storm peaks"
+    },
+    {
+      "id": "lost-resonator",
+      "name": "The Lost Resonator",
+      "unlock_week": 6,
+      "xp_reward": 600,
+      "narrative": "Recover an ancient resonance device from the ruins"
+    }
+  ],
+
+  "cutscenes": [
+    {
+      "id": "storm-revelation",
+      "name": "Storm Revelation",
+      "trigger": "week_6_finale",
+      "duration_seconds": 90,
+      "narrative": "The origin of the Echo Storms is revealed, setting up Season 3"
+    }
+  ],
+
+  "progression": {
+    "xp_curve_multiplier": 1.18,
+    "total_xp_available": 9500,
+    "xp_for_max_level": 8000,
+    "bonus_xp_finale": 1.5
+  },
+
+  "compliance": {
+    "monetization_type": "cosmetic_only",
+    "p2w": false,
+    "regions": ["TR", "EU", "US", "RU", "MENA"],
+    "age_rating": "PEGI 12 / ESRB T",
+    "data_retention_days": 180,
+    "kvkk_compliant": true,
+    "gdpr_compliant": true,
+    "pdpl_compliant": true
+  },
+
+  "targets": {
+    "retention_d1": 0.42,
+    "retention_d7": 0.22,
+    "retention_d30": 0.11,
+    "boss_success_rate": 0.55,
+    "puzzle_completion_rate": 0.70,
+    "coop_adoption_rate": 0.30,
+    "bundle_attach_rate": 0.18,
+    "arppu_usd": 11.00
+  },
+
+  "version": "2.0.0",
+  "created": "2025-10-12T00:00:00Z",
+  "white_hat": true,
+  "anti_cheat_enabled": true
+}

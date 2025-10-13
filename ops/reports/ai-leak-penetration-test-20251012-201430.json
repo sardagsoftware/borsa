@@ -1,0 +1,15 @@
+{
+  "test_date": "2025-10-12T20:14:31+03:00",
+  "target": "http://localhost:3000",
+  "total_tests": 12,
+  "passed": 11,
+  "failed": 1,
+  "score": 91,
+  "issues": {
+    "critical": 1,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "recommendation": "Fix critical issues before deployment"
+}

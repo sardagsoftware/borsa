@@ -1,0 +1,195 @@
+{
+  "id": "abx-coop-optin",
+  "name": "Co-op Suggestion Frequency Optimization",
+  "season": "S2",
+  "hypothesis": "Showing co-op opt-in prompts more frequently will increase adoption without annoying players",
+  "start_date": "2026-02-05T00:00:00+03:00",
+  "end_date": "2026-02-19T00:00:00+03:00",
+  "duration_days": 14,
+  "status": "scheduled",
+
+  "primary_metric": {
+    "name": "coop_adoption_rate",
+    "type": "proportion",
+    "baseline_estimate": 0.25,
+    "target_improvement": 0.05,
+    "success_criteria": ">= 0.30"
+  },
+
+  "secondary_metrics": [
+    {
+      "name": "prompt_dismissal_rate",
+      "type": "proportion",
+      "guardrail": true,
+      "threshold": 0.70,
+      "interpretation": "High dismissal = annoyance"
+    },
+    {
+      "name": "coop_completion_rate",
+      "type": "proportion",
+      "baseline_estimate": 0.75
+    },
+    {
+      "name": "player_satisfaction",
+      "type": "continuous",
+      "measurement": "weekly_survey",
+      "scale": [1, 5]
+    },
+    {
+      "name": "session_length",
+      "type": "continuous",
+      "unit": "minutes"
+    }
+  ],
+
+  "arms": [
+    {
+      "name": "control",
+      "allocation": 0.33,
+      "description": "Standard frequency (1 prompt per puzzle area entry)",
+      "parameters": {
+        "prompt_frequency": "once_per_area",
+        "cooldown_hours": 24,
+        "max_prompts_per_day": 1
+      }
+    },
+    {
+      "name": "variant_a_moderate",
+      "allocation": 0.33,
+      "description": "Moderate frequency (2 prompts per session)",
+      "parameters": {
+        "prompt_frequency": "twice_per_session",
+        "cooldown_hours": 12,
+        "max_prompts_per_day": 2
+      }
+    },
+    {
+      "name": "variant_b_high",
+      "allocation": 0.34,
+      "description": "High frequency (3 prompts per session + context-aware)",
+      "parameters": {
+        "prompt_frequency": "context_aware",
+        "cooldown_hours": 6,
+        "max_prompts_per_day": 3,
+        "context_triggers": [
+          "entering_hard_puzzle",
+          "failing_puzzle_twice",
+          "near_other_players"
+        ]
+      }
+    }
+  ],
+
+  "allocation_strategy": {
+    "method": "stratified_random",
+    "stratification_keys": ["region", "solo_player_profile", "social_activity_level"],
+    "ensure_balance": true,
+    "re_randomization": false
+  },
+
+  "statistics": {
+    "minimum_detectable_effect": 0.05,
+    "statistical_power": 0.80,
+    "alpha": 0.05,
+    "two_tailed": false,
+    "sample_size_per_arm": 1000
+  },
+
+  "guardrails": [
+    {
+      "metric": "prompt_dismissal_rate",
+      "operator": ">",
+      "threshold": 0.70,
+      "action": "stop_arm",
+      "applies_to": "variant_b_high",
+      "reason": "Too annoying, harming UX"
+    },
+    {
+      "metric": "player_satisfaction",
+      "operator": "<",
+      "threshold": 3.0,
+      "action": "alert"
+    },
+    {
+      "metric": "retention_d1",
+      "operator": "<",
+      "threshold": 0.40,
+      "action": "stop_experiment"
+    }
+  ],
+
+  "monitoring": {
+    "check_frequency_hours": 8,
+    "early_stopping": true,
+    "sequential_testing": false,
+    "interim_analysis_days": [3, 7, 10]
+  },
+
+  "ux_variants": {
+    "control": {
+      "prompt_style": "minimal",
+      "animation": "fade_in",
+      "dismissible": true,
+      "remember_choice": true
+    },
+    "variant_a_moderate": {
+      "prompt_style": "standard",
+      "animation": "slide_in",
+      "dismissible": true,
+      "remember_choice": true
+    },
+    "variant_b_high": {
+      "prompt_style": "contextual_tooltip",
+      "animation": "pulsing_icon",
+      "dismissible": true,
+      "remember_choice": false
+    }
+  },
+
+  "telemetry": {
+    "track_metrics": [
+      "prompt_shown_count",
+      "prompt_accepted_count",
+      "prompt_dismissed_count",
+      "time_to_decision_seconds",
+      "coop_session_duration",
+      "coop_success_rate",
+      "repeat_pairing_rate"
+    ]
+  },
+
+  "rbac": {
+    "start_permission": "experiments.admin",
+    "stop_permission": "experiments.admin",
+    "view_results": "experiments.analyst"
+  },
+
+  "compliance": {
+    "fair_allocation": true,
+    "no_discrimination": true,
+    "ethical_label": "UX_OPTIMIZATION_TEST",
+    "player_communication": "silent",
+    "opt_out_available": true,
+    "opt_out_method": "settings_toggle"
+  },
+
+  "rollout_plan": {
+    "if_winner": "variant_a_moderate",
+    "rollout_phases": [
+      {"percent": 10, "duration_hours": 24},
+      {"percent": 50, "duration_hours": 48},
+      {"percent": 100, "monitor_hours": 72}
+    ],
+    "if_no_winner": {
+      "action": "keep_control",
+      "reason": "No significant improvement, avoid UX churn"
+    }
+  },
+
+  "white_hat": true,
+  "accessibility": {
+    "screen_reader_compatible": true,
+    "keyboard_navigable": true,
+    "color_blind_safe": true
+  }
+}

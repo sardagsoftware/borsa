@@ -1,0 +1,249 @@
+/**
+ * 📊 METRICS THEME INTEGRATION
+ * Integrates SpeedBadge & Prompt Meters with AiLydian theme
+ * Palette-compliant: #22D3EE, #22C55E, #F5F7FA
+ * Version: 1.0.0
+ * Date: 2025-10-11
+ */
+
+/* ========== CSS CUSTOM PROPERTIES ========== */
+:root {
+    /* Metrics Colors - Palette Compliant */
+    --metrics-primary: #22D3EE;        /* cyan-400 - token count, speed */
+    --metrics-success: #22C55E;        /* green-500 - success states */
+    --metrics-text: #F5F7FA;           /* slate-50 - text */
+    --metrics-text-secondary: #94A3B8; /* slate-400 - secondary text */
+    --metrics-glass: rgba(255, 255, 255, 0.08); /* glass background */
+    --metrics-glass-hover: rgba(255, 255, 255, 0.12);
+    --metrics-border: rgba(34, 211, 238, 0.2);
+    --metrics-border-hover: rgba(34, 211, 238, 0.35);
+    --metrics-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --metrics-shadow-hover: 0 6px 12px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.08);
+
+    /* Metrics Loading State */
+    --metrics-loading: #FCD34D;        /* yellow-300 */
+
+    /* Dark Theme Integration */
+    --metrics-bg-dark: rgba(15, 23, 42, 0.8);
+    --metrics-bg-dark-hover: rgba(15, 23, 42, 0.9);
+}
+
+/* ========== SPEEDBADGE THEME OVERRIDES ========== */
+
+/* Dark theme compatibility for AiLydian chat interface */
+.chat-body .speed-badge,
+.main-chat .speed-badge,
+.chat-input-container .speed-badge {
+    background: var(--metrics-bg-dark);
+    border-color: var(--metrics-border);
+    color: var(--metrics-text);
+}
+
+.chat-body .speed-badge:hover,
+.main-chat .speed-badge:hover,
+.chat-input-container .speed-badge:hover {
+    background: var(--metrics-bg-dark-hover);
+    border-color: var(--metrics-border-hover);
+}
+
+/* Icon color consistency */
+.speed-badge-icon {
+    color: var(--metrics-primary);
+}
+
+.speed-badge--loading .speed-badge-icon {
+    color: var(--metrics-loading);
+}
+
+/* ========== PROMPT BAR INTEGRATION ========== */
+
+/* Search & Chat input container positioning */
+.search-input-group,
+.chat-input-group,
+.input-wrapper {
+    position: relative;
+}
+
+/* Badge container for prompt bars */
+.prompt-meter-container {
+    position: absolute;
+    top: 50%;
+    right: 60px; /* Space for send button */
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Inline badge in prompt bars */
+.speed-badge--inline {
+    position: static;
+    margin-left: 0.5rem;
+    pointer-events: auto;
+}
+
+/* ========== RESPONSIVE INTEGRATION ========== */
+
+@media (max-width: 768px) {
+    /* Smaller badges on mobile */
+    .prompt-meter-container .speed-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        gap: 0.25rem;
+    }
+
+    .prompt-meter-container .speed-badge-icon {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* Adjust positioning for mobile */
+    .prompt-meter-container {
+        right: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Hide cost on very small screens */
+    .prompt-meter-container .speed-badge-text {
+        max-width: 120px;
+    }
+}
+
+/* ========== CHAT.HTML SPECIFIC INTEGRATION ========== */
+
+/* Chat input wrapper with meter */
+.chat-input-container .input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Position meter next to send button */
+.chat-input-container .speed-badge-container {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* ========== SEARCH PAGE INTEGRATION ========== */
+
+/* Search bar with meter */
+.search-bar-container {
+    position: relative;
+}
+
+.search-bar-container .speed-badge-container {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ========== GLASS MORPHISM CONSISTENCY ========== */
+
+/* Ensure backdrop-filter consistency across browsers */
+.speed-badge {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+    .speed-badge {
+        background: rgba(15, 23, 42, 0.95);
+    }
+}
+
+/* ========== DARK MODE ENFORCEMENT ========== */
+
+/* Force dark theme for metrics in AiLydian context */
+@media (prefers-color-scheme: light) {
+    .chat-body .speed-badge,
+    .main-chat .speed-badge,
+    [data-theme="dark"] .speed-badge {
+        background: var(--metrics-bg-dark);
+        border-color: var(--metrics-border);
+        color: var(--metrics-text);
+    }
+}
+
+/* ========== HIGH CONTRAST MODE ========== */
+
+@media (prefers-contrast: high) {
+    .speed-badge {
+        background: rgba(0, 0, 0, 0.9);
+        border-width: 2px;
+        border-color: var(--metrics-primary);
+    }
+
+    .speed-badge-text {
+        font-weight: 600;
+    }
+
+    .speed-badge-icon {
+        stroke-width: 3;
+    }
+}
+
+/* ========== REDUCED MOTION ========== */
+
+@media (prefers-reduced-motion: reduce) {
+    .speed-badge,
+    .speed-badge-icon,
+    .speed-badge--updated {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ========== ACCESSIBILITY ENHANCEMENTS ========== */
+
+/* Focus visible for keyboard navigation */
+.speed-badge:focus-visible {
+    outline: 2px solid var(--metrics-primary);
+    outline-offset: 2px;
+}
+
+/* Screen reader only text for metrics */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ========== PRINT STYLES ========== */
+
+@media print {
+    .speed-badge,
+    .speed-badge-container,
+    .prompt-meter-container {
+        display: none !important;
+    }
+}
+
+/* ========== ANIMATION PERFORMANCE ========== */
+
+/* GPU acceleration for smooth animations */
+.speed-badge,
+.speed-badge-icon {
+    will-change: transform, opacity;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* ========== THEME VARIABLES EXPORT ========== */
+
+/* Export metrics colors for JavaScript access */
+.metrics-theme-vars {
+    --export-metrics-primary: var(--metrics-primary);
+    --export-metrics-success: var(--metrics-success);
+    --export-metrics-text: var(--metrics-text);
+    --export-metrics-loading: var(--metrics-loading);
+}
+
+/* ========== INTEGRATION COMPLETE ========== */

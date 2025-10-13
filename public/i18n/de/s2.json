@@ -1,0 +1,63 @@
+{
+  "locale": "de-DE",
+  "direction": "ltr",
+  "season": {
+    "id": "S2",
+    "title": "Echo-Stürme",
+    "subtitle": "Entdecke verlorene Harmonien, während Echo-Winde aufsteigen",
+    "description": "Staffel 2: Echo-Stürme - Dynamische Wetterereignisse, akustische Rätsel und kooperatives Schleich-Gameplay",
+    "duration": "6 Wochen",
+    "start_date": "15. Januar 2026",
+    "end_date": "1. März 2026"
+  },
+
+  "weeks": {
+    "week_1": {"name": "Sturm-Erwachen", "description": "Neue Staffel beginnt - Entdecke das Geheimnis der Echo-Stürme"},
+    "week_2": {"name": "Wächter erhebt sich", "description": "Erste Mini-Boss-Begegnung - Echo-Wächter Phase 1"},
+    "week_3": {"name": "Sturm-Fotografie", "description": "Fotomodus-Wettbewerb - Fange den schönsten Sturm ein"},
+    "week_4": {"name": "Kooperations-Woche", "description": "Zwei-Spieler-Rätsel und Händlerrabatte"},
+    "week_5": {"name": "Wächter kehrt zurück", "description": "Mini-Boss kehrt zurück - Echo-Wächter Phase 2 (schwerer!)"},
+    "week_6": {"name": "Staffel-Finale", "description": "1,5x Bonus-XP, Sturm-Marathon und Finale-Zwischensequenz"}
+  },
+
+  "mechanics": {
+    "resonance_link": {"name": "Resonanz-Verbindung", "description": "Optionaler 2-Spieler-Kooperationsmodus", "cta": "Koop-Modus ausprobieren"},
+    "storm_puzzles": {"name": "Sturm-Rätsel", "frequency_align": "Frequenzausrichtung", "phase_chain": "Phasenkette", "echo_triangulation": "Echo-Triangulation"}
+  },
+
+  "bosses": {
+    "echo_sentinel": {
+      "name": "Echo-Wächter",
+      "phase_1": "Phase 1: Erwachen",
+      "phase_2": "Phase 2: Wut",
+      "phase_3": "Phase 3: Raserei",
+      "tells": {"ground_slam": "Bodenschlag - AUSWEICHEN!", "lightning_charge": "Blitzladung - SEITENSCHRITT!", "storm_summon": "Beschwört Sturm..."}
+    }
+  },
+
+  "currency": {"cr": {"name": "Akkordstein-Reste", "abbrev": "AR", "symbol": "⚡"}, "ac": {"name": "Antike Kristalle", "abbrev": "AK", "symbol": "💎"}},
+
+  "ui": {
+    "season_progress": "Staffel-Fortschritt",
+    "week": "Woche",
+    "days_remaining": "{{days}} Tage verbleibend",
+    "active_events": "Aktive Events",
+    "upcoming_events": "Kommende Events",
+    "leaderboards": "Bestenlisten",
+    "my_stats": "Meine Statistiken",
+    "claim_reward": "Belohnung einfordern",
+    "view_details": "Details ansehen",
+    "join_event": "Event beitreten",
+    "opt_in": "Teilnehmen",
+    "opt_out": "Ablehnen"
+  },
+
+  "cldr": {
+    "date_format": "d. MMMM yyyy",
+    "time_format": "HH:mm",
+    "datetime_format": "d. MMMM yyyy HH:mm",
+    "number_format": "#.##0,##",
+    "currency_format": "#.##0,## €",
+    "timezone": "Europe/Berlin"
+  }
+}

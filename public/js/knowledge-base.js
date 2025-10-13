@@ -432,8 +432,8 @@ function getCategoryKeyword(category) {
 }
 
 // ========== AI Chat Integration ==========
-window.openAIChat = function() {
-    console.log('🤖 Opening AI Chat...');
+window.openAssistantChat = function() {
+    console.log('🤖 Opening AI Assistant...');
 
     // Store current search context
     const context = {

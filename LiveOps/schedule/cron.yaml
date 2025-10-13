@@ -1,0 +1,225 @@
+# LiveOps Schedule Configuration
+# Timezone: Europe/Istanbul (TRT = UTC+3)
+# All times in 24-hour format
+
+version: "1.0.0"
+timezone: "Europe/Istanbul"
+
+# Daily Schedules
+daily:
+  daily_reset:
+    time: "03:00:00"
+    description: "Daily quest and currency reset"
+    actions:
+      - reset_daily_quests
+      - reset_daily_currency_limits
+      - refresh_vendor_inventory
+      - clear_daily_telemetry_cache
+
+  trials_refresh:
+    time: "03:05:00"
+    description: "Refresh daily trials"
+    dependencies: ["daily_reset"]
+    actions:
+      - generate_daily_trials
+      - notify_active_players
+      - update_leaderboards
+
+  backup_database:
+    time: "04:00:00"
+    description: "Automated database backup"
+    actions:
+      - backup_player_data
+      - backup_economy_state
+      - backup_telemetry_snapshots
+
+  analytics_report:
+    time: "05:00:00"
+    description: "Generate daily analytics"
+    actions:
+      - generate_dau_report
+      - calculate_retention_metrics
+      - compute_economy_balance
+      - detect_anomalies
+
+# Weekly Schedules
+weekly:
+  weekly_reset:
+    day: "monday"
+    time: "03:15:00"
+    description: "Weekly quest and event reset"
+    actions:
+      - reset_weekly_quests
+      - reset_weekly_leaderboards
+      - distribute_weekly_rewards
+      - refresh_weekly_vendor_items
+
+  maintenance_window:
+    day: "tuesday"
+    time: "04:00:00"
+    duration_minutes: 60
+    description: "Scheduled maintenance window"
+    notifications:
+      advance_warning_hours: 24
+      in_game_banner: true
+    actions:
+      - apply_hotfixes
+      - optimize_database
+      - clear_expired_sessions
+      - update_content_delivery
+
+# Event Schedules
+events:
+  mini_boss_colossus:
+    schedule: "weekly"
+    day: "saturday"
+    time: "20:00:00"
+    duration_hours: 3
+    weeks: [2]
+    description: "Mini Boss: Canyon Colossus"
+    notifications:
+      advance_warning_minutes: 30
+
+  mini_boss_warden:
+    schedule: "weekly"
+    day: "saturday"
+    time: "20:00:00"
+    duration_hours: 3
+    weeks: [5]
+    description: "Mini Boss: Ruins Warden"
+    notifications:
+      advance_warning_minutes: 30
+
+  vendor_sale:
+    schedule: "weekly"
+    day: "thursday"
+    time: "12:00:00"
+    end_time: "23:00:00"
+    weeks: [4]
+    description: "Vendor 10% discount sale"
+    notifications:
+      advance_warning_hours: 2
+
+  photo_contest:
+    schedule: "weekly"
+    day: "monday"
+    time: "00:00:00"
+    duration_days: 7
+    weeks: [3]
+    description: "PhotoMode: Ruins Theme Contest"
+    notifications:
+      submission_reminder_day: "friday"
+
+  season_finale:
+    schedule: "once"
+    date: "2025-11-24T00:00:00+03:00"
+    end_date: "2025-12-01T00:00:00+03:00"
+    description: "Season 1 Finale Event"
+    notifications:
+      advance_warning_days: 7
+    actions:
+      - enable_finale_bonuses
+      - enable_bonus_xp_multiplier
+      - unlock_finale_cosmetics
+
+# Monitoring & Alerts
+monitoring:
+  health_check:
+    interval_minutes: 5
+    endpoints:
+      - /api/health
+      - /liveops/season/current
+      - /economy/balance
+
+  metrics_collection:
+    interval_minutes: 1
+    metrics:
+      - player_count
+      - server_latency
+      - error_rate
+      - currency_flow
+
+  alert_check:
+    interval_minutes: 5
+    thresholds:
+      - crash_free_rate
+      - server_error_rate
+      - economy_inflation_index
+
+# Telemetry Aggregation
+telemetry:
+  aggregate_hourly:
+    minute: "55"
+    description: "Hourly telemetry aggregation"
+    actions:
+      - aggregate_session_data
+      - aggregate_economy_transactions
+      - aggregate_performance_metrics
+
+  aggregate_daily:
+    time: "05:30:00"
+    description: "Daily telemetry aggregation"
+    actions:
+      - aggregate_daily_active_users
+      - aggregate_retention_cohorts
+      - aggregate_revenue_metrics
+
+# Compliance & Cleanup
+compliance:
+  gdpr_data_export:
+    schedule: "on_demand"
+    sla_hours: 72
+
+  gdpr_data_deletion:
+    schedule: "on_demand"
+    sla_hours: 24
+    actions:
+      - anonymize_telemetry
+      - delete_personal_data
+      - update_audit_log
+
+  data_retention_cleanup:
+    day: "sunday"
+    time: "02:00:00"
+    description: "Clean up expired data"
+    actions:
+      - delete_expired_telemetry  # > 180 days
+      - archive_old_sessions       # > 90 days
+      - clean_temp_storage
+
+# Canary Deployments
+canary:
+  rollout_schedule:
+    phase1:
+      percentage: 10
+      duration_hours: 24
+      monitoring_interval_minutes: 15
+
+    phase2:
+      percentage: 50
+      duration_hours: 48
+      monitoring_interval_minutes: 30
+
+    phase3:
+      percentage: 100
+      description: "Full rollout"
+
+# Notifications
+notifications:
+  channels:
+    - in_game_banner
+    - push_notification
+    - email  # opt-in only
+
+  templates:
+    event_starting:
+      advance_minutes: 30
+      message:
+        en: "Event '{event_name}' starting in 30 minutes!"
+        tr: "'{event_name}' etkinliği 30 dakika içinde başlıyor!"
+
+    maintenance:
+      advance_hours: 24
+      message:
+        en: "Scheduled maintenance in {hours} hours. Duration: {duration} minutes."
+        tr: "Planlanmış bakım {hours} saat içinde. Süre: {duration} dakika."

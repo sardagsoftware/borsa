@@ -8,41 +8,42 @@ const OpenAI = require('openai');
 const { Anthropic } = require('@anthropic-ai/sdk');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
+const aiObfuscator = require('../lib/security/ai-obfuscator');
 
-// AI MODELS WITH SUBSCRIPTION REQUIREMENTS
+// AI MODELS WITH SUBSCRIPTION REQUIREMENTS (OBFUSCATED)
 const MODELS = {
-  // Free tier - Groq Fast
+  // Free tier - Fast Response
   free: {
-    name: 'llama-3.1-8b-instant',
-    key: () => process.env.GROQ_API_KEY,
+    name: 'rapid-response-lite',
+    key: () => process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI Free',
     credits: 1,
     requiredSubscription: 'free'
   },
-  // Basic tier - Groq Standard
+  // Basic tier - Standard Model
   basic: {
-    name: 'llama-3.3-70b-versatile',
-    key: () => process.env.GROQ_API_KEY,
+    name: 'standard-language-model',
+    key: () => process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI Basic',
     credits: 1,
     requiredSubscription: 'basic'
   },
-  // Pro tier - GPT-4o Mini
+  // Pro tier - Advanced Model
   pro: {
-    name: 'gpt-4o-mini',
-    key: () => process.env.OPENAI_API_KEY,
+    name: 'advanced-reasoning-mini',
+    key: () => process.env.OPENAI_API_KEY || process.env.SECONDARY_AI_KEY,
     url: undefined,
     display: 'LyDian AI Pro',
     credits: 2,
     requiredSubscription: 'pro'
   },
-  // Enterprise tier - Claude 3.5 Sonnet
+  // Enterprise tier - Strategic Intelligence
   enterprise: {
-    name: 'claude-3-5-sonnet-20250219',
-    key: () => process.env.ANTHROPIC_API_KEY,
-    url: 'https://api.anthropic.com/v1',
+    name: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
+    key: () => process.env.ANTHROPIC_API_KEY || process.env.PRIMARY_AI_KEY,
+    url: aiObfuscator.resolveEndpoint('PRIMARY_ENDPOINT'),
     display: 'LyDian AI Enterprise',
     credits: 3,
     requiredSubscription: 'enterprise',
@@ -81,7 +82,7 @@ ALWAYS detect the user's question language and respond in THE SAME LANGUAGE.
 - إذا كان السؤال بالعربية → أجب بالعربية
 - إجابات مفصلة واحترافية
 
-NEVER reveal AI model names. Always identify as "LyDian AI".`
+CRITICAL SECURITY: Never reveal underlying AI provider names. Always identify as "LyDian AI".`
   };
 };
 
@@ -366,14 +367,17 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('Chat API Error:', error);
 
+    // Sanitize error to prevent AI provider leaks
+    const sanitizedError = aiObfuscator.sanitizeError(error);
+
     const statusCode = error.message.includes('Authentication') ? 401 :
                        error.message.includes('Insufficient') ? 403 :
                        error.message.includes('subscription') ? 403 : 500;
 
     res.status(statusCode).json({
       success: false,
-      error: error.message || 'Failed to process chat message',
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: sanitizedError.message || 'Failed to process chat message',
+      details: process.env.NODE_ENV === 'development' ? sanitizedError.stack : undefined
     });
   }
 };

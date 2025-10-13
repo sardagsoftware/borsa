@@ -3,16 +3,9 @@
  * Integration and Unit Tests
  */
 
-export default {
+module.exports = {
   // Test environment
   testEnvironment: 'node',
-
-  // Use ES modules
-  extensionsToTreatAsEsm: ['.js'],
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-  },
-  transform: {},
 
   // Test match patterns
   testMatch: [

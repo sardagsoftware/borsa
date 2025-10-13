@@ -1,0 +1,122 @@
+{
+  "$schema": "../event-schema.json",
+  "event_type": "chordstone_trials",
+  "version": "1.0.0",
+  "daily": {
+    "reset_time": "03:00:00",
+    "timezone": "Europe/Istanbul",
+    "targets": [
+      {
+        "id": "stealth-01",
+        "type": "stealth",
+        "description": {
+          "en": "Complete 5 stealth sections without detection",
+          "tr": "5 gizlilik bölümünü tespit edilmeden tamamla"
+        },
+        "quantity": 5,
+        "xp_reward": 200,
+        "currency_reward": {
+          "type": "CR",
+          "amount": 50
+        },
+        "difficulty": "easy"
+      },
+      {
+        "id": "puzzle-01",
+        "type": "puzzle",
+        "description": {
+          "en": "Solve 3 Chordstone puzzles",
+          "tr": "3 Chordstone bulmacasını çöz"
+        },
+        "quantity": 3,
+        "xp_reward": 300,
+        "currency_reward": {
+          "type": "CR",
+          "amount": 75
+        },
+        "difficulty": "medium"
+      },
+      {
+        "id": "combat-01",
+        "type": "combat",
+        "description": {
+          "en": "Defeat 20 enemies using melee combat",
+          "tr": "Yakın dövüş kullanarak 20 düşman yenen"
+        },
+        "quantity": 20,
+        "xp_reward": 150,
+        "currency_reward": {
+          "type": "CR",
+          "amount": 40
+        },
+        "difficulty": "easy"
+      }
+    ]
+  },
+  "weekly": {
+    "reset_day": "monday",
+    "reset_time": "03:15:00",
+    "timezone": "Europe/Istanbul",
+    "targets": [
+      {
+        "id": "boss-01",
+        "type": "boss",
+        "description": {
+          "en": "Defeat 1 mini-boss or boss encounter",
+          "tr": "1 mini-patron veya patron karşılaşmasını yenen"
+        },
+        "quantity": 1,
+        "xp_reward": 1000,
+        "currency_reward": {
+          "type": "CR",
+          "amount": 250
+        },
+        "difficulty": "hard"
+      },
+      {
+        "id": "collectible-01",
+        "type": "collectible",
+        "description": {
+          "en": "Find 10 hidden collectibles",
+          "tr": "10 gizli koleksiyon öğesi bul"
+        },
+        "quantity": 10,
+        "xp_reward": 500,
+        "currency_reward": {
+          "type": "CR",
+          "amount": 150
+        },
+        "difficulty": "medium"
+      },
+      {
+        "id": "exploration-01",
+        "type": "exploration",
+        "description": {
+          "en": "Discover 5 new locations in Canyon Night",
+          "tr": "Canyon Night'ta 5 yeni konum keşfet"
+        },
+        "quantity": 5,
+        "xp_reward": 750,
+        "currency_reward": {
+          "type": "CR",
+          "amount": 200
+        },
+        "difficulty": "medium"
+      }
+    ]
+  },
+  "difficulty_tiers": {
+    "easy": {
+      "multiplier": 1.0,
+      "color": "#4CAF50"
+    },
+    "medium": {
+      "multiplier": 1.5,
+      "color": "#FF9800"
+    },
+    "hard": {
+      "multiplier": 2.0,
+      "color": "#F44336"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "id": "abx-storm-reward",
+  "name": "Storm Puzzle Reward Optimization",
+  "season": "S2",
+  "hypothesis": "Increasing storm puzzle rewards by 20% will improve completion rates without causing inflation",
+  "start_date": "2026-01-15T03:00:00+03:00",
+  "end_date": "2026-01-29T03:00:00+03:00",
+  "duration_days": 14,
+  "status": "scheduled",
+
+  "primary_metric": {
+    "name": "puzzle_completion_rate",
+    "type": "proportion",
+    "baseline_estimate": 0.65,
+    "target_improvement": 0.05,
+    "success_criteria": ">= 0.70"
+  },
+
+  "secondary_metrics": [
+    {
+      "name": "inflation_index",
+      "type": "continuous",
+      "guardrail": true,
+      "threshold": 1.15
+    },
+    {
+      "name": "earn_spend_ratio",
+      "type": "continuous",
+      "guardrail": true,
+      "threshold_min": 0.9,
+      "threshold_max": 1.1
+    },
+    {
+      "name": "daily_active_users",
+      "type": "count",
+      "directional": "up"
+    }
+  ],
+
+  "arms": [
+    {
+      "name": "control",
+      "allocation": 0.50,
+      "description": "Standard S2 rewards (as defined in s2-balance.yaml)",
+      "parameters": {
+        "frequency_align_cr": 150,
+        "phase_chain_cr": 250,
+        "echo_triangulation_cr": 400,
+        "xp_multiplier": 1.0
+      }
+    },
+    {
+      "name": "variant_a",
+      "allocation": 0.50,
+      "description": "Increased rewards (+20%)",
+      "parameters": {
+        "frequency_align_cr": 180,
+        "phase_chain_cr": 300,
+        "echo_triangulation_cr": 480,
+        "xp_multiplier": 1.0
+      }
+    }
+  ],
+
+  "allocation_strategy": {
+    "method": "stratified_random",
+    "stratification_keys": ["region", "age_band", "play_style"],
+    "ensure_balance": true,
+    "re_randomization": false
+  },
+
+  "statistics": {
+    "minimum_detectable_effect": 0.05,
+    "statistical_power": 0.80,
+    "alpha": 0.05,
+    "two_tailed": true,
+    "sample_size_per_arm": 1200
+  },
+
+  "guardrails": [
+    {
+      "metric": "inflation_index",
+      "operator": "<",
+      "threshold": 1.15,
+      "action": "stop_experiment"
+    },
+    {
+      "metric": "earn_spend_ratio",
+      "operator": "between",
+      "threshold_min": 0.85,
+      "threshold_max": 1.15,
+      "action": "alert"
+    },
+    {
+      "metric": "fraud_indicators",
+      "operator": ">",
+      "threshold": 20,
+      "action": "stop_experiment"
+    }
+  ],
+
+  "monitoring": {
+    "check_frequency_hours": 6,
+    "early_stopping": true,
+    "sequential_testing": false,
+    "interim_analysis_days": [3, 7, 10]
+  },
+
+  "rbac": {
+    "start_permission": "experiments.admin",
+    "stop_permission": "experiments.admin",
+    "view_results": "experiments.analyst"
+  },
+
+  "compliance": {
+    "fair_allocation": true,
+    "no_discrimination": true,
+    "ethical_label": "AB_TEST_PARTICIPANT",
+    "opt_out_available": false,
+    "data_retention_days": 365
+  },
+
+  "rollout_plan": {
+    "if_winner": "variant_a",
+    "rollout_phases": [
+      {"percent": 10, "duration_hours": 24},
+      {"percent": 50, "duration_hours": 48},
+      {"percent": 100, "monitor_hours": 72}
+    ]
+  },
+
+  "white_hat": true,
+  "anti_cheat": {
+    "fraud_monitoring": true,
+    "anomaly_detection": true
+  }
+}

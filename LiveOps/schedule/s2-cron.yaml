@@ -1,0 +1,608 @@
+# Season 2: Echo Storms - Scheduling & Cron Configuration
+# Version: 2.0.0
+# Date: 2026-01-15
+# White-Hat: true
+# Compliance: KVKK/GDPR/PDPL
+
+version: "2.0.0"
+season: "S2"
+timezone: "Europe/Istanbul"  # TRT (UTC+3)
+
+# Daily Operations
+daily_operations:
+  daily_reset:
+    cron: "0 3 * * *"              # 03:00 TRT every day
+    time_human: "03:00 TRT"
+    actions:
+      - reset_daily_quests
+      - reset_daily_earn_limits
+      - refresh_vendor_inventory
+      - calculate_daily_kpis
+      - archive_previous_day_logs
+
+  trials_refresh:
+    cron: "5 3 * * *"              # 03:05 TRT every day
+    time_human: "03:05 TRT"
+    actions:
+      - generate_new_trials
+      - rotate_trial_difficulties
+      - assign_trial_rewards
+
+  morning_health_check:
+    cron: "0 9 * * *"              # 09:00 TRT
+    time_human: "09:00 TRT"
+    actions:
+      - check_server_health
+      - validate_economy_metrics
+      - scan_fraud_indicators
+      - alert_on_anomalies
+
+# Weekly Operations
+weekly_operations:
+  weekly_reset:
+    cron: "15 3 * * 1"             # 03:15 TRT every Monday
+    time_human: "Monday 03:15 TRT"
+    actions:
+      - reset_weekly_quests
+      - reset_weekly_earn_limits
+      - rotate_cosmetic_shop
+      - generate_weekly_leaderboards
+      - archive_previous_week_data
+      - advance_season_week
+
+  economy_review:
+    cron: "0 10 * * 1"             # 10:00 TRT every Monday
+    time_human: "Monday 10:00 TRT"
+    actions:
+      - calculate_inflation_index
+      - calculate_earn_spend_ratio
+      - review_vendor_usage
+      - check_anti_inflation_guardrails
+      - generate_economy_report
+
+# Event Schedules (Season 2 Specific)
+events:
+  # Week 2 - Mini-Boss Echo Sentinel Phase 1
+  mini_boss_phase_1_start:
+    date: "2026-01-25T20:00:00+03:00"
+    cron: "0 20 25 1 *"            # Jan 25, 20:00 TRT
+    event_id: "mini-boss-echo-sentinel"
+    actions:
+      - activate_event
+      - spawn_echo_sentinel_phase_1
+      - notify_players
+      - enable_boss_telemetry
+    duration_hours: 48
+
+  mini_boss_phase_1_end:
+    date: "2026-01-27T20:00:00+03:00"
+    cron: "0 20 27 1 *"            # Jan 27, 20:00 TRT
+    actions:
+      - deactivate_event
+      - calculate_boss_metrics
+      - distribute_leaderboard_rewards
+      - export_boss_data
+
+  # Week 3 - PhotoMode Contest
+  photo_contest_start:
+    date: "2026-02-01T00:00:00+03:00"
+    cron: "0 0 1 2 *"              # Feb 1, 00:00 TRT
+    event_id: "photo-contest-storm-trails"
+    actions:
+      - activate_event
+      - open_submission_portal
+      - notify_players
+    duration_days: 7
+
+  photo_contest_end:
+    date: "2026-02-08T00:00:00+03:00"
+    cron: "0 0 8 2 *"              # Feb 8, 00:00 TRT
+    actions:
+      - close_submissions
+      - trigger_moderation_review
+      - schedule_community_voting
+
+  photo_contest_results:
+    date: "2026-02-10T18:00:00+03:00"
+    cron: "0 18 10 2 *"            # Feb 10, 18:00 TRT
+    actions:
+      - announce_winners
+      - distribute_prizes
+      - publish_gallery
+
+  # Week 4 - Vendor Sale
+  vendor_sale_start:
+    date: "2026-02-13T12:00:00+03:00"
+    cron: "0 12 13 2 4"            # Thursday Feb 13, 12:00 TRT
+    event_id: "vendor-sale-10"
+    actions:
+      - apply_discount_10_percent
+      - notify_players
+      - track_vendor_metrics
+    duration_hours: 11
+
+  vendor_sale_end:
+    date: "2026-02-13T23:00:00+03:00"
+    cron: "0 23 13 2 4"            # Thursday Feb 13, 23:00 TRT
+    actions:
+      - remove_discounts
+      - calculate_sale_metrics
+      - export_vendor_data
+
+  # Week 4 - Co-op Puzzle Week
+  coop_week_start:
+    date: "2026-02-10T00:00:00+03:00"
+    cron: "0 0 10 2 *"             # Feb 10, 00:00 TRT
+    event_id: "co-op-puzzle-week"
+    actions:
+      - activate_coop_bonus
+      - enable_matchmaking
+      - notify_players
+    duration_days: 7
+
+  coop_week_end:
+    date: "2026-02-17T00:00:00+03:00"
+    cron: "0 0 17 2 *"             # Feb 17, 00:00 TRT
+    actions:
+      - deactivate_coop_bonus
+      - calculate_participation
+      - distribute_rewards
+
+  # Week 5 - Mini-Boss Echo Sentinel Phase 2
+  mini_boss_phase_2_start:
+    date: "2026-02-22T20:00:00+03:00"
+    cron: "0 20 22 2 *"            # Feb 22, 20:00 TRT
+    event_id: "mini-boss-echo-sentinel-II"
+    actions:
+      - activate_event
+      - spawn_echo_sentinel_phase_2
+      - notify_players
+      - enable_boss_telemetry
+    duration_hours: 48
+
+  mini_boss_phase_2_end:
+    date: "2026-02-24T20:00:00+03:00"
+    cron: "0 20 24 2 *"            # Feb 24, 20:00 TRT
+    actions:
+      - deactivate_event
+      - calculate_boss_metrics
+      - distribute_leaderboard_rewards
+      - compare_phase_1_phase_2
+
+  # Week 6 - Finale Bonus XP
+  finale_start:
+    date: "2026-02-26T00:00:00+03:00"
+    cron: "0 0 26 2 *"             # Feb 26, 00:00 TRT
+    event_id: "finale-bonus-xp"
+    actions:
+      - activate_xp_multiplier_1_5x
+      - notify_players
+      - enable_finale_activities
+    duration_days: 3
+
+  finale_end:
+    date: "2026-03-01T00:00:00+03:00"
+    cron: "0 0 1 3 *"              # Mar 1, 00:00 TRT
+    actions:
+      - deactivate_xp_multiplier
+      - finalize_leaderboards
+      - distribute_finale_rewards
+      - trigger_finale_cutscene
+      - archive_season_2_data
+
+# A/B Experiment Schedules
+ab_experiments:
+  # Experiment 1: Storm Reward Optimization
+  abx_storm_reward_start:
+    date: "2026-01-15T03:00:00+03:00"
+    cron: "0 3 15 1 *"             # Jan 15, 03:00 TRT
+    experiment_id: "abx-storm-reward"
+    actions:
+      - activate_experiment
+      - allocate_players_stratified
+      - enable_telemetry_tracking
+    duration_days: 14
+
+  abx_storm_reward_interim_1:
+    date: "2026-01-18T11:00:00+03:00"
+    cron: "0 11 18 1 *"            # Day 3 interim analysis
+    actions:
+      - run_interim_analysis
+      - check_guardrails
+      - alert_if_violations
+
+  abx_storm_reward_interim_2:
+    date: "2026-01-22T11:00:00+03:00"
+    cron: "0 11 22 1 *"            # Day 7 interim analysis
+    actions:
+      - run_interim_analysis
+      - check_guardrails
+      - evaluate_early_stopping
+
+  abx_storm_reward_end:
+    date: "2026-01-29T03:00:00+03:00"
+    cron: "0 3 29 1 *"             # Jan 29, 03:00 TRT
+    actions:
+      - deactivate_experiment
+      - finalize_statistical_analysis
+      - generate_experiment_report
+      - determine_winner
+
+  # Experiment 2: Boss HP Tuning
+  abx_boss_hp_start:
+    date: "2026-01-22T20:00:00+03:00"
+    cron: "0 20 22 1 *"            # Jan 22, 20:00 TRT
+    experiment_id: "abx-boss-hp-storm"
+    actions:
+      - activate_experiment
+      - allocate_players_stratified
+      - enable_boss_telemetry
+    duration_days: 14
+
+  abx_boss_hp_interim_1:
+    date: "2026-01-24T11:00:00+03:00"
+    cron: "0 11 24 1 *"            # Day 2 interim
+    actions:
+      - run_interim_analysis
+      - check_guardrails
+      - monitor_success_rates
+
+  abx_boss_hp_end:
+    date: "2026-02-05T20:00:00+03:00"
+    cron: "0 20 5 2 *"             # Feb 5, 20:00 TRT
+    actions:
+      - deactivate_experiment
+      - finalize_analysis
+      - determine_optimal_hp
+      - generate_report
+
+  # Experiment 3: Co-op Opt-in Frequency
+  abx_coop_optin_start:
+    date: "2026-02-05T00:00:00+03:00"
+    cron: "0 0 5 2 *"              # Feb 5, 00:00 TRT
+    experiment_id: "abx-coop-optin"
+    actions:
+      - activate_experiment
+      - allocate_players_stratified
+      - enable_prompt_tracking
+    duration_days: 14
+
+  abx_coop_optin_interim_1:
+    date: "2026-02-08T11:00:00+03:00"
+    cron: "0 11 8 2 *"             # Day 3 interim
+    actions:
+      - run_interim_analysis
+      - check_dismissal_rates
+      - alert_if_annoying
+
+  abx_coop_optin_end:
+    date: "2026-02-19T00:00:00+03:00"
+    cron: "0 0 19 2 *"             # Feb 19, 00:00 TRT
+    actions:
+      - deactivate_experiment
+      - finalize_analysis
+      - determine_optimal_frequency
+      - generate_report
+
+# Canary Deployment Windows
+canary_windows:
+  content_canary:
+    # Tuesday/Thursday 11:00-14:00 TRT for content releases
+    cron: "0 11 * * 2,4"           # Tue/Thu 11:00 TRT
+    time_human: "Tuesday/Thursday 11:00-14:00 TRT"
+    duration_hours: 3
+    actions:
+      - validate_pre_deployment_checks
+      - deploy_to_canary_10_percent
+      - monitor_crash_rate
+      - monitor_performance_metrics
+      - auto_rollback_if_degradation
+    rollback_ready: true
+    rollback_triggers:
+      crash_free_rate_below: 0.98
+      p95_latency_above_ms: 180
+      error_rate_above: 0.05
+
+  economy_canary:
+    # Wednesday 11:00-14:00 TRT for economy changes
+    cron: "0 11 * * 3"             # Wed 11:00 TRT
+    time_human: "Wednesday 11:00-14:00 TRT"
+    duration_hours: 3
+    actions:
+      - validate_economy_balance
+      - deploy_to_canary_10_percent
+      - monitor_inflation_index
+      - monitor_earn_spend_ratio
+      - auto_rollback_if_violation
+    rollback_ready: true
+    rollback_triggers:
+      inflation_index_above: 1.12
+      earn_spend_ratio_below: 0.85
+      earn_spend_ratio_above: 1.15
+      fraud_indicators_above: 20
+
+  ab_experiment_canary:
+    # Monday 11:00-14:00 TRT for A/B experiment launches
+    cron: "0 11 * * 1"             # Mon 11:00 TRT
+    time_human: "Monday 11:00-14:00 TRT"
+    duration_hours: 3
+    actions:
+      - validate_experiment_config
+      - deploy_experiment_allocation
+      - monitor_allocation_fairness
+      - monitor_guardrail_metrics
+      - auto_stop_if_guardrail_breach
+    rollback_ready: true
+
+# Monitoring & Alerting Schedules
+monitoring:
+  real_time_metrics:
+    cron: "*/5 * * * *"            # Every 5 minutes
+    actions:
+      - collect_server_metrics
+      - collect_client_metrics
+      - update_grafana_dashboards
+      - check_alert_thresholds
+
+  fraud_scan:
+    cron: "*/15 * * * *"           # Every 15 minutes
+    actions:
+      - scan_earn_rate_anomalies
+      - detect_duplication_attempts
+      - validate_recent_transactions
+      - flag_suspicious_accounts
+
+  hourly_kpi_snapshot:
+    cron: "0 * * * *"              # Every hour
+    actions:
+      - snapshot_kpis
+      - calculate_hourly_aggregates
+      - update_observability_dashboard
+      - export_to_analytics
+
+  daily_report:
+    cron: "0 8 * * *"              # 08:00 TRT
+    time_human: "08:00 TRT"
+    actions:
+      - generate_daily_kpi_report
+      - email_to_team
+      - post_to_slack_liveops_channel
+      - archive_report
+
+  weekly_report:
+    cron: "0 9 * * 1"              # Monday 09:00 TRT
+    time_human: "Monday 09:00 TRT"
+    actions:
+      - generate_weekly_summary
+      - include_ab_experiment_progress
+      - include_economy_health
+      - email_to_stakeholders
+      - archive_report
+
+# Backup & Archival
+backup_operations:
+  incremental_backup:
+    cron: "0 */6 * * *"            # Every 6 hours
+    actions:
+      - backup_database_incremental
+      - backup_player_data
+      - backup_transaction_logs
+      - verify_backup_integrity
+
+  daily_full_backup:
+    cron: "0 2 * * *"              # 02:00 TRT
+    time_human: "02:00 TRT"
+    actions:
+      - backup_database_full
+      - backup_all_logs
+      - backup_configuration_files
+      - upload_to_secure_storage
+      - verify_backup_integrity
+      - rotate_old_backups
+
+  log_archival:
+    cron: "30 3 * * *"             # 03:30 TRT
+    time_human: "03:30 TRT"
+    actions:
+      - archive_logs_older_than_7_days
+      - compress_archived_logs
+      - upload_to_cold_storage
+      - delete_archived_originals
+
+# Anti-Cheat Schedules
+anti_cheat:
+  client_integrity_check:
+    cron: "0 */4 * * *"            # Every 4 hours
+    actions:
+      - refresh_client_hashes
+      - validate_binary_signatures
+      - update_integrity_manifest
+
+  receipt_validation_batch:
+    cron: "*/30 * * * *"           # Every 30 minutes
+    actions:
+      - batch_validate_pending_receipts
+      - verify_apple_iap_receipts
+      - verify_google_play_receipts
+      - verify_lydian_store_receipts
+      - flag_fraudulent_purchases
+
+  attested_log_merkle:
+    cron: "0 4 * * *"              # 04:00 TRT daily
+    time_human: "04:00 TRT"
+    actions:
+      - calculate_daily_merkle_root
+      - sign_with_ed25519
+      - publish_to_transparency_log
+      - archive_merkle_proof
+
+# Compliance & Data Retention
+compliance_operations:
+  pii_retention_check:
+    cron: "0 5 * * 0"              # Sunday 05:00 TRT
+    time_human: "Sunday 05:00 TRT"
+    actions:
+      - scan_for_expired_data
+      - anonymize_data_older_than_180_days
+      - delete_requested_user_data
+      - generate_compliance_report
+
+  kvkk_gdpr_export:
+    cron: "0 6 * * *"              # 06:00 TRT daily
+    time_human: "06:00 TRT"
+    actions:
+      - process_pending_export_requests
+      - generate_user_data_packages
+      - encrypt_exports
+      - send_download_links
+
+  audit_log_review:
+    cron: "0 10 * * 1"             # Monday 10:00 TRT
+    time_human: "Monday 10:00 TRT"
+    actions:
+      - review_privileged_access_logs
+      - flag_suspicious_admin_actions
+      - verify_rbac_compliance
+      - generate_audit_report
+
+# Season Lifecycle
+season_lifecycle:
+  season_start:
+    date: "2026-01-15T00:00:00+03:00"
+    cron: "0 0 15 1 *"             # Jan 15, 00:00 TRT
+    actions:
+      - activate_season_2
+      - reset_season_progress
+      - unlock_season_content
+      - notify_all_players
+      - enable_season_telemetry
+
+  mid_season_review:
+    date: "2026-02-08T10:00:00+03:00"
+    cron: "0 10 8 2 *"             # Feb 8, 10:00 TRT (Week 3.5)
+    actions:
+      - generate_mid_season_report
+      - review_kpi_progress
+      - evaluate_content_engagement
+      - review_economy_health
+      - review_ab_experiment_results
+      - plan_adjustments_if_needed
+
+  season_end:
+    date: "2026-03-01T00:00:00+03:00"
+    cron: "0 0 1 3 *"              # Mar 1, 00:00 TRT
+    actions:
+      - deactivate_season_2
+      - finalize_all_leaderboards
+      - distribute_season_end_rewards
+      - archive_season_data
+      - generate_season_postmortem
+      - prepare_season_3_brief
+
+# Notifications
+notifications:
+  event_countdown_24h:
+    # 24 hours before each major event
+    actions:
+      - send_push_notification
+      - send_email
+      - display_in_game_banner
+
+  event_countdown_1h:
+    # 1 hour before each major event
+    actions:
+      - send_push_notification
+      - display_in_game_alert
+
+  maintenance_warning:
+    # 30 minutes before scheduled maintenance
+    cron_offset: "-30m"
+    actions:
+      - broadcast_in_game_message
+      - send_push_notification
+      - update_status_page
+
+# Rollback Configuration
+rollback:
+  manual_rollback_ready: true
+  auto_rollback_enabled: true
+  rollback_script: "LiveOps/runbook/rollback.sh"
+
+  auto_rollback_triggers:
+    crash_free_rate_below: 0.98
+    p95_latency_above_ms: 200
+    error_rate_above: 0.08
+    inflation_index_above: 1.15
+    fraud_indicators_above: 30
+    player_complaints_spike: 5x_baseline
+
+  rollback_validation:
+    - verify_backup_availability
+    - verify_rollback_script_executable
+    - verify_database_snapshot_recent
+    - verify_canary_monitoring_active
+
+# Health Checks
+health_checks:
+  api_health:
+    cron: "*/2 * * * *"            # Every 2 minutes
+    endpoints:
+      - /api/health
+      - /api/status
+      - /telemetry/kpis
+      - /liveops/season/current
+    timeout_ms: 5000
+    alert_on_failure: true
+
+  database_health:
+    cron: "*/5 * * * *"            # Every 5 minutes
+    checks:
+      - connection_pool_status
+      - query_performance
+      - replication_lag
+      - disk_space
+    alert_on_failure: true
+
+  cache_health:
+    cron: "*/5 * * * *"            # Every 5 minutes
+    checks:
+      - redis_connection
+      - cache_hit_rate
+      - memory_usage
+      - eviction_rate
+    alert_on_failure: true
+
+# White-Hat Declaration
+white_hat: true
+anti_cheat_enabled: true
+official_apis_only: true
+no_scraping: true
+ethical_monetization: true
+
+# Compliance
+compliance:
+  kvkk: true
+  gdpr: true
+  pdpl: true
+  pii_minimization: true
+  data_retention_days: 180
+  self_serve_export: true
+  self_serve_delete: true
+
+# Observability
+observability:
+  grafana_dashboard: "/kpis/s2"
+  alert_channels:
+    - slack_liveops
+    - email_oncall
+    - pagerduty
+  log_retention_days: 90
+  metrics_retention_days: 365
+
+# RBAC
+rbac:
+  schedule_modify: "liveops.admin"
+  event_trigger: "liveops.operator"
+  experiment_control: "experiments.admin"
+  economy_adjust: "economy.admin"
+  rollback_execute: "sre.admin"

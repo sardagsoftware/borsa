@@ -1,0 +1,276 @@
+{
+  "locale": "tr-TR",
+  "direction": "ltr",
+  "season": {
+    "id": "S2",
+    "title": "Yankı Fırtınaları",
+    "subtitle": "Yankı rüzgarları yükselirken, kayıp harmonileri keşfet",
+    "description": "2. Sezon: Yankı Fırtınaları - Dinamik hava olayları, akustik bulmacalar ve işbirlikçi gizlilik oyunu",
+    "duration": "6 hafta",
+    "start_date": "15 Ocak 2026",
+    "end_date": "1 Mart 2026"
+  },
+
+  "weeks": {
+    "week_1": {
+      "name": "Fırtına Uyanışı",
+      "description": "Yeni sezon başlıyor - Yankı fırtınalarının gizemini keşfet"
+    },
+    "week_2": {
+      "name": "Bekçi Yükseliyor",
+      "description": "İlk mini-patron karşılaşması - Yankı Bekçisi Faz 1"
+    },
+    "week_3": {
+      "name": "Fırtına Fotoğrafçılığı",
+      "description": "Fotoğraf Modu yarışması - En güzel fırtına fotoğrafını çek"
+    },
+    "week_4": {
+      "name": "İşbirliği Haftası",
+      "description": "İki oyunculu bulmacalar ve satıcı indirimleri"
+    },
+    "week_5": {
+      "name": "Bekçi Dönüyor",
+      "description": "Mini-patron geri dönüyor - Yankı Bekçisi Faz 2 (zorlaştı!)"
+    },
+    "week_6": {
+      "name": "Sezon Finali",
+      "description": "1.5x bonus XP, fırtına maratonu ve final sahnesi"
+    }
+  },
+
+  "mechanics": {
+    "resonance_link": {
+      "name": "Yankı Bağlantısı",
+      "description": "İsteğe bağlı 2 oyunculu işbirliği modu - Dene ve arkadaşlarınla oyna",
+      "cta": "İşbirliği Modunu Dene"
+    },
+    "storm_puzzles": {
+      "name": "Fırtına Bulmacaları",
+      "frequency_align": "Frekans Hizalama",
+      "phase_chain": "Faz Zinciri",
+      "echo_triangulation": "Yankı Üçgenleme"
+    }
+  },
+
+  "bosses": {
+    "echo_sentinel": {
+      "name": "Yankı Bekçisi",
+      "phase_1": "Faz 1: Uyanış",
+      "phase_2": "Faz 2: Kızgınlık",
+      "phase_3": "Faz 3: Şiddetlenme",
+      "tells": {
+        "ground_slam": "Yer çarpması - KAÇIN!",
+        "lightning_charge": "Şimşek şarjı - YAN TARAFA!",
+        "storm_summon": "Fırtına çağırıyor..."
+      }
+    }
+  },
+
+  "biomes": {
+    "canyon_night_storm": {
+      "name": "Kanyon - Gece Fırtınası",
+      "description": "Elektrik fırtınalarıyla aydınlanan karanlık kanyonlar"
+    },
+    "ruins_sand_gale": {
+      "name": "Harabe - Kum Kasırgası",
+      "description": "Antik harabelerde dönen kum kasırgaları"
+    }
+  },
+
+  "quests": {
+    "storm_caller": {
+      "name": "Fırtına Çağıranlar",
+      "description": "Kayıp yankı frekansını bul ve fırtınaları yatıştır"
+    },
+    "sentinel_origins": {
+      "name": "Bekçinin Kökenleri",
+      "description": "Yankı Bekçisinin geçmişini ortaya çıkar"
+    }
+  },
+
+  "cosmetics": {
+    "costume_storm_walker": {
+      "name": "Fırtına Yürüyücü",
+      "rarity": "Epik",
+      "description": "Fırtınaların içinden geçenler için kostüm"
+    },
+    "costume_sentinel_shroud": {
+      "name": "Bekçi Örtüsü",
+      "rarity": "Efsanevi",
+      "description": "Yankı Bekçisinin gücünü taşı"
+    },
+    "costume_echo_master": {
+      "name": "Yankı Ustası",
+      "rarity": "Nadir",
+      "description": "Yankıların efendisi için"
+    },
+    "effect_lightning_trail": {
+      "name": "Şimşek İzi",
+      "rarity": "Epik",
+      "description": "Arkanda şimşek izleri bırak"
+    },
+    "effect_wind_aura": {
+      "name": "Rüzgar Aurası",
+      "rarity": "Nadir",
+      "description": "Etrafında dönen rüzgar aurası"
+    }
+  },
+
+  "currency": {
+    "cr": {
+      "name": "Akortaşı Kalıntıları",
+      "abbrev": "AK",
+      "symbol": "⚡"
+    },
+    "ac": {
+      "name": "Antik Kristaller",
+      "abbrev": "AKr",
+      "symbol": "💎"
+    }
+  },
+
+  "events": {
+    "mini_boss_phase_1": {
+      "name": "Mini-Patron: Yankı Bekçisi Faz 1",
+      "start": "25 Ocak, Cumartesi 20:00",
+      "duration": "48 saat",
+      "description": "İlk karşılaşma - 25.000 HP, 3 faz",
+      "rewards": "İlk tamamlama: 500 AK + Bekçi Örtüsü (efsanevi)"
+    },
+    "mini_boss_phase_2": {
+      "name": "Mini-Patron: Yankı Bekçisi Faz 2",
+      "start": "22 Şubat, Cumartesi 20:00",
+      "duration": "48 saat",
+      "description": "Zorlaştı! 35.000 HP, yeni mekanikler",
+      "rewards": "İlk tamamlama: 750 AK + Fırtına Yürüyücü (epik)"
+    },
+    "photo_contest": {
+      "name": "Fotoğraf Yarışması: Fırtına İzleri",
+      "start": "1 Şubat",
+      "end": "8 Şubat",
+      "description": "En güzel fırtına fotoğrafını çek ve ödül kazan",
+      "prizes": {
+        "first": "100 USD + Fırtına Yakalayıcı (efsanevi)",
+        "second": "50 USD + Şimşek İzi (epik)",
+        "third": "25 USD + Rüzgar Aurası (nadir)"
+      },
+      "rules": "Maksimum 3 gönderi, oyun içi çekim, dış düzenleme yok"
+    },
+    "vendor_sale": {
+      "name": "Satıcı İndirimi: %10",
+      "start": "13 Şubat, Perşembe 12:00",
+      "end": "13 Şubat, Perşembe 23:00",
+      "duration": "11 saat",
+      "description": "Tüm satıcı ürünlerinde %10 indirim"
+    },
+    "coop_week": {
+      "name": "İşbirliği Bulmaca Haftası",
+      "start": "10 Şubat",
+      "end": "17 Şubat",
+      "description": "İşbirliği tamamlamalarında 1.25x ödül bonusu",
+      "cta": "Arkadaşını Çağır"
+    },
+    "finale": {
+      "name": "Sezon Finali: Bonus XP Hafta Sonu",
+      "start": "26 Şubat",
+      "end": "1 Mart",
+      "duration": "3 gün",
+      "multiplier": "1.5x XP tüm aktivitelerde",
+      "activities": {
+        "storm_marathon": "Fırtına Maratonu - Tüm bulmacaları bir seansta tamamla",
+        "echo_hunt": "Yankı Avı - Tüm gizli yankı rezonatörlerini bul",
+        "finale_cutscene": "Final Sahnesini İzle"
+      }
+    }
+  },
+
+  "objectives": {
+    "complete_storm_puzzles": "{{count}} fırtına bulmacasını tamamla",
+    "defeat_echo_sentinel": "Yankı Bekçisini yen",
+    "explore_new_biomes": "Yeni biyomları keşfet",
+    "use_coop_mode": "İşbirliği modunu {{count}} kez kullan",
+    "submit_photo": "Fotoğraf yarışmasına katıl",
+    "reach_season_level": "Sezon seviye {{level}}'e ulaş"
+  },
+
+  "rewards": {
+    "xp": "{{amount}} XP",
+    "cr": "{{amount}} AK",
+    "cosmetic": "Kozmetik ödül: {{name}}",
+    "title": "Ünvan: {{name}}"
+  },
+
+  "notifications": {
+    "event_starting_soon": "{{event}} {{time}} içinde başlıyor!",
+    "event_ending_soon": "{{event}} {{time}} içinde bitiyor!",
+    "season_ending": "Sezon 2, {{days}} gün içinde sona eriyor",
+    "new_week": "Hafta {{week}} başladı: {{theme}}",
+    "boss_spawned": "Yankı Bekçisi ortaya çıktı!",
+    "experiment_active": "A/B testi aktif: {{name}}"
+  },
+
+  "ui": {
+    "season_progress": "Sezon İlerlemesi",
+    "week": "Hafta",
+    "days_remaining": "{{days}} gün kaldı",
+    "active_events": "Aktif Etkinlikler",
+    "upcoming_events": "Yaklaşan Etkinlikler",
+    "leaderboards": "Liderlik Tabloları",
+    "my_stats": "İstatistiklerim",
+    "claim_reward": "Ödül Al",
+    "view_details": "Detayları Gör",
+    "join_event": "Etkinliğe Katıl",
+    "opt_in": "Katılım İste",
+    "opt_out": "Katılma"
+  },
+
+  "ab_experiments": {
+    "storm_reward": {
+      "name": "Fırtına Ödül Optimizasyonu",
+      "description": "Fırtına bulmaca ödüllerini test ediyoruz"
+    },
+    "boss_hp": {
+      "name": "Patron HP Ayarı",
+      "description": "En iyi zorluk dengesini buluyoruz"
+    },
+    "coop_optin": {
+      "name": "İşbirliği Öneri Sıklığı",
+      "description": "İşbirliği davet sayısını optimize ediyoruz"
+    }
+  },
+
+  "stats": {
+    "completion_rate": "Tamamlama Oranı",
+    "success_rate": "Başarı Oranı",
+    "average_attempts": "Ortalama Deneme",
+    "time_spent": "Geçirilen Süre",
+    "rank": "Sıralama",
+    "percentile": "Yüzdelik Dilim"
+  },
+
+  "errors": {
+    "event_not_active": "Bu etkinlik şu anda aktif değil",
+    "already_claimed": "Bu ödülü zaten aldınız",
+    "requirements_not_met": "Gereksinimler karşılanmadı",
+    "season_ended": "Sezon 2 sona erdi",
+    "server_error": "Sunucu hatası. Lütfen tekrar deneyin."
+  },
+
+  "compliance": {
+    "data_usage": "Veri kullanımı hakkında",
+    "privacy_policy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "kvkk_rights": "KVKK Hakların",
+    "export_data": "Verilerimi İndir",
+    "delete_account": "Hesabı Sil"
+  },
+
+  "cldr": {
+    "date_format": "d MMMM yyyy",
+    "time_format": "HH:mm",
+    "datetime_format": "d MMMM yyyy HH:mm",
+    "number_format": "#.##0,##",
+    "currency_format": "#.##0,## ₺",
+    "timezone": "Europe/Istanbul"
+  }
+}

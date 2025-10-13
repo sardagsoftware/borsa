@@ -1,0 +1,105 @@
+{
+  "$schema": "../experiment-schema.json",
+  "id": "abx-trial-rewards",
+  "name": "Trial Reward Optimization",
+  "version": "1.0.0",
+  "status": "active",
+  "start_date": "2025-10-20T00:00:00Z",
+  "end_date": "2025-11-03T00:00:00Z",
+  "duration_days": 14,
+  "hypothesis": "Increasing daily trial rewards by 20% will improve daily login rate and trial completion rate",
+  "metrics": {
+    "primary": "trial_completion_rate",
+    "secondary": [
+      "daily_login_rate",
+      "trials_per_player_per_day",
+      "currency_inflation_index"
+    ]
+  },
+  "arms": [
+    {
+      "name": "control",
+      "description": "Current trial rewards",
+      "allocation": 0.50,
+      "parameters": {
+        "reward_multiplier": 1.00,
+        "easy_xp": 200,
+        "easy_currency": 50,
+        "medium_xp": 300,
+        "medium_currency": 75,
+        "hard_xp": 500,
+        "hard_currency": 125
+      }
+    },
+    {
+      "name": "variant_increased",
+      "description": "Increased trial rewards (+20%)",
+      "allocation": 0.50,
+      "parameters": {
+        "reward_multiplier": 1.20,
+        "easy_xp": 240,
+        "easy_currency": 60,
+        "medium_xp": 360,
+        "medium_currency": 90,
+        "hard_xp": 600,
+        "hard_currency": 150
+      }
+    }
+  ],
+  "allocation_strategy": {
+    "method": "random",
+    "seed": "trial-rewards-2025",
+    "stratification": [
+      "region",
+      "player_level_band"
+    ],
+    "exclusions": [
+      "new_players_less_than_24_hours",
+      "test_accounts"
+    ]
+  },
+  "statistics": {
+    "minimum_detectable_effect": 0.05,
+    "statistical_power": 0.80,
+    "alpha": 0.05,
+    "minimum_sample_size_per_arm": 1500
+  },
+  "ethics": {
+    "fair_distribution": true,
+    "no_harm": true,
+    "transparent": true,
+    "can_opt_out": false,
+    "note": "Reward variations are common in LiveOps"
+  },
+  "compliance": {
+    "gdpr_compliant": true,
+    "data_retention_days": 180,
+    "pii_collected": false
+  },
+  "monitoring": {
+    "check_interval_hours": 6,
+    "early_stop_criteria": {
+      "significant_result": "p < 0.05",
+      "negative_impact": "inflation_index > 1.15"
+    },
+    "guardrails": {
+      "max_inflation_index": 1.15,
+      "max_daily_currency_per_player": 5000
+    }
+  },
+  "rollout_plan": {
+    "if_successful": {
+      "action": "graduate_to_production",
+      "rollout_percentage": 100,
+      "update_baseline": true
+    },
+    "if_no_effect": {
+      "action": "revert_to_control",
+      "investigate": true
+    },
+    "if_negative": {
+      "action": "immediate_stop",
+      "rollback": true
+    }
+  }
+}

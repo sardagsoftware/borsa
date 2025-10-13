@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useAppStore } from '../../state/store';
+import { useAppStore, type AppState } from '../../state/store';
 import { trackAction } from '../../lib/telemetry';
 
 export default function GlobalSearch() {
@@ -18,8 +18,8 @@ export default function GlobalSearch() {
   const [showResults, setShowResults] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
-  const addMessage = useAppStore(state => state.addMessage);
-  const setIntents = useAppStore(state => state.setIntents);
+  const addMessage = useAppStore((state: AppState) => state.addMessage);
+  const setIntents = useAppStore((state: AppState) => state.setIntents);
 
   useEffect(() => {
     if (query.length < 2) {

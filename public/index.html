@@ -2037,6 +2037,104 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ========== PREMIUM MESSAGING ICON ========== */
+        .messaging-icon-item {
+            position: relative;
+        }
+
+        .messaging-icon-link {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: messagingPulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(16, 163, 127, 0.3);
+        }
+
+        .messaging-icon-link:hover {
+            background: linear-gradient(135deg, #0D8F6E 0%, #10A37F 100%);
+            box-shadow: 0 8px 25px rgba(16, 163, 127, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            animation: none;
+        }
+
+        .messaging-icon {
+            width: 24px;
+            height: 24px;
+            stroke: #10A37F;
+            stroke-width: 2.5;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .messaging-notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FF4444 0%, #CC0000 100%);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 10px;
+            border: 2px solid #0B0F19;
+            box-shadow: 0 2px 8px rgba(255, 68, 68, 0.6),
+                        0 0 0 0 rgba(255, 68, 68, 0.4);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 2px 8px rgba(255, 68, 68, 0.6),
+                            0 0 0 0 rgba(255, 68, 68, 0.4);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 4px 12px rgba(255, 68, 68, 0.8),
+                            0 0 0 6px rgba(255, 68, 68, 0);
+            }
+        }
+
+        @keyframes messagingPulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(16, 163, 127, 0.3),
+                            0 0 0 0 rgba(16, 163, 127, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(16, 163, 127, 0.5),
+                            0 0 0 10px rgba(16, 163, 127, 0);
+            }
+        }
+
+        /* Mobil uyum */
+        @media (max-width: 768px) {
+            .messaging-icon-link {
+                width: 38px;
+                height: 38px;
+            }
+            .messaging-icon {
+                width: 20px;
+                height: 20px;
+            }
+            .messaging-notification-badge {
+                min-width: 18px;
+                height: 18px;
+                font-size: 10px;
+                top: -3px;
+                right: -3px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css">
     <!-- Cyborg Orbital Hero System - Dr. Lydia Sentinel -->
@@ -2254,6 +2352,112 @@
                             </svg>
                             <h4>Dokümantasyon</h4>
                             <p>Kapsamlı geliştirici kılavuzu</p>
+                        </div>
+                    </div>
+                </li>
+                <li data-testid="menu-item">
+                    <a href="#kuruluslar">Kuruluşlar</a>
+                    <div class="nav-preview" style="min-width: 320px;">
+                        <div class="preview-content">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-bottom: 1rem;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                            <h4 style="margin-bottom: 0.5rem; color: #111827;">Kuruluşlarımız</h4>
+                            <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 1.25rem;">LyDian Ekosistem Şirketleri</p>
+                            <div style="display: flex; flex-direction: column; gap: 0.625rem;">
+                                <a href="https://travel.ailydian.com" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(16, 163, 127, 0.08); border: 1px solid rgba(16, 163, 127, 0.2); border-radius: 10px; text-decoration: none; color: #374151; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(16, 163, 127, 0.15)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='rgba(16, 163, 127, 0.08)'; this.style.transform='translateX(0)'">
+                                    <svg style="width: 20px; height: 20px; flex-shrink: 0; color: #10A37F;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <div style="flex: 1;">
+                                        <strong style="display: block; font-weight: 600; color: #111827; font-size: 0.9rem;">Travel AI</strong>
+                                        <span style="font-size: 0.8rem; color: #6B7280;">travel.ailydian.com</span>
+                                    </div>
+                                    <svg style="width: 16px; height: 16px; opacity: 0.5;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                                <a href="https://blockchain.ailydian.com" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(124, 92, 255, 0.08); border: 1px solid rgba(124, 92, 255, 0.2); border-radius: 10px; text-decoration: none; color: #374151; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(124, 92, 255, 0.15)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='rgba(124, 92, 255, 0.08)'; this.style.transform='translateX(0)'">
+                                    <svg style="width: 20px; height: 20px; flex-shrink: 0; color: #7C5CFF;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                    </svg>
+                                    <div style="flex: 1;">
+                                        <strong style="display: block; font-weight: 600; color: #111827; font-size: 0.9rem;">Blockchain AI</strong>
+                                        <span style="font-size: 0.8rem; color: #6B7280;">blockchain.ailydian.com</span>
+                                    </div>
+                                    <svg style="width: 16px; height: 16px; opacity: 0.5;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                                <a href="https://newsai.earth" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(255, 107, 74, 0.08); border: 1px solid rgba(255, 107, 74, 0.2); border-radius: 10px; text-decoration: none; color: #374151; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255, 107, 74, 0.15)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='rgba(255, 107, 74, 0.08)'; this.style.transform='translateX(0)'">
+                                    <svg style="width: 20px; height: 20px; flex-shrink: 0; color: #FF6B4A;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                                    </svg>
+                                    <div style="flex: 1;">
+                                        <strong style="display: block; font-weight: 600; color: #111827; font-size: 0.9rem;">News AI Earth</strong>
+                                        <span style="font-size: 0.8rem; color: #6B7280;">newsai.earth</span>
+                                    </div>
+                                    <svg style="width: 16px; height: 16px; opacity: 0.5;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                                <a href="https://video.ailydian.com" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 10px; text-decoration: none; color: #374151; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(59, 130, 246, 0.15)'; this.style.transform='translateX(4px)'" onmouseout="this.style.background='rgba(59, 130, 246, 0.08)'; this.style.transform='translateX(0)'">
+                                    <svg style="width: 20px; height: 20px; flex-shrink: 0; color: #3B82F6;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                    <div style="flex: 1;">
+                                        <strong style="display: block; font-weight: 600; color: #111827; font-size: 0.9rem;">Video AI</strong>
+                                        <span style="font-size: 0.8rem; color: #6B7280;">video.ailydian.com</span>
+                                    </div>
+                                    <svg style="width: 16px; height: 16px; opacity: 0.5;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li data-testid="menu-item" class="messaging-icon-item">
+                    <a href="javascript:void(0)" onclick="openMessagingModal()" class="messaging-icon-link">
+                        <svg class="messaging-icon" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Premium Mesaj Balonu - Modern 3D Tasarım -->
+                            <defs>
+                                <linearGradient id="msgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#E8F5F1;stop-opacity:1" />
+                                </linearGradient>
+                                <filter id="msgShadow">
+                                    <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.3"/>
+                                </filter>
+                            </defs>
+                            <!-- Ana mesaj balonu -->
+                            <path d="M12 2C6.48 2 2 6.15 2 11.25C2 13.8 3.12 16.1 5 17.75V22L9.24 19.74C10.12 19.91 11.05 20 12 20C17.52 20 22 15.85 22 11.25C22 6.15 17.52 2 12 2Z"
+                                  fill="url(#msgGradient)"
+                                  stroke="white"
+                                  stroke-width="2"
+                                  stroke-linejoin="round"
+                                  filter="url(#msgShadow)"/>
+                            <!-- İç detaylar - Modern çizgiler -->
+                            <circle cx="8" cy="11" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <circle cx="12" cy="11" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <circle cx="16" cy="11" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <!-- Parlama efekti -->
+                            <path d="M7 6C8.5 4.5 10.5 3.5 12 3.5C15 3.5 17.5 5 19 7"
+                                  stroke="white"
+                                  stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  opacity="0.4"/>
+                        </svg>
+                        <!-- Bildirim Badge -->
+                        <span class="messaging-notification-badge">3</span>
+                    </a>
+                    <div class="nav-preview">
+                        <div class="preview-content">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            <h4>E2EE Mesajlaşma</h4>
+                            <p>Uçtan uca şifreli güvenli iletişim</p>
                         </div>
                     </div>
                 </li>
@@ -3604,6 +3808,223 @@ function maskApiResponse(response) {
 
     <!-- 🔒 CSRF Protection -->
     <script src="/js/csrf-token.js"></script>
+
+    <!-- 💬 Messaging Modal -->
+    <div id="messagingModal" class="messaging-modal" style="display: none;">
+        <div class="messaging-modal-overlay" onclick="closeMessagingModal()"></div>
+        <div class="messaging-modal-content">
+            <div class="messaging-modal-header">
+                <div class="messaging-modal-title">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px; margin-right: 12px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    <h3>Ailydian Messaging - E2EE Secure Chat</h3>
+                </div>
+                <button onclick="closeMessagingModal()" class="messaging-modal-close" aria-label="Kapat">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <iframe
+                id="messagingIframe"
+                src="about:blank"
+                frameborder="0"
+                allow="camera; microphone; geolocation"
+                class="messaging-iframe"
+            ></iframe>
+        </div>
+    </div>
+
+    <style>
+        .messaging-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: messagingModalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes messagingModalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .messaging-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .messaging-modal-content {
+            position: relative;
+            width: 95vw;
+            max-width: 1400px;
+            height: 90vh;
+            background: #0B0F19;
+            border-radius: 20px;
+            border: 1px solid #1F2937;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: messagingModalSlideUp 0.3s ease-out;
+        }
+
+        @keyframes messagingModalSlideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .messaging-modal-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #0B0F19 0%, #111827 100%);
+            border-bottom: 1px solid #1F2937;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .messaging-modal-title {
+            display: flex;
+            align-items: center;
+            color: #E5E7EB;
+        }
+
+        .messaging-modal-title svg {
+            color: #10A37F;
+        }
+
+        .messaging-modal-title h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFFFFF 0%, #E5E7EB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .messaging-modal-close {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #EF4444;
+        }
+
+        .messaging-modal-close:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: scale(1.05);
+        }
+
+        .messaging-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #0B0F19;
+            flex: 1;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .messaging-modal-content {
+                width: 100vw;
+                height: 100vh;
+                max-width: 100vw;
+                border-radius: 0;
+            }
+
+            .messaging-modal-header {
+                padding: 16px 20px;
+            }
+
+            .messaging-modal-title h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    <script>
+        function openMessagingModal() {
+            console.log('[Messaging] Opening modal...');
+            const modal = document.getElementById('messagingModal');
+            const iframe = document.getElementById('messagingIframe');
+
+            // Dynamic messaging URL based on environment
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const messagingUrl = isLocalhost
+                ? 'http://localhost:3200/chat-test'
+                : 'https://ailydian-messaging.vercel.app/chat-test';
+
+            // Set iframe source to messaging app
+            iframe.src = messagingUrl;
+            console.log('[Messaging] Loading:', messagingUrl);
+
+            // Show modal
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            console.log('[Messaging] Modal opened');
+        }
+
+        function closeMessagingModal() {
+            console.log('[Messaging] Closing modal...');
+            const modal = document.getElementById('messagingModal');
+            const iframe = document.getElementById('messagingIframe');
+
+            // Hide modal with animation
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modal.style.opacity = '1';
+                // Clear iframe src to stop any running processes
+                iframe.src = 'about:blank';
+                document.body.style.overflow = 'auto';
+                console.log('[Messaging] Modal closed');
+            }, 200);
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('messagingModal');
+                if (modal.style.display === 'flex') {
+                    closeMessagingModal();
+                }
+            }
+        });
+
+        console.log('✅ Messaging modal integration loaded');
+    </script>
 
 </body>
 

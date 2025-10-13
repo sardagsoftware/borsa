@@ -438,6 +438,15 @@ export function recognizeIntent(query: string): IntentResult {
 // Export All
 // ============================================================================
 
+// Alias IntentMatch as Intent for compatibility
+export type Intent = IntentMatch;
+
+// Wrapper function for backwards compatibility
+export function parseUtterance(query: string, locale: string = 'tr'): Intent[] {
+  const result = recognizeIntent(query);
+  return result.matches;
+}
+
 export { detectVendor, fuzzyMatch };
 
 console.log('✅ Intent engine loaded (regex + fuzzy + scoring, min=0.55)');

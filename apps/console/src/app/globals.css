@@ -1,0 +1,148 @@
+/**
+ * Global Styles
+ * Tailwind CSS base, components, and utilities
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --lydian-gold: #D8B56A;
+  --lydian-gold-dark: #C9A055;
+  --lydian-gold-light: #EBD9B8;
+}
+
+/* Dark mode by default */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom scrollbar (webkit browsers) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(31 41 55 / 0.5);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(75 85 99);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(107 114 128);
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--lydian-gold);
+  outline-offset: 2px;
+}
+
+/* RTL support */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] .flex {
+  flex-direction: row-reverse;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-150;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--lydian-gold);
+  color: rgb(17 24 39);
+}
+
+/* Lydian gold gradient backgrounds */
+.bg-lydian-gradient {
+  background: linear-gradient(135deg, var(--lydian-gold) 0%, var(--lydian-gold-dark) 100%);
+}
+
+/* Custom utility classes */
+.text-lydian-gold {
+  color: var(--lydian-gold);
+}
+
+.border-lydian-gold {
+  border-color: var(--lydian-gold);
+}
+
+.bg-lydian-gold {
+  background-color: var(--lydian-gold);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Skip to main content (accessibility) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--lydian-gold);
+  color: rgb(17 24 39);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Print styles */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "mini-boss-echo-sentinel",
+  "type": "boss",
+  "name": "Echo Sentinel - Phase I",
+  "description": "Face the Echo Sentinel in its first appearance during Week 2",
+  "week": 2,
+  "start": "2026-01-25T20:00:00+03:00",
+  "duration_hours": 48,
+
+  "boss": {
+    "id": "echo-sentinel",
+    "name": "Echo Sentinel",
+    "level": 15,
+    "base_hp": 25000,
+    "phases": [
+      {
+        "phase": 1,
+        "hp_threshold": 1.0,
+        "mechanics": ["basic_melee", "storm_summon", "lightning_bolt"],
+        "tells": ["ground_slam_windup", "lightning_charge_glow"],
+        "duration_seconds": 60
+      },
+      {
+        "phase": 2,
+        "hp_threshold": 0.66,
+        "mechanics": ["resonance_shield", "echo_clones", "phase_shift"],
+        "tells": ["clone_spawn_flash", "shield_shimmer"],
+        "duration_seconds": 90
+      },
+      {
+        "phase": 3,
+        "hp_threshold": 0.33,
+        "mechanics": ["storm_fury", "area_denial", "enrage"],
+        "tells": ["storm_eye_formation", "ground_cracks"],
+        "duration_seconds": 120
+      }
+    ]
+  },
+
+  "rewards": {
+    "first_completion": {
+      "xp": 1200,
+      "cr": 500,
+      "cosmetic": "costume-echo-02"
+    },
+    "subsequent_completions": {
+      "xp": 600,
+      "cr": 250
+    },
+    "leaderboard_top_10": {
+      "xp_bonus": 500,
+      "title": "Sentinel Slayer I"
+    }
+  },
+
+  "difficulty": {
+    "hp_scaling": {
+      "solo": 1.0,
+      "duo": 1.5
+    },
+    "success_rate_target": 0.55,
+    "average_attempts_target": 2.5
+  },
+
+  "accessibility": {
+    "color_blind_mode": true,
+    "telegraphs_enhanced": true,
+    "audio_cues": true
+  },
+
+  "rbac": {
+    "trigger_permission": "liveops.admin",
+    "view_stats": "liveops.analyst"
+  },
+
+  "white_hat": true,
+  "anti_cheat": {
+    "damage_validation": true,
+    "position_validation": true,
+    "timing_validation": true
+  }
+}

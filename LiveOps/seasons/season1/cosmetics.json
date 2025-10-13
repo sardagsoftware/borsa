@@ -1,0 +1,173 @@
+{
+  "$schema": "../cosmetics-schema.json",
+  "season": "S1",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "costume-echo-01",
+      "type": "costume",
+      "rarity": "epic",
+      "price": 1200,
+      "currency": "CR",
+      "unlock_level": 0,
+      "locale": {
+        "en": "Echo Costume I - Ancient Scholar",
+        "tr": "Yankı Kostümü I - Antik Bilgin",
+        "ar": "زي الصدى I - العالم القديم"
+      },
+      "description": {
+        "en": "Inspired by the scholars of ancient Sardis",
+        "tr": "Antik Sardis bilginlerinden esinlenilmiştir",
+        "ar": "مستوحاة من علماء ساردس القديمة"
+      },
+      "preview_image": "/assets/cosmetics/s1/costume-echo-01.png",
+      "tags": ["season1", "elif", "scholar", "ancient"]
+    },
+    {
+      "id": "costume-echo-02",
+      "type": "costume",
+      "rarity": "legendary",
+      "price": 1800,
+      "currency": "CR",
+      "unlock_level": 25,
+      "locale": {
+        "en": "Echo Costume II - Ruins Explorer",
+        "tr": "Yankı Kostümü II - Harabe Kaşifi",
+        "ar": "زي الصدى II - مستكشف الأطلال"
+      },
+      "description": {
+        "en": "For those who dare to explore the deepest ruins",
+        "tr": "En derin harabeleri keşfetmeye cesaret edenler için",
+        "ar": "لمن يجرؤ على استكشاف أعمق الأطلال"
+      },
+      "preview_image": "/assets/cosmetics/s1/costume-echo-02.png",
+      "tags": ["season1", "elif", "explorer", "ruins"]
+    },
+    {
+      "id": "costume-echo-03",
+      "type": "costume",
+      "rarity": "legendary",
+      "price": 2400,
+      "currency": "CR",
+      "unlock_level": 40,
+      "locale": {
+        "en": "Echo Costume III - Chordstone Guardian",
+        "tr": "Yankı Kostümü III - Chordstone Koruyucusu",
+        "ar": "زي الصدى III - حارس تشوردستون"
+      },
+      "description": {
+        "en": "Elite armor for the protectors of ancient knowledge",
+        "tr": "Antik bilginin koruyucuları için elit zırh",
+        "ar": "درع النخبة لحماة المعرفة القديمة"
+      },
+      "preview_image": "/assets/cosmetics/s1/costume-echo-03.png",
+      "tags": ["season1", "elif", "guardian", "elite"]
+    },
+    {
+      "id": "accessory-pendant-01",
+      "type": "accessory",
+      "rarity": "rare",
+      "price": 600,
+      "currency": "CR",
+      "unlock_level": 10,
+      "locale": {
+        "en": "Ancient Pendant - Scholar's Wisdom",
+        "tr": "Antik Kolye - Bilgin Bilgeliği",
+        "ar": "قلادة قديمة - حكمة العالم"
+      },
+      "description": {
+        "en": "A pendant said to grant insight to its wearer",
+        "tr": "Taşıyanına içgörü kazandırdığı söylenen bir kolye",
+        "ar": "قلادة يقال إنها تمنح البصيرة لمن يرتديها"
+      },
+      "preview_image": "/assets/cosmetics/s1/accessory-pendant-01.png",
+      "tags": ["season1", "accessory", "wisdom"]
+    },
+    {
+      "id": "accessory-bracelet-01",
+      "type": "accessory",
+      "rarity": "epic",
+      "price": 900,
+      "currency": "CR",
+      "unlock_level": 30,
+      "locale": {
+        "en": "Chordstone Bracelet - Harmonic Resonance",
+        "tr": "Chordstone Bilezik - Harmonik Rezonans",
+        "ar": "سوار تشوردستون - صدى توافقي"
+      },
+      "description": {
+        "en": "Attuned to the frequency of ancient ruins",
+        "tr": "Antik harabelerin frekansına ayarlanmış",
+        "ar": "متناغم مع تردد الأطلال القديمة"
+      },
+      "preview_image": "/assets/cosmetics/s1/accessory-bracelet-01.png",
+      "tags": ["season1", "accessory", "chordstone"]
+    },
+    {
+      "id": "weapon-effect-glow-01",
+      "type": "weapon_effect",
+      "rarity": "rare",
+      "price": 400,
+      "currency": "CR",
+      "unlock_level": 5,
+      "locale": {
+        "en": "Weapon Glow - Ancient Blue",
+        "tr": "Silah Parıltısı - Antik Mavi",
+        "ar": "توهج السلاح - الأزرق القديم"
+      },
+      "description": {
+        "en": "Blue glow effect for weapons",
+        "tr": "Silahlar için mavi parıltı efekti",
+        "ar": "تأثير توهج أزرق للأسلحة"
+      },
+      "preview_image": "/assets/cosmetics/s1/weapon-glow-blue.png",
+      "tags": ["season1", "effect", "weapon"]
+    },
+    {
+      "id": "weapon-effect-trail-01",
+      "type": "weapon_effect",
+      "rarity": "epic",
+      "price": 750,
+      "currency": "CR",
+      "unlock_level": 20,
+      "locale": {
+        "en": "Weapon Trail - Ethereal Mist",
+        "tr": "Silah İzi - Esir Sis",
+        "ar": "أثر السلاح - ضباب أثيري"
+      },
+      "description": {
+        "en": "Mystical mist trail effect for weapon strikes",
+        "tr": "Silah vuruşları için mistik sis izi efekti",
+        "ar": "تأثير أثر ضباب سحري لضربات السلاح"
+      },
+      "preview_image": "/assets/cosmetics/s1/weapon-trail-mist.png",
+      "tags": ["season1", "effect", "weapon", "trail"]
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bundle-scholar-set",
+      "name": {
+        "en": "Scholar's Complete Set",
+        "tr": "Bilgin Tam Seti",
+        "ar": "مجموعة العالم الكاملة"
+      },
+      "items": [
+        "costume-echo-01",
+        "accessory-pendant-01",
+        "weapon-effect-glow-01"
+      ],
+      "price": 2000,
+      "currency": "CR",
+      "discount_percentage": 15,
+      "original_price": 2200
+    }
+  ],
+  "monetization_policy": {
+    "type": "cosmetic_only",
+    "p2w": false,
+    "gameplay_advantage": false,
+    "fair_pricing": true,
+    "transparent": true
+  }
+}

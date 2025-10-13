@@ -9,14 +9,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAppStore } from '../../../state/store';
+import { useAppStore, type AppState } from '../../../state/store';
 import { trackAction } from '../../../lib/telemetry';
 
 export default function DockSettings() {
-  const user = useAppStore(state => state.user);
-  const flags = useAppStore(state => state.flags);
-  const setUser = useAppStore(state => state.setUser);
-  const setFlags = useAppStore(state => state.setFlags);
+  const user = useAppStore((state: AppState) => state.user);
+  const flags = useAppStore((state: AppState) => state.flags);
+  const setUser = useAppStore((state: AppState) => state.setUser);
+  const setFlags = useAppStore((state: AppState) => state.setFlags);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   const handleThemeChange = (theme: 'light' | 'dark' | 'auto') => {

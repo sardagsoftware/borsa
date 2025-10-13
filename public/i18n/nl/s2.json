@@ -1,0 +1,63 @@
+{
+  "locale": "nl-NL",
+  "direction": "ltr",
+  "season": {
+    "id": "S2",
+    "title": "Echo Stormen",
+    "subtitle": "Ontdek verloren harmonieën terwijl echo-winden opstijgen",
+    "description": "Seizoen 2: Echo Stormen - Dynamische weersomstandigheden, akoestische puzzels en coöperatieve sluipgameplay",
+    "duration": "6 weken",
+    "start_date": "15 januari 2026",
+    "end_date": "1 maart 2026"
+  },
+
+  "weeks": {
+    "week_1": {"name": "Storm Ontwaken", "description": "Nieuw seizoen begint - Ontdek het mysterie van echo-stormen"},
+    "week_2": {"name": "Wachter Rijst Op", "description": "Eerste mini-boss ontmoeting - Echo Wachter Fase 1"},
+    "week_3": {"name": "Storm Fotografie", "description": "Fotomodus-wedstrijd - Leg de mooiste storm vast"},
+    "week_4": {"name": "Coöperatieve Week", "description": "Twee-speler puzzels en verkoopkortingen"},
+    "week_5": {"name": "Wachter Keert Terug", "description": "Mini-boss keert terug - Echo Wachter Fase 2 (moeilijker!)"},
+    "week_6": {"name": "Seizoensfinale", "description": "1.5x bonus XP, storm marathon en finale cutscene"}
+  },
+
+  "mechanics": {
+    "resonance_link": {"name": "Resonantie Verbinding", "description": "Optionele 2-speler coöperatieve modus", "cta": "Probeer Coöp-Modus"},
+    "storm_puzzles": {"name": "Storm Puzzels", "frequency_align": "Frequentie Uitlijning", "phase_chain": "Fase Keten", "echo_triangulation": "Echo Triangulatie"}
+  },
+
+  "bosses": {
+    "echo_sentinel": {
+      "name": "Echo Wachter",
+      "phase_1": "Fase 1: Ontwaken",
+      "phase_2": "Fase 2: Woede",
+      "phase_3": "Fase 3: Razernij",
+      "tells": {"ground_slam": "Grondslag - ONTWIJKEN!", "lightning_charge": "Bliksem lading - ZIJSTAP!", "storm_summon": "Oproep storm..."}
+    }
+  },
+
+  "currency": {"cr": {"name": "Chordstone Resten", "abbrev": "CR", "symbol": "⚡"}, "ac": {"name": "Oude Kristallen", "abbrev": "OK", "symbol": "💎"}},
+
+  "ui": {
+    "season_progress": "Seizoen Voortgang",
+    "week": "Week",
+    "days_remaining": "{{days}} dagen resterend",
+    "active_events": "Actieve Evenementen",
+    "upcoming_events": "Aankomende Evenementen",
+    "leaderboards": "Klassementen",
+    "my_stats": "Mijn Statistieken",
+    "claim_reward": "Beloning Claimen",
+    "view_details": "Details Bekijken",
+    "join_event": "Deelnemen aan Evenement",
+    "opt_in": "Aanmelden",
+    "opt_out": "Afmelden"
+  },
+
+  "cldr": {
+    "date_format": "d MMMM yyyy",
+    "time_format": "HH:mm",
+    "datetime_format": "d MMMM yyyy HH:mm",
+    "number_format": "#.##0,##",
+    "currency_format": "€ #.##0,##",
+    "timezone": "Europe/Amsterdam"
+  }
+}

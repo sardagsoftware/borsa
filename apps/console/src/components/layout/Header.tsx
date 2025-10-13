@@ -9,15 +9,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAppStore } from '../../state/store';
+import { useAppStore, type AppState } from '../../state/store';
 import GlobalSearch from '../search/GlobalSearch';
 import { trackAction } from '../../lib/telemetry';
 
 export default function Header() {
-  const user = useAppStore(state => state.user);
-  const setPersona = useAppStore(state => state.setPersona);
-  const setLocale = useAppStore(state => state.setLocale);
-  const openDock = useAppStore(state => state.openDock);
+  const user = useAppStore((state: AppState) => state.user);
+  const setPersona = useAppStore((state: AppState) => state.setPersona);
+  const setLocale = useAppStore((state: AppState) => state.setLocale);
+  const openDock = useAppStore((state: AppState) => state.openDock);
   const [showPersonaMenu, setShowPersonaMenu] = useState(false);
   const [showLocaleMenu, setShowLocaleMenu] = useState(false);
 

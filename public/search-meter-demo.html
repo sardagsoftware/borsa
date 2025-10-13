@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Meter Demo - AiLydian</title>
+
+  <!-- SpeedBadge Styles -->
+  <link rel="stylesheet" href="/components/metrics/SpeedBadge.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f5f7fa;
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #22d3ee, #22c55e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      font-size: 1.125rem;
+    }
+
+    .search-section {
+      margin-bottom: 2rem;
+    }
+
+    .search-label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .search-input-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 300px;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: 12px;
+      color: #f5f7fa;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #22d3ee;
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .search-input::placeholder {
+      color: #64748b;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .info-title {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #22d3ee;
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .info-list li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+      color: #22d3ee;
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      color: #22c55e;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.875rem;
+    }
+
+    .metrics-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .metric-card {
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #22d3ee;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric-label {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1>🚀 Search Meter Demo</h1>
+    <p class="subtitle">Real-time token counting & latency measurement</p>
+
+    <!-- Search Input with Meter -->
+    <div class="search-section">
+      <label class="search-label" for="demo-search">Search Query</label>
+      <div class="search-input-group">
+        <input
+          type="text"
+          id="demo-search"
+          class="search-input"
+          data-search-meter
+          data-search-meter-badge="search-badge-container"
+          placeholder="Type your search query... (press Enter)"
+        />
+        <div id="search-badge-container"></div>
+      </div>
+    </div>
+
+    <!-- Metrics Display -->
+    <div id="metrics-display" style="display: none;">
+      <div class="metrics-display">
+        <div class="metric-card">
+          <div class="metric-value" id="metric-tokens">0</div>
+          <div class="metric-label">Tokens</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="metric-latency">0 ms</div>
+          <div class="metric-label">Latency</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="metric-cost">$0.00</div>
+          <div class="metric-label">Cost</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Card -->
+    <div class="info-card">
+      <div class="info-title">✨ Features</div>
+      <ul class="info-list">
+        <li>Real-time token estimation (BPE fallback: ~4 chars = 1 token)</li>
+        <li>Latency measurement (server round-trip time)</li>
+        <li>Cost calculation (model-specific pricing)</li>
+        <li>Debounced measurements (300ms) for performance</li>
+        <li>Idempotent API calls with unique keys</li>
+        <li>Usage tracking & audit logging</li>
+      </ul>
+
+      <div class="code-block">
+        <code>&lt;input type="text" data-search-meter placeholder="Search..." /&gt;</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/components/metrics/SpeedBadge.js"></script>
+  <script src="/js/search-meter-integration.js"></script>
+
+  <script>
+    // Listen for meter updates
+    const searchInput = document.getElementById('demo-search');
+    const metricsDisplay = document.getElementById('metrics-display');
+
+    searchInput.addEventListener('search-meter-updated', (event) => {
+      const { tokens, ms, cost } = event.detail;
+
+      // Update metrics display
+      document.getElementById('metric-tokens').textContent = tokens;
+      document.getElementById('metric-latency').textContent = `${ms} ms`;
+      document.getElementById('metric-cost').textContent = `$${cost.toFixed(4)}`;
+
+      // Show metrics display
+      metricsDisplay.style.display = 'block';
+
+      console.log('[Demo] Metrics updated:', event.detail);
+    });
+
+    searchInput.addEventListener('search-meter-submit', (event) => {
+      const { prompt, metrics } = event.detail;
+
+      console.log('[Demo] Search submitted:', { prompt, metrics });
+
+      // Here you would trigger actual search
+      // Example: window.location.href = `/search?q=${encodeURIComponent(prompt)}`;
+    });
+  </script>
+</body>
+</html>

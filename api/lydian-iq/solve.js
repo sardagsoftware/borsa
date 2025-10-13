@@ -1,48 +1,51 @@
 // ========================================
 // LyDian IQ Reasoning Engine - API
 // Version: 2.0.1 - Sardag Edition
-// Real AI Integration with Anthropic Claude & OpenAI
+// Enterprise AI Integration with Obfuscated Providers
 // Vercel Serverless Compatible (Node.js 18+ native fetch)
 // ========================================
 
 // Use native fetch (Node.js 18+) - no external dependencies needed
 // In Node.js 18+, fetch is globally available
 
-// LyDian IQ Configuration - Azure-First Multi-Provider with RAG
+// Security Layer Import
+const aiObfuscator = require('../lib/security/ai-obfuscator');
+
+// LyDian IQ Configuration - Multi-Provider with RAG (Obfuscated)
 const AI_CONFIG = {
-    // Priority 1: Azure OpenAI (Enterprise Deep Thinking)
+    // Priority 1: Azure Enterprise AI (Enterprise Deep Thinking)
     azure: {
-        apiKey: process.env.AZURE_OPENAI_API_KEY || '',
-        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : '',
-        model: 'gpt-4-turbo',
+        apiKey: process.env.AZURE_OPENAI_API_KEY || process.env.SECONDARY_AI_KEY || '',
+        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/advanced-reasoning-model` : '',
+        model: 'advanced-reasoning-model',
         maxTokens: 8192,
         defaultTemperature: 0.3,
         apiVersion: '2024-02-01',
         supportsRAG: true
     },
-    // Priority 2: Anthropic Claude (Best for reasoning)
+    // Priority 2: Primary AI Provider (Best for reasoning)
     anthropic: {
-        apiKey: process.env.ANTHROPIC_API_KEY || '',
-        endpoint: 'https://api.anthropic.com/v1/messages',
-        model: 'claude-3-5-sonnet-20241022', // Latest stable model
+        apiKey: process.env.ANTHROPIC_API_KEY || process.env.PRIMARY_AI_KEY || '',
+        endpoint: aiObfuscator.resolveEndpoint('PRIMARY_ENDPOINT'),
+        model: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
         maxTokens: 8192,
         defaultTemperature: 0.3,
         supportsRAG: false
     },
-    // Priority 3: OpenAI GPT-4
+    // Priority 3: Secondary AI Provider
     openai: {
-        apiKey: process.env.OPENAI_API_KEY || '',
-        endpoint: 'https://api.openai.com/v1/chat/completions',
-        model: 'gpt-4-turbo-preview',
+        apiKey: process.env.OPENAI_API_KEY || process.env.SECONDARY_AI_KEY || '',
+        endpoint: aiObfuscator.resolveEndpoint('SECONDARY_ENDPOINT'),
+        model: aiObfuscator.resolveModel('CONVERSATIONAL_AI_ALPHA'),
         maxTokens: 4096,
         defaultTemperature: 0.3,
         supportsRAG: false
     },
-    // Priority 4: Groq (Ultra-Fast)
+    // Priority 4: Fast Response Provider (Ultra-Fast)
     groq: {
-        apiKey: process.env.GROQ_API_KEY || '',
+        apiKey: process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: 'llama-3.3-70b-versatile',
+        model: 'rapid-language-model',
         maxTokens: 8000,
         defaultTemperature: 0.3,
         supportsRAG: false
@@ -189,7 +192,7 @@ async function analyzeImageWithVision(imageBase64, prompt, language) {
             ? `Görseli detaylı analiz et ve şu soruyu yanıtla: ${prompt}`
             : `Analyze this image in detail and answer: ${prompt}`;
 
-        // Call OpenAI GPT-4 Vision
+        // Call Vision AI Model
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -197,7 +200,7 @@ async function analyzeImageWithVision(imageBase64, prompt, language) {
                 'Authorization': `Bearer ${AI_CONFIG.openai.apiKey}`
             },
             body: JSON.stringify({
-                model: 'gpt-4-vision-preview',
+                model: 'vision-analysis-model',
                 messages: [
                     {
                         role: 'system',
@@ -327,7 +330,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
         ]
     };
 
-    console.log(`🧠 Calling Claude API for domain: ${domain}, language: ${language}`);
+    console.log(`🧠 Calling Primary AI API for domain: ${domain}, language: ${language}`);
     console.log(`📝 Problem length: ${problem.length} chars`);
     console.log(`🌍 Response language: ${language}`);
 
@@ -347,13 +350,14 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Claude API Error ${response.status}: ${errorText}`);
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
         }
 
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ Claude response received in ${responseTime}s`);
+        console.log(`✅ AI response received in ${responseTime}s`);
 
         const fullResponse = data.content[0]?.text || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -368,15 +372,15 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.input_tokens + data.usage?.output_tokens || 0,
-                model: 'Claude 3.7 Sonnet',
-                provider: 'Anthropic',
+                model: 'Strategic Reasoning Engine',
+                provider: 'LyDian AI',
                 confidence: 0.995,
                 mode: 'production'
             }
         };
 
     } catch (error) {
-        console.error('❌ Claude API Error:', error);
+        console.error('❌ AI API Error:', error);
         throw error;
     }
 }
@@ -404,7 +408,7 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
         stream: false
     };
 
-    console.log(`🧠 Calling OpenAI GPT-4 for domain: ${domain}`);
+    console.log(`🧠 Calling Secondary AI API for domain: ${domain}`);
 
     const startTime = Date.now();
 
@@ -421,13 +425,14 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`OpenAI API Error ${response.status}: ${errorText}`);
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
         }
 
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ OpenAI response received in ${responseTime}s`);
+        console.log(`✅ AI response received in ${responseTime}s`);
 
         const fullResponse = data.choices[0]?.message?.content || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -442,15 +447,15 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
-                model: 'GPT-4 Turbo',
-                provider: 'OpenAI',
+                model: 'Advanced Language Processor',
+                provider: 'LyDian AI',
                 confidence: 0.99,
                 mode: 'production'
             }
         };
 
     } catch (error) {
-        console.error('❌ OpenAI API Error:', error);
+        console.error('❌ AI API Error:', error);
         throw error;
     }
 }
@@ -478,7 +483,7 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
         stream: false
     };
 
-    console.log(`⚡ Calling Groq LLaMA for domain: ${domain}`);
+    console.log(`⚡ Calling Fast Response AI for domain: ${domain}`);
 
     const startTime = Date.now();
 
@@ -495,13 +500,14 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Groq API Error ${response.status}: ${errorText}`);
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
         }
 
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ Groq response received in ${responseTime}s`);
+        console.log(`✅ AI response received in ${responseTime}s`);
 
         const fullResponse = data.choices[0]?.message?.content || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -516,15 +522,15 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
-                model: 'LLaMA 3.3 70B',
-                provider: 'Groq',
+                model: 'Rapid Response Unit',
+                provider: 'LyDian AI',
                 confidence: 0.98,
                 mode: 'production'
             }
         };
 
     } catch (error) {
-        console.error('❌ Groq API Error:', error);
+        console.error('❌ AI API Error:', error);
         throw error;
     }
 }
@@ -753,23 +759,22 @@ async function handleRequest(req, res) {
 
         let result;
 
-        // Multi-Provider AI Strategy: GROQ → OpenAI → Claude → Demo
+        // Multi-Provider AI Strategy: Fast → Secondary → Primary → Demo
         // With retry mechanism for network errors
-        // Note: Using GROQ first since it has a valid API key
         try {
-            // Try Groq first (ultra-fast & valid key)
+            // Try Fast Response first (ultra-fast & valid key)
             if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20 && !AI_CONFIG.groq.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Groq LLaMA (Primary - Valid Key) with retry');
+                console.log('🎯 Strategy: Using Fast Response AI (Primary - Valid Key) with retry');
                 result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options));
             }
-            // Fallback to OpenAI
+            // Fallback to Secondary AI
             else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20 && !AI_CONFIG.openai.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using OpenAI GPT-4 (Fallback - Valid Key) with retry');
+                console.log('🎯 Strategy: Using Secondary AI (Fallback - Valid Key) with retry');
                 result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options));
             }
-            // Try Claude (if key is valid)
+            // Try Primary AI (if key is valid)
             else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20 && !AI_CONFIG.anthropic.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Claude (Tertiary - Valid Key) with retry');
+                console.log('🎯 Strategy: Using Primary AI (Tertiary - Valid Key) with retry');
                 result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options));
             }
             // No API keys available
@@ -783,16 +788,16 @@ async function handleRequest(req, res) {
             // Try fallback providers (also with retry)
             try {
                 if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20) {
-                    console.log('🔄 Fallback: Trying OpenAI with retry...');
+                    console.log('🔄 Fallback: Trying Secondary AI with retry...');
                     result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options));
                 } else if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20) {
-                    console.log('🔄 Fallback: Trying Groq with retry...');
+                    console.log('🔄 Fallback: Trying Fast Response AI with retry...');
                     result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options));
                 } else {
-                    throw new Error('All API providers failed');
+                    throw new Error('All AI providers failed');
                 }
             } catch (fallbackError) {
-                console.error('⚠️ All APIs failed after retries, using demo mode:', fallbackError.message);
+                console.error('⚠️ All AI services failed after retries, using demo mode:', fallbackError.message);
                 result = generateFallbackResponse(enhancedProblem, domain, language);
             }
         }

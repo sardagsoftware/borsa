@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useAppStore } from '../../../state/store';
+import { useAppStore, type AppState } from '../../../state/store';
 import { useWebSocket } from '../../../hooks/useWebSocket';
 
 interface HealthData {
@@ -28,7 +28,7 @@ interface HealthData {
 }
 
 export default function DockHealth() {
-  const dock = useAppStore(state => state.dock);
+  const dock = useAppStore((state: AppState) => state.dock);
   const [healthData, setHealthData] = useState<HealthData[]>([]);
   const [selectedConnector, setSelectedConnector] = useState<string | null>(null);
 

@@ -9,11 +9,11 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
-import { useAppStore, Message } from '../../state/store';
+import { useAppStore, type AppState, Message, Intent } from '../../state/store';
 
 export default function MessageSurface() {
-  const messages = useAppStore(state => state.messages);
-  const intents = useAppStore(state => state.intents);
+  const messages = useAppStore((state: AppState) => state.messages);
+  const intents = useAppStore((state: AppState) => state.intents);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom on new messages
@@ -28,7 +28,7 @@ export default function MessageSurface() {
   return (
     <div className="message-surface">
       <div className="messages-container">
-        {messages.map((message, index) => (
+        {messages.map((message: Message, index: number) => (
           <MessageItem key={message.id} message={message} index={index} />
         ))}
         <div ref={messagesEndRef} />
@@ -39,7 +39,7 @@ export default function MessageSurface() {
         <div className="intent-suggestions">
           <div className="intent-label">💡 Önerilen İşlemler:</div>
           <div className="intent-chips">
-            {intents.slice(0, 3).map(intent => (
+            {intents.slice(0, 3).map((intent: Intent) => (
               <IntentChip key={intent.id} intent={intent} />
             ))}
           </div>
@@ -151,7 +151,7 @@ function EmptyState() {
 
 // Example query chip
 function ExampleQuery({ text, icon }: { text: string; icon: string }) {
-  const addMessage = useAppStore(state => state.addMessage);
+  const addMessage = useAppStore((state: AppState) => state.addMessage);
 
   const handleClick = () => {
     addMessage({ role: 'user', content: text });
@@ -317,7 +317,7 @@ function MessageItem({ message, index }: { message: Message; index: number }) {
 }
 
 // Intent chip
-function IntentChip({ intent }: { intent: any }) {
+function IntentChip({ intent }: { intent: Intent }) {
   return (
     <button className="intent-chip">
       <span className="chip-text">{intent.action}</span>

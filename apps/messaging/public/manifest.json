@@ -1,0 +1,41 @@
+{
+  "name": "Ailydian Messaging",
+  "short_name": "Ailydian",
+  "description": "Uçtan uca şifrelenmiş güvenli mesajlaşma platformu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["communication", "productivity", "security"],
+  "shortcuts": [
+    {
+      "name": "Performance Test",
+      "short_name": "Performance",
+      "description": "Web Vitals monitoring",
+      "url": "/performance-test",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Security Test",
+      "short_name": "Security",
+      "description": "E2EE security validation",
+      "url": "/security-test",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

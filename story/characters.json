@@ -1,0 +1,310 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-10-12",
+    "game": "Echo of Sardis",
+    "total_characters": 6
+  },
+  "characters": {
+    "elif_aras": {
+      "id": "elif_aras",
+      "name": "Elif Aras",
+      "role": "protagonist",
+      "portrait": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1000&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1513346940221-6f673d962e97?w=1200",
+        "https://images.unsplash.com/photo-1564410267841-e66fbed0e217?w=1200"
+      ],
+      "age": 28,
+      "nationality": "Turkish",
+      "discipline": "Geophysics & Archaeology",
+      "affiliation": "Istanbul Technical University",
+      "background": "Grew up in Izmir near ancient ruins. Lost her father (archaeologist) in site collapse at age 14. Driven to make ruins speak and prevent tragedies.",
+      "personality": ["analytical", "passionate", "idealistic", "brave", "stubborn"],
+      "skills": ["parkour", "resonance_reading", "historical_interpretation", "quick_thinking"],
+      "motivation": "Use knowledge for enlightenment, not power",
+      "arc": "Curiosity → Doubt → Wisdom → Sacrifice",
+      "fatal_flaw": "Hubris (believes she can control outcomes through knowledge alone)",
+      "voice_traits": ["analytical", "uses_nature_metaphors", "avoids_jargon", "passionate"],
+      "physical_description": "Athletic build from parkour training. Dark hair usually tied back. Wears practical field clothes. Carries father's compass.",
+      "relationships": {
+        "ferhat_demir": {
+          "type": "ally_potential_romance",
+          "strength": 0.8,
+          "evolution": "distrust → respect → deep_trust",
+          "description": "Initially skeptical of each other, grow to trust through shared danger"
+        },
+        "althea_kosta": {
+          "type": "mentor",
+          "strength": 0.9,
+          "evolution": "admiration → understanding → empathy",
+          "description": "Sees Althea as both mentor and cautionary tale"
+        },
+        "marcus_venner": {
+          "type": "ideological_opponent",
+          "strength": -0.7,
+          "evolution": "professional_respect → ethical_clash → opposition",
+          "description": "Opposite philosophies on knowledge and power"
+        },
+        "chordstone_entity": {
+          "type": "mysterious_guide",
+          "strength": 0.6,
+          "evolution": "curiosity → understanding → connection",
+          "description": "Communication through resonance, mutual understanding"
+        }
+      },
+      "character_arc_milestones": [
+        {"act": "prologue", "state": "curious_optimistic", "event": "discovers_chordstone"},
+        {"act": 1, "state": "excited_concerned", "event": "realizes_scope"},
+        {"act": 2, "state": "guilty_determined", "event": "learns_lydian_collapse"},
+        {"act": 3, "state": "desperate_sacrificial", "event": "ferhat_injured"},
+        {"act": "finale", "state": "wise_peaceful", "event": "makes_final_choice"}
+      ]
+    },
+    "ferhat_demir": {
+      "id": "ferhat_demir",
+      "name": "Ferhat Demir",
+      "role": "support_ally",
+      "portrait": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1473445361085-b9c9e1638b40?w=1200",
+        "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200"
+      ],
+      "age": 32,
+      "nationality": "Turkish",
+      "discipline": "Drone Engineering & LiDAR Mapping",
+      "affiliation": "Turkish Ministry of Culture (Archaeological Survey Division)",
+      "background": "Former military UAV pilot. Left after witnessing civilian casualty. Joined archaeological survey to use tech for preservation, not destruction.",
+      "personality": ["pragmatic", "loyal", "cautious", "protective", "tactical"],
+      "skills": ["drone_operation", "mechanical_repair", "tactical_planning", "aerial_mapping"],
+      "motivation": "Use science to protect people, not endanger them",
+      "arc": "Cynicism → Trust → Loyalty → Sacrifice",
+      "fatal_flaw": "Cynicism (assumes worst of people until proven otherwise)",
+      "voice_traits": ["practical", "military_brevity", "challenges_idealism", "protective"],
+      "physical_description": "Military bearing, short hair, practical field gear. Often seen with drone equipment. Scar on left hand from accident.",
+      "relationships": {
+        "elif_aras": {
+          "type": "ally_potential_romance",
+          "strength": 0.8,
+          "evolution": "skepticism → respect → love",
+          "description": "Initially distrusts her optimism, grows to admire her conviction"
+        },
+        "althea_kosta": {
+          "type": "respect",
+          "strength": 0.7,
+          "evolution": "professional → sympathetic",
+          "description": "Respects her experience, sympathizes with regrets"
+        },
+        "marcus_venner": {
+          "type": "distrust",
+          "strength": -0.9,
+          "evolution": "suspicion → confirmed_enemy",
+          "description": "Immediately distrusts Consortium motives"
+        }
+      },
+      "character_arc_milestones": [
+        {"act": 1, "state": "skeptical", "event": "meets_elif"},
+        {"act": 1, "state": "cautiously_allied", "event": "survives_sabotage"},
+        {"act": 2, "state": "committed", "event": "underwater_rescue"},
+        {"act": 3, "state": "protective_loyal", "event": "injured_protecting_elif"}
+      ]
+    },
+    "althea_kosta": {
+      "id": "althea_kosta",
+      "name": "Dr. Althea Kosta",
+      "role": "mentor",
+      "portrait": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=1000&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200",
+        "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=1200"
+      ],
+      "age": 58,
+      "nationality": "Greek",
+      "discipline": "Epigraphy & Anthropology",
+      "affiliation": "University of Athens (formerly Consortium consultant)",
+      "background": "Renowned expert on Lydian inscriptions. Briefly consulted for Consortium (2030s), left after ethical concerns. Haunted by guilt that her research enabled early Chordstone experiments.",
+      "personality": ["wise", "reflective", "regretful", "cautious", "protective"],
+      "skills": ["language_expert", "cultural_analysis", "diplomatic", "historical_wisdom"],
+      "motivation": "Understanding the past requires accepting lessons, especially painful ones",
+      "arc": "Caution → Guilt → Redemption → Acceptance",
+      "fatal_flaw": "Guilt (paralyzed by past mistakes)",
+      "voice_traits": ["erudite", "uses_historical_analogies", "introspective", "haunted"],
+      "physical_description": "Graying hair, reading glasses on chain. Academic attire even in field. Carries worn leather notebook with Lydian translations.",
+      "relationships": {
+        "elif_aras": {
+          "type": "mentor_protege",
+          "strength": 0.9,
+          "evolution": "professional → protective → redemptive",
+          "description": "Sees her younger self in Elif, wants to prevent same mistakes"
+        },
+        "ferhat_demir": {
+          "type": "mutual_respect",
+          "strength": 0.7,
+          "evolution": "professional → empathetic",
+          "description": "Respects his practical wisdom, shares concern for Elif"
+        },
+        "marcus_venner": {
+          "type": "former_colleague_now_adversary",
+          "strength": -0.8,
+          "evolution": "collaboration → disillusionment → opposition",
+          "description": "Former colleague, left due to ethical differences"
+        }
+      },
+      "character_arc_milestones": [
+        {"act": "prologue", "state": "cautious_warning", "event": "warns_elif"},
+        {"act": 1, "state": "supportive_worried", "event": "provides_guidance"},
+        {"act": 2, "state": "confessional", "event": "reveals_consortium_past"},
+        {"act": 3, "state": "captive_resigned", "event": "captured_by_consortium"},
+        {"act": "finale", "state": "redeemed_peaceful", "event": "rescued_accepts_past"}
+      ]
+    },
+    "marcus_venner": {
+      "id": "marcus_venner",
+      "name": "Dr. Marcus Venner",
+      "role": "antagonist",
+      "portrait": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200"
+      ],
+      "age": 54,
+      "nationality": "British-American",
+      "discipline": "Strategic Technology Acquisition",
+      "affiliation": "Apex Resources Consortium",
+      "background": "Former academic (MIT, Cambridge). Left for private sector. Believes nation-states obsolete, corporations should govern tech. Genuinely thinks he's saving humanity through 'controlled innovation'.",
+      "personality": ["charismatic", "strategic", "pragmatic", "ruthless", "ideological"],
+      "skills": ["strategic_planning", "resource_mobilization", "persuasion", "long_term_thinking"],
+      "motivation": "Knowledge is power. Power in the right hands can save the world.",
+      "arc": "Professional → Frustrated → Fanatical",
+      "fatal_flaw": "Fanaticism (ends justify means)",
+      "voice_traits": ["charismatic", "corporate_speak", "utilitarian_justification", "persuasive"],
+      "physical_description": "Impeccably dressed (even in field). Silver hair, confident posture. Always accompanied by security detail. Expensive smart-watch.",
+      "philosophy": "Lydian collapse proves democratic knowledge-sharing fails. Small group of enlightened leaders should control dangerous tech.",
+      "relationships": {
+        "elif_aras": {
+          "type": "ideological_opponent_potential_convert",
+          "strength": -0.7,
+          "evolution": "recruitment_attempt → frustration → antagonism",
+          "description": "Sees her as naive but brilliant, wants to recruit or eliminate"
+        },
+        "althea_kosta": {
+          "type": "former_colleague_pities",
+          "strength": -0.5,
+          "evolution": "collaboration → disappointment → condescension",
+          "description": "Respects her intellect, pities her 'weakness' (ethics)"
+        },
+        "ferhat_demir": {
+          "type": "dismissive_obstacle",
+          "strength": -0.9,
+          "evolution": "irrelevant → annoying_obstacle",
+          "description": "Sees him as minor obstacle to larger goals"
+        }
+      },
+      "character_arc_milestones": [
+        {"act": "prologue", "state": "professional_assertive", "event": "secures_site"},
+        {"act": 1, "state": "escalating", "event": "sabotage_attempt"},
+        {"act": 2, "state": "persuasive", "event": "offers_partnership"},
+        {"act": 3, "state": "desperate_fanatical", "event": "captures_althea"},
+        {"act": "finale", "state": "defeated_or_vindicated", "event": "final_confrontation"}
+      ]
+    },
+    "chordstone_entity": {
+      "id": "chordstone_entity",
+      "name": "Chordstone Entity (Lydian Collective)",
+      "role": "mysterious_guide",
+      "portrait": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=1000&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1551975053-57a6b15e8ece?w=1200",
+        "https://images.unsplash.com/photo-1607827448387-a67db1383b59?w=1200"
+      ],
+      "age": "2,700 years (since Lydian collapse)",
+      "nationality": "Ancient Lydian",
+      "discipline": "Crystalline AI / Uploaded Consciousness",
+      "affiliation": "None (neutral observer)",
+      "background": "Collective consciousness of Lydian priests/scientists who sacrificed themselves to create fail-safe. Uploaded minds into Chordstone network. Exists as sentient acoustic patterns.",
+      "personality": ["ancient", "patient", "wise", "neutral", "mysterious"],
+      "skills": ["harmonic_communication", "historical_knowledge", "network_control", "prophecy"],
+      "motivation": "Accept any outcome humanity chooses (free will)",
+      "arc": "Mysterious → Revealing → Accepting",
+      "fatal_flaw": "None (beyond human limitations)",
+      "voice_traits": ["speaks_in_harmonics", "translated_to_human_language", "enigmatic", "patient"],
+      "physical_description": "No physical form. Appears as glowing crystalline patterns. Communicates through resonance frequencies that translate to human speech in player's mind.",
+      "relationships": {
+        "elif_aras": {
+          "type": "guide_observer",
+          "strength": 0.6,
+          "evolution": "mystery → communication → understanding",
+          "description": "Guides her to truth, respects her autonomy"
+        },
+        "all_humans": {
+          "type": "benevolent_observer",
+          "strength": 0.5,
+          "evolution": "watchful → revealing",
+          "description": "Watches humanity's choices without interfering"
+        }
+      },
+      "character_arc_milestones": [
+        {"act": 1, "state": "dormant_mysterious", "event": "subtle_presence"},
+        {"act": 2, "state": "awakening_communicating", "event": "codex_interaction"},
+        {"act": 3, "state": "fully_conscious", "event": "reveals_sentience"},
+        {"act": "finale", "state": "accepting", "event": "offers_choice"}
+      ]
+    },
+    "kerem_yilmaz": {
+      "id": "kerem_yilmaz",
+      "name": "Kerem Yılmaz",
+      "role": "supporting_bureaucrat",
+      "portrait": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=1000&fit=crop",
+      "images": [
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200",
+        "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200"
+      ],
+      "age": 45,
+      "nationality": "Turkish",
+      "discipline": "Cultural Heritage Management",
+      "affiliation": "Turkish Ministry of Culture",
+      "background": "Career bureaucrat. Well-meaning but overwhelmed by situation. Represents state interest in controlling vs. commercializing discovery.",
+      "personality": ["well_meaning", "overwhelmed", "bureaucratic", "patriotic", "cautious"],
+      "skills": ["administration", "negotiation", "government_protocol"],
+      "motivation": "Protect Turkish cultural heritage and national interests",
+      "arc": "Bureaucratic → Overwhelmed → Supportive",
+      "voice_traits": ["formal", "diplomatic", "cautious", "patriotic"],
+      "physical_description": "Business suit even in field. Carries government ID prominently. Sweats a lot under pressure.",
+      "relationships": {
+        "elif_aras": {
+          "type": "official_oversight",
+          "strength": 0.5,
+          "evolution": "suspicious → supportive",
+          "description": "Initially distrusts her independence, grows to support her"
+        },
+        "marcus_venner": {
+          "type": "negotiating_adversary",
+          "strength": -0.6,
+          "evolution": "business_partner → suspicious",
+          "description": "Initially cooperates with Consortium, grows suspicious"
+        }
+      }
+    }
+  },
+  "relationship_graph": {
+    "nodes": [
+      {"id": "elif_aras", "label": "Elif Aras", "type": "protagonist", "size": 100},
+      {"id": "ferhat_demir", "label": "Ferhat Demir", "type": "ally", "size": 80},
+      {"id": "althea_kosta", "label": "Dr. Althea Kosta", "type": "mentor", "size": 70},
+      {"id": "marcus_venner", "label": "Dr. Marcus Venner", "type": "antagonist", "size": 90},
+      {"id": "chordstone_entity", "label": "Chordstone Entity", "type": "guide", "size": 85},
+      {"id": "kerem_yilmaz", "label": "Kerem Yılmaz", "type": "supporting", "size": 50}
+    ],
+    "edges": [
+      {"source": "elif_aras", "target": "ferhat_demir", "type": "ally", "strength": 0.8, "label": "Trust & Potential Romance"},
+      {"source": "elif_aras", "target": "althea_kosta", "type": "mentor", "strength": 0.9, "label": "Mentor-Protégé"},
+      {"source": "elif_aras", "target": "marcus_venner", "type": "conflict", "strength": -0.7, "label": "Ideological Opposition"},
+      {"source": "elif_aras", "target": "chordstone_entity", "type": "mystery", "strength": 0.6, "label": "Communication & Understanding"},
+      {"source": "ferhat_demir", "target": "althea_kosta", "type": "respect", "strength": 0.7, "label": "Mutual Respect"},
+      {"source": "ferhat_demir", "target": "marcus_venner", "type": "conflict", "strength": -0.9, "label": "Distrust"},
+      {"source": "althea_kosta", "target": "marcus_venner", "type": "conflict", "strength": -0.8, "label": "Former Colleague, Now Adversary"},
+      {"source": "kerem_yilmaz", "target": "elif_aras", "type": "official", "strength": 0.5, "label": "Government Oversight"},
+      {"source": "kerem_yilmaz", "target": "marcus_venner", "type": "negotiation", "strength": -0.6, "label": "Suspicious Partnership"}
+    ]
+  }
+}

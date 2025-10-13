@@ -1,0 +1,276 @@
+{
+  "locale": "en-US",
+  "direction": "ltr",
+  "season": {
+    "id": "S2",
+    "title": "Echo Storms",
+    "subtitle": "Discover lost harmonies as echo winds rise",
+    "description": "Season 2: Echo Storms - Dynamic weather events, acoustic puzzles, and cooperative stealth gameplay",
+    "duration": "6 weeks",
+    "start_date": "January 15, 2026",
+    "end_date": "March 1, 2026"
+  },
+
+  "weeks": {
+    "week_1": {
+      "name": "Storm Awakening",
+      "description": "New season begins - Discover the mystery of echo storms"
+    },
+    "week_2": {
+      "name": "Sentinel Rises",
+      "description": "First mini-boss encounter - Echo Sentinel Phase 1"
+    },
+    "week_3": {
+      "name": "Storm Photography",
+      "description": "PhotoMode contest - Capture the most beautiful storm"
+    },
+    "week_4": {
+      "name": "Cooperative Week",
+      "description": "Two-player puzzles and vendor discounts"
+    },
+    "week_5": {
+      "name": "Sentinel Returns",
+      "description": "Mini-boss returns - Echo Sentinel Phase 2 (harder!)"
+    },
+    "week_6": {
+      "name": "Season Finale",
+      "description": "1.5x bonus XP, storm marathon, and finale cutscene"
+    }
+  },
+
+  "mechanics": {
+    "resonance_link": {
+      "name": "Resonance Link",
+      "description": "Optional 2-player cooperative mode - Try it out and play with friends",
+      "cta": "Try Co-op Mode"
+    },
+    "storm_puzzles": {
+      "name": "Storm Puzzles",
+      "frequency_align": "Frequency Alignment",
+      "phase_chain": "Phase Chain",
+      "echo_triangulation": "Echo Triangulation"
+    }
+  },
+
+  "bosses": {
+    "echo_sentinel": {
+      "name": "Echo Sentinel",
+      "phase_1": "Phase 1: Awakening",
+      "phase_2": "Phase 2: Fury",
+      "phase_3": "Phase 3: Enrage",
+      "tells": {
+        "ground_slam": "Ground slam - DODGE!",
+        "lightning_charge": "Lightning charge - SIDESTEP!",
+        "storm_summon": "Summoning storm..."
+      }
+    }
+  },
+
+  "biomes": {
+    "canyon_night_storm": {
+      "name": "Canyon - Night Storm",
+      "description": "Dark canyons illuminated by electrical storms"
+    },
+    "ruins_sand_gale": {
+      "name": "Ruins - Sand Gale",
+      "description": "Ancient ruins with swirling sand storms"
+    }
+  },
+
+  "quests": {
+    "storm_caller": {
+      "name": "The Storm Callers",
+      "description": "Find the lost echo frequency and calm the storms"
+    },
+    "sentinel_origins": {
+      "name": "Sentinel Origins",
+      "description": "Uncover the past of the Echo Sentinel"
+    }
+  },
+
+  "cosmetics": {
+    "costume_storm_walker": {
+      "name": "Storm Walker",
+      "rarity": "Epic",
+      "description": "Costume for those who walk through storms"
+    },
+    "costume_sentinel_shroud": {
+      "name": "Sentinel's Shroud",
+      "rarity": "Legendary",
+      "description": "Carry the power of the Echo Sentinel"
+    },
+    "costume_echo_master": {
+      "name": "Echo Master",
+      "rarity": "Rare",
+      "description": "For the master of echoes"
+    },
+    "effect_lightning_trail": {
+      "name": "Lightning Trail",
+      "rarity": "Epic",
+      "description": "Leave trails of lightning behind you"
+    },
+    "effect_wind_aura": {
+      "name": "Wind Aura",
+      "rarity": "Rare",
+      "description": "Swirling wind aura around you"
+    }
+  },
+
+  "currency": {
+    "cr": {
+      "name": "Chordstone Remnants",
+      "abbrev": "CR",
+      "symbol": "⚡"
+    },
+    "ac": {
+      "name": "Ancient Crystals",
+      "abbrev": "AC",
+      "symbol": "💎"
+    }
+  },
+
+  "events": {
+    "mini_boss_phase_1": {
+      "name": "Mini-Boss: Echo Sentinel Phase 1",
+      "start": "January 25, Saturday 20:00",
+      "duration": "48 hours",
+      "description": "First encounter - 25,000 HP, 3 phases",
+      "rewards": "First completion: 500 CR + Sentinel's Shroud (legendary)"
+    },
+    "mini_boss_phase_2": {
+      "name": "Mini-Boss: Echo Sentinel Phase 2",
+      "start": "February 22, Saturday 20:00",
+      "duration": "48 hours",
+      "description": "Harder! 35,000 HP, new mechanics",
+      "rewards": "First completion: 750 CR + Storm Walker (epic)"
+    },
+    "photo_contest": {
+      "name": "Photo Contest: Storm Trails",
+      "start": "February 1",
+      "end": "February 8",
+      "description": "Capture the most beautiful storm photo and win prizes",
+      "prizes": {
+        "first": "$100 USD + Stormcatcher (legendary)",
+        "second": "$50 USD + Lightning Trail (epic)",
+        "third": "$25 USD + Wind Aura (rare)"
+      },
+      "rules": "Maximum 3 submissions, in-game capture only, no external editing"
+    },
+    "vendor_sale": {
+      "name": "Vendor Sale: 10% Off",
+      "start": "February 13, Thursday 12:00",
+      "end": "February 13, Thursday 23:00",
+      "duration": "11 hours",
+      "description": "10% discount on all vendor items"
+    },
+    "coop_week": {
+      "name": "Co-op Puzzle Week",
+      "start": "February 10",
+      "end": "February 17",
+      "description": "1.25x reward bonus for co-op completions",
+      "cta": "Invite a Friend"
+    },
+    "finale": {
+      "name": "Season Finale: Bonus XP Weekend",
+      "start": "February 26",
+      "end": "March 1",
+      "duration": "3 days",
+      "multiplier": "1.5x XP on all activities",
+      "activities": {
+        "storm_marathon": "Storm Marathon - Complete all puzzles in one session",
+        "echo_hunt": "Echo Hunt - Find all hidden echo resonators",
+        "finale_cutscene": "Watch the Finale Cutscene"
+      }
+    }
+  },
+
+  "objectives": {
+    "complete_storm_puzzles": "Complete {{count}} storm puzzles",
+    "defeat_echo_sentinel": "Defeat the Echo Sentinel",
+    "explore_new_biomes": "Explore new biomes",
+    "use_coop_mode": "Use co-op mode {{count}} times",
+    "submit_photo": "Submit to photo contest",
+    "reach_season_level": "Reach season level {{level}}"
+  },
+
+  "rewards": {
+    "xp": "{{amount}} XP",
+    "cr": "{{amount}} CR",
+    "cosmetic": "Cosmetic reward: {{name}}",
+    "title": "Title: {{name}}"
+  },
+
+  "notifications": {
+    "event_starting_soon": "{{event}} starting in {{time}}!",
+    "event_ending_soon": "{{event}} ending in {{time}}!",
+    "season_ending": "Season 2 ends in {{days}} days",
+    "new_week": "Week {{week}} begins: {{theme}}",
+    "boss_spawned": "Echo Sentinel has spawned!",
+    "experiment_active": "A/B test active: {{name}}"
+  },
+
+  "ui": {
+    "season_progress": "Season Progress",
+    "week": "Week",
+    "days_remaining": "{{days}} days left",
+    "active_events": "Active Events",
+    "upcoming_events": "Upcoming Events",
+    "leaderboards": "Leaderboards",
+    "my_stats": "My Stats",
+    "claim_reward": "Claim Reward",
+    "view_details": "View Details",
+    "join_event": "Join Event",
+    "opt_in": "Opt In",
+    "opt_out": "Opt Out"
+  },
+
+  "ab_experiments": {
+    "storm_reward": {
+      "name": "Storm Reward Optimization",
+      "description": "We're testing storm puzzle rewards"
+    },
+    "boss_hp": {
+      "name": "Boss HP Tuning",
+      "description": "Finding the best difficulty balance"
+    },
+    "coop_optin": {
+      "name": "Co-op Suggestion Frequency",
+      "description": "Optimizing co-op invitation frequency"
+    }
+  },
+
+  "stats": {
+    "completion_rate": "Completion Rate",
+    "success_rate": "Success Rate",
+    "average_attempts": "Average Attempts",
+    "time_spent": "Time Spent",
+    "rank": "Rank",
+    "percentile": "Percentile"
+  },
+
+  "errors": {
+    "event_not_active": "This event is not currently active",
+    "already_claimed": "You already claimed this reward",
+    "requirements_not_met": "Requirements not met",
+    "season_ended": "Season 2 has ended",
+    "server_error": "Server error. Please try again."
+  },
+
+  "compliance": {
+    "data_usage": "About data usage",
+    "privacy_policy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "kvkk_rights": "Your KVKK Rights",
+    "export_data": "Export My Data",
+    "delete_account": "Delete Account"
+  },
+
+  "cldr": {
+    "date_format": "MMMM d, yyyy",
+    "time_format": "h:mm a",
+    "datetime_format": "MMMM d, yyyy h:mm a",
+    "number_format": "#,##0.##",
+    "currency_format": "$#,##0.##",
+    "timezone": "America/New_York"
+  }
+}

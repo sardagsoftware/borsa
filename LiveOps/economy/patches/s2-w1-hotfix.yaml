@@ -1,0 +1,304 @@
+# Season 2 Week 1 Economy Hotfix Patch
+# Date: 2026-01-21 (End of W1)
+# Version: s2-w1-hotfix-v1.0
+# Deployment: Canary 10% (2h) → 50% (6h) → 100%
+# Rollback: LiveOps/runbook/w1-rollback.sh
+
+metadata:
+  patch_id: s2-w1-hotfix-001
+  season: S2
+  week: 1
+  created_at: "2026-01-21T18:00:00Z"
+  author: liveops-team
+  status: ready_for_canary
+  rollback_ready: true
+
+  # Approval & RBAC
+  requires_role: economy.admin
+  approved_by: economy-lead
+
+  # Observability
+  alert_channels:
+    - "#alerts-economy"
+    - "#alerts-liveops"
+  pagerduty_key: s2-w1-economy-hotfix
+
+  # Rollback Triggers (automated)
+  rollback_conditions:
+    inflation_index_gt: 1.15      # Critical inflation
+    earn_spend_ratio_gt: 1.25     # Excessive earning
+    earn_spend_ratio_lt: 0.80     # Excessive spending
+    fraud_flags_gt: 50            # Fraud spike
+    crash_free_rate_lt: 97.5      # Tech health degradation
+
+# ============================================================================
+# STORM PUZZLE REWARDS ADJUSTMENT
+# Problem: If completion rate <65%, rewards may be underwhelming
+# Solution: +5% CR rewards for storm puzzles to incentivize completion
+# ============================================================================
+storm_puzzle_rewards:
+  enabled: true
+  reason: "Boost storm puzzle engagement if completion <70% target"
+
+  adjustments:
+    - puzzle_type: frequency_align
+      reward_cr_base: 120         # Was: 115 (+5 CR)
+      reward_cr_perfect: 180      # Was: 170 (+10 CR)
+
+    - puzzle_type: phase_chain
+      reward_cr_base: 135         # Was: 130 (+5 CR)
+      reward_cr_perfect: 200      # Was: 190 (+10 CR)
+
+    - puzzle_type: echo_triangulation
+      reward_cr_base: 150         # Was: 145 (+5 CR)
+      reward_cr_perfect: 225      # Was: 215 (+10 CR)
+
+  # Canary monitoring
+  monitor_metrics:
+    - puzzle_completion_rate
+    - avg_cr_earned_per_dau
+    - inflation_index
+
+# ============================================================================
+# BOSS HP ADJUSTMENT (Week 2 Prep)
+# Problem: Boss success rate baseline 48%, target 55%
+# Solution: -7% HP for Echo Sentinel Phase 1 (Week 2 launch)
+# ============================================================================
+boss_hp_tuning:
+  enabled: true
+  reason: "Prepare for Week 2 Echo Sentinel launch with balanced difficulty"
+
+  adjustments:
+    - boss_id: echo_sentinel_phase1
+      hp_base: 23250              # Was: 25000 (-7%, -1750 HP)
+      hp_scaling_per_player: 3720 # Was: 4000 (-7% for co-op scaling)
+
+    # Keep Phase 2/3 unchanged for now (launch in later weeks)
+    - boss_id: echo_sentinel_phase2
+      hp_base: 40000              # No change
+      hp_scaling_per_player: 6400
+
+    - boss_id: echo_sentinel_phase3
+      hp_base: 60000              # No change
+      hp_scaling_per_player: 9600
+
+  monitor_metrics:
+    - boss_success_rate
+    - avg_attempts_to_defeat
+    - boss_engagement_pct
+
+# ============================================================================
+# VENDOR PRICE MICRO-ADJUSTMENT
+# Problem: If inflation >1.08, reduce purchasing power creep
+# Solution: +3% vendor prices (mild deflation) if inflation warning triggered
+# ============================================================================
+vendor_prices:
+  enabled: true
+  condition: "inflation_index > 1.08"  # Only apply if inflation warning
+  reason: "Counter mild inflation by reducing purchasing power"
+
+  adjustments:
+    - vendor_category: cosmetics
+      price_multiplier: 1.03      # +3% all cosmetic items
+
+    - vendor_category: consumables
+      price_multiplier: 1.03      # +3% consumables (potions, buffs)
+
+    - vendor_category: upgrades
+      price_multiplier: 1.03      # +3% upgrade materials
+
+    # Exclude starter items (new player protection)
+    - vendor_category: starter_bundles
+      price_multiplier: 1.00      # No change
+
+  monitor_metrics:
+    - inflation_index
+    - vendor_usage_pct
+    - avg_transaction_value
+
+# ============================================================================
+# DAILY EARN CAP ADJUSTMENT
+# Problem: If earn/spend >1.10, too much CR entering economy
+# Solution: Reduce daily earn cap from 4500 to 4300 CR (-4.4%)
+# ============================================================================
+earn_limits:
+  enabled: true
+  condition: "earn_spend_ratio > 1.10"  # Only apply if earning too high
+  reason: "Tighten currency flow to maintain earn/spend 0.9-1.1 band"
+
+  adjustments:
+    - limit_type: daily_earn_cap
+      value_cr: 4300              # Was: 4500 (-200 CR, -4.4%)
+
+    - limit_type: weekly_earn_cap
+      value_cr: 28000             # Was: 30000 (-2000 CR, -6.7%)
+
+  # Protection: Don't apply if retention drops
+  safeguards:
+    min_retention_d1_pct: 40.0    # Abort if D1 retention <40%
+    min_dau: 2400                 # Abort if DAU <2400
+
+  monitor_metrics:
+    - earn_spend_ratio
+    - retention_d1_pct
+    - player_satisfaction_nps
+
+# ============================================================================
+# FRAUD DETECTION TUNING
+# Problem: If fraud flags spike, tighten earn rate anomaly detection
+# Solution: Lower earn rate anomaly threshold from 3σ to 2.5σ
+# ============================================================================
+fraud_detection:
+  enabled: true
+  condition: "fraud_flags > 5"   # Only apply if fraud above baseline
+  reason: "Increase sensitivity to abnormal earning patterns"
+
+  adjustments:
+    - detection_type: earn_rate_anomaly
+      threshold_sigma: 2.5        # Was: 3.0 (more sensitive)
+
+    - detection_type: duplication_attempt
+      threshold_sigma: 2.5        # Was: 3.0
+
+    - detection_type: suspicious_transaction
+      review_threshold_cr: 800    # Was: 1000 (flag large transactions)
+
+  monitor_metrics:
+    - fraud_flags
+    - false_positive_rate
+    - player_support_tickets
+
+# ============================================================================
+# CANARY DEPLOYMENT PLAN
+# ============================================================================
+canary:
+  stage_1:
+    percentage: 10
+    duration_hours: 2
+    success_criteria:
+      - crash_free_rate >= 98.5
+      - inflation_index < 1.15
+      - earn_spend_ratio >= 0.85 AND earn_spend_ratio <= 1.20
+      - fraud_flags < 20
+
+  stage_2:
+    percentage: 50
+    duration_hours: 6
+    success_criteria:
+      - crash_free_rate >= 98.5
+      - inflation_index < 1.12
+      - retention_d1_pct >= 40.0
+      - player_support_tickets < 50
+
+  stage_3:
+    percentage: 100
+    duration_hours: 24
+    success_criteria:
+      - all_metrics_green
+      - no_rollback_triggered
+
+# ============================================================================
+# ROLLBACK PLAN
+# ============================================================================
+rollback:
+  script: LiveOps/runbook/w1-rollback.sh
+  backup_file: LiveOps/economy/patches/s2-w1-hotfix-backup.yaml
+
+  triggers:
+    - condition: inflation_index > 1.15
+      severity: critical
+      auto_rollback: true
+
+    - condition: crash_free_rate < 97.5
+      severity: critical
+      auto_rollback: true
+
+    - condition: fraud_flags > 50
+      severity: critical
+      auto_rollback: false  # Manual review required
+
+    - condition: retention_d1_pct < 38.0
+      severity: warning
+      auto_rollback: false  # Manual review required
+
+  notification:
+    - channel: "#alerts-liveops"
+      message: "🔴 S2-W1 Economy Hotfix ROLLBACK triggered"
+    - pagerduty: economy-oncall
+      severity: high
+
+# ============================================================================
+# COMPLIANCE & AUDIT
+# ============================================================================
+compliance:
+  kvkk_gdpr_pdpl: true
+  data_retention_days: 90
+  audit_trail: enabled
+
+  audit_log:
+    - timestamp: "2026-01-21T18:00:00Z"
+      action: patch_created
+      user: liveops-team
+
+    - timestamp: "2026-01-21T18:30:00Z"
+      action: approved
+      user: economy-lead
+
+    - timestamp: "2026-01-21T19:00:00Z"
+      action: canary_stage1_deployed
+      user: automation
+
+  white_hat: true
+  official_apis_only: true
+  anti_cheat_active: true
+
+# ============================================================================
+# SUCCESS METRICS (Post-Deployment)
+# ============================================================================
+success_kpis:
+  # Economy Health
+  - metric: inflation_index
+    target: "< 1.08"
+    critical: "< 1.15"
+
+  - metric: earn_spend_ratio
+    target: "0.9 - 1.1"
+    critical: "0.85 - 1.20"
+
+  # Content Engagement
+  - metric: puzzle_completion_rate
+    target: ">= 70%"
+    baseline: "65%"
+
+  - metric: boss_success_rate
+    target: "45% - 65%"
+    baseline: "48%"
+
+  # Technical Health
+  - metric: crash_free_rate
+    target: ">= 98.5%"
+    critical: ">= 98.0%"
+
+  # Player Satisfaction
+  - metric: retention_d1_pct
+    target: ">= 42%"
+    critical: ">= 40%"
+
+  - metric: nps
+    target: ">= 45"
+    baseline: "42"
+
+# ============================================================================
+# POST-MORTEM REQUIREMENTS
+# ============================================================================
+post_mortem:
+  required: true
+  deadline: "2026-01-28T23:59:59Z"  # End of Week 2
+  document: Docs/S2-W1-BALANCE-NOTE.md
+
+  required_sections:
+    - before_after_comparison
+    - canary_results
+    - rollback_events (if any)
+    - player_feedback_summary
+    - week2_recommendations

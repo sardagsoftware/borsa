@@ -1,0 +1,135 @@
+{
+  "id": "co-op-puzzle-week",
+  "type": "gameplay",
+  "name": "Cooperative Puzzle Week",
+  "description": "Special week featuring cooperative resonance puzzles with bonus rewards",
+  "week": 4,
+  "start": "2026-02-05T00:00:00+03:00",
+  "end": "2026-02-12T00:00:00+03:00",
+  "duration_days": 7,
+
+  "mechanics": {
+    "resonance_link": {
+      "enabled": true,
+      "min_players": 1,
+      "max_players": 2,
+      "matchmaking": {
+        "opt_in": true,
+        "auto_match": false,
+        "friend_invite": true,
+        "region_preference": true
+      }
+    },
+    "solo_mode": {
+      "enabled": true,
+      "difficulty_adjustment": -0.15,
+      "rewards_multiplier": 0.85
+    }
+  },
+
+  "puzzles": [
+    {
+      "id": "frequency-sync-1",
+      "name": "Frequency Synchronization",
+      "type": "frequency-align",
+      "difficulty": "easy",
+      "coop_benefit": "faster_completion",
+      "rewards": {"xp": 400, "cr": 150}
+    },
+    {
+      "id": "phase-harmony",
+      "name": "Phase Harmony",
+      "type": "phase-chain",
+      "difficulty": "medium",
+      "coop_benefit": "simultaneous_activation",
+      "rewards": {"xp": 600, "cr": 250}
+    },
+    {
+      "id": "echo-triangulation-coop",
+      "name": "Cooperative Triangulation",
+      "type": "echo-triangulation",
+      "difficulty": "hard",
+      "coop_benefit": "required_for_hard",
+      "rewards": {"xp": 800, "cr": 400}
+    }
+  ],
+
+  "bonus_rewards": {
+    "coop_completion": {
+      "xp_bonus": 1.25,
+      "cr_bonus": 1.25,
+      "cosmetic_unlock": "pose-resonance-bond"
+    },
+    "daily_coop": {
+      "streak_bonus": true,
+      "max_streak": 7,
+      "streak_7_reward": {"cr": 1000, "title": "Resonance Partner"}
+    }
+  },
+
+  "objectives": [
+    {
+      "id": "complete-coop-puzzles",
+      "name": "Complete Cooperative Puzzles",
+      "count": 5,
+      "reward": {"xp": 700, "cr": 300}
+    },
+    {
+      "id": "help-partners",
+      "name": "Help 3 Different Partners",
+      "count": 3,
+      "reward": {"xp": 500, "cr": 200}
+    },
+    {
+      "id": "perfect-sync",
+      "name": "Achieve Perfect Sync 5 Times",
+      "count": 5,
+      "reward": {"xp": 600, "cr": 250}
+    }
+  ],
+
+  "onboarding": {
+    "tutorial_puzzle": true,
+    "voice_chat_opt_in": true,
+    "emote_quick_access": true,
+    "communication_tools": ["ping_system", "emotes", "voice_chat_optional"]
+  },
+
+  "accessibility": {
+    "colorblind_modes": ["deuteranopia", "protanopia", "tritanopia"],
+    "audio_visual_sync": true,
+    "haptic_feedback": true,
+    "subtitle_enabled": true
+  },
+
+  "social_features": {
+    "friend_invites": true,
+    "guild_coordination": false,
+    "public_matchmaking": true,
+    "cross_platform": true
+  },
+
+  "analytics": {
+    "track_metrics": [
+      "coop_adoption_rate",
+      "completion_time_solo_vs_coop",
+      "satisfaction_rating",
+      "repeat_pairing_rate"
+    ],
+    "ab_test": "abx-coop-optin"
+  },
+
+  "compliance": {
+    "chat_moderation": true,
+    "report_system": true,
+    "block_system": true,
+    "age_appropriate": true
+  },
+
+  "white_hat": true,
+  "anti_cheat": {
+    "position_sync_validation": true,
+    "action_replay_validation": true,
+    "time_attack_validation": true
+  }
+}

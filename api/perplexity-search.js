@@ -1,12 +1,13 @@
-// Ailydian AI - Web Search with Azure OpenAI
-// Model names are HIDDEN from frontend
+// Ailydian AI - Web Search with Enterprise AI
+// Model names are OBFUSCATED for security
 
 const axios = require('axios');
+const aiObfuscator = require('../lib/security/ai-obfuscator');
 
-// Configuration - Azure OpenAI
+// Configuration - Azure OpenAI (Obfuscated)
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_API_KEY;
-const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4o';
+const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_API_KEY || process.env.SECONDARY_AI_KEY;
+const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || process.env.AZURE_OPENAI_DEPLOYMENT || 'advanced-language-model';
 const AZURE_API_VERSION = process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview';
 
 // Rate limiting - Development vs Production
@@ -163,19 +164,22 @@ Query: "${query}"`;
     });
 
   } catch (error) {
-    console.error('❌ Azure AI Search Error:', error.message);
-    console.error('Error details:', error.response?.data || error.message);
+    console.error('❌ AI Search Error:', error.message);
+
+    // Sanitize error to prevent provider leaks
+    const sanitizedError = aiObfuscator.sanitizeError(error);
+    console.error('Error details:', sanitizedError.message);
 
     // More detailed error messages for debugging
     let errorMessage = 'Lütfen tekrar deneyin';
     if (error.code === 'ECONNABORTED') {
       errorMessage = 'Bağlantı zaman aşımına uğradı';
     } else if (error.response?.status === 401) {
-      errorMessage = 'Azure API anahtarı geçersiz';
+      errorMessage = 'AI API anahtarı geçersiz';
     } else if (error.response?.status === 429) {
       errorMessage = 'API limit aşıldı';
     } else if (error.response?.status === 404) {
-      errorMessage = 'Azure deployment bulunamadı';
+      errorMessage = 'AI model bulunamadı';
     }
 
     // Generic error message (don't expose internal details)

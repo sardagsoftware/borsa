@@ -9,7 +9,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useAppStore } from '../../../state/store';
+import { useAppStore, type AppState } from '../../../state/store';
 import { useWebSocket } from '../../../hooks/useWebSocket';
 
 interface LogEntry {
@@ -22,7 +22,7 @@ interface LogEntry {
 }
 
 export default function DockLogs() {
-  const dock = useAppStore(state => state.dock);
+  const dock = useAppStore((state: AppState) => state.dock);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [filter, setFilter] = useState({
     level: 'all',

@@ -1,0 +1,84 @@
+{
+  "app": {
+    "title": "Консоль Ailydian",
+    "subtitle": "Эхо Сардиса - Консоль управления игрой"
+  },
+  "nav": {
+    "story": "История",
+    "liveops": "Живые операции",
+    "kpis": "КПЭ",
+    "settings": "Настройки",
+    "logout": "Выйти"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успех",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "view": "Просмотр",
+    "close": "Закрыть",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "refresh": "Обновить",
+    "export": "Экспорт",
+    "import": "Импорт"
+  },
+  "story": {
+    "title": "Книга истории",
+    "timeline": "Хронология",
+    "characters": "Персонажи и отношения",
+    "themes": "Темы и символы",
+    "dialogue": "Примеры диалогов",
+    "aesthetic": "Эстетическая палитра",
+    "telemetry": "Теги телеметрии",
+    "no_files": "Файлы истории не найдены",
+    "load_error": "Не удалось загрузить данные истории"
+  },
+  "liveops": {
+    "title": "Сезон 2 - Живые операции",
+    "season_summary": "Обзор сезона",
+    "week_calendar": "Календарь недели",
+    "today_events": "Сегодняшние события",
+    "economy": "Управление экономикой",
+    "ab_experiments": "A/B эксперименты",
+    "controls": "Управление развертыванием",
+    "trigger_event": "Запустить событие",
+    "deploy": "Развернуть",
+    "rollback": "Откатить",
+    "canary": "Канарейка",
+    "ga": "Общая доступность"
+  },
+  "kpis": {
+    "title": "КПЭ и телеметрия",
+    "technical_health": "Техническое здоровье",
+    "engagement": "Вовлечённость",
+    "economy": "Экономика",
+    "alerts": "Предупреждения",
+    "crash_free_rate": "Безаварийная частота",
+    "gpu_frame_time": "Время кадра GPU",
+    "dau": "Ежедневные активные пользователи",
+    "retention_d1": "Удержание день 1",
+    "retention_d7": "Удержание день 7",
+    "nps": "Индекс лояльности",
+    "inflation_index": "Индекс инфляции",
+    "earn_spend_ratio": "Соотношение заработка/расхода"
+  },
+  "rbac": {
+    "admin_required": "Требуется разрешение администратора для этой операции",
+    "liveops_admin": "liveops.admin",
+    "economy_admin": "economy.admin",
+    "ops_admin": "ops.admin",
+    "insufficient_permissions": "Недостаточно прав"
+  },
+  "compliance": {
+    "kvkk": "Соответствует KVKK",
+    "gdpr": "Соответствует GDPR",
+    "pdpl": "Соответствует PDPL",
+    "no_pii": "Без PII",
+    "anonymized": "Анонимизирован",
+    "retention_90d": "Хранение 90 дней"
+  }
+}

@@ -9,7 +9,7 @@
 'use client';
 
 import React from 'react';
-import { useAppStore } from '../../state/store';
+import { useAppStore, type AppState } from '../../state/store';
 import DockOverview from './tabs/DockOverview';
 import DockHealth from './tabs/DockHealth';
 import DockRateLimit from './tabs/DockRateLimit';
@@ -17,9 +17,9 @@ import DockLogs from './tabs/DockLogs';
 import DockSettings from './tabs/DockSettings';
 
 export default function DockPanel() {
-  const dock = useAppStore(state => state.dock);
-  const closeDock = useAppStore(state => state.closeDock);
-  const setDockTab = useAppStore(state => state.setDockTab);
+  const dock = useAppStore((state: AppState) => state.dock);
+  const closeDock = useAppStore((state: AppState) => state.closeDock);
+  const setDockTab = useAppStore((state: AppState) => state.setDockTab);
 
   const tabs = [
     { id: 'overview', label: 'Genel', icon: '📊' },

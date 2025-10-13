@@ -1,0 +1,112 @@
+{
+  "id": "vendor-sale-10",
+  "type": "economy",
+  "name": "Vendor Sale: 10% Off",
+  "description": "All vendor items discounted by 10% during Week 4",
+  "week": 4,
+  "start": "2026-02-06T12:00:00+03:00",
+  "end": "2026-02-06T23:00:00+03:00",
+  "duration_hours": 11,
+
+  "discount": {
+    "percent": 10,
+    "applies_to": ["vendor_items", "consumables", "crafting_materials"],
+    "excludes": ["premium_currency", "cosmetics", "bundles"]
+  },
+
+  "vendor_items": [
+    {
+      "id": "rope-bundle",
+      "name": "Rope Bundle",
+      "original_price_cr": 150,
+      "sale_price_cr": 135,
+      "quantity": 10
+    },
+    {
+      "id": "torch-pack",
+      "name": "Torch Pack",
+      "original_price_cr": 100,
+      "sale_price_cr": 90,
+      "quantity": 20
+    },
+    {
+      "id": "grapple-kit",
+      "name": "Grapple Kit",
+      "original_price_cr": 300,
+      "sale_price_cr": 270,
+      "quantity": 5
+    },
+    {
+      "id": "resonance-crystal",
+      "name": "Resonance Crystal",
+      "original_price_cr": 500,
+      "sale_price_cr": 450,
+      "quantity": 3
+    },
+    {
+      "id": "storm-resist-potion",
+      "name": "Storm Resistance Potion",
+      "original_price_cr": 200,
+      "sale_price_cr": 180,
+      "quantity": 15
+    }
+  ],
+
+  "targets": {
+    "vendor_usage_rate": 0.60,
+    "average_purchase_per_player": 2.5,
+    "total_revenue_cr": 50000
+  },
+
+  "early_access": {
+    "enabled": true,
+    "discord_members": true,
+    "early_start": "2026-02-06T11:30:00+03:00",
+    "duration_minutes": 30
+  },
+
+  "notifications": {
+    "email": {
+      "enabled": true,
+      "send_time": "2026-02-06T09:00:00+03:00",
+      "subject_localized": {
+        "tr": "Vendor İndirimi Başlıyor - %10 İndirim!",
+        "en": "Vendor Sale Starting - 10% Off!",
+        "ar": "تخفيضات البائع - خصم 10٪!",
+        "de": "Händler-Sale - 10% Rabatt!",
+        "ru": "Распродажа Торговца - Скидка 10%!",
+        "nl": "Verkoper Uitverkoop - 10% Korting!",
+        "bg": "Разпродажба на Търговеца - 10% Отстъпка!",
+        "el": "Έκπτωση Πωλητή - 10% Έκπτωση!"
+      }
+    },
+    "in_game": {
+      "popup": true,
+      "banner": true,
+      "countdown": true
+    },
+    "push": {
+      "enabled": true,
+      "send_times": ["2026-02-06T11:00:00+03:00", "2026-02-06T20:00:00+03:00"]
+    }
+  },
+
+  "analytics": {
+    "track_metrics": ["purchases", "unique_buyers", "average_basket", "revenue"],
+    "cohort_analysis": true,
+    "ab_test_eligible": false
+  },
+
+  "compliance": {
+    "transparent_pricing": true,
+    "no_hidden_fees": true,
+    "refund_policy": "standard_14_days"
+  },
+
+  "white_hat": true,
+  "fraud_detection": {
+    "unusual_purchase_patterns": true,
+    "velocity_checks": true,
+    "receipt_validation": true
+  }
+}

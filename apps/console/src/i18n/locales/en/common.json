@@ -1,0 +1,84 @@
+{
+  "app": {
+    "title": "Ailydian Console",
+    "subtitle": "Echo of Sardis - Game Management Console"
+  },
+  "nav": {
+    "story": "Story",
+    "liveops": "Live Operations",
+    "kpis": "KPIs",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "export": "Export",
+    "import": "Import"
+  },
+  "story": {
+    "title": "Story Bible",
+    "timeline": "Timeline",
+    "characters": "Characters & Relationships",
+    "themes": "Themes & Symbols",
+    "dialogue": "Dialogue Samples",
+    "aesthetic": "Aesthetic Palette",
+    "telemetry": "Telemetry Tags",
+    "no_files": "Story files not found",
+    "load_error": "Failed to load story data"
+  },
+  "liveops": {
+    "title": "Season 2 - Live Operations",
+    "season_summary": "Season Summary",
+    "week_calendar": "Week Calendar",
+    "today_events": "Today's Events",
+    "economy": "Economy Control",
+    "ab_experiments": "A/B Experiments",
+    "controls": "Deployment Controls",
+    "trigger_event": "Trigger Event",
+    "deploy": "Deploy",
+    "rollback": "Rollback",
+    "canary": "Canary",
+    "ga": "General Availability"
+  },
+  "kpis": {
+    "title": "KPIs & Telemetry",
+    "technical_health": "Technical Health",
+    "engagement": "Engagement",
+    "economy": "Economy",
+    "alerts": "Alerts",
+    "crash_free_rate": "Crash-Free Rate",
+    "gpu_frame_time": "GPU Frame Time",
+    "dau": "Daily Active Users",
+    "retention_d1": "Day 1 Retention",
+    "retention_d7": "Day 7 Retention",
+    "nps": "Net Promoter Score",
+    "inflation_index": "Inflation Index",
+    "earn_spend_ratio": "Earn/Spend Ratio"
+  },
+  "rbac": {
+    "admin_required": "Admin permission required for this operation",
+    "liveops_admin": "liveops.admin",
+    "economy_admin": "economy.admin",
+    "ops_admin": "ops.admin",
+    "insufficient_permissions": "Insufficient permissions"
+  },
+  "compliance": {
+    "kvkk": "KVKK Compliant",
+    "gdpr": "GDPR Compliant",
+    "pdpl": "PDPL Compliant",
+    "no_pii": "No PII",
+    "anonymized": "Anonymized",
+    "retention_90d": "90-Day Retention"
+  }
+}

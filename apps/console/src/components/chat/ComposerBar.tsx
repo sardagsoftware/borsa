@@ -9,17 +9,17 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useAppStore } from '../../state/store';
+import { useAppStore, type AppState } from '../../state/store';
 import { trackAction } from '../../lib/telemetry';
 
 export default function ComposerBar() {
   const [input, setInput] = useState('');
   const [isComposing, setIsComposing] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const addMessage = useAppStore(state => state.addMessage);
-  const setBusy = useAppStore(state => state.setBusy);
-  const busy = useAppStore(state => state.busy);
-  const flags = useAppStore(state => state.flags);
+  const addMessage = useAppStore((state: AppState) => state.addMessage);
+  const setBusy = useAppStore((state: AppState) => state.setBusy);
+  const busy = useAppStore((state: AppState) => state.busy);
+  const flags = useAppStore((state: AppState) => state.flags);
 
   // Auto-resize textarea
   useEffect(() => {

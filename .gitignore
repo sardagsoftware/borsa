@@ -163,3 +163,4 @@ AZURE-AI-FOUNDRY-SETUP-COMPLETE.md
 VERCEL-ENV-VARIABLES.txt
 ENTERPRISE-IMPLEMENTATION-REPORT-2025-01-02.md
 docs/api-discovery/vendors.apidex.json
+.env*.local

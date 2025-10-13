@@ -1,0 +1,347 @@
+{
+  "$schema": "./dashboard-schema.json",
+  "version": "1.0.0",
+  "season": "S1",
+  "last_updated": "2025-10-11T00:00:00Z",
+  "dashboards": [
+    {
+      "id": "technical_health",
+      "name": "Technical Health & Stability",
+      "category": "technical",
+      "metrics": [
+        {
+          "id": "crash_free_rate",
+          "name": "Crash-Free Rate",
+          "description": "Percentage of sessions without crashes",
+          "unit": "percentage",
+          "target": 98.5,
+          "warning_threshold": 98.0,
+          "critical_threshold": 97.0,
+          "current_value": null,
+          "data_source": "telemetry.crashes",
+          "calculation": "(total_sessions - crashed_sessions) / total_sessions * 100",
+          "frequency": "real_time"
+        },
+        {
+          "id": "p95_gpu_frame_time",
+          "name": "p95 GPU Frame Time",
+          "description": "95th percentile GPU frame render time",
+          "unit": "milliseconds",
+          "target": 16.6,
+          "warning_threshold": 18.0,
+          "critical_threshold": 20.0,
+          "current_value": null,
+          "data_source": "telemetry.performance.gpu",
+          "frequency": "real_time"
+        },
+        {
+          "id": "hitch_rate",
+          "name": "Hitch Rate",
+          "description": "Frame time spikes > 2ms",
+          "unit": "milliseconds",
+          "target": 2.0,
+          "warning_threshold": 3.0,
+          "critical_threshold": 5.0,
+          "current_value": null,
+          "data_source": "telemetry.performance.hitches",
+          "frequency": "real_time"
+        },
+        {
+          "id": "server_latency_p95",
+          "name": "Server Latency (p95)",
+          "description": "95th percentile API response time",
+          "unit": "milliseconds",
+          "target": 150,
+          "warning_threshold": 200,
+          "critical_threshold": 300,
+          "current_value": null,
+          "data_source": "server.metrics.latency",
+          "frequency": "real_time"
+        }
+      ]
+    },
+    {
+      "id": "product_engagement",
+      "name": "Product Engagement",
+      "category": "product",
+      "metrics": [
+        {
+          "id": "dau",
+          "name": "Daily Active Users",
+          "description": "Unique users per day",
+          "unit": "count",
+          "target": null,
+          "trend_direction": "up",
+          "warning_change_percentage": -15,
+          "current_value": null,
+          "data_source": "telemetry.sessions.daily",
+          "frequency": "daily"
+        },
+        {
+          "id": "mau",
+          "name": "Monthly Active Users",
+          "description": "Unique users per month",
+          "unit": "count",
+          "target": null,
+          "trend_direction": "up",
+          "warning_change_percentage": -10,
+          "current_value": null,
+          "data_source": "telemetry.sessions.monthly",
+          "frequency": "daily"
+        },
+        {
+          "id": "retention_d1",
+          "name": "Day 1 Retention",
+          "description": "Players returning after 1 day",
+          "unit": "percentage",
+          "target": 40,
+          "warning_threshold": 35,
+          "critical_threshold": 30,
+          "current_value": null,
+          "data_source": "telemetry.retention.cohorts",
+          "frequency": "daily"
+        },
+        {
+          "id": "retention_d7",
+          "name": "Day 7 Retention",
+          "description": "Players returning after 7 days",
+          "unit": "percentage",
+          "target": 20,
+          "warning_threshold": 15,
+          "critical_threshold": 10,
+          "current_value": null,
+          "data_source": "telemetry.retention.cohorts",
+          "frequency": "weekly"
+        },
+        {
+          "id": "retention_d30",
+          "name": "Day 30 Retention",
+          "description": "Players returning after 30 days",
+          "unit": "percentage",
+          "target": 10,
+          "warning_threshold": 7,
+          "critical_threshold": 5,
+          "current_value": null,
+          "data_source": "telemetry.retention.cohorts",
+          "frequency": "monthly"
+        },
+        {
+          "id": "ftue_completion",
+          "name": "FTUE Completion Rate",
+          "description": "First-time user experience completion",
+          "unit": "percentage",
+          "target": 75,
+          "warning_threshold": 70,
+          "critical_threshold": 65,
+          "current_value": null,
+          "data_source": "telemetry.ftue",
+          "frequency": "daily"
+        },
+        {
+          "id": "season_task_completion",
+          "name": "Season Task Completion",
+          "description": "Average season tasks completed",
+          "unit": "percentage",
+          "target": 60,
+          "warning_threshold": 50,
+          "critical_threshold": 40,
+          "current_value": null,
+          "data_source": "liveops.season.tasks",
+          "frequency": "daily"
+        },
+        {
+          "id": "boss_success_rate",
+          "name": "Boss Success Rate",
+          "description": "Boss encounters won",
+          "unit": "percentage",
+          "target": 45,
+          "warning_threshold": 30,
+          "critical_threshold": 20,
+          "current_value": null,
+          "data_source": "gameplay.boss.encounters",
+          "frequency": "real_time"
+        },
+        {
+          "id": "nps",
+          "name": "Net Promoter Score",
+          "description": "In-game player satisfaction survey",
+          "unit": "score",
+          "target": 50,
+          "warning_threshold": 40,
+          "critical_threshold": 30,
+          "current_value": null,
+          "data_source": "surveys.nps",
+          "frequency": "weekly"
+        }
+      ]
+    },
+    {
+      "id": "economy_health",
+      "name": "Economy Health",
+      "category": "economy",
+      "metrics": [
+        {
+          "id": "earn_spend_ratio",
+          "name": "Earn/Spend Ratio",
+          "description": "Currency earned vs spent",
+          "unit": "ratio",
+          "target": 1.2,
+          "warning_threshold_min": 1.0,
+          "warning_threshold_max": 1.5,
+          "critical_threshold_min": 0.8,
+          "critical_threshold_max": 2.0,
+          "current_value": null,
+          "data_source": "economy.transactions",
+          "frequency": "hourly"
+        },
+        {
+          "id": "inflation_index",
+          "name": "Inflation Index",
+          "description": "Currency value stability metric",
+          "unit": "index",
+          "target": 1.00,
+          "warning_threshold": 1.10,
+          "critical_threshold": 1.15,
+          "current_value": null,
+          "data_source": "economy.inflation",
+          "calculation": "current_avg_price / baseline_avg_price",
+          "frequency": "daily"
+        },
+        {
+          "id": "vendor_usage",
+          "name": "Vendor Usage Rate",
+          "description": "Players using vendor per day",
+          "unit": "percentage",
+          "target": 50,
+          "warning_threshold": 40,
+          "critical_threshold": 30,
+          "current_value": null,
+          "data_source": "economy.vendor.transactions",
+          "frequency": "daily"
+        },
+        {
+          "id": "black_market_indicators",
+          "name": "Fraud/Black Market Indicators",
+          "description": "Anomalous transaction patterns",
+          "unit": "count",
+          "target": 0,
+          "warning_threshold": 5,
+          "critical_threshold": 20,
+          "current_value": null,
+          "data_source": "economy.fraud.detections",
+          "frequency": "real_time"
+        },
+        {
+          "id": "arppu",
+          "name": "ARPPU (PC/Lydian Store only)",
+          "description": "Average revenue per paying user",
+          "unit": "currency_usd",
+          "target": null,
+          "trend_direction": "up",
+          "current_value": null,
+          "data_source": "monetization.lydian_store",
+          "platform_restrictions": ["pc"],
+          "frequency": "daily"
+        },
+        {
+          "id": "attach_rate",
+          "name": "Attach Rate (Cosmetics)",
+          "description": "Players purchasing cosmetics",
+          "unit": "percentage",
+          "target": 15,
+          "warning_threshold": 10,
+          "current_value": null,
+          "data_source": "monetization.cosmetics",
+          "frequency": "daily"
+        }
+      ]
+    },
+    {
+      "id": "ab_experiments",
+      "name": "A/B Experiment Results",
+      "category": "experiments",
+      "metrics": [
+        {
+          "id": "ab_mde",
+          "name": "Minimum Detectable Effect",
+          "description": "Statistical sensitivity",
+          "unit": "percentage",
+          "target": 5,
+          "current_value": null,
+          "data_source": "experiments.statistics",
+          "frequency": "per_experiment"
+        },
+        {
+          "id": "ab_power",
+          "name": "Statistical Power",
+          "description": "Probability of detecting effect",
+          "unit": "percentage",
+          "target": 80,
+          "warning_threshold": 70,
+          "current_value": null,
+          "data_source": "experiments.statistics",
+          "frequency": "per_experiment"
+        },
+        {
+          "id": "ab_pvalue",
+          "name": "P-Value",
+          "description": "Statistical significance",
+          "unit": "decimal",
+          "target": 0.05,
+          "threshold_significant": 0.05,
+          "current_value": null,
+          "data_source": "experiments.statistics",
+          "frequency": "per_experiment"
+        }
+      ]
+    }
+  ],
+  "alerting": {
+    "channels": [
+      {
+        "type": "pagerduty",
+        "severity": ["critical"],
+        "endpoints": ["ops-oncall"]
+      },
+      {
+        "type": "slack",
+        "severity": ["warning", "critical"],
+        "endpoints": ["#liveops-alerts"]
+      },
+      {
+        "type": "email",
+        "severity": ["critical"],
+        "endpoints": ["ops@ailydian.com"]
+      }
+    ],
+    "escalation": {
+      "critical": {
+        "initial_delay_minutes": 0,
+        "escalation_delay_minutes": 15,
+        "max_escalations": 3
+      },
+      "warning": {
+        "initial_delay_minutes": 5,
+        "escalation_delay_minutes": 30,
+        "max_escalations": 2
+      }
+    }
+  },
+  "slo": {
+    "crash_free_rate": {
+      "target": 98.5,
+      "window_days": 30,
+      "error_budget_percentage": 1.5
+    },
+    "api_latency_p95": {
+      "target_ms": 150,
+      "window_days": 30,
+      "error_budget_percentage": 5.0
+    },
+    "uptime": {
+      "target_percentage": 99.9,
+      "window_days": 30,
+      "error_budget_minutes": 43.2
+    }
+  }
+}
