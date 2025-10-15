@@ -5,7 +5,7 @@
  */
 
 const { Redis } = require('@upstash/redis');
-const { handleCORS } = require('../middleware/cors-handler');
+const { handleCORS } = require('../security/cors-config');
 
 // Initialize Redis (singleton pattern)
 let redisCache = null;
