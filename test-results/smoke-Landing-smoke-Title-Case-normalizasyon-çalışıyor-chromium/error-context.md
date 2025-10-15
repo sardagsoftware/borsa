@@ -1,0 +1,63 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Ailydian Console" [level=1] [ref=e5]
+        - navigation [ref=e6]:
+          - link "Story" [ref=e7] [cursor=pointer]:
+            - /url: /story
+          - link "LiveOps S2" [ref=e8] [cursor=pointer]:
+            - /url: /liveops/s2
+          - link "KPIs" [ref=e9] [cursor=pointer]:
+            - /url: /kpis
+      - button "Select language" [ref=e11] [cursor=pointer]:
+        - generic [ref=e12] [cursor=pointer]: 🇬🇧
+        - generic [ref=e13] [cursor=pointer]: EN
+        - img [ref=e14] [cursor=pointer]
+  - main [ref=e16]:
+    - main [ref=e17]:
+      - heading "Ailydian • Ana Uygulama" [level=1] [ref=e18]
+      - paragraph [ref=e19]:
+        - text: Hoş geldiniz. Bu Ailydian platformunun ana sayfasıdır. Echo of Sardis oyun yönetim panelleri
+        - strong [ref=e20]: /console
+        - text: altında izole edilmiştir.
+      - generic [ref=e21]:
+        - heading "Oyun Konsolu Panelleri" [level=2] [ref=e22]
+        - generic [ref=e23]:
+          - link "Characters & Storyflow Karakter kartları, ilişkiler ve öykü akış haritası" [ref=e24] [cursor=pointer]:
+            - /url: /console/characters
+            - heading "Characters & Storyflow" [level=3] [ref=e25] [cursor=pointer]
+            - paragraph [ref=e26] [cursor=pointer]: Karakter kartları, ilişkiler ve öykü akış haritası
+          - link "Story Bible Anlatı İncili, zaman çizelgesi ve temalar" [ref=e27] [cursor=pointer]:
+            - /url: /console/story
+            - heading "Story Bible" [level=3] [ref=e28] [cursor=pointer]
+            - paragraph [ref=e29] [cursor=pointer]: Anlatı İncili, zaman çizelgesi ve temalar
+          - link "KPIs & Telemetry Sezon 2 metrik takibi ve canlı veri akışı" [ref=e30] [cursor=pointer]:
+            - /url: /console/kpis
+            - heading "KPIs & Telemetry" [level=3] [ref=e31] [cursor=pointer]
+            - paragraph [ref=e32] [cursor=pointer]: Sezon 2 metrik takibi ve canlı veri akışı
+          - link "LiveOps • Season 2 Canlı etkinlikler, ekonomi ve A/B testleri" [ref=e33] [cursor=pointer]:
+            - /url: /console/liveops/s2
+            - heading "LiveOps • Season 2" [level=3] [ref=e34] [cursor=pointer]
+            - paragraph [ref=e35] [cursor=pointer]: Canlı etkinlikler, ekonomi ve A/B testleri
+      - generic [ref=e36]:
+        - heading "Mimari" [level=2] [ref=e37]
+        - list [ref=e38]:
+          - listitem [ref=e39]:
+            - strong [ref=e40]: /
+            - text: — Ailydian ana platform sayfası (bu sayfa)
+          - listitem [ref=e41]:
+            - strong [ref=e42]: /console/*
+            - text: — Echo of Sardis oyun yönetim panelleri
+          - listitem [ref=e43]: "Realtime sistem: WebSocket + SSE ile canlı veri akışı"
+          - listitem [ref=e44]: "Veri normalizasyon katmanı: Object ↔ Array dönüşümleri"
+          - listitem [ref=e45]: "Güvenlik: HMAC-SHA256, RBAC, KVKV/GDPR uyumlu"
+  - contentinfo [ref=e46]:
+    - generic [ref=e47]:
+      - paragraph [ref=e48]: Echo of Sardis - Game Management Console
+      - paragraph [ref=e49]: KVKK/GDPR/PDPL Compliant • White-hat Only • WCAG 2.1 AA
+  - alert [ref=e50]
+```

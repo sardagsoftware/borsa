@@ -8,12 +8,12 @@
   "characters": {
     "elif_aras": {
       "id": "elif_aras",
-      "name": "Elif Aras",
+      "name": "Melisa Sarı",
       "role": "protagonist",
       "portrait": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1000&fit=crop",
       "images": [
         "https://images.unsplash.com/photo-1513346940221-6f673d962e97?w=1200",
-        "https://images.unsplash.com/photo-1564410267841-e66fbed0e217?w=1200"
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200"
       ],
       "age": 28,
       "nationality": "Turkish",
@@ -63,11 +63,11 @@
     },
     "ferhat_demir": {
       "id": "ferhat_demir",
-      "name": "Ferhat Demir",
+      "name": "Melih Sarı",
       "role": "support_ally",
       "portrait": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop",
       "images": [
-        "https://images.unsplash.com/photo-1473445361085-b9c9e1638b40?w=1200",
+        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1200",
         "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200"
       ],
       "age": 32,
@@ -214,7 +214,7 @@
       "role": "mysterious_guide",
       "portrait": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=1000&fit=crop",
       "images": [
-        "https://images.unsplash.com/photo-1551975053-57a6b15e8ece?w=1200",
+        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1200",
         "https://images.unsplash.com/photo-1607827448387-a67db1383b59?w=1200"
       ],
       "age": "2,700 years (since Lydian collapse)",
@@ -288,8 +288,8 @@
   },
   "relationship_graph": {
     "nodes": [
-      {"id": "elif_aras", "label": "Elif Aras", "type": "protagonist", "size": 100},
-      {"id": "ferhat_demir", "label": "Ferhat Demir", "type": "ally", "size": 80},
+      {"id": "elif_aras", "label": "Melisa Sarı", "type": "protagonist", "size": 100},
+      {"id": "ferhat_demir", "label": "Melih Sarı", "type": "ally", "size": 80},
       {"id": "althea_kosta", "label": "Dr. Althea Kosta", "type": "mentor", "size": 70},
       {"id": "marcus_venner", "label": "Dr. Marcus Venner", "type": "antagonist", "size": 90},
       {"id": "chordstone_entity", "label": "Chordstone Entity", "type": "guide", "size": 85},

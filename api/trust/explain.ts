@@ -8,6 +8,7 @@
  */
 
 import { ExplainabilityEngine } from '../../packages/trust-layer/src/explainer';
+import { handleCORS } from '../../middleware/cors-handler';
 
 /**
  * Singleton instance

@@ -27,7 +27,13 @@ const nextConfig = {
 
   // Image optimization
   images: {
-    domains: ['localhost', 'images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+    ],
     formats: ['image/avif', 'image/webp'],
   },
 

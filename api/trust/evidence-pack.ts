@@ -8,6 +8,7 @@
  */
 
 import { EvidencePackGenerator } from '../../packages/trust-layer/src/evidence-pack';
+import { handleCORS } from '../../middleware/cors-handler';
 
 /**
  * Singleton instance

@@ -1,0 +1,425 @@
+openapi: 3.0.3
+info:
+  title: AiLydian Ultra Pro API
+  version: 2.0.0
+  description: |
+    **AiLydian Ultra Pro** - Enterprise AI Platform
+
+    Multi-provider AI integration with advanced reasoning capabilities.
+
+    ## Features
+    - 🧠 Multi-Model AI Chat
+    - 🔬 Medical AI Assistant
+    - ⚖️ Legal AI Expert
+    - 🎯 LydianIQ Problem Solver
+    - 🌍 Multi-language Support (130+ languages)
+
+    ## Authentication
+    Authentication via API keys (contact support for enterprise access).
+
+    ## Rate Limiting
+    - Free tier: 100 requests/hour
+    - Pro tier: 1000 requests/hour
+    - Enterprise: Custom limits
+
+    ## Security
+    All endpoints use HTTPS in production. Rate limiting and DDoS protection enabled.
+
+  contact:
+    name: AiLydian Support
+    url: https://www.ailydian.com/support
+    email: support@ailydian.com
+  license:
+    name: Proprietary
+    url: https://www.ailydian.com/terms
+
+servers:
+  - url: https://www.ailydian.com
+    description: Production server
+  - url: http://localhost:3100
+    description: Local development
+
+tags:
+  - name: Health
+    description: System health and status endpoints
+  - name: AI Models
+    description: AI model information
+  - name: Chat
+    description: General AI chat endpoints
+  - name: Medical AI
+    description: Medical AI assistance
+  - name: LydianIQ
+    description: Advanced problem-solving AI
+
+paths:
+  /api/health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Returns server health status and uptime information
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                  server:
+                    type: string
+                    example: LyDian
+                  version:
+                    type: string
+                    example: 2.0.0
+                  models_count:
+                    type: integer
+                    example: 23
+                  uptime:
+                    type: number
+                    example: 123.456
+
+  /api/status:
+    get:
+      tags:
+        - Health
+      summary: Detailed system status
+      description: Returns detailed system metrics and component health
+      responses:
+        '200':
+          description: Detailed system status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  components:
+                    type: object
+                  metrics:
+                    type: object
+
+  /api/models:
+    get:
+      tags:
+        - AI Models
+      summary: List available AI models
+      description: Returns list of available AI models with their capabilities
+      responses:
+        '200':
+          description: List of AI models
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        category:
+                          type: string
+                        description:
+                          type: string
+                        capabilities:
+                          type: array
+                          items:
+                            type: string
+
+  /api/chat:
+    post:
+      tags:
+        - Chat
+      summary: AI chat endpoint
+      description: Send messages to AI models and receive responses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: "Hello, how can you help me?"
+                model:
+                  type: string
+                  example: "gpt-4"
+                  description: Optional model selection
+                temperature:
+                  type: number
+                  minimum: 0
+                  maximum: 2
+                  default: 0.7
+                  example: 0.7
+                max_tokens:
+                  type: integer
+                  minimum: 1
+                  maximum: 4096
+                  example: 2000
+      responses:
+        '200':
+          description: AI response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  response:
+                    type: string
+                  model:
+                    type: string
+                  tokens_used:
+                    type: integer
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/lydian-iq/solve:
+    post:
+      tags:
+        - LydianIQ
+      summary: Advanced problem solver
+      description: |
+        LydianIQ reasoning engine for complex problem-solving.
+        Supports mathematics, coding, science, strategy, and logistics problems.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - problem
+              properties:
+                problem:
+                  type: string
+                  example: "Solve the equation: 2x + 5 = 13"
+                domain:
+                  type: string
+                  enum: [mathematics, coding, science, strategy, logistics]
+                  default: mathematics
+                  example: mathematics
+                language:
+                  type: string
+                  default: tr-TR
+                  example: tr-TR
+                  description: Response language (tr-TR, en-US, etc.)
+      responses:
+        '200':
+          description: Problem solution with reasoning
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  domain:
+                    type: string
+                  problem:
+                    type: string
+                  reasoningChain:
+                    type: array
+                    items:
+                      type: string
+                  solution:
+                    type: string
+                  metadata:
+                    type: object
+                    properties:
+                      responseTime:
+                        type: string
+                      tokensUsed:
+                        type: integer
+                      model:
+                        type: string
+                      provider:
+                        type: string
+                      confidence:
+                        type: number
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/medical/chat:
+    post:
+      tags:
+        - Medical AI
+      summary: Medical AI assistant
+      description: |
+        HIPAA-compliant medical AI assistant.
+
+        **Disclaimer:** For informational purposes only. Not a substitute for professional medical advice.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: "What are the symptoms of flu?"
+                specialization:
+                  type: string
+                  enum: [general, cardiology, neurology, pediatrics, oncology, dermatology, radiology, emergency]
+                  default: general
+                  example: general
+                language:
+                  type: string
+                  default: en-US
+                  example: en-US
+      responses:
+        '200':
+          description: Medical AI response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  response:
+                    type: string
+                  specialization:
+                    type: string
+                  disclaimer:
+                    type: string
+                  metadata:
+                    type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/translate:
+    post:
+      tags:
+        - Translation
+      summary: Multi-language translation
+      description: Translate text between 130+ languages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+                - targetLanguage
+              properties:
+                text:
+                  type: string
+                  example: "Hello, world!"
+                sourceLanguage:
+                  type: string
+                  default: auto
+                  example: en
+                targetLanguage:
+                  type: string
+                  example: tr
+      responses:
+        '200':
+          description: Translation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  translatedText:
+                    type: string
+                  sourceLanguage:
+                    type: string
+                  targetLanguage:
+                    type: string
+                  confidence:
+                    type: number
+
+  /api/languages:
+    get:
+      tags:
+        - Translation
+      summary: Supported languages
+      description: Get list of supported languages for translation
+      responses:
+        '200':
+          description: List of supported languages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  languages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                        nativeName:
+                          type: string
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: "Invalid request"
+        code:
+          type: string
+          example: "INVALID_REQUEST"
+        message:
+          type: string
+          example: "Detailed error message"
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication (enterprise customers only)
+
+security:
+  - ApiKeyAuth: []

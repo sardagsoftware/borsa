@@ -8,6 +8,7 @@
  */
 
 import { OperationSigner, SignatureStore } from '../../packages/trust-layer/src/op-signer';
+import { handleCORS } from '../../middleware/cors-handler';
 
 /**
  * Singleton instances

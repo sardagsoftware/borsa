@@ -10,6 +10,7 @@
 
 import { CivicInsightsAPI } from '../../packages/civic-grid/src/insights-api';
 import { InsightsQueryRequest } from '../../packages/civic-grid/src/types';
+import { handleCORS } from '../../middleware/cors-handler';
 
 /**
  * Singleton instance
