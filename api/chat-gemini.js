@@ -339,7 +339,9 @@ async function handleRequest(req, res) {
 
 // Get available models
 function getModels(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
+
   res.status(200).json({
     success: true,
     models: Object.keys(GEMINI_MODELS).map(key => ({

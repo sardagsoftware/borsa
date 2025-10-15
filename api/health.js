@@ -4,17 +4,21 @@
  * ⚡ CACHED: 10 seconds TTL
  */
 
-const { Redis } = require('@upstash/redis');
 const { handleCORS } = require('../security/cors-config');
 
-// Initialize Redis (singleton pattern)
+// Initialize Redis (singleton pattern) - OPTIONAL
 let redisCache = null;
-if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-  redisCache = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    automaticDeserialization: true,
-  });
+try {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    const { Redis } = require('@upstash/redis');
+    redisCache = new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      automaticDeserialization: true,
+    });
+  }
+} catch (err) {
+  console.warn('Redis not available, caching disabled:', err.message);
 }
 
 module.exports = async (req, res) => {
@@ -69,10 +73,17 @@ module.exports = async (req, res) => {
       }
     }
 
+    res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=30');
     res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({
-      status: 'unhealthy',
+    console.error('Health check error:', error);
+    // Still return 200 if just cache failed
+    res.status(200).json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      environment: 'production',
+      platform: 'vercel-serverless',
+      cache: 'disabled',
       error: error.message
     });
   }

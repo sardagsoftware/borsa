@@ -5,17 +5,11 @@
  * for Vercel serverless functions
  */
 
-module.exports = (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+const { handleCORS } = require('../security/cors-config');
 
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
+module.exports = (req, res) => {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
 
   // Return simple pong response
   res.status(200).json({

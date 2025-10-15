@@ -1,5 +1,6 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
 const OpenAI = require('openai');
+const { handleCORS } = require('../../security/cors-config');
 
 // HIDDEN AI MODELS - User never knows | Azure OpenAI Integrated
 const MODELS = {
@@ -130,11 +131,8 @@ YOU ARE: LyDian AI - Universal Multilingual Assistant`
 };
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {

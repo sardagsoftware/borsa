@@ -4,9 +4,13 @@
  */
 
 const OpenAI = require('openai');
+const { handleCORS } = require('../security/cors-config');
 const { Anthropic } = require('@anthropic-ai/sdk');
+const { handleCORS } = require('../security/cors-config');
 const { getDatabase } = require('../database/init-db');
+const { handleCORS } = require('../security/cors-config');
 const User = require('../backend/models/User');
+const { handleCORS } = require('../security/cors-config');
 
 // AI MODELS WITH SUBSCRIPTION REQUIREMENTS
 const MODELS = {
@@ -213,11 +217,8 @@ const callOpenAIAPI = async (model, messages, temperature, maxTokens) => {
  * Main Chat Handler
  */
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
 
   // GET - Retrieve chat history
   if (req.method === 'GET') {

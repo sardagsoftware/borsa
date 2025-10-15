@@ -8,11 +8,17 @@
  */
 
 const Microsoft365Integration = require('../../services/enterprise/microsoft365-integration');
+const { handleCORS } = require('../../security/cors-config');
 const SlackDiscordBots = require('../../services/enterprise/slack-discord-bots');
+const { handleCORS } = require('../../security/cors-config');
 const EnterpriseIntegrationsSuite = require('../../services/enterprise/all-enterprise-integrations');
+const { handleCORS } = require('../../security/cors-config');
 const AdvancedUXFeatures = require('../../services/ux-ui/advanced-ux-features');
+const { handleCORS } = require('../../security/cors-config');
 const AccessibilitySuite = require('../../services/accessibility/wcag-accessibility-suite');
+const { handleCORS } = require('../../security/cors-config');
 const PersonalizationEngine = require('../../services/personalization/ai-personalization-engine');
+const { handleCORS } = require('../../security/cors-config');
 
 // Initialize all services
 const ms365 = new Microsoft365Integration();
@@ -31,11 +37,8 @@ const personalization = new PersonalizationEngine();
 
 module.exports = async (req, res) => {
     // CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-    if (req.method === 'OPTIONS') {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
         res.statusCode = 204;
         res.end();
         return;

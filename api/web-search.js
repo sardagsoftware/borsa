@@ -264,7 +264,8 @@ async function handleSearch(req, res) {
 
 // Clear cache handler
 async function clearCache(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   try {
     const { query } = req.query;
@@ -304,7 +305,8 @@ async function clearCache(req, res) {
 
 // Get cache statistics
 async function getCacheStats(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   try {
     const stats = searchCache.getStats();

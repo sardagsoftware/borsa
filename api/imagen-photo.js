@@ -2,7 +2,9 @@
 // Multi-Provider with Hidden AI
 
 const { GoogleAuth } = require('google-auth-library');
+const { handleCORS } = require('../security/cors-config');
 const OpenAI = require('openai');
+const { handleCORS } = require('../security/cors-config');
 
 // ==========================================
 // AZURE DALL-E 3 CONFIGURATION (PRIMARY)
@@ -233,11 +235,8 @@ async function generateImage(prompt, options = {}) {
 // ==========================================
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const startTime = Date.now();

@@ -6,9 +6,13 @@
 
 // Import real providers
 const WikipediaProvider = require('./providers/wikipedia');
+const { handleCORS } = require('../../security/cors-config');
 const PubMedProvider = require('./providers/pubmed');
+const { handleCORS } = require('../../security/cors-config');
 const NASAProvider = require('./providers/nasa');
+const { handleCORS } = require('../../security/cors-config');
 const AzureCognitiveSearchProvider = require('./providers/azure-cognitive');
+const { handleCORS } = require('../../security/cors-config');
 
 // Ultimate Knowledge Base with Real API Integration
 class UltimateKnowledgeBase {
@@ -271,11 +275,8 @@ class UltimateKnowledgeBase {
 // ========== API Handler ==========
 module.exports = async (req, res) => {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    if (req.method === 'OPTIONS') {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
         return res.status(200).end();
     }
 

@@ -4,7 +4,9 @@
  */
 
 const formidable = require('formidable');
+const { handleCORS } = require('../../security/cors-config');
 const fs = require('fs').promises;
+const { handleCORS } = require('../../security/cors-config');
 const {
     AZURE_OPENAI_CONFIG,
     AZURE_HEALTH_CONFIG,
@@ -84,11 +86,8 @@ const MEDICAL_CITATIONS = [
 
 module.exports = async (req, res) => {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    if (req.method === 'OPTIONS') {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
         return res.status(200).end();
     }
 

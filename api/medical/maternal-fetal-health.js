@@ -7,8 +7,11 @@
  */
 
 const { createSecureError } = require('../neuro/_azure-config');
+const { handleCORS } = require('../../security/cors-config');
 const { SSEStreamer } = require('../../lib/io/streaming');
+const { handleCORS } = require('../../security/cors-config');
 const { executeWithSentinel } = require('../../lib/middleware/tokenGovernorMiddleware');
+const { handleCORS } = require('../../security/cors-config');
 
 // Preterm Birth Risk Factors (ACOG Guidelines)
 const PRETERM_RISK_FACTORS = {
@@ -358,14 +361,8 @@ function calculatePretermRisk(maternalData, fetalData) {
 // Main API Handler
 module.exports = async (req, res) => {
     // 🛡️ BEYAZ ŞAPKALI: CORS + Security Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('X-Frame-Options', 'DENY');
-    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-
-    if (req.method === 'OPTIONS') {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
         return res.status(200).end();
     }
 

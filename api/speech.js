@@ -5,6 +5,7 @@ const sdk = require('microsoft-cognitiveservices-speech-sdk');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const { handleCORS } = require('../middleware/cors-handler');
 
 // Azure Speech Configuration
 const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
@@ -110,7 +111,6 @@ async function handleTranscribe(req, res) {
     } else if (audioUrl) {
       // Download audio from URL (simplified, in production use streaming)
       const axios = require('axios');
-const { handleCORS } = require('../middleware/cors-handler');
       const response = await axios.get(audioUrl, { responseType: 'arraybuffer' });
       const audioBuffer = Buffer.from(response.data);
       audioFilePath = path.join('/tmp', `speech-${uuidv4()}.${format}`);
@@ -297,7 +297,8 @@ async function handleSynthesize(req, res) {
 
 // Get available voices
 async function getVoices(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   // Validate credentials
   const credCheck = validateCredentials();

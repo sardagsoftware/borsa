@@ -5,6 +5,7 @@
 // ========================================
 
 const OpenAI = require('openai');
+const { handleCORS } = require('../../security/cors-config');
 
 // Knowledge Base AI System Prompt
 const KNOWLEDGE_BASE_SYSTEM_PROMPT = {
@@ -44,11 +45,8 @@ SEN BİR BİLGİ BANKASI UZMANISSIN - Profesyonel, bilimsel ve güvenilir ol!`
 // ========== API Handler ==========
 module.exports = async (req, res) => {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    if (req.method === 'OPTIONS') {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
         return res.status(200).end();
     }
 

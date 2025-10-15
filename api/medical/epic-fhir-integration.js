@@ -406,11 +406,8 @@ const epicFHIRService = new EpicFHIRService();
 // Express.js API endpoint
 export default async function handler(req, res) {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-    if (req.method === 'OPTIONS') {
+  // 🔒 SECURE CORS - Whitelist-based
+  if (handleCORS(req, res)) return;
         return res.status(200).end();
     }
 

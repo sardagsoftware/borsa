@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lci-postgres
+    environment:
+      POSTGRES_USER: lci_user
+      POSTGRES_PASSWORD: lci_dev_password_change_in_prod
+      POSTGRES_DB: lci_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - lci_postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lci_user -d lci_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - lci_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: lci-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - lci_redis_data:/data
+    command: redis-server --appendonly yes --requirepass lci_redis_dev_password
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - lci_network
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.5
+    container_name: lci-meilisearch
+    environment:
+      MEILI_MASTER_KEY: lci_meili_dev_master_key_change_in_prod
+      MEILI_ENV: development
+    ports:
+      - "7700:7700"
+    volumes:
+      - lci_meilisearch_data:/meili_data
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--spider", "http://localhost:7700/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - lci_network
+
+volumes:
+  lci_postgres_data:
+    driver: local
+  lci_redis_data:
+    driver: local
+  lci_meilisearch_data:
+    driver: local
+
+networks:
+  lci_network:
+    driver: bridge
