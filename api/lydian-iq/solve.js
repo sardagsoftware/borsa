@@ -9,7 +9,7 @@
 // In Node.js 18+, fetch is globally available
 
 // Security Layer Import
-const aiObfuscator = require('../lib/security/ai-obfuscator');
+const aiObfuscator = require('../../lib/security/ai-obfuscator');
 
 // LyDian IQ Configuration - Multi-Provider with RAG (Obfuscated)
 const AI_CONFIG = {

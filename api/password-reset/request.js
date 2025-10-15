@@ -7,6 +7,7 @@
 const User = require('../../backend/models/User');
 const crypto = require('crypto');
 const { passwordResetRateLimit } = require('../../middleware/security-rate-limiters');
+const { handleCORS } = require('../../middleware/cors-handler');
 
 module.exports = async (req, res) => {
   // 🔒 BEYAZ ŞAPKALI: Apply password reset rate limiting FIRST
@@ -19,16 +20,8 @@ module.exports = async (req, res) => {
     return; // Rate limit response already sent
   });
 
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   // Only allow POST
   if (req.method !== 'POST') {

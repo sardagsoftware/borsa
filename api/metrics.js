@@ -6,13 +6,8 @@
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Content-Type', 'text/plain; version=0.0.4; charset=utf-8');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });

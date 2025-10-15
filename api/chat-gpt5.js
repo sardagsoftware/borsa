@@ -3,6 +3,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
+const { handleCORS } = require('../middleware/cors-handler');
 
 // Azure AI Foundry Configuration
 const AZURE_AI_FOUNDRY_ENDPOINT = process.env.AZURE_AI_FOUNDRY_ENDPOINT;
@@ -56,14 +57,8 @@ function checkRateLimit(userId = 'anonymous') {
 
 // Main request handler
 async function handleRequest(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'POST') {
     return res.status(405).json({

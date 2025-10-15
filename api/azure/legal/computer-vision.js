@@ -8,13 +8,8 @@ const multiparty = require('multiparty');
 
 module.exports = async (req, res) => {
   // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -47,6 +42,7 @@ module.exports = async (req, res) => {
 
     // TODO: When Azure Computer Vision is configured, use real service
     // const azureVisionService = require('../../../services/azure-vision-service');
+const { handleCORS } = require('../../../middleware/cors-handler');
     // const result = await azureVisionService.analyzeDocumentImage(imageFile.path);
 
     // For now, return mock response

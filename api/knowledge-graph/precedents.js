@@ -50,13 +50,8 @@ const mockPrecedents = {
 
 module.exports = async (req, res) => {
   // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'GET') {
     return res.status(405).json({
@@ -91,6 +86,7 @@ module.exports = async (req, res) => {
 
     // TODO: When Neo4j is configured, use real service
     // const knowledgeGraph = require('../../services/neo4j-knowledge-graph');
+const { handleCORS } = require('../../middleware/cors-handler');
     // const precedents = await knowledgeGraph.searchPrecedents(decodedArticle);
 
     // For now, use mock data

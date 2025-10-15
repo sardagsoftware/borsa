@@ -45,14 +45,8 @@ function validateCredentials() {
 
 // Speech-to-Text Handler (Transcription)
 async function handleTranscribe(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -116,6 +110,7 @@ async function handleTranscribe(req, res) {
     } else if (audioUrl) {
       // Download audio from URL (simplified, in production use streaming)
       const axios = require('axios');
+const { handleCORS } = require('../middleware/cors-handler');
       const response = await axios.get(audioUrl, { responseType: 'arraybuffer' });
       const audioBuffer = Buffer.from(response.data);
       audioFilePath = path.join('/tmp', `speech-${uuidv4()}.${format}`);
@@ -183,14 +178,8 @@ async function handleTranscribe(req, res) {
 
 // Text-to-Speech Handler (Synthesis)
 async function handleSynthesize(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'POST') {
     return res.status(405).json({

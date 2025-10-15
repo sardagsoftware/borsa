@@ -8,13 +8,8 @@ const multiparty = require('multiparty');
 
 module.exports = async (req, res) => {
   // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -48,6 +43,7 @@ module.exports = async (req, res) => {
 
     // TODO: When Azure Document Intelligence is configured, use real service
     // const azureDocService = require('../../../services/azure-document-intelligence-service');
+const { handleCORS } = require('../../../middleware/cors-handler');
     // const result = await azureDocService.analyzeDocument(documentFile.path, documentType);
 
     // For now, return mock response

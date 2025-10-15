@@ -3,6 +3,7 @@
 
 require('dotenv').config();
 const OpenAI = require('openai');
+const { handleCORS } = require('../middleware/cors-handler');
 
 // Z.AI Configuration
 const Z_AI_API_KEY = process.env.Z_AI_API_KEY;
@@ -61,13 +62,8 @@ function checkRateLimit(userId = 'anonymous') {
 }
 
 async function handleRequest(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'POST') {
     return res.status(405).json({

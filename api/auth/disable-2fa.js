@@ -8,16 +8,8 @@ const User = require('../../backend/models/User');
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   // Only allow POST
   if (req.method !== 'POST') {
@@ -69,6 +61,7 @@ module.exports = async (req, res) => {
 
     // Get user with password hash
     const { getDatabase } = require('../../database/init-db');
+const { handleCORS } = require('../../middleware/cors-handler');
     const db = getDatabase();
     let user;
     try {

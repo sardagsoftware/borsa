@@ -7,6 +7,7 @@
  */
 
 const { withCache } = require('../../lib/middleware/cache-middleware');
+const { handleCORS } = require('../../middleware/cors-handler');
 
 // Fallback quotas (used when Azure API unavailable or for demo)
 const KNOWN_QUOTAS = {
@@ -31,14 +32,8 @@ const KNOWN_QUOTAS = {
 };
 
 async function azureQuotasHandler(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });

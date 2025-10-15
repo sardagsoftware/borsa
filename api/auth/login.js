@@ -11,16 +11,8 @@ const { trackFailedLogin, resetFailedLogin, isAccountLocked } = require('../../m
 const { sendAccountLockoutEmail, sendLoginNotificationEmail } = require('../../lib/email-service');
 
 module.exports = async (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   // Only allow POST
   if (req.method !== 'POST') {
@@ -193,6 +185,7 @@ module.exports = async (req, res) => {
     try {
       const currentIp = req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown';
       const { getDatabase } = require('../../database/init-db');
+const { handleCORS } = require('../../middleware/cors-handler');
       const db = getDatabase();
 
       try {

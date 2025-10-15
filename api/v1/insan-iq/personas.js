@@ -303,13 +303,8 @@ export async function getPersona(req, res) {
 // Export handlers
 export default async function handler(req, res) {
   // Apply CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-API-Key, Idempotency-Key');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   // Authentication check
   const apiKey = req.headers['x-api-key'];

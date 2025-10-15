@@ -3,6 +3,7 @@
 
 const axios = require('axios');
 const NodeCache = require('node-cache');
+const { handleCORS } = require('../middleware/cors-handler');
 
 // Google Custom Search Configuration
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
@@ -64,14 +65,8 @@ function formatResults(items) {
 
 // Main search handler
 async function handleSearch(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  // Apply secure CORS
+  if (handleCORS(req, res)) return;
 
   if (req.method !== 'GET') {
     return res.status(405).json({
