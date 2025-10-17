@@ -245,5 +245,70 @@
     "million": "million",
     "billion": "billion",
     "trillion": "trillion"
+  },
+
+  "complaint": {
+    "title": "Create Complaint",
+    "subtitle": "Report your issues in GDPR compliant manner, find solutions",
+    "form": {
+      "brand": "Brand You're Complaining About",
+      "brandPlaceholder": "Select brand...",
+      "brandHelp": "Can't find your brand? Please contact us.",
+      "product": "Product or Service Name",
+      "productPlaceholder": "e.g. iPhone 15 Pro, Internet Package, etc.",
+      "title": "Complaint Title",
+      "titlePlaceholder": "e.g. Product arrived defective and not being refunded",
+      "description": "Complaint Details",
+      "descriptionPlaceholder": "Please describe your issue in detail. When did it start? What steps have you tried? What was the brand's response?",
+      "descriptionHelp": "Minimum 50 characters required.",
+      "severity": "Severity Level",
+      "severityLow": "Low",
+      "severityMedium": "Medium",
+      "severityHigh": "High",
+      "severityCritical": "Critical",
+      "severityHelp": "Low: Minor issues | Medium: Hinders usage | High: Unusable | Critical: Material/moral damage",
+      "evidence": "Evidence Files (Optional)",
+      "evidenceUpload": "Upload photo or document",
+      "evidenceHelp": "Invoice, email, screenshot, etc. (Max 10MB, 5 files)",
+      "removeFile": "Remove",
+      "terms": "I have read and accept the Terms of Service and Privacy Policy.",
+      "kvkk": "I have read the GDPR Notice and consent to the processing of my personal data.",
+      "required": "*",
+      "charCount": "{current}/{max}"
+    },
+    "alerts": {
+      "privacyWarning": "Privacy Warning:",
+      "privacyText": "Do not share personal information such as phone number, email address, or ID number in your complaint. Your personal data will be protected under GDPR.",
+      "nextSteps": "Next Steps:",
+      "nextStepsText": "Your complaint will be published after review. Brand representatives will see your complaint and respond to you. Status updates will be sent to your email address."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "submit": "Submit Complaint"
+    },
+    "success": {
+      "title": "Complaint Received!",
+      "message": "Your complaint has been successfully recorded and submitted for moderation.",
+      "complaintId": "Complaint ID: {id}",
+      "newComplaint": "Create New Complaint"
+    },
+    "errors": {
+      "brandLoadFailed": "Brands could not be loaded. Cannot connect to API.",
+      "brandsLoading": "Loading brands...",
+      "connecting": "Connecting... ({retry}/{max})",
+      "retry": "Retry",
+      "minLength": "Complaint details must be at least 50 characters.",
+      "acceptTerms": "Please accept the terms of service and GDPR notice.",
+      "maxFiles": "You can upload maximum {max} files.",
+      "fileTooBig": "\"{name}\" file is too large. Maximum 10MB.",
+      "fileExists": "\"{name}\" already added.",
+      "submitFailed": "An error occurred. Please try again."
+    },
+    "languages": {
+      "title": "Select Language",
+      "tr": "Türkçe",
+      "en": "English",
+      "ar": "العربية"
+    }
   }
 }

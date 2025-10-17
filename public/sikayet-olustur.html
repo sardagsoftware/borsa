@@ -7,6 +7,12 @@
     <meta name="robots" content="index, follow">
     <title>Şikayet Oluştur - LCI | Lydian Complaint Intelligence</title>
 
+    <!-- SEO - Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/sikayet-olustur.html?lang=tr">
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/sikayet-olustur.html?lang=en">
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/sikayet-olustur.html?lang=ar">
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/sikayet-olustur.html">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/lydian-logo.png">
 
@@ -15,8 +21,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
 
+    <!-- Arabic Font for RTL Support -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap">
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- i18n Manager -->
+    <script src="/i18n/i18n-manager.js"></script>
 
     <style>
         * {
@@ -65,6 +77,12 @@
             min-height: 100vh;
             padding: 40px 20px;
             position: relative;
+            transition: direction 0.3s ease;
+        }
+
+        /* RTL Support for Arabic */
+        body[dir="rtl"] {
+            font-family: 'Noto Sans Arabic', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         body::before {
@@ -692,6 +710,56 @@
             animation: spin 1s linear infinite;
         }
 
+        /* Language Switcher */
+        .lang-switcher {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(20px);
+        }
+
+        body[dir="rtl"] .lang-switcher {
+            right: auto;
+            left: 24px;
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-btn:hover {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--primary), #0E8C6F);
+            color: white;
+            box-shadow: 0 2px 8px rgba(16, 163, 127, 0.3);
+        }
+
+        .lang-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -720,6 +788,22 @@
 
             .modal-content {
                 padding: 36px 28px;
+            }
+
+            .lang-switcher {
+                top: 12px;
+                right: 12px;
+                padding: 4px;
+            }
+
+            body[dir="rtl"] .lang-switcher {
+                right: auto;
+                left: 12px;
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 12px;
             }
         }
 
@@ -755,11 +839,27 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="tr" onclick="switchLanguage('tr')" title="Türkçe">
+                    <i data-lucide="globe"></i>
+                    TR
+                </button>
+                <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" title="English">
+                    <i data-lucide="globe"></i>
+                    EN
+                </button>
+                <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')" title="العربية">
+                    <i data-lucide="globe"></i>
+                    AR
+                </button>
+            </div>
+
             <div class="logo">
                 <i data-lucide="file-text" style="width: 44px; height: 44px; color: white;"></i>
             </div>
-            <h1>Şikayet Oluştur</h1>
-            <p>Sorunlarınızı KVKK uyumlu şekilde bildirin, çözüm bulun</p>
+            <h1 data-i18n="complaint.title">Şikayet Oluştur</h1>
+            <p data-i18n="complaint.subtitle">Sorunlarınızı KVKK uyumlu şekilde bildirin, çözüm bulun</p>
         </div>
 
         <!-- Form -->
@@ -1010,7 +1110,14 @@
         // API Configuration - Environment aware with fallback
         const API_BASE_URL = window.location.hostname === 'localhost'
             ? 'http://localhost:3201/v1'
-            : 'https://lci-api.ailydian.com/v1';
+            : 'https://www.ailydian.com/api/lci/v1';
+
+        // Initialize i18n
+        const i18n = new I18nManager({
+            defaultLocale: new URLSearchParams(window.location.search).get('lang') || 'tr',
+            fallbackLocale: 'en',
+            basePath: '/i18n/locales'
+        });
 
         // State
         let selectedFiles = [];
@@ -1035,12 +1142,139 @@
         const complaintIdDisplay = document.getElementById('complaintIdDisplay');
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize i18n
+            await initializeI18n();
+
+            // Load brands and setup form
             loadBrands();
             setupCharCounters();
             setupFileUpload();
             lucide.createIcons(); // Reinitialize icons after DOM changes
         });
+
+        // Initialize i18n system
+        async function initializeI18n() {
+            const currentLang = i18n.getCurrentLocale();
+
+            // Load all locales
+            await Promise.all([
+                i18n.loadLocale('tr'),
+                i18n.loadLocale('en'),
+                i18n.loadLocale('ar')
+            ]);
+
+            // Set current locale
+            await i18n.setLocale(currentLang);
+
+            // Update UI with translations
+            updatePageTranslations();
+
+            // Update active language button
+            updateLanguageButtons(currentLang);
+        }
+
+        // Switch language
+        async function switchLanguage(locale) {
+            await i18n.setLocale(locale);
+            updatePageTranslations();
+            updateLanguageButtons(locale);
+
+            // Update URL parameter
+            const url = new URL(window.location);
+            url.searchParams.set('lang', locale);
+            window.history.pushState({}, '', url);
+
+            // Update page title and meta tags
+            const pageTitle = i18n.t('complaint.title') + ' - LCI | Lydian Complaint Intelligence';
+            document.title = pageTitle;
+            document.querySelector('meta[name="description"]').content = i18n.t('complaint.subtitle');
+        }
+
+        // Update all translations on the page
+        function updatePageTranslations() {
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = i18n.t(key);
+
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    if (element.hasAttribute('placeholder')) {
+                        element.placeholder = translation;
+                    }
+                } else {
+                    element.textContent = translation;
+                }
+            });
+
+            // Update specific elements manually
+            updateStaticText();
+            lucide.createIcons(); // Refresh icons
+        }
+
+        // Update static text that needs special handling
+        function updateStaticText() {
+            // Privacy warning
+            const privacyAlert = document.querySelector('.alert-warning div');
+            if (privacyAlert) {
+                privacyAlert.innerHTML = `<strong>${i18n.t('complaint.alerts.privacyWarning')}</strong> ${i18n.t('complaint.alerts.privacyText')}`;
+            }
+
+            // Next steps info
+            const nextStepsAlert = document.querySelector('.alert-info div');
+            if (nextStepsAlert) {
+                nextStepsAlert.innerHTML = `<strong>${i18n.t('complaint.alerts.nextSteps')}</strong> ${i18n.t('complaint.alerts.nextStepsText')}`;
+            }
+
+            // Form labels and placeholders
+            brandSelect.innerHTML = `<option value="">${i18n.t('complaint.form.brandPlaceholder')}</option>`;
+
+            // Re-populate brands if already loaded
+            if (brands.length > 0) {
+                brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand.id;
+                    option.textContent = brand.name;
+                    brandSelect.appendChild(option);
+                });
+            }
+
+            // Update placeholders
+            document.getElementById('product').placeholder = i18n.t('complaint.form.productPlaceholder');
+            document.getElementById('title').placeholder = i18n.t('complaint.form.titlePlaceholder');
+            document.getElementById('description').placeholder = i18n.t('complaint.form.descriptionPlaceholder');
+
+            // Update severity labels
+            document.querySelector('label[for="severity-low"]').innerHTML = `
+                <i data-lucide="circle" style="color: #10B981;"></i>
+                ${i18n.t('complaint.form.severityLow')}
+            `;
+            document.querySelector('label[for="severity-medium"]').innerHTML = `
+                <i data-lucide="circle" style="color: #F59E0B;"></i>
+                ${i18n.t('complaint.form.severityMedium')}
+            `;
+            document.querySelector('label[for="severity-high"]').innerHTML = `
+                <i data-lucide="circle" style="color: #FF6B4A;"></i>
+                ${i18n.t('complaint.form.severityHigh')}
+            `;
+            document.querySelector('label[for="severity-critical"]').innerHTML = `
+                <i data-lucide="circle" style="color: #EF4444;"></i>
+                ${i18n.t('complaint.form.severityCritical')}
+            `;
+
+            lucide.createIcons();
+        }
+
+        // Update language button active state
+        function updateLanguageButtons(currentLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === currentLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
 
         // Load brands from API with retry mechanism
         async function loadBrands() {
@@ -1085,7 +1319,7 @@
                     retryCount++;
                     brandLoadingState.innerHTML = `
                         <div class="spinner" style="width: 24px; height: 24px; margin: 0 auto 12px; border-width: 3px;"></div>
-                        <div>Bağlantı kuruluyor... (${retryCount}/${MAX_RETRIES})</div>
+                        <div>${i18n.t('complaint.errors.connecting', { retry: retryCount, max: MAX_RETRIES })}</div>
                     `;
 
                     // Retry with exponential backoff
@@ -1095,11 +1329,11 @@
                     brandLoadingState.innerHTML = `
                         <div style="color: var(--error); margin-bottom: 12px;">
                             <i data-lucide="alert-circle" style="width: 24px; height: 24px; margin-bottom: 8px;"></i>
-                            <div>Markalar yüklenemedi. API'ye bağlanılamıyor.</div>
+                            <div>${i18n.t('complaint.errors.brandLoadFailed')}</div>
                         </div>
                         <button class="retry-btn" onclick="retryLoadBrands()">
                             <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i>
-                            Tekrar Dene
+                            ${i18n.t('complaint.errors.retry')}
                         </button>
                     `;
                     lucide.createIcons();
@@ -1180,18 +1414,18 @@
             const maxSize = 10 * 1024 * 1024; // 10MB
 
             if (selectedFiles.length + files.length > maxFiles) {
-                showError(`Maksimum ${maxFiles} dosya yükleyebilirsiniz.`);
+                showError(i18n.t('complaint.errors.maxFiles', { max: maxFiles }));
                 return;
             }
 
             Array.from(files).forEach(file => {
                 if (file.size > maxSize) {
-                    showError(`"${file.name}" dosyası çok büyük. Maksimum 10MB.`);
+                    showError(i18n.t('complaint.errors.fileTooBig', { name: file.name }));
                     return;
                 }
 
                 if (selectedFiles.some(f => f.name === file.name)) {
-                    showError(`"${file.name}" zaten eklendi.`);
+                    showError(i18n.t('complaint.errors.fileExists', { name: file.name }));
                     return;
                 }
 
@@ -1254,12 +1488,12 @@
 
             // Validation
             if (descInput.value.length < 50) {
-                showError('Şikayet detayı en az 50 karakter olmalıdır.');
+                showError(i18n.t('complaint.errors.minLength'));
                 return;
             }
 
             if (!document.getElementById('terms').checked || !document.getElementById('kvkk').checked) {
-                showError('Lütfen kullanım koşullarını ve KVKK metnini kabul edin.');
+                showError(i18n.t('complaint.errors.acceptTerms'));
                 return;
             }
 
@@ -1293,7 +1527,7 @@
 
                 if (!response.ok) {
                     const error = await response.json();
-                    throw new Error(error.message || 'Şikayet oluşturulamadı');
+                    throw new Error(error.message || i18n.t('complaint.errors.submitFailed'));
                 }
 
                 const complaint = await response.json();
@@ -1308,7 +1542,7 @@
 
             } catch (error) {
                 console.error('Form submission error:', error);
-                showError(error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.');
+                showError(error.message || i18n.t('complaint.errors.submitFailed'));
             } finally {
                 loadingOverlay.classList.remove('active');
                 submitBtn.disabled = false;
@@ -1355,7 +1589,16 @@
 
         // Show success modal
         function showSuccess(complaintId) {
-            complaintIdDisplay.textContent = `Şikayet ID: ${complaintId}`;
+            complaintIdDisplay.textContent = i18n.t('complaint.success.complaintId', { id: complaintId });
+
+            // Update success modal text
+            document.querySelector('.modal h2').textContent = i18n.t('complaint.success.title');
+            document.querySelector('.modal p').textContent = i18n.t('complaint.success.message');
+            document.querySelector('.modal .btn').innerHTML = `
+                <i data-lucide="refresh-cw"></i>
+                ${i18n.t('complaint.success.newComplaint')}
+            `;
+
             successModal.classList.add('active');
             lucide.createIcons();
 

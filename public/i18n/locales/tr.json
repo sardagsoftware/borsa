@@ -245,5 +245,70 @@
     "million": "milyon",
     "billion": "milyar",
     "trillion": "trilyon"
+  },
+
+  "complaint": {
+    "title": "Şikayet Oluştur",
+    "subtitle": "Sorunlarınızı KVKK uyumlu şekilde bildirin, çözüm bulun",
+    "form": {
+      "brand": "Şikayet Ettiğiniz Marka",
+      "brandPlaceholder": "Marka seçiniz...",
+      "brandHelp": "Markanızı bulamıyor musunuz? Lütfen bizimle iletişime geçin.",
+      "product": "Ürün veya Hizmet Adı",
+      "productPlaceholder": "Örn: iPhone 15 Pro, İnternet Paketi, vb.",
+      "title": "Şikayet Başlığı",
+      "titlePlaceholder": "Örn: Ürün arızalı geldi ve iade edilmiyor",
+      "description": "Şikayet Detayı",
+      "descriptionPlaceholder": "Lütfen sorununuzu detaylı şekilde anlatın. Ne zaman başladı? Hangi adımları denediniz? Markanın yanıtı ne oldu?",
+      "descriptionHelp": "Minimum 50 karakter gereklidir.",
+      "severity": "Önem Derecesi",
+      "severityLow": "Düşük",
+      "severityMedium": "Orta",
+      "severityHigh": "Yüksek",
+      "severityCritical": "Kritik",
+      "severityHelp": "Düşük: Ufak aksaklıklar | Orta: Kullanımı zorlaştırıyor | Yüksek: Kullanılamıyor | Kritik: Maddi/manevi zarar",
+      "evidence": "Kanıt Dosyaları (Opsiyonel)",
+      "evidenceUpload": "Fotoğraf veya belge yükleyin",
+      "evidenceHelp": "Fatura, e-posta, ekran görüntüsü vb. (Maks 10MB, 5 dosya)",
+      "removeFile": "Kaldır",
+      "terms": "Kullanım Koşulları'nı ve Gizlilik Politikası'nı okudum, kabul ediyorum.",
+      "kvkk": "KVKK Aydınlatma Metni'ni okudum, kişisel verilerimin işlenmesine izin veriyorum.",
+      "required": "*",
+      "charCount": "{current}/{max}"
+    },
+    "alerts": {
+      "privacyWarning": "Gizlilik Uyarısı:",
+      "privacyText": "Şikayetinizde telefon numarası, e-posta adresi, TC kimlik numarası gibi kişisel bilgiler paylaşmayın. KVKK kapsamında kişisel verileriniz korunacaktır.",
+      "nextSteps": "Sonraki Adımlar:",
+      "nextStepsText": "Şikayetiniz incelendikten sonra yayınlanacaktır. Marka temsilcileri şikayetinizi görecek ve size geri dönüş yapacaktır. E-posta adresinize durum güncellemeleri gönderilecektir."
+    },
+    "buttons": {
+      "cancel": "İptal",
+      "submit": "Şikayeti Gönder"
+    },
+    "success": {
+      "title": "Şikayetiniz Alındı!",
+      "message": "Şikayetiniz başarıyla kaydedildi ve moderasyon sürecine alındı.",
+      "complaintId": "Şikayet ID: {id}",
+      "newComplaint": "Yeni Şikayet Oluştur"
+    },
+    "errors": {
+      "brandLoadFailed": "Markalar yüklenemedi. API'ye bağlanılamıyor.",
+      "brandsLoading": "Markalar yükleniyor...",
+      "connecting": "Bağlantı kuruluyor... ({retry}/{max})",
+      "retry": "Tekrar Dene",
+      "minLength": "Şikayet detayı en az 50 karakter olmalıdır.",
+      "acceptTerms": "Lütfen kullanım koşullarını ve KVKK metnini kabul edin.",
+      "maxFiles": "Maksimum {max} dosya yükleyebilirsiniz.",
+      "fileTooBig": "\"{name}\" dosyası çok büyük. Maksimum 10MB.",
+      "fileExists": "\"{name}\" zaten eklendi.",
+      "submitFailed": "Bir hata oluştu. Lütfen tekrar deneyin."
+    },
+    "languages": {
+      "title": "Dil Seçin",
+      "tr": "Türkçe",
+      "en": "English",
+      "ar": "العربية"
+    }
   }
 }
