@@ -17,6 +17,12 @@ test-results
 playwright-report
 *.spec.js
 *.test.js
+*.spec.ts
+*.test.ts
+
+# TypeScript API files (not compiled, causes build errors)
+api/**/*.ts
+!api/**/*.d.ts
 
 # IDE
 .vscode
