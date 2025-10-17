@@ -1324,6 +1324,10 @@ function maskApiResponse(response) {
 </script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+    <!-- XSS Protection -->
+    <script src="/js/lib/dompurify-loader.js"></script>
+    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- 📱 Mobil Sidebar Overlay -->
@@ -2066,13 +2070,13 @@ function saveConversations() {
 
 // Render Conversations
 function renderConversations() {
-    conversationsList.innerHTML = state.conversations.map(conv => `
+    conversationsList.innerHTML = AilydianSanitizer.sanitizeHTML(state.conversations.map(conv => `
         <div class="conversation-item ${conv.id === state.currentConversationId ? 'active' : ''}"
              data-id="${conv.id}">
             <div class="conversation-title">${escapeHtml(conv.title)}</div>
             <div class="conversation-date">${formatDate(conv.date)}</div>
         </div>
-    `).join('');
+    `).join(''));
 
     // Add click handlers
     document.querySelectorAll('.conversation-item').forEach(item => {
@@ -2478,7 +2482,7 @@ function showTypingIndicator() {
     const indicator = document.createElement('div');
     indicator.id = 'typingIndicator';
     indicator.className = 'message ai';
-    indicator.innerHTML = `
+    indicator.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="message-avatar">⚖️</div>
         <div class="message-content">
             <div class="message-bubble">
@@ -2489,7 +2493,7 @@ function showTypingIndicator() {
                 </div>
             </div>
         </div>
-    `;
+    `);
     messagesContainer.appendChild(indicator);
     scrollToBottom();
 }
@@ -2569,7 +2573,7 @@ function formatTime(dateStr) {
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
-    return div.innerHTML.replace(/\n/g, '<br>');
+    return AilydianSanitizer.sanitizeHTML(div.innerHTML.replace(/\n/g, '<br>'));
 }
 
 function scrollToBottom() {
@@ -2611,26 +2615,26 @@ async function handleVoiceInput() {
                 // Show processing state
                 voiceBtn.classList.remove('recording');
                 voiceBtn.classList.add('processing');
-                voiceBtn.innerHTML = `
+                voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <polyline points="12 6 12 12 16 14"/>
                     </svg>
-                `;
+                `);
 
                 const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
                 await transcribeAudio(audioBlob);
 
                 // Reset button after processing
                 voiceBtn.classList.remove('processing');
-                voiceBtn.innerHTML = `
+                voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
                         <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
                         <line x1="12" y1="19" x2="12" y2="23"/>
                         <line x1="8" y1="23" x2="16" y2="23"/>
                     </svg>
-                `;
+                `);
 
                 // Stop all tracks
                 stream.getTracks().forEach(track => track.stop());
@@ -2641,11 +2645,11 @@ async function handleVoiceInput() {
 
             // Visual feedback with animation
             voiceBtn.classList.add('recording');
-            voiceBtn.innerHTML = `
+            voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
                     <rect x="6" y="6" width="12" height="12" rx="2"/>
                 </svg>
-            `;
+            `);
 
             console.log('🎤 Ses kaydı başladı... (Türkçe hukuk terimleri aktif)');
         } catch (error) {

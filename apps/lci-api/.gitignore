@@ -44,3 +44,4 @@ lerna-debug.log*
 
 # Prisma
 prisma/migrations/**/migration.sql.bak
+.vercel

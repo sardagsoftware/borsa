@@ -1,0 +1,50 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Testing
+test
+tests
+*.spec.ts
+*.test.ts
+coverage
+
+# Development
+.env
+.env.local
+.env.development
+*.log
+.DS_Store
+
+# Build artifacts
+dist
+build
+*.tsbuildinfo
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+docs
+
+# Scripts
+scripts/seed-*.ts
+scripts/test-*.ts
+
+# Prisma migrations (include schema.prisma)
+# prisma/schema.prisma is needed for build
+prisma/migrations/*.sql
+
+# Misc
+.eslintrc.js
+.prettierrc
+tsconfig.*.json
+jest.config.js

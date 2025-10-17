@@ -359,6 +359,10 @@
         }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css">
+
+    <!-- 🛡️ XSS Protection: DOMPurify -->
+    <script src="/js/lib/dompurify-loader.js"></script>
+    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -595,15 +599,15 @@
 
                 if (status.status === 'healthy') {
                     badge.className = 'status-badge healthy';
-                    badge.innerHTML = '<span>●</span> Connected';
+                    badge.innerHTML = AilydianSanitizer.sanitizeHTML('<span>●</span> Connected';
                 } else {
                     badge.className = 'status-badge unhealthy';
-                    badge.innerHTML = '<span>●</span> Disconnected';
+                    badge.innerHTML = AilydianSanitizer.sanitizeHTML('<span>●</span> Disconnected';
                 }
             } catch (error) {
                 const badge = document.getElementById('connectionStatus');
                 badge.className = 'status-badge unhealthy';
-                badge.innerHTML = '<span>●</span> Error';
+                badge.innerHTML = AilydianSanitizer.sanitizeHTML('<span>●</span> Error';
             }
         }
 
@@ -617,7 +621,7 @@
             const results = document.getElementById('patientResults');
 
             loading.style.display = 'block';
-            results.innerHTML = '';
+            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
             try {
                 const params = { [searchType]: searchValue };
@@ -649,11 +653,11 @@
                     // Update stats
                     document.getElementById('statPatients').textContent = data.total || data.entry.length;
                 } else {
-                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No patients found</p>';
+                    results.innerHTML = AilydianSanitizer.sanitizeHTML('<p style="text-align:center; color: var(--text-secondary);">No patients found</p>';
                 }
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -671,7 +675,7 @@
             const results = document.getElementById('appointmentResults');
 
             loading.style.display = 'block';
-            results.innerHTML = '';
+            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
             try {
                 const appointmentData = {
@@ -707,7 +711,7 @@
 
                 loading.style.display = 'none';
 
-                results.innerHTML = `
+                results.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <div class="result-item" style="border-color: var(--success);">
                         <div class="result-header">
                             <div class="result-title">✅ Appointment Created</div>
@@ -726,7 +730,7 @@
                 e.target.reset();
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -741,7 +745,7 @@
             const results = document.getElementById('observationResults');
 
             loading.style.display = 'block';
-            results.innerHTML = '';
+            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
             try {
                 const params = { patientId, category: category || null };
@@ -773,11 +777,11 @@
 
                     document.getElementById('statObservations').textContent = data.total || data.entry.length;
                 } else {
-                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No observations found</p>';
+                    results.innerHTML = AilydianSanitizer.sanitizeHTML('<p style="text-align:center; color: var(--text-secondary);">No observations found</p>';
                 }
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -791,7 +795,7 @@
             const results = document.getElementById('medicationResults');
 
             loading.style.display = 'block';
-            results.innerHTML = '';
+            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
             try {
                 const params = { patientId };
@@ -821,11 +825,11 @@
 
                     document.getElementById('statMedications').textContent = data.total || data.entry.length;
                 } else {
-                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No medications found</p>';
+                    results.innerHTML = AilydianSanitizer.sanitizeHTML('<p style="text-align:center; color: var(--text-secondary);">No medications found</p>';
                 }
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 

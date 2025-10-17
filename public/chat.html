@@ -3071,6 +3071,10 @@ body {
     <!-- 📊 Metrics System - Token & Speed Measurement -->
     <link rel="stylesheet" href="/components/metrics/SpeedBadge.css">
     <link rel="stylesheet" href="/css/metrics-theme-integration.css">
+
+    <!-- XSS Protection -->
+    <script src="/js/lib/dompurify-loader.js"></script>
+    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- 🚀 MAIN CHAT CONTAINER -->
@@ -4321,7 +4325,7 @@ body {
             const timeStr = new Date(message.timestamp).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
             const dateStr = new Date(message.timestamp).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-            messageEl.innerHTML = `
+            messageEl.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <div class="message-avatar">${avatarSvg}</div>
                 <div class="message-content">
                     <div class="message-text">${formatMessage(content)}</div>
@@ -4339,7 +4343,7 @@ body {
                         </div>
                     ` : ''}
                 </div>
-            `;
+            `);
 
             elements.messagesContainer.appendChild(messageEl);
             messageEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -4350,7 +4354,7 @@ body {
             const indicator = document.createElement('div');
             indicator.className = 'message assistant';
             indicator.id = 'typingIndicator';
-            indicator.innerHTML = `
+            indicator.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <div class="message-avatar">
                     <svg viewBox="0 0 24 24"><path d="M20,18c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2H4C2.9,4,2,4.9,2,6v10c0,1.1,0.9,2,2,2H0v2h24v-2H20z M4,6h16v10H4V6z"/></svg>
                 </div>
@@ -4442,7 +4446,7 @@ body {
         function startNewChat() {
             state.messages = [];
             state.currentChatId = null;
-            elements.messagesContainer.innerHTML = `
+            elements.messagesContainer.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <div class="empty-state" id="emptyState">
                     <div class="particles" id="particles"></div>
                     <div class="user-welcome-text" id="userWelcomeText">
@@ -4684,7 +4688,7 @@ body {
             const particlesContainer = document.getElementById('particles');
             if (!particlesContainer) return;
 
-            particlesContainer.innerHTML = '';
+            particlesContainer.innerHTML = AilydianSanitizer.sanitizeHTML('';
             for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
@@ -4703,7 +4707,7 @@ body {
             try {
                 await navigator.clipboard.writeText(text);
                 const originalText = button.innerHTML;
-                button.innerHTML = `
+                button.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                     Kopyalandı!
                 `;
@@ -4915,7 +4919,7 @@ body {
             chatItem.className = 'chat-item';
             chatItem.dataset.chatId = chatData.id;
             chatItem.dataset.testid = 'chat-history-item';
-            chatItem.innerHTML = `
+            chatItem.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <div class="chat-item-content">
                     <div class="chat-item-title">${chatData.title}</div>
                     <div class="chat-item-preview">${new Date(chatData.timestamp).toLocaleDateString('tr-TR')}</div>
@@ -5008,7 +5012,7 @@ body {
         }
 
         function renderMessages() {
-            elements.messagesContainer.innerHTML = '';
+            elements.messagesContainer.innerHTML = AilydianSanitizer.sanitizeHTML('';
             state.messages.forEach(msg => {
                 addMessage(msg.role, msg.content);
             });
@@ -5042,7 +5046,7 @@ body {
             // Create timer UI element with modern animated hourglass
             const timerElement = document.createElement('div');
             timerElement.className = 'guest-timer';
-            timerElement.innerHTML = `
+            timerElement.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <div class="guest-timer-icon">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <defs>

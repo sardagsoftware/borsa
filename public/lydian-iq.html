@@ -2805,6 +2805,10 @@
             }
         }
     </style>
+
+    <!-- 🛡️ XSS Protection: DOMPurify -->
+    <script src="/js/lib/dompurify-loader.js"></script>
+    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- Top Bar - Premium Icon Only -->
@@ -3170,8 +3174,8 @@
             const modalConnectorGrid = document.getElementById('modalConnectorGrid');
 
             // Clear existing content
-            modalTabs.innerHTML = '';
-            modalConnectorGrid.innerHTML = '';
+            modalTabs.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            modalConnectorGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
             // Get unique regions
             const regions = ['Tümü', ...new Set(allConnectors.map(c => c.region))];
@@ -3181,7 +3185,7 @@
                 const count = region === 'Tümü' ? allConnectors.length : allConnectors.filter(c => c.region === region).length;
                 const tabBtn = document.createElement('button');
                 tabBtn.className = `modal-tab-btn ${index === 0 ? 'active' : ''}`;
-                tabBtn.innerHTML = `
+                tabBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <span>${region}</span>
                     <span class="modal-tab-badge">${count}</span>
                 `;
@@ -3331,14 +3335,14 @@
         // Render Modal Connectors
         function renderModalConnectors(connectors) {
             const modalConnectorGrid = document.getElementById('modalConnectorGrid');
-            modalConnectorGrid.innerHTML = '';
+            modalConnectorGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
             connectors.forEach(connector => {
                 const item = document.createElement('div');
                 item.className = 'modal-connector-item';
                 item.onclick = () => selectConnector(connector.name);
 
-                item.innerHTML = `
+                item.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <div class="connector-logo">
                         <img src="${connector.logo}" alt="${connector.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23D4AF37%22 stroke-width=%222%22%3E%3Cpath d=%22M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z%22/%3E%3C/svg%3E'">
                     </div>
@@ -3934,7 +3938,7 @@
             if (role === 'assistant' && !skipActions && !content.includes('spinner')) {
                 const actionsDiv = document.createElement('div');
                 actionsDiv.className = 'message-actions';
-                actionsDiv.innerHTML = `
+                actionsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <button class="action-btn action-btn-back" onclick="backToSearch(this)" title="Arama ekranına dön">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px">
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -3984,7 +3988,7 @@
                 document.getElementById('mainContent').classList.remove('split-mode');
 
                 // Clear messages
-                messages.innerHTML = '';
+                messages.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
                 // Focus search input
                 searchInput.focus();
@@ -4404,7 +4408,7 @@
 
         // Populate Carousel Strip with Countries and Connectors
         function populateCarouselStrip(container) {
-            container.innerHTML = ''; // Clear existing content
+            container.innerHTML = AilydianSanitizer.sanitizeHTML(''; // Clear existing content
 
             let totalConnectors = 0;
 
@@ -4418,7 +4422,7 @@
                 const countryTab = document.createElement('div');
                 countryTab.className = 'connector-country-tab' + (index === 0 ? ' active' : '');
                 countryTab.dataset.country = country;
-                countryTab.innerHTML = `
+                countryTab.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <span class="connector-country-icon">${data.icon}</span>
                     <span class="connector-country-name">${country}</span>
                     <span class="connector-country-count">${connectorCount}</span>
@@ -4444,7 +4448,7 @@
                         chip.className = 'connector-chip';
                         chip.dataset.country = country;
                         chip.dataset.category = category;
-                        chip.innerHTML = `
+                        chip.innerHTML = AilydianSanitizer.sanitizeHTML(`
                             <span class="connector-chip-icon">${getConnectorIcon(category)}</span>
                             <span class="connector-chip-name">${connectorName}</span>
                         `;

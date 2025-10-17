@@ -34,7 +34,7 @@
     }
 
     init() {
-      this.container.innerHTML = `
+      this.container.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="intent-chat-wrapper">
           <!-- Messages Container -->
           <div class="intent-messages" id="intent-messages"></div>
@@ -141,7 +141,7 @@
     renderIntentChips(intents) {
       const container = document.getElementById('intent-chips');
       if (intents.length === 0) {
-        container.innerHTML = '';
+        container.innerHTML = AilydianSanitizer.sanitizeHTML('';
         container.style.display = 'none';
         return;
       }
@@ -370,7 +370,7 @@
       div.className = `intent-message intent-message-${message.role}`;
 
       if (message.text) {
-        div.innerHTML = `<div class="message-text">${this.escapeHtml(message.text)}</div>`;
+        div.innerHTML = AilydianSanitizer.sanitizeHTML(`<div class="message-text">${this.escapeHtml(message.text)}</div>`;
       }
 
       if (message.cardType && message.cardData) {
@@ -413,7 +413,7 @@
         sorting: 'Dağıtımda'
       };
 
-      div.innerHTML = `
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="card-header">
           <h3>${statusIcons[data.status] || '📦'} ${data.vendor.toUpperCase()} Kargo Takip</h3>
         </div>
@@ -447,7 +447,7 @@
       const bestOffer = data.bestOffer;
       const otherOffers = data.offers.slice(1, 3);
 
-      div.innerHTML = `
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="card-header">
           <h3>💰 Kredi Karşılaştırma</h3>
         </div>
@@ -484,7 +484,7 @@
 
       const topHotels = data.hotels.slice(0, 3);
 
-      div.innerHTML = `
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="card-header">
           <h3>✈️ Otel Arama Sonuçları</h3>
           <span class="result-count">${data.totalResults} otel bulundu</span>
@@ -513,7 +513,7 @@
       const div = document.createElement('div');
       div.className = 'message-card economy-card';
 
-      div.innerHTML = `
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="card-header">
           <h3>📈 Fiyat Optimizasyonu</h3>
         </div>
@@ -540,7 +540,7 @@
       const div = document.createElement('div');
       div.className = 'message-card insights-card';
 
-      div.innerHTML = `
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="card-header">
           <h3>📊 Fiyat Trend Analizi</h3>
         </div>
@@ -576,7 +576,7 @@
       const div = document.createElement('div');
       div.className = 'message-card esg-card';
 
-      div.innerHTML = `
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`
         <div class="card-header">
           <h3>🌱 Karbon Ayak İzi</h3>
         </div>
@@ -607,7 +607,7 @@
     createGenericCard(data) {
       const div = document.createElement('div');
       div.className = 'message-card generic-card';
-      div.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      div.innerHTML = AilydianSanitizer.sanitizeHTML(`<pre>${JSON.stringify(data, null, 2)}</pre>`;
       return div;
     }
 

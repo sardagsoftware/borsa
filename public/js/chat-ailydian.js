@@ -566,7 +566,7 @@ class AiLydianChat {
         // Update UI
         const selectedModel = document.getElementById('selectedModel');
         if (selectedModel) {
-            selectedModel.innerHTML = `
+            selectedModel.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <i class="${modelData.icon}"></i>
                 <span>${modelData.name}</span>
                 <i class="fas fa-chevron-down"></i>
@@ -1209,7 +1209,7 @@ class AiLydianChat {
             animation: pulse 1.5s infinite; box-shadow: 0 4px 20px rgba(231,76,60,0.3);
         `;
 
-        indicator.innerHTML = `
+        indicator.innerHTML = AilydianSanitizer.sanitizeHTML(`
             <div style="width: 12px; height: 12px; background: white; border-radius: 50%; animation: blink 1s infinite;"></div>
             <span>Recording... Click anywhere to stop</span>
         `;
@@ -1333,7 +1333,7 @@ class AiLydianChat {
         const messageInput = document.getElementById('messageInput');
 
         this.isRecording = true;
-        voiceBtn.innerHTML = '<i class="fas fa-stop"></i>';
+        voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML('<i class="fas fa-stop"></i>';
         voiceBtn.style.background = '#ef4444';
 
         this.recognition.onresult = (event) => {
@@ -1371,7 +1371,7 @@ class AiLydianChat {
 
         const voiceBtn = document.getElementById('voiceBtn');
         if (voiceBtn) {
-            voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+            voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML('<i class="fas fa-microphone"></i>';
             voiceBtn.style.background = '';
         }
 
@@ -1482,7 +1482,7 @@ class AiLydianChat {
         const chatMessages = document.getElementById('chatMessages');
         const imageContainer = document.createElement('div');
         imageContainer.className = 'image-preview-container';
-        imageContainer.innerHTML = `
+        imageContainer.innerHTML = AilydianSanitizer.sanitizeHTML(`
             <img src="${base64Image}" alt="Uploaded image preview" style="max-width: 300px; max-height: 200px; border-radius: 8px; margin: 10px 0;">
         `;
 
@@ -1498,7 +1498,7 @@ class AiLydianChat {
         const processingDiv = document.createElement('div');
         processingDiv.id = 'processingIndicator';
         processingDiv.className = 'processing-indicator';
-        processingDiv.innerHTML = `
+        processingDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
             <div class="processing-content">
                 <div class="spinner"></div>
                 <span>${message}</span>
@@ -1569,7 +1569,7 @@ class AiLydianChat {
         const historyList = document.getElementById('historyList');
         if (!historyList || !this.conversations) return;
 
-        historyList.innerHTML = '';
+        historyList.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
         this.conversations.slice(-10).reverse().forEach(conversation => {
             const item = document.createElement('div');
@@ -1588,7 +1588,7 @@ class AiLydianChat {
         // Clear messages
         const messagesContainer = document.getElementById('messagesContainer');
         if (messagesContainer) {
-            messagesContainer.innerHTML = '';
+            messagesContainer.innerHTML = AilydianSanitizer.sanitizeHTML('';
         }
 
         // Show welcome screen
@@ -1970,7 +1970,7 @@ class AiLydianChat {
             animation: slideIn 0.3s; color: var(--text-color, #e1e1e1);
         `;
 
-        dialog.innerHTML = `
+        dialog.innerHTML = AilydianSanitizer.sanitizeHTML(`
             <div class="dialog-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h3 style="margin: 0; color: var(--primary-color, #3498db);">${title}</h3>
                 <button onclick="window.aiLydianChat.closeDialog()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-color, #e1e1e1);">&times;</button>

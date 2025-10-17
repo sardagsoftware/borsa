@@ -48,7 +48,7 @@ services:
     volumes:
       - lci_meilisearch_data:/meili_data
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--spider", "http://localhost:7700/health"]
+      test: ["CMD-SHELL", "curl -f http://localhost:7700/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5

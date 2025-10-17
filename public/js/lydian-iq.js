@@ -226,13 +226,13 @@ class DeepSeekR1Frontend {
         const reasoningStepsCompact = document.getElementById('reasoningStepsCompact');
         if (!reasoningStepsCompact) return;
 
-        reasoningStepsCompact.innerHTML = '';
+        reasoningStepsCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
         reasoningChain.forEach((step, index) => {
             const stepEl = document.createElement('div');
             stepEl.className = 'reasoning-step-compact';
 
-            stepEl.innerHTML = `
+            stepEl.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <span class="step-number-compact">${index + 1}</span>
                 <span class="step-text-compact">${this.escapeHtml(step)}</span>
             `;
@@ -299,7 +299,7 @@ class DeepSeekR1Frontend {
         // Update performance metrics with premium icon
         const performanceMetricsCompact = document.getElementById('performanceMetricsCompact');
         if (performanceMetricsCompact) {
-            performanceMetricsCompact.innerHTML = `
+            performanceMetricsCompact.innerHTML = AilydianSanitizer.sanitizeHTML(`
                 <div class="metrics-grid-compact">
                     <div class="metric-card-compact">
                         <i class="fas fa-crown" style="color: #FF6B4A;"></i>
@@ -579,9 +579,9 @@ class DeepSeekR1Frontend {
         const solutionContentCompact = document.getElementById('solutionContentCompact');
         const performanceMetricsCompact = document.getElementById('performanceMetricsCompact');
 
-        if (reasoningStepsCompact) reasoningStepsCompact.innerHTML = '';
-        if (solutionContentCompact) solutionContentCompact.innerHTML = '';
-        if (performanceMetricsCompact) performanceMetricsCompact.innerHTML = '';
+        if (reasoningStepsCompact) reasoningStepsCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
+        if (solutionContentCompact) solutionContentCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
+        if (performanceMetricsCompact) performanceMetricsCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
 
         console.log('✅ Response cleared');
     }

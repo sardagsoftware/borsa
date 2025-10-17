@@ -8,6 +8,9 @@
 import { nanoid } from 'nanoid';
 import { createClient } from '@supabase/supabase-js';
 
+// Import CORS handler
+const { handleCORS } = require('../../../security/cors-config');
+
 const supabase = createClient(
   process.env.SUPABASE_URL || '',
   process.env.SUPABASE_SERVICE_KEY || ''
@@ -210,7 +213,7 @@ export async function listPersonas(req, res) {
     res.setHeader('X-RateLimit-Reset', Math.floor(Date.now() / 1000) + 3600);
 
     return res.status(200).json({
-      data: results.map(p => ({
+      personas: results.map(p => ({
         personaId: p.persona_id,
         name: p.name,
         personality: p.personality,
@@ -221,6 +224,11 @@ export async function listPersonas(req, res) {
         createdAt: p.created_at,
         updatedAt: p.updated_at,
       })),
+      pagination: {
+        limit: limitNum,
+        hasMore,
+        nextCursor,
+      },
     });
   } catch (error) {
     console.error('Unexpected error:', error);
@@ -313,8 +321,20 @@ export default async function handler(req, res) {
   if (!apiKey && !authHeader) {
     return res.status(401).json({
       error: {
-        code: 'UNAUTHORIZED',
-        message: 'Missing authentication credentials',
+        code: 'MISSING_API_KEY',
+        message: 'API key is required',
+        correlationId: nanoid(),
+        timestamp: new Date().toISOString(),
+      },
+    });
+  }
+
+  // Validate API key format (basic check)
+  if (apiKey && !apiKey.startsWith('lyd_')) {
+    return res.status(401).json({
+      error: {
+        code: 'INVALID_API_KEY',
+        message: 'Invalid API key format',
         correlationId: nanoid(),
         timestamp: new Date().toISOString(),
       },

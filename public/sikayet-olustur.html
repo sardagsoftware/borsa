@@ -864,13 +864,13 @@
 
         <!-- Form -->
         <div class="form-container">
-            <!-- Privacy Warning -->
+            <!-- Privacy Warning (Dynamic i18n) -->
             <div class="alert alert-warning">
                 <div class="alert-icon">
                     <i data-lucide="shield-alert"></i>
                 </div>
-                <div>
-                    <strong>Gizlilik Uyarısı:</strong> Şikayetinizde telefon numarası, e-posta adresi, TC kimlik numarası gibi kişisel bilgiler paylaşmayın. KVKK kapsamında kişisel verileriniz korunacaktır.
+                <div id="privacyWarningText">
+                    <!-- Will be populated by i18n -->
                 </div>
             </div>
 
@@ -1026,8 +1026,8 @@
                             required
                         >
                         <label for="terms" class="checkbox-label">
-                            <a href="https://lci.lydian.ai/legal/terms" target="_blank">Kullanım Koşulları</a>'nı ve
-                            <a href="https://lci.lydian.ai/legal/privacy" target="_blank">Gizlilik Politikası</a>'nı okudum, kabul ediyorum.<span class="required">*</span>
+                            <a href="https://www.ailydian.com/terms" target="_blank">Kullanım Koşulları</a>'nı ve
+                            <a href="https://www.ailydian.com/privacy" target="_blank">Gizlilik Politikası</a>'nı okudum, kabul ediyorum.<span class="required">*</span>
                         </label>
                     </div>
                 </div>
@@ -1042,7 +1042,7 @@
                             required
                         >
                         <label for="kvkk" class="checkbox-label">
-                            <a href="https://lci.lydian.ai/legal/kvkk" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, kişisel verilerimin işlenmesine izin veriyorum.<span class="required">*</span>
+                            <a href="https://www.ailydian.com/kvkk" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, kişisel verilerimin işlenmesine izin veriyorum.<span class="required">*</span>
                         </label>
                     </div>
                 </div>
@@ -1069,15 +1069,13 @@
             </form>
         </div>
 
-        <!-- Info Box -->
+        <!-- Info Box (Dynamic i18n) -->
         <div class="alert alert-info">
             <div class="alert-icon">
                 <i data-lucide="info"></i>
             </div>
-            <div>
-                <strong>Sonraki Adımlar:</strong> Şikayetiniz incelendikten sonra yayınlanacaktır.
-                Marka temsilcileri şikayetinizi görecek ve size geri dönüş yapacaktır.
-                E-posta adresinize durum güncellemeleri gönderilecektir.
+            <div id="nextStepsText">
+                <!-- Will be populated by i18n -->
             </div>
         </div>
     </div>
@@ -1214,16 +1212,16 @@
 
         // Update static text that needs special handling
         function updateStaticText() {
-            // Privacy warning
-            const privacyAlert = document.querySelector('.alert-warning div');
-            if (privacyAlert) {
-                privacyAlert.innerHTML = `<strong>${i18n.t('complaint.alerts.privacyWarning')}</strong> ${i18n.t('complaint.alerts.privacyText')}`;
+            // Privacy warning - specific element
+            const privacyWarningText = document.getElementById('privacyWarningText');
+            if (privacyWarningText) {
+                privacyWarningText.innerHTML = `<strong>${i18n.t('complaint.alerts.privacyWarning')}</strong> ${i18n.t('complaint.alerts.privacyText')}`;
             }
 
-            // Next steps info
-            const nextStepsAlert = document.querySelector('.alert-info div');
-            if (nextStepsAlert) {
-                nextStepsAlert.innerHTML = `<strong>${i18n.t('complaint.alerts.nextSteps')}</strong> ${i18n.t('complaint.alerts.nextStepsText')}`;
+            // Next steps info - specific element
+            const nextStepsText = document.getElementById('nextStepsText');
+            if (nextStepsText) {
+                nextStepsText.innerHTML = `<strong>${i18n.t('complaint.alerts.nextSteps')}</strong> ${i18n.t('complaint.alerts.nextStepsText')}`;
             }
 
             // Form labels and placeholders
