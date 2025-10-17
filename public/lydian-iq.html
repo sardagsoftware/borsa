@@ -2809,6 +2809,9 @@
     <!-- 🛡️ XSS Protection: DOMPurify -->
     <script src="/js/lib/dompurify-loader.js"></script>
     <script src="/js/lib/sanitizer.js"></script>
+
+    <!-- 🚀 Enhanced Features -->
+    <script src="/js/lydian-iq-enhanced.js"></script>
 </head>
 <body>
     <!-- Top Bar - Premium Icon Only -->
@@ -3414,6 +3417,15 @@
             const query = searchInput.value.trim();
             if (!query) return;
 
+            // Track search event
+            const startTime = Date.now();
+            if (window.lydianAnalytics) {
+                window.lydianAnalytics.trackEvent('search_started', {
+                    mode: currentMode,
+                    queryLength: query.length
+                });
+            }
+
             // Enable split mode
             document.getElementById('mainContent').classList.add('split-mode');
 
@@ -3429,24 +3441,40 @@
 
             addMessage('assistant', `<div class="spinner"></div> <span style="color:var(--text-secondary)">${loadingMessages[currentMode]}</span>`, true);
 
+            let responseText = '';
+            let success = false;
+
             try {
                 switch(currentMode) {
                     case 'web':
-                        await handleWebSearch(query);
+                        responseText = await handleWebSearch(query);
                         break;
                     case 'lydian-iq':
-                        await handleLydianIQ(query);
+                        responseText = await handleLydianIQ(query);
                         break;
                     case 'connector':
-                        await handleConnector(query);
+                        responseText = await handleConnector(query);
                         break;
                 }
+                success = true;
             } catch (error) {
                 console.error(error);
                 removeLastMessage();
                 addMessage('assistant', `<div style="padding:16px;background:var(--bg-tertiary);color:var(--gold-medium);border-radius:12px;border:1px solid var(--border-gold)">❌ ${error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.'}</div>`);
+                responseText = error.message || 'Error occurred';
             } finally {
                 searchBtn.disabled = false;
+
+                // Track completion
+                const responseTime = Date.now() - startTime;
+                if (window.lydianAnalytics) {
+                    window.lydianAnalytics.trackSearch(currentMode, query, responseTime, success);
+                }
+
+                // Save to chat history
+                if (success && window.lydianChatHistory) {
+                    window.lydianChatHistory.saveMessage(currentMode, query, responseText);
+                }
             }
         }
 
@@ -3837,6 +3865,7 @@
             const lowerQuery = query.toLowerCase();
             let connectorType = 'general';
             let connectorName = 'Unknown';
+            let detectedCountry = 'Türkiye';
 
             // Detect tracking number
             const trackingMatch = query.match(/\d{10,15}/);
@@ -3852,6 +3881,11 @@
             } else if (lowerQuery.includes('kredi') || lowerQuery.includes('loan')) {
                 connectorType = 'finance';
                 connectorName = 'Finans';
+            }
+
+            // Track connector usage
+            if (window.lydianAnalytics) {
+                window.lydianAnalytics.trackConnectorUsage(connectorName, detectedCountry);
             }
 
             const html = `
@@ -3911,6 +3945,9 @@
                 </div>
             `;
             addMessage('assistant', html);
+
+            // Return response for history
+            return `${connectorName} connector çalıştırıldı: ${query}`;
         }
 
         // Actions
@@ -4263,72 +4300,38 @@
             }, 2500);
         }
 
-        // Premium Connectors Data - Organized by Region
-        const connectorsData = {
-            'Türkiye': {
-                icon: '🇹🇷',
-                categories: {
-                    'E-Ticaret': ['Trendyol', 'Hepsiburada', 'N11', 'Temu', 'Sahibinden', 'Arabam'],
-                    'Kargo': ['Aras', 'Yurtiçi', 'Hepsijet', 'MNG', 'Sürat', 'UPS'],
-                    'Yemek': ['Getir', 'Yemeksepeti', 'Trendyol Yemek'],
-                    'Market': ['Migros', 'CarrefourSA', 'A101', 'BİM', 'ŞOK'],
-                    'Finans & Seyahat': ['Hangikredi', 'Jollytur', 'Enuygun', 'Trivago']
+        // Premium Connectors Data - Loaded from JSON
+        let connectorsData = {};
+
+        // Load connector data on page load
+        async function loadConnectorData() {
+            try {
+                if (window.lydianConnectorLoader) {
+                    const data = await window.lydianConnectorLoader.load();
+                    connectorsData = data.countries || {};
+                    console.log('✅ Connector data loaded:', Object.keys(connectorsData).length, 'countries');
+                } else {
+                    console.warn('⚠️ Connector loader not available, using fallback');
+                    // Fallback data
+                    connectorsData = {
+                        'Türkiye': {
+                            icon: '🇹🇷',
+                            categories: {
+                                'E-Ticaret': ['Trendyol', 'Hepsiburada', 'N11'],
+                                'Kargo': ['Aras', 'Yurtiçi', 'MNG']
+                            }
+                        }
+                    };
                 }
-            },
-            'Azerbaycan': {
-                icon: '🇦🇿',
-                categories: {
-                    'E-Ticaret & Delivery': ['Tap.az', 'Turbo.az', 'Wolt AZ', 'Bolt Food AZ']
-                }
-            },
-            'Katar': {
-                icon: '🇶🇦',
-                categories: {
-                    'E-Ticaret & Food': ['Talabat QA', 'Snoonu', 'Carrefour QA', 'Lulu', 'Wolt QA']
-                }
-            },
-            'Suudi Arabistan': {
-                icon: '🇸🇦',
-                categories: {
-                    'E-Ticaret': ['Noon', 'Haraj'],
-                    'Food Delivery': ['HungerStation', 'Mrsool', 'Nana', 'Talabat SA']
-                }
-            },
-            'Kıbrıs': {
-                icon: '🇨🇾',
-                categories: {
-                    'E-Ticaret & Food': ['Bazaraki', 'Foody CY', 'Wolt CY', 'Alphamega', 'Deliveroo CY']
-                }
-            },
-            'Almanya': {
-                icon: '🇩🇪',
-                categories: {
-                    'E-Ticaret': ['Zalando', 'Otto'],
-                    'Food & Grocery': ['Lieferando', 'Rewe', 'Gorillas'],
-                    'Finans': ['Check24']
-                }
-            },
-            'Bulgaristan': {
-                icon: '🇧🇬',
-                categories: {
-                    'E-Ticaret': ['Emag BG', 'OLX BG']
-                }
-            },
-            'Avusturya': {
-                icon: '🇦🇹',
-                categories: {
-                    'E-Ticaret': ['Willhaben'],
-                    'Food & Grocery': ['Foodora AT', 'Billa', 'Gurkerl']
-                }
-            },
-            'Hollanda': {
-                icon: '🇳🇱',
-                categories: {
-                    'E-Ticaret': ['Bol.com', 'Coolblue', 'Marktplaats'],
-                    'Food & Grocery': ['Thuisbezorgd', 'Albert Heijn']
-                }
+            } catch (error) {
+                console.error('❌ Failed to load connector data:', error);
+                // Use empty fallback
+                connectorsData = {};
             }
-        };
+        }
+
+        // Initialize connector data
+        loadConnectorData();
 
         // Get connector type icon
         function getConnectorIcon(name) {
@@ -4408,7 +4411,7 @@
 
         // Populate Carousel Strip with Countries and Connectors
         function populateCarouselStrip(container) {
-            container.innerHTML = AilydianSanitizer.sanitizeHTML(''; // Clear existing content
+            container.innerHTML = ''; // Clear existing content
 
             let totalConnectors = 0;
 

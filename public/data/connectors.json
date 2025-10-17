@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-17",
+  "totalConnectors": 72,
+  "countries": {
+    "Türkiye": {
+      "icon": "🇹🇷",
+      "categories": {
+        "E-Ticaret": ["Trendyol", "Hepsiburada", "N11", "Temu", "Sahibinden", "Arabam"],
+        "Kargo": ["Aras", "Yurtiçi", "Hepsijet", "MNG", "Sürat", "UPS"],
+        "Yemek": ["Getir", "Yemeksepeti", "Trendyol Yemek"],
+        "Market": ["Migros", "CarrefourSA", "A101", "BİM", "ŞOK"],
+        "Finans & Seyahat": ["Hangikredi", "Jollytur", "Enuygun", "Trivago"]
+      }
+    },
+    "Azerbaycan": {
+      "icon": "🇦🇿",
+      "categories": {
+        "E-Ticaret & Delivery": ["Tap.az", "Turbo.az", "Wolt AZ", "Bolt Food AZ"]
+      }
+    },
+    "Katar": {
+      "icon": "🇶🇦",
+      "categories": {
+        "E-Ticaret & Food": ["Talabat QA", "Snoonu", "Carrefour QA", "Lulu", "Wolt QA"]
+      }
+    },
+    "Suudi Arabistan": {
+      "icon": "🇸🇦",
+      "categories": {
+        "E-Ticaret": ["Noon", "Haraj"],
+        "Food Delivery": ["HungerStation", "Mrsool", "Nana", "Talabat SA"]
+      }
+    },
+    "Kıbrıs": {
+      "icon": "🇨🇾",
+      "categories": {
+        "E-Ticaret & Food": ["Bazaraki", "Foody CY", "Wolt CY", "Alphamega", "Deliveroo CY"]
+      }
+    },
+    "Almanya": {
+      "icon": "🇩🇪",
+      "categories": {
+        "E-Ticaret": ["Zalando", "Otto"],
+        "Food & Grocery": ["Lieferando", "Rewe", "Gorillas"],
+        "Finans": ["Check24"]
+      }
+    },
+    "Bulgaristan": {
+      "icon": "🇧🇬",
+      "categories": {
+        "E-Ticaret": ["Emag BG", "OLX BG"]
+      }
+    },
+    "Avusturya": {
+      "icon": "🇦🇹",
+      "categories": {
+        "E-Ticaret": ["Willhaben"],
+        "Food & Grocery": ["Foodora AT", "Billa", "Gurkerl"]
+      }
+    },
+    "Hollanda": {
+      "icon": "🇳🇱",
+      "categories": {
+        "E-Ticaret": ["Bol.com", "Coolblue", "Marktplaats"],
+        "Food & Grocery": ["Thuisbezorgd", "Albert Heijn"]
+      }
+    }
+  }
+}
