@@ -3177,8 +3177,8 @@
             const modalConnectorGrid = document.getElementById('modalConnectorGrid');
 
             // Clear existing content
-            modalTabs.innerHTML = AilydianSanitizer.sanitizeHTML('';
-            modalConnectorGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            modalTabs.innerHTML = ''
+            modalConnectorGrid.innerHTML = ''
 
             // Get unique regions
             const regions = ['Tümü', ...new Set(allConnectors.map(c => c.region))];
@@ -3338,7 +3338,7 @@
         // Render Modal Connectors
         function renderModalConnectors(connectors) {
             const modalConnectorGrid = document.getElementById('modalConnectorGrid');
-            modalConnectorGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            modalConnectorGrid.innerHTML = ''
 
             connectors.forEach(connector => {
                 const item = document.createElement('div');
@@ -4025,7 +4025,7 @@
                 document.getElementById('mainContent').classList.remove('split-mode');
 
                 // Clear messages
-                messages.innerHTML = AilydianSanitizer.sanitizeHTML('';
+                messages.innerHTML = ''
 
                 // Focus search input
                 searchInput.focus();
