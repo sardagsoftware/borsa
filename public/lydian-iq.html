@@ -3191,7 +3191,7 @@
                 tabBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
                     <span>${region}</span>
                     <span class="modal-tab-badge">${count}</span>
-                `;
+                `);
                 tabBtn.onclick = () => filterModalConnectors(region, tabBtn);
                 modalTabs.appendChild(tabBtn);
             });
@@ -3352,7 +3352,7 @@
                     <div class="connector-name">${connector.name}</div>
                     <div class="connector-region">${connector.region} • ${connector.category}</div>
                     <div class="connector-status-badge">Active</div>
-                `;
+                `);
 
                 modalConnectorGrid.appendChild(item);
             });
@@ -3995,7 +3995,7 @@
                         </svg>
                         <span>Sil</span>
                     </button>
-                `;
+                `);
                 div.appendChild(actionsDiv);
             }
 
@@ -4429,7 +4429,7 @@
                     <span class="connector-country-icon">${data.icon}</span>
                     <span class="connector-country-name">${country}</span>
                     <span class="connector-country-count">${connectorCount}</span>
-                `;
+                `);
 
                 // Click handler to filter connectors by country (optional)
                 countryTab.onclick = () => {
@@ -4454,7 +4454,7 @@
                         chip.innerHTML = AilydianSanitizer.sanitizeHTML(`
                             <span class="connector-chip-icon">${getConnectorIcon(category)}</span>
                             <span class="connector-chip-name">${connectorName}</span>
-                        `;
+                        `);
 
                         // Click handler for connector
                         chip.onclick = () => {
