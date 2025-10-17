@@ -69,8 +69,8 @@ const PremiumIcons = {
     const svg = wrapper.querySelector('svg');
     if (svg) {
       svg.style.stroke = color;
-      svg.style.width = '32px';
-      svg.style.height = '32px';
+      svg.style.width = '24px';
+      svg.style.height = '24px';
       svg.style.strokeWidth = '1.5';
     }
     return wrapper;
