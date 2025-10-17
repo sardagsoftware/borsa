@@ -89,6 +89,12 @@ class ChatHistoryManager {
 
     saveMessage(mode, query, response) {
         try {
+            // Validate response
+            if (!response || typeof response !== 'string') {
+                console.warn('Invalid response provided to saveMessage:', typeof response);
+                return;
+            }
+
             const history = this.getHistory();
             const message = {
                 id: Date.now(),
