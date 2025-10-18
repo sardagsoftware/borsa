@@ -649,13 +649,22 @@ module.exports = async (req, res) => {
         return res.status(200).end();
     }
 
-    // ✅ FIXED: Direct call without middlewares for now (will add back with proper fix)
-    // Beyaz Şapkalı: Middlewares will be re-enabled after confirming API works
+    // ✅ Re-enabled: Security middlewares with proper composition (Beyaz Şapkalı)
+    // Middleware chain: CSRF → Rate Limit → Input Validation → Handler
     try {
-        await handleRequest(req, res);
+        await csrfMiddleware(req, res, async () => {
+            await rateLimitMiddleware(req, res, async () => {
+                await inputValidationMiddleware(req, res, async () => {
+                    await handleRequest(req, res);
+                });
+            });
+        });
     } catch (error) {
-        console.error('[Handler Error]', error);
-        res.status(500).json(getGenericError('Sunucu hatası. Lütfen daha sonra tekrar deneyin.'));
+        console.error('[Middleware/Handler Error]', error);
+        // Beyaz Şapkalı: Generic error message
+        if (!res.headersSent) {
+            res.status(500).json(getGenericError('Sunucu hatası. Lütfen daha sonra tekrar deneyin.'));
+        }
     }
 };
 
