@@ -12,7 +12,7 @@
     "next": "^14.2.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.17.1",
     "@ailydian/ai-adapters": "workspace:*",
     "@ailydian/ai-routing": "workspace:*",
     "@ailydian/ai-rag": "workspace:*",
