@@ -182,9 +182,16 @@
         /* Modules Grid */
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+        }
+
+        @media (max-width: 480px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         /* Module Card */
@@ -261,6 +268,9 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
         }
 
         .module-subtitle {
@@ -268,6 +278,8 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .module-description {
@@ -316,6 +328,7 @@
         .module-actions {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -478,8 +491,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
             .header h1 {
                 font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.125rem;
             }
 
             .modules-grid {
@@ -488,6 +509,99 @@
 
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .module-card {
+                padding: 1.5rem;
+            }
+
+            .module-title {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem 0.75rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .header-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .module-card {
+                padding: 1.25rem;
+            }
+
+            .module-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .module-title {
+                font-size: 1.125rem;
+            }
+
+            .module-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .module-description {
+                font-size: 0.875rem;
+            }
+
+            .module-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.875rem 1.25rem;
+            }
+
+            .btn-primary {
+                flex: none;
+            }
+
+            .stats-bar {
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .quick-actions {
+                padding: 1.5rem;
+            }
+
+            .quick-actions-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .quick-action-btn {
+                padding: 1rem;
+            }
+
+            .quick-action-btn i {
+                font-size: 1.5rem;
             }
         }
 
