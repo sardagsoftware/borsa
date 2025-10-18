@@ -53,7 +53,7 @@ function getAIConfig() {
         groq: {
             apiKey: process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY || '',
             endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-            model: 'llama-3.1-70b-versatile', // Valid Groq model
+            model: 'llama-3.3-70b-versatile', // ✅ UPDATED: Active Groq model (Oct 2025)
             maxTokens: 8000,
             defaultTemperature: 0.3,
             supportsRAG: false
