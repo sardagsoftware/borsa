@@ -4,6 +4,21 @@
  * Covers 195+ countries worldwide
  */
 
+/**
+ * Handle CORS for emergency numbers API
+ */
+function handleCORS(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return true;
+  }
+  return false;
+}
+
 module.exports = async (req, res) => {
   // Apply secure CORS
   if (handleCORS(req, res)) return;
@@ -26,7 +41,7 @@ module.exports = async (req, res) => {
       country: emergencyData.country,
       countryCode: countryCode,
       language: language,
-      emergencyNumbers: emergencyData.numbers,
+      numbers: emergencyData.numbers, // Changed from emergencyNumbers to numbers
       hospitals: emergencyData.hospitals || [],
       poisonControl: emergencyData.poisonControl || null,
       mentalHealth: emergencyData.mentalHealth || null,
