@@ -3149,7 +3149,10 @@ function updateChatTitle() {
         'psychiatry': 'Psychiatry',
         'orthopedics': 'Orthopedics'
     };
-    chatTitle.querySelector('span').textContent = specialtyNames[state.currentSpecialty] || 'Medical AI Expert';
+    const chatTitleSpan = chatTitle?.querySelector('span');
+    if (chatTitleSpan) {
+        chatTitleSpan.textContent = specialtyNames[state.currentSpecialty] || 'Medical AI Expert';
+    }
 }
 
 // Language Management
