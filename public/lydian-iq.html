@@ -1896,14 +1896,20 @@
             .top-bar-content {
                 padding: 0 16px;
                 gap: 12px;
+                justify-content: space-between;
+            }
+
+            .header-connectors {
+                flex: 0 1 auto;
+                max-width: none;
+            }
+
+            .top-actions {
+                flex-shrink: 0;
             }
 
             .header-brand {
                 font-size: 14px;
-            }
-
-            .header-connectors {
-                max-width: 400px;
             }
 
             .connector-toggle-btn {
@@ -1953,8 +1959,18 @@
             }
 
             .mode-chip {
-                padding: 8px 14px;
-                font-size: 12px;
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .mode-chip svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .search-modes {
+                gap: 6px;
+                margin-bottom: 16px;
             }
 
             .modal-connector-grid {
@@ -1996,12 +2012,23 @@
         }
 
         @media (max-width: 480px) {
+            .top-bar-content {
+                justify-content: space-between;
+                gap: 8px;
+            }
+
             .header-brand {
                 display: none;
             }
 
             .header-connectors {
+                flex: 0 1 auto;
                 max-width: none;
+            }
+
+            .top-actions {
+                flex-shrink: 0;
+                gap: 6px;
             }
 
             .connector-toggle-btn span:not(.connector-count) {
