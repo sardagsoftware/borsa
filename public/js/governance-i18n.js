@@ -14,13 +14,13 @@ const GovernanceI18n = {
     translations: {
         tr: {
             // Navigation
-            'nav.title': 'AI Yönetişim Merkezi',
+            'nav.title': 'LyDian AI Yönetim Merkezi',
             'nav.back': 'Geri',
             'nav.logout': 'Çıkış',
             'nav.demo_user': 'Demo Kullanıcı',
 
             // Dashboard
-            'dashboard.welcome': 'AI Yönetişime Hoş Geldiniz',
+            'dashboard.welcome': 'LyDian AI Yönetim Merkezi\'ne Hoş Geldiniz',
             'dashboard.subtitle': 'AI modellerini yönetin, uyumluluğu sağlayın ve güven skorlarını izleyin',
             'dashboard.total_models': 'Toplam Model',
             'dashboard.compliance_rate': 'Uyumluluk Oranı',
@@ -47,10 +47,10 @@ const GovernanceI18n = {
             'stats.leaderboard_desc': 'Güven skoruna göre sıralanan en iyi modeller',
             'stats.go_to_leaderboard': 'Liderlik Tablosuna Git',
             'stats.api_docs': 'API Dokümantasyonu',
-            'stats.api_desc': 'Yönetişim API\'leri için geliştirici referansı',
+            'stats.api_desc': 'Yönetim API\'leri için geliştirici referansı',
             'stats.view_docs': 'Dokümanları Görüntüle',
             'stats.audit_logs': 'Denetim Günlükleri',
-            'stats.audit_desc': 'Tüm yönetişim işlemlerini ve değişikliklerini takip edin',
+            'stats.audit_desc': 'Tüm yönetim işlemlerini ve değişikliklerini takip edin',
             'stats.view_logs': 'Günlükleri Görüntüle',
 
             // Recent Activity
