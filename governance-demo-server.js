@@ -19,11 +19,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const complianceAPI = require('../ailydian-ultra-pro/api/governance/compliance');
 const trustIndexAPI = require('../ailydian-ultra-pro/api/governance/trust-index');
 const emergencyAPI = require('../ailydian-ultra-pro/api/governance/emergency');
+const modelsAPI = require('../ailydian-ultra-pro/api/governance/models/index');
 
 // Mount governance routes
 app.use('/api/governance/compliance', complianceAPI);
 app.use('/api/governance/trust-index', trustIndexAPI);
 app.use('/api/governance/emergency', emergencyAPI);
+app.use('/api/governance/models', modelsAPI);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -47,6 +49,8 @@ app.listen(PORT, () => {
   console.log(`📍 Dashboard: http://localhost:${PORT}`);
   console.log(`🔍 Health:    http://localhost:${PORT}/health`);
   console.log('\n📊 API Endpoints:');
+  console.log(`   GET  http://localhost:${PORT}/api/governance/models`);
+  console.log(`   POST http://localhost:${PORT}/api/governance/models/register`);
   console.log(`   GET  http://localhost:${PORT}/api/governance/compliance/frameworks`);
   console.log(`   POST http://localhost:${PORT}/api/governance/compliance/validate`);
   console.log(`   GET  http://localhost:${PORT}/api/governance/trust-index/stats`);
