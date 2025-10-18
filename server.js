@@ -17522,10 +17522,16 @@ app.use('/api/neuro/digital-twin', neuroDigitalTwin);
 const complianceAPI = require('./api/governance/compliance');
 const trustIndexAPI = require('./api/governance/trust-index');
 const emergencyAPI = require('./api/governance/emergency');
+const governanceAuthLogin = require('./api/governance/auth/login');
+const governanceAuthRegister = require('./api/governance/auth/register');
+const governanceModels = require('./api/governance/models/index');
 
 app.use('/api/governance/compliance', complianceAPI);
 app.use('/api/governance/trust-index', trustIndexAPI);
 app.use('/api/governance/emergency', emergencyAPI);
+app.use('/api/governance/auth/login', governanceAuthLogin);
+app.use('/api/governance/auth/register', governanceAuthRegister);
+app.use('/api/governance/models', governanceModels);
 app.use('/api/neuro/clinician-portal', neuroClinicianPortal);
 
 // 🔬 Medical AI APIs with Token Governor Integration
