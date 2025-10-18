@@ -759,6 +759,13 @@ async function handleRequest(req, res) {
 
         let result;
 
+        // 🔍 DEBUG: Check API key availability
+        console.log('🔑 API Key Status:');
+        console.log(`   GROQ: ${process.env.GROQ_API_KEY ? process.env.GROQ_API_KEY.substring(0, 8) + '... (' + process.env.GROQ_API_KEY.length + ' chars)' : 'MISSING'}`);
+        console.log(`   ANTHROPIC: ${process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.substring(0, 8) + '... (' + process.env.ANTHROPIC_API_KEY.length + ' chars)' : 'MISSING'}`);
+        console.log(`   OPENAI: ${process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 8) + '... (' + process.env.OPENAI_API_KEY.length + ' chars)' : 'MISSING'}`);
+        console.log(`   AI_CONFIG.groq.apiKey: ${AI_CONFIG.groq.apiKey ? AI_CONFIG.groq.apiKey.substring(0, 8) + '... (' + AI_CONFIG.groq.apiKey.length + ' chars)' : 'EMPTY'}`);
+
         // Multi-Provider AI Strategy: Fast → Secondary → Primary → Demo
         // With retry mechanism for network errors
         try {
@@ -779,7 +786,10 @@ async function handleRequest(req, res) {
             }
             // No API keys available
             else {
-                console.log('ℹ️ No valid API keys configured, using demo mode');
+                console.log('❌ No valid API keys configured, using demo mode');
+                console.log(`   groq.apiKey length: ${AI_CONFIG.groq.apiKey?.length || 0}`);
+                console.log(`   openai.apiKey length: ${AI_CONFIG.openai.apiKey?.length || 0}`);
+                console.log(`   anthropic.apiKey length: ${AI_CONFIG.anthropic.apiKey?.length || 0}`);
                 result = generateFallbackResponse(enhancedProblem, domain, language);
             }
         } catch (apiError) {
