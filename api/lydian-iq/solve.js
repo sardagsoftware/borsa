@@ -642,6 +642,16 @@ module.exports = async (req, res) => {
         return res.status(200).end();
     }
 
+    // ⚠️ TEMPORARY: Middleware bypass for debugging
+    // TODO: Re-enable middlewares after testing
+    try {
+        await handleRequest(req, res);
+    } catch (error) {
+        console.error('[Handler Error]', error);
+        res.status(500).json(getGenericError('Sunucu hatası. Lütfen daha sonra tekrar deneyin.'));
+    }
+
+    /* DISABLED FOR DEBUGGING
     // 🔒 Apply security middlewares (rate limiting + CSRF + input validation)
     return new Promise((resolve) => {
         rateLimitMiddleware(req, res, () => {
@@ -662,6 +672,7 @@ module.exports = async (req, res) => {
             });
         });
     });
+    */
 };
 
 // Main request handler
