@@ -31,6 +31,8 @@ model User {
   sessions      Session[]
   preferences   UserPreference?
   wallets       Wallet[]
+  governanceModels GovernanceModel[]
+  governanceAuditLogs GovernanceAuditLog[]
 
   @@index([email])
   @@index([tenantId])
@@ -689,4 +691,148 @@ enum IncidentStatus {
   INVESTIGATING
   RESOLVED
   CLOSED
+}
+
+// ============================================================================
+// AI GOVERNANCE (ACE - AI Compliance Engine)
+// ============================================================================
+
+model GovernanceModel {
+  id            String   @id @default(uuid())
+  name          String
+  version       String
+  description   String?  @db.Text
+  provider      String
+  status        GovernanceModelStatus @default(ACTIVE)
+  metadata      Json?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  ownerId       String
+  owner         User     @relation(fields: [ownerId], references: [id])
+
+  complianceChecks  ComplianceCheck[]
+  trustIndices      TrustIndex[]
+  killSwitches      KillSwitch[]
+  circuitBreakers   CircuitBreaker[]
+  governanceAuditLogs GovernanceAuditLog[]
+
+  @@index([ownerId])
+  @@index([status])
+  @@index([provider])
+  @@index([createdAt])
+}
+
+enum GovernanceModelStatus {
+  DRAFT
+  TESTING
+  ACTIVE
+  DEPRECATED
+  ARCHIVED
+}
+
+model ComplianceCheck {
+  id            String   @id @default(uuid())
+  modelId       String
+  model         GovernanceModel  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  framework     String   // GDPR, HIPAA, CCPA, SOC2
+  score         Int
+  compliant     Boolean
+  results       Json
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([modelId])
+  @@index([framework])
+  @@index([compliant])
+  @@index([createdAt])
+}
+
+model TrustIndex {
+  id                 String   @id @default(uuid())
+  modelId            String
+  model              GovernanceModel  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  globalScore        Float
+  tier               String   // PLATINUM, GOLD, SILVER, BRONZE, UNVERIFIED
+  transparency       Float
+  accountability     Float
+  fairness           Float
+  privacy            Float
+  robustness         Float
+
+  calculatedAt       DateTime @default(now())
+  expiresAt          DateTime
+
+  @@index([modelId])
+  @@index([tier])
+  @@index([globalScore])
+  @@index([calculatedAt])
+}
+
+model KillSwitch {
+  id            String   @id @default(uuid())
+  modelId       String
+  model         GovernanceModel  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  status        KillSwitchStatus
+  reason        String   @db.Text
+  triggeredBy   String
+
+  triggeredAt   DateTime @default(now())
+  deactivatedAt DateTime?
+  updatedAt     DateTime @updatedAt
+
+  @@index([modelId])
+  @@index([status])
+  @@index([triggeredAt])
+}
+
+enum KillSwitchStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model CircuitBreaker {
+  id            String   @id @default(uuid())
+  modelId       String
+  model         GovernanceModel  @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  name          String
+  threshold     Int
+  windowMs      Int
+  failureCount  Int      @default(0)
+  state         CircuitBreakerState
+  trips         Json     @default("[]")
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([modelId])
+  @@index([state])
+  @@index([createdAt])
+}
+
+enum CircuitBreakerState {
+  CLOSED
+  OPEN
+  HALF_OPEN
+}
+
+model GovernanceAuditLog {
+  id        String   @id @default(uuid())
+  modelId   String?
+  model     GovernanceModel? @relation(fields: [modelId], references: [id])
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  resource  String
+  details   Json
+  ipAddress String?
+  userAgent String?
+
+  timestamp DateTime @default(now())
+
+  @@index([modelId])
+  @@index([userId])
+  @@index([action])
+  @@index([timestamp])
 }
