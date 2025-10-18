@@ -693,7 +693,10 @@
          * Initialize page
          */
         async function initPage() {
-            if (!AuthManager.isAuthenticated()) {
+            // DEMO MODE: Allow access without authentication
+            const DEMO_MODE = true; // Set to false in production
+
+            if (!AuthManager.isAuthenticated() && !DEMO_MODE) {
                 window.location.href = '/auth.html';
                 return;
             }
