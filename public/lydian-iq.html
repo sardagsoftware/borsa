@@ -83,6 +83,13 @@
             overflow-x: hidden;
         }
 
+        /* Prevent body scroll when modal is open */
+        body.modal-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
         /* Top Bar - Black Neon Style */
         .top-bar {
             position: fixed;
@@ -1661,13 +1668,38 @@
         .modal-content {
             padding: 32px;
             overflow-y: auto;
+            overflow-x: hidden;
             flex: 1;
+            max-height: calc(90vh - 250px); /* Modal height - header - tabs */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+        }
+
+        /* Custom scrollbar for modal content */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--border-gold);
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-medium);
         }
 
         .modal-connector-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
+            padding-bottom: 20px; /* Prevent last row cut-off */
         }
 
         .modal-connector-item {
@@ -1937,10 +1969,17 @@
                 font-size: 20px;
             }
 
-            .modal-search-wrapper,
-            .modal-tabs,
-            .modal-content {
+            .modal-search-wrapper {
                 padding: 16px 20px;
+            }
+
+            .modal-tabs {
+                padding: 0 50px; /* Reduced padding for mobile */
+            }
+
+            .modal-content {
+                padding: 20px;
+                max-height: calc(90vh - 280px); /* Adjusted for mobile */
             }
 
             /* Premium Action Buttons - Mobile */
@@ -2009,6 +2048,15 @@
 
             .modal-tabs {
                 padding: 0 45px;
+            }
+
+            .modal-content {
+                padding: 16px;
+                max-height: calc(90vh - 300px); /* Adjusted for small mobile */
+            }
+
+            .modal-connector-grid {
+                gap: 12px; /* Tighter spacing on small screens */
             }
         }
 
@@ -3165,8 +3213,10 @@
 
             if (isActive) {
                 modal.classList.remove('active');
+                document.body.classList.remove('modal-open'); // ✅ Remove body scroll lock
             } else {
                 modal.classList.add('active');
+                document.body.classList.add('modal-open'); // ✅ Prevent body scroll
                 initializeModalContent();
             }
         }
