@@ -12,53 +12,59 @@
 const aiObfuscator = require('../../lib/security/ai-obfuscator');
 
 // LyDian IQ Configuration - Multi-Provider with RAG (Obfuscated)
-const AI_CONFIG = {
-    // Priority 1: Azure Enterprise AI (Enterprise Deep Thinking)
-    azure: {
-        apiKey: process.env.AZURE_OPENAI_API_KEY || process.env.SECONDARY_AI_KEY || '',
-        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/advanced-reasoning-model` : '',
-        model: 'advanced-reasoning-model',
-        maxTokens: 8192,
-        defaultTemperature: 0.3,
-        apiVersion: '2024-02-01',
-        supportsRAG: true
-    },
-    // Priority 2: Primary AI Provider (Best for reasoning)
-    anthropic: {
-        apiKey: process.env.ANTHROPIC_API_KEY || process.env.PRIMARY_AI_KEY || '',
-        endpoint: aiObfuscator.resolveEndpoint('PRIMARY_ENDPOINT'),
-        model: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
-        maxTokens: 8192,
-        defaultTemperature: 0.3,
-        supportsRAG: false
-    },
-    // Priority 3: Secondary AI Provider
-    openai: {
-        apiKey: process.env.OPENAI_API_KEY || process.env.SECONDARY_AI_KEY || '',
-        endpoint: aiObfuscator.resolveEndpoint('SECONDARY_ENDPOINT'),
-        model: aiObfuscator.resolveModel('CONVERSATIONAL_AI_ALPHA'),
-        maxTokens: 4096,
-        defaultTemperature: 0.3,
-        supportsRAG: false
-    },
-    // Priority 4: Fast Response Provider (Ultra-Fast)
-    groq: {
-        apiKey: process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY || '',
-        endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: 'rapid-language-model',
-        maxTokens: 8000,
-        defaultTemperature: 0.3,
-        supportsRAG: false
-    },
-    // Azure Cognitive Search (RAG)
-    azureSearch: {
-        endpoint: process.env.AZURE_SEARCH_ENDPOINT || '',
-        apiKey: process.env.AZURE_SEARCH_KEY || '',
-        indexName: 'lydian-iq-knowledge',
-        enabled: !!(process.env.AZURE_SEARCH_ENDPOINT && process.env.AZURE_SEARCH_KEY)
-    },
-    timeout: 60000 // 60 seconds
-};
+// FIXED: Lazy initialization to ensure env vars are available in Vercel serverless
+function getAIConfig() {
+    return {
+        // Priority 1: Azure Enterprise AI (Enterprise Deep Thinking)
+        azure: {
+            apiKey: process.env.AZURE_OPENAI_API_KEY || process.env.SECONDARY_AI_KEY || '',
+            endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/advanced-reasoning-model` : '',
+            model: 'advanced-reasoning-model',
+            maxTokens: 8192,
+            defaultTemperature: 0.3,
+            apiVersion: '2024-02-01',
+            supportsRAG: true
+        },
+        // Priority 2: Primary AI Provider (Best for reasoning)
+        anthropic: {
+            apiKey: process.env.ANTHROPIC_API_KEY || process.env.PRIMARY_AI_KEY || '',
+            endpoint: aiObfuscator.resolveEndpoint('PRIMARY_ENDPOINT'),
+            model: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
+            maxTokens: 8192,
+            defaultTemperature: 0.3,
+            supportsRAG: false
+        },
+        // Priority 3: Secondary AI Provider
+        openai: {
+            apiKey: process.env.OPENAI_API_KEY || process.env.SECONDARY_AI_KEY || '',
+            endpoint: aiObfuscator.resolveEndpoint('SECONDARY_ENDPOINT'),
+            model: aiObfuscator.resolveModel('CONVERSATIONAL_AI_ALPHA'),
+            maxTokens: 4096,
+            defaultTemperature: 0.3,
+            supportsRAG: false
+        },
+        // Priority 4: Fast Response Provider (Ultra-Fast)
+        groq: {
+            apiKey: process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY || '',
+            endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+            model: 'llama-3.1-70b-versatile', // FIXED: Valid Groq model name
+            maxTokens: 8000,
+            defaultTemperature: 0.3,
+            supportsRAG: false
+        },
+        // Azure Cognitive Search (RAG)
+        azureSearch: {
+            endpoint: process.env.AZURE_SEARCH_ENDPOINT || '',
+            apiKey: process.env.AZURE_SEARCH_KEY || '',
+            indexName: 'lydian-iq-knowledge',
+            enabled: !!(process.env.AZURE_SEARCH_ENDPOINT && process.env.AZURE_SEARCH_KEY)
+        },
+        timeout: 60000 // 60 seconds
+    };
+}
+
+// Legacy constant for backward compatibility (will be removed in future)
+const AI_CONFIG = getAIConfig();
 
 // Language response mapping - CRITICAL: AI must respond in selected language
 const LANGUAGE_PROMPTS = {
@@ -193,11 +199,12 @@ async function analyzeImageWithVision(imageBase64, prompt, language) {
             : `Analyze this image in detail and answer: ${prompt}`;
 
         // Call Vision AI Model
+        const CONFIG = getAIConfig(); // Get fresh config for vision API
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AI_CONFIG.openai.apiKey}`
+                'Authorization': `Bearer ${CONFIG.openai.apiKey}`
             },
             body: JSON.stringify({
                 model: 'vision-analysis-model',
@@ -313,9 +320,10 @@ function cleanSolution(text) {
 }
 
 // Call Anthropic Claude API (Primary)
-async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) {
+async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig(); // Use provided config or get fresh one
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
-    const config = AI_CONFIG.anthropic;
+    const config = CONFIG.anthropic;
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
@@ -345,7 +353,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
                 'anthropic-version': '2023-06-01'
             },
             body: JSON.stringify(requestBody),
-            timeout: AI_CONFIG.timeout
+            timeout: CONFIG.timeout
         });
 
         if (!response.ok) {
@@ -386,9 +394,10 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
 }
 
 // Call OpenAI API (Fallback)
-async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) {
+async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig(); // Use provided config or get fresh one
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
-    const config = AI_CONFIG.openai;
+    const config = CONFIG.openai;
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
@@ -420,7 +429,7 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
                 'Authorization': `Bearer ${config.apiKey}`
             },
             body: JSON.stringify(requestBody),
-            timeout: AI_CONFIG.timeout
+            timeout: CONFIG.timeout
         });
 
         if (!response.ok) {
@@ -461,9 +470,10 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
 }
 
 // Call Groq API (Ultra-Fast)
-async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
+async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig(); // Use provided config or get fresh one
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
-    const config = AI_CONFIG.groq;
+    const config = CONFIG.groq;
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
@@ -495,7 +505,7 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
                 'Authorization': `Bearer ${config.apiKey}`
             },
             body: JSON.stringify(requestBody),
-            timeout: AI_CONFIG.timeout
+            timeout: CONFIG.timeout
         });
 
         if (!response.ok) {
@@ -759,37 +769,40 @@ async function handleRequest(req, res) {
 
         let result;
 
+        // 🔧 Get fresh config at request time (fixes Vercel env var issues)
+        const CONFIG = getAIConfig();
+
         // 🔍 DEBUG: Check API key availability
-        console.log('🔑 API Key Status:');
+        console.log('🔑 API Key Status (Request Time):');
         console.log(`   GROQ: ${process.env.GROQ_API_KEY ? process.env.GROQ_API_KEY.substring(0, 8) + '... (' + process.env.GROQ_API_KEY.length + ' chars)' : 'MISSING'}`);
         console.log(`   ANTHROPIC: ${process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.substring(0, 8) + '... (' + process.env.ANTHROPIC_API_KEY.length + ' chars)' : 'MISSING'}`);
         console.log(`   OPENAI: ${process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 8) + '... (' + process.env.OPENAI_API_KEY.length + ' chars)' : 'MISSING'}`);
-        console.log(`   AI_CONFIG.groq.apiKey: ${AI_CONFIG.groq.apiKey ? AI_CONFIG.groq.apiKey.substring(0, 8) + '... (' + AI_CONFIG.groq.apiKey.length + ' chars)' : 'EMPTY'}`);
+        console.log(`   CONFIG.groq.apiKey: ${CONFIG.groq.apiKey ? CONFIG.groq.apiKey.substring(0, 8) + '... (' + CONFIG.groq.apiKey.length + ' chars)' : 'EMPTY'}`);
 
         // Multi-Provider AI Strategy: Fast → Secondary → Primary → Demo
         // With retry mechanism for network errors
         try {
             // Try Fast Response first (ultra-fast & valid key)
-            if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20 && !AI_CONFIG.groq.apiKey.includes('YOUR_')) {
+            if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')) {
                 console.log('🎯 Strategy: Using Fast Response AI (Primary - Valid Key) with retry');
-                result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options));
+                result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
             }
             // Fallback to Secondary AI
-            else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20 && !AI_CONFIG.openai.apiKey.includes('YOUR_')) {
+            else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20 && !CONFIG.openai.apiKey.includes('YOUR_')) {
                 console.log('🎯 Strategy: Using Secondary AI (Fallback - Valid Key) with retry');
-                result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options));
+                result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
             }
             // Try Primary AI (if key is valid)
-            else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20 && !AI_CONFIG.anthropic.apiKey.includes('YOUR_')) {
+            else if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
                 console.log('🎯 Strategy: Using Primary AI (Tertiary - Valid Key) with retry');
-                result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options));
+                result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
             }
             // No API keys available
             else {
                 console.log('❌ No valid API keys configured, using demo mode');
-                console.log(`   groq.apiKey length: ${AI_CONFIG.groq.apiKey?.length || 0}`);
-                console.log(`   openai.apiKey length: ${AI_CONFIG.openai.apiKey?.length || 0}`);
-                console.log(`   anthropic.apiKey length: ${AI_CONFIG.anthropic.apiKey?.length || 0}`);
+                console.log(`   groq.apiKey length: ${CONFIG.groq.apiKey?.length || 0}`);
+                console.log(`   openai.apiKey length: ${CONFIG.openai.apiKey?.length || 0}`);
+                console.log(`   anthropic.apiKey length: ${CONFIG.anthropic.apiKey?.length || 0}`);
                 result = generateFallbackResponse(enhancedProblem, domain, language);
             }
         } catch (apiError) {
@@ -797,12 +810,12 @@ async function handleRequest(req, res) {
 
             // Try fallback providers (also with retry)
             try {
-                if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20) {
+                if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20) {
                     console.log('🔄 Fallback: Trying Secondary AI with retry...');
-                    result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options));
-                } else if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 20) {
+                    result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
+                } else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20) {
                     console.log('🔄 Fallback: Trying Fast Response AI with retry...');
-                    result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options));
+                    result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
                 } else {
                     throw new Error('All AI providers failed');
                 }

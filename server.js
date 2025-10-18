@@ -17517,6 +17517,15 @@ app.use('/api/neuro/imaging-analysis', neuroImagingAnalysis);
 app.use('/api/neuro/health-index', neuroHealthIndex);
 app.use('/api/neuro/risk-assessment', neuroRiskAssessment);
 app.use('/api/neuro/digital-twin', neuroDigitalTwin);
+
+// 🛡️ AI GOVERNANCE & COMPLIANCE (ACE - AI Compliance Engine)
+const complianceAPI = require('./api/governance/compliance');
+const trustIndexAPI = require('./api/governance/trust-index');
+const emergencyAPI = require('./api/governance/emergency');
+
+app.use('/api/governance/compliance', complianceAPI);
+app.use('/api/governance/trust-index', trustIndexAPI);
+app.use('/api/governance/emergency', emergencyAPI);
 app.use('/api/neuro/clinician-portal', neuroClinicianPortal);
 
 // 🔬 Medical AI APIs with Token Governor Integration

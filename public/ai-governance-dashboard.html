@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Yönetişim Kontrol Paneli - AILydian ACE</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(16, 163, 127, 0.3);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1.2em;
+        }
+
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 8px 15px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .lang-switcher:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Premium Introduction Section */
+        .intro-section {
+            background: rgba(16, 163, 127, 0.05);
+            border: 1px solid rgba(16, 163, 127, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .intro-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-title {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .intro-description {
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid #10A37F;
+        }
+
+        .feature-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 163, 127, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            color: #aaa;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(16, 163, 127, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 163, 127, 0.6);
+            box-shadow: 0 10px 30px rgba(16, 163, 127, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.2), rgba(0, 217, 255, 0.2));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .metric-label {
+            color: #aaa;
+            font-size: 0.95em;
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .badge-platinum {
+            background: linear-gradient(135deg, #E5E4E2, #FFFFFF);
+            color: #000;
+        }
+
+        .badge-gold {
+            background: linear-gradient(135deg, #FFD700, #FFED4E);
+            color: #000;
+        }
+
+        .badge-silver {
+            background: linear-gradient(135deg, #C0C0C0, #E8E8E8);
+            color: #000;
+        }
+
+        .badge-bronze {
+            background: linear-gradient(135deg, #CD7F32, #E9B872);
+            color: #000;
+        }
+
+        .badge-pass {
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            color: #fff;
+        }
+
+        .badge-fail {
+            background: linear-gradient(135deg, #FF4444, #FF6B6B);
+            color: #fff;
+        }
+
+        .framework-list {
+            list-style: none;
+        }
+
+        .framework-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #10A37F;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .framework-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .framework-region {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active {
+            background: #10A37F;
+        }
+
+        .status-warning {
+            background: #FFA500;
+        }
+
+        .status-error {
+            background: #FF4444;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(16, 163, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #10A37F;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .emergency-log {
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .log-entry {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9em;
+        }
+
+        .log-time {
+            color: #888;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <span id="lang-text">English</span>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 id="main-title">AI Yönetişim Kontrol Paneli</h1>
+            <p class="subtitle" id="subtitle">ACE - AI Uyumluluk Motoru | AILydian Ultra Pro</p>
+        </header>
+
+        <!-- Premium Introduction -->
+        <div class="intro-section">
+            <div class="intro-header">
+                <div class="intro-icon">
+                    <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="intro-title" id="intro-title">Kurumsal AI Yönetişim ve Uyumluluk Platformu</div>
+                </div>
+            </div>
+
+            <p class="intro-description" id="intro-desc">
+                AI Yönetişim Kontrol Paneli, yapay zeka modellerinizin uluslararası standartlara uyumluluğunu garanti altına alan,
+                kurumsal düzeyde güvenlik ve şeffaflık sağlayan profesyonel bir yönetim sistemidir. GDPR, HIPAA, CCPA ve SOC2
+                gibi kritik uyumluluk çerçevelerini otomatik olarak izler, güven indeksi hesaplar ve acil durum senaryolarında
+                anında müdahale imkanı sunar.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title" id="feature1-title">Çok Çerçeveli Uyumluluk</div>
+                    <div class="feature-desc" id="feature1-desc">
+                        GDPR, HIPAA, CCPA ve SOC2 standartlarına otomatik uyumluluk kontrolü.
+                        Her model için detaylı raporlama ve risk değerlendirmesi.
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2">
+                            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title" id="feature2-title">Güven İndeksi Sistemi</div>
+                    <div class="feature-desc" id="feature2-desc">
+                        5 boyutlu (şeffaflık, hesap verebilirlik, adillik, gizlilik, dayanıklılık)
+                        güven skorlama sistemi ile modellerinizi kıyaslayın.
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4l3 3"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title" id="feature3-title">Gerçek Zamanlı İzleme</div>
+                    <div class="feature-desc" id="feature3-desc">
+                        AI modellerinizin performansını ve uyumluluk durumunu anlık olarak
+                        takip edin. Anında bildirim ve raporlama.
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2">
+                            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title" id="feature4-title">Acil Durum Kontrolü</div>
+                    <div class="feature-desc" id="feature4-desc">
+                        Kill-switch ve devre kesici mekanizmaları ile riskli modelleri
+                        anında devre dışı bırakın. Tam denetim kaydı.
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2">
+                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title" id="feature5-title">Otomatik Raporlama</div>
+                    <div class="feature-desc" id="feature5-desc">
+                        Düzenleyici kurumlara sunabileceğiniz profesyonel uyumluluk
+                        raporları ve sertifikasyon desteği.
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18"/>
+                            <path d="M9 21V9"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title" id="feature6-title">API Entegrasyonu</div>
+                    <div class="feature-desc" id="feature6-desc">
+                        RESTful API ile mevcut sistemlerinize kolayca entegre edin.
+                        Webhook ve otomatik bildirim desteği.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Compliance Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div class="card-title" id="compliance-title">Uyumluluk Çerçeveleri</div>
+                </div>
+                <div id="compliance-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <span id="loading-compliance">Uyumluluk verileri yükleniyor...</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="runComplianceCheck()">
+                        <span id="btn-validate">Model Doğrula</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="refreshCompliance()">
+                        <span id="btn-refresh">Yenile</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Trust Index Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <div class="card-title" id="trust-title">Güven İndeksi</div>
+                </div>
+                <div id="trust-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <span id="loading-trust">Güven metrikleri yükleniyor...</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="calculateTrust()">
+                        <span id="btn-calculate">Güven Hesapla</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="refreshTrust()">
+                        <span id="btn-refresh-trust">Yenile</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Emergency Controls Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div class="card-title" id="emergency-title">Acil Durum Kontrolleri</div>
+                </div>
+                <div id="emergency-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <span id="loading-emergency">Acil durum durumu yükleniyor...</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="activateKillSwitch()">
+                        <span id="btn-killswitch">Kill Switch Aktifleştir</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="refreshEmergency()">
+                        <span id="btn-refresh-emergency">Yenile</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Endpoints Info -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <div class="card-header">
+                <div class="card-icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M3 9h18"/>
+                        <path d="M9 21V9"/>
+                    </svg>
+                </div>
+                <div class="card-title" id="api-title">Kullanılabilir API Bağlantı Noktaları</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                <div class="framework-item">
+                    <div class="framework-name" id="api-compliance">Uyumluluk</div>
+                    <div class="framework-region">GET /api/governance/compliance/frameworks</div>
+                    <div class="framework-region">POST /api/governance/compliance/validate</div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-name" id="api-trust">Güven İndeksi</div>
+                    <div class="framework-region">GET /api/governance/trust-index/stats</div>
+                    <div class="framework-region">POST /api/governance/trust-index/calculate</div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-name" id="api-emergency">Acil Durum</div>
+                    <div class="framework-region">GET /api/governance/emergency/status</div>
+                    <div class="framework-region">POST /api/governance/emergency/kill-switch</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // i18n Language System
+        const translations = {
+            tr: {
+                mainTitle: 'AI Yönetişim Kontrol Paneli',
+                subtitle: 'ACE - AI Uyumluluk Motoru | AILydian Ultra Pro',
+                introTitle: 'Kurumsal AI Yönetişim ve Uyumluluk Platformu',
+                introDesc: 'AI Yönetişim Kontrol Paneli, yapay zeka modellerinizin uluslararası standartlara uyumluluğunu garanti altına alan, kurumsal düzeyde güvenlik ve şeffaflık sağlayan profesyonel bir yönetim sistemidir. GDPR, HIPAA, CCPA ve SOC2 gibi kritik uyumluluk çerçevelerini otomatik olarak izler, güven indeksi hesaplar ve acil durum senaryolarında anında müdahale imkanı sunar.',
+                feature1Title: 'Çok Çerçeveli Uyumluluk',
+                feature1Desc: 'GDPR, HIPAA, CCPA ve SOC2 standartlarına otomatik uyumluluk kontrolü. Her model için detaylı raporlama ve risk değerlendirmesi.',
+                feature2Title: 'Güven İndeksi Sistemi',
+                feature2Desc: '5 boyutlu (şeffaflık, hesap verebilirlik, adillik, gizlilik, dayanıklılık) güven skorlama sistemi ile modellerinizi kıyaslayın.',
+                feature3Title: 'Gerçek Zamanlı İzleme',
+                feature3Desc: 'AI modellerinizin performansını ve uyumluluk durumunu anlık olarak takip edin. Anında bildirim ve raporlama.',
+                feature4Title: 'Acil Durum Kontrolü',
+                feature4Desc: 'Kill-switch ve devre kesici mekanizmaları ile riskli modelleri anında devre dışı bırakın. Tam denetim kaydı.',
+                feature5Title: 'Otomatik Raporlama',
+                feature5Desc: 'Düzenleyici kurumlara sunabileceğiniz profesyonel uyumluluk raporları ve sertifikasyon desteği.',
+                feature6Title: 'API Entegrasyonu',
+                feature6Desc: 'RESTful API ile mevcut sistemlerinize kolayca entegre edin. Webhook ve otomatik bildirim desteği.',
+                complianceTitle: 'Uyumluluk Çerçeveleri',
+                trustTitle: 'Güven İndeksi',
+                emergencyTitle: 'Acil Durum Kontrolleri',
+                apiTitle: 'Kullanılabilir API Bağlantı Noktaları',
+                loadingCompliance: 'Uyumluluk verileri yükleniyor...',
+                loadingTrust: 'Güven metrikleri yükleniyor...',
+                loadingEmergency: 'Acil durum durumu yükleniyor...',
+                btnValidate: 'Model Doğrula',
+                btnRefresh: 'Yenile',
+                btnCalculate: 'Güven Hesapla',
+                btnKillswitch: 'Kill Switch Aktifleştir',
+                apiCompliance: 'Uyumluluk',
+                apiTrust: 'Güven İndeksi',
+                apiEmergency: 'Acil Durum',
+                totalFrameworks: 'Toplam Çerçeve',
+                totalModels: 'Toplam Model',
+                averageScore: 'Ortalama Skor',
+                tierDistribution: 'Güven Seviyesi Dağılımı',
+                activeKillSwitches: 'Aktif Kill Switch',
+                openCircuitBreakers: 'Açık Devre Kesici',
+                totalCircuitBreakers: 'Toplam Devre Kesici',
+                recentEvents: 'Son Olaylar',
+                requirements: 'gereksinim'
+            },
+            en: {
+                mainTitle: 'AI Governance Dashboard',
+                subtitle: 'ACE - AI Compliance Engine | AILydian Ultra Pro',
+                introTitle: 'Enterprise AI Governance & Compliance Platform',
+                introDesc: 'The AI Governance Dashboard is a professional management system that guarantees compliance of your AI models with international standards, providing enterprise-level security and transparency. It automatically monitors critical compliance frameworks such as GDPR, HIPAA, CCPA, and SOC2, calculates trust indices, and provides immediate intervention capability in emergency scenarios.',
+                feature1Title: 'Multi-Framework Compliance',
+                feature1Desc: 'Automatic compliance checks for GDPR, HIPAA, CCPA, and SOC2 standards. Detailed reporting and risk assessment for each model.',
+                feature2Title: 'Trust Index System',
+                feature2Desc: 'Benchmark your models with a 5-dimensional (transparency, accountability, fairness, privacy, robustness) trust scoring system.',
+                feature3Title: 'Real-Time Monitoring',
+                feature3Desc: 'Track the performance and compliance status of your AI models in real-time. Instant notifications and reporting.',
+                feature4Title: 'Emergency Control',
+                feature4Desc: 'Instantly disable risky models with kill-switch and circuit breaker mechanisms. Complete audit trail.',
+                feature5Title: 'Automated Reporting',
+                feature5Desc: 'Professional compliance reports and certification support that you can present to regulatory authorities.',
+                feature6Title: 'API Integration',
+                feature6Desc: 'Easily integrate with your existing systems via RESTful API. Webhook and automatic notification support.',
+                complianceTitle: 'Compliance Frameworks',
+                trustTitle: 'Trust Index',
+                emergencyTitle: 'Emergency Controls',
+                apiTitle: 'Available API Endpoints',
+                loadingCompliance: 'Loading compliance data...',
+                loadingTrust: 'Loading trust metrics...',
+                loadingEmergency: 'Loading emergency status...',
+                btnValidate: 'Validate Model',
+                btnRefresh: 'Refresh',
+                btnCalculate: 'Calculate Trust',
+                btnKillswitch: 'Activate Kill Switch',
+                apiCompliance: 'Compliance',
+                apiTrust: 'Trust Index',
+                apiEmergency: 'Emergency',
+                totalFrameworks: 'Total Frameworks',
+                totalModels: 'Total Models',
+                averageScore: 'Average Score',
+                tierDistribution: 'Trust Tier Distribution',
+                activeKillSwitches: 'Active Kill Switches',
+                openCircuitBreakers: 'Open Circuit Breakers',
+                totalCircuitBreakers: 'Total Circuit Breakers',
+                recentEvents: 'Recent Events',
+                requirements: 'requirements'
+            }
+        };
+
+        let currentLang = 'tr';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            updateLanguage();
+            document.getElementById('lang-text').textContent = currentLang === 'tr' ? 'English' : 'Türkçe';
+        }
+
+        function updateLanguage() {
+            const t = translations[currentLang];
+            document.getElementById('main-title').textContent = t.mainTitle;
+            document.getElementById('subtitle').textContent = t.subtitle;
+            document.getElementById('intro-title').textContent = t.introTitle;
+            document.getElementById('intro-desc').textContent = t.introDesc;
+            document.getElementById('feature1-title').textContent = t.feature1Title;
+            document.getElementById('feature1-desc').textContent = t.feature1Desc;
+            document.getElementById('feature2-title').textContent = t.feature2Title;
+            document.getElementById('feature2-desc').textContent = t.feature2Desc;
+            document.getElementById('feature3-title').textContent = t.feature3Title;
+            document.getElementById('feature3-desc').textContent = t.feature3Desc;
+            document.getElementById('feature4-title').textContent = t.feature4Title;
+            document.getElementById('feature4-desc').textContent = t.feature4Desc;
+            document.getElementById('feature5-title').textContent = t.feature5Title;
+            document.getElementById('feature5-desc').textContent = t.feature5Desc;
+            document.getElementById('feature6-title').textContent = t.feature6Title;
+            document.getElementById('feature6-desc').textContent = t.feature6Desc;
+            document.getElementById('compliance-title').textContent = t.complianceTitle;
+            document.getElementById('trust-title').textContent = t.trustTitle;
+            document.getElementById('emergency-title').textContent = t.emergencyTitle;
+            document.getElementById('api-title').textContent = t.apiTitle;
+            document.getElementById('loading-compliance').textContent = t.loadingCompliance;
+            document.getElementById('loading-trust').textContent = t.loadingTrust;
+            document.getElementById('loading-emergency').textContent = t.loadingEmergency;
+            document.getElementById('btn-validate').textContent = t.btnValidate;
+            document.getElementById('btn-calculate').textContent = t.btnCalculate;
+            document.getElementById('btn-killswitch').textContent = t.btnKillswitch;
+            document.getElementById('api-compliance').textContent = t.apiCompliance;
+            document.getElementById('api-trust').textContent = t.apiTrust;
+            document.getElementById('api-emergency').textContent = t.apiEmergency;
+
+            // Reload data with new language
+            if (document.getElementById('compliance-content').innerHTML.indexOf('spinner') === -1) {
+                loadCompliance();
+                loadTrustIndex();
+                loadEmergencyStatus();
+            }
+        }
+
+        const API_BASE = window.location.origin;
+
+        // Load data on page load
+        window.addEventListener('load', () => {
+            loadCompliance();
+            loadTrustIndex();
+            loadEmergencyStatus();
+        });
+
+        // Compliance Functions
+        async function loadCompliance() {
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/compliance/frameworks`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayCompliance(data.data);
+                } else {
+                    throw new Error('Failed to load compliance data');
+                }
+            } catch (error) {
+                const t = translations[currentLang];
+                document.getElementById('compliance-content').innerHTML = `
+                    <div style="color: #FF4444; padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 10px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <br>
+                        ${currentLang === 'tr' ? 'Uyumluluk verileri yüklenirken hata' : 'Error loading compliance data'}<br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displayCompliance(frameworks) {
+            const t = translations[currentLang];
+            const html = `
+                <ul class="framework-list">
+                    ${frameworks.map(f => `
+                        <li class="framework-item">
+                            <div class="framework-name">${f.name}</div>
+                            <div class="framework-region">
+                                ${f.region} • ${f.requirementCount} ${t.requirements}
+                            </div>
+                        </li>
+                    `).join('')}
+                </ul>
+                <div class="metric">
+                    <span class="metric-label">${t.totalFrameworks}</span>
+                    <span class="metric-value">${frameworks.length}</span>
+                </div>
+            `;
+            document.getElementById('compliance-content').innerHTML = html;
+        }
+
+        // Trust Index Functions
+        async function loadTrustIndex() {
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/trust-index/stats`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayTrustIndex(data.data);
+                } else {
+                    throw new Error('Failed to load trust data');
+                }
+            } catch (error) {
+                document.getElementById('trust-content').innerHTML = `
+                    <div style="color: #FF4444; padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 10px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <br>
+                        ${currentLang === 'tr' ? 'Güven verileri yüklenirken hata' : 'Error loading trust data'}<br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displayTrustIndex(stats) {
+            const t = translations[currentLang];
+            const tierIcons = {
+                PLATINUM: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
+                GOLD: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>',
+                SILVER: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>',
+                BRONZE: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+            };
+
+            const html = `
+                <div class="metric">
+                    <span class="metric-label">${t.totalModels}</span>
+                    <span class="metric-value">${stats.totalModels}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">${t.averageScore}</span>
+                    <span class="metric-value">${stats.averageScore.toFixed(1)}</span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div style="margin-bottom: 10px; color: #aaa;">${t.tierDistribution}</div>
+                    <div>
+                        <span class="badge badge-platinum">${tierIcons.PLATINUM} Platinum: ${stats.tierDistribution.PLATINUM}</span>
+                        <span class="badge badge-gold">${tierIcons.GOLD} Gold: ${stats.tierDistribution.GOLD}</span>
+                        <span class="badge badge-silver">${tierIcons.SILVER} Silver: ${stats.tierDistribution.SILVER}</span>
+                        <span class="badge badge-bronze">${tierIcons.BRONZE} Bronze: ${stats.tierDistribution.BRONZE}</span>
+                    </div>
+                </div>
+            `;
+            document.getElementById('trust-content').innerHTML = html;
+        }
+
+        // Emergency Functions
+        async function loadEmergencyStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/emergency/status`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayEmergencyStatus(data.data);
+                } else {
+                    throw new Error('Failed to load emergency status');
+                }
+            } catch (error) {
+                document.getElementById('emergency-content').innerHTML = `
+                    <div style="color: #FF4444; padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 10px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <br>
+                        ${currentLang === 'tr' ? 'Acil durum durumu yüklenirken hata' : 'Error loading emergency status'}<br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displayEmergencyStatus(status) {
+            const t = translations[currentLang];
+            const summary = status.summary;
+            const html = `
+                <div class="metric">
+                    <span class="metric-label">
+                        <span class="status-indicator ${summary.activeKillSwitches > 0 ? 'status-error' : 'status-active'}"></span>
+                        ${t.activeKillSwitches}
+                    </span>
+                    <span class="metric-value">${summary.activeKillSwitches}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">
+                        <span class="status-indicator ${summary.openCircuitBreakers > 0 ? 'status-warning' : 'status-active'}"></span>
+                        ${t.openCircuitBreakers}
+                    </span>
+                    <span class="metric-value">${summary.openCircuitBreakers}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">${t.totalCircuitBreakers}</span>
+                    <span class="metric-value">${summary.totalCircuitBreakers}</span>
+                </div>
+                ${summary.recentEmergencies.length > 0 ? `
+                    <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 10px; color: #aaa;">${t.recentEvents}</div>
+                        <div class="emergency-log">
+                            ${summary.recentEmergencies.slice(0, 5).map(e => `
+                                <div class="log-entry">
+                                    <div>${e.type.replace(/_/g, ' ')}</div>
+                                    <div class="log-time">${new Date(e.timestamp).toLocaleString()}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+            document.getElementById('emergency-content').innerHTML = html;
+        }
+
+        // Action Functions
+        function refreshCompliance() {
+            loadCompliance();
+        }
+
+        function refreshTrust() {
+            loadTrustIndex();
+        }
+
+        function refreshEmergency() {
+            loadEmergencyStatus();
+        }
+
+        async function runComplianceCheck() {
+            const promptText = currentLang === 'tr'
+                ? 'Doğrulanacak Model ID\'sini girin:'
+                : 'Enter Model ID to validate:';
+            const modelId = prompt(promptText, 'test-model-' + Date.now());
+            if (!modelId) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/compliance/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modelId,
+                        framework: 'GDPR'
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    const message = currentLang === 'tr'
+                        ? `Uyumluluk Kontrolü Tamamlandı!\n\nÇerçeve: ${result.data.frameworkName}\nSkor: ${result.data.score}%\nDurum: ${result.data.compliant ? 'BAŞARILI ✅' : 'BAŞARISIZ ❌'}\n\nGeçen: ${result.data.passedChecks}/${result.data.totalChecks}`
+                        : `Compliance Check Complete!\n\nFramework: ${result.data.frameworkName}\nScore: ${result.data.score}%\nStatus: ${result.data.compliant ? 'PASS ✅' : 'FAIL ❌'}\n\nPassed: ${result.data.passedChecks}/${result.data.totalChecks}`;
+                    alert(message);
+                } else {
+                    alert((currentLang === 'tr' ? 'Hata: ' : 'Error: ') + result.error);
+                }
+            } catch (error) {
+                const errorMsg = currentLang === 'tr'
+                    ? 'Uyumluluk kontrolü sırasında hata: '
+                    : 'Error running compliance check: ';
+                alert(errorMsg + error.message);
+            }
+        }
+
+        async function calculateTrust() {
+            const promptText = currentLang === 'tr'
+                ? 'Model ID\'sini girin:'
+                : 'Enter Model ID:';
+            const modelId = prompt(promptText, 'test-model-' + Date.now());
+            if (!modelId) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/trust-index/calculate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modelId,
+                        transparency: 85,
+                        accountability: 90,
+                        fairness: 88,
+                        privacy: 92,
+                        robustness: 87
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    const message = currentLang === 'tr'
+                        ? `Güven İndeksi Hesaplandı!\n\nModel: ${result.data.modelId}\nSkor: ${result.data.globalTrustScore}\nSeviye: ${result.data.tier} ${result.data.badge}\n\nSkorlar:\nŞeffaflık: 85\nHesap Verebilirlik: 90\nAdillik: 88\nGizlilik: 92\nDayanıklılık: 87`
+                        : `Trust Index Calculated!\n\nModel: ${result.data.modelId}\nScore: ${result.data.globalTrustScore}\nTier: ${result.data.tier} ${result.data.badge}\n\nScores:\nTransparency: 85\nAccountability: 90\nFairness: 88\nPrivacy: 92\nRobustness: 87`;
+                    alert(message);
+                    loadTrustIndex();
+                } else {
+                    alert((currentLang === 'tr' ? 'Hata: ' : 'Error: ') + result.error);
+                }
+            } catch (error) {
+                const errorMsg = currentLang === 'tr'
+                    ? 'Güven hesaplama sırasında hata: '
+                    : 'Error calculating trust: ';
+                alert(errorMsg + error.message);
+            }
+        }
+
+        async function activateKillSwitch() {
+            const warningText = currentLang === 'tr'
+                ? '⚠️ UYARI: Kill Switch Aktivasyonu\n\nModel ID\'sini girin:'
+                : '⚠️ WARNING: Activate Kill Switch\n\nEnter Model ID:';
+            const modelId = prompt(warningText, 'test-model-' + Date.now());
+            if (!modelId) return;
+
+            const reasonText = currentLang === 'tr'
+                ? 'Aktivasyon sebebini girin:'
+                : 'Enter reason for activation:';
+            const defaultReason = currentLang === 'tr' ? 'Acil kapatma' : 'Emergency shutdown';
+            const reason = prompt(reasonText, defaultReason);
+            if (!reason) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/emergency/kill-switch`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modelId,
+                        reason,
+                        triggeredBy: 'dashboard-user'
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    const message = currentLang === 'tr'
+                        ? `🚨 Kill Switch Aktifleştirildi!\n\nModel: ${result.data.modelId}\nDurum: ${result.data.status}\nSebep: ${result.data.reason}\n\nBu model için tüm bağlantı noktaları engellendi.`
+                        : `🚨 Kill Switch Activated!\n\nModel: ${result.data.modelId}\nStatus: ${result.data.status}\nReason: ${result.data.reason}\n\nAll endpoints for this model are now blocked.`;
+                    alert(message);
+                    loadEmergencyStatus();
+                } else {
+                    alert((currentLang === 'tr' ? 'Hata: ' : 'Error: ') + result.error);
+                }
+            } catch (error) {
+                const errorMsg = currentLang === 'tr'
+                    ? 'Kill switch aktivasyonu sırasında hata: '
+                    : 'Error activating kill switch: ';
+                alert(errorMsg + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
