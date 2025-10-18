@@ -667,9 +667,13 @@
             updateLanguageSwitcher();
         }
 
-        // Handle language change
+        // Handle language change - translate page without reload
         window.addEventListener('languageChanged', () => {
-            location.reload();
+            GovernanceI18n.translatePage();
+            updateLanguageSwitcher();
+            // Reload stats with new language
+            loadMockStats();
+            loadRecentActivity();
         });
 
         // Initialize on page load

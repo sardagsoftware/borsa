@@ -366,7 +366,7 @@ const GovernanceI18n = {
     init() {
         // Get saved language or default to Turkish
         const savedLang = localStorage.getItem('governance_lang') || 'tr';
-        this.setLanguage(savedLang);
+        this.setLanguage(savedLang, true); // Silent mode - don't trigger reload
     },
 
     /**
@@ -383,8 +383,10 @@ const GovernanceI18n = {
 
     /**
      * Set current language
+     * @param {string} lang - Language code (tr, en)
+     * @param {boolean} silent - If true, don't trigger languageChanged event (prevents reload loop)
      */
-    setLanguage(lang) {
+    setLanguage(lang, silent = false) {
         if (!this.translations[lang]) {
             console.error(`Language not supported: ${lang}`);
             return;
@@ -396,8 +398,10 @@ const GovernanceI18n = {
         // Update HTML lang attribute
         document.documentElement.lang = lang;
 
-        // Trigger language change event
-        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+        // Trigger language change event only if not silent
+        if (!silent) {
+            window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+        }
     },
 
     /**
