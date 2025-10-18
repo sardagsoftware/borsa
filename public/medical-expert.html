@@ -2656,7 +2656,7 @@ function updateAIStatus(status, engineName = '') {
             ${config.icon}
         </svg>
         <span>${config.text}</span>
-    `;
+    `);
 }
 
 // Detect Symptoms in Message
@@ -2718,7 +2718,7 @@ async function loadEmergencyNumbers() {
 // Display Emergency Numbers in Modal
 function displayEmergencyNumbers(numbers) {
     const emergencyGrid = document.querySelector('.emergency-grid');
-    emergencyGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
+    emergencyGrid.innerHTML = AilydianSanitizer.sanitizeHTML('');
 
     numbers.forEach(item => {
         const card = document.createElement('div');
@@ -2726,7 +2726,7 @@ function displayEmergencyNumbers(numbers) {
         card.innerHTML = AilydianSanitizer.sanitizeHTML(`
             <div class="emergency-number">${item.number}</div>
             <div class="emergency-label">${item.label}</div>
-        `;
+        `);
         emergencyGrid.appendChild(card);
     });
 }
@@ -2829,7 +2829,7 @@ async function performRAGSearch() {
     if (!query) return alert('Please enter a search query');
 
     const resultsDiv = document.getElementById('ragResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Searching PubMed, WHO Guidelines...</div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Searching PubMed, WHO Guidelines...</div>');
 
     try {
         const response = await fetch('/api/rag/search', {
@@ -2858,7 +2858,7 @@ async function performRAGSearch() {
             throw new Error(data.error || 'Search failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
     }
 }
 
@@ -2868,7 +2868,7 @@ async function uploadDICOM(event) {
     if (!file) return;
 
     const resultsDiv = document.getElementById('dicomResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Uploading DICOM...</div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Uploading DICOM...</div>');
 
     const formData = new FormData();
     formData.append('dicom', file);
@@ -2899,7 +2899,7 @@ async function uploadDICOM(event) {
             throw new Error(data.error || 'Upload failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
     }
 }
 
@@ -2915,7 +2915,7 @@ async function createFHIRPatient() {
     }
 
     const resultsDiv = document.getElementById('fhirResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 1rem;">Creating patient record...</div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 1rem;">Creating patient record...</div>');
 
     try {
         const response = await fetch('/api/fhir/patient', {
@@ -2949,7 +2949,7 @@ async function createFHIRPatient() {
             throw new Error(data.error || 'Creation failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
     }
 }
 
@@ -2979,7 +2979,7 @@ async function toggleRecording() {
 
             mediaRecorder.start();
             isRecording = true;
-            recordBtn.innerHTML = AilydianSanitizer.sanitizeHTML('⏹️ Stop Recording';
+            recordBtn.innerHTML = AilydianSanitizer.sanitizeHTML('⏹️ Stop Recording');
             recordBtn.style.background = 'var(--medical-error)';
         } catch (error) {
             alert('Microphone access denied');
@@ -2987,7 +2987,7 @@ async function toggleRecording() {
     } else {
         mediaRecorder.stop();
         isRecording = false;
-        recordBtn.innerHTML = AilydianSanitizer.sanitizeHTML('🎤 Start Recording';
+        recordBtn.innerHTML = AilydianSanitizer.sanitizeHTML('🎤 Start Recording');
         recordBtn.style.background = 'var(--gradient-medical)';
     }
 }
@@ -3002,7 +3002,7 @@ async function uploadAudio(event) {
 
 async function transcribeAudioBlob(audioBlob) {
     const resultsDiv = document.getElementById('transcriptionResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Transcribing audio...</div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Transcribing audio...</div>');
 
     const formData = new FormData();
     formData.append('audio', audioBlob, 'recording.wav');
@@ -3030,7 +3030,7 @@ async function transcribeAudioBlob(audioBlob) {
             throw new Error(data.error || 'Transcription failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
     }
 }
 
@@ -3042,7 +3042,7 @@ async function performTranslation() {
     if (!text) return alert('Please enter text to translate');
 
     const resultsDiv = document.getElementById('translationResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Translating...</div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Translating...</div>');
 
     try {
         const response = await fetch('/api/translate', {
@@ -3068,7 +3068,7 @@ async function performTranslation() {
             throw new Error(data.error || 'Translation failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
     }
 }
 
@@ -3302,7 +3302,7 @@ function renderMessage(msg) {
             <div class="message-bubble">${escapeHtml(msg.content)}</div>
             <div class="message-time">${time}</div>
         </div>
-    `;
+    `);
 
     messagesContainer.appendChild(messageDiv);
 }
@@ -3327,7 +3327,7 @@ function showTypingIndicator() {
                 </div>
             </div>
         </div>
-    `;
+    `);
     messagesContainer.appendChild(indicator);
     scrollToBottom();
 }
@@ -3609,9 +3609,9 @@ function scrollToBottom() {
 function displayResult(elementId, data, isError = false) {
     const resultDiv = document.getElementById(elementId);
     if (isError) {
-        resultDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="padding: 1rem; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; color: #DC2626;">${data}</div>`;
+        resultDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="padding: 1rem; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; color: #DC2626;">${data}</div>`);
     } else {
-        resultDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="padding: 1rem; background: var(--bg-primary); border: var(--border-light); border-radius: 8px;">${data}</div>`;
+        resultDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="padding: 1rem; background: var(--bg-primary); border: var(--border-light); border-radius: 8px;">${data}</div>`);
     }
 }
 
@@ -4090,7 +4090,7 @@ async function calculateNIHSS() {
             • tPA: 4.5 hours from symptom onset<br>
             • Thrombectomy: Up to 24 hours in selected patients
         </div>
-    `;
+    `);
     displayResult('nihssResult', html);
 }
 
@@ -4132,7 +4132,7 @@ async function calculateABCD2() {
             • Duration: ${duration} point${duration !== 1 ? 's' : ''}<br>
             • Diabetes: ${diabetes} point${diabetes !== 1 ? 's' : ''}
         </div>
-    `;
+    `);
     displayResult('abcd2Result', html);
 }
 
@@ -4205,7 +4205,7 @@ async function classifySeizure() {
         <div style="padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
             <strong>Prognosis:</strong> ${info.prognosis}
         </div>
-    `;
+    `);
     displayResult('seizureResult', html);
 }
 
@@ -4974,7 +4974,7 @@ function showPatientHistory() {
                     </button>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 16px;">
-    `;
+    `);
 
     history.forEach((item, index) => {
         historyHTML += `
@@ -4998,7 +4998,7 @@ function showPatientHistory() {
                 </div>
             </div>
         </div>
-    `;
+    `);
 
     document.body.insertAdjacentHTML('beforeend', historyHTML);
 
@@ -5116,7 +5116,7 @@ function showHospitalSettings() {
                 </div>
             </div>
         </div>
-    `;
+    `);
 
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
@@ -5192,7 +5192,7 @@ function uploadNeuroImaging(event) {
                 <polyline points="20 6 9 17 4 12"/>
             </svg>
         </div>
-    `;
+    `);
 
     const container = document.querySelector('#neuroImagingFileInput').parentElement;
     const existingInfo = container.querySelector('div[style*="margin-top: 1rem"]');
@@ -5216,7 +5216,7 @@ async function analyzeNeuroImaging() {
             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
         </svg>
         Analyzing with LyDian AI Vision...
-    `;
+    `);
 
     try {
         // REAL API CALL to /api/neuro/imaging-analysis
@@ -5246,7 +5246,7 @@ async function analyzeNeuroImaging() {
             `<p style="margin-bottom: 0.5rem;">📄 ${c}</p>`
         ).join('');
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
         // Scroll to results
@@ -5256,7 +5256,7 @@ async function analyzeNeuroImaging() {
         console.error('Neuro imaging analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('Analyze with LyDian AI Vision';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('Analyze with LyDian AI Vision');
     }
 }
 
@@ -5411,7 +5411,7 @@ async function generateNeuroTwin() {
             <path d="M12 6v6l4 2"/>
         </svg>
         Generating Digital Twin Model...
-    `;
+    `);
 
     try {
         // REAL API CALL to /api/neuro/digital-twin
@@ -5478,7 +5478,7 @@ async function generateNeuroTwin() {
         ctx.font = '12px sans-serif';
         ctx.fillText(`(${data.trajectory.data.length} year prediction loaded)`, canvas.width / 2, canvas.height / 2 + 25);
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Digital Twin Generated';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Digital Twin Generated');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
         document.getElementById('neuroTwinResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -5487,7 +5487,7 @@ async function generateNeuroTwin() {
         console.error('Neuro-twin generation error:', error);
         alert('Failed to generate digital twin: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('Generate Digital Neuro-Twin Model';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('Generate Digital Neuro-Twin Model');
     }
 }
 
@@ -5503,7 +5503,7 @@ async function authenticateClinician() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔒 Authenticating...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔒 Authenticating...');
 
     try {
         // REAL API CALL to /api/neuro/clinician-portal
@@ -5531,7 +5531,7 @@ async function authenticateClinician() {
         // Update clinician info (if available in UI)
         console.log('Clinician authenticated:', data.clinician);
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Authenticated';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Authenticated');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
         // Scroll to dashboard
@@ -5543,7 +5543,7 @@ async function authenticateClinician() {
         console.error('Authentication error:', error);
         alert('Authentication failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('Authenticate & Access Validation Queue';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('Authenticate & Access Validation Queue');
     }
 }
 
@@ -6169,7 +6169,7 @@ async function analyzeRareDisease() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Analyzing...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Analyzing...');
 
     try {
         // REAL API CALL to /api/medical/rare-disease-assistant
@@ -6236,14 +6236,14 @@ async function analyzeRareDisease() {
         document.getElementById('rareDiseaseResults').style.display = 'block';
         document.getElementById('rareDiseaseResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Rare disease analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Start Differential Diagnosis Analysis';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Start Differential Diagnosis Analysis');
     }
 }
 
@@ -6293,7 +6293,7 @@ async function searchCompound() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Searching PubChem...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Searching PubChem...');
 
     try {
         const response = await fetch('/api/medical/drug-discovery/compound-search', {
@@ -6362,14 +6362,14 @@ async function searchCompound() {
         document.getElementById('compoundResults').style.display = 'block';
         document.getElementById('compoundResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Search Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Search Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Compound search error:', error);
         alert('Search failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Search PubChem Database';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Search PubChem Database');
     }
 }
 
@@ -6394,7 +6394,7 @@ async function matchClinicalTrial() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🏥 Searching ClinicalTrials.gov...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🏥 Searching ClinicalTrials.gov...');
 
     try {
         const response = await fetch('/api/medical/drug-discovery/clinical-trial-match', {
@@ -6464,14 +6464,14 @@ async function matchClinicalTrial() {
         document.getElementById('clinicalTrialResults').style.display = 'block';
         document.getElementById('clinicalTrialResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Search Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Search Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Clinical trial matching error:', error);
         alert('Search failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🏥 Find Matching Clinical Trials';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('🏥 Find Matching Clinical Trials');
     }
 }
 
@@ -6487,7 +6487,7 @@ async function analyzeBiomarker() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Analyzing Biomarker...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Analyzing Biomarker...');
 
     try {
         const response = await fetch('/api/medical/drug-discovery/biomarker-analysis', {
@@ -6556,14 +6556,14 @@ async function analyzeBiomarker() {
         document.getElementById('biomarkerResults').style.display = 'block';
         document.getElementById('biomarkerResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Biomarker analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Analyze Biomarker & Get Therapy Recommendations';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Analyze Biomarker & Get Therapy Recommendations');
     }
 }
 
@@ -6616,7 +6616,7 @@ async function interpretVariant() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Interpreting Variant...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Interpreting Variant...');
 
     try {
         const response = await fetch('/api/medical/genomics/variant-interpretation', {
@@ -6693,14 +6693,14 @@ async function interpretVariant() {
         document.getElementById('variantResults').style.display = 'block';
         document.getElementById('variantResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Interpretation Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Interpretation Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Variant interpretation error:', error);
         alert('Interpretation failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Interpret Variant (ClinVar + dbSNP + gnomAD)';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Interpret Variant (ClinVar + dbSNP + gnomAD)');
     }
 }
 
@@ -6718,7 +6718,7 @@ async function analyzePharmacogenomics() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('💊 Analyzing Drug-Gene Interactions...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('💊 Analyzing Drug-Gene Interactions...');
 
     try {
         const response = await fetch('/api/medical/genomics/pharmacogenomics', {
@@ -6790,14 +6790,14 @@ async function analyzePharmacogenomics() {
         document.getElementById('pharmacogenomicsResults').style.display = 'block';
         document.getElementById('pharmacogenomicsResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Pharmacogenomics analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('💊 Analyze Drug-Gene Interactions (PharmGKB)';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('💊 Analyze Drug-Gene Interactions (PharmGKB)');
     }
 }
 
@@ -6815,7 +6815,7 @@ async function assessDiseaseRisk() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🩺 Assessing Disease Risk...';
+    button.innerHTML = AilydianSanitizer.sanitizeHTML('🩺 Assessing Disease Risk...');
 
     try {
         const response = await fetch('/api/medical/genomics/disease-risk', {
@@ -6872,14 +6872,14 @@ async function assessDiseaseRisk() {
         document.getElementById('diseaseRiskResults').style.display = 'block';
         document.getElementById('diseaseRiskResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Assessment Complete';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Assessment Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Disease risk assessment error:', error);
         alert('Assessment failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🩺 Assess Genetic Disease Risk (OMIM)';
+        button.innerHTML = AilydianSanitizer.sanitizeHTML('🩺 Assess Genetic Disease Risk (OMIM)');
     }
 }
 
@@ -7062,7 +7062,7 @@ document.head.appendChild(style);
 async function testExplainableAI() {
     const resultsDiv = document.getElementById('xaiResults');
     resultsDiv.style.display = 'block';
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #3B82F6; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Generating AI explanation with SHAP values...</p></div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #3B82F6; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Generating AI explanation with SHAP values...</p></div>');
 
     try {
         const response = await fetch('/api/medical/explainable-ai', {
@@ -7136,7 +7136,7 @@ async function testExplainableAI() {
             throw new Error(data.error || 'Failed to generate explanation');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`);
     }
 }
 
@@ -7146,7 +7146,7 @@ async function testExplainableAI() {
 async function calculatePediatricDose() {
     const resultsDiv = document.getElementById('pedResults');
     resultsDiv.style.display = 'block';
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #F59E0B; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Calculating safe pediatric dose...</p></div>';
+    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #F59E0B; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Calculating safe pediatric dose...</p></div>');
 
     try {
         const response = await fetch('/api/medical/pediatric-safety/dose-calculator', {
@@ -7214,7 +7214,7 @@ async function calculatePediatricDose() {
             throw new Error(data.error || 'Failed to calculate dose');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`);
     }
 }
 
@@ -9454,7 +9454,7 @@ async function diagnoseDifferential() {
             <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #0066CC; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
             <p style="margin-top: 1rem; color: #6B7280;">Analyzing symptoms with UpToDate + NICE guidelines...</p>
         </div>
-    `;
+    `);
     resultsDiv.style.display = 'block';
 
     try {
@@ -9520,12 +9520,12 @@ async function diagnoseDifferential() {
                         <p style="font-size: 0.875rem; color: #92400E; line-height: 1.6;"><strong>💡 Clinical Pearl:</strong> ${data.clinicalPearl}</p>
                     </div>
                 </div>
-            `;
+            `);
         } else {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
+            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`);
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`);
     }
 }
 
@@ -9545,7 +9545,7 @@ async function getProtocol() {
             <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #10B981; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
             <p style="margin-top: 1rem; color: #6B7280;">Loading evidence-based treatment protocol...</p>
         </div>
-    `;
+    `);
     resultsDiv.style.display = 'block';
 
     try {
@@ -9620,10 +9620,10 @@ async function getProtocol() {
                 </div>
             `;
         } else {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
+            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`);
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`);
     }
 }
 
@@ -9643,7 +9643,7 @@ async function checkInteractions() {
             <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #F59E0B; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
             <p style="margin-top: 1rem; color: #6B7280;">Checking DrugBank for interactions...</p>
         </div>
-    `;
+    `);
     resultsDiv.style.display = 'block';
 
     try {
@@ -9717,10 +9717,10 @@ async function checkInteractions() {
                 </div>
             `;
         } else {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
+            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`);
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
+        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`);
     }
 }
 </script>
