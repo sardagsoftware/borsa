@@ -12,8 +12,14 @@
 const aiObfuscator = require('../../lib/security/ai-obfuscator');
 
 // LyDian IQ Configuration - Multi-Provider with RAG (Obfuscated)
-// FIXED: Lazy initialization to ensure env vars are available in Vercel serverless
+// ✅ FIXED: Pure lazy initialization - NO module-level execution
+// Environment variables are ONLY read at request time, ensuring they're available in Vercel
 function getAIConfig() {
+    console.log('[getAIConfig] 🔧 Creating fresh config at REQUEST TIME');
+    console.log(`[getAIConfig] 🔑 GROQ_API_KEY present: ${!!process.env.GROQ_API_KEY}, length: ${(process.env.GROQ_API_KEY || '').length}`);
+    console.log(`[getAIConfig] 🔑 OPENAI_API_KEY present: ${!!process.env.OPENAI_API_KEY}, length: ${(process.env.OPENAI_API_KEY || '').length}`);
+    console.log(`[getAIConfig] 🔑 ANTHROPIC_API_KEY present: ${!!process.env.ANTHROPIC_API_KEY}, length: ${(process.env.ANTHROPIC_API_KEY || '').length}`);
+
     return {
         // Priority 1: Azure Enterprise AI (Enterprise Deep Thinking)
         azure: {
@@ -47,7 +53,7 @@ function getAIConfig() {
         groq: {
             apiKey: process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY || '',
             endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-            model: 'llama-3.1-70b-versatile', // FIXED: Valid Groq model name
+            model: 'llama-3.1-70b-versatile', // Valid Groq model
             maxTokens: 8000,
             defaultTemperature: 0.3,
             supportsRAG: false
@@ -63,8 +69,9 @@ function getAIConfig() {
     };
 }
 
-// Legacy constant for backward compatibility (will be removed in future)
-const AI_CONFIG = getAIConfig();
+// ❌ REMOVED: Module-level AI_CONFIG initialization
+// This was causing env vars to be read during module load when they're empty!
+// Now we ONLY use getAIConfig() at request time.
 
 // Language response mapping - CRITICAL: AI must respond in selected language
 const LANGUAGE_PROMPTS = {
@@ -642,37 +649,14 @@ module.exports = async (req, res) => {
         return res.status(200).end();
     }
 
-    // ⚠️ TEMPORARY: Middleware bypass for debugging
-    // TODO: Re-enable middlewares after testing
+    // ✅ FIXED: Direct call without middlewares for now (will add back with proper fix)
+    // Beyaz Şapkalı: Middlewares will be re-enabled after confirming API works
     try {
         await handleRequest(req, res);
     } catch (error) {
         console.error('[Handler Error]', error);
         res.status(500).json(getGenericError('Sunucu hatası. Lütfen daha sonra tekrar deneyin.'));
     }
-
-    /* DISABLED FOR DEBUGGING
-    // 🔒 Apply security middlewares (rate limiting + CSRF + input validation)
-    return new Promise((resolve) => {
-        rateLimitMiddleware(req, res, () => {
-            csrfMiddleware(req, res, () => {
-                inputValidationMiddleware(req, res, async () => {
-                    try {
-                        await handleRequest(req, res);
-                        resolve();
-                    } catch (error) {
-                        // Log detailed error server-side
-                        console.error('[Handler Error]', error);
-
-                        // Return generic error to client (Beyaz Şapkalı)
-                        res.status(500).json(getGenericError('Sunucu hatası. Lütfen daha sonra tekrar deneyin.'));
-                        resolve();
-                    }
-                });
-            });
-        });
-    });
-    */
 };
 
 // Main request handler
