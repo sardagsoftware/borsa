@@ -18,6 +18,9 @@
     <!-- Chart.js for data visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
+    <!-- i18n System -->
+    <script src="/js/governance-i18n.js"></script>
+
     <style>
         .card-hover {
             transition: all 0.3s ease;
@@ -58,12 +61,24 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-gray-900">AI Governance Center</h1>
+                    <h1 class="text-2xl font-bold text-gray-900" data-i18n="nav.title">AI Yönetişim Merkezi</h1>
                 </div>
                 <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <button onclick="GovernanceI18n.setLanguage('tr')"
+                                class="px-3 py-1 rounded transition text-sm"
+                                id="lang-tr">
+                            TR
+                        </button>
+                        <button onclick="GovernanceI18n.setLanguage('en')"
+                                class="px-3 py-1 rounded transition text-sm"
+                                id="lang-en">
+                            EN
+                        </button>
+                    </div>
                     <span id="userInfo" class="text-gray-700"></span>
-                    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                        Logout
+                    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition" data-i18n="nav.logout">
+                        Çıkış
                     </button>
                 </div>
             </div>
@@ -74,8 +89,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Welcome Section -->
         <div class="mb-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-2">Welcome to AI Governance</h2>
-            <p class="text-gray-600">Manage AI models, ensure compliance, and monitor trust scores</p>
+            <h2 class="text-3xl font-bold text-gray-900 mb-2" data-i18n="dashboard.welcome">AI Yönetişime Hoş Geldiniz</h2>
+            <p class="text-gray-600" data-i18n="dashboard.subtitle">AI modellerini yönetin, uyumluluğu sağlayın ve güven skorlarını izleyin</p>
         </div>
 
         <!-- Stats Cards -->
@@ -590,6 +605,23 @@
         }
 
         /**
+         * Update language switcher buttons
+         */
+        function updateLanguageSwitcher() {
+            const currentLang = GovernanceI18n.currentLang;
+            const trBtn = document.getElementById('lang-tr');
+            const enBtn = document.getElementById('lang-en');
+
+            if (currentLang === 'tr') {
+                trBtn.className = 'px-3 py-1 rounded bg-purple-600 text-white hover:bg-purple-500 transition text-sm';
+                enBtn.className = 'px-3 py-1 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-sm';
+            } else {
+                trBtn.className = 'px-3 py-1 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-sm';
+                enBtn.className = 'px-3 py-1 rounded bg-purple-600 text-white hover:bg-purple-500 transition text-sm';
+            }
+        }
+
+        /**
          * Initialize dashboard
          */
         async function initDashboard() {
@@ -612,7 +644,7 @@
                 }
             } else {
                 // Demo mode
-                document.getElementById('userInfo').textContent = 'Demo User';
+                document.getElementById('userInfo').textContent = GovernanceI18n.t('nav.demo_user');
             }
 
             // Load dashboard data
@@ -629,7 +661,16 @@
                 loadMockStats();
                 loadRecentActivity();
             }
+
+            // Translate page and update language switcher
+            GovernanceI18n.translatePage();
+            updateLanguageSwitcher();
         }
+
+        // Handle language change
+        window.addEventListener('languageChanged', () => {
+            location.reload();
+        });
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', initDashboard);

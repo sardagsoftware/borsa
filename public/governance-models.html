@@ -14,6 +14,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- i18n System -->
+    <script src="/js/governance-i18n.js"></script>
+
     <style>
         .modal {
             display: none;
@@ -64,19 +67,31 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center space-x-4">
-                    <a href="/governance-dashboard.html" class="text-gray-600 hover:text-gray-900">
+                    <a href="/governance-dashboard.html" class="text-gray-600 hover:text-gray-900" data-i18n="nav.back">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
                     </a>
-                    <h1 class="text-2xl font-bold text-gray-900">Model Registry</h1>
+                    <h1 class="text-2xl font-bold text-gray-900" data-i18n="models.title">Model Kayıt</h1>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button onclick="openRegisterModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
-                        + Register Model
+                    <div class="flex items-center space-x-2">
+                        <button onclick="GovernanceI18n.setLanguage('tr')"
+                                class="px-3 py-1 rounded transition text-sm"
+                                id="lang-tr">
+                            TR
+                        </button>
+                        <button onclick="GovernanceI18n.setLanguage('en')"
+                                class="px-3 py-1 rounded transition text-sm"
+                                id="lang-en">
+                            EN
+                        </button>
+                    </div>
+                    <button onclick="openRegisterModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition" data-i18n="models.register">
+                        + Model Kaydet
                     </button>
-                    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                        Logout
+                    <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition" data-i18n="nav.logout">
+                        Çıkış
                     </button>
                 </div>
             </div>
@@ -90,32 +105,32 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <!-- Search -->
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Search</label>
-                    <input type="text" id="searchInput" placeholder="Search by name or provider..."
+                    <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="models.search">Ara</label>
+                    <input type="text" id="searchInput" data-i18n="models.search_placeholder" placeholder="İsim veya sağlayıcıya göre ara..."
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                            onkeyup="handleSearch()">
                 </div>
 
                 <!-- Status Filter -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="models.status">Durum</label>
                     <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                             onchange="handleFilters()">
-                        <option value="">All Statuses</option>
-                        <option value="DRAFT">Draft</option>
-                        <option value="TESTING">Testing</option>
-                        <option value="ACTIVE">Active</option>
-                        <option value="DEPRECATED">Deprecated</option>
-                        <option value="ARCHIVED">Archived</option>
+                        <option value="" data-i18n="models.all_statuses">Tüm Durumlar</option>
+                        <option value="DRAFT" data-i18n="status.DRAFT">Taslak</option>
+                        <option value="TESTING" data-i18n="status.TESTING">Test</option>
+                        <option value="ACTIVE" data-i18n="status.ACTIVE">Aktif</option>
+                        <option value="DEPRECATED" data-i18n="status.DEPRECATED">Eski</option>
+                        <option value="ARCHIVED" data-i18n="status.ARCHIVED">Arşivlenmiş</option>
                     </select>
                 </div>
 
                 <!-- Provider Filter -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Provider</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="models.provider">Sağlayıcı</label>
                     <select id="providerFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                             onchange="handleFilters()">
-                        <option value="">All Providers</option>
+                        <option value="" data-i18n="models.all_providers">Tüm Sağlayıcılar</option>
                         <option value="OpenAI">OpenAI</option>
                         <option value="Anthropic">Anthropic</option>
                         <option value="Google">Google</option>
@@ -690,6 +705,23 @@
         }
 
         /**
+         * Update language switcher buttons
+         */
+        function updateLanguageSwitcher() {
+            const currentLang = GovernanceI18n.currentLang;
+            const trBtn = document.getElementById('lang-tr');
+            const enBtn = document.getElementById('lang-en');
+
+            if (currentLang === 'tr') {
+                trBtn.className = 'px-3 py-1 rounded bg-purple-600 text-white hover:bg-purple-500 transition text-sm';
+                enBtn.className = 'px-3 py-1 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-sm';
+            } else {
+                trBtn.className = 'px-3 py-1 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-sm';
+                enBtn.className = 'px-3 py-1 rounded bg-purple-600 text-white hover:bg-purple-500 transition text-sm';
+            }
+        }
+
+        /**
          * Initialize page
          */
         async function initPage() {
@@ -702,7 +734,16 @@
             }
 
             await loadModels();
+
+            // Translate page and update language switcher
+            GovernanceI18n.translatePage();
+            updateLanguageSwitcher();
         }
+
+        // Handle language change
+        window.addEventListener('languageChanged', () => {
+            location.reload();
+        });
 
         document.addEventListener('DOMContentLoaded', initPage);
     </script>
