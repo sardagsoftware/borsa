@@ -2,10 +2,14 @@
  * AI Governance - Trust Index API
  * Calculate and monitor AI system trustworthiness
  * Integrated into AILydian Ultra Pro
+ *
+ * NOW WITH REAL CALCULATOR - BEYAZ ŞAPKALI (White-Hat)
  */
 
 const express = require('express');
 const router = express.Router();
+const { getPrismaClient, safeQuery } = require('./prisma-client');
+const { calculateTrustIndex } = require('../../lib/governance/calculators/trust-index-calculator');
 
 // Trust tier thresholds
 const TRUST_TIERS = {

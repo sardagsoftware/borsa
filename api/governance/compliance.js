@@ -2,10 +2,15 @@
  * AI Governance - Compliance API
  * GDPR, HIPAA, CCPA, SOC2 Compliance Validation
  * Integrated into AILydian Ultra Pro
+ *
+ * NOW WITH REAL VALIDATORS - BEYAZ ŞAPKALI (White-Hat)
  */
 
 const express = require('express');
 const router = express.Router();
+const { getPrismaClient, safeQuery } = require('./prisma-client');
+const { validateGDPR } = require('../../lib/governance/validators/gdpr-validator');
+const { validateHIPAA } = require('../../lib/governance/validators/hipaa-validator');
 
 // In-memory compliance frameworks (will be moved to database later)
 const complianceFrameworks = {
@@ -136,10 +141,11 @@ const complianceFrameworks = {
 /**
  * POST /api/governance/compliance/validate
  * Validate AI model against compliance framework
+ * NOW USES REAL VALIDATORS (GDPR, HIPAA)
  */
 router.post('/validate', async (req, res) => {
   try {
-    const { modelId, framework, checks } = req.body;
+    const { modelId, framework } = req.body;
 
     if (!modelId || !framework) {
       return res.status(400).json({
@@ -157,34 +163,176 @@ router.post('/validate', async (req, res) => {
       });
     }
 
-    // Simulate compliance check (in production, this would check actual model data)
-    const results = frameworkData.requirements.map((req) => ({
-      requirementId: req.id,
-      name: req.name,
-      category: req.category,
-      passed: Math.random() > 0.3, // Mock: 70% pass rate
-      severity: Math.random() > 0.5 ? 'HIGH' : 'MEDIUM',
-      evidence: `Mock evidence for ${req.id}`,
-    }));
+    // Get model from database
+    const result = await safeQuery(
+      async (prisma) => {
+        const model = await prisma.governanceModel.findUnique({
+          where: { id: modelId },
+          include: {
+            owner: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        });
 
-    const passedCount = results.filter((r) => r.passed).length;
-    const totalCount = results.length;
-    const score = Math.round((passedCount / totalCount) * 100);
+        if (!model) {
+          return {
+            success: false,
+            error: 'model_not_found',
+          };
+        }
 
-    res.json({
-      success: true,
-      data: {
-        modelId,
-        framework: frameworkData.id,
-        frameworkName: frameworkData.name,
-        compliant: score >= 80,
-        score,
-        passedChecks: passedCount,
-        totalChecks: totalCount,
-        results,
-        timestamp: new Date().toISOString(),
+        let validationResult;
+
+        // Run real validation based on framework
+        if (framework === 'GDPR') {
+          validationResult = validateGDPR(model);
+        } else if (framework === 'HIPAA') {
+          validationResult = validateHIPAA(model);
+        } else {
+          // For CCPA and SOC2, use mock validation (to be implemented later)
+          const requirements = frameworkData.requirements;
+          const passedCount = Math.floor(requirements.length * 0.75);
+          validationResult = {
+            framework,
+            compliant: true,
+            score: 0.75,
+            criticalIssues: [],
+            warnings: ['This framework uses mock validation - real validator coming soon'],
+            recommendations: [],
+            criteriaResults: {},
+            timestamp: new Date().toISOString(),
+          };
+        }
+
+        // Save to database
+        const complianceCheck = await prisma.complianceCheck.create({
+          data: {
+            modelId: model.id,
+            framework,
+            score: validationResult.score,
+            compliant: validationResult.compliant,
+            results: validationResult, // Store full results as JSON
+          },
+          select: {
+            id: true,
+            modelId: true,
+            framework: true,
+            score: true,
+            compliant: true,
+            results: true,
+            createdAt: true,
+          },
+        });
+
+        return {
+          success: true,
+          data: {
+            id: complianceCheck.id,
+            modelId: model.id,
+            modelName: model.name,
+            modelVersion: model.version,
+            framework: frameworkData.id,
+            frameworkName: frameworkData.name,
+            compliant: validationResult.compliant,
+            score: Math.round(validationResult.score * 100),
+            criticalIssues: validationResult.criticalIssues || [],
+            warnings: validationResult.warnings || [],
+            recommendations: validationResult.recommendations || [],
+            criteriaResults: validationResult.criteriaResults || {},
+            timestamp: complianceCheck.createdAt.toISOString(),
+          },
+        };
       },
-    });
+      // Mock mode fallback
+      () => {
+        // If database not available, still run validator but don't save
+        const mockModel = {
+          id: modelId,
+          name: 'Mock Model',
+          version: '1.0.0',
+          metadata: {
+            gdpr: {
+              legalBasis: 'consent',
+              consentMechanism: 'opt-in',
+              privacyPolicyUrl: 'https://example.com/privacy',
+              dataSubjectRights: {
+                access: true,
+                rectification: true,
+                erasure: true,
+              },
+            },
+            hipaa: {
+              phiHandling: false,
+            },
+            security: {
+              encryptionAtRest: true,
+              encryptionInTransit: true,
+              accessControls: true,
+              auditLogging: true,
+            },
+            dataProcessing: {
+              disclosed: true,
+              purposes: ['service_delivery'],
+              minimumNecessary: true,
+              retentionPolicy: '2 years',
+            },
+          },
+        };
+
+        let validationResult;
+
+        if (framework === 'GDPR') {
+          validationResult = validateGDPR(mockModel);
+        } else if (framework === 'HIPAA') {
+          validationResult = validateHIPAA(mockModel);
+        } else {
+          validationResult = {
+            framework,
+            compliant: true,
+            score: 0.75,
+            criticalIssues: [],
+            warnings: ['Mock validation'],
+            recommendations: [],
+            criteriaResults: {},
+            timestamp: new Date().toISOString(),
+          };
+        }
+
+        return {
+          success: true,
+          data: {
+            modelId,
+            framework: frameworkData.id,
+            frameworkName: frameworkData.name,
+            compliant: validationResult.compliant,
+            score: Math.round(validationResult.score * 100),
+            criticalIssues: validationResult.criticalIssues || [],
+            warnings: [...(validationResult.warnings || []), 'Using mock mode (database not available)'],
+            recommendations: validationResult.recommendations || [],
+            criteriaResults: validationResult.criteriaResults || {},
+            timestamp: new Date().toISOString(),
+          },
+        };
+      }
+    );
+
+    if (!result.success) {
+      if (result.error === 'model_not_found') {
+        return res.status(404).json({
+          success: false,
+          error: 'Model not found',
+          message: `Model with ID ${modelId} does not exist`,
+        });
+      }
+      throw new Error(result.error);
+    }
+
+    res.json(result);
   } catch (error) {
     console.error('Compliance validation error:', error);
     res.status(500).json({
