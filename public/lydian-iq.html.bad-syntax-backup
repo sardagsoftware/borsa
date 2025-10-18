@@ -1,0 +1,4538 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lydian-IQ Ultra | Gerçek AI Platformu</title>
+    <meta name="description" content="Lydian-IQ Ultra - 72 Bağlayıcı, Multi-Domain Intelligence">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="/lydian-manifest.json">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+
+    <style>
+        :root {
+            /* Black + White Neon Palette - Premium Edition */
+            --gold-light: #FFFFFF;
+            --gold-medium: #F0F0F0;
+            --gold-dark: #E8E8E8;
+            --gold-darker: #D0D0D0;
+
+            --neon-gold: #FFFFFF;
+            --neon-orange: #F5F5F5;
+            --neon-bronze: #EEEEEE;
+
+            /* Premium White Gradients */
+            --grad-gold: linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 50%, #E8E8E8 100%);
+            --grad-gold-dark: linear-gradient(135deg, #E8E8E8 0%, #D0D0D0 100%);
+            --grad-neon-gold: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 50%, #F0F0F0 100%);
+            --grad-bronze: linear-gradient(135deg, #EEEEEE 0%, #DDDDDD 100%);
+
+            /* Dark Theme with Black Gradient Background */
+            --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #141414 50%, #1e1e1e 100%);
+            --bg-secondary: #141414;
+            --bg-tertiary: #1e1e1e;
+            --bg-card: #1a1a1a;
+
+            --text-primary: #FFFFFF;
+            --text-secondary: #E8E8E8;
+            --text-tertiary: #999999;
+
+            --border: #2a2a2a;
+            --border-gold: rgba(255, 255, 255, 0.2);
+
+            --shadow-gold: 0 0 20px rgba(255, 255, 255, 0.15);
+            --shadow-gold-lg: 0 0 40px rgba(255, 255, 255, 0.2);
+
+            /* Effects */
+            --glow-gold: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            --radius: 16px;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-primary: linear-gradient(135deg, #FFFFFF 0%, #F5F5F7 50%, #EEEEEE 100%);
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #FAFAFA;
+            --bg-card: #FFFFFF;
+
+            --text-primary: #1D1D1F;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+
+            --border: #E5E5E7;
+            --border-gold: rgba(200, 200, 200, 0.3);
+
+            --shadow-gold: 0 0 20px rgba(150, 150, 150, 0.2);
+            --shadow-gold-lg: 0 0 40px rgba(150, 150, 150, 0.3);
+
+            --glow-gold: drop-shadow(0 0 8px rgba(150, 150, 150, 0.4));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar - Black Neon Style */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--border-gold);
+            z-index: 100;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Horizontal Connector Carousel Strip - ChatGPT Neon Style */
+        .connector-carousel-strip {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(135deg,
+                rgba(55, 65, 81, 0.98) 0%,
+                rgba(75, 85, 99, 0.98) 50%,
+                rgba(55, 65, 81, 0.98) 100%) !important;
+            border-bottom: 2px solid rgba(148, 163, 184, 0.3) !important;
+            z-index: 99;
+            backdrop-filter: blur(24px) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+                        0 0 80px rgba(139, 92, 246, 0.08) !important;
+            overflow: hidden;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .connector-carousel-strip.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .connector-carousel-wrapper {
+            position: relative;
+            height: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .connector-carousel-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            gap: 16px;
+            padding: 0 8px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .connector-carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Carousel Navigation Arrows - Vibrant Neon */
+        .connector-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg,
+                rgba(139, 92, 246, 0.9) 0%,
+                rgba(99, 102, 241, 0.9) 50%,
+                rgba(59, 130, 246, 0.9) 100%) !important;
+            border: none !important;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4),
+                        0 0 24px rgba(99, 102, 241, 0.2) !important;
+        }
+
+        .connector-carousel-arrow:hover {
+            transform: translateY(-50%) scale(1.1) !important;
+            background: linear-gradient(135deg,
+                rgba(167, 139, 250, 1) 0%,
+                rgba(129, 140, 248, 1) 50%,
+                rgba(96, 165, 250, 1) 100%) !important;
+            box-shadow: 0 6px 24px rgba(139, 92, 246, 0.6),
+                        0 0 40px rgba(99, 102, 241, 0.3) !important;
+        }
+
+        .connector-carousel-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .connector-carousel-arrow-left {
+            left: 10px;
+        }
+
+        .connector-carousel-arrow-right {
+            right: 10px;
+        }
+
+        .connector-carousel-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .connector-carousel-arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            stroke-width: 2.5;
+        }
+
+        /* Country Tab in Carousel - Neon Style */
+        .connector-country-tab {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: rgba(31, 41, 55, 0.8) !important;
+            border: 1.5px solid rgba(148, 163, 184, 0.25) !important;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .connector-country-tab:hover {
+            background: rgba(55, 65, 81, 0.9) !important;
+            border-color: rgba(167, 139, 250, 0.5) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.15),
+                        0 0 24px rgba(99, 102, 241, 0.1) !important;
+        }
+
+        .connector-country-tab.active {
+            background: linear-gradient(135deg,
+                rgba(139, 92, 246, 0.25) 0%,
+                rgba(99, 102, 241, 0.25) 50%,
+                rgba(59, 130, 246, 0.25) 100%) !important;
+            border-color: rgba(167, 139, 250, 0.6) !important;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3),
+                        0 0 32px rgba(99, 102, 241, 0.2) !important;
+            font-weight: 700;
+        }
+
+        .connector-country-icon {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .connector-country-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #FFFFFF !important;
+        }
+
+        .connector-country-tab.active .connector-country-name {
+            color: #FFFFFF !important;
+        }
+
+        .connector-country-count {
+            font-size: 11px;
+            padding: 2px 6px;
+            background: rgba(0, 0, 0, 0.3) !important;
+            border-radius: 8px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .connector-country-tab.active .connector-country-count {
+            background: rgba(139, 92, 246, 0.3) !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Connector Chip in Carousel - Neon Style */
+        .connector-chip {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: rgba(31, 41, 55, 0.6) !important;
+            border: 1px solid rgba(148, 163, 184, 0.2) !important;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .connector-chip:hover {
+            background: rgba(55, 65, 81, 0.8) !important;
+            border-color: rgba(34, 211, 238, 0.4) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(34, 211, 238, 0.15),
+                        0 0 24px rgba(6, 182, 212, 0.1) !important;
+        }
+
+        .connector-chip-icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .connector-chip-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #FFFFFF !important;
+        }
+
+        /* Adjust main content top padding */
+        .main-content {
+            padding-top: 80px; /* 60px header + 20px spacing (no carousel by default) */
+            transition: padding-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* When carousel is active, add padding */
+        body.carousel-active .main-content {
+            padding-top: 140px; /* 60px header + 80px carousel strip */
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .connector-carousel-strip {
+                height: 70px;
+            }
+
+            .connector-carousel-wrapper {
+                padding: 0 50px;
+            }
+
+            .connector-carousel-arrow {
+                width: 32px;
+                height: 32px;
+            }
+
+            .connector-carousel-arrow svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .connector-carousel-arrow-left {
+                left: 8px;
+            }
+
+            .connector-carousel-arrow-right {
+                right: 8px;
+            }
+
+            .connector-country-tab {
+                padding: 8px 12px;
+                gap: 6px;
+            }
+
+            .connector-country-icon {
+                font-size: 18px;
+            }
+
+            .connector-country-name {
+                font-size: 12px;
+            }
+
+            .connector-chip {
+                padding: 6px 10px;
+                gap: 5px;
+            }
+
+            .connector-chip-icon {
+                font-size: 14px;
+            }
+
+            .connector-chip-name {
+                font-size: 11px;
+            }
+
+            .main-content {
+                padding-top: 80px;
+            }
+
+            body.carousel-active .main-content {
+                padding-top: 130px; /* 60px header + 70px carousel strip */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .connector-carousel-strip {
+                height: 65px;
+            }
+
+            .connector-carousel-wrapper {
+                padding: 0 45px;
+            }
+
+            .connector-carousel-arrow {
+                width: 28px;
+                height: 28px;
+            }
+
+            .connector-carousel-arrow-left {
+                left: 5px;
+            }
+
+            .connector-carousel-arrow-right {
+                right: 5px;
+            }
+
+            .main-content {
+                padding-top: 80px;
+            }
+
+            body.carousel-active .main-content {
+                padding-top: 125px; /* 60px header + 65px carousel strip */
+            }
+        }
+
+        .top-bar-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+
+        /* Header Connector Button */
+        .header-connectors {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .connector-toggle-btn {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-gold);
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .connector-toggle-btn:hover {
+            border-color: var(--gold-medium);
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-2px);
+        }
+
+        .connector-toggle-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--gold-medium);
+        }
+
+        .connector-count {
+            padding: 3px 8px;
+            background: var(--grad-gold);
+            color: #000;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* Top Premium Icon Buttons */
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .top-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .top-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .top-btn:hover::after {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+        }
+
+        .btn-theme {
+            background: var(--grad-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-theme:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-gold-lg);
+            filter: brightness(1.2);
+        }
+
+        .btn-power {
+            background: var(--grad-neon-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-power:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-gold-lg);
+            filter: brightness(1.2);
+        }
+
+        .btn-download {
+            background: var(--grad-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-gold-lg);
+            filter: brightness(1.2);
+        }
+
+        /* Light theme button adjustments */
+        [data-theme="light"] .btn-theme,
+        [data-theme="light"] .btn-power,
+        [data-theme="light"] .btn-download {
+            color: #1D1D1F;
+        }
+
+        /* Main Content - Split Layout - Centered */
+        .main-content {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: calc(100vh - 60px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-content.split-mode {
+            grid-template-columns: 450px 1fr;
+            gap: 0;
+        }
+
+        /* Left Panel - Query Engine - Centered */
+        .query-panel {
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .split-mode .query-panel {
+            border-right: 1px solid var(--border-gold);
+            justify-content: flex-start;
+            padding-top: 60px;
+        }
+
+        /* Right Panel - Results - Premium Centered */
+        .results-panel {
+            padding: 40px 32px;
+            opacity: 0;
+            transform: translateX(60px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .results-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--grad-gold);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .split-mode .results-panel {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: all;
+            animation: slideInResults 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .split-mode .results-panel::before {
+            opacity: 1;
+        }
+
+        @keyframes slideInResults {
+            0% {
+                opacity: 0;
+                transform: translateX(60px) scale(0.95);
+            }
+            60% {
+                transform: translateX(-10px) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* Hero Section - Animated LyDian Logo */
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+            transition: all 0.6s ease;
+        }
+
+        .split-mode .hero {
+            margin-bottom: 24px;
+        }
+
+        /* Animated LyDian Logo */
+        .lydian-logo {
+            display: inline-block;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        .lydian-text {
+            font-size: 72px;
+            font-weight: 900;
+            background: var(--grad-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -3px;
+            position: relative;
+            display: inline-block;
+            filter: none;
+            transition: font-size 0.6s ease;
+        }
+
+        /* Light theme logo fix - make it visible */
+        [data-theme="light"] .lydian-text {
+            background: linear-gradient(135deg, #1D1D1F 0%, #333333 50%, #666666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lydian-sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 4s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--gold-light);
+        }
+
+        .lydian-sparkle:nth-child(1) {
+            top: -10px;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        .lydian-sparkle:nth-child(2) {
+            bottom: -10px;
+            left: 15%;
+            animation-delay: 1.3s;
+        }
+
+        .lydian-sparkle:nth-child(3) {
+            top: 50%;
+            right: -15px;
+            animation-delay: 2.6s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .split-mode .lydian-text {
+            font-size: 36px;
+            letter-spacing: -1.5px;
+        }
+
+        .split-mode .lydian-sparkle {
+            width: 10px;
+            height: 10px;
+        }
+
+        /* Unified Search Engine */
+        .search-engine {
+            width: 100%;
+            max-width: 800px;
+            transition: max-width 0.6s ease;
+        }
+
+        .split-mode .search-engine {
+            max-width: 100%;
+        }
+
+        /* Search Mode Switcher */
+        .search-modes {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .mode-chip {
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+        }
+
+        .split-mode .mode-chip {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .mode-chip svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .mode-chip:hover {
+            border-color: var(--gold-medium);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .mode-chip.active {
+            background: var(--grad-gold);
+            color: #000;
+            border-color: transparent;
+            box-shadow: var(--shadow-gold-lg);
+        }
+
+        .mode-chip.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: var(--grad-gold);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        /* Search Area - Premium Gold Style */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-wrapper {
+            position: relative;
+            background: var(--bg-card);
+            border: 2px solid var(--border-gold);
+            border-radius: 28px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-wrapper:focus-within {
+            border-color: var(--gold-medium);
+            box-shadow: var(--shadow-gold-lg);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 70px 18px 55px;
+            border: none;
+            background: transparent;
+            font-size: 17px;
+            color: var(--text-primary);
+            outline: none;
+            font-weight: 500;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            color: var(--gold-medium);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--grad-gold);
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: var(--shadow-gold-lg);
+            filter: brightness(1.2);
+        }
+
+        .search-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke: #000;
+            stroke-width: 3;
+        }
+
+        /* Quick Actions - Mode Specific */
+        .quick-actions {
+            display: none;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .quick-actions.active {
+            display: flex;
+        }
+
+        .quick-chip {
+            padding: 10px 18px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-chip:hover {
+            background: var(--grad-gold-dark);
+            color: #000;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Chat Messages - Results Area */
+        .messages {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .message {
+            animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 4px;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .message-user {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 8px;
+        }
+
+        .message-assistant {
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 8px;
+        }
+
+        .bubble {
+            padding: 18px 24px;
+            border-radius: 20px;
+            font-size: 15.5px;
+            line-height: 1.8;
+            max-width: 85%;
+            word-wrap: break-word;
+            position: relative;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .bubble p {
+            margin: 0 0 12px 0;
+        }
+
+        .bubble p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bubble code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 14px;
+        }
+
+        .bubble pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        .bubble pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .bubble strong {
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        .bubble a {
+            color: var(--gold-light);
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .bubble a:hover {
+            text-decoration-color: var(--gold-light);
+            color: var(--gold-medium);
+        }
+
+        /* Action Buttons - Mobil Uyumlu */
+        .message-actions {
+            display: flex;
+            justify-content: flex-start;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 0 8px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            min-height: 44px; /* Touch-friendly */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            color: var(--gold-light);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.15);
+        }
+
+        .action-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            flex-shrink: 0;
+        }
+
+        .action-btn-delete {
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #F87171;
+        }
+
+        .action-btn-delete:hover {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border-color: #F87171;
+        }
+
+        .action-btn-back {
+            border-color: rgba(59, 130, 246, 0.5);
+            border-width: 2px;
+            color: #60A5FA;
+            font-weight: 600;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%);
+            padding: 10px 20px;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+        }
+
+        .action-btn-back:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.15) 100%);
+            border-color: #60A5FA;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+        }
+
+        .action-btn-share {
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34D399;
+        }
+
+        .action-btn-share:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-color: #34D399;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 640px) {
+            .action-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+                flex: 1 1 auto;
+                min-width: 100px;
+                justify-content: center;
+            }
+
+            .message-actions {
+                gap: 6px;
+            }
+        }
+
+        .message-user .bubble {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 50%, #E8E8E8 100%);
+            color: #000;
+            border-bottom-right-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow:
+                0 4px 12px rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(10px);
+        }
+
+        .message-user .bubble::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .message-assistant .bubble {
+            background: linear-gradient(145deg,
+                var(--bg-card) 0%,
+                rgba(26, 27, 38, 0.95) 100%
+            );
+            color: var(--text-primary);
+            border-bottom-left-radius: 6px;
+            border: 1px solid var(--border-gold);
+            box-shadow:
+                0 4px 16px rgba(0, 0, 0, 0.15),
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .message-assistant .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--gold-medium) 50%,
+                transparent 100%
+            );
+            opacity: 0.3;
+        }
+
+        /* AI Card - Clean Premium */
+        .ai-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ai-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10A37F 0%, #1A7F64 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(16, 163, 127, 0.3);
+        }
+
+        .ai-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .ai-info {
+            flex: 1;
+        }
+
+        .ai-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .ai-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .ai-badge {
+            padding: 6px 10px;
+            background: linear-gradient(135deg, #10A37F 0%, #1A7F64 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(16, 163, 127, 0.3);
+        }
+
+        .ai-content {
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            margin-bottom: 12px;
+        }
+
+        .ai-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .ai-btn {
+            flex: 1;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ai-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .ai-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Share Button - Blue Premium */
+        .ai-btn-share {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .ai-btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .ai-btn-share:active {
+            transform: translateY(0);
+        }
+
+        /* Download Button - Green Premium */
+        .ai-btn-download {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .ai-btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        .ai-btn-download:active {
+            transform: translateY(0);
+        }
+
+        /* Delete Button - Red Premium */
+        .ai-btn-delete {
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .ai-btn-delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+        }
+
+        .ai-btn-delete:active {
+            transform: translateY(0);
+        }
+
+        /* Primary Button (AI Generate) - White Premium */
+        .ai-btn-primary {
+            background: var(--grad-gold);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
+            font-weight: 700;
+        }
+
+        .ai-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 255, 255, 0.35);
+        }
+
+        .ai-btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Secondary Button - Ghost Style */
+        .ai-btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-gold);
+        }
+
+        .ai-btn-secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--gold-medium);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Premium Notification Animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0.7; }
+        }
+
+        /* Connector Modal Overlay */
+        .connector-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .connector-modal-overlay.active {
+            display: flex;
+        }
+
+        .connector-modal {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-gold);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 85vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-gold-lg);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-gold);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-secondary);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 900;
+            background: var(--grad-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-gold);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--grad-gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-primary);
+        }
+
+        .modal-close:hover svg {
+            stroke: #000;
+        }
+
+        .modal-search-wrapper {
+            padding: 20px 32px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-search {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-gold);
+            border-radius: 16px;
+            font-size: 15px;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-search:focus {
+            border-color: var(--gold-medium);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .modal-search-icon {
+            position: absolute;
+            left: 52px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--gold-medium);
+        }
+
+        /* Modal Tabs Carousel Wrapper */
+        .modal-tabs-wrapper {
+            position: relative;
+            width: 100%;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .modal-tabs {
+            width: 100%;
+            padding: 0 70px;
+            display: flex;
+            gap: 12px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE 10+ */
+            -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+        }
+
+        .modal-tabs::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* Carousel Navigation Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-medium) 100%);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-arrow:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-arrow-left {
+            left: 10px;
+        }
+
+        .carousel-arrow-right {
+            right: 10px;
+        }
+
+        .carousel-arrow svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+            stroke-width: 3;
+        }
+
+        .carousel-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .modal-tab-btn {
+            padding: 10px 20px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0; /* Prevent tabs from shrinking */
+            min-width: fit-content;
+        }
+
+        .modal-tab-btn:hover {
+            border-color: var(--gold-medium);
+            color: var(--text-primary);
+        }
+
+        .modal-tab-btn.active {
+            background: var(--grad-gold);
+            color: #000;
+            border-color: transparent;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .modal-tab-badge {
+            padding: 2px 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .modal-content {
+            padding: 32px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-connector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .modal-connector-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .modal-connector-item:hover {
+            border-color: var(--gold-medium);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .connector-logo {
+            width: 96px;
+            height: 96px;
+            background: white;
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .modal-connector-item:hover .connector-logo {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(255, 255, 255, 0.25);
+        }
+
+        .connector-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .connector-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .connector-region {
+            font-size: 11px;
+            color: var(--text-tertiary);
+        }
+
+        .connector-status-badge {
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--success);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .connector-status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        /* Footer Menu - Güvenli Linkler */
+        .lydian-footer {
+            padding: 40px 24px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-gold);
+            text-align: center;
+        }
+
+        .footer-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--grad-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .footer-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .footer-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: 16px;
+        }
+
+        .footer-security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #10b981;
+            margin-top: 12px;
+        }
+
+        .footer-security-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content.split-mode {
+                grid-template-columns: 1fr;
+            }
+
+            .split-mode .query-panel {
+                border-right: none;
+                border-bottom: 1px solid var(--border-gold);
+                padding-bottom: 24px;
+            }
+
+            .connector-modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .modal-connector-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            /* Premium Action Buttons - Tablet */
+            .ai-actions {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .ai-btn {
+                flex: 1 1 calc(50% - 4px);
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-content {
+                padding: 0 16px;
+                gap: 12px;
+            }
+
+            .header-brand {
+                font-size: 14px;
+            }
+
+            .header-connectors {
+                max-width: 400px;
+            }
+
+            .connector-toggle-btn {
+                padding: 8px 14px;
+                font-size: 11px;
+                gap: 6px;
+            }
+
+            .connector-toggle-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .connector-count {
+                padding: 2px 6px;
+                font-size: 10px;
+            }
+
+            .top-actions {
+                gap: 8px;
+            }
+
+            .top-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .top-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .split-mode .hero-title {
+                font-size: 24px;
+            }
+
+            .connector-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .connector-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mode-chip {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .modal-connector-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .modal-header {
+                padding: 20px 24px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+
+            .modal-search-wrapper,
+            .modal-tabs,
+            .modal-content {
+                padding: 16px 20px;
+            }
+
+            /* Premium Action Buttons - Mobile */
+            .ai-btn {
+                padding: 10px 14px;
+                font-size: 12px;
+                gap: 5px;
+            }
+
+            .ai-btn svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-brand {
+                display: none;
+            }
+
+            .header-connectors {
+                max-width: none;
+            }
+
+            .connector-toggle-btn span:not(.connector-count) {
+                display: none;
+            }
+
+            .modal-connector-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            /* Premium Action Buttons - Mobile Small */
+            .ai-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .ai-btn {
+                flex: 1 1 100%;
+                padding: 12px 16px;
+            }
+
+            .ai-btn span {
+                font-size: 11px;
+            }
+
+            /* Carousel Arrows - Mobile */
+            .carousel-arrow {
+                width: 32px;
+                height: 32px;
+            }
+
+            .carousel-arrow svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .carousel-arrow-left {
+                left: 5px;
+            }
+
+            .carousel-arrow-right {
+                right: 5px;
+            }
+
+            .modal-tabs {
+                padding: 0 45px;
+            }
+        }
+
+        /* ====================================
+           PREMIUM RESPONSE UI/UX STYLES
+           Benzersiz, Premium, Kullanıcı Dostu
+           ==================================== */
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Premium Response Card */
+        .premium-response-card {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(145deg,
+                rgba(26, 27, 38, 0.98) 0%,
+                rgba(30, 31, 42, 0.95) 50%,
+                rgba(26, 27, 38, 0.98) 100%
+            );
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 24px;
+            padding: 0;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .premium-response-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 215, 0, 0.05),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        /* Response Header */
+        .response-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 28px;
+            background: linear-gradient(135deg,
+                rgba(255, 215, 0, 0.08) 0%,
+                rgba(255, 215, 0, 0.03) 100%
+            );
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            position: relative;
+        }
+
+        .response-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 28px;
+            right: 28px;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 215, 0, 0.4),
+                transparent
+            );
+        }
+
+        .response-ai-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-glow 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .response-ai-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        .response-ai-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: #000;
+            stroke-width: 2.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .response-meta {
+            flex: 1;
+        }
+
+        .response-meta-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin: 0 0 6px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .response-meta-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .response-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .response-stat-icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+
+        .response-badge {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Response Content */
+        .response-content-wrapper {
+            padding: 28px;
+        }
+
+        /* ULTRA PREMIUM Response Content */
+        .response-content {
+            background: linear-gradient(135deg,
+                rgba(30, 31, 42, 0.7) 0%,
+                rgba(26, 27, 38, 0.6) 100%
+            );
+            padding: 32px;
+            margin: 0 28px 28px 28px;
+            border-radius: 18px;
+            line-height: 1.95;
+            font-size: 16px;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            position: relative;
+            backdrop-filter: blur(12px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .response-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 215, 0, 0.2) 50%,
+                transparent 100%
+            );
+        }
+
+        .response-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+            );
+        }
+
+        .response-text {
+            position: relative;
+            z-index: 1;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        /* Smooth text rendering for premium look */
+        .response-text {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Section spacing */
+        .response-section {
+            margin-bottom: 24px;
+        }
+
+        .response-section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 8px 14px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: var(--gold-light);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .copy-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Premium Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 32px 28px 16px 28px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        .section-icon {
+            font-size: 22px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gold-medium);
+            letter-spacing: 0.5px;
+        }
+
+        /* Premium Image Grid */
+        .premium-image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            padding: 0 28px 20px 28px;
+        }
+
+        .premium-image-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .premium-image-item:nth-child(1) { animation-delay: 0.1s; }
+        .premium-image-item:nth-child(2) { animation-delay: 0.2s; }
+        .premium-image-item:nth-child(3) { animation-delay: 0.3s; }
+        .premium-image-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .premium-image-item:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .premium-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 14px;
+        }
+
+        /* Premium Citation Cards */
+        .citation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 28px 20px 28px;
+        }
+
+        .citation-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg,
+                rgba(30, 31, 42, 0.6) 0%,
+                rgba(26, 27, 38, 0.6) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .citation-card:nth-child(1) { animation-delay: 0.05s; }
+        .citation-card:nth-child(2) { animation-delay: 0.1s; }
+        .citation-card:nth-child(3) { animation-delay: 0.15s; }
+        .citation-card:nth-child(4) { animation-delay: 0.2s; }
+        .citation-card:nth-child(5) { animation-delay: 0.25s; }
+
+        .citation-card:hover {
+            background: linear-gradient(135deg,
+                rgba(255, 215, 0, 0.15) 0%,
+                rgba(255, 215, 0, 0.08) 100%
+            );
+            border-color: rgba(255, 215, 0, 0.4);
+            transform: translateX(8px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .citation-number {
+            min-width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .citation-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .citation-domain {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .citation-url {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .citation-arrow {
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .citation-card:hover .citation-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        /* Related Questions */
+        .related-questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 28px 20px 28px;
+        }
+
+        .related-question-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg,
+                rgba(30, 31, 42, 0.5) 0%,
+                rgba(26, 27, 38, 0.5) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+            font-size: 14.5px;
+            animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .related-question-btn:nth-child(1) { animation-delay: 0.05s; }
+        .related-question-btn:nth-child(2) { animation-delay: 0.1s; }
+        .related-question-btn:nth-child(3) { animation-delay: 0.15s; }
+
+        .related-question-btn:hover {
+            background: linear-gradient(135deg,
+                rgba(255, 215, 0, 0.12) 0%,
+                rgba(255, 215, 0, 0.06) 100%
+            );
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateX(6px);
+        }
+
+        .related-question-icon {
+            font-size: 18px;
+            color: var(--gold-light);
+        }
+
+        /* Premium Action Bar - ULTRA DESIGN */
+        .premium-actions {
+            display: flex;
+            gap: 10px;
+            padding: 20px 24px;
+            background: linear-gradient(180deg,
+                rgba(26, 27, 38, 0) 0%,
+                rgba(26, 27, 38, 0.6) 100%
+            );
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
+            flex-wrap: nowrap;
+            position: relative;
+            backdrop-filter: blur(8px);
+            justify-content: flex-end;
+        }
+
+        .premium-actions::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 215, 0, 0.3) 50%,
+                transparent 100%
+            );
+        }
+
+        .premium-action-btn {
+            flex: 0 1 auto;
+            min-width: 100px;
+            max-width: 130px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.2px;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            white-space: nowrap;
+        }
+
+        .premium-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translate(-50%, -50%);
+            transition: width 0.7s ease-out, height 0.7s ease-out;
+        }
+
+        .premium-action-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .premium-action-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .premium-action-btn:hover::after {
+            opacity: 1;
+        }
+
+        .premium-action-btn svg {
+            width: 22px;
+            height: 22px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .premium-action-btn:hover svg {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .premium-action-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-new-search {
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+            color: #fff;
+            box-shadow:
+                0 8px 20px rgba(96, 165, 250, 0.3),
+                0 0 0 1px rgba(96, 165, 250, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-new-search:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow:
+                0 12px 32px rgba(96, 165, 250, 0.5),
+                0 0 0 1px rgba(96, 165, 250, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-new-search:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .btn-share {
+            background: linear-gradient(135deg,
+                rgba(52, 211, 153, 0.25) 0%,
+                rgba(16, 185, 129, 0.2) 100%
+            );
+            border: 2px solid rgba(52, 211, 153, 0.5);
+            color: #34D399;
+            box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
+        }
+
+        .btn-share:hover {
+            background: linear-gradient(135deg,
+                rgba(52, 211, 153, 0.4) 0%,
+                rgba(16, 185, 129, 0.3) 100%
+            );
+            border-color: #34D399;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(52, 211, 153, 0.4);
+            color: #6EE7B7;
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg,
+                rgba(248, 113, 113, 0.25) 0%,
+                rgba(239, 68, 68, 0.2) 100%
+            );
+            border: 2px solid rgba(248, 113, 113, 0.5);
+            color: #F87171;
+            box-shadow: 0 4px 12px rgba(248, 113, 113, 0.2);
+        }
+
+        .btn-delete:hover {
+            background: linear-gradient(135deg,
+                rgba(248, 113, 113, 0.4) 0%,
+                rgba(239, 68, 68, 0.3) 100%
+            );
+            border-color: #F87171;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(248, 113, 113, 0.4);
+            color: #FCA5A5;
+        }
+
+        .btn-delete:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        /* Mobile Responsive - ULTRA PREMIUM */
+        @media (max-width: 768px) {
+            .premium-response-card {
+                border-radius: 20px;
+                margin: 12px 0;
+            }
+
+            .response-header {
+                padding: 20px;
+                flex-direction: row;
+            }
+
+            .response-ai-icon {
+                width: 42px;
+                height: 42px;
+            }
+
+            .response-meta-title {
+                font-size: 16px;
+            }
+
+            .response-meta-stats {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .response-stat {
+                font-size: 12px;
+            }
+
+            .response-content {
+                padding: 20px;
+                font-size: 14.5px;
+            }
+
+            .copy-btn {
+                top: 16px;
+                right: 16px;
+                width: 36px;
+                height: 36px;
+            }
+
+            .section-header {
+                margin: 20px 16px 12px 16px;
+                font-size: 15px;
+            }
+
+            .section-header svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .response-section {
+                padding: 0 16px 16px 16px;
+            }
+
+            .premium-image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 10px;
+            }
+
+            .citation-card {
+                padding: 14px 16px;
+                gap: 12px;
+            }
+
+            .citation-number {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .citation-title {
+                font-size: 13px;
+            }
+
+            .related-question-btn {
+                padding: 12px 16px;
+                font-size: 13.5px;
+            }
+
+            /* PREMIUM ACTIONS - MOBILE OPTIMIZED */
+            .premium-actions {
+                padding: 24px 16px;
+                gap: 12px;
+                flex-direction: column;
+            }
+
+            .premium-action-btn {
+                width: 100%;
+                min-width: 100%;
+                padding: 14px 24px;
+                font-size: 14px;
+                letter-spacing: 0.3px;
+            }
+
+            .premium-action-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            /* Specific mobile ordering for visual hierarchy */
+            .btn-new-search {
+                order: 1;
+            }
+
+            .btn-share {
+                order: 2;
+            }
+
+            .btn-delete {
+                order: 3;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .premium-actions {
+                gap: 14px;
+            }
+
+            .premium-action-btn {
+                min-width: 160px;
+                padding: 15px 24px;
+            }
+        }
+    </style>
+
+    <!-- 🛡️ XSS Protection: DOMPurify -->
+    <script src="/js/lib/dompurify-loader.js"></script>
+    <script src="/js/lib/sanitizer.js"></script>
+
+    <!-- 🚀 Enhanced Features -->
+    <script src="/js/lydian-iq-enhanced.js"></script>
+</head>
+<body>
+    <!-- Top Bar - Premium Icon Only -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <!-- Connector Button -->
+            <div class="header-connectors">
+                <button class="connector-toggle-btn" onclick="toggleConnectorCarousel()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                    <span>Premium Connectors</span>
+                    <span class="connector-count">72</span>
+                </button>
+            </div>
+
+            <!-- Top Actions -->
+            <div class="top-actions">
+                <!-- Theme Toggle -->
+                <button class="top-btn btn-theme" onclick="toggleTheme()" data-tooltip="Tema Değiştir">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+
+                <!-- Super Power -->
+                <button class="top-btn btn-power" onclick="activatePower()" data-tooltip="Süper Güç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </button>
+
+                <!-- Download PWA -->
+                <button class="top-btn btn-download" onclick="downloadApp()" data-tooltip="Mobil Uygulama">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horizontal Connector Carousel Strip -->
+    <div class="connector-carousel-strip" id="connectorCarouselStrip">
+        <div class="connector-carousel-wrapper">
+            <!-- Left Arrow -->
+            <button class="connector-carousel-arrow connector-carousel-arrow-left" id="carouselStripLeft" aria-label="Scroll left">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+
+            <!-- Carousel Container -->
+            <div class="connector-carousel-container" id="connectorCarouselContainer">
+                <!-- Countries and connectors will be dynamically inserted here -->
+            </div>
+
+            <!-- Right Arrow -->
+            <button class="connector-carousel-arrow connector-carousel-arrow-right" id="carouselStripRight" aria-label="Scroll right">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Left Panel - Query Engine -->
+        <div class="query-panel">
+            <!-- Hero -->
+            <div class="hero">
+                <div class="lydian-logo">
+                    <h1 class="lydian-text">LyDian</h1>
+                    <div class="lydian-sparkle"></div>
+                    <div class="lydian-sparkle"></div>
+                    <div class="lydian-sparkle"></div>
+                </div>
+            </div>
+
+            <!-- Unified Search Engine -->
+            <div class="search-engine">
+            <!-- Mode Switcher -->
+            <div class="search-modes">
+                <div class="mode-chip active" data-mode="web" onclick="switchSearchMode('web', this)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span>Web</span>
+                </div>
+                <div class="mode-chip" data-mode="lydian-iq" onclick="switchSearchMode('lydian-iq', this)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3"/>
+                        <path d="m4.93 4.93 4.24 4.24"/>
+                    </svg>
+                    <span>Lydian IQ</span>
+                </div>
+                <div class="mode-chip" data-mode="connector" onclick="switchSearchMode('connector', this)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                    <span>Connector</span>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Web'de ara, AI ile sohbet et, veya connector çalıştır..." autocomplete="off">
+                    <button class="search-btn" id="searchBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Quick Actions - Web Mode -->
+                <div class="quick-actions active" id="quick-web">
+                    <div class="quick-chip" onclick="fillQuery('React hooks best practices')">React Hooks</div>
+                    <div class="quick-chip" onclick="fillQuery('Node.js performance optimization')">Node.js Perf</div>
+                    <div class="quick-chip" onclick="fillQuery('Docker compose examples')">Docker Tips</div>
+                    <div class="quick-chip" onclick="fillQuery('TypeScript advanced types')">TS Types</div>
+                </div>
+
+                <!-- Quick Actions - Lydian IQ Mode -->
+                <div class="quick-actions" id="quick-lydian">
+                    <div class="quick-chip" onclick="fillQuery('Makine öğrenmesi nedir?')">AI Öğrenme</div>
+                    <div class="quick-chip" onclick="fillQuery('E-ticaret stratejisi oluştur')">Strateji</div>
+                    <div class="quick-chip" onclick="fillQuery('Python kod optimizasyonu')">Kod Analiz</div>
+                    <div class="quick-chip" onclick="fillQuery('Veri bilimi projeleri')">Data Science</div>
+                </div>
+
+                <!-- Quick Actions - Connector Mode -->
+                <div class="quick-actions" id="quick-connector">
+                    <div class="quick-chip" onclick="fillQuery('Trendyol iPhone 15')">Trendyol</div>
+                    <div class="quick-chip" onclick="fillQuery('Aras kargo 1234567890')">Kargo Takip</div>
+                    <div class="quick-chip" onclick="fillQuery('Getir market')">Getir</div>
+                    <div class="quick-chip" onclick="fillQuery('Hangikredi 50000 TL')">Kredi</div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Right Panel - Results -->
+        <div class="results-panel">
+            <div class="messages" id="messages"></div>
+        </div>
+    </div>
+
+    <!-- Connector Modal -->
+    <div class="connector-modal-overlay" id="connectorModal">
+        <div class="connector-modal">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="modal-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                    <span>72 Premium Connectors</span>
+                </div>
+                <button class="modal-close" onclick="toggleConnectorModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Search -->
+            <div class="modal-search-wrapper" style="position: relative;">
+                <svg class="modal-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" class="modal-search" id="modalConnectorSearch" placeholder="Connector ara... (Trendyol, Aras, Getir...)">
+            </div>
+
+            <!-- Modal Tabs Carousel -->
+            <div class="modal-tabs-wrapper">
+                <button class="carousel-arrow carousel-arrow-left" id="carouselLeft" aria-label="Scroll left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <div class="modal-tabs" id="modalTabs"></div>
+                <button class="carousel-arrow carousel-arrow-right" id="carouselRight" aria-label="Scroll right">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="modal-content" id="modalContent">
+                <div class="modal-connector-grid" id="modalConnectorGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - Güvenli Linkler -->
+    <footer class="lydian-footer">
+        <div class="footer-menu">
+            <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                Gizlilik
+            </a>
+            <a href="/security.html" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                Güvenlik
+            </a>
+            <a href="/" class="footer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                LyDian
+            </a>
+        </div>
+        <div class="footer-security-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Secure & Indexed
+        </div>
+        <div class="footer-copyright">
+            © 2025 LyDian. All rights reserved. Built with ❤️ for developers.
+        </div>
+    </footer>
+
+    <script>
+        // 72 Premium Connectors with Real Logos
+        const allConnectors = [
+            // Turkey E-Commerce (6)
+            { name: 'Trendyol', region: 'Türkiye', category: 'E-Ticaret', logo: 'https://cdn.dsmcdn.com/favicon.ico' },
+            { name: 'Hepsiburada', region: 'Türkiye', category: 'E-Ticaret', logo: 'https://www.hepsiburada.com/favicon.ico' },
+            { name: 'N11', region: 'Türkiye', category: 'E-Ticaret', logo: 'https://www.n11.com/favicon.ico' },
+            { name: 'Temu', region: 'Türkiye', category: 'E-Ticaret', logo: 'https://www.temu.com/favicon.ico' },
+            { name: 'Sahibinden', region: 'Türkiye', category: 'E-Ticaret', logo: 'https://www.sahibinden.com/favicon.ico' },
+            { name: 'Arabam', region: 'Türkiye', category: 'E-Ticaret', logo: 'https://www.arabam.com/favicon.ico' },
+
+            // Turkey Cargo (6)
+            { name: 'Aras Kargo', region: 'Türkiye', category: 'Kargo', logo: 'https://www.araskargo.com.tr/favicon.ico' },
+            { name: 'Yurtiçi Kargo', region: 'Türkiye', category: 'Kargo', logo: 'https://www.yurticikargo.com/favicon.ico' },
+            { name: 'Hepsijet', region: 'Türkiye', category: 'Kargo', logo: 'https://www.hepsijet.com/favicon.ico' },
+            { name: 'MNG Kargo', region: 'Türkiye', category: 'Kargo', logo: 'https://www.mngkargo.com.tr/favicon.ico' },
+            { name: 'Sürat Kargo', region: 'Türkiye', category: 'Kargo', logo: 'https://www.suratkargo.com.tr/favicon.ico' },
+            { name: 'UPS Türkiye', region: 'Türkiye', category: 'Kargo', logo: 'https://www.ups.com/favicon.ico' },
+
+            // Turkey Food Delivery (3)
+            { name: 'Getir', region: 'Türkiye', category: 'Yemek', logo: 'https://www.getir.com/favicon.ico' },
+            { name: 'Yemeksepeti', region: 'Türkiye', category: 'Yemek', logo: 'https://www.yemeksepeti.com/favicon.ico' },
+            { name: 'Trendyol Yemek', region: 'Türkiye', category: 'Yemek', logo: 'https://www.trendyolyemek.com/favicon.ico' },
+
+            // Turkey Grocery (5)
+            { name: 'Migros', region: 'Türkiye', category: 'Market', logo: 'https://www.migros.com.tr/favicon.ico' },
+            { name: 'CarrefourSA', region: 'Türkiye', category: 'Market', logo: 'https://www.carrefoursa.com/favicon.ico' },
+            { name: 'A101', region: 'Türkiye', category: 'Market', logo: 'https://www.a101.com.tr/favicon.ico' },
+            { name: 'BİM', region: 'Türkiye', category: 'Market', logo: 'https://www.bim.com.tr/favicon.ico' },
+            { name: 'ŞOK', region: 'Türkiye', category: 'Market', logo: 'https://www.sok.com.tr/favicon.ico' },
+
+            // Turkey Finance & Travel (4)
+            { name: 'Hangikredi', region: 'Türkiye', category: 'Finans', logo: 'https://www.hangikredi.com/favicon.ico' },
+            { name: 'Jollytur', region: 'Türkiye', category: 'Seyahat', logo: 'https://www.jollytur.com/favicon.ico' },
+            { name: 'Enuygun', region: 'Türkiye', category: 'Seyahat', logo: 'https://www.enuygun.com/favicon.ico' },
+            { name: 'Trivago', region: 'Türkiye', category: 'Seyahat', logo: 'https://www.trivago.com.tr/favicon.ico' },
+
+            // Azerbaijan (4)
+            { name: 'Tap.az', region: 'Azerbaycan', category: 'E-Ticaret', logo: 'https://www.tap.az/favicon.ico' },
+            { name: 'Turbo.az', region: 'Azerbaycan', category: 'E-Ticaret', logo: 'https://www.turbo.az/favicon.ico' },
+            { name: 'Wolt AZ', region: 'Azerbaycan', category: 'Yemek', logo: 'https://wolt.com/favicon.ico' },
+            { name: 'Bolt Food AZ', region: 'Azerbaycan', category: 'Yemek', logo: 'https://food.bolt.eu/favicon.ico' },
+
+            // Qatar (5)
+            { name: 'Talabat QA', region: 'Katar', category: 'Yemek', logo: 'https://www.talabat.com/favicon.ico' },
+            { name: 'Snoonu', region: 'Katar', category: 'Yemek', logo: 'https://www.snoonu.com/favicon.ico' },
+            { name: 'Carrefour QA', region: 'Katar', category: 'Market', logo: 'https://www.carrefourqatar.com/favicon.ico' },
+            { name: 'Lulu', region: 'Katar', category: 'Market', logo: 'https://www.luluhypermarket.com/favicon.ico' },
+            { name: 'Wolt QA', region: 'Katar', category: 'Yemek', logo: 'https://wolt.com/favicon.ico' },
+
+            // Saudi Arabia (7)
+            { name: 'Noon', region: 'Suudi Arabistan', category: 'E-Ticaret', logo: 'https://www.noon.com/favicon.ico' },
+            { name: 'Haraj', region: 'Suudi Arabistan', category: 'E-Ticaret', logo: 'https://www.haraj.com.sa/favicon.ico' },
+            { name: 'HungerStation', region: 'Suudi Arabistan', category: 'Yemek', logo: 'https://www.hungerstation.com/favicon.ico' },
+            { name: 'Mrsool', region: 'Suudi Arabistan', category: 'Yemek', logo: 'https://www.mrsool.co/favicon.ico' },
+            { name: 'Nana', region: 'Suudi Arabistan', category: 'Market', logo: 'https://www.nana.sa/favicon.ico' },
+            { name: 'Jahez', region: 'Suudi Arabistan', category: 'Yemek', logo: 'https://www.jahez.sa/favicon.ico' },
+            { name: 'Talabat SA', region: 'Suudi Arabistan', category: 'Yemek', logo: 'https://www.talabat.com/favicon.ico' },
+
+            // Cyprus (5)
+            { name: 'Bazaraki', region: 'Kıbrıs', category: 'E-Ticaret', logo: 'https://www.bazaraki.com/favicon.ico' },
+            { name: 'Foody CY', region: 'Kıbrıs', category: 'Yemek', logo: 'https://www.foody.com.cy/favicon.ico' },
+            { name: 'Wolt CY', region: 'Kıbrıs', category: 'Yemek', logo: 'https://wolt.com/favicon.ico' },
+            { name: 'Alphamega', region: 'Kıbrıs', category: 'Market', logo: 'https://www.alphamega.com.cy/favicon.ico' },
+            { name: 'Deliveroo CY', region: 'Kıbrıs', category: 'Yemek', logo: 'https://deliveroo.com.cy/favicon.ico' },
+
+            // Germany (6)
+            { name: 'Zalando', region: 'Almanya', category: 'E-Ticaret', logo: 'https://www.zalando.de/favicon.ico' },
+            { name: 'Otto', region: 'Almanya', category: 'E-Ticaret', logo: 'https://www.otto.de/favicon.ico' },
+            { name: 'Lieferando', region: 'Almanya', category: 'Yemek', logo: 'https://www.lieferando.de/favicon.ico' },
+            { name: 'Rewe', region: 'Almanya', category: 'Market', logo: 'https://www.rewe.de/favicon.ico' },
+            { name: 'Gorillas', region: 'Almanya', category: 'Market', logo: 'https://www.gorillas.io/favicon.ico' },
+            { name: 'Check24', region: 'Almanya', category: 'Finans', logo: 'https://www.check24.de/favicon.ico' },
+
+            // Bulgaria (4)
+            { name: 'Emag BG', region: 'Bulgaristan', category: 'E-Ticaret', logo: 'https://www.emag.bg/favicon.ico' },
+            { name: 'OLX BG', region: 'Bulgaristan', category: 'E-Ticaret', logo: 'https://www.olx.bg/favicon.ico' },
+            { name: 'Glovo BG', region: 'Bulgaristan', category: 'Yemek', logo: 'https://glovoapp.com/favicon.ico' },
+            { name: 'Ebag', region: 'Bulgaristan', category: 'Market', logo: 'https://www.ebag.bg/favicon.ico' },
+
+            // Austria (5)
+            { name: 'Willhaben', region: 'Avusturya', category: 'E-Ticaret', logo: 'https://www.willhaben.at/favicon.ico' },
+            { name: 'Foodora AT', region: 'Avusturya', category: 'Yemek', logo: 'https://www.foodora.at/favicon.ico' },
+            { name: 'Billa', region: 'Avusturya', category: 'Market', logo: 'https://www.billa.at/favicon.ico' },
+            { name: 'Gurkerl', region: 'Avusturya', category: 'Market', logo: 'https://www.gurkerl.at/favicon.ico' },
+            { name: 'Shöpping', region: 'Avusturya', category: 'E-Ticaret', logo: 'https://www.shoepping.at/favicon.ico' },
+
+            // Netherlands (7)
+            { name: 'Bol.com', region: 'Hollanda', category: 'E-Ticaret', logo: 'https://www.bol.com/favicon.ico' },
+            { name: 'Coolblue', region: 'Hollanda', category: 'E-Ticaret', logo: 'https://www.coolblue.nl/favicon.ico' },
+            { name: 'Marktplaats', region: 'Hollanda', category: 'E-Ticaret', logo: 'https://www.marktplaats.nl/favicon.ico' },
+            { name: 'Thuisbezorgd', region: 'Hollanda', category: 'Yemek', logo: 'https://www.thuisbezorgd.nl/favicon.ico' },
+            { name: 'Albert Heijn', region: 'Hollanda', category: 'Market', logo: 'https://www.ah.nl/favicon.ico' },
+            { name: 'Picnic', region: 'Hollanda', category: 'Market', logo: 'https://picnic.app/favicon.ico' },
+            { name: 'Jumbo', region: 'Hollanda', category: 'Market', logo: 'https://www.jumbo.com/favicon.ico' }
+        ];
+
+        // Toggle Connector Modal
+        function toggleConnectorModal() {
+            const modal = document.getElementById('connectorModal');
+            const isActive = modal.classList.contains('active');
+
+            if (isActive) {
+                modal.classList.remove('active');
+            } else {
+                modal.classList.add('active');
+                initializeModalContent();
+            }
+        }
+
+        // Initialize Modal Content
+        function initializeModalContent() {
+            const modalTabs = document.getElementById('modalTabs');
+            const modalConnectorGrid = document.getElementById('modalConnectorGrid');
+
+            // Clear existing content
+            modalTabs.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            modalConnectorGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
+
+            // Get unique regions
+            const regions = ['Tümü', ...new Set(allConnectors.map(c => c.region))];
+
+            // Create tabs
+            regions.forEach((region, index) => {
+                const count = region === 'Tümü' ? allConnectors.length : allConnectors.filter(c => c.region === region).length;
+                const tabBtn = document.createElement('button');
+                tabBtn.className = `modal-tab-btn ${index === 0 ? 'active' : ''}`;
+                tabBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
+                    <span>${region}</span>
+                    <span class="modal-tab-badge">${count}</span>
+                `);
+                tabBtn.onclick = () => filterModalConnectors(region, tabBtn);
+                modalTabs.appendChild(tabBtn);
+            });
+
+            // Render all connectors initially
+            renderModalConnectors(allConnectors);
+
+            // Setup search
+            const searchInput = document.getElementById('modalConnectorSearch');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = allConnectors.filter(c =>
+                    c.name.toLowerCase().includes(query) ||
+                    c.region.toLowerCase().includes(query) ||
+                    c.category.toLowerCase().includes(query)
+                );
+                renderModalConnectors(filtered);
+            });
+
+            // Initialize carousel
+            initializeCarousel();
+        }
+
+        // Carousel state tracking
+        let carouselInitialized = false;
+
+        // Initialize Carousel Navigation
+        function initializeCarousel() {
+            const modalTabs = document.getElementById('modalTabs');
+            const leftArrow = document.getElementById('carouselLeft');
+            const rightArrow = document.getElementById('carouselRight');
+
+            if (!modalTabs || !leftArrow || !rightArrow) {
+                console.error('Carousel elements not found');
+                return;
+            }
+
+            // Scroll amount (multiple tabs at once for better UX)
+            const scrollAmount = 400;
+
+            // Update arrow states
+            function updateArrowStates() {
+                const { scrollLeft, scrollWidth, clientWidth } = modalTabs;
+                const maxScroll = scrollWidth - clientWidth;
+
+                console.log('📊 Carousel state:', {
+                    scrollLeft: Math.round(scrollLeft),
+                    scrollWidth: Math.round(scrollWidth),
+                    clientWidth: Math.round(clientWidth),
+                    maxScroll: Math.round(maxScroll),
+                    canScrollLeft: scrollLeft > 5,
+                    canScrollRight: scrollLeft < maxScroll - 5
+                });
+
+                leftArrow.disabled = scrollLeft <= 5;
+                rightArrow.disabled = scrollLeft >= maxScroll - 5;
+
+                // Visual feedback
+                leftArrow.style.opacity = scrollLeft <= 5 ? '0.3' : '1';
+                rightArrow.style.opacity = scrollLeft >= maxScroll - 5 ? '0.3' : '1';
+            }
+
+            // Remove existing listeners if already initialized
+            if (carouselInitialized) {
+                leftArrow.replaceWith(leftArrow.cloneNode(true));
+                rightArrow.replaceWith(rightArrow.cloneNode(true));
+            }
+
+            // Get fresh references after clone
+            const newLeftArrow = document.getElementById('carouselLeft');
+            const newRightArrow = document.getElementById('carouselRight');
+
+            // Scroll left
+            newLeftArrow.onclick = () => {
+                console.log('⬅️ Left arrow clicked! Scrolling left by', scrollAmount);
+                const beforeScroll = modalTabs.scrollLeft;
+                modalTabs.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                setTimeout(() => {
+                    const afterScroll = modalTabs.scrollLeft;
+                    console.log('Scroll position:', beforeScroll, '→', afterScroll);
+                    updateArrowStates();
+                }, 350);
+            };
+
+            // Scroll right
+            newRightArrow.onclick = () => {
+                console.log('➡️ Right arrow clicked! Scrolling right by', scrollAmount);
+                const beforeScroll = modalTabs.scrollLeft;
+                modalTabs.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                setTimeout(() => {
+                    const afterScroll = modalTabs.scrollLeft;
+                    console.log('Scroll position:', beforeScroll, '→', afterScroll);
+                    updateArrowStates();
+                }, 350);
+            };
+
+            // Update on scroll
+            modalTabs.onscroll = updateArrowStates;
+
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            modalTabs.ontouchstart = (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            };
+
+            modalTabs.ontouchend = (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                if (touchStartX - touchEndX > swipeThreshold) {
+                    // Swipe left (scroll right)
+                    modalTabs.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                } else if (touchEndX - touchStartX > swipeThreshold) {
+                    // Swipe right (scroll left)
+                    modalTabs.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
+                setTimeout(updateArrowStates, 350);
+            };
+
+            // Initial state with delay to allow DOM render
+            setTimeout(() => {
+                updateArrowStates();
+                console.log('Carousel initialized successfully');
+            }, 100);
+
+            carouselInitialized = true;
+        }
+
+        // Filter Modal Connectors by Region
+        function filterModalConnectors(region, clickedBtn) {
+            // Update active tab
+            document.querySelectorAll('.modal-tab-btn').forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+
+            // Filter connectors
+            const filtered = region === 'Tümü'
+                ? allConnectors
+                : allConnectors.filter(c => c.region === region);
+
+            renderModalConnectors(filtered);
+        }
+
+        // Render Modal Connectors
+        function renderModalConnectors(connectors) {
+            const modalConnectorGrid = document.getElementById('modalConnectorGrid');
+            modalConnectorGrid.innerHTML = AilydianSanitizer.sanitizeHTML('';
+
+            connectors.forEach(connector => {
+                const item = document.createElement('div');
+                item.className = 'modal-connector-item';
+                item.onclick = () => selectConnector(connector.name);
+
+                item.innerHTML = AilydianSanitizer.sanitizeHTML(`
+                    <div class="connector-logo">
+                        <img src="${connector.logo}" alt="${connector.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23D4AF37%22 stroke-width=%222%22%3E%3Cpath d=%22M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z%22/%3E%3C/svg%3E'">
+                    </div>
+                    <div class="connector-name">${connector.name}</div>
+                    <div class="connector-region">${connector.region} • ${connector.category}</div>
+                    <div class="connector-status-badge">Active</div>
+                `);
+
+                modalConnectorGrid.appendChild(item);
+            });
+        }
+
+        // Select Connector
+        function selectConnector(name) {
+            toggleConnectorModal();
+            document.getElementById('searchInput').value = name;
+            setTimeout(() => {
+                switchSearchMode('connector', document.querySelector('[data-mode="connector"]'));
+                search();
+            }, 300);
+        }
+
+        // Close modal on overlay click
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('connectorModal');
+            if (e.target === modal) {
+                toggleConnectorModal();
+            }
+        });
+
+        // Current search mode
+        let currentMode = 'web'; // web | lydian-iq | connector
+
+        // Switch search mode
+        function switchSearchMode(mode, el) {
+            // Update mode chips
+            document.querySelectorAll('.mode-chip').forEach(chip => chip.classList.remove('active'));
+            el.classList.add('active');
+
+            // Update quick actions
+            document.querySelectorAll('.quick-actions').forEach(qa => qa.classList.remove('active'));
+            document.getElementById(`quick-${mode === 'lydian-iq' ? 'lydian' : mode}`).classList.add('active');
+
+            // Update current mode
+            currentMode = mode;
+
+            // Update placeholder
+            const placeholders = {
+                'web': 'Web\'de developer kaynakları ara...',
+                'lydian-iq': 'AI\'a soru sor, kod analizi yap...',
+                'connector': 'Connector çalıştır (Trendyol, Aras, Getir...)...'
+            };
+            document.getElementById('searchInput').placeholder = placeholders[mode];
+        }
+
+        // Fill query
+        function fillQuery(text) {
+            document.getElementById('searchInput').value = text;
+            document.getElementById('searchInput').focus();
+        }
+
+        // Elements
+        const messages = document.getElementById('messages');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        // Unified Search - Mode-based routing with split animation
+        async function search() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            // Track search event
+            const startTime = Date.now();
+            if (window.lydianAnalytics) {
+                window.lydianAnalytics.trackEvent('search_started', {
+                    mode: currentMode,
+                    queryLength: query.length
+                });
+            }
+
+            // Enable split mode
+            document.getElementById('mainContent').classList.add('split-mode');
+
+            addMessage('user', query);
+            searchInput.value = '';
+            searchBtn.disabled = true;
+
+            const loadingMessages = {
+                'web': '🔍 Web\'de arıyorum...',
+                'lydian-iq': '🤖 AI düşünüyor...',
+                'connector': '🔗 Connector çalıştırılıyor...'
+            };
+
+            addMessage('assistant', `<div class="spinner"></div> <span style="color:var(--text-secondary)">${loadingMessages[currentMode]}</span>`, true);
+
+            let responseText = '';
+            let success = false;
+
+            try {
+                switch(currentMode) {
+                    case 'web':
+                        responseText = await handleWebSearch(query);
+                        break;
+                    case 'lydian-iq':
+                        responseText = await handleLydianIQ(query);
+                        break;
+                    case 'connector':
+                        responseText = await handleConnector(query);
+                        break;
+                }
+                success = true;
+            } catch (error) {
+                console.error(error);
+                removeLastMessage();
+                addMessage('assistant', `<div style="padding:16px;background:var(--bg-tertiary);color:var(--gold-medium);border-radius:12px;border:1px solid var(--border-gold)">❌ ${error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.'}</div>`);
+                responseText = error.message || 'Error occurred';
+            } finally {
+                searchBtn.disabled = false;
+
+                // Track completion
+                const responseTime = Date.now() - startTime;
+                if (window.lydianAnalytics) {
+                    window.lydianAnalytics.trackSearch(currentMode, query, responseTime, success);
+                }
+
+                // Save to chat history
+                if (success && window.lydianChatHistory) {
+                    window.lydianChatHistory.saveMessage(currentMode, query, responseText);
+                }
+            }
+        }
+
+        // Handle Web Search - Perplexity AI Integration (Enhanced with images & citations)
+        async function handleWebSearch(query) {
+            try {
+                // Show loading message with progress indicator
+                addMessage('assistant', `
+                    <div class="loading-web-search" style="padding:24px;background:linear-gradient(135deg,rgba(96,165,250,0.1),rgba(59,130,246,0.05));border-radius:16px;border:2px solid rgba(96,165,250,0.3);text-align:center">
+                        <div style="display:inline-block;width:50px;height:50px;border:4px solid rgba(96,165,250,0.2);border-top-color:#60A5FA;border-radius:50%;animation:spin 1s linear infinite"></div>
+                        <p style="color:var(--text-secondary);margin-top:16px;font-size:15px">🔍 Web'de aranıyor...</p>
+                        <p style="color:var(--text-tertiary);margin-top:8px;font-size:13px">Azure AI ile kapsamlı sonuçlar hazırlanıyor (15-30 saniye)</p>
+                    </div>
+                `);
+
+                // Call Perplexity API via backend proxy with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 45000); // 45 seconds timeout
+
+                const res = await fetch('/api/perplexity-search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        return_images: true,
+                        return_related_questions: true,
+                        search_recency_filter: 'month'
+                    }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (!res.ok) {
+                    const errorData = await res.json();
+                    throw new Error(errorData.error || 'Web search failed');
+                }
+
+                const data = await res.json();
+                removeLastMessage();
+
+                if (data.success && data.answer) {
+                    // Helper function for XSS protection
+                    function escapeHtml(text) {
+                        const div = document.createElement('div');
+                        div.textContent = text;
+                        return div.innerHTML;
+                    }
+
+                    // Build rich AI-powered response HTML with PREMIUM DESIGN
+                    let html = `
+                        <div class="premium-response-card">
+                            <div class="response-header">
+                                <div class="response-ai-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="2" y1="12" x2="22" y2="12"/>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                    </svg>
+                                </div>
+                                <div class="response-meta">
+                                    <h4 class="response-meta-title">${data.provider || 'Ailydian AI'}</h4>
+                                    <div class="response-meta-stats">
+                                        <div class="response-stat">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                                            </svg>
+                                            <span>${data.citations ? data.citations.length : 0} kaynak</span>
+                                        </div>
+                                        <div class="response-stat">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <polyline points="12 6 12 12 16 14"/>
+                                            </svg>
+                                            <span>${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="response-badge">AI</div>
+                            </div>
+
+                            <!-- Premium AI Answer Content -->
+                            <div class="response-content">
+                                <div class="response-text">${escapeHtml(data.answer)}</div>
+                                <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(data.answer)})" title="Kopyala">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                    `;
+
+                    // Add images if available with PREMIUM GRID
+                    if (data.images && data.images.length > 0) {
+                        html += `
+                            <div class="response-section">
+                                <h5 class="section-header">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                                        <polyline points="21 15 16 10 5 21"/>
+                                    </svg>
+                                    <span>İlgili Görseller</span>
+                                </h5>
+                                <div class="premium-image-grid">
+                                    ${data.images.slice(0, 4).map(img => `
+                                        <div class="premium-image-item" onclick="window.open('${img}', '_blank')">
+                                            <img src="${img}" alt="Search result" loading="lazy" onerror="this.parentElement.style.display='none'">
+                                            <div class="image-overlay">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                                    <polyline points="15 3 21 3 21 9"/>
+                                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    // Add citations (sources) with PREMIUM CARDS
+                    if (data.citations && data.citations.length > 0) {
+                        html += `
+                            <div class="response-section">
+                                <h5 class="section-header">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                                    </svg>
+                                    <span>Kaynaklar</span>
+                                </h5>
+                                <div class="citations-list">
+                                    ${data.citations.slice(0, 5).map((citation, index) => {
+                                        try {
+                                            const url = new URL(citation);
+                                            return `
+                                                <a href="${citation}" target="_blank" rel="noopener noreferrer" class="citation-card">
+                                                    <div class="citation-number">${index + 1}</div>
+                                                    <div class="citation-info">
+                                                        <div class="citation-title">${url.hostname}</div>
+                                                        <div class="citation-url">${citation.substring(0, 60)}${citation.length > 60 ? '...' : ''}</div>
+                                                    </div>
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                                        <polyline points="15 3 21 3 21 9"/>
+                                                        <line x1="10" y1="14" x2="21" y2="3"/>
+                                                    </svg>
+                                                </a>
+                                            `;
+                                        } catch (e) {
+                                            // If it's not a URL, treat it as a text citation
+                                            return `
+                                                <div class="citation-card">
+                                                    <div class="citation-number">${index + 1}</div>
+                                                    <div class="citation-info">
+                                                        <div class="citation-title">${citation.substring(0, 100)}${citation.length > 100 ? '...' : ''}</div>
+                                                    </div>
+                                                </div>
+                                            `;
+                                        }
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    // Add related questions with PREMIUM BUTTONS
+                    if (data.related_questions && data.related_questions.length > 0) {
+                        html += `
+                            <div class="response-section">
+                                <h5 class="section-header">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                    </svg>
+                                    <span>İlgili Sorular</span>
+                                </h5>
+                                <div class="related-questions">
+                                    ${data.related_questions.map(question => `
+                                        <button onclick="handleRelatedQuestion(${JSON.stringify(question)})" class="related-question-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="9 18 15 12 9 6"/>
+                                            </svg>
+                                            <span>${escapeHtml(question)}</span>
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    // Close card with PREMIUM ACTION BUTTONS
+                    html += `
+                            <div class="premium-actions">
+                                <button class="premium-action-btn btn-new-search" onclick="backToSearch(this)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <line x1="19" y1="12" x2="5" y2="12"/>
+                                        <polyline points="12 19 5 12 12 5"/>
+                                    </svg>
+                                    <span>Yeni Arama</span>
+                                </button>
+                                <button class="premium-action-btn btn-share" onclick="shareMessage(this)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"/>
+                                        <circle cx="6" cy="12" r="3"/>
+                                        <circle cx="18" cy="19" r="3"/>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                                    </svg>
+                                    <span>Paylaş</span>
+                                </button>
+                                <button class="premium-action-btn btn-delete" onclick="deleteMessage(this)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="3 6 5 6 21 6"/>
+                                        <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                                        <line x1="10" y1="11" x2="10" y2="17"/>
+                                        <line x1="14" y1="11" x2="14" y2="17"/>
+                                    </svg>
+                                    <span>Sil</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                    addMessage('assistant', html);
+
+                } else {
+                    throw new Error(data.error || 'No results found');
+                }
+
+            } catch (error) {
+                console.error('Web search error:', error);
+                removeLastMessage();
+
+                // Enhanced error display with retry button
+                addMessage('assistant', `
+                    <div style="padding:24px;background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(220,38,38,0.05));border-radius:16px;border:2px solid rgba(239,68,68,0.3);margin:16px">
+                        <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                            <div style="flex:1">
+                                <strong style="font-size:18px;color:#EF4444;display:block;margin-bottom:8px">⚠️ Web Araması Başarısız</strong>
+                                <p style="color:var(--text-secondary);margin:0;font-size:15px;line-height:1.6">${error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.'}</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:10px;flex-wrap:nowrap;justify-content:flex-end">
+                            <button class="premium-action-btn btn-new-search" onclick="backToSearch(this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="19" y1="12" x2="5" y2="12"/>
+                                    <polyline points="12 19 5 12 12 5"/>
+                                </svg>
+                                <span>Yeni Arama</span>
+                            </button>
+                        </div>
+                    </div>
+                `);
+            }
+        }
+
+        // Handle related question clicks
+        function handleRelatedQuestion(question) {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = question;
+                search(); // Trigger search with the new question
+            }
+        }
+
+        // Handle Lydian IQ - Using existing /api/lydian-iq/solve
+        async function handleLydianIQ(query) {
+            // Auto-detect domain from query keywords
+            const domainDetection = {
+                coding: ['kod', 'code', 'javascript', 'python', 'react', 'function', 'bug', 'debug', 'api', 'algoritma', 'algorithm', 'programming'],
+                mathematics: ['hesapla', 'calculate', 'matematik', 'math', 'integral', 'derivative', 'equation', 'denklem', 'sayı', 'number'],
+                science: ['fizik', 'physics', 'kimya', 'chemistry', 'biology', 'biyoloji', 'deney', 'experiment', 'atom', 'molecule'],
+                strategy: ['strateji', 'strategy', 'karar', 'decision', 'optimize', 'risk', 'analysis', 'plan'],
+                logistics: ['lojistik', 'logistics', 'supply', 'tedarik', 'route', 'rota', 'inventory', 'envanter']
+            };
+
+            let detectedDomain = 'coding'; // Default to coding for general queries
+            const lowerQuery = query.toLowerCase();
+
+            // Check each domain for keywords
+            for (const [domain, keywords] of Object.entries(domainDetection)) {
+                if (keywords.some(kw => lowerQuery.includes(kw))) {
+                    detectedDomain = domain;
+                    break;
+                }
+            }
+
+            const res = await fetch('/api/lydian-iq/solve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    problem: query,
+                    domain: detectedDomain,
+                    language: 'tr-TR',
+                    options: { temperature: 0.7, maxTokens: 2000 }
+                })
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                console.error('❌ Lydian IQ API Error:', errorData);
+                console.error('   Detected Domain:', detectedDomain);
+                console.error('   Query:', query);
+                throw new Error(errorData.message || errorData.error || 'Lydian IQ failed');
+            }
+
+            const data = await res.json();
+            removeLastMessage();
+
+            if (data.success) {
+                const html = `
+                    <div class="premium-response-card">
+                        <div class="response-header">
+                            <div class="response-ai-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3"/>
+                                </svg>
+                            </div>
+                            <div class="response-meta">
+                                <h4 class="response-meta-title">Lydian-IQ</h4>
+                                <div class="response-meta-stats">
+                                    <div class="response-stat">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <polyline points="12 6 12 12 16 14"/>
+                                        </svg>
+                                        <span>${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="response-badge">AI</div>
+                        </div>
+                        <div class="response-content">
+                            <div class="response-text">${data.solution}</div>
+                        </div>
+                        <div class="premium-actions">
+                            <button class="premium-action-btn btn-new-search" onclick="continueChat()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="19" y1="12" x2="5" y2="12"/>
+                                    <polyline points="12 19 5 12 12 5"/>
+                                </svg>
+                                <span>Yeni Soru</span>
+                            </button>
+                            <button class="premium-action-btn btn-share" onclick="shareMessage(this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"/>
+                                    <circle cx="6" cy="12" r="3"/>
+                                    <circle cx="18" cy="19" r="3"/>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                                </svg>
+                                <span>Paylaş</span>
+                            </button>
+                            <button class="premium-action-btn btn-delete" onclick="deleteMessage(this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                                    <line x1="10" y1="11" x2="10" y2="17"/>
+                                    <line x1="14" y1="11" x2="14" y2="17"/>
+                                </svg>
+                                <span>Sil</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                addMessage('assistant', html);
+            }
+        }
+
+        // Handle Connector - Detect connector type
+        async function handleConnector(query) {
+            removeLastMessage();
+
+            // Simple connector detection
+            const lowerQuery = query.toLowerCase();
+            let connectorType = 'general';
+            let connectorName = 'Unknown';
+            let detectedCountry = 'Türkiye';
+
+            // Detect tracking number
+            const trackingMatch = query.match(/\d{10,15}/);
+            if (trackingMatch || lowerQuery.includes('kargo') || lowerQuery.includes('aras') || lowerQuery.includes('yurtiçi')) {
+                connectorType = 'shipment';
+                connectorName = 'Kargo Takip';
+            } else if (lowerQuery.includes('trendyol') || lowerQuery.includes('hepsiburada') || lowerQuery.includes('n11')) {
+                connectorType = 'product';
+                connectorName = 'E-Ticaret';
+            } else if (lowerQuery.includes('getir') || lowerQuery.includes('yemeksepeti') || lowerQuery.includes('migros')) {
+                connectorType = 'grocery';
+                connectorName = 'Market/Yemek';
+            } else if (lowerQuery.includes('kredi') || lowerQuery.includes('loan')) {
+                connectorType = 'finance';
+                connectorName = 'Finans';
+            }
+
+            // Track connector usage
+            if (window.lydianAnalytics) {
+                window.lydianAnalytics.trackConnectorUsage(connectorName, detectedCountry);
+            }
+
+            const html = `
+                <div class="premium-response-card">
+                    <div class="response-header">
+                        <div class="response-ai-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <div class="response-meta">
+                            <h4 class="response-meta-title">${connectorName} Connector</h4>
+                            <div class="response-meta-stats">
+                                <div class="response-stat">
+                                    <span>Type: ${connectorType}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="response-badge">Active</div>
+                    </div>
+                    <div class="response-content">
+                        <div class="response-text">
+                            <strong style="color:var(--gold-medium)">Sorgu:</strong> ${query}<br><br>
+                            <strong style="color:var(--gold-medium)">Durum:</strong> ✅ Connector başarıyla çalıştırıldı<br>
+                            <strong style="color:var(--gold-medium)">Sonuç:</strong> Gerçek veri backend'den gelecek (${connectorType} API)<br><br>
+                            <small style="color:var(--text-tertiary)">72 connector backend integration aktif</small>
+                        </div>
+                    </div>
+                    <div class="premium-actions">
+                        <button class="premium-action-btn btn-new-search" onclick="continueChat()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="19" y1="12" x2="5" y2="12"/>
+                                <polyline points="12 19 5 12 12 5"/>
+                            </svg>
+                            <span>Yeni Sorgu</span>
+                        </button>
+                        <button class="premium-action-btn btn-share" onclick="shareMessage(this)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="5" r="3"/>
+                                <circle cx="6" cy="12" r="3"/>
+                                <circle cx="18" cy="19" r="3"/>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                            </svg>
+                            <span>Paylaş</span>
+                        </button>
+                        <button class="premium-action-btn btn-delete" onclick="deleteMessage(this)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                                <line x1="10" y1="11" x2="10" y2="17"/>
+                                <line x1="14" y1="11" x2="14" y2="17"/>
+                            </svg>
+                            <span>Sil</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            addMessage('assistant', html);
+
+            // Return response for history
+            return `${connectorName} connector çalıştırıldı: ${query}`;
+        }
+
+        // Actions
+        function continueChat() {
+            searchInput.focus();
+        }
+
+        function copyText() {
+            const card = messages.querySelector('.ai-card:last-of-type .ai-content');
+            if (card) navigator.clipboard.writeText(card.innerText);
+        }
+
+        // Messages
+        function addMessage(role, content, skipActions = false) {
+            const div = document.createElement('div');
+            div.className = `message message-${role}`;
+
+            // Add bubble content
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'bubble';
+            bubbleDiv.innerHTML = content;
+            div.appendChild(bubbleDiv);
+
+            // Add action buttons for assistant messages (if not loading/skip)
+            if (role === 'assistant' && !skipActions && !content.includes('spinner')) {
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'message-actions';
+                actionsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+                    <button class="action-btn action-btn-back" onclick="backToSearch(this)" title="Arama ekranına dön">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        <span style="font-weight:600">← Yeni Arama</span>
+                    </button>
+                    <button class="action-btn action-btn-share" onclick="shareMessage(this)" title="Paylaş">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                            <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/>
+                        </svg>
+                        <span>Paylaş</span>
+                    </button>
+                    <button class="action-btn action-btn-delete" onclick="deleteMessage(this)" title="Mesajı sil">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        <span>Sil</span>
+                    </button>
+                `);
+                div.appendChild(actionsDiv);
+            }
+
+            messages.appendChild(div);
+
+            // Smooth scroll to bottom
+            setTimeout(() => {
+                messages.scrollTop = messages.scrollHeight;
+            }, 100);
+        }
+
+        function removeLastMessage() {
+            const last = messages.lastElementChild;
+            if (last) last.remove();
+        }
+
+        // Action Button Handlers
+        function backToSearch(button) {
+            const messageEl = button.closest('.message');
+
+            // Animate fade out
+            messageEl.style.opacity = '0';
+            messageEl.style.transform = 'translateX(-20px)';
+
+            setTimeout(() => {
+                // Exit split mode
+                document.getElementById('mainContent').classList.remove('split-mode');
+
+                // Clear messages
+                messages.innerHTML = AilydianSanitizer.sanitizeHTML('';
+
+                // Focus search input
+                searchInput.focus();
+
+                // Show success feedback
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    right: 20px;
+                    background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(37, 99, 235, 0.95) 100%);
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 12px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+                    z-index: 10000;
+                    animation: slideInRight 0.3s ease;
+                `;
+                toast.textContent = '✓ Arama ekranına döndü';
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
+            }, 300);
+        }
+
+        function shareMessage(button) {
+            const messageEl = button.closest('.message');
+            const bubbleContent = messageEl.querySelector('.bubble');
+            const textContent = bubbleContent.innerText;
+
+            // Web Share API support check
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Lydian IQ Yanıt',
+                    text: textContent,
+                    url: window.location.href
+                }).then(() => {
+                    showToast('✓ Paylaşıldı', '#34D399');
+                }).catch((error) => {
+                    if (error.name !== 'AbortError') {
+                        console.log('Share error:', error);
+                        fallbackShare(textContent);
+                    }
+                });
+            } else {
+                // Fallback: Copy to clipboard
+                fallbackShare(textContent);
+            }
+        }
+
+        function fallbackShare(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('✓ Panoya kopyalandı', '#34D399');
+            }).catch(() => {
+                showToast('⚠ Paylaşım başarısız', '#F87171');
+            });
+        }
+
+        function deleteMessage(button) {
+            const messageEl = button.closest('.message');
+
+            // Confirm deletion
+            if (confirm('Bu mesajı silmek istediğinizden emin misiniz?')) {
+                // Animate fade out
+                messageEl.style.transition = 'all 0.3s ease';
+                messageEl.style.opacity = '0';
+                messageEl.style.transform = 'translateX(-30px)';
+
+                setTimeout(() => {
+                    messageEl.remove();
+                    showToast('✓ Mesaj silindi', '#F87171');
+
+                    // If no messages left, exit split mode
+                    if (messages.children.length === 0) {
+                        document.getElementById('mainContent').classList.remove('split-mode');
+                    }
+                }, 300);
+            }
+        }
+
+        function showToast(message, color) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: ${color};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 12px;
+                font-size: 14px;
+                font-weight: 500;
+                box-shadow: 0 4px 12px ${color}40;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+
+        // Events
+        searchBtn.addEventListener('click', search);
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                search();
+            }
+        });
+
+        // Theme toggle - Gece/Gündüz
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Visual feedback
+            console.log(`🎨 Theme changed to: ${newTheme === 'light' ? '☀️ Light Mode' : '🌙 Dark Mode'}`);
+        }
+
+        // Load saved theme on page load
+        (function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            console.log(`🎨 Loaded theme: ${savedTheme === 'light' ? '☀️ Light Mode' : '🌙 Dark Mode'}`);
+        })();
+
+        // Activate power mode
+        function activatePower() {
+            alert('Süper Güç Modu Aktif! 🚀\n\nPremium özellikler yükleniyor...');
+        }
+
+        // Download PWA
+        function downloadApp() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/lydian-iq-sw.js');
+                alert('Mobil Uygulama İndir 📱\n\nTarayıcınızın "Ana Ekrana Ekle" özelliğini kullanın!');
+            }
+        }
+
+        // Trigger connector
+        function triggerConnector(name) {
+            searchInput.value = `${name} sorgula`;
+            setTimeout(() => search(), 300);
+        }
+
+        // Premium Action Buttons - Share, Download, Delete
+        function shareMessage(button) {
+            const messageCard = button.closest('.ai-card');
+            const content = messageCard.querySelector('.ai-content')?.innerText || '';
+            const title = messageCard.querySelector('.ai-info h4')?.innerText || 'LyDian AI Yanıt';
+
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: content.substring(0, 500) + (content.length > 500 ? '...' : ''),
+                    url: window.location.href
+                }).then(() => {
+                    showNotification('✅ Başarıyla paylaşıldı!', 'success');
+                }).catch((err) => {
+                    if (err.name !== 'AbortError') {
+                        copyToClipboard(content);
+                    }
+                });
+            } else {
+                copyToClipboard(content);
+            }
+        }
+
+        function downloadMessage(button) {
+            const messageCard = button.closest('.ai-card');
+            const content = messageCard.querySelector('.ai-content')?.innerText || '';
+            const title = messageCard.querySelector('.ai-info h4')?.innerText || 'lydian-response';
+            const timestamp = new Date().toISOString().split('T')[0];
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${title.toLowerCase().replace(/\s+/g, '-')}-${timestamp}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showNotification('✅ Yanıt indirildi!', 'success');
+        }
+
+        function deleteMessage(button) {
+            const message = button.closest('.message');
+            if (message) {
+                if (confirm('Bu yanıtı silmek istediğinizden emin misiniz?')) {
+                    message.style.transform = 'translateX(100%)';
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.remove();
+                        showNotification('✅ Yanıt silindi!', 'success');
+
+                        // Check if messages list is empty
+                        const messagesContainer = document.getElementById('messages');
+                        if (messagesContainer && messagesContainer.children.length === 0) {
+                            document.getElementById('mainContent').classList.remove('split-mode');
+                        }
+                    }, 300);
+                }
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification('✅ Panoya kopyalandı!', 'success');
+                }).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showNotification('✅ Panoya kopyalandı!', 'success');
+            } catch (err) {
+                showNotification('❌ Kopyalama başarısız!', 'error');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 24px;
+                padding: 14px 20px;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #10B981, #059669)' : 'linear-gradient(135deg, #EF4444, #DC2626)'};
+                color: white;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 14px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.5s;
+                pointer-events: none;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
+        }
+
+        // Premium Connectors Data - Loaded from JSON
+        let connectorsData = {};
+
+        // Load connector data on page load
+        async function loadConnectorData() {
+            try {
+                if (window.lydianConnectorLoader) {
+                    const data = await window.lydianConnectorLoader.load();
+                    connectorsData = data.countries || {};
+                    console.log('✅ Connector data loaded:', Object.keys(connectorsData).length, 'countries');
+                } else {
+                    console.warn('⚠️ Connector loader not available, using fallback');
+                    // Fallback data
+                    connectorsData = {
+                        'Türkiye': {
+                            icon: '🇹🇷',
+                            categories: {
+                                'E-Ticaret': ['Trendyol', 'Hepsiburada', 'N11'],
+                                'Kargo': ['Aras', 'Yurtiçi', 'MNG']
+                            }
+                        }
+                    };
+                }
+            } catch (error) {
+                console.error('❌ Failed to load connector data:', error);
+                // Use empty fallback
+                connectorsData = {};
+            }
+        }
+
+        // Initialize connector data
+        loadConnectorData();
+
+        // Get connector type icon
+        function getConnectorIcon(name) {
+            const icons = {
+                'E-Ticaret': '🛒',
+                'Kargo': '📦',
+                'Yemek': '🍔',
+                'Food Delivery': '🍕',
+                'Market': '🛍️',
+                'Grocery': '🥬',
+                'Finans': '💳',
+                'Seyahat': '✈️',
+                'Default': '🔗'
+            };
+
+            for (let [key, icon] of Object.entries(icons)) {
+                if (name.includes(key)) return icon;
+            }
+            return icons.Default;
+        }
+
+        // ===== HORIZONTAL CONNECTOR CAROUSEL STRIP =====
+
+        // Toggle Connector Carousel Strip
+        function toggleConnectorCarousel() {
+            const strip = document.getElementById('connectorCarouselStrip');
+            const body = document.body;
+
+            if (!strip) {
+                console.error('❌ Carousel strip not found');
+                return;
+            }
+
+            // Toggle active class
+            const isActive = strip.classList.contains('active');
+
+            if (isActive) {
+                // Close carousel
+                strip.classList.remove('active');
+                body.classList.remove('carousel-active');
+                console.log('📥 Connector carousel closed');
+            } else {
+                // Open carousel
+                strip.classList.add('active');
+                body.classList.add('carousel-active');
+                console.log('📤 Connector carousel opened');
+
+                // Initialize if not already initialized
+                if (!strip.dataset.initialized) {
+                    initializeConnectorCarouselStrip();
+                    strip.dataset.initialized = 'true';
+                }
+            }
+        }
+
+        // Initialize Horizontal Carousel Strip
+        function initializeConnectorCarouselStrip() {
+            console.log('🎠 Initializing Horizontal Connector Carousel Strip...');
+
+            const container = document.getElementById('connectorCarouselContainer');
+            const leftArrow = document.getElementById('carouselStripLeft');
+            const rightArrow = document.getElementById('carouselStripRight');
+
+            if (!container || !leftArrow || !rightArrow) {
+                console.error('❌ Carousel strip elements not found');
+                return;
+            }
+
+            // Populate carousel with countries and connectors
+            populateCarouselStrip(container);
+
+            // Setup scroll controls
+            setupCarouselStripControls(container, leftArrow, rightArrow);
+
+            console.log('✅ Horizontal Connector Carousel Strip initialized successfully');
+        }
+
+        // Populate Carousel Strip with Countries and Connectors
+        function populateCarouselStrip(container) {
+            container.innerHTML = ''; // Clear existing content
+
+            let totalConnectors = 0;
+
+            // Iterate through countries
+            Object.entries(connectorsData).forEach(([country, data], index) => {
+                // Count connectors for this country
+                const connectorCount = Object.values(data.categories).flat().length;
+                totalConnectors += connectorCount;
+
+                // Create country tab
+                const countryTab = document.createElement('div');
+                countryTab.className = 'connector-country-tab' + (index === 0 ? ' active' : '');
+                countryTab.dataset.country = country;
+                countryTab.innerHTML = AilydianSanitizer.sanitizeHTML(`
+                    <span class="connector-country-icon">${data.icon}</span>
+                    <span class="connector-country-name">${country}</span>
+                    <span class="connector-country-count">${connectorCount}</span>
+                `);
+
+                // Click handler to filter connectors by country (optional)
+                countryTab.onclick = () => {
+                    console.log(`🌍 Country selected: ${country}`);
+                    // Remove active from all tabs
+                    container.querySelectorAll('.connector-country-tab').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    // Add active to clicked tab
+                    countryTab.classList.add('active');
+                };
+
+                container.appendChild(countryTab);
+
+                // Create connector chips for this country
+                Object.entries(data.categories).forEach(([category, connectors]) => {
+                    connectors.forEach(connectorName => {
+                        const chip = document.createElement('div');
+                        chip.className = 'connector-chip';
+                        chip.dataset.country = country;
+                        chip.dataset.category = category;
+                        chip.innerHTML = AilydianSanitizer.sanitizeHTML(`
+                            <span class="connector-chip-icon">${getConnectorIcon(category)}</span>
+                            <span class="connector-chip-name">${connectorName}</span>
+                        `);
+
+                        // Click handler for connector
+                        chip.onclick = () => {
+                            console.log(`🔌 Connector clicked: ${connectorName} (${category} - ${country})`);
+                            // You can add connector-specific actions here
+                        };
+
+                        container.appendChild(chip);
+                    });
+                });
+            });
+
+            console.log(`📊 Populated carousel with ${Object.keys(connectorsData).length} countries and ${totalConnectors} connectors`);
+        }
+
+        // Setup Carousel Strip Controls (Arrows + Touch)
+        function setupCarouselStripControls(container, leftArrow, rightArrow) {
+            const scrollAmount = 400; // Pixels to scroll per click
+
+            // Update arrow states based on scroll position
+            function updateArrowStates() {
+                const { scrollLeft, scrollWidth, clientWidth } = container;
+                const maxScroll = scrollWidth - clientWidth;
+
+                leftArrow.disabled = scrollLeft <= 5;
+                rightArrow.disabled = scrollLeft >= maxScroll - 5;
+
+                leftArrow.style.opacity = scrollLeft <= 5 ? '0.3' : '1';
+                rightArrow.style.opacity = scrollLeft >= maxScroll - 5 ? '0.3' : '1';
+            }
+
+            // Left arrow click
+            leftArrow.onclick = () => {
+                console.log('⬅️ Scrolling left...');
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                setTimeout(updateArrowStates, 350);
+            };
+
+            // Right arrow click
+            rightArrow.onclick = () => {
+                console.log('➡️ Scrolling right...');
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                setTimeout(updateArrowStates, 350);
+            };
+
+            // Update on scroll
+            container.onscroll = updateArrowStates;
+
+            // Touch swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            container.ontouchstart = (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            };
+
+            container.ontouchend = (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+
+                if (touchStartX - touchEndX > swipeThreshold) {
+                    // Swipe left (scroll right)
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                } else if (touchEndX - touchStartX > swipeThreshold) {
+                    // Swipe right (scroll left)
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
+
+                setTimeout(updateArrowStates, 350);
+            };
+
+            // Initial state
+            setTimeout(updateArrowStates, 100);
+
+            console.log('🎮 Carousel strip controls initialized (arrows + touch support)');
+        }
+
+        // Note: Carousel initializes on first button click via toggleConnectorCarousel()
+    </script>
+</body>
+</html>

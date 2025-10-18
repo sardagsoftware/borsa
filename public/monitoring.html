@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Monitoring Dashboard - LyDian AI</title>
+    <title data-i18n="monitoring.page_title">Sistem İzleme Paneli - LyDian AI</title>
     <link rel="icon" type="image/png" href="/lydian-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,8 +16,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
             min-height: 100vh;
             padding: 20px;
             color: #333;
@@ -142,7 +145,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, #10A37F 0%, #0D8F6E 100%);
             border-radius: 4px;
             transition: width 0.3s ease;
         }
@@ -204,7 +207,7 @@
         .endpoint-path {
             font-family: 'Courier New', monospace;
             font-size: 0.875rem;
-            color: #6366f1;
+            color: #10A37F;
         }
 
         .endpoint-stats {
@@ -240,39 +243,39 @@
 <body>
     <div class="container">
         <header>
-            <h1>📊 System Monitoring Dashboard</h1>
-            <p>Real-time Platform Metrics & Analytics</p>
+            <h1 data-i18n="monitoring.header_title">📊 Sistem İzleme Paneli</h1>
+            <p data-i18n="monitoring.header_subtitle">Gerçek Zamanlı Platform Metrikleri & Analizler</p>
             <div class="connection-status" id="connectionStatus">
                 <div class="dot"></div>
-                <span>Connected to Real-time Stream</span>
+                <span data-i18n="monitoring.connection_status">Gerçek Zamanlı Akışa Bağlandı</span>
             </div>
         </header>
 
         <div class="grid">
-            <!-- System Health -->
+            <!-- Sistem Sağlığı -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">System Health</h3>
+                    <h3 class="card-title" data-i18n="monitoring.system_health">Sistem Sağlığı</h3>
                     <span class="card-icon">💚</span>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Status</div>
-                    <div id="systemStatus" class="status-badge success">Healthy</div>
+                    <div class="metric-label" data-i18n="monitoring.status">Durum</div>
+                    <div id="systemStatus" class="status-badge success" data-i18n="monitoring.healthy">Sağlıklı</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Uptime</div>
-                    <div class="metric-value" id="uptime">0<span class="metric-unit">hours</span></div>
+                    <div class="metric-label" data-i18n="monitoring.uptime">Çalışma Süresi</div>
+                    <div class="metric-value" id="uptime">0<span class="metric-unit" data-i18n="monitoring.hours">saat</span></div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Platform</div>
+                    <div class="metric-label" data-i18n="monitoring.platform">Platform</div>
                     <div class="metric-value" id="platform" style="font-size: 1.2rem;">-</div>
                 </div>
             </div>
 
-            <!-- CPU Usage -->
+            <!-- CPU Kullanımı -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">CPU Usage</h3>
+                    <h3 class="card-title" data-i18n="monitoring.cpu_usage">CPU Kullanımı</h3>
                     <span class="card-icon">⚡</span>
                 </div>
                 <div class="metric">
@@ -282,62 +285,62 @@
                     </div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">CPU Cores</div>
+                    <div class="metric-label" data-i18n="monitoring.cpu_cores">CPU Çekirdekleri</div>
                     <div class="metric-value" id="cpuCores" style="font-size: 1.5rem;">-</div>
                 </div>
             </div>
 
-            <!-- Memory Usage -->
+            <!-- Bellek Kullanımı -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Memory Usage</h3>
+                    <h3 class="card-title" data-i18n="monitoring.memory_usage">Bellek Kullanımı</h3>
                     <span class="card-icon">🧠</span>
                 </div>
                 <div class="metric">
                     <div class="metric-value" id="memoryUsed">0<span class="metric-unit">MB</span></div>
-                    <div class="metric-label">of <span id="memoryTotal">0</span> MB total</div>
+                    <div class="metric-label"><span data-i18n="monitoring.of">toplam</span> <span id="memoryTotal">0</span> MB</div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="memoryProgress" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Percentage</div>
+                    <div class="metric-label" data-i18n="monitoring.percentage">Yüzde</div>
                     <div class="metric-value" id="memoryPercent" style="font-size: 1.5rem;">0%</div>
                 </div>
             </div>
 
-            <!-- Request Statistics -->
+            <!-- İstek İstatistikleri -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Request Statistics</h3>
+                    <h3 class="card-title" data-i18n="monitoring.request_statistics">İstek İstatistikleri</h3>
                     <span class="card-icon">📈</span>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Total Requests</div>
+                    <div class="metric-label" data-i18n="monitoring.total_requests">Toplam İstekler</div>
                     <div class="metric-value" id="requestsTotal">0</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Successful</div>
+                    <div class="metric-label" data-i18n="monitoring.successful">Başarılı</div>
                     <div class="metric-value" id="requestsSuccess" style="font-size: 1.3rem; color: #10b981;">0</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Failed</div>
+                    <div class="metric-label" data-i18n="monitoring.failed">Başarısız</div>
                     <div class="metric-value" id="requestsFailed" style="font-size: 1.3rem; color: #ef4444;">0</div>
                 </div>
             </div>
 
-            <!-- Performance Metrics -->
+            <!-- Performans Metrikleri -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Performance</h3>
+                    <h3 class="card-title" data-i18n="monitoring.performance">Performans</h3>
                     <span class="card-icon">⚡</span>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Avg Response Time</div>
+                    <div class="metric-label" data-i18n="monitoring.avg_response_time">Ortalama Yanıt Süresi</div>
                     <div class="metric-value" id="avgResponseTime">0<span class="metric-unit">ms</span></div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Error Rate</div>
+                    <div class="metric-label" data-i18n="monitoring.error_rate">Hata Oranı</div>
                     <div class="metric-value" id="errorRate">0<span class="metric-unit">%</span></div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="errorProgress" style="width: 0%"></div>
@@ -345,78 +348,78 @@
                 </div>
             </div>
 
-            <!-- AI Model Usage -->
+            <!-- AI Model Kullanımı -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">AI Model Usage</h3>
+                    <h3 class="card-title" data-i18n="monitoring.ai_model_usage">AI Model Kullanımı</h3>
                     <span class="card-icon">🤖</span>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Total Requests</div>
+                    <div class="metric-label" data-i18n="monitoring.total_requests">Toplam İstekler</div>
                     <div class="metric-value" id="aiRequests">0</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Avg Tokens/Request</div>
+                    <div class="metric-label" data-i18n="monitoring.avg_tokens_request">Ort. Token/İstek</div>
                     <div class="metric-value" id="aiTokens" style="font-size: 1.3rem;">0</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Total Cost</div>
+                    <div class="metric-label" data-i18n="monitoring.total_cost">Toplam Maliyet</div>
                     <div class="metric-value" id="aiCost" style="font-size: 1.3rem;">$0.00</div>
                 </div>
             </div>
 
-            <!-- Cache Performance -->
+            <!-- Önbellek Performansı -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Cache Performance</h3>
+                    <h3 class="card-title" data-i18n="monitoring.cache_performance">Önbellek Performansı</h3>
                     <span class="card-icon">💾</span>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Hit Rate</div>
+                    <div class="metric-label" data-i18n="monitoring.hit_rate">İsabet Oranı</div>
                     <div class="metric-value" id="cacheHitRate">0<span class="metric-unit">%</span></div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="cacheProgress" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Cache Hits</div>
+                    <div class="metric-label" data-i18n="monitoring.cache_hits">Önbellek İsabetleri</div>
                     <div class="metric-value" id="cacheHits" style="font-size: 1.3rem; color: #10b981;">0</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Cache Misses</div>
+                    <div class="metric-label" data-i18n="monitoring.cache_misses">Önbellek Kaçırmaları</div>
                     <div class="metric-value" id="cacheMisses" style="font-size: 1.3rem; color: #f59e0b;">0</div>
                 </div>
             </div>
 
-            <!-- Active Connections (Realtime) -->
+            <!-- Canlı Bağlantılar (Gerçek Zamanlı) -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Live Metrics</h3>
+                    <h3 class="card-title" data-i18n="monitoring.live_metrics">Canlı Metrikler</h3>
                     <span class="card-icon">📡</span>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Current Memory (Live)</div>
+                    <div class="metric-label" data-i18n="monitoring.current_memory_live">Anlık Bellek (Canlı)</div>
                     <div class="metric-value" id="liveMemory">0<span class="metric-unit">MB</span></div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Total Requests (Live)</div>
+                    <div class="metric-label" data-i18n="monitoring.total_requests_live">Toplam İstek (Canlı)</div>
                     <div class="metric-value" id="liveRequests">0</div>
                 </div>
                 <div class="metric">
-                    <div class="metric-label">Error Rate (Live)</div>
+                    <div class="metric-label" data-i18n="monitoring.error_rate_live">Hata Oranı (Canlı)</div>
                     <div class="metric-value" id="liveErrorRate" style="font-size: 1.3rem;">0%</div>
                 </div>
             </div>
 
-            <!-- Top Endpoints -->
+            <!-- En Çok Kullanılan Uç Noktalar -->
             <div class="card wide-card">
                 <div class="card-header">
-                    <h3 class="card-title">Top Endpoints</h3>
+                    <h3 class="card-title" data-i18n="monitoring.top_endpoints">En Çok Kullanılan Uç Noktalar</h3>
                     <span class="card-icon">🔝</span>
                 </div>
                 <div class="endpoints-list" id="endpointsList">
                     <div class="endpoint-item">
-                        <span class="endpoint-path">Loading endpoints...</span>
+                        <span class="endpoint-path" data-i18n="monitoring.loading_endpoints">Uç noktalar yükleniyor...</span>
                         <div class="endpoint-stats">
                             <span>-</span>
                         </div>
@@ -426,16 +429,16 @@
         </div>
 
         <div class="refresh-time">
-            Last updated: <span id="lastUpdate">-</span> | Auto-refreshes every 5 seconds
+            <span data-i18n="monitoring.last_updated">Son güncelleme</span>: <span id="lastUpdate">-</span> | <span data-i18n="monitoring.auto_refresh">Her 5 saniyede bir otomatik yenilenir</span>
         </div>
     </div>
 
     <script>
-        // State management
+        // Durum yönetimi
         let eventSource = null;
         let isConnected = false;
 
-        // Initialize real-time connection
+        // Gerçek zamanlı bağlantıyı başlat
         function initRealtimeConnection() {
             try {
                 eventSource = new EventSource('/api/metrics/realtime');
@@ -453,7 +456,7 @@
                 eventSource.onerror = () => {
                     isConnected = false;
                     updateConnectionStatus(false);
-                    // Reconnect after 5 seconds
+                    // 5 saniye sonra yeniden bağlan
                     setTimeout(() => {
                         if (eventSource) {
                             eventSource.close();
@@ -462,31 +465,31 @@
                     }, 5000);
                 };
             } catch (error) {
-                console.error('Failed to initialize realtime connection:', error);
+                console.error('Gerçek zamanlı bağlantı başlatılamadı:', error);
                 updateConnectionStatus(false);
             }
         }
 
-        // Update connection status indicator
+        // Bağlantı durumu göstergesini güncelle
         function updateConnectionStatus(connected) {
             const statusEl = document.getElementById('connectionStatus');
             if (connected) {
                 statusEl.classList.remove('disconnected');
-                statusEl.querySelector('span').textContent = 'Connected to Real-time Stream';
+                statusEl.querySelector('span').textContent = 'Gerçek Zamanlı Akışa Bağlandı';
             } else {
                 statusEl.classList.add('disconnected');
-                statusEl.querySelector('span').textContent = 'Disconnected - Reconnecting...';
+                statusEl.querySelector('span').textContent = 'Bağlantı Kesildi - Yeniden Bağlanıyor...';
             }
         }
 
-        // Update realtime metrics from SSE
+        // SSE'den gerçek zamanlı metrikleri güncelle
         function updateRealtimeMetrics(data) {
             document.getElementById('liveMemory').innerHTML = `${data.memory}<span class="metric-unit">MB</span>`;
             document.getElementById('liveRequests').textContent = data.requests;
             document.getElementById('liveErrorRate').textContent = `${data.errorRate}%`;
         }
 
-        // Fetch dashboard metrics
+        // Dashboard metriklerini getir
         async function fetchDashboardMetrics() {
             try {
                 const response = await fetch('/api/metrics/dashboard');
@@ -494,15 +497,15 @@
                 updateDashboard(data);
                 updateLastRefreshTime();
             } catch (error) {
-                console.error('Failed to fetch dashboard metrics:', error);
+                console.error('Dashboard metrikleri getirilemedi:', error);
             }
         }
 
-        // Update dashboard with metrics
+        // Dashboard'u metriklerle güncelle
         function updateDashboard(data) {
-            // System Health
+            // Sistem Sağlığı
             const uptimeHours = (data.system.uptime / 3600).toFixed(1);
-            document.getElementById('uptime').innerHTML = `${uptimeHours}<span class="metric-unit">hours</span>`;
+            document.getElementById('uptime').innerHTML = `${uptimeHours}<span class="metric-unit">saat</span>`;
             document.getElementById('platform').textContent = data.system.platform;
 
             // CPU
@@ -511,7 +514,7 @@
             document.getElementById('cpuCores').textContent = navigator.hardwareConcurrency || '-';
             updateProgressBar('cpuProgress', cpuUsage);
 
-            // Memory
+            // Bellek
             const memoryUsed = data.performance.memoryMB;
             const memoryTotal = data.performance.memoryTotal;
             const memoryPercent = ((memoryUsed / memoryTotal) * 100).toFixed(1);
@@ -520,37 +523,37 @@
             document.getElementById('memoryPercent').textContent = `${memoryPercent}%`;
             updateProgressBar('memoryProgress', memoryPercent);
 
-            // Requests
+            // İstekler
             document.getElementById('requestsTotal').textContent = data.requests.total;
             document.getElementById('requestsSuccess').textContent = data.requests.successful;
             document.getElementById('requestsFailed').textContent = data.requests.failed;
 
-            // Performance
+            // Performans
             document.getElementById('avgResponseTime').innerHTML = `${data.requests.avgResponseTime}<span class="metric-unit">ms</span>`;
             document.getElementById('errorRate').innerHTML = `${data.requests.errorRate}<span class="metric-unit">%</span>`;
             updateProgressBar('errorProgress', parseFloat(data.requests.errorRate));
 
-            // AI Models
+            // AI Modelleri
             document.getElementById('aiRequests').textContent = data.aiModels.requests;
             document.getElementById('aiTokens').textContent = data.aiModels.avgTokens;
             document.getElementById('aiCost').textContent = `$${data.aiModels.totalCost}`;
 
-            // Cache
+            // Önbellek
             document.getElementById('cacheHitRate').innerHTML = `${data.cache.hitRate}<span class="metric-unit">%</span>`;
             document.getElementById('cacheHits').textContent = data.cache.hits;
             document.getElementById('cacheMisses').textContent = data.cache.misses;
             updateProgressBar('cacheProgress', parseFloat(data.cache.hitRate));
 
-            // Endpoints
+            // Uç Noktalar
             updateEndpointsList(data.endpoints);
         }
 
-        // Update progress bar
+        // Progress bar'ı güncelle
         function updateProgressBar(id, percentage) {
             const bar = document.getElementById(id);
             bar.style.width = `${Math.min(percentage, 100)}%`;
 
-            // Update color based on percentage
+            // Yüzdeye göre rengi güncelle
             bar.classList.remove('warning', 'danger');
             if (percentage > 80) {
                 bar.classList.add('danger');
@@ -559,16 +562,16 @@
             }
         }
 
-        // Update endpoints list
+        // Uç noktalar listesini güncelle
         function updateEndpointsList(endpoints) {
             const container = document.getElementById('endpointsList');
 
             if (!endpoints || endpoints.length === 0) {
-                container.innerHTML = '<div class="endpoint-item"><span class="endpoint-path">No endpoint data available</span></div>';
+                container.innerHTML = '<div class="endpoint-item"><span class="endpoint-path">Uç nokta verisi mevcut değil</span></div>';
                 return;
             }
 
-            // Sort by request count and take top 10
+            // İstek sayısına göre sırala ve ilk 10'u al
             const topEndpoints = endpoints
                 .sort((a, b) => b.requests - a.requests)
                 .slice(0, 10);
@@ -577,32 +580,32 @@
                 <div class="endpoint-item">
                     <span class="endpoint-path">${endpoint.path}</span>
                     <div class="endpoint-stats">
-                        <span title="Total Requests">${endpoint.requests} req</span>
-                        <span title="Avg Response Time">${endpoint.avgResponseTime}ms</span>
+                        <span title="Toplam İstek">${endpoint.requests} istek</span>
+                        <span title="Ortalama Yanıt Süresi">${endpoint.avgResponseTime}ms</span>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Update last refresh time
+        // Son yenileme zamanını güncelle
         function updateLastRefreshTime() {
             const now = new Date();
-            document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
+            document.getElementById('lastUpdate').textContent = now.toLocaleTimeString('tr-TR');
         }
 
-        // Initialize on page load
+        // Sayfa yüklendiğinde başlat
         window.addEventListener('DOMContentLoaded', () => {
-            // Fetch initial data
+            // İlk veriyi getir
             fetchDashboardMetrics();
 
-            // Setup auto-refresh every 5 seconds
+            // Her 5 saniyede bir otomatik yenileme
             setInterval(fetchDashboardMetrics, 5000);
 
-            // Initialize real-time connection
+            // Gerçek zamanlı bağlantıyı başlat
             initRealtimeConnection();
         });
 
-        // Cleanup on page unload
+        // Sayfa kapanırken temizlik
         window.addEventListener('beforeunload', () => {
             if (eventSource) {
                 eventSource.close();

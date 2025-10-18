@@ -1,40 +1,31 @@
-// ============================================
-// 🔒 CSRF TOKEN ENDPOINT
-// Beyaz Şapkalı Güvenlik - Generate CSRF tokens
-// ============================================
+// CSRF Token Generation Endpoint
+// White-hat compliant: secure token generation for CSRF protection
 
-const { generateTokenEndpoint } = require('./_middleware/csrf-protection');
+const crypto = require('crypto');
 
-module.exports = async (req, res) => {
-    // CORS Headers
-    const allowedOrigins = [
-        'https://www.ailydian.com',
-        'https://ailydian.com',
-        'https://ailydian-ultra-pro.vercel.app',
-        'http://localhost:3000',
-        'http://localhost:3100'
-    ];
-
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-
-    if (req.method !== 'GET') {
-        return res.status(405).json({
-            success: false,
-            error: 'Method not allowed'
-        });
-    }
-
-    // Generate and return CSRF token
-    generateTokenEndpoint(req, res);
+module.exports = (req, res) => {
+  try {
+    // Generate cryptographically secure random token
+    const token = crypto.randomBytes(32).toString('hex');
+    
+    // Set CSRF token in cookie (httpOnly for security)
+    res.setHeader('Set-Cookie', [
+      `csrf-token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600; Path=/`
+    ]);
+    
+    // Also return in response body for client-side access
+    res.status(200).json({
+      token,
+      expiresIn: 3600, // 1 hour
+      message: 'CSRF token generated successfully'
+    });
+    
+  } catch (error) {
+    console.error('[CSRF Token Error]', error.message);
+    
+    res.status(500).json({
+      error: 'Failed to generate CSRF token',
+      message: 'Internal server error'
+    });
+  }
 };

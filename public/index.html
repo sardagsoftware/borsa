@@ -155,8 +155,8 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 9999;
-            max-width: 1400px;
-            width: calc(100% - 80px);
+            max-width: 1600px;
+            width: calc(100% - 60px);
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -175,27 +175,29 @@
         .nav-container {
             max-width: 100%;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             height: 72px;
+            gap: 1rem;
         }
 
         .logo {
             font-family: 'Inter', sans-serif !important;
-            font-size: 2.25rem;
+            font-size: 1.875rem;
             font-weight: 900 !important;
             color: #000000;
             text-decoration: none;
             letter-spacing: 0.08em !important;
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .nav-links {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.25rem;
             align-items: center;
             list-style: none;
         }
@@ -207,16 +209,17 @@
         .nav-links a {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1.25rem;
+            padding: 0.65rem 0.95rem;
             color: #374151;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
             font-weight: 600;
             background: rgba(255, 255, 255, 0.5);
             border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 12px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -387,14 +390,15 @@
 
         .nav-cta {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .btn {
-            padding: 0.75rem 1.5rem;
+            padding: 0.65rem 1.25rem;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
@@ -403,6 +407,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
         }
 
         .btn-secondary {
@@ -2144,8 +2149,8 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
-                <img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <img src="/lydian-logo.png" alt="LyDian Logo" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
                 LyDian
             </a>
 
@@ -2332,26 +2337,110 @@
                     </div>
                 </li>
                 <li data-testid="menu-item">
-                    <a href="/api-reference.html">API</a>
-                    <div class="nav-preview">
-                        <div class="preview-content">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                            </svg>
-                            <h4>Developer API</h4>
-                            <p>RESTful API ile entegre edin</p>
+                    <a href="#" onclick="return false;">Developers</a>
+                    <div class="nav-preview nav-preview-mega">
+                        <div class="preview-content-mega">
+                            <div class="mega-menu-header">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 36px; height: 36px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                </svg>
+                                <div>
+                                    <h4>Developer Platform</h4>
+                                    <p>API, SDK'lar ve Geliştirici Araçları</p>
+                                </div>
+                            </div>
+                            <div class="mega-menu-grid">
+                                <div class="mega-menu-column">
+                                    <div class="mega-column-header">API & Documentation</div>
+                                    <a href="/api-reference.html" class="mega-menu-item" style="border-left: 3px solid #10A37F;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>API Reference</strong>
+                                            <small>Complete REST API Documentation</small>
+                                        </div>
+                                    </a>
+                                    <a href="/api-docs.html" class="mega-menu-item" style="border-left: 3px solid #3B82F6;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Interactive API Explorer</strong>
+                                            <small>Swagger UI - Test Live</small>
+                                        </div>
+                                    </a>
+                                    <a href="/docs/api/openapi.yaml" download class="mega-menu-item" style="border-left: 3px solid #F59E0B;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
+                                        </svg>
+                                        <div>
+                                            <strong>OpenAPI Spec</strong>
+                                            <small>Download YAML/JSON</small>
+                                        </div>
+                                    </a>
+                                    <a href="/docs/api/lydian-platform-postman-collection.json" download class="mega-menu-item" style="border-left: 3px solid #FF6C40;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Postman Collection</strong>
+                                            <small>9 Endpoints Ready</small>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="mega-menu-column">
+                                    <div class="mega-column-header">Developer Tools & SDKs</div>
+                                    <a href="/developers.html" class="mega-menu-item" style="border-left: 3px solid #8B5CF6;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                        </svg>
+                                        <div>
+                                            <strong>SDK Kütüphaneleri</strong>
+                                            <small>Node.js, Python, Go SDKs</small>
+                                        </div>
+                                    </a>
+                                    <a href="/developers.html#quickstart" class="mega-menu-item" style="border-left: 3px solid #10B981;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Quick Start Guide</strong>
+                                            <small>5 Dakikada Başlayın</small>
+                                        </div>
+                                    </a>
+                                    <a href="/developers.html#authentication" class="mega-menu-item" style="border-left: 3px solid #EF4444;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Authentication</strong>
+                                            <small>API Key, OAuth2, HMAC</small>
+                                        </div>
+                                    </a>
+                                    <a href="/docs.html" class="mega-menu-item" style="border-left: 3px solid #EC4899;">
+                                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                        </svg>
+                                        <div>
+                                            <strong>Full Documentation</strong>
+                                            <small>Guides, Tutorials, Cookbooks</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
                 <li data-testid="menu-item">
-                    <a href="/developers.html">Geliştiriciler</a>
+                    <a href="/ai-ops-center.html">AI Ops Center</a>
                     <div class="nav-preview">
                         <div class="preview-content">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
-                            <h4>Dokümantasyon</h4>
-                            <p>Kapsamlı geliştirici kılavuzu</p>
+                            <h4>AI Ops Center</h4>
+                            <p>AI model eğitimi, izleme ve uyumluluk için birleşik operasyon panosu</p>
                         </div>
                     </div>
                 </li>

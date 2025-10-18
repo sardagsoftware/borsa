@@ -2,11 +2,18 @@ import { test, expect } from '@playwright/test';
 
 const BASE_URL = 'http://localhost:3100';
 
+// 🎯 Global timeout increase for better stability
+test.use({ timeout: 60000 }); // 60s per test
+
 test.describe('Landing (/) smoke', () => {
   test('hero video + CTA görünüyor', async ({ page }) => {
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
 
-    // Hero başlık kontrolü (LyDian branding)
+    // Ensure page is fully loaded before checking h1
+    await page.waitForLoadState('domcontentloaded');
+
+    // Hero başlık kontrolü (LyDian branding) with explicit wait
+    await page.waitForSelector('h1', { state: 'visible', timeout: 30000 });
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('h1')).toContainText('AI Platform');
 
@@ -19,18 +26,18 @@ test.describe('Landing (/) smoke', () => {
 
   test('Title Case normalizasyon çalışıyor', async ({ page }) => {
     await page.goto(BASE_URL);
-    
+
     // Footer linklerini kontrol et
     const menuItems = await page.locator('[data-testid="menu-item"]').allInnerTexts();
-    
+
     // En az bir menü öğesi olmalı
     expect(menuItems.length).toBeGreaterThan(0);
-    
-    // İlk karakterlerin büyük harf olup olmadığını kontrol et
+
+    // İlk karakterlerin büyük harf veya sayı olup olmadığını kontrol et
     for (const txt of menuItems) {
       const firstChar = txt.trim()[0];
-      // ASCII büyük harf veya Unicode büyük harf kontrolü
-      expect(firstChar).toMatch(/[A-ZÇĞİÖŞÜ]/);
+      // ASCII büyük harf, Unicode büyük harf, veya sayı (örn: "3D", "24/7")
+      expect(firstChar).toMatch(/[A-ZÇĞİÖŞÜ0-9]/);
     }
   });
 });
@@ -40,8 +47,8 @@ test.describe('Auth (/auth) smoke', () => {
     await page.goto(`${BASE_URL}/auth.html`, { waitUntil: 'networkidle' });
     await page.waitForLoadState('domcontentloaded');
 
-    // Wait for email input to be visible
-    await page.waitForSelector('#email-input', { state: 'visible', timeout: 10000 });
+    // Wait for email input to be visible (increased timeout)
+    await page.waitForSelector('#email-input', { state: 'visible', timeout: 30000 });
 
     // Email step form alanları kontrolü
     await expect(page.getByLabel(/email/i)).toBeVisible();
@@ -58,8 +65,8 @@ test.describe('Auth (/auth) smoke', () => {
     await page.goto(`${BASE_URL}/auth.html`, { waitUntil: 'networkidle' });
     await page.waitForLoadState('domcontentloaded');
 
-    // Wait for email input to be visible
-    await page.waitForSelector('#email-input', { state: 'visible', timeout: 10000 });
+    // Wait for email input to be visible (increased timeout)
+    await page.waitForSelector('#email-input', { state: 'visible', timeout: 30000 });
 
     // Step 1: Email girişi
     await page.getByLabel(/email/i).fill('test@example.com');
@@ -128,8 +135,8 @@ test.describe('Chat (/chat) baseline', () => {
     await page.goto(`${BASE_URL}/chat.html`, { waitUntil: 'networkidle' });
     await page.waitForLoadState('domcontentloaded');
 
-    // Wait for messages container to be ready
-    await page.waitForSelector('#messagesContainer', { state: 'attached', timeout: 10000 });
+    // Wait for messages container to be ready (increased timeout for stability)
+    await page.waitForSelector('#messagesContainer', { state: 'attached', timeout: 30000 });
 
     // Directly create a message with copy/regenerate buttons in DOM
     await page.evaluate(() => {

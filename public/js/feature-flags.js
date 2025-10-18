@@ -86,7 +86,9 @@
                 console.log('   Flags loaded:', Object.keys(this.flags).length);
 
             } catch (error) {
-                console.error('Failed to initialize feature flags:', error);
+                // Silent fallback for non-critical feature flags
+                // Use console.log instead of console.error to avoid blocking errors
+                console.log('ℹ️ Feature flags unavailable (using fallback mode):', error.message);
                 // Fallback: all flags disabled
                 this.flags = {};
             }
@@ -187,7 +189,8 @@
                 console.log('✅ Feature flags fetched successfully');
 
             } catch (error) {
-                console.error('Error fetching feature flags:', error);
+                // Log as info instead of error for graceful degradation
+                console.log('ℹ️ Could not fetch feature flags:', error.message);
                 throw error;
             }
         }

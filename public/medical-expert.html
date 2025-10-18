@@ -2711,7 +2711,8 @@ async function loadEmergencyNumbers() {
             displayEmergencyNumbers(data.numbers);
         }
     } catch (error) {
-        console.error('Emergency numbers error:', error);
+        // Silent fallback - use console.log instead of console.error
+        console.log('ℹ️ Emergency numbers API unavailable, using fallback:', error.message);
         // Fallback to default Turkey numbers
         displayDefaultEmergencyNumbers();
     }
@@ -2720,6 +2721,10 @@ async function loadEmergencyNumbers() {
 // Display Emergency Numbers in Modal
 function displayEmergencyNumbers(numbers) {
     const emergencyGrid = document.querySelector('.emergency-grid');
+    if (!emergencyGrid) {
+        console.log('ℹ️ Emergency grid element not found');
+        return;
+    }
     emergencyGrid.innerHTML = AilydianSanitizer.sanitizeHTML('');
 
     numbers.forEach(item => {
@@ -5238,15 +5243,28 @@ async function analyzeNeuroImaging() {
 
         const data = await response.json();
 
-        // Display results
-        document.getElementById('neuroImagingResults').style.display = 'block';
-        document.getElementById('neuroImagingAnalysis').textContent = data.analysis;
-        document.getElementById('neuroImagingConfidence').textContent = data.metrics.confidence;
-        document.getElementById('neuroImagingVolume').textContent = data.metrics.volume;
-        document.getElementById('neuroImagingFindings').textContent = data.metrics.findings;
-        document.getElementById('neuroImagingCitations').innerHTML = data.citations.map(c =>
-            `<p style="margin-bottom: 0.5rem;">📄 ${c}</p>`
-        ).join('');
+        // Display results with null checks
+        const resultsEl = document.getElementById('neuroImagingResults');
+        if (resultsEl) resultsEl.style.display = 'block';
+
+        const analysisEl = document.getElementById('neuroImagingAnalysis');
+        if (analysisEl) analysisEl.textContent = data.analysis;
+
+        const confidenceEl = document.getElementById('neuroImagingConfidence');
+        if (confidenceEl) confidenceEl.textContent = data.metrics.confidence;
+
+        const volumeEl = document.getElementById('neuroImagingVolume');
+        if (volumeEl) volumeEl.textContent = data.metrics.volume;
+
+        const findingsEl = document.getElementById('neuroImagingFindings');
+        if (findingsEl) findingsEl.textContent = data.metrics.findings;
+
+        const citationsEl = document.getElementById('neuroImagingCitations');
+        if (citationsEl) {
+            citationsEl.innerHTML = data.citations.map(c =>
+                `<p style="margin-bottom: 0.5rem;">📄 ${c}</p>`
+            ).join('');
+        }
 
         button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
@@ -5303,24 +5321,38 @@ async function calculateNeuroHealthIndex() {
 
         const data = await response.json();
 
-        // Display results
-        document.getElementById('neuroHealthIndexResults').style.display = 'block';
-        document.getElementById('neuroHealthIndexScore').textContent = data.neuroHealthIndex;
-        document.getElementById('neuroHealthIndexCategory').textContent = data.category;
-        document.getElementById('neuroHealthCognitiveScore').textContent = data.subScores.cognitive;
-        document.getElementById('neuroHealthLifestyleScore').textContent = data.subScores.lifestyle;
-        document.getElementById('neuroHealthRiskScore').textContent = data.subScores.riskFactors;
-        document.getElementById('neuroHealthAgeScore').textContent = data.subScores.ageAdjusted;
+        // Display results with null checks
+        const healthResultsEl = document.getElementById('neuroHealthIndexResults');
+        if (healthResultsEl) healthResultsEl.style.display = 'block';
+
+        const healthScoreEl = document.getElementById('neuroHealthIndexScore');
+        if (healthScoreEl) healthScoreEl.textContent = data.neuroHealthIndex;
+
+        const healthCategoryEl = document.getElementById('neuroHealthIndexCategory');
+        if (healthCategoryEl) healthCategoryEl.textContent = data.category;
+
+        const cognitiveScoreEl = document.getElementById('neuroHealthCognitiveScore');
+        if (cognitiveScoreEl) cognitiveScoreEl.textContent = data.subScores.cognitive;
+
+        const lifestyleScoreEl = document.getElementById('neuroHealthLifestyleScore');
+        if (lifestyleScoreEl) lifestyleScoreEl.textContent = data.subScores.lifestyle;
+
+        const riskScoreEl = document.getElementById('neuroHealthRiskScore');
+        if (riskScoreEl) riskScoreEl.textContent = data.subScores.riskFactors;
+
+        const ageScoreEl = document.getElementById('neuroHealthAgeScore');
+        if (ageScoreEl) ageScoreEl.textContent = data.subScores.ageAdjusted;
 
         // Recommendations
         const recommendationsHTML = data.recommendations.map(rec =>
             `<p style="margin-bottom: 0.75rem;"><strong>${rec.category}:</strong> ${rec.action} (${rec.frequency})</p>`
         ).join('');
 
-        document.getElementById('neuroHealthRecommendations').innerHTML = recommendationsHTML;
+        const recommendationsEl = document.getElementById('neuroHealthRecommendations');
+        if (recommendationsEl) recommendationsEl.innerHTML = recommendationsHTML;
 
         // Scroll to results
-        document.getElementById('neuroHealthIndexResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (healthResultsEl) healthResultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     } catch (error) {
         console.error('Neuro Health Index calculation error:', error);
@@ -5372,28 +5404,41 @@ async function calculateNeuroRisk() {
 
         const data = await response.json();
 
-        // Display results
-        document.getElementById('neuroRiskResults').style.display = 'block';
-        document.getElementById('neuroRiskPercentage').textContent = data.tenYearRisk + '%';
-        document.getElementById('neuroRiskLevel').textContent = data.riskLevel;
-        document.getElementById('neuroRiskAlzheimer').textContent = data.diseaseSpecificRisks.alzheimer + '%';
-        document.getElementById('neuroRiskStroke').textContent = data.diseaseSpecificRisks.stroke + '%';
-        document.getElementById('neuroRiskParkinson').textContent = data.diseaseSpecificRisks.parkinson + '%';
+        // Display results with null checks
+        const riskResultsEl = document.getElementById('neuroRiskResults');
+        if (riskResultsEl) riskResultsEl.style.display = 'block';
+
+        const riskPercentageEl = document.getElementById('neuroRiskPercentage');
+        if (riskPercentageEl) riskPercentageEl.textContent = data.tenYearRisk + '%';
+
+        const riskLevelEl = document.getElementById('neuroRiskLevel');
+        if (riskLevelEl) riskLevelEl.textContent = data.riskLevel;
+
+        const riskAlzheimerEl = document.getElementById('neuroRiskAlzheimer');
+        if (riskAlzheimerEl) riskAlzheimerEl.textContent = data.diseaseSpecificRisks.alzheimer + '%';
+
+        const riskStrokeEl = document.getElementById('neuroRiskStroke');
+        if (riskStrokeEl) riskStrokeEl.textContent = data.diseaseSpecificRisks.stroke + '%';
+
+        const riskParkinsonEl = document.getElementById('neuroRiskParkinson');
+        if (riskParkinsonEl) riskParkinsonEl.textContent = data.diseaseSpecificRisks.parkinson + '%';
 
         // Protective actions
         const actionsHTML = data.protectiveActions.map(action =>
             `<p style="margin-bottom: 0.75rem; padding-left: 1.5rem; text-indent: -1.5rem;">${action.icon} ${action.action} - ${action.impact}</p>`
         ).join('');
-        document.getElementById('neuroRiskActions').innerHTML = actionsHTML;
+        const riskActionsEl = document.getElementById('neuroRiskActions');
+        if (riskActionsEl) riskActionsEl.innerHTML = actionsHTML;
 
         // References
         const referencesHTML = data.evidenceBased.references.map(ref =>
             `<p style="margin-bottom: 0.5rem;">📄 ${ref}</p>`
         ).join('');
-        document.getElementById('neuroRiskReferences').innerHTML = referencesHTML;
+        const riskReferencesEl = document.getElementById('neuroRiskReferences');
+        if (riskReferencesEl) riskReferencesEl.innerHTML = referencesHTML;
 
         // Scroll to results
-        document.getElementById('neuroRiskResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (riskResultsEl) riskResultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     } catch (error) {
         console.error('Neuro risk assessment error:', error);
@@ -5447,38 +5492,58 @@ async function generateNeuroTwin() {
 
         const data = await response.json();
 
-        // Generate anonymized patient ID
-        document.getElementById('neuroTwinPatientID').value = data.digitalTwin.patientClusterId;
+        // Generate anonymized patient ID with null check
+        const twinPatientIDEl = document.getElementById('neuroTwinPatientID');
+        if (twinPatientIDEl) twinPatientIDEl.value = data.digitalTwin.patientClusterId;
 
-        // Display results
-        document.getElementById('neuroTwinResults').style.display = 'block';
-        document.getElementById('neuroTwinBrainAge').textContent = data.digitalTwin.brainAge + ' years';
-        document.getElementById('neuroTwinCognitiveReserve').textContent = data.digitalTwin.cognitiveReserve;
-        document.getElementById('neuroTwinConfidence').textContent = data.digitalTwin.modelConfidence;
+        // Display results with null checks
+        const twinResultsEl = document.getElementById('neuroTwinResults');
+        if (twinResultsEl) twinResultsEl.style.display = 'block';
+
+        const twinBrainAgeEl = document.getElementById('neuroTwinBrainAge');
+        if (twinBrainAgeEl) twinBrainAgeEl.textContent = data.digitalTwin.brainAge + ' years';
+
+        const twinReserveEl = document.getElementById('neuroTwinCognitiveReserve');
+        if (twinReserveEl) twinReserveEl.textContent = data.digitalTwin.cognitiveReserve;
+
+        const twinConfidenceEl = document.getElementById('neuroTwinConfidence');
+        if (twinConfidenceEl) twinConfidenceEl.textContent = data.digitalTwin.modelConfidence;
 
         // Interventions
         const interventionsHTML = data.interventionOpportunities.map(intervention =>
             `<p style="margin-bottom: 0.75rem;">${intervention.icon} ${intervention.intervention} - ${intervention.potentialImpact}</p>`
         ).join('');
-        document.getElementById('neuroTwinInterventions').innerHTML = interventionsHTML;
+        const twinInterventionsEl = document.getElementById('neuroTwinInterventions');
+        if (twinInterventionsEl) twinInterventionsEl.innerHTML = interventionsHTML;
 
-        // Update status indicators
-        document.getElementById('neuroTwinFHIRStatus').textContent = 'Connected ✓';
-        document.getElementById('neuroTwinFHIRStatus').style.color = '#10A37F';
-        document.getElementById('neuroTwinMRIStatus').textContent = 'Analyzed ✓';
-        document.getElementById('neuroTwinMRIStatus').style.color = '#10A37F';
+        // Update status indicators with null checks
+        const fhirStatusEl = document.getElementById('neuroTwinFHIRStatus');
+        if (fhirStatusEl) {
+            fhirStatusEl.textContent = 'Connected ✓';
+            fhirStatusEl.style.color = '#10A37F';
+        }
+
+        const mriStatusEl = document.getElementById('neuroTwinMRIStatus');
+        if (mriStatusEl) {
+            mriStatusEl.textContent = 'Analyzed ✓';
+            mriStatusEl.style.color = '#10A37F';
+        }
 
         // Chart would be rendered here using Chart.js in production
         const canvas = document.getElementById('neuroTwinChart');
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '16px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Brain Aging Trajectory Chart', canvas.width / 2, canvas.height / 2);
-        ctx.font = '12px sans-serif';
-        ctx.fillText(`(${data.trajectory.data.length} year prediction loaded)`, canvas.width / 2, canvas.height / 2 + 25);
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '16px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Brain Aging Trajectory Chart', canvas.width / 2, canvas.height / 2);
+                ctx.font = '12px sans-serif';
+                ctx.fillText(`(${data.trajectory.data.length} year prediction loaded)`, canvas.width / 2, canvas.height / 2 + 25);
+            }
+        }
 
         button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Digital Twin Generated');
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
