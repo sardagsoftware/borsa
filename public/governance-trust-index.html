@@ -230,11 +230,11 @@
       <!-- Left Column: Model Selection -->
       <div class="lg:col-span-1">
         <div class="glass-card rounded-xl p-6 mb-6">
-          <h2 class="text-xl font-bold text-gray-900 mb-4">Calculate Trust Index</h2>
+          <h2 class="text-xl font-bold text-gray-900 mb-4" data-i18n="trust.calculate_title">Güven Endeksi Hesapla</h2>
 
           <!-- Model Selection -->
           <div class="mb-4">
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Select Model</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="trust.select_model">Model Seç</label>
             <select id="modelSelect" class="select-custom w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
               <option value="">Loading models...</option>
             </select>
@@ -246,14 +246,14 @@
             <div id="btnSpinner" class="loading-spinner hidden"></div>
           </button>
 
-          <p class="text-xs text-gray-500 mt-3">
-            Trust Index assesses models across 5 dimensions: Transparency, Accountability, Fairness, Privacy, and Robustness.
+          <p class="text-xs text-gray-500 mt-3" data-i18n="trust.description">
+            Güven Endeksi modelleri 5 boyutta değerlendirir: Şeffaflık, Hesap Verebilirlik, Adillik, Gizlilik ve Sağlamlık.
           </p>
         </div>
 
         <!-- Trust Tiers Info -->
         <div class="glass-card rounded-xl p-6">
-          <h3 class="text-lg font-bold text-gray-900 mb-3">Trust Tiers</h3>
+          <h3 class="text-lg font-bold text-gray-900 mb-3" data-i18n="trust.tiers_title">Güven Seviyeleri</h3>
           <div class="space-y-2 text-sm">
             <div class="flex items-center gap-2">
               <span class="text-2xl">🏆</span>
@@ -301,8 +301,8 @@
           <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
           </svg>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">No Trust Index Calculated</h3>
-          <p class="text-gray-600">Select a model and calculate its trust index to see detailed analysis here.</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="trust.no_index">Güven Endeksi Hesaplanmadı</h3>
+          <p class="text-gray-600" data-i18n="trust.no_index_desc">Model seçip güven endeksini hesaplayarak detaylı analizi burada görün.</p>
         </div>
 
         <!-- Results Container -->
@@ -314,7 +314,7 @@
                 <div class="score-circle" id="scoreCircle">
                   <div class="score-value" id="scoreValue">--</div>
                 </div>
-                <p class="text-gray-600 mt-4 font-semibold">Global Trust Score</p>
+                <p class="text-gray-600 mt-4 font-semibold" data-i18n="trust.global_score">Global Güven Skoru</p>
               </div>
               <div class="flex flex-col justify-center">
                 <div class="mb-6">
@@ -335,7 +335,7 @@
 
           <!-- 5 Dimensions Chart -->
           <div class="glass-card rounded-xl p-6 mb-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">5-Dimensional Analysis</h3>
+            <h3 class="text-lg font-bold text-gray-900 mb-4" data-i18n="trust.dimensions_title">5 Boyutlu Analiz</h3>
             <div class="chart-container">
               <canvas id="dimensionsChart"></canvas>
             </div>
@@ -345,57 +345,57 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             <div class="dimension-card" id="dim-transparency">
               <div class="flex items-center justify-between mb-2">
-                <h4 class="font-bold text-gray-900">Transparency</h4>
+                <h4 class="font-bold text-gray-900" data-i18n="trust.dim.transparency">Şeffaflık</h4>
                 <span class="text-2xl font-bold text-purple-600" id="score-transparency">--</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-purple-600 h-2 rounded-full transition-all" id="bar-transparency" style="width: 0%"></div>
               </div>
-              <p class="text-xs text-gray-600 mt-2">Explainability & documentation</p>
+              <p class="text-xs text-gray-600 mt-2" data-i18n="trust.dim.transparency_desc">Açıklanabilirlik ve dokümantasyon</p>
             </div>
 
             <div class="dimension-card" id="dim-accountability">
               <div class="flex items-center justify-between mb-2">
-                <h4 class="font-bold text-gray-900">Accountability</h4>
+                <h4 class="font-bold text-gray-900" data-i18n="trust.dim.accountability">Hesap Verebilirlik</h4>
                 <span class="text-2xl font-bold text-blue-600" id="score-accountability">--</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-blue-600 h-2 rounded-full transition-all" id="bar-accountability" style="width: 0%"></div>
               </div>
-              <p class="text-xs text-gray-600 mt-2">Ownership & governance</p>
+              <p class="text-xs text-gray-600 mt-2" data-i18n="trust.dim.accountability_desc">Sahiplik ve yönetişim</p>
             </div>
 
             <div class="dimension-card" id="dim-fairness">
               <div class="flex items-center justify-between mb-2">
-                <h4 class="font-bold text-gray-900">Fairness</h4>
+                <h4 class="font-bold text-gray-900" data-i18n="trust.dim.fairness">Adillik</h4>
                 <span class="text-2xl font-bold text-green-600" id="score-fairness">--</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-green-600 h-2 rounded-full transition-all" id="bar-fairness" style="width: 0%"></div>
               </div>
-              <p class="text-xs text-gray-600 mt-2">Bias testing & equality</p>
+              <p class="text-xs text-gray-600 mt-2" data-i18n="trust.dim.fairness_desc">Önyargı testi ve eşitlik</p>
             </div>
 
             <div class="dimension-card" id="dim-privacy">
               <div class="flex items-center justify-between mb-2">
-                <h4 class="font-bold text-gray-900">Privacy</h4>
+                <h4 class="font-bold text-gray-900" data-i18n="trust.dim.privacy">Gizlilik</h4>
                 <span class="text-2xl font-bold text-yellow-600" id="score-privacy">--</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-yellow-600 h-2 rounded-full transition-all" id="bar-privacy" style="width: 0%"></div>
               </div>
-              <p class="text-xs text-gray-600 mt-2">Data protection & compliance</p>
+              <p class="text-xs text-gray-600 mt-2" data-i18n="trust.dim.privacy_desc">Veri koruma ve uyumluluk</p>
             </div>
 
             <div class="dimension-card" id="dim-robustness">
               <div class="flex items-center justify-between mb-2">
-                <h4 class="font-bold text-gray-900">Robustness</h4>
+                <h4 class="font-bold text-gray-900" data-i18n="trust.dim.robustness">Sağlamlık</h4>
                 <span class="text-2xl font-bold text-red-600" id="score-robustness">--</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-red-600 h-2 rounded-full transition-all" id="bar-robustness" style="width: 0%"></div>
               </div>
-              <p class="text-xs text-gray-600 mt-2">Error handling & monitoring</p>
+              <p class="text-xs text-gray-600 mt-2" data-i18n="trust.dim.robustness_desc">Hata yönetimi ve izleme</p>
             </div>
           </div>
 
@@ -403,33 +403,33 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Strengths -->
             <div class="glass-card rounded-xl p-6">
-              <h3 class="text-lg font-bold text-green-600 mb-4 flex items-center gap-2">
+              <h3 class="text-lg font-bold text-green-600 mb-4 flex items-center gap-2" data-i18n="trust.strengths">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Strengths
+                Güçlü Yönler
               </h3>
               <div id="strengthsList"></div>
             </div>
 
             <!-- Weaknesses -->
             <div class="glass-card rounded-xl p-6">
-              <h3 class="text-lg font-bold text-red-600 mb-4 flex items-center gap-2">
+              <h3 class="text-lg font-bold text-red-600 mb-4 flex items-center gap-2" data-i18n="trust.weaknesses">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Weaknesses
+                Zayıf Yönler
               </h3>
               <div id="weaknessesList"></div>
             </div>
 
             <!-- Recommendations -->
             <div class="glass-card rounded-xl p-6">
-              <h3 class="text-lg font-bold text-blue-600 mb-4 flex items-center gap-2">
+              <h3 class="text-lg font-bold text-blue-600 mb-4 flex items-center gap-2" data-i18n="trust.recommendations">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Recommendations
+                Öneriler
               </h3>
               <div id="recommendationsList"></div>
             </div>

@@ -212,11 +212,11 @@
       <!-- Left Column: Validation Form -->
       <div class="lg:col-span-1">
         <div class="glass-card rounded-xl p-6 mb-6">
-          <h2 class="text-xl font-bold text-gray-900 mb-4">Run Validation</h2>
+          <h2 class="text-xl font-bold text-gray-900 mb-4" data-i18n="compliance.run_validation">Doğrulama Çalıştır</h2>
 
           <!-- Model Selection -->
           <div class="mb-4">
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Select Model</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="compliance.select_model">Model Seç</label>
             <select id="modelSelect" class="select-custom w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
               <option value="">Loading models...</option>
             </select>
@@ -224,7 +224,7 @@
 
           <!-- Framework Selection -->
           <div class="mb-6">
-            <label class="block text-sm font-semibold text-gray-700 mb-3">Select Framework</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-3" data-i18n="compliance.select_framework">Framework Seç</label>
             <div class="space-y-2">
               <div class="framework-badge framework-GDPR" onclick="selectFramework('GDPR')" id="badge-GDPR">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -279,8 +279,8 @@
           <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">No Validation Results</h3>
-          <p class="text-gray-600">Select a model and framework, then run validation to see results here.</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="compliance.no_results">Doğrulama Sonucu Yok</h3>
+          <p class="text-gray-600" data-i18n="compliance.no_results_desc">Model ve framework seçip doğrulama çalıştırarak sonuçları burada görün.</p>
         </div>
 
         <!-- Results Container -->
@@ -291,14 +291,14 @@
           <!-- Tabs -->
           <div class="glass-card rounded-xl overflow-hidden">
             <div class="flex border-b border-gray-200">
-              <button class="tab-btn flex-1 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition" onclick="switchTab('issues')" id="tab-issues">
-                Issues & Warnings
+              <button class="tab-btn flex-1 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition" onclick="switchTab('issues')" id="tab-issues" data-i18n="compliance.tab_issues">
+                Sorunlar ve Uyarılar
               </button>
-              <button class="tab-btn flex-1 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition" onclick="switchTab('criteria')" id="tab-criteria">
-                Criteria Breakdown
+              <button class="tab-btn flex-1 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition" onclick="switchTab('criteria')" id="tab-criteria" data-i18n="compliance.tab_criteria">
+                Kriter Dağılımı
               </button>
-              <button class="tab-btn flex-1 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition" onclick="switchTab('recommendations')" id="tab-recommendations">
-                Recommendations
+              <button class="tab-btn flex-1 px-6 py-3 font-semibold text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition" onclick="switchTab('recommendations')" id="tab-recommendations" data-i18n="compliance.tab_recommendations">
+                Öneriler
               </button>
             </div>
 
@@ -322,7 +322,7 @@
 
           <!-- Compliance History -->
           <div class="glass-card rounded-xl p-6 mt-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Compliance History</h3>
+            <h3 class="text-lg font-bold text-gray-900 mb-4" data-i18n="compliance.history">Uyumluluk Geçmişi</h3>
             <div id="historyTimeline"></div>
           </div>
         </div>
