@@ -9,60 +9,32 @@
 const express = require('express');
 const router = express.Router();
 const { getPrismaClient, safeQuery } = require('./prisma-client');
-const { calculateTrustIndex } = require('../../lib/governance/calculators/trust-index-calculator');
+const {
+  calculateTrustIndex,
+  determineTier,
+  TRUST_TIERS,
+} = require('../../lib/governance/calculators/trust-index-calculator');
 
-// Trust tier thresholds
-const TRUST_TIERS = {
-  PLATINUM: { min: 90, badge: '🏆' },
-  GOLD: { min: 80, badge: '🥇' },
-  SILVER: { min: 70, badge: '🥈' },
-  BRONZE: { min: 60, badge: '🥉' },
-  UNVERIFIED: { min: 0, badge: '⚠️' },
+// Trust tier badges for display
+const TRUST_TIER_BADGES = {
+  PLATINUM: '🏆',
+  GOLD: '🥇',
+  SILVER: '🥈',
+  BRONZE: '🥉',
+  UNVERIFIED: '⚠️',
 };
 
-// In-memory trust index storage (will be moved to database)
+// In-memory trust index storage (fallback when database unavailable)
 const trustIndexCache = new Map();
-
-/**
- * Calculate Trust Index from component scores
- */
-function calculateTrustIndex(scores) {
-  const weights = {
-    transparency: 0.25,
-    accountability: 0.20,
-    fairness: 0.20,
-    privacy: 0.20,
-    robustness: 0.15,
-  };
-
-  const globalScore =
-    scores.transparency * weights.transparency +
-    scores.accountability * weights.accountability +
-    scores.fairness * weights.fairness +
-    scores.privacy * weights.privacy +
-    scores.robustness * weights.robustness;
-
-  return Math.round(globalScore * 100) / 100;
-}
-
-/**
- * Determine trust tier based on score
- */
-function determineTier(score) {
-  if (score >= TRUST_TIERS.PLATINUM.min) return 'PLATINUM';
-  if (score >= TRUST_TIERS.GOLD.min) return 'GOLD';
-  if (score >= TRUST_TIERS.SILVER.min) return 'SILVER';
-  if (score >= TRUST_TIERS.BRONZE.min) return 'BRONZE';
-  return 'UNVERIFIED';
-}
 
 /**
  * POST /api/governance/trust-index/calculate
  * Calculate Global Trust Index for a model
+ * NOW USES REAL CALCULATOR WITH DATABASE INTEGRATION
  */
 router.post('/calculate', async (req, res) => {
   try {
-    const { modelId, transparency, accountability, fairness, privacy, robustness } = req.body;
+    const { modelId } = req.body;
 
     // Validation
     if (!modelId) {
@@ -72,47 +44,191 @@ router.post('/calculate', async (req, res) => {
       });
     }
 
-    const scores = {
-      transparency: transparency || 0,
-      accountability: accountability || 0,
-      fairness: fairness || 0,
-      privacy: privacy || 0,
-      robustness: robustness || 0,
-    };
+    // Fetch model and compliance checks from database, or use mock mode
+    const result = await safeQuery(
+      async (prisma) => {
+        // Fetch model with owner info
+        const model = await prisma.governanceModel.findUnique({
+          where: { id: modelId },
+          include: {
+            owner: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        });
 
-    // Validate score ranges
-    for (const [key, value] of Object.entries(scores)) {
-      if (value < 0 || value > 100) {
-        return res.status(400).json({
+        if (!model) {
+          return {
+            success: false,
+            error: 'model_not_found',
+          };
+        }
+
+        // Fetch recent compliance checks (last 90 days)
+        const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000);
+        const complianceChecks = await prisma.complianceCheck.findMany({
+          where: {
+            modelId: model.id,
+            createdAt: {
+              gte: ninetyDaysAgo,
+            },
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 10, // Last 10 checks
+        });
+
+        // Calculate trust index using real calculator
+        const trustIndexResult = calculateTrustIndex(model, complianceChecks);
+
+        // Save to database (create TrustIndex record)
+        const trustIndex = await prisma.trustIndex.create({
+          data: {
+            modelId: model.id,
+            globalScore: trustIndexResult.globalScore,
+            tier: trustIndexResult.tier,
+            dimensions: trustIndexResult.dimensions,
+            strengths: trustIndexResult.strengths,
+            weaknesses: trustIndexResult.weaknesses,
+            recommendations: trustIndexResult.recommendations,
+            complianceInfluence: trustIndexResult.complianceInfluence,
+            expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+          },
+          select: {
+            id: true,
+            modelId: true,
+            globalScore: true,
+            tier: true,
+            dimensions: true,
+            strengths: true,
+            weaknesses: true,
+            recommendations: true,
+            complianceInfluence: true,
+            createdAt: true,
+            expiresAt: true,
+          },
+        });
+
+        return {
+          success: true,
+          data: {
+            id: trustIndex.id,
+            modelId: model.id,
+            modelName: model.name,
+            modelVersion: model.version,
+            globalScore: Math.round(trustIndex.globalScore * 100) / 100,
+            scorePercentage: Math.round(trustIndex.globalScore * 100),
+            tier: trustIndex.tier,
+            badge: TRUST_TIER_BADGES[trustIndex.tier],
+            tierDescription: TRUST_TIERS[trustIndex.tier].description,
+            dimensions: trustIndex.dimensions,
+            strengths: trustIndex.strengths,
+            weaknesses: trustIndex.weaknesses,
+            recommendations: trustIndex.recommendations,
+            complianceInfluence: trustIndex.complianceInfluence,
+            calculatedAt: trustIndex.createdAt.toISOString(),
+            expiresAt: trustIndex.expiresAt.toISOString(),
+          },
+        };
+      },
+      // Mock mode fallback (when database not available)
+      () => {
+        const mockModel = {
+          id: modelId,
+          name: 'Mock Model',
+          version: '1.0.0',
+          metadata: {
+            transparency: {
+              explainableAI: true,
+              documentationQuality: 0.8,
+              openSourceComponents: 3,
+              algorithmDisclosure: 'partial',
+            },
+            accountability: {
+              ownershipDocumented: true,
+              incidentResponsePlan: true,
+              governanceFramework: 'ISO 27001',
+            },
+            fairness: {
+              biasTesting: 'comprehensive',
+              demographicParity: 0.85,
+              equalOpportunity: 0.88,
+              fairnessAudits: [{ score: 0.90 }],
+            },
+            security: {
+              encryptionAtRest: true,
+              encryptionInTransit: true,
+              accessControls: true,
+              roleBasedAccess: true,
+              auditLogging: true,
+              auditReview: true,
+            },
+            robustness: {
+              errorHandling: 'comprehensive',
+              monitoring: true,
+              alerting: true,
+              testCoverage: 85,
+            },
+          },
+        };
+
+        // Mock compliance checks
+        const mockComplianceChecks = [
+          { framework: 'GDPR', score: 0.88, compliant: true },
+          { framework: 'HIPAA', score: 0.92, compliant: true },
+        ];
+
+        // Calculate with mock data
+        const trustIndexResult = calculateTrustIndex(mockModel, mockComplianceChecks);
+
+        const trustIndexData = {
+          id: `ti-mock-${Date.now()}`,
+          modelId,
+          globalScore: trustIndexResult.globalScore,
+          scorePercentage: Math.round(trustIndexResult.globalScore * 100),
+          tier: trustIndexResult.tier,
+          badge: TRUST_TIER_BADGES[trustIndexResult.tier],
+          tierDescription: TRUST_TIERS[trustIndexResult.tier].description,
+          dimensions: trustIndexResult.dimensions,
+          strengths: trustIndexResult.strengths,
+          weaknesses: trustIndexResult.weaknesses,
+          recommendations: trustIndexResult.recommendations,
+          complianceInfluence: trustIndexResult.complianceInfluence,
+          calculatedAt: new Date().toISOString(),
+          expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
+        };
+
+        // Store in cache
+        trustIndexCache.set(modelId, trustIndexData);
+
+        return {
+          success: true,
+          data: {
+            ...trustIndexData,
+            mockMode: true,
+            warning: 'Using mock data (database not available)',
+          },
+        };
+      }
+    );
+
+    if (!result.success) {
+      if (result.error === 'model_not_found') {
+        return res.status(404).json({
           success: false,
-          error: `${key} score must be between 0-100`,
+          error: 'Model not found',
+          message: `Model with ID ${modelId} does not exist`,
         });
       }
+      throw new Error(result.error);
     }
 
-    // Calculate trust index
-    const globalTrustScore = calculateTrustIndex(scores);
-    const tier = determineTier(globalTrustScore);
-    const badge = TRUST_TIERS[tier].badge;
-
-    const trustIndex = {
-      id: `ti-${Date.now()}`,
-      modelId,
-      globalTrustScore,
-      tier,
-      badge,
-      scores,
-      calculatedAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(), // 90 days
-    };
-
-    // Store in cache
-    trustIndexCache.set(modelId, trustIndex);
-
-    res.status(200).json({
-      success: true,
-      data: trustIndex,
-    });
+    res.status(200).json(result);
   } catch (error) {
     console.error('Calculate trust index error:', error);
     res.status(500).json({
@@ -126,41 +242,126 @@ router.post('/calculate', async (req, res) => {
 /**
  * GET /api/governance/trust-index/:modelId
  * Get current Global Trust Index for a model
+ * NOW FETCHES FROM DATABASE FIRST
  */
 router.get('/:modelId', async (req, res) => {
   try {
     const { modelId } = req.params;
 
-    const trustIndex = trustIndexCache.get(modelId);
+    // Fetch from database, or use cache fallback
+    const result = await safeQuery(
+      async (prisma) => {
+        // Fetch most recent trust index for this model
+        const trustIndex = await prisma.trustIndex.findFirst({
+          where: { modelId },
+          orderBy: { createdAt: 'desc' },
+          include: {
+            model: {
+              select: {
+                id: true,
+                name: true,
+                version: true,
+              },
+            },
+          },
+        });
 
-    if (!trustIndex) {
-      return res.status(404).json({
-        success: false,
-        error: 'Trust index not found for this model',
-        message: 'Calculate trust index first using POST /calculate',
-      });
+        if (!trustIndex) {
+          return {
+            success: false,
+            error: 'not_found',
+          };
+        }
+
+        // Check if expired
+        if (new Date(trustIndex.expiresAt) < new Date()) {
+          return {
+            success: false,
+            error: 'expired',
+            expiredAt: trustIndex.expiresAt,
+          };
+        }
+
+        return {
+          success: true,
+          data: {
+            id: trustIndex.id,
+            modelId: trustIndex.model.id,
+            modelName: trustIndex.model.name,
+            modelVersion: trustIndex.model.version,
+            globalScore: Math.round(trustIndex.globalScore * 100) / 100,
+            scorePercentage: Math.round(trustIndex.globalScore * 100),
+            tier: trustIndex.tier,
+            badge: TRUST_TIER_BADGES[trustIndex.tier],
+            tierDescription: TRUST_TIERS[trustIndex.tier].description,
+            dimensions: trustIndex.dimensions,
+            strengths: trustIndex.strengths,
+            weaknesses: trustIndex.weaknesses,
+            recommendations: trustIndex.recommendations,
+            complianceInfluence: trustIndex.complianceInfluence,
+            calculatedAt: trustIndex.createdAt.toISOString(),
+            expiresAt: trustIndex.expiresAt.toISOString(),
+          },
+        };
+      },
+      // Cache fallback (when database not available)
+      () => {
+        const trustIndex = trustIndexCache.get(modelId);
+
+        if (!trustIndex) {
+          return {
+            success: false,
+            error: 'not_found',
+          };
+        }
+
+        // Check if expired
+        const expiryDate = new Date(trustIndex.expiresAt);
+        if (expiryDate < new Date()) {
+          return {
+            success: false,
+            error: 'expired',
+            expiredAt: trustIndex.expiresAt,
+          };
+        }
+
+        return {
+          success: true,
+          data: {
+            ...trustIndex,
+            mockMode: true,
+            warning: 'Using cached data (database not available)',
+          },
+        };
+      }
+    );
+
+    if (!result.success) {
+      if (result.error === 'not_found') {
+        return res.status(404).json({
+          success: false,
+          error: 'Trust index not found for this model',
+          message: 'Calculate trust index first using POST /calculate',
+        });
+      }
+      if (result.error === 'expired') {
+        return res.status(410).json({
+          success: false,
+          error: 'Trust index has expired',
+          message: 'Recalculate trust index',
+          expiredAt: result.expiredAt,
+        });
+      }
+      throw new Error(result.error);
     }
 
-    // Check if expired
-    const expiryDate = new Date(trustIndex.expiresAt);
-    if (expiryDate < new Date()) {
-      return res.status(410).json({
-        success: false,
-        error: 'Trust index has expired',
-        message: 'Recalculate trust index',
-        expiredAt: trustIndex.expiresAt,
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      data: trustIndex,
-    });
+    res.status(200).json(result);
   } catch (error) {
     console.error('Get trust index error:', error);
     res.status(500).json({
       success: false,
       error: 'Internal server error',
+      message: error.message,
     });
   }
 });
