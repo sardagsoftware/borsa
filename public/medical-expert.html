@@ -325,10 +325,12 @@ body {
     overflow: hidden;
     transition: max-height 0.3s ease;
     padding-left: 1rem;
+    pointer-events: none; /* Prevent clicks when closed */
 }
 
 .nav-category.open .nav-category-content {
-    max-height: 1000px;
+    max-height: 2000px; /* Increased for more items */
+    pointer-events: auto; /* Enable clicks when open */
 }
 
 .nav-category .specialization-item {
@@ -998,7 +1000,7 @@ body {
         <div class="specializations-list" id="specializationsList">
 
             <!-- Medical Specialties Dropdown -->
-            <div class="nav-category">
+            <div class="nav-category open">
                 <div class="nav-category-header" onclick="toggleCategory('specialties')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
@@ -1093,7 +1095,7 @@ body {
             </div>
 
             <!-- Medical Tools Dropdown -->
-            <div class="nav-category">
+            <div class="nav-category open">
                 <div class="nav-category-header" onclick="toggleCategory('tools')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
@@ -1165,7 +1167,7 @@ body {
             </div>
 
             <!-- Advanced Medical AI Dropdown -->
-            <div class="nav-category">
+            <div class="nav-category open">
                 <div class="nav-category-header" onclick="toggleCategory('advanced-ai')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
@@ -1331,7 +1333,7 @@ body {
             </div>
 
             <!-- Neuro Health AI Dropdown -->
-            <div class="nav-category">
+            <div class="nav-category open">
                 <div class="nav-category-header" onclick="toggleCategory('neuro-ai')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>

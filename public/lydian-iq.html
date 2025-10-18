@@ -2904,7 +2904,7 @@
             <div class="search-engine">
             <!-- Mode Switcher -->
             <div class="search-modes">
-                <div class="mode-chip active" data-mode="web" onclick="switchSearchMode('web', this)">
+                <div class="mode-chip" data-mode="web" onclick="switchSearchMode('web', this)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="2" y1="12" x2="22" y2="12"/>
@@ -2912,7 +2912,7 @@
                     </svg>
                     <span>Web</span>
                 </div>
-                <div class="mode-chip" data-mode="lydian-iq" onclick="switchSearchMode('lydian-iq', this)">
+                <div class="mode-chip active" data-mode="lydian-iq" onclick="switchSearchMode('lydian-iq', this)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3"/>
                         <path d="m4.93 4.93 4.24 4.24"/>
@@ -3377,7 +3377,7 @@
         });
 
         // Current search mode
-        let currentMode = 'web'; // web | lydian-iq | connector
+        let currentMode = 'lydian-iq'; // web | lydian-iq | connector (DEFAULT: lydian-iq for reasoning)
 
         // Switch search mode
         function switchSearchMode(mode, el) {
