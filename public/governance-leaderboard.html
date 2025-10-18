@@ -15,7 +15,7 @@
   <style>
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
       min-height: 100vh;
     }
 
@@ -110,7 +110,7 @@
     }
 
     .leaderboard-row:hover {
-      background: rgba(102, 126, 234, 0.05);
+      background: rgba(16, 163, 127, 0.05);
       transform: translateX(4px);
     }
 
@@ -154,13 +154,13 @@
     }
 
     .filter-btn.active {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
       color: white;
-      border-color: #667eea;
+      border-color: #10A37F;
     }
 
     .stat-card {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
       border-radius: 0.75rem;
       padding: 1.5rem;
       color: white;
@@ -235,19 +235,19 @@
           Tümü
         </button>
         <button class="filter-btn" onclick="filterByTier('PLATINUM')" id="filter-PLATINUM">
-          🏆 Platinum
+          Platinum
         </button>
         <button class="filter-btn" onclick="filterByTier('GOLD')" id="filter-GOLD">
-          🥇 Gold
+          Gold
         </button>
         <button class="filter-btn" onclick="filterByTier('SILVER')" id="filter-SILVER">
-          🥈 Silver
+          Silver
         </button>
         <button class="filter-btn" onclick="filterByTier('BRONZE')" id="filter-BRONZE">
-          🥉 Bronze
+          Bronze
         </button>
         <button class="filter-btn" onclick="filterByTier('UNVERIFIED')" id="filter-UNVERIFIED">
-          ⚠️ Unverified
+          Unverified
         </button>
       </div>
     </div>
@@ -263,7 +263,7 @@
         <!-- Loading State -->
         <div id="loadingState" class="empty-state">
           <div class="loading-spinner mx-auto mb-4"></div>
-          <p class="text-gray-600">Loading leaderboard...</p>
+          <p class="text-gray-600">Liderlik tablosu yükleniyor...</p>
         </div>
 
         <!-- Empty State -->
@@ -392,11 +392,11 @@
     let currentTier = 'ALL';
 
     const tierBadges = {
-      PLATINUM: '🏆',
-      GOLD: '🥇',
-      SILVER: '🥈',
-      BRONZE: '🥉',
-      UNVERIFIED: '⚠️'
+      PLATINUM: 'P',
+      GOLD: 'G',
+      SILVER: 'S',
+      BRONZE: 'B',
+      UNVERIFIED: 'U'
     };
 
     // ===========================
@@ -504,7 +504,7 @@
       let html = '';
       filteredModels.forEach((model, index) => {
         const rankBadgeClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : 'rank-other';
-        const medalIcon = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+        const medalIcon = index === 0 ? '1' : index === 1 ? '2' : index === 2 ? '3' : '';
 
         html += `
           <div class="leaderboard-row">
@@ -527,15 +527,15 @@
                   Updated ${new Date(model.calculatedAt).toLocaleDateString()}
                 </p>
                 <div class="score-bar mt-2">
-                  <div class="score-bar-fill bg-gradient-to-r from-purple-600 to-indigo-600"
+                  <div class="score-bar-fill bg-gradient-to-r from-green-600 to-green-700"
                        style="width: ${sanitizeHTML(String(model.score))}%"></div>
                 </div>
               </div>
 
               <!-- Score -->
               <div class="text-right flex-shrink-0">
-                <p class="text-3xl font-bold text-purple-600">${sanitizeHTML(String(model.score))}</p>
-                <p class="text-xs text-gray-500">Trust Score</p>
+                <p class="text-3xl font-bold text-green-600">${sanitizeHTML(String(model.score))}</p>
+                <p class="text-xs text-gray-500">Güven Skoru</p>
               </div>
             </div>
           </div>
@@ -564,7 +564,7 @@
               <span class="text-sm font-bold text-gray-900">${count} (${percentage}%)</span>
             </div>
             <div class="score-bar">
-              <div class="score-bar-fill bg-gradient-to-r from-purple-600 to-indigo-600"
+              <div class="score-bar-fill bg-gradient-to-r from-green-600 to-green-700"
                    style="width: ${percentage}%"></div>
             </div>
           </div>
@@ -577,7 +577,7 @@
 
     function renderRecentCalculations() {
       if (allModels.length === 0) {
-        document.getElementById('recentCalculations').innerHTML = '<p class="text-gray-500 text-sm">No recent calculations.</p>';
+        document.getElementById('recentCalculations').innerHTML = '<p class="text-gray-500 text-sm">Son hesaplama yok.</p>';
         return;
       }
 
@@ -657,11 +657,11 @@
       const enBtn = document.getElementById('lang-en');
 
       if (currentLang === 'tr') {
-        trBtn.className = 'px-3 py-1 rounded bg-white text-purple-600 hover:bg-gray-100 transition text-sm font-semibold';
-        enBtn.className = 'px-3 py-1 rounded bg-purple-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
+        trBtn.className = 'px-3 py-1 rounded bg-white text-green-600 hover:bg-gray-100 transition text-sm font-semibold';
+        enBtn.className = 'px-3 py-1 rounded bg-green-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
       } else {
-        trBtn.className = 'px-3 py-1 rounded bg-purple-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
-        enBtn.className = 'px-3 py-1 rounded bg-white text-purple-600 hover:bg-gray-100 transition text-sm font-semibold';
+        trBtn.className = 'px-3 py-1 rounded bg-green-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
+        enBtn.className = 'px-3 py-1 rounded bg-white text-green-600 hover:bg-gray-100 transition text-sm font-semibold';
       }
     }
 

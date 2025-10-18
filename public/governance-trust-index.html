@@ -16,7 +16,7 @@
   <style>
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
       min-height: 100vh;
     }
 
@@ -108,7 +108,7 @@
 
     .loading-spinner {
       border: 3px solid #f3f4f6;
-      border-top: 3px solid #667eea;
+      border-top: 3px solid #10A37F;
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -122,7 +122,7 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
       color: white;
       padding: 0.75rem 2rem;
       border-radius: 0.5rem;
@@ -134,7 +134,7 @@
 
     .btn-primary:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 4px 12px rgba(16, 163, 127, 0.4);
     }
 
     .btn-primary:disabled {
@@ -176,8 +176,8 @@
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
-        #667eea 0%,
-        #667eea var(--score-percent),
+        #10A37F 0%,
+        #10A37F var(--score-percent),
         #e5e7eb var(--score-percent),
         #e5e7eb 100%
       );
@@ -235,14 +235,14 @@
           <!-- Model Selection -->
           <div class="mb-4">
             <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="trust.select_model">Model Seç</label>
-            <select id="modelSelect" class="select-custom w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-              <option value="">Loading models...</option>
+            <select id="modelSelect" class="select-custom w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="">Modeller yükleniyor...</option>
             </select>
           </div>
 
           <!-- Calculate Button -->
           <button id="calculateBtn" onclick="calculateTrustIndex()" class="btn-primary w-full" disabled>
-            <span id="btnText">Select a Model</span>
+            <span id="btnText">Model Seçin</span>
             <div id="btnSpinner" class="loading-spinner hidden"></div>
           </button>
 
@@ -256,38 +256,38 @@
           <h3 class="text-lg font-bold text-gray-900 mb-3" data-i18n="trust.tiers_title">Güven Seviyeleri</h3>
           <div class="space-y-2 text-sm">
             <div class="flex items-center gap-2">
-              <span class="text-2xl">🏆</span>
+              <span class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs">P</span>
               <div>
                 <p class="font-semibold text-gray-900">Platinum (95%+)</p>
-                <p class="text-xs text-gray-600">Exceptional trust</p>
+                <p class="text-xs text-gray-600">Olağanüstü güven</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-2xl">🥇</span>
+              <span class="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs">G</span>
               <div>
                 <p class="font-semibold text-gray-900">Gold (85-94%)</p>
-                <p class="text-xs text-gray-600">High trust</p>
+                <p class="text-xs text-gray-600">Yüksek güven</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-2xl">🥈</span>
+              <span class="w-6 h-6 rounded-full bg-gray-400 flex items-center justify-center text-white text-xs">S</span>
               <div>
                 <p class="font-semibold text-gray-900">Silver (75-84%)</p>
-                <p class="text-xs text-gray-600">Good trust</p>
+                <p class="text-xs text-gray-600">İyi güven</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-2xl">🥉</span>
+              <span class="w-6 h-6 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs">B</span>
               <div>
                 <p class="font-semibold text-gray-900">Bronze (65-74%)</p>
-                <p class="text-xs text-gray-600">Moderate trust</p>
+                <p class="text-xs text-gray-600">Orta düzey güven</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-2xl">⚠️</span>
+              <span class="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-white text-xs">U</span>
               <div>
                 <p class="font-semibold text-gray-900">Unverified (<65%)</p>
-                <p class="text-xs text-gray-600">Low trust</p>
+                <p class="text-xs text-gray-600">Düşük güven</p>
               </div>
             </div>
           </div>
@@ -346,10 +346,10 @@
             <div class="dimension-card" id="dim-transparency">
               <div class="flex items-center justify-between mb-2">
                 <h4 class="font-bold text-gray-900" data-i18n="trust.dim.transparency">Şeffaflık</h4>
-                <span class="text-2xl font-bold text-purple-600" id="score-transparency">--</span>
+                <span class="text-2xl font-bold text-green-600" id="score-transparency">--</span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-purple-600 h-2 rounded-full transition-all" id="bar-transparency" style="width: 0%"></div>
+                <div class="bg-green-600 h-2 rounded-full transition-all" id="bar-transparency" style="width: 0%"></div>
               </div>
               <p class="text-xs text-gray-600 mt-2" data-i18n="trust.dim.transparency_desc">Açıklanabilirlik ve dokümantasyon</p>
             </div>
@@ -567,11 +567,11 @@
       const select = document.getElementById('modelSelect');
 
       if (allModels.length === 0) {
-        select.innerHTML = '<option value="">No models registered</option>';
+        select.innerHTML = '<option value="">Henüz model kaydedilmedi</option>';
         return;
       }
 
-      const options = ['<option value="">Select a model...</option>'];
+      const options = ['<option value="">Model seçin...</option>'];
       allModels.forEach(model => {
         options.push(`
           <option value="${sanitizeHTML(model.id)}">
@@ -595,10 +595,10 @@
 
       if (selectedModel) {
         btn.disabled = false;
-        btnText.textContent = 'Calculate Trust Index';
+        btnText.textContent = 'Güven Endeksi Hesapla';
       } else {
         btn.disabled = true;
-        btnText.textContent = 'Select a Model';
+        btnText.textContent = 'Model Seçin';
       }
     }
 
@@ -712,13 +712,13 @@
           datasets: [{
             label: 'Trust Score',
             data: scores.map(s => s * 100),
-            backgroundColor: 'rgba(102, 126, 234, 0.2)',
-            borderColor: 'rgba(102, 126, 234, 1)',
+            backgroundColor: 'rgba(16, 163, 127, 0.2)',
+            borderColor: 'rgba(16, 163, 127, 1)',
             borderWidth: 2,
-            pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+            pointBackgroundColor: 'rgba(16, 163, 127, 1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(102, 126, 234, 1)',
+            pointHoverBorderColor: 'rgba(16, 163, 127, 1)',
             pointRadius: 5,
             pointHoverRadius: 7
           }]
@@ -829,11 +829,11 @@
       const enBtn = document.getElementById('lang-en');
 
       if (currentLang === 'tr') {
-        trBtn.className = 'px-3 py-1 rounded bg-white text-purple-600 hover:bg-gray-100 transition text-sm font-semibold';
-        enBtn.className = 'px-3 py-1 rounded bg-purple-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
+        trBtn.className = 'px-3 py-1 rounded bg-white text-green-600 hover:bg-gray-100 transition text-sm font-semibold';
+        enBtn.className = 'px-3 py-1 rounded bg-green-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
       } else {
-        trBtn.className = 'px-3 py-1 rounded bg-purple-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
-        enBtn.className = 'px-3 py-1 rounded bg-white text-purple-600 hover:bg-gray-100 transition text-sm font-semibold';
+        trBtn.className = 'px-3 py-1 rounded bg-green-500 bg-opacity-50 text-white hover:bg-opacity-70 transition text-sm';
+        enBtn.className = 'px-3 py-1 rounded bg-white text-green-600 hover:bg-gray-100 transition text-sm font-semibold';
       }
     }
 
