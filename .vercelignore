@@ -77,3 +77,13 @@ ai-integrations
 *.tar.gz
 *.zip
 *.rar
+
+# Heavy dependencies (reduce bundle size)
+node_modules/puppeteer
+node_modules/canvas
+node_modules/@azure/cognitiveservices-*
+node_modules/@azure/arm-*
+node_modules/onnxruntime-node
+node_modules/sharp
+node_modules/neo4j-driver
+node_modules/weaviate-client
