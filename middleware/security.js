@@ -19,10 +19,9 @@ function setupHelmet(app) {
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                // SECURITY FIX: Removed 'unsafe-eval' - major XSS risk
-                // Removed 'unsafe-inline' - use nonces for inline scripts if needed
+                // 🔒 SECURITY FIX: Removed 'unsafe-eval' and 'unsafe-inline' - XSS protection
                 scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
-                scriptSrcAttr: ["'unsafe-inline'", "'unsafe-hashes'"],
+                scriptSrcAttr: ["'self'"], // Removed unsafe-inline - use event listeners instead
                 styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
                 fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
                 imgSrc: ["'self'", "data:", "https:", "blob:"],

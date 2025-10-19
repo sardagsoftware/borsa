@@ -29,8 +29,13 @@ if (process.env.NODE_ENV !== 'production') {
  */
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
+    // 🔒 SECURITY FIX: Reject requests with no origin in production
     if (!origin) {
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+      if (isProduction) {
+        return callback(new Error('Origin header required in production'), false);
+      }
+      // Dev/Testing only - allow for Postman, curl, etc
       return callback(null, true);
     }
 
@@ -137,8 +142,15 @@ function handleCORS(req, res) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
   } else if (!origin) {
-    // Allow requests with no origin (mobile apps, Postman)
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // 🔒 SECURITY FIX: Only allow wildcard in development
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+    if (!isProduction) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+    } else {
+      // Production: reject requests with no origin
+      res.status(403).json({ error: 'Origin header required' });
+      return true;
+    }
   }
 
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');

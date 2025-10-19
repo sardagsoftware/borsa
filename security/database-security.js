@@ -76,26 +76,29 @@ class DatabaseSecurity {
     }
 
     // Data encryption for sensitive fields
+    // 🔒 SECURITY FIX: Use createCipheriv instead of deprecated createCipher
     encryptSensitiveData(data) {
         if (!data) return data;
 
         const iv = crypto.randomBytes(16);
-        const cipher = crypto.createCipher(this.encryptionAlgorithm, this.encryptionKey);
+        const cipher = crypto.createCipheriv(this.encryptionAlgorithm, this.encryptionKey, iv);
 
         let encrypted = cipher.update(JSON.stringify(data), 'utf8', 'hex');
         encrypted += cipher.final('hex');
 
         return {
             encrypted,
-            iv: iv.toString('hex')
+            iv: iv.toString('hex'),
+            algorithm: this.encryptionAlgorithm
         };
     }
 
     decryptSensitiveData(encryptedData) {
-        if (!encryptedData || !encryptedData.encrypted) return null;
+        if (!encryptedData || !encryptedData.encrypted || !encryptedData.iv) return null;
 
         try {
-            const decipher = crypto.createDecipher(this.encryptionAlgorithm, this.encryptionKey);
+            const iv = Buffer.from(encryptedData.iv, 'hex');
+            const decipher = crypto.createDecipheriv(this.encryptionAlgorithm, this.encryptionKey, iv);
 
             let decrypted = decipher.update(encryptedData.encrypted, 'hex', 'utf8');
             decrypted += decipher.final('utf8');

@@ -12,6 +12,7 @@
 
 const session = require('express-session');
 const Redis = require('ioredis');
+const crypto = require('crypto');
 const { EventEmitter } = require('events');
 
 // Environment check
@@ -125,7 +126,9 @@ if (useRedis) {
                 port: url.port || 6379,
                 password: process.env.UPSTASH_REDIS_REST_TOKEN,
                 tls: {
-                    rejectUnauthorized: false
+                    // 🔒 SECURITY FIX: Enable certificate validation in production
+                    rejectUnauthorized: isProduction,
+                    ca: process.env.REDIS_TLS_CA ? Buffer.from(process.env.REDIS_TLS_CA, 'base64') : undefined
                 },
                 retryStrategy(times) {
                     const delay = Math.min(times * 50, 2000);
@@ -160,12 +163,23 @@ if (useRedis) {
 /**
  * Session Configuration
  */
+
+// 🔒 SECURITY: Validate SESSION_SECRET on startup
+const sessionSecret = process.env.SESSION_SECRET;
+if (!sessionSecret || sessionSecret === 'lydian-ai-session-secret-2025-change-me' || sessionSecret.length < 32) {
+    if (isProduction) {
+        throw new Error('🚨 CRITICAL SECURITY: SESSION_SECRET must be set in production (minimum 32 characters)');
+    } else {
+        console.warn('⚠️  WARNING: SESSION_SECRET not set - using development fallback (INSECURE)');
+    }
+}
+
 const sessionConfig = {
     // Session store (Redis or Memory)
     store: sessionStore || undefined, // undefined = memory store
 
     // Session secret (use strong secret from env)
-    secret: process.env.SESSION_SECRET || 'lydian-ai-session-secret-2025-change-me',
+    secret: sessionSecret || 'lydian-ai-session-secret-2025-dev-' + crypto.randomBytes(32).toString('hex'),
 
     // Session name (cookie name)
     name: 'lydian.sid',
