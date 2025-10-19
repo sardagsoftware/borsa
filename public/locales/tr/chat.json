@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "LyDian Chat: Yapay Zeka Sohbet Asistanı | Multimodal AI Chat Platformu",
+    "description": "LyDian Chat, metin, ses ve görüntü desteği ile multimodal yapay zeka sohbet deneyimi sunar. Kod üretimi, belge analizi ve daha fazlası.",
+    "keywords": "yapay zeka sohbet, ai chat asistan, multimodal chat, sesli ai asistan, görüntü analizi chat, kod üreten ai, LyDian Chat"
+  },
+  "product": {
+    "name": "LyDian Chat",
+    "tagline": "Multimodal Yapay Zeka Sohbet Asistanı",
+    "version": "2.0.0",
+    "category": "Yapay Zeka Sohbet ve Asistan"
+  },
+  "hero": {
+    "title": "Her Türlü İhtiyacınız İçin Yapay Zeka Sohbet Asistanı",
+    "subtitle": "Metin, ses ve görüntü ile etkileşim kurun. Kod yazın, belge analiz edin, sorularınıza anında yanıt alın",
+    "cta_primary": "Şimdi Sohbet Et",
+    "cta_secondary": "Özellikleri Keşfet",
+    "trusted_by": "1 milyon+ kullanıcı tarafından tercih ediliyor"
+  },
+  "features": {
+    "multimodal": {
+      "title": "Multimodal Etkileşim",
+      "description": "Metin, ses ve görüntü ile sohbet edin. Fotoğraf yükleyin ve analiz edin, sesli komutlar verin",
+      "icon": "🎭"
+    },
+    "context_aware": {
+      "title": "Bağlam Farkındalığı",
+      "description": "Sohbet geçmişinizi hatırlar ve bağlamsal yanıtlar verir. Uzun konuşmalarda tutarlılık sağlar",
+      "icon": "🧠"
+    },
+    "code_generation": {
+      "title": "Kod Üretimi",
+      "description": "Python, JavaScript, Java ve daha fazla dilde kod yazın. Debug yapın, kod açıklamaları alın",
+      "icon": "💻"
+    },
+    "document_analysis": {
+      "title": "Belge Analizi",
+      "description": "PDF, Word, Excel dosyalarını yükleyin. İçeriklerini analiz edin, özetler alın, sorular sorun",
+      "icon": "📄"
+    },
+    "voice_interaction": {
+      "title": "Sesli Etkileşim",
+      "description": "Konuşarak soru sorun, sesli yanıtlar alın. 40+ dilde doğal sesli asistan deneyimi",
+      "icon": "🎤"
+    },
+    "image_understanding": {
+      "title": "Görüntü Anlama",
+      "description": "Fotoğraf, ekran görüntüsü, diyagram yükleyin. Yapay zeka görüntüyü analiz edip açıklar",
+      "icon": "🖼️"
+    },
+    "real_time": {
+      "title": "Gerçek Zamanlı Yanıt",
+      "description": "Anlık yanıtlar alın. Streaming desteği ile yazarken görebilirsiniz",
+      "icon": "⚡"
+    },
+    "export_history": {
+      "title": "Sohbet Geçmişi",
+      "description": "Tüm sohbetleriniz kaydedilir. PDF veya Markdown olarak dışa aktarın, arama yapın",
+      "icon": "💾"
+    }
+  },
+  "capabilities": {
+    "title": "Yetenekler",
+    "creative_writing": "Yaratıcı Yazım",
+    "research": "Araştırma ve Analiz",
+    "coding": "Kod Yazma",
+    "learning": "Öğrenme Desteği",
+    "brainstorming": "Beyin Fırtınası",
+    "translation": "Çeviri",
+    "summarization": "Özetleme",
+    "data_analysis": "Veri Analizi"
+  },
+  "how_it_works": {
+    "title": "Nasıl Çalışır?",
+    "step1": {
+      "title": "Sohbeti Başlatın",
+      "description": "Metin yazın, ses kaydedin veya görüntü yükleyin"
+    },
+    "step2": {
+      "title": "Yapay Zeka İşler",
+      "description": "LyDian AI sorunuzu anlar ve kapsamlı yanıt hazırlar"
+    },
+    "step3": {
+      "title": "Devam Edin",
+      "description": "Takip soruları sorun, detaylandırın, farklı açılardan inceleyin"
+    }
+  },
+  "pricing": {
+    "free": {
+      "title": "Ücretsiz",
+      "price": "₺0/ay",
+      "features": [
+        "Günde 20 mesaj",
+        "Temel metin sohbet",
+        "30 günlük geçmiş",
+        "Topluluk desteği"
+      ],
+      "cta": "Hemen Başla"
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "₺299/ay",
+      "features": [
+        "Sınırsız mesaj",
+        "Sesli etkileşim",
+        "Görüntü analizi",
+        "Kod üretimi",
+        "Belge analizi",
+        "Sınırsız geçmiş",
+        "Öncelikli destek"
+      ],
+      "cta": "Pro'ya Geç",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "Kurumsal",
+      "price": "Özel Fiyatlandırma",
+      "features": [
+        "Tüm Pro özellikler",
+        "API erişimi",
+        "Özel entegrasyon",
+        "Takım yönetimi",
+        "SSO desteği",
+        "SLA garantisi",
+        "7/24 destek"
+      ],
+      "cta": "Satış Ekibiyle İletişime Geç"
+    }
+  },
+  "stats": {
+    "users": "1M+",
+    "users_label": "Aktif Kullanıcı",
+    "messages": "100M+",
+    "messages_label": "Gönderilen Mesaj",
+    "languages": "40+",
+    "languages_label": "Desteklenen Dil",
+    "uptime": "%99.9",
+    "uptime_label": "Sistem Çalışma Süresi"
+  },
+  "testimonials": {
+    "title": "Kullanıcılarımızdan",
+    "user1": {
+      "name": "Ahmet Y.",
+      "role": "Yazılım Geliştirici",
+      "comment": "Kod yazarken yanımda olması muhteşem. Debug konusunda gerçekten yardımcı oluyor.",
+      "rating": 5
+    },
+    "user2": {
+      "name": "Elif K.",
+      "role": "Öğrenci",
+      "comment": "Ödevlerimde çok yardımcı oluyor. Konuları anlamam için detaylı açıklamalar yapıyor.",
+      "rating": 5
+    },
+    "user3": {
+      "name": "Mehmet S.",
+      "role": "İçerik Üreticisi",
+      "comment": "Yaratıcı fikirler için beyin fırtınası yapmak harika. Çok yaratıcı öneriler sunuyor.",
+      "rating": 5
+    }
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "q1": {
+      "question": "LyDian Chat hangi dilleri destekler?",
+      "answer": "LyDian Chat 40+ dili destekler. Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Çince, Japonca ve daha fazlası. Hem metin hem de sesli etkileşimde çoklu dil desteği vardır."
+    },
+    "q2": {
+      "question": "Verilerim güvende mi?",
+      "answer": "Evet. Tüm sohbetleriniz end-to-end şifreleme ile korunur. Verileriniz model eğitiminde kullanılmaz ve üçüncü taraflarla paylaşılmaz."
+    },
+    "q3": {
+      "question": "Hangi dosya formatlarını yükleyebilirim?",
+      "answer": "PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), görüntü dosyaları (JPG, PNG, WebP), metin dosyaları (TXT, MD) ve kod dosyaları desteklenir."
+    },
+    "q4": {
+      "question": "Sohbet geçmişim ne kadar süre saklanır?",
+      "answer": "Ücretsiz planda 30 gün, Pro planda sınırsız süre saklanır. Dilediğiniz zaman sohbetlerinizi silebilir veya dışa aktarabilirsiniz."
+    },
+    "q5": {
+      "question": "API erişimi var mı?",
+      "answer": "Evet, Enterprise planda API erişimi sağlanır. Kendi uygulamalarınızla entegre edebilir, özel chatbot'lar oluşturabilirsiniz."
+    }
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "features": "Özellikler",
+    "capabilities": "Yetenekler",
+    "how_it_works": "Nasıl Çalışır",
+    "pricing": "Fiyatlandırma",
+    "faq": "SSS",
+    "chat": "Sohbet"
+  },
+  "common": {
+    "start_chat": "Sohbeti Başlat",
+    "new_conversation": "Yeni Sohbet",
+    "upload_file": "Dosya Yükle",
+    "record_voice": "Sesli Kayıt",
+    "copy_message": "Mesajı Kopyala",
+    "regenerate": "Yeniden Oluştur",
+    "export_chat": "Sohbeti Dışa Aktar",
+    "clear_history": "Geçmişi Temizle",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "try_again": "Tekrar Dene",
+    "learn_more": "Daha Fazla Bilgi"
+  },
+  "seo": {
+    "breadcrumb_home": "Ana Sayfa",
+    "breadcrumb_current": "Chat",
+    "og_title": "LyDian Chat: Multimodal Yapay Zeka Sohbet Asistanı",
+    "og_description": "Metin, ses ve görüntü ile yapay zeka sohbeti. Kod yazın, belge analiz edin, her türlü sorunuza anında yanıt alın. LyDian AI ile ücretsiz deneyin.",
+    "twitter_title": "LyDian Chat - AI Sohbet Asistanı",
+    "twitter_description": "Multimodal yapay zeka sohbet platformu. Metin, ses ve görüntü desteği. Ücretsiz deneyin!"
+  }
+}

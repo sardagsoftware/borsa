@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "title": "LyDian IQ: 人工智能IQ测试平台 | 视觉与逻辑智力",
+    "description": "LyDian IQ提供人工智能驱动的视觉逻辑、数学问题解决和多维智力评估。免费试用。",
+    "keywords": "人工智能IQ测试平台, 视觉智力测试, 多模态智商评估, 认知能力AI, 逻辑推理测试, 问题解决引擎, LyDian IQ"
+  },
+  "product": {
+    "name": "LyDian IQ",
+    "tagline": "人工智能驱动的智能问题解决引擎",
+    "version": "2.0.0",
+    "category": "认知评估与问题解决"
+  },
+  "hero": {
+    "title": "人工智能驱动的智商测试和问题解决",
+    "subtitle": "视觉逻辑、数学推理和多维智力评估集于一个平台",
+    "cta_primary": "开始免费测试",
+    "cta_secondary": "查看示例问题",
+    "trusted_by": "全球超过100,000名用户测试"
+  },
+  "features": {
+    "visual_logic": {
+      "title": "视觉逻辑测试",
+      "description": "评估模式识别、形状完成和视觉问题解决能力",
+      "icon": "👁️"
+    },
+    "mathematical_reasoning": {
+      "title": "数学推理",
+      "description": "评估数值逻辑、序列和数学问题解决技能",
+      "icon": "🧮"
+    },
+    "multi_dimensional": {
+      "title": "多维评估",
+      "description": "跨语言、数值、视觉和逻辑智能领域的综合分析",
+      "icon": "🎯"
+    },
+    "ai_powered": {
+      "title": "人工智能驱动分析",
+      "description": "由LyDian AI提供支持的实时性能分析和建议",
+      "icon": "🤖"
+    },
+    "adaptive_testing": {
+      "title": "自适应测试系统",
+      "description": "问题根据您的表现自动调整难度",
+      "icon": "📈"
+    },
+    "detailed_reports": {
+      "title": "详细报告",
+      "description": "显示您的优势和改进领域的综合分析报告",
+      "icon": "📊"
+    }
+  },
+  "test_types": {
+    "title": "测试类别",
+    "visual_iq": "视觉智商测试",
+    "numerical_iq": "数值智商测试",
+    "verbal_iq": "语言智商测试",
+    "logical_iq": "逻辑智商测试",
+    "comprehensive": "综合智商评估"
+  },
+  "how_it_works": {
+    "title": "如何工作？",
+    "step1": {
+      "title": "选择您的测试",
+      "description": "从视觉、数值或综合测试选项中选择"
+    },
+    "step2": {
+      "title": "解答问题",
+      "description": "使用LyDian的AI精选问题完成您的测试"
+    },
+    "step3": {
+      "title": "查看结果",
+      "description": "获取详细的分析报告和改进建议"
+    }
+  },
+  "pricing": {
+    "free": {
+      "title": "免费",
+      "price": "¥0/月",
+      "features": [
+        "基础智商测试",
+        "每天10个问题",
+        "简单分析报告",
+        "7天历史记录"
+      ],
+      "cta": "立即开始"
+    },
+    "pro": {
+      "title": "专业版",
+      "price": "¥68/月",
+      "features": [
+        "所有测试类别",
+        "无限问题",
+        "详细AI分析",
+        "无限历史记录",
+        "PDF报告下载",
+        "优先支持"
+      ],
+      "cta": "升级到专业版",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "企业版",
+      "price": "定制价格",
+      "features": [
+        "所有专业版功能",
+        "自定义测试类别",
+        "API访问",
+        "批量评估",
+        "自定义品牌",
+        "SLA保证"
+      ],
+      "cta": "联系销售"
+    }
+  },
+  "stats": {
+    "tests_completed": "100万+",
+    "tests_completed_label": "已完成测试",
+    "avg_score": "118",
+    "avg_score_label": "平均智商分数",
+    "countries": "50+",
+    "countries_label": "国家",
+    "languages": "20+",
+    "languages_label": "语言支持"
+  },
+  "testimonials": {
+    "title": "用户评价",
+    "user1": {
+      "name": "张明",
+      "role": "软件开发工程师",
+      "comment": "LyDian IQ帮助我提高了逻辑思维能力。真的有效！",
+      "rating": 5
+    },
+    "user2": {
+      "name": "李娜",
+      "role": "学生",
+      "comment": "对大学考试准备非常有帮助。我现在在视觉问题上好多了。",
+      "rating": 5
+    },
+    "user3": {
+      "name": "王强",
+      "role": "人力资源经理",
+      "comment": "我们用它来评估候选人。非常专业和可靠的平台。",
+      "rating": 5
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "q1": {
+      "question": "LyDian IQ测试有效吗？",
+      "answer": "是的，LyDian IQ测试由LyDian AI使用科学有效的方法开发。但是，它们不能取代专业的智商测试，而是帮助您评估认知能力。"
+    },
+    "q2": {
+      "question": "测试需要多长时间？",
+      "answer": "基础智商测试大约需要15-20分钟，而综合评估需要45-60分钟。"
+    },
+    "q3": {
+      "question": "我可以多次参加测试吗？",
+      "answer": "可以，但为了获得最准确的结果，我们建议在测试之间至少等待1周。"
+    },
+    "q4": {
+      "question": "我可以使用什么设备？",
+      "answer": "LyDian IQ是基于Web的，可以从所有现代浏览器（Chrome、Safari、Firefox、Edge）的台式机、平板电脑和移动设备上访问。"
+    },
+    "q5": {
+      "question": "我的数据安全吗？",
+      "answer": "是的，您的所有数据都受到256位SSL加密保护，并按照GDPR要求进行处理。"
+    }
+  },
+  "navigation": {
+    "home": "首页",
+    "tests": "测试",
+    "how_it_works": "如何工作",
+    "pricing": "价格",
+    "faq": "常见问题",
+    "my_results": "我的结果",
+    "dashboard": "仪表板"
+  },
+  "common": {
+    "start_test": "开始测试",
+    "view_results": "查看结果",
+    "download_report": "下载报告",
+    "share": "分享",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "success": "成功",
+    "try_again": "重试",
+    "learn_more": "了解更多"
+  },
+  "seo": {
+    "breadcrumb_home": "首页",
+    "breadcrumb_current": "LyDian IQ",
+    "og_title": "LyDian IQ: 人工智能驱动的智商测试和问题解决平台",
+    "og_description": "通过视觉、数值和逻辑智力测试评估您的认知能力。使用LyDian AI免费开始。",
+    "twitter_title": "用LyDian IQ测试您的智商",
+    "twitter_description": "人工智能驱动的视觉逻辑和问题解决测试。今天免费试用！"
+  }
+}

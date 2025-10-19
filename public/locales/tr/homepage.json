@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "title": "LyDian AI: Yapay Zeka Ekosistemi | AI Platformu & Çözümleri",
+    "description": "LyDian AI, tıbbi yapay zeka, hukuki AI, akıllı sohbet, IQ testi ve iş danışmanlığı için entegre yapay zeka ekosistemi. Multimodal, güvenli ve ölçeklenebilir AI çözümleri.",
+    "keywords": "yapay zeka platformu, ai ekosistemi, yapay zeka çözümleri, tıbbi ai, hukuki yapay zeka, ai sohbet, iq testi ai, iş danışmanlık ai, LyDian AI"
+  },
+  "product": {
+    "name": "LyDian AI",
+    "tagline": "Entegre Yapay Zeka Ekosistemi",
+    "version": "2.0.0",
+    "category": "AI Platform & Ekosistem"
+  },
+  "hero": {
+    "title": "Her İhtiyacınız İçin Yapay Zeka Gücü",
+    "subtitle": "Tıptan hukuka, eğitimden iş danışmanlığına - 5 uzman AI platformu tek ekosistemde. Multimodal, gerçek zamanlı ve güvenli yapay zeka çözümleri.",
+    "cta_primary": "Ücretsiz Dene",
+    "cta_secondary": "Platformları Keşfet",
+    "trusted_by": "1 milyon+ kullanıcı tarafından güveniliyor",
+    "announcement": "🎉 Yeni: Advisor Hub - 8 uzman AI danışman artık kullanımda!"
+  },
+  "products": {
+    "title": "5 Güçlü AI Platformu",
+    "subtitle": "Her biri kendi alanında uzmanlaşmış, birlikte çalışan yapay zeka çözümleri",
+    "lydian_iq": {
+      "name": "LyDian IQ",
+      "tagline": "AI Destekli Zeka Testi",
+      "description": "Görsel mantık, matematiksel akıl yürütme, uzamsal zeka testleri. Çok boyutlu IQ değerlendirmesi ve kişiselleştirilmiş gelişim önerileri.",
+      "icon": "🧠",
+      "cta": "IQ Testini Başlat"
+    },
+    "medical_expert": {
+      "name": "LyDian Medical Expert",
+      "tagline": "Tıbbi Yapay Zeka Asistanı",
+      "description": "Nadir hastalık teşhisi, klinik karar desteği, radyoloji analizi, EPIC FHIR entegrasyonu. Orphanet ve OMIM veritabanları ile desteklenir.",
+      "icon": "⚕️",
+      "cta": "Tıbbi AI'yı Keşfet"
+    },
+    "legal_ai": {
+      "name": "LyDian Legal AI",
+      "tagline": "Hukuki Yapay Zeka Danışmanı",
+      "description": "İçtihat arama motoru, sözleşme analizi, hukuki araştırma, belge otomasyonu. Türk ve uluslararası hukuk sistemleri desteği.",
+      "icon": "⚖️",
+      "cta": "Hukuki AI'yı Dene"
+    },
+    "chat": {
+      "name": "LyDian Chat",
+      "tagline": "Multimodal AI Sohbet",
+      "description": "Metin, ses ve görüntü ile sohbet. Kod üretimi, belge analizi, 40+ dilde sesli etkileşim. Gerçek zamanlı streaming yanıtlar.",
+      "icon": "💬",
+      "cta": "Sohbete Başla"
+    },
+    "advisor_hub": {
+      "name": "LyDian Advisor Hub",
+      "tagline": "8 Uzman AI Danışman",
+      "description": "Kültürel danışman, karar desteği, bilgi asistanı, öğrenme yolu, yaşam koçu, toplantı içgörüleri, startup hızlandırıcı, sağlık orkestratörü.",
+      "icon": "🎯",
+      "cta": "Danışmanları Gör"
+    }
+  },
+  "features": {
+    "title": "Ekosistem Özellikleri",
+    "subtitle": "Tüm platformlarda ortak güç",
+    "multimodal": {
+      "title": "Multimodal AI",
+      "description": "Metin, ses, görüntü ve video ile etkileşim. Her platformda zengin medya desteği.",
+      "icon": "🎭"
+    },
+    "real_time": {
+      "title": "Gerçek Zamanlı",
+      "description": "Anlık yanıtlar, streaming desteği, düşük gecikme. Her sorguda hızlı performans.",
+      "icon": "⚡"
+    },
+    "secure": {
+      "title": "Kurumsal Güvenlik",
+      "description": "Uçtan uca şifreleme, GDPR uyumlu, SOC 2 Type II sertifikalı. Verileriniz güvende.",
+      "icon": "🔒"
+    },
+    "scalable": {
+      "title": "Ölçeklenebilir",
+      "description": "Bireysel kullanımdan kurumsal çözümlere. Sınırsız kullanıcı ve istek kapasitesi.",
+      "icon": "📈"
+    },
+    "global": {
+      "title": "Global Erişim",
+      "description": "40+ dil desteği, bölgesel veri merkezleri, yerel uyumluluk. Dünya çapında hizmet.",
+      "icon": "🌍"
+    },
+    "integrated": {
+      "title": "Entegre Ekosistem",
+      "description": "Tüm platformlar birbirine bağlı. Tek hesapla tüm AI çözümlerine erişim.",
+      "icon": "🔗"
+    },
+    "intelligent": {
+      "title": "Sürekli Öğrenen",
+      "description": "Her etkileşimden öğrenen, gelişen AI modelleri. Zaman içinde daha iyi hizmet.",
+      "icon": "🤖"
+    },
+    "customizable": {
+      "title": "Özelleştirilebilir",
+      "description": "API erişimi, özel entegrasyonlar, white-label çözümler. İhtiyacınıza göre uyarlanabilir.",
+      "icon": "⚙️"
+    }
+  },
+  "use_cases": {
+    "title": "Kullanım Senaryoları",
+    "subtitle": "Farklı sektörler için AI çözümleri",
+    "healthcare": {
+      "title": "Sağlık",
+      "description": "Hastaneler, klinikler, araştırma enstitüleri için tıbbi AI",
+      "products": ["Medical Expert", "Health Orchestrator"]
+    },
+    "legal": {
+      "title": "Hukuk",
+      "description": "Avukatlık büroları, hukuk departmanları için hukuki AI",
+      "products": ["Legal AI", "Knowledge Assistant"]
+    },
+    "education": {
+      "title": "Eğitim",
+      "description": "Okullar, üniversiteler, eğitim kurumları için öğrenme AI",
+      "products": ["LyDian IQ", "Learning Path Planner"]
+    },
+    "business": {
+      "title": "İş Dünyası",
+      "description": "Şirketler, startuplar, danışmanlık firmaları için iş AI",
+      "products": ["Advisor Hub", "Decision Matrix"]
+    },
+    "personal": {
+      "title": "Bireysel",
+      "description": "Kişisel gelişim, yaşam koçluğu, sağlık takibi",
+      "products": ["Life Coach", "Chat", "Health Orchestrator"]
+    }
+  },
+  "how_it_works": {
+    "title": "Nasıl Çalışır?",
+    "step1": {
+      "title": "Kaydol & Keşfet",
+      "description": "Tek hesapla tüm 5 platforma erişim. Ücretsiz planla başlayın, ihtiyaca göre yükseltin.",
+      "icon": "1️⃣"
+    },
+    "step2": {
+      "title": "Platform Seç",
+      "description": "İhtiyacınıza uygun AI platformunu seçin. Medikal, hukuki, sohbet, IQ veya danışmanlık.",
+      "icon": "2️⃣"
+    },
+    "step3": {
+      "title": "AI Gücünü Kullan",
+      "description": "Sorularınızı sorun, analizler yapın, öneriler alın. Tüm platformlar birlikte çalışır.",
+      "icon": "3️⃣"
+    }
+  },
+  "pricing": {
+    "title": "Herkes İçin Uygun Fiyatlandırma",
+    "subtitle": "Ücretsiz başlayın, büyüdükçe ölçeklendirin",
+    "free": {
+      "title": "Keşfet",
+      "price": "₺0/ay",
+      "description": "Bireysel kullanım için",
+      "features": [
+        "3 platforma erişim",
+        "Günde 20 sorgu",
+        "Temel özellikler",
+        "30 gün geçmiş",
+        "Topluluk desteği"
+      ],
+      "cta": "Ücretsiz Başla"
+    },
+    "pro": {
+      "title": "Profesyonel",
+      "price": "₺399/ay",
+      "description": "Profesyoneller ve küçük ekipler için",
+      "features": [
+        "5 platformun tümüne erişim",
+        "Sınırsız sorgu",
+        "Gelişmiş özellikler",
+        "Multimodal destek",
+        "API erişimi",
+        "Sınırsız geçmiş",
+        "Öncelikli destek"
+      ],
+      "cta": "Pro'ya Geç",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "Kurumsal",
+      "price": "Özel Fiyat",
+      "description": "Büyük organizasyonlar için",
+      "features": [
+        "Tüm Pro özellikler",
+        "Sınırsız kullanıcı",
+        "Özel entegrasyonlar",
+        "White-label çözümler",
+        "Özel AI modelleri",
+        "SSO & SAML",
+        "SLA garantisi",
+        "Özel hesap yöneticisi"
+      ],
+      "cta": "Satış Ekibimizle Görüşün"
+    }
+  },
+  "stats": {
+    "users": "1M+",
+    "users_label": "Aktif Kullanıcı",
+    "queries": "100M+",
+    "queries_label": "İşlenmiş Sorgu",
+    "languages": "40+",
+    "languages_label": "Desteklenen Dil",
+    "uptime": "%99.9",
+    "uptime_label": "Sistem Çalışma Süresi",
+    "platforms": "5",
+    "platforms_label": "Uzman AI Platformu",
+    "countries": "150+",
+    "countries_label": "Ülkede Kullanılıyor"
+  },
+  "testimonials": {
+    "title": "Kullanıcılarımızdan",
+    "subtitle": "Farklı sektörlerden gerçek geri bildirimler",
+    "user1": {
+      "name": "Dr. Ayşe Yılmaz",
+      "role": "Radyoloji Uzmanı",
+      "company": "İstanbul Tıp Fakültesi",
+      "comment": "Medical Expert, nadir hastalık teşhislerinde inanılmaz yardımcı oluyor. Orphanet entegrasyonu sayesinde vakaları çok daha hızlı çözüyoruz.",
+      "rating": 5,
+      "platform": "Medical Expert"
+    },
+    "user2": {
+      "name": "Av. Mehmet Kaya",
+      "role": "Kıdemli Ortak",
+      "company": "Kaya Hukuk Bürosu",
+      "comment": "Legal AI ile içtihat araması 10 kat hızlandı. Sözleşme analizi özelliği müthiş zaman tasarrufu sağlıyor. Ekibimiz için vazgeçilmez.",
+      "rating": 5,
+      "platform": "Legal AI"
+    },
+    "user3": {
+      "name": "Can Demir",
+      "role": "Kurucu & CEO",
+      "company": "TechVenture Startup",
+      "comment": "Startup Hızlandırıcı sayesinde seed fonumuzu 3 ayda bulduk. Pitch deck danışmanlığı ve yatırımcı stratejisi mükemmeldi. Advisor Hub harika!",
+      "rating": 5,
+      "platform": "Advisor Hub"
+    }
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "q1": {
+      "question": "LyDian AI ekosistemi nedir?",
+      "answer": "LyDian AI, tıbbi yapay zeka, hukuki AI, akıllı sohbet, IQ testi ve iş danışmanlığı için 5 uzman platformu tek çatı altında toplayan entegre bir yapay zeka ekosistemidir. Tek hesapla tüm platformlara erişebilir, verileriniz platformlar arası senkronize olur."
+    },
+    "q2": {
+      "question": "Hangi dilleri destekliyorsunuz?",
+      "answer": "Tüm platformlarımız Türkçe, İngilizce, Almanca, Arapça, Rusça, Çince dahil 40+ dili destekler. Hem metin hem de sesli etkileşim için çoklu dil desteği mevcuttur."
+    },
+    "q3": {
+      "question": "Verilerim güvende mi?",
+      "answer": "Evet. Tüm verileriniz uçtan uca şifreleme ile korunur. GDPR, HIPAA (tıbbi veriler için) ve SOC 2 Type II uyumluyuz. Verileriniz AI modeli eğitimi için kullanılmaz ve üçüncü taraflarla paylaşılmaz."
+    },
+    "q4": {
+      "question": "API erişimi sağlıyor musunuz?",
+      "answer": "Evet. Pro ve Enterprise planlarda tüm platformlar için REST API erişimi sağlıyoruz. Kendi uygulamalarınıza entegre edebilir, özel chatbotlar oluşturabilirsiniz. Detaylı API dokümantasyonu mevcuttur."
+    },
+    "q5": {
+      "question": "Ücretsiz plandan ücretli plana nasıl geçerim?",
+      "answer": "Hesap ayarlarından istediğiniz zaman Pro veya Enterprise plana yükseltebilirsiniz. Geçiş anında gerçekleşir, ücretsiz plandaki verileriniz korunur. İlk 14 gün para iade garantisi sunuyoruz."
+    }
+  },
+  "cta": {
+    "title": "Yapay Zeka Gücünü Keşfetmeye Hazır mısınız?",
+    "subtitle": "1 milyon+ kullanıcıya katılın. Ücretsiz başlayın, kredi kartı gerektirmez.",
+    "primary": "Ücretsiz Hesap Oluştur",
+    "secondary": "Demo İzle"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "products": "Platformlar",
+    "features": "Özellikler",
+    "use_cases": "Kullanım Senaryoları",
+    "pricing": "Fiyatlandırma",
+    "about": "Hakkımızda",
+    "blog": "Blog",
+    "docs": "Dokümantasyon",
+    "contact": "İletişim"
+  },
+  "footer": {
+    "products": {
+      "title": "Platformlar",
+      "lydian_iq": "LyDian IQ",
+      "medical_expert": "Medical Expert",
+      "legal_ai": "Legal AI",
+      "chat": "Chat",
+      "advisor_hub": "Advisor Hub"
+    },
+    "company": {
+      "title": "Şirket",
+      "about": "Hakkımızda",
+      "careers": "Kariyer",
+      "press": "Basın",
+      "partners": "İş Ortakları"
+    },
+    "resources": {
+      "title": "Kaynaklar",
+      "blog": "Blog",
+      "docs": "Dokümantasyon",
+      "api": "API Referansı",
+      "support": "Destek"
+    },
+    "legal": {
+      "title": "Yasal",
+      "privacy": "Gizlilik",
+      "terms": "Kullanım Koşulları",
+      "security": "Güvenlik",
+      "compliance": "Uyumluluk"
+    },
+    "copyright": "© 2025 LyDian AI. Tüm hakları saklıdır.",
+    "tagline": "Entegre Yapay Zeka Ekosistemi"
+  },
+  "seo": {
+    "breadcrumb_home": "Ana Sayfa",
+    "og_title": "LyDian AI: Entegre Yapay Zeka Ekosistemi | 5 Uzman AI Platformu",
+    "og_description": "Tıbbi AI, hukuki yapay zeka, akıllı sohbet, IQ testi ve iş danışmanlığı. 40+ dil, multimodal destek, kurumsal güvenlik. 1M+ kullanıcı. Ücretsiz deneyin.",
+    "twitter_title": "LyDian AI - Yapay Zeka Ekosistemi",
+    "twitter_description": "5 güçlü AI platformu: Medical Expert, Legal AI, Chat, IQ, Advisor Hub. Tek hesapla tüm AI gücü. Ücretsiz başla!"
+  }
+}

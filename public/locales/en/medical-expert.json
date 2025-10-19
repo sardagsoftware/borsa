@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "title": "LyDian Medical Expert: AI Medical Assistant | Disease Diagnosis & Clinical Decision Support",
+    "description": "LyDian Medical Expert provides rare disease diagnosis, clinical decision support, and multimodal medical data analysis. AI-powered medical assistant for healthcare professionals.",
+    "keywords": "medical ai assistant, rare disease diagnosis ai, clinical decision support system, medical image analysis, EPIC FHIR integration, LyDian Medical Expert"
+  },
+  "product": {
+    "name": "LyDian Medical Expert",
+    "tagline": "AI-Powered Medical Assistant & Clinical Decision Support",
+    "version": "2.0.0",
+    "category": "Medical AI & Clinical Decision Support"
+  },
+  "hero": {
+    "title": "AI-Powered Medical Assistant for Healthcare Professionals",
+    "subtitle": "Rare disease diagnosis, clinical decision support, medical image analysis, and multimodal data fusion - supporting doctors every step of the way",
+    "cta_primary": "Try Free",
+    "cta_secondary": "Watch Demo",
+    "trusted_by": "Used by 500+ hospitals and 10,000+ healthcare professionals"
+  },
+  "features": {
+    "rare_disease": {
+      "title": "Rare Disease Assistant",
+      "description": "Integrated with Orphanet and OMIM databases, symptom analysis and diagnosis suggestions for 10,000+ rare diseases",
+      "icon": "🧬"
+    },
+    "clinical_decision": {
+      "title": "Clinical Decision Support",
+      "description": "Evidence-based treatment recommendations and drug interaction checks supported by current medical literature",
+      "icon": "🩺"
+    },
+    "radiology_analysis": {
+      "title": "Radiology Image Analysis",
+      "description": "Lesion detection, segmentation, and anomaly analysis in X-Ray, MRI, and CT images",
+      "icon": "🔬"
+    },
+    "maternal_fetal": {
+      "title": "Maternal-Fetal Health",
+      "description": "Pregnancy monitoring, fetal anomaly detection, and birth complication risk assessment",
+      "icon": "👶"
+    },
+    "emergency_triage": {
+      "title": "Emergency Triage",
+      "description": "Symptom-based urgency level determination and initial intervention recommendations",
+      "icon": "🚑"
+    },
+    "mental_health": {
+      "title": "Mental Health Assessment",
+      "description": "Early detection and support for depression, anxiety, and other mental health conditions",
+      "icon": "🧠"
+    },
+    "sepsis_warning": {
+      "title": "Sepsis Early Warning System",
+      "description": "Early detection of sepsis risk by analyzing vital signs and laboratory values",
+      "icon": "⚠️"
+    },
+    "epic_fhir": {
+      "title": "EPIC FHIR Integration",
+      "description": "Seamless integration with hospital information systems and access to electronic health records",
+      "icon": "🔗"
+    }
+  },
+  "specialties": {
+    "title": "Medical Specialties",
+    "cardiology": "Cardiology",
+    "neurology": "Neurology",
+    "oncology": "Oncology",
+    "pediatrics": "Pediatrics",
+    "radiology": "Radiology",
+    "emergency": "Emergency Medicine",
+    "psychiatry": "Psychiatry",
+    "obstetrics": "Obstetrics & Gynecology"
+  },
+  "how_it_works": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Enter Patient Information",
+      "description": "Input symptoms, vital signs, and medical history into the system"
+    },
+    "step2": {
+      "title": "AI Analysis",
+      "description": "LyDian AI analyzes medical literature and databases to provide recommendations"
+    },
+    "step3": {
+      "title": "Get Decision Support",
+      "description": "View diagnosis suggestions, treatment options, and reference documents"
+    }
+  },
+  "pricing": {
+    "free": {
+      "title": "Individual",
+      "price": "Free",
+      "features": [
+        "Basic symptom analysis",
+        "10 patient consultations/day",
+        "General medical database access",
+        "7-day history"
+      ],
+      "cta": "Get Started"
+    },
+    "pro": {
+      "title": "Professional",
+      "price": "$99/month",
+      "features": [
+        "Unlimited patient consultations",
+        "Rare disease database",
+        "Radiology image analysis",
+        "EPIC FHIR integration",
+        "Priority support",
+        "PDF report download"
+      ],
+      "cta": "Upgrade to Professional",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "Hospital",
+      "price": "Custom Pricing",
+      "features": [
+        "All Professional features",
+        "Enterprise HIS integration",
+        "Custom data training",
+        "Multi-user management",
+        "SLA guarantee",
+        "24/7 technical support"
+      ],
+      "cta": "Contact Sales"
+    }
+  },
+  "stats": {
+    "hospitals": "500+",
+    "hospitals_label": "Hospitals",
+    "doctors": "10,000+",
+    "doctors_label": "Doctors",
+    "diagnoses": "1M+",
+    "diagnoses_label": "Diagnosis Support",
+    "accuracy": "94.7%",
+    "accuracy_label": "Diagnostic Accuracy"
+  },
+  "testimonials": {
+    "title": "Healthcare Professionals",
+    "doctor1": {
+      "name": "Dr. Emily Chen",
+      "role": "Internal Medicine Specialist",
+      "comment": "LyDian Medical Expert is incredibly helpful in rare disease diagnosis. The Orphanet integration is excellent.",
+      "rating": 5
+    },
+    "doctor2": {
+      "name": "Dr. James Wilson",
+      "role": "Emergency Medicine Physician",
+      "comment": "Essential for quick triage in the emergency department. Prevents us from missing critical findings.",
+      "rating": 5
+    },
+    "doctor3": {
+      "name": "Dr. Sarah Martinez",
+      "role": "Radiologist",
+      "comment": "The image analysis feature is truly impressive. A great tool for getting a second opinion.",
+      "rating": 5
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "Does LyDian Medical Expert replace doctors?",
+      "answer": "No. LyDian Medical Expert is a clinical decision support system and works as an assistant tool alongside doctors. Final medical decisions must always be made by licensed healthcare professionals."
+    },
+    "q2": {
+      "question": "Is patient data secure?",
+      "answer": "Yes. All data is protected with 256-bit SSL encryption in compliance with HIPAA and GDPR. Your data is never shared with third parties."
+    },
+    "q3": {
+      "question": "What medical standards does it comply with?",
+      "answer": "LyDian Medical Expert supports international medical standards including HL7 FHIR, DICOM, ICD-10, and SNOMED-CT."
+    },
+    "q4": {
+      "question": "Can it integrate with hospital information systems?",
+      "answer": "Yes. Seamless integration with existing hospital information systems is provided through EPIC FHIR API support."
+    },
+    "q5": {
+      "question": "What is the diagnostic accuracy?",
+      "answer": "Clinical validation studies achieved 94.7% diagnostic accuracy. However, the system is a decision support tool and final diagnosis should always be made by a physician."
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "features": "Features",
+    "specialties": "Specialties",
+    "how_it_works": "How It Works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "dashboard": "Dashboard"
+  },
+  "common": {
+    "start_consultation": "Start Consultation",
+    "view_report": "View Report",
+    "download_pdf": "Download PDF",
+    "share": "Share",
+    "loading": "Loading...",
+    "error": "Error occurred",
+    "success": "Success",
+    "try_again": "Try Again",
+    "learn_more": "Learn More"
+  },
+  "seo": {
+    "breadcrumb_home": "Home",
+    "breadcrumb_current": "Medical Expert",
+    "og_title": "LyDian Medical Expert: AI-Powered Medical Assistant & Clinical Decision Support",
+    "og_description": "Supporting healthcare professionals with rare disease diagnosis, radiology analysis, and multimodal medical data fusion. Try free with LyDian AI.",
+    "twitter_title": "LyDian Medical Expert - Medical AI Assistant",
+    "twitter_description": "AI-powered clinical decision support for healthcare professionals. Rare disease diagnosis and image analysis."
+  }
+}

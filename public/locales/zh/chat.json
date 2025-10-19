@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "LyDian Chat: 人工智能聊天助手 | 多模态AI聊天平台",
+    "description": "LyDian Chat提供多模态AI聊天体验，支持文本、语音和图像。代码生成、文档分析等功能。",
+    "keywords": "人工智能聊天助手, 对话式AI, 多模态聊天, 语音AI助手, 图像分析聊天, 代码生成AI, LyDian Chat"
+  },
+  "product": {
+    "name": "LyDian Chat",
+    "tagline": "多模态人工智能聊天助手",
+    "version": "2.0.0",
+    "category": "人工智能聊天与助手"
+  },
+  "hero": {
+    "title": "满足您所有需求的人工智能聊天助手",
+    "subtitle": "通过文本、语音和图像进行交互。编写代码、分析文档、即时获取问题答案",
+    "cta_primary": "立即开始聊天",
+    "cta_secondary": "探索功能",
+    "trusted_by": "被100万+用户首选"
+  },
+  "features": {
+    "multimodal": {
+      "title": "多模态交互",
+      "description": "通过文本、语音和图像聊天。上传照片并分析它们，发出语音命令",
+      "icon": "🎭"
+    },
+    "context_aware": {
+      "title": "上下文感知",
+      "description": "记住您的聊天历史并提供上下文响应。确保长对话中的一致性",
+      "icon": "🧠"
+    },
+    "code_generation": {
+      "title": "代码生成",
+      "description": "用Python、JavaScript、Java等语言编写代码。调试、获取代码解释",
+      "icon": "💻"
+    },
+    "document_analysis": {
+      "title": "文档分析",
+      "description": "上传PDF、Word、Excel文件。分析内容、获取摘要、提问",
+      "icon": "📄"
+    },
+    "voice_interaction": {
+      "title": "语音交互",
+      "description": "通过说话提问、获取语音回复。支持40+种语言的自然语音助手体验",
+      "icon": "🎤"
+    },
+    "image_understanding": {
+      "title": "图像理解",
+      "description": "上传照片、截图、图表。AI分析并解释图像",
+      "icon": "🖼️"
+    },
+    "real_time": {
+      "title": "实时响应",
+      "description": "获得即时答案。通过流式支持在编写时查看响应",
+      "icon": "⚡"
+    },
+    "export_history": {
+      "title": "聊天历史",
+      "description": "保存所有聊天记录。导出为PDF或Markdown，搜索它们",
+      "icon": "💾"
+    }
+  },
+  "capabilities": {
+    "title": "功能",
+    "creative_writing": "创意写作",
+    "research": "研究与分析",
+    "coding": "编码",
+    "learning": "学习支持",
+    "brainstorming": "头脑风暴",
+    "translation": "翻译",
+    "summarization": "摘要",
+    "data_analysis": "数据分析"
+  },
+  "how_it_works": {
+    "title": "如何工作？",
+    "step1": {
+      "title": "开始对话",
+      "description": "输入文本、录制语音或上传图像"
+    },
+    "step2": {
+      "title": "AI处理",
+      "description": "LyDian AI理解您的问题并准备全面的回复"
+    },
+    "step3": {
+      "title": "继续",
+      "description": "提出后续问题、详细说明、从不同角度检查"
+    }
+  },
+  "pricing": {
+    "free": {
+      "title": "免费",
+      "price": "¥0/月",
+      "features": [
+        "每天20条消息",
+        "基本文本聊天",
+        "30天历史记录",
+        "社区支持"
+      ],
+      "cta": "立即开始"
+    },
+    "pro": {
+      "title": "专业版",
+      "price": "¥79/月",
+      "features": [
+        "无限消息",
+        "语音交互",
+        "图像分析",
+        "代码生成",
+        "文档分析",
+        "无限历史记录",
+        "优先支持"
+      ],
+      "cta": "升级到专业版",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "企业版",
+      "price": "定制价格",
+      "features": [
+        "所有专业版功能",
+        "API访问",
+        "定制集成",
+        "团队管理",
+        "SSO支持",
+        "SLA保证",
+        "7×24支持"
+      ],
+      "cta": "联系销售"
+    }
+  },
+  "stats": {
+    "users": "100万+",
+    "users_label": "活跃用户",
+    "messages": "1亿+",
+    "messages_label": "已发送消息",
+    "languages": "40+",
+    "languages_label": "支持的语言",
+    "uptime": "99.9%",
+    "uptime_label": "系统正常运行时间"
+  },
+  "testimonials": {
+    "title": "来自用户",
+    "user1": {
+      "name": "李先生",
+      "role": "软件开发工程师",
+      "comment": "编码时使用它太棒了。在调试方面真的很有帮助。",
+      "rating": 5
+    },
+    "user2": {
+      "name": "王女士",
+      "role": "学生",
+      "comment": "对我的作业非常有帮助。提供详细的解释帮助我理解主题。",
+      "rating": 5
+    },
+    "user3": {
+      "name": "张先生",
+      "role": "内容创作者",
+      "comment": "为创意想法进行头脑风暴很棒。提供非常有创意的建议。",
+      "rating": 5
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "q1": {
+      "question": "LyDian Chat支持哪些语言？",
+      "answer": "LyDian Chat支持40+种语言，包括中文、英语、西班牙语、德语、法语、日语等。文本和语音交互均可使用多语言支持。"
+    },
+    "q2": {
+      "question": "我的数据安全吗？",
+      "answer": "是的。所有聊天记录都受端到端加密保护。您的数据不用于模型训练，也不会与第三方共享。"
+    },
+    "q3": {
+      "question": "我可以上传哪些文件格式？",
+      "answer": "支持PDF、Word（DOCX）、Excel（XLSX）、PowerPoint（PPTX）、图像文件（JPG、PNG、WebP）、文本文件（TXT、MD）和代码文件。"
+    },
+    "q4": {
+      "question": "我的聊天历史会保存多久？",
+      "answer": "免费计划：30天，专业版计划：无限期。您可以随时删除或导出聊天记录。"
+    },
+    "q5": {
+      "question": "是否提供API访问？",
+      "answer": "是的，企业版计划提供API访问。您可以与自己的应用程序集成并创建自定义聊天机器人。"
+    }
+  },
+  "navigation": {
+    "home": "首页",
+    "features": "功能",
+    "capabilities": "能力",
+    "how_it_works": "如何工作",
+    "pricing": "价格",
+    "faq": "常见问题",
+    "chat": "聊天"
+  },
+  "common": {
+    "start_chat": "开始聊天",
+    "new_conversation": "新聊天",
+    "upload_file": "上传文件",
+    "record_voice": "录制语音",
+    "copy_message": "复制消息",
+    "regenerate": "重新生成",
+    "export_chat": "导出聊天",
+    "clear_history": "清除历史",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "success": "成功",
+    "try_again": "重试",
+    "learn_more": "了解更多"
+  },
+  "seo": {
+    "breadcrumb_home": "首页",
+    "breadcrumb_current": "聊天",
+    "og_title": "LyDian Chat: 多模态人工智能聊天助手",
+    "og_description": "通过文本、语音和图像进行AI聊天。编写代码、分析文档、即时获取任何问题的答案。使用LyDian AI免费试用。",
+    "twitter_title": "LyDian Chat - AI聊天助手",
+    "twitter_description": "多模态AI聊天平台。支持文本、语音和图像。免费试用！"
+  }
+}

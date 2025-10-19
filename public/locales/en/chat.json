@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "LyDian Chat: AI Chat Assistant | Multimodal AI Chat Platform",
+    "description": "LyDian Chat offers multimodal AI chat experience with text, voice, and image support. Code generation, document analysis, and more.",
+    "keywords": "ai chat assistant, conversational ai, multimodal chat, voice ai assistant, image analysis chat, code generating ai, LyDian Chat"
+  },
+  "product": {
+    "name": "LyDian Chat",
+    "tagline": "Multimodal AI Chat Assistant",
+    "version": "2.0.0",
+    "category": "AI Chat & Assistant"
+  },
+  "hero": {
+    "title": "AI Chat Assistant for All Your Needs",
+    "subtitle": "Interact with text, voice, and images. Write code, analyze documents, get instant answers to your questions",
+    "cta_primary": "Start Chatting Now",
+    "cta_secondary": "Explore Features",
+    "trusted_by": "Preferred by 1 million+ users"
+  },
+  "features": {
+    "multimodal": {
+      "title": "Multimodal Interaction",
+      "description": "Chat with text, voice, and images. Upload photos and analyze them, give voice commands",
+      "icon": "🎭"
+    },
+    "context_aware": {
+      "title": "Context Awareness",
+      "description": "Remembers your chat history and provides contextual responses. Ensures consistency in long conversations",
+      "icon": "🧠"
+    },
+    "code_generation": {
+      "title": "Code Generation",
+      "description": "Write code in Python, JavaScript, Java, and more. Debug, get code explanations",
+      "icon": "💻"
+    },
+    "document_analysis": {
+      "title": "Document Analysis",
+      "description": "Upload PDF, Word, Excel files. Analyze content, get summaries, ask questions",
+      "icon": "📄"
+    },
+    "voice_interaction": {
+      "title": "Voice Interaction",
+      "description": "Ask questions by speaking, get voice responses. Natural voice assistant experience in 40+ languages",
+      "icon": "🎤"
+    },
+    "image_understanding": {
+      "title": "Image Understanding",
+      "description": "Upload photos, screenshots, diagrams. AI analyzes and explains the image",
+      "icon": "🖼️"
+    },
+    "real_time": {
+      "title": "Real-Time Response",
+      "description": "Get instant answers. See responses as they're being written with streaming support",
+      "icon": "⚡"
+    },
+    "export_history": {
+      "title": "Chat History",
+      "description": "All your chats are saved. Export as PDF or Markdown, search through them",
+      "icon": "💾"
+    }
+  },
+  "capabilities": {
+    "title": "Capabilities",
+    "creative_writing": "Creative Writing",
+    "research": "Research & Analysis",
+    "coding": "Coding",
+    "learning": "Learning Support",
+    "brainstorming": "Brainstorming",
+    "translation": "Translation",
+    "summarization": "Summarization",
+    "data_analysis": "Data Analysis"
+  },
+  "how_it_works": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Start Conversation",
+      "description": "Type text, record voice, or upload image"
+    },
+    "step2": {
+      "title": "AI Processes",
+      "description": "LyDian AI understands your question and prepares comprehensive response"
+    },
+    "step3": {
+      "title": "Continue",
+      "description": "Ask follow-up questions, elaborate, examine from different angles"
+    }
+  },
+  "pricing": {
+    "free": {
+      "title": "Free",
+      "price": "$0/month",
+      "features": [
+        "20 messages/day",
+        "Basic text chat",
+        "30-day history",
+        "Community support"
+      ],
+      "cta": "Get Started"
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "$9.99/month",
+      "features": [
+        "Unlimited messages",
+        "Voice interaction",
+        "Image analysis",
+        "Code generation",
+        "Document analysis",
+        "Unlimited history",
+        "Priority support"
+      ],
+      "cta": "Upgrade to Pro",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "price": "Custom Pricing",
+      "features": [
+        "All Pro features",
+        "API access",
+        "Custom integration",
+        "Team management",
+        "SSO support",
+        "SLA guarantee",
+        "24/7 support"
+      ],
+      "cta": "Contact Sales"
+    }
+  },
+  "stats": {
+    "users": "1M+",
+    "users_label": "Active Users",
+    "messages": "100M+",
+    "messages_label": "Messages Sent",
+    "languages": "40+",
+    "languages_label": "Languages Supported",
+    "uptime": "99.9%",
+    "uptime_label": "System Uptime"
+  },
+  "testimonials": {
+    "title": "From Our Users",
+    "user1": {
+      "name": "John D.",
+      "role": "Software Developer",
+      "comment": "Having it while coding is awesome. Really helpful with debugging.",
+      "rating": 5
+    },
+    "user2": {
+      "name": "Sarah K.",
+      "role": "Student",
+      "comment": "Very helpful with my assignments. Provides detailed explanations to help me understand topics.",
+      "rating": 5
+    },
+    "user3": {
+      "name": "Mike S.",
+      "role": "Content Creator",
+      "comment": "Brainstorming for creative ideas is great. Offers very creative suggestions.",
+      "rating": 5
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "What languages does LyDian Chat support?",
+      "answer": "LyDian Chat supports 40+ languages including English, Spanish, German, French, Chinese, Japanese, and more. Multi-language support available for both text and voice interaction."
+    },
+    "q2": {
+      "question": "Is my data secure?",
+      "answer": "Yes. All your chats are protected with end-to-end encryption. Your data is not used for model training and is not shared with third parties."
+    },
+    "q3": {
+      "question": "What file formats can I upload?",
+      "answer": "PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), image files (JPG, PNG, WebP), text files (TXT, MD), and code files are supported."
+    },
+    "q4": {
+      "question": "How long is my chat history stored?",
+      "answer": "Free plan: 30 days, Pro plan: unlimited. You can delete or export your chats anytime."
+    },
+    "q5": {
+      "question": "Is API access available?",
+      "answer": "Yes, API access is provided in Enterprise plan. You can integrate with your own applications and create custom chatbots."
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "features": "Features",
+    "capabilities": "Capabilities",
+    "how_it_works": "How It Works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "chat": "Chat"
+  },
+  "common": {
+    "start_chat": "Start Chat",
+    "new_conversation": "New Chat",
+    "upload_file": "Upload File",
+    "record_voice": "Record Voice",
+    "copy_message": "Copy Message",
+    "regenerate": "Regenerate",
+    "export_chat": "Export Chat",
+    "clear_history": "Clear History",
+    "loading": "Loading...",
+    "error": "Error occurred",
+    "success": "Success",
+    "try_again": "Try Again",
+    "learn_more": "Learn More"
+  },
+  "seo": {
+    "breadcrumb_home": "Home",
+    "breadcrumb_current": "Chat",
+    "og_title": "LyDian Chat: Multimodal AI Chat Assistant",
+    "og_description": "AI chat with text, voice, and images. Write code, analyze documents, get instant answers to any question. Try free with LyDian AI.",
+    "twitter_title": "LyDian Chat - AI Chat Assistant",
+    "twitter_description": "Multimodal AI chat platform. Text, voice, and image support. Try free!"
+  }
+}

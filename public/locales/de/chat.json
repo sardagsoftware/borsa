@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "LyDian Chat: KI-Chat-Assistent | Multimodale KI-Chat-Plattform",
+    "description": "LyDian Chat bietet multimodale KI-Chat-Erfahrung mit Text-, Sprach- und Bildunterstützung. Code-Generierung, Dokumentenanalyse und mehr.",
+    "keywords": "KI Chat-Assistent, konversationelle KI, multimodaler Chat, Sprach-KI-Assistent, Bildanalyse-Chat, Code-generierende KI, LyDian Chat"
+  },
+  "product": {
+    "name": "LyDian Chat",
+    "tagline": "Multimodaler KI-Chat-Assistent",
+    "version": "2.0.0",
+    "category": "KI-Chat & Assistent"
+  },
+  "hero": {
+    "title": "KI-Chat-Assistent für alle Ihre Bedürfnisse",
+    "subtitle": "Interagieren Sie mit Text, Sprache und Bildern. Schreiben Sie Code, analysieren Sie Dokumente, erhalten Sie sofortige Antworten auf Ihre Fragen",
+    "cta_primary": "Jetzt Chatten",
+    "cta_secondary": "Funktionen Erkunden",
+    "trusted_by": "Von 1 Million+ Nutzern bevorzugt"
+  },
+  "features": {
+    "multimodal": {
+      "title": "Multimodale Interaktion",
+      "description": "Chatten Sie mit Text, Sprache und Bildern. Laden Sie Fotos hoch und analysieren Sie sie, geben Sie Sprachbefehle",
+      "icon": "🎭"
+    },
+    "context_aware": {
+      "title": "Kontextbewusstsein",
+      "description": "Merkt sich Ihren Chat-Verlauf und bietet kontextbezogene Antworten. Gewährleistet Konsistenz in langen Gesprächen",
+      "icon": "🧠"
+    },
+    "code_generation": {
+      "title": "Code-Generierung",
+      "description": "Schreiben Sie Code in Python, JavaScript, Java und mehr. Debuggen Sie, erhalten Sie Code-Erklärungen",
+      "icon": "💻"
+    },
+    "document_analysis": {
+      "title": "Dokumentenanalyse",
+      "description": "Laden Sie PDF, Word, Excel-Dateien hoch. Analysieren Sie Inhalte, erhalten Sie Zusammenfassungen, stellen Sie Fragen",
+      "icon": "📄"
+    },
+    "voice_interaction": {
+      "title": "Sprachinteraktion",
+      "description": "Stellen Sie Fragen durch Sprechen, erhalten Sie Sprachantworten. Natürliche Sprachassistenten-Erfahrung in 40+ Sprachen",
+      "icon": "🎤"
+    },
+    "image_understanding": {
+      "title": "Bildverständnis",
+      "description": "Laden Sie Fotos, Screenshots, Diagramme hoch. KI analysiert und erklärt das Bild",
+      "icon": "🖼️"
+    },
+    "real_time": {
+      "title": "Echtzeit-Antwort",
+      "description": "Erhalten Sie sofortige Antworten. Sehen Sie Antworten während des Schreibens mit Streaming-Unterstützung",
+      "icon": "⚡"
+    },
+    "export_history": {
+      "title": "Chat-Verlauf",
+      "description": "Alle Ihre Chats werden gespeichert. Exportieren Sie als PDF oder Markdown, durchsuchen Sie sie",
+      "icon": "💾"
+    }
+  },
+  "capabilities": {
+    "title": "Fähigkeiten",
+    "creative_writing": "Kreatives Schreiben",
+    "research": "Recherche & Analyse",
+    "coding": "Programmierung",
+    "learning": "Lernunterstützung",
+    "brainstorming": "Brainstorming",
+    "translation": "Übersetzung",
+    "summarization": "Zusammenfassung",
+    "data_analysis": "Datenanalyse"
+  },
+  "how_it_works": {
+    "title": "Wie Es Funktioniert",
+    "step1": {
+      "title": "Gespräch Starten",
+      "description": "Text eingeben, Sprache aufnehmen oder Bild hochladen"
+    },
+    "step2": {
+      "title": "KI Verarbeitet",
+      "description": "LyDian AI versteht Ihre Frage und bereitet umfassende Antwort vor"
+    },
+    "step3": {
+      "title": "Fortfahren",
+      "description": "Stellen Sie Folgefragen, erläutern Sie, untersuchen Sie aus verschiedenen Blickwinkeln"
+    }
+  },
+  "pricing": {
+    "free": {
+      "title": "Kostenlos",
+      "price": "0€/Monat",
+      "features": [
+        "20 Nachrichten/Tag",
+        "Basis-Text-Chat",
+        "30-Tage-Verlauf",
+        "Community-Support"
+      ],
+      "cta": "Jetzt Starten"
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "8,99€/Monat",
+      "features": [
+        "Unbegrenzte Nachrichten",
+        "Sprachinteraktion",
+        "Bildanalyse",
+        "Code-Generierung",
+        "Dokumentenanalyse",
+        "Unbegrenzter Verlauf",
+        "Prioritätssupport"
+      ],
+      "cta": "Auf Pro Upgraden",
+      "popular": true
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "price": "Individuelle Preise",
+      "features": [
+        "Alle Pro-Funktionen",
+        "API-Zugriff",
+        "Individuelle Integration",
+        "Team-Verwaltung",
+        "SSO-Unterstützung",
+        "SLA-Garantie",
+        "24/7-Support"
+      ],
+      "cta": "Vertrieb Kontaktieren"
+    }
+  },
+  "stats": {
+    "users": "1M+",
+    "users_label": "Aktive Nutzer",
+    "messages": "100M+",
+    "messages_label": "Gesendete Nachrichten",
+    "languages": "40+",
+    "languages_label": "Unterstützte Sprachen",
+    "uptime": "99,9%",
+    "uptime_label": "System-Betriebszeit"
+  },
+  "testimonials": {
+    "title": "Von Unseren Nutzern",
+    "user1": {
+      "name": "Max M.",
+      "role": "Softwareentwickler",
+      "comment": "Es beim Programmieren zu haben ist großartig. Wirklich hilfreich beim Debuggen.",
+      "rating": 5
+    },
+    "user2": {
+      "name": "Anna K.",
+      "role": "Studentin",
+      "comment": "Sehr hilfreich bei meinen Aufgaben. Liefert detaillierte Erklärungen, um Themen zu verstehen.",
+      "rating": 5
+    },
+    "user3": {
+      "name": "Tom S.",
+      "role": "Content-Ersteller",
+      "comment": "Brainstorming für kreative Ideen ist großartig. Bietet sehr kreative Vorschläge.",
+      "rating": 5
+    }
+  },
+  "faq": {
+    "title": "Häufig Gestellte Fragen",
+    "q1": {
+      "question": "Welche Sprachen unterstützt LyDian Chat?",
+      "answer": "LyDian Chat unterstützt 40+ Sprachen einschließlich Deutsch, Englisch, Spanisch, Französisch, Chinesisch, Japanisch und mehr. Mehrsprachige Unterstützung sowohl für Text- als auch für Sprachinteraktion verfügbar."
+    },
+    "q2": {
+      "question": "Sind meine Daten sicher?",
+      "answer": "Ja. Alle Ihre Chats sind mit Ende-zu-Ende-Verschlüsselung geschützt. Ihre Daten werden nicht für Modelltraining verwendet und nicht mit Dritten geteilt."
+    },
+    "q3": {
+      "question": "Welche Dateiformate kann ich hochladen?",
+      "answer": "PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), Bilddateien (JPG, PNG, WebP), Textdateien (TXT, MD) und Code-Dateien werden unterstützt."
+    },
+    "q4": {
+      "question": "Wie lange wird mein Chat-Verlauf gespeichert?",
+      "answer": "Kostenloser Plan: 30 Tage, Pro-Plan: unbegrenzt. Sie können Ihre Chats jederzeit löschen oder exportieren."
+    },
+    "q5": {
+      "question": "Ist API-Zugriff verfügbar?",
+      "answer": "Ja, API-Zugriff wird im Enterprise-Plan bereitgestellt. Sie können mit Ihren eigenen Anwendungen integrieren und benutzerdefinierte Chatbots erstellen."
+    }
+  },
+  "navigation": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "capabilities": "Fähigkeiten",
+    "how_it_works": "Wie Es Funktioniert",
+    "pricing": "Preise",
+    "faq": "FAQ",
+    "chat": "Chat"
+  },
+  "common": {
+    "start_chat": "Chat Starten",
+    "new_conversation": "Neuer Chat",
+    "upload_file": "Datei Hochladen",
+    "record_voice": "Sprache Aufnehmen",
+    "copy_message": "Nachricht Kopieren",
+    "regenerate": "Neu Generieren",
+    "export_chat": "Chat Exportieren",
+    "clear_history": "Verlauf Löschen",
+    "loading": "Lädt...",
+    "error": "Fehler aufgetreten",
+    "success": "Erfolgreich",
+    "try_again": "Erneut Versuchen",
+    "learn_more": "Mehr Erfahren"
+  },
+  "seo": {
+    "breadcrumb_home": "Startseite",
+    "breadcrumb_current": "Chat",
+    "og_title": "LyDian Chat: Multimodaler KI-Chat-Assistent",
+    "og_description": "KI-Chat mit Text, Sprache und Bildern. Code schreiben, Dokumente analysieren, sofortige Antworten auf jede Frage erhalten. Kostenlos testen mit LyDian AI.",
+    "twitter_title": "LyDian Chat - KI-Chat-Assistent",
+    "twitter_description": "Multimodale KI-Chat-Plattform. Text-, Sprach- und Bildunterstützung. Kostenlos testen!"
+  }
+}
