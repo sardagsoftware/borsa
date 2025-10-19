@@ -1,197 +1,29 @@
 {
   "meta": {
-    "title": "LyDian IQ: KI-gestützte IQ-Test Plattform | Visuelle & Logische Intelligenz",
-    "description": "LyDian IQ bietet KI-gestützte visuelle Logik, mathematische Problemlösung und mehrdimensionale Intelligenzbewertung. Kostenlos testen.",
-    "keywords": "KI IQ-Test Plattform, visuelle Intelligenz Test, mehrsprachiger KI-Test, kognitive Fähigkeiten KI, logisches Denken Test, Problemlösungsmotor, LyDian IQ"
-  },
-  "product": {
-    "name": "LyDian IQ",
-    "tagline": "KI-gestützte intelligente Problemlösungs-Engine",
-    "version": "2.0.0",
-    "category": "Kognitive Bewertung & Problemlösung"
-  },
-  "hero": {
-    "title": "KI-gestütztes IQ-Testing und Problemlösung",
-    "subtitle": "Visuelle Logik, mathematisches Denken und mehrdimensionale Intelligenzbewertung auf einer Plattform",
-    "cta_primary": "Kostenlosen Test Starten",
-    "cta_secondary": "Beispielfragen Ansehen",
-    "trusted_by": "Von über 100.000 Nutzern weltweit getestet"
-  },
-  "features": {
-    "visual_logic": {
-      "title": "Visuelle Logiktests",
-      "description": "Bewerten Sie Mustererkennung, Formvervollständigung und visuelle Problemlösungsfähigkeiten",
-      "icon": "👁️"
-    },
-    "mathematical_reasoning": {
-      "title": "Mathematisches Denken",
-      "description": "Evaluieren Sie numerische Logik, Sequenzen und mathematische Problemlösungsfähigkeiten",
-      "icon": "🧮"
-    },
-    "multi_dimensional": {
-      "title": "Mehrdimensionale Bewertung",
-      "description": "Umfassende Analyse in verbalen, numerischen, visuellen und logischen Intelligenzbereichen",
-      "icon": "🎯"
-    },
-    "ai_powered": {
-      "title": "KI-gestützte Analyse",
-      "description": "Echtzeit-Leistungsanalyse und Empfehlungen powered by LyDian AI",
-      "icon": "🤖"
-    },
-    "adaptive_testing": {
-      "title": "Adaptives Testsystem",
-      "description": "Fragen passen den Schwierigkeitsgrad automatisch an Ihre Leistung an",
-      "icon": "📈"
-    },
-    "detailed_reports": {
-      "title": "Detaillierte Berichte",
-      "description": "Umfassende Analyseberichte zeigen Ihre Stärken und Verbesserungsbereiche",
-      "icon": "📊"
-    }
-  },
-  "test_types": {
-    "title": "Testkategorien",
-    "visual_iq": "Visueller IQ-Test",
-    "numerical_iq": "Numerischer IQ-Test",
-    "verbal_iq": "Verbaler IQ-Test",
-    "logical_iq": "Logischer IQ-Test",
-    "comprehensive": "Umfassende IQ-Bewertung"
-  },
-  "how_it_works": {
-    "title": "Wie funktioniert es?",
-    "step1": {
-      "title": "Wählen Sie Ihren Test",
-      "description": "Wählen Sie aus visuellen, numerischen oder umfassenden Testoptionen"
-    },
-    "step2": {
-      "title": "Fragen Lösen",
-      "description": "Absolvieren Sie Ihren Test mit KI-kuratierten Fragen von LyDian"
-    },
-    "step3": {
-      "title": "Ergebnisse Überprüfen",
-      "description": "Erhalten Sie detaillierte Analyseberichte und Verbesserungsempfehlungen"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Kostenlos",
-      "price": "0€/Monat",
-      "features": [
-        "Basis-IQ-Test",
-        "10 Fragen/Tag",
-        "Einfacher Analysebericht",
-        "7-Tage-Verlauf"
-      ],
-      "cta": "Jetzt Starten"
-    },
-    "pro": {
-      "title": "Pro",
-      "price": "8,99€/Monat",
-      "features": [
-        "Alle Testkategorien",
-        "Unbegrenzte Fragen",
-        "Detaillierte KI-Analyse",
-        "Unbegrenzter Verlauf",
-        "PDF-Bericht Download",
-        "Prioritätssupport"
-      ],
-      "cta": "Auf Pro Upgraden",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Enterprise",
-      "price": "Individuelle Preise",
-      "features": [
-        "Alle Pro-Funktionen",
-        "Benutzerdefinierte Testkategorien",
-        "API-Zugriff",
-        "Massenbewertung",
-        "Custom Branding",
-        "SLA-Garantie"
-      ],
-      "cta": "Vertrieb Kontaktieren"
-    }
-  },
-  "stats": {
-    "tests_completed": "1M+",
-    "tests_completed_label": "Abgeschlossene Tests",
-    "avg_score": "118",
-    "avg_score_label": "Durchschnittlicher IQ-Score",
-    "countries": "50+",
-    "countries_label": "Länder",
-    "languages": "20+",
-    "languages_label": "Sprachunterstützung"
-  },
-  "testimonials": {
-    "title": "Nutzerbewertungen",
-    "user1": {
-      "name": "Thomas M.",
-      "role": "Softwareentwickler",
-      "comment": "LyDian IQ hat mir geholfen, meine logischen Denkfähigkeiten zu verbessern. Es funktioniert wirklich!",
-      "rating": 5
-    },
-    "user2": {
-      "name": "Anna K.",
-      "role": "Studentin",
-      "comment": "Sehr hilfreich für die Universitätsprüfungsvorbereitung. Ich bin jetzt viel besser bei visuellen Fragen.",
-      "rating": 5
-    },
-    "user3": {
-      "name": "Stefan W.",
-      "role": "Personalleiter",
-      "comment": "Wir nutzen dies zur Kandidatenbewertung. Sehr professionelle und zuverlässige Plattform.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Häufig Gestellte Fragen",
-    "q1": {
-      "question": "Ist der LyDian IQ-Test gültig?",
-      "answer": "Ja, LyDian IQ-Tests werden mit wissenschaftlich validierten Methoden von LyDian AI entwickelt. Sie ersetzen jedoch keine professionellen IQ-Tests, helfen Ihnen aber, Ihre kognitiven Fähigkeiten zu bewerten."
-    },
-    "q2": {
-      "question": "Wie lange dauert der Test?",
-      "answer": "Der Basis-IQ-Test dauert etwa 15-20 Minuten, während die umfassende Bewertung 45-60 Minuten dauert."
-    },
-    "q3": {
-      "question": "Kann ich den Test mehrmals machen?",
-      "answer": "Ja, aber für die genauesten Ergebnisse empfehlen wir, mindestens 1 Woche zwischen den Tests zu warten."
-    },
-    "q4": {
-      "question": "Welche Geräte kann ich verwenden?",
-      "answer": "LyDian IQ ist webbasiert und von allen modernen Browsern (Chrome, Safari, Firefox, Edge) auf Desktop, Tablet und mobilen Geräten zugänglich."
-    },
-    "q5": {
-      "question": "Sind meine Daten sicher?",
-      "answer": "Ja, alle Ihre Daten werden mit 256-Bit-SSL-Verschlüsselung geschützt und DSGVO-konform verarbeitet."
-    }
-  },
-  "navigation": {
-    "home": "Startseite",
-    "tests": "Tests",
-    "how_it_works": "Wie es Funktioniert",
-    "pricing": "Preise",
-    "faq": "FAQ",
-    "my_results": "Meine Ergebnisse",
-    "dashboard": "Dashboard"
-  },
-  "common": {
-    "start_test": "Test Starten",
-    "view_results": "Ergebnisse Ansehen",
-    "download_report": "Bericht Herunterladen",
-    "share": "Teilen",
-    "loading": "Lädt...",
-    "error": "Fehler aufgetreten",
-    "success": "Erfolgreich",
-    "try_again": "Erneut Versuchen",
-    "learn_more": "Mehr Erfahren"
+    "title": "LyDian IQ — Wissenschaftlicher KI-Intelligenztest | Online IQ",
+    "description": "KI-gestützter wissenschaftlicher Intelligenztest. Multi-Modell-Analyse, detaillierte Berichte. 1M+ Nutzer, 98% Genauigkeit.",
+    "keywords": "iq test, intelligenztest online, ki iq test, intelligenzmessung, kostenloser iq test, lydian iq"
   },
   "seo": {
-    "breadcrumb_home": "Startseite",
-    "breadcrumb_current": "LyDian IQ",
-    "og_title": "LyDian IQ: KI-gestützte IQ-Test und Problemlösungsplattform",
-    "og_description": "Bewerten Sie Ihre kognitiven Fähigkeiten mit visuellen, numerischen und logischen Intelligenztests. Kostenlos starten mit LyDian AI.",
-    "twitter_title": "Testen Sie Ihren IQ mit LyDian IQ",
-    "twitter_description": "KI-gestützte visuelle Logik- und Problemlösungstests. Kostenlos ausprobieren!"
+    "og": {
+      "title": "LyDian IQ — Wissenschaftlicher KI-Intelligenztest | Online IQ",
+      "description": "KI-gestützter wissenschaftlicher Intelligenztest. Multi-Modell-Analyse, detaillierte Berichte. 1M+ Nutzer, 98% Genauigkeit.",
+      "image": "/og-images/lydian-iq-de.jpg",
+      "type": "website",
+      "locale": "de_DE"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian IQ — Wissenschaftlicher KI-Intelligenztest | Online IQ",
+      "description": "KI-gestützter wissenschaftlicher Intelligenztest. Multi-Modell-Analyse, detaillierte Berichte. 1M+ Nutzer, 98% Genauigkeit.",
+      "image": "/og-images/lydian-iq-de.jpg"
+    },
+    "geo": {
+      "geo.region": "DE",
+      "geo.placename": "Berlin",
+      "geo.position": "52.5200,13.4050",
+      "ICBM": "52.5200,13.4050"
+    },
+    "canonical": "https://www.ailydian.com/lydian-iq"
   }
 }

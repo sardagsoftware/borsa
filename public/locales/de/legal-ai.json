@@ -1,212 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Legal AI: KI-Rechtsassistent | Rechtsprechungssuche & Vertragsanalyse",
-    "description": "LyDian Legal AI bietet Rechtsprechungssuche, Vertragsanalyse, juristische Recherche und Dokumentenautomatisierung. KI-gestützter Rechtsassistent für Anwälte.",
-    "keywords": "KI Rechtsassistent, Rechtsprechungssuchmaschine, Vertragsanalyse KI, juristische Rechercheplattform, Dokumentenautomatisierung, LyDian Legal AI"
-  },
-  "product": {
-    "name": "LyDian Legal AI",
-    "tagline": "KI-gestützter Rechtsassistent & Rechtsprechungssuchmaschine",
-    "version": "2.0.0",
-    "category": "Rechts-KI & Juristische Recherche"
-  },
-  "hero": {
-    "title": "KI-gestützter Rechtsassistent für Anwälte",
-    "subtitle": "Beschleunigen Sie Ihre juristische Arbeit mit Rechtsprechungssuche, Vertragsanalyse, juristischer Recherche und Dokumentenautomatisierung",
-    "cta_primary": "Kostenlos Testen",
-    "cta_secondary": "Demo Ansehen",
-    "trusted_by": "Verwendet von 500+ Anwaltskanzleien und 5.000+ Anwälten"
-  },
-  "features": {
-    "case_law_search": {
-      "title": "Rechtsprechungssuchmaschine",
-      "description": "Sofortige Suche in Bundesgerichtshof- und Oberlandesgerichtsentscheidungen. Semantische Suche für einfachen Zugriff auf relevante Präzedenzfälle",
-      "icon": "⚖️"
-    },
-    "contract_analysis": {
-      "title": "Vertragsanalyse",
-      "description": "Automatische Erkennung von Risiken, Lücken und Inkonsistenzen in Verträgen. Klausel-für-Klausel-Analyse und Empfehlungen",
-      "icon": "📄"
-    },
-    "legal_research": {
-      "title": "Juristische Rechercheassistent",
-      "description": "Umfassende Recherche in Gesetzen, Verordnungen und Rechtsprechung. Sofortiger Zugriff auf relevante Rechtsvorschriften",
-      "icon": "🔍"
-    },
-    "document_automation": {
-      "title": "Dokumentenautomatisierung",
-      "description": "Automatische Erstellung von Schriftsätzen, Klagen, Verträgen und anderen juristischen Dokumenten",
-      "icon": "📝"
-    },
-    "compliance_check": {
-      "title": "Compliance-Prüfung",
-      "description": "Prüfung von Verträgen und Dokumenten auf Einhaltung von DSGVO, Gesellschaftsrecht und anderen Vorschriften",
-      "icon": "✓"
-    },
-    "citation_management": {
-      "title": "Zitationsverwaltung",
-      "description": "Automatische Verwaltung von Rechtsprechungs- und Gesetzeszitaten. Standardformat-Quellenangaben",
-      "icon": "📚"
-    },
-    "multi_jurisdiction": {
-      "title": "Multi-Jurisdiktions-Unterstützung",
-      "description": "Zugriff auf deutsches Recht, EU-Recht und internationale Rechtsquellen",
-      "icon": "🌍"
-    },
-    "ai_legal_opinion": {
-      "title": "KI-Rechtsgutachten",
-      "description": "Analyse von Akten zur Bereitstellung wahrscheinlicher Ergebnisse und Strategieempfehlungen",
-      "icon": "🤖"
-    }
-  },
-  "practice_areas": {
-    "title": "Rechtsgebiete",
-    "commercial": "Handelsrecht",
-    "civil": "Zivilrecht",
-    "criminal": "Strafrecht",
-    "labor": "Arbeitsrecht",
-    "tax": "Steuerrecht",
-    "administrative": "Verwaltungsrecht",
-    "ip": "Geistiges Eigentum",
-    "corporate": "Gesellschaftsrecht"
-  },
-  "how_it_works": {
-    "title": "Wie Es Funktioniert",
-    "step1": {
-      "title": "Frage Definieren",
-      "description": "Geben Sie Ihre Rechtsfrage oder Recherchebedarf in das System ein"
-    },
-    "step2": {
-      "title": "KI-Analyse",
-      "description": "LyDian AI führt umfassende Analysen in Gesetzes- und Rechtsprechungsdatenbanken durch"
-    },
-    "step3": {
-      "title": "Ergebnisse Überprüfen",
-      "description": "Zeigen Sie relevante Präzedenzfälle, Rechtsvorschriften und Gutachtenempfehlungen an"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Individuell",
-      "price": "Kostenlos",
-      "features": [
-        "Basis-Rechtsprechungssuche",
-        "10 Suchen/Tag",
-        "Basis-Vertragsanalyse",
-        "7-Tage-Verlauf"
-      ],
-      "cta": "Jetzt Starten"
-    },
-    "pro": {
-      "title": "Professionell",
-      "price": "69€/Monat",
-      "features": [
-        "Unbegrenzte Rechtsprechungssuche",
-        "Erweiterte Vertragsanalyse",
-        "Dokumentenautomatisierung",
-        "Compliance-Prüfung",
-        "Prioritätssupport",
-        "PDF-Bericht Download"
-      ],
-      "cta": "Auf Professionell Upgraden",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Anwaltskanzlei",
-      "price": "Individuelle Preise",
-      "features": [
-        "Alle Professionell-Funktionen",
-        "Individuelle Datenbankintegration",
-        "Mehrbenutzerverwaltung",
-        "Individuelle Schulung",
-        "SLA-Garantie",
-        "24/7 technischer Support"
-      ],
-      "cta": "Vertrieb Kontaktieren"
-    }
-  },
-  "stats": {
-    "law_firms": "500+",
-    "law_firms_label": "Anwaltskanzleien",
-    "lawyers": "5.000+",
-    "lawyers_label": "Anwälte",
-    "cases": "500K+",
-    "cases_label": "Präzedenzfälle",
-    "accuracy": "96,3%",
-    "accuracy_label": "Fallabgleich-Genauigkeit"
-  },
-  "testimonials": {
-    "title": "Von Anwälten",
-    "lawyer1": {
-      "name": "Dr. Julia Schmidt",
-      "role": "Handelsrechtsanwältin",
-      "comment": "LyDian Legal AI hat meine Rechtsprechungsrecherche um Stunden beschleunigt. Ein unverzichtbares Werkzeug.",
-      "rating": 5
-    },
-    "lawyer2": {
-      "name": "Dr. Thomas Weber",
-      "role": "Zivilrechtsanwalt",
-      "comment": "Die Vertragsanalysefunktion ist erstaunlich. Sie erkennt sofort Risiken, die übersehen werden könnten.",
-      "rating": 5
-    },
-    "lawyer3": {
-      "name": "Dr. Anna Müller",
-      "role": "Strafverteidigerin",
-      "comment": "Sehr hilfreich bei der Entwicklung von Fallstrategien. Ich erhalte sofortigen Zugriff auf relevante Präzedenzfälle.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Häufig Gestellte Fragen",
-    "q1": {
-      "question": "Ersetzt LyDian Legal AI Anwälte?",
-      "answer": "Nein. LyDian Legal AI ist ein juristisches Recherche- und Entscheidungsunterstützungswerkzeug. Es erleichtert die Arbeit von Anwälten, kann sie jedoch nicht ersetzen. Die endgültige rechtliche Bewertung sollte immer von einem Anwalt durchgeführt werden."
-    },
-    "q2": {
-      "question": "Werden Daten vertraulich behandelt?",
-      "answer": "Ja. Alle Daten werden mit 256-Bit-SSL-Verschlüsselung geschützt und unter Einhaltung der anwaltlichen Verschwiegenheitspflicht verarbeitet. Mandanteninformationen werden niemals mit Dritten geteilt."
-    },
-    "q3": {
-      "question": "Auf welche Gerichtsentscheidungen kann zugegriffen werden?",
-      "answer": "Zugriff wird auf Bundesgerichtshof-, Oberlandesgerichts-, Bundesverfassungsgerichts- und internationale Gerichtsentscheidungen gewährt. Die kontinuierlich aktualisierte Datenbank bietet Zugriff auf die aktuellsten Präzedenzfälle."
-    },
-    "q4": {
-      "question": "Werden Dokumente für Anwälte angepasst?",
-      "answer": "Ja. Die Dokumentenautomatisierung erstellt angepasste Dokumente basierend auf Ihren Angaben. Jedes Dokument sollte vor Verwendung vom Anwalt überprüft werden."
-    },
-    "q5": {
-      "question": "Was ist die Fallabgleich-Genauigkeit?",
-      "answer": "Mit semantischer Suchtechnologie können Sie mit 96,3% Genauigkeit auf relevante Präzedenzfälle zugreifen. Das System lernt kontinuierlich und verbessert sich selbst."
-    }
-  },
-  "navigation": {
-    "home": "Startseite",
-    "features": "Funktionen",
-    "practice_areas": "Rechtsgebiete",
-    "how_it_works": "Wie Es Funktioniert",
-    "pricing": "Preise",
-    "faq": "FAQ",
-    "dashboard": "Dashboard"
-  },
-  "common": {
-    "search_case_law": "Rechtsprechung Suchen",
-    "analyze_contract": "Vertrag Analysieren",
-    "create_document": "Dokument Erstellen",
-    "view_report": "Bericht Ansehen",
-    "download_pdf": "PDF Herunterladen",
-    "share": "Teilen",
-    "loading": "Lädt...",
-    "error": "Fehler aufgetreten",
-    "success": "Erfolgreich",
-    "try_again": "Erneut Versuchen",
-    "learn_more": "Mehr Erfahren"
+    "title": "LyDian Legal AI — Rechts-KI Berater | KI Anwalt",
+    "description": "KI Rechtsberatung. 1M+ Gerichtsentscheidungsanalyse, Vertragsüberprüfung, Gesetzesscreening. 100K+ Beratungen.",
+    "keywords": "rechts ki, ki anwalt, rechtsberater ki, vertragsanalyse, gerichtsentscheidungen, lydian legal"
   },
   "seo": {
-    "breadcrumb_home": "Startseite",
-    "breadcrumb_current": "Legal AI",
-    "og_title": "LyDian Legal AI: KI-gestützter Rechtsassistent & Rechtsprechungssuchmaschine",
-    "og_description": "Unterstützung von Anwälten mit Rechtsprechungssuche, Vertragsanalyse und juristischer Recherche. Kostenlos testen mit LyDian AI.",
-    "twitter_title": "LyDian Legal AI - Rechts-KI-Assistent",
-    "twitter_description": "KI-gestützte Rechtsprechungssuche und Vertragsanalyseplattform für Anwälte."
+    "og": {
+      "title": "LyDian Legal AI — Rechts-KI Berater | KI Anwalt",
+      "description": "KI Rechtsberatung. 1M+ Gerichtsentscheidungsanalyse, Vertragsüberprüfung, Gesetzesscreening. 100K+ Beratungen.",
+      "image": "/og-images/legal-ai-de.jpg",
+      "type": "website",
+      "locale": "de_DE"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian Legal AI — Rechts-KI Berater | KI Anwalt",
+      "description": "KI Rechtsberatung. 1M+ Gerichtsentscheidungsanalyse, Vertragsüberprüfung, Gesetzesscreening. 100K+ Beratungen.",
+      "image": "/og-images/legal-ai-de.jpg"
+    },
+    "geo": {
+      "geo.region": "DE",
+      "geo.placename": "Berlin",
+      "geo.position": "52.5200,13.4050",
+      "ICBM": "52.5200,13.4050"
+    },
+    "canonical": "https://www.ailydian.com/legal-expert"
   }
 }

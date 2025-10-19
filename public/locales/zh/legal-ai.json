@@ -1,212 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Legal AI: 法律人工智能助手 | 案例法搜索与合同分析",
-    "description": "LyDian Legal AI提供案例法搜索、合同分析、法律研究和文档自动化。为律师提供人工智能驱动的法律助手。",
-    "keywords": "法律人工智能助手, 案例法搜索引擎, 合同分析AI, 法律研究平台, 文档自动化, LyDian Legal AI"
-  },
-  "product": {
-    "name": "LyDian Legal AI",
-    "tagline": "人工智能驱动的法律助手与案例法搜索引擎",
-    "version": "2.0.0",
-    "category": "法律人工智能与法律研究"
-  },
-  "hero": {
-    "title": "为律师提供人工智能驱动的法律助手",
-    "subtitle": "通过案例法搜索、合同分析、法律研究和文档自动化加速您的法律工作",
-    "cta_primary": "免费试用",
-    "cta_secondary": "观看演示",
-    "trusted_by": "被500+律师事务所和5,000+律师使用"
-  },
-  "features": {
-    "case_law_search": {
-      "title": "案例法搜索引擎",
-      "description": "即时搜索最高法院和上诉法院判决。语义搜索轻松访问相关判例",
-      "icon": "⚖️"
-    },
-    "contract_analysis": {
-      "title": "合同分析",
-      "description": "自动检测合同中的风险、漏洞和不一致性。逐条分析和建议",
-      "icon": "📄"
-    },
-    "legal_research": {
-      "title": "法律研究助手",
-      "description": "在法律、法规和案例法中进行全面研究。即时访问相关立法",
-      "icon": "🔍"
-    },
-    "document_automation": {
-      "title": "文档自动化",
-      "description": "自动生成诉状、起诉书、合同和其他法律文件",
-      "icon": "📝"
-    },
-    "compliance_check": {
-      "title": "合规检查",
-      "description": "检查合同和文档是否符合GDPR、公司法和其他法规",
-      "icon": "✓"
-    },
-    "citation_management": {
-      "title": "引文管理",
-      "description": "自动管理案例法和法律引文。标准格式的来源引用",
-      "icon": "📚"
-    },
-    "multi_jurisdiction": {
-      "title": "多司法管辖区支持",
-      "description": "访问中国法律、欧盟法律和国际法律资源",
-      "icon": "🌍"
-    },
-    "ai_legal_opinion": {
-      "title": "人工智能法律意见",
-      "description": "分析案件文件以提供可能的结果和策略建议",
-      "icon": "🤖"
-    }
-  },
-  "practice_areas": {
-    "title": "执业领域",
-    "commercial": "商法",
-    "civil": "民法",
-    "criminal": "刑法",
-    "labor": "劳动法",
-    "tax": "税法",
-    "administrative": "行政法",
-    "ip": "知识产权",
-    "corporate": "公司法"
-  },
-  "how_it_works": {
-    "title": "如何工作？",
-    "step1": {
-      "title": "定义您的问题",
-      "description": "将您的法律问题或研究需求输入系统"
-    },
-    "step2": {
-      "title": "人工智能分析",
-      "description": "LyDian AI在立法和案例法数据库中进行全面分析"
-    },
-    "step3": {
-      "title": "查看结果",
-      "description": "查看相关判例、立法和法律意见建议"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "个人版",
-      "price": "免费",
-      "features": [
-        "基础案例法搜索",
-        "每天10次搜索",
-        "基础合同分析",
-        "7天历史记录"
-      ],
-      "cta": "立即开始"
-    },
-    "pro": {
-      "title": "专业版",
-      "price": "¥599/月",
-      "features": [
-        "无限案例法搜索",
-        "高级合同分析",
-        "文档自动化",
-        "合规检查",
-        "优先支持",
-        "PDF报告下载"
-      ],
-      "cta": "升级到专业版",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "律师事务所",
-      "price": "定制价格",
-      "features": [
-        "所有专业版功能",
-        "定制数据库集成",
-        "多用户管理",
-        "定制培训",
-        "SLA保证",
-        "7×24技术支持"
-      ],
-      "cta": "联系销售"
-    }
-  },
-  "stats": {
-    "law_firms": "500+",
-    "law_firms_label": "家律师事务所",
-    "lawyers": "5,000+",
-    "lawyers_label": "名律师",
-    "cases": "50万+",
-    "cases_label": "判例",
-    "accuracy": "96.3%",
-    "accuracy_label": "案例匹配准确率"
-  },
-  "testimonials": {
-    "title": "来自律师",
-    "lawyer1": {
-      "name": "李律师",
-      "role": "商法律师",
-      "comment": "LyDian Legal AI将我的案例法研究加速了数小时。不可或缺的工具。",
-      "rating": 5
-    },
-    "lawyer2": {
-      "name": "王律师",
-      "role": "民事诉讼律师",
-      "comment": "合同分析功能令人惊叹。它立即检测到可能被遗漏的风险。",
-      "rating": 5
-    },
-    "lawyer3": {
-      "name": "张律师",
-      "role": "刑事辩护律师",
-      "comment": "在制定案件策略方面非常有帮助。我可以即时访问相关判例。",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "常见问题",
-    "q1": {
-      "question": "LyDian Legal AI会取代律师吗？",
-      "answer": "不会。LyDian Legal AI是一个法律研究和决策支持工具。它为律师的工作提供便利，但不能取代他们。最终的法律评估应始终由律师完成。"
-    },
-    "q2": {
-      "question": "数据是否保密？",
-      "answer": "是的。所有数据都受到256位SSL加密保护，并根据律师-客户特权进行处理。客户信息永远不会与第三方共享。"
-    },
-    "q3": {
-      "question": "可以访问哪些法院判决？",
-      "answer": "提供最高法院、上诉法院、宪法法院和国际法院判决的访问。持续更新的数据库提供对最新判例的访问。"
-    },
-    "q4": {
-      "question": "文档是否为律师定制？",
-      "answer": "是的。文档自动化根据您提供的信息创建定制文档。每个文档在使用前应由律师审查。"
-    },
-    "q5": {
-      "question": "案例匹配准确率是多少？",
-      "answer": "通过语义搜索技术，您可以以96.3%的准确率访问相关判例。系统不断学习并自我改进。"
-    }
-  },
-  "navigation": {
-    "home": "首页",
-    "features": "功能",
-    "practice_areas": "执业领域",
-    "how_it_works": "如何工作",
-    "pricing": "价格",
-    "faq": "常见问题",
-    "dashboard": "仪表板"
-  },
-  "common": {
-    "search_case_law": "搜索案例法",
-    "analyze_contract": "分析合同",
-    "create_document": "创建文档",
-    "view_report": "查看报告",
-    "download_pdf": "下载PDF",
-    "share": "分享",
-    "loading": "加载中...",
-    "error": "发生错误",
-    "success": "成功",
-    "try_again": "重试",
-    "learn_more": "了解更多"
+    "title": "LyDian Legal AI — 法律AI顾问 | AI律师",
+    "description": "AI法律咨询。100万+法院判决分析、合同审查、立法筛选。10万+次咨询。获取法律建议。",
+    "keywords": "法律人工智能, ai律师, 法律顾问ai, 合同分析, 法院判决, lydian legal"
   },
   "seo": {
-    "breadcrumb_home": "首页",
-    "breadcrumb_current": "Legal AI",
-    "og_title": "LyDian Legal AI: 人工智能驱动的法律助手与案例法搜索引擎",
-    "og_description": "通过案例法搜索、合同分析和法律研究支持律师。使用LyDian AI免费试用。",
-    "twitter_title": "LyDian Legal AI - 法律人工智能助手",
-    "twitter_description": "为律师提供人工智能驱动的案例法搜索和合同分析平台。"
+    "og": {
+      "title": "LyDian Legal AI — 法律AI顾问 | AI律师",
+      "description": "AI法律咨询。100万+法院判决分析、合同审查、立法筛选。10万+次咨询。获取法律建议。",
+      "image": "/og-images/legal-ai-zh.jpg",
+      "type": "website",
+      "locale": "zh_CN"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian Legal AI — 法律AI顾问 | AI律师",
+      "description": "AI法律咨询。100万+法院判决分析、合同审查、立法筛选。10万+次咨询。获取法律建议。",
+      "image": "/og-images/legal-ai-zh.jpg"
+    },
+    "geo": {
+      "geo.region": "CN",
+      "geo.placename": "Beijing",
+      "geo.position": "39.9042,116.4074",
+      "ICBM": "39.9042,116.4074"
+    },
+    "canonical": "https://www.ailydian.com/legal-expert"
   }
 }

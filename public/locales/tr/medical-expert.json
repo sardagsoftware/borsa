@@ -1,210 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Medical Expert: Tıbbi Yapay Zeka Asistanı | Hastalık Teşhis ve Klinik Karar Desteği",
-    "description": "LyDian Medical Expert, nadir hastalık teşhisi, klinik karar desteği ve çok modlu tıbbi veri analizi sunar. Sağlık profesyonelleri için yapay zeka destekli tıbbi asistan.",
-    "keywords": "tıbbi yapay zeka, ai doktor danışman, hastalık teşhis ai, klinik karar destek sistemi, nadir hastalık teşhisi, tıbbi görüntü analizi, LyDian Medical Expert"
-  },
-  "product": {
-    "name": "LyDian Medical Expert",
-    "tagline": "Yapay Zeka Destekli Tıbbi Asistan ve Klinik Karar Desteği",
-    "version": "2.0.0",
-    "category": "Tıbbi Yapay Zeka ve Klinik Karar Desteği"
-  },
-  "hero": {
-    "title": "Sağlık Profesyonelleri İçin Yapay Zeka Destekli Tıbbi Asistan",
-    "subtitle": "Nadir hastalık teşhisi, klinik karar desteği, tıbbi görüntü analizi ve multimodal veri füzyonu ile doktorların yanında",
-    "cta_primary": "Ücretsiz Deneyin",
-    "cta_secondary": "Demo İzleyin",
-    "trusted_by": "500+ hastane ve 10,000+ sağlık profesyoneli tarafından kullanılıyor"
-  },
-  "features": {
-    "rare_disease": {
-      "title": "Nadir Hastalık Asistanı",
-      "description": "Orphanet ve OMIM veritabanlarıyla entegre, 10,000+ nadir hastalık için semptom analizi ve teşhis önerileri",
-      "icon": "🧬"
-    },
-    "clinical_decision": {
-      "title": "Klinik Karar Desteği",
-      "description": "Kanıta dayalı tıp rehberleri ve güncel literatürle destekli tedavi önerileri ve ilaç etkileşim kontrolü",
-      "icon": "🩺"
-    },
-    "radiology_analysis": {
-      "title": "Radyoloji Görüntü Analizi",
-      "description": "X-Ray, MRI, CT görüntülerinde lezyon tespiti, segmentasyon ve anomali analizi",
-      "icon": "🔬"
-    },
-    "maternal_fetal": {
-      "title": "Maternal-Fetal Sağlık",
-      "description": "Hamilelik takibi, fetal anomali tespiti ve doğum komplikasyon risk değerlendirmesi",
-      "icon": "👶"
-    },
-    "emergency_triage": {
-      "title": "Acil Durum Triyajı",
-      "description": "Semptom bazlı aciliyet seviyesi belirleme ve ilk müdahale önerileri",
-      "icon": "🚑"
-    },
-    "mental_health": {
-      "title": "Mental Sağlık Değerlendirmesi",
-      "description": "Depresyon, anksiyete ve diğer mental sağlık durumları için erken tespit ve destek",
-      "icon": "🧠"
-    },
-    "sepsis_warning": {
-      "title": "Sepsis Erken Uyarı Sistemi",
-      "description": "Vital bulgular ve laboratuvar değerlerini analiz ederek sepsis riskini erken tespit",
-      "icon": "⚠️"
-    },
-    "epic_fhir": {
-      "title": "EPIC FHIR Entegrasyonu",
-      "description": "Hastane bilgi sistemleriyle sorunsuz entegrasyon ve elektronik sağlık kayıtlarına erişim",
-      "icon": "🔗"
-    }
-  },
-  "specialties": {
-    "title": "Uzmanlık Alanları",
-    "cardiology": "Kardiyoloji",
-    "neurology": "Nöroloji",
-    "oncology": "Onkoloji",
-    "pediatrics": "Pediatri",
-    "radiology": "Radyoloji",
-    "emergency": "Acil Tıp",
-    "psychiatry": "Psikiyatri",
-    "obstetrics": "Kadın Hastalıkları ve Doğum"
-  },
-  "how_it_works": {
-    "title": "Nasıl Çalışır?",
-    "step1": {
-      "title": "Hasta Bilgilerini Girin",
-      "description": "Semptomlar, vital bulgular ve tıbbi geçmişi sisteme girin"
-    },
-    "step2": {
-      "title": "Yapay Zeka Analizi",
-      "description": "LyDian AI tıbbi literatür ve veritabanlarını analiz ederek öneriler sunar"
-    },
-    "step3": {
-      "title": "Karar Desteği Alın",
-      "description": "Teşhis önerileri, tedavi seçenekleri ve referans dokümanları görüntüleyin"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Bireysel",
-      "price": "Ücretsiz",
-      "features": [
-        "Temel semptom analizi",
-        "Günde 10 hasta konsültasyonu",
-        "Genel tıbbi veritabanı erişimi",
-        "7 günlük geçmiş"
-      ],
-      "cta": "Hemen Başla"
-    },
-    "pro": {
-      "title": "Profesyonel",
-      "price": "₺2.999/ay",
-      "features": [
-        "Sınırsız hasta konsültasyonu",
-        "Nadir hastalık veritabanı",
-        "Radyoloji görüntü analizi",
-        "EPIC FHIR entegrasyonu",
-        "Öncelikli destek",
-        "PDF rapor indirme"
-      ],
-      "cta": "Profesyonel'e Geç",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Hastane",
-      "price": "Özel Fiyatlandırma",
-      "features": [
-        "Tüm Profesyonel özellikler",
-        "Kurumsal HIS entegrasyonu",
-        "Özel veri eğitimi",
-        "Çoklu kullanıcı yönetimi",
-        "SLA garantisi",
-        "7/24 teknik destek"
-      ],
-      "cta": "Satış Ekibiyle İletişime Geç"
-    }
-  },
-  "stats": {
-    "hospitals": "500+",
-    "hospitals_label": "Hastane",
-    "doctors": "10,000+",
-    "doctors_label": "Doktor",
-    "diagnoses": "1M+",
-    "diagnoses_label": "Teşhis Desteği",
-    "accuracy": "%94.7",
-    "accuracy_label": "Teşhis Doğruluğu"
-  },
-  "testimonials": {
-    "title": "Sağlık Profesyonellerinden",
-    "doctor1": {
-      "name": "Dr. Ayşe Yılmaz",
-      "role": "İç Hastalıkları Uzmanı",
-      "comment": "LyDian Medical Expert, nadir hastalık teşhisinde bana çok yardımcı oluyor. Orphanet entegrasyonu harika.",
-      "rating": 5
-    },
-    "doctor2": {
-      "name": "Dr. Mehmet Demir",
-      "role": "Acil Tıp Uzmanı",
-      "comment": "Acil serviste hızlı triyaj için vazgeçilmez. Kritik bulguları kaçırmamıza engel oluyor.",
-      "rating": 5
-    },
-    "doctor3": {
-      "name": "Dr. Zeynep Kaya",
-      "role": "Radyoloji Uzmanı",
-      "comment": "Görüntü analizi özelliği gerçekten etkileyici. İkinci görüş almak için harika bir araç.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Sıkça Sorulan Sorular",
-    "q1": {
-      "question": "LyDian Medical Expert doktoru değiştirir mi?",
-      "answer": "Hayır. LyDian Medical Expert bir karar destek sistemidir ve doktorların yanında yardımcı bir araç olarak çalışır. Nihai tıbbi kararlar her zaman lisanslı sağlık profesyonelleri tarafından verilmelidir."
-    },
-    "q2": {
-      "question": "Hasta verileri güvenli mi?",
-      "answer": "Evet. Tüm veriler HIPAA ve KVKK uyumlu olarak 256-bit SSL şifreleme ile korunur. Verileriniz hiçbir zaman üçüncü taraflarla paylaşılmaz."
-    },
-    "q3": {
-      "question": "Hangi tıbbi standartlara uyumludur?",
-      "answer": "LyDian Medical Expert, HL7 FHIR, DICOM, ICD-10, SNOMED-CT gibi uluslararası tıbbi standartları destekler."
-    },
-    "q4": {
-      "question": "Hastane bilgi sistemiyle entegre edilebilir mi?",
-      "answer": "Evet. EPIC FHIR API desteği ile mevcut hastane bilgi sistemleriyle sorunsuz entegrasyon sağlanır."
-    },
-    "q5": {
-      "question": "Teşhis doğruluğu nedir?",
-      "answer": "Klinik validasyon çalışmalarında %94.7 teşhis doğruluğu elde edilmiştir. Ancak, sistem bir karar destek aracıdır ve nihai teşhis her zaman doktor tarafından konulmalıdır."
-    }
-  },
-  "navigation": {
-    "home": "Ana Sayfa",
-    "features": "Özellikler",
-    "specialties": "Uzmanlıklar",
-    "how_it_works": "Nasıl Çalışır",
-    "pricing": "Fiyatlandırma",
-    "faq": "SSS",
-    "dashboard": "Panel"
-  },
-  "common": {
-    "start_consultation": "Konsültasyon Başlat",
-    "view_report": "Raporu Görüntüle",
-    "download_pdf": "PDF İndir",
-    "share": "Paylaş",
-    "loading": "Yükleniyor...",
-    "error": "Bir hata oluştu",
-    "success": "Başarılı",
-    "try_again": "Tekrar Dene",
-    "learn_more": "Daha Fazla Bilgi"
+    "title": "Medical Expert — 24/7 AI Tıbbi Asistan | Sağlık Danışmanlığı",
+    "description": "AI destekli sağlık danışmanlığı. Çok modelli tanı desteği, tıbbi analiz, acil triage. 500K+ danışma, 50+ uzmanlık. Hemen danış.",
+    "keywords": "tıbbi yapay zeka, ai doktor, sağlık danışmanı ai, tıbbi tanı ai, medical expert, lydian medical"
   },
   "seo": {
-    "breadcrumb_home": "Ana Sayfa",
-    "breadcrumb_current": "Medical Expert",
-    "og_title": "LyDian Medical Expert: Yapay Zeka Destekli Tıbbi Asistan ve Klinik Karar Desteği",
-    "og_description": "Nadir hastalık teşhisi, radyoloji analizi ve multimodal tıbbi veri füzyonu ile sağlık profesyonellerine destek. LyDian AI ile ücretsiz deneyin.",
-    "twitter_title": "LyDian Medical Expert - Tıbbi Yapay Zeka Asistanı",
-    "twitter_description": "Sağlık profesyonelleri için yapay zeka destekli klinik karar desteği. Nadir hastalık teşhisi ve görüntü analizi."
+    "og": {
+      "title": "Medical Expert — 24/7 AI Tıbbi Asistan | Sağlık Danışmanlığı",
+      "description": "AI destekli sağlık danışmanlığı. Çok modelli tanı desteği, tıbbi analiz, acil triage. 500K+ danışma, 50+ uzmanlık. Hemen danış.",
+      "image": "/og-images/medical-expert-tr.jpg",
+      "type": "website",
+      "locale": "tr_TR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Medical Expert — 24/7 AI Tıbbi Asistan | Sağlık Danışmanlığı",
+      "description": "AI destekli sağlık danışmanlığı. Çok modelli tanı desteği, tıbbi analiz, acil triage. 500K+ danışma, 50+ uzmanlık. Hemen danış.",
+      "image": "/og-images/medical-expert-tr.jpg"
+    },
+    "geo": {
+      "geo.region": "TR",
+      "geo.placename": "İstanbul",
+      "geo.position": "41.0082,28.9784",
+      "ICBM": "41.0082,28.9784"
+    },
+    "canonical": "https://www.ailydian.com/medical-expert"
   }
 }

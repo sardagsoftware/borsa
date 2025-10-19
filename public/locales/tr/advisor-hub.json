@@ -1,248 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Advisor Hub: Yapay Zeka Danışman Merkezi | AI İş Danışmanlığı Platformu",
-    "description": "LyDian Advisor Hub, iş danışmanlığı, kültürel danışmanlık, karar desteği ve öğrenme yolları için yapay zeka destekli çözümler sunar. 8 uzman danışman modülü.",
-    "keywords": "yapay zeka danışman, iş danışmanlık ai, ai karar desteği, kültürel danışman ai, öğrenme yolu ai, startup hızlandırıcı ai, yaşam koçu ai, toplantı analizi ai"
-  },
-  "product": {
-    "name": "LyDian Advisor Hub",
-    "tagline": "8 Uzman Yapay Zeka Danışman Merkezi",
-    "version": "2.0.0",
-    "category": "AI Danışmanlık & İş Zekası"
-  },
-  "hero": {
-    "title": "Her İhtiyacınız İçin Uzman Yapay Zeka Danışmanları",
-    "subtitle": "İş stratejisinden kişisel gelişime, kültürel danışmanlıktan startup hızlandırmaya kadar 8 farklı alanda AI destekli profesyonel danışmanlık",
-    "cta_primary": "Danışmanı Seç",
-    "cta_secondary": "Tüm Modülleri Keşfet",
-    "trusted_by": "500.000+ profesyonel tarafından kullanılıyor"
-  },
-  "advisors": {
-    "cultural": {
-      "title": "Kültürel Danışman",
-      "description": "Kültürlerarası iletişim, yerel örf ve adetler, iş protokolü danışmanlığı. 150+ ülke kültürü hakkında uzman öneriler",
-      "icon": "🌍",
-      "use_cases": ["Uluslararası iş görüşmeleri", "Kültürel adaptasyon", "Diplomatik protokol"]
-    },
-    "decision": {
-      "title": "Karar Destek Matrisi",
-      "description": "Veri odaklı karar verme, risk analizi, senario planlama. Çok kriterli karar analizleri ve optimizasyon",
-      "icon": "📊",
-      "use_cases": ["Stratejik kararlar", "Yatırım analizi", "Risk değerlendirme"]
-    },
-    "knowledge": {
-      "title": "Bilgi Asistanı",
-      "description": "Hızlı araştırma, bilgi sentezi, doğruluk kontrolü. Akademik ve profesyonel bilgi keşfi",
-      "icon": "🔍",
-      "use_cases": ["Akademik araştırma", "Pazar analizi", "Rakip istihbaratı"]
-    },
-    "learning": {
-      "title": "Öğrenme Yolu Planlayıcı",
-      "description": "Kişiselleştirilmiş eğitim programları, beceri geliştirme yol haritaları, öğrenme takibi",
-      "icon": "📚",
-      "use_cases": ["Kariyer geliştirme", "Teknik beceri kazanımı", "Sertifikasyon hazırlığı"]
-    },
-    "life_coach": {
-      "title": "Yaşam Koçu",
-      "description": "Kişisel hedef belirleme, alışkanlık oluşturma, motivasyon koçluğu. İş-yaşam dengesi danışmanlığı",
-      "icon": "💪",
-      "use_cases": ["Hedef belirleme", "Zaman yönetimi", "Stres yönetimi"]
-    },
-    "meeting": {
-      "title": "Toplantı İçgörüleri",
-      "description": "Toplantı analizi, aksiyon maddesi çıkarma, karar takibi. Verimlilik iyileştirme önerileri",
-      "icon": "📅",
-      "use_cases": ["Toplantı özeti", "Görev takibi", "Ekip verimliliği"]
-    },
-    "startup": {
-      "title": "Startup Hızlandırıcı",
-      "description": "İş modeli validasyonu, pitch deck danışmanlığı, yatırımcı bulma stratejileri. Go-to-market planlaması",
-      "icon": "🚀",
-      "use_cases": ["MVP geliştirme", "Fon arayışı", "Ölçeklendirme stratejisi"]
-    },
-    "health": {
-      "title": "Sağlık Orkestratörü",
-      "description": "Wellness takibi, sağlık bilgisi kaynakları, egzersiz ve beslenme önerileri (medikal tavsiye değildir)",
-      "icon": "❤️",
-      "use_cases": ["Wellness planlama", "Fitness takibi", "Beslenme bilgisi"]
-    }
-  },
-  "how_it_works": {
-    "title": "Nasıl Çalışır?",
-    "step1": {
-      "title": "Danışman Seç",
-      "description": "8 uzman danışman arasından ihtiyacınıza uygun olanı seçin"
-    },
-    "step2": {
-      "title": "Sorunuzu Sorun",
-      "description": "Danışmanınıza detaylı soru sorun veya senaryo paylaşın"
-    },
-    "step3": {
-      "title": "Uzman Öneriler Alın",
-      "description": "LyDian AI, uzmanlık alanına göre kapsamlı analiz ve öneriler sunar"
-    }
-  },
-  "features": {
-    "specialized": {
-      "title": "8 Uzman Modül",
-      "description": "Her biri kendi alanında uzmanlaşmış 8 farklı AI danışman modülü"
-    },
-    "contextual": {
-      "title": "Bağlamsal Analiz",
-      "description": "Her danışman, sorununuzu tüm boyutlarıyla analiz eder ve bağlama uygun çözümler sunar"
-    },
-    "actionable": {
-      "title": "Eyleme Dönük Öneriler",
-      "description": "Teorik bilgi değil, uygulanabilir adım adım eylem planları"
-    },
-    "multi_domain": {
-      "title": "Çok Alanlı Uzmanlık",
-      "description": "İş, kişisel gelişim, kültür, sağlık ve daha fazlasında danışmanlık"
-    },
-    "data_driven": {
-      "title": "Veri Odaklı",
-      "description": "Kararlarınızı desteklemek için veri analizi ve görselleştirme araçları"
-    },
-    "personalized": {
-      "title": "Kişiselleştirilmiş",
-      "description": "Sizin sektörünüz, deneyiminiz ve hedeflerinize özel danışmanlık"
-    },
-    "continuous": {
-      "title": "Sürekli Destek",
-      "description": "İlk danışmadan uygulamaya kadar tüm süreçte yanınızda"
-    },
-    "collaborative": {
-      "title": "Ekip İşbirliği",
-      "description": "Danışmanlık oturumlarını ekibinizle paylaşın ve birlikte çalışın"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Keşfet",
-      "price": "₺0/ay",
-      "features": [
-        "3 danışman erişimi",
-        "Günde 10 soru",
-        "Temel analizler",
-        "30 gün geçmiş"
-      ],
-      "cta": "Ücretsiz Başla"
-    },
-    "pro": {
-      "title": "Profesyonel",
-      "price": "₺299/ay",
-      "features": [
-        "8 danışmanın tümüne erişim",
-        "Sınırsız soru",
-        "Gelişmiş analizler",
-        "Veri görselleştirme",
-        "Ekip işbirliği (5 kişi)",
-        "Sınırsız geçmiş",
-        "Öncelikli destek"
-      ],
-      "cta": "Profesyonel'e Geç",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Kurumsal",
-      "price": "Özel Fiyat",
-      "features": [
-        "Tüm Pro özellikler",
-        "Sınırsız ekip üyesi",
-        "API erişimi",
-        "Özel danışman modülleri",
-        "SSO desteği",
-        "Eğitim ve onboarding",
-        "SLA garantisi",
-        "Özel hesap yöneticisi"
-      ],
-      "cta": "Satış Ekibimizle İletişime Geçin"
-    }
-  },
-  "stats": {
-    "users": "500B+",
-    "users_label": "Aktif Kullanıcı",
-    "sessions": "2M+",
-    "sessions_label": "Danışmanlık Oturumu",
-    "satisfaction": "%96",
-    "satisfaction_label": "Memnuniyet Oranı",
-    "advisors": "8",
-    "advisors_label": "Uzman Danışman Modülü"
-  },
-  "testimonials": {
-    "title": "Kullanıcılarımızdan",
-    "user1": {
-      "name": "Mehmet Yılmaz",
-      "role": "CEO, TechStartup",
-      "comment": "Startup Hızlandırıcı sayesinde seed fonumuzu bulma süremiz 6 aydan 2 aya düştü. Pitch deck danışmanlığı mükemmeldi.",
-      "rating": 5
-    },
-    "user2": {
-      "name": "Ayşe Kaya",
-      "role": "İnsan Kaynakları Müdürü",
-      "comment": "Kültürel Danışman, uluslararası ekip yönetimimizde çığır açtı. Her ülkenin iş kültürü hakkında detaylı bilgi alabiliyor olma harika.",
-      "rating": 5
-    },
-    "user3": {
-      "name": "Can Demir",
-      "role": "Proje Yöneticisi",
-      "comment": "Toplantı İçgörüleri ile toplantılarımız %40 daha verimli. Aksiyon maddelerini otomatik çıkarması zaman tasarrufu sağlıyor.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Sıkça Sorulan Sorular",
-    "q1": {
-      "question": "Her danışman hangi dilleri destekler?",
-      "answer": "Tüm 8 danışman modülü Türkçe, İngilizce, Almanca, Arapça, Rusça ve Çince dahil 40+ dilde hizmet verir. Kültürel Danışman, her dilin kültürel nüanslarını da anlayarak yanıt verir."
-    },
-    "q2": {
-      "question": "Danışmanlık oturumlarım gizli mi?",
-      "answer": "Evet. Tüm danışmanlık oturumlarınız uçtan uca şifreleme ile korunur. Verileriniz model eğitimi için kullanılmaz ve üçüncü taraflarla paylaşılmaz."
-    },
-    "q3": {
-      "question": "Birden fazla danışmanı aynı anda kullanabilir miyim?",
-      "answer": "Pro ve Enterprise planlarda tüm 8 danışmana eş zamanlı erişebilirsiniz. Örneğin bir iş kararı için hem Karar Destek Matrisi hem de Startup Hızlandırıcı'yı kullanabilirsiniz."
-    },
-    "q4": {
-      "question": "Startup Hızlandırıcı gerçekten fon bulmama yardımcı olur mu?",
-      "answer": "Startup Hızlandırıcı, pitch deck hazırlama, yatırımcı hedefleme, finansal projeksiyon oluşturma ve go-to-market stratejisi konularında rehberlik eder. Fon bulma sürecinizi hızlandırır ancak garantilemez."
-    },
-    "q5": {
-      "question": "Ekip işbirliği nasıl çalışır?",
-      "answer": "Pro planda 5, Enterprise planda sınırsız ekip üyesi ekleyebilirsiniz. Danışmanlık oturumlarını paylaşabilir, yorum yapabilir ve birlikte eylem planları oluşturabilirsiniz."
-    }
-  },
-  "navigation": {
-    "home": "Ana Sayfa",
-    "advisors": "Danışmanlar",
-    "features": "Özellikler",
-    "how_it_works": "Nasıl Çalışır",
-    "pricing": "Fiyatlandırma",
-    "faq": "SSS",
-    "start": "Başla"
-  },
-  "common": {
-    "select_advisor": "Danışman Seç",
-    "start_session": "Oturum Başlat",
-    "ask_question": "Soru Sor",
-    "view_analysis": "Analizi Görüntüle",
-    "export_report": "Rapor Dışa Aktar",
-    "share_team": "Ekiple Paylaş",
-    "save_session": "Oturumu Kaydet",
-    "loading": "Yükleniyor...",
-    "analyzing": "Analiz ediliyor...",
-    "success": "Başarılı",
-    "error": "Hata oluştu",
-    "try_again": "Tekrar Dene",
-    "learn_more": "Daha Fazla Bilgi"
+    "title": "AI Advisor Hub — 8 Uzman AI Danışman | Yapay Zeka Danışmanlık",
+    "description": "8 uzman yapay zeka tek platformda. Kültür, Karar, Sağlık, Bilgi, Öğrenme, Yaşam, Toplantı, Startup. 300K+ danışma. Danışman seç.",
+    "keywords": "ai danışman, uzman yapay zeka, yaşam koçu ai, startup danışmanı, karar matrisi, ai advisor hub"
   },
   "seo": {
-    "breadcrumb_home": "Ana Sayfa",
-    "breadcrumb_current": "Advisor Hub",
-    "og_title": "LyDian Advisor Hub: 8 Uzman Yapay Zeka Danışman Merkezi",
-    "og_description": "İş danışmanlığı, kültürel danışmanlık, karar desteği, startup hızlandırma ve daha fazlası için AI destekli uzman danışmanlar. Ücretsiz deneyin.",
-    "twitter_title": "LyDian Advisor Hub - AI Danışmanlık Platformu",
-    "twitter_description": "8 uzman AI danışman: Kültürel, Karar, Bilgi, Öğrenme, Yaşam Koçu, Toplantı, Startup, Sağlık. Ücretsiz başla!"
+    "og": {
+      "title": "AI Advisor Hub — 8 Uzman AI Danışman | Yapay Zeka Danışmanlık",
+      "description": "8 uzman yapay zeka tek platformda. Kültür, Karar, Sağlık, Bilgi, Öğrenme, Yaşam, Toplantı, Startup. 300K+ danışma. Danışman seç.",
+      "image": "/og-images/advisor-hub-tr.jpg",
+      "type": "website",
+      "locale": "tr_TR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "AI Advisor Hub — 8 Uzman AI Danışman | Yapay Zeka Danışmanlık",
+      "description": "8 uzman yapay zeka tek platformda. Kültür, Karar, Sağlık, Bilgi, Öğrenme, Yaşam, Toplantı, Startup. 300K+ danışma. Danışman seç.",
+      "image": "/og-images/advisor-hub-tr.jpg"
+    },
+    "geo": {
+      "geo.region": "TR",
+      "geo.placename": "İstanbul",
+      "geo.position": "41.0082,28.9784",
+      "ICBM": "41.0082,28.9784"
+    },
+    "canonical": "https://www.ailydian.com/ai-advisor-hub"
   }
 }

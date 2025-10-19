@@ -1,212 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Legal AI: Hukuk Yapay Zeka Asistanı | İçtihat Arama ve Sözleşme Analizi",
-    "description": "LyDian Legal AI, içtihat arama, sözleşme analizi, hukuki araştırma ve belge otomasyonu sunar. Avukatlar için yapay zeka destekli hukuk asistanı.",
-    "keywords": "hukuk yapay zeka, ai avukat asistan, içtihat arama motoru, sözleşme analizi ai, hukuki araştırma platformu, belge otomasyonu, LyDian Legal AI"
-  },
-  "product": {
-    "name": "LyDian Legal AI",
-    "tagline": "Yapay Zeka Destekli Hukuk Asistanı ve İçtihat Arama Motoru",
-    "version": "2.0.0",
-    "category": "Hukuk Yapay Zekası ve Hukuki Araştırma"
-  },
-  "hero": {
-    "title": "Avukatlar İçin Yapay Zeka Destekli Hukuk Asistanı",
-    "subtitle": "İçtihat arama, sözleşme analizi, hukuki araştırma ve belge otomasyonu ile hukuki işlerinizi hızlandırın",
-    "cta_primary": "Ücretsiz Deneyin",
-    "cta_secondary": "Demo İzleyin",
-    "trusted_by": "500+ hukuk bürosu ve 5,000+ avukat tarafından kullanılıyor"
-  },
-  "features": {
-    "case_law_search": {
-      "title": "İçtihat Arama Motoru",
-      "description": "Yargıtay ve bölge adliye mahkemeleri kararlarında anlık arama. Semantik arama ile ilgili içtihatlara kolayca ulaşın",
-      "icon": "⚖️"
-    },
-    "contract_analysis": {
-      "title": "Sözleşme Analizi",
-      "description": "Sözleşmelerdeki riskleri, eksiklikleri ve uyumsuzlukları otomatik tespit edin. Madde madde analiz ve öneriler",
-      "icon": "📄"
-    },
-    "legal_research": {
-      "title": "Hukuki Araştırma Asistanı",
-      "description": "Kanunlar, yönetmelikler ve içtihatlar arasında kapsamlı araştırma yapın. İlgili mevzuata anında erişim",
-      "icon": "🔍"
-    },
-    "document_automation": {
-      "title": "Belge Otomasyonu",
-      "description": "Dilekçe, dava dilekçesi, sözleşme ve diğer hukuki belgeleri otomatik olarak oluşturun",
-      "icon": "📝"
-    },
-    "compliance_check": {
-      "title": "Uyumluluk Kontrolü",
-      "description": "Sözleşme ve belgelerin KVKK, TTK, TBK ve diğer mevzuata uyumluluğunu kontrol edin",
-      "icon": "✓"
-    },
-    "citation_management": {
-      "title": "Atıf Yönetimi",
-      "description": "İçtihat ve mevzuat atıflarını otomatik olarak yönetin. Standart atıf formatında kaynak gösterme",
-      "icon": "📚"
-    },
-    "multi_jurisdiction": {
-      "title": "Çoklu Yargı Desteği",
-      "description": "Türk hukuku, AB hukuku ve uluslararası hukuk kaynaklarına erişim",
-      "icon": "🌍"
-    },
-    "ai_legal_opinion": {
-      "title": "Yapay Zeka Hukuki Görüş",
-      "description": "Dava dosyanızı analiz ederek olası sonuçlar ve strateji önerileri sunun",
-      "icon": "🤖"
-    }
-  },
-  "practice_areas": {
-    "title": "Uzmanlık Alanları",
-    "commercial": "Ticaret Hukuku",
-    "civil": "Medeni Hukuk",
-    "criminal": "Ceza Hukuku",
-    "labor": "İş Hukuku",
-    "tax": "Vergi Hukuku",
-    "administrative": "İdare Hukuku",
-    "ip": "Fikri Mülkiyet",
-    "corporate": "Şirketler Hukuku"
-  },
-  "how_it_works": {
-    "title": "Nasıl Çalışır?",
-    "step1": {
-      "title": "Sorunuzu Tanımlayın",
-      "description": "Hukuki sorunuzu veya araştırma ihtiyacınızı sisteme girin"
-    },
-    "step2": {
-      "title": "Yapay Zeka Analizi",
-      "description": "LyDian AI mevzuat ve içtihat veritabanlarında kapsamlı analiz yapar"
-    },
-    "step3": {
-      "title": "Sonuçları İnceleyin",
-      "description": "İlgili içtihatlar, mevzuat ve hukuki görüş önerilerini görüntüleyin"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Bireysel",
-      "price": "Ücretsiz",
-      "features": [
-        "Temel içtihat arama",
-        "Günde 10 arama",
-        "Temel sözleşme analizi",
-        "7 günlük geçmiş"
-      ],
-      "cta": "Hemen Başla"
-    },
-    "pro": {
-      "title": "Profesyonel",
-      "price": "₺1.999/ay",
-      "features": [
-        "Sınırsız içtihat arama",
-        "Gelişmiş sözleşme analizi",
-        "Belge otomasyonu",
-        "Uyumluluk kontrolü",
-        "Öncelikli destek",
-        "PDF rapor indirme"
-      ],
-      "cta": "Profesyonel'e Geç",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Hukuk Bürosu",
-      "price": "Özel Fiyatlandırma",
-      "features": [
-        "Tüm Profesyonel özellikler",
-        "Özel veritabanı entegrasyonu",
-        "Çoklu kullanıcı yönetimi",
-        "Özel eğitim",
-        "SLA garantisi",
-        "7/24 teknik destek"
-      ],
-      "cta": "Satış Ekibiyle İletişime Geç"
-    }
-  },
-  "stats": {
-    "law_firms": "500+",
-    "law_firms_label": "Hukuk Bürosu",
-    "lawyers": "5,000+",
-    "lawyers_label": "Avukat",
-    "cases": "500K+",
-    "cases_label": "İçtihat",
-    "accuracy": "%96.3",
-    "accuracy_label": "İçtihat Eşleştirme Doğruluğu"
-  },
-  "testimonials": {
-    "title": "Avukatlardan",
-    "lawyer1": {
-      "name": "Av. Mehmet Yılmaz",
-      "role": "Ticaret Hukuku Avukatı",
-      "comment": "LyDian Legal AI içtihat araştırmalarımı saatlerce hızlandırdı. Vazgeçilmez bir araç.",
-      "rating": 5
-    },
-    "lawyer2": {
-      "name": "Av. Ayşe Kaya",
-      "role": "Medeni Hukuk Avukatı",
-      "comment": "Sözleşme analizi özelliği müthiş. Gözden kaçabilecek riskleri hemen tespit ediyor.",
-      "rating": 5
-    },
-    "lawyer3": {
-      "name": "Av. Can Demir",
-      "role": "Ceza Hukuku Avukatı",
-      "comment": "Dava stratejisi geliştirmede çok yardımcı oluyor. İlgili içtihatlara anında ulaşıyorum.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Sıkça Sorulan Sorular",
-    "q1": {
-      "question": "LyDian Legal AI avukatın yerini alır mı?",
-      "answer": "Hayır. LyDian Legal AI bir hukuki araştırma ve karar destek aracıdır. Avukatların işini kolaylaştırır ancak yerini alamaz. Nihai hukuki değerlendirme her zaman avukat tarafından yapılmalıdır."
-    },
-    "q2": {
-      "question": "Veriler gizli tutuluyor mu?",
-      "answer": "Evet. Tüm veriler 256-bit SSL şifreleme ile korunur ve KVKK'ya uygun olarak işlenir. Müvekkil bilgileri asla üçüncü taraflarla paylaşılmaz."
-    },
-    "q3": {
-      "question": "Hangi mahkeme kararlarına erişim sağlanıyor?",
-      "answer": "Yargıtay, bölge adliye mahkemeleri, Anayasa Mahkemesi ve AİHM kararlarına erişim sağlanır. Sürekli güncellenen veritabanı ile en güncel içtihatlara ulaşabilirsiniz."
-    },
-    "q4": {
-      "question": "Belgeler avukata özel mi oluşturuluyor?",
-      "answer": "Evet. Belge otomasyonu sizin girdiğiniz bilgilere göre özelleştirilmiş belgeler oluşturur. Her belge avukatın son kontrolünden geçmelidir."
-    },
-    "q5": {
-      "question": "İçtihat eşleştirme doğruluğu nedir?",
-      "answer": "Semantik arama teknolojisi ile %96.3 doğruluk oranında ilgili içtihatlara ulaşabilirsiniz. Sistem sürekli öğrenerek kendini geliştirir."
-    }
-  },
-  "navigation": {
-    "home": "Ana Sayfa",
-    "features": "Özellikler",
-    "practice_areas": "Uzmanlık Alanları",
-    "how_it_works": "Nasıl Çalışır",
-    "pricing": "Fiyatlandırma",
-    "faq": "SSS",
-    "dashboard": "Panel"
-  },
-  "common": {
-    "search_case_law": "İçtihat Ara",
-    "analyze_contract": "Sözleşme Analiz Et",
-    "create_document": "Belge Oluştur",
-    "view_report": "Raporu Görüntüle",
-    "download_pdf": "PDF İndir",
-    "share": "Paylaş",
-    "loading": "Yükleniyor...",
-    "error": "Bir hata oluştu",
-    "success": "Başarılı",
-    "try_again": "Tekrar Dene",
-    "learn_more": "Daha Fazla Bilgi"
+    "title": "LyDian Legal AI — Hukuki Yapay Zeka Danışmanı | AI Avukat",
+    "description": "AI hukuk danışmanlığı. 1M+ mahkeme kararı analizi, sözleşme inceleme, mevzuat tarama. 100K+ danışma. Hukuki danışma al.",
+    "keywords": "hukuki yapay zeka, ai avukat, hukuk danışmanı ai, sözleşme analizi, mahkeme kararları, lydian legal"
   },
   "seo": {
-    "breadcrumb_home": "Ana Sayfa",
-    "breadcrumb_current": "Legal AI",
-    "og_title": "LyDian Legal AI: Yapay Zeka Destekli Hukuk Asistanı ve İçtihat Arama Motoru",
-    "og_description": "İçtihat arama, sözleşme analizi ve hukuki araştırma ile avukatların yanında. LyDian AI ile ücretsiz deneyin.",
-    "twitter_title": "LyDian Legal AI - Hukuk Yapay Zeka Asistanı",
-    "twitter_description": "Avukatlar için yapay zeka destekli içtihat arama ve sözleşme analizi platformu."
+    "og": {
+      "title": "LyDian Legal AI — Hukuki Yapay Zeka Danışmanı | AI Avukat",
+      "description": "AI hukuk danışmanlığı. 1M+ mahkeme kararı analizi, sözleşme inceleme, mevzuat tarama. 100K+ danışma. Hukuki danışma al.",
+      "image": "/og-images/legal-ai-tr.jpg",
+      "type": "website",
+      "locale": "tr_TR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian Legal AI — Hukuki Yapay Zeka Danışmanı | AI Avukat",
+      "description": "AI hukuk danışmanlığı. 1M+ mahkeme kararı analizi, sözleşme inceleme, mevzuat tarama. 100K+ danışma. Hukuki danışma al.",
+      "image": "/og-images/legal-ai-tr.jpg"
+    },
+    "geo": {
+      "geo.region": "TR",
+      "geo.placename": "İstanbul",
+      "geo.position": "41.0082,28.9784",
+      "ICBM": "41.0082,28.9784"
+    },
+    "canonical": "https://www.ailydian.com/legal-expert"
   }
 }

@@ -1,0 +1,1850 @@
+{
+  "homepage": {
+    "tr": {
+      "title": "LyDian AI — Ödüllü AI Ekosistemi | Türkiye'nin Yapay Zeka Platformu",
+      "description": "Tıbbi AI, Hukuki AI, IQ Testi ve 8 Uzman Danışman. 40+ dilde çok modelli yapay zeka. Hemen ücretsiz deneyin.",
+      "keywords": "yapay zeka platformu, ai türkiye, tıbbi yapay zeka, hukuki ai, iq testi ai, çok dilli ai, lydian ai",
+      "og": {
+        "title": "LyDian AI — Ödüllü AI Ekosistemi | Türkiye'nin Yapay Zeka Platformu",
+        "description": "Tıbbi AI, Hukuki AI, IQ Testi ve 8 Uzman Danışman. 40+ dilde çok modelli yapay zeka. Hemen ücretsiz deneyin.",
+        "image": "/og-images/homepage-tr.jpg",
+        "type": "website",
+        "locale": "tr_TR"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian AI — Ödüllü AI Ekosistemi | Türkiye'nin Yapay Zeka Platformu",
+        "description": "Tıbbi AI, Hukuki AI, IQ Testi ve 8 Uzman Danışman. 40+ dilde çok modelli yapay zeka. Hemen ücretsiz deneyin.",
+        "image": "/og-images/homepage-tr.jpg"
+      },
+      "geo": {
+        "geo.region": "TR",
+        "geo.placename": "İstanbul",
+        "geo.position": "41.0082,28.9784",
+        "ICBM": "41.0082,28.9784"
+      },
+      "canonical": "https://www.ailydian.com/",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/?lang=zh"
+        }
+      ]
+    },
+    "en": {
+      "title": "LyDian AI — Award-Winning AI Ecosystem | AI Platform",
+      "description": "Medical AI, Legal AI, IQ Testing & 8 Expert Advisors. Multi-model AI solutions in 40+ languages. Try free now.",
+      "keywords": "ai platform, artificial intelligence, medical ai, legal ai, iq test ai, multilingual ai, lydian ai",
+      "og": {
+        "title": "LyDian AI — Award-Winning AI Ecosystem | AI Platform",
+        "description": "Medical AI, Legal AI, IQ Testing & 8 Expert Advisors. Multi-model AI solutions in 40+ languages. Try free now.",
+        "image": "/og-images/homepage-en.jpg",
+        "type": "website",
+        "locale": "en_US"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian AI — Award-Winning AI Ecosystem | AI Platform",
+        "description": "Medical AI, Legal AI, IQ Testing & 8 Expert Advisors. Multi-model AI solutions in 40+ languages. Try free now.",
+        "image": "/og-images/homepage-en.jpg"
+      },
+      "geo": {
+        "geo.region": "US",
+        "geo.placename": "California",
+        "geo.position": "37.7749,-122.4194",
+        "ICBM": "37.7749,-122.4194"
+      },
+      "canonical": "https://www.ailydian.com/",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/?lang=zh"
+        }
+      ]
+    },
+    "de": {
+      "title": "LyDian AI — Preisgekrönte KI-Plattform | KI-Ökosystem",
+      "description": "Medizinische KI, Rechts-KI, IQ-Test & 8 Experten-Berater. Multi-Modell-KI in 40+ Sprachen. Jetzt kostenlos testen.",
+      "keywords": "ki plattform, künstliche intelligenz, medizinische ki, rechts ki, iq test ki, mehrsprachige ki, lydian ai",
+      "og": {
+        "title": "LyDian AI — Preisgekrönte KI-Plattform | KI-Ökosystem",
+        "description": "Medizinische KI, Rechts-KI, IQ-Test & 8 Experten-Berater. Multi-Modell-KI in 40+ Sprachen. Jetzt kostenlos testen.",
+        "image": "/og-images/homepage-de.jpg",
+        "type": "website",
+        "locale": "de_DE"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian AI — Preisgekrönte KI-Plattform | KI-Ökosystem",
+        "description": "Medizinische KI, Rechts-KI, IQ-Test & 8 Experten-Berater. Multi-Modell-KI in 40+ Sprachen. Jetzt kostenlos testen.",
+        "image": "/og-images/homepage-de.jpg"
+      },
+      "geo": {
+        "geo.region": "DE",
+        "geo.placename": "Berlin",
+        "geo.position": "52.5200,13.4050",
+        "ICBM": "52.5200,13.4050"
+      },
+      "canonical": "https://www.ailydian.com/",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/?lang=zh"
+        }
+      ]
+    },
+    "ar": {
+      "title": "LyDian AI — منصة الذكاء الاصطناعي الحائزة على جوائز",
+      "description": "الذكاء الاصطناعي الطبي، القانوني، اختبار الذكاء و 8 مستشارين. حلول AI متعددة بـ 40+ لغة. جرب مجانًا الآن.",
+      "keywords": "منصة الذكاء الاصطناعي, الذكاء الاصطناعي الطبي, الذكاء الاصطناعي القانوني, اختبار الذكاء, lydian ai",
+      "og": {
+        "title": "LyDian AI — منصة الذكاء الاصطناعي الحائزة على جوائز",
+        "description": "الذكاء الاصطناعي الطبي، القانوني، اختبار الذكاء و 8 مستشارين. حلول AI متعددة بـ 40+ لغة. جرب مجانًا الآن.",
+        "image": "/og-images/homepage-ar.jpg",
+        "type": "website",
+        "locale": "ar_SA"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian AI — منصة الذكاء الاصطناعي الحائزة على جوائز",
+        "description": "الذكاء الاصطناعي الطبي، القانوني، اختبار الذكاء و 8 مستشارين. حلول AI متعددة بـ 40+ لغة. جرب مجانًا الآن.",
+        "image": "/og-images/homepage-ar.jpg"
+      },
+      "geo": {
+        "geo.region": "SA",
+        "geo.placename": "Riyadh",
+        "geo.position": "24.7136,46.6753",
+        "ICBM": "24.7136,46.6753"
+      },
+      "canonical": "https://www.ailydian.com/",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/?lang=zh"
+        }
+      ]
+    },
+    "ru": {
+      "title": "LyDian AI — Награжденная ИИ Платформа | ИИ Экосистема",
+      "description": "Медицинский ИИ, Юридический ИИ, IQ Тест и 8 Экспертов. Мультимодельный ИИ на 40+ языках. Попробуйте бесплатно.",
+      "keywords": "платформа ии, искусственный интеллект, медицинский ии, юридический ии, тест iq, многоязычный ии, lydian ai",
+      "og": {
+        "title": "LyDian AI — Награжденная ИИ Платформа | ИИ Экосистема",
+        "description": "Медицинский ИИ, Юридический ИИ, IQ Тест и 8 Экспертов. Мультимодельный ИИ на 40+ языках. Попробуйте бесплатно.",
+        "image": "/og-images/homepage-ru.jpg",
+        "type": "website",
+        "locale": "ru_RU"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian AI — Награжденная ИИ Платформа | ИИ Экосистема",
+        "description": "Медицинский ИИ, Юридический ИИ, IQ Тест и 8 Экспертов. Мультимодельный ИИ на 40+ языках. Попробуйте бесплатно.",
+        "image": "/og-images/homepage-ru.jpg"
+      },
+      "geo": {
+        "geo.region": "RU",
+        "geo.placename": "Moscow",
+        "geo.position": "55.7558,37.6173",
+        "ICBM": "55.7558,37.6173"
+      },
+      "canonical": "https://www.ailydian.com/",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/?lang=zh"
+        }
+      ]
+    },
+    "zh": {
+      "title": "LyDian AI — 获奖人工智能平台 | AI生态系统",
+      "description": "医疗AI、法律AI、智商测试及8位专家顾问。40+种语言的多模型AI解决方案。立即免费试用。",
+      "keywords": "人工智能平台, 医疗人工智能, 法律人工智能, 智商测试, 多语言人工智能, lydian ai",
+      "og": {
+        "title": "LyDian AI — 获奖人工智能平台 | AI生态系统",
+        "description": "医疗AI、法律AI、智商测试及8位专家顾问。40+种语言的多模型AI解决方案。立即免费试用。",
+        "image": "/og-images/homepage-zh.jpg",
+        "type": "website",
+        "locale": "zh_CN"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian AI — 获奖人工智能平台 | AI生态系统",
+        "description": "医疗AI、法律AI、智商测试及8位专家顾问。40+种语言的多模型AI解决方案。立即免费试用。",
+        "image": "/og-images/homepage-zh.jpg"
+      },
+      "geo": {
+        "geo.region": "CN",
+        "geo.placename": "Beijing",
+        "geo.position": "39.9042,116.4074",
+        "ICBM": "39.9042,116.4074"
+      },
+      "canonical": "https://www.ailydian.com/",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/?lang=zh"
+        }
+      ]
+    }
+  },
+  "lydian-iq": {
+    "tr": {
+      "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+      "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz test başlat.",
+      "keywords": "iq testi, zeka testi online, ai iq test, zeka ölçümü, ücretsiz iq testi, lydian iq",
+      "og": {
+        "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+        "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz test başlat.",
+        "image": "/og-images/lydian-iq-tr.jpg",
+        "type": "website",
+        "locale": "tr_TR"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+        "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz test başlat.",
+        "image": "/og-images/lydian-iq-tr.jpg"
+      },
+      "geo": {
+        "geo.region": "TR",
+        "geo.placename": "İstanbul",
+        "geo.position": "41.0082,28.9784",
+        "ICBM": "41.0082,28.9784"
+      },
+      "canonical": "https://www.ailydian.com/lydian-iq",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/lydian-iq?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/lydian-iq?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/lydian-iq?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/lydian-iq?lang=zh"
+        }
+      ]
+    },
+    "en": {
+      "title": "LyDian IQ — Scientific AI Intelligence Test | Online IQ",
+      "description": "AI-powered scientific intelligence test. Multi-model analysis, detailed reports. 1M+ users, 98% accuracy. Start free test.",
+      "keywords": "iq test, intelligence test online, ai iq test, intelligence measurement, free iq test, lydian iq",
+      "og": {
+        "title": "LyDian IQ — Scientific AI Intelligence Test | Online IQ",
+        "description": "AI-powered scientific intelligence test. Multi-model analysis, detailed reports. 1M+ users, 98% accuracy. Start free test.",
+        "image": "/og-images/lydian-iq-en.jpg",
+        "type": "website",
+        "locale": "en_US"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian IQ — Scientific AI Intelligence Test | Online IQ",
+        "description": "AI-powered scientific intelligence test. Multi-model analysis, detailed reports. 1M+ users, 98% accuracy. Start free test.",
+        "image": "/og-images/lydian-iq-en.jpg"
+      },
+      "geo": {
+        "geo.region": "US",
+        "geo.placename": "California",
+        "geo.position": "37.7749,-122.4194",
+        "ICBM": "37.7749,-122.4194"
+      },
+      "canonical": "https://www.ailydian.com/lydian-iq",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/lydian-iq?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/lydian-iq?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/lydian-iq?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/lydian-iq?lang=zh"
+        }
+      ]
+    },
+    "de": {
+      "title": "LyDian IQ — Wissenschaftlicher KI-Intelligenztest | Online IQ",
+      "description": "KI-gestützter wissenschaftlicher Intelligenztest. Multi-Modell-Analyse, detaillierte Berichte. 1M+ Nutzer, 98% Genauigkeit.",
+      "keywords": "iq test, intelligenztest online, ki iq test, intelligenzmessung, kostenloser iq test, lydian iq",
+      "og": {
+        "title": "LyDian IQ — Wissenschaftlicher KI-Intelligenztest | Online IQ",
+        "description": "KI-gestützter wissenschaftlicher Intelligenztest. Multi-Modell-Analyse, detaillierte Berichte. 1M+ Nutzer, 98% Genauigkeit.",
+        "image": "/og-images/lydian-iq-de.jpg",
+        "type": "website",
+        "locale": "de_DE"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian IQ — Wissenschaftlicher KI-Intelligenztest | Online IQ",
+        "description": "KI-gestützter wissenschaftlicher Intelligenztest. Multi-Modell-Analyse, detaillierte Berichte. 1M+ Nutzer, 98% Genauigkeit.",
+        "image": "/og-images/lydian-iq-de.jpg"
+      },
+      "geo": {
+        "geo.region": "DE",
+        "geo.placename": "Berlin",
+        "geo.position": "52.5200,13.4050",
+        "ICBM": "52.5200,13.4050"
+      },
+      "canonical": "https://www.ailydian.com/lydian-iq",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/lydian-iq?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/lydian-iq?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/lydian-iq?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/lydian-iq?lang=zh"
+        }
+      ]
+    },
+    "ar": {
+      "title": "LyDian IQ — اختبار الذكاء العلمي بالذكاء الاصطناعي",
+      "description": "اختبار ذكاء علمي بالذكاء الاصطناعي. تحليل متعدد النماذج، تقارير مفصلة. +1 مليون مستخدم، دقة 98%. ابدأ الاختبار المجاني.",
+      "keywords": "اختبار الذكاء, اختبار ذكاء اونلاين, اختبار iq بالذكاء الاصطناعي, قياس الذكاء, lydian iq",
+      "og": {
+        "title": "LyDian IQ — اختبار الذكاء العلمي بالذكاء الاصطناعي",
+        "description": "اختبار ذكاء علمي بالذكاء الاصطناعي. تحليل متعدد النماذج، تقارير مفصلة. +1 مليون مستخدم، دقة 98%. ابدأ الاختبار المجاني.",
+        "image": "/og-images/lydian-iq-ar.jpg",
+        "type": "website",
+        "locale": "ar_SA"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian IQ — اختبار الذكاء العلمي بالذكاء الاصطناعي",
+        "description": "اختبار ذكاء علمي بالذكاء الاصطناعي. تحليل متعدد النماذج، تقارير مفصلة. +1 مليون مستخدم، دقة 98%. ابدأ الاختبار المجاني.",
+        "image": "/og-images/lydian-iq-ar.jpg"
+      },
+      "geo": {
+        "geo.region": "SA",
+        "geo.placename": "Riyadh",
+        "geo.position": "24.7136,46.6753",
+        "ICBM": "24.7136,46.6753"
+      },
+      "canonical": "https://www.ailydian.com/lydian-iq",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/lydian-iq?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/lydian-iq?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/lydian-iq?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/lydian-iq?lang=zh"
+        }
+      ]
+    },
+    "ru": {
+      "title": "LyDian IQ — Научный ИИ Тест Интеллекта | Онлайн IQ",
+      "description": "ИИ тест интеллекта. Мультимодельный анализ, детальные отчеты. 1М+ пользователей, 98% точность. Начать бесплатный тест.",
+      "keywords": "тест iq, тест интеллекта онлайн, ии тест iq, измерение интеллекта, бесплатный тест iq, lydian iq",
+      "og": {
+        "title": "LyDian IQ — Научный ИИ Тест Интеллекта | Онлайн IQ",
+        "description": "ИИ тест интеллекта. Мультимодельный анализ, детальные отчеты. 1М+ пользователей, 98% точность. Начать бесплатный тест.",
+        "image": "/og-images/lydian-iq-ru.jpg",
+        "type": "website",
+        "locale": "ru_RU"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian IQ — Научный ИИ Тест Интеллекта | Онлайн IQ",
+        "description": "ИИ тест интеллекта. Мультимодельный анализ, детальные отчеты. 1М+ пользователей, 98% точность. Начать бесплатный тест.",
+        "image": "/og-images/lydian-iq-ru.jpg"
+      },
+      "geo": {
+        "geo.region": "RU",
+        "geo.placename": "Moscow",
+        "geo.position": "55.7558,37.6173",
+        "ICBM": "55.7558,37.6173"
+      },
+      "canonical": "https://www.ailydian.com/lydian-iq",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/lydian-iq?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/lydian-iq?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/lydian-iq?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/lydian-iq?lang=zh"
+        }
+      ]
+    },
+    "zh": {
+      "title": "LyDian IQ — 科学AI智力测试 | 在线IQ测试",
+      "description": "AI驱动的科学智力测试。多模型分析、详细报告。100万+用户，98%准确率。开始免费测试。",
+      "keywords": "智商测试, 在线智力测试, ai智商测试, 智力测量, 免费智商测试, lydian iq",
+      "og": {
+        "title": "LyDian IQ — 科学AI智力测试 | 在线IQ测试",
+        "description": "AI驱动的科学智力测试。多模型分析、详细报告。100万+用户，98%准确率。开始免费测试。",
+        "image": "/og-images/lydian-iq-zh.jpg",
+        "type": "website",
+        "locale": "zh_CN"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian IQ — 科学AI智力测试 | 在线IQ测试",
+        "description": "AI驱动的科学智力测试。多模型分析、详细报告。100万+用户，98%准确率。开始免费测试。",
+        "image": "/og-images/lydian-iq-zh.jpg"
+      },
+      "geo": {
+        "geo.region": "CN",
+        "geo.placename": "Beijing",
+        "geo.position": "39.9042,116.4074",
+        "ICBM": "39.9042,116.4074"
+      },
+      "canonical": "https://www.ailydian.com/lydian-iq",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/lydian-iq?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/lydian-iq?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/lydian-iq?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/lydian-iq?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/lydian-iq?lang=zh"
+        }
+      ]
+    }
+  },
+  "medical-expert": {
+    "tr": {
+      "title": "Medical Expert — 24/7 AI Tıbbi Asistan | Sağlık Danışmanlığı",
+      "description": "AI destekli sağlık danışmanlığı. Çok modelli tanı desteği, tıbbi analiz, acil triage. 500K+ danışma, 50+ uzmanlık. Hemen danış.",
+      "keywords": "tıbbi yapay zeka, ai doktor, sağlık danışmanı ai, tıbbi tanı ai, medical expert, lydian medical",
+      "og": {
+        "title": "Medical Expert — 24/7 AI Tıbbi Asistan | Sağlık Danışmanlığı",
+        "description": "AI destekli sağlık danışmanlığı. Çok modelli tanı desteği, tıbbi analiz, acil triage. 500K+ danışma, 50+ uzmanlık. Hemen danış.",
+        "image": "/og-images/medical-expert-tr.jpg",
+        "type": "website",
+        "locale": "tr_TR"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Medical Expert — 24/7 AI Tıbbi Asistan | Sağlık Danışmanlığı",
+        "description": "AI destekli sağlık danışmanlığı. Çok modelli tanı desteği, tıbbi analiz, acil triage. 500K+ danışma, 50+ uzmanlık. Hemen danış.",
+        "image": "/og-images/medical-expert-tr.jpg"
+      },
+      "geo": {
+        "geo.region": "TR",
+        "geo.placename": "İstanbul",
+        "geo.position": "41.0082,28.9784",
+        "ICBM": "41.0082,28.9784"
+      },
+      "canonical": "https://www.ailydian.com/medical-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/medical-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/medical-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/medical-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/medical-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/medical-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/medical-expert?lang=zh"
+        }
+      ]
+    },
+    "en": {
+      "title": "Medical Expert — 24/7 AI Medical Assistant | Health Consultation",
+      "description": "AI-powered health consultation. Multi-model diagnostic support, medical analysis, emergency triage. 500K+ consultations, 50+ specialties.",
+      "keywords": "medical ai, ai doctor, health advisor ai, medical diagnosis ai, medical expert, lydian medical",
+      "og": {
+        "title": "Medical Expert — 24/7 AI Medical Assistant | Health Consultation",
+        "description": "AI-powered health consultation. Multi-model diagnostic support, medical analysis, emergency triage. 500K+ consultations, 50+ specialties.",
+        "image": "/og-images/medical-expert-en.jpg",
+        "type": "website",
+        "locale": "en_US"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Medical Expert — 24/7 AI Medical Assistant | Health Consultation",
+        "description": "AI-powered health consultation. Multi-model diagnostic support, medical analysis, emergency triage. 500K+ consultations, 50+ specialties.",
+        "image": "/og-images/medical-expert-en.jpg"
+      },
+      "geo": {
+        "geo.region": "US",
+        "geo.placename": "California",
+        "geo.position": "37.7749,-122.4194",
+        "ICBM": "37.7749,-122.4194"
+      },
+      "canonical": "https://www.ailydian.com/medical-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/medical-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/medical-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/medical-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/medical-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/medical-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/medical-expert?lang=zh"
+        }
+      ]
+    },
+    "de": {
+      "title": "Medical Expert — 24/7 KI Medizinischer Assistent | Gesundheitsberatung",
+      "description": "KI-gestützte Gesundheitsberatung. Multi-Modell-Diagnoseunterstützung, medizinische Analyse, Notfall-Triage. 500K+ Beratungen.",
+      "keywords": "medizinische ki, ki arzt, gesundheitsberater ki, medizinische diagnose ki, medical expert, lydian medical",
+      "og": {
+        "title": "Medical Expert — 24/7 KI Medizinischer Assistent | Gesundheitsberatung",
+        "description": "KI-gestützte Gesundheitsberatung. Multi-Modell-Diagnoseunterstützung, medizinische Analyse, Notfall-Triage. 500K+ Beratungen.",
+        "image": "/og-images/medical-expert-de.jpg",
+        "type": "website",
+        "locale": "de_DE"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Medical Expert — 24/7 KI Medizinischer Assistent | Gesundheitsberatung",
+        "description": "KI-gestützte Gesundheitsberatung. Multi-Modell-Diagnoseunterstützung, medizinische Analyse, Notfall-Triage. 500K+ Beratungen.",
+        "image": "/og-images/medical-expert-de.jpg"
+      },
+      "geo": {
+        "geo.region": "DE",
+        "geo.placename": "Berlin",
+        "geo.position": "52.5200,13.4050",
+        "ICBM": "52.5200,13.4050"
+      },
+      "canonical": "https://www.ailydian.com/medical-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/medical-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/medical-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/medical-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/medical-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/medical-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/medical-expert?lang=zh"
+        }
+      ]
+    },
+    "ar": {
+      "title": "Medical Expert — مساعد طبي بالذكاء الاصطناعي على مدار الساعة",
+      "description": "استشارة صحية بالذكاء الاصطناعي. دعم تشخيصي متعدد النماذج، تحليل طبي، فرز طوارئ. +500 ألف استشارة، +50 تخصصًا.",
+      "keywords": "الذكاء الاصطناعي الطبي, طبيب ذكاء اصطناعي, مستشار صحي ai, تشخيص طبي ai, medical expert",
+      "og": {
+        "title": "Medical Expert — مساعد طبي بالذكاء الاصطناعي على مدار الساعة",
+        "description": "استشارة صحية بالذكاء الاصطناعي. دعم تشخيصي متعدد النماذج، تحليل طبي، فرز طوارئ. +500 ألف استشارة، +50 تخصصًا.",
+        "image": "/og-images/medical-expert-ar.jpg",
+        "type": "website",
+        "locale": "ar_SA"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Medical Expert — مساعد طبي بالذكاء الاصطناعي على مدار الساعة",
+        "description": "استشارة صحية بالذكاء الاصطناعي. دعم تشخيصي متعدد النماذج، تحليل طبي، فرز طوارئ. +500 ألف استشارة، +50 تخصصًا.",
+        "image": "/og-images/medical-expert-ar.jpg"
+      },
+      "geo": {
+        "geo.region": "SA",
+        "geo.placename": "Riyadh",
+        "geo.position": "24.7136,46.6753",
+        "ICBM": "24.7136,46.6753"
+      },
+      "canonical": "https://www.ailydian.com/medical-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/medical-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/medical-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/medical-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/medical-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/medical-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/medical-expert?lang=zh"
+        }
+      ]
+    },
+    "ru": {
+      "title": "Medical Expert — 24/7 ИИ Медицинский Ассистент | Консультация",
+      "description": "ИИ медицинская консультация. Мультимодельная диагностика, медицинский анализ, экстренная сортировка. 500К+ консультаций.",
+      "keywords": "медицинский ии, ии доктор, консультант здоровья ии, медицинская диагностика ии, medical expert",
+      "og": {
+        "title": "Medical Expert — 24/7 ИИ Медицинский Ассистент | Консультация",
+        "description": "ИИ медицинская консультация. Мультимодельная диагностика, медицинский анализ, экстренная сортировка. 500К+ консультаций.",
+        "image": "/og-images/medical-expert-ru.jpg",
+        "type": "website",
+        "locale": "ru_RU"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Medical Expert — 24/7 ИИ Медицинский Ассистент | Консультация",
+        "description": "ИИ медицинская консультация. Мультимодельная диагностика, медицинский анализ, экстренная сортировка. 500К+ консультаций.",
+        "image": "/og-images/medical-expert-ru.jpg"
+      },
+      "geo": {
+        "geo.region": "RU",
+        "geo.placename": "Moscow",
+        "geo.position": "55.7558,37.6173",
+        "ICBM": "55.7558,37.6173"
+      },
+      "canonical": "https://www.ailydian.com/medical-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/medical-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/medical-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/medical-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/medical-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/medical-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/medical-expert?lang=zh"
+        }
+      ]
+    },
+    "zh": {
+      "title": "Medical Expert — 24/7 AI医疗助手 | 健康咨询",
+      "description": "AI医疗咨询。多模型诊断支持、医学分析、紧急分诊。50万+次咨询，50+个专科。立即咨询。",
+      "keywords": "医疗人工智能, ai医生, 健康顾问ai, 医疗诊断ai, medical expert, lydian medical",
+      "og": {
+        "title": "Medical Expert — 24/7 AI医疗助手 | 健康咨询",
+        "description": "AI医疗咨询。多模型诊断支持、医学分析、紧急分诊。50万+次咨询，50+个专科。立即咨询。",
+        "image": "/og-images/medical-expert-zh.jpg",
+        "type": "website",
+        "locale": "zh_CN"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Medical Expert — 24/7 AI医疗助手 | 健康咨询",
+        "description": "AI医疗咨询。多模型诊断支持、医学分析、紧急分诊。50万+次咨询，50+个专科。立即咨询。",
+        "image": "/og-images/medical-expert-zh.jpg"
+      },
+      "geo": {
+        "geo.region": "CN",
+        "geo.placename": "Beijing",
+        "geo.position": "39.9042,116.4074",
+        "ICBM": "39.9042,116.4074"
+      },
+      "canonical": "https://www.ailydian.com/medical-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/medical-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/medical-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/medical-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/medical-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/medical-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/medical-expert?lang=zh"
+        }
+      ]
+    }
+  },
+  "chat": {
+    "tr": {
+      "title": "AI Chat — 5 AI Modeli Tek Arayüzde | Çok Modelli Sohbet",
+      "description": "Claude, GPT-4, Gemini birleşik arayüz. Metin, görsel, kod analizi. 1M+ konuşma, 40+ dil desteği. Ücretsiz sohbet başlat.",
+      "keywords": "ai sohbet, yapay zeka chat, çok modelli ai, claude chat, gpt-4 türkçe, ai asistan",
+      "og": {
+        "title": "AI Chat — 5 AI Modeli Tek Arayüzde | Çok Modelli Sohbet",
+        "description": "Claude, GPT-4, Gemini birleşik arayüz. Metin, görsel, kod analizi. 1M+ konuşma, 40+ dil desteği. Ücretsiz sohbet başlat.",
+        "image": "/og-images/chat-tr.jpg",
+        "type": "website",
+        "locale": "tr_TR"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Chat — 5 AI Modeli Tek Arayüzde | Çok Modelli Sohbet",
+        "description": "Claude, GPT-4, Gemini birleşik arayüz. Metin, görsel, kod analizi. 1M+ konuşma, 40+ dil desteği. Ücretsiz sohbet başlat.",
+        "image": "/og-images/chat-tr.jpg"
+      },
+      "geo": {
+        "geo.region": "TR",
+        "geo.placename": "İstanbul",
+        "geo.position": "41.0082,28.9784",
+        "ICBM": "41.0082,28.9784"
+      },
+      "canonical": "https://www.ailydian.com/chat",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/chat?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/chat?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/chat?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/chat?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/chat?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/chat?lang=zh"
+        }
+      ]
+    },
+    "en": {
+      "title": "AI Chat — 5 AI Models in One Interface | Multi-Model Chat",
+      "description": "Claude, GPT-4, Gemini unified interface. Text, vision, code analysis. 1M+ conversations, 40+ language support. Start free chat.",
+      "keywords": "ai chat, artificial intelligence chat, multi model ai, claude chat, gpt-4 chat, ai assistant",
+      "og": {
+        "title": "AI Chat — 5 AI Models in One Interface | Multi-Model Chat",
+        "description": "Claude, GPT-4, Gemini unified interface. Text, vision, code analysis. 1M+ conversations, 40+ language support. Start free chat.",
+        "image": "/og-images/chat-en.jpg",
+        "type": "website",
+        "locale": "en_US"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Chat — 5 AI Models in One Interface | Multi-Model Chat",
+        "description": "Claude, GPT-4, Gemini unified interface. Text, vision, code analysis. 1M+ conversations, 40+ language support. Start free chat.",
+        "image": "/og-images/chat-en.jpg"
+      },
+      "geo": {
+        "geo.region": "US",
+        "geo.placename": "California",
+        "geo.position": "37.7749,-122.4194",
+        "ICBM": "37.7749,-122.4194"
+      },
+      "canonical": "https://www.ailydian.com/chat",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/chat?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/chat?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/chat?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/chat?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/chat?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/chat?lang=zh"
+        }
+      ]
+    },
+    "de": {
+      "title": "AI Chat — 5 KI-Modelle in einer Oberfläche | Multi-Modell-Chat",
+      "description": "Claude, GPT-4, Gemini vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. 1M+ Gespräche, 40+ Sprachunterstützung.",
+      "keywords": "ki chat, künstliche intelligenz chat, multi modell ki, claude chat, gpt-4 chat, ki assistent",
+      "og": {
+        "title": "AI Chat — 5 KI-Modelle in einer Oberfläche | Multi-Modell-Chat",
+        "description": "Claude, GPT-4, Gemini vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. 1M+ Gespräche, 40+ Sprachunterstützung.",
+        "image": "/og-images/chat-de.jpg",
+        "type": "website",
+        "locale": "de_DE"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Chat — 5 KI-Modelle in einer Oberfläche | Multi-Modell-Chat",
+        "description": "Claude, GPT-4, Gemini vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. 1M+ Gespräche, 40+ Sprachunterstützung.",
+        "image": "/og-images/chat-de.jpg"
+      },
+      "geo": {
+        "geo.region": "DE",
+        "geo.placename": "Berlin",
+        "geo.position": "52.5200,13.4050",
+        "ICBM": "52.5200,13.4050"
+      },
+      "canonical": "https://www.ailydian.com/chat",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/chat?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/chat?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/chat?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/chat?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/chat?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/chat?lang=zh"
+        }
+      ]
+    },
+    "ar": {
+      "title": "AI Chat — 5 نماذج AI في واجهة واحدة | دردشة متعددة النماذج",
+      "description": "واجهة موحدة لـ Claude و GPT-4 و Gemini. تحليل النص والصورة والكود. +1 مليون محادثة، دعم +40 لغة. ابدأ دردشة مجانية.",
+      "keywords": "دردشة ذكاء اصطناعي, شات ai, ذكاء اصطناعي متعدد النماذج, claude شات, gpt-4 عربي",
+      "og": {
+        "title": "AI Chat — 5 نماذج AI في واجهة واحدة | دردشة متعددة النماذج",
+        "description": "واجهة موحدة لـ Claude و GPT-4 و Gemini. تحليل النص والصورة والكود. +1 مليون محادثة، دعم +40 لغة. ابدأ دردشة مجانية.",
+        "image": "/og-images/chat-ar.jpg",
+        "type": "website",
+        "locale": "ar_SA"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Chat — 5 نماذج AI في واجهة واحدة | دردشة متعددة النماذج",
+        "description": "واجهة موحدة لـ Claude و GPT-4 و Gemini. تحليل النص والصورة والكود. +1 مليون محادثة، دعم +40 لغة. ابدأ دردشة مجانية.",
+        "image": "/og-images/chat-ar.jpg"
+      },
+      "geo": {
+        "geo.region": "SA",
+        "geo.placename": "Riyadh",
+        "geo.position": "24.7136,46.6753",
+        "ICBM": "24.7136,46.6753"
+      },
+      "canonical": "https://www.ailydian.com/chat",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/chat?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/chat?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/chat?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/chat?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/chat?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/chat?lang=zh"
+        }
+      ]
+    },
+    "ru": {
+      "title": "AI Chat — 5 ИИ Моделей в Одном Интерфейсе | Мультимодельный Чат",
+      "description": "Единый интерфейс Claude, GPT-4, Gemini. Анализ текста, изображений, кода. 1М+ разговоров, поддержка 40+ языков.",
+      "keywords": "ии чат, чат искусственный интеллект, мультимодельный ии, claude чат, gpt-4 русский, ии ассистент",
+      "og": {
+        "title": "AI Chat — 5 ИИ Моделей в Одном Интерфейсе | Мультимодельный Чат",
+        "description": "Единый интерфейс Claude, GPT-4, Gemini. Анализ текста, изображений, кода. 1М+ разговоров, поддержка 40+ языков.",
+        "image": "/og-images/chat-ru.jpg",
+        "type": "website",
+        "locale": "ru_RU"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Chat — 5 ИИ Моделей в Одном Интерфейсе | Мультимодельный Чат",
+        "description": "Единый интерфейс Claude, GPT-4, Gemini. Анализ текста, изображений, кода. 1М+ разговоров, поддержка 40+ языков.",
+        "image": "/og-images/chat-ru.jpg"
+      },
+      "geo": {
+        "geo.region": "RU",
+        "geo.placename": "Moscow",
+        "geo.position": "55.7558,37.6173",
+        "ICBM": "55.7558,37.6173"
+      },
+      "canonical": "https://www.ailydian.com/chat",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/chat?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/chat?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/chat?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/chat?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/chat?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/chat?lang=zh"
+        }
+      ]
+    },
+    "zh": {
+      "title": "AI Chat — 5个AI模型一个界面 | 多模型聊天",
+      "description": "Claude、GPT-4、Gemini统一界面。文本、视觉、代码分析。100万+对话，支持40+种语言。开始免费聊天。",
+      "keywords": "ai聊天, 人工智能聊天, 多模型ai, claude聊天, gpt-4中文, ai助手",
+      "og": {
+        "title": "AI Chat — 5个AI模型一个界面 | 多模型聊天",
+        "description": "Claude、GPT-4、Gemini统一界面。文本、视觉、代码分析。100万+对话，支持40+种语言。开始免费聊天。",
+        "image": "/og-images/chat-zh.jpg",
+        "type": "website",
+        "locale": "zh_CN"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Chat — 5个AI模型一个界面 | 多模型聊天",
+        "description": "Claude、GPT-4、Gemini统一界面。文本、视觉、代码分析。100万+对话，支持40+种语言。开始免费聊天。",
+        "image": "/og-images/chat-zh.jpg"
+      },
+      "geo": {
+        "geo.region": "CN",
+        "geo.placename": "Beijing",
+        "geo.position": "39.9042,116.4074",
+        "ICBM": "39.9042,116.4074"
+      },
+      "canonical": "https://www.ailydian.com/chat",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/chat?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/chat?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/chat?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/chat?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/chat?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/chat?lang=zh"
+        }
+      ]
+    }
+  },
+  "legal-ai": {
+    "tr": {
+      "title": "LyDian Legal AI — Hukuki Yapay Zeka Danışmanı | AI Avukat",
+      "description": "AI hukuk danışmanlığı. 1M+ mahkeme kararı analizi, sözleşme inceleme, mevzuat tarama. 100K+ danışma. Hukuki danışma al.",
+      "keywords": "hukuki yapay zeka, ai avukat, hukuk danışmanı ai, sözleşme analizi, mahkeme kararları, lydian legal",
+      "og": {
+        "title": "LyDian Legal AI — Hukuki Yapay Zeka Danışmanı | AI Avukat",
+        "description": "AI hukuk danışmanlığı. 1M+ mahkeme kararı analizi, sözleşme inceleme, mevzuat tarama. 100K+ danışma. Hukuki danışma al.",
+        "image": "/og-images/legal-ai-tr.jpg",
+        "type": "website",
+        "locale": "tr_TR"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian Legal AI — Hukuki Yapay Zeka Danışmanı | AI Avukat",
+        "description": "AI hukuk danışmanlığı. 1M+ mahkeme kararı analizi, sözleşme inceleme, mevzuat tarama. 100K+ danışma. Hukuki danışma al.",
+        "image": "/og-images/legal-ai-tr.jpg"
+      },
+      "geo": {
+        "geo.region": "TR",
+        "geo.placename": "İstanbul",
+        "geo.position": "41.0082,28.9784",
+        "ICBM": "41.0082,28.9784"
+      },
+      "canonical": "https://www.ailydian.com/legal-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/legal-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/legal-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/legal-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/legal-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/legal-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/legal-expert?lang=zh"
+        }
+      ]
+    },
+    "en": {
+      "title": "LyDian Legal AI — Legal AI Advisor | AI Lawyer",
+      "description": "AI legal consultation. 1M+ court decision analysis, contract review, legislation screening. 100K+ consultations. Get legal advice.",
+      "keywords": "legal ai, ai lawyer, legal advisor ai, contract analysis, court decisions, lydian legal",
+      "og": {
+        "title": "LyDian Legal AI — Legal AI Advisor | AI Lawyer",
+        "description": "AI legal consultation. 1M+ court decision analysis, contract review, legislation screening. 100K+ consultations. Get legal advice.",
+        "image": "/og-images/legal-ai-en.jpg",
+        "type": "website",
+        "locale": "en_US"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian Legal AI — Legal AI Advisor | AI Lawyer",
+        "description": "AI legal consultation. 1M+ court decision analysis, contract review, legislation screening. 100K+ consultations. Get legal advice.",
+        "image": "/og-images/legal-ai-en.jpg"
+      },
+      "geo": {
+        "geo.region": "US",
+        "geo.placename": "California",
+        "geo.position": "37.7749,-122.4194",
+        "ICBM": "37.7749,-122.4194"
+      },
+      "canonical": "https://www.ailydian.com/legal-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/legal-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/legal-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/legal-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/legal-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/legal-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/legal-expert?lang=zh"
+        }
+      ]
+    },
+    "de": {
+      "title": "LyDian Legal AI — Rechts-KI Berater | KI Anwalt",
+      "description": "KI Rechtsberatung. 1M+ Gerichtsentscheidungsanalyse, Vertragsüberprüfung, Gesetzesscreening. 100K+ Beratungen.",
+      "keywords": "rechts ki, ki anwalt, rechtsberater ki, vertragsanalyse, gerichtsentscheidungen, lydian legal",
+      "og": {
+        "title": "LyDian Legal AI — Rechts-KI Berater | KI Anwalt",
+        "description": "KI Rechtsberatung. 1M+ Gerichtsentscheidungsanalyse, Vertragsüberprüfung, Gesetzesscreening. 100K+ Beratungen.",
+        "image": "/og-images/legal-ai-de.jpg",
+        "type": "website",
+        "locale": "de_DE"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian Legal AI — Rechts-KI Berater | KI Anwalt",
+        "description": "KI Rechtsberatung. 1M+ Gerichtsentscheidungsanalyse, Vertragsüberprüfung, Gesetzesscreening. 100K+ Beratungen.",
+        "image": "/og-images/legal-ai-de.jpg"
+      },
+      "geo": {
+        "geo.region": "DE",
+        "geo.placename": "Berlin",
+        "geo.position": "52.5200,13.4050",
+        "ICBM": "52.5200,13.4050"
+      },
+      "canonical": "https://www.ailydian.com/legal-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/legal-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/legal-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/legal-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/legal-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/legal-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/legal-expert?lang=zh"
+        }
+      ]
+    },
+    "ar": {
+      "title": "LyDian Legal AI — مستشار قانوني بالذكاء الاصطناعي | محامي AI",
+      "description": "استشارة قانونية بالذكاء الاصطناعي. تحليل +1 مليون قرار محكمة، مراجعة عقود، فحص تشريعات. +100 ألف استشارة.",
+      "keywords": "ذكاء اصطناعي قانوني, محامي ai, مستشار قانوني ai, تحليل العقود, قرارات المحكمة, lydian legal",
+      "og": {
+        "title": "LyDian Legal AI — مستشار قانوني بالذكاء الاصطناعي | محامي AI",
+        "description": "استشارة قانونية بالذكاء الاصطناعي. تحليل +1 مليون قرار محكمة، مراجعة عقود، فحص تشريعات. +100 ألف استشارة.",
+        "image": "/og-images/legal-ai-ar.jpg",
+        "type": "website",
+        "locale": "ar_SA"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian Legal AI — مستشار قانوني بالذكاء الاصطناعي | محامي AI",
+        "description": "استشارة قانونية بالذكاء الاصطناعي. تحليل +1 مليون قرار محكمة، مراجعة عقود، فحص تشريعات. +100 ألف استشارة.",
+        "image": "/og-images/legal-ai-ar.jpg"
+      },
+      "geo": {
+        "geo.region": "SA",
+        "geo.placename": "Riyadh",
+        "geo.position": "24.7136,46.6753",
+        "ICBM": "24.7136,46.6753"
+      },
+      "canonical": "https://www.ailydian.com/legal-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/legal-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/legal-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/legal-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/legal-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/legal-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/legal-expert?lang=zh"
+        }
+      ]
+    },
+    "ru": {
+      "title": "LyDian Legal AI — Юридический ИИ Советник | ИИ Юрист",
+      "description": "ИИ юридическая консультация. Анализ 1М+ судебных решений, проверка контрактов, скрининг законодательства. 100К+ консультаций.",
+      "keywords": "юридический ии, ии юрист, юридический консультант ии, анализ контрактов, судебные решения, lydian legal",
+      "og": {
+        "title": "LyDian Legal AI — Юридический ИИ Советник | ИИ Юрист",
+        "description": "ИИ юридическая консультация. Анализ 1М+ судебных решений, проверка контрактов, скрининг законодательства. 100К+ консультаций.",
+        "image": "/og-images/legal-ai-ru.jpg",
+        "type": "website",
+        "locale": "ru_RU"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian Legal AI — Юридический ИИ Советник | ИИ Юрист",
+        "description": "ИИ юридическая консультация. Анализ 1М+ судебных решений, проверка контрактов, скрининг законодательства. 100К+ консультаций.",
+        "image": "/og-images/legal-ai-ru.jpg"
+      },
+      "geo": {
+        "geo.region": "RU",
+        "geo.placename": "Moscow",
+        "geo.position": "55.7558,37.6173",
+        "ICBM": "55.7558,37.6173"
+      },
+      "canonical": "https://www.ailydian.com/legal-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/legal-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/legal-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/legal-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/legal-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/legal-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/legal-expert?lang=zh"
+        }
+      ]
+    },
+    "zh": {
+      "title": "LyDian Legal AI — 法律AI顾问 | AI律师",
+      "description": "AI法律咨询。100万+法院判决分析、合同审查、立法筛选。10万+次咨询。获取法律建议。",
+      "keywords": "法律人工智能, ai律师, 法律顾问ai, 合同分析, 法院判决, lydian legal",
+      "og": {
+        "title": "LyDian Legal AI — 法律AI顾问 | AI律师",
+        "description": "AI法律咨询。100万+法院判决分析、合同审查、立法筛选。10万+次咨询。获取法律建议。",
+        "image": "/og-images/legal-ai-zh.jpg",
+        "type": "website",
+        "locale": "zh_CN"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "LyDian Legal AI — 法律AI顾问 | AI律师",
+        "description": "AI法律咨询。100万+法院判决分析、合同审查、立法筛选。10万+次咨询。获取法律建议。",
+        "image": "/og-images/legal-ai-zh.jpg"
+      },
+      "geo": {
+        "geo.region": "CN",
+        "geo.placename": "Beijing",
+        "geo.position": "39.9042,116.4074",
+        "ICBM": "39.9042,116.4074"
+      },
+      "canonical": "https://www.ailydian.com/legal-expert",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/legal-expert?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/legal-expert?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/legal-expert?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/legal-expert?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/legal-expert?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/legal-expert?lang=zh"
+        }
+      ]
+    }
+  },
+  "advisor-hub": {
+    "tr": {
+      "title": "AI Advisor Hub — 8 Uzman AI Danışman | Yapay Zeka Danışmanlık",
+      "description": "8 uzman yapay zeka tek platformda. Kültür, Karar, Sağlık, Bilgi, Öğrenme, Yaşam, Toplantı, Startup. 300K+ danışma. Danışman seç.",
+      "keywords": "ai danışman, uzman yapay zeka, yaşam koçu ai, startup danışmanı, karar matrisi, ai advisor hub",
+      "og": {
+        "title": "AI Advisor Hub — 8 Uzman AI Danışman | Yapay Zeka Danışmanlık",
+        "description": "8 uzman yapay zeka tek platformda. Kültür, Karar, Sağlık, Bilgi, Öğrenme, Yaşam, Toplantı, Startup. 300K+ danışma. Danışman seç.",
+        "image": "/og-images/advisor-hub-tr.jpg",
+        "type": "website",
+        "locale": "tr_TR"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Advisor Hub — 8 Uzman AI Danışman | Yapay Zeka Danışmanlık",
+        "description": "8 uzman yapay zeka tek platformda. Kültür, Karar, Sağlık, Bilgi, Öğrenme, Yaşam, Toplantı, Startup. 300K+ danışma. Danışman seç.",
+        "image": "/og-images/advisor-hub-tr.jpg"
+      },
+      "geo": {
+        "geo.region": "TR",
+        "geo.placename": "İstanbul",
+        "geo.position": "41.0082,28.9784",
+        "ICBM": "41.0082,28.9784"
+      },
+      "canonical": "https://www.ailydian.com/ai-advisor-hub",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=zh"
+        }
+      ]
+    },
+    "en": {
+      "title": "AI Advisor Hub — 8 Expert AI Advisors | AI Consulting Platform",
+      "description": "8 expert AIs in one platform. Culture, Decision, Health, Knowledge, Learning, Life, Meeting, Startup. 300K+ consultations. Choose advisor.",
+      "keywords": "ai advisor, expert ai, life coach ai, startup advisor, decision matrix, ai advisor hub",
+      "og": {
+        "title": "AI Advisor Hub — 8 Expert AI Advisors | AI Consulting Platform",
+        "description": "8 expert AIs in one platform. Culture, Decision, Health, Knowledge, Learning, Life, Meeting, Startup. 300K+ consultations. Choose advisor.",
+        "image": "/og-images/advisor-hub-en.jpg",
+        "type": "website",
+        "locale": "en_US"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Advisor Hub — 8 Expert AI Advisors | AI Consulting Platform",
+        "description": "8 expert AIs in one platform. Culture, Decision, Health, Knowledge, Learning, Life, Meeting, Startup. 300K+ consultations. Choose advisor.",
+        "image": "/og-images/advisor-hub-en.jpg"
+      },
+      "geo": {
+        "geo.region": "US",
+        "geo.placename": "California",
+        "geo.position": "37.7749,-122.4194",
+        "ICBM": "37.7749,-122.4194"
+      },
+      "canonical": "https://www.ailydian.com/ai-advisor-hub",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=zh"
+        }
+      ]
+    },
+    "de": {
+      "title": "AI Advisor Hub — 8 Experten-KI-Berater | KI-Beratungsplattform",
+      "description": "8 Experten-KIs auf einer Plattform. Kultur, Entscheidung, Gesundheit, Wissen, Lernen, Leben, Meeting, Startup. 300K+ Beratungen.",
+      "keywords": "ki berater, experten ki, lebensberater ki, startup berater, entscheidungsmatrix, ai advisor hub",
+      "og": {
+        "title": "AI Advisor Hub — 8 Experten-KI-Berater | KI-Beratungsplattform",
+        "description": "8 Experten-KIs auf einer Plattform. Kultur, Entscheidung, Gesundheit, Wissen, Lernen, Leben, Meeting, Startup. 300K+ Beratungen.",
+        "image": "/og-images/advisor-hub-de.jpg",
+        "type": "website",
+        "locale": "de_DE"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Advisor Hub — 8 Experten-KI-Berater | KI-Beratungsplattform",
+        "description": "8 Experten-KIs auf einer Plattform. Kultur, Entscheidung, Gesundheit, Wissen, Lernen, Leben, Meeting, Startup. 300K+ Beratungen.",
+        "image": "/og-images/advisor-hub-de.jpg"
+      },
+      "geo": {
+        "geo.region": "DE",
+        "geo.placename": "Berlin",
+        "geo.position": "52.5200,13.4050",
+        "ICBM": "52.5200,13.4050"
+      },
+      "canonical": "https://www.ailydian.com/ai-advisor-hub",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=zh"
+        }
+      ]
+    },
+    "ar": {
+      "title": "AI Advisor Hub — 8 مستشارين خبراء بالذكاء الاصطناعي | منصة استشارات",
+      "description": "8 مستشارين خبراء في منصة واحدة. الثقافة، القرار، الصحة، المعرفة، التعلم، الحياة، الاجتماعات، الشركات الناشئة. +300 ألف استشارة.",
+      "keywords": "مستشار ذكاء اصطناعي, خبير ai, مدرب حياة ai, مستشار شركات ناشئة, مصفوفة القرار, ai advisor hub",
+      "og": {
+        "title": "AI Advisor Hub — 8 مستشارين خبراء بالذكاء الاصطناعي | منصة استشارات",
+        "description": "8 مستشارين خبراء في منصة واحدة. الثقافة، القرار، الصحة، المعرفة، التعلم، الحياة، الاجتماعات، الشركات الناشئة. +300 ألف استشارة.",
+        "image": "/og-images/advisor-hub-ar.jpg",
+        "type": "website",
+        "locale": "ar_SA"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Advisor Hub — 8 مستشارين خبراء بالذكاء الاصطناعي | منصة استشارات",
+        "description": "8 مستشارين خبراء في منصة واحدة. الثقافة، القرار، الصحة، المعرفة، التعلم، الحياة، الاجتماعات، الشركات الناشئة. +300 ألف استشارة.",
+        "image": "/og-images/advisor-hub-ar.jpg"
+      },
+      "geo": {
+        "geo.region": "SA",
+        "geo.placename": "Riyadh",
+        "geo.position": "24.7136,46.6753",
+        "ICBM": "24.7136,46.6753"
+      },
+      "canonical": "https://www.ailydian.com/ai-advisor-hub",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=zh"
+        }
+      ]
+    },
+    "ru": {
+      "title": "AI Advisor Hub — 8 Экспертных ИИ Советников | Платформа Консультаций",
+      "description": "8 экспертных ИИ на одной платформе. Культура, Решение, Здоровье, Знания, Обучение, Жизнь, Встречи, Стартап. 300К+ консультаций.",
+      "keywords": "ии советник, эксперт ии, лайф коуч ии, советник стартапов, матрица решений, ai advisor hub",
+      "og": {
+        "title": "AI Advisor Hub — 8 Экспертных ИИ Советников | Платформа Консультаций",
+        "description": "8 экспертных ИИ на одной платформе. Культура, Решение, Здоровье, Знания, Обучение, Жизнь, Встречи, Стартап. 300К+ консультаций.",
+        "image": "/og-images/advisor-hub-ru.jpg",
+        "type": "website",
+        "locale": "ru_RU"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Advisor Hub — 8 Экспертных ИИ Советников | Платформа Консультаций",
+        "description": "8 экспертных ИИ на одной платформе. Культура, Решение, Здоровье, Знания, Обучение, Жизнь, Встречи, Стартап. 300К+ консультаций.",
+        "image": "/og-images/advisor-hub-ru.jpg"
+      },
+      "geo": {
+        "geo.region": "RU",
+        "geo.placename": "Moscow",
+        "geo.position": "55.7558,37.6173",
+        "ICBM": "55.7558,37.6173"
+      },
+      "canonical": "https://www.ailydian.com/ai-advisor-hub",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=zh"
+        }
+      ]
+    },
+    "zh": {
+      "title": "AI Advisor Hub — 8位专家AI顾问 | AI咨询平台",
+      "description": "8位专家AI一个平台。文化、决策、健康、知识、学习、生活、会议、创业。30万+次咨询。选择顾问。",
+      "keywords": "ai顾问, 专家ai, 生活教练ai, 创业顾问, 决策矩阵, ai advisor hub",
+      "og": {
+        "title": "AI Advisor Hub — 8位专家AI顾问 | AI咨询平台",
+        "description": "8位专家AI一个平台。文化、决策、健康、知识、学习、生活、会议、创业。30万+次咨询。选择顾问。",
+        "image": "/og-images/advisor-hub-zh.jpg",
+        "type": "website",
+        "locale": "zh_CN"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "AI Advisor Hub — 8位专家AI顾问 | AI咨询平台",
+        "description": "8位专家AI一个平台。文化、决策、健康、知识、学习、生活、会议、创业。30万+次咨询。选择顾问。",
+        "image": "/og-images/advisor-hub-zh.jpg"
+      },
+      "geo": {
+        "geo.region": "CN",
+        "geo.placename": "Beijing",
+        "geo.position": "39.9042,116.4074",
+        "ICBM": "39.9042,116.4074"
+      },
+      "canonical": "https://www.ailydian.com/ai-advisor-hub",
+      "hreflang": [
+        {
+          "lang": "tr",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=tr"
+        },
+        {
+          "lang": "en",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=en"
+        },
+        {
+          "lang": "de",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=de"
+        },
+        {
+          "lang": "ar",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ar"
+        },
+        {
+          "lang": "ru",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=ru"
+        },
+        {
+          "lang": "zh",
+          "url": "https://www.ailydian.com/ai-advisor-hub?lang=zh"
+        }
+      ]
+    }
+  }
+}

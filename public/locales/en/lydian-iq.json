@@ -1,197 +1,29 @@
 {
   "meta": {
-    "title": "LyDian IQ: AI-Powered Intelligence Testing Platform | Visual & Logical Reasoning",
-    "description": "LyDian IQ offers AI-powered visual logic, mathematical problem solving, and multi-dimensional intelligence assessment. Try free today.",
-    "keywords": "ai iq test platform, visual intelligence test, multimodal iq assessment, cognitive ability ai, logical reasoning test, problem solving engine, LyDian IQ"
-  },
-  "product": {
-    "name": "LyDian IQ",
-    "tagline": "AI-Powered Intelligent Problem Solving Engine",
-    "version": "2.0.0",
-    "category": "Cognitive Assessment & Problem Solving"
-  },
-  "hero": {
-    "title": "AI-Powered IQ Testing and Problem Solving",
-    "subtitle": "Visual logic, mathematical reasoning, and multi-dimensional intelligence assessment in one platform",
-    "cta_primary": "Start Free Test",
-    "cta_secondary": "View Sample Questions",
-    "trusted_by": "Tested by 100,000+ users worldwide"
-  },
-  "features": {
-    "visual_logic": {
-      "title": "Visual Logic Tests",
-      "description": "Assess pattern recognition, shape completion, and visual problem-solving abilities",
-      "icon": "👁️"
-    },
-    "mathematical_reasoning": {
-      "title": "Mathematical Reasoning",
-      "description": "Evaluate numerical logic, sequences, and mathematical problem-solving skills",
-      "icon": "🧮"
-    },
-    "multi_dimensional": {
-      "title": "Multi-Dimensional Assessment",
-      "description": "Comprehensive analysis across verbal, numerical, visual, and logical intelligence domains",
-      "icon": "🎯"
-    },
-    "ai_powered": {
-      "title": "AI-Powered Analysis",
-      "description": "Real-time performance analysis and recommendations powered by LyDian AI",
-      "icon": "🤖"
-    },
-    "adaptive_testing": {
-      "title": "Adaptive Testing System",
-      "description": "Questions automatically adjust difficulty based on your performance",
-      "icon": "📈"
-    },
-    "detailed_reports": {
-      "title": "Detailed Reporting",
-      "description": "Comprehensive analysis reports showing your strengths and areas for improvement",
-      "icon": "📊"
-    }
-  },
-  "test_types": {
-    "title": "Test Categories",
-    "visual_iq": "Visual IQ Test",
-    "numerical_iq": "Numerical IQ Test",
-    "verbal_iq": "Verbal IQ Test",
-    "logical_iq": "Logical IQ Test",
-    "comprehensive": "Comprehensive IQ Assessment"
-  },
-  "how_it_works": {
-    "title": "How It Works",
-    "step1": {
-      "title": "Choose Your Test",
-      "description": "Select from visual, numerical, or comprehensive test options"
-    },
-    "step2": {
-      "title": "Solve Questions",
-      "description": "Complete your test with AI-curated questions from LyDian"
-    },
-    "step3": {
-      "title": "Review Results",
-      "description": "Get detailed analysis report and improvement recommendations"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Free",
-      "price": "$0/month",
-      "features": [
-        "Basic IQ test",
-        "10 questions/day",
-        "Simple analysis report",
-        "7-day history"
-      ],
-      "cta": "Get Started"
-    },
-    "pro": {
-      "title": "Pro",
-      "price": "$9.99/month",
-      "features": [
-        "All test categories",
-        "Unlimited questions",
-        "Detailed AI analysis",
-        "Unlimited history",
-        "PDF report download",
-        "Priority support"
-      ],
-      "cta": "Upgrade to Pro",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Enterprise",
-      "price": "Custom Pricing",
-      "features": [
-        "All Pro features",
-        "Custom test categories",
-        "API access",
-        "Bulk assessment",
-        "Custom branding",
-        "SLA guarantee"
-      ],
-      "cta": "Contact Sales"
-    }
-  },
-  "stats": {
-    "tests_completed": "1M+",
-    "tests_completed_label": "Tests Completed",
-    "avg_score": "118",
-    "avg_score_label": "Average IQ Score",
-    "countries": "50+",
-    "countries_label": "Countries",
-    "languages": "20+",
-    "languages_label": "Language Support"
-  },
-  "testimonials": {
-    "title": "User Testimonials",
-    "user1": {
-      "name": "John D.",
-      "role": "Software Developer",
-      "comment": "LyDian IQ helped me improve my logical thinking skills. It really works!",
-      "rating": 5
-    },
-    "user2": {
-      "name": "Sarah K.",
-      "role": "Student",
-      "comment": "Very helpful for university exam preparation. I'm much better at visual questions now.",
-      "rating": 5
-    },
-    "user3": {
-      "name": "Michael S.",
-      "role": "HR Manager",
-      "comment": "We use this to evaluate candidates. Very professional and reliable platform.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "q1": {
-      "question": "Is the LyDian IQ test valid?",
-      "answer": "Yes, LyDian IQ tests are developed using scientifically valid methodologies by LyDian AI. However, they do not replace professional IQ tests, but help you assess your cognitive abilities."
-    },
-    "q2": {
-      "question": "How long does the test take?",
-      "answer": "The basic IQ test takes approximately 15-20 minutes, while comprehensive assessment takes 45-60 minutes."
-    },
-    "q3": {
-      "question": "Can I take the test multiple times?",
-      "answer": "Yes, but for most accurate results we recommend waiting at least 1 week between tests."
-    },
-    "q4": {
-      "question": "What devices can I use?",
-      "answer": "LyDian IQ is web-based and accessible from all modern browsers (Chrome, Safari, Firefox, Edge) on desktop, tablet, and mobile devices."
-    },
-    "q5": {
-      "question": "Is my data secure?",
-      "answer": "Yes, all your data is protected with 256-bit SSL encryption and processed in compliance with GDPR."
-    }
-  },
-  "navigation": {
-    "home": "Home",
-    "tests": "Tests",
-    "how_it_works": "How It Works",
-    "pricing": "Pricing",
-    "faq": "FAQ",
-    "my_results": "My Results",
-    "dashboard": "Dashboard"
-  },
-  "common": {
-    "start_test": "Start Test",
-    "view_results": "View Results",
-    "download_report": "Download Report",
-    "share": "Share",
-    "loading": "Loading...",
-    "error": "Error occurred",
-    "success": "Success",
-    "try_again": "Try Again",
-    "learn_more": "Learn More"
+    "title": "LyDian IQ — Scientific AI Intelligence Test | Online IQ",
+    "description": "AI-powered scientific intelligence test. Multi-model analysis, detailed reports. 1M+ users, 98% accuracy. Start free test.",
+    "keywords": "iq test, intelligence test online, ai iq test, intelligence measurement, free iq test, lydian iq"
   },
   "seo": {
-    "breadcrumb_home": "Home",
-    "breadcrumb_current": "LyDian IQ",
-    "og_title": "LyDian IQ: AI-Powered IQ Test and Problem Solving Platform",
-    "og_description": "Assess your cognitive abilities with visual, numerical, and logical intelligence tests. Start free with LyDian AI.",
-    "twitter_title": "Test Your IQ with LyDian IQ",
-    "twitter_description": "AI-powered visual logic and problem solving tests. Try free today!"
+    "og": {
+      "title": "LyDian IQ — Scientific AI Intelligence Test | Online IQ",
+      "description": "AI-powered scientific intelligence test. Multi-model analysis, detailed reports. 1M+ users, 98% accuracy. Start free test.",
+      "image": "/og-images/lydian-iq-en.jpg",
+      "type": "website",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian IQ — Scientific AI Intelligence Test | Online IQ",
+      "description": "AI-powered scientific intelligence test. Multi-model analysis, detailed reports. 1M+ users, 98% accuracy. Start free test.",
+      "image": "/og-images/lydian-iq-en.jpg"
+    },
+    "geo": {
+      "geo.region": "US",
+      "geo.placename": "California",
+      "geo.position": "37.7749,-122.4194",
+      "ICBM": "37.7749,-122.4194"
+    },
+    "canonical": "https://www.ailydian.com/lydian-iq"
   }
 }

@@ -1,248 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Advisor Hub: KI-Beratungszentrum | KI-Business-Consulting-Plattform",
-    "description": "LyDian Advisor Hub bietet KI-gestützte Lösungen für Unternehmensberatung, kulturelle Beratung, Entscheidungsunterstützung und Lernpfade. 8 Expertenberater-Module.",
-    "keywords": "KI Business-Berater, Beratungsassistent, KI Entscheidungsunterstützung, kultureller Berater KI, Lernpfad KI, Startup-Beschleuniger KI, Life Coach KI, Meeting-Insights KI"
-  },
-  "product": {
-    "name": "LyDian Advisor Hub",
-    "tagline": "8 Experten-KI-Beratungszentrum",
-    "version": "2.0.0",
-    "category": "KI-Beratung & Business Intelligence"
-  },
-  "hero": {
-    "title": "Experten-KI-Berater für jeden Bedarf",
-    "subtitle": "Von Geschäftsstrategie bis persönliche Entwicklung, kulturelle Beratung bis Startup-Beschleunigung - KI-gestützte professionelle Beratung in 8 verschiedenen Bereichen",
-    "cta_primary": "Berater Wählen",
-    "cta_secondary": "Alle Module Erkunden",
-    "trusted_by": "Von 500.000+ Fachleuten genutzt"
-  },
-  "advisors": {
-    "cultural": {
-      "title": "Kulturberater",
-      "description": "Interkulturelle Kommunikation, lokale Bräuche, Geschäftsprotokoll-Beratung. Expertenempfehlungen zu 150+ Länderkulturen",
-      "icon": "🌍",
-      "use_cases": ["Internationale Geschäftstreffen", "Kulturelle Anpassung", "Diplomatisches Protokoll"]
-    },
-    "decision": {
-      "title": "Entscheidungsunterstützungsmatrix",
-      "description": "Datengestützte Entscheidungsfindung, Risikoanalyse, Szenarioplanung. Multi-Kriterien-Entscheidungsanalyse und Optimierung",
-      "icon": "📊",
-      "use_cases": ["Strategische Entscheidungen", "Investitionsanalyse", "Risikobewertung"]
-    },
-    "knowledge": {
-      "title": "Wissensassistent",
-      "description": "Schnelle Recherche, Wissenssynthese, Faktenprüfung. Akademische und professionelle Wissensentdeckung",
-      "icon": "🔍",
-      "use_cases": ["Akademische Forschung", "Marktanalyse", "Wettbewerbsintelligenz"]
-    },
-    "learning": {
-      "title": "Lernpfad-Planer",
-      "description": "Personalisierte Schulungsprogramme, Roadmaps zur Kompetenzentwicklung, Lernverfolgung",
-      "icon": "📚",
-      "use_cases": ["Karriereentwicklung", "Technischer Kompetenzerwerb", "Zertifizierungsvorbereitung"]
-    },
-    "life_coach": {
-      "title": "Life Coach",
-      "description": "Persönliche Zielsetzung, Gewohnheitsbildung, Motivationscoaching. Work-Life-Balance-Beratung",
-      "icon": "💪",
-      "use_cases": ["Zielsetzung", "Zeitmanagement", "Stressmanagement"]
-    },
-    "meeting": {
-      "title": "Meeting-Insights",
-      "description": "Meeting-Analyse, Aktionspunkt-Extraktion, Entscheidungsverfolgung. Produktivitätsverbesserungsempfehlungen",
-      "icon": "📅",
-      "use_cases": ["Meeting-Zusammenfassungen", "Aufgabenverfolgung", "Teameffizienz"]
-    },
-    "startup": {
-      "title": "Startup-Beschleuniger",
-      "description": "Geschäftsmodellvalidierung, Pitch-Deck-Beratung, Investorenfindungsstrategien. Go-to-Market-Planung",
-      "icon": "🚀",
-      "use_cases": ["MVP-Entwicklung", "Fundraising", "Skalierungsstrategie"]
-    },
-    "health": {
-      "title": "Gesundheitsorchestrator",
-      "description": "Wellness-Tracking, Gesundheitsinformationsressourcen, Übungs- und Ernährungsempfehlungen (keine medizinische Beratung)",
-      "icon": "❤️",
-      "use_cases": ["Wellness-Planung", "Fitness-Tracking", "Ernährungsinformation"]
-    }
-  },
-  "how_it_works": {
-    "title": "Wie Es Funktioniert",
-    "step1": {
-      "title": "Berater Wählen",
-      "description": "Wählen Sie aus 8 Expertenberatern denjenigen, der Ihren Bedürfnissen entspricht"
-    },
-    "step2": {
-      "title": "Frage Stellen",
-      "description": "Stellen Sie detaillierte Fragen oder teilen Sie Szenarien mit Ihrem Berater"
-    },
-    "step3": {
-      "title": "Expertenempfehlungen Erhalten",
-      "description": "LyDian AI liefert umfassende Analysen und Empfehlungen basierend auf Fachwissen"
-    }
-  },
-  "features": {
-    "specialized": {
-      "title": "8 Expertenmodule",
-      "description": "8 verschiedene KI-Beratermodule, jedes auf sein eigenes Fachgebiet spezialisiert"
-    },
-    "contextual": {
-      "title": "Kontextuelle Analyse",
-      "description": "Jeder Berater analysiert Ihr Problem in allen Dimensionen und bietet kontextgerechte Lösungen"
-    },
-    "actionable": {
-      "title": "Umsetzbare Empfehlungen",
-      "description": "Nicht theoretisches Wissen, sondern umsetzbare Schritt-für-Schritt-Aktionspläne"
-    },
-    "multi_domain": {
-      "title": "Multi-Domain-Expertise",
-      "description": "Beratung in Business, persönlicher Entwicklung, Kultur, Gesundheit und mehr"
-    },
-    "data_driven": {
-      "title": "Datengestützt",
-      "description": "Datenanalyse- und Visualisierungswerkzeuge zur Unterstützung Ihrer Entscheidungen"
-    },
-    "personalized": {
-      "title": "Personalisiert",
-      "description": "Beratung zugeschnitten auf Ihre Branche, Erfahrung und Ziele"
-    },
-    "continuous": {
-      "title": "Kontinuierliche Unterstützung",
-      "description": "An Ihrer Seite während des gesamten Prozesses von der Erstberatung bis zur Umsetzung"
-    },
-    "collaborative": {
-      "title": "Team-Zusammenarbeit",
-      "description": "Teilen Sie Beratungssitzungen mit Ihrem Team und arbeiten Sie zusammen"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Erkunden",
-      "price": "0€/Monat",
-      "features": [
-        "3 Berater-Zugriff",
-        "10 Fragen/Tag",
-        "Grundlegende Analysen",
-        "30-Tage-Verlauf"
-      ],
-      "cta": "Kostenlos Starten"
-    },
-    "pro": {
-      "title": "Professional",
-      "price": "26,99€/Monat",
-      "features": [
-        "Zugriff auf alle 8 Berater",
-        "Unbegrenzte Fragen",
-        "Erweiterte Analysen",
-        "Datenvisualisierung",
-        "Team-Zusammenarbeit (5 Personen)",
-        "Unbegrenzter Verlauf",
-        "Prioritätssupport"
-      ],
-      "cta": "Professional Werden",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Enterprise",
-      "price": "Individuelle Preise",
-      "features": [
-        "Alle Pro-Funktionen",
-        "Unbegrenzte Teammitglieder",
-        "API-Zugriff",
-        "Benutzerdefinierte Beratermodule",
-        "SSO-Unterstützung",
-        "Schulung und Onboarding",
-        "SLA-Garantie",
-        "Dedizierter Kundenbetreuer"
-      ],
-      "cta": "Vertriebsteam Kontaktieren"
-    }
-  },
-  "stats": {
-    "users": "500K+",
-    "users_label": "Aktive Nutzer",
-    "sessions": "2M+",
-    "sessions_label": "Beratungssitzungen",
-    "satisfaction": "96%",
-    "satisfaction_label": "Zufriedenheitsrate",
-    "advisors": "8",
-    "advisors_label": "Expertenberater-Module"
-  },
-  "testimonials": {
-    "title": "Von Unseren Nutzern",
-    "user1": {
-      "name": "Klaus Müller",
-      "role": "CEO, TechStartup",
-      "comment": "Mit Startup-Beschleuniger ging unsere Seed-Finanzierungszeit von 6 Monaten auf 2 Monate zurück. Die Pitch-Deck-Beratung war ausgezeichnet.",
-      "rating": 5
-    },
-    "user2": {
-      "name": "Anna Schmidt",
-      "role": "HR-Direktorin",
-      "comment": "Kulturberater war bahnbrechend in unserem internationalen Teammanagement. Detaillierte Informationen über die Geschäftskultur jedes Landes abrufen zu können ist großartig.",
-      "rating": 5
-    },
-    "user3": {
-      "name": "Thomas Weber",
-      "role": "Projektmanager",
-      "comment": "Mit Meeting-Insights sind unsere Meetings 40% effizienter. Die automatische Aktionspunkt-Extraktion spart Zeit.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Häufig Gestellte Fragen",
-    "q1": {
-      "question": "Welche Sprachen unterstützt jeder Berater?",
-      "answer": "Alle 8 Beratermodule bedienen in 40+ Sprachen einschließlich Deutsch, Englisch, Spanisch, Arabisch, Russisch und Chinesisch. Kulturberater antwortet unter Berücksichtigung der kulturellen Nuancen jeder Sprache."
-    },
-    "q2": {
-      "question": "Sind meine Beratungssitzungen vertraulich?",
-      "answer": "Ja. Alle Ihre Beratungssitzungen sind mit Ende-zu-Ende-Verschlüsselung geschützt. Ihre Daten werden nicht für Modelltraining verwendet und nicht mit Dritten geteilt."
-    },
-    "q3": {
-      "question": "Kann ich mehrere Berater gleichzeitig nutzen?",
-      "answer": "In Pro- und Enterprise-Plänen können Sie auf alle 8 Berater gleichzeitig zugreifen. Zum Beispiel können Sie sowohl Entscheidungsunterstützungsmatrix als auch Startup-Beschleuniger für eine Geschäftsentscheidung verwenden."
-    },
-    "q4": {
-      "question": "Wird Startup-Beschleuniger mir wirklich bei der Finanzierung helfen?",
-      "answer": "Startup-Beschleuniger leitet Sie bei Pitch-Deck-Vorbereitung, Investoren-Targeting, Finanzprojektionserstellung und Go-to-Market-Strategie an. Es beschleunigt Ihren Fundraising-Prozess, garantiert ihn aber nicht."
-    },
-    "q5": {
-      "question": "Wie funktioniert die Team-Zusammenarbeit?",
-      "answer": "Sie können 5 Teammitglieder im Pro-Plan hinzufügen, unbegrenzt im Enterprise-Plan. Sie können Beratungssitzungen teilen, kommentieren und gemeinsam Aktionspläne erstellen."
-    }
-  },
-  "navigation": {
-    "home": "Startseite",
-    "advisors": "Berater",
-    "features": "Funktionen",
-    "how_it_works": "Wie Es Funktioniert",
-    "pricing": "Preise",
-    "faq": "FAQ",
-    "start": "Loslegen"
-  },
-  "common": {
-    "select_advisor": "Berater Wählen",
-    "start_session": "Sitzung Starten",
-    "ask_question": "Frage Stellen",
-    "view_analysis": "Analyse Anzeigen",
-    "export_report": "Bericht Exportieren",
-    "share_team": "Mit Team Teilen",
-    "save_session": "Sitzung Speichern",
-    "loading": "Lädt...",
-    "analyzing": "Analysiert...",
-    "success": "Erfolgreich",
-    "error": "Fehler aufgetreten",
-    "try_again": "Erneut Versuchen",
-    "learn_more": "Mehr Erfahren"
+    "title": "AI Advisor Hub — 8 Experten-KI-Berater | KI-Beratungsplattform",
+    "description": "8 Experten-KIs auf einer Plattform. Kultur, Entscheidung, Gesundheit, Wissen, Lernen, Leben, Meeting, Startup. 300K+ Beratungen.",
+    "keywords": "ki berater, experten ki, lebensberater ki, startup berater, entscheidungsmatrix, ai advisor hub"
   },
   "seo": {
-    "breadcrumb_home": "Startseite",
-    "breadcrumb_current": "Advisor Hub",
-    "og_title": "LyDian Advisor Hub: 8 Experten-KI-Beratungszentrum",
-    "og_description": "KI-gestützte Expertenberater für Unternehmensberatung, kulturelle Beratung, Entscheidungsunterstützung, Startup-Beschleunigung und mehr. Kostenlos testen.",
-    "twitter_title": "LyDian Advisor Hub - KI-Beratungsplattform",
-    "twitter_description": "8 Experten-KI-Berater: Kulturell, Entscheidung, Wissen, Lernen, Life Coach, Meeting, Startup, Gesundheit. Kostenlos starten!"
+    "og": {
+      "title": "AI Advisor Hub — 8 Experten-KI-Berater | KI-Beratungsplattform",
+      "description": "8 Experten-KIs auf einer Plattform. Kultur, Entscheidung, Gesundheit, Wissen, Lernen, Leben, Meeting, Startup. 300K+ Beratungen.",
+      "image": "/og-images/advisor-hub-de.jpg",
+      "type": "website",
+      "locale": "de_DE"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "AI Advisor Hub — 8 Experten-KI-Berater | KI-Beratungsplattform",
+      "description": "8 Experten-KIs auf einer Plattform. Kultur, Entscheidung, Gesundheit, Wissen, Lernen, Leben, Meeting, Startup. 300K+ Beratungen.",
+      "image": "/og-images/advisor-hub-de.jpg"
+    },
+    "geo": {
+      "geo.region": "DE",
+      "geo.placename": "Berlin",
+      "geo.position": "52.5200,13.4050",
+      "ICBM": "52.5200,13.4050"
+    },
+    "canonical": "https://www.ailydian.com/ai-advisor-hub"
   }
 }

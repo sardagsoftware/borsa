@@ -1,212 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Legal AI: AI Legal Assistant | Case Law Search & Contract Analysis",
-    "description": "LyDian Legal AI provides case law search, contract analysis, legal research, and document automation. AI-powered legal assistant for lawyers.",
-    "keywords": "legal ai assistant, case law search engine, contract analysis ai, legal research platform, document automation, LyDian Legal AI"
-  },
-  "product": {
-    "name": "LyDian Legal AI",
-    "tagline": "AI-Powered Legal Assistant & Case Law Search Engine",
-    "version": "2.0.0",
-    "category": "Legal AI & Legal Research"
-  },
-  "hero": {
-    "title": "AI-Powered Legal Assistant for Lawyers",
-    "subtitle": "Accelerate your legal work with case law search, contract analysis, legal research, and document automation",
-    "cta_primary": "Try Free",
-    "cta_secondary": "Watch Demo",
-    "trusted_by": "Used by 500+ law firms and 5,000+ lawyers"
-  },
-  "features": {
-    "case_law_search": {
-      "title": "Case Law Search Engine",
-      "description": "Instant search in supreme court and appellate court decisions. Semantic search for easy access to relevant precedents",
-      "icon": "⚖️"
-    },
-    "contract_analysis": {
-      "title": "Contract Analysis",
-      "description": "Automatically detect risks, gaps, and inconsistencies in contracts. Clause-by-clause analysis and recommendations",
-      "icon": "📄"
-    },
-    "legal_research": {
-      "title": "Legal Research Assistant",
-      "description": "Conduct comprehensive research across statutes, regulations, and case law. Instant access to relevant legislation",
-      "icon": "🔍"
-    },
-    "document_automation": {
-      "title": "Document Automation",
-      "description": "Automatically generate pleadings, complaints, contracts, and other legal documents",
-      "icon": "📝"
-    },
-    "compliance_check": {
-      "title": "Compliance Checking",
-      "description": "Check contracts and documents for compliance with GDPR, corporate law, and other regulations",
-      "icon": "✓"
-    },
-    "citation_management": {
-      "title": "Citation Management",
-      "description": "Automatically manage case law and statutory citations. Standard format source referencing",
-      "icon": "📚"
-    },
-    "multi_jurisdiction": {
-      "title": "Multi-Jurisdiction Support",
-      "description": "Access to US law, EU law, and international law resources",
-      "icon": "🌍"
-    },
-    "ai_legal_opinion": {
-      "title": "AI Legal Opinion",
-      "description": "Analyze case files to provide likely outcomes and strategy recommendations",
-      "icon": "🤖"
-    }
-  },
-  "practice_areas": {
-    "title": "Practice Areas",
-    "commercial": "Commercial Law",
-    "civil": "Civil Law",
-    "criminal": "Criminal Law",
-    "labor": "Labor & Employment",
-    "tax": "Tax Law",
-    "administrative": "Administrative Law",
-    "ip": "Intellectual Property",
-    "corporate": "Corporate Law"
-  },
-  "how_it_works": {
-    "title": "How It Works",
-    "step1": {
-      "title": "Define Your Question",
-      "description": "Enter your legal question or research need into the system"
-    },
-    "step2": {
-      "title": "AI Analysis",
-      "description": "LyDian AI conducts comprehensive analysis across legislation and case law databases"
-    },
-    "step3": {
-      "title": "Review Results",
-      "description": "View relevant precedents, legislation, and legal opinion recommendations"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Individual",
-      "price": "Free",
-      "features": [
-        "Basic case law search",
-        "10 searches/day",
-        "Basic contract analysis",
-        "7-day history"
-      ],
-      "cta": "Get Started"
-    },
-    "pro": {
-      "title": "Professional",
-      "price": "$79/month",
-      "features": [
-        "Unlimited case law search",
-        "Advanced contract analysis",
-        "Document automation",
-        "Compliance checking",
-        "Priority support",
-        "PDF report download"
-      ],
-      "cta": "Upgrade to Professional",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Law Firm",
-      "price": "Custom Pricing",
-      "features": [
-        "All Professional features",
-        "Custom database integration",
-        "Multi-user management",
-        "Custom training",
-        "SLA guarantee",
-        "24/7 technical support"
-      ],
-      "cta": "Contact Sales"
-    }
-  },
-  "stats": {
-    "law_firms": "500+",
-    "law_firms_label": "Law Firms",
-    "lawyers": "5,000+",
-    "lawyers_label": "Lawyers",
-    "cases": "500K+",
-    "cases_label": "Case Precedents",
-    "accuracy": "96.3%",
-    "accuracy_label": "Case Matching Accuracy"
-  },
-  "testimonials": {
-    "title": "From Lawyers",
-    "lawyer1": {
-      "name": "Sarah Mitchell, Esq.",
-      "role": "Commercial Law Attorney",
-      "comment": "LyDian Legal AI has accelerated my case law research by hours. An indispensable tool.",
-      "rating": 5
-    },
-    "lawyer2": {
-      "name": "David Chen, Esq.",
-      "role": "Civil Litigation Attorney",
-      "comment": "The contract analysis feature is amazing. It immediately detects risks that could be missed.",
-      "rating": 5
-    },
-    "lawyer3": {
-      "name": "Emily Rodriguez, Esq.",
-      "role": "Criminal Defense Attorney",
-      "comment": "Very helpful in developing case strategy. I get instant access to relevant precedents.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "q1": {
-      "question": "Does LyDian Legal AI replace lawyers?",
-      "answer": "No. LyDian Legal AI is a legal research and decision support tool. It facilitates lawyers' work but cannot replace them. Final legal evaluation should always be done by a lawyer."
-    },
-    "q2": {
-      "question": "Is data kept confidential?",
-      "answer": "Yes. All data is protected with 256-bit SSL encryption and processed in compliance with attorney-client privilege. Client information is never shared with third parties."
-    },
-    "q3": {
-      "question": "Which court decisions can be accessed?",
-      "answer": "Access is provided to Supreme Court, appellate courts, constitutional courts, and international court decisions. The continuously updated database provides access to the most current precedents."
-    },
-    "q4": {
-      "question": "Are documents customized for lawyers?",
-      "answer": "Yes. Document automation creates customized documents based on information you provide. Each document should be reviewed by the lawyer before use."
-    },
-    "q5": {
-      "question": "What is the case matching accuracy?",
-      "answer": "With semantic search technology, you can access relevant precedents with 96.3% accuracy. The system continuously learns and improves itself."
-    }
-  },
-  "navigation": {
-    "home": "Home",
-    "features": "Features",
-    "practice_areas": "Practice Areas",
-    "how_it_works": "How It Works",
-    "pricing": "Pricing",
-    "faq": "FAQ",
-    "dashboard": "Dashboard"
-  },
-  "common": {
-    "search_case_law": "Search Case Law",
-    "analyze_contract": "Analyze Contract",
-    "create_document": "Create Document",
-    "view_report": "View Report",
-    "download_pdf": "Download PDF",
-    "share": "Share",
-    "loading": "Loading...",
-    "error": "Error occurred",
-    "success": "Success",
-    "try_again": "Try Again",
-    "learn_more": "Learn More"
+    "title": "LyDian Legal AI — Legal AI Advisor | AI Lawyer",
+    "description": "AI legal consultation. 1M+ court decision analysis, contract review, legislation screening. 100K+ consultations. Get legal advice.",
+    "keywords": "legal ai, ai lawyer, legal advisor ai, contract analysis, court decisions, lydian legal"
   },
   "seo": {
-    "breadcrumb_home": "Home",
-    "breadcrumb_current": "Legal AI",
-    "og_title": "LyDian Legal AI: AI-Powered Legal Assistant & Case Law Search Engine",
-    "og_description": "Supporting lawyers with case law search, contract analysis, and legal research. Try free with LyDian AI.",
-    "twitter_title": "LyDian Legal AI - Legal AI Assistant",
-    "twitter_description": "AI-powered case law search and contract analysis platform for lawyers."
+    "og": {
+      "title": "LyDian Legal AI — Legal AI Advisor | AI Lawyer",
+      "description": "AI legal consultation. 1M+ court decision analysis, contract review, legislation screening. 100K+ consultations. Get legal advice.",
+      "image": "/og-images/legal-ai-en.jpg",
+      "type": "website",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian Legal AI — Legal AI Advisor | AI Lawyer",
+      "description": "AI legal consultation. 1M+ court decision analysis, contract review, legislation screening. 100K+ consultations. Get legal advice.",
+      "image": "/og-images/legal-ai-en.jpg"
+    },
+    "geo": {
+      "geo.region": "US",
+      "geo.placename": "California",
+      "geo.position": "37.7749,-122.4194",
+      "ICBM": "37.7749,-122.4194"
+    },
+    "canonical": "https://www.ailydian.com/legal-expert"
   }
 }

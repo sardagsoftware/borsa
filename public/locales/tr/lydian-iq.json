@@ -1,197 +1,29 @@
 {
   "meta": {
-    "title": "LyDian IQ: Akıllı Problem Çözme Platformu | Görsel & Mantıksal Zeka Testi",
-    "description": "LyDian IQ, yapay zeka destekli görsel mantık, matematiksel problem çözme ve çok boyutlu zeka değerlendirmesi sunar. Ücretsiz deneyin.",
-    "keywords": "yapay zeka iq testi, görsel iq testi, ai iq platformu, çoklu zeka testi, mantık soruları ai, problem çözme motoru, LyDian IQ"
-  },
-  "product": {
-    "name": "LyDian IQ",
-    "tagline": "Yapay Zeka Destekli Akıllı Problem Çözme Motoru",
-    "version": "2.0.0",
-    "category": "Bilişsel Değerlendirme & Problem Çözme"
-  },
-  "hero": {
-    "title": "Yapay Zeka ile IQ Testi ve Problem Çözme",
-    "subtitle": "Görsel mantık, matematiksel düşünme ve çok boyutlu zeka değerlendirmesi tek platformda",
-    "cta_primary": "Ücretsiz Test Başlat",
-    "cta_secondary": "Örnek Sorular İncele",
-    "trusted_by": "100,000+ kullanıcı tarafından test edildi"
-  },
-  "features": {
-    "visual_logic": {
-      "title": "Görsel Mantık Testleri",
-      "description": "Şekil tanıma, desen tamamlama ve görsel problem çözme yeteneklerini değerlendirin",
-      "icon": "👁️"
-    },
-    "mathematical_reasoning": {
-      "title": "Matematiksel Muhakeme",
-      "description": "Sayısal mantık, diziler ve matematiksel problem çözme becerilerini ölçün",
-      "icon": "🧮"
-    },
-    "multi_dimensional": {
-      "title": "Çok Boyutlu Değerlendirme",
-      "description": "Sözel, sayısal, görsel ve mantıksal zeka alanlarında kapsamlı analiz",
-      "icon": "🎯"
-    },
-    "ai_powered": {
-      "title": "AI Destekli Analiz",
-      "description": "LyDian AI motoru ile gerçek zamanlı performans analizi ve öneriler",
-      "icon": "🤖"
-    },
-    "adaptive_testing": {
-      "title": "Uyarlanabilir Test Sistemi",
-      "description": "Performansınıza göre zorluk seviyesi otomatik ayarlanan sorular",
-      "icon": "📈"
-    },
-    "detailed_reports": {
-      "title": "Detaylı Raporlama",
-      "description": "Güçlü ve zayıf alanlarınızı gösteren kapsamlı analiz raporları",
-      "icon": "📊"
-    }
-  },
-  "test_types": {
-    "title": "Test Kategorileri",
-    "visual_iq": "Görsel IQ Testi",
-    "numerical_iq": "Sayısal IQ Testi",
-    "verbal_iq": "Sözel IQ Testi",
-    "logical_iq": "Mantıksal IQ Testi",
-    "comprehensive": "Kapsamlı IQ Değerlendirmesi"
-  },
-  "how_it_works": {
-    "title": "Nasıl Çalışır?",
-    "step1": {
-      "title": "Test Seçin",
-      "description": "Görsel, sayısal veya kapsamlı test seçeneklerinden birini belirleyin"
-    },
-    "step2": {
-      "title": "Soruları Çözün",
-      "description": "LyDian AI tarafından hazırlanan sorular ile testinizi tamamlayın"
-    },
-    "step3": {
-      "title": "Sonuçları İnceleyin",
-      "description": "Detaylı analiz raporu ve gelişim önerilerinizi alın"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Ücretsiz",
-      "price": "₺0/ay",
-      "features": [
-        "Temel IQ testi",
-        "10 soru/gün",
-        "Basit analiz raporu",
-        "Geçmiş sonuçlar (7 gün)"
-      ],
-      "cta": "Hemen Başla"
-    },
-    "pro": {
-      "title": "Pro",
-      "price": "₺49/ay",
-      "features": [
-        "Tüm test kategorileri",
-        "Sınırsız soru",
-        "Detaylı AI analiz raporu",
-        "Sınırsız geçmiş",
-        "PDF rapor indirme",
-        "Öncelikli destek"
-      ],
-      "cta": "Pro'ya Geç",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Kurumsal",
-      "price": "Özel Fiyat",
-      "features": [
-        "Pro'daki tüm özellikler",
-        "Özel test kategorileri",
-        "API erişimi",
-        "Toplu değerlendirme",
-        "Özel branding",
-        "SLA garantisi"
-      ],
-      "cta": "Satış ile Görüş"
-    }
-  },
-  "stats": {
-    "tests_completed": "1M+",
-    "tests_completed_label": "Tamamlanan Test",
-    "avg_score": "118",
-    "avg_score_label": "Ortalama IQ Skoru",
-    "countries": "50+",
-    "countries_label": "Ülke",
-    "languages": "20+",
-    "languages_label": "Dil Desteği"
-  },
-  "testimonials": {
-    "title": "Kullanıcı Yorumları",
-    "user1": {
-      "name": "Ahmet Y.",
-      "role": "Yazılım Geliştirici",
-      "comment": "LyDian IQ sayesinde mantıksal düşünme becerilerimi geliştirdim. Gerçekten işe yarıyor!",
-      "rating": 5
-    },
-    "user2": {
-      "name": "Zeynep K.",
-      "role": "Öğrenci",
-      "comment": "Üniversite sınavlarına hazırlanırken çok yardımcı oldu. Görsel sorularda çok iyiyim artık.",
-      "rating": 5
-    },
-    "user3": {
-      "name": "Mehmet S.",
-      "role": "İK Müdürü",
-      "comment": "Adayları değerlendirmek için kullanıyoruz. Çok profesyonel ve güvenilir bir platform.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Sıkça Sorulan Sorular",
-    "q1": {
-      "question": "LyDian IQ testi geçerli mi?",
-      "answer": "Evet, LyDian IQ testleri bilimsel olarak geçerli metodolojiler kullanılarak LyDian AI tarafından geliştirilmiştir. Ancak profesyonel IQ testlerinin yerini tutmaz, sadece bilişsel yeteneklerinizi değerlendirmenize yardımcı olur."
-    },
-    "q2": {
-      "question": "Test ne kadar sürer?",
-      "answer": "Temel IQ testi yaklaşık 15-20 dakika, kapsamlı değerlendirme ise 45-60 dakika sürmektedir."
-    },
-    "q3": {
-      "question": "Testi birden fazla kez yapabilir miyim?",
-      "answer": "Evet, ancak en doğru sonuçlar için testler arasında en az 1 hafta beklemenizi öneririz."
-    },
-    "q4": {
-      "question": "Hangi cihazlardan erişebilirim?",
-      "answer": "LyDian IQ web tabanlıdır ve tüm modern tarayıcılardan (Chrome, Safari, Firefox, Edge) masaüstü, tablet ve mobil cihazlarınızdan erişebilirsiniz."
-    },
-    "q5": {
-      "question": "Verilerim güvende mi?",
-      "answer": "Evet, tüm verileriniz 256-bit SSL şifrelemesi ile korunmaktadır ve GDPR uyumlu olarak işlenmektedir."
-    }
-  },
-  "navigation": {
-    "home": "Ana Sayfa",
-    "tests": "Testler",
-    "how_it_works": "Nasıl Çalışır",
-    "pricing": "Fiyatlandırma",
-    "faq": "S.S.S",
-    "my_results": "Sonuçlarım",
-    "dashboard": "Kontrol Paneli"
-  },
-  "common": {
-    "start_test": "Teste Başla",
-    "view_results": "Sonuçları Gör",
-    "download_report": "Raporu İndir",
-    "share": "Paylaş",
-    "loading": "Yükleniyor...",
-    "error": "Hata oluştu",
-    "success": "Başarılı",
-    "try_again": "Tekrar Dene",
-    "learn_more": "Daha Fazla Bilgi"
+    "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+    "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz test başlat.",
+    "keywords": "iq testi, zeka testi online, ai iq test, zeka ölçümü, ücretsiz iq testi, lydian iq"
   },
   "seo": {
-    "breadcrumb_home": "Ana Sayfa",
-    "breadcrumb_current": "LyDian IQ",
-    "og_title": "LyDian IQ: Yapay Zeka Destekli IQ Testi ve Problem Çözme Platformu",
-    "og_description": "Görsel, sayısal ve mantıksal zeka testleri ile bilişsel yeteneklerinizi değerlendirin. LyDian AI ile ücretsiz başlayın.",
-    "twitter_title": "LyDian IQ ile IQ'nuzu Test Edin",
-    "twitter_description": "AI destekli görsel mantık ve problem çözme testleri. Ücretsiz deneyin!"
+    "og": {
+      "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+      "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz test başlat.",
+      "image": "/og-images/lydian-iq-tr.jpg",
+      "type": "website",
+      "locale": "tr_TR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+      "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz test başlat.",
+      "image": "/og-images/lydian-iq-tr.jpg"
+    },
+    "geo": {
+      "geo.region": "TR",
+      "geo.placename": "İstanbul",
+      "geo.position": "41.0082,28.9784",
+      "ICBM": "41.0082,28.9784"
+    },
+    "canonical": "https://www.ailydian.com/lydian-iq"
   }
 }

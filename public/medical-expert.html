@@ -4,21 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nadir hastalık teşhisi, klinik karar desteği, radyoloji analizi, EPIC FHIR entegrasyonu. Orphanet ve OMIM veritabanları destekli tıbbi AI platformu.">
-    <meta name="keywords" content="tıbbi yapay zeka, ai doktor asistan, nadir hastalık teşhisi, klinik karar desteği, radyoloji analizi ai, tıbbi ai türkiye">
-    <title>LyDian Medical Expert - Tıbbi Yapay Zeka Asistanı | Sağlık AI Türkiye</title>
+    <title>LyDian Medical AI - Healthcare Intelligence Expert</title>
     <link rel="icon" type="image/png" href="/lydian-logo.png">
-
-    <!-- SEO: Multi-Language Support (hreflang) - BEYAZ ŞAPKALI -->
-    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/medical-expert.html?lang=tr">
-    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/medical-expert.html?lang=en">
-    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/medical-expert.html?lang=de">
-    <link rel="alternate" hreflang="fr" href="https://www.ailydian.com/medical-expert.html?lang=fr">
-    <link rel="alternate" hreflang="es" href="https://www.ailydian.com/medical-expert.html?lang=es">
-    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/medical-expert.html?lang=ar">
-    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/medical-expert.html?lang=ru">
-    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/medical-expert.html?lang=zh">
-    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/medical-expert.html">
 
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -337,12 +324,10 @@ body {
     overflow: hidden;
     transition: max-height 0.3s ease;
     padding-left: 1rem;
-    pointer-events: none; /* Prevent clicks when closed */
 }
 
 .nav-category.open .nav-category-content {
-    max-height: 2000px; /* Increased for more items */
-    pointer-events: auto; /* Enable clicks when open */
+    max-height: 1000px;
 }
 
 .nav-category .specialization-item {
@@ -980,10 +965,6 @@ body {
     background: var(--medical-primary);
 }
     </style>
-
-    <!-- 🛡️ XSS Protection: DOMPurify -->
-    <script src="/js/lib/dompurify-loader.js"></script>
-    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- Sidebar -->
@@ -1012,7 +993,7 @@ body {
         <div class="specializations-list" id="specializationsList">
 
             <!-- Medical Specialties Dropdown -->
-            <div class="nav-category open">
+            <div class="nav-category">
                 <div class="nav-category-header" onclick="toggleCategory('specialties')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
@@ -1107,7 +1088,7 @@ body {
             </div>
 
             <!-- Medical Tools Dropdown -->
-            <div class="nav-category open">
+            <div class="nav-category">
                 <div class="nav-category-header" onclick="toggleCategory('tools')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
@@ -1179,7 +1160,7 @@ body {
             </div>
 
             <!-- Advanced Medical AI Dropdown -->
-            <div class="nav-category open">
+            <div class="nav-category">
                 <div class="nav-category-header" onclick="toggleCategory('advanced-ai')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
@@ -1345,7 +1326,7 @@ body {
             </div>
 
             <!-- Neuro Health AI Dropdown -->
-            <div class="nav-category open">
+            <div class="nav-category">
                 <div class="nav-category-header" onclick="toggleCategory('neuro-ai')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
@@ -2641,7 +2622,7 @@ const chatTitle = document.getElementById('chatTitle');
 const languageSelector = document.getElementById('languageSelector');
 
 // Update AI Status Badge
-function updateAIStatus(status, engineName = '') {
+function updateAIStatus(status, modelName = '') {
     const badge = document.getElementById('aiStatusBadge');
     if (!badge) return;
 
@@ -2653,7 +2634,7 @@ function updateAIStatus(status, engineName = '') {
         },
         thinking: {
             bg: 'linear-gradient(135deg, #0066CC, #00A3E0)',
-            text: engineName || 'AI Thinking...',
+            text: modelName || 'AI Thinking...',
             icon: '<circle cx="12" cy="12" r="10" opacity="0.5"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/>'
         },
         error: {
@@ -2665,12 +2646,12 @@ function updateAIStatus(status, engineName = '') {
 
     const config = statusConfig[status] || statusConfig.ready;
     badge.style.background = config.bg;
-    badge.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    badge.innerHTML = `
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             ${config.icon}
         </svg>
         <span>${config.text}</span>
-    `);
+    `;
 }
 
 // Detect Symptoms in Message
@@ -2723,8 +2704,7 @@ async function loadEmergencyNumbers() {
             displayEmergencyNumbers(data.numbers);
         }
     } catch (error) {
-        // Silent fallback - use console.log instead of console.error
-        console.log('ℹ️ Emergency numbers API unavailable, using fallback:', error.message);
+        console.error('Emergency numbers error:', error);
         // Fallback to default Turkey numbers
         displayDefaultEmergencyNumbers();
     }
@@ -2733,19 +2713,15 @@ async function loadEmergencyNumbers() {
 // Display Emergency Numbers in Modal
 function displayEmergencyNumbers(numbers) {
     const emergencyGrid = document.querySelector('.emergency-grid');
-    if (!emergencyGrid) {
-        console.log('ℹ️ Emergency grid element not found');
-        return;
-    }
-    emergencyGrid.innerHTML = AilydianSanitizer.sanitizeHTML('');
+    emergencyGrid.innerHTML = '';
 
     numbers.forEach(item => {
         const card = document.createElement('div');
         card.className = 'emergency-card';
-        card.innerHTML = AilydianSanitizer.sanitizeHTML(`
+        card.innerHTML = `
             <div class="emergency-number">${item.number}</div>
             <div class="emergency-label">${item.label}</div>
-        `);
+        `;
         emergencyGrid.appendChild(card);
     });
 }
@@ -2848,7 +2824,7 @@ async function performRAGSearch() {
     if (!query) return alert('Please enter a search query');
 
     const resultsDiv = document.getElementById('ragResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Searching PubMed, WHO Guidelines...</div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;">Searching PubMed, WHO Guidelines...</div>';
 
     try {
         const response = await fetch('/api/rag/search', {
@@ -2877,7 +2853,7 @@ async function performRAGSearch() {
             throw new Error(data.error || 'Search failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
     }
 }
 
@@ -2887,7 +2863,7 @@ async function uploadDICOM(event) {
     if (!file) return;
 
     const resultsDiv = document.getElementById('dicomResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Uploading DICOM...</div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;">Uploading DICOM...</div>';
 
     const formData = new FormData();
     formData.append('dicom', file);
@@ -2904,7 +2880,7 @@ async function uploadDICOM(event) {
         const data = await response.json();
 
         if (data.success) {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="padding: 1.5rem; background: var(--bg-secondary); border-radius: 10px;">
                     <div style="font-weight: 700; color: var(--medical-success); margin-bottom: 1rem;">✓ DICOM Uploaded Successfully</div>
                     <div style="font-size: 0.875rem; color: var(--text-secondary);">
@@ -2913,12 +2889,12 @@ async function uploadDICOM(event) {
                         <div>File Size: ${(data.metadata?.file_size_bytes / 1024).toFixed(2)} KB</div>
                     </div>
                 </div>
-            `);
+            `;
         } else {
             throw new Error(data.error || 'Upload failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
     }
 }
 
@@ -2934,7 +2910,7 @@ async function createFHIRPatient() {
     }
 
     const resultsDiv = document.getElementById('fhirResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 1rem;">Creating patient record...</div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 1rem;">Creating patient record...</div>';
 
     try {
         const response = await fetch('/api/fhir/patient', {
@@ -2953,7 +2929,7 @@ async function createFHIRPatient() {
         const data = await response.json();
 
         if (data.success) {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="padding: 1.5rem; background: var(--bg-secondary); border-radius: 10px;">
                     <div style="font-weight: 700; color: var(--medical-success); margin-bottom: 1rem;">✓ Patient Record Created</div>
                     <div style="font-size: 0.875rem; color: var(--text-secondary);">
@@ -2963,12 +2939,12 @@ async function createFHIRPatient() {
                         <div>Birth Date: ${birthDate}</div>
                     </div>
                 </div>
-            `);
+            `;
         } else {
             throw new Error(data.error || 'Creation failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
     }
 }
 
@@ -2998,7 +2974,7 @@ async function toggleRecording() {
 
             mediaRecorder.start();
             isRecording = true;
-            recordBtn.innerHTML = AilydianSanitizer.sanitizeHTML('⏹️ Stop Recording');
+            recordBtn.innerHTML = '⏹️ Stop Recording';
             recordBtn.style.background = 'var(--medical-error)';
         } catch (error) {
             alert('Microphone access denied');
@@ -3006,7 +2982,7 @@ async function toggleRecording() {
     } else {
         mediaRecorder.stop();
         isRecording = false;
-        recordBtn.innerHTML = AilydianSanitizer.sanitizeHTML('🎤 Start Recording');
+        recordBtn.innerHTML = '🎤 Start Recording';
         recordBtn.style.background = 'var(--gradient-medical)';
     }
 }
@@ -3021,7 +2997,7 @@ async function uploadAudio(event) {
 
 async function transcribeAudioBlob(audioBlob) {
     const resultsDiv = document.getElementById('transcriptionResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Transcribing audio...</div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;">Transcribing audio...</div>';
 
     const formData = new FormData();
     formData.append('audio', audioBlob, 'recording.wav');
@@ -3036,7 +3012,7 @@ async function transcribeAudioBlob(audioBlob) {
         const data = await response.json();
 
         if (data.success && data.transcript) {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="padding: 1.5rem; background: var(--bg-secondary); border-radius: 10px;">
                     <div style="font-weight: 700; margin-bottom: 1rem;">Transcription:</div>
                     <div style="padding: 1rem; background: white; border-radius: 8px; line-height: 1.6;">${data.transcript}</div>
@@ -3044,12 +3020,12 @@ async function transcribeAudioBlob(audioBlob) {
                         Confidence: ${((data.metadata?.confidence || 0) * 100).toFixed(1)}%
                     </div>
                 </div>
-            `);
+            `;
         } else {
             throw new Error(data.error || 'Transcription failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
     }
 }
 
@@ -3061,7 +3037,7 @@ async function performTranslation() {
     if (!text) return alert('Please enter text to translate');
 
     const resultsDiv = document.getElementById('translationResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;">Translating...</div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;">Translating...</div>';
 
     try {
         const response = await fetch('/api/translate', {
@@ -3077,17 +3053,17 @@ async function performTranslation() {
         const data = await response.json();
 
         if (data.success && data.translated_text) {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="padding: 1.5rem; background: var(--bg-secondary); border-radius: 10px;">
                     <div style="font-weight: 700; margin-bottom: 1rem;">Translation:</div>
                     <div style="padding: 1rem; background: white; border-radius: 8px; line-height: 1.6;">${data.translated_text}</div>
                 </div>
-            `);
+            `;
         } else {
             throw new Error(data.error || 'Translation failed');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: var(--medical-error); padding: 1rem;">Error: ${error.message}</div>`;
     }
 }
 
@@ -3161,10 +3137,7 @@ function updateChatTitle() {
         'psychiatry': 'Psychiatry',
         'orthopedics': 'Orthopedics'
     };
-    const chatTitleSpan = chatTitle?.querySelector('span');
-    if (chatTitleSpan) {
-        chatTitleSpan.textContent = specialtyNames[state.currentSpecialty] || 'Medical AI Expert';
-    }
+    chatTitle.querySelector('span').textContent = specialtyNames[state.currentSpecialty] || 'Medical AI Expert';
 }
 
 // Language Management
@@ -3305,7 +3278,7 @@ function renderMessage(msg) {
 
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${msg.role}`;
-    messageDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    messageDiv.innerHTML = `
         <div class="message-avatar">
             ${isUser ? `
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -3324,7 +3297,7 @@ function renderMessage(msg) {
             <div class="message-bubble">${escapeHtml(msg.content)}</div>
             <div class="message-time">${time}</div>
         </div>
-    `);
+    `;
 
     messagesContainer.appendChild(messageDiv);
 }
@@ -3334,7 +3307,7 @@ function showTypingIndicator() {
     const indicator = document.createElement('div');
     indicator.id = 'typingIndicator';
     indicator.className = 'message ai';
-    indicator.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    indicator.innerHTML = `
         <div class="message-avatar">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                 <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
@@ -3349,7 +3322,7 @@ function showTypingIndicator() {
                 </div>
             </div>
         </div>
-    `);
+    `;
     messagesContainer.appendChild(indicator);
     scrollToBottom();
 }
@@ -3476,11 +3449,11 @@ async function handleVoiceInput() {
             state.isRecording = true;
 
             voiceBtn.style.background = 'var(--medical-error)';
-            voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            voiceBtn.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="6" y="6" width="12" height="12" rx="2"/>
                 </svg>
-            `);
+            `;
         } catch (error) {
             console.error('Microphone access error:', error);
             alert('Microphone access denied. Please allow microphone access in your browser settings.');
@@ -3491,14 +3464,14 @@ async function handleVoiceInput() {
             state.isRecording = false;
 
             voiceBtn.style.background = '';
-            voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            voiceBtn.innerHTML = `
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
                     <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
                     <line x1="12" y1="19" x2="12" y2="23"/>
                     <line x1="8" y1="23" x2="16" y2="23"/>
                 </svg>
-            `);
+            `;
         }
     }
 }
@@ -3631,9 +3604,9 @@ function scrollToBottom() {
 function displayResult(elementId, data, isError = false) {
     const resultDiv = document.getElementById(elementId);
     if (isError) {
-        resultDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="padding: 1rem; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; color: #DC2626;">${data}</div>`);
+        resultDiv.innerHTML = `<div style="padding: 1rem; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; color: #DC2626;">${data}</div>`;
     } else {
-        resultDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="padding: 1rem; background: var(--bg-primary); border: var(--border-light); border-radius: 8px;">${data}</div>`);
+        resultDiv.innerHTML = `<div style="padding: 1rem; background: var(--bg-primary); border: var(--border-light); border-radius: 8px;">${data}</div>`;
     }
 }
 
@@ -5204,7 +5177,7 @@ function uploadNeuroImaging(event) {
     // Show file info
     const fileInfo = document.createElement('div');
     fileInfo.style.cssText = 'margin-top: 1rem; padding: 1rem; background: #F0FDF4; border-radius: 8px; border-left: 4px solid #10A37F;';
-    fileInfo.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    fileInfo.innerHTML = `
         <div style="display: flex; align-items: center; justify-content: space-between;">
             <div>
                 <div style="font-weight: 600; color: #065F46; margin-bottom: 0.25rem;">File Uploaded</div>
@@ -5214,7 +5187,7 @@ function uploadNeuroImaging(event) {
                 <polyline points="20 6 9 17 4 12"/>
             </svg>
         </div>
-    `);
+    `;
 
     const container = document.querySelector('#neuroImagingFileInput').parentElement;
     const existingInfo = container.querySelector('div[style*="margin-top: 1rem"]');
@@ -5233,12 +5206,12 @@ async function analyzeNeuroImaging() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    button.innerHTML = `
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px; animation: spin 1s linear infinite;">
             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
         </svg>
         Analyzing with LyDian AI Vision...
-    `);
+    `;
 
     try {
         // REAL API CALL to /api/neuro/imaging-analysis
@@ -5258,30 +5231,17 @@ async function analyzeNeuroImaging() {
 
         const data = await response.json();
 
-        // Display results with null checks
-        const resultsEl = document.getElementById('neuroImagingResults');
-        if (resultsEl) resultsEl.style.display = 'block';
+        // Display results
+        document.getElementById('neuroImagingResults').style.display = 'block';
+        document.getElementById('neuroImagingAnalysis').textContent = data.analysis;
+        document.getElementById('neuroImagingConfidence').textContent = data.metrics.confidence;
+        document.getElementById('neuroImagingVolume').textContent = data.metrics.volume;
+        document.getElementById('neuroImagingFindings').textContent = data.metrics.findings;
+        document.getElementById('neuroImagingCitations').innerHTML = data.citations.map(c =>
+            `<p style="margin-bottom: 0.5rem;">📄 ${c}</p>`
+        ).join('');
 
-        const analysisEl = document.getElementById('neuroImagingAnalysis');
-        if (analysisEl) analysisEl.textContent = data.analysis;
-
-        const confidenceEl = document.getElementById('neuroImagingConfidence');
-        if (confidenceEl) confidenceEl.textContent = data.metrics.confidence;
-
-        const volumeEl = document.getElementById('neuroImagingVolume');
-        if (volumeEl) volumeEl.textContent = data.metrics.volume;
-
-        const findingsEl = document.getElementById('neuroImagingFindings');
-        if (findingsEl) findingsEl.textContent = data.metrics.findings;
-
-        const citationsEl = document.getElementById('neuroImagingCitations');
-        if (citationsEl) {
-            citationsEl.innerHTML = data.citations.map(c =>
-                `<p style="margin-bottom: 0.5rem;">📄 ${c}</p>`
-            ).join('');
-        }
-
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
+        button.innerHTML = '✓ Analysis Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
         // Scroll to results
@@ -5291,7 +5251,7 @@ async function analyzeNeuroImaging() {
         console.error('Neuro imaging analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('Analyze with LyDian AI Vision');
+        button.innerHTML = 'Analyze with LyDian AI Vision';
     }
 }
 
@@ -5336,38 +5296,24 @@ async function calculateNeuroHealthIndex() {
 
         const data = await response.json();
 
-        // Display results with null checks
-        const healthResultsEl = document.getElementById('neuroHealthIndexResults');
-        if (healthResultsEl) healthResultsEl.style.display = 'block';
-
-        const healthScoreEl = document.getElementById('neuroHealthIndexScore');
-        if (healthScoreEl) healthScoreEl.textContent = data.neuroHealthIndex;
-
-        const healthCategoryEl = document.getElementById('neuroHealthIndexCategory');
-        if (healthCategoryEl) healthCategoryEl.textContent = data.category;
-
-        const cognitiveScoreEl = document.getElementById('neuroHealthCognitiveScore');
-        if (cognitiveScoreEl) cognitiveScoreEl.textContent = data.subScores.cognitive;
-
-        const lifestyleScoreEl = document.getElementById('neuroHealthLifestyleScore');
-        if (lifestyleScoreEl) lifestyleScoreEl.textContent = data.subScores.lifestyle;
-
-        const riskScoreEl = document.getElementById('neuroHealthRiskScore');
-        if (riskScoreEl) riskScoreEl.textContent = data.subScores.riskFactors;
-
-        const ageScoreEl = document.getElementById('neuroHealthAgeScore');
-        if (ageScoreEl) ageScoreEl.textContent = data.subScores.ageAdjusted;
+        // Display results
+        document.getElementById('neuroHealthIndexResults').style.display = 'block';
+        document.getElementById('neuroHealthIndexScore').textContent = data.neuroHealthIndex;
+        document.getElementById('neuroHealthIndexCategory').textContent = data.category;
+        document.getElementById('neuroHealthCognitiveScore').textContent = data.subScores.cognitive;
+        document.getElementById('neuroHealthLifestyleScore').textContent = data.subScores.lifestyle;
+        document.getElementById('neuroHealthRiskScore').textContent = data.subScores.riskFactors;
+        document.getElementById('neuroHealthAgeScore').textContent = data.subScores.ageAdjusted;
 
         // Recommendations
         const recommendationsHTML = data.recommendations.map(rec =>
             `<p style="margin-bottom: 0.75rem;"><strong>${rec.category}:</strong> ${rec.action} (${rec.frequency})</p>`
         ).join('');
 
-        const recommendationsEl = document.getElementById('neuroHealthRecommendations');
-        if (recommendationsEl) recommendationsEl.innerHTML = recommendationsHTML;
+        document.getElementById('neuroHealthRecommendations').innerHTML = recommendationsHTML;
 
         // Scroll to results
-        if (healthResultsEl) healthResultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        document.getElementById('neuroHealthIndexResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     } catch (error) {
         console.error('Neuro Health Index calculation error:', error);
@@ -5393,8 +5339,8 @@ async function calculateNeuroRisk() {
     }
 
     try {
-        // REAL API CALL to /api/neuro/ri[REDACTED]assessment
-        const response = await fetch('/api/neuro/ri[REDACTED]assessment', {
+        // REAL API CALL to /api/neuro/risk-assessment
+        const response = await fetch('/api/neuro/risk-assessment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -5419,41 +5365,28 @@ async function calculateNeuroRisk() {
 
         const data = await response.json();
 
-        // Display results with null checks
-        const riskResultsEl = document.getElementById('neuroRiskResults');
-        if (riskResultsEl) riskResultsEl.style.display = 'block';
-
-        const riskPercentageEl = document.getElementById('neuroRiskPercentage');
-        if (riskPercentageEl) riskPercentageEl.textContent = data.tenYearRisk + '%';
-
-        const riskLevelEl = document.getElementById('neuroRiskLevel');
-        if (riskLevelEl) riskLevelEl.textContent = data.riskLevel;
-
-        const riskAlzheimerEl = document.getElementById('neuroRiskAlzheimer');
-        if (riskAlzheimerEl) riskAlzheimerEl.textContent = data.diseaseSpecificRisks.alzheimer + '%';
-
-        const riskStrokeEl = document.getElementById('neuroRiskStroke');
-        if (riskStrokeEl) riskStrokeEl.textContent = data.diseaseSpecificRisks.stroke + '%';
-
-        const riskParkinsonEl = document.getElementById('neuroRiskParkinson');
-        if (riskParkinsonEl) riskParkinsonEl.textContent = data.diseaseSpecificRisks.parkinson + '%';
+        // Display results
+        document.getElementById('neuroRiskResults').style.display = 'block';
+        document.getElementById('neuroRiskPercentage').textContent = data.tenYearRisk + '%';
+        document.getElementById('neuroRiskLevel').textContent = data.riskLevel;
+        document.getElementById('neuroRiskAlzheimer').textContent = data.diseaseSpecificRisks.alzheimer + '%';
+        document.getElementById('neuroRiskStroke').textContent = data.diseaseSpecificRisks.stroke + '%';
+        document.getElementById('neuroRiskParkinson').textContent = data.diseaseSpecificRisks.parkinson + '%';
 
         // Protective actions
         const actionsHTML = data.protectiveActions.map(action =>
             `<p style="margin-bottom: 0.75rem; padding-left: 1.5rem; text-indent: -1.5rem;">${action.icon} ${action.action} - ${action.impact}</p>`
         ).join('');
-        const riskActionsEl = document.getElementById('neuroRiskActions');
-        if (riskActionsEl) riskActionsEl.innerHTML = actionsHTML;
+        document.getElementById('neuroRiskActions').innerHTML = actionsHTML;
 
         // References
         const referencesHTML = data.evidenceBased.references.map(ref =>
             `<p style="margin-bottom: 0.5rem;">📄 ${ref}</p>`
         ).join('');
-        const riskReferencesEl = document.getElementById('neuroRiskReferences');
-        if (riskReferencesEl) riskReferencesEl.innerHTML = referencesHTML;
+        document.getElementById('neuroRiskReferences').innerHTML = referencesHTML;
 
         // Scroll to results
-        if (riskResultsEl) riskResultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        document.getElementById('neuroRiskResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     } catch (error) {
         console.error('Neuro risk assessment error:', error);
@@ -5467,13 +5400,13 @@ async function generateNeuroTwin() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    button.innerHTML = `
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px; animation: spin 1s linear infinite;">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 6v6l4 2"/>
         </svg>
         Generating Digital Twin Model...
-    `);
+    `;
 
     try {
         // REAL API CALL to /api/neuro/digital-twin
@@ -5507,60 +5440,40 @@ async function generateNeuroTwin() {
 
         const data = await response.json();
 
-        // Generate anonymized patient ID with null check
-        const twinPatientIDEl = document.getElementById('neuroTwinPatientID');
-        if (twinPatientIDEl) twinPatientIDEl.value = data.digitalTwin.patientClusterId;
+        // Generate anonymized patient ID
+        document.getElementById('neuroTwinPatientID').value = data.digitalTwin.patientClusterId;
 
-        // Display results with null checks
-        const twinResultsEl = document.getElementById('neuroTwinResults');
-        if (twinResultsEl) twinResultsEl.style.display = 'block';
-
-        const twinBrainAgeEl = document.getElementById('neuroTwinBrainAge');
-        if (twinBrainAgeEl) twinBrainAgeEl.textContent = data.digitalTwin.brainAge + ' years';
-
-        const twinReserveEl = document.getElementById('neuroTwinCognitiveReserve');
-        if (twinReserveEl) twinReserveEl.textContent = data.digitalTwin.cognitiveReserve;
-
-        const twinConfidenceEl = document.getElementById('neuroTwinConfidence');
-        if (twinConfidenceEl) twinConfidenceEl.textContent = data.digitalTwin.modelConfidence;
+        // Display results
+        document.getElementById('neuroTwinResults').style.display = 'block';
+        document.getElementById('neuroTwinBrainAge').textContent = data.digitalTwin.brainAge + ' years';
+        document.getElementById('neuroTwinCognitiveReserve').textContent = data.digitalTwin.cognitiveReserve;
+        document.getElementById('neuroTwinConfidence').textContent = data.digitalTwin.modelConfidence;
 
         // Interventions
         const interventionsHTML = data.interventionOpportunities.map(intervention =>
             `<p style="margin-bottom: 0.75rem;">${intervention.icon} ${intervention.intervention} - ${intervention.potentialImpact}</p>`
         ).join('');
-        const twinInterventionsEl = document.getElementById('neuroTwinInterventions');
-        if (twinInterventionsEl) twinInterventionsEl.innerHTML = interventionsHTML;
+        document.getElementById('neuroTwinInterventions').innerHTML = interventionsHTML;
 
-        // Update status indicators with null checks
-        const fhirStatusEl = document.getElementById('neuroTwinFHIRStatus');
-        if (fhirStatusEl) {
-            fhirStatusEl.textContent = 'Connected ✓';
-            fhirStatusEl.style.color = '#10A37F';
-        }
-
-        const mriStatusEl = document.getElementById('neuroTwinMRIStatus');
-        if (mriStatusEl) {
-            mriStatusEl.textContent = 'Analyzed ✓';
-            mriStatusEl.style.color = '#10A37F';
-        }
+        // Update status indicators
+        document.getElementById('neuroTwinFHIRStatus').textContent = 'Connected ✓';
+        document.getElementById('neuroTwinFHIRStatus').style.color = '#10A37F';
+        document.getElementById('neuroTwinMRIStatus').textContent = 'Analyzed ✓';
+        document.getElementById('neuroTwinMRIStatus').style.color = '#10A37F';
 
         // Chart would be rendered here using Chart.js in production
         const canvas = document.getElementById('neuroTwinChart');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '16px sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('Brain Aging Trajectory Chart', canvas.width / 2, canvas.height / 2);
-                ctx.font = '12px sans-serif';
-                ctx.fillText(`(${data.trajectory.data.length} year prediction loaded)`, canvas.width / 2, canvas.height / 2 + 25);
-            }
-        }
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Brain Aging Trajectory Chart', canvas.width / 2, canvas.height / 2);
+        ctx.font = '12px sans-serif';
+        ctx.fillText(`(${data.trajectory.data.length} year prediction loaded)`, canvas.width / 2, canvas.height / 2 + 25);
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Digital Twin Generated');
+        button.innerHTML = '✓ Digital Twin Generated';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
         document.getElementById('neuroTwinResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -5569,7 +5482,7 @@ async function generateNeuroTwin() {
         console.error('Neuro-twin generation error:', error);
         alert('Failed to generate digital twin: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('Generate Digital Neuro-Twin Model');
+        button.innerHTML = 'Generate Digital Neuro-Twin Model';
     }
 }
 
@@ -5585,7 +5498,7 @@ async function authenticateClinician() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔒 Authenticating...');
+    button.innerHTML = '🔒 Authenticating...';
 
     try {
         // REAL API CALL to /api/neuro/clinician-portal
@@ -5613,7 +5526,7 @@ async function authenticateClinician() {
         // Update clinician info (if available in UI)
         console.log('Clinician authenticated:', data.clinician);
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Authenticated');
+        button.innerHTML = '✓ Authenticated';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
         // Scroll to dashboard
@@ -5625,7 +5538,7 @@ async function authenticateClinician() {
         console.error('Authentication error:', error);
         alert('Authentication failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('Authenticate & Access Validation Queue');
+        button.innerHTML = 'Authenticate & Access Validation Queue';
     }
 }
 
@@ -6251,7 +6164,7 @@ async function analyzeRareDisease() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Analyzing...');
+    button.innerHTML = '🔬 Analyzing...';
 
     try {
         // REAL API CALL to /api/medical/rare-disease-assistant
@@ -6318,14 +6231,14 @@ async function analyzeRareDisease() {
         document.getElementById('rareDiseaseResults').style.display = 'block';
         document.getElementById('rareDiseaseResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
+        button.innerHTML = '✓ Analysis Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Rare disease analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Start Differential Diagnosis Analysis');
+        button.innerHTML = '🔬 Start Differential Diagnosis Analysis';
     }
 }
 
@@ -6375,7 +6288,7 @@ async function searchCompound() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Searching PubChem...');
+    button.innerHTML = '🔬 Searching PubChem...';
 
     try {
         const response = await fetch('/api/medical/drug-discovery/compound-search', {
@@ -6444,14 +6357,14 @@ async function searchCompound() {
         document.getElementById('compoundResults').style.display = 'block';
         document.getElementById('compoundResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Search Complete');
+        button.innerHTML = '✓ Search Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Compound search error:', error);
         alert('Search failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🔬 Search PubChem Database');
+        button.innerHTML = '🔬 Search PubChem Database';
     }
 }
 
@@ -6476,7 +6389,7 @@ async function matchClinicalTrial() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🏥 Searching ClinicalTrials.gov...');
+    button.innerHTML = '🏥 Searching ClinicalTrials.gov...';
 
     try {
         const response = await fetch('/api/medical/drug-discovery/clinical-trial-match', {
@@ -6546,14 +6459,14 @@ async function matchClinicalTrial() {
         document.getElementById('clinicalTrialResults').style.display = 'block';
         document.getElementById('clinicalTrialResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Search Complete');
+        button.innerHTML = '✓ Search Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Clinical trial matching error:', error);
         alert('Search failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🏥 Find Matching Clinical Trials');
+        button.innerHTML = '🏥 Find Matching Clinical Trials';
     }
 }
 
@@ -6569,7 +6482,7 @@ async function analyzeBiomarker() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Analyzing Biomarker...');
+    button.innerHTML = '🧬 Analyzing Biomarker...';
 
     try {
         const response = await fetch('/api/medical/drug-discovery/biomarker-analysis', {
@@ -6638,14 +6551,14 @@ async function analyzeBiomarker() {
         document.getElementById('biomarkerResults').style.display = 'block';
         document.getElementById('biomarkerResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
+        button.innerHTML = '✓ Analysis Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Biomarker analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Analyze Biomarker & Get Therapy Recommendations');
+        button.innerHTML = '🧬 Analyze Biomarker & Get Therapy Recommendations';
     }
 }
 
@@ -6698,7 +6611,7 @@ async function interpretVariant() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Interpreting Variant...');
+    button.innerHTML = '🧬 Interpreting Variant...';
 
     try {
         const response = await fetch('/api/medical/genomics/variant-interpretation', {
@@ -6775,14 +6688,14 @@ async function interpretVariant() {
         document.getElementById('variantResults').style.display = 'block';
         document.getElementById('variantResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Interpretation Complete');
+        button.innerHTML = '✓ Interpretation Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Variant interpretation error:', error);
         alert('Interpretation failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🧬 Interpret Variant (ClinVar + dbSNP + gnomAD)');
+        button.innerHTML = '🧬 Interpret Variant (ClinVar + dbSNP + gnomAD)';
     }
 }
 
@@ -6800,7 +6713,7 @@ async function analyzePharmacogenomics() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('💊 Analyzing Drug-Gene Interactions...');
+    button.innerHTML = '💊 Analyzing Drug-Gene Interactions...';
 
     try {
         const response = await fetch('/api/medical/genomics/pharmacogenomics', {
@@ -6872,14 +6785,14 @@ async function analyzePharmacogenomics() {
         document.getElementById('pharmacogenomicsResults').style.display = 'block';
         document.getElementById('pharmacogenomicsResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Analysis Complete');
+        button.innerHTML = '✓ Analysis Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Pharmacogenomics analysis error:', error);
         alert('Analysis failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('💊 Analyze Drug-Gene Interactions (PharmGKB)');
+        button.innerHTML = '💊 Analyze Drug-Gene Interactions (PharmGKB)';
     }
 }
 
@@ -6897,7 +6810,7 @@ async function assessDiseaseRisk() {
 
     const button = event.target;
     button.disabled = true;
-    button.innerHTML = AilydianSanitizer.sanitizeHTML('🩺 Assessing Disease Risk...');
+    button.innerHTML = '🩺 Assessing Disease Risk...';
 
     try {
         const response = await fetch('/api/medical/genomics/disease-risk', {
@@ -6954,14 +6867,14 @@ async function assessDiseaseRisk() {
         document.getElementById('diseaseRiskResults').style.display = 'block';
         document.getElementById('diseaseRiskResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('✓ Assessment Complete');
+        button.innerHTML = '✓ Assessment Complete';
         button.style.background = 'linear-gradient(135deg, #059669, #047857)';
 
     } catch (error) {
         console.error('Disease risk assessment error:', error);
         alert('Assessment failed: ' + error.message);
         button.disabled = false;
-        button.innerHTML = AilydianSanitizer.sanitizeHTML('🩺 Assess Genetic Disease Risk (OMIM)');
+        button.innerHTML = '🩺 Assess Genetic Disease Risk (OMIM)';
     }
 }
 
@@ -7144,7 +7057,7 @@ document.head.appendChild(style);
 async function testExplainableAI() {
     const resultsDiv = document.getElementById('xaiResults');
     resultsDiv.style.display = 'block';
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #3B82F6; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Generating AI explanation with SHAP values...</p></div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #3B82F6; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Generating AI explanation with SHAP values...</p></div>';
 
     try {
         const response = await fetch('/api/medical/explainable-ai', {
@@ -7170,7 +7083,7 @@ async function testExplainableAI() {
 
         if (data.success && data.explanation) {
             const exp = data.explanation;
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="background: var(--bg-secondary); border-radius: 10px; padding: 1.5rem; border-left: 4px solid #3B82F6;">
                     <h3 style="font-size: 1rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">🔬 ${exp.modelInfo.name}</h3>
 
@@ -7213,12 +7126,12 @@ async function testExplainableAI() {
                         </div>
                     `).join('')}
                 </div>
-            `);
+            `;
         } else {
             throw new Error(data.error || 'Failed to generate explanation');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`;
     }
 }
 
@@ -7228,7 +7141,7 @@ async function testExplainableAI() {
 async function calculatePediatricDose() {
     const resultsDiv = document.getElementById('pedResults');
     resultsDiv.style.display = 'block';
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML('<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #F59E0B; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Calculating safe pediatric dose...</p></div>');
+    resultsDiv.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #F59E0B; border-radius: 50%; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem; color: #6B7280;">Calculating safe pediatric dose...</p></div>';
 
     try {
         const response = await fetch('/api/medical/pediatric-safety/dose-calculator', {
@@ -7247,7 +7160,7 @@ async function calculatePediatricDose() {
 
         if (data.success && data.dosing) {
             const d = data.dosing;
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="background: var(--bg-secondary); border-radius: 10px; padding: 1.5rem; border-left: 4px solid #F59E0B;">
                     <h3 style="font-size: 1rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">💊 ${d.drug}</h3>
 
@@ -7291,34 +7204,16 @@ async function calculatePediatricDose() {
                         </div>
                     ` : ''}
                 </div>
-            `);
+            `;
         } else {
             throw new Error(data.error || 'Failed to calculate dose');
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`);
+        resultsDiv.innerHTML = `<div style="color: #DC2626; background: #FEE2E2; padding: 1rem; border-radius: 8px;">❌ Error: ${error.message}</div>`;
     }
 }
 
-    
-// Mask sensitive API response data
-function maskApiResponse(response) {
-  if (response && typeof response === 'object') {
-    // Mask model information
-    if (response.model) response.model = 'ai-engine';
-    if (response.engine) response.engine = 'ai-engine';
-    if (response.provider) response.provider = 'ai-provider';
-
-    // Mask headers
-    if (response.headers) {
-      delete response.headers['x-request-id'];
-      delete response.headers['ai-provider-'];
-      delete response.headers['ai-system-'];
-    }
-  }
-  return response;
-}
-</script>
+    </script>
 
     <!-- ============================================ -->
     <!-- NEURO HEALTH AI MODALS -->
@@ -9531,12 +9426,12 @@ async function diagnoseDifferential() {
     }
 
     const resultsDiv = document.getElementById('differentialResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    resultsDiv.innerHTML = `
         <div style="text-align: center; padding: 2rem;">
             <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #0066CC; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
             <p style="margin-top: 1rem; color: #6B7280;">Analyzing symptoms with UpToDate + NICE guidelines...</p>
         </div>
-    `);
+    `;
     resultsDiv.style.display = 'block';
 
     try {
@@ -9549,7 +9444,7 @@ async function diagnoseDifferential() {
         const data = await response.json();
 
         if (data.success) {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB;">
                     <h3 style="font-size: 1.125rem; font-weight: 700; color: #1F2937; margin-bottom: 1rem;">🎯 Top Diagnosis</h3>
 
@@ -9602,12 +9497,12 @@ async function diagnoseDifferential() {
                         <p style="font-size: 0.875rem; color: #92400E; line-height: 1.6;"><strong>💡 Clinical Pearl:</strong> ${data.clinicalPearl}</p>
                     </div>
                 </div>
-            `);
+            `;
         } else {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`);
+            resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`);
+        resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
     }
 }
 
@@ -9622,12 +9517,12 @@ async function getProtocol() {
     const allergies = allergiesStr ? allergiesStr.split(',').map(s => s.trim()).filter(s => s) : [];
 
     const resultsDiv = document.getElementById('treatmentResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    resultsDiv.innerHTML = `
         <div style="text-align: center; padding: 2rem;">
             <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #10B981; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
             <p style="margin-top: 1rem; color: #6B7280;">Loading evidence-based treatment protocol...</p>
         </div>
-    `);
+    `;
     resultsDiv.style.display = 'block';
 
     try {
@@ -9640,7 +9535,7 @@ async function getProtocol() {
         const data = await response.json();
 
         if (data.success) {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB;">
                     <div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #10B981; margin-bottom: 1.5rem;">
                         <h3 style="font-size: 1rem; font-weight: 700; color: #065F46; margin-bottom: 0.5rem;">${data.condition}</h3>
@@ -9700,12 +9595,12 @@ async function getProtocol() {
                     </div>
                     ` : ''}
                 </div>
-            `);
+            `;
         } else {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`);
+            resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`);
+        resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
     }
 }
 
@@ -9720,12 +9615,12 @@ async function checkInteractions() {
     }
 
     const resultsDiv = document.getElementById('interactionResults');
-    resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    resultsDiv.innerHTML = `
         <div style="text-align: center; padding: 2rem;">
             <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #E5E7EB; border-top-color: #F59E0B; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
             <p style="margin-top: 1rem; color: #6B7280;">Checking DrugBank for interactions...</p>
         </div>
-    `);
+    `;
     resultsDiv.style.display = 'block';
 
     try {
@@ -9744,7 +9639,7 @@ async function checkInteractions() {
                 'LOW': '#10B981'
             };
 
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            resultsDiv.innerHTML = `
                 <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB;">
                     <div style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); padding: 1.25rem; border-radius: 10px; border-left: 4px solid #F59E0B; margin-bottom: 1.5rem;">
                         <h3 style="font-size: 1rem; font-weight: 700; color: #92400E; margin-bottom: 0.5rem;">Drug Interaction Analysis</h3>
@@ -9797,46 +9692,17 @@ async function checkInteractions() {
                         <p style="font-size: 0.875rem; color: #92400E;"><strong>👨‍⚕️ Pharmacist Consult:</strong> ${data.pharmacistConsult}</p>
                     </div>
                 </div>
-            `);
+            `;
         } else {
-            resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`);
+            resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${data.error}</p>`;
         }
     } catch (error) {
-        resultsDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`);
+        resultsDiv.innerHTML = `<p style="color: #EF4444; padding: 1rem;">Error: ${error.message}</p>`;
     }
 }
 </script>
 
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>
 
@@ -9971,35 +9837,6 @@ async function checkInteractions() {
         </div>
     </div>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>
 
@@ -10049,7 +9886,7 @@ async function checkInteractions() {
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; text-align: left;">
                         <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
                             <h4 style="font-size: 0.875rem; font-weight: 600; color: #3B82F6; margin-bottom: 0.5rem;">📝 SOAP Notes Generation</h4>
-                            <p style="font-size: 0.75rem; color: #6B7280;">Advanced AI Medical fine-tuned, 1.2s processing, 94% confidence</p>
+                            <p style="font-size: 0.75rem; color: #6B7280;">GPT-4 Medical fine-tuned, 1.2s processing, 94% confidence</p>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB;">
                             <h4 style="font-size: 0.875rem; font-weight: 600; color: #3B82F6; margin-bottom: 0.5rem;">🏥 ICD-10 Automated Coding</h4>
@@ -10128,7 +9965,7 @@ async function checkInteractions() {
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; text-align: left;">
                         <div style="background: #F9FAFB; padding: 1.25rem; border-radius: 8px; border: 1px solid #E5E7EB;">
                             <h4 style="font-size: 0.875rem; font-weight: 600; color: #3B82F6; margin-bottom: 0.5rem;">🩺 Differential Diagnosis Engine</h4>
-                            <p style="font-size: 0.75rem; color: #6B7280;">Advanced AI Medical + Bayesian probability, 95% confidence, symptom matching with risk factor stratification</p>
+                            <p style="font-size: 0.75rem; color: #6B7280;">GPT-4 Medical + Bayesian probability, 95% confidence, symptom matching with risk factor stratification</p>
                         </div>
 
                         <div style="background: #F9FAFB; padding: 1.25rem; border-radius: 8px; border: 1px solid #E5E7EB;">
@@ -10151,7 +9988,7 @@ async function checkInteractions() {
                     <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border: 1px solid #E5E7EB; text-align: left;">
                         <h4 style="font-size: 0.875rem; font-weight: 600; color: #1F2937; margin-bottom: 1rem;">🔬 Technology Stack:</h4>
                         <div style="font-size: 0.75rem; color: #4B5563; line-height: 1.8;">
-                            <div style="margin-bottom: 0.5rem;"><strong>Diagnosis:</strong> Advanced AI Medical + Clinical Reasoning Model (Bayesian probability estimation)</div>
+                            <div style="margin-bottom: 0.5rem;"><strong>Diagnosis:</strong> GPT-4 Medical + Clinical Reasoning Model (Bayesian probability estimation)</div>
                             <div style="margin-bottom: 0.5rem;"><strong>Guidelines:</strong> UpToDate, NICE, WHO Essential Medicines, AHA/ACC, CDC</div>
                             <div style="margin-bottom: 0.5rem;"><strong>Drug Interactions:</strong> DrugBank, Lexicomp, FDA MedWatch, mechanism-based analysis</div>
                             <div style="margin-bottom: 0.5rem;"><strong>Evidence:</strong> PubMed PICO, Cochrane Systematic Reviews, clinical trial data</div>
@@ -10209,36 +10046,5 @@ async function checkInteractions() {
         </div>
     </div>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
-    <!-- 🔒 CSRF Protection -->
-    <script src="/js/csrf-token.js"></script>
 </body>
 </html>

@@ -1,248 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Advisor Hub: 人工智能顾问中心 | AI商业咨询平台",
-    "description": "LyDian Advisor Hub为商业咨询、文化咨询、决策支持和学习路径提供人工智能驱动的解决方案。8个专家顾问模块。",
-    "keywords": "人工智能商业顾问, 咨询助手, AI决策支持, 文化顾问ai, 学习路径ai, 初创公司加速器ai, 生活教练ai, 会议洞察ai"
-  },
-  "product": {
-    "name": "LyDian Advisor Hub",
-    "tagline": "8位专家人工智能顾问中心",
-    "version": "2.0.0",
-    "category": "AI咨询与商业智能"
-  },
-  "hero": {
-    "title": "满足各种需求的专家人工智能顾问",
-    "subtitle": "从商业策略到个人发展，从文化咨询到初创公司加速 - 8个不同领域的AI驱动专业咨询",
-    "cta_primary": "选择顾问",
-    "cta_secondary": "探索所有模块",
-    "trusted_by": "被500,000+专业人士使用"
-  },
-  "advisors": {
-    "cultural": {
-      "title": "文化顾问",
-      "description": "跨文化交流、当地习俗、商业礼仪咨询。关于150+国家文化的专家建议",
-      "icon": "🌍",
-      "use_cases": ["国际商务会议", "文化适应", "外交礼仪"]
-    },
-    "decision": {
-      "title": "决策支持矩阵",
-      "description": "数据驱动决策、风险分析、情景规划。多标准决策分析和优化",
-      "icon": "📊",
-      "use_cases": ["战略决策", "投资分析", "风险评估"]
-    },
-    "knowledge": {
-      "title": "知识助手",
-      "description": "快速研究、知识综合、事实核查。学术和专业知识发现",
-      "icon": "🔍",
-      "use_cases": ["学术研究", "市场分析", "竞争情报"]
-    },
-    "learning": {
-      "title": "学习路径规划师",
-      "description": "个性化培训计划、技能发展路线图、学习跟踪",
-      "icon": "📚",
-      "use_cases": ["职业发展", "技术技能获取", "认证准备"]
-    },
-    "life_coach": {
-      "title": "生活教练",
-      "description": "个人目标设定、习惯养成、动力辅导。工作生活平衡咨询",
-      "icon": "💪",
-      "use_cases": ["目标设定", "时间管理", "压力管理"]
-    },
-    "meeting": {
-      "title": "会议洞察",
-      "description": "会议分析、行动项提取、决策跟踪。生产力改进建议",
-      "icon": "📅",
-      "use_cases": ["会议摘要", "任务跟踪", "团队效率"]
-    },
-    "startup": {
-      "title": "初创公司加速器",
-      "description": "商业模式验证、路演咨询、投资者寻找策略。市场进入规划",
-      "icon": "🚀",
-      "use_cases": ["MVP开发", "融资", "扩展策略"]
-    },
-    "health": {
-      "title": "健康协调员",
-      "description": "健康跟踪、健康信息资源、锻炼和营养建议（非医疗建议）",
-      "icon": "❤️",
-      "use_cases": ["健康规划", "健身跟踪", "营养信息"]
-    }
-  },
-  "how_it_works": {
-    "title": "如何工作？",
-    "step1": {
-      "title": "选择顾问",
-      "description": "从8位专家顾问中选择适合您需求的一位"
-    },
-    "step2": {
-      "title": "提出问题",
-      "description": "向您的顾问提出详细问题或分享场景"
-    },
-    "step3": {
-      "title": "获得专家建议",
-      "description": "LyDian AI基于专业知识提供全面的分析和建议"
-    }
-  },
-  "features": {
-    "specialized": {
-      "title": "8个专家模块",
-      "description": "8个不同的AI顾问模块，每个都专注于各自的领域"
-    },
-    "contextual": {
-      "title": "上下文分析",
-      "description": "每位顾问从各个维度分析您的问题，并提供符合上下文的解决方案"
-    },
-    "actionable": {
-      "title": "可执行建议",
-      "description": "不是理论知识，而是可实施的逐步行动计划"
-    },
-    "multi_domain": {
-      "title": "多领域专业知识",
-      "description": "在商业、个人发展、文化、健康等方面提供咨询"
-    },
-    "data_driven": {
-      "title": "数据驱动",
-      "description": "数据分析和可视化工具，支持您的决策"
-    },
-    "personalized": {
-      "title": "个性化",
-      "description": "针对您的行业、经验和目标量身定制的咨询"
-    },
-    "continuous": {
-      "title": "持续支持",
-      "description": "从初始咨询到实施的整个过程中与您同在"
-    },
-    "collaborative": {
-      "title": "团队协作",
-      "description": "与您的团队共享咨询会话，共同工作"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "探索",
-      "price": "¥0/月",
-      "features": [
-        "访问3位顾问",
-        "每天10个问题",
-        "基础分析",
-        "30天历史"
-      ],
-      "cta": "免费开始"
-    },
-    "pro": {
-      "title": "专业版",
-      "price": "¥199/月",
-      "features": [
-        "访问所有8位顾问",
-        "无限问题",
-        "高级分析",
-        "数据可视化",
-        "团队协作（5人）",
-        "无限历史",
-        "优先支持"
-      ],
-      "cta": "升级到专业版",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "企业版",
-      "price": "定制价格",
-      "features": [
-        "所有专业版功能",
-        "无限团队成员",
-        "API访问",
-        "自定义顾问模块",
-        "SSO支持",
-        "培训和入职",
-        "SLA保证",
-        "专属客户经理"
-      ],
-      "cta": "联系销售团队"
-    }
-  },
-  "stats": {
-    "users": "50万+",
-    "users_label": "活跃用户",
-    "sessions": "200万+",
-    "sessions_label": "咨询会话",
-    "satisfaction": "96%",
-    "satisfaction_label": "满意度",
-    "advisors": "8",
-    "advisors_label": "专家顾问模块"
-  },
-  "testimonials": {
-    "title": "来自用户",
-    "user1": {
-      "name": "李明",
-      "role": "CEO，科技初创公司",
-      "comment": "使用初创公司加速器后，我们的种子融资时间从6个月缩短到2个月。路演咨询非常出色。",
-      "rating": 5
-    },
-    "user2": {
-      "name": "王芳",
-      "role": "人力资源总监",
-      "comment": "文化顾问在我们的国际团队管理中发挥了重要作用。能够获得关于每个国家商业文化的详细信息真是太棒了。",
-      "rating": 5
-    },
-    "user3": {
-      "name": "张伟",
-      "role": "项目经理",
-      "comment": "使用会议洞察后，我们的会议效率提高了40%。自动提取行动项节省了时间。",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "常见问题",
-    "q1": {
-      "question": "每位顾问支持哪些语言？",
-      "answer": "所有8个顾问模块支持40+种语言，包括中文、英语、西班牙语、德语、阿拉伯语、日语。文化顾问在回应时理解每种语言的文化细微差别。"
-    },
-    "q2": {
-      "question": "我的咨询会话是否保密？",
-      "answer": "是的。您的所有咨询会话都受端到端加密保护。您的数据不用于模型训练，也不与第三方共享。"
-    },
-    "q3": {
-      "question": "我可以同时使用多位顾问吗？",
-      "answer": "在专业版和企业版计划中，您可以同时访问所有8位顾问。例如，您可以同时使用决策支持矩阵和初创公司加速器来做出商业决策。"
-    },
-    "q4": {
-      "question": "初创公司加速器真的能帮我找到融资吗？",
-      "answer": "初创公司加速器在路演准备、投资者定位、财务预测创建和市场进入策略方面为您提供指导。它可以加速您的融资过程，但不能保证成功。"
-    },
-    "q5": {
-      "question": "团队协作如何工作？",
-      "answer": "在专业版计划中您可以添加5名团队成员，在企业版计划中无限制。您可以共享咨询会话、评论并共同创建行动计划。"
-    }
-  },
-  "navigation": {
-    "home": "首页",
-    "advisors": "顾问",
-    "features": "功能",
-    "how_it_works": "如何工作",
-    "pricing": "价格",
-    "faq": "常见问题",
-    "start": "开始"
-  },
-  "common": {
-    "select_advisor": "选择顾问",
-    "start_session": "开始会话",
-    "ask_question": "提问",
-    "view_analysis": "查看分析",
-    "export_report": "导出报告",
-    "share_team": "与团队分享",
-    "save_session": "保存会话",
-    "loading": "加载中...",
-    "analyzing": "分析中...",
-    "success": "成功",
-    "error": "发生错误",
-    "try_again": "重试",
-    "learn_more": "了解更多"
+    "title": "AI Advisor Hub — 8位专家AI顾问 | AI咨询平台",
+    "description": "8位专家AI一个平台。文化、决策、健康、知识、学习、生活、会议、创业。30万+次咨询。选择顾问。",
+    "keywords": "ai顾问, 专家ai, 生活教练ai, 创业顾问, 决策矩阵, ai advisor hub"
   },
   "seo": {
-    "breadcrumb_home": "首页",
-    "breadcrumb_current": "Advisor Hub",
-    "og_title": "LyDian Advisor Hub: 8位专家人工智能顾问中心",
-    "og_description": "AI驱动的专家顾问，提供商业咨询、文化咨询、决策支持、初创公司加速等服务。免费试用。",
-    "twitter_title": "LyDian Advisor Hub - AI咨询平台",
-    "twitter_description": "8位专家AI顾问：文化、决策、知识、学习、生活教练、会议、初创公司、健康。免费开始！"
+    "og": {
+      "title": "AI Advisor Hub — 8位专家AI顾问 | AI咨询平台",
+      "description": "8位专家AI一个平台。文化、决策、健康、知识、学习、生活、会议、创业。30万+次咨询。选择顾问。",
+      "image": "/og-images/advisor-hub-zh.jpg",
+      "type": "website",
+      "locale": "zh_CN"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "AI Advisor Hub — 8位专家AI顾问 | AI咨询平台",
+      "description": "8位专家AI一个平台。文化、决策、健康、知识、学习、生活、会议、创业。30万+次咨询。选择顾问。",
+      "image": "/og-images/advisor-hub-zh.jpg"
+    },
+    "geo": {
+      "geo.region": "CN",
+      "geo.placename": "Beijing",
+      "geo.position": "39.9042,116.4074",
+      "ICBM": "39.9042,116.4074"
+    },
+    "canonical": "https://www.ailydian.com/ai-advisor-hub"
   }
 }

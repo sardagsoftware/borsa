@@ -1,210 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Medical Expert: KI-Medizinischer Assistent | Krankheitsdiagnose & Klinische Entscheidungsunterstützung",
-    "description": "LyDian Medical Expert bietet Seltenerkrankungsdiagnose, klinische Entscheidungsunterstützung und multimodale medizinische Datenanalyse. KI-gestützter medizinischer Assistent für Gesundheitsfachkräfte.",
-    "keywords": "KI medizinischer Assistent, Seltenerkrankungsdiagnose KI, klinisches Entscheidungsunterstützungssystem, medizinische Bildanalyse, EPIC FHIR Integration, LyDian Medical Expert"
-  },
-  "product": {
-    "name": "LyDian Medical Expert",
-    "tagline": "KI-gestützter Medizinischer Assistent & Klinische Entscheidungsunterstützung",
-    "version": "2.0.0",
-    "category": "Medizinische KI & Klinische Entscheidungsunterstützung"
-  },
-  "hero": {
-    "title": "KI-gestützter Medizinischer Assistent für Gesundheitsfachkräfte",
-    "subtitle": "Seltenerkrankungsdiagnose, klinische Entscheidungsunterstützung, medizinische Bildanalyse und multimodale Datenfusion - Ärzte bei jedem Schritt unterstützen",
-    "cta_primary": "Kostenlos Testen",
-    "cta_secondary": "Demo Ansehen",
-    "trusted_by": "Verwendet von 500+ Krankenhäusern und 10.000+ Gesundheitsfachkräften"
-  },
-  "features": {
-    "rare_disease": {
-      "title": "Seltenerkrankungsassistent",
-      "description": "Integriert mit Orphanet- und OMIM-Datenbanken, Symptomanalyse und Diagnosevorschläge für 10.000+ seltene Krankheiten",
-      "icon": "🧬"
-    },
-    "clinical_decision": {
-      "title": "Klinische Entscheidungsunterstützung",
-      "description": "Evidenzbasierte Behandlungsempfehlungen und Arzneimittelinteraktionsprüfungen, unterstützt durch aktuelle medizinische Literatur",
-      "icon": "🩺"
-    },
-    "radiology_analysis": {
-      "title": "Radiologische Bildanalyse",
-      "description": "Läsionserkennung, Segmentierung und Anomalieanalyse in Röntgen-, MRT- und CT-Bildern",
-      "icon": "🔬"
-    },
-    "maternal_fetal": {
-      "title": "Mütterlich-Fetale Gesundheit",
-      "description": "Schwangerschaftsüberwachung, fetale Anomalieerkennung und Geburtskomplikationsrisikobewertung",
-      "icon": "👶"
-    },
-    "emergency_triage": {
-      "title": "Notfall-Triage",
-      "description": "Symptombasierte Dringlichkeitsstufenbestimmung und erste Interventionsempfehlungen",
-      "icon": "🚑"
-    },
-    "mental_health": {
-      "title": "Psychische Gesundheitsbewertung",
-      "description": "Früherkennung und Unterstützung bei Depression, Angst und anderen psychischen Gesundheitszuständen",
-      "icon": "🧠"
-    },
-    "sepsis_warning": {
-      "title": "Sepsis-Frühwarnsystem",
-      "description": "Früherkennung des Sepsis-Risikos durch Analyse von Vitalparametern und Laborwerten",
-      "icon": "⚠️"
-    },
-    "epic_fhir": {
-      "title": "EPIC FHIR-Integration",
-      "description": "Nahtlose Integration mit Krankenhausinformationssystemen und Zugriff auf elektronische Gesundheitsakten",
-      "icon": "🔗"
-    }
-  },
-  "specialties": {
-    "title": "Medizinische Fachgebiete",
-    "cardiology": "Kardiologie",
-    "neurology": "Neurologie",
-    "oncology": "Onkologie",
-    "pediatrics": "Pädiatrie",
-    "radiology": "Radiologie",
-    "emergency": "Notfallmedizin",
-    "psychiatry": "Psychiatrie",
-    "obstetrics": "Geburtshilfe & Gynäkologie"
-  },
-  "how_it_works": {
-    "title": "Wie Es Funktioniert",
-    "step1": {
-      "title": "Patienteninformationen Eingeben",
-      "description": "Symptome, Vitalparameter und Krankengeschichte ins System eingeben"
-    },
-    "step2": {
-      "title": "KI-Analyse",
-      "description": "LyDian AI analysiert medizinische Literatur und Datenbanken, um Empfehlungen zu geben"
-    },
-    "step3": {
-      "title": "Entscheidungsunterstützung Erhalten",
-      "description": "Diagnosevorschläge, Behandlungsoptionen und Referenzdokumente anzeigen"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Individuell",
-      "price": "Kostenlos",
-      "features": [
-        "Basis-Symptomanalyse",
-        "10 Patientenkonsultationen/Tag",
-        "Allgemeiner medizinischer Datenbankzugriff",
-        "7-Tage-Verlauf"
-      ],
-      "cta": "Jetzt Starten"
-    },
-    "pro": {
-      "title": "Professionell",
-      "price": "89€/Monat",
-      "features": [
-        "Unbegrenzte Patientenkonsultationen",
-        "Seltenerkrankungsdatenbank",
-        "Radiologische Bildanalyse",
-        "EPIC FHIR-Integration",
-        "Prioritätssupport",
-        "PDF-Bericht Download"
-      ],
-      "cta": "Auf Professionell Upgraden",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Krankenhaus",
-      "price": "Individuelle Preise",
-      "features": [
-        "Alle Professionell-Funktionen",
-        "Enterprise-HIS-Integration",
-        "Individuelle Datentraining",
-        "Mehrbenutzerverwaltung",
-        "SLA-Garantie",
-        "24/7 technischer Support"
-      ],
-      "cta": "Vertrieb Kontaktieren"
-    }
-  },
-  "stats": {
-    "hospitals": "500+",
-    "hospitals_label": "Krankenhäuser",
-    "doctors": "10.000+",
-    "doctors_label": "Ärzte",
-    "diagnoses": "1M+",
-    "diagnoses_label": "Diagnoseunterstützung",
-    "accuracy": "94,7%",
-    "accuracy_label": "Diagnostische Genauigkeit"
-  },
-  "testimonials": {
-    "title": "Gesundheitsfachkräfte",
-    "doctor1": {
-      "name": "Dr. Anna Schmidt",
-      "role": "Internistin",
-      "comment": "LyDian Medical Expert ist bei der Diagnose seltener Krankheiten unglaublich hilfreich. Die Orphanet-Integration ist ausgezeichnet.",
-      "rating": 5
-    },
-    "doctor2": {
-      "name": "Dr. Thomas Müller",
-      "role": "Notfallmediziner",
-      "comment": "Unverzichtbar für schnelle Triage in der Notaufnahme. Verhindert, dass wir kritische Befunde übersehen.",
-      "rating": 5
-    },
-    "doctor3": {
-      "name": "Dr. Julia Weber",
-      "role": "Radiologin",
-      "comment": "Die Bildanalysefunktion ist wirklich beeindruckend. Ein großartiges Werkzeug für eine zweite Meinung.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Häufig Gestellte Fragen",
-    "q1": {
-      "question": "Ersetzt LyDian Medical Expert Ärzte?",
-      "answer": "Nein. LyDian Medical Expert ist ein klinisches Entscheidungsunterstützungssystem und arbeitet als Assistenzwerkzeug neben Ärzten. Endgültige medizinische Entscheidungen müssen immer von zugelassenen Gesundheitsfachkräften getroffen werden."
-    },
-    "q2": {
-      "question": "Sind Patientendaten sicher?",
-      "answer": "Ja. Alle Daten sind mit 256-Bit-SSL-Verschlüsselung in Übereinstimmung mit HIPAA und DSGVO geschützt. Ihre Daten werden niemals mit Dritten geteilt."
-    },
-    "q3": {
-      "question": "Welchen medizinischen Standards entspricht es?",
-      "answer": "LyDian Medical Expert unterstützt internationale medizinische Standards einschließlich HL7 FHIR, DICOM, ICD-10 und SNOMED-CT."
-    },
-    "q4": {
-      "question": "Kann es mit Krankenhausinformationssystemen integriert werden?",
-      "answer": "Ja. Nahtlose Integration mit bestehenden Krankenhausinformationssystemen wird durch EPIC FHIR API-Unterstützung bereitgestellt."
-    },
-    "q5": {
-      "question": "Was ist die diagnostische Genauigkeit?",
-      "answer": "Klinische Validierungsstudien erzielten 94,7% diagnostische Genauigkeit. Das System ist jedoch ein Entscheidungsunterstützungswerkzeug und die endgültige Diagnose sollte immer von einem Arzt gestellt werden."
-    }
-  },
-  "navigation": {
-    "home": "Startseite",
-    "features": "Funktionen",
-    "specialties": "Fachgebiete",
-    "how_it_works": "Wie Es Funktioniert",
-    "pricing": "Preise",
-    "faq": "FAQ",
-    "dashboard": "Dashboard"
-  },
-  "common": {
-    "start_consultation": "Konsultation Starten",
-    "view_report": "Bericht Ansehen",
-    "download_pdf": "PDF Herunterladen",
-    "share": "Teilen",
-    "loading": "Lädt...",
-    "error": "Fehler aufgetreten",
-    "success": "Erfolgreich",
-    "try_again": "Erneut Versuchen",
-    "learn_more": "Mehr Erfahren"
+    "title": "Medical Expert — 24/7 KI Medizinischer Assistent | Gesundheitsberatung",
+    "description": "KI-gestützte Gesundheitsberatung. Multi-Modell-Diagnoseunterstützung, medizinische Analyse, Notfall-Triage. 500K+ Beratungen.",
+    "keywords": "medizinische ki, ki arzt, gesundheitsberater ki, medizinische diagnose ki, medical expert, lydian medical"
   },
   "seo": {
-    "breadcrumb_home": "Startseite",
-    "breadcrumb_current": "Medical Expert",
-    "og_title": "LyDian Medical Expert: KI-gestützter Medizinischer Assistent & Klinische Entscheidungsunterstützung",
-    "og_description": "Unterstützung von Gesundheitsfachkräften mit Seltenerkrankungsdiagnose, Radiologieanalyse und multimodaler medizinischer Datenfusion. Kostenlos testen mit LyDian AI.",
-    "twitter_title": "LyDian Medical Expert - Medizinischer KI-Assistent",
-    "twitter_description": "KI-gestützte klinische Entscheidungsunterstützung für Gesundheitsfachkräfte. Seltenerkrankungsdiagnose und Bildanalyse."
+    "og": {
+      "title": "Medical Expert — 24/7 KI Medizinischer Assistent | Gesundheitsberatung",
+      "description": "KI-gestützte Gesundheitsberatung. Multi-Modell-Diagnoseunterstützung, medizinische Analyse, Notfall-Triage. 500K+ Beratungen.",
+      "image": "/og-images/medical-expert-de.jpg",
+      "type": "website",
+      "locale": "de_DE"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Medical Expert — 24/7 KI Medizinischer Assistent | Gesundheitsberatung",
+      "description": "KI-gestützte Gesundheitsberatung. Multi-Modell-Diagnoseunterstützung, medizinische Analyse, Notfall-Triage. 500K+ Beratungen.",
+      "image": "/og-images/medical-expert-de.jpg"
+    },
+    "geo": {
+      "geo.region": "DE",
+      "geo.placename": "Berlin",
+      "geo.position": "52.5200,13.4050",
+      "ICBM": "52.5200,13.4050"
+    },
+    "canonical": "https://www.ailydian.com/medical-expert"
   }
 }

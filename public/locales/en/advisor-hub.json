@@ -1,248 +1,29 @@
 {
   "meta": {
-    "title": "LyDian Advisor Hub: AI Advisory Center | AI Business Consulting Platform",
-    "description": "LyDian Advisor Hub provides AI-powered solutions for business consulting, cultural advisory, decision support, and learning paths. 8 expert advisor modules.",
-    "keywords": "ai business advisor, consulting assistant, ai decision support, cultural advisor ai, learning path ai, startup accelerator ai, life coach ai, meeting insights ai"
-  },
-  "product": {
-    "name": "LyDian Advisor Hub",
-    "tagline": "8 Expert AI Advisor Center",
-    "version": "2.0.0",
-    "category": "AI Consulting & Business Intelligence"
-  },
-  "hero": {
-    "title": "Expert AI Advisors for Every Need",
-    "subtitle": "From business strategy to personal development, cultural consulting to startup acceleration - AI-powered professional consulting in 8 different areas",
-    "cta_primary": "Choose Advisor",
-    "cta_secondary": "Explore All Modules",
-    "trusted_by": "Used by 500,000+ professionals"
-  },
-  "advisors": {
-    "cultural": {
-      "title": "Cultural Advisor",
-      "description": "Cross-cultural communication, local customs, business protocol consulting. Expert recommendations on 150+ country cultures",
-      "icon": "🌍",
-      "use_cases": ["International business meetings", "Cultural adaptation", "Diplomatic protocol"]
-    },
-    "decision": {
-      "title": "Decision Support Matrix",
-      "description": "Data-driven decision making, risk analysis, scenario planning. Multi-criteria decision analysis and optimization",
-      "icon": "📊",
-      "use_cases": ["Strategic decisions", "Investment analysis", "Risk assessment"]
-    },
-    "knowledge": {
-      "title": "Knowledge Assistant",
-      "description": "Rapid research, knowledge synthesis, fact-checking. Academic and professional knowledge discovery",
-      "icon": "🔍",
-      "use_cases": ["Academic research", "Market analysis", "Competitive intelligence"]
-    },
-    "learning": {
-      "title": "Learning Path Planner",
-      "description": "Personalized training programs, skill development roadmaps, learning tracking",
-      "icon": "📚",
-      "use_cases": ["Career development", "Technical skill acquisition", "Certification preparation"]
-    },
-    "life_coach": {
-      "title": "Life Coach",
-      "description": "Personal goal setting, habit formation, motivation coaching. Work-life balance consulting",
-      "icon": "💪",
-      "use_cases": ["Goal setting", "Time management", "Stress management"]
-    },
-    "meeting": {
-      "title": "Meeting Insights",
-      "description": "Meeting analysis, action item extraction, decision tracking. Productivity improvement recommendations",
-      "icon": "📅",
-      "use_cases": ["Meeting summaries", "Task tracking", "Team efficiency"]
-    },
-    "startup": {
-      "title": "Startup Accelerator",
-      "description": "Business model validation, pitch deck consulting, investor finding strategies. Go-to-market planning",
-      "icon": "🚀",
-      "use_cases": ["MVP development", "Fundraising", "Scaling strategy"]
-    },
-    "health": {
-      "title": "Health Orchestrator",
-      "description": "Wellness tracking, health information resources, exercise and nutrition recommendations (not medical advice)",
-      "icon": "❤️",
-      "use_cases": ["Wellness planning", "Fitness tracking", "Nutrition information"]
-    }
-  },
-  "how_it_works": {
-    "title": "How It Works",
-    "step1": {
-      "title": "Choose Advisor",
-      "description": "Select the one that suits your needs from 8 expert advisors"
-    },
-    "step2": {
-      "title": "Ask Your Question",
-      "description": "Ask detailed questions or share scenarios with your advisor"
-    },
-    "step3": {
-      "title": "Get Expert Recommendations",
-      "description": "LyDian AI provides comprehensive analysis and recommendations based on expertise"
-    }
-  },
-  "features": {
-    "specialized": {
-      "title": "8 Expert Modules",
-      "description": "8 different AI advisor modules, each specialized in their own field"
-    },
-    "contextual": {
-      "title": "Contextual Analysis",
-      "description": "Each advisor analyzes your problem in all dimensions and offers context-appropriate solutions"
-    },
-    "actionable": {
-      "title": "Actionable Recommendations",
-      "description": "Not theoretical knowledge, but implementable step-by-step action plans"
-    },
-    "multi_domain": {
-      "title": "Multi-Domain Expertise",
-      "description": "Consulting in business, personal development, culture, health and more"
-    },
-    "data_driven": {
-      "title": "Data-Driven",
-      "description": "Data analysis and visualization tools to support your decisions"
-    },
-    "personalized": {
-      "title": "Personalized",
-      "description": "Consulting tailored to your industry, experience and goals"
-    },
-    "continuous": {
-      "title": "Continuous Support",
-      "description": "By your side throughout the process from initial consultation to implementation"
-    },
-    "collaborative": {
-      "title": "Team Collaboration",
-      "description": "Share consulting sessions with your team and work together"
-    }
-  },
-  "pricing": {
-    "free": {
-      "title": "Explore",
-      "price": "$0/month",
-      "features": [
-        "3 advisor access",
-        "10 questions/day",
-        "Basic analyses",
-        "30-day history"
-      ],
-      "cta": "Start Free"
-    },
-    "pro": {
-      "title": "Professional",
-      "price": "$29.99/month",
-      "features": [
-        "Access to all 8 advisors",
-        "Unlimited questions",
-        "Advanced analyses",
-        "Data visualization",
-        "Team collaboration (5 people)",
-        "Unlimited history",
-        "Priority support"
-      ],
-      "cta": "Go Professional",
-      "popular": true
-    },
-    "enterprise": {
-      "title": "Enterprise",
-      "price": "Custom Pricing",
-      "features": [
-        "All Pro features",
-        "Unlimited team members",
-        "API access",
-        "Custom advisor modules",
-        "SSO support",
-        "Training and onboarding",
-        "SLA guarantee",
-        "Dedicated account manager"
-      ],
-      "cta": "Contact Sales Team"
-    }
-  },
-  "stats": {
-    "users": "500K+",
-    "users_label": "Active Users",
-    "sessions": "2M+",
-    "sessions_label": "Consulting Sessions",
-    "satisfaction": "96%",
-    "satisfaction_label": "Satisfaction Rate",
-    "advisors": "8",
-    "advisors_label": "Expert Advisor Modules"
-  },
-  "testimonials": {
-    "title": "From Our Users",
-    "user1": {
-      "name": "John Smith",
-      "role": "CEO, TechStartup",
-      "comment": "With Startup Accelerator, our seed funding timeline went from 6 months to 2 months. The pitch deck consulting was excellent.",
-      "rating": 5
-    },
-    "user2": {
-      "name": "Sarah Johnson",
-      "role": "HR Director",
-      "comment": "Cultural Advisor has been a game-changer in our international team management. Being able to get detailed information about each country's business culture is amazing.",
-      "rating": 5
-    },
-    "user3": {
-      "name": "Mike Chen",
-      "role": "Project Manager",
-      "comment": "With Meeting Insights, our meetings are 40% more efficient. Automatic action item extraction saves time.",
-      "rating": 5
-    }
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "q1": {
-      "question": "What languages does each advisor support?",
-      "answer": "All 8 advisor modules serve in 40+ languages including English, Spanish, German, Arabic, Russian, and Chinese. Cultural Advisor responds understanding the cultural nuances of each language."
-    },
-    "q2": {
-      "question": "Are my consulting sessions confidential?",
-      "answer": "Yes. All your consulting sessions are protected with end-to-end encryption. Your data is not used for model training and is not shared with third parties."
-    },
-    "q3": {
-      "question": "Can I use multiple advisors simultaneously?",
-      "answer": "In Pro and Enterprise plans, you can access all 8 advisors simultaneously. For example, you can use both Decision Support Matrix and Startup Accelerator for a business decision."
-    },
-    "q4": {
-      "question": "Will Startup Accelerator really help me find funding?",
-      "answer": "Startup Accelerator guides you in pitch deck preparation, investor targeting, financial projection creation, and go-to-market strategy. It accelerates your fundraising process but does not guarantee it."
-    },
-    "q5": {
-      "question": "How does team collaboration work?",
-      "answer": "You can add 5 team members in Pro plan, unlimited in Enterprise plan. You can share consulting sessions, comment, and create action plans together."
-    }
-  },
-  "navigation": {
-    "home": "Home",
-    "advisors": "Advisors",
-    "features": "Features",
-    "how_it_works": "How It Works",
-    "pricing": "Pricing",
-    "faq": "FAQ",
-    "start": "Get Started"
-  },
-  "common": {
-    "select_advisor": "Select Advisor",
-    "start_session": "Start Session",
-    "ask_question": "Ask Question",
-    "view_analysis": "View Analysis",
-    "export_report": "Export Report",
-    "share_team": "Share with Team",
-    "save_session": "Save Session",
-    "loading": "Loading...",
-    "analyzing": "Analyzing...",
-    "success": "Success",
-    "error": "Error occurred",
-    "try_again": "Try Again",
-    "learn_more": "Learn More"
+    "title": "AI Advisor Hub — 8 Expert AI Advisors | AI Consulting Platform",
+    "description": "8 expert AIs in one platform. Culture, Decision, Health, Knowledge, Learning, Life, Meeting, Startup. 300K+ consultations. Choose advisor.",
+    "keywords": "ai advisor, expert ai, life coach ai, startup advisor, decision matrix, ai advisor hub"
   },
   "seo": {
-    "breadcrumb_home": "Home",
-    "breadcrumb_current": "Advisor Hub",
-    "og_title": "LyDian Advisor Hub: 8 Expert AI Advisor Center",
-    "og_description": "AI-powered expert advisors for business consulting, cultural advisory, decision support, startup acceleration and more. Try free.",
-    "twitter_title": "LyDian Advisor Hub - AI Consulting Platform",
-    "twitter_description": "8 expert AI advisors: Cultural, Decision, Knowledge, Learning, Life Coach, Meeting, Startup, Health. Start free!"
+    "og": {
+      "title": "AI Advisor Hub — 8 Expert AI Advisors | AI Consulting Platform",
+      "description": "8 expert AIs in one platform. Culture, Decision, Health, Knowledge, Learning, Life, Meeting, Startup. 300K+ consultations. Choose advisor.",
+      "image": "/og-images/advisor-hub-en.jpg",
+      "type": "website",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "AI Advisor Hub — 8 Expert AI Advisors | AI Consulting Platform",
+      "description": "8 expert AIs in one platform. Culture, Decision, Health, Knowledge, Learning, Life, Meeting, Startup. 300K+ consultations. Choose advisor.",
+      "image": "/og-images/advisor-hub-en.jpg"
+    },
+    "geo": {
+      "geo.region": "US",
+      "geo.placename": "California",
+      "geo.position": "37.7749,-122.4194",
+      "ICBM": "37.7749,-122.4194"
+    },
+    "canonical": "https://www.ailydian.com/ai-advisor-hub"
   }
 }
