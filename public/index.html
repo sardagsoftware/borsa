@@ -3202,7 +3202,8 @@
                 alpha: true
             });
             renderer.setSize(width, height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            // Mobile High-DPI fix: increase pixel ratio for sharper rendering
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
             renderer.setClearColor(0x000000, 0);
 
             // Create Main Geometry - Double Layer for prominence
@@ -3285,6 +3286,8 @@
             camera.updateProjectionMatrix();
 
             renderer.setSize(width, height);
+            // Mobile High-DPI fix: maintain high pixel ratio on resize
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
         }
 
         // Animation loop - Only rotating main mesh
