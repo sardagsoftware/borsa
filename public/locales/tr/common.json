@@ -1,0 +1,91 @@
+{
+  "site": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "Yapay zeka ile geleceği şekillendirin",
+    "description": "LyDian - Yapay zeka ile geleceği şekillendirin. Gelişmiş AI modelleri ve daha fazlası."
+  },
+  "nav": {
+    "home": "Anasayfa",
+    "products": "Ürünler",
+    "solutions": "Çözümler",
+    "enterprise": "Kurumsal",
+    "developers": "Geliştiriciler",
+    "docs": "Dökümanlar",
+    "pricing": "Fiyatlandırma",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "blog": "Blog",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "dashboard": "Panel"
+  },
+  "hero": {
+    "title": "LyDian Enterprise Platform",
+    "subtitle": "Advanced Multi-Model Intelligence",
+    "description": "Kurumsal yapay zeka platformu ile işletmenizi dönüştürün. 20+ dilde doğal dil işleme, bilgisayarlı görü ve karar destek sistemleri.",
+    "cta": {
+      "primary": "Ücretsiz Başlayın",
+      "secondary": "Demo İzleyin",
+      "learn_more": "Daha Fazla Bilgi"
+    }
+  },
+  "features": {
+    "title": "Özellikler",
+    "subtitle": "Platform Yetenekleri",
+    "ai_chat": {
+      "title": "AI Sohbet",
+      "description": "Gelişmiş doğal dil işleme ile akıllı sohbet robotları"
+    },
+    "image_gen": {
+      "title": "Görsel Oluşturma",
+      "description": "Yapay zeka ile profesyonel görseller oluşturun"
+    },
+    "medical": {
+      "title": "Tıbbi AI",
+      "description": "Klinik karar destek sistemleri ve tıbbi görüntü analizi"
+    },
+    "legal": {
+      "title": "Hukuk AI",
+      "description": "Hukuki döküman analizi ve sözleşme yönetimi"
+    },
+    "video": {
+      "title": "Video AI",
+      "description": "Video analizi, üretimi ve otomatik altyazı"
+    },
+    "multilingual": {
+      "title": "Çok Dilli",
+      "description": "20+ dilde doğal dil işleme desteği"
+    }
+  },
+  "products": {
+    "lydian_iq": "LyDian IQ",
+    "medical_expert": "Tıbbi Uzman",
+    "legal_ai": "Hukuk AI",
+    "civic_intelligence": "Akıllı Şehir",
+    "video_ai": "Video AI"
+  },
+  "footer": {
+    "company": "Şirket",
+    "products": "Ürünler",
+    "resources": "Kaynaklar",
+    "legal": "Yasal",
+    "social": "Sosyal Medya",
+    "copyright": "© 2025 LyDian AI Ecosystem. Tüm hakları saklıdır.",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "cookies": "Çerez Politikası"
+  },
+  "cta": {
+    "get_started": "Başlayın",
+    "try_free": "Ücretsiz Deneyin",
+    "contact_sales": "Satış Ekibiyle İletişime Geçin",
+    "view_docs": "Dökümanlara Göz Atın",
+    "watch_demo": "Demo İzleyin"
+  },
+  "status": {
+    "online": "Çevrimiçi",
+    "operational": "Operasyonel",
+    "maintenance": "Bakımda",
+    "degraded": "Performans Düşük"
+  }
+}
