@@ -1,0 +1,101 @@
+{
+  "$schema": "./feature-flags-schema.json",
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-19T19:50:00.000Z",
+  "flags": {
+    "i18n_system_enabled": {
+      "enabled": true,
+      "rolloutPercentage": 100,
+      "description": "Multi-language internationalization system",
+      "owner": "platform-team",
+      "tags": ["i18n", "localization", "production"]
+    },
+    "pwa_features": {
+      "enabled": true,
+      "rolloutPercentage": 100,
+      "description": "Progressive Web App features (offline, install)",
+      "owner": "platform-team",
+      "tags": ["pwa", "offline", "production"]
+    },
+    "ai_model_obfuscation": {
+      "enabled": true,
+      "rolloutPercentage": 100,
+      "description": "AI model name obfuscation for security",
+      "owner": "security-team",
+      "tags": ["security", "obfuscation", "production"]
+    },
+    "feature_flags_system": {
+      "enabled": true,
+      "rolloutPercentage": 100,
+      "description": "Feature flags canary deployment system",
+      "owner": "platform-team",
+      "tags": ["meta", "canary", "production"]
+    },
+    "google_fonts_enabled": {
+      "enabled": true,
+      "rolloutPercentage": 100,
+      "description": "Google Fonts CDN integration",
+      "owner": "frontend-team",
+      "tags": ["fonts", "cdn", "production"]
+    },
+    "advanced_analytics": {
+      "enabled": false,
+      "rolloutPercentage": 0,
+      "description": "Advanced user behavior analytics",
+      "owner": "analytics-team",
+      "tags": ["analytics", "experimental"]
+    },
+    "beta_dashboard": {
+      "enabled": false,
+      "rolloutPercentage": 10,
+      "description": "New admin dashboard beta version",
+      "owner": "admin-team",
+      "tags": ["dashboard", "beta", "canary"]
+    },
+    "experimental_chat_ui": {
+      "enabled": false,
+      "rolloutPercentage": 5,
+      "description": "Experimental chat interface redesign",
+      "owner": "chat-team",
+      "tags": ["chat", "ui", "experimental"]
+    },
+    "realtime_collaboration": {
+      "enabled": false,
+      "rolloutPercentage": 0,
+      "description": "Real-time collaborative editing features",
+      "owner": "collaboration-team",
+      "tags": ["collaboration", "realtime", "experimental"]
+    },
+    "ai_vision_analysis": {
+      "enabled": true,
+      "rolloutPercentage": 100,
+      "description": "AI-powered image and document analysis",
+      "owner": "ai-team",
+      "tags": ["ai", "vision", "production"]
+    }
+  },
+  "environments": {
+    "production": {
+      "enabled": true,
+      "description": "Production environment (www.ailydian.com)"
+    },
+    "staging": {
+      "enabled": true,
+      "description": "Staging environment for pre-production testing"
+    },
+    "development": {
+      "enabled": true,
+      "description": "Local development environment"
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "endpoint": "/api/monitoring/feature-flags",
+    "sampleRate": 0.1
+  },
+  "metadata": {
+    "createdBy": "LyDian Platform Team",
+    "purpose": "Canary deployments and gradual feature rollouts",
+    "documentation": "https://docs.ailydian.com/feature-flags"
+  }
+}
