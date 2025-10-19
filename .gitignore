@@ -164,3 +164,22 @@ VERCEL-ENV-VARIABLES.txt
 ENTERPRISE-IMPLEMENTATION-REPORT-2025-01-02.md
 docs/api-discovery/vendors.apidex.json
 .env*.local
+
+# Environment files - NEVER COMMIT
+.env
+.env.*
+!.env.example
+!.env.test.example
+
+# Security
+*.key
+*.pem
+*secret*
+*password*
+!forgot-password.html
+!reset-password.html
+
+# Database
+*.db-shm
+*.db-wal
+
