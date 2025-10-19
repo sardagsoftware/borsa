@@ -49,6 +49,10 @@ monitoring
 # Apps (using separate repos)
 apps
 
+# API endpoints (causing bundle size > 250MB due to node_modules)
+# Temporarily disabled for translation-only deployment
+api
+
 # Packages (SDK development, not for production)
 packages
 
