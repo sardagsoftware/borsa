@@ -24,6 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const express = require('express');
+const securityHeaders = require('./middleware/security-headers');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -644,6 +645,9 @@ app.use(cacheControl);
 // 11. Static file serving
 app.use(express.static('public'));
 
+// Security Headers Middleware
+app.use(securityHeaders);
+
 // 🤖 FIRILDAK AI ENGINE INITIALIZATION
 const firildakAI = new FirildakAIEngine();
 
@@ -745,6 +749,7 @@ class ZAIDevPackIntegration {
 }`,
         api: `// Z.AI Generated API Integration
 const express = require('express');
+const securityHeaders = require('./middleware/security-headers');
 const router = express.Router();
 
 ${this.generateAPIEndpoints(prompt)}

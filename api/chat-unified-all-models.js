@@ -274,6 +274,7 @@ async function handleRequest(req, res) {
       case 'zhipu':
       case 'asi':
       case 'z-ai':
+      case 'zenmux':
       default:
         result = await callOpenAICompatibleAPI(modelConfig, messageArray, max_tokens, temperature);
         break;

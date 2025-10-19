@@ -256,6 +256,22 @@ const ALL_AI_MODELS = {
     category: 'ASI',
     description: 'ASI One',
     active: !!process.env.ASI_ONE_API_KEY
+  },
+
+  // Ling-1T Model (inclusionAI via ZenMux)
+  'ling-1t': {
+    provider: 'zenmux',
+    endpoint: 'https://zenmux.ai/api/v1',
+    apiKey: process.env.ZENMUX_API_KEY,
+    model: 'inclusionai/ling-1t',
+    maxTokens: 128000,
+    category: 'ZENMUX',
+    description: 'Ling-1T: 1T Parameter MoE Reasoning Model',
+    codeSpecialist: true,
+    mathSpecialist: true,
+    visualReasoning: true,
+    longContext: true,
+    active: !!process.env.ZENMUX_API_KEY
   }
 };
 
