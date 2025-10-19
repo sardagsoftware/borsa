@@ -1,0 +1,277 @@
+# ═══════════════════════════════════════════════════════════════
+# AILYDIAN KServe InferenceService - vLLM with Canary Deployment
+# ═══════════════════════════════════════════════════════════════
+#
+# Bu manifest:
+# - Production vLLM model (90% traffic)
+# - Canary vLLM model (10% traffic)
+# - Multi-LoRA support
+# - Auto-scaling (1-10 replicas)
+# - GPU support (NVIDIA T4/A100)
+#
+# Deploy:
+#   kubectl apply -f infra/k8s/kserve/vllm-inferencesvc.yaml
+#
+# ═══════════════════════════════════════════════════════════════
+
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: ailydian-vllm
+  namespace: ailydian-prod
+  labels:
+    app: ailydian
+    component: inference
+    version: v1.0
+  annotations:
+    # Auto-scaling
+    autoscaling.knative.dev/minScale: "1"
+    autoscaling.knative.dev/maxScale: "10"
+    autoscaling.knative.dev/target: "80"  # Target 80% CPU utilization
+
+spec:
+  # ═══════════════════════════════════════════════════════════════
+  # PRODUCTION PREDICTOR (90% traffic)
+  # ═══════════════════════════════════════════════════════════════
+  predictor:
+    serviceAccountName: ailydian-sa
+
+    containers:
+      - name: vllm
+        image: vllm/vllm-openai:v0.6.0
+
+        # Resources
+        resources:
+          requests:
+            memory: "16Gi"
+            cpu: "4"
+            nvidia.com/gpu: "1"  # NVIDIA T4 or A100
+          limits:
+            memory: "32Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"
+
+        # Environment
+        env:
+          - name: BASE_MODEL
+            value: "mistralai/Mistral-7B-Instruct-v0.3"
+
+          # Performance optimizations
+          - name: GPU_MEMORY_UTILIZATION
+            value: "0.9"
+          - name: MAX_MODEL_LEN
+            value: "4096"
+          - name: DTYPE
+            value: "auto"
+
+          # KV-Cache optimization
+          - name: KV_CACHE_DTYPE
+            value: "fp8"
+
+          # Speculative decoding
+          - name: SPECULATIVE_MODEL
+            value: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+          - name: NUM_SPECULATIVE_TOKENS
+            value: "5"
+
+          # Multi-LoRA
+          - name: ENABLE_LORA
+            value: "true"
+          - name: MAX_LORAS
+            value: "5"
+          - name: LORA_MODULES
+            value: "ailydian=/models/lora/ailydian,medical=/models/lora/medical,legal=/models/lora/legal"
+
+        # Command
+        args:
+          - --model
+          - $(BASE_MODEL)
+          - --host
+          - "0.0.0.0"
+          - --port
+          - "8000"
+          - --gpu-memory-utilization
+          - $(GPU_MEMORY_UTILIZATION)
+          - --max-model-len
+          - $(MAX_MODEL_LEN)
+          - --dtype
+          - $(DTYPE)
+          - --kv-cache-dtype
+          - $(KV_CACHE_DTYPE)
+          - --speculative-model
+          - $(SPECULATIVE_MODEL)
+          - --num-speculative-tokens
+          - $(NUM_SPECULATIVE_TOKENS)
+          - --enable-lora
+          - --max-loras
+          - $(MAX_LORAS)
+          - --disable-log-requests
+
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 3
+
+        # Volume mounts (LoRA adapters)
+        volumeMounts:
+          - name: lora-adapters
+            mountPath: /models/lora
+            readOnly: true
+
+    # Volumes
+    volumes:
+      - name: lora-adapters
+        persistentVolumeClaim:
+          claimName: ailydian-lora-pvc
+
+  # ═══════════════════════════════════════════════════════════════
+  # CANARY PREDICTOR (10% traffic)
+  # ═══════════════════════════════════════════════════════════════
+  canaryPredictor:
+    serviceAccountName: ailydian-sa
+
+    containers:
+      - name: vllm-canary
+        image: vllm/vllm-openai:v0.6.0
+
+        # Same resources as production
+        resources:
+          requests:
+            memory: "16Gi"
+            cpu: "4"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "32Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"
+
+        # Environment (canary uses DPO-finetuned LoRA)
+        env:
+          - name: BASE_MODEL
+            value: "mistralai/Mistral-7B-Instruct-v0.3"
+          - name: GPU_MEMORY_UTILIZATION
+            value: "0.9"
+          - name: MAX_MODEL_LEN
+            value: "4096"
+          - name: ENABLE_LORA
+            value: "true"
+          - name: MAX_LORAS
+            value: "5"
+          # CANARY: Use DPO-finetuned adapters
+          - name: LORA_MODULES
+            value: "ailydian=/models/lora/ailydian-dpo,medical=/models/lora/medical-dpo,legal=/models/lora/legal-dpo"
+
+        args:
+          - --model
+          - $(BASE_MODEL)
+          - --host
+          - "0.0.0.0"
+          - --port
+          - "8000"
+          - --gpu-memory-utilization
+          - $(GPU_MEMORY_UTILIZATION)
+          - --enable-lora
+          - --max-loras
+          - $(MAX_LORAS)
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 5
+
+        volumeMounts:
+          - name: lora-adapters
+            mountPath: /models/lora
+            readOnly: true
+
+    volumes:
+      - name: lora-adapters
+        persistentVolumeClaim:
+          claimName: ailydian-lora-pvc
+
+  # ═══════════════════════════════════════════════════════════════
+  # TRAFFIC SPLIT (90/10)
+  # ═══════════════════════════════════════════════════════════════
+  canaryTrafficPercent: 10
+
+---
+# ═══════════════════════════════════════════════════════════════
+# Persistent Volume Claim (LoRA adapters storage)
+# ═══════════════════════════════════════════════════════════════
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ailydian-lora-pvc
+  namespace: ailydian-prod
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: fast-ssd
+
+---
+# ═══════════════════════════════════════════════════════════════
+# Service Account (for pod permissions)
+# ═══════════════════════════════════════════════════════════════
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ailydian-sa
+  namespace: ailydian-prod
+
+---
+# ═══════════════════════════════════════════════════════════════
+# USAGE EXAMPLES
+# ═══════════════════════════════════════════════════════════════
+#
+# 1. Deploy:
+#    kubectl apply -f infra/k8s/kserve/vllm-inferencesvc.yaml
+#
+# 2. Check status:
+#    kubectl get isvc ailydian-vllm -n ailydian-prod
+#
+# 3. Get URL:
+#    kubectl get isvc ailydian-vllm -n ailydian-prod -o jsonpath='{.status.url}'
+#
+# 4. Test inference:
+#    curl -X POST https://ailydian-vllm.example.com/v1/completions \
+#      -H "Content-Type: application/json" \
+#      -d '{
+#        "model": "ailydian",
+#        "prompt": "Ailydian nedir?",
+#        "max_tokens": 100
+#      }'
+#
+# 5. Promote canary to 100%:
+#    kubectl patch isvc ailydian-vllm -n ailydian-prod --type='json' \
+#      -p='[{"op": "replace", "path": "/spec/canaryTrafficPercent", "value": 100}]'
+#
+# 6. Rollback canary to 0%:
+#    kubectl patch isvc ailydian-vllm -n ailydian-prod --type='json' \
+#      -p='[{"op": "replace", "path": "/spec/canaryTrafficPercent", "value": 0}]'
+#
+# ═══════════════════════════════════════════════════════════════

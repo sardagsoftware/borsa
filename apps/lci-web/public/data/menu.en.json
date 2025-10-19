@@ -1,0 +1,90 @@
+{
+  "products": [
+    {
+      "title": "AI Studio",
+      "desc": "Model orchestration, data ops, RAG",
+      "href": "/en/studio"
+    },
+    {
+      "title": "IQ Analytics",
+      "desc": "Realtime observability & BI",
+      "href": "/en/iq"
+    },
+    {
+      "title": "AI Ops Center",
+      "desc": "MLOps, canary, auto-rollback",
+      "href": "/en/ops"
+    },
+    {
+      "title": "Lydian IQ",
+      "desc": "Intelligence testing platform",
+      "href": "/en/lydian-iq"
+    },
+    {
+      "title": "Medical Expert",
+      "desc": "Healthcare AI assistant",
+      "href": "/en/medical"
+    }
+  ],
+  "solutions": [
+    {
+      "title": "Chat Assistant",
+      "desc": "Multilingual enterprise assistant",
+      "href": "/en/solutions/chat"
+    },
+    {
+      "title": "Document AI",
+      "desc": "Docs/RAG automation",
+      "href": "/en/solutions/doc"
+    },
+    {
+      "title": "Contact Center AI",
+      "desc": "Voice/Text hybrid",
+      "href": "/en/solutions/call"
+    },
+    {
+      "title": "Legal AI",
+      "desc": "Legal analysis and search",
+      "href": "/en/legal"
+    }
+  ],
+  "developers": [
+    {
+      "title": "Quickstart",
+      "desc": "SDK & samples",
+      "href": "/en/dev/start"
+    },
+    {
+      "title": "API Reference",
+      "desc": "REST/WS/Events",
+      "href": "/en/dev/api"
+    },
+    {
+      "title": "Changelog",
+      "desc": "Release notes",
+      "href": "/en/dev/changelog"
+    },
+    {
+      "title": "Status Dashboard",
+      "desc": "System health monitoring",
+      "href": "/en/status"
+    }
+  ],
+  "company": [
+    {
+      "title": "Vision",
+      "desc": "Ailydian manifesto",
+      "href": "/en/about"
+    },
+    {
+      "title": "Security",
+      "desc": "Compliance & audits",
+      "href": "/en/security"
+    },
+    {
+      "title": "Careers",
+      "desc": "Join us",
+      "href": "/en/careers"
+    }
+  ]
+}

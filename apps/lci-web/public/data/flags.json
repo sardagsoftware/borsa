@@ -1,0 +1,11 @@
+{
+  "env": "stage",
+  "features": {
+    "autoTriage": true,
+    "autoRollback": true
+  },
+  "autoRules": {
+    "sev1_consecutive": 3,
+    "window_seconds": 120
+  }
+}

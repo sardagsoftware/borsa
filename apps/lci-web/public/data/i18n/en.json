@@ -1,0 +1,32 @@
+{
+  "brand": "LyDian",
+  "nav": {
+    "products": "Products",
+    "solutions": "Solutions",
+    "developers": "Developers",
+    "company": "Company",
+    "login": "Sign in",
+    "try": "Try Now",
+    "search": "Search"
+  },
+  "hero": {
+    "titleLeft": "LyDian",
+    "titleRight": "AI Platform",
+    "subtitle": "With SSR-cached mega menu, live search, context bar and animated orbit background — a 2025 aesthetic."
+  },
+  "subbar": {
+    "home": "Home",
+    "placeholder": "Search… (⌘K)"
+  },
+  "search": {
+    "pricing": "Pricing",
+    "status": "Status",
+    "blog": "Blog"
+  },
+  "ask": {
+    "title": "Quick Ask",
+    "placeholder": "Type a question…",
+    "answer": "Answer",
+    "sources": "Sources"
+  }
+}

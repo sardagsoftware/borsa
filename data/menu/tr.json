@@ -1,0 +1,250 @@
+{
+  "products": {
+    "title": "Ürünler",
+    "sections": [
+      {
+        "title": "Yapay Zeka Modelleri",
+        "items": [
+          {
+            "label": "LyDian IQ",
+            "description": "Gelişmiş zeka testi ve yeteneklerinizi keşfedin",
+            "icon": "🧠",
+            "href": "/lydian-iq.html",
+            "badge": "Yeni"
+          },
+          {
+            "label": "Medikal Uzman AI",
+            "description": "Tıbbi tanı ve sağlık danışmanlığı",
+            "icon": "⚕️",
+            "href": "/medical-expert.html"
+          },
+          {
+            "label": "Hukuk AI",
+            "description": "Hukuki danışmanlık ve arama sistemi",
+            "icon": "⚖️",
+            "href": "/lydian-legal-search.html"
+          },
+          {
+            "label": "AI Chat",
+            "description": "Çoklu model sohbet platformu",
+            "icon": "💬",
+            "href": "/chat.html",
+            "badge": "Popüler"
+          }
+        ]
+      },
+      {
+        "title": "AI Danışman Hub",
+        "items": [
+          {
+            "label": "Kültürel Danışman",
+            "description": "Kültürlerarası rehberlik",
+            "icon": "🌍",
+            "href": "/ai-cultural-advisor.html"
+          },
+          {
+            "label": "Karar Matrisi",
+            "description": "Stratejik karar desteği",
+            "icon": "🎯",
+            "href": "/ai-decision-matrix.html"
+          },
+          {
+            "label": "Yaşam Koçu",
+            "description": "Kişisel gelişim ve hedefler",
+            "icon": "🌟",
+            "href": "/ai-life-coach.html"
+          },
+          {
+            "label": "Öğrenme Yolu",
+            "description": "Kişiselleştirilmiş eğitim planı",
+            "icon": "📚",
+            "href": "/ai-learning-path.html"
+          },
+          {
+            "label": "Startup Hızlandırıcı",
+            "description": "Girişim mentorluğu",
+            "icon": "🚀",
+            "href": "/ai-startup-accelerator.html"
+          },
+          {
+            "label": "Toplantı İçgörüleri",
+            "description": "Toplantı analizi ve özet",
+            "icon": "📊",
+            "href": "/ai-meeting-insights.html"
+          }
+        ]
+      }
+    ]
+  },
+  "solutions": {
+    "title": "Çözümler",
+    "sections": [
+      {
+        "title": "Sektöre Özel",
+        "items": [
+          {
+            "label": "Sağlık & Tıp",
+            "description": "Epic FHIR entegrasyonu, nadir hastalıklar",
+            "icon": "🏥",
+            "href": "/medical-ai.html"
+          },
+          {
+            "label": "Hukuk & Adalet",
+            "description": "Mahkeme kararları ve dava analizi",
+            "icon": "⚖️",
+            "href": "/legal-expert.html"
+          },
+          {
+            "label": "Eğitim",
+            "description": "Uyarlanabilir öğrenme platformu",
+            "icon": "🎓",
+            "href": "/education.html"
+          }
+        ]
+      },
+      {
+        "title": "Kurumsal",
+        "items": [
+          {
+            "label": "Enterprise AI",
+            "description": "Ölçeklenebilir kurumsal çözümler",
+            "icon": "🏢",
+            "href": "/enterprise.html",
+            "badge": "Kurumsal"
+          },
+          {
+            "label": "AI Ops Dashboard",
+            "description": "Operasyonel zeka merkezi",
+            "icon": "📈",
+            "href": "/dashboard.html"
+          },
+          {
+            "label": "Azure AI Foundry",
+            "description": "Azure ekosistem entegrasyonu",
+            "icon": "☁️",
+            "href": "/azure-dashboard.html"
+          }
+        ]
+      },
+      {
+        "title": "Yönetişim",
+        "items": [
+          {
+            "label": "Civic Intelligence Grid",
+            "description": "Akıllı şehir yönetimi",
+            "icon": "🏛️",
+            "href": "/civic-intelligence-grid.html"
+          },
+          {
+            "label": "Analytics Hub",
+            "description": "İleri düzey analitik",
+            "icon": "📊",
+            "href": "/analytics.html"
+          }
+        ]
+      }
+    ]
+  },
+  "developers": {
+    "title": "Geliştiriciler",
+    "sections": [
+      {
+        "title": "Kaynaklar",
+        "items": [
+          {
+            "label": "API Referansı",
+            "description": "Kapsamlı API dokümantasyonu",
+            "icon": "📖",
+            "href": "/api-reference.html"
+          },
+          {
+            "label": "SDK'lar",
+            "description": "Python, TypeScript, Go SDK'ları",
+            "icon": "⚙️",
+            "href": "/developers.html"
+          },
+          {
+            "label": "Belgeler",
+            "description": "Başlangıç kılavuzları ve örnekler",
+            "icon": "📚",
+            "href": "/docs.html"
+          }
+        ]
+      },
+      {
+        "title": "Araçlar",
+        "items": [
+          {
+            "label": "Konsol",
+            "description": "Web tabanlı geliştirme konsolu",
+            "icon": "💻",
+            "href": "/console.html"
+          },
+          {
+            "label": "API Keyleri",
+            "description": "Kimlik doğrulama yönetimi",
+            "icon": "🔑",
+            "href": "/tokens.html"
+          },
+          {
+            "label": "Model Explorer",
+            "description": "Mevcut AI modellerini keşfedin",
+            "icon": "🤖",
+            "href": "/models.html"
+          }
+        ]
+      }
+    ]
+  },
+  "company": {
+    "title": "Şirket",
+    "sections": [
+      {
+        "title": "LyDian Hakkında",
+        "items": [
+          {
+            "label": "Hakkımızda",
+            "description": "Vizyonumuz ve misyonumuz",
+            "icon": "ℹ️",
+            "href": "/about.html"
+          },
+          {
+            "label": "Blog",
+            "description": "En son haberler ve içgörüler",
+            "icon": "📰",
+            "href": "/blog.html"
+          },
+          {
+            "label": "Kariyer",
+            "description": "LyDian'da çalışın",
+            "icon": "👥",
+            "href": "/careers.html"
+          }
+        ]
+      },
+      {
+        "title": "Destek",
+        "items": [
+          {
+            "label": "Yardım Merkezi",
+            "description": "SSS ve destek makaleleri",
+            "icon": "❓",
+            "href": "/help.html"
+          },
+          {
+            "label": "İletişim",
+            "description": "Bizimle iletişime geçin",
+            "icon": "✉️",
+            "href": "/contact.html"
+          },
+          {
+            "label": "Sistem Durumu",
+            "description": "Gerçek zamanlı hizmet durumu",
+            "icon": "🟢",
+            "href": "/status.html"
+          }
+        ]
+      }
+    ]
+  }
+}

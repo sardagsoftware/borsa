@@ -1,0 +1,20 @@
+{
+  "groups": {
+    "Modules": {
+      "uptimeTarget": 99.5,
+      "p95TargetMs": 1200
+    },
+    "Solutions": {
+      "uptimeTarget": 99.5,
+      "p95TargetMs": 1200
+    },
+    "Developers": {
+      "uptimeTarget": 99.0,
+      "p95TargetMs": 1500
+    },
+    "Company": {
+      "uptimeTarget": 99.0,
+      "p95TargetMs": 1000
+    }
+  }
+}

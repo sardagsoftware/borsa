@@ -101,14 +101,19 @@
         }
 
         .logo {
-            font-family: 'Caveat', cursive !important;
-            font-size: 2.25rem;
-            font-weight: 700 !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 24px;
+            font-weight: 900;
             color: #000000;
             text-decoration: none;
-            letter-spacing: 0.08em !important;
+            letter-spacing: -0.02em;
             display: flex;
             align-items: center;
+            transition: opacity 0.2s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
         }
 
         .nav-links {
@@ -934,12 +939,12 @@
         }
 
         .footer-logo {
-            font-family: 'Caveat', cursive !important;
-            font-size: 2rem;
-            font-weight: 700 !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 24px;
+            font-weight: 900;
             color: #FFFFFF;
             margin-bottom: 1rem;
-            letter-spacing: 0.08em !important;
+            letter-spacing: -0.02em;
         }
 
         .footer-description {
@@ -1164,11 +1169,9 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">                <picture>
-                  <source srcset="/lydian-logo.avif" type="image/avif">
-                  <source srcset="/lydian-logo.webp" type="image/webp">
-                  <img src="/lydian-logo.png" alt="LyDian Logo" loading="lazy">
-                </picture>LyDian</a>
+            <a href="/" class="logo" aria-label="LyDian Ana Sayfa">
+                LyDian
+            </a>
 
             <ul class="nav-links">
                 <li><a href="/chat.html" data-tr="LyDian AI" data-en="LyDian AI">LyDian AI</a></li>
@@ -1574,7 +1577,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <div class="footer-logo">LyDian</div>
                     <p class="footer-description">
                         Yapay zeka teknolojileriyle geleceği şekillendiren,
                         yenilikçi çözümler sunan AI platformu.

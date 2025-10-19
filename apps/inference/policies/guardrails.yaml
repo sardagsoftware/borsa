@@ -1,0 +1,240 @@
+# ═══════════════════════════════════════════════════════════════
+# AILYDIAN GUARDRAILS.AI POLICY
+# ═══════════════════════════════════════════════════════════════
+#
+# Bu dosya Guardrails.ai framework için politika kuralları tanımlar.
+#
+# Kullanım:
+#   from guardrails import Guard
+#   guard = Guard.from_yaml("apps/inference/policies/guardrails.yaml")
+#   validated_output = guard.validate(model_output)
+#
+# Dokümantasyon: https://docs.guardrailsai.com
+# ═══════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════════
+# 1. PII (PERSONALLY IDENTIFIABLE INFORMATION) PROTECTION
+# ═══════════════════════════════════════════════════════════════
+
+validators:
+  - id: detect_pii
+    type: detect-pii
+    on_fail: fix  # Otomatik maskeleme yap
+    entities:
+      - PERSON  # İsimler
+      - EMAIL_ADDRESS
+      - PHONE_NUMBER
+      - CREDIT_CARD
+      - US_SSN  # Social Security Number
+      - IBAN_CODE
+      - IP_ADDRESS
+      - LOCATION  # Adresler
+      - DATE_OF_BIRTH
+      - MEDICAL_LICENSE
+    threshold: 0.7  # Confidence threshold
+
+  - id: exclude_email_addresses
+    type: exclude-email-addresses
+    on_fail: exception
+    message: "Email adresleri çıktıda görünemez!"
+
+# ═══════════════════════════════════════════════════════════════
+# 2. JAILBREAK / PROMPT INJECTION DETECTION
+# ═══════════════════════════════════════════════════════════════
+
+  - id: detect_jailbreak
+    type: detect-jailbreak
+    on_fail: exception
+    threshold: 0.85
+    patterns:
+      - "ignore previous instructions"
+      - "ignore all instructions"
+      - "forget everything"
+      - "you are now"
+      - "pretend to be"
+      - "act as if"
+      - "ignore your programming"
+      - "önceki talimatları unut"
+      - "rol yap"
+      - "sen artık"
+    message: "Jailbreak girişimi tespit edildi!"
+
+# ═══════════════════════════════════════════════════════════════
+# 3. TOXICITY & HATE SPEECH
+# ═══════════════════════════════════════════════════════════════
+
+  - id: detect_toxicity
+    type: detect-toxicity
+    on_fail: exception
+    threshold: 0.8  # 0-1 arası (1 = çok toksik)
+    message: "Toksik içerik tespit edildi!"
+
+  - id: restrict_hate_speech
+    type: restrict-hate-speech
+    on_fail: exception
+    threshold: 0.75
+    message: "Nefret söylemi tespit edildi!"
+
+# ═══════════════════════════════════════════════════════════════
+# 4. COPYRIGHT & TRADEMARK
+# ═══════════════════════════════════════════════════════════════
+
+  - id: detect_copyright
+    type: detect-copyright
+    on_fail: exception
+    threshold: 0.9
+    message: "Telif hakkı ihlali riski!"
+    sources:
+      - books
+      - articles
+      - code
+      - lyrics
+
+# ═══════════════════════════════════════════════════════════════
+# 5. MEDICAL & LEGAL DISCLAIMERS
+# ═══════════════════════════════════════════════════════════════
+
+  - id: medical_disclaimer
+    type: check-medical-disclaimer
+    on_fail: fix
+    disclaimer_text: |
+      **DİKKAT:** Bu bilgiler genel amaçlıdır ve tıbbi tavsiye yerine geçmez.
+      Sağlık sorunları için mutlaka bir doktora danışın.
+
+  - id: legal_disclaimer
+    type: check-legal-disclaimer
+    on_fail: fix
+    disclaimer_text: |
+      **UYARI:** Bu bilgiler genel amaçlıdır ve hukuki tavsiye yerine geçmez.
+      Hukuki sorunlar için mutlaka bir avukata danışın.
+
+# ═══════════════════════════════════════════════════════════════
+# 6. OUTPUT QUALITY CHECKS
+# ═══════════════════════════════════════════════════════════════
+
+  - id: check_length
+    type: valid-length
+    on_fail: exception
+    min_length: 10  # En az 10 karakter
+    max_length: 10000  # En fazla 10K karakter
+    message: "Çıktı uzunluğu limit dışında!"
+
+  - id: check_language
+    type: detect-language
+    on_fail: warn
+    expected_languages:
+      - tr  # Türkçe
+      - en  # İngilizce
+      - de  # Almanca
+      - ar  # Arapça
+      - ru  # Rusça
+      - zh  # Çince
+    message: "Beklenmeyen dil tespit edildi!"
+
+# ═══════════════════════════════════════════════════════════════
+# 7. SECURITY & SAFETY
+# ═══════════════════════════════════════════════════════════════
+
+  - id: no_code_execution
+    type: prevent-code-execution
+    on_fail: exception
+    blocked_patterns:
+      - "eval("
+      - "exec("
+      - "os.system("
+      - "subprocess."
+      - "__import__"
+      - "compile("
+    message: "Kod çalıştırma girişimi engellendi!"
+
+  - id: sql_injection_check
+    type: detect-sql-injection
+    on_fail: exception
+    patterns:
+      - "'; DROP TABLE"
+      - "' OR '1'='1"
+      - "UNION SELECT"
+      - "'; --"
+    message: "SQL injection girişimi tespit edildi!"
+
+# ═══════════════════════════════════════════════════════════════
+# 8. CUSTOM AILYDIAN POLICIES
+# ═══════════════════════════════════════════════════════════════
+
+  - id: ailydian_brand_protection
+    type: regex-match
+    on_fail: warn
+    patterns:
+      - "(?i)openai"  # OpenAI brand mention
+      - "(?i)chatgpt"
+      - "(?i)anthropic claude"  # Allow Ailydian's AI mentions
+    invert: true  # Eğer match olursa uyar
+    message: "Rakip marka ismi tespit edildi!"
+
+  - id: require_turkish_support
+    type: custom
+    on_fail: warn
+    validator: |
+      # Eğer input Türkçe ise, output da Türkçe olmalı
+      import re
+      def validate(input_text, output_text):
+          turkish_chars = re.compile(r'[çğıöşü]', re.IGNORECASE)
+          if turkish_chars.search(input_text):
+              if not turkish_chars.search(output_text):
+                  return False, "Türkçe input için Türkçe output bekleniyor!"
+          return True, "OK"
+
+# ═══════════════════════════════════════════════════════════════
+# 9. POLICY ENFORCEMENT SETTINGS
+# ═══════════════════════════════════════════════════════════════
+
+settings:
+  # On fail stratejileri:
+  # - exception: İşlemi durdur, hata fırlat
+  # - fix: Otomatik düzelt (PII masking, disclaimer ekleme)
+  # - warn: Uyar ama devam et
+  # - filter: İçeriği filtrele
+
+  default_on_fail: exception
+
+  # Logging
+  log_level: INFO
+  log_file: /tmp/guardrails-ailydian.log
+
+  # Rate limiting (guardrail check'leri için)
+  rate_limit:
+    enabled: true
+    max_checks_per_minute: 100
+
+  # Caching (aynı input'lar için)
+  cache:
+    enabled: true
+    ttl_seconds: 300  # 5 dakika
+
+# ═══════════════════════════════════════════════════════════════
+# 10. INTEGRATION NOTES
+# ═══════════════════════════════════════════════════════════════
+
+# Python Integration:
+#
+#   from guardrails import Guard
+#
+#   # Load policy
+#   guard = Guard.from_yaml("apps/inference/policies/guardrails.yaml")
+#
+#   # Validate model output
+#   try:
+#       validated_output = guard.validate(
+#           llm_output=model_output,
+#           metadata={"org_id": "org_123", "user_id": "user_456"}
+#       )
+#       print(f"✅ Safe output: {validated_output.validated_output}")
+#   except Exception as e:
+#       print(f"❌ Validation failed: {e}")
+#
+# ═══════════════════════════════════════════════════════════════
+
+# Environment Variables:
+# - GUARDRAILS_API_KEY: Guardrails.ai API key (for cloud validators)
+# - GUARDRAILS_LOG_LEVEL: DEBUG, INFO, WARNING, ERROR
+# - GUARDRAILS_CACHE_DIR: Cache directory for downloaded models

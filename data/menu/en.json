@@ -1,0 +1,250 @@
+{
+  "products": {
+    "title": "Products",
+    "sections": [
+      {
+        "title": "AI Models",
+        "items": [
+          {
+            "label": "LyDian IQ",
+            "description": "Advanced intelligence testing and discovery",
+            "icon": "🧠",
+            "href": "/lydian-iq.html",
+            "badge": "New"
+          },
+          {
+            "label": "Medical Expert AI",
+            "description": "Medical diagnosis and health consultation",
+            "icon": "⚕️",
+            "href": "/medical-expert.html"
+          },
+          {
+            "label": "Legal AI",
+            "description": "Legal consultation and search system",
+            "icon": "⚖️",
+            "href": "/lydian-legal-search.html"
+          },
+          {
+            "label": "AI Chat",
+            "description": "Multi-model chat platform",
+            "icon": "💬",
+            "href": "/chat.html",
+            "badge": "Popular"
+          }
+        ]
+      },
+      {
+        "title": "AI Advisor Hub",
+        "items": [
+          {
+            "label": "Cultural Advisor",
+            "description": "Cross-cultural guidance",
+            "icon": "🌍",
+            "href": "/ai-cultural-advisor.html"
+          },
+          {
+            "label": "Decision Matrix",
+            "description": "Strategic decision support",
+            "icon": "🎯",
+            "href": "/ai-decision-matrix.html"
+          },
+          {
+            "label": "Life Coach",
+            "description": "Personal development and goals",
+            "icon": "🌟",
+            "href": "/ai-life-coach.html"
+          },
+          {
+            "label": "Learning Path",
+            "description": "Personalized education plan",
+            "icon": "📚",
+            "href": "/ai-learning-path.html"
+          },
+          {
+            "label": "Startup Accelerator",
+            "description": "Startup mentorship",
+            "icon": "🚀",
+            "href": "/ai-startup-accelerator.html"
+          },
+          {
+            "label": "Meeting Insights",
+            "description": "Meeting analysis and summary",
+            "icon": "📊",
+            "href": "/ai-meeting-insights.html"
+          }
+        ]
+      }
+    ]
+  },
+  "solutions": {
+    "title": "Solutions",
+    "sections": [
+      {
+        "title": "Industry-Specific",
+        "items": [
+          {
+            "label": "Healthcare & Medicine",
+            "description": "Epic FHIR integration, rare diseases",
+            "icon": "🏥",
+            "href": "/medical-ai.html"
+          },
+          {
+            "label": "Legal & Justice",
+            "description": "Court decisions and case analysis",
+            "icon": "⚖️",
+            "href": "/legal-expert.html"
+          },
+          {
+            "label": "Education",
+            "description": "Adaptive learning platform",
+            "icon": "🎓",
+            "href": "/education.html"
+          }
+        ]
+      },
+      {
+        "title": "Enterprise",
+        "items": [
+          {
+            "label": "Enterprise AI",
+            "description": "Scalable enterprise solutions",
+            "icon": "🏢",
+            "href": "/enterprise.html",
+            "badge": "Enterprise"
+          },
+          {
+            "label": "AI Ops Dashboard",
+            "description": "Operational intelligence center",
+            "icon": "📈",
+            "href": "/dashboard.html"
+          },
+          {
+            "label": "Azure AI Foundry",
+            "description": "Azure ecosystem integration",
+            "icon": "☁️",
+            "href": "/azure-dashboard.html"
+          }
+        ]
+      },
+      {
+        "title": "Governance",
+        "items": [
+          {
+            "label": "Civic Intelligence Grid",
+            "description": "Smart city management",
+            "icon": "🏛️",
+            "href": "/civic-intelligence-grid.html"
+          },
+          {
+            "label": "Analytics Hub",
+            "description": "Advanced analytics",
+            "icon": "📊",
+            "href": "/analytics.html"
+          }
+        ]
+      }
+    ]
+  },
+  "developers": {
+    "title": "Developers",
+    "sections": [
+      {
+        "title": "Resources",
+        "items": [
+          {
+            "label": "API Reference",
+            "description": "Comprehensive API documentation",
+            "icon": "📖",
+            "href": "/api-reference.html"
+          },
+          {
+            "label": "SDKs",
+            "description": "Python, TypeScript, Go SDKs",
+            "icon": "⚙️",
+            "href": "/developers.html"
+          },
+          {
+            "label": "Documentation",
+            "description": "Getting started guides and examples",
+            "icon": "📚",
+            "href": "/docs.html"
+          }
+        ]
+      },
+      {
+        "title": "Tools",
+        "items": [
+          {
+            "label": "Console",
+            "description": "Web-based development console",
+            "icon": "💻",
+            "href": "/console.html"
+          },
+          {
+            "label": "API Keys",
+            "description": "Authentication management",
+            "icon": "🔑",
+            "href": "/tokens.html"
+          },
+          {
+            "label": "Model Explorer",
+            "description": "Discover available AI models",
+            "icon": "🤖",
+            "href": "/models.html"
+          }
+        ]
+      }
+    ]
+  },
+  "company": {
+    "title": "Company",
+    "sections": [
+      {
+        "title": "About LyDian",
+        "items": [
+          {
+            "label": "About Us",
+            "description": "Our vision and mission",
+            "icon": "ℹ️",
+            "href": "/about.html"
+          },
+          {
+            "label": "Blog",
+            "description": "Latest news and insights",
+            "icon": "📰",
+            "href": "/blog.html"
+          },
+          {
+            "label": "Careers",
+            "description": "Work at LyDian",
+            "icon": "👥",
+            "href": "/careers.html"
+          }
+        ]
+      },
+      {
+        "title": "Support",
+        "items": [
+          {
+            "label": "Help Center",
+            "description": "FAQ and support articles",
+            "icon": "❓",
+            "href": "/help.html"
+          },
+          {
+            "label": "Contact",
+            "description": "Get in touch with us",
+            "icon": "✉️",
+            "href": "/contact.html"
+          },
+          {
+            "label": "System Status",
+            "description": "Real-time service status",
+            "icon": "🟢",
+            "href": "/status.html"
+          }
+        ]
+      }
+    ]
+  }
+}

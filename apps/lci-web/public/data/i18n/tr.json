@@ -1,0 +1,32 @@
+{
+  "brand": "LyDian",
+  "nav": {
+    "products": "Modüller",
+    "solutions": "Çözümler",
+    "developers": "Geliştiriciler",
+    "company": "Kurumsal",
+    "login": "Giriş",
+    "try": "Şimdi Dene",
+    "search": "Ara"
+  },
+  "hero": {
+    "titleLeft": "LyDian",
+    "titleRight": "AI Platform",
+    "subtitle": "SSR cache'li mega menü, canlı arama, context bar ve hareketli orbit arka planı ile 2025 estetiği."
+  },
+  "subbar": {
+    "home": "Anasayfa",
+    "placeholder": "Ara… (⌘K)"
+  },
+  "search": {
+    "pricing": "Fiyatlandırma",
+    "status": "Durum",
+    "blog": "Blog"
+  },
+  "ask": {
+    "title": "Hızlı Soru",
+    "placeholder": "Bir soru yazın…",
+    "answer": "Cevap",
+    "sources": "Kaynaklar"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "groups": {
+    "Modules": {
+      "name": "Modules",
+      "uptimeTarget": 99.5,
+      "p95TargetMs": 1200,
+      "targets": [
+        "Chat",
+        "LydianIQ",
+        "Medical",
+        "Legal",
+        "AIAdvisor"
+      ]
+    },
+    "Developers": {
+      "name": "Developers",
+      "uptimeTarget": 99.0,
+      "p95TargetMs": 1500,
+      "targets": [
+        "API",
+        "Docs",
+        "Console",
+        "Dashboard"
+      ]
+    },
+    "Company": {
+      "name": "Company",
+      "uptimeTarget": 99.0,
+      "p95TargetMs": 1800,
+      "targets": [
+        "About",
+        "Careers",
+        "Contact",
+        "Blog",
+        "Help",
+        "Status",
+        "Privacy"
+      ]
+    }
+  }
+}

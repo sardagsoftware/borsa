@@ -1,0 +1,20 @@
+{
+  "targets": [
+    { "name": "Auth", "url": "/auth", "group": "Modules" },
+    { "name": "Chat", "url": "/chat", "group": "Modules" },
+    { "name": "Legal AI", "url": "/legal", "group": "Modules" },
+    { "name": "Medical AI", "url": "/medical", "group": "Modules" },
+    { "name": "Dashboard", "url": "/dashboard", "group": "Modules" },
+    { "name": "Analytics", "url": "/analytics", "group": "Solutions" },
+    { "name": "Enterprise", "url": "/enterprise", "group": "Solutions" },
+    { "name": "Automation", "url": "/automation", "group": "Solutions" },
+    { "name": "API Gateway", "url": "/api", "group": "Developers" },
+    { "name": "SDK Downloads", "url": "/sdks", "group": "Developers" },
+    { "name": "Documentation", "url": "/docs", "group": "Developers" },
+    { "name": "Status Page", "url": "/status", "group": "Company" },
+    { "name": "About", "url": "/about", "group": "Company" },
+    { "name": "Careers", "url": "/careers", "group": "Company" },
+    { "name": "Contact", "url": "/contact", "group": "Company" },
+    { "name": "Homepage", "url": "/", "group": "Company" }
+  ]
+}

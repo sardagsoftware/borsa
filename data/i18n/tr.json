@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "products": "Ürünler",
+    "solutions": "Çözümler",
+    "developers": "Geliştiriciler",
+    "company": "Şirket",
+    "login": "Giriş Yap",
+    "signup": "Kaydol",
+    "dashboard": "Gösterge Paneli"
+  },
+  "hero": {
+    "badge": "✨ Yapay Zekâ ile Güçlendirilmiş Platform",
+    "title": "LyDian AI Platform",
+    "subtitle": "Aurora frekanslarında akan veri-iplikleri ve cam parıltı arayüzü: LyDian ile iş akışlarını gerçek zamanlı zekâya dönüştürün.",
+    "cta": "Şimdi Dene ⟶"
+  },
+  "search": {
+    "placeholder": "Ara... (⌘K)",
+    "noResults": "Sonuç bulunamadı",
+    "searching": "Aranıyor..."
+  },
+  "footer": {
+    "copyright": "Aurora Matrix • WebGL Shader + Particle Nexus • © LyDian"
+  },
+  "subbar": {
+    "home": "Ana Sayfa"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "tryAgain": "Tekrar Dene",
+    "close": "Kapat",
+    "new": "Yeni",
+    "popular": "Popüler",
+    "enterprise": "Kurumsal"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "products": "Products",
+    "solutions": "Solutions",
+    "developers": "Developers",
+    "company": "Company",
+    "login": "Sign In",
+    "signup": "Sign Up",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "badge": "✨ AI-Powered Platform",
+    "title": "LyDian AI Platform",
+    "subtitle": "Data threads flowing at Aurora frequencies with glass-glow interface: Transform workflows into real-time intelligence with LyDian.",
+    "cta": "Try Now ⟶"
+  },
+  "search": {
+    "placeholder": "Search... (⌘K)",
+    "noResults": "No results found",
+    "searching": "Searching..."
+  },
+  "footer": {
+    "copyright": "Aurora Matrix • WebGL Shader + Particle Nexus • © LyDian"
+  },
+  "subbar": {
+    "home": "Home"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "close": "Close",
+    "new": "New",
+    "popular": "Popular",
+    "enterprise": "Enterprise"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "targets": [
+    { "name": "Auth",        "url": "/auth.html" },
+    { "name": "Chat",        "url": "/chat.html" },
+    { "name": "IQ",          "url": "/lydian-iq.html" },
+    { "name": "AI Ops",      "url": "/enterprise.html" },
+    { "name": "Status",      "url": "/status.html" },
+    { "name": "Developers",  "url": "/developers.html" },
+    { "name": "API Docs",    "url": "/api-reference.html" },
+    { "name": "Changelog",   "url": "/changelog.html" },
+    { "name": "About",       "url": "/about.html" },
+    { "name": "Blog",        "url": "/blog.html" },
+    { "name": "Careers",     "url": "/careers.html" },
+    { "name": "Privacy",     "url": "/privacy.html" },
+    { "name": "Contact",     "url": "/contact.html" },
+    { "name": "Help",        "url": "/help.html" },
+    { "name": "SDK / API",   "url": "/developers.html" },
+    { "name": "Durum",       "url": "/status.html" }
+  ]
+}

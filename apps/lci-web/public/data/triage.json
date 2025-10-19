@@ -1,0 +1,29 @@
+{
+  "defaults": { "sev": 3, "rollback": false },
+  "thresholds": {
+    "p95_ms": { "sev2": 2000, "sev1": 4000 },
+    "down_count": { "sev3": 1, "sev2": 2, "sev1": 4 }
+  },
+  "byTag": {
+    "Server5xx": { "sev": 2, "rollback": true },
+    "Auth": { "sev": 2, "rollback": false },
+    "DNS": { "sev": 2, "rollback": false },
+    "RateLimit": { "sev": 3, "rollback": false },
+    "Network": { "sev": 2, "rollback": false },
+    "Upstream": { "sev": 2, "rollback": true },
+    "Security": { "sev": 2, "rollback": false },
+    "Redirect": { "sev": 3, "rollback": false },
+    "Client4xx": { "sev": 3, "rollback": false },
+    "Unknown": { "sev": 3, "rollback": false }
+  },
+  "groupWeights": {
+    "Modules": 2.0,
+    "Solutions": 1.5,
+    "Developers": 1.2,
+    "Company": 1.0
+  },
+  "rollback_guard": {
+    "min_down_endpoints": 2,
+    "min_duration_seconds": 60
+  }
+}

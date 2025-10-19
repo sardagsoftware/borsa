@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Health Monitoring Dashboard - Real-time system status">
+    <title>Health Dashboard - LyDian</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #12182b;
+            --bg-card: #1a2035;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border-color: #2d3548;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --status-up: #00c47f;
+            --status-warn: #f9b233;
+            --status-down: #e63946;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Aurora Background */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e1a 0%, #12182b 100%);
+        }
+
+        .aurora-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            animation: aurora-drift 20s ease-in-out infinite;
+        }
+
+        @keyframes aurora-drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(10%, -10%) rotate(120deg); }
+            66% { transform: translate(-10%, 10%) rotate(240deg); }
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            background: rgba(26, 32, 53, 0.7);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .refresh-info {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--status-up);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Overall Status Card */
+        .overall-status {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .overall-status h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .overall-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-purple);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .service-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .service-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .service-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .metric-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--status-up);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .service-chart {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chart-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Ring Buffer Stats */
+        .buffer-stats {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .buffer-stats h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .buffer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--accent-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error {
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid var(--status-down);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--status-down);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overall-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora-bg"></div>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>🏥 Health Dashboard</h1>
+            <div class="refresh-info">
+                <span class="pulse"></span>
+                <span>Auto-refresh: <span id="countdown">60</span>s</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="errorContainer"></div>
+
+        <div class="overall-status">
+            <h2 id="overallStatusText">Loading System Status...</h2>
+            <div class="overall-stats">
+                <div class="stat">
+                    <div class="stat-value" id="totalServices">-</div>
+                    <div class="stat-label">Total Services</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="servicesUp">-</div>
+                    <div class="stat-label">Services Up</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="overallUptime">-</div>
+                    <div class="stat-label">Overall Uptime</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="avgLatency">-</div>
+                    <div class="stat-label">Avg Latency</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="p95Latency">-</div>
+                    <div class="stat-label">P95 Latency</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="servicesContainer" class="services-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading health data...</p>
+            </div>
+        </div>
+
+        <div class="buffer-stats">
+            <h3>📊 Ring Buffer Statistics</h3>
+            <div class="buffer-info" id="bufferInfo">
+                <div class="stat">
+                    <div class="stat-value" id="bufferCount">-</div>
+                    <div class="stat-label">Snapshots Stored</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="bufferSize">-</div>
+                    <div class="stat-label">Storage Size</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="bufferOldest">-</div>
+                    <div class="stat-label">Oldest Data</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="bufferNewest">-</div>
+                    <div class="stat-label">Newest Data</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Load our health monitoring components -->
+    <script src="/js/status-dot.js"></script>
+    <script src="/js/health-ring-buffer.js"></script>
+    <script src="/js/spark-chart.js"></script>
+
+    <script>
+        // Health Dashboard Controller
+        class HealthDashboard {
+            constructor() {
+                this.refreshInterval = 60000; // 60 seconds
+                this.countdownInterval = null;
+                this.countdown = 60;
+                this.apiEndpoint = '/api/healthmap';
+            }
+
+            async init() {
+                console.log('🚀 Initializing Health Dashboard...');
+                await this.fetchAndRender();
+                this.startAutoRefresh();
+                this.renderBufferStats();
+            }
+
+            async fetchAndRender() {
+                try {
+                    const response = await fetch(this.apiEndpoint);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (!data.success || !data.items) {
+                        throw new Error('Invalid response format');
+                    }
+
+                    // Save to ring buffer
+                    const snapshot = {
+                        timestamp: data.generatedAt || Date.now(),
+                        items: data.items
+                    };
+                    addSnapshot(snapshot);
+
+                    // Render UI
+                    this.renderOverallStatus(data.items);
+                    this.renderServices(data.items);
+                    this.renderBufferStats();
+                    this.clearError();
+
+                } catch (error) {
+                    console.error('❌ Health check failed:', error);
+                    this.showError(error.message);
+                }
+            }
+
+            renderOverallStatus(items) {
+                const upCount = items.filter(item => item.status === 'up').length;
+                const totalCount = items.length;
+                const uptimePercent = Math.round((upCount / totalCount) * 1000) / 10;
+
+                // Calculate latencies from successful responses
+                const successfulItems = items.filter(item => item.status === 'up' && item.ms);
+                const latencies = successfulItems.map(item => item.ms);
+
+                const avgLatency = latencies.length > 0
+                    ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length)
+                    : 0;
+
+                const sortedLatencies = [...latencies].sort((a, b) => a - b);
+                const p95Index = Math.floor(sortedLatencies.length * 0.95);
+                const p95 = sortedLatencies[p95Index] || 0;
+
+                // Update UI
+                document.getElementById('overallStatusText').textContent =
+                    uptimePercent === 100 ? '✅ All Systems Operational' : '⚠️ Some Issues Detected';
+                document.getElementById('totalServices').textContent = totalCount;
+                document.getElementById('servicesUp').textContent = upCount;
+                document.getElementById('overallUptime').textContent = `${uptimePercent}%`;
+                document.getElementById('avgLatency').textContent = `${avgLatency}ms`;
+                document.getElementById('p95Latency').textContent = `${Math.round(p95)}ms`;
+            }
+
+            renderServices(items) {
+                const container = document.getElementById('servicesContainer');
+                container.innerHTML = '';
+
+                items.forEach(item => {
+                    const card = this.createServiceCard(item);
+                    container.appendChild(card);
+                });
+            }
+
+            createServiceCard(item) {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+
+                // Status dot
+                const dot = createStatusDot(item.status);
+
+                // Spark chart data from ring buffer
+                const sparkData = getSparkData(item.name, 30);
+                const sparkChart = createCompactSparkChart(sparkData, item.status);
+
+                // Metrics
+                const latency = item.ms || 0;
+                const code = item.code || 0;
+
+                // Calculate uptime from recent history
+                const recentSnapshots = getRecentSnapshots(60);
+                const uptime = calculateUptime(recentSnapshots, item.name);
+
+                card.innerHTML = `
+                    <div class="service-header">
+                        <div class="service-name">${item.name}</div>
+                        <div class="service-status" id="status-${item.name}"></div>
+                    </div>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <div class="metric-value" style="color: ${item.status === 'up' ? 'var(--status-up)' : 'var(--status-down)'}">
+                                ${latency}ms
+                            </div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" style="color: ${uptime >= 99 ? 'var(--status-up)' : 'var(--status-warn)'}">
+                                ${uptime}%
+                            </div>
+                            <div class="metric-label">Uptime (1h)</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${code}</div>
+                            <div class="metric-label">HTTP Code</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${item.url}</div>
+                            <div class="metric-label">Endpoint</div>
+                        </div>
+                    </div>
+                    <div class="service-chart">
+                        <div class="chart-label">Latency Trend (Last 30 checks)</div>
+                        <div id="chart-${item.name}"></div>
+                    </div>
+                `;
+
+                // Append status dot
+                const statusContainer = card.querySelector(`#status-${item.name}`);
+                statusContainer.appendChild(dot);
+
+                const statusText = document.createElement('span');
+                statusText.textContent = item.status.toUpperCase();
+                statusContainer.appendChild(statusText);
+
+                // Append spark chart
+                const chartContainer = card.querySelector(`#chart-${item.name}`);
+                chartContainer.appendChild(sparkChart);
+
+                return card;
+            }
+
+            renderBufferStats() {
+                const stats = getRingBufferStats();
+
+                document.getElementById('bufferCount').textContent =
+                    `${stats.count} / ${stats.maxSize}`;
+
+                document.getElementById('bufferSize').textContent =
+                    `${(stats.sizeBytes / 1024).toFixed(1)} KB`;
+
+                if (stats.oldestTimestamp) {
+                    const oldestDate = new Date(stats.oldestTimestamp);
+                    document.getElementById('bufferOldest').textContent =
+                        oldestDate.toLocaleTimeString();
+                } else {
+                    document.getElementById('bufferOldest').textContent = 'N/A';
+                }
+
+                if (stats.newestTimestamp) {
+                    const newestDate = new Date(stats.newestTimestamp);
+                    document.getElementById('bufferNewest').textContent =
+                        newestDate.toLocaleTimeString();
+                } else {
+                    document.getElementById('bufferNewest').textContent = 'N/A';
+                }
+            }
+
+            startAutoRefresh() {
+                // Start countdown
+                this.countdownInterval = setInterval(() => {
+                    this.countdown--;
+                    document.getElementById('countdown').textContent = this.countdown;
+
+                    if (this.countdown <= 0) {
+                        this.countdown = 60;
+                        this.fetchAndRender();
+                    }
+                }, 1000);
+            }
+
+            showError(message) {
+                const container = document.getElementById('errorContainer');
+                container.innerHTML = `
+                    <div class="error">
+                        ❌ Error: ${message}
+                    </div>
+                `;
+            }
+
+            clearError() {
+                document.getElementById('errorContainer').innerHTML = '';
+            }
+        }
+
+        // Initialize dashboard on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboard = new HealthDashboard();
+            dashboard.init();
+        });
+    </script>
+</body>
+</html>

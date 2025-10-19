@@ -1,0 +1,90 @@
+{
+  "products": [
+    {
+      "title": "AI Studio",
+      "desc": "Model orkestrasyon, veri-iş, RAG",
+      "href": "/tr/studio"
+    },
+    {
+      "title": "IQ Analytics",
+      "desc": "Gerçek-zamanlı izleme ve iş zekâsı",
+      "href": "/tr/iq"
+    },
+    {
+      "title": "AI Ops Center",
+      "desc": "MLOps, canary, auto-rollback",
+      "href": "/tr/ops"
+    },
+    {
+      "title": "Lydian IQ",
+      "desc": "Zeka testi ve analiz platformu",
+      "href": "/tr/lydian-iq"
+    },
+    {
+      "title": "Medical Expert",
+      "desc": "Sağlık AI asistanı",
+      "href": "/tr/medical"
+    }
+  ],
+  "solutions": [
+    {
+      "title": "Sohbet Asistanı",
+      "desc": "Çokdilli kurumsal asistan",
+      "href": "/tr/solutions/chat"
+    },
+    {
+      "title": "Döküman AI",
+      "desc": "Belge/RAG otomasyonu",
+      "href": "/tr/solutions/doc"
+    },
+    {
+      "title": "Çağrı Merkezi AI",
+      "desc": "Sesli/Metin hibrit",
+      "href": "/tr/solutions/call"
+    },
+    {
+      "title": "Legal AI",
+      "desc": "Hukuki analiz ve arama",
+      "href": "/tr/legal"
+    }
+  ],
+  "developers": [
+    {
+      "title": "Hızlı Kurulum",
+      "desc": "SDK, örnekler",
+      "href": "/tr/dev/start"
+    },
+    {
+      "title": "API Referansı",
+      "desc": "REST/WS/Events",
+      "href": "/tr/dev/api"
+    },
+    {
+      "title": "Sürüm Notları",
+      "desc": "Değişiklik akışı",
+      "href": "/tr/dev/changelog"
+    },
+    {
+      "title": "Status Dashboard",
+      "desc": "Sistem sağlık durumu",
+      "href": "/tr/status"
+    }
+  ],
+  "company": [
+    {
+      "title": "Vizyon",
+      "desc": "Ailydian manifestosu",
+      "href": "/tr/about"
+    },
+    {
+      "title": "Güvenlik",
+      "desc": "Uyum & denetim",
+      "href": "/tr/security"
+    },
+    {
+      "title": "Kariyer",
+      "desc": "Takıma katıl",
+      "href": "/tr/careers"
+    }
+  ]
+}

@@ -103,7 +103,7 @@ const { complianceHeaders, requireConsent, getComplianceManager } = require('./m
 const { setupFullSecurity, requireAdmin: strictRequireAdmin } = require('./security/security-integration');
 
 // 🔒 NIRVANA LEVEL SECURITY HEADERS
-const securityHeaders = (req, res, next) => {
+const nirvanaSecurityHeaders = (req, res, next) => {
   // Dynamic CSP based on environment
   const isDev = process.env.NODE_ENV !== 'production';
   const messagingDomain = isDev
@@ -551,7 +551,7 @@ app.use(sentryRequestHandler());
 app.use(sentryTracingHandler());
 
 // 🔒 NIRVANA LEVEL SECURITY HEADERS
-app.use(securityHeaders);
+app.use(nirvanaSecurityHeaders);
 
 // 🔐 PHASE F: ENTERPRISE SECURITY & COMPLIANCE LAYER
 // Order matters: DDoS → Audit → Auth → Rate Limit → Compliance
@@ -646,7 +646,7 @@ app.use(cacheControl);
 app.use(express.static('public'));
 
 // Security Headers Middleware
-app.use(securityHeaders);
+app.use(nirvanaSecurityHeaders);
 
 // 🤖 FIRILDAK AI ENGINE INITIALIZATION
 const firildakAI = new FirildakAIEngine();
@@ -17500,6 +17500,17 @@ const azureMultimodalRoutes = require('./routes/azure-multimodal-routes');
 app.use('/api/azure/legal', azureMultimodalRoutes);
 app.use('/api/legal-ai', legalAIAPI);  // ✅ Use direct API for chat
 app.use('/api/legal-services', legalAIRoutes);  // Keep other services
+
+// 🌐 HYBRID UI/UX ROUTES - i18n & Search & Health
+// ==================================================
+const menuAPIRoutes = require('./routes/api/menu');
+const searchAPIRoutes = require('./routes/api/search');
+const healthmapAPIRoutes = require('./routes/api/healthmap');
+const incidentPushAPIRoutes = require('./routes/api/incident-push');
+app.use('/api/menu', menuAPIRoutes);  // Localized menu data
+app.use('/api/search', searchAPIRoutes);  // Fuse.js powered search
+app.use('/api/healthmap', healthmapAPIRoutes);  // Multi-page health check
+app.use('/api/incident-push', incidentPushAPIRoutes);  // Slack/Jira incident push
 
 // 🗄️ Knowledge Graph API (Neo4j)
 const knowledgeGraphAPI = require('./api/knowledge-graph');

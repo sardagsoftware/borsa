@@ -1,104 +1,28 @@
-// LCI Web - Home Page
-// White-hat: Accessible, semantic markup
-
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-16">
-      {/* Hero Section */}
-      <section className="mb-16 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-          Lydian Complaint Intelligence
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          LyDian AI
         </h1>
-        <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-          KVKK/GDPR uyumlu şeffaf şikayet yönetim platformu. Tüketici hakları ve
-          marka çözüm süreçlerini bir araya getiriyoruz.
+        <p className="text-xl text-gray-600 mb-8">
+          System Health Dashboard - Enterprise Grade Monitoring
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg" asChild>
-            <Link href="/complaints/new">Şikayet Oluştur</Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/brands">Markalar</Link>
-          </Button>
+        <div className="flex gap-4 justify-center">
+          <a
+            href="/status"
+            className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold hover:shadow-2xl transition-all"
+          >
+            View Status Dashboard
+          </a>
+          <a
+            href="/demo-status.html"
+            className="px-8 py-4 rounded-full bg-white border-2 border-purple-600 text-purple-600 font-bold hover:shadow-2xl transition-all"
+          >
+            Demo Version
+          </a>
         </div>
-      </section>
-
-      {/* Features */}
-      <section className="grid gap-8 md:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle>🔒 White-hat Güvenlik</CardTitle>
-            <CardDescription>
-              End-to-end şifreleme, güvenli veri saklama
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Tüm verileriniz KVKK/GDPR standartlarında korunur. Data export ve
-              silme hakları tam desteklenir.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>⚡ Hızlı Çözüm</CardTitle>
-            <CardDescription>
-              Ortalama 72 saat içinde ilk yanıt
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Markalar SLA hedefleriyle takip edilir. Otomatik hatırlatma ve
-              escalation sistemi.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>📊 Şeffaf Süreç</CardTitle>
-            <CardDescription>Her adımı takip edin</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Şikayetinizin her aşaması kayıt altında. Audit trail ile tam
-              şeffaflık.
-            </p>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Stats */}
-      <section className="mt-16 rounded-lg border bg-card p-8 text-center">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div>
-            <p className="text-4xl font-bold">0</p>
-            <p className="text-sm text-muted-foreground">Aktif Şikayet</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold">0</p>
-            <p className="text-sm text-muted-foreground">Kayıtlı Marka</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold">0%</p>
-            <p className="text-sm text-muted-foreground">Çözüm Oranı</p>
-          </div>
-        </div>
-        <p className="mt-4 text-xs text-muted-foreground">
-          * Platform Phase 1 - Development mode
-        </p>
-      </section>
+      </div>
     </div>
   );
 }

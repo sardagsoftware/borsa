@@ -1,0 +1,190 @@
+{
+  "items": [
+    {
+      "id": "products",
+      "label": "Products",
+      "type": "mega",
+      "columns": [
+        {
+          "title": "AI Platform",
+          "items": [
+            {
+              "title": "AI Chat",
+              "description": "Multimodal chat",
+              "href": "/chat",
+              "icon": "message-square"
+            },
+            {
+              "title": "AI Models",
+              "description": "23+ model support",
+              "href": "/models",
+              "icon": "brain"
+            },
+            {
+              "title": "AI Ops Center",
+              "description": "MLOps & monitoring",
+              "href": "/enterprise",
+              "icon": "gauge"
+            }
+          ]
+        },
+        {
+          "title": "Expert Systems",
+          "items": [
+            {
+              "title": "Medical Expert",
+              "description": "Medical diagnosis & analysis",
+              "href": "/medical-expert",
+              "icon": "stethoscope"
+            },
+            {
+              "title": "Legal AI",
+              "description": "Legal search & analysis",
+              "href": "/lydian-legal-search",
+              "icon": "scale"
+            },
+            {
+              "title": "LyDian IQ",
+              "description": "Intelligence testing & analysis",
+              "href": "/lydian-iq",
+              "icon": "lightbulb"
+            }
+          ]
+        },
+        {
+          "title": "Smart City",
+          "items": [
+            {
+              "title": "Intelligence Grid",
+              "description": "City management center",
+              "href": "/civic-intelligence-grid",
+              "icon": "grid"
+            },
+            {
+              "title": "Traffic Grid",
+              "description": "Adaptive traffic system",
+              "href": "/civic-atg",
+              "icon": "traffic-cone"
+            },
+            {
+              "title": "Smart Map",
+              "description": "Smart mapping",
+              "href": "/civic-map",
+              "icon": "map"
+            },
+            {
+              "title": "Health Network",
+              "description": "Public health network",
+              "href": "/civic-phn",
+              "icon": "heart-pulse"
+            }
+          ]
+        },
+        {
+          "title": "Monitoring & Management",
+          "items": [
+            {
+              "title": "System Status",
+              "description": "Live health monitor",
+              "href": "/status",
+              "icon": "activity"
+            },
+            {
+              "title": "Monitoring",
+              "description": "Metrics & SLA",
+              "href": "/monitoring",
+              "icon": "chart-line"
+            },
+            {
+              "title": "Health Orchestrator",
+              "description": "Auto-triage system",
+              "href": "/ai-health-orchestrator",
+              "icon": "workflow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "label": "Solutions",
+      "type": "mega",
+      "columns": [
+        {
+          "title": "By Industry",
+          "items": [
+            {
+              "title": "Healthcare",
+              "description": "Medical AI solutions",
+              "href": "/solutions/healthcare",
+              "icon": "hospital"
+            },
+            {
+              "title": "Finance",
+              "description": "Financial analytics",
+              "href": "/solutions/finance",
+              "icon": "banknote"
+            },
+            {
+              "title": "Legal",
+              "description": "Legal analysis",
+              "href": "/solutions/legal",
+              "icon": "gavel"
+            }
+          ]
+        },
+        {
+          "title": "Use Cases",
+          "items": [
+            {
+              "title": "Chatbot & Assistant",
+              "description": "Customer support AI",
+              "href": "/solutions/chatbot",
+              "icon": "bot"
+            },
+            {
+              "title": "Document Analysis",
+              "description": "Automated document processing",
+              "href": "/solutions/document-analysis",
+              "icon": "file-text"
+            },
+            {
+              "title": "Image Analysis",
+              "description": "Computer vision",
+              "href": "/solutions/image-analysis",
+              "icon": "scan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "developers",
+      "label": "Developers",
+      "type": "simple",
+      "items": [
+        {
+          "label": "Documentation",
+          "href": "/docs",
+          "icon": "book-open"
+        },
+        {
+          "label": "API Reference",
+          "href": "/api-reference",
+          "icon": "code"
+        },
+        {
+          "label": "SDKs",
+          "href": "/sdks",
+          "icon": "package"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "label": "Pricing",
+      "type": "link",
+      "href": "/pricing"
+    }
+  ]
+}

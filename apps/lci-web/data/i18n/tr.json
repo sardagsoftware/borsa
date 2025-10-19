@@ -1,0 +1,87 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "close": "Kapat",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki",
+    "home": "Ana Sayfa"
+  },
+  "nav": {
+    "products": "Ürünler",
+    "solutions": "Çözümler",
+    "developers": "Geliştiriciler",
+    "company": "Kurumsal",
+    "docs": "Dökümanlar",
+    "pricing": "Fiyatlandırma",
+    "support": "Destek",
+    "signin": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "dashboard": "Panel"
+  },
+  "header": {
+    "title": "LyDian AI",
+    "subtitle": "Yapay Zeka Platformu",
+    "tagline": "Kurumsal sınıf AI çözümleri"
+  },
+  "footer": {
+    "copyright": "© 2025 LyDian AI. Tüm hakları saklıdır.",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "contact": "İletişim"
+  },
+  "search": {
+    "placeholder": "Ara... (⌘K)",
+    "noResults": "Sonuç bulunamadı",
+    "searching": "Aranıyor...",
+    "results": "sonuç"
+  },
+  "menu": {
+    "aiPlatform": "AI Platform",
+    "aiChat": "AI Chat",
+    "aiChatDesc": "Multimodal sohbet",
+    "aiModels": "AI Models",
+    "aiModelsDesc": "23+ model desteği",
+    "aiOps": "AI Ops Center",
+    "aiOpsDesc": "MLOps & monitoring",
+    "expertSystems": "Uzman Sistemler",
+    "medicalExpert": "Medical Expert",
+    "medicalExpertDesc": "Tıbbi tanı & analiz",
+    "legalAI": "Hukuk AI",
+    "legalAIDesc": "Hukuki arama & analiz",
+    "lydianIQ": "LyDian IQ",
+    "lydianIQDesc": "Zeka testi & analiz",
+    "smartCity": "Akıllı Şehir",
+    "intelligenceGrid": "Intelligence Grid",
+    "intelligenceGridDesc": "Şehir yönetim merkezi",
+    "trafficGrid": "Traffic Grid",
+    "trafficGridDesc": "Adaptif trafik sistemi",
+    "smartMap": "Smart Map",
+    "smartMapDesc": "Akıllı harita",
+    "healthNetwork": "Health Network",
+    "healthNetworkDesc": "Halk sağlığı ağı",
+    "monitoring": "İzleme & Yönetim",
+    "systemStatus": "Sistem Durumu",
+    "systemStatusDesc": "Canlı health monitor",
+    "monitoringPanel": "Monitoring",
+    "monitoringPanelDesc": "Metrikler & SLA",
+    "healthOrchestrator": "Health Orchestrator",
+    "healthOrchestratorDesc": "Auto-triage sistem"
+  },
+  "ask": {
+    "title": "LyDian AI'ya Sor",
+    "placeholder": "Sorunuzu buraya yazın...",
+    "submit": "Gönder",
+    "thinking": "Düşünüyor...",
+    "answer": "Cevap",
+    "sources": "Kaynaklar"
+  }
+}

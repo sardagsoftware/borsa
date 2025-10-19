@@ -1,0 +1,87 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "home": "Home"
+  },
+  "nav": {
+    "products": "Products",
+    "solutions": "Solutions",
+    "developers": "Developers",
+    "company": "Company",
+    "docs": "Documentation",
+    "pricing": "Pricing",
+    "support": "Support",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "dashboard": "Dashboard"
+  },
+  "header": {
+    "title": "LyDian AI",
+    "subtitle": "Artificial Intelligence Platform",
+    "tagline": "Enterprise-grade AI solutions"
+  },
+  "footer": {
+    "copyright": "© 2025 LyDian AI. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact"
+  },
+  "search": {
+    "placeholder": "Search... (⌘K)",
+    "noResults": "No results found",
+    "searching": "Searching...",
+    "results": "results"
+  },
+  "menu": {
+    "aiPlatform": "AI Platform",
+    "aiChat": "AI Chat",
+    "aiChatDesc": "Multimodal chat",
+    "aiModels": "AI Models",
+    "aiModelsDesc": "23+ model support",
+    "aiOps": "AI Ops Center",
+    "aiOpsDesc": "MLOps & monitoring",
+    "expertSystems": "Expert Systems",
+    "medicalExpert": "Medical Expert",
+    "medicalExpertDesc": "Medical diagnosis & analysis",
+    "legalAI": "Legal AI",
+    "legalAIDesc": "Legal search & analysis",
+    "lydianIQ": "LyDian IQ",
+    "lydianIQDesc": "Intelligence testing & analysis",
+    "smartCity": "Smart City",
+    "intelligenceGrid": "Intelligence Grid",
+    "intelligenceGridDesc": "City management center",
+    "trafficGrid": "Traffic Grid",
+    "trafficGridDesc": "Adaptive traffic system",
+    "smartMap": "Smart Map",
+    "smartMapDesc": "Smart mapping",
+    "healthNetwork": "Health Network",
+    "healthNetworkDesc": "Public health network",
+    "monitoring": "Monitoring & Management",
+    "systemStatus": "System Status",
+    "systemStatusDesc": "Live health monitor",
+    "monitoringPanel": "Monitoring",
+    "monitoringPanelDesc": "Metrics & SLA",
+    "healthOrchestrator": "Health Orchestrator",
+    "healthOrchestratorDesc": "Auto-triage system"
+  },
+  "ask": {
+    "title": "Ask LyDian AI",
+    "placeholder": "Type your question here...",
+    "submit": "Submit",
+    "thinking": "Thinking...",
+    "answer": "Answer",
+    "sources": "Sources"
+  }
+}

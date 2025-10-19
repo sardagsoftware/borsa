@@ -1,0 +1,190 @@
+{
+  "items": [
+    {
+      "id": "products",
+      "label": "Ürünler",
+      "type": "mega",
+      "columns": [
+        {
+          "title": "AI Platform",
+          "items": [
+            {
+              "title": "AI Chat",
+              "description": "Multimodal sohbet",
+              "href": "/chat",
+              "icon": "message-square"
+            },
+            {
+              "title": "AI Models",
+              "description": "23+ model desteği",
+              "href": "/models",
+              "icon": "brain"
+            },
+            {
+              "title": "AI Ops Center",
+              "description": "MLOps & monitoring",
+              "href": "/enterprise",
+              "icon": "gauge"
+            }
+          ]
+        },
+        {
+          "title": "Uzman Sistemler",
+          "items": [
+            {
+              "title": "Medical Expert",
+              "description": "Tıbbi tanı & analiz",
+              "href": "/medical-expert",
+              "icon": "stethoscope"
+            },
+            {
+              "title": "Hukuk AI",
+              "description": "Hukuki arama & analiz",
+              "href": "/lydian-legal-search",
+              "icon": "scale"
+            },
+            {
+              "title": "LyDian IQ",
+              "description": "Zeka testi & analiz",
+              "href": "/lydian-iq",
+              "icon": "lightbulb"
+            }
+          ]
+        },
+        {
+          "title": "Akıllı Şehir",
+          "items": [
+            {
+              "title": "Intelligence Grid",
+              "description": "Şehir yönetim merkezi",
+              "href": "/civic-intelligence-grid",
+              "icon": "grid"
+            },
+            {
+              "title": "Traffic Grid",
+              "description": "Adaptif trafik sistemi",
+              "href": "/civic-atg",
+              "icon": "traffic-cone"
+            },
+            {
+              "title": "Smart Map",
+              "description": "Akıllı harita",
+              "href": "/civic-map",
+              "icon": "map"
+            },
+            {
+              "title": "Health Network",
+              "description": "Halk sağlığı ağı",
+              "href": "/civic-phn",
+              "icon": "heart-pulse"
+            }
+          ]
+        },
+        {
+          "title": "İzleme & Yönetim",
+          "items": [
+            {
+              "title": "Sistem Durumu",
+              "description": "Canlı health monitor",
+              "href": "/status",
+              "icon": "activity"
+            },
+            {
+              "title": "Monitoring",
+              "description": "Metrikler & SLA",
+              "href": "/monitoring",
+              "icon": "chart-line"
+            },
+            {
+              "title": "Health Orchestrator",
+              "description": "Auto-triage sistem",
+              "href": "/ai-health-orchestrator",
+              "icon": "workflow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "label": "Çözümler",
+      "type": "mega",
+      "columns": [
+        {
+          "title": "Sektöre Göre",
+          "items": [
+            {
+              "title": "Sağlık",
+              "description": "Tıbbi AI çözümleri",
+              "href": "/solutions/healthcare",
+              "icon": "hospital"
+            },
+            {
+              "title": "Finans",
+              "description": "Finansal analitik",
+              "href": "/solutions/finance",
+              "icon": "banknote"
+            },
+            {
+              "title": "Hukuk",
+              "description": "Hukuki analiz",
+              "href": "/solutions/legal",
+              "icon": "gavel"
+            }
+          ]
+        },
+        {
+          "title": "Kullanım Senaryoları",
+          "items": [
+            {
+              "title": "Chatbot & Asistan",
+              "description": "Müşteri desteği AI",
+              "href": "/solutions/chatbot",
+              "icon": "bot"
+            },
+            {
+              "title": "Belge Analizi",
+              "description": "Otomatik doküman işleme",
+              "href": "/solutions/document-analysis",
+              "icon": "file-text"
+            },
+            {
+              "title": "Görüntü Analizi",
+              "description": "Computer vision",
+              "href": "/solutions/image-analysis",
+              "icon": "scan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "developers",
+      "label": "Geliştiriciler",
+      "type": "simple",
+      "items": [
+        {
+          "label": "Dökümanlar",
+          "href": "/docs",
+          "icon": "book-open"
+        },
+        {
+          "label": "API Referansı",
+          "href": "/api-reference",
+          "icon": "code"
+        },
+        {
+          "label": "SDK'lar",
+          "href": "/sdks",
+          "icon": "package"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "label": "Fiyatlandırma",
+      "type": "link",
+      "href": "/pricing"
+    }
+  ]
+}

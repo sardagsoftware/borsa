@@ -1,0 +1,6056 @@
+[
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/security-headers-20251019-121131/server.js",
+    "detections": {
+      "claude": 69,
+      "gpt": 83,
+      "gemini": 85,
+      "groq": 43,
+      "mixtral": 3,
+      "llama": 35,
+      "anthropic": 35,
+      "openai": 75,
+      "google": 4,
+      "gpt-3.5-turbo": 2,
+      "mixtral-8x7b": 2,
+      "gemini-pro": 12
+    },
+    "totalMatches": 448,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/server.js",
+    "detections": {
+      "claude": 69,
+      "gpt": 83,
+      "gemini": 85,
+      "groq": 43,
+      "mixtral": 3,
+      "llama": 35,
+      "anthropic": 35,
+      "openai": 75,
+      "google": 4,
+      "gpt-3.5-turbo": 2,
+      "mixtral-8x7b": 2,
+      "gemini-pro": 12
+    },
+    "totalMatches": 448,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/server.js",
+    "detections": {
+      "claude": 69,
+      "gpt": 82,
+      "gemini": 85,
+      "groq": 43,
+      "mixtral": 3,
+      "llama": 35,
+      "anthropic": 35,
+      "openai": 74,
+      "google": 4,
+      "gpt-3.5-turbo": 2,
+      "mixtral-8x7b": 2,
+      "gemini-pro": 12
+    },
+    "totalMatches": 446,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat-old.html",
+    "detections": {
+      "claude": 91,
+      "gpt": 20,
+      "gemini": 7,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 4,
+      "openai": 3,
+      "gpt-3.5-turbo": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 143,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat-old.html",
+    "detections": {
+      "claude": 91,
+      "gpt": 20,
+      "gemini": 7,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 4,
+      "openai": 3,
+      "gpt-3.5-turbo": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 143,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat-backup-turkish-20250930-185225.html",
+    "detections": {
+      "claude": 90,
+      "gpt": 20,
+      "gemini": 7,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 4,
+      "openai": 3,
+      "gpt-3.5-turbo": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 142,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat-backup-turkish-20250930-185225.html",
+    "detections": {
+      "claude": 90,
+      "gpt": 20,
+      "gemini": 7,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 4,
+      "openai": 3,
+      "gpt-3.5-turbo": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 142,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/solve.js",
+    "detections": {
+      "claude": 18,
+      "gpt": 4,
+      "groq": 34,
+      "mixtral": 4,
+      "llama": 1,
+      "anthropic": 28,
+      "openai": 46
+    },
+    "totalMatches": 135,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/ai-integration-helper.js",
+    "detections": {
+      "claude": 14,
+      "gpt": 9,
+      "anthropic": 30,
+      "openai": 65
+    },
+    "totalMatches": 118,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/ai-integration-helper.js",
+    "detections": {
+      "claude": 14,
+      "gpt": 9,
+      "anthropic": 30,
+      "openai": 64
+    },
+    "totalMatches": 117,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/ai-integration-helper.js.html",
+    "detections": {
+      "claude": 14,
+      "gpt": 9,
+      "anthropic": 30,
+      "openai": 64
+    },
+    "totalMatches": 117,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/ai-integration-helper.js.html",
+    "detections": {
+      "claude": 14,
+      "gpt": 9,
+      "anthropic": 30,
+      "openai": 64
+    },
+    "totalMatches": 117,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/models-config.js",
+    "detections": {
+      "claude": 10,
+      "gpt": 16,
+      "gemini": 10,
+      "groq": 9,
+      "mixtral": 6,
+      "llama": 3,
+      "anthropic": 13,
+      "openai": 34,
+      "gpt-4-turbo-preview": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 103,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/enterprise/all-enterprise-integrations.js",
+    "detections": {
+      "gpt": 36,
+      "openai": 67
+    },
+    "totalMatches": 103,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/models-config.js",
+    "detections": {
+      "claude": 10,
+      "gpt": 16,
+      "gemini": 10,
+      "groq": 9,
+      "mixtral": 3,
+      "llama": 3,
+      "anthropic": 13,
+      "openai": 34,
+      "gpt-4-turbo-preview": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 100,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/models-config.js.html",
+    "detections": {
+      "claude": 10,
+      "gpt": 16,
+      "gemini": 10,
+      "groq": 9,
+      "mixtral": 3,
+      "llama": 3,
+      "anthropic": 13,
+      "openai": 34,
+      "gpt-4-turbo-preview": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 100,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/models-config.js.html",
+    "detections": {
+      "claude": 10,
+      "gpt": 16,
+      "gemini": 10,
+      "groq": 9,
+      "mixtral": 3,
+      "llama": 3,
+      "anthropic": 13,
+      "openai": 34,
+      "gpt-4-turbo-preview": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 100,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/lydian-iq/solve.js",
+    "detections": {
+      "claude": 15,
+      "gpt": 7,
+      "groq": 23,
+      "llama": 4,
+      "anthropic": 11,
+      "openai": 30,
+      "gpt-4-turbo-preview": 1
+    },
+    "totalMatches": 91,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/.cleanup-backup-20251004-233430/solve.js",
+    "detections": {
+      "claude": 14,
+      "gpt": 7,
+      "groq": 22,
+      "llama": 4,
+      "anthropic": 11,
+      "openai": 29,
+      "gpt-4-turbo-preview": 1
+    },
+    "totalMatches": 88,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/translations.js",
+    "detections": {
+      "claude": 15,
+      "gpt": 32,
+      "gemini": 15,
+      "google": 3,
+      "gemini-pro": 8
+    },
+    "totalMatches": 73,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-integrations/firildak-ai-engine.js",
+    "detections": {
+      "claude": 7,
+      "gpt": 6,
+      "gemini": 2,
+      "groq": 12,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 11,
+      "openai": 23,
+      "google": 2,
+      "gpt-3.5-turbo": 1,
+      "gpt-4-turbo-preview": 1,
+      "mixtral-8x7b": 1,
+      "llama2-70b": 1,
+      "gemini-pro": 2
+    },
+    "totalMatches": 71,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/chat.js",
+    "detections": {
+      "claude": 6,
+      "gpt": 2,
+      "gemini": 6,
+      "groq": 11,
+      "llama": 1,
+      "anthropic": 16,
+      "openai": 22
+    },
+    "totalMatches": 64,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/chat.js",
+    "detections": {
+      "claude": 6,
+      "gpt": 2,
+      "gemini": 6,
+      "groq": 11,
+      "llama": 1,
+      "anthropic": 16,
+      "openai": 22
+    },
+    "totalMatches": 64,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/chat.js.html",
+    "detections": {
+      "claude": 6,
+      "gpt": 2,
+      "gemini": 6,
+      "groq": 11,
+      "llama": 1,
+      "anthropic": 16,
+      "openai": 22
+    },
+    "totalMatches": 64,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/chat.js.html",
+    "detections": {
+      "claude": 6,
+      "gpt": 2,
+      "gemini": 6,
+      "groq": 11,
+      "llama": 1,
+      "anthropic": 16,
+      "openai": 22
+    },
+    "totalMatches": 64,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-claude.js",
+    "detections": {
+      "claude": 41,
+      "anthropic": 18,
+      "claude-3-sonnet": 1
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/models.html",
+    "detections": {
+      "claude": 18,
+      "gpt": 18,
+      "gemini": 18,
+      "anthropic": 3,
+      "openai": 3
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ai-proxy.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 8,
+      "gemini": 1,
+      "groq": 8,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 11,
+      "openai": 26,
+      "google": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/lib/models/registry.ts",
+    "detections": {
+      "claude": 7,
+      "gpt": 10,
+      "gemini": 4,
+      "groq": 9,
+      "mixtral": 4,
+      "llama": 8,
+      "anthropic": 5,
+      "openai": 9,
+      "mixtral-8x7b": 1,
+      "llama2-70b": 1,
+      "gemini-pro": 2
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/models.html",
+    "detections": {
+      "claude": 18,
+      "gpt": 18,
+      "gemini": 18,
+      "anthropic": 3,
+      "openai": 3
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/ai-proxy.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 8,
+      "gemini": 1,
+      "groq": 8,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 11,
+      "openai": 26,
+      "google": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/ai-proxy.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 8,
+      "gemini": 1,
+      "groq": 8,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 11,
+      "openai": 26,
+      "google": 1,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 60,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat/index.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 13,
+      "gemini": 4,
+      "groq": 10,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 22
+    },
+    "totalMatches": 59,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat/index.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 13,
+      "gemini": 4,
+      "groq": 10,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 22
+    },
+    "totalMatches": 59,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat/index.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 13,
+      "gemini": 4,
+      "groq": 10,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 22
+    },
+    "totalMatches": 59,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat/index.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 13,
+      "gemini": 4,
+      "groq": 10,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 22
+    },
+    "totalMatches": 59,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/specialized-chat-route.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 1,
+      "gemini": 6,
+      "groq": 21,
+      "llama": 10,
+      "anthropic": 5,
+      "openai": 11
+    },
+    "totalMatches": 57,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/health-data-services.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 3,
+      "gemini": 4,
+      "groq": 9,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 23,
+      "google": 1,
+      "gpt-4-turbo-preview": 1
+    },
+    "totalMatches": 55,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/health-data-services.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 3,
+      "gemini": 4,
+      "groq": 9,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 23,
+      "google": 1,
+      "gpt-4-turbo-preview": 1
+    },
+    "totalMatches": 55,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/health-data-services.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 3,
+      "gemini": 4,
+      "groq": 9,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 23,
+      "google": 1,
+      "gpt-4-turbo-preview": 1
+    },
+    "totalMatches": 55,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-power-panel.html",
+    "detections": {
+      "claude": 6,
+      "gpt": 10,
+      "gemini": 4,
+      "groq": 8,
+      "mixtral": 4,
+      "llama": 8,
+      "anthropic": 4,
+      "openai": 7,
+      "mixtral-8x7b": 1,
+      "llama2-70b": 1,
+      "gemini-pro": 2
+    },
+    "totalMatches": 55,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/lydian-ultimate-legal-ai.js",
+    "detections": {
+      "gpt": 29,
+      "openai": 25
+    },
+    "totalMatches": 54,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical-expert/index.js",
+    "detections": {
+      "gpt": 10,
+      "groq": 9,
+      "llama": 4,
+      "openai": 30
+    },
+    "totalMatches": 53,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical-expert/index.js",
+    "detections": {
+      "gpt": 10,
+      "groq": 9,
+      "llama": 4,
+      "openai": 30
+    },
+    "totalMatches": 53,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical-expert/index.js.html",
+    "detections": {
+      "gpt": 10,
+      "groq": 9,
+      "llama": 4,
+      "openai": 30
+    },
+    "totalMatches": 53,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical-expert/index.js.html",
+    "detections": {
+      "gpt": 10,
+      "groq": 9,
+      "llama": 4,
+      "openai": 30
+    },
+    "totalMatches": 53,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/core/ai/ModelProviderAdapter.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 4,
+      "gemini": 1,
+      "groq": 9,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 10,
+      "openai": 23,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 51,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-gemini.js.html",
+    "detections": {
+      "gemini": 44,
+      "google": 7
+    },
+    "totalMatches": 51,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-gemini.js.html",
+    "detections": {
+      "gemini": 44,
+      "google": 7
+    },
+    "totalMatches": 51,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/chat-backup-turkish-20250930-185225.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 20,
+      "gemini": 7,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 1,
+      "openai": 3,
+      "gpt-3.5-turbo": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 50,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/chat-old.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 20,
+      "gemini": 7,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 1,
+      "openai": 3,
+      "gpt-3.5-turbo": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 50,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-gemini.js",
+    "detections": {
+      "gemini": 42,
+      "google": 7
+    },
+    "totalMatches": 49,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-gemini.js",
+    "detections": {
+      "gemini": 42,
+      "google": 7
+    },
+    "totalMatches": 49,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/lydian-iq/solve.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 1,
+      "groq": 14,
+      "anthropic": 8,
+      "openai": 20
+    },
+    "totalMatches": 47,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/lydian-iq/solve.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 1,
+      "groq": 14,
+      "anthropic": 8,
+      "openai": 20
+    },
+    "totalMatches": 47,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/scripts/refactor-model-obfuscation.js",
+    "detections": {
+      "claude": 5,
+      "gpt": 9,
+      "gemini": 5,
+      "groq": 3,
+      "mixtral": 5,
+      "llama": 5,
+      "anthropic": 3,
+      "openai": 3,
+      "google": 1,
+      "gpt-3.5-turbo": 1,
+      "gpt-4-turbo-preview": 2,
+      "gpt-4-vision-preview": 2,
+      "gemini-pro": 2
+    },
+    "totalMatches": 46,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/azure-multimodal-legal-ai.js",
+    "detections": {
+      "gpt": 10,
+      "openai": 34
+    },
+    "totalMatches": 44,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index-backup.html",
+    "detections": {
+      "claude": 7,
+      "gpt": 13,
+      "gemini": 7,
+      "mixtral": 2,
+      "llama": 6,
+      "anthropic": 2,
+      "openai": 6
+    },
+    "totalMatches": 43,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index-backup.html",
+    "detections": {
+      "claude": 7,
+      "gpt": 13,
+      "gemini": 7,
+      "mixtral": 2,
+      "llama": 6,
+      "anthropic": 2,
+      "openai": 6
+    },
+    "totalMatches": 43,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-new-ai-apis.js",
+    "detections": {
+      "claude": 15,
+      "gpt": 9,
+      "gemini": 16,
+      "anthropic": 1,
+      "google": 1
+    },
+    "totalMatches": 42,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/knowledge/chat.js",
+    "detections": {
+      "gpt": 7,
+      "groq": 8,
+      "llama": 3,
+      "openai": 22
+    },
+    "totalMatches": 40,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/knowledge/chat.js",
+    "detections": {
+      "gpt": 7,
+      "groq": 8,
+      "llama": 3,
+      "openai": 22
+    },
+    "totalMatches": 40,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/test-groq.js",
+    "detections": {
+      "groq": 38,
+      "llama": 1,
+      "openai": 1
+    },
+    "totalMatches": 40,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/knowledge/chat.js.html",
+    "detections": {
+      "gpt": 7,
+      "groq": 8,
+      "llama": 3,
+      "openai": 22
+    },
+    "totalMatches": 40,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/knowledge/chat.js.html",
+    "detections": {
+      "gpt": 7,
+      "groq": 8,
+      "llama": 3,
+      "openai": 22
+    },
+    "totalMatches": 40,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat/specialized.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 8,
+      "gemini": 5,
+      "groq": 7,
+      "llama": 2,
+      "anthropic": 3,
+      "openai": 10
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat/specialized.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 8,
+      "gemini": 5,
+      "groq": 7,
+      "llama": 2,
+      "anthropic": 3,
+      "openai": 10
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat/specialized.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 8,
+      "gemini": 5,
+      "groq": 7,
+      "llama": 2,
+      "anthropic": 3,
+      "openai": 10
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-groq.js.html",
+    "detections": {
+      "groq": 22,
+      "mixtral": 4,
+      "llama": 8,
+      "openai": 4,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat/specialized.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 8,
+      "gemini": 5,
+      "groq": 7,
+      "llama": 2,
+      "anthropic": 3,
+      "openai": 10
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-groq.js.html",
+    "detections": {
+      "groq": 22,
+      "mixtral": 4,
+      "llama": 8,
+      "openai": 4,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/models.html",
+    "detections": {
+      "gpt": 18,
+      "gemini": 18,
+      "openai": 3
+    },
+    "totalMatches": 39,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-groq.js",
+    "detections": {
+      "groq": 20,
+      "mixtral": 4,
+      "llama": 8,
+      "openai": 4,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 37,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-groq.js",
+    "detections": {
+      "groq": 20,
+      "mixtral": 4,
+      "llama": 8,
+      "openai": 4,
+      "mixtral-8x7b": 1
+    },
+    "totalMatches": 37,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/test-config.js",
+    "detections": {
+      "groq": 12,
+      "anthropic": 12,
+      "openai": 12
+    },
+    "totalMatches": 36,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/tests/e2e/connectors-real-endpoints.e2e.spec.ts",
+    "detections": {
+      "claude": 3,
+      "gpt": 3,
+      "gemini": 3,
+      "anthropic": 11,
+      "openai": 10,
+      "google": 5
+    },
+    "totalMatches": 35,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/azure-image-gen.js",
+    "detections": {
+      "openai": 34
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/azure-image-gen.js",
+    "detections": {
+      "openai": 34
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/vision.js",
+    "detections": {
+      "claude": 9,
+      "gpt": 12,
+      "anthropic": 6,
+      "openai": 6,
+      "gpt-4-vision-preview": 1
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/azure-image-gen.js.html",
+    "detections": {
+      "openai": 34
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/lydian-iq/vision.js.html",
+    "detections": {
+      "claude": 9,
+      "gpt": 12,
+      "anthropic": 6,
+      "openai": 6,
+      "gpt-4-vision-preview": 1
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/azure-image-gen.js.html",
+    "detections": {
+      "openai": 34
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/lydian-iq/vision.js.html",
+    "detections": {
+      "claude": 9,
+      "gpt": 12,
+      "anthropic": 6,
+      "openai": 6,
+      "gpt-4-vision-preview": 1
+    },
+    "totalMatches": 34,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/security/ai-obfuscator.js.html",
+    "detections": {
+      "claude": 7,
+      "gpt": 5,
+      "gemini": 4,
+      "llama": 1,
+      "anthropic": 6,
+      "openai": 5,
+      "gpt-3.5-turbo": 1,
+      "gpt-4-turbo-preview": 1,
+      "claude-3-sonnet": 1,
+      "gemini-pro": 2
+    },
+    "totalMatches": 33,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/security/ai-obfuscator.js.html",
+    "detections": {
+      "claude": 7,
+      "gpt": 5,
+      "gemini": 4,
+      "llama": 1,
+      "anthropic": 6,
+      "openai": 5,
+      "gpt-3.5-turbo": 1,
+      "gpt-4-turbo-preview": 1,
+      "claude-3-sonnet": 1,
+      "gemini-pro": 2
+    },
+    "totalMatches": 33,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/security/ai-obfuscator.js",
+    "detections": {
+      "claude": 7,
+      "gpt": 5,
+      "gemini": 4,
+      "llama": 1,
+      "anthropic": 6,
+      "openai": 5,
+      "gpt-3.5-turbo": 1,
+      "gpt-4-turbo-preview": 1,
+      "claude-3-sonnet": 1,
+      "gemini-pro": 2
+    },
+    "totalMatches": 33,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-with-auth.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 2,
+      "groq": 6,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 9
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 2,
+      "groq": 6,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 9
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-with-auth.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 2,
+      "groq": 6,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 9
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/app/api/models/route.ts",
+    "detections": {
+      "gemini": 9,
+      "anthropic": 11,
+      "openai": 11,
+      "google": 1
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-with-auth.js.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 2,
+      "groq": 6,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 9
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-with-auth.js.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 2,
+      "groq": 6,
+      "llama": 2,
+      "anthropic": 10,
+      "openai": 9
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/middleware/ai-model-obfuscator.js.html",
+    "detections": {
+      "claude": 7,
+      "gpt": 6,
+      "gemini": 3,
+      "groq": 3,
+      "mixtral": 1,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 4,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/middleware/ai-model-obfuscator.js.html",
+    "detections": {
+      "claude": 7,
+      "gpt": 6,
+      "gemini": 3,
+      "groq": 3,
+      "mixtral": 1,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 4,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/middleware/ai-model-obfuscator.js",
+    "detections": {
+      "claude": 7,
+      "gpt": 6,
+      "gemini": 3,
+      "groq": 3,
+      "mixtral": 1,
+      "llama": 3,
+      "anthropic": 3,
+      "openai": 4,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 32,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/chat-azure-openai.js.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 29
+    },
+    "totalMatches": 31,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/chat-azure-openai.js.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 29
+    },
+    "totalMatches": 31,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/translate.js",
+    "detections": {
+      "gpt": 4,
+      "openai": 26
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/translate.js",
+    "detections": {
+      "gpt": 4,
+      "openai": 26
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-gpt5.js.html",
+    "detections": {
+      "gpt": 30
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/translate.js.html",
+    "detections": {
+      "gpt": 4,
+      "openai": 26
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-gpt5.js.html",
+    "detections": {
+      "gpt": 30
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/translate.js.html",
+    "detections": {
+      "gpt": 4,
+      "openai": 26
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/string-guard.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 3,
+      "gemini": 4,
+      "llama": 4,
+      "anthropic": 6,
+      "openai": 8,
+      "google": 2
+    },
+    "totalMatches": 30,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/services/azure-openai-service.js",
+    "detections": {
+      "gpt": 8,
+      "openai": 21
+    },
+    "totalMatches": 29,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/azure-sdk-unified.js",
+    "detections": {
+      "gpt": 4,
+      "openai": 25
+    },
+    "totalMatches": 29,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/chat-azure-openai.js",
+    "detections": {
+      "gpt": 2,
+      "openai": 27
+    },
+    "totalMatches": 29,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/azure-openai-service.js",
+    "detections": {
+      "gpt": 8,
+      "openai": 21
+    },
+    "totalMatches": 29,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-gpt5.js",
+    "detections": {
+      "gpt": 28
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-unified-all-models.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 4,
+      "groq": 2,
+      "anthropic": 7,
+      "openai": 13
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/google-studio.html",
+    "detections": {
+      "claude": 11,
+      "gpt": 3,
+      "gemini": 4,
+      "anthropic": 4,
+      "openai": 4,
+      "google": 2
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-gpt5.js",
+    "detections": {
+      "gpt": 28
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-unified-all-models.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 4,
+      "groq": 2,
+      "anthropic": 7,
+      "openai": 13
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/google-studio.html",
+    "detections": {
+      "claude": 11,
+      "gpt": 3,
+      "gemini": 4,
+      "anthropic": 4,
+      "openai": 4,
+      "google": 2
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-unified-all-models.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 4,
+      "groq": 2,
+      "anthropic": 7,
+      "openai": 13
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-unified-all-models.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 4,
+      "groq": 2,
+      "anthropic": 7,
+      "openai": 13
+    },
+    "totalMatches": 28,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/humain-home.html",
+    "detections": {
+      "claude": 12,
+      "gpt": 5,
+      "gemini": 5,
+      "anthropic": 3,
+      "openai": 1,
+      "google": 1
+    },
+    "totalMatches": 27,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/humain-home.html",
+    "detections": {
+      "claude": 12,
+      "gpt": 5,
+      "gemini": 5,
+      "anthropic": 3,
+      "openai": 1,
+      "google": 1
+    },
+    "totalMatches": 27,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/chat-backup-turkish-20250930-185225.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 3,
+      "gemini": 3,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 1,
+      "openai": 3,
+      "gemini-pro": 2
+    },
+    "totalMatches": 27,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/chat-old.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 3,
+      "gemini": 3,
+      "groq": 9,
+      "mixtral": 5,
+      "anthropic": 1,
+      "openai": 3,
+      "gemini-pro": 2
+    },
+    "totalMatches": 27,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-adapters/src/anthropic-adapter.ts",
+    "detections": {
+      "claude": 18,
+      "anthropic": 6,
+      "claude-3-sonnet": 2
+    },
+    "totalMatches": 26,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/perplexity-search.js",
+    "detections": {
+      "openai": 24
+    },
+    "totalMatches": 24,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/perplexity-search.js.html",
+    "detections": {
+      "openai": 24
+    },
+    "totalMatches": 24,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/perplexity-search.js.html",
+    "detections": {
+      "openai": 24
+    },
+    "totalMatches": 24,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat.js",
+    "detections": {
+      "claude": 1,
+      "groq": 4,
+      "anthropic": 9,
+      "openai": 9
+    },
+    "totalMatches": 23,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat.js.html",
+    "detections": {
+      "claude": 1,
+      "groq": 4,
+      "anthropic": 9,
+      "openai": 9
+    },
+    "totalMatches": 23,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat.js.html",
+    "detections": {
+      "claude": 1,
+      "groq": 4,
+      "anthropic": 9,
+      "openai": 9
+    },
+    "totalMatches": 23,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-adapters/src/openai-adapter.ts",
+    "detections": {
+      "gpt": 15,
+      "openai": 6,
+      "gpt-3.5-turbo": 2
+    },
+    "totalMatches": 23,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-routing/src/router.ts",
+    "detections": {
+      "gpt": 6,
+      "openai": 15,
+      "gpt-3.5-turbo": 2
+    },
+    "totalMatches": 23,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/legal-ai/index.js",
+    "detections": {
+      "groq": 20,
+      "llama": 2
+    },
+    "totalMatches": 22,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/legal-ai/index.js.html",
+    "detections": {
+      "groq": 20,
+      "llama": 2
+    },
+    "totalMatches": 22,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/legal-ai/index.js.html",
+    "detections": {
+      "groq": 20,
+      "llama": 2
+    },
+    "totalMatches": 22,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-adapters/src/gemini-adapter.ts",
+    "detections": {
+      "gemini": 22
+    },
+    "totalMatches": 22,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup.html",
+    "detections": {
+      "gpt": 7,
+      "gemini": 4,
+      "mixtral": 2,
+      "llama": 6,
+      "openai": 3
+    },
+    "totalMatches": 22,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/specialized-chat-service.js",
+    "detections": {
+      "gpt": 6,
+      "openai": 16
+    },
+    "totalMatches": 22,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/api-integrations.js",
+    "detections": {
+      "mixtral": 21
+    },
+    "totalMatches": 21,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/middleware/tpm-governor.ts",
+    "detections": {
+      "claude": 3,
+      "gpt": 6,
+      "gemini": 3,
+      "groq": 3,
+      "anthropic": 2,
+      "openai": 4
+    },
+    "totalMatches": 21,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/api-integrations.js",
+    "detections": {
+      "mixtral": 21
+    },
+    "totalMatches": 21,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/log-redactor.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 3,
+      "gemini": 3,
+      "anthropic": 6,
+      "openai": 6
+    },
+    "totalMatches": 21,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/api-integrations.js",
+    "detections": {
+      "mixtral": 21
+    },
+    "totalMatches": 21,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/models.html",
+    "detections": {
+      "gpt": 11,
+      "gemini": 10
+    },
+    "totalMatches": 21,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/cost-tracking/dashboard.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 4,
+      "gemini": 2,
+      "groq": 1,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 6,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/imagen-photo.js",
+    "detections": {
+      "openai": 20
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/unified-ai.js",
+    "detections": {
+      "gpt": 3,
+      "groq": 6,
+      "llama": 1,
+      "openai": 10
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/microsoft-azure-ultimate.js",
+    "detections": {
+      "gpt": 7,
+      "openai": 13
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/cost-tracking/dashboard.js",
+    "detections": {
+      "claude": 3,
+      "gpt": 4,
+      "gemini": 2,
+      "groq": 1,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 6,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/imagen-photo.js",
+    "detections": {
+      "openai": 20
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/unified-ai.js",
+    "detections": {
+      "gpt": 3,
+      "groq": 6,
+      "llama": 1,
+      "openai": 10
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/cost-tracking/dashboard.js.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 4,
+      "gemini": 2,
+      "groq": 1,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 6,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/imagen-photo.js.html",
+    "detections": {
+      "openai": 20
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/unified-ai.js.html",
+    "detections": {
+      "gpt": 3,
+      "groq": 6,
+      "llama": 1,
+      "openai": 10
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/cost-tracking/dashboard.js.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 4,
+      "gemini": 2,
+      "groq": 1,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 6,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/imagen-photo.js.html",
+    "detections": {
+      "openai": 20
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/unified-ai.js.html",
+    "detections": {
+      "gpt": 3,
+      "groq": 6,
+      "llama": 1,
+      "openai": 10
+    },
+    "totalMatches": 20,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/neuro/imaging-analysis.js",
+    "detections": {
+      "openai": 19
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/rag-diagnosis.js",
+    "detections": {
+      "gpt": 1,
+      "openai": 18
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/neuro/imaging-analysis.js",
+    "detections": {
+      "openai": 19
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/rag-diagnosis.js.html",
+    "detections": {
+      "gpt": 1,
+      "openai": 18
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/neuro/imaging-analysis.js.html",
+    "detections": {
+      "openai": 19
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/rag-diagnosis.js.html",
+    "detections": {
+      "gpt": 1,
+      "openai": 18
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/neuro/imaging-analysis.js.html",
+    "detections": {
+      "openai": 19
+    },
+    "totalMatches": 19,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/legal-ai.js",
+    "detections": {
+      "gpt": 3,
+      "openai": 15
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/video.js",
+    "detections": {
+      "gemini": 10,
+      "openai": 5,
+      "google": 3
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/video.js",
+    "detections": {
+      "gemini": 10,
+      "openai": 5,
+      "google": 3
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/video.js.html",
+    "detections": {
+      "gemini": 10,
+      "openai": 5,
+      "google": 3
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/video.js.html",
+    "detections": {
+      "gemini": 10,
+      "openai": 5,
+      "google": 3
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/monitoring/api-health-monitor.js",
+    "detections": {
+      "claude": 4,
+      "anthropic": 1,
+      "openai": 11,
+      "google": 2
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/security-obfuscation.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 8,
+      "anthropic": 4,
+      "openai": 2
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/medical-literature-ingestion.js",
+    "detections": {
+      "openai": 18
+    },
+    "totalMatches": 18,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/lib/seo/structured-data.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 6,
+      "gemini": 4,
+      "groq": 1,
+      "mixtral": 1,
+      "openai": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/seo/structured-data.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 6,
+      "gemini": 4,
+      "groq": 1,
+      "mixtral": 1,
+      "openai": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/storage/redis-preferences-store.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 12,
+      "gemini": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/seo/structured-data.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 6,
+      "gemini": 4,
+      "groq": 1,
+      "mixtral": 1,
+      "openai": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/storage/redis-preferences-store.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 12,
+      "gemini": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/seo/structured-data.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 6,
+      "gemini": 4,
+      "groq": 1,
+      "mixtral": 1,
+      "openai": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/storage/redis-preferences-store.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 12,
+      "gemini": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/header-guard.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "anthropic": 5,
+      "openai": 8,
+      "google": 1
+    },
+    "totalMatches": 17,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/diagnostic.js",
+    "detections": {
+      "groq": 4,
+      "anthropic": 4,
+      "openai": 8
+    },
+    "totalMatches": 16,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/lib/ai-router.ts",
+    "detections": {
+      "gemini": 4,
+      "anthropic": 6,
+      "openai": 6
+    },
+    "totalMatches": 16,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-integrations/emrah-sardag-system-prompt.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 3,
+      "gemini": 2,
+      "groq": 1,
+      "mixtral": 1,
+      "llama": 2,
+      "anthropic": 1,
+      "openai": 2,
+      "google": 1
+    },
+    "totalMatches": 15,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/security/validate-ai-obfuscation.js",
+    "detections": {
+      "claude": 6,
+      "gpt": 3,
+      "gemini": 1,
+      "anthropic": 2,
+      "openai": 2,
+      "gemini-pro": 1
+    },
+    "totalMatches": 15,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/verify-env.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 3,
+      "gemini": 1,
+      "groq": 3,
+      "anthropic": 2,
+      "openai": 5
+    },
+    "totalMatches": 15,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251004-022408.html",
+    "detections": {
+      "gpt": 14
+    },
+    "totalMatches": 14,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/intent/dictionaries.ts",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "gemini": 2,
+      "anthropic": 3,
+      "openai": 3,
+      "google": 3
+    },
+    "totalMatches": 14,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search-BACKUP-20251004-022408.html",
+    "detections": {
+      "gpt": 14
+    },
+    "totalMatches": 14,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-legal-search-BACKUP-20251004-022408.html",
+    "detections": {
+      "gpt": 14
+    },
+    "totalMatches": 14,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/docs.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 4,
+      "gemini": 3,
+      "anthropic": 2,
+      "openai": 1
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/docs.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 4,
+      "gemini": 3,
+      "anthropic": 2,
+      "openai": 1
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/usage/tokens.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 3,
+      "gemini": 2,
+      "anthropic": 1,
+      "openai": 1,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/usage/tokens.js.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 3,
+      "gemini": 2,
+      "anthropic": 1,
+      "openai": 1,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/usage/tokens.js",
+    "detections": {
+      "claude": 4,
+      "gpt": 3,
+      "gemini": 2,
+      "anthropic": 1,
+      "openai": 1,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/google-studio.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 4,
+      "openai": 4,
+      "google": 2
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/seo-monitoring.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 1,
+      "gemini": 3,
+      "groq": 3,
+      "anthropic": 3
+    },
+    "totalMatches": 13,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/index.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 3,
+      "gemini": 3,
+      "groq": 3
+    },
+    "totalMatches": 12,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/index.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 3,
+      "gemini": 3,
+      "groq": 3
+    },
+    "totalMatches": 12,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-leaderboard.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 4,
+      "gemini": 2,
+      "llama": 2,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 12,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/azure-ai-config.js",
+    "detections": {
+      "gpt": 6,
+      "openai": 6
+    },
+    "totalMatches": 12,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/sendgrid-email-service.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 2,
+      "groq": 2,
+      "mixtral": 2,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 12,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/neuro/_azure-config.js",
+    "detections": {
+      "gpt": 2,
+      "openai": 9
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/continuous-learning.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 3,
+      "gemini": 2,
+      "mixtral": 1,
+      "openai": 3
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/feature-flags.js",
+    "detections": {
+      "claude": 1,
+      "gemini": 2,
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 4
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/meeting/analyze.js",
+    "detections": {
+      "claude": 3,
+      "anthropic": 8
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/neuro/_azure-config.js",
+    "detections": {
+      "gpt": 2,
+      "openai": 9
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/telemetry/models.js",
+    "detections": {
+      "groq": 3,
+      "mixtral": 2,
+      "llama": 4,
+      "mixtral-8x7b": 1,
+      "llama2-70b": 1
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/feature-flags.js.html",
+    "detections": {
+      "claude": 1,
+      "gemini": 2,
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 4
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/meeting/analyze.js.html",
+    "detections": {
+      "claude": 3,
+      "anthropic": 8
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/neuro/_azure-config.js.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 9
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/telemetry/models.js.html",
+    "detections": {
+      "groq": 3,
+      "mixtral": 2,
+      "llama": 4,
+      "mixtral-8x7b": 1,
+      "llama2-70b": 1
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/feature-flags.js.html",
+    "detections": {
+      "claude": 1,
+      "gemini": 2,
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 4
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/meeting/analyze.js.html",
+    "detections": {
+      "claude": 3,
+      "anthropic": 8
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/neuro/_azure-config.js.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 9
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/telemetry/models.js.html",
+    "detections": {
+      "groq": 3,
+      "mixtral": 2,
+      "llama": 4,
+      "mixtral-8x7b": 1,
+      "llama2-70b": 1
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/pytorch/hybrid-ai-router.js",
+    "detections": {
+      "claude": 3,
+      "anthropic": 6,
+      "openai": 2
+    },
+    "totalMatches": 11,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/enterprise-index.html",
+    "detections": {
+      "gemini": 10
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/decision/analyze.js",
+    "detections": {
+      "claude": 2,
+      "anthropic": 7,
+      "openai": 1
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/health/analyze.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 1,
+      "anthropic": 7
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/image/generate.js",
+    "detections": {
+      "openai": 10
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/mental-health-triage.js",
+    "detections": {
+      "claude": 1,
+      "openai": 9
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/rare-disease-assistant.js",
+    "detections": {
+      "claude": 1,
+      "openai": 9
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/analytics.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 4,
+      "openai": 1
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/enterprise-index.html",
+    "detections": {
+      "gemini": 10
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-claude.js.html",
+    "detections": {
+      "claude": 3,
+      "anthropic": 7
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/decision/analyze.js.html",
+    "detections": {
+      "claude": 2,
+      "anthropic": 7,
+      "openai": 1
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/health/analyze.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 1,
+      "anthropic": 7
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/image/generate.js.html",
+    "detections": {
+      "openai": 10
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/mental-health-triage.js.html",
+    "detections": {
+      "claude": 1,
+      "openai": 9
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/rare-disease-assistant.js.html",
+    "detections": {
+      "claude": 1,
+      "openai": 9
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-claude.js.html",
+    "detections": {
+      "claude": 3,
+      "anthropic": 7
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/decision/analyze.js.html",
+    "detections": {
+      "claude": 2,
+      "anthropic": 7,
+      "openai": 1
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/health/analyze.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 1,
+      "anthropic": 7
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/image/generate.js.html",
+    "detections": {
+      "openai": 10
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/mental-health-triage.js.html",
+    "detections": {
+      "claude": 1,
+      "openai": 9
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/rare-disease-assistant.js.html",
+    "detections": {
+      "claude": 1,
+      "openai": 9
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/enterprise-index.html",
+    "detections": {
+      "gemini": 10
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/help.html",
+    "detections": {
+      "claude": 3,
+      "gpt": 3,
+      "gemini": 3,
+      "llama": 1
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-ops-center.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 4
+    },
+    "totalMatches": 10,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/.lighthouseci/lhr-1760364172441.html",
+    "detections": {
+      "gpt": 8,
+      "groq": 1
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/image-generation-with-credits.js",
+    "detections": {
+      "openai": 9
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/rag.js",
+    "detections": {
+      "gpt": 1,
+      "openai": 8
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/api.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 5,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index-backup-old.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 1
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/image-generation-with-credits.js",
+    "detections": {
+      "openai": 9
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/rag.js",
+    "detections": {
+      "gpt": 1,
+      "openai": 8
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/azure-services/azure-container-apps.js",
+    "detections": {
+      "openai": 9
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/ai-assistant.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 3,
+      "gemini": 2,
+      "openai": 2
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/api.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 5,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index-backup-old.html",
+    "detections": {
+      "claude": 4,
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 1
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/image-generation-with-credits.js.html",
+    "detections": {
+      "openai": 9
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/rag.js.html",
+    "detections": {
+      "gpt": 1,
+      "openai": 8
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/image-generation-with-credits.js.html",
+    "detections": {
+      "openai": 9
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/rag.js.html",
+    "detections": {
+      "gpt": 1,
+      "openai": 8
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-models.html",
+    "detections": {
+      "gpt": 1,
+      "anthropic": 4,
+      "openai": 4
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/tests/contract/connectors.contract.spec.ts",
+    "detections": {
+      "claude": 1,
+      "anthropic": 3,
+      "openai": 3,
+      "google": 2
+    },
+    "totalMatches": 9,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/pages/settings.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 4,
+      "gemini": 2
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/test-language-system.html",
+    "detections": {
+      "mixtral": 8
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-claude.js",
+    "detections": {
+      "claude": 1,
+      "anthropic": 7
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/app/test/page.tsx",
+    "detections": {
+      "gpt": 1,
+      "gemini": 2,
+      "groq": 1,
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/test-language-system.html",
+    "detections": {
+      "mixtral": 8
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/docs.html",
+    "detections": {
+      "gpt": 4,
+      "gemini": 3,
+      "openai": 1
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/test-language-system.html",
+    "detections": {
+      "mixtral": 8
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-compliance.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 2,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-trust-index.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 2,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/test-language-system.html",
+    "detections": {
+      "mixtral": 8
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/security/model-obfuscation.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 1,
+      "mixtral": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 8,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/cig-map.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/about.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/ai-assistant.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 2,
+      "openai": 2
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/status-indicators.js",
+    "detections": {
+      "claude": 2,
+      "openai": 3,
+      "google": 2
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/cig-map.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/cultural-advisor/analyze.js",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/knowledge-assistant/analyze.js",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/learning-path/analyze.js",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/startup/analyze.js",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/about.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/civic-map.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 3,
+      "gemini": 1,
+      "llama": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/cig-map.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/cultural-advisor/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/knowledge-assistant/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/learning-path/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/startup/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/cig-map.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/cultural-advisor/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/knowledge-assistant/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/learning-path/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/startup/analyze.js.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 6
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/ecw-integration.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "gemini": 1,
+      "llama": 1,
+      "gpt-3.5-turbo": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 7,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/health-check.js",
+    "detections": {
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat.html",
+    "detections": {
+      "claude": 1,
+      "groq": 3,
+      "llama": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/civic-map.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 1,
+      "llama": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/privacy.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/status.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 3
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/health-check.js",
+    "detections": {
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ops-center/benchmarks.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ops-center/costs.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/app/chat/page.tsx",
+    "detections": {
+      "gemini": 2,
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat.html",
+    "detections": {
+      "claude": 1,
+      "groq": 3,
+      "llama": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/privacy.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/status.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 3
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/health-check.js.html",
+    "detections": {
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/health-check.js.html",
+    "detections": {
+      "groq": 2,
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/middleware/tokenGovernorMiddleware.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/middleware/tokenGovernorMiddleware.js.html",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/middleware/tokenGovernorMiddleware.js",
+    "detections": {
+      "claude": 2,
+      "gpt": 2,
+      "gemini": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/api.html",
+    "detections": {
+      "gpt": 5,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/civic-map.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 1,
+      "llama": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/status-indicators.js",
+    "detections": {
+      "claude": 1,
+      "openai": 3,
+      "google": 2
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-iq.html",
+    "detections": {
+      "gpt": 4,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/status.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 3
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/reports/lighthouse-homepage.report.html",
+    "detections": {
+      "gpt": 5,
+      "openai": 1
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/gateway/src/azure/quotas.ts",
+    "detections": {
+      "gpt": 2,
+      "openai": 4
+    },
+    "totalMatches": 6,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/.backups/xss-fix/chat.html",
+    "detections": {
+      "groq": 3,
+      "llama": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/radiology-ai.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/analytics.html",
+    "detections": {
+      "gpt": 2,
+      "gemini": 1,
+      "llama": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/super-ai-legal-expert.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/super-ai-medical-expert.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ai-assistant/health.js",
+    "detections": {
+      "gpt": 3,
+      "openai": 1,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/governance/models/index.js",
+    "detections": {
+      "gpt": 2,
+      "openai": 3
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/hospital/config.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/life-coach/analyze.js",
+    "detections": {
+      "anthropic": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/analyze.js",
+    "detections": {
+      "anthropic": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/radiology-ai.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/changelog.html",
+    "detections": {
+      "gemini": 1,
+      "anthropic": 1,
+      "openai": 2,
+      "google": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/ai-assistant/health.js.html",
+    "detections": {
+      "gpt": 3,
+      "openai": 1,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/hospital/config.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/life-coach/analyze.js.html",
+    "detections": {
+      "anthropic": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/analyze.js.html",
+    "detections": {
+      "anthropic": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/radiology-ai.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/ai-assistant/health.js.html",
+    "detections": {
+      "gpt": 3,
+      "openai": 1,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/hospital/config.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/life-coach/analyze.js.html",
+    "detections": {
+      "anthropic": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/analyze.js.html",
+    "detections": {
+      "anthropic": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/radiology-ai.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/analytics/redis-analytics-store.js.html",
+    "detections": {
+      "gpt": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/analytics/redis-analytics-store.js.html",
+    "detections": {
+      "gpt": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/analytics/redis-analytics-store.js",
+    "detections": {
+      "gpt": 5
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/about.html",
+    "detections": {
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/ai-assistant.html",
+    "detections": {
+      "gpt": 1,
+      "gemini": 2,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/analytics.html",
+    "detections": {
+      "gpt": 2,
+      "gemini": 1,
+      "llama": 1,
+      "openai": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/index-backup-old.html",
+    "detections": {
+      "gpt": 2,
+      "gemini": 2,
+      "llama": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/index.html",
+    "detections": {
+      "groq": 2,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/chat.html",
+    "detections": {
+      "groq": 3,
+      "llama": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ecw-ailydian.html",
+    "detections": {
+      "gpt": 3,
+      "llama": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ecw-demo.html",
+    "detections": {
+      "gpt": 3,
+      "llama": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/humain-home.html",
+    "detections": {
+      "gpt": 3,
+      "gemini": 1,
+      "google": 1
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-medical-tools.js",
+    "detections": {
+      "gpt": 3,
+      "openai": 2
+    },
+    "totalMatches": 5,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-test.js",
+    "detections": {
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/ai-chat.html",
+    "detections": {
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/changelog.html",
+    "detections": {
+      "gemini": 1,
+      "openai": 2,
+      "google": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index-new.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index.html",
+    "detections": {
+      "gpt": 1,
+      "groq": 2,
+      "openai": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/chat-ailydian.js",
+    "detections": {
+      "gpt": 1,
+      "gemini": 1,
+      "google": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251005-235806.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251006.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/medical-ai-dashboard.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/autonomous-developer.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "gemini": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/azure/quotas.js",
+    "detections": {
+      "gpt": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-test.js",
+    "detections": {
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/ai-chat.html",
+    "detections": {
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index-new.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index.html",
+    "detections": {
+      "gpt": 1,
+      "groq": 2,
+      "openai": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search-BACKUP-20251005-235806.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search-BACKUP-20251006.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2,
+      "anthropic": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/medical-ai-dashboard.html",
+    "detections": {
+      "claude": 1,
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/azure/quotas.js.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-test.js.html",
+    "detections": {
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/azure/quotas.js.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-test.js.html",
+    "detections": {
+      "anthropic": 2,
+      "openai": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/ai-chat.html",
+    "detections": {
+      "gpt": 1,
+      "gemini": 1,
+      "groq": 2
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/changelog.html",
+    "detections": {
+      "gemini": 1,
+      "openai": 2,
+      "google": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/index-backup-cyborg-20251007.html",
+    "detections": {
+      "gpt": 1,
+      "groq": 2,
+      "openai": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/index-backup-hero-20251007-021721.html",
+    "detections": {
+      "gpt": 1,
+      "groq": 2,
+      "openai": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/index-backup-realistic-20251007.html",
+    "detections": {
+      "gpt": 1,
+      "groq": 2,
+      "openai": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-rag/src/chunker.ts",
+    "detections": {
+      "gpt": 3,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/playwright-report/index.html",
+    "detections": {
+      "gpt": 4
+    },
+    "totalMatches": 4,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/.backups/xss-fix/js/chat-ailydian.js",
+    "detections": {
+      "gemini": 1,
+      "google": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-zai.js",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/clinical-decision.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/medical-nlp.js",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/middleware/security.js",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/middleware/signalr-websocket.js",
+    "detections": {
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/medical-expert.html",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/test-legal.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/global-seo-backlink-system.js",
+    "detections": {
+      "openai": 1,
+      "google": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/super-ai-developer-expert.js",
+    "detections": {
+      "gpt": 1,
+      "openai": 1,
+      "google": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-zai.js",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/hospital/admin-auth.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/clinical-decision.js",
+    "detections": {
+      "claude": 1,
+      "gpt": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/medical-nlp.js",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ops-center/ownership.js",
+    "detections": {
+      "llama": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/power/Table.tsx",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/lib/models/metrics.ts",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/app/api/rag/search/route.ts",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/app/page.tsx",
+    "detections": {
+      "gemini": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/medical-expert.html",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/test-legal.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-zai.js.html",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/hospital/admin-auth.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/clinical-decision.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/index.html",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/medical-nlp.js.html",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-zai.js.html",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/hospital/admin-auth.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1,
+      "gemini": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/clinical-decision.js.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/index.html",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/medical-nlp.js.html",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/middleware/security.js.html",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/middleware/signalr-websocket.js.html",
+    "detections": {
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/middleware/security.js.html",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/middleware/signalr-websocket.js.html",
+    "detections": {
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/security/outbound-guard.ts",
+    "detections": {
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/middleware/security.js",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/middleware/signalr-websocket.js",
+    "detections": {
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/index-new.html",
+    "detections": {
+      "gpt": 1,
+      "gemini": 1,
+      "llama": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/chat-ailydian.js",
+    "detections": {
+      "gemini": 1,
+      "google": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-legal-search.html",
+    "detections": {
+      "gpt": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/medical-ai.html",
+    "detections": {
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/test-legal.html",
+    "detections": {
+      "gpt": 2,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/security-headers-20251019-121131/security.js",
+    "detections": {
+      "groq": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/egress-guard.js",
+    "detections": {
+      "anthropic": 1,
+      "openai": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-adapters/src/index.ts",
+    "detections": {
+      "gemini": 1,
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-rag/src/embedder.ts",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/civic-map.html",
+    "detections": {
+      "gemini": 1,
+      "llama": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/chat-ailydian.js",
+    "detections": {
+      "gemini": 1,
+      "google": 1,
+      "gemini-pro": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/status-indicators.js",
+    "detections": {
+      "claude": 1,
+      "google": 2
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/pages/settings.html",
+    "detections": {
+      "claude": 2,
+      "gemini": 1
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/enterprise/microsoft365-integration.js",
+    "detections": {
+      "openai": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/knowledge-graph-service.js",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-all-8-services.js",
+    "detections": {
+      "gpt": 3
+    },
+    "totalMatches": 3,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/voice-tts.js",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat-backup-20250930-182845.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/medical-ai.html",
+    "detections": {
+      "gpt": 1,
+      "openai": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/azure-health-radiology-expert.js",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ai-assistant/stats.js",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/voice-tts.js",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/lib/security/sanitize.ts",
+    "detections": {
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/web/src/app/api/documents/route.ts",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat-backup-20250930-182845.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/medical-ai.html",
+    "detections": {
+      "gpt": 1,
+      "openai": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/tokens.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/config/white-hat-policy.js",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/ai-assistant/stats.js.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/voice-tts.js.html",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/ai-assistant/stats.js.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/voice-tts.js.html",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/guardrails/outputLimiter.js.html",
+    "detections": {
+      "claude": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/rag/contextCompressor.js.html",
+    "detections": {
+      "claude": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/guardrails/outputLimiter.js.html",
+    "detections": {
+      "claude": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/rag/contextCompressor.js.html",
+    "detections": {
+      "claude": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/infra/load-testing/k6-load-test.js",
+    "detections": {
+      "gpt": 1,
+      "gpt-3.5-turbo": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/guardrails/outputLimiter.js",
+    "detections": {
+      "claude": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/rag/contextCompressor.js",
+    "detections": {
+      "claude": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/chat-backup-20250930-182845.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-legal-search-BACKUP-20251005-235806.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-legal-search-BACKUP-20251006.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/medical-ai-dashboard.html",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/medical-expert.html",
+    "detections": {
+      "anthropic": 1,
+      "openai": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/extract-i18n-strings.js",
+    "detections": {
+      "gpt": 1,
+      "openai": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-routing/src/intelligent-router.ts",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-chat.html",
+    "detections": {
+      "groq": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/analytics.html",
+    "detections": {
+      "gpt": 1,
+      "llama": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/google-studio.html",
+    "detections": {
+      "google": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-dashboard.html",
+    "detections": {
+      "claude": 1,
+      "gpt": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup-20251019-164656.html",
+    "detections": {
+      "groq": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup-20251019-181453.html",
+    "detections": {
+      "groq": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup-cyborg-20251007.html",
+    "detections": {
+      "groq": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup-hero-20251007-021721.html",
+    "detections": {
+      "groq": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup-old.html",
+    "detections": {
+      "gemini": 1,
+      "llama": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-backup-realistic-20251007.html",
+    "detections": {
+      "groq": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index-new.html",
+    "detections": {
+      "gemini": 1,
+      "llama": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/governance-i18n.js",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq-unified-demo.html",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/privacy.html",
+    "detections": {
+      "gpt": 1,
+      "llama": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/routes/legal-ai-routes.js",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/azure-quantum-service.js",
+    "detections": {
+      "gpt": 1,
+      "openai": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/azure-speech-service.js",
+    "detections": {
+      "openai": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/personalization/ai-personalization-engine.js",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/signalr-client.js",
+    "detections": {
+      "gpt": 2
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-browser-functionality.html",
+    "detections": {
+      "groq": 1,
+      "llama": 1
+    },
+    "totalMatches": 2,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/.backups/xss-fix/lydian-iq.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/media-generation.js",
+    "detections": {
+      "google": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/api-reference.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/billing.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/blog.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/dashboard-old.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/knowledge-base.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/projects-fab.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/knowledge-base.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-chat.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search-old-backup.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/pages/notifications.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/system-status.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/test-auto-translate.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/test-translation.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/tokens.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/borsa/src/services/ai/QuantumProEngine.ts",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/azure-google-zai-translation-system.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/persistent-development.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/system-scanner-bot.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/ultimate-knowledge-base.js",
+    "detections": {
+      "gemini": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/unified-expert-orchestrator.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/_lib/security.js",
+    "detections": {
+      "anthropic": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/connectors/execute.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/media-generation.js",
+    "detections": {
+      "google": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/emergency-numbers.js",
+    "detections": {
+      "llama": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/emergency-triage.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/maternal-fetal-health.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/multimodal-data-fusion.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/sepsis-early-warning.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/metrics.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/chat/src/app/layout.tsx",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/cards/LoanOfferCardInline.tsx",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/cards/ProductCardInline.tsx",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/cards/ShipmentCardInline.tsx",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/cards/index.ts",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/unified/messages/MessageList.tsx",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/unified/search/GlobalSearch.tsx",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/core/tool-runner.ts",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/intent/engine.ts",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/lib/models/formulas.ts",
+    "detections": {
+      "mixtral": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api/src/main.ts",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/azure-services/azure-types.d.ts",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/api-reference.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/billing.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/blog.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/dashboard-old.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/knowledge-base.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-chat.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search-old-backup.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/system-status.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/test-auto-translate.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/test-translation.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/_lib/security.js.html",
+    "detections": {
+      "anthropic": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/connectors/execute.js.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/media-generation.js.html",
+    "detections": {
+      "google": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/emergency-numbers.js.html",
+    "detections": {
+      "llama": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/emergency-triage.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/maternal-fetal-health.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/multimodal-data-fusion.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/sepsis-early-warning.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/metrics.js.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/_lib/security.js.html",
+    "detections": {
+      "anthropic": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/connectors/execute.js.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/media-generation.js.html",
+    "detections": {
+      "google": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/emergency-numbers.js.html",
+    "detections": {
+      "llama": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/emergency-triage.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/maternal-fetal-health.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/multimodal-data-fusion.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/sepsis-early-warning.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/metrics.js.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/checkpoints/resumeEngine.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/governor/tokenBucket.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/io/streaming.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/runner/mapReduce.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/sentinels/failsafe.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/checkpoints/resumeEngine.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/governor/tokenBucket.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/io/streaming.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/runner/mapReduce.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/sentinels/failsafe.js.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/checkpoints/resumeEngine.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/governor/tokenBucket.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/io/streaming.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/runner/mapReduce.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/sentinels/failsafe.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/api-reference.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/billing.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/blog.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/dashboard-old.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/knowledge-base.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/medical/api-client.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/projects-fab.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/knowledge-base.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-legal-chat.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/lydian-legal-search-old-backup.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/system-status.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/test-auto-translate.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/test-translation.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/tokens.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/quality-est/src/quality-estimator.ts",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/perf/k6/chat_tool_call.js",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/about.html",
+    "detections": {
+      "llama": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/api-reference.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/billing.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/blog.html",
+    "detections": {
+      "groq": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/changelog.html",
+    "detections": {
+      "google": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/help.html",
+    "detections": {
+      "llama": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/index.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/medical/api-client.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/projects-fab.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/knowledge-base.html",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq-new-ui.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251004-022408.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251005-235806.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251006.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/pages/notifications.html",
+    "detections": {
+      "claude": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/test-backend-connection.html",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/scripts/secure-build.js",
+    "detections": {
+      "anthropic": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/server-auth.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/enterprise/slack-discord-bots.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-backend-api.js",
+    "detections": {
+      "gpt": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  },
+  {
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-legal-ai-complete.js",
+    "detections": {
+      "openai": 1
+    },
+    "totalMatches": 1,
+    "hasDetections": true
+  }
+]

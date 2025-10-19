@@ -1,0 +1,19 @@
+{
+  "groups": {
+    "Modules": {
+      "uptimeTarget": 99.5,
+      "p95TargetMs": 1200,
+      "targets": ["Auth", "Chat", "IQ", "AI Ops"]
+    },
+    "Developers": {
+      "uptimeTarget": 99.0,
+      "p95TargetMs": 1500,
+      "targets": ["Developers", "API Docs", "Changelog"]
+    },
+    "Company": {
+      "uptimeTarget": 99.0,
+      "p95TargetMs": 1800,
+      "targets": ["About", "Blog", "Careers", "Privacy", "Contact", "Help", "Status", "Dashboard", "Models"]
+    }
+  }
+}

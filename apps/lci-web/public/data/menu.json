@@ -1,0 +1,46 @@
+{
+  "modules": {
+    "col1": [
+      { "title": "AI Studio", "desc": "Model orkestrasyon, RAG", "href": "/chat" }
+    ],
+    "col2": [
+      { "title": "Legal AI", "desc": "Hukuk asistanı", "href": "/legal" }
+    ],
+    "col3": [
+      { "title": "Medical AI", "desc": "Tıbbi asistan", "href": "/medical" }
+    ]
+  },
+  "solutions": {
+    "col1": [
+      { "title": "Enterprise", "desc": "Kurumsal çözümler", "href": "/enterprise" }
+    ],
+    "col2": [
+      { "title": "Analytics", "desc": "Veri analizi", "href": "/analytics" }
+    ],
+    "col3": [
+      { "title": "Automation", "desc": "Otomasyon", "href": "/automation" }
+    ]
+  },
+  "developers": {
+    "col1": [
+      { "title": "API Reference", "desc": "API dokümantasyonu", "href": "/api-reference" }
+    ],
+    "col2": [
+      { "title": "SDKs", "desc": "Geliştirici kitleri", "href": "/sdks" }
+    ],
+    "col3": [
+      { "title": "Guides", "desc": "Rehberler", "href": "/guides" }
+    ]
+  },
+  "company": {
+    "col1": [
+      { "title": "About", "desc": "Hakkımızda", "href": "/about" }
+    ],
+    "col2": [
+      { "title": "Careers", "desc": "Kariyer", "href": "/careers" }
+    ],
+    "col3": [
+      { "title": "Contact", "desc": "İletişim", "href": "/contact" }
+    ]
+  }
+}
