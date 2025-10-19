@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "title": "LyDian AI: Enterprise AI Platform | 20+ Languages",
+    "description": "LyDian provides enterprise-grade AI solutions with multilingual NLP, computer vision, and decision support. Try free today.",
+    "keywords": "enterprise AI platform, multilingual chatbot, AI solutions, natural language processing, computer vision, medical AI, legal AI, LyDian"
+  },
+  "app": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "Enterprise AI Platform for Global Teams",
+    "version": "2.0.0"
+  },
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "features": "Features",
+    "pricing": "Pricing",
+    "docs": "Documentation",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Sign In",
+    "signup": "Get Started Free",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Enterprise AI Platform for Global Teams",
+    "subtitle": "Multilingual NLP, Computer Vision, and Decision Support in 20+ Languages",
+    "cta_primary": "Get Started Free",
+    "cta_secondary": "Watch Live Demo",
+    "trusted_by": "Trusted by Fortune 500 companies"
+  },
+  "features": {
+    "multilingual_nlp": "Multilingual NLP",
+    "multilingual_nlp_desc": "Natural language processing and understanding in 20+ languages",
+    "computer_vision": "Computer Vision",
+    "computer_vision_desc": "Medical image analysis and object recognition",
+    "decision_support": "Decision Support",
+    "decision_support_desc": "AI-powered strategic decision-making tools",
+    "legal_ai": "Legal AI",
+    "legal_ai_desc": "Legal document analysis and research assistant",
+    "medical_ai": "Medical AI",
+    "medical_ai_desc": "Clinical decision support and diagnostic assistance",
+    "lydian_iq": "LyDian IQ",
+    "lydian_iq_desc": "Intelligent problem-solving and reasoning engine"
+  },
+  "products": {
+    "title": "Our AI Products",
+    "lydian_iq": "LyDian IQ",
+    "lydian_iq_tagline": "Intelligent Problem-Solving Engine",
+    "medical_expert": "Medical AI Expert",
+    "medical_expert_tagline": "Clinical Decision Support System",
+    "legal_search": "LyDian Legal Search",
+    "legal_search_tagline": "AI-Powered Legal Research",
+    "chat_ai": "Enterprise Chat AI",
+    "chat_ai_tagline": "Multilingual Enterprise Chatbot"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "free": "Free",
+    "free_desc": "For individual users",
+    "free_price": "$0/month",
+    "pro": "Pro",
+    "pro_desc": "For small teams",
+    "pro_price": "$49/month",
+    "enterprise": "Enterprise",
+    "enterprise_desc": "For large organizations",
+    "enterprise_price": "Custom pricing",
+    "cta": "Get Started",
+    "contact_sales": "Contact Sales"
+  },
+  "footer": {
+    "product": "Product",
+    "company": "Company",
+    "resources": "Resources",
+    "legal": "Legal",
+    "social": "Social Media",
+    "copyright": "© 2025 LyDian AI. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "try_free": "Try Free",
+    "learn_more": "Learn More"
+  },
+  "seo": {
+    "home_title": "LyDian AI: Enterprise AI Platform | 20+ Languages",
+    "home_description": "Multilingual NLP, computer vision, and AI decision support systems. Trusted by Fortune 500 companies. Start free today.",
+    "products_title": "AI Products: Medical AI, Legal Search, IQ Engine | LyDian",
+    "products_description": "Explore our enterprise AI solutions: Medical diagnosis, legal research, intelligent problem-solving and more.",
+    "pricing_title": "Pricing: Start Free | LyDian AI",
+    "pricing_description": "Start with our free plan today. Explore Pro and Enterprise plans. No credit card required."
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "title": "LyDian AI: Kurumsal Yapay Zeka Platformu | 20+ Dil Desteği",
+    "description": "LyDian, çok dilli NLP, bilgisayarlı görü ve karar destek sistemleri ile kurumsal AI çözümleri sunar. Ücretsiz başlayın.",
+    "keywords": "yapay zeka platformu, AI chatbot Türkçe, kurumsal yapay zeka, yapay zeka çözümleri, AI görsel oluşturma, doğal dil işleme Türkçe, LyDian AI"
+  },
+  "app": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "Küresel Ekipler için Kurumsal Yapay Zeka Platformu",
+    "version": "2.0.0"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "products": "Ürünler",
+    "features": "Özellikler",
+    "pricing": "Fiyatlandırma",
+    "docs": "Dökümanlar",
+    "blog": "Blog",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "login": "Giriş Yap",
+    "signup": "Ücretsiz Başla",
+    "dashboard": "Kontrol Paneli"
+  },
+  "hero": {
+    "title": "Küresel Ekipler için Kurumsal AI Platformu",
+    "subtitle": "20+ dilde çok dilli NLP, bilgisayarlı görü ve karar destek sistemleri",
+    "cta_primary": "Ücretsiz Başla",
+    "cta_secondary": "Canlı Demo İzle",
+    "trusted_by": "Fortune 500 şirketleri tarafından güveniliyor"
+  },
+  "features": {
+    "multilingual_nlp": "Çok Dilli NLP",
+    "multilingual_nlp_desc": "20+ dilde doğal dil işleme ve anlama",
+    "computer_vision": "Bilgisayarlı Görü",
+    "computer_vision_desc": "Tıbbi görüntü analizi ve nesne tanıma",
+    "decision_support": "Karar Destek",
+    "decision_support_desc": "AI destekli stratejik karar verme araçları",
+    "legal_ai": "Hukuk AI",
+    "legal_ai_desc": "Yasal belge analizi ve araştırma asistanı",
+    "medical_ai": "Tıbbi AI",
+    "medical_ai_desc": "Klinik karar destek ve tanı yardımı",
+    "lydian_iq": "LyDian IQ",
+    "lydian_iq_desc": "Akıllı problem çözme ve mantık motoru"
+  },
+  "products": {
+    "title": "AI Ürünlerimiz",
+    "lydian_iq": "LyDian IQ",
+    "lydian_iq_tagline": "Akıllı Problem Çözme Motoru",
+    "medical_expert": "Medical AI Expert",
+    "medical_expert_tagline": "Klinik Karar Destek Sistemi",
+    "legal_search": "LyDian Legal Search",
+    "legal_search_tagline": "AI Destekli Hukuk Araştırması",
+    "chat_ai": "Enterprise Chat AI",
+    "chat_ai_tagline": "Çok Dilli Kurumsal Chatbot"
+  },
+  "pricing": {
+    "title": "Fiyatlandırma",
+    "free": "Ücretsiz",
+    "free_desc": "Bireysel kullanıcılar için",
+    "free_price": "₺0/ay",
+    "pro": "Pro",
+    "pro_desc": "Küçük ekipler için",
+    "pro_price": "₺99/ay",
+    "enterprise": "Kurumsal",
+    "enterprise_desc": "Büyük organizasyonlar için",
+    "enterprise_price": "Özel fiyat",
+    "cta": "Şimdi Başla",
+    "contact_sales": "Satış ile İletişime Geç"
+  },
+  "footer": {
+    "product": "Ürün",
+    "company": "Şirket",
+    "resources": "Kaynaklar",
+    "legal": "Yasal",
+    "social": "Sosyal Medya",
+    "copyright": "© 2025 LyDian AI. Tüm hakları saklıdır.",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "cookies": "Çerez Politikası"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "warning": "Uyarı",
+    "info": "Bilgi",
+    "confirm": "Onayla",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "export": "Dışa Aktar",
+    "import": "İçe Aktar",
+    "try_free": "Ücretsiz Dene",
+    "learn_more": "Daha Fazla Bilgi"
+  },
+  "seo": {
+    "home_title": "LyDian AI: Kurumsal Yapay Zeka Platformu | 20+ Dil",
+    "home_description": "Çok dilli NLP, bilgisayarlı görü ve AI karar destek sistemleri. Fortune 500 şirketleri tarafından güveniliyor. Ücretsiz başlayın.",
+    "products_title": "AI Ürünleri: Medical AI, Legal Search, IQ Motoru | LyDian",
+    "products_description": "Kurumsal AI çözümlerimizi keşfedin: Tıbbi tanı, hukuk araştırması, akıllı problem çözme ve daha fazlası.",
+    "pricing_title": "Fiyatlandırma: Ücretsiz Başla | LyDian AI",
+    "pricing_description": "Ücretsiz plan ile hemen başlayın. Pro ve Kurumsal planlarımızı inceleyin. Kredi kartı gerektirmez."
+  }
+}

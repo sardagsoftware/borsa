@@ -7,6 +7,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/locales/:lang/common.json",
+      "destination": "/public/locales/:lang/common.json"
+    },
+    {
+      "source": "/locales/:lang/:file*.json",
+      "destination": "/public/locales/:lang/:file*.json"
+    },
+    {
       "source": "/governance-dashboard",
       "destination": "/public/governance-dashboard.html"
     },

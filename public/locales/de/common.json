@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "LyDian AI: Unternehmens-KI-Plattform | 20+ Sprachen",
+    "description": "LyDian bietet Unternehmens-KI-Lösungen mit mehrsprachigem NLP, Computer Vision und Entscheidungsunterstützung. Jetzt kostenlos testen.",
+    "keywords": "Unternehmens-KI-Plattform, mehrsprachiger Chatbot, KI-Lösungen, natürliche Sprachverarbeitung, Computer Vision, medizinische KI, LyDian"
+  },
+  "app": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "Unternehmens-KI-Plattform für globale Teams",
+    "version": "2.0.0"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "features": "Funktionen",
+    "pricing": "Preise",
+    "docs": "Dokumentation",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "signup": "Kostenlos starten",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Unternehmens-KI-Plattform für globale Teams",
+    "subtitle": "Mehrsprachiges NLP, Computer Vision und Entscheidungsunterstützung in 20+ Sprachen",
+    "cta_primary": "Kostenlos starten",
+    "cta_secondary": "Live-Demo ansehen",
+    "trusted_by": "Vertraut von Fortune-500-Unternehmen"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "try_free": "Kostenlos testen",
+    "learn_more": "Mehr erfahren"
+  }
+}

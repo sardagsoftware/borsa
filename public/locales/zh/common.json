@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "LyDian AI：企业人工智能平台 | 支持20+种语言",
+    "description": "LyDian提供企业级人工智能解决方案，具备多语言自然语言处理、计算机视觉和决策支持功能。立即免费试用。",
+    "keywords": "企业人工智能平台、多语言聊天机器人、人工智能解决方案、自然语言处理、计算机视觉、医疗人工智能、LyDian"
+  },
+  "app": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "面向全球团队的企业人工智能平台",
+    "version": "2.0.0"
+  },
+  "navigation": {
+    "home": "首页",
+    "products": "产品",
+    "features": "功能",
+    "pricing": "价格",
+    "docs": "文档",
+    "blog": "博客",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "login": "登录",
+    "signup": "免费开始",
+    "dashboard": "仪表板"
+  },
+  "hero": {
+    "title": "面向全球团队的企业人工智能平台",
+    "subtitle": "支持20+种语言的多语言自然语言处理、计算机视觉和决策支持",
+    "cta_primary": "免费开始",
+    "cta_secondary": "观看演示",
+    "trusted_by": "受财富500强企业信赖"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "try_free": "免费试用",
+    "learn_more": "了解更多"
+  }
+}
