@@ -172,7 +172,9 @@ const ALL_AI_MODELS = {
     model: 'mistral-large-latest',
     maxTokens: 32000,
     category: 'MISTRAL',
-    description: 'Mistral Large',
+    description: 'Mistral Large - Most Capable',
+    pricingTier: 'premium',
+    bestFor: ['complex-reasoning', 'multilingual', 'function-calling'],
     active: !!process.env.MISTRAL_API_KEY
   },
   'mistral-medium': {
@@ -182,7 +184,23 @@ const ALL_AI_MODELS = {
     model: 'mistral-medium-latest',
     maxTokens: 32000,
     category: 'MISTRAL',
-    description: 'Mistral Medium',
+    description: 'Mistral Medium - Balanced',
+    pricingTier: 'standard',
+    bestFor: ['general-purpose', 'creative-writing', 'analysis'],
+    active: !!process.env.MISTRAL_API_KEY
+  },
+  'mixtral-8x22b': {
+    provider: 'mistral',
+    endpoint: 'https://api.mistral.ai/v1',
+    apiKey: process.env.MISTRAL_API_KEY,
+    model: 'open-mixtral-8x22b',
+    maxTokens: 65536,
+    category: 'MISTRAL',
+    description: 'Mixtral 8x22B - Advanced MoE',
+    pricingTier: 'standard',
+    bestFor: ['code-generation', 'mathematics', 'long-context'],
+    codeSpecialist: true,
+    mathSpecialist: true,
     active: !!process.env.MISTRAL_API_KEY
   },
 
@@ -222,7 +240,7 @@ const ALL_AI_MODELS = {
     active: !!process.env.ZHIPU_API_KEY
   },
 
-  // Z.AI Models
+  // Z.AI Models (Chinese AI Excellence)
   'glm-4-6': {
     provider: 'z-ai',
     endpoint: 'https://api.z.ai/api/paas/v4',
@@ -231,7 +249,11 @@ const ALL_AI_MODELS = {
     maxTokens: 128000,
     category: 'Z_AI',
     description: 'GLM-4.6 Code Expert',
+    pricingTier: 'budget', // $3/month subscription
+    bestFor: ['code-generation', 'debugging', 'code-review', 'refactoring'],
     codeSpecialist: true,
+    agenticCapable: true,
+    reasoningCapable: true,
     active: !!process.env.Z_AI_API_KEY
   },
   'glm-4-5v': {
@@ -242,7 +264,10 @@ const ALL_AI_MODELS = {
     maxTokens: 8192,
     category: 'Z_AI',
     description: 'GLM-4.5v Vision',
+    pricingTier: 'budget',
+    bestFor: ['image-analysis', 'ocr', 'visual-qa', 'diagram-understanding'],
     visionCapable: true,
+    multimodalCapable: true,
     active: !!process.env.Z_AI_API_KEY
   },
 

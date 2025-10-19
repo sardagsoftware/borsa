@@ -74,6 +74,29 @@ function getAIConfig() {
             defaultTemperature: 0.3,
             supportsRAG: false
         },
+        // Priority 6: Z.AI GLM-4.6 (Budget Code Specialist)
+        zai: {
+            apiKey: process.env.Z_AI_API_KEY || '',
+            endpoint: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+            model: 'glm-4.6',
+            maxTokens: 128000,
+            defaultTemperature: 0.3,
+            supportsRAG: false,
+            codeSpecialist: true,
+            agenticCapable: true,
+            reasoningCapable: true
+        },
+        // Priority 7: Mistral AI (Advanced MoE)
+        mistral: {
+            apiKey: process.env.MISTRAL_API_KEY || '',
+            endpoint: 'https://api.mistral.ai/v1/chat/completions',
+            model: 'open-mixtral-8x22b', // Use advanced MoE by default
+            maxTokens: 65536,
+            defaultTemperature: 0.3,
+            supportsRAG: false,
+            codeSpecialist: true,
+            mathSpecialist: true
+        },
         // Azure Cognitive Search (RAG)
         azureSearch: {
             endpoint: process.env.AZURE_SEARCH_ENDPOINT || '',
@@ -752,6 +775,158 @@ async function callAzureOpenAIAPI(problem, domain, language = 'tr-TR', options =
     }
 }
 
+// Call Z.AI GLM-4.6 API (Budget Code Specialist)
+async function callZAIAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig();
+    const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
+    const config = CONFIG.zai;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
+
+    const requestBody = {
+        model: config.model,
+        messages: [
+            {
+                role: 'system',
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
+            },
+            {
+                role: 'user',
+                content: `User Question: ${problem}`
+            }
+        ],
+        max_tokens: options.maxTokens || config.maxTokens,
+        temperature: options.temperature || config.defaultTemperature,
+        stream: false
+    };
+
+    console.log(`💎 Calling Z.AI GLM-4.6 (Code Expert) for domain: ${domain}`);
+
+    const startTime = Date.now();
+
+    try {
+        const response = await fetch(config.endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${config.apiKey}`
+            },
+            body: JSON.stringify(requestBody),
+            timeout: CONFIG.timeout
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
+        }
+
+        const data = await response.json();
+        const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+        console.log(`✅ Z.AI response received in ${responseTime}s`);
+
+        const fullResponse = data.choices[0]?.message?.content || '';
+        const reasoningChain = extractReasoningChain(fullResponse);
+        const solution = cleanSolution(fullResponse);
+
+        return {
+            success: true,
+            domain: domain,
+            problem: problem,
+            reasoningChain: reasoningChain,
+            solution: solution,
+            metadata: {
+                responseTime: responseTime,
+                tokensUsed: data.usage?.total_tokens || 0,
+                model: 'GLM-4.6 Code Expert',
+                provider: 'LyDian AI',
+                confidence: 0.985,
+                mode: 'production'
+            }
+        };
+
+    } catch (error) {
+        console.error('❌ Z.AI API Error:', error);
+        throw error;
+    }
+}
+
+// Call Mistral AI (Mixtral 8x22B MoE)
+async function callMistralAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig();
+    const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
+    const config = CONFIG.mistral;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
+
+    const requestBody = {
+        model: config.model,
+        messages: [
+            {
+                role: 'system',
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
+            },
+            {
+                role: 'user',
+                content: `User Question: ${problem}`
+            }
+        ],
+        max_tokens: options.maxTokens || config.maxTokens,
+        temperature: options.temperature || config.defaultTemperature,
+        stream: false
+    };
+
+    console.log(`🚀 Calling Mistral AI (Mixtral 8x22B MoE) for domain: ${domain}`);
+
+    const startTime = Date.now();
+
+    try {
+        const response = await fetch(config.endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${config.apiKey}`
+            },
+            body: JSON.stringify(requestBody),
+            timeout: CONFIG.timeout
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
+        }
+
+        const data = await response.json();
+        const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+        console.log(`✅ Mistral AI response received in ${responseTime}s`);
+
+        const fullResponse = data.choices[0]?.message?.content || '';
+        const reasoningChain = extractReasoningChain(fullResponse);
+        const solution = cleanSolution(fullResponse);
+
+        return {
+            success: true,
+            domain: domain,
+            problem: problem,
+            reasoningChain: reasoningChain,
+            solution: solution,
+            metadata: {
+                responseTime: responseTime,
+                tokensUsed: data.usage?.total_tokens || 0,
+                model: 'Mixtral 8x22B MoE',
+                provider: 'LyDian AI',
+                confidence: 0.99,
+                mode: 'production'
+            }
+        };
+
+    } catch (error) {
+        console.error('❌ Mistral AI API Error:', error);
+        throw error;
+    }
+}
+
 // Generate fallback demo response (when no API keys available)
 function generateFallbackResponse(problem, domain, language = 'tr-TR') {
     console.log('⚠️ No API keys configured - returning error message');
@@ -983,68 +1158,136 @@ async function handleRequest(req, res) {
         console.log(`   OPENAI: ${process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 8) + '... (' + process.env.OPENAI_API_KEY.length + ' chars)' : 'MISSING'}`);
         console.log(`   CONFIG.groq.apiKey: ${CONFIG.groq.apiKey ? CONFIG.groq.apiKey.substring(0, 8) + '... (' + CONFIG.groq.apiKey.length + ' chars)' : 'EMPTY'}`);
 
-        // Multi-Provider AI Strategy: Anthropic → Azure → GPT → Ling-1T → Groq
-        // Priority: Best Reasoning → Enterprise → Reliable → MoE → Ultra-Fast
+        // 🧠 DOMAIN-BASED INTELLIGENT MODEL SELECTION
+        // Coding: Z.AI GLM-4.6 (Code Expert) → Mistral 8x22B (Math+Code) → Claude
+        // Mathematics: Mistral 8x22B (Math Expert) → Ling-1T (MoE) → Claude
+        // General: Claude (Best Reasoning) → Azure → OpenAI → Ling-1T → Groq
         // With retry mechanism and automatic failover for network errors
         try {
-            // Priority 1: Anthropic Claude (Best for reasoning)
-            if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Anthropic Claude (Priority 1 - Best Reasoning) with retry');
-                result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
+            // 💻 CODING DOMAIN - Prefer specialized code models
+            if (domain === 'coding') {
+                // Try Z.AI GLM-4.6 first (Budget Code Specialist)
+                if (CONFIG.zai.apiKey && CONFIG.zai.apiKey.length > 20 && !CONFIG.zai.apiKey.includes('YOUR_')) {
+                    console.log('🎯 Domain Strategy (Coding): Using Z.AI GLM-4.6 (Code Expert) - Priority 1');
+                    result = await retryWithBackoff(() => callZAIAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Fallback to Mistral 8x22B (Advanced MoE with code specialization)
+                else if (CONFIG.mistral.apiKey && CONFIG.mistral.apiKey.length > 20 && !CONFIG.mistral.apiKey.includes('YOUR_')) {
+                    console.log('🎯 Domain Strategy (Coding): Using Mistral AI 8x22B (MoE Code Expert) - Priority 2');
+                    result = await retryWithBackoff(() => callMistralAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Fallback to Claude (Best general reasoning)
+                else if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
+                    console.log('🎯 Domain Strategy (Coding): Using Claude (General Fallback) - Priority 3');
+                    result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Final fallback to general strategy
+                else {
+                    console.log('🎯 Domain Strategy (Coding): No specialized models, using general strategy');
+                    throw new Error('No coding-specialized models available');
+                }
             }
-            // Priority 2: Azure OpenAI (Enterprise)
-            else if (CONFIG.azure.apiKey && CONFIG.azure.endpoint && CONFIG.azure.apiKey.length > 20) {
-                console.log('🎯 Strategy: Using Azure OpenAI (Priority 2 - Enterprise) with retry');
-                result = await retryWithBackoff(() => callAzureOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
+            // 🧮 MATHEMATICS DOMAIN - Prefer math specialists
+            else if (domain === 'mathematics') {
+                // Try Mistral 8x22B first (Math+Code Specialist)
+                if (CONFIG.mistral.apiKey && CONFIG.mistral.apiKey.length > 20 && !CONFIG.mistral.apiKey.includes('YOUR_')) {
+                    console.log('🎯 Domain Strategy (Mathematics): Using Mistral AI 8x22B (Math Expert) - Priority 1');
+                    result = await retryWithBackoff(() => callMistralAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Fallback to Ling-1T (1 Trillion Parameter MoE with math specialization)
+                else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20 && !CONFIG.zenmux.apiKey.includes('YOUR_')) {
+                    console.log('🎯 Domain Strategy (Mathematics): Using Ling-1T MoE (Math Expert) - Priority 2');
+                    result = await retryWithBackoff(() => callZenMuxAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Fallback to Claude (Best general reasoning)
+                else if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
+                    console.log('🎯 Domain Strategy (Mathematics): Using Claude (General Fallback) - Priority 3');
+                    result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Final fallback to general strategy
+                else {
+                    console.log('🎯 Domain Strategy (Mathematics): No specialized models, using general strategy');
+                    throw new Error('No math-specialized models available');
+                }
             }
-            // Priority 3: OpenAI GPT (Reliable)
-            else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20 && !CONFIG.openai.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using OpenAI GPT (Priority 3 - Reliable) with retry');
-                result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
-            }
-            // Priority 4: Ling-1T (1 Trillion Parameter MoE Model)
-            else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20 && !CONFIG.zenmux.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Ling-1T MoE (Priority 4 - 1T Parameters) with retry');
-                result = await retryWithBackoff(() => callZenMuxAPI(enhancedProblem, domain, language, options, CONFIG));
-            }
-            // Priority 5: Groq (Ultra-Fast Fallback)
-            else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Groq (Priority 5 - Ultra-Fast Fallback) with retry');
-                result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
-            }
-            // No API keys available
+            // 🌐 GENERAL DOMAINS (Science, Strategy, Logistics) - Standard priority
             else {
-                console.log('❌ No valid API keys configured, using demo mode');
-                console.log(`   anthropic.apiKey length: ${CONFIG.anthropic.apiKey?.length || 0}`);
-                console.log(`   azure.apiKey length: ${CONFIG.azure.apiKey?.length || 0}`);
-                console.log(`   openai.apiKey length: ${CONFIG.openai.apiKey?.length || 0}`);
-                console.log(`   zenmux.apiKey length: ${CONFIG.zenmux.apiKey?.length || 0}`);
-                console.log(`   groq.apiKey length: ${CONFIG.groq.apiKey?.length || 0}`);
-                result = generateFallbackResponse(enhancedProblem, domain, language);
+                // Priority 1: Anthropic Claude (Best for general reasoning)
+                if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
+                    console.log('🎯 General Strategy: Using Anthropic Claude (Priority 1 - Best Reasoning) with retry');
+                    result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Priority 2: Azure OpenAI (Enterprise)
+                else if (CONFIG.azure.apiKey && CONFIG.azure.endpoint && CONFIG.azure.apiKey.length > 20) {
+                    console.log('🎯 General Strategy: Using Azure OpenAI (Priority 2 - Enterprise) with retry');
+                    result = await retryWithBackoff(() => callAzureOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Priority 3: OpenAI GPT (Reliable)
+                else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20 && !CONFIG.openai.apiKey.includes('YOUR_')) {
+                    console.log('🎯 General Strategy: Using OpenAI GPT (Priority 3 - Reliable) with retry');
+                    result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Priority 4: Ling-1T (1 Trillion Parameter MoE Model)
+                else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20 && !CONFIG.zenmux.apiKey.includes('YOUR_')) {
+                    console.log('🎯 General Strategy: Using Ling-1T MoE (Priority 4 - 1T Parameters) with retry');
+                    result = await retryWithBackoff(() => callZenMuxAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Priority 5: Groq (Ultra-Fast Fallback)
+                else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')) {
+                    console.log('🎯 General Strategy: Using Groq (Priority 5 - Ultra-Fast Fallback) with retry');
+                    result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // No API keys available
+                else {
+                    console.log('❌ No valid API keys configured, using demo mode');
+                    console.log(`   anthropic.apiKey length: ${CONFIG.anthropic.apiKey?.length || 0}`);
+                    console.log(`   azure.apiKey length: ${CONFIG.azure.apiKey?.length || 0}`);
+                    console.log(`   openai.apiKey length: ${CONFIG.openai.apiKey?.length || 0}`);
+                    console.log(`   zenmux.apiKey length: ${CONFIG.zenmux.apiKey?.length || 0}`);
+                    console.log(`   groq.apiKey length: ${CONFIG.groq.apiKey?.length || 0}`);
+                    console.log(`   zai.apiKey length: ${CONFIG.zai.apiKey?.length || 0}`);
+                    console.log(`   mistral.apiKey length: ${CONFIG.mistral.apiKey?.length || 0}`);
+                    result = generateFallbackResponse(enhancedProblem, domain, language);
+                }
             }
         } catch (apiError) {
             console.error('⚠️ Primary API failed after retries, cascading to next provider:', apiError.message);
 
-            // Cascade fallback: Try each provider in order
+            // 🔄 Cascade fallback: Try ALL available providers
             try {
-                // Try Azure as first fallback
-                if (CONFIG.azure.apiKey && CONFIG.azure.endpoint && CONFIG.azure.apiKey.length > 20) {
-                    console.log('🔄 Fallback Level 1: Trying Azure OpenAI with retry...');
+                // Try Claude as first fallback (Best general reasoning)
+                if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
+                    console.log('🔄 Fallback Level 1: Trying Claude (Best Reasoning) with retry...');
+                    result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Try Azure as second fallback
+                else if (CONFIG.azure.apiKey && CONFIG.azure.endpoint && CONFIG.azure.apiKey.length > 20) {
+                    console.log('🔄 Fallback Level 2: Trying Azure OpenAI with retry...');
                     result = await retryWithBackoff(() => callAzureOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
                 }
-                // Try OpenAI as second fallback
-                else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20) {
-                    console.log('🔄 Fallback Level 2: Trying OpenAI GPT with retry...');
+                // Try OpenAI as third fallback
+                else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20 && !CONFIG.openai.apiKey.includes('YOUR_')) {
+                    console.log('🔄 Fallback Level 3: Trying OpenAI GPT with retry...');
                     result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
                 }
-                // Try Ling-1T as third fallback
-                else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20) {
-                    console.log('🔄 Fallback Level 3: Trying Ling-1T MoE with retry...');
+                // Try Mistral 8x22B as fourth fallback (Good for code & math)
+                else if (CONFIG.mistral.apiKey && CONFIG.mistral.apiKey.length > 20 && !CONFIG.mistral.apiKey.includes('YOUR_')) {
+                    console.log('🔄 Fallback Level 4: Trying Mistral AI 8x22B with retry...');
+                    result = await retryWithBackoff(() => callMistralAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Try Z.AI GLM-4.6 as fifth fallback (Budget code specialist)
+                else if (CONFIG.zai.apiKey && CONFIG.zai.apiKey.length > 20 && !CONFIG.zai.apiKey.includes('YOUR_')) {
+                    console.log('🔄 Fallback Level 5: Trying Z.AI GLM-4.6 with retry...');
+                    result = await retryWithBackoff(() => callZAIAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Try Ling-1T as sixth fallback
+                else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20 && !CONFIG.zenmux.apiKey.includes('YOUR_')) {
+                    console.log('🔄 Fallback Level 6: Trying Ling-1T MoE with retry...');
                     result = await retryWithBackoff(() => callZenMuxAPI(enhancedProblem, domain, language, options, CONFIG));
                 }
                 // Try Groq as final fallback
-                else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20) {
-                    console.log('🔄 Fallback Level 4: Trying Groq (Ultra-Fast) with retry...');
+                else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')) {
+                    console.log('🔄 Fallback Level 7 (Final): Trying Groq (Ultra-Fast) with retry...');
                     result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
                 } else {
                     throw new Error('All AI providers failed');
