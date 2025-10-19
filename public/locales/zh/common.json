@@ -1,0 +1,91 @@
+{
+  "site": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "用人工智能塑造未来",
+    "description": "LyDian - 为现代世界提供先进的人工智能模型和企业解决方案。"
+  },
+  "nav": {
+    "home": "首页",
+    "products": "产品",
+    "solutions": "解决方案",
+    "enterprise": "企业版",
+    "developers": "开发者",
+    "docs": "文档",
+    "pricing": "定价",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "blog": "博客",
+    "login": "登录",
+    "signup": "注册",
+    "dashboard": "控制面板"
+  },
+  "hero": {
+    "title": "LyDian 企业平台",
+    "subtitle": "先进的多模型智能",
+    "description": "使用企业级人工智能转型您的业务。支持20多种语言的自然语言处理、计算机视觉和决策支持系统。",
+    "cta": {
+      "primary": "免费开始",
+      "secondary": "观看演示",
+      "learn_more": "了解更多"
+    }
+  },
+  "features": {
+    "title": "功能",
+    "subtitle": "平台能力",
+    "ai_chat": {
+      "title": "AI 聊天",
+      "description": "具有先进自然语言处理功能的智能聊天机器人"
+    },
+    "image_gen": {
+      "title": "图像生成",
+      "description": "使用人工智能创建专业视觉效果"
+    },
+    "medical": {
+      "title": "医疗 AI",
+      "description": "临床决策支持和医学图像分析"
+    },
+    "legal": {
+      "title": "法律 AI",
+      "description": "法律文档分析和合同管理"
+    },
+    "video": {
+      "title": "视频 AI",
+      "description": "视频分析、生成和自动字幕"
+    },
+    "multilingual": {
+      "title": "多语言",
+      "description": "支持20多种语言的自然语言处理"
+    }
+  },
+  "products": {
+    "lydian_iq": "LyDian IQ",
+    "medical_expert": "医疗专家",
+    "legal_ai": "法律 AI",
+    "civic_intelligence": "智慧城市",
+    "video_ai": "视频 AI"
+  },
+  "footer": {
+    "company": "公司",
+    "products": "产品",
+    "resources": "资源",
+    "legal": "法律",
+    "social": "社交媒体",
+    "copyright": "© 2025 LyDian AI Ecosystem。保留所有权利。",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "cookies": "Cookie 政策"
+  },
+  "cta": {
+    "get_started": "开始使用",
+    "try_free": "免费试用",
+    "contact_sales": "联系销售",
+    "view_docs": "查看文档",
+    "watch_demo": "观看演示"
+  },
+  "status": {
+    "online": "在线",
+    "operational": "正常运行",
+    "maintenance": "维护中",
+    "degraded": "性能下降"
+  }
+}

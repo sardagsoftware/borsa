@@ -1,0 +1,91 @@
+{
+  "site": {
+    "name": "LyDian AI Ecosystem",
+    "tagline": "Gestalten Sie die Zukunft mit KI",
+    "description": "LyDian - Fortschrittliche KI-Modelle und Unternehmenslösungen für die moderne Welt."
+  },
+  "nav": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "solutions": "Lösungen",
+    "enterprise": "Unternehmen",
+    "developers": "Entwickler",
+    "docs": "Dokumentation",
+    "pricing": "Preise",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "LyDian Enterprise Platform",
+    "subtitle": "Fortschrittliche Multi-Modell-Intelligenz",
+    "description": "Transformieren Sie Ihr Unternehmen mit Enterprise-KI. Natürliche Sprachverarbeitung, Computer Vision und Entscheidungsunterstützungssysteme in mehr als 20 Sprachen.",
+    "cta": {
+      "primary": "Kostenlos starten",
+      "secondary": "Demo ansehen",
+      "learn_more": "Mehr erfahren"
+    }
+  },
+  "features": {
+    "title": "Funktionen",
+    "subtitle": "Plattform-Fähigkeiten",
+    "ai_chat": {
+      "title": "KI-Chat",
+      "description": "Intelligente Chatbots mit fortschrittlicher natürlicher Sprachverarbeitung"
+    },
+    "image_gen": {
+      "title": "Bildgenerierung",
+      "description": "Erstellen Sie professionelle Grafiken mit KI"
+    },
+    "medical": {
+      "title": "Medizinische KI",
+      "description": "Klinische Entscheidungsunterstützung und medizinische Bildanalyse"
+    },
+    "legal": {
+      "title": "Rechts-KI",
+      "description": "Rechtsdokumentanalyse und Vertragsmanagement"
+    },
+    "video": {
+      "title": "Video-KI",
+      "description": "Videoanalyse, -generierung und automatisierte Untertitelung"
+    },
+    "multilingual": {
+      "title": "Mehrsprachig",
+      "description": "Natürliche Sprachverarbeitung in mehr als 20 Sprachen"
+    }
+  },
+  "products": {
+    "lydian_iq": "LyDian IQ",
+    "medical_expert": "Medizinischer Experte",
+    "legal_ai": "Rechts-KI",
+    "civic_intelligence": "Smart City",
+    "video_ai": "Video-KI"
+  },
+  "footer": {
+    "company": "Unternehmen",
+    "products": "Produkte",
+    "resources": "Ressourcen",
+    "legal": "Rechtliches",
+    "social": "Soziale Medien",
+    "copyright": "© 2025 LyDian AI Ecosystem. Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "cookies": "Cookie-Richtlinie"
+  },
+  "cta": {
+    "get_started": "Erste Schritte",
+    "try_free": "Kostenlos testen",
+    "contact_sales": "Vertrieb kontaktieren",
+    "view_docs": "Dokumentation anzeigen",
+    "watch_demo": "Demo ansehen"
+  },
+  "status": {
+    "online": "Online",
+    "operational": "Betriebsbereit",
+    "maintenance": "Wartung",
+    "degraded": "Eingeschränkte Leistung"
+  }
+}
