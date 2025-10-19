@@ -49,7 +49,18 @@ function getAIConfig() {
             defaultTemperature: 0.3,
             supportsRAG: false
         },
-        // Priority 4: Fast Response Provider (Ultra-Fast)
+        // Priority 4: Ling-1T MoE Model (1 Trillion Parameters)
+        zenmux: {
+            apiKey: process.env.ZENMUX_API_KEY || '',
+            endpoint: 'https://zenmux.ai/api/v1/chat/completions',
+            model: 'inclusionai/ling-1t',
+            maxTokens: 128000,
+            defaultTemperature: 0.3,
+            supportsRAG: false,
+            codeSpecialist: true,
+            mathSpecialist: true
+        },
+        // Priority 5: Fast Response Provider (Ultra-Fast)
         groq: {
             apiKey: process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY || '',
             endpoint: 'https://api.groq.com/openai/v1/chat/completions',
@@ -552,6 +563,157 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}, ai
     }
 }
 
+// Call ZenMux (Ling-1T) API
+async function callZenMuxAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig(); // Use provided config or get fresh one
+    const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
+    const config = CONFIG.zenmux;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
+
+    const requestBody = {
+        model: config.model,
+        messages: [
+            {
+                role: 'system',
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
+            },
+            {
+                role: 'user',
+                content: `User Question: ${problem}`
+            }
+        ],
+        max_tokens: options.maxTokens || config.maxTokens,
+        temperature: options.temperature || config.defaultTemperature,
+        stream: false
+    };
+
+    console.log(`🧠 Calling Ling-1T (1T MoE Model) for domain: ${domain}`);
+
+    const startTime = Date.now();
+
+    try {
+        const response = await fetch(config.endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${config.apiKey}`
+            },
+            body: JSON.stringify(requestBody),
+            timeout: CONFIG.timeout
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
+        }
+
+        const data = await response.json();
+        const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+        console.log(`✅ AI response received in ${responseTime}s`);
+
+        const fullResponse = data.choices[0]?.message?.content || '';
+        const reasoningChain = extractReasoningChain(fullResponse);
+        const solution = cleanSolution(fullResponse);
+
+        return {
+            success: true,
+            domain: domain,
+            problem: problem,
+            reasoningChain: reasoningChain,
+            solution: solution,
+            metadata: {
+                responseTime: responseTime,
+                tokensUsed: data.usage?.total_tokens || 0,
+                model: 'Ling-1T MoE Reasoning',
+                provider: 'LyDian AI',
+                confidence: 0.985,
+                mode: 'production'
+            }
+        };
+
+    } catch (error) {
+        console.error('❌ AI API Error:', error);
+        throw error;
+    }
+}
+
+// Call Azure OpenAI API
+async function callAzureOpenAIAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
+    const CONFIG = aiConfig || getAIConfig();
+    const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
+    const config = CONFIG.azure;
+    const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
+
+    const requestBody = {
+        messages: [
+            {
+                role: 'system',
+                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
+            },
+            {
+                role: 'user',
+                content: `User Question: ${problem}`
+            }
+        ],
+        max_tokens: options.maxTokens || config.maxTokens,
+        temperature: options.temperature || config.defaultTemperature,
+        stream: false
+    };
+
+    console.log(`🧠 Calling Azure OpenAI for domain: ${domain}`);
+
+    const startTime = Date.now();
+
+    try {
+        const response = await fetch(`${config.endpoint}/chat/completions?api-version=${config.apiVersion}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'api-key': config.apiKey
+            },
+            body: JSON.stringify(requestBody),
+            timeout: CONFIG.timeout
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            const sanitizedError = aiObfuscator.sanitizeError(new Error(errorText));
+            throw new Error(`AI API Error ${response.status}: ${sanitizedError.message}`);
+        }
+
+        const data = await response.json();
+        const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+        console.log(`✅ AI response received in ${responseTime}s`);
+
+        const fullResponse = data.choices[0]?.message?.content || '';
+        const reasoningChain = extractReasoningChain(fullResponse);
+        const solution = cleanSolution(fullResponse);
+
+        return {
+            success: true,
+            domain: domain,
+            problem: problem,
+            reasoningChain: reasoningChain,
+            solution: solution,
+            metadata: {
+                responseTime: responseTime,
+                tokensUsed: data.usage?.total_tokens || 0,
+                model: 'Azure Enterprise AI',
+                provider: 'LyDian AI',
+                confidence: 0.99,
+                mode: 'production'
+            }
+        };
+
+    } catch (error) {
+        console.error('❌ Azure OpenAI API Error:', error);
+        throw error;
+    }
+}
+
 // Generate fallback demo response (when no API keys available)
 function generateFallbackResponse(problem, domain, language = 'tr-TR') {
     console.log('⚠️ No API keys configured - returning error message');
@@ -783,48 +945,74 @@ async function handleRequest(req, res) {
         console.log(`   OPENAI: ${process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 8) + '... (' + process.env.OPENAI_API_KEY.length + ' chars)' : 'MISSING'}`);
         console.log(`   CONFIG.groq.apiKey: ${CONFIG.groq.apiKey ? CONFIG.groq.apiKey.substring(0, 8) + '... (' + CONFIG.groq.apiKey.length + ' chars)' : 'EMPTY'}`);
 
-        // Multi-Provider AI Strategy: Fast → Secondary → Primary → Demo
-        // With retry mechanism for network errors
+        // Multi-Provider AI Strategy: Anthropic → Azure → GPT → Ling-1T → Groq
+        // Priority: Best Reasoning → Enterprise → Reliable → MoE → Ultra-Fast
+        // With retry mechanism and automatic failover for network errors
         try {
-            // Try Fast Response first (ultra-fast & valid key)
-            if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Fast Response AI (Primary - Valid Key) with retry');
-                result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
+            // Priority 1: Anthropic Claude (Best for reasoning)
+            if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
+                console.log('🎯 Strategy: Using Anthropic Claude (Priority 1 - Best Reasoning) with retry');
+                result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
             }
-            // Fallback to Secondary AI
+            // Priority 2: Azure OpenAI (Enterprise)
+            else if (CONFIG.azure.apiKey && CONFIG.azure.endpoint && CONFIG.azure.apiKey.length > 20) {
+                console.log('🎯 Strategy: Using Azure OpenAI (Priority 2 - Enterprise) with retry');
+                result = await retryWithBackoff(() => callAzureOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
+            }
+            // Priority 3: OpenAI GPT (Reliable)
             else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20 && !CONFIG.openai.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Secondary AI (Fallback - Valid Key) with retry');
+                console.log('🎯 Strategy: Using OpenAI GPT (Priority 3 - Reliable) with retry');
                 result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
             }
-            // Try Primary AI (if key is valid)
-            else if (CONFIG.anthropic.apiKey && CONFIG.anthropic.apiKey.length > 20 && !CONFIG.anthropic.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Primary AI (Tertiary - Valid Key) with retry');
-                result = await retryWithBackoff(() => callClaudeAPI(enhancedProblem, domain, language, options, CONFIG));
+            // Priority 4: Ling-1T (1 Trillion Parameter MoE Model)
+            else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20 && !CONFIG.zenmux.apiKey.includes('YOUR_')) {
+                console.log('🎯 Strategy: Using Ling-1T MoE (Priority 4 - 1T Parameters) with retry');
+                result = await retryWithBackoff(() => callZenMuxAPI(enhancedProblem, domain, language, options, CONFIG));
+            }
+            // Priority 5: Groq (Ultra-Fast Fallback)
+            else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')) {
+                console.log('🎯 Strategy: Using Groq (Priority 5 - Ultra-Fast Fallback) with retry');
+                result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
             }
             // No API keys available
             else {
                 console.log('❌ No valid API keys configured, using demo mode');
-                console.log(`   groq.apiKey length: ${CONFIG.groq.apiKey?.length || 0}`);
-                console.log(`   openai.apiKey length: ${CONFIG.openai.apiKey?.length || 0}`);
                 console.log(`   anthropic.apiKey length: ${CONFIG.anthropic.apiKey?.length || 0}`);
+                console.log(`   azure.apiKey length: ${CONFIG.azure.apiKey?.length || 0}`);
+                console.log(`   openai.apiKey length: ${CONFIG.openai.apiKey?.length || 0}`);
+                console.log(`   zenmux.apiKey length: ${CONFIG.zenmux.apiKey?.length || 0}`);
+                console.log(`   groq.apiKey length: ${CONFIG.groq.apiKey?.length || 0}`);
                 result = generateFallbackResponse(enhancedProblem, domain, language);
             }
         } catch (apiError) {
-            console.error('⚠️ Primary API failed after retries, trying fallback:', apiError.message);
+            console.error('⚠️ Primary API failed after retries, cascading to next provider:', apiError.message);
 
-            // Try fallback providers (also with retry)
+            // Cascade fallback: Try each provider in order
             try {
-                if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20) {
-                    console.log('🔄 Fallback: Trying Secondary AI with retry...');
+                // Try Azure as first fallback
+                if (CONFIG.azure.apiKey && CONFIG.azure.endpoint && CONFIG.azure.apiKey.length > 20) {
+                    console.log('🔄 Fallback Level 1: Trying Azure OpenAI with retry...');
+                    result = await retryWithBackoff(() => callAzureOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Try OpenAI as second fallback
+                else if (CONFIG.openai.apiKey && CONFIG.openai.apiKey.length > 20) {
+                    console.log('🔄 Fallback Level 2: Trying OpenAI GPT with retry...');
                     result = await retryWithBackoff(() => callOpenAIAPI(enhancedProblem, domain, language, options, CONFIG));
-                } else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20) {
-                    console.log('🔄 Fallback: Trying Fast Response AI with retry...');
+                }
+                // Try Ling-1T as third fallback
+                else if (CONFIG.zenmux.apiKey && CONFIG.zenmux.apiKey.length > 20) {
+                    console.log('🔄 Fallback Level 3: Trying Ling-1T MoE with retry...');
+                    result = await retryWithBackoff(() => callZenMuxAPI(enhancedProblem, domain, language, options, CONFIG));
+                }
+                // Try Groq as final fallback
+                else if (CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20) {
+                    console.log('🔄 Fallback Level 4: Trying Groq (Ultra-Fast) with retry...');
                     result = await retryWithBackoff(() => callGroqAPI(enhancedProblem, domain, language, options, CONFIG));
                 } else {
                     throw new Error('All AI providers failed');
                 }
             } catch (fallbackError) {
-                console.error('⚠️ All AI services failed after retries, using demo mode:', fallbackError.message);
+                console.error('⚠️ All AI providers failed after cascading fallback and retries, using demo mode:', fallbackError.message);
                 result = generateFallbackResponse(enhancedProblem, domain, language);
             }
         }
