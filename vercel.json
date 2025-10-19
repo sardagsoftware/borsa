@@ -1,31 +1,9 @@
 {
   "version": 2,
-  "alias": ["www.ailydian.com", "ailydian.com"],
+  "installCommand": "echo 'Skipping install - Static + Serverless'",
   "buildCommand": "echo 'No build required - Serverless Functions'",
   "outputDirectory": "public",
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
-    {
-      "source": "/governance-dashboard",
-      "destination": "/public/governance-dashboard.html"
-    },
-    {
-      "source": "/governance-models",
-      "destination": "/public/governance-models.html"
-    },
-    {
-      "source": "/governance-compliance",
-      "destination": "/public/governance-compliance.html"
-    },
-    {
-      "source": "/governance-trust-index",
-      "destination": "/public/governance-trust-index.html"
-    },
-    {
-      "source": "/governance-leaderboard",
-      "destination": "/public/governance-leaderboard.html"
-    },
     {
       "source": "/api/rro/:path*",
       "destination": "/api/civic?module=rro&path=:path*"
@@ -75,10 +53,6 @@
       "destination": "/public/ailydian-indexnow-2025.txt"
     },
     {
-      "source": "/dashboard-sardag",
-      "destination": "/public/dashboard-sardag.html"
-    },
-    {
       "source": "/",
       "destination": "/public/index.html"
     },
@@ -87,6 +61,12 @@
       "destination": "/public/:path*"
     }
   ],
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -97,7 +77,7 @@
         },
         {
           "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
+          "value": "DENY"
         },
         {
           "key": "X-XSS-Protection",
@@ -109,7 +89,7 @@
         },
         {
           "key": "Permissions-Policy",
-          "value": "camera=(self \"https://ailydian-messaging.vercel.app\"), microphone=(self \"https://ailydian-messaging.vercel.app\"), geolocation=(self \"https://ailydian-messaging.vercel.app\")"
+          "value": "camera=(), microphone=(), geolocation=()"
         },
         {
           "key": "Strict-Transport-Security",
@@ -117,7 +97,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://unpkg.com https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://d3js.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net https://cdn.tailwindcss.com; img-src 'self' data: https: blob:; font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://vercel.live https://*.pusher.com https://*.ailydian.com https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com https://d3js.org; frame-src 'self' https://ailydian-messaging.vercel.app https://messaging.ailydian.com https://www.ailydian.com https://ailydian.com; frame-ancestors 'self';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://api.openai.com https://*.anthropic.com https://api.groq.com https://*.azure.com https://*.openai.azure.com https://generativelanguage.googleapis.com https://*.googleapis.com; frame-ancestors 'none';"
         }
       ]
     },
@@ -126,24 +106,15 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=30"
-        }
-      ]
-    },
-    {
-      "source": "/locales/:lang/:file*.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json; charset=utf-8"
+          "value": "no-cache, no-store, must-revalidate"
         },
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, stale-while-revalidate=86400"
+          "key": "Pragma",
+          "value": "no-cache"
         },
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "key": "Expires",
+          "value": "0"
         }
       ]
     },
@@ -161,23 +132,19 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://ailydian.com, https://www.ailydian.com, https://ailydian-ultra-pro.vercel.app, https://ailydian.vercel.app"
+          "value": "https://ailydian.com, https://www.ailydian.com, https://ailydian-ultra-pro.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+          "value": "Content-Type, Authorization"
         },
         {
           "key": "Access-Control-Allow-Credentials",
           "value": "true"
-        },
-        {
-          "key": "Access-Control-Max-Age",
-          "value": "86400"
         },
         {
           "key": "Cache-Control",
