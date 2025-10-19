@@ -50,15 +50,20 @@ function getAIConfig() {
             supportsRAG: false
         },
         // Priority 4: Ling-1T MoE Model (1 Trillion Parameters)
+        // Supports both ZenMux API and HuggingFace Inference API
         zenmux: {
-            apiKey: process.env.ZENMUX_API_KEY || '',
-            endpoint: 'https://zenmux.ai/api/v1/chat/completions',
+            apiKey: process.env.ZENMUX_API_KEY || process.env.HF_TOKEN || '',
+            // If HF_TOKEN is used, switch to HuggingFace Inference API endpoint
+            endpoint: process.env.HF_TOKEN
+                ? 'https://api-inference.huggingface.co/models/inclusionAI/Ling-1T'
+                : 'https://zenmux.ai/api/v1/chat/completions',
             model: 'inclusionai/ling-1t',
             maxTokens: 128000,
             defaultTemperature: 0.3,
             supportsRAG: false,
             codeSpecialist: true,
-            mathSpecialist: true
+            mathSpecialist: true,
+            useHuggingFace: !!process.env.HF_TOKEN
         },
         // Priority 5: Fast Response Provider (Ultra-Fast)
         groq: {
@@ -563,41 +568,65 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}, ai
     }
 }
 
-// Call ZenMux (Ling-1T) API
+// Call ZenMux (Ling-1T) API or HuggingFace Inference API
 async function callZenMuxAPI(problem, domain, language = 'tr-TR', options = {}, aiConfig = null) {
     const CONFIG = aiConfig || getAIConfig(); // Use provided config or get fresh one
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = CONFIG.zenmux;
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
-    const requestBody = {
-        model: config.model,
-        messages: [
-            {
-                role: 'system',
-                content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
-            },
-            {
-                role: 'user',
-                content: `User Question: ${problem}`
-            }
-        ],
-        max_tokens: options.maxTokens || config.maxTokens,
-        temperature: options.temperature || config.defaultTemperature,
-        stream: false
-    };
+    // Build request based on API type (ZenMux vs HuggingFace)
+    const isHuggingFace = config.useHuggingFace || config.endpoint.includes('huggingface.co');
 
-    console.log(`🧠 Calling Ling-1T (1T MoE Model) for domain: ${domain}`);
+    let requestBody, headers;
+
+    if (isHuggingFace) {
+        // HuggingFace Inference API format (text-generation)
+        const prompt = `${languagePrompt}\n\n${domainConfig.systemPrompt}\n\nUser Question: ${problem}`;
+        requestBody = {
+            inputs: prompt,
+            parameters: {
+                max_new_tokens: options.maxTokens || config.maxTokens,
+                temperature: options.temperature || config.defaultTemperature,
+                return_full_text: false
+            }
+        };
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${config.apiKey}`
+        };
+        console.log(`🤗 Calling Ling-1T via HuggingFace Inference API for domain: ${domain}`);
+    } else {
+        // ZenMux API format (OpenAI-compatible)
+        requestBody = {
+            model: config.model,
+            messages: [
+                {
+                    role: 'system',
+                    content: `${languagePrompt}\n\n${domainConfig.systemPrompt}`
+                },
+                {
+                    role: 'user',
+                    content: `User Question: ${problem}`
+                }
+            ],
+            max_tokens: options.maxTokens || config.maxTokens,
+            temperature: options.temperature || config.defaultTemperature,
+            stream: false
+        };
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${config.apiKey}`
+        };
+        console.log(`🧠 Calling Ling-1T via ZenMux API for domain: ${domain}`);
+    }
 
     const startTime = Date.now();
 
     try {
         const response = await fetch(config.endpoint, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${config.apiKey}`
-            },
+            headers: headers,
             body: JSON.stringify(requestBody),
             timeout: CONFIG.timeout
         });
@@ -613,7 +642,16 @@ async function callZenMuxAPI(problem, domain, language = 'tr-TR', options = {}, 
 
         console.log(`✅ AI response received in ${responseTime}s`);
 
-        const fullResponse = data.choices[0]?.message?.content || '';
+        // Parse response based on API type
+        let fullResponse;
+        if (isHuggingFace) {
+            // HuggingFace response format: array of generated_text
+            fullResponse = Array.isArray(data) ? data[0]?.generated_text || '' : data.generated_text || '';
+        } else {
+            // ZenMux/OpenAI response format
+            fullResponse = data.choices[0]?.message?.content || '';
+        }
+
         const reasoningChain = extractReasoningChain(fullResponse);
         const solution = cleanSolution(fullResponse);
 
@@ -626,7 +664,7 @@ async function callZenMuxAPI(problem, domain, language = 'tr-TR', options = {}, 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
-                model: 'Ling-1T MoE Reasoning',
+                model: isHuggingFace ? 'Ling-1T MoE (HuggingFace)' : 'Ling-1T MoE (ZenMux)',
                 provider: 'LyDian AI',
                 confidence: 0.985,
                 mode: 'production'
