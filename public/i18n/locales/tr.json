@@ -1,0 +1,314 @@
+{
+  "locale": "tr",
+  "name": "Türkçe",
+  "rtl": false,
+
+  "ui": {
+    "composer": {
+      "placeholder": "Bir şey sorun veya yapılacak bir şey belirtin...",
+      "sendButton": "Gönder",
+      "sending": "Gönderiliyor...",
+      "hint": "Enter ile gönder, Shift+Enter ile yeni satır"
+    },
+    "chips": {
+      "title": "Öneriler",
+      "confidence": "güven",
+      "clickToUse": "Kullanmak için tıklayın"
+    },
+    "messages": {
+      "empty": "Henüz mesaj yok. Bir şeyler sormaya başlayın!",
+      "loading": "Yükleniyor...",
+      "error": "Bir hata oluştu",
+      "retry": "Tekrar Dene",
+      "thinking": "Düşünüyor..."
+    },
+    "toggle": {
+      "show": "Intent UI'ı Göster",
+      "hide": "Intent UI'ı Gizle"
+    }
+  },
+
+  "intents": {
+    "track_shipment": {
+      "label": "Kargo Takibi",
+      "description": "Kargo gönderinizi takip edin",
+      "icon": "📦",
+      "examples": [
+        "Aras kargom nerede?",
+        "MNG takip: 123456789",
+        "Yurtiçi kargom geldi mi?"
+      ]
+    },
+    "compare_loans": {
+      "label": "Kredi Karşılaştırma",
+      "description": "Bankaların kredi tekliflerini karşılaştırın",
+      "icon": "💰",
+      "examples": [
+        "50000 TL kredi istiyorum",
+        "100000 TL konut kredisi",
+        "En uygun kredi hangisi?"
+      ]
+    },
+    "find_hotels": {
+      "label": "Otel Bul",
+      "description": "Destinasyonunuz için otel bulun",
+      "icon": "🏨",
+      "examples": [
+        "Antalya'da otel öner",
+        "Bodrum'da 2 gecelik konaklama",
+        "İstanbul otelleri"
+      ]
+    },
+    "get_economy_advice": {
+      "label": "Ekonomi Tavsiyesi",
+      "description": "Ekonomik koşullara göre tavsiyelerin",
+      "icon": "📈",
+      "examples": [
+        "Dolar yükselişi ne demek?",
+        "Enflasyon nasıl etkileyecek?",
+        "Ekonomi tavsiyen nedir?"
+      ]
+    },
+    "get_market_insights": {
+      "label": "Piyasa Analizi",
+      "description": "Borsa ve piyasa trendlerini görün",
+      "icon": "📊",
+      "examples": [
+        "BIST100 analizi",
+        "Altın fiyatları yükselir mi?",
+        "Piyasa nasıl?"
+      ]
+    },
+    "calculate_carbon": {
+      "label": "Karbon Ayak İzi",
+      "description": "Karbon emisyonunuzu hesaplayın",
+      "icon": "🌱",
+      "examples": [
+        "500 km araç yolculuğu karbon ayak izi",
+        "Elektrik tüketimim 200 kWh",
+        "Karbon ayak izim ne kadar?"
+      ]
+    }
+  },
+
+  "cards": {
+    "shipment": {
+      "title": "Kargo Bilgileri",
+      "trackingCode": "Takip Kodu",
+      "vendor": "Kargo Şirketi",
+      "status": "Durum",
+      "location": "Konum",
+      "estimatedDelivery": "Tahmini Teslimat",
+      "lastUpdate": "Son Güncelleme",
+      "statusCodes": {
+        "in_transit": "Yolda",
+        "out_for_delivery": "Dağıtımda",
+        "delivered": "Teslim Edildi",
+        "pending": "Beklemede",
+        "returned": "İade Edildi"
+      }
+    },
+    "loan": {
+      "title": "Kredi Teklifleri",
+      "bestOffer": "EN İYİ TEKLİF",
+      "bank": "Banka",
+      "amount": "Tutar",
+      "monthly": "Aylık Ödeme",
+      "rate": "Faiz Oranı",
+      "term": "Vade",
+      "totalPayment": "Toplam Ödeme",
+      "otherOffers": "Diğer Teklifler",
+      "months": "ay",
+      "compare": "Karşılaştır"
+    },
+    "hotel": {
+      "title": "Otel Önerileri",
+      "results": "sonuç",
+      "rating": "Puan",
+      "amenities": "Olanaklar",
+      "pricePerNight": "gecelik",
+      "total": "Toplam",
+      "nights": "gece",
+      "bookNow": "Rezervasyon Yap"
+    },
+    "economy": {
+      "title": "Ekonomi Tavsiyeleri",
+      "recommendations": "Öneriler",
+      "impact": "Etki",
+      "positive": "Pozitif",
+      "negative": "Negatif",
+      "neutral": "Nötr"
+    },
+    "insights": {
+      "title": "Piyasa Analizi",
+      "trend": "Trend",
+      "change": "Değişim",
+      "high": "En Yüksek",
+      "low": "En Düşük",
+      "average": "Ortalama",
+      "direction": {
+        "up": "Yükseliş",
+        "down": "Düşüş",
+        "stable": "Sabit"
+      }
+    },
+    "esg": {
+      "title": "Karbon Ayak İzi",
+      "total": "Toplam Emisyon",
+      "breakdown": "Dağılım",
+      "transportation": "Ulaşım",
+      "energy": "Enerji",
+      "waste": "Atık",
+      "equivalent": "Bu şuna eşdeğer",
+      "trees": "ağacın yıllık emilimi",
+      "cars": "km araç yolculuğu"
+    }
+  },
+
+  "errors": {
+    "generic": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "network": "İnternet bağlantısı hatası.",
+    "timeout": "İstek zaman aşımına uğradı.",
+    "validation": "Girdiğiniz bilgiler geçersiz.",
+    "notFound": "İstenen veri bulunamadı.",
+    "unauthorized": "Bu işlem için yetkiniz yok.",
+    "serverError": "Sunucu hatası. Lütfen daha sonra tekrar deneyin."
+  },
+
+  "success": {
+    "messageSent": "Mesaj gönderildi",
+    "actionCompleted": "İşlem tamamlandı",
+    "dataSaved": "Veriler kaydedildi",
+    "settingsUpdated": "Ayarlar güncellendi"
+  },
+
+  "vendors": {
+    "cargo": {
+      "aras": "Aras Kargo",
+      "mng": "MNG Kargo",
+      "yurtici": "Yurtiçi Kargo",
+      "surat": "Sürat Kargo",
+      "ups": "UPS",
+      "dhl": "DHL",
+      "fedex": "FedEx",
+      "tnt": "TNT",
+      "ptt": "PTT Kargo",
+      "hepsijet": "HepsiJet"
+    },
+    "banks": {
+      "ziraat": "Ziraat Bankası",
+      "halkbank": "Halkbank",
+      "vakifbank": "VakıfBank",
+      "akbank": "Akbank",
+      "garanti": "Garanti BBVA",
+      "yapikredi": "Yapı Kredi",
+      "isbank": "İş Bankası",
+      "denizbank": "DenizBank",
+      "teb": "TEB",
+      "ing": "ING"
+    }
+  },
+
+  "common": {
+    "yes": "Evet",
+    "no": "Hayır",
+    "ok": "Tamam",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "back": "Geri",
+    "next": "İleri",
+    "submit": "Gönder",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "sort": "Sırala",
+    "loading": "Yükleniyor...",
+    "noResults": "Sonuç bulunamadı",
+    "seeMore": "Daha Fazla",
+    "seeLess": "Daha Az"
+  },
+
+  "date": {
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "tomorrow": "Yarın",
+    "daysAgo": "{count} gün önce",
+    "hoursAgo": "{count} saat önce",
+    "minutesAgo": "{count} dakika önce",
+    "justnow": "Az önce"
+  },
+
+  "numbers": {
+    "thousand": "bin",
+    "million": "milyon",
+    "billion": "milyar",
+    "trillion": "trilyon"
+  },
+
+  "complaint": {
+    "title": "Şikayet Oluştur",
+    "subtitle": "Sorunlarınızı KVKK uyumlu şekilde bildirin, çözüm bulun",
+    "form": {
+      "brand": "Şikayet Ettiğiniz Marka",
+      "brandPlaceholder": "Marka seçiniz...",
+      "brandHelp": "Markanızı bulamıyor musunuz? Lütfen bizimle iletişime geçin.",
+      "product": "Ürün veya Hizmet Adı",
+      "productPlaceholder": "Örn: iPhone 15 Pro, İnternet Paketi, vb.",
+      "title": "Şikayet Başlığı",
+      "titlePlaceholder": "Örn: Ürün arızalı geldi ve iade edilmiyor",
+      "description": "Şikayet Detayı",
+      "descriptionPlaceholder": "Lütfen sorununuzu detaylı şekilde anlatın. Ne zaman başladı? Hangi adımları denediniz? Markanın yanıtı ne oldu?",
+      "descriptionHelp": "Minimum 50 karakter gereklidir.",
+      "severity": "Önem Derecesi",
+      "severityLow": "Düşük",
+      "severityMedium": "Orta",
+      "severityHigh": "Yüksek",
+      "severityCritical": "Kritik",
+      "severityHelp": "Düşük: Ufak aksaklıklar | Orta: Kullanımı zorlaştırıyor | Yüksek: Kullanılamıyor | Kritik: Maddi/manevi zarar",
+      "evidence": "Kanıt Dosyaları (Opsiyonel)",
+      "evidenceUpload": "Fotoğraf veya belge yükleyin",
+      "evidenceHelp": "Fatura, e-posta, ekran görüntüsü vb. (Maks 10MB, 5 dosya)",
+      "removeFile": "Kaldır",
+      "terms": "Kullanım Koşulları'nı ve Gizlilik Politikası'nı okudum, kabul ediyorum.",
+      "kvkk": "KVKK Aydınlatma Metni'ni okudum, kişisel verilerimin işlenmesine izin veriyorum.",
+      "required": "*",
+      "charCount": "{current}/{max}"
+    },
+    "alerts": {
+      "privacyWarning": "Gizlilik Uyarısı:",
+      "privacyText": "Şikayetinizde telefon numarası, e-posta adresi, TC kimlik numarası gibi kişisel bilgiler paylaşmayın. KVKK kapsamında kişisel verileriniz korunacaktır.",
+      "nextSteps": "Sonraki Adımlar:",
+      "nextStepsText": "Şikayetiniz incelendikten sonra yayınlanacaktır. Marka temsilcileri şikayetinizi görecek ve size geri dönüş yapacaktır. E-posta adresinize durum güncellemeleri gönderilecektir."
+    },
+    "buttons": {
+      "cancel": "İptal",
+      "submit": "Şikayeti Gönder"
+    },
+    "success": {
+      "title": "Şikayetiniz Alındı!",
+      "message": "Şikayetiniz başarıyla kaydedildi ve moderasyon sürecine alındı.",
+      "complaintId": "Şikayet ID: {id}",
+      "newComplaint": "Yeni Şikayet Oluştur"
+    },
+    "errors": {
+      "brandLoadFailed": "Markalar yüklenemedi. API'ye bağlanılamıyor.",
+      "brandsLoading": "Markalar yükleniyor...",
+      "connecting": "Bağlantı kuruluyor... ({retry}/{max})",
+      "retry": "Tekrar Dene",
+      "minLength": "Şikayet detayı en az 50 karakter olmalıdır.",
+      "acceptTerms": "Lütfen kullanım koşullarını ve KVKK metnini kabul edin.",
+      "maxFiles": "Maksimum {max} dosya yükleyebilirsiniz.",
+      "fileTooBig": "\"{name}\" dosyası çok büyük. Maksimum 10MB.",
+      "fileExists": "\"{name}\" zaten eklendi.",
+      "submitFailed": "Bir hata oluştu. Lütfen tekrar deneyin."
+    },
+    "languages": {
+      "title": "Dil Seçin",
+      "tr": "Türkçe",
+      "en": "English",
+      "ar": "العربية"
+    }
+  }
+}

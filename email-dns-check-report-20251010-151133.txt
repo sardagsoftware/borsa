@@ -1,0 +1,12 @@
+EMAIL DNS CHECK REPORT
+======================
+Date: 10 Eki 2025 Cum +03 15:11:33
+Domain: ailydian.com
+
+MX Records: MISSING
+TXT Records: OK
+A Records: OK
+SSL Status: OK
+Dashboard: OK
+
+Overall: NEEDS_MX

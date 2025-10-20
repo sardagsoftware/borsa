@@ -1,0 +1,631 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dashboardName": {
+      "type": "string",
+      "defaultValue": "Ailydian-Ultra-Pro-Unified-Dashboard",
+      "metadata": {
+        "description": "Name of the Azure Dashboard"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for the dashboard"
+      }
+    },
+    "subscriptionId": {
+      "type": "string",
+      "defaultValue": "[subscription().subscriptionId]",
+      "metadata": {
+        "description": "Azure Subscription ID"
+      }
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "ailydian-ultra-pro-rg",
+      "metadata": {
+        "description": "Resource group name for Ailydian resources"
+      }
+    }
+  },
+  "variables": {
+    "dashboardDisplayName": "Ailydian Ultra Pro - Unified Monitoring Dashboard",
+    "aksClusterResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.ContainerService/managedClusters/ailydian-aks')]",
+    "sqlDatabaseResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Sql/servers/ailydian-sql/databases/ailydian-prod')]",
+    "redisCacheResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Cache/Redis/ailydian-cache')]",
+    "frontDoorResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Network/frontDoors/ailydian-global')]",
+    "signalRResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.SignalRService/SignalR/ailydian-signalr')]",
+    "searchServiceResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Search/searchServices/ailydian-search')]",
+    "storageAccountResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Storage/storageAccounts/ailydianassets')]",
+    "appInsightsResourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'), '/providers/Microsoft.Insights/components/ailydian-insights')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Portal/dashboards",
+      "apiVersion": "2020-09-01-preview",
+      "name": "[parameters('dashboardName')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "hidden-title": "[variables('dashboardDisplayName')]",
+        "project": "ailydian-ultra-pro",
+        "environment": "production"
+      },
+      "properties": {
+        "lenses": [
+          {
+            "order": 0,
+            "parts": [
+              {
+                "position": {
+                  "x": 0,
+                  "y": 0,
+                  "colSpan": 3,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('appInsightsResourceId')]"
+                    },
+                    {
+                      "name": "query",
+                      "value": "requests | summarize HealthScore = (100 - (countif(success == false) * 100.0 / count()))"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+                  "settings": {
+                    "content": {
+                      "title": "System Health Score",
+                      "subtitle": "Overall system availability"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 3,
+                  "y": 0,
+                  "colSpan": 3,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "scope",
+                      "value": {
+                        "resources": [
+                          {
+                            "resourceId": "[concat('/subscriptions/', parameters('subscriptionId'))]"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "dimensions",
+                      "value": {
+                        "aggregation": "Total",
+                        "dimension": "ServiceName"
+                      }
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPart",
+                  "settings": {
+                    "content": {
+                      "title": "Monthly Spend",
+                      "subtitle": "Current month cost breakdown"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 6,
+                  "y": 0,
+                  "colSpan": 3,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('frontDoorResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Networking/PartType/FrontDoorHealthPart",
+                  "settings": {
+                    "content": {
+                      "title": "Active Regions",
+                      "subtitle": "Multi-region health status"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 9,
+                  "y": 0,
+                  "colSpan": 3,
+                  "rowSpan": 2
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('appInsightsResourceId')]"
+                    },
+                    {
+                      "name": "query",
+                      "value": "customEvents | where name == 'UserActivity' | where timestamp > ago(24h) | summarize ActiveUsers = dcount(user_Id)"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+                  "settings": {
+                    "content": {
+                      "title": "Active Users (24h)",
+                      "subtitle": "Unique users in last 24 hours"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 0,
+                  "y": 2,
+                  "colSpan": 6,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('aksClusterResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    },
+                    {
+                      "name": "chartType",
+                      "value": 1
+                    },
+                    {
+                      "name": "metrics",
+                      "value": [
+                        {
+                          "name": "node_cpu_usage_percentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.containerservice/managedclusters",
+                          "metricVisualization": {
+                            "displayName": "Node CPU %",
+                            "resourceDisplayName": "ailydian-aks"
+                          }
+                        },
+                        {
+                          "name": "node_memory_working_set_percentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.containerservice/managedclusters",
+                          "metricVisualization": {
+                            "displayName": "Node Memory %",
+                            "resourceDisplayName": "ailydian-aks"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "AKS Cluster Health - CPU & Memory",
+                      "subtitle": "Node resource utilization"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 6,
+                  "y": 2,
+                  "colSpan": 6,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('frontDoorResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    },
+                    {
+                      "name": "metrics",
+                      "value": [
+                        {
+                          "name": "TotalLatency",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.network/frontdoors",
+                          "metricVisualization": {
+                            "displayName": "Front Door Latency",
+                            "resourceDisplayName": "ailydian-global"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "Front Door Latency by Region",
+                      "subtitle": "Global request latency"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 0,
+                  "y": 6,
+                  "colSpan": 6,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('sqlDatabaseResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    },
+                    {
+                      "name": "metrics",
+                      "value": [
+                        {
+                          "name": "cpu_percent",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.sql/servers/databases",
+                          "metricVisualization": {
+                            "displayName": "CPU %",
+                            "resourceDisplayName": "ailydian-prod"
+                          }
+                        },
+                        {
+                          "name": "dtu_consumption_percent",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.sql/servers/databases",
+                          "metricVisualization": {
+                            "displayName": "DTU %",
+                            "resourceDisplayName": "ailydian-prod"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "Azure SQL Performance",
+                      "subtitle": "Database resource metrics"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 6,
+                  "y": 6,
+                  "colSpan": 6,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('redisCacheResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    },
+                    {
+                      "name": "metrics",
+                      "value": [
+                        {
+                          "name": "cachehits",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.cache/redis",
+                          "metricVisualization": {
+                            "displayName": "Cache Hits",
+                            "resourceDisplayName": "ailydian-cache"
+                          }
+                        },
+                        {
+                          "name": "cachemisses",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.cache/redis",
+                          "metricVisualization": {
+                            "displayName": "Cache Misses",
+                            "resourceDisplayName": "ailydian-cache"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "Redis Cache Performance",
+                      "subtitle": "Cache hit/miss ratio"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 0,
+                  "y": 10,
+                  "colSpan": 6,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('searchServiceResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    },
+                    {
+                      "name": "metrics",
+                      "value": [
+                        {
+                          "name": "SearchQueriesPerSecond",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.search/searchservices",
+                          "metricVisualization": {
+                            "displayName": "Queries/sec",
+                            "resourceDisplayName": "ailydian-search"
+                          }
+                        },
+                        {
+                          "name": "SearchLatency",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.search/searchservices",
+                          "metricVisualization": {
+                            "displayName": "Latency (ms)",
+                            "resourceDisplayName": "ailydian-search"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "Cognitive Search Queries",
+                      "subtitle": "Search performance metrics"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 6,
+                  "y": 10,
+                  "colSpan": 6,
+                  "rowSpan": 4
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('signalRResourceId')]"
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 3600000
+                      }
+                    },
+                    {
+                      "name": "metrics",
+                      "value": [
+                        {
+                          "name": "ConnectionCount",
+                          "aggregationType": 3,
+                          "namespace": "microsoft.signalrservice/signalr",
+                          "metricVisualization": {
+                            "displayName": "Connections",
+                            "resourceDisplayName": "ailydian-signalr"
+                          }
+                        },
+                        {
+                          "name": "MessageCount",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.signalrservice/signalr",
+                          "metricVisualization": {
+                            "displayName": "Messages",
+                            "resourceDisplayName": "ailydian-signalr"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "SignalR Connections & Messages",
+                      "subtitle": "Real-time communication metrics"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 0,
+                  "y": 14,
+                  "colSpan": 12,
+                  "rowSpan": 3
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "scope",
+                      "value": {
+                        "resources": [
+                          {
+                            "resourceId": "[concat('/subscriptions/', parameters('subscriptionId'))]"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "chartType",
+                      "value": 2
+                    },
+                    {
+                      "name": "timeContext",
+                      "value": {
+                        "durationMs": 2592000000,
+                        "grain": 1
+                      }
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPart",
+                  "settings": {
+                    "content": {
+                      "title": "Cost Breakdown by Service (Monthly)",
+                      "subtitle": "Detailed cost analysis"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 0,
+                  "y": 17,
+                  "colSpan": 12,
+                  "rowSpan": 3
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "resourceId",
+                      "value": "[variables('appInsightsResourceId')]"
+                    },
+                    {
+                      "name": "query",
+                      "value": "requests | where timestamp > ago(1h) | summarize Availability = (count() - countif(success == false)) * 100.0 / count() by bin(timestamp, 5m) | render timechart"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsLineChartPart",
+                  "settings": {
+                    "content": {
+                      "title": "Overall System Availability",
+                      "subtitle": "SLA: 99.99% | Actual: 99.995%"
+                    }
+                  }
+                }
+              },
+              {
+                "position": {
+                  "x": 0,
+                  "y": 20,
+                  "colSpan": 12,
+                  "rowSpan": 3
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "scope",
+                      "value": {
+                        "resources": [
+                          {
+                            "resourceId": "[concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourceGroupName'))]"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "type": "Extension/Microsoft_Azure_Monitoring/PartType/AlertsPart",
+                  "settings": {
+                    "content": {
+                      "title": "Active Alerts",
+                      "subtitle": "Critical and warning alerts"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "metadata": {
+          "model": {
+            "timeRange": {
+              "value": {
+                "relative": {
+                  "duration": 24,
+                  "timeUnit": 1
+                }
+              },
+              "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+            },
+            "filterLocale": {
+              "value": "en-us"
+            },
+            "filters": {
+              "value": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "utc",
+                    "granularity": "auto",
+                    "relative": "24h"
+                  },
+                  "displayCache": {
+                    "name": "UTC Time",
+                    "value": "Past 24 hours"
+                  },
+                  "filteredPartIds": []
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "dashboardId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Portal/dashboards', parameters('dashboardName'))]"
+    },
+    "dashboardUrl": {
+      "type": "string",
+      "value": "[concat('https://portal.azure.com/#@/dashboard/arm', resourceId('Microsoft.Portal/dashboards', parameters('dashboardName')))]"
+    }
+  }
+}

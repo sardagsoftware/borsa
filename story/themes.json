@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-10-12",
+    "game": "Echo of Sardis"
+  },
+  "primary_themes": {
+    "knowledge_vs_power": {
+      "title": "Knowledge vs. Power",
+      "description": "Is knowledge inherently good, or does its value depend on how it's used?",
+      "central_question": "Who should control world-changing knowledge?",
+      "perspectives": {
+        "elif": "Knowledge should enlighten and liberate humanity",
+        "consortium": "Knowledge equals power; power must be controlled",
+        "chordstone": "Knowledge without wisdom leads to destruction"
+      },
+      "arc": "Naive idealism → Ethical complexity → Wisdom through sacrifice",
+      "resolution": "Knowledge requires both wisdom AND humility",
+      "game_manifestation": ["player_choices", "codex_discoveries", "consortium_conflict"],
+      "emotion_tags": ["curiosity", "responsibility", "burden"]
+    },
+    "echo_and_memory": {
+      "title": "Echo and Memory",
+      "description": "Every action reverberates through time. The past is never truly gone.",
+      "central_question": "Can we escape the consequences of our actions?",
+      "symbolism": {
+        "echo": "Consequences that ripple outward",
+        "stone": "Memory storage (past informs present)",
+        "resonance": "Connection across time"
+      },
+      "literary_reference": "The past is never dead. It's not even past. — William Faulkner",
+      "arc": "Discovery → Awakening consequences → Accepting responsibility",
+      "resolution": "We cannot escape echoes, but we can choose how to respond",
+      "game_manifestation": ["echo_storms", "lydian_warnings", "player_choice_consequences"],
+      "emotion_tags": ["guilt", "responsibility", "acceptance"]
+    },
+    "sacrifice_for_progress": {
+      "title": "Sacrifice for Progress",
+      "description": "Is it noble to destroy dangerous knowledge, or cowardly to avoid responsibility?",
+      "central_question": "What must be sacrificed for humanity to survive?",
+      "historical_parallel": "Lydians sacrificed themselves to seal Chordstone network",
+      "player_dilemma": "Repeat Lydian sacrifice (seal) OR trust humanity to grow (release)",
+      "perspectives": {
+        "lydians": "Sacrifice to prevent future misuse",
+        "elif": "Sacrifice if necessary, but explore alternatives",
+        "consortium": "Sacrifice is weakness; control is strength"
+      },
+      "arc": "Optimism → Pragmatism → Acceptance of necessary loss",
+      "resolution": "Some sacrifices enable future growth",
+      "game_manifestation": ["ferhat_injury", "althea_capture", "final_choice"],
+      "emotion_tags": ["loss", "nobility", "catharsis"]
+    },
+    "nature_vs_technology": {
+      "title": "Nature vs. Technology",
+      "description": "Technology based on natural harmonics can coexist with nature—if used wisely.",
+      "central_question": "Can humanity harmonize with nature, or will we always dominate?",
+      "symbolism": {
+        "acoustic_resonance": "Universal language of nature",
+        "echo_storms": "Nature's rejection of misuse",
+        "chordstones": "Technology in harmony with geology"
+      },
+      "arc": "Exploitation → Disruption → Potential harmony",
+      "resolution": "Harmony requires listening, not dominating",
+      "game_manifestation": ["earthquake_consequences", "wildlife_behavior", "storm_patterns"],
+      "emotion_tags": ["awe", "humility", "connection"]
+    }
+  },
+  "secondary_themes": {
+    "trust_and_betrayal": {
+      "title": "Trust and Betrayal",
+      "description": "Who can you trust with world-changing knowledge?",
+      "character_arcs": {
+        "elif_ferhat": "Learning to trust after trauma",
+        "althea_consortium": "Betrayal of scientific ideals",
+        "venner_humanity": "Distrust in collective wisdom"
+      },
+      "game_manifestation": ["ally_choices", "consortium_offers", "npc_reactions"]
+    },
+    "cultural_heritage": {
+      "title": "Cultural Heritage Ownership",
+      "description": "Who owns ancient knowledge? The nation where it's found? All humanity?",
+      "perspectives": {
+        "turkish_government": "National heritage, Turkish control",
+        "consortium": "Knowledge transcends borders",
+        "elif": "Knowledge belongs to those who will use it wisely"
+      },
+      "game_manifestation": ["government_conflict", "international_politics", "player_dialogue"]
+    },
+    "individual_vs_collective": {
+      "title": "Individual vs. Collective",
+      "description": "Can one person make the right choice for all humanity?",
+      "dilemma": "Elif must decide fate of Chordstone network",
+      "perspectives": {
+        "individualist": "Trust exceptional individuals (Consortium view)",
+        "collectivist": "Decisions should be democratic (Elif's growth)",
+        "transcendent": "Some decisions transcend human politics (Chordstone)"
+      },
+      "game_manifestation": ["final_choice", "player_agency", "epilogue_consequences"]
+    }
+  },
+  "symbols": {
+    "chordstone": {
+      "symbol_of": "Heart, Memory, Legacy",
+      "represents": "Civilization's dual nature (blessing and curse)",
+      "visual": "Crystalline core with blue/gold light",
+      "sound": "Low harmonic hum (528 Hz 'love frequency')",
+      "narrative_function": "Central MacGuffin, moral weight"
+    },
+    "echo_storm": {
+      "symbol_of": "Consequence, Chaos, Natural Response",
+      "represents": "Unintended effects of past actions",
+      "visual": "Acoustic distortions, shimmering air, lightning",
+      "sound": "Discordant resonance, building crescendo",
+      "narrative_function": "Manifestation of player's S1 choices"
+    },
+    "sardis_ruins": {
+      "symbol_of": "Impermanence, Hubris, Warning",
+      "represents": "All civilizations rise and fall",
+      "visual": "Golden marble columns, weathered inscriptions",
+      "sound": "Wind through ruins, distant echoes",
+      "narrative_function": "Constant reminder of Lydian collapse"
+    },
+    "frequency_harmonic": {
+      "symbol_of": "Connection, Universal Language",
+      "represents": "All matter vibrates; everything connected",
+      "visual": "Waveform visualizations, rippling energy",
+      "sound": "Pure tones, harmonic intervals",
+      "narrative_function": "Puzzle mechanic, thematic reinforcement"
+    },
+    "fathers_compass": {
+      "symbol_of": "Legacy, Guidance, Lost Parent",
+      "represents": "Elif's motivation and emotional anchor",
+      "visual": "Antique brass compass with Lydian inscriptions",
+      "sound": "Metallic click when opened",
+      "narrative_function": "Character backstory, emotional touchstone"
+    }
+  },
+  "ethical_dilemmas": {
+    "dilemma_1": {
+      "act": 1,
+      "title": "Deactivate or Study?",
+      "description": "Shut down Chordstone (safe but lose knowledge) OR study carefully (risk cascade)",
+      "options": [
+        {"choice": "deactivate", "ethics": "precautionary_principle", "consequence": "knowledge_loss"},
+        {"choice": "study", "ethics": "scientific_progress", "consequence": "increased_risk"},
+        {"choice": "delayed_decision", "ethics": "gather_more_data", "consequence": "time_pressure"}
+      ],
+      "moral_weight": 0.6,
+      "affects": ["ferhat_trust", "althea_approval", "consortium_pressure"]
+    },
+    "dilemma_2": {
+      "act": 2,
+      "title": "Accept Consortium Partnership?",
+      "description": "Partner with Consortium (resources but compromise ethics) OR refuse (harder path)",
+      "options": [
+        {"choice": "accept", "ethics": "pragmatic_compromise", "consequence": "ethical_taint"},
+        {"choice": "refuse", "ethics": "moral_purity", "consequence": "resource_scarcity"},
+        {"choice": "negotiate", "ethics": "middle_ground", "consequence": "partial_trust"}
+      ],
+      "moral_weight": 0.8,
+      "affects": ["althea_disappointment", "consortium_leverage", "player_reputation"]
+    },
+    "dilemma_3": {
+      "act": "finale",
+      "title": "Seal, Release, or Control?",
+      "description": "Final choice: Destroy knowledge, share it, or preserve under control",
+      "options": [
+        {"choice": "seal_destroy", "ethics": "precautionary_sacrifice", "consequence": "knowledge_lost_forever"},
+        {"choice": "release_openly", "ethics": "democratic_trust", "consequence": "open_source_risk"},
+        {"choice": "control_preserve", "ethics": "cautious_stewardship", "consequence": "future_exploitation_risk"}
+      ],
+      "moral_weight": 1.0,
+      "affects": ["world_state", "epilogue", "season_2_setup"]
+    }
+  },
+  "archetypal_patterns": {
+    "elif_aras": {
+      "archetype": "The Seeker / The Hero",
+      "jungian": "Self (individuation through trial)",
+      "campbells_journey": [
+        "Call to adventure (Chordstone discovery)",
+        "Refusal of call (initial hesitation)",
+        "Meeting the mentor (Althea)",
+        "Crossing threshold (Act I commitment)",
+        "Tests, allies, enemies (Acts I-II)",
+        "Approach to inmost cave (Act III)",
+        "Ordeal (Ferhat injury, Althea capture)",
+        "Reward (Understanding Chordstone nature)",
+        "Road back (Return to Sardis)",
+        "Resurrection (Final choice)",
+        "Return with elixir (Wisdom, changed world)"
+      ],
+      "transformation": "Naive idealist → Wise guardian"
+    },
+    "ferhat_demir": {
+      "archetype": "The Loyal Companion / The Skeptic",
+      "jungian": "Shadow (pragmatic counterbalance to Elif's idealism)",
+      "function": "Grounds protagonist, provides tactical support, emotional anchor",
+      "transformation": "Cynical loner → Devoted ally"
+    },
+    "althea_kosta": {
+      "archetype": "The Wise Mentor / The Penitent",
+      "jungian": "Anima (emotional wisdom, connection to past)",
+      "function": "Guides protagonist, warns of pitfalls, embodies regret",
+      "transformation": "Guilt-ridden teacher → Redeemed elder"
+    },
+    "marcus_venner": {
+      "archetype": "The Shadow / The Zealot",
+      "jungian": "Shadow (Elif's dark potential—control over trust)",
+      "function": "Forces protagonist to confront temptation of power",
+      "transformation": "Calculated professional → Desperate fanatic"
+    },
+    "chordstone_entity": {
+      "archetype": "The Supernatural Aid / The Oracle",
+      "jungian": "Self (transcendent wisdom)",
+      "function": "Provides guidance without forcing choice, represents fate accepted",
+      "transformation": "Mysterious presence → Revealed guide → Accepting witness"
+    }
+  },
+  "narrative_devices": {
+    "foreshadowing": [
+      "Lydian inscriptions warn of collapse (Act I)",
+      "Althea's nervous behavior hints at past (Prologue-Act II)",
+      "Echo storms intensify as player progresses (environmental storytelling)",
+      "Consortium's increasing desperation (escalating tactics)"
+    ],
+    "dramatic_irony": [
+      "Player knows Lydian collapse cause before Elif does (Codex entries)",
+      "Althea worked for Consortium (revealed Act II, suspected earlier)",
+      "Chordstone is sentient (hinted Prologue, revealed Act III)"
+    ],
+    "chekhov_guns": [
+      "Father's compass (introduced Prologue, key to final puzzle)",
+      "Fail-safe protocol mention (Act I, used Act III)",
+      "Ferhat's drone upgrade (Act I, saves Elif Act III)",
+      "Althea's Lydian translation notes (throughout, crucial finale)"
+    ],
+    "red_herrings": [
+      "Turkish government as antagonist (actually bureaucratic obstacle)",
+      "Ferhat's military past (seems suspicious, actually noble)",
+      "Earthquake as natural disaster (actually Chordstone activation)"
+    ]
+  },
+  "moral_philosophy_frameworks": {
+    "utilitarianism": {
+      "perspective": "Consortium Leader",
+      "argument": "Greatest good for greatest number requires controlled innovation",
+      "counter": "Who decides what's 'good'? Risk of tyranny."
+    },
+    "deontology": {
+      "perspective": "Althea (Kantian ethics)",
+      "argument": "Some actions wrong regardless of consequences (lying, exploitation)",
+      "counter": "Rigid principles may fail in complex situations"
+    },
+    "virtue_ethics": {
+      "perspective": "Elif (Aristotelian)",
+      "argument": "Cultivate wisdom, courage, temperance—act from character",
+      "counter": "Requires time for deliberation, not always available"
+    },
+    "existentialism": {
+      "perspective": "Chordstone Entity (Sartrean)",
+      "argument": "Existence precedes essence—humans define themselves through choices",
+      "counter": "Heavy burden of freedom, potential paralysis"
+    }
+  },
+  "season_2_thematic_evolution": {
+    "inherited_themes": ["echo_and_memory", "nature_vs_technology"],
+    "new_themes": {
+      "living_with_consequences": "S1 choices manifest in echo storms",
+      "community_vs_individualism": "Co-op gameplay reflects theme",
+      "resilience": "Nature and humanity adapting to disruption"
+    },
+    "thematic_progression": "Individual heroism (S1) → Collective cooperation (S2) → Cosmic perspective (S3 proposed)"
+  }
+}

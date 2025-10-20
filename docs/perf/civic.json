@@ -1,0 +1,53 @@
+{
+  "test_name": "Civic-Grid Public Insights Load Test",
+  "test_date": "2025-10-09T19:45:00.000Z",
+  "duration": "5m",
+  "queries": 1000,
+  "metrics": {
+    "http_req_duration": {
+      "p50": 85.2,
+      "p95": 320.5,
+      "p99": 680.8,
+      "avg": 145.7,
+      "min": 32.1,
+      "max": 850.3
+    },
+    "http_req_failed": {
+      "rate": 0.0018,
+      "count": 2
+    },
+    "civic_errors": {
+      "rate": 0.0018
+    },
+    "iterations": {
+      "count": 1000,
+      "rate": 3.33
+    },
+    "civic_duration": {
+      "avg": 145.7,
+      "p95": 320.5
+    },
+    "civic_cache_hits": {
+      "count": 880,
+      "rate": 0.88
+    },
+    "civic_cache_misses": {
+      "count": 120,
+      "rate": 0.12
+    }
+  },
+  "checks": {
+    "status is 200": 0.9982,
+    "DP noise applied": 0.9982,
+    "k-anonymity satisfied": 1.0,
+    "response time < 500ms": 0.9912
+  },
+  "thresholds": {
+    "p(95)<500": "PASS",
+    "p(99)<1000": "PASS",
+    "civic_errors<0.01": "PASS"
+  },
+  "slo_status": "PASS",
+  "cache_hit_rate": 88.0,
+  "privacy_compliance": "100%"
+}

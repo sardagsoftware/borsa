@@ -1,0 +1,241 @@
+// ECW API - Prisma Schema (v7.3)
+// Ethical Climate Wallet - Data Models
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────────────────────────────────────
+// CORE MODELS - Wallet & Transactions
+// ──────────────────────────────────────────────────────────────
+
+model Wallet {
+  id            String   @id @default(cuid())
+  ownerType     String   // individual|organization|city
+  ownerId       String   // External ID (no PII)
+  region        String   // EU|TR|US (residency enforcement)
+
+  // Balances
+  balanceCO2    Float    @default(0) // kg CO2 equivalent
+  balanceH2O    Float    @default(0) // liters
+  balanceKWh    Float    @default(0) // kilowatt-hours
+  balanceWaste  Float    @default(0) // kg
+
+  // Ethics Scores
+  ethicsScore   Float    @default(0) // Ω (Omega) - Ethics coefficient
+  impactScore   Float    @default(0) // Φ (Phi) - Impact coefficient
+
+  // Metadata
+  status        String   @default("active") // active|suspended|closed
+  metadata      String?  // Additional non-PII data (JSON string for SQLite)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  transactions  Transaction[]
+
+  // Indexes
+  @@index([ownerType, ownerId])
+  @@index([region])
+  @@index([status])
+  @@index([createdAt])
+  @@map("wallets")
+}
+
+model Transaction {
+  id            String   @id @default(cuid())
+  walletId      String
+
+  // Transaction Details
+  type          String   // debit|credit
+  metric        String   // CO2|H2O|KWh|Waste
+  amount        Float
+  reason        String   // Travel|HomeEnergy|OffsetDonation|Recycling|etc
+  source        String   // manual|nico|irssa|tfe|qee|partner
+
+  // Ethics Evaluation
+  ethicsScore   Float    // Ω for this transaction
+  impactScore   Float    // Φ for this transaction
+  intentScore   Float?   // USK intent analysis result
+
+  // Proof Reference
+  proofJws      String   // JWS compact serialization
+
+  // External Reference
+  externalRef   String?  // External system transaction ID (optional)
+
+  // Metadata
+  metadata      String?  // Context data (timestamps, locations - no PII) (JSON string for SQLite)
+  status        String   @default("completed") // pending|completed|failed|rollback
+
+  createdAt     DateTime @default(now())
+
+  // Relations
+  wallet        Wallet   @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  proof         ProofOfImpact?
+
+  // Indexes
+  @@index([walletId])
+  @@index([metric])
+  @@index([type])
+  @@index([createdAt])
+  @@index([status])
+  @@map("transactions")
+}
+
+model ProofOfImpact {
+  id            String   @id @default(cuid())
+  txId          String   @unique
+
+  // Proof Components
+  merkleRoot    String   // Merkle tree root hash
+  jws           String   // Full JWS (header.payload.signature)
+  tsr           Bytes?   // RFC3161 timestamp response (binary)
+
+  // Verification
+  verified      Boolean  @default(false)
+  verifiedAt    DateTime?
+  verifiedBy    String?  // Verifier service ID
+
+  // ARP Integration
+  arpId         String?  // Audit & Record Preservation ID
+  arpUrl        String?  // Link to ARP evidence pack
+
+  createdAt     DateTime @default(now())
+
+  // Relations
+  transaction   Transaction @relation(fields: [txId], references: [id], onDelete: Cascade)
+
+  // Indexes
+  @@index([verified])
+  @@index([createdAt])
+  @@map("proofs_of_impact")
+}
+
+// ──────────────────────────────────────────────────────────────
+// AUDIT & COMPLIANCE
+// ──────────────────────────────────────────────────────────────
+
+model AuditLog {
+  id            String   @id @default(cuid())
+
+  // Event Details
+  eventType     String   // wallet.create|tx.log|proof.verify|policy.deny
+  entityType    String   // wallet|transaction|proof
+  entityId      String
+
+  // Actor (service/user ID - no PII)
+  actorId       String
+  actorType     String   // user|service|system
+
+  // Action Details
+  action        String   // create|update|delete|verify|deny
+  result        String   // success|failure|denied
+  reason        String?  // Reason for denial/failure
+
+  // Context
+  metadata      String?  // Request context, IP (hashed), etc (JSON string for SQLite)
+  region        String   // Data residency tracking
+
+  // Ethics Gate
+  ethicsGate    String?  // ACE|ESK|OPA|IRFS
+  policyViolation String? // If denied, which policy
+
+  createdAt     DateTime @default(now())
+
+  // Indexes
+  @@index([eventType])
+  @@index([entityType, entityId])
+  @@index([actorId])
+  @@index([result])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model IncidentReport {
+  id            String   @id @default(cuid())
+
+  // Incident Details
+  severity      String   // critical|high|medium|low
+  category      String   // proof_manipulation|dp_violation|residency_breach|ethics_violation
+  title         String
+  description   String
+
+  // Related Entities
+  walletId      String?
+  txId          String?
+  proofId       String?
+
+  // IRFS Integration
+  irfsId        String?  @unique // IRFS incident tracking ID
+  irfsUrl       String?  // Link to full IRFS report
+
+  // Status
+  status        String   @default("open") // open|investigating|resolved|false_positive
+  assignedTo    String?  // Security team member ID
+  resolvedAt    DateTime?
+  resolution    String?
+
+  // Metadata
+  metadata      String?  // Forensic data, snapshots (JSON string for SQLite)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Indexes
+  @@index([severity])
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
+  @@map("incident_reports")
+}
+
+// ──────────────────────────────────────────────────────────────
+// REPORTING & ANALYTICS
+// ──────────────────────────────────────────────────────────────
+
+model RegionReport {
+  id            String   @id @default(cuid())
+
+  // Report Metadata
+  region        String
+  period        String   // 7d|30d|90d|365d
+  startDate     DateTime
+  endDate       DateTime
+
+  // Aggregated Metrics
+  totalWallets  Int
+  totalTxs      Int
+  totalCO2      Float    // Total CO2 balance delta
+  totalH2O      Float    // Total H2O balance delta
+  totalKWh      Float    // Total energy balance delta
+  totalWaste    Float    // Total waste delta
+
+  // Ethics Aggregates
+  avgEthicsScore Float   // Average Ω
+  avgImpactScore Float   // Average Φ
+
+  // TFE Projections
+  tfeProjection  String? // Horizon forecasts from TFE (JSON string for SQLite)
+
+  // QEE Recommendations
+  qeeRecommendations String? // Ethical recommendations from QEE (JSON string for SQLite)
+
+  // Metadata
+  generatedBy   String   // Service/user ID
+  version       String   @default("v7.3")
+
+  createdAt     DateTime @default(now())
+
+  // Indexes
+  @@index([region, period])
+  @@index([createdAt])
+  @@map("region_reports")
+}

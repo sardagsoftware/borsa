@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-10-12",
+    "game": "Echo of Sardis",
+    "purpose": "Visual and audio aesthetic guidelines for art/sound teams"
+  },
+  "visual_palette": {
+    "primary_colors": {
+      "lydian_gold": {
+        "hex": "#D8B56A",
+        "rgb": "216, 181, 106",
+        "usage": "Ancient stone, warm lighting, Lydian artifacts",
+        "symbolism": "Wealth, history, warmth of past",
+        "associations": ["ancient_ruins", "sunset", "coin_motif"]
+      },
+      "deep_resonance_blue": {
+        "hex": "#00324F",
+        "rgb": "0, 50, 79",
+        "usage": "Chordstone glow, deep chambers, night sky",
+        "symbolism": "Mystery, depth, acoustic power",
+        "associations": ["chordstone_chambers", "underwater", "night_scenes"]
+      },
+      "echo_pulse_magenta": {
+        "hex": "#B93160",
+        "rgb": "185, 49, 96",
+        "usage": "Resonance pulses, danger, Consortium tech",
+        "symbolism": "Energy, warning, conflict",
+        "associations": ["resonance_effects", "alerts", "combat"]
+      }
+    },
+    "secondary_colors": {
+      "marble_white": {"hex": "#F5F3ED", "usage": "Ancient architecture highlights"},
+      "earth_brown": {"hex": "#5C4033", "usage": "Soil, natural terrain"},
+      "storm_grey": {"hex": "#7C8A92", "usage": "Echo storm effects, rain"},
+      "olive_green": {"hex": "#6B8E23", "usage": "Mediterranean vegetation"},
+      "sunset_orange": {"hex": "#FF6F3C", "usage": "Dramatic sky, warmth"}
+    },
+    "color_grading": {
+      "prologue": {
+        "palette": ["lydian_gold", "marble_white", "warm_tones"],
+        "mood": "Wonder and discovery",
+        "lighting": "Golden hour, god rays through ruins"
+      },
+      "act_1": {
+        "palette": ["earth_brown", "deep_resonance_blue", "neutral"],
+        "mood": "Mystery and caution",
+        "lighting": "Torchlight, bioluminescent crystals"
+      },
+      "act_2": {
+        "palette": ["deep_resonance_blue", "storm_grey", "cold_tones"],
+        "mood": "Guilt and determination",
+        "lighting": "Underwater diffused light, god rays"
+      },
+      "act_3": {
+        "palette": ["echo_pulse_magenta", "storm_grey", "high_contrast"],
+        "mood": "Desperation and sacrifice",
+        "lighting": "Lightning, harsh shadows, dawn breaking"
+      },
+      "finale": {
+        "palette": ["lydian_gold", "deep_resonance_blue", "balanced"],
+        "mood": "Catharsis and peace",
+        "lighting": "Balanced warm/cool, ethereal glow"
+      }
+    },
+    "lighting_philosophy": {
+      "technique": "Lumen Global Illumination + God rays",
+      "contrast": "Warm natural vs cool artificial",
+      "key_principles": [
+        "Ruins: Warm golden hour (600K-3000K)",
+        "Underground: Cool bioluminescent (5000K-7000K)",
+        "Chordstone: Pulsing blue-white (6500K)",
+        "Consortium: Harsh fluorescent (4000K-4500K)",
+        "Echo storms: Discordant color shifts (rapid Kelvin changes)"
+      ],
+      "time_of_day": {
+        "prologue": "Late afternoon (golden)",
+        "act_1": "N/A (underground)",
+        "act_2": "Underwater (diffused daylight)",
+        "act_3": "Dawn (transitional)",
+        "finale": "Midday (clarity)"
+      }
+    },
+    "ui_aesthetic": {
+      "theme": "Archaeological precision meets modern tech",
+      "font_primary": "Futura PT (clean, geometric)",
+      "font_secondary": "Noto Serif (archaeological notes)",
+      "ui_colors": {
+        "background": "#1A1A1A",
+        "foreground": "#F5F3ED",
+        "accent": "#D8B56A",
+        "alert": "#B93160",
+        "success": "#6B8E23"
+      },
+      "design_motifs": [
+        "Lydian coin patterns (circular borders)",
+        "Acoustic waveforms (dynamic elements)",
+        "Stone texture overlays (depth)",
+        "Minimalist geometric (modern contrast)"
+      ]
+    }
+  },
+  "audio_palette": {
+    "music_style": {
+      "genre_blend": "Ethnic percussion + orchestral + digital resonance experiments",
+      "influences": [
+        "Traditional Turkish music (makam modes)",
+        "Hans Zimmer (epic scope)",
+        "Austin Wintory (Journey - emotional minimalism)",
+        "Gareth Coker (Ori - ethereal beauty)"
+      ],
+      "emotional_progression": "Wonder → Tension → Melancholy → Epic → Peace"
+    },
+    "instrumentation": {
+      "ethnic_instruments": {
+        "ney": {
+          "usage": "Turkish flute, mournful melodies",
+          "symbolism": "Ancient voice, wisdom",
+          "acts": ["prologue", "act_2", "finale"]
+        },
+        "frame_drum": {
+          "usage": "Percussion, heartbeat rhythm",
+          "symbolism": "Pulse, life force, urgency",
+          "acts": ["act_1", "act_3"]
+        },
+        "kanun": {
+          "usage": "Turkish zither, delicate arpeggios",
+          "symbolism": "Intricate connections, complexity",
+          "acts": ["prologue", "act_2"]
+        },
+        "duduk": {
+          "usage": "Armenian oboe, deep emotion",
+          "symbolism": "Loss, sacrifice, memory",
+          "acts": ["act_2", "finale"]
+        }
+      },
+      "orchestral_instruments": {
+        "strings": {
+          "usage": "Emotional swells, tension building",
+          "sections": ["violins", "violas", "cellos", "double_bass"],
+          "techniques": ["tremolo", "pizzicato", "harmonics"]
+        },
+        "brass": {
+          "usage": "Consortium threat, epic scope",
+          "sections": ["horns", "trumpets", "trombones"],
+          "techniques": ["staccato_attacks", "long_tones"]
+        },
+        "woodwinds": {
+          "usage": "Mystery, nature, lightness",
+          "sections": ["flutes", "clarinets", "bassoons"],
+          "techniques": ["flutter_tongue", "breathy_tones"]
+        }
+      },
+      "digital_elements": {
+        "resonance_tones": {
+          "usage": "Chordstone presence, puzzle solve feedback",
+          "frequencies": ["528Hz (love frequency)", "432Hz (earth tone)", "639Hz (connection)"],
+          "synthesis": "Pure sine waves, FM synthesis, granular"
+        },
+        "processed_acoustics": {
+          "usage": "Echo storm effects, alien communication",
+          "techniques": ["extreme_reverb", "pitch_shifting", "time_stretching", "convolution"]
+        }
+      }
+    },
+    "tempo_progression": {
+      "prologue": "Andante (72 BPM) - Walking pace, exploratory",
+      "act_1": "Moderato (88 BPM) - Steady, building tension",
+      "act_2": "Largo (60 BPM) - Slow, melancholic",
+      "act_3": "Allegro (120 BPM) - Fast, urgent, action",
+      "finale": "Lento (52 BPM) - Very slow, contemplative resolution"
+    },
+    "key_signatures": {
+      "prologue": "D major (warm, heroic)",
+      "act_1": "A minor (mysterious, cautious)",
+      "act_2": "F minor (melancholic, introspective)",
+      "act_3": "E minor (dramatic, intense)",
+      "finale": "C major (resolution, clarity)"
+    },
+    "leitmotifs": {
+      "elif_theme": {
+        "description": "Ascending ney melody, hopeful",
+        "instruments": ["ney", "strings"],
+        "emotional_arc": "Grows from simple to complex through acts"
+      },
+      "chordstone_theme": {
+        "description": "528Hz pure tone + harmonic overtones",
+        "instruments": ["digital_synthesis", "kanun"],
+        "emotional_arc": "Mysterious → Revealed → Accepting"
+      },
+      "consortium_theme": {
+        "description": "Brass stabs, mechanical rhythm",
+        "instruments": ["brass", "electronic_percussion"],
+        "emotional_arc": "Professional → Aggressive → Desperate"
+      },
+      "resonance_theme": {
+        "description": "Pulsing harmonic series, building",
+        "instruments": ["digital_resonance", "frame_drum"],
+        "emotional_arc": "Subtle → Intense → Overwhelming"
+      }
+    }
+  },
+  "soundscape_design": {
+    "ambient_layers": {
+      "ruins": {
+        "base": ["Wind through columns", "Distant bird calls", "Footsteps on stone"],
+        "dynamic": ["Crumbling debris (context)", "Echo of voices (memories)"],
+        "emotional": ["Loneliness", "Ancient presence"]
+      },
+      "underground": {
+        "base": ["Water drips", "Stone resonance hum", "Air movement"],
+        "dynamic": ["Shifting rocks", "Chordstone pulse (proximity)"],
+        "emotional": ["Claustrophobia", "Mystery", "Tension"]
+      },
+      "underwater": {
+        "base": ["Muffled water", "Bubble streams", "Pressure creaks"],
+        "dynamic": ["Swimming sounds", "Oxygen warnings", "Sonar pings"],
+        "emotional": ["Isolation", "Wonder", "Urgency"]
+      },
+      "storm": {
+        "base": ["Acoustic distortions", "Discordant frequencies", "Pressure waves"],
+        "dynamic": ["Lightning cracks", "Objects resonating", "Screaming wind"],
+        "emotional": ["Chaos", "Danger", "Nature's power"]
+      }
+    },
+    "reverb_design": {
+      "philosophy": "Acoustic space tells story",
+      "sardis_chambers": {
+        "reverb_time": "4.5 seconds",
+        "pre_delay": "80ms",
+        "characteristics": "Large stone chamber, warm, ancient"
+      },
+      "cappadocia_tunnels": {
+        "reverb_time": "2.1 seconds",
+        "pre_delay": "35ms",
+        "characteristics": "Narrow passages, reflective rock"
+      },
+      "kekova_underwater": {
+        "reverb_time": "1.8 seconds (dense)",
+        "pre_delay": "10ms",
+        "characteristics": "Water absorption, low-pass filtered"
+      },
+      "nemrut_summit": {
+        "reverb_time": "0.3 seconds",
+        "pre_delay": "150ms",
+        "characteristics": "Open air, wind, minimal reflection"
+      }
+    },
+    "diegetic_sound": {
+      "chordstone_hum": {
+        "frequency": "528Hz base + harmonic series",
+        "behavior": "Pulses in sync with player proximity",
+        "game_function": "Navigation cue, emotional anchor"
+      },
+      "earthquake_rumble": {
+        "frequency": "20-60Hz (subsonic)",
+        "behavior": "Builds gradually, controller vibration",
+        "game_function": "Immersion, danger warning"
+      },
+      "consortium_drones": {
+        "frequency": "Mechanical whirr (200-800Hz)",
+        "behavior": "Doppler effect on movement",
+        "game_function": "Enemy presence indicator"
+      }
+    }
+  },
+  "cinematography": {
+    "camera_philosophy": "Archaeological gaze - observe, don't dominate",
+    "shot_types": {
+      "establishing": "Wide shots of ruins, emphasize scale and age",
+      "exploration": "Medium shots, player-perspective, immersive",
+      "discovery": "Close-ups of artifacts, slow reveal",
+      "confrontation": "Dynamic angles, handheld feel, urgency",
+      "contemplation": "Static long takes, environmental storytelling"
+    },
+    "camera_movement": {
+      "exploration": "Smooth, patient tracking",
+      "action": "Shaky, urgent, following motion",
+      "cutscenes": "Crane shots, reveals, emotional closeups"
+    }
+  },
+  "season_2_aesthetic_evolution": {
+    "color_shift": "More saturated (echo storms = color distortion)",
+    "new_elements": {
+      "storm_colors": ["Electric purple", "Acid green", "Distorted rainbow"],
+      "co_op_UI": ["Team color coding", "Shared objective markers"]
+    },
+    "music_evolution": "More electronic/synthetic (storm = unnatural)",
+    "soundscape_addition": "Storm interference (radio static, distortion)"
+  }
+}

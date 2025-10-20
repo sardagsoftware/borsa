@@ -1,0 +1,812 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Hukuk AI - Küresel Hukuk Yapay Zeka Platformu</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --justice-gold: #C4A962;
+            --justice-navy: #1C2536;
+            --justice-maroon: #8B1538;
+            --justice-white: #F8F7F4;
+            --bg-dark: #0F172A;
+            --bg-card: #1E293B;
+            --bg-input: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border: #475569;
+            --success: #10B981;
+            --error: #EF4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f35 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--justice-gold), transparent);
+            top: -300px;
+            left: -200px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--justice-maroon), transparent);
+            bottom: -200px;
+            right: -150px;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -60px) scale(1.15); }
+            66% { transform: translate(-40px, 40px) scale(0.85); }
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.75rem;
+            font-weight: 700 !important;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--success);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700 !important;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-slogan {
+            font-size: 1rem;
+            color: var(--justice-gold);
+            font-weight: 600;
+        }
+
+        /* Query Panel - Modern Split View */
+        .query-panel {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .query-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--justice-gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .input-field, .select-field, textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus, .select-field:focus, textarea:focus {
+            outline: none;
+            border-color: var(--justice-gold);
+            box-shadow: 0 0 0 3px rgba(196, 169, 98, 0.15);
+            background: rgba(51, 65, 85, 0.8);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196, 169, 98, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Response Area - Modern Card */
+        .response-area {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .response-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .response-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .response-status.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .response-status.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--error);
+        }
+
+        .response-status.loading {
+            background: rgba(196, 169, 98, 0.2);
+            color: var(--justice-gold);
+        }
+
+        .response-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border);
+            border-top-color: var(--justice-gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--justice-gold);
+            box-shadow: 0 10px 30px rgba(196, 169, 98, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .panel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--justice-gold);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--justice-maroon);
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">⚖️ LyDian Hukuk AI</div>
+            <div class="tagline">Adalet için Teknoloji • Teknoloji için Etik</div>
+        </div>
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            <span>Sistem Aktif</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Küresel Hukuk Yapay Zeka Platformu</h1>
+            <div class="hero-subtitle">Azure AI ile Güçlendirilmiş Hukuki Çözümler</div>
+            <div class="hero-slogan">Hakimler → Savcılar → Avukatlar → Vatandaşlar</div>
+        </div>
+
+        <!-- Query Panel -->
+        <div class="query-panel">
+            <div class="panel-grid">
+                <!-- Query Section -->
+                <div class="query-section">
+                    <div class="section-title">
+                        <span class="section-icon">📝</span>
+                        Sorgu Gir
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Hizmet Seçin</label>
+                        <select class="select-field" id="service-select" onchange="updateQueryForm()">
+                            <option value="translate">🌍 Çeviri (150+ Dil)</option>
+                            <option value="gdpr">🛡️ GDPR Uyumluluk</option>
+                            <option value="case-analysis">📊 Dava Analizi</option>
+                            <option value="legal-search">🔍 Hukuki Arama</option>
+                        </select>
+                    </div>
+
+                    <div id="dynamic-form">
+                        <!-- Translation Form (Default) -->
+                        <div class="input-group">
+                            <label class="input-label">Metin</label>
+                            <textarea id="translate-text" placeholder="Çevrilecek yasal metni girin...">mahkeme kararı</textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Hedef Dil</label>
+                            <select class="select-field" id="target-lang">
+                                <option value="en">İngilizce</option>
+                                <option value="de">Almanca</option>
+                                <option value="fr">Fransızca</option>
+                                <option value="es">İspanyolca</option>
+                                <option value="ar">Arapça</option>
+                                <option value="zh">Çince</option>
+                                <option value="ru">Rusça</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="executeQuery()" id="execute-btn">
+                        Çalıştır
+                    </button>
+                </div>
+
+                <!-- Response Section -->
+                <div class="query-section">
+                    <div class="section-title">
+                        <span class="section-icon">💬</span>
+                        Yanıt
+                    </div>
+
+                    <div class="response-area">
+                        <div class="response-header">
+                            <div class="response-title">Sonuç</div>
+                            <div class="response-status" id="response-status">Bekleniyor</div>
+                        </div>
+                        <div class="response-content" id="response-content">
+                            Sorgunuz çalıştırıldığında sonuç burada görünecek...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+            <div class="service-card" onclick="selectService('translate')">
+                <div class="service-icon">🌍</div>
+                <div class="service-title">Çeviri Servisi</div>
+                <div class="service-desc">
+                    Azure Translator ile 150+ dilde anında çeviri.
+                    Hukuki terimler korunur, bağlam analizi yapılır.
+                </div>
+            </div>
+
+            <div class="service-card" onclick="selectService('gdpr')">
+                <div class="service-icon">🛡️</div>
+                <div class="service-title">GDPR Kontrolü</div>
+                <div class="service-desc">
+                    Otomatik GDPR uyumluluk analizi.
+                    9 kontrol noktası, €20M ceza riskini önleyin.
+                </div>
+            </div>
+
+            <div class="service-card" onclick="selectService('case-analysis')">
+                <div class="service-icon">📊</div>
+                <div class="service-title">Dava Analizi</div>
+                <div class="service-desc">
+                    AI destekli dava stratejisi önerileri.
+                    Emsal kararlar ve başarı oranı tahmini.
+                </div>
+            </div>
+
+            <div class="service-card" onclick="selectService('legal-search')">
+                <div class="service-icon">🔍</div>
+                <div class="service-title">Hukuki Arama</div>
+                <div class="service-desc">
+                    Türkiye ve global hukuk sistemlerinde
+                    semantik arama. Emsal kararlar, kanunlar.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 LyDian AI • White-Hat Security Active • Powered by Azure AI</p>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'http://localhost:3100/api/legal-ai';
+
+        // Update query form based on service selection
+        function updateQueryForm() {
+            const service = document.getElementById('service-select').value;
+            const form = document.getElementById('dynamic-form');
+
+            switch(service) {
+                case 'translate':
+                    form.innerHTML = `
+                        <div class="input-group">
+                            <label class="input-label">Metin</label>
+                            <textarea id="translate-text" placeholder="Çevrilecek yasal metni girin...">mahkeme kararı</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Hedef Dil</label>
+                            <select class="select-field" id="target-lang">
+                                <option value="en">İngilizce</option>
+                                <option value="de">Almanca</option>
+                                <option value="fr">Fransızca</option>
+                                <option value="es">İspanyolca</option>
+                                <option value="ar">Arapça</option>
+                                <option value="zh">Çince</option>
+                                <option value="ru">Rusça</option>
+                            </select>
+                        </div>
+                    `;
+                    break;
+
+                case 'gdpr':
+                    form.innerHTML = `
+                        <div class="input-group">
+                            <label class="input-label">Veri İşleme Faaliyeti</label>
+                            <textarea id="gdpr-activity" placeholder="Veri işleme faaliyetinizi açıklayın...">E-posta ve isim verilerini pazarlama amacıyla işliyoruz.</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Hukuki Dayanak</label>
+                            <select class="select-field" id="legal-basis">
+                                <option value="consent">Rıza</option>
+                                <option value="contract">Sözleşme</option>
+                                <option value="legal_obligation">Yasal Yükümlülük</option>
+                                <option value="legitimate_interest">Meşru Menfaat</option>
+                            </select>
+                        </div>
+                    `;
+                    break;
+
+                case 'case-analysis':
+                    form.innerHTML = `
+                        <div class="input-group">
+                            <label class="input-label">Dava Türü</label>
+                            <select class="select-field" id="case-type">
+                                <option value="civil">Hukuk Davası</option>
+                                <option value="criminal">Ceza Davası</option>
+                                <option value="commercial">Ticaret Davası</option>
+                                <option value="labor">İş Davası</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Dava Detayları</label>
+                            <textarea id="case-details" placeholder="Dava detaylarını girin...">Kira bedelinin tahsili davası, kiracı ödeme yapmıyor.</textarea>
+                        </div>
+                    `;
+                    break;
+
+                case 'legal-search':
+                    form.innerHTML = `
+                        <div class="input-group">
+                            <label class="input-label">Arama Sorgusu</label>
+                            <textarea id="search-query" placeholder="Hukuki sorunuzu girin...">Kira sözleşmesinde kiracı hakları nelerdir?</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Arama Kapsamı</label>
+                            <select class="select-field" id="search-scope">
+                                <option value="turkey">Türkiye Hukuku</option>
+                                <option value="eu">AB Hukuku</option>
+                                <option value="international">Uluslararası Hukuk</option>
+                                <option value="all">Tümü</option>
+                            </select>
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        // Select service from card
+        function selectService(service) {
+            document.getElementById('service-select').value = service;
+            updateQueryForm();
+        }
+
+        // Execute query
+        async function executeQuery() {
+            const service = document.getElementById('service-select').value;
+            const btn = document.getElementById('execute-btn');
+            const statusEl = document.getElementById('response-status');
+            const contentEl = document.getElementById('response-content');
+
+            // Update UI
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> İşleniyor...';
+            statusEl.textContent = 'İşleniyor...';
+            statusEl.className = 'response-status loading';
+            contentEl.textContent = 'Sorgunuz işleniyor, lütfen bekleyin...';
+
+            try {
+                let response;
+
+                switch(service) {
+                    case 'translate':
+                        const text = document.getElementById('translate-text').value;
+                        const targetLang = document.getElementById('target-lang').value;
+
+                        response = await fetch(`${API_BASE}/translate`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                text: text,
+                                targetLanguage: targetLang,
+                                options: { preserveLegalTerms: true }
+                            })
+                        });
+                        break;
+
+                    case 'gdpr':
+                        const activity = document.getElementById('gdpr-activity').value;
+                        const legalBasis = document.getElementById('legal-basis').value;
+
+                        response = await fetch(`${API_BASE}/legal-systems/eu/gdpr/check`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                dataProcessingActivity: {
+                                    legalBasis: legalBasis,
+                                    purposes: ['marketing'],
+                                    dataTypes: ['email', 'name'],
+                                    description: activity
+                                }
+                            })
+                        });
+                        break;
+
+                    case 'case-analysis':
+                        const caseType = document.getElementById('case-type').value;
+                        const caseDetails = document.getElementById('case-details').value;
+
+                        // For now, return mock data
+                        contentEl.textContent = JSON.stringify({
+                            success: true,
+                            analysis: {
+                                caseType: caseType,
+                                estimatedDuration: "6-12 ay",
+                                successProbability: "75%",
+                                suggestedStrategy: "Önce sulh, sonra dava",
+                                similarCases: 42,
+                                averageCompensation: "50.000 TL"
+                            },
+                            message: "Bu özellik yakında aktif edilecek."
+                        }, null, 2);
+
+                        statusEl.textContent = 'Başarılı';
+                        statusEl.className = 'response-status success';
+                        btn.disabled = false;
+                        btn.textContent = 'Çalıştır';
+                        return;
+
+                    case 'legal-search':
+                        const searchQuery = document.getElementById('search-query').value;
+                        const searchScope = document.getElementById('search-scope').value;
+
+                        // For now, return mock data
+                        contentEl.textContent = JSON.stringify({
+                            success: true,
+                            results: [
+                                {
+                                    title: "Türk Borçlar Kanunu Madde 339",
+                                    summary: "Kiracı hakları ve yükümlülükleri...",
+                                    relevance: 0.95
+                                },
+                                {
+                                    title: "Yargıtay 3. HD, 2023/1234",
+                                    summary: "Kira bedeli tahsili emsal karar...",
+                                    relevance: 0.87
+                                }
+                            ],
+                            message: "Bu özellik yakında aktif edilecek."
+                        }, null, 2);
+
+                        statusEl.textContent = 'Başarılı';
+                        statusEl.className = 'response-status success';
+                        btn.disabled = false;
+                        btn.textContent = 'Çalıştır';
+                        return;
+                }
+
+                const data = await response.json();
+
+                // Update UI with response
+                contentEl.textContent = JSON.stringify(data, null, 2);
+                statusEl.textContent = data.success ? 'Başarılı' : 'Hata';
+                statusEl.className = data.success ? 'response-status success' : 'response-status error';
+
+            } catch (error) {
+                contentEl.textContent = '❌ Hata: ' + error.message + '\n\nAPI endpoint mevcut olmayabilir. Lütfen server\'ın çalıştığından emin olun.';
+                statusEl.textContent = 'Hata';
+                statusEl.className = 'response-status error';
+            }
+
+            // Reset button
+            btn.disabled = false;
+            btn.textContent = 'Çalıştır';
+        }
+
+        // Initialize
+        console.log('⚖️ LyDian Hukuk AI v2 - Modern arayüz yüklendi!');
+        console.log('Çeviri 🌍 | GDPR 🛡️ | Dava Analizi 📊 | Hukuki Arama 🔍');
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

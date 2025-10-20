@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Dashboard - AiLydian Ultra Pro</title>
+    <meta name="description" content="Real-time performance monitoring and analytics dashboard">
+
+    <style>
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --color-primary: #10A37F;
+            --color-secondary: #C4A962;
+            --color-dark: #0a0e27;
+            --color-dark-alt: #1a1f3a;
+            --color-surface: #252b47;
+            --color-text: #e2e8f0;
+            --color-text-secondary: #94a3b8;
+            --color-border: rgba(255, 255, 255, 0.1);
+
+            /* Status Colors */
+            --color-good: #10b981;
+            --color-needs-improvement: #f59e0b;
+            --color-poor: #ef4444;
+            --color-unknown: #6b7280;
+
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+
+            /* Shadow */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-alt) 50%, var(--color-dark) 100%);
+            color: var(--color-text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ==================== LAYOUT ==================== */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        /* ==================== HEADER ==================== */
+        .dashboard-header {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .refresh-button {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .refresh-button:hover {
+            background: #0D8F6E;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: var(--color-text);
+        }
+
+        .loading-indicator {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== SECTIONS ==================== */
+        .dashboard-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+        }
+
+        /* ==================== WEB VITALS ==================== */
+        .web-vitals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .metric-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-unknown);
+        }
+
+        .metric-card.rating-good::before {
+            background: var(--color-good);
+        }
+
+        .metric-card.rating-needs-improvement::before {
+            background: var(--color-needs-improvement);
+        }
+
+        .metric-card.rating-poor::before {
+            background: var(--color-poor);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .metric-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .metric-rating {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--color-unknown);
+            color: white;
+        }
+
+        .rating-good .metric-rating {
+            background: var(--color-good);
+        }
+
+        .rating-needs-improvement .metric-rating {
+            background: var(--color-needs-improvement);
+        }
+
+        .rating-poor .metric-rating {
+            background: var(--color-poor);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .metric-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .metric-stat {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .metric-stat .label {
+            color: var(--color-text-secondary);
+        }
+
+        .metric-stat .value {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        /* ==================== PWA METRICS ==================== */
+        .pwa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .pwa-stat {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .pwa-stat:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16, 163, 127, 0.1);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-text);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: var(--spacing-xs);
+        }
+
+        /* ==================== ERRORS ==================== */
+        .error-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .error-stat {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .error-stat .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ef4444, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .recent-errors {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        }
+
+        .recent-errors h4 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .error-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .error-item {
+            padding: var(--spacing-md);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--color-poor);
+        }
+
+        .error-type {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-poor);
+            text-transform: uppercase;
+        }
+
+        .error-message {
+            margin: var(--spacing-xs) 0;
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+
+        .error-time {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ==================== USER STATS ==================== */
+        .user-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .user-stat {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        /* ==================== SYSTEM HEALTH ==================== */
+        .health-badge {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            border: 2px solid var(--color-good);
+        }
+
+        .health-badge.degraded {
+            border-color: var(--color-needs-improvement);
+        }
+
+        .health-icon {
+            font-size: 3rem;
+        }
+
+        .health-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .health-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .service-status {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-name {
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .service-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--color-good);
+            color: white;
+        }
+
+        .service-status.degraded .service-badge {
+            background: var(--color-needs-improvement);
+        }
+
+        .service-status.down .service-badge {
+            background: var(--color-poor);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+
+            .dashboard-title {
+                font-size: 1.8rem;
+            }
+
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-md);
+            }
+
+            .header-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .web-vitals-grid,
+            .pwa-grid,
+            .user-stats-grid,
+            .health-services {
+                grid-template-columns: 1fr;
+            }
+
+            .error-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-top">
+                <h1 class="dashboard-title">📊 Performance Dashboard</h1>
+                <button class="refresh-button" onclick="window.performanceDashboard?.refresh()">
+                    <span>🔄</span>
+                    <span>Refresh</span>
+                </button>
+            </div>
+            <div class="header-info">
+                <div class="info-item">
+                    <span class="info-label">Last Updated:</span>
+                    <span class="info-value" id="last-updated">--:--:--</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Auto-refresh:</span>
+                    <span class="info-value">30 seconds</span>
+                </div>
+                <div class="loading-indicator" id="dashboard-loading"></div>
+            </div>
+        </header>
+
+        <!-- Core Web Vitals Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">
+                <span class="section-icon">⚡</span>
+                Core Web Vitals
+            </h2>
+            <div id="web-vitals-container" class="web-vitals-grid">
+                <!-- Dynamically populated -->
+                <div class="metric-card rating-unknown">
+                    <div class="metric-header">
+                        <h3 class="metric-name">Loading...</h3>
+                        <span class="metric-rating">...</span>
+                    </div>
+                    <div class="metric-value">...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PWA Metrics Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">
+                <span class="section-icon">📱</span>
+                PWA Metrics
+            </h2>
+            <div id="pwa-metrics-container" class="pwa-grid">
+                <!-- Dynamically populated -->
+                <div class="pwa-stat">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <div class="stat-value">...</div>
+                        <div class="stat-label">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Errors Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">
+                <span class="section-icon">🚨</span>
+                Error Tracking
+            </h2>
+            <div id="errors-container">
+                <!-- Dynamically populated -->
+                <div class="error-summary">
+                    <div class="error-stat">
+                        <div class="stat-value">...</div>
+                        <div class="stat-label">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Analytics Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">
+                <span class="section-icon">👥</span>
+                User Analytics
+            </h2>
+            <div id="user-stats-container" class="user-stats-grid">
+                <!-- Dynamically populated -->
+                <div class="user-stat">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-content">
+                        <div class="stat-value">...</div>
+                        <div class="stat-label">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Health Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">
+                <span class="section-icon">🏥</span>
+                System Health
+            </h2>
+            <div id="system-health-container">
+                <!-- Dynamically populated -->
+                <div class="health-badge healthy">
+                    <div class="health-icon">✅</div>
+                    <div class="health-text">Loading...</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Load Dashboard JS -->
+    <script src="/js/performance-dashboard.js"></script>
+</body>
+</html>

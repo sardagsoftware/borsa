@@ -1,0 +1,487 @@
+{
+  "event_id": "photomode-storm-trails-s2w1",
+  "event_name": "PhotoMode: Storm Trails",
+  "event_type": "community_ugc",
+  "season": "S2",
+  "week": 1,
+
+  "metadata": {
+    "created_at": "2026-01-21T18:00:00Z",
+    "created_by": "liveops-team",
+    "version": "1.0.0",
+    "status": "ready_for_launch",
+    "requires_role": "liveops.admin"
+  },
+
+  "schedule": {
+    "start_time": "2026-01-23T00:00:00Z",
+    "end_time": "2026-01-30T23:59:59Z",
+    "duration_days": 8,
+    "timezone": "UTC",
+    "announcement_time": "2026-01-22T20:00:00Z"
+  },
+
+  "description": {
+    "en": "Capture the beauty of storm weather in the new biomes! Submit your best PhotoMode shots featuring storm effects for a chance to win exclusive rewards.",
+    "tr": "Yeni biyomlardaki fırtına hava durumunun güzelliğini yakalayın! Fırtına efektlerini içeren en iyi PhotoMode çekimlerinizi gönderin ve özel ödüller kazanma şansı yakalayın.",
+    "de": "Halte die Schönheit des Sturmwetters in den neuen Biomen fest! Reiche deine besten PhotoMode-Aufnahmen mit Sturmeffekten ein und gewinne exklusive Belohnungen.",
+    "es": "¡Captura la belleza del clima tormentoso en los nuevos biomas! Envía tus mejores fotos en PhotoMode con efectos de tormenta para ganar recompensas exclusivas.",
+    "fr": "Capturez la beauté du temps orageux dans les nouveaux biomes ! Soumettez vos meilleures photos PhotoMode avec des effets de tempête pour gagner des récompenses exclusives."
+  },
+
+  "theme": {
+    "primary": "Storm Weather Photography",
+    "biomes_required": [
+      "canyon_night_storm",
+      "ruins_sand_gale"
+    ],
+    "required_elements": [
+      "visible_storm_effect",
+      "character_in_frame",
+      "biome_landmark"
+    ],
+    "optional_elements": [
+      "lightning",
+      "dramatic_lighting",
+      "action_pose",
+      "echo_visualization"
+    ]
+  },
+
+  "submission_rules": {
+    "max_submissions_per_user": 5,
+    "min_resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "max_file_size_mb": 10,
+    "allowed_formats": [
+      "jpg",
+      "jpeg",
+      "png"
+    ],
+    "required_metadata": [
+      "biome_name",
+      "timestamp",
+      "user_id",
+      "season_id"
+    ],
+
+    "prohibited_content": [
+      "offensive_language",
+      "inappropriate_imagery",
+      "external_watermarks",
+      "photoshopped_elements",
+      "ui_visible",
+      "debug_info_visible"
+    ],
+
+    "technical_requirements": {
+      "photomode_enabled": true,
+      "hud_hidden": true,
+      "ui_hidden": true,
+      "watermark_allowed": "official_only",
+      "filters_allowed": true,
+      "post_processing_allowed": false
+    }
+  },
+
+  "moderation": {
+    "review_sla_hours": 24,
+    "require_human_review": true,
+    "auto_approve_threshold": 0.95,
+    "auto_reject_threshold": 0.20,
+
+    "moderation_pipeline": [
+      {
+        "stage": "auto_filter",
+        "method": "content_safety_api",
+        "checks": [
+          "nsfw_detection",
+          "violence_detection",
+          "text_extraction_profanity"
+        ],
+        "action_on_fail": "auto_reject"
+      },
+      {
+        "stage": "technical_validation",
+        "method": "image_analysis",
+        "checks": [
+          "resolution_check",
+          "biome_detection",
+          "storm_effect_detection",
+          "ui_visibility_check"
+        ],
+        "action_on_fail": "flag_for_review"
+      },
+      {
+        "stage": "human_review",
+        "method": "manual",
+        "checks": [
+          "artistic_quality",
+          "theme_adherence",
+          "community_guidelines",
+          "originality"
+        ],
+        "action_on_fail": "reject_with_reason"
+      }
+    ],
+
+    "review_queue": {
+      "priority": "fifo",
+      "batch_size": 50,
+      "reviewer_capacity": 200,
+      "escalation_threshold_hours": 36
+    },
+
+    "rejection_reasons": [
+      "low_resolution",
+      "wrong_biome",
+      "no_storm_effect",
+      "ui_visible",
+      "inappropriate_content",
+      "duplicate_submission",
+      "external_watermark",
+      "photoshopped",
+      "off_theme"
+    ]
+  },
+
+  "rewards": {
+    "participation_reward": {
+      "description": "Awarded to all approved submissions",
+      "items": [
+        {
+          "type": "currency",
+          "code": "CR",
+          "amount": 500
+        },
+        {
+          "type": "cosmetic",
+          "id": "badge_storm_photographer",
+          "name": "Storm Photographer Badge"
+        }
+      ]
+    },
+
+    "featured_rewards": {
+      "description": "Awarded to top 10 submissions (curated by team)",
+      "items": [
+        {
+          "type": "currency",
+          "code": "CR",
+          "amount": 2500
+        },
+        {
+          "type": "cosmetic",
+          "id": "cape_storm_trails",
+          "name": "Storm Trails Cape",
+          "rarity": "legendary"
+        },
+        {
+          "type": "title",
+          "id": "title_storm_master",
+          "name": "Storm Master"
+        }
+      ]
+    },
+
+    "community_choice_reward": {
+      "description": "Awarded to top 3 submissions (voted by community)",
+      "items": [
+        {
+          "type": "currency",
+          "code": "CR",
+          "amount": 5000
+        },
+        {
+          "type": "cosmetic",
+          "id": "frame_golden_storm",
+          "name": "Golden Storm Frame",
+          "rarity": "mythic"
+        },
+        {
+          "type": "exclusive",
+          "id": "gallery_feature",
+          "name": "Featured in Main Menu Gallery (30 days)"
+        }
+      ]
+    }
+  },
+
+  "voting": {
+    "enabled": true,
+    "voting_start": "2026-01-27T00:00:00Z",
+    "voting_end": "2026-01-30T23:59:59Z",
+    "voting_duration_days": 4,
+
+    "voting_rules": {
+      "votes_per_user": 3,
+      "self_voting_allowed": false,
+      "vote_weight": "equal",
+      "min_account_age_days": 7,
+      "min_playtime_hours": 5
+    },
+
+    "display_settings": {
+      "gallery_mode": "grid",
+      "submissions_per_page": 20,
+      "sort_options": [
+        "most_recent",
+        "most_voted",
+        "random"
+      ],
+      "default_sort": "most_recent"
+    }
+  },
+
+  "promotion": {
+    "announcement_channels": [
+      "in_game_news",
+      "discord_announcement",
+      "twitter",
+      "reddit",
+      "email_newsletter"
+    ],
+
+    "in_game_promotion": {
+      "main_menu_banner": true,
+      "photomode_ui_tooltip": true,
+      "biome_entry_popup": true,
+      "daily_quest_integration": false
+    },
+
+    "social_media": {
+      "hashtags": [
+        "#StormTrails",
+        "#PhotoModeChallenge",
+        "#Season2"
+      ],
+      "featured_submissions_daily": 3,
+      "community_showcase": "weekly"
+    }
+  },
+
+  "analytics": {
+    "tracked_metrics": [
+      "submissions_total",
+      "submissions_per_user_avg",
+      "submissions_approved_pct",
+      "submissions_rejected_pct",
+      "moderation_time_p95",
+      "votes_cast_total",
+      "unique_voters",
+      "photomode_usage_increase_pct",
+      "biome_visit_increase_pct"
+    ],
+
+    "success_criteria": {
+      "min_submissions": 500,
+      "min_approval_rate_pct": 70,
+      "max_moderation_time_hours": 24,
+      "min_voter_participation_pct": 30,
+      "player_satisfaction_nps_target": 50
+    }
+  },
+
+  "technical": {
+    "api_endpoints": {
+      "submit": "POST /api/events/photomode/submit",
+      "get_submissions": "GET /api/events/photomode/submissions",
+      "vote": "POST /api/events/photomode/vote",
+      "moderate": "POST /api/events/photomode/moderate"
+    },
+
+    "storage": {
+      "bucket": "s3://photomode-submissions/s2-storm-trails",
+      "cdn": "https://cdn.game.com/photomode/s2-storm-trails",
+      "retention_days": 90,
+      "backup_enabled": true
+    },
+
+    "rate_limits": {
+      "submit": "5 per user per event",
+      "vote": "3 per user per event",
+      "moderate": "200 per reviewer per day"
+    },
+
+    "content_safety": {
+      "provider": "azure_content_moderator",
+      "confidence_threshold": 0.85,
+      "categories": [
+        "adult",
+        "violence",
+        "hate",
+        "self_harm"
+      ]
+    }
+  },
+
+  "community_guidelines": {
+    "eligibility": {
+      "min_account_age_days": 3,
+      "min_season_playtime_hours": 2,
+      "good_standing_required": true,
+      "banned_users_excluded": true
+    },
+
+    "code_of_conduct": {
+      "respect": "Treat all participants with respect",
+      "originality": "Submit only your own original captures",
+      "authenticity": "No photoshopped or manipulated images",
+      "sportsmanship": "No vote manipulation or brigading",
+      "compliance": "Follow game ToS and community guidelines"
+    },
+
+    "consequences": {
+      "first_violation": "warning_and_submission_removal",
+      "second_violation": "event_ban_current_and_next",
+      "severe_violation": "permanent_event_ban_and_account_review"
+    }
+  },
+
+  "localization": {
+    "supported_languages": [
+      "en",
+      "tr",
+      "de",
+      "es",
+      "fr",
+      "it",
+      "pt",
+      "ru",
+      "ja",
+      "ko",
+      "zh-CN",
+      "zh-TW"
+    ],
+
+    "translation_status": {
+      "en": "complete",
+      "tr": "complete",
+      "de": "complete",
+      "es": "complete",
+      "fr": "complete",
+      "it": "in_progress",
+      "pt": "in_progress",
+      "ru": "pending",
+      "ja": "pending",
+      "ko": "pending",
+      "zh-CN": "pending",
+      "zh-TW": "pending"
+    },
+
+    "lqa_status": "PASS",
+    "rtl_support": true,
+    "accessibility_aa_compliant": true
+  },
+
+  "compliance": {
+    "kvkk_gdpr_pdpl": true,
+    "data_collection": {
+      "personal_data": [
+        "user_id_anonymized",
+        "submission_timestamp",
+        "ip_address_hashed"
+      ],
+      "retention_days": 90,
+      "user_consent_required": true,
+      "deletion_request_honored": true
+    },
+
+    "ugc_rights": {
+      "user_retains_ownership": true,
+      "license_granted_to_platform": "non_exclusive_perpetual",
+      "usage": "promotional_materials_ingame_social",
+      "credit_given": "username_or_anonymous_by_choice"
+    },
+
+    "moderation_transparency": {
+      "rejection_reason_provided": true,
+      "appeal_process": "available",
+      "appeal_review_sla_hours": 48
+    }
+  },
+
+  "rollback": {
+    "enabled": true,
+    "triggers": [
+      {
+        "condition": "submissions < 100 after 3 days",
+        "action": "extend_event_by_7_days"
+      },
+      {
+        "condition": "approval_rate < 50%",
+        "action": "review_moderation_guidelines"
+      },
+      {
+        "condition": "moderation_queue > 500 backlog",
+        "action": "increase_reviewer_capacity"
+      },
+      {
+        "condition": "content_safety_api_failure",
+        "action": "pause_submissions_until_resolved"
+      }
+    ]
+  },
+
+  "post_event": {
+    "gallery_archive": {
+      "enabled": true,
+      "archive_url": "/gallery/storm-trails-s2w1",
+      "archive_duration_days": 180,
+      "public_access": true
+    },
+
+    "post_mortem": {
+      "required": true,
+      "deadline": "2026-02-05T23:59:59Z",
+      "document": "Docs/S2-W1-PHOTOMODE-REPORT.md",
+      "sections": [
+        "participation_metrics",
+        "moderation_performance",
+        "community_feedback",
+        "technical_issues",
+        "recommendations_for_next_event"
+      ]
+    },
+
+    "reward_distribution": {
+      "participation_rewards": "auto_granted_on_approval",
+      "featured_rewards": "manual_grant_by_2026-01-31",
+      "community_choice_rewards": "auto_grant_after_voting_ends"
+    }
+  },
+
+  "monitoring": {
+    "alert_channels": [
+      "#alerts-community",
+      "#alerts-liveops"
+    ],
+
+    "alert_conditions": [
+      {
+        "metric": "moderation_backlog",
+        "threshold": "> 300",
+        "severity": "warning"
+      },
+      {
+        "metric": "approval_rate",
+        "threshold": "< 60%",
+        "severity": "warning"
+      },
+      {
+        "metric": "content_safety_api_errors",
+        "threshold": "> 5% of requests",
+        "severity": "critical"
+      },
+      {
+        "metric": "submission_rate",
+        "threshold": "< 10 per day",
+        "severity": "warning"
+      }
+    ],
+
+    "dashboard_url": "/monitoring/events/photomode-storm-trails"
+  }
+}

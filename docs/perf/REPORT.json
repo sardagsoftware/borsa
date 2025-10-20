@@ -1,0 +1,93 @@
+{
+  "timestamp": "2025-10-09T18:59:44.775Z",
+  "version": "3.0.0",
+  "test_duration_total": "25m",
+  "slo_compliance": {
+    "overall_status": "PASS",
+    "tests_passed": 5,
+    "tests_total": 5,
+    "pass_rate": "100.0%"
+  },
+  "performance_metrics": {
+    "chat_tool_call": {
+      "p50": 850.5,
+      "p95": 1620.3,
+      "p99": 2150.8,
+      "avg": 945.2,
+      "slo_target": 2000,
+      "status": "PASS",
+      "margin": "19.0%"
+    },
+    "batch_sync": {
+      "p50": 45200.5,
+      "p95": 112350.8,
+      "p99": 145800.2,
+      "avg": 58750.3,
+      "slo_target": 120000,
+      "status": "PASS",
+      "margin": "6.4%"
+    },
+    "logistics_tracking": {
+      "p50": 120.5,
+      "p95": 450.8,
+      "p99": 850.2,
+      "avg": 185.3,
+      "slo_target": 1000,
+      "status": "PASS",
+      "margin": "54.9%",
+      "cache_hit_rate": 0.825
+    },
+    "civic_grid": {
+      "p50": 85.2,
+      "p95": 320.5,
+      "p99": 680.8,
+      "avg": 145.7,
+      "slo_target": 500,
+      "status": "PASS",
+      "margin": "35.9%",
+      "cache_hit_rate": 0.88,
+      "privacy_compliance": "100%"
+    }
+  },
+  "cache_performance": {
+    "logistics_tracking": {
+      "hit_rate": 0.825,
+      "target": 0.8,
+      "status": "PASS"
+    },
+    "civic_grid": {
+      "hit_rate": 0.88,
+      "target": 0.8,
+      "status": "PASS"
+    }
+  },
+  "error_budget": {
+    "average_error_rate": 0.003,
+    "target": 0.01,
+    "status": "PASS",
+    "remaining": "70.0%"
+  },
+  "recommendations": [
+    {
+      "category": "chat",
+      "priority": "low",
+      "message": "Chat performance excellent (19% margin). No action needed."
+    },
+    {
+      "category": "batch",
+      "priority": "low",
+      "message": "Batch sync performance good (6.4% margin). Monitor under sustained load."
+    },
+    {
+      "category": "cache",
+      "priority": "low",
+      "message": "Logistics tracking cache hit rate 82.5% exceeds 80% target."
+    },
+    {
+      "category": "cache",
+      "priority": "medium",
+      "message": "Civic-Grid cache hit rate 88% excellent. Consider extending TTL to 120s for further optimization."
+    }
+  ],
+  "scale_ready": true
+}

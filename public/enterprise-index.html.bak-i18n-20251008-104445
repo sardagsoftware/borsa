@@ -1,0 +1,998 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="LyDian Enterprise">
+    <meta name="application-name" content="LyDian Enterprise">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+
+    <!-- SEO Meta Tags -->
+    <title>LyDian Enterprise AI Platform - Global Scale AI Solutions | Microsoft Azure, Google, Z.AI Integration</title>
+    <meta name="description" content="Enterprise-grade AI platform integrating Microsoft Azure AI, Google Gemini, and Z.AI services. 23 AI models, 84 languages, real-time processing, global deployment. Mobile-responsive, SEO-optimized, browser-compatible.">
+    <meta name="keywords" content="enterprise AI, Microsoft Azure, Google Gemini, Z.AI, artificial intelligence, machine learning, AI platform, multi-language, global AI, enterprise solutions">
+    <meta name="author" content="LyDian Enterprise">
+    <meta name="generator" content="LyDian Enterprise Platform v2.0">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LyDian Enterprise AI Platform - Global Scale Solutions">
+    <meta property="og:description" content="Enterprise AI platform with Microsoft Azure, Google Gemini, Z.AI integration. 23 models, 84 languages, global deployment.">
+    <meta property="og:image" content="/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://ailydian.com">
+    <meta property="og:site_name" content="LyDian Enterprise">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@LyDian">
+    <meta name="twitter:site" content="@LyDian">
+    <meta name="twitter:title" content="LyDian Enterprise AI Platform">
+    <meta name="twitter:description" content="Global enterprise AI solutions with Azure, Google, Z.AI integration">
+    <meta name="twitter:image" content="/assets/twitter-card.jpg">
+
+    <!-- Structured Data Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "LyDian Enterprise AI Platform",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "description": "Enterprise AI platform integrating Microsoft Azure, Google Gemini, and Z.AI services",
+      "url": "https://ailydian.com",
+      "author": {
+        "@type": "Organization",
+        "name": "LyDian Enterprise"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "127"
+      }
+    }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Preconnects for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <!-- Critical CSS -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        /* CSS Variables for Global Theming */
+        :root {
+            /* Enterprise Color Palette */
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #8b5cf6;
+            --primary-rgb: 99, 102, 241;
+            --secondary: #1e293b;
+            --secondary-light: #334155;
+            --accent: #06d6a0;
+            --accent-secondary: #f72585;
+
+            /* Background Gradients */
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --bg-surface: rgba(255, 255, 255, 0.95);
+            --bg-card: rgba(255, 255, 255, 0.9);
+
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+            --font-display: 'Montserrat', sans-serif;
+
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+
+            /* Borders & Shadows */
+            --radius: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+            /* Transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s ease;
+        }
+
+        /* CSS Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-weight: 400;
+            line-height: 1.6;
+            color: #1a202c;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Container System */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: var(--space-lg);
+        }
+
+        .grid-cols-1 { grid-template-columns: 1fr; }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 0.75rem;
+            }
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-sm);
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+        p {
+            margin-bottom: var(--space-md);
+            max-width: 65ch;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-lg);
+        }
+
+        .nav-link {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius);
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover {
+            background: var(--bg-card);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: var(--space-md);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: calc(80px + var(--space-2xl)) 0 var(--space-2xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 119, 198, 0.2), transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            color: white;
+            margin-bottom: var(--space-lg);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-2xl);
+            max-width: none;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Feature Cards */
+        .features {
+            padding: var(--space-2xl) 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--space-md);
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Status Indicators */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .status-item {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .status-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus Styles */
+        *:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary: #0066cc;
+                --bg-primary: linear-gradient(135deg, #000080 0%, #4b0082 100%);
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .btn {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .hero {
+                padding: 2rem 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav container" role="navigation" aria-label="Main navigation">
+            <a href="/" class="logo" aria-label="LyDian Enterprise Home">
+                🚀 LyDian Enterprise
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#models" class="nav-link">AI Models</a></li>
+                <li><a href="#docs" class="nav-link">Documentation</a></li>
+                <li><a href="#developers" class="nav-link">Developers</a></li>
+                <li><a href="#status" class="nav-link">Status</a></li>
+                <li><a href="/search" class="nav-link">Search</a></li>
+            </ul>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-translate="hero.title">
+                        Enterprise AI Platform for Global Scale
+                    </h1>
+
+                    <p class="hero-subtitle" data-translate="hero.subtitle">
+                        Integrating Microsoft Azure AI, Google Gemini, and Z.AI services with 23 AI models,
+                        84 languages, real-time processing, and enterprise-grade security.
+                    </p>
+
+                    <div class="btn-group">
+                        <a href="#features" class="btn" data-translate="hero.cta_primary">
+                            Explore Platform
+                        </a>
+                        <a href="/docs" class="btn btn-secondary" data-translate="hero.cta_secondary">
+                            Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Dashboard -->
+        <section class="status-section" style="padding: 2rem 0; background: rgba(255, 255, 255, 0.1);">
+            <div class="container">
+                <h2 style="text-align: center; color: white; margin-bottom: 2rem;" data-translate="status.title">
+                    System Status
+                </h2>
+
+                <div class="status-grid" id="status-grid">
+                    <div class="status-item">
+                        <div class="status-value" id="models-count">23</div>
+                        <div class="status-label" data-translate="status.models">AI Models Active</div>
+                    </div>
+
+                    <div class="status-item">
+                        <div class="status-value" id="languages-count">84</div>
+                        <div class="status-label" data-translate="status.languages">Languages Supported</div>
+                    </div>
+
+                    <div class="status-item">
+                        <div class="status-value" id="uptime">99.9%</div>
+                        <div class="status-label" data-translate="status.uptime">Uptime</div>
+                    </div>
+
+                    <div class="status-item">
+                        <div class="status-value" id="response-time">< 50ms</div>
+                        <div class="status-label" data-translate="status.response_time">Response Time</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: #1a202c;" data-translate="features.title">
+                    Enterprise Features
+                </h2>
+
+                <div class="grid grid-cols-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 data-translate="features.ai.title">Multi-AI Integration</h3>
+                        <p data-translate="features.ai.description">
+                            Microsoft Azure AI, Google Gemini, Z.AI, and 23 leading AI models
+                            integrated into one powerful platform.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3 data-translate="features.global.title">Global Scale</h3>
+                        <p data-translate="features.global.description">
+                            84 languages with automatic geo-location detection and
+                            regional deployment across all continents.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 data-translate="features.performance.title">High Performance</h3>
+                        <p data-translate="features.performance.description">
+                            Real-time processing with WebSocket streaming, advanced caching,
+                            and enterprise-grade infrastructure.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 data-translate="features.security.title">Enterprise Security</h3>
+                        <p data-translate="features.security.description">
+                            End-to-end encryption, OAuth2, JWT authentication,
+                            and compliance with global data protection standards.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 data-translate="features.responsive.title">Mobile Responsive</h3>
+                        <p data-translate="features.responsive.description">
+                            Optimized for all devices and screen sizes with
+                            progressive web app capabilities.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 data-translate="features.analytics.title">Advanced Analytics</h3>
+                        <p data-translate="features.analytics.description">
+                            Real-time monitoring, usage analytics, performance metrics,
+                            and comprehensive reporting dashboard.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; color: white;">
+        <div style="text-align: center;">
+            <div class="loading"></div>
+            <p style="margin-top: 1rem;" data-translate="loading">Loading...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Global State Management
+        const LyDian = {
+            currentLanguage: 'en',
+            isLoading: false,
+            features: [],
+
+            // Language Detection & Translation
+            async detectLanguage() {
+                try {
+                    // Get browser language
+                    const browserLang = navigator.language.split('-')[0];
+
+                    // Get geolocation-based language
+                    const geoLang = await this.getGeoLanguage();
+
+                    // Priority: URL param > localStorage > geo > browser > default
+                    const urlLang = new URLSearchParams(window.location.search).get('lang');
+                    const storedLang = localStorage.getItem('ailydian_language');
+
+                    const detectedLang = urlLang || storedLang || geoLang || browserLang || 'en';
+
+                    this.setLanguage(detectedLang);
+                } catch (error) {
+                    console.warn('Language detection failed:', error);
+                    this.setLanguage('en');
+                }
+            },
+
+            async getGeoLanguage() {
+                try {
+                    const response = await fetch('https://ipapi.co/json/');
+                    const data = await response.json();
+                    const countryCode = data.country_code?.toLowerCase();
+
+                    // Country to language mapping
+                    const countryLangMap = {
+                        'tr': 'tr', 'es': 'es', 'mx': 'es', 'ar': 'es',
+                        'fr': 'fr', 'ca': 'fr', 'de': 'de', 'at': 'de', 'ch': 'de',
+                        'jp': 'ja', 'kr': 'ko', 'cn': 'zh', 'tw': 'zh',
+                        'sa': 'ar', 'ae': 'ar', 'eg': 'ar',
+                        'in': 'hi', 'br': 'pt', 'ru': 'ru', 'it': 'it'
+                    };
+
+                    return countryLangMap[countryCode] || 'en';
+                } catch {
+                    return 'en';
+                }
+            },
+
+            async setLanguage(langCode) {
+                if (this.currentLanguage === langCode) return;
+
+                this.showLoading();
+                try {
+                    this.currentLanguage = langCode;
+                    localStorage.setItem('ailydian_language', langCode);
+
+                    // Update HTML lang attribute
+                    document.documentElement.lang = langCode;
+
+                    // Load translations
+                    await this.loadTranslations(langCode);
+
+                    // Update URL without reload
+                    const url = new URL(window.location);
+                    url.searchParams.set('lang', langCode);
+                    window.history.replaceState({}, '', url);
+
+                } catch (error) {
+                    console.error('Language change failed:', error);
+                } finally {
+                    this.hideLoading();
+                }
+            },
+
+            async loadTranslations(langCode) {
+                try {
+                    // Try to load from server first
+                    let translations;
+                    try {
+                        const response = await fetch(`/api/translate/ui/${langCode}`);
+                        translations = await response.json();
+                    } catch {
+                        // Fallback to static translations
+                        translations = this.getStaticTranslations(langCode);
+                    }
+
+                    // Apply translations
+                    this.applyTranslations(translations);
+
+                } catch (error) {
+                    console.error('Translation loading failed:', error);
+                }
+            },
+
+            getStaticTranslations(langCode) {
+                const translations = {
+                    'tr': {
+                        'hero.title': 'Küresel Ölçekte Kurumsal AI Platformu',
+                        'hero.subtitle': 'Microsoft Azure AI, Google Gemini ve Z.AI hizmetlerini 23 AI modeli, 84 dil, gerçek zamanlı işleme ve kurumsal güvenlik ile entegre eder.',
+                        'hero.cta_primary': 'Platformu Keşfet',
+                        'hero.cta_secondary': 'Dokümantasyon',
+                        'status.title': 'Sistem Durumu',
+                        'status.models': 'Aktif AI Modeli',
+                        'status.languages': 'Desteklenen Dil',
+                        'status.uptime': 'Çalışma Süresi',
+                        'status.response_time': 'Yanıt Süresi',
+                        'features.title': 'Kurumsal Özellikler',
+                        'features.ai.title': 'Çoklu AI Entegrasyonu',
+                        'features.ai.description': 'Microsoft Azure AI, Google Gemini, Z.AI ve 23 önde gelen AI modeli tek güçlü platformda entegre.',
+                        'features.global.title': 'Küresel Ölçek',
+                        'features.global.description': 'Otomatik coğrafi konum tespiti ve tüm kıtalarda bölgesel dağıtım ile 84 dil desteği.',
+                        'features.performance.title': 'Yüksek Performans',
+                        'features.performance.description': 'WebSocket akışı, gelişmiş önbellekleme ve kurumsal altyapı ile gerçek zamanlı işleme.',
+                        'features.security.title': 'Kurumsal Güvenlik',
+                        'features.security.description': 'Uçtan uca şifreleme, OAuth2, JWT kimlik doğrulama ve küresel veri koruma standartlarına uyumluluk.',
+                        'features.responsive.title': 'Mobil Uyumlu',
+                        'features.responsive.description': 'Progressive web app yetenekleri ile tüm cihazlar ve ekran boyutları için optimize edilmiş.',
+                        'features.analytics.title': 'Gelişmiş Analitik',
+                        'features.analytics.description': 'Gerçek zamanlı izleme, kullanım analitiği, performans metrikleri ve kapsamlı raporlama panosu.',
+                        'loading': 'Yükleniyor...'
+                    },
+                    'es': {
+                        'hero.title': 'Plataforma de IA Empresarial a Escala Global',
+                        'hero.subtitle': 'Integrando Microsoft Azure AI, Google Gemini y servicios Z.AI con 23 modelos de IA, 84 idiomas, procesamiento en tiempo real y seguridad empresarial.',
+                        'hero.cta_primary': 'Explorar Plataforma',
+                        'hero.cta_secondary': 'Documentación',
+                        'loading': 'Cargando...'
+                    }
+                    // Add more languages as needed
+                };
+
+                return translations[langCode] || translations['en'] || {};
+            },
+
+            applyTranslations(translations) {
+                const elements = document.querySelectorAll('[data-translate]');
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    const translation = translations[key];
+                    if (translation) {
+                        element.textContent = translation;
+                    }
+                });
+            },
+
+            // UI State Management
+            showLoading() {
+                this.isLoading = true;
+                const overlay = document.getElementById('loading-overlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                    overlay.style.opacity = '0';
+                    overlay.offsetHeight; // Force reflow
+                    overlay.style.transition = 'opacity 0.3s ease';
+                    overlay.style.opacity = '1';
+                }
+            },
+
+            hideLoading() {
+                this.isLoading = false;
+                const overlay = document.getElementById('loading-overlay');
+                if (overlay) {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 300);
+                }
+            },
+
+            // Mobile Menu
+            initMobileMenu() {
+                const menuToggle = document.getElementById('menu-toggle');
+                const navLinks = document.getElementById('nav-links');
+
+                if (menuToggle && navLinks) {
+                    menuToggle.addEventListener('click', () => {
+                        const isActive = navLinks.classList.contains('active');
+                        navLinks.classList.toggle('active');
+                        menuToggle.setAttribute('aria-expanded', !isActive);
+                        menuToggle.textContent = isActive ? '☰' : '✕';
+                    });
+                }
+            },
+
+            // System Status Updates
+            async updateSystemStatus() {
+                try {
+                    const response = await fetch('/api/status');
+                    const data = await response.json();
+
+                    // Update status values
+                    if (data.models) {
+                        const modelsElement = document.getElementById('models-count');
+                        if (modelsElement) modelsElement.textContent = data.models;
+                    }
+
+                    if (data.uptime) {
+                        const uptimeElement = document.getElementById('uptime');
+                        if (uptimeElement) uptimeElement.textContent = data.uptime + '%';
+                    }
+
+                } catch (error) {
+                    console.warn('Status update failed:', error);
+                }
+            },
+
+            // Performance Monitoring
+            initPerformanceMonitoring() {
+                // Monitor Core Web Vitals
+                if ('performance' in window) {
+                    // Page Load Time
+                    window.addEventListener('load', () => {
+                        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                        console.log('Page Load Time:', loadTime + 'ms');
+
+                        // Send to analytics if available
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'page_load_time', {
+                                custom_parameter: loadTime
+                            });
+                        }
+                    });
+
+                    // First Contentful Paint
+                    if ('PerformanceObserver' in window) {
+                        const observer = new PerformanceObserver((list) => {
+                            const entries = list.getEntries();
+                            entries.forEach((entry) => {
+                                if (entry.name === 'first-contentful-paint') {
+                                    console.log('FCP:', entry.startTime + 'ms');
+                                }
+                            });
+                        });
+                        observer.observe({ entryTypes: ['paint'] });
+                    }
+                }
+            },
+
+            // Initialize Everything
+            async init() {
+                try {
+                    // Initialize mobile menu
+                    this.initMobileMenu();
+
+                    // Initialize performance monitoring
+                    this.initPerformanceMonitoring();
+
+                    // Detect and set language
+                    await this.detectLanguage();
+
+                    // Update system status
+                    await this.updateSystemStatus();
+
+                    // Set up periodic status updates
+                    setInterval(() => this.updateSystemStatus(), 30000);
+
+                    console.log('🚀 LyDian Enterprise Platform initialized successfully');
+
+                } catch (error) {
+                    console.error('Initialization failed:', error);
+                }
+            }
+        };
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => LyDian.init());
+        } else {
+            LyDian.init();
+        }
+
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    await navigator.serviceWorker.register('/sw.js');
+                    console.log('Service Worker registered successfully');
+                } catch (error) {
+                    console.warn('Service Worker registration failed:', error);
+                }
+            });
+        }
+
+        // Error Boundary
+        window.addEventListener('error', (event) => {
+            console.error('Global error:', event.error);
+            // Could send to error reporting service
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled promise rejection:', event.reason);
+            event.preventDefault();
+        });
+    </script>
+
+    <!-- Schema for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LyDian Enterprise",
+      "url": "https://ailydian.com",
+      "logo": "https://ailydian.com/assets/logo.png",
+      "description": "Enterprise AI platform integrating Microsoft Azure, Google Gemini, and Z.AI services",
+      "foundingDate": "2025",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": "50-100"
+      },
+      "sameAs": [
+        "https://twitter.com/LyDian",
+        "https://linkedin.com/company/LyDian"
+      ]
+    }
+    </script>
+
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

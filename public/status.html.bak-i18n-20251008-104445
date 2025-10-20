@@ -1,0 +1,1815 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Platform Status - Real-time system health and performance monitoring">
+    <meta name="keywords" content="status, uptime, monitoring, system health">
+    <title data-tr="Status - LyDian | Real-Time Service Health" data-en="Status - LyDian | Real-Time Service Health">Status - LyDian | Real-Time Service Health</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --gradient-green: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            --gradient-blue: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            --gradient-purple: linear-gradient(135deg, #A855F7 0%, #9333EA 100%);
+            --gradient-orange: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+            --gradient-cyan: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+            --gradient-pink: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2.25rem;
+            font-weight: 700 !important;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .lang-toggle {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-toggle:hover {
+            background: var(--gray-200);
+            color: var(--black);
+        }
+
+        .lang-toggle svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-800);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========== HERO SECTION ========== */
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+            padding-top: 72px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16, 163, 127, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .hero-badge-dot::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== STATUS SECTION ========== */
+
+        .status-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .status-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .metric-card {
+            padding: 2rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+            stroke: currentColor;
+        }
+
+        .metric-info h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .metric-info p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-trend {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .counter {
+            display: inline-block;
+        }
+
+        /* ========== SERVICES GRID ========== */
+
+        .services-section {
+            padding: 4rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--black);
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:nth-child(1)::before { background: var(--gradient-green); }
+        .service-card:nth-child(2)::before { background: var(--gradient-blue); }
+        .service-card:nth-child(3)::before { background: var(--gradient-purple); }
+        .service-card:nth-child(4)::before { background: var(--gradient-orange); }
+        .service-card:nth-child(5)::before { background: var(--gradient-cyan); }
+        .service-card:nth-child(6)::before { background: var(--gradient-pink); }
+
+        .service-card:hover .status-badge.operational {
+            animation: pulse-badge 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .status-badge {
+            padding: 0.375rem 0.875rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge.operational {
+            background: rgba(16, 163, 127, 0.1);
+            color: var(--primary);
+        }
+
+        .status-badge.degraded {
+            background: rgba(249, 115, 22, 0.1);
+            color: #F97316;
+        }
+
+        .status-badge.down {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .status-badge.operational::before {
+            animation: pulse-status 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-status {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 currentColor;
+            }
+            50% {
+                opacity: 0.7;
+                box-shadow: 0 0 0 4px rgba(16, 163, 127, 0.2);
+            }
+        }
+
+        .service-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .service-metric {
+            text-align: center;
+        }
+
+        .service-metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .service-metric-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========== UPTIME GRAPH ========== */
+
+        .uptime-section {
+            padding: 6rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .uptime-graph {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .uptime-days {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+            gap: 4px;
+            max-width: 100%;
+        }
+
+        .uptime-day {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .uptime-day.perfect {
+            background: #10A37F;
+        }
+
+        .uptime-day.good {
+            background: #84CC16;
+        }
+
+        .uptime-day.degraded {
+            background: #F97316;
+        }
+
+        .uptime-day.down {
+            background: #EF4444;
+        }
+
+        .uptime-day:hover {
+            transform: scale(1.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .uptime-legend {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .uptime-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .uptime-legend-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        /* ========== RESPONSE TIME CHART ========== */
+
+        .chart-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .response-chart {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 300px;
+            gap: 1rem;
+            padding: 2rem 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--gradient-green);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: growBar 1s ease-out backwards;
+        }
+
+        .chart-bar:nth-child(1) { animation-delay: 0.1s; }
+        .chart-bar:nth-child(2) { animation-delay: 0.2s; }
+        .chart-bar:nth-child(3) { animation-delay: 0.3s; }
+        .chart-bar:nth-child(4) { animation-delay: 0.4s; }
+        .chart-bar:nth-child(5) { animation-delay: 0.5s; }
+        .chart-bar:nth-child(6) { animation-delay: 0.6s; }
+        .chart-bar:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes growBar {
+            from {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            to {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        .chart-bar:hover {
+            filter: brightness(1.1);
+            transform: translateY(-4px);
+        }
+
+        .chart-bar-value {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--gray-700);
+            white-space: nowrap;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 1rem 0;
+        }
+
+        .chart-label {
+            flex: 1;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        /* ========== SUBSCRIBE SECTION ========== */
+
+        .subscribe-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+        }
+
+        .subscribe-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .subscribe-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-description {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .subscribe-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 163, 127, 0.1);
+        }
+
+        .subscribe-input.gradient-border {
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        var(--gradient-green) border-box;
+        }
+
+        .subscribe-btn {
+            padding: 1rem 2rem;
+            background: var(--gradient-green);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 163, 127, 0.3);
+        }
+
+        .subscribe-btn:active {
+            transform: translateY(0);
+        }
+
+        .subscribe-message {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .subscribe-message.success {
+            background: rgba(16, 163, 127, 0.1);
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        .subscribe-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            opacity: 1;
+        }
+
+        /* ========== INCIDENTS TIMELINE ========== */
+
+        .incidents-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* ========== FOOTER ========== */
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2rem;
+            font-weight: 700 !important;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em !important;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-800);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ========== SCROLL ANIMATIONS ========== */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .uptime-days {
+                grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+                gap: 3px;
+            }
+
+            .uptime-day {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta .btn {
+                display: none;
+            }
+
+            .lang-toggle {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.125rem;
+            }
+
+            .metrics-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .subscribe-btn {
+                width: 100%;
+            }
+
+            .chart-bars {
+                height: 200px;
+                padding: 1rem 0.5rem;
+            }
+
+            .chart-bar-value {
+                font-size: 0.75rem;
+                top: -25px;
+            }
+
+            .uptime-days {
+                grid-template-columns: repeat(auto-fill, minmax(8px, 1fr));
+                gap: 2px;
+            }
+
+            .uptime-day {
+                width: 8px;
+                height: 8px;
+            }
+
+            .uptime-legend {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .subscribe-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .metric-value {
+                font-size: 2rem;
+            }
+
+            .chart-labels {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
+
+            <ul class="nav-links">
+                <li><a href="/chat.html" data-tr="LyDian AI" data-en="LyDian AI">LyDian AI</a></li>
+                <li><a href="/docs.html" data-tr="Dokümantasyon" data-en="Documentation">Dokümantasyon</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+                <li><a href="/developers.html" data-tr="Geliştiriciler" data-en="Developers">Geliştiriciler</a></li>
+                <li><a href="/models.html" data-tr="Modeller" data-en="Models">Modeller</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <button class="lang-toggle" id="langToggle">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                    </svg>
+                    <span data-tr="EN" data-en="TR">EN</span>
+                </button>
+                <a href="/auth.html" class="btn btn-secondary" data-tr="Giriş Yap" data-en="Sign In">Giriş Yap</a>
+                <a href="/chat.html" class="btn btn-primary" data-tr="Şimdi Dene" data-en="Try Now">Şimdi Dene</a>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span data-tr="Tüm Sistemler Çalışıyor" data-en="All Systems Operational">Tüm Sistemler Çalışıyor</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="hero-title-gradient">LyDian Platform</span><br>
+                <span data-tr="Sistem Durumu" data-en="System Status">Sistem Durumu</span>
+            </h1>
+
+            <p class="hero-description" data-tr="Tüm LyDian servislerinin gerçek zamanlı izleme. Çalışma süresi, performans metrikleri ve olay raporlarını kontrol edin." data-en="Real-time monitoring of all LyDian services. Check uptime, performance metrics, and incident reports.">
+                Tüm LyDian servislerinin gerçek zamanlı izleme. Çalışma süresi, performans metrikleri ve olay raporlarını kontrol edin.
+            </p>
+        </div>
+    </section>
+
+    <!-- Status Metrics -->
+    <section class="status-section">
+        <div class="status-container">
+            <div class="metrics-grid fade-in">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3 data-tr="Çalışma Süresi" data-en="Uptime">Çalışma Süresi</h3>
+                            <p data-tr="Son 30 gün" data-en="Last 30 days">Son 30 gün</p>
+                        </div>
+                    </div>
+                    <div class="metric-value"><span class="counter" data-target="99.98">0</span>%</div>
+                    <div class="metric-trend" data-tr="+0.02% bu ay" data-en="+0.02% this month">+0.02% bu ay</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3 data-tr="Yanıt Süresi" data-en="Response Time">Yanıt Süresi</h3>
+                            <p data-tr="Ortalama API gecikmesi" data-en="Average API latency">Ortalama API gecikmesi</p>
+                        </div>
+                    </div>
+                    <div class="metric-value"><span class="counter" data-target="127">0</span>ms</div>
+                    <div class="metric-trend" data-tr="-23ms bu hafta" data-en="-23ms this week">-23ms bu hafta</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3 data-tr="API İstekleri" data-en="API Requests">API İstekleri</h3>
+                            <p data-tr="Son 24 saat" data-en="Last 24 hours">Son 24 saat</p>
+                        </div>
+                    </div>
+                    <div class="metric-value"><span class="counter" data-target="2.4">0</span>M+</div>
+                    <div class="metric-trend" data-tr="+12% dün" data-en="+12% yesterday">+12% dün</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3 data-tr="Başarı Oranı" data-en="Success Rate">Başarı Oranı</h3>
+                            <p data-tr="HTTP 2xx yanıtları" data-en="HTTP 2xx responses">HTTP 2xx yanıtları</p>
+                        </div>
+                    </div>
+                    <div class="metric-value"><span class="counter" data-target="99.94">0</span>%</div>
+                    <div class="metric-trend" data-tr="+0.01% bugün" data-en="+0.01% today">+0.01% bugün</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Status -->
+    <section class="services-section">
+        <h2 class="section-title fade-in" data-tr="Servis Durumu" data-en="Service Status">Servis Durumu</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-name">API Gateway</div>
+                    <div class="status-badge operational" data-tr="Çalışıyor" data-en="Operational">Çalışıyor</div>
+                </div>
+                <div class="service-metrics">
+                    <div class="service-metric">
+                        <div class="service-metric-value">89ms</div>
+                        <div class="service-metric-label" data-tr="Gecikme" data-en="Latency">Gecikme</div>
+                    </div>
+                    <div class="service-metric">
+                        <div class="service-metric-value">99.9%</div>
+                        <div class="service-metric-label" data-tr="Çalışma" data-en="Uptime">Çalışma</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-name" data-tr="Sohbet Servisi" data-en="Chat Service">Sohbet Servisi</div>
+                    <div class="status-badge operational" data-tr="Çalışıyor" data-en="Operational">Çalışıyor</div>
+                </div>
+                <div class="service-metrics">
+                    <div class="service-metric">
+                        <div class="service-metric-value">0.8s</div>
+                        <div class="service-metric-label" data-tr="Yanıt" data-en="Response">Yanıt</div>
+                    </div>
+                    <div class="service-metric">
+                        <div class="service-metric-value">99.8%</div>
+                        <div class="service-metric-label" data-tr="Çalışma" data-en="Uptime">Çalışma</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-name" data-tr="AI Modelleri" data-en="AI Models">AI Modelleri</div>
+                    <div class="status-badge operational" data-tr="Çalışıyor" data-en="Operational">Çalışıyor</div>
+                </div>
+                <div class="service-metrics">
+                    <div class="service-metric">
+                        <div class="service-metric-value">1.2s</div>
+                        <div class="service-metric-label" data-tr="Çıkarım" data-en="Inference">Çıkarım</div>
+                    </div>
+                    <div class="service-metric">
+                        <div class="service-metric-value">99.7%</div>
+                        <div class="service-metric-label" data-tr="Çalışma" data-en="Uptime">Çalışma</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-name" data-tr="Veritabanı" data-en="Database">Veritabanı</div>
+                    <div class="status-badge operational" data-tr="Çalışıyor" data-en="Operational">Çalışıyor</div>
+                </div>
+                <div class="service-metrics">
+                    <div class="service-metric">
+                        <div class="service-metric-value">12ms</div>
+                        <div class="service-metric-label" data-tr="Sorgu" data-en="Query">Sorgu</div>
+                    </div>
+                    <div class="service-metric">
+                        <div class="service-metric-value">100%</div>
+                        <div class="service-metric-label" data-tr="Çalışma" data-en="Uptime">Çalışma</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-name">CDN</div>
+                    <div class="status-badge operational" data-tr="Çalışıyor" data-en="Operational">Çalışıyor</div>
+                </div>
+                <div class="service-metrics">
+                    <div class="service-metric">
+                        <div class="service-metric-value">45ms</div>
+                        <div class="service-metric-label" data-tr="Gecikme" data-en="Latency">Gecikme</div>
+                    </div>
+                    <div class="service-metric">
+                        <div class="service-metric-value">99.9%</div>
+                        <div class="service-metric-label" data-tr="Çalışma" data-en="Uptime">Çalışma</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-name" data-tr="Kimlik Doğrulama" data-en="Authentication">Kimlik Doğrulama</div>
+                    <div class="status-badge operational" data-tr="Çalışıyor" data-en="Operational">Çalışıyor</div>
+                </div>
+                <div class="service-metrics">
+                    <div class="service-metric">
+                        <div class="service-metric-value">156ms</div>
+                        <div class="service-metric-label" data-tr="Giriş" data-en="Login">Giriş</div>
+                    </div>
+                    <div class="service-metric">
+                        <div class="service-metric-value">99.9%</div>
+                        <div class="service-metric-label" data-tr="Çalışma" data-en="Uptime">Çalışma</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Uptime Graph -->
+    <section class="uptime-section">
+        <h2 class="section-title fade-in" data-tr="90 Günlük Çalışma Süresi" data-en="90-Day Uptime">90 Günlük Çalışma Süresi</h2>
+        <div class="uptime-graph fade-in">
+            <div class="uptime-days" id="uptimeDays"></div>
+            <div class="uptime-legend">
+                <div class="uptime-legend-item">
+                    <div class="uptime-legend-box perfect"></div>
+                    <span data-tr="100% Çalışma" data-en="100% Uptime">100% Çalışma</span>
+                </div>
+                <div class="uptime-legend-item">
+                    <div class="uptime-legend-box good"></div>
+                    <span data-tr="99-99.9% Çalışma" data-en="99-99.9% Uptime">99-99.9% Çalışma</span>
+                </div>
+                <div class="uptime-legend-item">
+                    <div class="uptime-legend-box degraded"></div>
+                    <span data-tr="95-99% Çalışma" data-en="95-99% Uptime">95-99% Çalışma</span>
+                </div>
+                <div class="uptime-legend-item">
+                    <div class="uptime-legend-box down"></div>
+                    <span data-tr="<95% Çalışma" data-en="<95% Uptime"><95% Çalışma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Response Time Chart -->
+    <section class="chart-section">
+        <h2 class="section-title fade-in" data-tr="Son 7 Gün Yanıt Süreleri" data-en="Last 7 Days Response Time">Son 7 Gün Yanıt Süreleri</h2>
+        <div class="response-chart fade-in">
+            <div class="chart-bars">
+                <div class="chart-bar" style="height: 65%;">
+                    <div class="chart-bar-value">132ms</div>
+                </div>
+                <div class="chart-bar" style="height: 58%;">
+                    <div class="chart-bar-value">118ms</div>
+                </div>
+                <div class="chart-bar" style="height: 72%;">
+                    <div class="chart-bar-value">145ms</div>
+                </div>
+                <div class="chart-bar" style="height: 55%;">
+                    <div class="chart-bar-value">112ms</div>
+                </div>
+                <div class="chart-bar" style="height: 68%;">
+                    <div class="chart-bar-value">138ms</div>
+                </div>
+                <div class="chart-bar" style="height: 52%;">
+                    <div class="chart-bar-value">105ms</div>
+                </div>
+                <div class="chart-bar" style="height: 62%;">
+                    <div class="chart-bar-value">127ms</div>
+                </div>
+            </div>
+            <div class="chart-labels">
+                <div class="chart-label" data-tr="Pzt" data-en="Mon">Pzt</div>
+                <div class="chart-label" data-tr="Sal" data-en="Tue">Sal</div>
+                <div class="chart-label" data-tr="Çar" data-en="Wed">Çar</div>
+                <div class="chart-label" data-tr="Per" data-en="Thu">Per</div>
+                <div class="chart-label" data-tr="Cum" data-en="Fri">Cum</div>
+                <div class="chart-label" data-tr="Cmt" data-en="Sat">Cmt</div>
+                <div class="chart-label" data-tr="Paz" data-en="Sun">Paz</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="subscribe-section">
+        <div class="subscribe-container fade-in">
+            <h2 class="subscribe-title" data-tr="Durum Güncellemelerine Abone Olun" data-en="Subscribe to Status Updates">Durum Güncellemelerine Abone Olun</h2>
+            <p class="subscribe-description" data-tr="Önemli olaylar ve planlanan bakımlar hakkında e-posta bildirimleri alın." data-en="Get email notifications about incidents and scheduled maintenance.">
+                Önemli olaylar ve planlanan bakımlar hakkında e-posta bildirimleri alın.
+            </p>
+            <form class="subscribe-form" id="subscribeForm">
+                <input
+                    type="email"
+                    class="subscribe-input gradient-border"
+                    placeholder="E-posta adresiniz"
+                    data-placeholder-tr="E-posta adresiniz"
+                    data-placeholder-en="Your email address"
+                    required
+                    id="emailInput"
+                />
+                <button type="submit" class="subscribe-btn" data-tr="Abone Ol" data-en="Subscribe">Abone Ol</button>
+            </form>
+            <div class="subscribe-message" id="subscribeMessage"></div>
+        </div>
+    </section>
+
+    <!-- Recent Incidents -->
+    <section class="incidents-section">
+        <div class="timeline">
+            <h2 class="section-title fade-in" data-tr="Son Olaylar" data-en="Recent Incidents">Son Olaylar</h2>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <h4 data-tr="Performans Optimizasyonu Tamamlandı" data-en="Performance Optimization Completed">Performans Optimizasyonu Tamamlandı</h4>
+                    <p data-tr="API yanıt süreleri %23 oranında iyileştirildi. Daha iyi verim için AI model sunucu altyapısı güncellendi." data-en="API response times improved by 23%. Updated AI model serving infrastructure for better throughput.">
+                        API yanıt süreleri %23 oranında iyileştirildi. Daha iyi verim için AI model sunucu altyapısı güncellendi.
+                    </p>
+                    <div class="timeline-time">30 Eylül 2025 14:30 UTC</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <h4 data-tr="Yeni AI Modelleri Devreye Alındı" data-en="New AI Models Deployed">Yeni AI Modelleri Devreye Alındı</h4>
+                    <p data-tr="GPT-4 Turbo ve Gemini Pro modelleri başarıyla devreye alındı. Tüm sistemler normal çalışıyor." data-en="Successfully deployed GPT-4 Turbo and Gemini Pro models. All systems operating normally.">
+                        GPT-4 Turbo ve Gemini Pro modelleri başarıyla devreye alındı. Tüm sistemler normal çalışıyor.
+                    </p>
+                    <div class="timeline-time">29 Eylül 2025 10:15 UTC</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <h4 data-tr="Güvenlik Güncellemesi Uygulandı" data-en="Security Update Applied">Güvenlik Güncellemesi Uygulandı</h4>
+                    <p data-tr="Tüm servislerde en son güvenlik yamaları uygulandı. Sıfır kesinti ile dağıtım başarıyla tamamlandı." data-en="Applied latest security patches across all services. Zero downtime deployment completed successfully.">
+                        Tüm servislerde en son güvenlik yamaları uygulandı. Sıfır kesinti ile dağıtım başarıyla tamamlandı.
+                    </p>
+                    <div class="timeline-time">28 Eylül 2025 08:00 UTC</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <h4 data-tr="Planlı Bakım Bildirimi" data-en="Scheduled Maintenance Notice">Planlı Bakım Bildirimi</h4>
+                    <p data-tr="Veritabanı küme bakımı 2 Ekim 2025 02:00-04:00 UTC için planlandı. Minimum servis etkisi bekleniyor." data-en="Database cluster maintenance scheduled for October 2, 2025 02:00-04:00 UTC. Minimal service impact expected.">
+                        Veritabanı küme bakımı 2 Ekim 2025 02:00-04:00 UTC için planlandı. Minimum servis etkisi bekleniyor.
+                    </p>
+                    <div class="timeline-time">27 Eylül 2025 16:00 UTC</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <div class="timeline-content">
+                    <h4 data-tr="CDN Altyapısı Güncellendi" data-en="CDN Infrastructure Updated">CDN Altyapısı Güncellendi</h4>
+                    <p data-tr="Küresel CDN altyapısı yükseltildi. 15 yeni sunucu konumu eklendi. Sayfa yükleme süreleri %18 iyileştirildi." data-en="Global CDN infrastructure upgraded. Added 15 new server locations. Page load times improved by 18%.">
+                        Küresel CDN altyapısı yükseltildi. 15 yeni sunucu konumu eklendi. Sayfa yükleme süreleri %18 iyileştirildi.
+                    </p>
+                    <div class="timeline-time">25 Eylül 2025 22:45 UTC</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <p class="footer-description">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ürünler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
+                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+                        <li><a href="/video-ai.html">Video AI</a></li>
+                        <li><a href="/api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Çözümler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/enterprise.html">Enterprise</a></li>
+                        <li><a href="/education.html">Eğitim</a></li>
+                        <li><a href="/research.html">Araştırma</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Şirket</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html">Hakkımızda</a></li>
+                        <li><a href="/careers.html">Kariyer</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="/help.html">Yardım Merkezi</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Gizlilik Politikası</a>
+                    <a href="/terms.html">Kullanım Koşulları</a>
+                    <a href="/cookies.html">Çerezler</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language toggle functionality
+        let currentLang = 'tr';
+
+        const translations = {
+            tr: {},
+            en: {}
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            document.documentElement.lang = currentLang;
+
+            // Update all elements with data-tr and data-en attributes
+            document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+                const trText = el.getAttribute('data-tr');
+                const enText = el.getAttribute('data-en');
+                el.textContent = currentLang === 'tr' ? trText : enText;
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-tr][data-placeholder-en]').forEach(el => {
+                const trPlaceholder = el.getAttribute('data-placeholder-tr');
+                const enPlaceholder = el.getAttribute('data-placeholder-en');
+                el.placeholder = currentLang === 'tr' ? trPlaceholder : enPlaceholder;
+            });
+
+            // Update title
+            const titleEl = document.querySelector('title');
+            if (titleEl) {
+                const trTitle = titleEl.getAttribute('data-tr');
+                const enTitle = titleEl.getAttribute('data-en');
+                titleEl.textContent = currentLang === 'tr' ? trTitle : enTitle;
+            }
+
+            // Save preference
+            localStorage.setItem('preferredLanguage', currentLang);
+        }
+
+        // Initialize language from localStorage
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang && savedLang !== 'tr') {
+            toggleLanguage();
+        }
+
+        // Add click event to language toggle button
+        document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const duration = 2000;
+            const steps = 60;
+            const increment = target / steps;
+            let current = 0;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = current.toFixed(target % 1 === 0 ? 0 : 2);
+            }, duration / steps);
+        }
+
+        // Generate uptime graph
+        function generateUptimeGraph() {
+            const container = document.getElementById('uptimeDays');
+            const days = 90;
+
+            for (let i = 0; i < days; i++) {
+                const day = document.createElement('div');
+                day.className = 'uptime-day';
+
+                // Simulate uptime data (mostly perfect, some good, rare degraded)
+                const rand = Math.random();
+                if (rand > 0.05) {
+                    day.classList.add('perfect');
+                } else if (rand > 0.02) {
+                    day.classList.add('good');
+                } else {
+                    day.classList.add('degraded');
+                }
+
+                container.appendChild(day);
+            }
+        }
+
+        // Subscribe form handling
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const message = document.getElementById('subscribeMessage');
+
+            // Simulate subscription
+            if (email) {
+                message.textContent = currentLang === 'tr'
+                    ? 'Başarıyla abone oldunuz!'
+                    : 'Successfully subscribed!';
+                message.className = 'subscribe-message success';
+                document.getElementById('emailInput').value = '';
+
+                setTimeout(() => {
+                    message.className = 'subscribe-message';
+                }, 3000);
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Trigger counter animation
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        if (!counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateUptimeGraph();
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

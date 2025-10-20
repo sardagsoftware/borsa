@@ -1,0 +1,115 @@
+{
+  "app": {
+    "title": "LyDian IA Médicale",
+    "subtitle": "Expert en Intelligence Santé",
+    "description": "Assistant IA médical avancé avec support multi-spécialités"
+  },
+  "header": {
+    "newConsultation": "Nouvelle Consultation",
+    "emergencyNumbers": "Numéros d'Urgence",
+    "languageSelector": "Langue"
+  },
+  "sidebar": {
+    "logo": "LyDian IA Médicale",
+    "toggleSidebar": "Basculer la barre latérale"
+  },
+  "disclaimer": {
+    "title": "Avertissement Médical",
+    "text": "Cet assistant IA fournit uniquement des informations médicales générales. Consultez toujours des professionnels de santé qualifiés pour le diagnostic et le traitement. En cas d'urgence, appelez immédiatement les services d'urgence.",
+    "understand": "J'ai Compris"
+  },
+  "specialties": {
+    "title": "Spécialités Médicales",
+    "generalMedicine": "Médecine Générale",
+    "cardiology": "Cardiologie",
+    "neurology": "Neurologie",
+    "oncology": "Oncologie",
+    "pediatrics": "Pédiatrie",
+    "psychiatry": "Psychiatrie",
+    "orthopedics": "Orthopédie",
+    "radiology": "Radiologie",
+    "emergency": "Médecine d'Urgence",
+    "dermatology": "Dermatologie"
+  },
+  "tools": {
+    "title": "Outils Médicaux",
+    "ragSearch": "Recherche RAG",
+    "ragSearchDesc": "Rechercher PubMed et Directives",
+    "dicomUpload": "Téléchargement DICOM",
+    "dicomUploadDesc": "Analyse d'imagerie médicale",
+    "fhirPatient": "Patient FHIR",
+    "fhirPatientDesc": "Gestion des données patient",
+    "speechTranscription": "Transcription Vocale",
+    "speechTranscriptionDesc": "Notes médicales vocal-texte",
+    "translation": "Traduction Médicale",
+    "translationDesc": "Texte médical multilingue"
+  },
+  "chat": {
+    "inputPlaceholder": "Décrivez vos symptômes, posez des questions médicales ou téléchargez des images médicales...",
+    "sendButton": "Envoyer",
+    "voiceInput": "Entrée Vocale",
+    "fileUpload": "Télécharger un Fichier",
+    "clearChat": "Effacer la Discussion",
+    "newChat": "Nouvelle Discussion",
+    "thinking": "L'IA analyse...",
+    "typing": "Écriture..."
+  },
+  "calculators": {
+    "general": {
+      "title": "Calculateur Médical Général",
+      "subtitle": "Évaluation des signes vitaux et IMC",
+      "vitalSigns": "Signes Vitaux",
+      "systolic": "Pression Systolique (mmHg)",
+      "diastolic": "Pression Diastolique (mmHg)",
+      "heartRate": "Fréquence Cardiaque (bpm)",
+      "temperature": "Température (°C)",
+      "spO2": "SpO2 (%)",
+      "respRate": "Fréquence Respiratoire (/min)",
+      "bodyMetrics": "Mesures Corporelles",
+      "weight": "Poids (kg)",
+      "height": "Taille (m)",
+      "patientInfo": "Informations Patient",
+      "patientName": "Nom du Patient",
+      "age": "Âge",
+      "gender": "Sexe",
+      "male": "Homme",
+      "female": "Femme",
+      "other": "Autre",
+      "medications": "Médicaments (format JSON)",
+      "physician": "Informations Médecin",
+      "physicianName": "Nom du Médecin",
+      "licenseNumber": "Numéro de Licence",
+      "calculate": "Calculer",
+      "results": "Résultats"
+    }
+  },
+  "buttons": {
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "confirm": "Confirmer",
+    "clear": "Effacer",
+    "reset": "Réinitialiser",
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "print": "Imprimer",
+    "export": "Exporter",
+    "import": "Importer"
+  },
+  "status": {
+    "loading": "Chargement...",
+    "processing": "Traitement...",
+    "analyzing": "Analyse...",
+    "saving": "Sauvegarde...",
+    "success": "Succès!",
+    "error": "Erreur survenue",
+    "warning": "Avertissement",
+    "info": "Information"
+  }
+}

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 LyDian i18n System - Live Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .language-selector {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .language-selector h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .language-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .language-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .language-btn.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .test-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .test-panel h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .translation-demo {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .translation-item {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .translation-key {
+            font-family: 'Courier New', monospace;
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .translation-value {
+            font-size: 1.1rem;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .status-bar {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .status-item {
+            text-align: center;
+        }
+
+        .status-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .rtl-demo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .rtl-demo.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+            margin-top: 1rem;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 LyDian i18n System</h1>
+            <p>Live Interactive Language Testing Demo</p>
+        </div>
+
+        <div class="language-selector">
+            <h2>🌐 Select Language / Dil Seçin / اختر اللغة</h2>
+            <div class="language-grid" id="languageGrid">
+                <button class="language-btn active" data-lang="tr">
+                    🇹🇷 Türkçe
+                </button>
+                <button class="language-btn" data-lang="en">
+                    🇬🇧 English
+                </button>
+                <button class="language-btn" data-lang="de">
+                    🇩🇪 Deutsch
+                </button>
+                <button class="language-btn" data-lang="fr">
+                    🇫🇷 Français
+                </button>
+                <button class="language-btn" data-lang="es">
+                    🇪🇸 Español
+                </button>
+                <button class="language-btn" data-lang="ar">
+                    🇸🇦 العربية
+                </button>
+                <button class="language-btn" data-lang="ru">
+                    🇷🇺 Русский
+                </button>
+                <button class="language-btn" data-lang="it">
+                    🇮🇹 Italiano
+                </button>
+                <button class="language-btn" data-lang="ja">
+                    🇯🇵 日本語
+                </button>
+                <button class="language-btn" data-lang="zh-CN">
+                    🇨🇳 简体中文
+                </button>
+                <button class="language-btn" data-lang="az">
+                    🇦🇿 Azərbaycan
+                </button>
+            </div>
+        </div>
+
+        <div class="test-panel">
+            <h3>📝 Translation Demo</h3>
+            <div id="translationDemo" class="translation-demo">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading translations...
+                </div>
+            </div>
+        </div>
+
+        <div class="rtl-demo" id="rtlDemo">
+            <h3>📐 RTL (Right-to-Left) Support Test</h3>
+            <p id="rtlText">RTL mode will activate automatically when Arabic is selected.</p>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="status-value" id="currentLang">tr</div>
+                    <div class="status-label">Current Language</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="loadTime">-</div>
+                    <div class="status-label">Load Time (ms)</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="keysCount">-</div>
+                    <div class="status-label">Keys Loaded</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="cacheStatus">❌</div>
+                    <div class="status-label">Cache Status</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple i18n implementation for demo
+        class I18nDemo {
+            constructor() {
+                this.currentLang = 'tr';
+                this.translations = {};
+                this.cache = new Map();
+            }
+
+            async loadTranslations(lang) {
+                const startTime = performance.now();
+
+                try {
+                    // Check cache first
+                    if (this.cache.has(lang)) {
+                        const cached = this.cache.get(lang);
+                        this.updateUI(cached, lang, performance.now() - startTime, true);
+                        return;
+                    }
+
+                    // Load common.json and errors.json (these exist)
+                    const responses = await Promise.all([
+                        fetch(`/i18n/v2/${lang}/common.json`),
+                        fetch(`/i18n/v2/${lang}/errors.json`)
+                    ]);
+
+                    const [commonData, errorsData] = await Promise.all([
+                        responses[0].json(),
+                        responses[1].json()
+                    ]);
+
+                    // Combine translations
+                    const combined = { ...commonData, ...errorsData };
+
+                    // Cache the result
+                    this.cache.set(lang, combined);
+
+                    this.translations = combined;
+                    this.currentLang = lang;
+
+                    const loadTime = performance.now() - startTime;
+                    this.updateUI(combined, lang, loadTime, false);
+
+                } catch (error) {
+                    console.error('Failed to load translations:', error);
+                    this.showError(error.message);
+                }
+            }
+
+            updateUI(translations, lang, loadTime, fromCache) {
+                // Update status bar
+                document.getElementById('currentLang').textContent = lang.toUpperCase();
+                document.getElementById('loadTime').textContent = Math.round(loadTime);
+                document.getElementById('keysCount').textContent = Object.keys(translations).length;
+                document.getElementById('cacheStatus').textContent = fromCache ? '✅' : '❌';
+
+                // Update translation demo
+                const demo = document.getElementById('translationDemo');
+                demo.innerHTML = '';
+
+                // Show first 10 translations
+                const entries = Object.entries(translations).slice(0, 10);
+
+                if (entries.length === 0) {
+                    demo.innerHTML = `
+                        <div class="error-message">
+                            No translations found for language: ${lang}
+                        </div>
+                    `;
+                    return;
+                }
+
+                entries.forEach(([key, value]) => {
+                    const item = document.createElement('div');
+                    item.className = 'translation-item';
+                    item.innerHTML = `
+                        <div class="translation-key">${key}</div>
+                        <div class="translation-value">${value}</div>
+                    `;
+                    demo.appendChild(item);
+                });
+
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'success-message';
+                successMsg.innerHTML = `
+                    ✅ Successfully loaded ${Object.keys(translations).length} translations in ${Math.round(loadTime)}ms
+                    ${fromCache ? ' (from cache)' : ''}
+                `;
+                demo.appendChild(successMsg);
+
+                // Handle RTL for Arabic
+                const rtlDemo = document.getElementById('rtlDemo');
+                const rtlText = document.getElementById('rtlText');
+
+                if (lang === 'ar') {
+                    rtlDemo.classList.add('rtl');
+                    rtlText.textContent = 'تم تفعيل وضع الكتابة من اليمين إلى اليسار (RTL) تلقائياً للعربية!';
+                    document.documentElement.setAttribute('dir', 'rtl');
+                } else {
+                    rtlDemo.classList.remove('rtl');
+                    rtlText.textContent = 'RTL mode will activate automatically when Arabic is selected.';
+                    document.documentElement.setAttribute('dir', 'ltr');
+                }
+
+                // Update active button
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            showError(message) {
+                const demo = document.getElementById('translationDemo');
+                demo.innerHTML = `
+                    <div class="error-message">
+                        ❌ Error loading translations: ${message}
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        const i18n = new I18nDemo();
+
+        // Load default language
+        i18n.loadTranslations('tr');
+
+        // Setup language buttons
+        document.getElementById('languageGrid').addEventListener('click', (e) => {
+            const btn = e.target.closest('.language-btn');
+            if (btn) {
+                const lang = btn.dataset.lang;
+                i18n.loadTranslations(lang);
+            }
+        });
+
+        // Log system info
+        console.log('🌍 LyDian i18n System - Demo Page');
+        console.log('Supported languages:', ['tr', 'en', 'de', 'fr', 'es', 'ar', 'ru', 'it', 'ja', 'zh-CN', 'az']);
+        console.log('Translation files:', [
+            '/i18n/v2/{lang}/common.json',
+            '/i18n/v2/{lang}/errors.json'
+        ]);
+    </script>
+</body>
+</html>

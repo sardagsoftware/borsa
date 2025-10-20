@@ -1,0 +1,852 @@
+{
+  "id": "s2-kpi-dashboard",
+  "title": "Season 2: Echo Storms - KPI Dashboard",
+  "version": "2.0.0",
+  "season": "S2",
+  "created": "2026-01-15T00:00:00Z",
+  "grafana_compatible": true,
+  "refresh_interval": "5m",
+
+  "panels": [
+    {
+      "id": 1,
+      "title": "Technical Health",
+      "type": "stat",
+      "gridPos": {"x": 0, "y": 0, "w": 24, "h": 8},
+      "metrics": [
+        {
+          "name": "crash_free_rate",
+          "display_name": "Crash-Free Rate",
+          "unit": "percent",
+          "decimals": 2,
+          "target": 98.5,
+          "thresholds": {
+            "critical": 98.0,
+            "warning": 98.3,
+            "good": 98.5
+          },
+          "colors": {
+            "critical": "#d9534f",
+            "warning": "#f0ad4e",
+            "good": "#5cb85c"
+          },
+          "source": "telemetry.crash_reports",
+          "calculation": "(total_sessions - crashed_sessions) / total_sessions * 100",
+          "alert_on": "below",
+          "alert_threshold": 98.5
+        },
+        {
+          "name": "p95_gpu_frame_time",
+          "display_name": "P95 GPU Frame Time",
+          "unit": "ms",
+          "decimals": 1,
+          "target": 16.6,
+          "thresholds": {
+            "critical": 20.0,
+            "warning": 18.0,
+            "good": 16.6
+          },
+          "colors": {
+            "critical": "#d9534f",
+            "warning": "#f0ad4e",
+            "good": "#5cb85c"
+          },
+          "source": "telemetry.frame_times",
+          "calculation": "percentile(gpu_frame_times, 95)",
+          "alert_on": "above",
+          "alert_threshold": 16.6
+        },
+        {
+          "name": "hitch_rate",
+          "display_name": "Hitch Rate (>2ms)",
+          "unit": "percent",
+          "decimals": 2,
+          "target": 2.0,
+          "thresholds": {
+            "critical": 5.0,
+            "warning": 3.0,
+            "good": 2.0
+          },
+          "source": "telemetry.hitches",
+          "calculation": "hitches_over_2ms / total_frames * 100",
+          "alert_on": "above",
+          "alert_threshold": 2.0
+        },
+        {
+          "name": "p95_server_latency",
+          "display_name": "P95 Server Latency",
+          "unit": "ms",
+          "decimals": 0,
+          "target": 150,
+          "thresholds": {
+            "critical": 200,
+            "warning": 170,
+            "good": 150
+          },
+          "source": "telemetry.api_latency",
+          "calculation": "percentile(server_response_times, 95)",
+          "alert_on": "above",
+          "alert_threshold": 150
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "title": "Product Engagement",
+      "type": "graph",
+      "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8},
+      "metrics": [
+        {
+          "name": "dau",
+          "display_name": "Daily Active Users",
+          "unit": "count",
+          "source": "analytics.daily_active_users",
+          "trend": "up",
+          "baseline_s1": 2450,
+          "target_s2": 2800
+        },
+        {
+          "name": "mau",
+          "display_name": "Monthly Active Users",
+          "unit": "count",
+          "source": "analytics.monthly_active_users",
+          "trend": "up",
+          "baseline_s1": 12300,
+          "target_s2": 14000
+        },
+        {
+          "name": "retention_d1",
+          "display_name": "Day 1 Retention",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 42.0,
+          "thresholds": {
+            "critical": 38.0,
+            "warning": 40.0,
+            "good": 42.0
+          },
+          "source": "analytics.retention",
+          "calculation": "players_returned_d1 / new_players * 100",
+          "alert_on": "below",
+          "alert_threshold": 42.0
+        },
+        {
+          "name": "retention_d7",
+          "display_name": "Day 7 Retention",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 22.0,
+          "thresholds": {
+            "critical": 18.0,
+            "warning": 20.0,
+            "good": 22.0
+          },
+          "source": "analytics.retention",
+          "alert_on": "below",
+          "alert_threshold": 22.0
+        },
+        {
+          "name": "retention_d30",
+          "display_name": "Day 30 Retention",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 11.0,
+          "thresholds": {
+            "critical": 8.0,
+            "warning": 9.5,
+            "good": 11.0
+          },
+          "source": "analytics.retention",
+          "alert_on": "below",
+          "alert_threshold": 11.0
+        },
+        {
+          "name": "nps",
+          "display_name": "Net Promoter Score",
+          "unit": "score",
+          "decimals": 0,
+          "target": 55,
+          "thresholds": {
+            "critical": 40,
+            "warning": 50,
+            "good": 55
+          },
+          "source": "analytics.surveys",
+          "calculation": "promoters_percent - detractors_percent",
+          "range": [-100, 100]
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "title": "Economy Health",
+      "type": "stat",
+      "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8},
+      "metrics": [
+        {
+          "name": "earn_spend_ratio",
+          "display_name": "Earn/Spend Ratio",
+          "unit": "ratio",
+          "decimals": 2,
+          "target": 1.0,
+          "thresholds": {
+            "critical_low": 0.85,
+            "warning_low": 0.9,
+            "good_low": 0.95,
+            "good_high": 1.05,
+            "warning_high": 1.1,
+            "critical_high": 1.15
+          },
+          "colors": {
+            "critical": "#d9534f",
+            "warning": "#f0ad4e",
+            "good": "#5cb85c"
+          },
+          "source": "economy.transactions",
+          "calculation": "total_currency_earned / total_currency_spent",
+          "alert_on": "outside_range",
+          "alert_range": [0.9, 1.1]
+        },
+        {
+          "name": "inflation_index",
+          "display_name": "Inflation Index",
+          "unit": "index",
+          "decimals": 2,
+          "target": 1.0,
+          "thresholds": {
+            "critical": 1.15,
+            "warning": 1.08,
+            "good": 1.0
+          },
+          "source": "economy.inflation",
+          "calculation": "current_purchasing_power / baseline_purchasing_power",
+          "alert_on": "above",
+          "alert_threshold": 1.08
+        },
+        {
+          "name": "vendor_usage",
+          "display_name": "Vendor Usage Rate",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 50.0,
+          "thresholds": {
+            "critical": 30.0,
+            "warning": 40.0,
+            "good": 50.0
+          },
+          "source": "economy.vendor_transactions",
+          "calculation": "active_players_purchased / dau * 100",
+          "alert_on": "below",
+          "alert_threshold": 40.0
+        },
+        {
+          "name": "fraud_indicators",
+          "display_name": "Fraud Indicators",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 20,
+            "warning": 5,
+            "good": 0
+          },
+          "source": "security.fraud_detection",
+          "calculation": "sum(flagged_accounts + suspicious_transactions + duplication_attempts)",
+          "alert_on": "above",
+          "alert_threshold": 5
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "title": "Season 2 Content Engagement",
+      "type": "graph",
+      "gridPos": {"x": 0, "y": 16, "w": 12, "h": 8},
+      "metrics": [
+        {
+          "name": "storm_puzzle_completion_rate",
+          "display_name": "Storm Puzzle Completion Rate",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 70.0,
+          "baseline": 65.0,
+          "thresholds": {
+            "critical": 60.0,
+            "warning": 65.0,
+            "good": 70.0
+          },
+          "source": "content.storm_puzzles",
+          "calculation": "completed_puzzles / started_puzzles * 100",
+          "breakdown": ["frequency_align", "phase_chain", "echo_triangulation"]
+        },
+        {
+          "name": "boss_success_rate",
+          "display_name": "Echo Sentinel Success Rate",
+          "unit": "percent",
+          "decimals": 1,
+          "target_range": [45.0, 65.0],
+          "thresholds": {
+            "critical_low": 30.0,
+            "warning_low": 40.0,
+            "good_low": 45.0,
+            "good_high": 65.0,
+            "warning_high": 70.0,
+            "critical_high": 75.0
+          },
+          "source": "content.boss_encounters",
+          "calculation": "boss_defeats / boss_attempts * 100",
+          "alert_on": "outside_range",
+          "alert_range": [45.0, 65.0],
+          "breakdown": ["phase_1", "phase_2"]
+        },
+        {
+          "name": "coop_adoption_rate",
+          "display_name": "Co-op Adoption Rate",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 30.0,
+          "baseline": 25.0,
+          "thresholds": {
+            "warning": 25.0,
+            "good": 30.0
+          },
+          "source": "content.cooperative",
+          "calculation": "players_used_coop / dau * 100"
+        },
+        {
+          "name": "photo_contest_participation",
+          "display_name": "Photo Contest Participation",
+          "unit": "count",
+          "decimals": 0,
+          "target": 500,
+          "source": "events.photo_contest",
+          "calculation": "unique_submitters"
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "title": "A/B Experiments",
+      "type": "table",
+      "gridPos": {"x": 12, "y": 16, "w": 12, "h": 8},
+      "experiments": [
+        {
+          "id": "abx-storm-reward",
+          "name": "Storm Reward Optimization",
+          "status": "active",
+          "start_date": "2026-01-15",
+          "end_date": "2026-01-29",
+          "metrics": [
+            {
+              "name": "puzzle_completion_rate",
+              "control": null,
+              "variant_a": null,
+              "p_value": null,
+              "winner": null
+            },
+            {
+              "name": "inflation_index",
+              "guardrail": true,
+              "threshold": 1.15
+            }
+          ]
+        },
+        {
+          "id": "abx-boss-hp-storm",
+          "name": "Boss HP Tuning",
+          "status": "scheduled",
+          "start_date": "2026-01-22",
+          "end_date": "2026-02-05",
+          "metrics": [
+            {
+              "name": "boss_success_rate",
+              "control": null,
+              "variant_a": null,
+              "variant_b": null,
+              "target": 0.55
+            }
+          ]
+        },
+        {
+          "id": "abx-coop-optin",
+          "name": "Co-op Opt-in Frequency",
+          "status": "scheduled",
+          "start_date": "2026-02-05",
+          "end_date": "2026-02-19",
+          "metrics": [
+            {
+              "name": "coop_adoption_rate",
+              "control": null,
+              "variant_a": null,
+              "variant_b": null,
+              "target": 0.30
+            },
+            {
+              "name": "prompt_dismissal_rate",
+              "guardrail": true,
+              "threshold": 0.70
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "title": "Weekly Events Calendar",
+      "type": "calendar",
+      "gridPos": {"x": 0, "y": 24, "w": 24, "h": 6},
+      "events": [
+        {
+          "week": 1,
+          "dates": "Jan 15-21",
+          "theme": "Storm Awakening",
+          "events": ["Daily Trials", "Canyon Night-Storm Opens"],
+          "metrics_tracked": ["new_player_onboarding", "biome_exploration"]
+        },
+        {
+          "week": 2,
+          "dates": "Jan 22-28",
+          "theme": "Sentinel Rises",
+          "events": ["Mini-Boss: Echo Sentinel Phase 1"],
+          "metrics_tracked": ["boss_attempts", "boss_success_rate", "average_attempts"]
+        },
+        {
+          "week": 3,
+          "dates": "Jan 29 - Feb 4",
+          "theme": "Storm Photography",
+          "events": ["PhotoMode Contest: Storm Trails"],
+          "metrics_tracked": ["submissions", "participation_rate", "community_engagement"]
+        },
+        {
+          "week": 4,
+          "dates": "Feb 5-11",
+          "theme": "Cooperative Week",
+          "events": ["Co-op Puzzle Week", "Vendor Sale 10%"],
+          "metrics_tracked": ["coop_adoption", "vendor_sales", "social_engagement"]
+        },
+        {
+          "week": 5,
+          "dates": "Feb 12-18",
+          "theme": "Sentinel Returns",
+          "events": ["Mini-Boss: Echo Sentinel Phase 2"],
+          "metrics_tracked": ["boss_success_rate", "phase_comparison", "difficulty_feedback"]
+        },
+        {
+          "week": 6,
+          "dates": "Feb 19-25",
+          "theme": "Season Finale",
+          "events": ["Finale Bonus XP (1.5x)", "Storm Marathon", "Echo Hunt"],
+          "metrics_tracked": ["xp_earned", "finale_participation", "season_completion"]
+        }
+      ]
+    },
+
+    {
+      "id": 7,
+      "title": "Security & Anti-Cheat",
+      "type": "stat",
+      "gridPos": {"x": 0, "y": 30, "w": 12, "h": 6},
+      "metrics": [
+        {
+          "name": "flagged_accounts",
+          "display_name": "Flagged Accounts",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 50,
+            "warning": 10,
+            "good": 0
+          },
+          "source": "security.flagged_accounts"
+        },
+        {
+          "name": "earn_rate_anomalies",
+          "display_name": "Earn Rate Anomalies",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 20,
+            "warning": 5,
+            "good": 0
+          },
+          "source": "security.fraud_detection"
+        },
+        {
+          "name": "duplication_attempts",
+          "display_name": "Duplication Attempts",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 10,
+            "warning": 3,
+            "good": 0
+          },
+          "source": "security.anti_cheat"
+        },
+        {
+          "name": "client_integrity_failures",
+          "display_name": "Client Integrity Failures",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 100,
+            "warning": 20,
+            "good": 0
+          },
+          "source": "security.client_integrity"
+        }
+      ]
+    },
+
+    {
+      "id": 8,
+      "title": "Compliance & Data Privacy",
+      "type": "stat",
+      "gridPos": {"x": 12, "y": 30, "w": 12, "h": 6},
+      "metrics": [
+        {
+          "name": "pending_export_requests",
+          "display_name": "Pending GDPR Export Requests",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 10,
+            "warning": 3,
+            "good": 0
+          },
+          "source": "compliance.export_requests",
+          "sla_hours": 72
+        },
+        {
+          "name": "pending_deletion_requests",
+          "display_name": "Pending GDPR Deletion Requests",
+          "unit": "count",
+          "decimals": 0,
+          "target": 0,
+          "thresholds": {
+            "critical": 10,
+            "warning": 3,
+            "good": 0
+          },
+          "source": "compliance.deletion_requests",
+          "sla_hours": 168
+        },
+        {
+          "name": "data_retention_compliance",
+          "display_name": "Data Retention Compliance",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 100.0,
+          "thresholds": {
+            "critical": 95.0,
+            "warning": 98.0,
+            "good": 100.0
+          },
+          "source": "compliance.retention_check",
+          "calculation": "compliant_records / total_records * 100"
+        },
+        {
+          "name": "pii_anonymization_rate",
+          "display_name": "PII Anonymization Rate",
+          "unit": "percent",
+          "decimals": 1,
+          "target": 100.0,
+          "thresholds": {
+            "critical": 95.0,
+            "warning": 98.0,
+            "good": 100.0
+          },
+          "source": "compliance.anonymization"
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "title": "Canary Deployment Status",
+      "type": "timeline",
+      "gridPos": {"x": 0, "y": 36, "w": 24, "h": 4},
+      "deployments": [
+        {
+          "type": "content",
+          "schedule": "Tuesday/Thursday 11:00-14:00 TRT",
+          "phases": [
+            {"percent": 10, "duration_hours": 24},
+            {"percent": 50, "duration_hours": 48},
+            {"percent": 100, "monitor_hours": 72}
+          ],
+          "rollback_ready": true,
+          "current_status": null
+        },
+        {
+          "type": "economy",
+          "schedule": "Wednesday 11:00-14:00 TRT",
+          "phases": [
+            {"percent": 10, "duration_hours": 24},
+            {"percent": 50, "duration_hours": 48},
+            {"percent": 100, "monitor_hours": 72}
+          ],
+          "rollback_ready": true,
+          "current_status": null
+        },
+        {
+          "type": "experiment",
+          "schedule": "Monday 11:00-14:00 TRT",
+          "rollback_ready": true,
+          "current_status": null
+        }
+      ]
+    },
+
+    {
+      "id": 10,
+      "title": "System Status Overview",
+      "type": "status",
+      "gridPos": {"x": 0, "y": 40, "w": 24, "h": 4},
+      "systems": [
+        {
+          "name": "API",
+          "endpoint": "/api/health",
+          "status": null,
+          "uptime_target": 99.9
+        },
+        {
+          "name": "Database",
+          "check": "connection_pool",
+          "status": null,
+          "uptime_target": 99.9
+        },
+        {
+          "name": "Cache (Redis)",
+          "check": "redis_ping",
+          "status": null,
+          "uptime_target": 99.5
+        },
+        {
+          "name": "Telemetry",
+          "endpoint": "/telemetry/kpis",
+          "status": null,
+          "uptime_target": 99.0
+        },
+        {
+          "name": "LiveOps",
+          "endpoint": "/liveops/season/current",
+          "status": null,
+          "uptime_target": 99.5
+        },
+        {
+          "name": "Anti-Cheat",
+          "check": "validation_service",
+          "status": null,
+          "uptime_target": 99.9
+        }
+      ]
+    }
+  ],
+
+  "alerts": [
+    {
+      "name": "crash_free_rate_critical",
+      "condition": "crash_free_rate < 98.5",
+      "severity": "critical",
+      "channels": ["slack_liveops", "pagerduty", "email_oncall"],
+      "message": "🚨 CRITICAL: Crash-free rate below 98.5% (current: {{value}}%)"
+    },
+    {
+      "name": "inflation_spike",
+      "condition": "inflation_index > 1.08",
+      "severity": "warning",
+      "channels": ["slack_liveops", "email_economy_team"],
+      "message": "⚠️ WARNING: Inflation index above threshold (current: {{value}})"
+    },
+    {
+      "name": "inflation_critical",
+      "condition": "inflation_index > 1.15",
+      "severity": "critical",
+      "channels": ["slack_liveops", "pagerduty", "email_oncall"],
+      "message": "🚨 CRITICAL: Inflation index critical (current: {{value}}), initiating rollback",
+      "action": "auto_rollback_economy"
+    },
+    {
+      "name": "earn_spend_ratio_violation",
+      "condition": "earn_spend_ratio < 0.9 OR earn_spend_ratio > 1.1",
+      "severity": "warning",
+      "channels": ["slack_liveops", "email_economy_team"],
+      "message": "⚠️ WARNING: Earn/spend ratio outside acceptable range (current: {{value}})"
+    },
+    {
+      "name": "retention_d1_drop",
+      "condition": "retention_d1 < 42.0",
+      "severity": "warning",
+      "channels": ["slack_liveops", "email_product_team"],
+      "message": "⚠️ WARNING: D1 retention below target (current: {{value}}%)"
+    },
+    {
+      "name": "boss_success_rate_too_low",
+      "condition": "boss_success_rate < 45.0",
+      "severity": "warning",
+      "channels": ["slack_liveops", "email_content_team"],
+      "message": "⚠️ WARNING: Boss too difficult (success rate: {{value}}%)"
+    },
+    {
+      "name": "boss_success_rate_too_high",
+      "condition": "boss_success_rate > 65.0",
+      "severity": "warning",
+      "channels": ["slack_liveops", "email_content_team"],
+      "message": "⚠️ WARNING: Boss too easy (success rate: {{value}}%)"
+    },
+    {
+      "name": "fraud_indicators_spike",
+      "condition": "fraud_indicators > 20",
+      "severity": "critical",
+      "channels": ["slack_security", "pagerduty", "email_security_team"],
+      "message": "🚨 CRITICAL: Fraud indicators spike (current: {{value}})"
+    },
+    {
+      "name": "server_latency_degradation",
+      "condition": "p95_server_latency > 150",
+      "severity": "warning",
+      "channels": ["slack_sre", "email_oncall"],
+      "message": "⚠️ WARNING: Server latency degraded (P95: {{value}}ms)"
+    },
+    {
+      "name": "server_latency_critical",
+      "condition": "p95_server_latency > 200",
+      "severity": "critical",
+      "channels": ["slack_sre", "pagerduty", "email_oncall"],
+      "message": "🚨 CRITICAL: Server latency critical (P95: {{value}}ms), initiating rollback",
+      "action": "auto_rollback_deploy"
+    }
+  ],
+
+  "data_sources": {
+    "telemetry": {
+      "type": "prometheus",
+      "url": "${PROMETHEUS_URL}",
+      "refresh": "5s"
+    },
+    "analytics": {
+      "type": "postgresql",
+      "connection": "${DATABASE_URL}",
+      "refresh": "1m"
+    },
+    "economy": {
+      "type": "postgresql",
+      "connection": "${DATABASE_URL}",
+      "refresh": "30s"
+    },
+    "security": {
+      "type": "elasticsearch",
+      "url": "${ELASTICSEARCH_URL}",
+      "refresh": "10s"
+    },
+    "compliance": {
+      "type": "postgresql",
+      "connection": "${DATABASE_URL}",
+      "refresh": "5m"
+    }
+  },
+
+  "variables": [
+    {
+      "name": "region",
+      "type": "multi-select",
+      "options": ["TR", "EU", "US", "RU", "MENA"],
+      "default": "all"
+    },
+    {
+      "name": "time_range",
+      "type": "time-range",
+      "default": "last_24h",
+      "options": ["last_1h", "last_6h", "last_24h", "last_7d", "last_30d"]
+    },
+    {
+      "name": "platform",
+      "type": "multi-select",
+      "options": ["PC", "iOS", "Android"],
+      "default": "all"
+    }
+  ],
+
+  "annotations": [
+    {
+      "name": "deployments",
+      "datasource": "telemetry",
+      "query": "deployment_events",
+      "color": "#1f77b4"
+    },
+    {
+      "name": "ab_experiments",
+      "datasource": "analytics",
+      "query": "experiment_lifecycle_events",
+      "color": "#ff7f0e"
+    },
+    {
+      "name": "incidents",
+      "datasource": "telemetry",
+      "query": "incident_events",
+      "color": "#d62728"
+    },
+    {
+      "name": "season_events",
+      "datasource": "analytics",
+      "query": "liveops_events",
+      "color": "#2ca02c"
+    }
+  ],
+
+  "export": {
+    "pdf_enabled": true,
+    "csv_enabled": true,
+    "email_reports": {
+      "daily": {
+        "time": "08:00 TRT",
+        "recipients": ["liveops-team@ailydian.com"]
+      },
+      "weekly": {
+        "time": "Monday 09:00 TRT",
+        "recipients": ["liveops-team@ailydian.com", "stakeholders@ailydian.com"]
+      }
+    }
+  },
+
+  "white_hat": true,
+  "compliance": {
+    "kvkk": true,
+    "gdpr": true,
+    "pdpl": true,
+    "data_anonymization": true,
+    "no_pii_in_dashboards": true
+  },
+
+  "observability_targets": {
+    "crash_free_rate": "≥ 98.5%",
+    "p95_gpu_frame_time": "≤ 16.6ms",
+    "hitch_rate": "< 2%",
+    "p95_server_latency": "≤ 150ms",
+    "retention_d1": "≥ 42%",
+    "retention_d7": "≥ 22%",
+    "retention_d30": "≥ 11%",
+    "boss_success_rate": "45-65%",
+    "inflation_index": "< 1.15",
+    "earn_spend_ratio": "0.9-1.1"
+  },
+
+  "metadata": {
+    "created_by": "liveops_team",
+    "last_updated": "2026-01-15T00:00:00Z",
+    "version": "2.0.0",
+    "grafana_version": "9.0.0",
+    "documentation": "Docs/S2-KPI-DASHBOARD-GUIDE.md"
+  }
+}

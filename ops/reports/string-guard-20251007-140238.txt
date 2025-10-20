@@ -1,0 +1,272 @@
+🔍 Starting STRING-GUARD scan...
+
+Root directory: /Users/sardag/Desktop/ailydian-ultra-pro
+Excluded directories: node_modules, .git, .next, dist, build, .vercel, playwright-report, test-results, coverage, ops/tools
+
+
+🔐 STRING-GUARD SCAN REPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Files Scanned: 1202
+Total Lines: 638146
+Violations Found: 4677
+  - Critical: 4673
+  - High: 4
+
+VIOLATIONS:
+
+1. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:4
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: // Real AI Integration with Anthropic Claude & OpenAI
+
+2. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:4
+   Type: provider | Name: Anthropic
+   Match: "Anthropic"
+   Context: // Real AI Integration with Anthropic Claude & OpenAI
+
+3. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:4
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: // Real AI Integration with Anthropic Claude & OpenAI
+
+4. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:11
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: // Priority 1: Azure OpenAI (Enterprise Deep Thinking)
+
+5. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:14
+   Type: provider | Name: OpenAI
+   Match: "openai"
+   Context: endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deploymen
+
+6. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:14
+   Type: model | Name: GPT models
+   Match: "gpt-4-turbo"
+   Context: endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deploymen
+
+7. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:15
+   Type: model | Name: GPT models
+   Match: "gpt-4-turbo"
+   Context: model: 'gpt-4-turbo',
+
+8. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:21
+   Type: provider | Name: Anthropic
+   Match: "Anthropic"
+   Context: // Priority 2: Anthropic Claude (Best for reasoning)
+
+9. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:21
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: // Priority 2: Anthropic Claude (Best for reasoning)
+
+10. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:22
+   Type: provider | Name: Anthropic
+   Match: "anthropic"
+   Context: anthropic: {
+
+11. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:24
+   Type: provider | Name: Anthropic
+   Match: "anthropic"
+   Context: endpoint: 'https://api.anthropic.com/v1/messages',
+
+12. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:24
+   Type: endpoint | Name: Anthropic API
+   Match: "api.anthropic.com"
+   Context: endpoint: 'https://api.anthropic.com/v1/messages',
+
+13. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:25
+   Type: model | Name: Claude models
+   Match: "claude-3"
+   Context: model: 'claude-3-7-sonnet-20250219',
+
+14. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:30
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: // Priority 3: OpenAI GPT-4
+
+15. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:30
+   Type: model | Name: GPT models
+   Match: "GPT-4"
+   Context: // Priority 3: OpenAI GPT-4
+
+16. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:31
+   Type: provider | Name: OpenAI
+   Match: "openai"
+   Context: openai: {
+
+17. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:33
+   Type: provider | Name: OpenAI
+   Match: "openai"
+   Context: endpoint: 'https://api.openai.com/v1/chat/completions',
+
+18. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:33
+   Type: endpoint | Name: OpenAI API
+   Match: "api.openai.com"
+   Context: endpoint: 'https://api.openai.com/v1/chat/completions',
+
+19. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:34
+   Type: model | Name: GPT models
+   Match: "gpt-4-turbo"
+   Context: model: 'gpt-4-turbo-preview',
+
+20. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:42
+   Type: provider | Name: OpenAI
+   Match: "openai"
+   Context: endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+
+21. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:43
+   Type: model | Name: LLaMA models
+   Match: "llama-3"
+   Context: model: 'llama-3.3-70b-versatile',
+
+22. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:182
+   Type: provider | Name: Anthropic
+   Match: "Anthropic"
+   Context: // Call Anthropic Claude API (Primary)
+
+23. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:182
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: // Call Anthropic Claude API (Primary)
+
+24. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:185
+   Type: provider | Name: Anthropic
+   Match: "anthropic"
+   Context: const config = AI_CONFIG.anthropic;
+
+25. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:199
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: console.log(`🧠 Calling Claude API for domain: ${domain}`);
+
+26. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:210
+   Type: provider | Name: Anthropic
+   Match: "anthropic"
+   Context: 'anthropic-version': '2023-06-01'
+
+27. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:218
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: throw new Error(`Claude API Error ${response.status}: ${errorText}`);
+
+28. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:224
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: console.log(`✅ Claude response received in ${responseTime}s`);
+
+29. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:239
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: model: 'Claude 3.7 Sonnet',
+
+30. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:240
+   Type: provider | Name: Anthropic
+   Match: "Anthropic"
+   Context: provider: 'Anthropic',
+
+31. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:247
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: console.error('❌ Claude API Error:', error);
+
+32. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:252
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: // Call OpenAI API (Fallback)
+
+33. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:255
+   Type: provider | Name: OpenAI
+   Match: "openai"
+   Context: const config = AI_CONFIG.openai;
+
+34. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:274
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: console.log(`🧠 Calling OpenAI GPT-4 for domain: ${domain}`);
+
+35. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:274
+   Type: model | Name: GPT models
+   Match: "GPT-4"
+   Context: console.log(`🧠 Calling OpenAI GPT-4 for domain: ${domain}`);
+
+36. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:291
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: throw new Error(`OpenAI API Error ${response.status}: ${errorText}`);
+
+37. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:297
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: console.log(`✅ OpenAI response received in ${responseTime}s`);
+
+38. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:312
+   Type: model | Name: GPT models
+   Match: "GPT-4"
+   Context: model: 'GPT-4 Turbo',
+
+39. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:313
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: provider: 'OpenAI',
+
+40. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:320
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: console.error('❌ OpenAI API Error:', error);
+
+41. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:347
+   Type: model | Name: LLaMA models
+   Match: "LLaMA"
+   Context: console.log(`⚡ Calling Groq LLaMA for domain: ${domain}`);
+
+42. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:385
+   Type: model | Name: LLaMA models
+   Match: "LLaMA"
+   Context: model: 'LLaMA 3.3 70B',
+
+43. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:471
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: // Multi-Provider AI Strategy: Claude → OpenAI → Groq → Demo
+
+44. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:471
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: // Multi-Provider AI Strategy: Claude → OpenAI → Groq → Demo
+
+45. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:474
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: // Try Claude first (best for reasoning)
+
+46. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:475
+   Type: provider | Name: Anthropic
+   Match: "anthropic"
+   Context: if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20) {
+
+47. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:476
+   Type: model | Name: Claude models
+   Match: "Claude"
+   Context: console.log('🎯 Strategy: Using Claude (Primary) with retry');
+
+48. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:479
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: // Fallback to OpenAI
+
+49. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:480
+   Type: provider | Name: OpenAI
+   Match: "openai"
+   Context: else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20) {
+
+50. [CRITICAL] .cleanup-backup-20251004-233430/solve.js:481
+   Type: provider | Name: OpenAI
+   Match: "OpenAI"
+   Context: console.log('🎯 Strategy: Using OpenAI GPT-4 (Fallback) with retry');
+
+... and 4627 more violations
+
+
+❌ FAIL: 4673 critical violations found
+Codebase contains hardcoded AI provider/model names

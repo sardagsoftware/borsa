@@ -1,0 +1,84 @@
+{
+  "app": {
+    "title": "Κονσόλα Ailydian",
+    "subtitle": "Ηχώ της Σάρδεως - Κονσόλα διαχείρισης παιχνιδιού"
+  },
+  "nav": {
+    "story": "Ιστορία",
+    "liveops": "Ζωντανές λειτουργίες",
+    "kpis": "KPIs",
+    "settings": "Ρυθμίσεις",
+    "logout": "Αποσύνδεση"
+  },
+  "common": {
+    "loading": "Φόρτωση...",
+    "error": "Σφάλμα",
+    "success": "Επιτυχία",
+    "save": "Αποθήκευση",
+    "cancel": "Ακύρωση",
+    "delete": "Διαγραφή",
+    "edit": "Επεξεργασία",
+    "view": "Προβολή",
+    "close": "Κλείσιμο",
+    "search": "Αναζήτηση",
+    "filter": "Φίλτρο",
+    "refresh": "Ανανέωση",
+    "export": "Εξαγωγή",
+    "import": "Εισαγωγή"
+  },
+  "story": {
+    "title": "Βιβλίο ιστορίας",
+    "timeline": "Χρονολόγιο",
+    "characters": "Χαρακτήρες και σχέσεις",
+    "themes": "Θέματα και σύμβολα",
+    "dialogue": "Δείγματα διαλόγου",
+    "aesthetic": "Αισθητική παλέτα",
+    "telemetry": "Ετικέτες τηλεμετρίας",
+    "no_files": "Δεν βρέθηκαν αρχεία ιστορίας",
+    "load_error": "Αποτυχία φόρτωσης δεδομένων ιστορίας"
+  },
+  "liveops": {
+    "title": "Σεζόν 2 - Ζωντανές λειτουργίες",
+    "season_summary": "Σύνοψη σεζόν",
+    "week_calendar": "Εβδομαδιαίο ημερολόγιο",
+    "today_events": "Σημερινές εκδηλώσεις",
+    "economy": "Έλεγχος οικονομίας",
+    "ab_experiments": "Πειράματα A/B",
+    "controls": "Έλεγχοι ανάπτυξης",
+    "trigger_event": "Ενεργοποίηση γεγονότος",
+    "deploy": "Ανάπτυξη",
+    "rollback": "Επαναφορά",
+    "canary": "Καναρίνι",
+    "ga": "Γενική διαθεσιμότητα"
+  },
+  "kpis": {
+    "title": "KPIs και τηλεμετρία",
+    "technical_health": "Τεχνική υγεία",
+    "engagement": "Εμπλοκή",
+    "economy": "Οικονομία",
+    "alerts": "Ειδοποιήσεις",
+    "crash_free_rate": "Ποσοστό χωρίς διακοπή",
+    "gpu_frame_time": "Χρόνος καρέ GPU",
+    "dau": "Καθημερινοί ενεργοί χρήστες",
+    "retention_d1": "Διατήρηση ημέρας 1",
+    "retention_d7": "Διατήρηση ημέρας 7",
+    "nps": "Καθαρή βαθμολογία προώθησης",
+    "inflation_index": "Δείκτης πληθωρισμού",
+    "earn_spend_ratio": "Αναλογία κέρδους/δαπάνης"
+  },
+  "rbac": {
+    "admin_required": "Απαιτείται άδεια διαχειριστή για αυτήν τη λειτουργία",
+    "liveops_admin": "liveops.admin",
+    "economy_admin": "economy.admin",
+    "ops_admin": "ops.admin",
+    "insufficient_permissions": "Ανεπαρκή δικαιώματα"
+  },
+  "compliance": {
+    "kvkk": "Συμμορφούται με KVKK",
+    "gdpr": "Συμμορφούται με GDPR",
+    "pdpl": "Συμμορφούται με PDPL",
+    "no_pii": "Χωρίς PII",
+    "anonymized": "Ανώνυμο",
+    "retention_90d": "Διατήρηση 90 ημερών"
+  }
+}
