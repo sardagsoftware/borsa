@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "installCommand": "echo 'Skipping install - Static + Serverless'",
-  "buildCommand": "echo 'No build required - Serverless Functions'",
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "echo 'API Functions Ready'",
   "outputDirectory": "public",
   "rewrites": [
     {
@@ -29,10 +29,6 @@
       "destination": "/api/civic?module=atg&path=:path*"
     },
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    },
-    {
       "source": "/robots.txt",
       "destination": "/public/robots.txt"
     },
@@ -57,8 +53,8 @@
       "destination": "/public/index.html"
     },
     {
-      "source": "/:path*",
-      "destination": "/public/:path*"
+      "source": "/((?!api).*)",
+      "destination": "/public/$1"
     }
   ],
   "functions": {
