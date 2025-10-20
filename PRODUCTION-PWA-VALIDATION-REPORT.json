@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-10-08T07:40:30.575Z",
+  "target": "https://www.ailydian.com",
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "successRate": "100.0%"
+  },
+  "tests": [
+    {
+      "name": "LyDian IQ Page",
+      "status": "PASS",
+      "details": "200 - 205KB"
+    },
+    {
+      "name": "PWA Manifest",
+      "status": "PASS",
+      "details": "12 icons, standalone mode"
+    },
+    {
+      "name": "Service Worker v3.2",
+      "status": "PASS",
+      "details": "iOS detection enabled"
+    },
+    {
+      "name": "Apple Touch Icons",
+      "status": "PASS",
+      "details": "5 icon references found"
+    },
+    {
+      "name": "iOS Device Detection",
+      "status": "PASS",
+      "details": "iOS & Android detection functions deployed"
+    },
+    {
+      "name": "iOS Install Modal",
+      "status": "PASS",
+      "details": "Turkish 3-step instructions deployed"
+    },
+    {
+      "name": "Icon File (PNG)",
+      "status": "PASS",
+      "details": "1777KB PNG"
+    },
+    {
+      "name": "PWA Install Button",
+      "status": "PASS",
+      "details": "Platform-specific install handler deployed"
+    },
+    {
+      "name": "API Health",
+      "status": "PASS",
+      "details": "23 models, vercel-serverless"
+    },
+    {
+      "name": "Security Headers",
+      "status": "PASS",
+      "details": "CSP, HSTS, X-Frame-Options present"
+    },
+    {
+      "name": "PWA Advanced Features",
+      "status": "PASS",
+      "details": "4 shortcuts, share & file handlers"
+    },
+    {
+      "name": "Offline Page",
+      "status": "PASS",
+      "details": "Offline fallback ready"
+    },
+    {
+      "name": "Cache Strategy",
+      "status": "PASS",
+      "details": "Network-first with iOS-safe caching"
+    },
+    {
+      "name": "Mobile Meta Tags",
+      "status": "PASS",
+      "details": "Viewport & PWA meta tags present"
+    },
+    {
+      "name": "PWA Theme Config",
+      "status": "PASS",
+      "details": "Gold theme, dark background, any orientation"
+    }
+  ]
+}

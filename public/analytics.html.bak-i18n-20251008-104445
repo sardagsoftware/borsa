@@ -1,0 +1,669 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - LyDian | Enterprise AI Performance & Cost Metrics</title>
+    <meta name="description" content="Enterprise AI Analytics Dashboard - Real-time metrics, cost analysis, performance monitoring">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- ChatGPT Style Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- LyDians Inspired CSS Framework -->
+    <link rel="stylesheet" href="/css/ailydians-inspired.css">
+
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+
+    <style>
+        /* Analytics-specific styles */
+        .analytics-dashboard {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+            background: var(--asana-bg-primary);
+        }
+
+        .analytics-sidebar {
+            background: var(--asana-bg-secondary);
+            border-right: 1px solid var(--asana-border);
+            padding: 2rem 0;
+            position: fixed;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .analytics-main {
+            margin-left: 280px;
+            padding: 2rem;
+            background: var(--asana-bg-primary);
+        }
+
+        .analytics-header {
+            background: var(--asana-bg-secondary);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--asana-border);
+            margin: -2rem -2rem 2rem -2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .analytics-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--asana-text-primary);
+            margin: 0;
+        }
+
+        .analytics-subtitle {
+            font-size: 1rem;
+            color: var(--asana-text-secondary);
+            margin: 0.25rem 0 0 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--asana-bg-secondary);
+            border: 1px solid var(--asana-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .metric-card:hover {
+            box-shadow: 0 8px 32px rgba(13, 115, 119, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .metric-icon.requests { background: var(--asana-green-primary); }
+        .metric-icon.tokens { background: var(--asana-green-light); }
+        .metric-icon.cost { background: var(--asana-green-lighter); }
+        .metric-icon.models { background: var(--asana-green-accent); }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--asana-text-primary);
+            margin: 0;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--asana-text-secondary);
+            margin: 0.25rem 0 0 0;
+        }
+
+        .metric-change {
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        .metric-change.positive {
+            background: rgba(167, 201, 87, 0.1);
+            color: var(--asana-green-accent);
+        }
+
+        .metric-change.negative {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-container {
+            background: var(--asana-bg-secondary);
+            border: 1px solid var(--asana-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--asana-text-primary);
+            margin: 0 0 1rem 0;
+        }
+
+        .models-list {
+            background: var(--asana-bg-secondary);
+            border: 1px solid var(--asana-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .model-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--asana-border);
+        }
+
+        .model-item:last-child {
+            border-bottom: none;
+        }
+
+        .model-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .model-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--asana-green-accent);
+        }
+
+        .model-name {
+            font-weight: 600;
+            color: var(--asana-text-primary);
+        }
+
+        .model-provider {
+            font-size: 0.875rem;
+            color: var(--asana-text-secondary);
+        }
+
+        .model-usage {
+            text-align: right;
+        }
+
+        .usage-count {
+            font-weight: 600;
+            color: var(--asana-text-primary);
+        }
+
+        .usage-label {
+            font-size: 0.875rem;
+            color: var(--asana-text-secondary);
+        }
+
+        .sidebar-nav {
+            padding: 0 1.5rem;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: var(--asana-text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--asana-green-ghost);
+            color: var(--asana-green-primary);
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .time-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--asana-border);
+            border-radius: 6px;
+            background: var(--asana-bg-primary);
+            color: var(--asana-text-secondary);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .time-btn.active {
+            background: var(--asana-green-primary);
+            color: white;
+            border-color: var(--asana-green-primary);
+        }
+
+        @media (max-width: 768px) {
+            .analytics-dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .analytics-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .analytics-main {
+                margin-left: 0;
+            }
+
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Dots -->
+    <div class="floating-dots"></div>
+    <div class="floating-dots-extra"></div>
+
+    <div class="analytics-dashboard">
+        <!-- Sidebar -->
+        <aside class="analytics-sidebar">
+            <!-- LyDian Logo -->
+            <div style="padding: 0 1.5rem 2rem 1.5rem;">
+                <a href="/" class="lydian-logo">
+                    <div class="lydian-logo-text">
+                        LyDian
+                        <span class="lydian-beta">BETA</span>
+                    </div>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <a href="/analytics" class="nav-link active">
+                        <span class="material-icons">analytics</span>
+                        Overview
+                    </a>
+                    <a href="/analytics/models" class="nav-link">
+                        <span class="material-icons">psychology</span>
+                        Models
+                    </a>
+                    <a href="/analytics/costs" class="nav-link">
+                        <span class="material-icons">account_balance_wallet</span>
+                        Costs
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <a href="/" class="nav-link">
+                        <span class="material-icons">home</span>
+                        Home
+                    </a>
+                    <a href="/ailydians-chat" class="nav-link" target="_blank">
+                        <span class="material-icons">chat</span>
+                        Chat
+                    </a>
+                    <a href="/docs/api" class="nav-link" target="_blank">
+                        <span class="material-icons">code</span>
+                        API
+                    </a>
+                    <a href="/developers" class="nav-link" target="_blank">
+                        <span class="material-icons">developer_mode</span>
+                        Developers
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="analytics-main">
+            <!-- Header -->
+            <header class="analytics-header">
+                <div>
+                    <h1 class="analytics-title">Enterprise Analytics</h1>
+                    <p class="analytics-subtitle">Real-time AI platform metrics and insights</p>
+                </div>
+                <div class="time-selector">
+                    <button class="time-btn" onclick="selectTimeRange('1h')">1H</button>
+                    <button class="time-btn active" onclick="selectTimeRange('24h')">24H</button>
+                    <button class="time-btn" onclick="selectTimeRange('7d')">7D</button>
+                    <button class="time-btn" onclick="selectTimeRange('30d')">30D</button>
+                </div>
+            </header>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon requests">
+                            <span class="material-icons">send</span>
+                        </div>
+                        <div class="metric-change positive">+12.5%</div>
+                    </div>
+                    <h2 class="metric-value" id="totalRequests">24,387</h2>
+                    <p class="metric-label">Total Requests</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon tokens">
+                            <span class="material-icons">token</span>
+                        </div>
+                        <div class="metric-change positive">+8.3%</div>
+                    </div>
+                    <h2 class="metric-value" id="totalTokens">2.4M</h2>
+                    <p class="metric-label">Tokens Processed</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon cost">
+                            <span class="material-icons">account_balance_wallet</span>
+                        </div>
+                        <div class="metric-change negative">-3.2%</div>
+                    </div>
+                    <h2 class="metric-value" id="totalCost">$347.82</h2>
+                    <p class="metric-label">Total Costs (24h)</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon models">
+                            <span class="material-icons">psychology</span>
+                        </div>
+                        <div class="metric-change positive">100%</div>
+                    </div>
+                    <h2 class="metric-value" id="activeModels">23</h2>
+                    <p class="metric-label">Active AI Models</p>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h3 class="chart-title">Request Volume (24h)</h3>
+                    <canvas id="requestsChart" width="400" height="200"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Cost Breakdown by Provider</h3>
+                    <canvas id="costsChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- AI Models Performance -->
+            <div class="models-list">
+                <h3 class="chart-title">AI Models Performance</h3>
+
+                <div class="model-item">
+                    <div class="model-info">
+                        <div class="model-status"></div>
+                        <div>
+                            <div class="model-name">GPT-4 Turbo</div>
+                            <div class="model-provider">Azure OpenAI</div>
+                        </div>
+                    </div>
+                    <div class="model-usage">
+                        <div class="usage-count">8,432</div>
+                        <div class="usage-label">requests</div>
+                    </div>
+                </div>
+
+                <div class="model-item">
+                    <div class="model-info">
+                        <div class="model-status"></div>
+                        <div>
+                            <div class="model-name">Gemini Ultra</div>
+                            <div class="model-provider">Google Vertex AI</div>
+                        </div>
+                    </div>
+                    <div class="model-usage">
+                        <div class="usage-count">6,721</div>
+                        <div class="usage-label">requests</div>
+                    </div>
+                </div>
+
+                <div class="model-item">
+                    <div class="model-info">
+                        <div class="model-status"></div>
+                        <div>
+                            <div class="model-name">Premium Intelligence Model</div>
+                            <div class="model-provider">Advanced AI Platform</div>
+                        </div>
+                    </div>
+                    <div class="model-usage">
+                        <div class="usage-count">5,934</div>
+                        <div class="usage-label">requests</div>
+                    </div>
+                </div>
+
+                <div class="model-item">
+                    <div class="model-info">
+                        <div class="model-status"></div>
+                        <div>
+                            <div class="model-name">Llama 2 70B</div>
+                            <div class="model-provider">Meta</div>
+                        </div>
+                    </div>
+                    <div class="model-usage">
+                        <div class="usage-count">3,300</div>
+                        <div class="usage-label">requests</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Analytics Dashboard Management
+        class AnalyticsDashboard {
+            constructor() {
+                this.init();
+                this.setupCharts();
+                this.startRealTimeUpdates();
+            }
+
+            init() {
+                this.timeRange = '24h';
+                this.loadAnalyticsData();
+            }
+
+            async loadAnalyticsData() {
+                try {
+                    const response = await fetch('/api/analytics');
+                    const data = await response.json();
+                    this.updateMetrics(data);
+                } catch (error) {
+                    console.log('Analytics data loading failed:', error);
+                    this.loadMockData();
+                }
+            }
+
+            loadMockData() {
+                // Mock data for demonstration
+                this.updateMetrics({
+                    totalRequests: 24387,
+                    totalTokens: 2400000,
+                    totalCost: 347.82,
+                    activeModels: 23,
+                    requestsData: Array.from({length: 24}, (_, i) => Math.floor(Math.random() * 2000) + 500),
+                    costsData: {
+                        azure: 156.43,
+                        google: 98.21,
+                        advanced-ai-platform: 67.18,
+                        other: 26.00
+                    }
+                });
+            }
+
+            updateMetrics(data) {
+                document.getElementById('totalRequests').textContent = data.totalRequests.toLocaleString();
+                document.getElementById('totalTokens').textContent = this.formatNumber(data.totalTokens);
+                document.getElementById('totalCost').textContent = `$${data.totalCost.toFixed(2)}`;
+                document.getElementById('activeModels').textContent = data.activeModels;
+
+                this.updateCharts(data);
+            }
+
+            formatNumber(num) {
+                if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M';
+                }
+                if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K';
+                }
+                return num.toString();
+            }
+
+            setupCharts() {
+                // Requests Volume Chart
+                const requestsCtx = document.getElementById('requestsChart').getContext('2d');
+                this.requestsChart = new Chart(requestsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+                        datasets: [{
+                            label: 'Requests',
+                            data: [],
+                            borderColor: '#0d7377',
+                            backgroundColor: 'rgba(13, 115, 119, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0,0,0,0.1)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Costs Pie Chart
+                const costsCtx = document.getElementById('costsChart').getContext('2d');
+                this.costsChart = new Chart(costsCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Azure', 'Google', 'Advanced AI Platform', 'Other'],
+                        datasets: [{
+                            data: [],
+                            backgroundColor: [
+                                '#0d7377',
+                                '#14a085',
+                                '#7fb069',
+                                '#a7c957'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            updateCharts(data) {
+                // Update requests chart
+                this.requestsChart.data.datasets[0].data = data.requestsData || [];
+                this.requestsChart.update();
+
+                // Update costs chart
+                const costsData = data.costsData || {};
+                this.costsChart.data.datasets[0].data = [
+                    costsData.azure || 0,
+                    costsData.google || 0,
+                    costsData.advanced-ai-platform || 0,
+                    costsData.other || 0
+                ];
+                this.costsChart.update();
+            }
+
+            startRealTimeUpdates() {
+                setInterval(() => {
+                    this.loadAnalyticsData();
+                }, 30000); // Update every 30 seconds
+            }
+        }
+
+        // Time Range Selection
+        function selectTimeRange(range) {
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            if (window.analyticsDashboard) {
+                window.analyticsDashboard.timeRange = range;
+                window.analyticsDashboard.loadAnalyticsData();
+            }
+        }
+
+        // Initialize Dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            window.analyticsDashboard = new AnalyticsDashboard();
+        });
+
+        // Performance optimizations
+        window.addEventListener('load', () => {
+            // Preload other pages
+            const preloadLinks = ['/docs/api', '/developers', '/ailydians-chat'];
+            preloadLinks.forEach(link => {
+                const linkElement = document.createElement('link');
+                linkElement.rel = 'prefetch';
+                linkElement.href = link;
+                document.head.appendChild(linkElement);
+            });
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

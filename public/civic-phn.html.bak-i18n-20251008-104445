@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/righteous/v17/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --lydian-accent: #10A37F;
+            --lydian-accent-light: #0D8F6E;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
+            --phn-pink: #EC4899;
+            --phn-pink-light: #F472B6;
+            --phn-green: #10B981;
+            --phn-orange: #F59E0B;
+            --phn-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--lydian-bg-primary);
+            color: var(--lydian-text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: calc(100% - 80px);
+            max-width: 1400px;
+        }
+
+        .header-content {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--lydian-border);
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: #000000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
+        }
+
+        .hero-icon {
+            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
+            color: var(--phn-pink);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--lydian-text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1600px;
+            margin: -3rem auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--phn-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--lydian-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .stat-trend {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            color: var(--phn-red);
+        }
+
+        .trend-down {
+            color: var(--phn-green);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title svg {
+            width: 32px;
+            height: 32px;
+            color: var(--phn-pink);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chart-title svg {
+            width: 24px;
+            height: 24px;
+            color: var(--phn-pink);
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .time-btn {
+            padding: 0.5rem 1rem;
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            color: var(--lydian-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-btn:hover {
+            background: rgba(16, 163, 127, 0.05);
+            border-color: var(--lydian-accent);
+            color: var(--lydian-accent);
+        }
+
+        .time-btn.active {
+            background: var(--lydian-accent);
+            border-color: var(--lydian-accent);
+            color: white;
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 100%;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(180deg, var(--phn-pink), var(--phn-pink-light));
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--phn-pink);
+            white-space: nowrap;
+        }
+
+        .bar-label {
+            font-size: 0.85rem;
+            color: var(--lydian-text-secondary);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .alerts-panel {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .alert-item {
+            background: var(--lydian-bg-tertiary);
+            border-left: 4px solid var(--phn-pink);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .alert-item:hover {
+            transform: translateX(4px);
+        }
+
+        .alert-item.warning {
+            border-left-color: var(--phn-orange);
+        }
+
+        .alert-item.critical {
+            border-left-color: var(--phn-red);
+        }
+
+        .alert-item.normal {
+            border-left-color: var(--phn-green);
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            color: var(--lydian-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-title svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .alert-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--phn-red);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--phn-orange);
+        }
+
+        .badge-info {
+            background: rgba(236, 72, 153, 0.2);
+            color: var(--phn-pink);
+        }
+
+        .alert-description {
+            color: var(--lydian-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-meta {
+            color: var(--lydian-text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .regional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .region-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .region-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
+        }
+
+        .region-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .region-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--phn-pink);
+        }
+
+        .region-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .region-info p {
+            font-size: 0.9rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .metric-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .metric-value.high {
+            color: var(--phn-red);
+        }
+
+        .metric-value.medium {
+            color: var(--phn-orange);
+        }
+
+        .metric-value.low {
+            color: var(--phn-green);
+        }
+
+        .supply-forecast {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .supply-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .supply-info {
+            flex: 1;
+        }
+
+        .supply-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .supply-meta {
+            font-size: 0.85rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .supply-status {
+            text-align: right;
+        }
+
+        .supply-level {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .supply-trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--lydian-bg-primary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--phn-pink);
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.critical {
+            background: var(--phn-red);
+        }
+
+        .progress-fill.warning {
+            background: var(--phn-orange);
+        }
+
+        .progress-fill.normal {
+            background: var(--phn-green);
+        }
+
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 163, 127, 0.1);
+            border: 1px solid var(--lydian-accent);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--lydian-accent);
+            margin-top: 0.5rem;
+        }
+
+        .privacy-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                width: calc(100% - 40px);
+                top: 10px;
+            }
+
+            .header-content {
+                padding: 0.75rem 1rem;
+            }
+
+            .hero {
+                padding: 7rem 1rem 3rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .time-selector {
+                flex-wrap: wrap;
+            }
+
+            .regional-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
+            <nav class="nav-links">
+                <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/civic-phn.html" class="nav-link" style="color: var(--lydian-accent);">HST</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+        </svg>
+        <h1 class="hero-title">Halk Sağlığı Tahmin Sistemi</h1>
+        <p class="hero-subtitle">
+            Gerçek Zamanlı Hastalık İzleme • Gizlilik Korumalı Analitik • Yapay Zeka Destekli Tahminler • Tıbbi Malzeme Öngörüsü
+        </p>
+    </section>
+
+    <!-- Live Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value" id="active-cases">2,847</div>
+            <div class="stat-label">Aktif Vakalar (7 günlük)</div>
+            <div class="stat-trend trend-down" id="cases-trend">▼ Geçen haftaya göre %12.4</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="r-value">0.87</div>
+            <div class="stat-label">Bulaşma Oranı (R)</div>
+            <div class="stat-trend trend-down" id="r-trend">▼ Salgın eşiğinin altında</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="hospital-capacity">73%</div>
+            <div class="stat-label">Hastane Kapasitesi</div>
+            <div class="stat-trend trend-up" id="capacity-trend">▲ Dünkü değere göre %5.2</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="regions-monitored">147</div>
+            <div class="stat-label">İzlenen Bölgeler</div>
+            <div class="stat-trend" style="color: var(--phn-pink);">Canlı veri akışı</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Nowcasting Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Hastalık Görülme Sıklığı Tahmini
+                    </h3>
+                    <div class="time-selector">
+                        <button class="time-btn" data-range="7">7G</button>
+                        <button class="time-btn active" data-range="14">14G</button>
+                        <button class="time-btn" data-range="30">30G</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart" id="nowcast-chart">
+                        <!-- Chart bars will be generated by JavaScript -->
+                    </div>
+                </div>
+                <div class="privacy-badge">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    Diferansiyel Gizlilik ile Korunuyor (DP ε=1.5)
+                </div>
+            </div>
+
+            <!-- Alerts Panel -->
+            <div class="alerts-panel">
+                <h3 class="section-title" style="font-size: 1.25rem;">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    Sağlık Uyarıları
+                </h3>
+
+                <div id="alerts-container">
+                    <div class="alert-item critical">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                                Grip Salgını - 7. Bölge
+                            </div>
+                            <span class="alert-badge badge-critical">KRİTİK</span>
+                        </div>
+                        <div class="alert-description">
+                            Mevsimsel grip vakaları salgın eşiğini aştı. Gelişmiş gözetim sistemi aktif.
+                        </div>
+                        <div class="alert-meta">
+                            <strong>Tahmini Zirve:</strong> 3-5 gün • <strong>Güven:</strong> %94
+                        </div>
+                    </div>
+
+                    <div class="alert-item warning">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Hastane Kapasitesi - 3. Bölge
+                            </div>
+                            <span class="alert-badge badge-warning">UYARI</span>
+                        </div>
+                        <div class="alert-description">
+                            YBÜ kapasitesi %85'te. Komşu bölgelerden kaynak tahsisi değerlendirilebilir.
+                        </div>
+                        <div class="alert-meta">
+                            <strong>Tahmin:</strong> Stabil • <strong>Aksiyon:</strong> İzle
+                        </div>
+                    </div>
+
+                    <div class="alert-item normal">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Aşı Kampanyası - 12. Bölge
+                            </div>
+                            <span class="alert-badge badge-info">BİLGİ</span>
+                        </div>
+                        <div class="alert-description">
+                            Aşılama kapsamı %78'e ulaştı. Ay sonuna kadar hedefe ulaşılacak.
+                        </div>
+                        <div class="alert-meta">
+                            <strong>Hedef:</strong> %85 • <strong>Son Tarih:</strong> 23 gün
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Metrics Charts from Civic API -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin: 2rem 0;">
+            <!-- Hospital Capacity Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Hastane Doluluk Oranı
+                    </h3>
+                </div>
+                <div style="height: 300px; position: relative; padding: 1rem;">
+                    <canvas id="hospitalCapacityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Epidemiology Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Epidemiyoloji Verileri
+                    </h3>
+                </div>
+                <div style="height: 300px; position: relative; padding: 1rem;">
+                    <canvas id="epidemiologyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Environmental Health Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Çevresel Sağlık
+                    </h3>
+                </div>
+                <div style="height: 300px; position: relative; padding: 1rem;">
+                    <canvas id="environmentalHealthChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regional Health Metrics -->
+        <section>
+            <h2 class="section-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                </svg>
+                Bölgesel Sağlık Metrikleri
+            </h2>
+            <div class="regional-grid">
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Merkez İlçe</h4>
+                            <p>Nüfus: 1.2M</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value high">847</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value medium">1.12</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value medium">%68</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill warning" style="width: 68%"></div>
+                    </div>
+                </div>
+
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Kuzey Bölgesi</h4>
+                            <p>Nüfus: 890K</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value low">312</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value low">0.78</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value low">%42</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill normal" style="width: 42%"></div>
+                    </div>
+                </div>
+
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Doğu Bölgesi</h4>
+                            <p>Nüfus: 1.5M</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value high">1,124</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value high">1.34</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value critical">%89</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill critical" style="width: 89%"></div>
+                    </div>
+                </div>
+
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Batı Bölgesi</h4>
+                            <p>Nüfus: 720K</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value medium">564</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value medium">0.95</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value low">%51</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill normal" style="width: 51%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medical Supply Forecast -->
+        <section>
+            <h2 class="section-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                Tıbbi Malzeme Tahmini (30 günlük)
+            </h2>
+            <div class="supply-forecast">
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">KKD (Maske, Eldiven, Önlük)</div>
+                        <div class="supply-meta">Mevcut Stok: 247.500 adet • Günlük Kullanım: 8.200 adet</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill normal" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-green);">%78</div>
+                        <div class="supply-trend" style="color: var(--phn-green);">▲ Yeterli</div>
+                    </div>
+                </div>
+
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">Ventilatör & YBÜ Ekipmanları</div>
+                        <div class="supply-meta">Mevcut: 142 adet • Kullanımda: 87 adet • Yedek: 55 adet</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill warning" style="width: 61%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-orange);">%61</div>
+                        <div class="supply-trend" style="color: var(--phn-orange);">▼ İzle</div>
+                    </div>
+                </div>
+
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">Aşılar & İlaçlar</div>
+                        <div class="supply-meta">Stok: 94.200 doz • Tahmin Edilen Talep: 112.000 doz</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill critical" style="width: 84%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-red);">%84</div>
+                        <div class="supply-trend" style="color: var(--phn-red);">▼ Yakında Sipariş</div>
+                    </div>
+                </div>
+
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">Test Kitleri (PCR, Hızlı)</div>
+                        <div class="supply-meta">Mevcut: 67.800 kit • Günlük Test: 2.400 • Kapasite: Uygun</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill normal" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-green);">%72</div>
+                        <div class="supply-trend" style="color: var(--phn-green);">▲ Stabil</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Global state
+        let currentRange = '14';
+        let forecastData = null;
+        let isLoading = false;
+
+        // Loading state helper
+        function setLoadingState(elementId, isLoading) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = isLoading ? 'Yükleniyor...' : element.textContent;
+            }
+        }
+
+        // Error handler
+        function handleError(error, context) {
+            console.error(`${context} hatası:`, error);
+            // Show user-friendly error without exposing sensitive info
+            return null;
+        }
+
+        // API: Load Metrics
+        async function loadMetrics() {
+            try {
+                setLoadingState('active-cases', true);
+                const response = await fetch('/api/phn/v1/metrics');
+                const data = await response.json();
+
+                if (data.success && data.metrics) {
+                    updateMetricsCards(data.metrics);
+                }
+            } catch (error) {
+                handleError(error, 'Metrik yükleme');
+            }
+        }
+
+        // Update metrics cards
+        function updateMetricsCards(metrics) {
+            // Active Cases
+            if (metrics.activeCases) {
+                document.getElementById('active-cases').textContent = metrics.activeCases.toLocaleString();
+
+                const trendEl = document.getElementById('cases-trend');
+                const trend = metrics.casesTrend || 0;
+                trendEl.textContent = `${trend > 0 ? '▲' : '▼'} Geçen haftaya göre %${Math.abs(trend)}`;
+                trendEl.className = `stat-trend ${trend > 0 ? 'trend-up' : 'trend-down'}`;
+            }
+
+            // R Value
+            if (metrics.rValue !== undefined) {
+                document.getElementById('r-value').textContent = metrics.rValue.toFixed(2);
+
+                const rTrendEl = document.getElementById('r-trend');
+                if (metrics.rValue < 1.0) {
+                    rTrendEl.textContent = '▼ Salgın eşiğinin altında';
+                    rTrendEl.className = 'stat-trend trend-down';
+                } else {
+                    rTrendEl.textContent = '▲ Salgın eşiğinin üstünde';
+                    rTrendEl.className = 'stat-trend trend-up';
+                }
+            }
+
+            // Hospital Capacity
+            if (metrics.hospitalCapacity !== undefined) {
+                document.getElementById('hospital-capacity').textContent = '%' + metrics.hospitalCapacity;
+
+                const capacityTrendEl = document.getElementById('capacity-trend');
+                const capacityTrend = metrics.capacityTrend || 0;
+                capacityTrendEl.textContent = `${capacityTrend > 0 ? '▲' : '▼'} Dünkü değere göre %${Math.abs(capacityTrend)}`;
+                capacityTrendEl.className = `stat-trend ${capacityTrend > 0 ? 'trend-up' : 'trend-down'}`;
+            }
+
+            // Regions Monitored
+            if (metrics.regionsMonitored) {
+                document.getElementById('regions-monitored').textContent = metrics.regionsMonitored;
+            }
+        }
+
+        // API: Load Forecasts
+        async function loadForecasts() {
+            try {
+                const response = await fetch('/api/phn/v1/forecasts');
+                const data = await response.json();
+
+                if (data.success && data.forecasts) {
+                    forecastData = data.forecasts;
+                    renderChart(currentRange);
+                }
+            } catch (error) {
+                handleError(error, 'Tahmin yükleme');
+            }
+        }
+
+        // Render Chart with real data
+        function renderChart(range) {
+            const chartContainer = document.getElementById('nowcast-chart');
+
+            if (!forecastData || !forecastData[range]) {
+                chartContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--lydian-text-secondary);">Veriler yükleniyor...</div>';
+                return;
+            }
+
+            const data = forecastData[range];
+            const maxValue = Math.max(...data.map(d => d.value));
+
+            chartContainer.innerHTML = data.map(item => {
+                const height = (item.value / maxValue) * 100;
+                return `
+                    <div class="bar-group">
+                        <div class="bar" style="height: ${height}%">
+                            <div class="bar-value">${item.value.toLocaleString()}</div>
+                        </div>
+                        <div class="bar-label">${item.label}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // API: Load Diseases (for regional data)
+        async function loadDiseases() {
+            try {
+                const response = await fetch('/api/phn/v1/diseases');
+                const data = await response.json();
+
+                if (data.success && data.diseases) {
+                    updateRegionalData(data.diseases);
+                }
+            } catch (error) {
+                handleError(error, 'Hastalık verisi yükleme');
+            }
+        }
+
+        // Update regional cards with disease data
+        function updateRegionalData(diseases) {
+            const regionalCards = document.querySelectorAll('.region-card');
+
+            diseases.slice(0, regionalCards.length).forEach((disease, index) => {
+                const card = regionalCards[index];
+                if (!card) return;
+
+                // Update region name if available
+                if (disease.region) {
+                    const regionName = card.querySelector('.region-info h4');
+                    if (regionName) regionName.textContent = disease.region;
+                }
+
+                // Update metrics
+                const metrics = card.querySelectorAll('.metric-value');
+                if (metrics[0] && disease.cases !== undefined) {
+                    metrics[0].textContent = disease.cases.toLocaleString();
+                    metrics[0].className = `metric-value ${disease.cases > 1000 ? 'high' : disease.cases > 500 ? 'medium' : 'low'}`;
+                }
+                if (metrics[1] && disease.rValue !== undefined) {
+                    metrics[1].textContent = disease.rValue.toFixed(2);
+                    metrics[1].className = `metric-value ${disease.rValue > 1.2 ? 'high' : disease.rValue > 0.9 ? 'medium' : 'low'}`;
+                }
+                if (metrics[2] && disease.icuCapacity !== undefined) {
+                    metrics[2].textContent = '%' + disease.icuCapacity;
+                    metrics[2].className = `metric-value ${disease.icuCapacity > 80 ? 'high' : disease.icuCapacity > 60 ? 'medium' : 'low'}`;
+                }
+
+                // Update progress bar
+                const progressBar = card.querySelector('.progress-fill');
+                if (progressBar && disease.icuCapacity !== undefined) {
+                    progressBar.style.width = disease.icuCapacity + '%';
+                    progressBar.className = `progress-fill ${disease.icuCapacity > 80 ? 'critical' : disease.icuCapacity > 60 ? 'warning' : 'normal'}`;
+                }
+            });
+        }
+
+        // API: Load Hospital Capacity
+        async function loadHospitals() {
+            try {
+                const response = await fetch('/api/phn/v1/hospitals');
+                const data = await response.json();
+
+                if (data.success && data.hospitals) {
+                    updateSupplyForecast(data.hospitals);
+                }
+            } catch (error) {
+                handleError(error, 'Hastane kapasitesi yükleme');
+            }
+        }
+
+        // Update supply forecast with hospital data
+        function updateSupplyForecast(hospitals) {
+            if (!hospitals || hospitals.length === 0) return;
+
+            const supplyItems = document.querySelectorAll('.supply-item');
+
+            hospitals.slice(0, supplyItems.length).forEach((hospital, index) => {
+                const item = supplyItems[index];
+                if (!item) return;
+
+                // Update supply levels based on hospital data
+                if (hospital.supplies) {
+                    const level = hospital.supplies.level || 70;
+                    const levelEl = item.querySelector('.supply-level');
+                    const progressFill = item.querySelector('.progress-fill');
+                    const trendEl = item.querySelector('.supply-trend');
+
+                    if (levelEl) {
+                        levelEl.textContent = '%' + level;
+                        levelEl.style.color = level > 80 ? 'var(--phn-green)' : level > 50 ? 'var(--phn-orange)' : 'var(--phn-red)';
+                    }
+
+                    if (progressFill) {
+                        progressFill.style.width = level + '%';
+                        progressFill.className = `progress-fill ${level > 80 ? 'normal' : level > 50 ? 'warning' : 'critical'}`;
+                    }
+
+                    if (trendEl) {
+                        const trend = hospital.supplies.trend || 'stable';
+                        const trendText = trend === 'up' ? '▲ Yeterli' : trend === 'down' ? '▼ Yakında Sipariş' : '▲ Stabil';
+                        trendEl.textContent = trendText;
+                        trendEl.style.color = trend === 'up' ? 'var(--phn-green)' : trend === 'down' ? 'var(--phn-red)' : 'var(--phn-orange)';
+                    }
+                }
+            });
+        }
+
+        // API: Load Alerts
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/phn/v1/alerts');
+                const data = await response.json();
+
+                if (data.success && data.alerts) {
+                    updateAlerts(data.alerts);
+                }
+            } catch (error) {
+                handleError(error, 'Uyarı yükleme');
+            }
+        }
+
+        // Update alerts panel
+        function updateAlerts(alerts) {
+            const container = document.getElementById('alerts-container');
+            if (!container || !alerts || alerts.length === 0) return;
+
+            const severityMap = {
+                'critical': { badge: 'KRİTİK', badgeClass: 'badge-critical' },
+                'warning': { badge: 'UYARI', badgeClass: 'badge-warning' },
+                'info': { badge: 'BİLGİ', badgeClass: 'badge-info' }
+            };
+
+            container.innerHTML = alerts.slice(0, 5).map(alert => {
+                const severity = severityMap[alert.severity] || severityMap.info;
+                const alertClass = alert.severity === 'critical' ? 'critical' : alert.severity === 'warning' ? 'warning' : 'normal';
+
+                return `
+                    <div class="alert-item ${alertClass}">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${alert.severity === 'critical' ? 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' : 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'}"/>
+                                </svg>
+                                ${alert.title}
+                            </div>
+                            <span class="alert-badge ${severity.badgeClass}">${severity.badge}</span>
+                        </div>
+                        <div class="alert-description">${alert.description}</div>
+                        <div class="alert-meta">${alert.metadata || ''}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // API: Load Heatmap (optional, for future map integration)
+        async function loadHeatmap() {
+            try {
+                const response = await fetch('/api/phn/v1/heatmap');
+                const data = await response.json();
+
+                if (data.success && data.heatmap) {
+                    // Future: Update map visualization
+                    console.log('Heatmap data loaded:', data.heatmap);
+                }
+            } catch (error) {
+                handleError(error, 'Isı haritası yükleme');
+            }
+        }
+
+        // Time Range Selector
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentRange = btn.getAttribute('data-range');
+                renderChart(currentRange);
+            });
+        });
+
+        // Load all data
+        async function loadAllData() {
+            if (isLoading) return;
+            isLoading = true;
+
+            try {
+                await Promise.all([
+                    loadMetrics(),
+                    loadForecasts(),
+                    loadDiseases(),
+                    loadHospitals(),
+                    loadAlerts(),
+                    loadHeatmap()
+                ]);
+            } catch (error) {
+                handleError(error, 'Veri yükleme');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllData();
+
+            // Auto-refresh every 60 seconds (medical data updates slower)
+            setInterval(loadAllData, 60000);
+        });
+
+        // Add slide-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
+
+    <script>
+        // Initialize Health Metrics Charts
+        async function initHealthCharts() {
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts library not loaded yet, retrying...');
+                setTimeout(initHealthCharts, 500);
+                return;
+            }
+
+            console.log('🏥 Initializing Public Health Charts...');
+
+            try {
+                // Fetch health data from Civic API
+                const healthData = await window.CivicCharts.fetchData('/health/metrics');
+
+                if (healthData) {
+                    // 1. Hospital Capacity Gauge Chart
+                    if (healthData.healthcareCapacity) {
+                        const capacity = healthData.healthcareCapacity;
+                        const occupancyPercent = parseFloat(capacity.occupancyRate);
+
+                        window.CivicCharts.createDoughnutChart('hospitalCapacityChart', {
+                            data: {
+                                labels: ['Dolu', 'Boş'],
+                                datasets: [{
+                                    data: [occupancyPercent, 100 - occupancyPercent],
+                                    backgroundColor: ['#EF4444', '#10B981']
+                                }]
+                            },
+                            legendPosition: 'bottom'
+                        });
+                    }
+
+                    // 2. Epidemiology Trend Line Chart
+                    if (healthData.epidemiologyData) {
+                        const epi = healthData.epidemiologyData;
+
+                        window.CivicCharts.createBarChart('epidemiologyChart', {
+                            data: {
+                                labels: ['Grip Vakaları', 'COVID Vakaları', 'Aşılama Oranı'],
+                                datasets: [{
+                                    label: 'Sağlık Metrikleri',
+                                    data: [epi.fluCases, epi.covidCases, parseFloat(epi.vaccinationRate)],
+                                    backgroundColor: ['#F59E0B', '#EF4444', '#10B981']
+                                }]
+                            },
+                            showLegend: false
+                        });
+                    }
+
+                    // 3. Environmental Health Radar
+                    if (healthData.environmentalHealth) {
+                        const env = healthData.environmentalHealth;
+
+                        window.CivicCharts.createRadarChart('environmentalHealthChart', {
+                            data: {
+                                labels: ['Hava Kalitesi', 'Su Kalitesi', 'Gürültü Seviyesi'],
+                                datasets: [{
+                                    label: 'Çevresel Sağlık',
+                                    data: [
+                                        100 - env.airQualityIndex, // Reverse scale (lower is better)
+                                        env.waterQuality === 'excellent' ? 95 : 70,
+                                        100 - env.noiseLevel
+                                    ],
+                                    backgroundColor: 'rgba(236, 72, 153, 0.2)',
+                                    borderColor: '#EC4899',
+                                    pointBackgroundColor: '#EC4899'
+                                }]
+                            }
+                        });
+                    }
+                }
+
+                // Start real-time updates
+                window.CivicCharts.startRealTimeUpdates('hospitalCapacityChart', '/health/metrics', 60000);
+
+                console.log('✅ Public Health charts initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing health charts:', error);
+            }
+        }
+
+        // Initialize charts when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                initHealthCharts();
+            });
+        } else {
+            initHealthCharts();
+        }
+    </script>
+
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

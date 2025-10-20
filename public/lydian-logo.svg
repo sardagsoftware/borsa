@@ -1,0 +1,5 @@
+<svg width="40" height="40" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <path d="M256 64L128 160v192l128 96 128-96V160z" fill="none" stroke="currentColor" stroke-width="32" stroke-linejoin="round"/>
+  <path d="M256 160L192 208v96l64 48 64-48v-96z" fill="currentColor" opacity="0.3"/>
+  <text x="256" y="300" font-family="Arial, sans-serif" font-size="200" font-weight="bold" fill="currentColor" text-anchor="middle">L2</text>
+</svg>

@@ -1,0 +1,567 @@
+{
+  "summary": {
+    "totalSize": 328917,
+    "budget": 102400,
+    "overBudget": true,
+    "cssFiles": 19,
+    "pageSpecificCSS": 6,
+    "unusedCSS": 5,
+    "commonCSS": 3,
+    "potentialSavings": 392138.9,
+    "recommendations": [
+      {
+        "priority": "HIGH",
+        "savings": 139335,
+        "title": "Implement route-based CSS loading",
+        "description": "Load page-specific CSS only when needed (6 files, 136.07 KB savings)"
+      },
+      {
+        "priority": "HIGH",
+        "savings": 131566.80000000002,
+        "title": "Run PurgeCSS to remove unused styles",
+        "description": "Remove unused CSS selectors and rules (est. 40% reduction)"
+      },
+      {
+        "priority": "MEDIUM",
+        "savings": 77807,
+        "title": "Remove unused CSS files",
+        "description": "5 files are not used (75.98 KB potential savings)"
+      },
+      {
+        "priority": "MEDIUM",
+        "savings": 43430.1,
+        "title": "Minify large CSS files",
+        "description": "5 files > 20KB could be minified (est. 30% reduction)"
+      },
+      {
+        "priority": "HIGH",
+        "savings": 0,
+        "title": "Extract critical CSS",
+        "description": "Extract above-the-fold CSS (<14KB) and inline it"
+      }
+    ]
+  },
+  "cssData": [
+    {
+      "path": "public/css/lydian-iq.css",
+      "relativePath": "css/lydian-iq.css",
+      "name": "lydian-iq.css",
+      "size": 33909,
+      "usedBy": []
+    },
+    {
+      "path": "public/css/dashboard-core.css",
+      "relativePath": "css/dashboard-core.css",
+      "name": "dashboard-core.css",
+      "size": 33473,
+      "usedBy": [
+        "dashboard-old.html"
+      ]
+    },
+    {
+      "path": "public/css/chat-ailydian.css",
+      "relativePath": "css/chat-ailydian.css",
+      "name": "chat-ailydian.css",
+      "size": 28214,
+      "usedBy": [
+        "chat-backup-20250930-182845.html"
+      ]
+    },
+    {
+      "path": "public/css/firildak-premium.css",
+      "relativePath": "css/firildak-premium.css",
+      "name": "firildak-premium.css",
+      "size": 26922,
+      "usedBy": [
+        "google-studio.html"
+      ]
+    },
+    {
+      "path": "public/css/knowledge-base.css",
+      "relativePath": "css/knowledge-base.css",
+      "name": "knowledge-base.css",
+      "size": 22249,
+      "usedBy": [
+        "knowledge-base.html"
+      ]
+    },
+    {
+      "path": "public/css/cyborg-orbital-hero.css",
+      "relativePath": "css/cyborg-orbital-hero.css",
+      "name": "cyborg-orbital-hero.css",
+      "size": 20040,
+      "usedBy": [
+        "cyborg-orbital-full.html",
+        "index.html"
+      ]
+    },
+    {
+      "path": "public/css/medical-expert.css",
+      "relativePath": "css/medical-expert.css",
+      "name": "medical-expert.css",
+      "size": 19862,
+      "usedBy": []
+    },
+    {
+      "path": "public/css/humain-inspired.css",
+      "relativePath": "css/humain-inspired.css",
+      "name": "humain-inspired.css",
+      "size": 18438,
+      "usedBy": [
+        "civic-intelligence-grid.html",
+        "civic-map.html",
+        "civic-phn.html",
+        "civic-rro.html",
+        "civic-umo.html",
+        "legal-expert.html"
+      ]
+    },
+    {
+      "path": "public/css/hero-ai-animation.css",
+      "relativePath": "css/hero-ai-animation.css",
+      "name": "hero-ai-animation.css",
+      "size": 18138,
+      "usedBy": [
+        "cyborg-demo.html",
+        "index-backup-cyborg-20251007.html",
+        "index-backup-realistic-20251007.html"
+      ]
+    },
+    {
+      "path": "public/css/hero-realistic-characters.css",
+      "relativePath": "css/hero-realistic-characters.css",
+      "name": "hero-realistic-characters.css",
+      "size": 16595,
+      "usedBy": [
+        "index-backup-cyborg-20251007.html",
+        "realistic-characters-demo.html"
+      ]
+    },
+    {
+      "path": "public/css/hero-cinematic-film.css",
+      "relativePath": "css/hero-cinematic-film.css",
+      "name": "hero-cinematic-film.css",
+      "size": 16398,
+      "usedBy": [
+        "hero-cinematic-demo.html"
+      ]
+    },
+    {
+      "path": "public/css/cyborg-character.css",
+      "relativePath": "css/cyborg-character.css",
+      "name": "cyborg-character.css",
+      "size": 12079,
+      "usedBy": [
+        "cyborg-demo.html"
+      ]
+    },
+    {
+      "path": "public/css/lydian-iq-enhancements.css",
+      "relativePath": "css/lydian-iq-enhancements.css",
+      "name": "lydian-iq-enhancements.css",
+      "size": 11256,
+      "usedBy": [
+        "lydian-iq-BACKUP-20251006-220020.html",
+        "lydian-iq.html"
+      ]
+    },
+    {
+      "path": "public/css/rtl-support.css",
+      "relativePath": "css/rtl-support.css",
+      "name": "rtl-support.css",
+      "size": 9955,
+      "usedBy": [
+        "MEDICAL-EXPERT-INTEGRATION.html"
+      ]
+    },
+    {
+      "path": "public/css/theme.css",
+      "relativePath": "css/theme.css",
+      "name": "theme.css",
+      "size": 9588,
+      "usedBy": []
+    },
+    {
+      "path": "public/css/animated-logo.css",
+      "relativePath": "css/animated-logo.css",
+      "name": "animated-logo.css",
+      "size": 9215,
+      "usedBy": [
+        "chat-backup-20250930-182845.html",
+        "civic-intelligence-grid.html",
+        "civic-map.html",
+        "civic-phn.html",
+        "civic-rro.html",
+        "civic-umo.html",
+        "dashboard-old.html",
+        "humain-home.html",
+        "legal-expert.html"
+      ]
+    },
+    {
+      "path": "public/css/i18n-rtl.css",
+      "relativePath": "css/i18n-rtl.css",
+      "name": "i18n-rtl.css",
+      "size": 8764,
+      "usedBy": []
+    },
+    {
+      "path": "public/css/global-lydian-branding.css",
+      "relativePath": "css/global-lydian-branding.css",
+      "name": "global-lydian-branding.css",
+      "size": 8138,
+      "usedBy": [
+        "about.html",
+        "ai-assistant.html",
+        "ai-chat.html",
+        "ai-decision-matrix.html",
+        "ai-startup-accelerator.html",
+        "auth-backup-20251007.html",
+        "auth.html",
+        "billing.html",
+        "blog.html",
+        "careers.html",
+        "changelog.html",
+        "civic-umo.html",
+        "contact.html",
+        "cookies.html",
+        "cost-dashboard.html",
+        "dashboard.html",
+        "developers.html",
+        "epic-fhir-dashboard.html",
+        "files.html",
+        "firildak.html",
+        "forgot-password.html",
+        "help.html",
+        "image-generation.html",
+        "index-backup-cyborg-20251007.html",
+        "index-backup-hero-20251007-021721.html",
+        "index-backup-realistic-20251007.html",
+        "index.html",
+        "knowledge-base.html",
+        "legal-expert.html",
+        "lydian-hukukai-pro.html",
+        "lydian-hukukai-v2.html",
+        "lydian-hukukai.html",
+        "lydian-iq.html",
+        "lydian-legal-chat.html",
+        "lydian-offline.html",
+        "medical-ai.html",
+        "research.html",
+        "reset-password.html",
+        "status.html",
+        "terms.html",
+        "test-auto-translate.html",
+        "test-legal.html",
+        "test-translation.html",
+        "tokens.html"
+      ]
+    },
+    {
+      "path": "public/css/claude-theme.css",
+      "relativePath": "css/claude-theme.css",
+      "name": "claude-theme.css",
+      "size": 5684,
+      "usedBy": []
+    }
+  ],
+  "htmlCSSMap": {
+    "about.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "admin-dashboard.html": [],
+    "ai-advisor-hub.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-assistant.html": [
+      "/css/ailydians-inspired.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "ai-chat.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "ai-cultural-advisor.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-decision-matrix.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "ai-health-orchestrator.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-knowledge-assistant.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-learning-path.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-life-coach.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-meeting-insights.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "ai-startup-accelerator.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "analytics.html": [
+      "/css/ailydians-inspired.css"
+    ],
+    "api-docs.html": [
+      "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css"
+    ],
+    "api-reference.html": [],
+    "api.html": [],
+    "auth-backup-20251007.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "auth.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "azure-dashboard.html": [],
+    "billing.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "blog.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "careers.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "changelog.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "chat-backup-20250930-182845.html": [
+      "/css/ailydians-inspired.css",
+      "/css/chat-ailydian.css",
+      "/css/animated-logo.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "chat-backup-before-baseline.html": [],
+    "chat-backup-turkish-20250930-185225.html": [],
+    "chat-old.html": [],
+    "chat.html": [],
+    "civic-atg.html": [],
+    "civic-intelligence-grid.html": [
+      "/css/animated-logo.css",
+      "/css/humain-inspired.css"
+    ],
+    "civic-map.html": [
+      "/css/animated-logo.css",
+      "/css/humain-inspired.css"
+    ],
+    "civic-phn.html": [
+      "/css/animated-logo.css",
+      "/css/humain-inspired.css"
+    ],
+    "civic-rro.html": [
+      "/css/animated-logo.css",
+      "/css/humain-inspired.css",
+      "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    ],
+    "civic-svf.html": [],
+    "civic-umo.html": [
+      "/css/animated-logo.css",
+      "/css/humain-inspired.css",
+      "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "console.html": [],
+    "contact.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "cookies.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "cost-dashboard.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "cyborg-demo.html": [
+      "/css/hero-ai-animation.css",
+      "/css/cyborg-character.css"
+    ],
+    "cyborg-orbital-full.html": [
+      "/css/cyborg-orbital-hero.css"
+    ],
+    "dashboard-old.html": [
+      "/css/dashboard-core.css",
+      "/css/animated-logo.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "dashboard.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "developers.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "docs.html": [],
+    "education.html": [],
+    "enterprise-index.html": [],
+    "enterprise.html": [],
+    "epic-fhir-dashboard.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "files.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "firildak-ai.html": [],
+    "firildak.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "forgot-password.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "google-studio.html": [
+      "/css/firildak-premium.css"
+    ],
+    "help.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "hero-3d-lydian.html": [],
+    "hero-cinematic-demo.html": [
+      "/css/hero-cinematic-film.css"
+    ],
+    "hero-particles-lydian.html": [],
+    "hero-video-demo-1-neural.html": [],
+    "hero-video-demo-2-particles.html": [],
+    "hero-video-demo-3-matrix.html": [],
+    "hero-video-demo-4-abstract.html": [],
+    "hero-video-demos-index.html": [],
+    "humain-home.html": [
+      "/css/lydians-inspired.css",
+      "/css/animated-logo.css"
+    ],
+    "MEDICAL-EXPERT-INTEGRATION.html": [
+      "/css/rtl-support.css"
+    ],
+    "image-generation.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "index-backup-cyborg-20251007.html": [
+      "/css/global-lydian-branding.css",
+      "/css/hero-ai-animation.css",
+      "/css/hero-realistic-characters.css"
+    ],
+    "index-backup-hero-20251007-021721.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "index-backup-old.html": [
+      "/css/enterprise-ai-theme.css"
+    ],
+    "index-backup-realistic-20251007.html": [
+      "/css/global-lydian-branding.css",
+      "/css/hero-ai-animation.css"
+    ],
+    "index-backup.html": [
+      "https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/css/icons.min.css"
+    ],
+    "index-new.html": [],
+    "index.html": [
+      "/css/global-lydian-branding.css",
+      "/css/cyborg-orbital-hero.css"
+    ],
+    "knowledge-base.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css",
+      "/css/knowledge-base.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "legal-expert.html": [
+      "/css/humain-inspired.css",
+      "/css/chat-LyDian.css",
+      "/css/animated-logo.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "lydian-hukukai-pro.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "lydian-hukukai-v2.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "lydian-hukukai.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "lydian-iq-BACKUP-20251006-220020.html": [
+      "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+      "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css",
+      "/css/lydian-iq-enhancements.css"
+    ],
+    "lydian-iq.html": [
+      "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+      "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css",
+      "/css/lydian-iq-enhancements.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "lydian-legal-chat.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "lydian-legal-search-BACKUP-20251004-022408.html": [],
+    "lydian-legal-search-BACKUP-20251005-235806.html": [],
+    "lydian-legal-search-BACKUP-20251006.html": [],
+    "lydian-legal-search-i18n.html": [],
+    "lydian-legal-search-old-backup.html": [],
+    "lydian-legal-search.html": [],
+    "lydian-offline.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "medical-ai-dashboard.html": [],
+    "medical-ai.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "medical-expert-BACKUP-20251004.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "medical-expert-BACKUP-20251005-022225.html": [],
+    "medical-expert.html": [],
+    "models.html": [],
+    "monitoring.html": [],
+    "notifications.html": [],
+    "settings.html": [],
+    "users.html": [
+      "/styles/common.css"
+    ],
+    "phase-l-results.html": [],
+    "privacy.html": [],
+    "realistic-characters-demo.html": [
+      "/css/hero-realistic-characters.css"
+    ],
+    "research.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "reset-password.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "status.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "system-status.html": [
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    "terms.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "test-auto-translate.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "test-chat-api.html": [],
+    "test-i18n-demo.html": [],
+    "test-language-system.html": [],
+    "test-legal.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "test-translation.html": [
+      "/css/global-lydian-branding.css"
+    ],
+    "tokens.html": [
+      "/css/ailydians-inspired.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "/css/global-lydian-branding.css"
+    ],
+    "video-ai.html": []
+  },
+  "timestamp": "2025-10-08T13:57:14.821Z"
+}

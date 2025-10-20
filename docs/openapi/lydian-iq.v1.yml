@@ -1,0 +1,677 @@
+openapi: 3.1.0
+info:
+  title: LyDian IQ API
+  version: 1.0.0
+  description: |
+    Enterprise-grade AI Intelligence API for signal processing, knowledge graphs, and analytical insights.
+
+    ## Features
+    - Real-time signal and event ingestion
+    - Multi-dimensional indicator dashboards
+    - Knowledge graph construction and querying
+    - AI-powered analytical insights
+
+    ## Rate Limits
+    - Standard tier: 1000 requests/hour
+    - Premium tier: 10000 requests/hour
+    - Enterprise tier: Custom limits
+
+  contact:
+    name: LyDian API Support
+    email: api-support@lydian.com
+    url: https://lydian.com/support
+  license:
+    name: Commercial
+    url: https://lydian.com/terms
+
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+
+servers:
+  - url: https://api.lydian.com/v1/lydian-iq
+    description: Production server
+  - url: https://api-staging.lydian.com/v1/lydian-iq
+    description: Staging server
+
+security:
+  - oauth2: []
+  - apiKey: []
+  - hmacAuth: []
+
+tags:
+  - name: Signals
+    description: Signal and event ingestion
+  - name: Indicators
+    description: Indicator dashboards
+  - name: Knowledge Graph
+    description: Knowledge graph management
+  - name: Insights
+    description: Analytical insights
+
+paths:
+  /signals:
+    post:
+      operationId: ingestSignal
+      summary: Ingest a signal or event
+      tags: [Signals]
+      security:
+        - oauth2: [signals:write]
+        - apiKey: []
+        - hmacAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSignalRequest'
+      responses:
+        '201':
+          description: Signal ingested
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Signal'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+    get:
+      operationId: listSignals
+      summary: List signals
+      tags: [Signals]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: List of signals
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, pagination]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Signal'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+
+  /indicators:
+    get:
+      operationId: getIndicatorDashboard
+      summary: Get indicator dashboard
+      tags: [Indicators]
+      responses:
+        '200':
+          description: Indicator dashboard
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicatorDashboard'
+
+  /indicators/{indicatorId}:
+    get:
+      operationId: getIndicator
+      summary: Get specific indicator
+      tags: [Indicators]
+      parameters:
+        - name: indicatorId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^ind_[0-9A-HJKMNP-TV-Z]{26}$'
+      responses:
+        '200':
+          description: Indicator details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Indicator'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /knowledge-graph/nodes:
+    post:
+      operationId: createKGNode
+      summary: Create knowledge graph node
+      tags: [Knowledge Graph]
+      security:
+        - oauth2: [kg:write]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateKGNodeRequest'
+      responses:
+        '201':
+          description: Node created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KGNode'
+
+    get:
+      operationId: listKGNodes
+      summary: List knowledge graph nodes
+      tags: [Knowledge Graph]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: nodeType
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of nodes
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, pagination]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/KGNode'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+
+  /knowledge-graph/edges:
+    post:
+      operationId: createKGEdge
+      summary: Create knowledge graph edge
+      tags: [Knowledge Graph]
+      security:
+        - oauth2: [kg:write]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateKGEdgeRequest'
+      responses:
+        '201':
+          description: Edge created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KGEdge'
+
+  /knowledge-graph/query:
+    get:
+      operationId: queryKnowledgeGraph
+      summary: Query knowledge graph
+      tags: [Knowledge Graph]
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: maxDepth
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            default: 3
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KGQueryResult'
+
+  /insights:
+    get:
+      operationId: getInsights
+      summary: Get analytical insights
+      tags: [Insights]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of insights
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, pagination]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Insight'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationInfo'
+
+  /insights/{insightId}:
+    get:
+      operationId: getInsight
+      summary: Get specific insight
+      tags: [Insights]
+      parameters:
+        - name: insightId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^insight_[0-9A-HJKMNP-TV-Z]{26}$'
+      responses:
+        '200':
+          description: Insight details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Insight'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.lydian.com/oauth2/token
+          scopes:
+            signals:read: Read signals
+            signals:write: Ingest signals
+            indicators:read: Read indicators
+            kg:read: Read knowledge graph
+            kg:write: Modify knowledge graph
+            insights:read: Read insights
+
+    apiKey:
+      type: apiKey
+      name: X-API-Key
+      in: header
+
+    hmacAuth:
+      type: apiKey
+      name: X-HMAC-Signature
+      in: header
+      description: |
+        HMAC-SHA256 signature for request authentication.
+        Required headers: X-HMAC-Signature, X-HMAC-Timestamp, X-HMAC-Algorithm
+
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      schema:
+        type: string
+        format: uuid
+
+    Cursor:
+      name: cursor
+      in: query
+      schema:
+        type: string
+
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 50
+
+  headers:
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+
+    X-RateLimit-Reset:
+      schema:
+        type: integer
+
+  schemas:
+    Signal:
+      type: object
+      required: [id, type, source, payload, timestamp, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^sig_[0-9A-HJKMNP-TV-Z]{26}$'
+        type:
+          type: string
+        source:
+          type: string
+        payload:
+          type: object
+          additionalProperties: true
+        timestamp:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateSignalRequest:
+      type: object
+      required: [type, source, payload]
+      properties:
+        type:
+          type: string
+        source:
+          type: string
+        payload:
+          type: object
+          additionalProperties: true
+        timestamp:
+          type: string
+          format: date-time
+
+    IndicatorDashboard:
+      type: object
+      required: [indicators, lastUpdated]
+      properties:
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Indicator'
+        lastUpdated:
+          type: string
+          format: date-time
+
+    Indicator:
+      type: object
+      required: [id, name, value, unit, trend, updatedAt]
+      properties:
+        id:
+          type: string
+          pattern: '^ind_[0-9A-HJKMNP-TV-Z]{26}$'
+        name:
+          type: string
+        value:
+          type: number
+        unit:
+          type: string
+        trend:
+          type: string
+          enum: [up, down, stable]
+        metadata:
+          type: object
+        updatedAt:
+          type: string
+          format: date-time
+
+    KGNode:
+      type: object
+      required: [id, nodeType, label, properties, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^node_[0-9A-HJKMNP-TV-Z]{26}$'
+        nodeType:
+          type: string
+        label:
+          type: string
+        properties:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateKGNodeRequest:
+      type: object
+      required: [nodeType, label]
+      properties:
+        nodeType:
+          type: string
+        label:
+          type: string
+        properties:
+          type: object
+          additionalProperties: true
+
+    KGEdge:
+      type: object
+      required: [id, fromNodeId, toNodeId, edgeType, createdAt]
+      properties:
+        id:
+          type: string
+          pattern: '^edge_[0-9A-HJKMNP-TV-Z]{26}$'
+        fromNodeId:
+          type: string
+        toNodeId:
+          type: string
+        edgeType:
+          type: string
+        properties:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateKGEdgeRequest:
+      type: object
+      required: [fromNodeId, toNodeId, edgeType]
+      properties:
+        fromNodeId:
+          type: string
+        toNodeId:
+          type: string
+        edgeType:
+          type: string
+        properties:
+          type: object
+
+    KGQueryResult:
+      type: object
+      required: [nodes, edges, queryTime]
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/KGNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/KGEdge'
+        queryTime:
+          type: number
+          description: Query execution time in milliseconds
+
+    Insight:
+      type: object
+      required: [id, category, title, confidence, generatedAt]
+      properties:
+        id:
+          type: string
+          pattern: '^insight_[0-9A-HJKMNP-TV-Z]{26}$'
+        category:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        data:
+          type: object
+        generatedAt:
+          type: string
+          format: date-time
+
+    PaginationInfo:
+      type: object
+      required: [hasNext, hasPrev]
+      properties:
+        hasNext:
+          type: boolean
+        hasPrev:
+          type: boolean
+        nextCursor:
+          type: string
+        prevCursor:
+          type: string
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message, correlationId]
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            correlationId:
+              type: string
+              format: uuid
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+webhooks:
+  signalReceived:
+    post:
+      summary: Signal Received Event
+      operationId: onSignalReceived
+      parameters:
+        - name: X-Lydian-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Lydian-Timestamp
+          in: header
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [eventId, eventType, timestamp, data]
+              properties:
+                eventId:
+                  type: string
+                  format: uuid
+                eventType:
+                  type: string
+                  enum: [signal.received]
+                timestamp:
+                  type: string
+                  format: date-time
+                data:
+                  $ref: '#/components/schemas/Signal'
+      responses:
+        '200':
+          description: OK
+
+  insightGenerated:
+    post:
+      summary: Insight Generated Event
+      operationId: onInsightGenerated
+      parameters:
+        - name: X-Lydian-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Lydian-Timestamp
+          in: header
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [eventId, eventType, timestamp, data]
+              properties:
+                eventId:
+                  type: string
+                  format: uuid
+                eventType:
+                  type: string
+                  enum: [insight.generated]
+                timestamp:
+                  type: string
+                  format: date-time
+                data:
+                  $ref: '#/components/schemas/Insight'
+      responses:
+        '200':
+          description: OK

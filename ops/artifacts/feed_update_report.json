@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-10-09T13:53:58.759790+00:00",
+  "stats": {
+    "models_checked": 0,
+    "models_added": 0,
+    "models_updated": 0,
+    "models_skipped": 0,
+    "api_calls": 1,
+    "errors": 0
+  },
+  "new_models": []
+}

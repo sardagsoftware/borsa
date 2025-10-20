@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# LyDian AI - Pre-commit Hook
+# Automatically validates feeds and security before commit
+#
+
+set -e
+
+echo "🔍 Running pre-commit validation..."
+
+# Check if feed files are being committed
+FEED_FILES=$(git diff --cached --name-only | grep -E "(public/feed/|public/llms.txt)" || true)
+
+if [ -n "$FEED_FILES" ]; then
+    echo "📋 Feed files modified, running validation..."
+
+    # Run feed validator
+    if ! python3 ops/feed_validator.py --feed all; then
+        echo "❌ Feed validation failed!"
+        echo "Fix the issues above before committing."
+        exit 1
+    fi
+
+    echo "✅ Feed validation passed!"
+fi
+
+# Always run security audit
+echo "🔒 Running security audit..."
+if ! python3 ops/security_audit.py; then
+    echo "❌ Security audit failed!"
+    echo "Fix the security issues above before committing."
+    exit 1
+fi
+
+echo "✅ Security audit passed!"
+echo ""
+echo "🎉 All pre-commit checks passed! Proceeding with commit..."
+exit 0

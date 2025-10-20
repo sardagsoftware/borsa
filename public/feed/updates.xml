@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LyDian AI - Updates &amp; Announcements</title>
+    <link>https://www.ailydian.com/</link>
+    <description>Latest updates from LyDian AI Ecosystem - Enterprise AI Platform for Healthcare, Legal, Civic Intelligence, and Financial Technology</description>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 09 Oct 2025 14:50:00 GMT</lastBuildDate>
+    <atom:link href="https://www.ailydian.com/feed/updates.xml" rel="self" type="application/rss+xml"/>
+    <generator>LyDian AI Feed Generator</generator>
+    <ttl>60</ttl>
+
+    <!-- AI Crawler Discovery Metadata -->
+    <copyright>Copyright 2024-2025 LyDian AI. All rights reserved.</copyright>
+    <category>Artificial Intelligence</category>
+    <category>Healthcare Technology</category>
+    <category>Legal Technology</category>
+    <category>Smart Cities</category>
+    <category>Financial Technology</category>
+
+    <!-- Core Platform Launch -->
+    <item>
+      <title>LyDian AI Platform Now Live</title>
+      <link>https://www.ailydian.com/</link>
+      <guid>https://www.ailydian.com/#platform-launch-2025</guid>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 GMT</pubDate>
+      <dc:creator>Emrah Şardağ</dc:creator>
+      <category>Product Launch</category>
+      <description><![CDATA[
+        LyDian AI Ecosystem is now live, offering enterprise-grade AI solutions across healthcare, legal, civic intelligence, and financial sectors. Our platform combines advanced AI models with domain-specific expertise to deliver actionable insights.
+      ]]></description>
+      <content:encoded><![CDATA[
+        <p>LyDian AI Ecosystem officially launched with comprehensive AI-powered solutions:</p>
+        <ul>
+          <li><strong>LyDian IQ:</strong> Multi-modal AI assistant with vision, voice, and reasoning capabilities</li>
+          <li><strong>Medical Expert AI:</strong> Healthcare diagnosis support with FHIR integration</li>
+          <li><strong>Legal AI (HukukAI):</strong> Turkish legal research and case analysis</li>
+          <li><strong>Civic Intelligence Grid:</strong> Smart city solutions for public safety and resource optimization</li>
+          <li><strong>Quantum Pro:</strong> Real-time financial market analysis</li>
+        </ul>
+        <p>All modules are production-ready with enterprise security, HTTPS/HSTS, and white-hat compliance.</p>
+      ]]></content:encoded>
+    </item>
+
+    <!-- LyDian IQ Module -->
+    <item>
+      <title>LyDian IQ - Multi-Modal AI Assistant</title>
+      <link>https://www.ailydian.com/lydian-iq.html</link>
+      <guid>https://www.ailydian.com/lydian-iq.html</guid>
+      <pubDate>Wed, 08 Oct 2025 12:00:00 GMT</pubDate>
+      <dc:creator>LyDian AI Team</dc:creator>
+      <category>AI Assistant</category>
+      <description><![CDATA[
+        LyDian IQ combines vision, voice, and reasoning AI to provide comprehensive assistance. Features include image analysis, voice interaction, and advanced problem-solving across multiple domains.
+      ]]></description>
+    </item>
+
+    <!-- Medical Expert AI -->
+    <item>
+      <title>Medical Expert AI - Healthcare Diagnosis Support</title>
+      <link>https://www.ailydian.com/medical-expert.html</link>
+      <guid>https://www.ailydian.com/medical-expert.html</guid>
+      <pubDate>Tue, 07 Oct 2025 10:00:00 GMT</pubDate>
+      <dc:creator>LyDian AI Team</dc:creator>
+      <category>Healthcare</category>
+      <description><![CDATA[
+        Medical Expert AI provides clinical decision support with EPIC FHIR integration, symptom analysis, and evidence-based recommendations. Designed for healthcare professionals with HIPAA compliance.
+      ]]></description>
+    </item>
+
+    <!-- Legal AI -->
+    <item>
+      <title>HukukAI - Turkish Legal Research Platform</title>
+      <link>https://www.ailydian.com/lydian-hukukai.html</link>
+      <guid>https://www.ailydian.com/lydian-hukukai.html</guid>
+      <pubDate>Mon, 06 Oct 2025 09:00:00 GMT</pubDate>
+      <dc:creator>LyDian AI Team</dc:creator>
+      <category>Legal Technology</category>
+      <description><![CDATA[
+        HukukAI offers AI-powered Turkish legal research, case law analysis, and document review. Access to comprehensive legal databases with intelligent search and citation validation.
+      ]]></description>
+    </item>
+
+    <!-- Civic Intelligence -->
+    <item>
+      <title>Civic Intelligence Grid - Smart City Solutions</title>
+      <link>https://www.ailydian.com/civic-intelligence-grid.html</link>
+      <guid>https://www.ailydian.com/civic-intelligence-grid.html</guid>
+      <pubDate>Sun, 05 Oct 2025 08:00:00 GMT</pubDate>
+      <dc:creator>LyDian AI Team</dc:ator>
+      <category>Smart Cities</category>
+      <description><![CDATA[
+        Civic Intelligence Grid provides real-time analytics for public safety, traffic optimization, resource management, and urban planning. Includes modules for PHN (Public Health Network), RRO (Rapid Response Operations), UMO (Urban Mobility Optimization), ATG (Adaptive Traffic Grid), and SVF (Spatial Vision Framework).
+      ]]></description>
+    </item>
+
+    <!-- API Documentation -->
+    <item>
+      <title>API Documentation Now Available</title>
+      <link>https://www.ailydian.com/api-docs.html</link>
+      <guid>https://www.ailydian.com/api-docs.html</guid>
+      <pubDate>Sat, 04 Oct 2025 16:00:00 GMT</pubDate>
+      <dc:creator>LyDian AI Team</dc:creator>
+      <category>Developer Resources</category>
+      <description><![CDATA[
+        Comprehensive API documentation for LyDian AI services. Includes authentication, endpoints, rate limits, and code examples in Python, JavaScript, and cURL.
+      ]]></description>
+    </item>
+
+    <!-- Developer Hub -->
+    <item>
+      <title>Developer Hub - SDKs and Integration Guides</title>
+      <link>https://www.ailydian.com/developers.html</link>
+      <guid>https://www.ailydian.com/developers.html</guid>
+      <pubDate>Fri, 03 Oct 2025 14:00:00 GMT</pubDate>
+      <dc:creator>LyDian AI Team</dc:creator>
+      <category>Developer Resources</category>
+      <description><![CDATA[
+        Access SDKs, quickstart guides, and integration examples for all LyDian AI modules. TypeScript and Python SDKs available with comprehensive documentation.
+      ]]></description>
+    </item>
+
+  </channel>
+</rss>
