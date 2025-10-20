@@ -180,27 +180,27 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
         </div>
       )}
 
-      {/* Signal Badge with Confidence Score */}
-      {!isTopPerformer && hasSignal && confidenceScore !== undefined && confidenceScore >= 30 && (
-        <div className={`absolute -top-2 -right-2 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg ${
-          confidenceScore >= 90 ? 'bg-gradient-to-r from-emerald-400 to-emerald-600 animate-pulse' :
-          confidenceScore >= 80 ? 'bg-gradient-to-r from-green-500 to-green-600 animate-pulse' :
-          confidenceScore >= 70 ? 'bg-gradient-to-r from-green-600 to-green-700' :
-          confidenceScore >= 60 ? 'bg-gradient-to-r from-lime-600 to-lime-700' :
-          confidenceScore >= 50 ? 'bg-gradient-to-r from-yellow-600 to-yellow-700' :
-          confidenceScore >= 40 ? 'bg-gradient-to-r from-orange-600 to-orange-700' :
-          'bg-gradient-to-r from-red-600 to-red-700'
-        }`}>
-          {confidenceScore >= 90 ? '💎' :
-           confidenceScore >= 80 ? '🚀' :
-           confidenceScore >= 70 ? '✅' :
-           confidenceScore >= 60 ? '🟢' :
-           confidenceScore >= 50 ? '🟡' :
-           confidenceScore >= 40 ? '🟠' :
-           '⚠️'}
-          {' '}
-          %{Math.floor(confidenceScore)}
-        </div>
+      {/* Signal Badge - SADECE BUY/STRONG_BUY GÖSTER */}
+      {!isTopPerformer && hasSignal && confidenceScore !== undefined && (
+        <>
+          {/* STRONG BUY Badge (80-100%) */}
+          {confidenceScore >= 80 && (
+            <div className={`absolute -top-2 -right-2 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg ${
+              confidenceScore >= 90
+                ? 'bg-gradient-to-r from-emerald-400 to-emerald-600 animate-pulse'
+                : 'bg-gradient-to-r from-green-500 to-green-600 animate-pulse'
+            }`}>
+              {confidenceScore >= 90 ? '💎' : '🚀'} STRONG BUY
+            </div>
+          )}
+
+          {/* BUY Badge (65-79%) */}
+          {confidenceScore >= 65 && confidenceScore < 80 && (
+            <div className="absolute -top-2 -right-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg">
+              ✅ BUY
+            </div>
+          )}
+        </>
       )}
 
       {/* Legacy Signal Badge (if no confidence score) */}

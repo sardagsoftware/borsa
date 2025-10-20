@@ -61,13 +61,13 @@ export function TraditionalMarketsSection() {
 
   if (loading) {
     return (
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold text-white">
+      <div className="space-y-6">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-white">
           📊 Traditional Markets
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="animate-pulse bg-gray-800 rounded-lg h-32" />
+            <div key={i} className="animate-pulse bg-gray-800 rounded-xl h-32" />
           ))}
         </div>
       </div>
@@ -76,11 +76,11 @@ export function TraditionalMarketsSection() {
 
   if (error) {
     return (
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold text-white">
+      <div className="space-y-6">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-white">
           📊 Traditional Markets
         </h2>
-        <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4 text-red-400">
+        <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-6 text-red-400 backdrop-blur-sm">
           ⚠️ {error}
         </div>
       </div>
@@ -92,25 +92,25 @@ export function TraditionalMarketsSection() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
           📊 Traditional Markets
-          <span className="text-sm font-normal text-gray-400">
+          <span className="text-sm md:text-base font-normal text-gray-400">
             ({markets.length} markets)
           </span>
         </h2>
-        <div className="text-xs text-gray-500">
+        <div className="text-xs md:text-sm text-gray-500">
           🟢 Live Data • Binance • MetalpriceAPI • Yahoo Finance
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
         {markets.map((market) => (
           <div key={market.symbol} className="relative">
-            {/* Badge overlay */}
-            <div className="absolute top-2 left-2 z-10 bg-yellow-500/20 backdrop-blur-sm px-2 py-1 rounded-md border border-yellow-500/30">
-              <span className="text-xs font-medium text-yellow-400">
+            {/* Badge overlay - glassmorphism style */}
+            <div className="absolute top-3 left-3 z-10 bg-yellow-500/20 backdrop-blur-md px-3 py-1.5 rounded-lg border border-yellow-500/30 shadow-lg">
+              <span className="text-xs font-semibold text-yellow-300">
                 {market.icon || '📊'} {market.category || 'Traditional'}
               </span>
             </div>

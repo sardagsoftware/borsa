@@ -19,6 +19,7 @@ import {
 } from "@/lib/notifications/signal-notifier";
 import { getPreferences } from "@/lib/preferences";
 import { calculateRiskScore, getRiskColorPalette, type RiskScore } from "@/lib/market/risk-calculator";
+import { useBackgroundScanner, useSignalNotifications } from "@/hooks/useBackgroundScanner";
 
 /**
  * MARKET OVERVIEW COMPONENT
@@ -47,6 +48,21 @@ export default function MarketOverview() {
 
   // Scan count for color palette rotation
   const [scanCount, setScanCount] = useState(0);
+
+  // 🔄 NEW: Background scanner hook - 7/24 otomatik çalışır
+  const { results: backgroundResults, buySignals, isRunning, lastScan } = useBackgroundScanner();
+
+  // 🔔 NEW: Smart notifications - sadece BUY/STRONG_BUY
+  useSignalNotifications((result) => {
+    if (areNotificationsEnabled()) {
+      // Show browser notification
+      new Notification(`${result.analysis.badge} Signal!`, {
+        body: `${result.symbol}: ${result.analysis.strategies.join(', ')}`,
+        icon: '/favicon.ico',
+        badge: '/favicon.ico',
+      });
+    }
+  });
 
   // Check notification permission on mount
   useEffect(() => {
@@ -158,54 +174,53 @@ export default function MarketOverview() {
     setSelectedCoin(coin);
   };
 
-  // Get signal strength for coin (based on scanner data)
+  // Get signal strength for coin (based on background scanner data)
   const getSignalStrength = (symbol: string): 'STRONG_BUY' | 'BUY' | 'NEUTRAL' => {
+    // First check background scanner (NEW system)
+    const scanResult = backgroundResults.find(r => r.symbol === symbol);
+    if (scanResult?.analysis) {
+      const { strength } = scanResult.analysis;
+      if (strength === 'STRONG_BUY') return 'STRONG_BUY';
+      if (strength === 'BUY') return 'BUY';
+      return 'NEUTRAL';
+    }
+
+    // Fallback to old scanner
     const signal = scanner.getSignal(symbol);
     if (!signal) return 'NEUTRAL';
 
-    // Strong signal if 5+ indicators active
     if (signal.signalCount >= 5) return 'STRONG_BUY';
-    // Moderate signal if 3+ indicators active
     if (signal.signalCount >= 3) return 'BUY';
-    // Weak signal
     return 'NEUTRAL';
   };
 
-  // Calculate confidence score (0-100%) based on signal count and quality
+  // Calculate confidence score (0-100%) - uses background scanner first
   const getConfidenceScore = (symbol: string): number | undefined => {
+    // First check background scanner (NEW system - 7/24 auto-refresh)
+    const scanResult = backgroundResults.find(r => r.symbol === symbol);
+    if (scanResult?.analysis) {
+      return scanResult.analysis.score; // Already 0-100
+    }
+
+    // Fallback to old scanner
     const signal = scanner.getSignal(symbol);
     if (!signal || signal.signalCount === 0) return undefined;
 
-    // Total possible signals: 9
-    // - MA Crossover 24h + 4h = 2
-    // - Support Break 24h + 4h = 2
-    // - Resistance Break 24h + 4h = 2
-    // - Volume Spike 24h + 4h = 2
-    // - MTF Alignment = 1
-    // Total = 9 signals
-
-    // Base confidence from signal count (0-100%)
     let confidence = (signal.signalCount / 9) * 100;
 
-    // Bonus for MTF alignment (multi-timeframe agreement is strong)
     if (signal.signals.mtfAlignment) {
-      confidence += 15; // +15% bonus for trend alignment
+      confidence += 15;
     }
 
-    // Bonus for MA crossover (strong momentum indicator)
     if (signal.signals.maCrossover24h || signal.signals.maCrossover4h) {
-      confidence += 10; // +10% bonus for MA crossover
+      confidence += 10;
     }
 
-    // Bonus for volume confirmation
     if (signal.signals.volumeSpike24h || signal.signals.volumeSpike4h) {
-      confidence += 5; // +5% bonus for volume
+      confidence += 5;
     }
 
-    // Cap at 100%
     confidence = Math.min(confidence, 100);
-
-    // Round to integer
     return Math.round(confidence);
   };
 

@@ -7,6 +7,9 @@ const CORRECT_PASSWORD = process.env.UKALAI_PASSWORD || 'Xruby1985.!?';
 // Public paths (şifre gerektirmeyen)
 const PUBLIC_PATHS = [
   '/api/health',
+  '/api/futures-all',
+  '/api/market',
+  '/api/traditional-markets',
   '/manifest.webmanifest',
   '/sw.js',
   '/robots.txt',

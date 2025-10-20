@@ -9,8 +9,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUniversalCandles } from '@/lib/adapters/universal-candles';
 import { analyzeSymbol } from '@/lib/strategy-aggregator';
 import { getMarketConfig } from '@/types/traditional-markets';
+import { sanitizeString } from '@/lib/security';
 
-export const runtime = 'edge';
+// Changed from 'edge' to 'nodejs' for crypto module support (security sanitization)
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 /**
@@ -19,15 +21,19 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const friendlySymbol = searchParams.get('symbol');
-    const timeframe = searchParams.get('timeframe') || '4h';
 
-    if (!friendlySymbol) {
+    // ✅ SECURITY: Sanitize inputs
+    const friendlySymbolRaw = searchParams.get('symbol');
+    if (!friendlySymbolRaw) {
       return NextResponse.json(
         { success: false, error: 'Symbol parameter required' },
         { status: 400 }
       );
     }
+
+    const friendlySymbol = sanitizeString(friendlySymbolRaw).toUpperCase();
+    const timeframeRaw = searchParams.get('timeframe') || '4h';
+    const timeframe = sanitizeString(timeframeRaw).toLowerCase();
 
     console.log(`[Traditional Markets Analyze] 🔍 ${friendlySymbol} (${timeframe})`);
 

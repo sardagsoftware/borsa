@@ -9,6 +9,7 @@
 import { NextResponse } from 'next/server';
 import { analyzeSymbol } from '@/lib/strategy-aggregator';
 import { getScannerLimiter, getClientIP } from '@/lib/rate-limiter';
+import { sanitizeNumber, sanitizeString } from '@/lib/security';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -56,8 +57,13 @@ export async function GET(request: Request) {
     }
 
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit') || '20'); // Scan top 20 by default
-    const signalType = searchParams.get('type') || 'STRONG_BUY'; // STRONG_BUY or BUY
+
+    // ✅ SECURITY: Sanitize and validate inputs
+    const limitRaw = searchParams.get('limit') || '20';
+    const limit = sanitizeNumber(limitRaw, 1, 100, 20); // Min: 1, Max: 100, Default: 20
+
+    const signalTypeRaw = searchParams.get('type') || 'STRONG_BUY';
+    const signalType = sanitizeString(signalTypeRaw).toUpperCase() === 'BUY' ? 'BUY' : 'STRONG_BUY';
 
     console.log(`[Scanner API] 🔍 Scanning for ${signalType} signals (limit: ${limit})... [IP: ${clientIP}, Remaining: ${remaining}]`);
 

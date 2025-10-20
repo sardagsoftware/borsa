@@ -5,6 +5,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { sanitizeSymbol } from '@/lib/security';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -46,7 +47,12 @@ export async function GET(request: Request) {
       }, { status: 400 });
     }
 
-    const symbolList = symbols.split(',').slice(0, 20);
+    // ✅ SECURITY: Sanitize symbol list
+    const symbolList = symbols
+      .split(',')
+      .slice(0, 20) // Max 20 symbols
+      .map(s => sanitizeSymbol(s.trim()))
+      .filter(s => s.length > 0); // Remove empty strings
     console.log(`[Sparkline API] Fetching for ${symbolList.length} symbols...`);
 
     const sparklineData: Record<string, any> = {};
