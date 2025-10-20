@@ -1,0 +1,273 @@
+asyncapi: 3.0.0
+info:
+  title: LyDian IQ Events API
+  version: 1.0.0
+  description: |
+    Event-driven API for signal processing, knowledge graph, and insight events.
+
+  contact:
+    name: LyDian API Support
+    email: api-support@lydian.com
+
+servers:
+  production:
+    host: events.lydian.com
+    protocol: wss
+  kafka:
+    host: kafka.lydian.com:9092
+    protocol: kafka
+
+channels:
+  signal/received:
+    address: signal.received
+    messages:
+      signalReceived:
+        $ref: '#/components/messages/signalReceived'
+
+  insight/generated:
+    address: insight.generated
+    messages:
+      insightGenerated:
+        $ref: '#/components/messages/insightGenerated'
+
+  kg/node/created:
+    address: kg.node.created
+    messages:
+      kgNodeCreated:
+        $ref: '#/components/messages/kgNodeCreated'
+
+  kg/edge/created:
+    address: kg.edge.created
+    messages:
+      kgEdgeCreated:
+        $ref: '#/components/messages/kgEdgeCreated'
+
+operations:
+  onSignalReceived:
+    action: receive
+    channel:
+      $ref: '#/channels/signal~1received'
+    messages:
+      - $ref: '#/components/messages/signalReceived'
+
+  onInsightGenerated:
+    action: receive
+    channel:
+      $ref: '#/channels/insight~1generated'
+    messages:
+      - $ref: '#/components/messages/insightGenerated'
+
+  onKGNodeCreated:
+    action: receive
+    channel:
+      $ref: '#/channels/kg~1node~1created'
+    messages:
+      - $ref: '#/components/messages/kgNodeCreated'
+
+  onKGEdgeCreated:
+    action: receive
+    channel:
+      $ref: '#/channels/kg~1edge~1created'
+    messages:
+      - $ref: '#/components/messages/kgEdgeCreated'
+
+components:
+  messages:
+    signalReceived:
+      name: signalReceived
+      title: Signal Received
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/signalReceivedPayload'
+
+    insightGenerated:
+      name: insightGenerated
+      title: Insight Generated
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/insightGeneratedPayload'
+
+    kgNodeCreated:
+      name: kgNodeCreated
+      title: Knowledge Graph Node Created
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/kgNodeCreatedPayload'
+
+    kgEdgeCreated:
+      name: kgEdgeCreated
+      title: Knowledge Graph Edge Created
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/kgEdgeCreatedPayload'
+
+  schemas:
+    signalReceivedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: signal.received
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, type, source, payload]
+          properties:
+            id:
+              type: string
+              pattern: '^sig_[0-9A-HJKMNP-TV-Z]{26}$'
+            type:
+              type: string
+            source:
+              type: string
+            payload:
+              type: object
+              additionalProperties: true
+            timestamp:
+              type: string
+              format: date-time
+
+    insightGeneratedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: insight.generated
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, category, title, confidence]
+          properties:
+            id:
+              type: string
+              pattern: '^insight_[0-9A-HJKMNP-TV-Z]{26}$'
+            category:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            confidence:
+              type: number
+              minimum: 0
+              maximum: 1
+            data:
+              type: object
+            generatedAt:
+              type: string
+              format: date-time
+
+    kgNodeCreatedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: kg.node.created
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, nodeType, label, properties]
+          properties:
+            id:
+              type: string
+              pattern: '^node_[0-9A-HJKMNP-TV-Z]{26}$'
+            nodeType:
+              type: string
+            label:
+              type: string
+            properties:
+              type: object
+              additionalProperties: true
+            createdAt:
+              type: string
+              format: date-time
+
+    kgEdgeCreatedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: kg.edge.created
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, fromNodeId, toNodeId, edgeType]
+          properties:
+            id:
+              type: string
+              pattern: '^edge_[0-9A-HJKMNP-TV-Z]{26}$'
+            fromNodeId:
+              type: string
+            toNodeId:
+              type: string
+            edgeType:
+              type: string
+            properties:
+              type: object
+            createdAt:
+              type: string
+              format: date-time

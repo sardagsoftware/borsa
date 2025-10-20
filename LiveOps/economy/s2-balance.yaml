@@ -1,0 +1,342 @@
+# Season 2: Echo Storms - Economy Balance Configuration
+# Version: 2.0.0
+# Date: 2026-01-15
+# White-Hat: true
+# Compliance: KVKK/GDPR/PDPL
+
+version: "2.0.0"
+season: "S2"
+effective_date: "2026-01-15T00:00:00Z"
+
+# Currency System
+currencies:
+  CR:
+    name: "Chordstone Remnants"
+    name_localized:
+      tr: "Akortaşı Kalıntıları"
+      en: "Chordstone Remnants"
+      ar: "بقايا حجر الوتر"
+      de: "Akkordstein-Reste"
+      ru: "Остатки Аккордного Камня"
+      nl: "Chordstone Resten"
+      bg: "Останки от Chordstone"
+      el: "Υπολείμματα Chordstone"
+    max_cap: 999999
+    starting_balance: 0
+    can_earn: true
+    can_spend: true
+    can_trade: false
+
+  AC:
+    name: "Ancient Crystals"
+    name_localized:
+      tr: "Antik Kristaller"
+      en: "Ancient Crystals"
+      ar: "الكريستالات القديمة"
+      de: "Antike Kristalle"
+      ru: "Древние Кристаллы"
+      nl: "Oude Kristallen"
+      bg: "Древни Кристали"
+      el: "Αρχαία Κρύσταλλα"
+    max_cap: 99999
+    starting_balance: 0
+    can_earn: false
+    can_spend: true
+    can_trade: false
+    purchase_only: true
+    platforms: ["pc", "lydian_store"]
+
+# Drop Rates (S2 adjustments based on S1 data)
+drop_rates:
+  common:
+    min: 0.68          # Increased from 0.65 (S1 feedback: too scarce)
+    max: 0.77          # Increased from 0.75
+    currency_range:
+      min: 12          # Slightly increased
+      max: 28
+
+  rare:
+    min: 0.18          # Slightly decreased for balance
+    max: 0.28
+    currency_range:
+      min: 35
+      max: 70
+
+  epic:
+    min: 0.04
+    max: 0.08
+    currency_range:
+      min: 80
+      max: 180
+
+  legendary:
+    min: 0.005
+    max: 0.015
+    currency_range:
+      min: 250
+      max: 600
+
+# Storm-Specific Rewards (New for S2)
+storm_puzzle_rewards:
+  frequency_align:
+    base_cr: 150
+    xp: 400
+    bonus_cosmetic_token: 0.10    # 10% chance
+
+  phase_chain:
+    base_cr: 250
+    xp: 600
+    bonus_cosmetic_token: 0.15    # 15% chance
+
+  echo_triangulation:
+    base_cr: 400
+    xp: 800
+    bonus_cosmetic_token: 0.20    # 20% chance
+
+# Boss Rewards (Echo Sentinel)
+boss_rewards:
+  echo_sentinel_phase_1:
+    first_completion:
+      cr: 500
+      xp: 1200
+      cosmetic_guaranteed: true
+    subsequent:
+      cr: 250
+      xp: 600
+      cosmetic_chance: 0.05
+
+  echo_sentinel_phase_2:
+    first_completion:
+      cr: 750
+      xp: 1500
+      cosmetic_guaranteed: true
+    subsequent:
+      cr: 375
+      xp: 750
+      cosmetic_chance: 0.08
+
+# Anti-Inflation Guardrails (Stricter than S1)
+anti_inflation:
+  target_earn_spend_ratio: 1.0    # Tighter than S1's 1.2
+  acceptable_range:
+    min: 0.9
+    max: 1.1
+
+  soft_caps:
+    daily_earn_limit: 4500        # Reduced from 5000 (S1 learned: too high)
+    weekly_earn_limit: 28000      # Reduced from 30000
+    diminishing_returns_threshold: 2800  # Reduced from 3000
+
+  inflation_index:
+    target: 1.00
+    warning_threshold: 1.08       # Stricter than S1's 1.10
+    critical_threshold: 1.15
+    auto_adjust: true
+
+  auto_adjustments:
+    drop_rate_scaling:
+      enabled: true
+      max_adjustment: 0.15        # ±15% max adjustment
+    vendor_price_scaling:
+      enabled: true
+      max_adjustment: 0.10        # ±10% max adjustment
+    earn_limit_scaling:
+      enabled: true
+      min_daily: 3000
+      max_daily: 6000
+
+# Vendor Pricing (S2 adjusted based on S1 feedback)
+vendor_items:
+  rope_bundle:
+    price_cr: 135                 # S1 was 150, reduced by 10%
+    quantity: 10
+    category: "consumable"
+
+  torch_pack:
+    price_cr: 90                  # S1 was 100, reduced by 10%
+    quantity: 20
+    category: "consumable"
+
+  grapple_kit:
+    price_cr: 270                 # S1 was 300, reduced by 10%
+    quantity: 5
+    category: "equipment"
+
+  resonance_crystal:
+    price_cr: 450                 # New S2 item
+    quantity: 3
+    category: "puzzle_aid"
+
+  storm_resist_potion:
+    price_cr: 180                 # New S2 item
+    quantity: 15
+    category: "consumable"
+
+# Craft Costs (Material balance)
+crafting:
+  rope:
+    base_cost_cr: 30
+    materials_required:
+      fiber: 5
+
+  torch:
+    base_cost_cr: 20
+    materials_required:
+      wood: 3
+      oil: 1
+
+  grapple:
+    base_cost_cr: 80
+    materials_required:
+      rope: 2
+      metal: 3
+      spring: 1
+
+# Canary Deployment Strategy
+canary_deployment:
+  phase_1:
+    percent: 10
+    duration_hours: 24
+    monitored_metrics:
+      - inflation_index
+      - earn_spend_ratio
+      - fraud_indicators
+    rollback_triggers:
+      inflation_spike: 1.12
+      ratio_deviation: 0.15
+
+  phase_2:
+    percent: 50
+    duration_hours: 48
+    monitored_metrics:
+      - inflation_index
+      - earn_spend_ratio
+      - vendor_usage
+      - player_satisfaction
+    rollback_triggers:
+      inflation_spike: 1.10
+      ratio_deviation: 0.12
+      vendor_usage_drop: 0.20
+
+  phase_3:
+    percent: 100
+    monitoring_hours: 72
+    post_rollout_adjustment: true
+
+# Boss Difficulty Tuning
+boss_tuning:
+  echo_sentinel:
+    base_hp: 25000
+    hp_scaling_solo: 1.0
+    hp_scaling_duo: 1.5
+
+    success_rate_targets:
+      phase_1: 0.55              # Week 2 target
+      phase_2: 0.50              # Week 5 target (harder)
+
+    hp_adjustment_strategy:
+      canary_phases: [10, 50, 100]
+      success_rate_monitoring: true
+      auto_adjust: true
+      adjustment_range: [-0.15, 0.10]  # -15% to +10%
+
+    phase_mechanics:
+      phase_1:
+        hp_threshold: 1.0
+        difficulty_multiplier: 1.0
+      phase_2:
+        hp_threshold: 0.66
+        difficulty_multiplier: 1.2
+      phase_3:
+        hp_threshold: 0.33
+        difficulty_multiplier: 1.5
+        enrage_timer_seconds: 120
+
+# Fraud Detection (White-Hat Security)
+fraud_detection:
+  earn_rate_anomaly:
+    threshold_multiplier: 2.0    # Flag if 2x normal earn rate
+    window_minutes: 60
+
+  duplication_detection:
+    balance_jump_threshold_cr: 1000
+    transaction_gap_seconds: 5
+
+  receipt_validation:
+    enabled: true
+    server_side_only: true
+    apple_iap: true
+    google_play: true
+    lydian_store: true
+
+  attested_logging:
+    algorithm: "Ed25519"
+    log_retention_days: 730      # 2 years for fraud logs
+    merkle_root_daily: true
+
+# Compliance (KVKK/GDPR/PDPL)
+compliance:
+  pii_minimization: true
+  data_retention_days: 180
+  self_serve_export: true
+  self_serve_delete: true
+
+  monetization:
+    cosmetic_only: true
+    no_p2w: true
+    transparent_pricing: true
+    refund_policy_days: 14
+
+  regions:
+    - TR
+    - EU
+    - US
+    - RU
+    - MENA
+
+  certifications:
+    kvkk: true
+    gdpr: true
+    pdpl: true
+
+# Observability & Alerts
+monitoring:
+  metrics:
+    - inflation_index
+    - earn_spend_ratio
+    - vendor_usage_rate
+    - fraud_indicators
+    - boss_success_rate
+
+  alert_thresholds:
+    inflation_warning: 1.08
+    inflation_critical: 1.15
+    ratio_low: 0.9
+    ratio_high: 1.1
+    fraud_warning: 5
+    fraud_critical: 20
+
+  reporting:
+    frequency: "hourly"
+    dashboard: "/kpis/s2"
+    retention_days: 90
+
+# Version Control
+changelog:
+  - version: "2.0.0"
+    date: "2026-01-15"
+    changes:
+      - "Initial S2 economy balance"
+      - "Adjusted drop rates based on S1 data (+3% common)"
+      - "Reduced daily earn limit to 4500 CR"
+      - "Tightened earn/spend ratio to 0.9-1.1"
+      - "Added storm-puzzle specific rewards"
+      - "Reduced vendor prices by ~10%"
+      - "Stricter inflation thresholds (1.08 warning)"
+
+# White-Hat Declaration
+white_hat: true
+anti_cheat_enabled: true
+official_apis_only: true
+no_scraping: true
+ethical_monetization: true

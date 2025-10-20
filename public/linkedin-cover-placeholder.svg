@@ -1,0 +1,99 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">
+  <!-- LinkedIn Cover Image Placeholder -->
+
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="coverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0A0F1C;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#121826;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A0F1C;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00B4FF;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#00B4FF;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#0080FF;stop-opacity:0.3" />
+    </linearGradient>
+
+    <!-- Radial Gradient for Glow -->
+    <radialGradient id="glowRadial">
+      <stop offset="0%" style="stop-color:#00B4FF;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#00B4FF;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1584" height="396" fill="url(#coverGradient)"/>
+
+  <!-- Accent Overlay -->
+  <rect width="1584" height="396" fill="url(#accentGradient)"/>
+
+  <!-- Decorative Circles -->
+  <circle cx="200" cy="198" r="300" fill="url(#glowRadial)" opacity="0.3"/>
+  <circle cx="1384" cy="198" r="250" fill="url(#glowRadial)" opacity="0.3"/>
+
+  <!-- Grid Pattern -->
+  <g opacity="0.08">
+    <line x1="0" y1="99" x2="1584" y2="99" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="0" y1="198" x2="1584" y2="198" stroke="#00B4FF" stroke-width="1"/>
+    <line x1="0" y1="297" x2="1584" y2="297" stroke="#00B4FF" stroke-width="0.5"/>
+
+    <line x1="396" y1="0" x2="396" y2="396" stroke="#00B4FF" stroke-width="0.5"/>
+    <line x1="792" y1="0" x2="792" y2="396" stroke="#00B4FF" stroke-width="1"/>
+    <line x1="1188" y1="0" x2="1188" y2="396" stroke="#00B4FF" stroke-width="0.5"/>
+  </g>
+
+  <!-- Main Logo -->
+  <g transform="translate(150, 148)">
+    <circle cx="50" cy="50" r="60" fill="none" stroke="#00B4FF" stroke-width="3" opacity="0.6"/>
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#00B4FF" stroke-width="2" opacity="0.4"/>
+    <circle cx="50" cy="50" r="15" fill="#00B4FF"/>
+
+    <!-- Neural connections -->
+    <circle cx="20" cy="30" r="8" fill="#00B4FF" opacity="0.7"/>
+    <circle cx="80" cy="30" r="8" fill="#00B4FF" opacity="0.7"/>
+    <circle cx="20" cy="70" r="8" fill="#00B4FF" opacity="0.7"/>
+    <circle cx="80" cy="70" r="8" fill="#00B4FF" opacity="0.7"/>
+
+    <line x1="50" y1="50" x2="20" y2="30" stroke="#00B4FF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="50" y1="50" x2="80" y2="30" stroke="#00B4FF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="50" y1="50" x2="20" y2="70" stroke="#00B4FF" stroke-width="1.5" opacity="0.5"/>
+    <line x1="50" y1="50" x2="80" y2="70" stroke="#00B4FF" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- Main Text -->
+  <text x="380" y="160" font-family="Inter, sans-serif" font-size="64" font-weight="800"
+        fill="#FFFFFF" letter-spacing="-1">LyDian AI Ecosystem</text>
+
+  <!-- Tagline -->
+  <text x="380" y="220" font-family="Inter, sans-serif" font-size="28" font-weight="400"
+        fill="#00B4FF" letter-spacing="2">Intelligence for Every Domain</text>
+
+  <!-- Features Bar -->
+  <g transform="translate(380, 250)">
+    <!-- Feature 1 -->
+    <text x="0" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="600"
+          fill="#FFFFFF" opacity="0.8">🤖 Multi-Model AI</text>
+
+    <!-- Feature 2 -->
+    <text x="200" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="600"
+          fill="#FFFFFF" opacity="0.8">🌍 20+ Languages</text>
+
+    <!-- Feature 3 -->
+    <text x="400" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="600"
+          fill="#FFFFFF" opacity="0.8">⚡ Enterprise Ready</text>
+
+    <!-- Feature 4 -->
+    <text x="620" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="600"
+          fill="#FFFFFF" opacity="0.8">🔒 Secure & Compliant</text>
+  </g>
+
+  <!-- Bottom Right Accent -->
+  <g transform="translate(1300, 280)">
+    <rect x="0" y="0" width="220" height="80" rx="10" fill="#00B4FF" opacity="0.1"/>
+    <text x="110" y="35" font-family="Inter, sans-serif" font-size="14" font-weight="600"
+          fill="#00B4FF" text-anchor="middle" letter-spacing="1">POWERED BY</text>
+    <text x="110" y="60" font-family="Inter, sans-serif" font-size="20" font-weight="700"
+          fill="#FFFFFF" text-anchor="middle" letter-spacing="1">Microsoft Azure</text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+/**
+ * AiLydian Ultra Pro - DISABLED Translation Library
+ * Translation API disabled to prevent console errors
+ */
+
+(function() {
+    'use strict';
+    
+    // Translation is DISABLED - page will show in original language
+    console.log('🔕 Translation system disabled');
+    
+    // Expose empty API
+    window.AilydianTranslation = {
+        init: function() { 
+            console.log('Translation init: DISABLED');
+        },
+        changeLanguage: function(lang) { 
+            console.log('Language change requested:', lang, '- DISABLED');
+        },
+        getCurrentLanguage: function() { 
+            return 'tr'; 
+        }
+    };
+    
+})();

@@ -1,0 +1,162 @@
+{
+  "id": "abx-boss-hp-storm",
+  "name": "Echo Sentinel HP Tuning",
+  "season": "S2",
+  "hypothesis": "Reducing Echo Sentinel HP by 10% will improve success rate to 55% target without making fight trivial",
+  "start_date": "2026-01-22T20:00:00+03:00",
+  "end_date": "2026-02-05T20:00:00+03:00",
+  "duration_days": 14,
+  "status": "scheduled",
+
+  "primary_metric": {
+    "name": "boss_success_rate",
+    "type": "proportion",
+    "baseline_estimate": 0.48,
+    "target_improvement": 0.07,
+    "success_criteria": ">= 0.55"
+  },
+
+  "secondary_metrics": [
+    {
+      "name": "average_attempts",
+      "type": "continuous",
+      "baseline_estimate": 3.2,
+      "target": 2.5
+    },
+    {
+      "name": "player_satisfaction",
+      "type": "continuous",
+      "measurement": "post_fight_survey",
+      "scale": [1, 5]
+    },
+    {
+      "name": "retention_d1",
+      "type": "proportion",
+      "guardrail": true,
+      "threshold_min": 0.40
+    }
+  ],
+
+  "arms": [
+    {
+      "name": "control",
+      "allocation": 0.33,
+      "description": "Base HP (25000)",
+      "parameters": {
+        "base_hp": 25000,
+        "hp_scaling_solo": 1.0,
+        "hp_scaling_duo": 1.5
+      }
+    },
+    {
+      "name": "variant_a_minus_10",
+      "allocation": 0.33,
+      "description": "Reduced HP (-10%)",
+      "parameters": {
+        "base_hp": 22500,
+        "hp_scaling_solo": 1.0,
+        "hp_scaling_duo": 1.5
+      }
+    },
+    {
+      "name": "variant_b_plus_10",
+      "allocation": 0.34,
+      "description": "Increased HP (+10%)",
+      "parameters": {
+        "base_hp": 27500,
+        "hp_scaling_solo": 1.0,
+        "hp_scaling_duo": 1.5
+      }
+    }
+  ],
+
+  "allocation_strategy": {
+    "method": "stratified_random",
+    "stratification_keys": ["region", "player_level", "previous_boss_experience"],
+    "ensure_balance": true,
+    "re_randomization": false
+  },
+
+  "statistics": {
+    "minimum_detectable_effect": 0.05,
+    "statistical_power": 0.80,
+    "alpha": 0.05,
+    "two_tailed": false,
+    "sample_size_per_arm": 800
+  },
+
+  "guardrails": [
+    {
+      "metric": "success_rate",
+      "operator": "<",
+      "threshold": 0.30,
+      "action": "stop_arm",
+      "applies_to": "variant_b_plus_10"
+    },
+    {
+      "metric": "success_rate",
+      "operator": ">",
+      "threshold": 0.75,
+      "action": "alert",
+      "applies_to": "variant_a_minus_10",
+      "reason": "Too easy, may trivialize content"
+    },
+    {
+      "metric": "retention_d1",
+      "operator": "<",
+      "threshold": 0.38,
+      "action": "stop_experiment"
+    }
+  ],
+
+  "monitoring": {
+    "check_frequency_hours": 4,
+    "early_stopping": true,
+    "sequential_testing": true,
+    "interim_analysis_days": [2, 5, 8, 11]
+  },
+
+  "telemetry": {
+    "track_metrics": [
+      "attempts_before_success",
+      "time_to_defeat",
+      "phase_progression",
+      "deaths_per_phase",
+      "damage_dealt",
+      "healing_used"
+    ],
+    "replay_recording": true,
+    "heat_maps": true
+  },
+
+  "rbac": {
+    "start_permission": "experiments.admin",
+    "stop_permission": "experiments.admin",
+    "view_results": "experiments.analyst"
+  },
+
+  "compliance": {
+    "fair_allocation": true,
+    "no_discrimination": true,
+    "ethical_label": "DIFFICULTY_TUNING_TEST",
+    "player_communication": "transparent",
+    "opt_out_available": false
+  },
+
+  "rollout_plan": {
+    "if_winner": "variant_a_minus_10",
+    "rollout_phases": [
+      {"percent": 10, "duration_hours": 12},
+      {"percent": 50, "duration_hours": 24},
+      {"percent": 100, "monitor_hours": 48}
+    ],
+    "apply_to": "echo_sentinel_phase_1_and_2"
+  },
+
+  "white_hat": true,
+  "anti_cheat": {
+    "damage_validation": true,
+    "position_validation": true,
+    "timing_validation": true
+  }
+}

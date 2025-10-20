@@ -1,0 +1,530 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr" class="google-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiLydians Studio - Enterprise AI Platform</title>
+    <meta name="description" content="AiLydians Studio - Enterprise AI Platform - Azure, Google, OpenAI, Enterprise AI tüm AI modelleri tek platformda">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Google Fonts - Material Design Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;600;700&family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- FIRILDAK Premium CSS Framework with Google Theme -->
+    <link rel="stylesheet" href="/css/firildak-premium.css">
+
+    <style>
+        /* LyDian Studio Specific Overrides */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            background: var(--google-surface-primary);
+            color: var(--google-text-primary);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+
+        /* Custom animations */
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google AI Studio Layout -->
+    <div class="google-studio-layout">
+        <!-- Header -->
+        <header class="google-studio-header">
+            <div class="google-studio-logo">
+                <div class="google-studio-logo-icon">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                </div>
+                <span>AiLydians Studio</span>
+            </div>
+
+            <div class="google-studio-actions">
+                <button class="google-btn google-btn-outline" id="themeToggle">
+                    <span class="material-symbols-outlined">light_mode</span>
+                    Light
+                </button>
+                <button class="google-btn google-btn-secondary" id="settingsBtn">
+                    <span class="material-symbols-outlined">settings</span>
+                    Ayarlar
+                </button>
+                <button class="google-btn google-btn-primary" id="newChatBtn">
+                    <span class="material-symbols-outlined">add</span>
+                    Yeni Sohbet
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <nav class="google-studio-sidebar">
+            <!-- Chat History Section -->
+            <div class="google-nav-section">
+                <div class="google-nav-title">Sohbet Geçmişi</div>
+                <a href="#" class="google-nav-item active">
+                    <span class="material-symbols-outlined google-nav-icon">chat</span>
+                    Azure AI Integration
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">chat</span>
+                    Google Vertex AI Test
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">chat</span>
+                    Enterprise AI Enterprise Setup
+                </a>
+            </div>
+
+            <!-- AI Models Section -->
+            <div class="google-nav-section">
+                <div class="google-nav-title">AI Modelleri</div>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">psychology</span>
+                    Azure OpenAI
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">auto_awesome</span>
+                    Google Gemini
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">biotech</span>
+                    Advanced AI Platform Enterprise AI
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">bolt</span>
+                    AiLydians Lightning
+                </a>
+            </div>
+
+            <!-- Enterprise Features -->
+            <div class="google-nav-section">
+                <div class="google-nav-title">Enterprise Özellikler</div>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">dashboard</span>
+                    Analytics Dashboard
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">security</span>
+                    Güvenlik Merkezi
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">api</span>
+                    API Management
+                </a>
+                <a href="#" class="google-nav-item">
+                    <span class="material-symbols-outlined google-nav-icon">group</span>
+                    Team Management
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="google-studio-main">
+            <!-- Welcome Screen with Capabilities -->
+            <div id="welcomeScreen" class="google-chat-container">
+                <div style="text-align: center; margin-bottom: 48px;">
+                    <h1 style="font-size: 48px; font-weight: 400; color: var(--google-text-primary); margin-bottom: 16px;">
+                        LyDian'a Hoş Geldiniz
+                    </h1>
+                    <p style="font-size: 20px; color: var(--google-text-secondary); max-width: 600px; margin: 0 auto;">
+                        Dünyanın en gelişmiş AI platformu ile tanışın. Azure, Google, OpenAI ve daha fazlası tek çatı altında.
+                    </p>
+                </div>
+
+                <!-- AI Capabilities Grid -->
+                <div class="google-capability-grid">
+                    <!-- Azure Integration Card -->
+                    <div class="google-capability-card" onclick="startAzureChat()">
+                        <div class="google-capability-header">
+                            <div class="google-capability-icon">
+                                <span class="material-symbols-outlined">cloud</span>
+                            </div>
+                            <div class="google-capability-title">Azure AI Suite</div>
+                        </div>
+                        <div class="google-capability-description">
+                            Microsoft Azure'un tam AI ekosistemi: OpenAI GPT-4, Document Intelligence, Cognitive Services ve Quantum hesaplama
+                        </div>
+                        <div class="google-capability-tags">
+                            <span class="google-tag">GPT-4 Turbo</span>
+                            <span class="google-tag">Document AI</span>
+                            <span class="google-tag">Quantum</span>
+                            <span class="google-tag">Enterprise</span>
+                        </div>
+                    </div>
+
+                    <!-- Google AI Card -->
+                    <div class="google-capability-card" onclick="startGoogleChat()">
+                        <div class="google-capability-header">
+                            <div class="google-capability-icon">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <div class="google-capability-title">Google Vertex AI</div>
+                        </div>
+                        <div class="google-capability-description">
+                            Google'ın Gemini Ultra, PaLM 2 ve Bard Advanced modelleri ile multimodal AI deneyimi
+                        </div>
+                        <div class="google-capability-tags">
+                            <span class="google-tag">Gemini Ultra</span>
+                            <span class="google-tag">PaLM 2</span>
+                            <span class="google-tag">Multimodal</span>
+                            <span class="google-tag">Vision</span>
+                        </div>
+                    </div>
+
+                    <!-- Advanced AI Platform Enterprise AI Card -->
+                    <div class="google-capability-card" onclick="startEnterprise AIChat()">
+                        <div class="google-capability-header">
+                            <div class="google-capability-icon">
+                                <span class="material-symbols-outlined">psychology</span>
+                            </div>
+                            <div class="google-capability-title">Advanced AI Platform Enterprise AI</div>
+                        </div>
+                        <div class="google-capability-description">
+                            Premium Intelligence Model ve Sonnet ile güvenli, etik ve gelişmiş reasoning yetenekleri
+                        </div>
+                        <div class="google-capability-tags">
+                            <span class="google-tag">Premium Intelligence Model</span>
+                            <span class="google-tag">Constitutional AI</span>
+                            <span class="google-tag">200K Context</span>
+                            <span class="google-tag">Güvenlik</span>
+                        </div>
+                    </div>
+
+                    <!-- Multi-AI Orchestration -->
+                    <div class="google-capability-card" onclick="startOrchestrationChat()">
+                        <div class="google-capability-header">
+                            <div class="google-capability-icon">
+                                <span class="material-symbols-outlined">device_hub</span>
+                            </div>
+                            <div class="google-capability-title">AI Orchestration</div>
+                        </div>
+                        <div class="google-capability-description">
+                            Akıllı routing ile en uygun AI modelini otomatik seçim ve paralel işlem yönetimi
+                        </div>
+                        <div class="google-capability-tags">
+                            <span class="google-tag">Auto Route</span>
+                            <span class="google-tag">Load Balance</span>
+                            <span class="google-tag">Fallback</span>
+                            <span class="google-tag">Performance</span>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Analytics -->
+                    <div class="google-capability-card" onclick="showAnalytics()">
+                        <div class="google-capability-header">
+                            <div class="google-capability-icon">
+                                <span class="material-symbols-outlined">analytics</span>
+                            </div>
+                            <div class="google-capability-title">Enterprise Analytics</div>
+                        </div>
+                        <div class="google-capability-description">
+                            Real-time kullanım metrikleri, maliyet analizi, performans izleme ve predictive scaling
+                        </div>
+                        <div class="google-capability-tags">
+                            <span class="google-tag">Real-time</span>
+                            <span class="google-tag">Cost Analysis</span>
+                            <span class="google-tag">Monitoring</span>
+                            <span class="google-tag">Scaling</span>
+                        </div>
+                    </div>
+
+                    <!-- Developer Tools -->
+                    <div class="google-capability-card" onclick="showDeveloperTools()">
+                        <div class="google-capability-header">
+                            <div class="google-capability-icon">
+                                <span class="material-symbols-outlined">code</span>
+                            </div>
+                            <div class="google-capability-title">Developer SDK</div>
+                        </div>
+                        <div class="google-capability-description">
+                            RESTful API, WebSocket streams, SDK'lar ve webhooks ile full-stack AI entegrasyonu
+                        </div>
+                        <div class="google-capability-tags">
+                            <span class="google-tag">REST API</span>
+                            <span class="google-tag">WebSocket</span>
+                            <span class="google-tag">SDK</span>
+                            <span class="google-tag">Webhooks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface (Hidden by default) -->
+            <div id="chatInterface" class="google-chat-container" style="display: none;">
+                <div class="google-chat-messages" id="chatMessages">
+                    <!-- Messages will be added here dynamically -->
+                </div>
+
+                <!-- Input Area -->
+                <div class="google-input-container">
+                    <textarea
+                        id="chatInput"
+                        class="google-chat-input"
+                        placeholder="LyDian'a sorunuzu yazın..."
+                        rows="1"
+                    ></textarea>
+                    <button class="google-send-button" id="sendButton" disabled>
+                        <span class="material-symbols-outlined">send</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/i18n.js"></script>
+    <script src="/js/firildak-app.js"></script>
+    <script>
+        // AiLydians Studio Interface Management
+        class AiLydiansStudioInterface {
+            constructor() {
+                this.currentMode = 'welcome';
+                this.chatHistory = [];
+                this.activeModel = null;
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.initializeI18n();
+                this.showWelcome();
+            }
+
+            setupEventListeners() {
+                // New Chat Button
+                document.getElementById('newChatBtn').addEventListener('click', () => {
+                    this.startNewChat();
+                });
+
+                // Chat Input
+                const chatInput = document.getElementById('chatInput');
+                const sendButton = document.getElementById('sendButton');
+
+                chatInput.addEventListener('input', (e) => {
+                    sendButton.disabled = !e.target.value.trim();
+                });
+
+                chatInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+
+                sendButton.addEventListener('click', () => {
+                    this.sendMessage();
+                });
+
+                // Theme Toggle
+                document.getElementById('themeToggle').addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+            }
+
+            initializeI18n() {
+                // Initialize internationalization if available
+                if (window.FirildakI18N) {
+                    this.i18n = new FirildakI18N();
+                }
+            }
+
+            showWelcome() {
+                document.getElementById('welcomeScreen').style.display = 'block';
+                document.getElementById('chatInterface').style.display = 'none';
+                this.currentMode = 'welcome';
+            }
+
+            showChat() {
+                document.getElementById('welcomeScreen').style.display = 'none';
+                document.getElementById('chatInterface').style.display = 'block';
+                this.currentMode = 'chat';
+                document.getElementById('chatInput').focus();
+            }
+
+            startNewChat() {
+                this.chatHistory = [];
+                document.getElementById('chatMessages').innerHTML = '';
+                this.showWelcome();
+            }
+
+            async sendMessage() {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+
+                if (!message) return;
+
+                // Add user message to chat
+                this.addMessage('user', message);
+                input.value = '';
+                document.getElementById('sendButton').disabled = true;
+
+                // Show loading
+                const loadingId = this.addMessage('assistant', '', true);
+
+                try {
+                    // Send to FirildakAI
+                    const response = await this.sendToAI(message);
+
+                    // Remove loading and add response
+                    this.removeMessage(loadingId);
+                    this.addMessage('assistant', response);
+                } catch (error) {
+                    this.removeMessage(loadingId);
+                    this.addMessage('assistant', 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.');
+                    console.error('Chat error:', error);
+                }
+            }
+
+            addMessage(type, content, isLoading = false) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const messageId = 'msg-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+
+                const messageElement = document.createElement('div');
+                messageElement.className = `google-message ${type}`;
+                messageElement.id = messageId;
+
+                const avatar = document.createElement('div');
+                avatar.className = 'google-message-avatar';
+                avatar.textContent = type === 'user' ? 'U' : 'AI';
+
+                const messageContent = document.createElement('div');
+                messageContent.className = 'google-message-content';
+
+                if (isLoading) {
+                    messageContent.innerHTML = `
+                        <div class="google-loading">
+                            <div class="google-loading-dot"></div>
+                            <div class="google-loading-dot"></div>
+                            <div class="google-loading-dot"></div>
+                        </div>
+                        <span style="margin-left: 12px; color: var(--google-text-secondary);">Düşünüyor...</span>
+                    `;
+                } else {
+                    messageContent.textContent = content;
+                }
+
+                messageElement.appendChild(avatar);
+                messageElement.appendChild(messageContent);
+                messagesContainer.appendChild(messageElement);
+
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                return messageId;
+            }
+
+            removeMessage(messageId) {
+                const messageElement = document.getElementById(messageId);
+                if (messageElement) {
+                    messageElement.remove();
+                }
+            }
+
+            async sendToAI(message) {
+                // Use FirildakApp if available, otherwise fallback to simple API call
+                if (window.FirildakApp && this.firildakApp) {
+                    return await this.firildakApp.sendToAI(message);
+                } else {
+                    // Simple API fallback
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: message,
+                            model: this.activeModel || 'auto'
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+                    return data.response || data.message || 'Yanıt alınamadı';
+                }
+            }
+
+            toggleTheme() {
+                // Theme toggle implementation
+                document.documentElement.classList.toggle('dark-theme');
+                const themeToggle = document.getElementById('themeToggle');
+                const icon = themeToggle.querySelector('.material-symbols-outlined');
+                const text = themeToggle.lastChild;
+
+                if (document.documentElement.classList.contains('dark-theme')) {
+                    icon.textContent = 'dark_mode';
+                    text.textContent = 'Dark';
+                } else {
+                    icon.textContent = 'light_mode';
+                    text.textContent = 'Light';
+                }
+            }
+        }
+
+        // Capability Card Actions
+        function startAzureChat() {
+            lydiansStudio.activeModel = 'azure';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'Azure AI Suite\'e hoş geldiniz! GPT-4 Turbo, Document Intelligence ve Quantum hesaplama yeteneklerini kullanabiliriz. Size nasıl yardımcı olabilirim?');
+        }
+
+        function startGoogleChat() {
+            lydiansStudio.activeModel = 'google';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'Google Vertex AI aktif! Gemini Ultra ve PaLM 2 modelleri ile multimodal AI deneyimini başlatalım. Hangi konuda yardım istiyorsunuz?');
+        }
+
+        function startEnterprise AIChat() {
+            lydiansStudio.activeModel = 'enterprise-ai';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'Advanced AI Platform Premium Intelligence Model ile tanışın! Güvenli, etik ve gelişmiş reasoning yetenekleri ile size yardımcı olmaya hazırım. Ne öğrenmek istiyorsunuz?');
+        }
+
+        function startOrchestrationChat() {
+            lydiansStudio.activeModel = 'orchestration';
+            lydiansStudio.showChat();
+            lydiansStudio.addMessage('assistant', 'AI Orchestration modu aktif! En uygun AI modelini otomatik olarak seçeceğim ve en iyi sonuçları elde etmek için paralel işlem yönetimi kullanacağım.');
+        }
+
+        function showAnalytics() {
+            window.open('/analytics', '_blank');
+        }
+
+        function showDeveloperTools() {
+            window.open('/docs/api', '_blank');
+        }
+
+        // Initialize AiLydians Studio Interface
+        let lydiansStudio;
+        document.addEventListener('DOMContentLoaded', () => {
+            lydiansStudio = new AiLydiansStudioInterface();
+
+            // Initialize FirildakApp if available
+            if (window.FirildakApp) {
+                lydiansStudio.firildakApp = new FirildakApp();
+            }
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

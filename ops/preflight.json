@@ -1,0 +1,76 @@
+{
+  "timestamp": "2025-10-04T14:30:00Z",
+  "subscription": {
+    "id": "931c7633-e61e-4a37-8798-fe1f6f20580e",
+    "name": "Azure aboneliği 1",
+    "state": "Enabled"
+  },
+  "regions": {
+    "primary": "westeurope",
+    "dr": "northeurope"
+  },
+  "availability": {
+    "frontDoor": {
+      "sku": "Premium_AzureFrontDoor",
+      "available": true,
+      "region": "global"
+    },
+    "apim": {
+      "sku": "Premium",
+      "available": true,
+      "region": "westeurope"
+    },
+    "containerApps": {
+      "sku": "Consumption",
+      "available": true,
+      "region": "westeurope"
+    },
+    "functions": {
+      "sku": "FlexConsumption",
+      "available": true,
+      "region": "westeurope"
+    },
+    "postgresql": {
+      "sku": "GeneralPurpose",
+      "version": "15",
+      "available": true,
+      "region": "westeurope"
+    },
+    "redis": {
+      "sku": "Premium",
+      "available": true,
+      "region": "westeurope"
+    },
+    "serviceBus": {
+      "sku": "Standard",
+      "available": true,
+      "region": "westeurope"
+    },
+    "storage": {
+      "sku": "Standard_ZRS",
+      "available": true,
+      "region": "westeurope"
+    },
+    "keyVault": {
+      "sku": "premium",
+      "available": true,
+      "region": "westeurope"
+    }
+  },
+  "quotas": {
+    "vcpu": {
+      "limit": 100,
+      "used": 0,
+      "available": 100
+    },
+    "containerApps": {
+      "limit": 20,
+      "used": 0,
+      "available": 20
+    }
+  },
+  "cost_targets": {
+    "monthly_budget": 3000,
+    "alerts": [60, 80, 100]
+  }
+}

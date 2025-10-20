@@ -1,0 +1,129 @@
+{
+  "models": {
+    "claude-sonnet-4-5": {
+      "provider": "anthropic",
+      "max_ctx": 200000,
+      "max_out": 4096,
+      "target_tpm": 240000,
+      "burst_tpm": 300000,
+      "safe_ctx": 180000,
+      "safe_out": 3600,
+      "qps": 50,
+      "retry_max": 7,
+      "backoff_base_ms": 250,
+      "backoff_max_ms": 30000,
+      "priority_classes": {
+        "P0_clinical": 1.0,
+        "P1_user": 0.7,
+        "P2_batch": 0.4
+      }
+    },
+    "gpt-4-turbo": {
+      "provider": "openai",
+      "max_ctx": 128000,
+      "max_out": 4096,
+      "target_tpm": 150000,
+      "burst_tpm": 200000,
+      "safe_ctx": 115000,
+      "safe_out": 3600,
+      "qps": 60,
+      "retry_max": 7,
+      "backoff_base_ms": 250,
+      "backoff_max_ms": 30000,
+      "priority_classes": {
+        "P0_clinical": 1.0,
+        "P1_user": 0.7,
+        "P2_batch": 0.4
+      }
+    },
+    "gpt-4o": {
+      "provider": "openai",
+      "max_ctx": 128000,
+      "max_out": 16384,
+      "target_tpm": 200000,
+      "burst_tpm": 250000,
+      "safe_ctx": 115000,
+      "safe_out": 14000,
+      "qps": 80,
+      "retry_max": 7,
+      "backoff_base_ms": 250,
+      "backoff_max_ms": 30000,
+      "priority_classes": {
+        "P0_clinical": 1.0,
+        "P1_user": 0.7,
+        "P2_batch": 0.4
+      }
+    },
+    "gemini-pro": {
+      "provider": "google",
+      "max_ctx": 1000000,
+      "max_out": 8192,
+      "target_tpm": 300000,
+      "burst_tpm": 400000,
+      "safe_ctx": 900000,
+      "safe_out": 7200,
+      "qps": 60,
+      "retry_max": 7,
+      "backoff_base_ms": 250,
+      "backoff_max_ms": 30000,
+      "priority_classes": {
+        "P0_clinical": 1.0,
+        "P1_user": 0.7,
+        "P2_batch": 0.4
+      }
+    },
+    "deepseek-r1": {
+      "provider": "deepseek",
+      "max_ctx": 64000,
+      "max_out": 4096,
+      "target_tpm": 180000,
+      "burst_tpm": 220000,
+      "safe_ctx": 57600,
+      "safe_out": 3600,
+      "qps": 40,
+      "retry_max": 7,
+      "backoff_base_ms": 250,
+      "backoff_max_ms": 30000,
+      "priority_classes": {
+        "P0_clinical": 1.0,
+        "P1_user": 0.7,
+        "P2_batch": 0.4
+      }
+    }
+  },
+  "chunking": {
+    "target_tokens": 6000,
+    "overlap_tokens": 350,
+    "semantic_boundaries": ["sentence", "paragraph", "section", "json_object", "code_block"],
+    "multilingual_respect": true,
+    "dicom_meta_preserve": true
+  },
+  "streaming": {
+    "enabled": true,
+    "flush_interval_ms": 100,
+    "output_cap_trigger": 0.9,
+    "continue_job_queue": "token-governor-continue"
+  },
+  "checkpointing": {
+    "enabled": true,
+    "format": "jsonl",
+    "interval_chunks": 10,
+    "hash_algorithm": "sha256",
+    "storage_path": "./ops/checkpoints"
+  },
+  "governor": {
+    "redis_url": "${REDIS_URL}",
+    "queue_name": "token-governor",
+    "refill_interval_ms": 60000,
+    "monitor_interval_ms": 5000,
+    "alert_threshold_429": 0.05,
+    "alert_threshold_tpm_variance": 0.20
+  },
+  "observability": {
+    "logs_path": "./ops/logs/token-budget.ndjson",
+    "metrics_retention_hours": 168,
+    "dashboard_refresh_ms": 10000,
+    "mask_secrets": true,
+    "mask_pattern": "first4...last3"
+  }
+}

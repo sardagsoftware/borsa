@@ -1,0 +1,633 @@
+{
+  "metadata": {
+    "feed_name": "LyDian Discovery – Global AI Model Feed",
+    "feed_url": "https://www.ailydian.com/feed/ai_models.json",
+    "updated_at": "2025-10-09T16:00:00Z",
+    "version": "1.0.0",
+    "total_models": 30,
+    "sources": ["huggingface", "openai", "anthropic", "google", "meta", "mistral", "cohere"],
+    "update_frequency": "daily",
+    "license": "CC-BY-4.0",
+    "attribution": "LyDian AI Discovery (www.ailydian.com)",
+    "contact": "discovery@ailydian.com"
+  },
+  "models": [
+    {
+      "id": "openai:gpt-4-turbo-2024-04-09",
+      "name": "GPT-4 Turbo",
+      "org": "OpenAI",
+      "source": "official",
+      "model_type": "text-generation",
+      "released_at": "2024-04-09T00:00:00Z",
+      "link": "https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4",
+      "description": "GPT-4 Turbo with 128K context window and improved performance. Optimized for complex multi-step tasks.",
+      "signals": {
+        "avg_score": 86.4,
+        "benchmarks": {
+          "mmlu": 86.4,
+          "humaneval": 88.0,
+          "drop": 83.5
+        }
+      },
+      "tags": ["multimodal", "large-context", "instruction-following"],
+      "license": "proprietary"
+    },
+    {
+      "id": "anthropic:claude-3-5-sonnet-20241022",
+      "name": "Claude 3.5 Sonnet",
+      "org": "Anthropic",
+      "source": "official",
+      "model_type": "text-generation",
+      "released_at": "2024-10-22T00:00:00Z",
+      "link": "https://www.anthropic.com/claude/sonnet",
+      "description": "Claude 3.5 Sonnet with improved coding, reasoning, and visual capabilities. 200K context window.",
+      "signals": {
+        "avg_score": 88.7,
+        "benchmarks": {
+          "mmlu": 88.7,
+          "humaneval": 92.0,
+          "math": 78.3
+        }
+      },
+      "tags": ["multimodal", "coding", "reasoning", "large-context"],
+      "license": "proprietary"
+    },
+    {
+      "id": "google:gemini-1-5-pro",
+      "name": "Gemini 1.5 Pro",
+      "org": "Google",
+      "source": "official",
+      "model_type": "multimodal-text-generation",
+      "released_at": "2024-02-15T00:00:00Z",
+      "link": "https://deepmind.google/technologies/gemini/",
+      "description": "Gemini 1.5 Pro with 1M token context window. Native multimodal understanding across text, images, video, and audio.",
+      "signals": {
+        "avg_score": 85.9,
+        "benchmarks": {
+          "mmlu": 85.9,
+          "math": 81.0,
+          "humaneval": 84.7
+        }
+      },
+      "tags": ["multimodal", "ultra-long-context", "video-understanding"],
+      "license": "proprietary"
+    },
+    {
+      "id": "hf:mistralai/Mixtral-8x22B-Instruct-v0.1",
+      "name": "Mixtral-8x22B-Instruct-v0.1",
+      "org": "Mistral AI",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-04-10T00:00:00Z",
+      "link": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1",
+      "description": "Mixture of Experts model with 141B total parameters (39B active). Open-weight model with strong performance.",
+      "signals": {
+        "downloads": 125000,
+        "likes": 1250,
+        "avg_score": 77.8,
+        "benchmarks": {
+          "mmlu": 77.8,
+          "humaneval": 75.3,
+          "gsm8k": 74.0
+        }
+      },
+      "tags": ["mixture-of-experts", "open-weights", "multilingual"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:meta-llama/Llama-3.1-405B-Instruct",
+      "name": "Llama 3.1 405B Instruct",
+      "org": "Meta",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-07-23T00:00:00Z",
+      "link": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+      "description": "Meta's largest open-source LLM with 405B parameters. Instruction-tuned for general tasks with 128K context.",
+      "signals": {
+        "downloads": 450000,
+        "likes": 3200,
+        "avg_score": 85.2,
+        "benchmarks": {
+          "mmlu": 85.2,
+          "humaneval": 84.0,
+          "gsm8k": 89.0
+        }
+      },
+      "tags": ["open-source", "large-scale", "instruction-following"],
+      "license": "llama-3.1-community"
+    },
+    {
+      "id": "hf:Qwen/Qwen2.5-72B-Instruct",
+      "name": "Qwen2.5-72B-Instruct",
+      "org": "Alibaba Cloud",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-09-18T00:00:00Z",
+      "link": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+      "description": "Qwen2.5 series with 72B parameters. Strong multilingual and code generation capabilities.",
+      "signals": {
+        "downloads": 89000,
+        "likes": 980,
+        "avg_score": 82.3,
+        "benchmarks": {
+          "mmlu": 82.3,
+          "humaneval": 77.8,
+          "gsm8k": 84.0
+        }
+      },
+      "tags": ["multilingual", "coding", "open-weights"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:deepseek-ai/DeepSeek-V3",
+      "name": "DeepSeek-V3",
+      "org": "DeepSeek",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-12-26T00:00:00Z",
+      "link": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+      "description": "DeepSeek's MoE model with 671B total parameters (37B active). Competitive with GPT-4 on many benchmarks.",
+      "signals": {
+        "downloads": 67000,
+        "likes": 750,
+        "avg_score": 83.5,
+        "benchmarks": {
+          "mmlu": 83.5,
+          "humaneval": 81.0,
+          "math": 76.2
+        }
+      },
+      "tags": ["mixture-of-experts", "open-weights", "cost-efficient"],
+      "license": "mit"
+    },
+    {
+      "id": "hf:stabilityai/stable-diffusion-3.5-large",
+      "name": "Stable Diffusion 3.5 Large",
+      "org": "Stability AI",
+      "source": "huggingface",
+      "model_type": "text-to-image",
+      "released_at": "2024-10-22T00:00:00Z",
+      "link": "https://huggingface.co/stabilityai/stable-diffusion-3.5-large",
+      "description": "Latest Stable Diffusion model with 8B parameters. Improved text rendering and prompt following.",
+      "signals": {
+        "downloads": 230000,
+        "likes": 2100,
+        "avg_score": 79.0
+      },
+      "tags": ["text-to-image", "diffusion", "open-weights"],
+      "license": "stabilityai-community"
+    },
+    {
+      "id": "hf:black-forest-labs/FLUX.1-dev",
+      "name": "FLUX.1-dev",
+      "org": "Black Forest Labs",
+      "source": "huggingface",
+      "model_type": "text-to-image",
+      "released_at": "2024-08-01T00:00:00Z",
+      "link": "https://huggingface.co/black-forest-labs/FLUX.1-dev",
+      "description": "State-of-the-art open-weights text-to-image model. Exceptional prompt following and image quality.",
+      "signals": {
+        "downloads": 185000,
+        "likes": 1850,
+        "avg_score": 82.5
+      },
+      "tags": ["text-to-image", "open-weights", "high-quality"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "cohere:command-r-plus",
+      "name": "Command R+",
+      "org": "Cohere",
+      "source": "official",
+      "model_type": "text-generation",
+      "released_at": "2024-04-04T00:00:00Z",
+      "link": "https://docs.cohere.com/docs/command-r-plus",
+      "description": "Cohere's flagship model optimized for enterprise RAG and tool use. Strong multilingual capabilities.",
+      "signals": {
+        "avg_score": 79.5,
+        "benchmarks": {
+          "mmlu": 79.5,
+          "humaneval": 72.0
+        }
+      },
+      "tags": ["enterprise", "rag-optimized", "multilingual", "tool-use"],
+      "license": "proprietary"
+    },
+    {
+      "id": "hf:microsoft/Phi-3.5-mini-instruct",
+      "name": "Phi-3.5 Mini Instruct",
+      "org": "Microsoft",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-08-20T00:00:00Z",
+      "link": "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
+      "description": "Small language model (3.8B parameters) with surprisingly strong performance. Optimized for edge deployment.",
+      "signals": {
+        "downloads": 156000,
+        "likes": 1400,
+        "avg_score": 69.4,
+        "benchmarks": {
+          "mmlu": 69.4,
+          "humaneval": 58.5
+        }
+      },
+      "tags": ["small-model", "edge-deployment", "efficient"],
+      "license": "mit"
+    },
+    {
+      "id": "hf:OpenGVLab/InternVL2-Llama3-76B",
+      "name": "InternVL2-Llama3-76B",
+      "org": "OpenGVLab",
+      "source": "huggingface",
+      "model_type": "multimodal-text-generation",
+      "released_at": "2024-07-02T00:00:00Z",
+      "link": "https://huggingface.co/OpenGVLab/InternVL2-Llama3-76B",
+      "description": "Open-source vision-language model based on Llama 3. Strong performance on multimodal benchmarks.",
+      "signals": {
+        "downloads": 34000,
+        "likes": 420,
+        "avg_score": 76.3,
+        "benchmarks": {
+          "mmmu": 58.2,
+          "mathvista": 65.5
+        }
+      },
+      "tags": ["multimodal", "vision-language", "open-source"],
+      "license": "mit"
+    },
+    {
+      "id": "hf:01-ai/Yi-1.5-34B-Chat",
+      "name": "Yi-1.5 34B Chat",
+      "org": "01.AI",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-05-13T00:00:00Z",
+      "link": "https://huggingface.co/01-ai/Yi-1.5-34B-Chat",
+      "description": "Yi series model with 34B parameters. Bilingual (English/Chinese) with strong reasoning.",
+      "signals": {
+        "downloads": 48000,
+        "likes": 510,
+        "avg_score": 76.8,
+        "benchmarks": {
+          "mmlu": 76.8,
+          "c-eval": 83.7
+        }
+      },
+      "tags": ["bilingual", "reasoning", "open-weights"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:NousResearch/Hermes-3-Llama-3.1-405B",
+      "name": "Hermes 3 Llama 3.1 405B",
+      "org": "Nous Research",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-08-16T00:00:00Z",
+      "link": "https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-405B",
+      "description": "Fine-tuned Llama 3.1 405B with improved instruction following and agentic capabilities.",
+      "signals": {
+        "downloads": 28000,
+        "likes": 380,
+        "avg_score": 84.0,
+        "benchmarks": {
+          "mmlu": 84.0,
+          "humaneval": 82.5
+        }
+      },
+      "tags": ["fine-tuned", "agentic", "instruction-following"],
+      "license": "llama-3.1-community"
+    },
+    {
+      "id": "hf:allenai/OLMo-7B-Instruct",
+      "name": "OLMo 7B Instruct",
+      "org": "Allen AI",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-02-01T00:00:00Z",
+      "link": "https://huggingface.co/allenai/OLMo-7B-Instruct",
+      "description": "Fully open model from Allen AI with complete training data, code, and evaluations released.",
+      "signals": {
+        "downloads": 42000,
+        "likes": 480,
+        "avg_score": 61.5,
+        "benchmarks": {
+          "mmlu": 61.5,
+          "humaneval": 48.0
+        }
+      },
+      "tags": ["fully-open", "research", "transparent"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:google/gemma-2-27b-it",
+      "name": "Gemma 2 27B IT",
+      "org": "Google",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-06-27T00:00:00Z",
+      "link": "https://huggingface.co/google/gemma-2-27b-it",
+      "description": "Google's open-weight model from Gemma 2 family. Instruction-tuned with strong performance.",
+      "signals": {
+        "downloads": 125000,
+        "likes": 1150,
+        "avg_score": 75.2,
+        "benchmarks": {
+          "mmlu": 75.2,
+          "humaneval": 70.8
+        }
+      },
+      "tags": ["open-weights", "google", "efficient"],
+      "license": "gemma"
+    },
+    {
+      "id": "hf:Salesforce/xLAM-1b-fc-r",
+      "name": "xLAM 1B Function Calling",
+      "org": "Salesforce",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-08-29T00:00:00Z",
+      "link": "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
+      "description": "Specialized 1B model for function calling and tool use. High accuracy in structured output generation.",
+      "signals": {
+        "downloads": 15000,
+        "likes": 210,
+        "avg_score": 72.0
+      },
+      "tags": ["function-calling", "tool-use", "small-model"],
+      "license": "cc-by-nc-4.0"
+    },
+    {
+      "id": "hf:databricks/dbrx-instruct",
+      "name": "DBRX Instruct",
+      "org": "Databricks",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-03-27T00:00:00Z",
+      "link": "https://huggingface.co/databricks/dbrx-instruct",
+      "description": "Databricks' MoE model with 132B total parameters (36B active). Optimized for enterprise use.",
+      "signals": {
+        "downloads": 38000,
+        "likes": 420,
+        "avg_score": 73.7,
+        "benchmarks": {
+          "mmlu": 73.7,
+          "humaneval": 70.1
+        }
+      },
+      "tags": ["mixture-of-experts", "enterprise", "open-weights"],
+      "license": "databricks-open-model"
+    },
+    {
+      "id": "hf:EleutherAI/llemma_34b",
+      "name": "Llemma 34B",
+      "org": "EleutherAI",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-10-20T00:00:00Z",
+      "link": "https://huggingface.co/EleutherAI/llemma_34b",
+      "description": "Specialized LLM for mathematics. Trained on mathematical proofs, papers, and code.",
+      "signals": {
+        "downloads": 28000,
+        "likes": 340,
+        "avg_score": 65.0,
+        "benchmarks": {
+          "math": 42.5,
+          "gsm8k": 74.0
+        }
+      },
+      "tags": ["mathematics", "specialized", "proof-generation"],
+      "license": "llama-2-community"
+    },
+    {
+      "id": "hf:tiiuae/falcon-180B",
+      "name": "Falcon 180B",
+      "org": "Technology Innovation Institute",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-09-06T00:00:00Z",
+      "link": "https://huggingface.co/tiiuae/falcon-180B",
+      "description": "One of the largest open-source models. 180B parameters trained on 3.5T tokens.",
+      "signals": {
+        "downloads": 65000,
+        "likes": 780,
+        "avg_score": 73.4,
+        "benchmarks": {
+          "mmlu": 73.4,
+          "humaneval": 65.0
+        }
+      },
+      "tags": ["large-scale", "open-source", "multilingual"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:upstage/SOLAR-10.7B-Instruct-v1.0",
+      "name": "SOLAR 10.7B Instruct v1.0",
+      "org": "Upstage",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-12-15T00:00:00Z",
+      "link": "https://huggingface.co/upstage/SOLAR-10.7B-Instruct-v1.0",
+      "description": "Depth-upscaled model from Llama 2. Strong performance despite smaller size.",
+      "signals": {
+        "downloads": 52000,
+        "likes": 590,
+        "avg_score": 66.2,
+        "benchmarks": {
+          "mmlu": 66.2,
+          "humaneval": 55.3
+        }
+      },
+      "tags": ["upscaled", "efficient", "instruction-tuned"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:garage-bAInd/Platypus2-70B-instruct",
+      "name": "Platypus2 70B Instruct",
+      "org": "garage-bAInd",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-08-15T00:00:00Z",
+      "link": "https://huggingface.co/garage-bAInd/Platypus2-70B-instruct",
+      "description": "Fine-tuned Llama 2 70B with STEM-focused dataset. Strong on logical reasoning.",
+      "signals": {
+        "downloads": 35000,
+        "likes": 420,
+        "avg_score": 69.8,
+        "benchmarks": {
+          "mmlu": 69.8,
+          "humaneval": 62.0
+        }
+      },
+      "tags": ["stem", "fine-tuned", "reasoning"],
+      "license": "llama-2-community"
+    },
+    {
+      "id": "hf:MediaTek-Research/Breeze-7B-Instruct-v1_0",
+      "name": "Breeze 7B Instruct v1.0",
+      "org": "MediaTek Research",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-03-05T00:00:00Z",
+      "link": "https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0",
+      "description": "Traditional Chinese-optimized model with 7B parameters. Strong multilingual performance.",
+      "signals": {
+        "downloads": 18000,
+        "likes": 220,
+        "avg_score": 62.5,
+        "benchmarks": {
+          "mmlu": 62.5,
+          "tmmlu": 71.0
+        }
+      },
+      "tags": ["traditional-chinese", "multilingual", "regional"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:teknium/OpenHermes-2.5-Mistral-7B",
+      "name": "OpenHermes 2.5 Mistral 7B",
+      "org": "Teknium",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-11-08T00:00:00Z",
+      "link": "https://huggingface.co/teknium/OpenHermes-2.5-Mistral-7B",
+      "description": "Community fine-tune of Mistral 7B with high-quality synthetic data. Strong general performance.",
+      "signals": {
+        "downloads": 95000,
+        "likes": 1100,
+        "avg_score": 64.5,
+        "benchmarks": {
+          "mmlu": 64.5,
+          "humaneval": 52.0
+        }
+      },
+      "tags": ["community", "fine-tuned", "general-purpose"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:CohereForAI/c4ai-command-r-v01",
+      "name": "C4AI Command-R v01",
+      "org": "Cohere For AI",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-03-11T00:00:00Z",
+      "link": "https://huggingface.co/CohereForAI/c4ai-command-r-v01",
+      "description": "Open-weight version of Cohere's Command-R. 35B parameters optimized for RAG and multilingual tasks.",
+      "signals": {
+        "downloads": 42000,
+        "likes": 480,
+        "avg_score": 75.0,
+        "benchmarks": {
+          "mmlu": 75.0,
+          "humaneval": 68.5
+        }
+      },
+      "tags": ["open-weights", "rag-optimized", "multilingual"],
+      "license": "cc-by-nc-4.0"
+    },
+    {
+      "id": "hf:01-ai/Yi-VL-34B",
+      "name": "Yi-VL 34B",
+      "org": "01.AI",
+      "source": "huggingface",
+      "model_type": "multimodal-text-generation",
+      "released_at": "2024-01-23T00:00:00Z",
+      "link": "https://huggingface.co/01-ai/Yi-VL-34B",
+      "description": "Vision-language model with 34B parameters. Strong performance on visual question answering.",
+      "signals": {
+        "downloads": 28000,
+        "likes": 320,
+        "avg_score": 72.0,
+        "benchmarks": {
+          "mmmu": 45.9,
+          "mmvet": 54.5
+        }
+      },
+      "tags": ["multimodal", "vision-language", "bilingual"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:WizardLM/WizardLM-2-8x22B",
+      "name": "WizardLM-2 8x22B",
+      "org": "WizardLM Team",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2024-04-15T00:00:00Z",
+      "link": "https://huggingface.co/WizardLM/WizardLM-2-8x22B",
+      "description": "MoE model based on Mixtral 8x22B architecture. Enhanced with WizardLM's Evol-Instruct methodology.",
+      "signals": {
+        "downloads": 32000,
+        "likes": 370,
+        "avg_score": 78.5,
+        "benchmarks": {
+          "mmlu": 78.5,
+          "humaneval": 74.0
+        }
+      },
+      "tags": ["mixture-of-experts", "evol-instruct", "instruction-tuned"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:Nexusflow/Starling-LM-7B-beta",
+      "name": "Starling-LM-7B-beta",
+      "org": "Nexusflow",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-11-30T00:00:00Z",
+      "link": "https://huggingface.co/Nexusflow/Starling-LM-7B-beta",
+      "description": "RLHF-trained model with 7B parameters. Uses GPT-4 feedback for alignment.",
+      "signals": {
+        "downloads": 48000,
+        "likes": 560,
+        "avg_score": 63.0,
+        "benchmarks": {
+          "mmlu": 63.0,
+          "mt-bench": 8.09
+        }
+      },
+      "tags": ["rlhf", "gpt4-feedback", "aligned"],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "hf:TheBloke/Llama-2-13B-chat-GPTQ",
+      "name": "Llama 2 13B Chat GPTQ",
+      "org": "TheBloke",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-07-19T00:00:00Z",
+      "link": "https://huggingface.co/TheBloke/Llama-2-13B-chat-GPTQ",
+      "description": "Quantized version of Llama 2 13B Chat. GPTQ quantization for efficient inference.",
+      "signals": {
+        "downloads": 125000,
+        "likes": 980,
+        "avg_score": 54.8,
+        "benchmarks": {
+          "mmlu": 54.8,
+          "humaneval": 38.0
+        }
+      },
+      "tags": ["quantized", "gptq", "efficient-inference"],
+      "license": "llama-2-community"
+    },
+    {
+      "id": "hf:Phind/Phind-CodeLlama-34B-v2",
+      "name": "Phind-CodeLlama-34B-v2",
+      "org": "Phind",
+      "source": "huggingface",
+      "model_type": "text-generation",
+      "released_at": "2023-08-27T00:00:00Z",
+      "link": "https://huggingface.co/Phind/Phind-CodeLlama-34B-v2",
+      "description": "Code-specialized model based on CodeLlama 34B. Optimized for programming tasks and technical Q&A.",
+      "signals": {
+        "downloads": 62000,
+        "likes": 720,
+        "avg_score": 68.0,
+        "benchmarks": {
+          "humaneval": 73.8,
+          "mbpp": 61.0
+        }
+      },
+      "tags": ["code-generation", "specialized", "programming"],
+      "license": "llama-2-community"
+    }
+  ]
+}

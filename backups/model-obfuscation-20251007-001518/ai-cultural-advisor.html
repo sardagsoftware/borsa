@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kültürel Uyum Danışmanı | Ailydian AI</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-white); color: var(--gray-900); }
+        .header { background: linear-gradient(135deg, var(--bg-white), var(--bg-gray)); padding: 2rem; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 2rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        .breadcrumb { color: var(--gray-500); font-size: 0.9rem; margin-top: 0.5rem; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .status-badge { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 600; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card { background: var(--bg-white); border-radius: 1rem; padding: 2rem; border: 1px solid var(--gray-200); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; color: var(--gray-700); font-weight: 500; margin-bottom: 0.5rem; }
+        input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; font-family: inherit; }
+        button { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 1rem 2rem; border: none; border-radius: 0.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
+        button:hover { transform: translateY(-2px); }
+        .results { display: none; margin-top: 2rem; }
+        .results.show { display: block; }
+        .section { background: var(--bg-gray); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid var(--primary); }
+        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>🎭 Kültürel Uyum Danışmanı</h1>
+                <div class="breadcrumb"><a href="/ai-advisor-hub.html">AI Advisor Hub</a> / Kültürel Uyum</div>
+            </div>
+            <span class="status-badge">CANLI</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <h2 style="margin-bottom: 1.5rem;">Kültürel Uyum Rehberi</h2>
+                    <form id="culturalForm">
+                        <div class="form-group">
+                            <label>Köken Ülke</label>
+                            <input type="text" id="originCountry" required placeholder="Örn: Türkiye">
+                        </div>
+                        <div class="form-group">
+                            <label>Hedef Ülke</label>
+                            <input type="text" id="destinationCountry" required placeholder="Örn: Amerika Birleşik Devletleri">
+                        </div>
+                        <div class="form-group">
+                            <label>Amaç</label>
+                            <select id="purpose">
+                                <option value="İş">İş</option>
+                                <option value="Eğitim">Eğitim</option>
+                                <option value="Taşınma">Kalıcı Taşınma</option>
+                                <option value="Seyahat">Uzun Süreli Seyahat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Süre</label>
+                            <select id="duration">
+                                <option value="Kısa dönem (1-6 ay)">Kısa dönem (1-6 ay)</option>
+                                <option value="Orta dönem (6-24 ay)">Orta dönem (6-24 ay)</option>
+                                <option value="Uzun dönem">Uzun dönem (2+ yıl)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Sektör (Opsiyonel)</label>
+                            <input type="text" id="industry" placeholder="Örn: Teknoloji, Finans, Sağlık">
+                        </div>
+                        <div class="form-group">
+                            <label>Endişeleriniz (Opsiyonel)</label>
+                            <textarea id="concerns" placeholder="Hangi konularda zorlanacağınızı düşünüyorsunuz?"></textarea>
+                        </div>
+                        <button type="submit" id="analyzeBtn">
+                            <i class="fas fa-globe"></i> AI ile Rehber Oluştur
+                        </button>
+                    </form>
+                </div>
+                <div class="results" id="results"></div>
+            </div>
+            <div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">🌍 Kapsadığımız Konular</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> İş görgü kuralları</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Sosyal normlar</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> İletişim tarzları</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Haftalık yol haritası</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Pratik ipuçları</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('culturalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('analyzeBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Analiz ediliyor...';
+            
+            try {
+                const response = await fetch('/api/cultural-advisor/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        originCountry: document.getElementById('originCountry').value,
+                        destinationCountry: document.getElementById('destinationCountry').value,
+                        purpose: document.getElementById('purpose').value,
+                        duration: document.getElementById('duration').value,
+                        industry: document.getElementById('industry').value,
+                        concerns: document.getElementById('concerns').value
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    displayResults(data);
+                } else {
+                    alert('Hata: ' + (data.error || 'Bilinmeyen hata'));
+                }
+            } catch (error) {
+                alert('Hata: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-globe"></i> AI ile Rehber Oluştur';
+            }
+        });
+        
+        function displayResults(data) {
+            const results = document.getElementById('results');
+            let html = '<div class="card"><h2>🌍 Kültürel Uyum Rehberiniz</h2>';
+            
+            if (data.culturalOverview) {
+                html += `<div class="section">
+                    <h3 style="color: var(--primary);">📋 Genel Bakış</h3>
+                    <p><strong>Uyum Zorluğu:</strong> ${data.culturalOverview.adaptationDifficulty}</p>
+                    <p><strong>Tahmini Uyum Süresi:</strong> ${data.culturalOverview.estimatedAdjustmentPeriod}</p>
+                    <p style="margin-top: 1rem;"><strong>Ana Farklar:</strong></p>
+                    <ul>${data.culturalOverview.keyDifferences.map(d => `<li>${d}</li>`).join('')}</ul>
+                </div>`;
+            }
+            
+            if (data.businessEtiquette) {
+                html += `<div class="section">
+                    <h3 style="color: var(--primary);">💼 İş Görgü Kuralları</h3>
+                    <p><strong>İletişim Tarzı:</strong> ${data.businessEtiquette.communicationStyle}</p>
+                    <p style="margin-top: 1rem;"><strong>Toplantı Protokolü:</strong></p>
+                    <ul>${data.businessEtiquette.meetingProtocol.map(p => `<li>${p}</li>`).join('')}</ul>
+                </div>`;
+            }
+            
+            if (data.socialNorms) {
+                html += `<div class="section">
+                    <h3 style="color: var(--primary);">🤝 Sosyal Normlar</h3>
+                    <p><strong>Selamlaşma:</strong> ${data.socialNorms.greetings}</p>
+                    <p><strong>Kişisel Alan:</strong> ${data.socialNorms.personalSpace}</p>
+                    ${data.socialNorms.taboos ? `<p style="margin-top: 1rem;"><strong>Kaçınılması Gerekenler:</strong></p><ul>${data.socialNorms.taboos.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+                </div>`;
+            }
+            
+            html += '</div>';
+            results.innerHTML = html;
+            results.classList.add('show');
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

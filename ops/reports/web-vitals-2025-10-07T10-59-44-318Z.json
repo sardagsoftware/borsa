@@ -1,0 +1,78 @@
+{
+  "url": "http://localhost:3100",
+  "timestamp": "2025-10-07T10:59:40.283Z",
+  "iterations": [
+    {
+      "iteration": 1,
+      "ttfb": 8,
+      "totalTime": 8,
+      "statusCode": 200,
+      "cacheStatus": "UNKNOWN"
+    },
+    {
+      "iteration": 2,
+      "ttfb": 4,
+      "totalTime": 5,
+      "statusCode": 200,
+      "cacheStatus": "UNKNOWN"
+    },
+    {
+      "iteration": 3,
+      "ttfb": 3,
+      "totalTime": 3,
+      "statusCode": 200,
+      "cacheStatus": "UNKNOWN"
+    },
+    {
+      "iteration": 4,
+      "ttfb": 5,
+      "totalTime": 5,
+      "statusCode": 200,
+      "cacheStatus": "UNKNOWN"
+    },
+    {
+      "iteration": 5,
+      "ttfb": 3,
+      "totalTime": 4,
+      "statusCode": 200,
+      "cacheStatus": "UNKNOWN"
+    }
+  ],
+  "summary": {
+    "ttfb": {
+      "min": 3,
+      "max": 8,
+      "avg": 5,
+      "p50": 4,
+      "p75": 5,
+      "p95": 8,
+      "p99": 8
+    },
+    "assessment": {
+      "ttfb": {
+        "value": 5,
+        "p95": 8,
+        "rating": "good",
+        "p95Rating": "good",
+        "target": "< 800ms (good), < 1800ms (needs improvement)"
+      },
+      "lcp": {
+        "estimated": 1505,
+        "target": "< 2500ms (good), < 4000ms (needs improvement)",
+        "note": "Browser-based measurement required for accurate LCP"
+      },
+      "cls": {
+        "estimated": "N/A",
+        "target": "< 0.1 (good), < 0.25 (needs improvement)",
+        "note": "Browser-based measurement required for CLS"
+      },
+      "inp": {
+        "estimated": "N/A",
+        "target": "< 200ms (good), < 500ms (needs improvement)",
+        "note": "Browser-based measurement required for INP"
+      }
+    },
+    "validIterations": 5,
+    "failedIterations": 0
+  }
+}

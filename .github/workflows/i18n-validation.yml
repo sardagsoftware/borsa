@@ -1,0 +1,389 @@
+name: 🌍 i18n Validation & Quality Assurance
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'public/**/*.html'
+      - 'public/i18n/**/*.json'
+      - 'ops/i18n/**/*'
+      - 'ops/tools/**/*'
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'public/**/*.html'
+      - 'public/i18n/**/*.json'
+      - 'ops/i18n/**/*'
+      - 'ops/tools/**/*'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18.x'
+  QUALITY_THRESHOLD: '0.90'
+
+jobs:
+  # ============================
+  # JOB 1: Extract Strings
+  # ============================
+  extract-strings:
+    name: 📦 Extract i18n Strings
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: |
+          npm ci || npm install
+
+      - name: 🔍 Extract strings
+        id: extract
+        run: |
+          node ops/tools/extract-i18n-strings.js --all 2>&1 | tee extract-output.log
+          echo "extract_status=$?" >> $GITHUB_OUTPUT
+
+      - name: 📊 Parse extraction results
+        id: parse-results
+        run: |
+          TOTAL_KEYS=$(grep -oP 'Total keys: \K\d+' extract-output.log || echo "0")
+          TOTAL_FILES=$(grep -oP 'Total files processed: \K\d+' extract-output.log || echo "0")
+          echo "total_keys=$TOTAL_KEYS" >> $GITHUB_OUTPUT
+          echo "total_files=$TOTAL_FILES" >> $GITHUB_OUTPUT
+          echo "### 📦 Extraction Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Keys:** $TOTAL_KEYS" >> $GITHUB_STEP_SUMMARY
+          echo "- **Files Processed:** $TOTAL_FILES" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Upload extraction artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extracted-strings
+          path: |
+            public/i18n/v2/tr/*.json
+            ops/reports/i18n-extraction-*.json
+          retention-days: 7
+
+      - name: ❌ Fail if extraction failed
+        if: steps.extract.outputs.extract_status != '0'
+        run: |
+          echo "::error::String extraction failed. Check logs for details."
+          exit 1
+
+  # ============================
+  # JOB 2: Validate Translations
+  # ============================
+  validate-translations:
+    name: ✅ Validate Translation Quality
+    runs-on: ubuntu-latest
+    needs: extract-strings
+    strategy:
+      matrix:
+        language: [en, de, fr, es, ar, ru, it, ja, zh-CN]
+      fail-fast: false
+
+    steps:
+      - name: 🔍 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: |
+          npm ci || npm install
+
+      - name: 📥 Download extracted strings
+        uses: actions/download-artifact@v4
+        with:
+          name: extracted-strings
+          path: public/i18n/v2/
+
+      - name: ✅ Run Grammar QA for ${{ matrix.language }}
+        id: validate
+        run: |
+          node ops/tools/grammar-qa.js --lang=${{ matrix.language }} 2>&1 | tee qa-${{ matrix.language }}.log
+          echo "validate_status=$?" >> $GITHUB_OUTPUT
+
+      - name: 📊 Parse validation results
+        id: parse-qa
+        run: |
+          SUCCESS_RATE=$(grep -oP 'Success rate: \K[\d.]+' qa-${{ matrix.language }}.log || echo "0")
+          TOTAL_CHECKS=$(grep -oP 'Total checks: \K\d+' qa-${{ matrix.language }}.log || echo "0")
+          PASSED_CHECKS=$(grep -oP 'Passed: \K\d+' qa-${{ matrix.language }}.log || echo "0")
+          FAILED_CHECKS=$(grep -oP 'Failed: \K\d+' qa-${{ matrix.language }}.log || echo "0")
+
+          echo "success_rate=$SUCCESS_RATE" >> $GITHUB_OUTPUT
+          echo "total_checks=$TOTAL_CHECKS" >> $GITHUB_OUTPUT
+          echo "passed_checks=$PASSED_CHECKS" >> $GITHUB_OUTPUT
+          echo "failed_checks=$FAILED_CHECKS" >> $GITHUB_OUTPUT
+
+          echo "### ✅ QA Results: ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Success Rate:** $SUCCESS_RATE%" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Checks:** $TOTAL_CHECKS" >> $GITHUB_STEP_SUMMARY
+          echo "- **Passed:** $PASSED_CHECKS" >> $GITHUB_STEP_SUMMARY
+          echo "- **Failed:** $FAILED_CHECKS" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Upload QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report-${{ matrix.language }}
+          path: |
+            qa-${{ matrix.language }}.log
+            ops/reports/grammar-qa-*.json
+          retention-days: 7
+
+      - name: ⚠️ Check quality threshold
+        run: |
+          SUCCESS_RATE=${{ steps.parse-qa.outputs.success_rate }}
+          THRESHOLD=${{ env.QUALITY_THRESHOLD }}
+
+          # Convert to integer for comparison (multiply by 100)
+          SUCCESS_INT=$(echo "$SUCCESS_RATE * 100" | bc | cut -d. -f1)
+          THRESHOLD_INT=$(echo "$THRESHOLD * 100" | bc | cut -d. -f1)
+
+          if [ "$SUCCESS_INT" -lt "$THRESHOLD_INT" ]; then
+            echo "::error::Quality threshold not met for ${{ matrix.language }}: $SUCCESS_RATE% < $THRESHOLD%"
+            exit 1
+          fi
+
+          echo "::notice::Quality threshold met for ${{ matrix.language }}: $SUCCESS_RATE% >= $THRESHOLD%"
+
+  # ============================
+  # JOB 3: Check Completeness
+  # ============================
+  check-completeness:
+    name: 📋 Check Translation Completeness
+    runs-on: ubuntu-latest
+    needs: extract-strings
+
+    steps:
+      - name: 🔍 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📥 Download extracted strings
+        uses: actions/download-artifact@v4
+        with:
+          name: extracted-strings
+          path: public/i18n/v2/
+
+      - name: 📋 Check completeness
+        id: completeness
+        run: |
+          echo "### 📋 Translation Completeness Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Language | Status | Keys | Coverage |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|------|----------|" >> $GITHUB_STEP_SUMMARY
+
+          SOURCE_KEYS=$(find public/i18n/v2/tr -name "*.json" -not -name "index.json" -exec jq 'keys | length' {} + | awk '{sum+=$1} END {print sum}')
+          echo "Source language (tr) has $SOURCE_KEYS keys"
+
+          MISSING_LANGS=""
+
+          for lang in en de fr es ar ru it ja zh-CN; do
+            if [ -d "public/i18n/v2/$lang" ]; then
+              TARGET_KEYS=$(find public/i18n/v2/$lang -name "*.json" -not -name "index.json" -exec jq 'keys | length' {} + | awk '{sum+=$1} END {print sum}' 2>/dev/null || echo "0")
+
+              if [ "$TARGET_KEYS" -eq "0" ]; then
+                STATUS="❌ Missing"
+                COVERAGE="0%"
+                MISSING_LANGS="$MISSING_LANGS $lang"
+              elif [ "$TARGET_KEYS" -lt "$SOURCE_KEYS" ]; then
+                STATUS="⚠️ Incomplete"
+                COVERAGE="$(echo "scale=1; $TARGET_KEYS * 100 / $SOURCE_KEYS" | bc)%"
+              else
+                STATUS="✅ Complete"
+                COVERAGE="100%"
+              fi
+
+              echo "| $lang | $STATUS | $TARGET_KEYS | $COVERAGE |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $lang | ❌ Missing | 0 | 0% |" >> $GITHUB_STEP_SUMMARY
+              MISSING_LANGS="$MISSING_LANGS $lang"
+            fi
+          done
+
+          echo "missing_langs=$MISSING_LANGS" >> $GITHUB_OUTPUT
+
+      - name: ⚠️ Warn about incomplete translations
+        if: steps.completeness.outputs.missing_langs != ''
+        run: |
+          echo "::warning::Some languages are missing or incomplete: ${{ steps.completeness.outputs.missing_langs }}"
+          echo "Run: node ops/tools/lydian-i18n.js translate --lang=all"
+
+  # ============================
+  # JOB 4: Glossary Validation
+  # ============================
+  validate-glossary:
+    name: 📚 Validate Glossary Consistency
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📚 Validate glossary.json
+        run: |
+          # Check if glossary exists
+          if [ ! -f "ops/i18n/glossary.json" ]; then
+            echo "::error::Glossary file not found at ops/i18n/glossary.json"
+            exit 1
+          fi
+
+          # Validate JSON syntax
+          if ! jq empty ops/i18n/glossary.json 2>/dev/null; then
+            echo "::error::Invalid JSON in glossary.json"
+            exit 1
+          fi
+
+          # Count protected terms
+          TERM_COUNT=$(jq '.terms | length' ops/i18n/glossary.json)
+          PATTERN_COUNT=$(jq '.protectedPatterns | length' ops/i18n/glossary.json)
+
+          echo "### 📚 Glossary Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Protected Terms:** $TERM_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Protected Patterns:** $PATTERN_COUNT" >> $GITHUB_STEP_SUMMARY
+
+          echo "::notice::Glossary validation passed: $TERM_COUNT terms, $PATTERN_COUNT patterns"
+
+  # ============================
+  # JOB 5: Security Scan
+  # ============================
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 🔒 Check for XSS vulnerabilities
+        run: |
+          echo "### 🔒 Security Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for unescaped HTML in translations
+          UNESCAPED=$(find public/i18n/v2 -name "*.json" -exec grep -l '<script' {} + | wc -l)
+
+          if [ "$UNESCAPED" -gt 0 ]; then
+            echo "::error::Found $UNESCAPED translation files with potentially dangerous <script> tags"
+            echo "- ❌ **XSS Risk:** $UNESCAPED files with <script> tags" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "- ✅ **XSS Check:** No <script> tags found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check for RTL spoofing attacks
+          RTL_OVERRIDE=$(find public/i18n/v2 -name "*.json" -exec grep -P '\\u202E|\\u202D' {} + | wc -l)
+
+          if [ "$RTL_OVERRIDE" -gt 0 ]; then
+            echo "::warning::Found $RTL_OVERRIDE potential RTL override characters (U+202E, U+202D)"
+            echo "- ⚠️ **RTL Spoofing:** $RTL_OVERRIDE potential issues" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ✅ **RTL Spoofing Check:** No issues found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "::notice::Security scan completed"
+
+  # ============================
+  # JOB 6: Final Report
+  # ============================
+  final-report:
+    name: 📊 Generate Final Report
+    runs-on: ubuntu-latest
+    needs: [extract-strings, validate-translations, check-completeness, validate-glossary, security-scan]
+    if: always()
+
+    steps:
+      - name: 🔍 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📥 Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: 📊 Generate summary report
+        run: |
+          echo "# 🌍 i18n Validation Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎯 Overall Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check job statuses
+          if [ "${{ needs.extract-strings.result }}" == "success" ] && \
+             [ "${{ needs.validate-translations.result }}" == "success" ] && \
+             [ "${{ needs.check-completeness.result }}" == "success" ] && \
+             [ "${{ needs.validate-glossary.result }}" == "success" ] && \
+             [ "${{ needs.security-scan.result }}" == "success" ]; then
+            echo "✅ **All validation checks passed!**" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          else
+            echo "❌ **Some validation checks failed. See details above.**" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: 💬 Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const output = `## 🌍 i18n Validation Results
+
+            **Status:** ${{ needs.extract-strings.result == 'success' && needs.validate-translations.result == 'success' && needs.check-completeness.result == 'success' && needs.validate-glossary.result == 'success' && needs.security-scan.result == 'success' ? '✅ All checks passed' : '❌ Some checks failed' }}
+
+            | Job | Status |
+            |-----|--------|
+            | Extract Strings | ${{ needs.extract-strings.result == 'success' ? '✅' : '❌' }} |
+            | Validate Translations | ${{ needs.validate-translations.result == 'success' ? '✅' : '❌' }} |
+            | Check Completeness | ${{ needs.check-completeness.result == 'success' ? '✅' : '❌' }} |
+            | Validate Glossary | ${{ needs.validate-glossary.result == 'success' ? '✅' : '❌' }} |
+            | Security Scan | ${{ needs.security-scan.result == 'success' ? '✅' : '❌' }} |
+
+            For detailed results, check the [workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });

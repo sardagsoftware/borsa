@@ -1,0 +1,28 @@
+# OWASP ZAP Scan Rules Configuration
+# Format: alert_id	threshold	[comment]
+# Thresholds: IGNORE, LOW, MEDIUM, HIGH, OFF
+
+# High Priority Security Issues
+10020	HIGH	# X-Frame-Options Header Not Set
+10021	HIGH	# X-Content-Type-Options Header Missing
+10023	HIGH	# Information Disclosure - Debug Error Messages
+10027	HIGH	# Information Disclosure - Suspicious Comments
+10040	HIGH	# Secure Pages Include Mixed Content
+10054	HIGH	# Cookie Without Secure Flag
+10055	HIGH	# CSP: Wildcard Directive
+10056	HIGH	# X-Debug-Token Information Leak
+10062	HIGH	# PII Disclosure
+10063	HIGH	# Permissions Policy Header Not Set
+10096	HIGH	# Timestamp Disclosure
+10098	HIGH	# Cross-Domain Misconfiguration
+
+# Medium Priority Issues
+10011	MEDIUM	# Cookie Without SameSite Attribute
+10015	MEDIUM	# Re-examine Cache-control Directives
+10017	MEDIUM	# Cross-Domain JavaScript Source File Inclusion
+10019	MEDIUM	# Content-Type Header Missing
+10038	MEDIUM	# Content Security Policy (CSP) Header Not Set
+
+# Low Priority (Informational)
+10010	LOW	# Cookie No HttpOnly Flag
+10012	LOW	# Password Autocomplete in Browser

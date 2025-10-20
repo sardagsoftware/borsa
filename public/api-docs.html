@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive LyDian API documentation with live testing. Access 23 AI models, connectors, and enterprise features through our comprehensive REST API.">
+    <title>API Documentation - LyDian Platform</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+
+    <!-- Swagger UI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafafa;
+        }
+
+        /* Custom header */
+        .api-header {
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .api-header .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .api-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .api-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .api-nav {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .api-nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .api-nav a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .api-nav a:hover {
+            background: #f7fafc;
+            color: #10A37F;
+        }
+
+        .api-nav a.active {
+            background: #10A37F;
+            color: white;
+        }
+
+        /* Swagger UI container */
+        #swagger-ui {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Swagger UI customizations */
+        .swagger-ui .topbar {
+            display: none;
+        }
+
+        .swagger-ui .info {
+            margin: 2rem 0;
+        }
+
+        .swagger-ui .scheme-container {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Custom buttons */
+        .swagger-ui .btn {
+            background: #10A37F;
+            border-color: #10A37F;
+        }
+
+        .swagger-ui .btn:hover {
+            background: #0D8F6E;
+            border-color: #0D8F6E;
+        }
+
+        .swagger-ui .opblock.opblock-post {
+            border-color: #49cc90;
+            background: rgba(73, 204, 144, 0.1);
+        }
+
+        .swagger-ui .opblock.opblock-get {
+            border-color: #61affe;
+            background: rgba(97, 175, 254, 0.1);
+        }
+
+        .swagger-ui .opblock.opblock-put {
+            border-color: #fca130;
+            background: rgba(252, 161, 48, 0.1);
+        }
+
+        .swagger-ui .opblock.opblock-delete {
+            border-color: #f93e3e;
+            background: rgba(249, 62, 62, 0.1);
+        }
+
+        /* Try it out section */
+        .swagger-ui .try-out__btn {
+            background: #10A37F;
+            color: white;
+            border: none;
+        }
+
+        .swagger-ui .execute-wrapper .btn {
+            background: #49cc90;
+            border-color: #49cc90;
+        }
+
+        /* Response section */
+        .swagger-ui .responses-wrapper {
+            margin-top: 2rem;
+        }
+
+        .swagger-ui .response {
+            border-radius: 0.5rem;
+        }
+
+        /* Back to home */
+        .back-home {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #10A37F;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(16, 163, 127, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .back-home:hover {
+            background: #0D8F6E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(16, 163, 127, 0.5);
+        }
+
+        /* Loading spinner */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #10A37F;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Quick start banner */
+        .quick-start {
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem auto;
+            max-width: 1400px;
+        }
+
+        .quick-start h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-start pre {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .quick-start code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Header -->
+    <div class="api-header">
+        <div class="container">
+            <h1>🚀 LyDian Platform API</h1>
+            <p>Interactive API documentation with real-time testing</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="api-nav">
+        <div class="container">
+            <a href="/api-reference.html">API Reference</a>
+            <a href="/developers.html">Developer Portal</a>
+            <a href="/api-reference.html#authentication">Authentication</a>
+            <a href="/api-reference.html#rate-limits">Rate Limiting</a>
+            <a href="https://github.com/lydian-ai" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <!-- Quick Start Banner -->
+    <div class="quick-start" style="margin: 2rem 2rem 0 2rem;">
+        <h2>⚡ Quick Start</h2>
+        <p style="margin-bottom: 1rem;">Get started with the LyDian API in seconds:</p>
+        <pre><code># Install the SDK
+npm install @lydian/smart-cities-sdk
+
+# Or use curl
+curl -X GET "https://api.lydian.com/v1/smart-cities/cities" \
+  -H "X-API-Key: YOUR_API_KEY"</code></pre>
+    </div>
+
+    <!-- Swagger UI Container -->
+    <div id="swagger-ui"></div>
+
+    <!-- Loading indicator -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Back to Home -->
+    <a href="/" class="back-home">← Back to Home</a>
+
+    <!-- Swagger UI -->
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
+
+    <script>
+        // Initialize Swagger UI
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: "/docs/api/openapi.yaml",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                defaultModelsExpandDepth: 1,
+                defaultModelExpandDepth: 1,
+                docExpansion: "list",
+                filter: true,
+                showRequestHeaders: true,
+                showCommonExtensions: true,
+                tryItOutEnabled: true,
+                persistAuthorization: true,
+                onComplete: function() {
+                    // Hide loading indicator
+                    document.getElementById('loading').style.display = 'none';
+
+                    // Pre-fill API key if available (from localStorage)
+                    const savedApiKey = localStorage.getItem('lydian_api_key');
+                    if (savedApiKey) {
+                        const authBtn = document.querySelector('.authorize');
+                        if (authBtn) {
+                            console.log('API key found in localStorage');
+                        }
+                    }
+                },
+                onFailure: function(error) {
+                    console.error('Failed to load API documentation:', error);
+                    document.getElementById('loading').innerHTML = `
+                        <div style="text-align: center; color: #e53e3e;">
+                            <h3>Failed to load API documentation</h3>
+                            <p>Please make sure the OpenAPI spec file is available at /docs/api/openapi.yaml</p>
+                            <p style="margin-top: 1rem;">
+                                <a href="/developers.html" style="color: #667eea;">← Back to Developer Portal</a>
+                            </p>
+                        </div>
+                    `;
+                },
+                requestInterceptor: function(req) {
+                    // Add custom headers if needed
+                    req.headers['Accept'] = 'application/json';
+                    return req;
+                },
+                responseInterceptor: function(res) {
+                    // Log responses for debugging
+                    console.log('API Response:', res);
+                    return res;
+                }
+            });
+
+            window.ui = ui;
+
+            // Save API key to localStorage when authorized
+            window.addEventListener('message', function(event) {
+                if (event.data && event.data.type === 'auth-complete') {
+                    const apiKey = event.data.apiKey;
+                    if (apiKey) {
+                        localStorage.setItem('lydian_api_key', apiKey);
+                        console.log('API key saved to localStorage');
+                    }
+                }
+            });
+        };
+    </script>
+
+    <!-- Phase N: i18n Otomatik Dil Sistemi -->
+    <script src="/js/auto-locale-detector.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script src="/js/lydian-master-init.js"></script>
+</body>
+</html>

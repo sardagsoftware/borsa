@@ -1,0 +1,41 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "back": "Back"
+  },
+  "lydianIQ": {
+    "welcome": "Hello! How can I help you? You can ask me about shipment tracking, product search, price comparison and more.",
+    "noIntentFound": "Sorry, I couldn't understand your request. Please ask a more specific question or try one of the supported actions.",
+    "placeholder": "Track shipment, compare prices, search products...",
+    "sendMessage": "Send message"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "search": {
+    "placeholder": "Track shipment, compare prices, search products...",
+    "noResults": "No results found",
+    "searching": "Searching..."
+  },
+  "actions": {
+    "shipment_track": "Track Shipment",
+    "product_sync": "Product Sync",
+    "price_compare": "Compare Prices",
+    "loan_compare": "Compare Loans",
+    "trip_search": "Search Travel"
+  }
+}

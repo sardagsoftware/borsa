@@ -1,0 +1,105 @@
+{
+  "app": {
+    "name": "أيليديان ألترا برو",
+    "tagline": "منصة مدعومة بالذكاء الاصطناعي",
+    "version": "2.0.0"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "chat": "المحادثة",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "register": "التسجيل"
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "submit": "دخول",
+      "forgot_password": "نسيت كلمة المرور",
+      "no_account": "ليس لديك حساب؟",
+      "sign_up": "التسجيل"
+    },
+    "register": {
+      "title": "التسجيل",
+      "name": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirm_password": "تأكيد كلمة المرور",
+      "submit": "تسجيل",
+      "have_account": "لديك حساب بالفعل؟",
+      "sign_in": "تسجيل الدخول"
+    },
+    "errors": {
+      "invalid_credentials": "بيانات اعتماد غير صالحة",
+      "email_exists": "البريد الإلكتروني مستخدم بالفعل",
+      "password_mismatch": "كلمات المرور غير متطابقة",
+      "required_field": "هذا الحقل مطلوب"
+    }
+  },
+  "dashboard": {
+    "welcome": "مرحباً بك",
+    "overview": "نظرة عامة",
+    "recent_activity": "النشاط الأخير",
+    "quick_actions": "إجراءات سريعة",
+    "statistics": "الإحصائيات"
+  },
+  "chat": {
+    "title": "محادثة الذكاء الاصطناعي",
+    "placeholder": "اكتب رسالتك...",
+    "send": "إرسال",
+    "new_chat": "محادثة جديدة",
+    "clear_chat": "مسح المحادثة",
+    "model_selector": "اختر النموذج",
+    "thinking": "جاري التفكير...",
+    "error": "حدث خطأ"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "general": "عام",
+    "appearance": "المظهر",
+    "language": "اللغة",
+    "theme": "السمة",
+    "notifications": "الإشعارات",
+    "privacy": "الخصوصية",
+    "security": "الأمان",
+    "save": "حفظ",
+    "cancel": "إلغاء"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "warning": "تحذير",
+    "info": "معلومات",
+    "confirm": "تأكيد",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "search": "بحث",
+    "filter": "تصفية",
+    "export": "تصدير",
+    "import": "استيراد"
+  },
+  "errors": {
+    "network": "خطأ في الاتصال بالشبكة",
+    "server": "خطأ في الخادم",
+    "not_found": "غير موجود",
+    "unauthorized": "وصول غير مصرح",
+    "forbidden": "تم حظر الوصول",
+    "validation": "خطأ في التحقق",
+    "generic": "حدث خطأ ما"
+  },
+  "models": {
+    "claude": "كلود",
+    "gpt4": "جي بي تي-4",
+    "gemini": "جيميني",
+    "select": "اختر النموذج"
+  }
+}

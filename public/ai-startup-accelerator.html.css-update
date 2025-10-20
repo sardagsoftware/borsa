@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Hızlandırıcı | Ailydian AI</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --gray-800: #1F2937;
+            --gray-700: #374151;
+            --gray-500: #6B7280;
+            --gray-300: #D1D5DB;
+            --gray-200: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-white);
+            color: var(--gray-800);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-gray) 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent), #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .breadcrumb {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--accent), #D97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            background: var(--bg-gray);
+            border: 1px solid var(--gray-300);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: var(--gray-800);
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .analyze-btn {
+            background: linear-gradient(135deg, var(--accent), #D97706);
+            color: white;
+            border: none;
+            padding: 1.25rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 74, 0.3);
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .score-card {
+            background: var(--bg-gray);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .score-label {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .recommendation-card {
+            background: rgba(255, 107, 74, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .strength-item, .weakness-item {
+            padding: 1rem;
+            background: var(--bg-gray);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .strength-item {
+            border-left: 4px solid var(--primary);
+        }
+
+        .weakness-item {
+            border-left: 4px solid #EF4444;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--gray-300);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .score-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-rocket"></i> Startup Hızlandırıcı</h1>
+                <div class="breadcrumb">
+                    <a href="/ai-advisor-hub.html">AI Danışman Hub</a> / <span>Startup Analizi</span>
+                </div>
+            </div>
+            <div class="status-badge">
+                BETA
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="card-title">Startup Bilgileri</div>
+            </div>
+
+            <div class="form-group">
+                <label>Şirket Adı</label>
+                <input type="text" id="companyName" placeholder="Örn: TechVision AI">
+            </div>
+
+            <div class="form-group">
+                <label>Sektör</label>
+                <select id="industry">
+                    <option value="">Seçiniz</option>
+                    <option value="saas">SaaS</option>
+                    <option value="fintech">Fintech</option>
+                    <option value="healthtech">HealthTech</option>
+                    <option value="ecommerce">E-Commerce</option>
+                    <option value="ai">Yapay Zeka</option>
+                    <option value="other">Diğer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Ürün/Hizmet Açıklaması</label>
+                <textarea id="description" placeholder="Ürününüzü veya hizmetinizi kısaca açıklayın..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Hedef Pazar</label>
+                <input type="text" id="targetMarket" placeholder="Örn: B2B, Kurumsal, SMB">
+            </div>
+
+            <div class="form-group">
+                <label>Ekip Büyüklüğü</label>
+                <input type="number" id="teamSize" placeholder="Örn: 5" min="1">
+            </div>
+
+            <div class="form-group">
+                <label>Fonlama Aşaması</label>
+                <select id="fundingStage">
+                    <option value="">Seçiniz</option>
+                    <option value="pre-seed">Pre-Seed</option>
+                    <option value="seed">Seed</option>
+                    <option value="series-a">Series A</option>
+                    <option value="series-b">Series B+</option>
+                    <option value="bootstrap">Bootstrap</option>
+                </select>
+            </div>
+
+            <button class="analyze-btn" id="analyzeBtn">
+                <i class="fas fa-chart-line"></i> AI ile Analiz Et
+            </button>
+        </div>
+
+        <div class="loading" id="loadingSection">
+            <div class="spinner"></div>
+            <p style="color: var(--gray-500);">Azure AI startup'ınızı analiz ediyor...</p>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="card-title">Potansiyel Skorları</div>
+                </div>
+                <div class="score-grid">
+                    <div class="score-card">
+                        <div class="score-value" id="marketScore">--</div>
+                        <div class="score-label">Pazar Potansiyeli</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-value" id="productScore">--</div>
+                        <div class="score-label">Ürün Uyumu</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-value" id="teamScore">--</div>
+                        <div class="score-label">Ekip Gücü</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--primary), var(--primary-hover));">
+                        <i class="fas fa-thumbs-up"></i>
+                    </div>
+                    <div class="card-title">Güçlü Yönler</div>
+                </div>
+                <div id="strengthsContent"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #EF4444, #DC2626);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="card-title">Gelişim Alanları</div>
+                </div>
+                <div id="weaknessesContent"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="card-title">Önerilen Yol Haritası</div>
+                </div>
+                <div id="roadmapContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loadingSection = document.getElementById('loadingSection');
+        const resultsSection = document.getElementById('resultsSection');
+
+        analyzeBtn.addEventListener('click', async () => {
+            const data = {
+                companyName: document.getElementById('companyName').value,
+                industry: document.getElementById('industry').value,
+                description: document.getElementById('description').value,
+                targetMarket: document.getElementById('targetMarket').value,
+                teamSize: document.getElementById('teamSize').value,
+                fundingStage: document.getElementById('fundingStage').value
+            };
+
+            if (!data.companyName || !data.description) {
+                alert('Lütfen şirket adı ve ürün açıklaması girin');
+                return;
+            }
+
+            loadingSection.style.display = 'block';
+            resultsSection.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/startup/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                loadingSection.style.display = 'none';
+                displayResults(result);
+            } catch (error) {
+                console.error('Analiz hatası:', error);
+                loadingSection.style.display = 'none';
+                alert('Analiz sırasında bir hata oluştu');
+            }
+        });
+
+        function displayResults(data) {
+            document.getElementById('marketScore').textContent = data.scores.market + '/10';
+            document.getElementById('productScore').textContent = data.scores.product + '/10';
+            document.getElementById('teamScore').textContent = data.scores.team + '/10';
+
+            if (data.strengths) {
+                document.getElementById('strengthsContent').innerHTML = data.strengths.map(s => `
+                    <div class="strength-item">
+                        <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                        ${s}
+                    </div>
+                `).join('');
+            }
+
+            if (data.weaknesses) {
+                document.getElementById('weaknessesContent').innerHTML = data.weaknesses.map(w => `
+                    <div class="weakness-item">
+                        <i class="fas fa-exclamation-circle" style="color: #EF4444; margin-right: 0.5rem;"></i>
+                        ${w}
+                    </div>
+                `).join('');
+            }
+
+            if (data.roadmap) {
+                document.getElementById('roadmapContent').innerHTML = data.roadmap.map((item, i) => `
+                    <div class="recommendation-card">
+                        <h4>${i + 1}. ${item.phase || 'Aşama ' + (i + 1)}</h4>
+                        <p style="color: var(--gray-700); line-height: 1.6;">${item.description || item}</p>
+                    </div>
+                `).join('');
+            }
+
+            resultsSection.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

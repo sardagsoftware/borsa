@@ -1,0 +1,402 @@
+# Echo of Sardis - Telemetry Tags for LiveOps Integration
+# Version: 1.0.0
+# Purpose: Story event tagging for analytics, A/B testing, and live operations
+
+metadata:
+  version: "1.0.0"
+  created: "2025-10-12"
+  game: "Echo of Sardis"
+  purpose: "Story-LiveOps bridge for telemetry and analytics"
+
+# ============================================================================
+# QUEST TRACKING
+# ============================================================================
+
+quest_ids:
+  prologue:
+    - PRLG-DISCOVERY      # Discovery of sealed chamber
+    - PRLG-ACTIVATION     # Chordstone activation
+    - PRLG-ESCAPE         # Earthquake escape sequence
+    - PRLG-CONFRONT       # Consortium first encounter
+    - PRLG-BRIEFING       # Althea's warning
+
+  act_1:
+    - ACT1-TRAVEL         # Journey to Cappadocia
+    - ACT1-ALLY           # Meet Ferhat Demir
+    - ACT1-CHORDSTONE     # Second Chordstone discovery
+    - ACT1-SABOTAGE       # Consortium sabotage
+    - ACT1-REVELATION     # Continental network revelation
+    - ACT1-CHOICE         # Moral dilemma: Deactivate or Study
+
+  act_2:
+    - ACT2-DIVE           # Underwater expedition begins
+    - ACT2-CODEX          # Master Codex discovery
+    - ACT2-CONFRONT       # Consortium Leader confrontation
+    - ACT2-HISTORY        # Lydian collapse revelation
+    - ACT2-STORM          # Echo storm begins
+    - ACT2-OFFER          # Consortium partnership offer
+    - ACT2-CONFESSION     # Althea's confession
+
+  act_3:
+    - ACT3-RACE           # Race to Mount Nemrut
+    - ACT3-FAILSAFE       # Fail-safe discovery
+    - ACT3-COMBAT         # Consortium boss battle
+    - ACT3-SENTIENCE      # Chordstone sentience revelation
+    - ACT3-SACRIFICE      # Ferhat injured
+    - ACT3-CAPTURE        # Althea captured
+
+  finale:
+    - FINALE-RETURN       # Return to Sardis
+    - FINALE-DESCENT      # Descent to Heart Chamber
+    - FINALE-CONFRONT     # Final confrontation
+    - FINALE-REVELATION   # Chordstone communication
+    - FINALE-CHOICE       # The final choice
+    - EPILOGUE-SEAL       # Seal ending
+    - EPILOGUE-RELEASE    # Release ending
+    - EPILOGUE-CONTROL    # Control ending
+
+# ============================================================================
+# EMOTION INDEX (0.0 - 1.0)
+# ============================================================================
+
+emotion_intensity:
+  scale: "0.0 (calm) to 1.0 (maximum intensity)"
+  categories:
+    curiosity: [0.0, 0.3]      # Exploration, wonder
+    fear: [0.4, 0.6]           # Danger, uncertainty
+    guilt: [0.5, 0.7]          # Consequence realization
+    determination: [0.6, 0.8]  # Resolved action
+    desperation: [0.8, 1.0]    # Maximum urgency
+    catharsis: [0.3, 0.5]      # Resolution, release
+
+  quest_mapping:
+    PRLG-DISCOVERY: 0.2        # Curiosity
+    PRLG-ACTIVATION: 0.5       # Excitement + concern
+    PRLG-ESCAPE: 0.7           # Fear
+    ACT1-CHORDSTONE: 0.6       # Excitement
+    ACT2-HISTORY: 0.9          # Revelation shock
+    ACT3-SACRIFICE: 1.0        # Maximum emotional impact
+    FINALE-CHOICE: 0.8         # High stakes
+
+# ============================================================================
+# MORAL INDEX (-1.0 to +1.0)
+# ============================================================================
+
+moral_weight:
+  scale: "-1.0 (dark/harmful) to 0.0 (neutral) to +1.0 (light/helpful)"
+  philosophy: "Player choices affect moral alignment"
+
+  quest_mapping:
+    PRLG-ACTIVATION: -0.1      # Accidental harm
+    ACT1-CHOICE:
+      deactivate: 0.3          # Precautionary
+      study: -0.1              # Risky
+    ACT2-OFFER:
+      accept: -0.5             # Ethical compromise
+      refuse: 0.3              # Moral stand
+    FINALE-CHOICE:
+      seal: 0.3                # Sacrifice for safety
+      release: 0.1             # Trust humanity
+      control: 0.0             # Middle path
+
+  thresholds:
+    hero: 0.5                  # Consistently ethical
+    pragmatist: -0.2 to 0.2    # Balanced
+    utilitarian: -0.5          # Ends justify means
+
+# ============================================================================
+# DIALOGUE IDS
+# ============================================================================
+
+dialogue_ids:
+  prologue:
+    - EAS-PROLOGUE-WARNING   # Althea: "Taşlar susmaz..."
+    - EAS-PROLOGUE-DISCOVERY # Elif: "The stones are singing..."
+
+  act_1:
+    - EAS-ACT1-FERHAT-INTRO  # First meeting
+    - EAS-ACT1-NETWORK       # Continental network reveal
+    - EAS-ACT1-CHOICE        # Moral dilemma dialogue
+
+  act_2:
+    - EAS-ACT2-VENNER        # Consortium Leader confrontation
+    - EAS-ACT2-HISTORY       # Lydian collapse revelation
+    - EAS-ACT2-OFFER         # Partnership offer
+    - EAS-ACT2-ALTHEA        # Althea's confession
+
+  act_3:
+    - EAS-ACT3-CHORDSTONE    # Sentience revelation
+    - EAS-ACT3-FERHAT        # Ferhat's sacrifice dialogue
+
+  finale:
+    - EAS-FINALE-DEBATE      # Final philosophical debate
+    - EAS-FINALE-ENTITY      # Chordstone final words
+
+# ============================================================================
+# CUTSCENE IDS
+# ============================================================================
+
+cutscene_ids:
+  prologue:
+    - CS-PRLG-01             # Chamber discovery
+    - CS-PRLG-02             # Chordstone activation
+    - CS-PRLG-03             # Earthquake escape
+    - CS-PRLG-04             # Consortium encounter
+    - CS-PRLG-05             # Althea's warning
+
+  act_1:
+    - CS-ACT1-01             # Journey to Cappadocia
+    - CS-ACT1-02             # Meet Ferhat
+    - CS-ACT1-03             # Second Chordstone
+    - CS-ACT1-04             # Sabotage
+    - CS-ACT1-05             # Network revelation
+    - CS-ACT1-06             # Moral choice
+
+  act_2:
+    - CS-ACT2-01             # Underwater expedition
+    - CS-ACT2-02             # Master Codex
+    - CS-ACT2-03             # Venner confrontation
+    - CS-ACT2-04             # History revelation
+    - CS-ACT2-05             # Echo storm
+    - CS-ACT2-06             # Partnership offer
+    - CS-ACT2-07             # Althea's confession
+
+  act_3:
+    - CS-ACT3-01             # Race to Nemrut
+    - CS-ACT3-02             # Fail-safe discovery
+    - CS-ACT3-03             # Boss battle
+    - CS-ACT3-04             # Sentience revelation
+    - CS-ACT3-05             # Ferhat injury
+    - CS-ACT3-06             # Althea capture
+
+  finale:
+    - CS-FINALE-01           # Return to Sardis
+    - CS-FINALE-02           # Descent
+    - CS-FINALE-03           # Final confrontation
+    - CS-FINALE-04           # Chordstone communication
+    - CS-FINALE-05           # Final choice
+    - CS-EPILOGUE-SEAL       # Seal ending cutscene
+    - CS-EPILOGUE-RELEASE    # Release ending cutscene
+    - CS-EPILOGUE-CONTROL    # Control ending cutscene
+
+# ============================================================================
+# NPC IDS
+# ============================================================================
+
+npc_ids:
+  - ELIF-ARAS              # Protagonist (player character)
+  - FERHAT-DEMIR           # Ally
+  - ALTHEA-KOSTA           # Mentor
+  - MARCUS-VENNER          # Antagonist
+  - CHORDSTONE-ENTITY      # Mysterious guide
+  - KEREM-YILMAZ           # Government liaison
+  - CONS-OPERATIVE-01      # Generic Consortium operative
+  - CONS-LEAD-01           # Consortium Leader
+
+# ============================================================================
+# LOCATION CODES
+# ============================================================================
+
+location_codes:
+  - LYD-RUINS-01           # Sardis surface
+  - LYD-RUINS-02           # Sardis underground chambers
+  - LYD-CORE-01            # Sardis Heart Chamber (finale)
+  - CAPAD-SURFACE          # Cappadocia surface
+  - CAPAD-DEEP-01          # Derinkuyu underground city
+  - CAPAD-RESONATE         # Resonance chambers
+  - KEK-COAST              # Kekova coastline
+  - KEK-SUBMERGED          # Submerged temple
+  - KEK-CODEX              # Codex chamber
+  - NEMRUT-ASCENT          # Mount Nemrut ascent path
+  - NEMRUT-SUMMIT          # Summit
+  - NEMRUT-NEXUS           # Resonance nexus
+
+# ============================================================================
+# STORY TAG SETS
+# ============================================================================
+
+tag_taxonomy:
+  narrative_beats:
+    - discovery              # Finding new information
+    - revelation             # Major plot twist
+    - choice                 # Player agency moment
+    - conflict               # Confrontation
+    - sacrifice              # Loss or giving up
+    - resolution             # Conclusion
+
+  gameplay_integration:
+    - resonance              # Acoustic mechanic usage
+    - puzzle                 # Problem-solving
+    - parkour                # Traversal challenge
+    - combat                 # Action sequence
+    - stealth                # Evasion
+    - exploration            # Open-ended discovery
+
+  emotional_tags:
+    - curiosity
+    - fear
+    - excitement
+    - guilt
+    - determination
+    - desperation
+    - catharsis
+    - peace
+
+  thematic_tags:
+    - knowledge
+    - power
+    - ethics
+    - memory
+    - echo
+    - sacrifice
+    - trust
+    - consequence
+
+  character_focus:
+    - elif_arc               # Protagonist development
+    - ferhat_arc             # Ally development
+    - althea_arc             # Mentor development
+    - venner_arc             # Antagonist development
+    - relationship           # Character interaction
+
+# ============================================================================
+# ANALYTICS EVENT SCHEMA
+# ============================================================================
+
+analytics_schema:
+  quest_complete:
+    event_name: "story_quest_complete"
+    properties:
+      quest_id: "string"               # e.g., "ACT1-CHOICE"
+      act: "string"                    # "prologue", "act_1", etc.
+      duration_seconds: "integer"      # Time to complete
+      emotion_index: "float"           # 0.0 - 1.0
+      moral_index: "float"             # -1.0 to +1.0
+      choice_made: "string|null"       # If choice quest
+      timestamp: "ISO8601"
+      session_id: "uuid"
+      user_id: "anonymized_string"
+
+  dialogue_viewed:
+    event_name: "story_dialogue_viewed"
+    properties:
+      dialogue_id: "string"
+      npc_id: "string"
+      choice_selected: "string|null"
+      duration_seconds: "integer"
+      timestamp: "ISO8601"
+
+  cutscene_watched:
+    event_name: "story_cutscene_watched"
+    properties:
+      cutscene_id: "string"
+      skipped: "boolean"
+      watch_duration_seconds: "integer"
+      total_duration_seconds: "integer"
+      timestamp: "ISO8601"
+
+  emotion_peak:
+    event_name: "story_emotion_peak"
+    properties:
+      quest_id: "string"
+      emotion_type: "string"           # "fear", "excitement", etc.
+      intensity: "float"               # 0.0 - 1.0
+      timestamp: "ISO8601"
+
+  moral_choice:
+    event_name: "story_moral_choice"
+    properties:
+      quest_id: "string"
+      choice_id: "string"
+      moral_weight: "float"            # -1.0 to +1.0
+      player_moral_score_before: "float"
+      player_moral_score_after: "float"
+      timestamp: "ISO8601"
+
+# ============================================================================
+# LIVEOPS INTEGRATION
+# ============================================================================
+
+liveops_hooks:
+  season_1_finale_choice:
+    quest_id: "FINALE-CHOICE"
+    choices:
+      - seal_destroy
+      - release_openly
+      - control_preserve
+    world_state_impact:
+      seal: "chordstones_destroyed"
+      release: "open_source_era"
+      control: "government_custody"
+    season_2_effect:
+      seal: "minimal_echo_storms"
+      release: "global_research_chaos"
+      control: "rogue_consortium_cells"
+
+  a_b_test_integration:
+    act_1_difficulty:
+      experiment_id: "abx-act1-puzzle-difficulty"
+      quest_ids: ["ACT1-CHORDSTONE"]
+      variants:
+        - control: "baseline_difficulty"
+        - variant_a: "easier_hints"
+        - variant_b: "harder_no_hints"
+      success_metric: "quest_completion_rate"
+
+  dynamic_events:
+    echo_storm_frequency:
+      based_on: "s1_finale_choice"
+      seal_choice: "storm_frequency_low"
+      release_choice: "storm_frequency_high"
+      control_choice: "storm_frequency_medium"
+
+# ============================================================================
+# SEASON 2 STORY TAGS
+# ============================================================================
+
+season_2_tags:
+  echo_storms:
+    - s2-storm-canyon             # Canyon Night Storm
+    - s2-storm-ruins              # Ruins Sand Gale
+    - s2-boss-sentinel-p1         # Echo Sentinel Phase 1
+    - s2-coop-rescue              # Co-op rescue missions
+    - s2-consortium-rogue         # Rogue Consortium cells
+
+  new_mechanics:
+    - storm_navigation            # Navigate during echo storms
+    - coop_coordination           # 2-4 player coordination
+    - boss_phases                 # Multi-phase boss fights
+
+# ============================================================================
+# COMPLIANCE & PRIVACY
+# ============================================================================
+
+privacy:
+  pii_fields: []                      # No PII collected
+  anonymization:
+    user_id: "SHA256 hash"
+    session_id: "UUID v4"
+  data_retention_days: 90
+  gdpr_compliant: true
+  kvkk_compliant: true
+  pdpl_compliant: true
+
+# ============================================================================
+# VERSION CONTROL
+# ============================================================================
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-10-12"
+    changes: "Initial production release"
+    author: "Ailydian Narrative Team"
+
+  - version: "0.9.0"
+    date: "2025-09-28"
+    changes: "Beta analytics integration"
+    author: "Data Team"
+
+  - version: "0.8.0"
+    date: "2025-09-15"
+    changes: "Alpha telemetry tagging"
+    author: "Narrative + LiveOps collaboration"

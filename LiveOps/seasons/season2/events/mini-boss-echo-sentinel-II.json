@@ -1,0 +1,85 @@
+{
+  "id": "mini-boss-echo-sentinel-II",
+  "type": "boss",
+  "name": "Echo Sentinel - Phase II",
+  "description": "The Echo Sentinel returns with enhanced storm powers during Week 5",
+  "week": 5,
+  "start": "2026-02-15T20:00:00+03:00",
+  "duration_hours": 48,
+
+  "boss": {
+    "id": "echo-sentinel",
+    "name": "Echo Sentinel (Enhanced)",
+    "level": 20,
+    "base_hp": 35000,
+    "phases": [
+      {
+        "phase": 1,
+        "hp_threshold": 1.0,
+        "mechanics": ["basic_melee", "storm_summon", "lightning_bolt", "wind_shear"],
+        "tells": ["ground_slam_windup", "lightning_charge_glow", "wind_vortex_start"],
+        "duration_seconds": 60
+      },
+      {
+        "phase": 2,
+        "hp_threshold": 0.66,
+        "mechanics": ["resonance_shield", "echo_clones", "phase_shift", "storm_pulse"],
+        "tells": ["clone_spawn_flash", "shield_shimmer", "pulse_charge"],
+        "duration_seconds": 90
+      },
+      {
+        "phase": 3,
+        "hp_threshold": 0.33,
+        "mechanics": ["storm_fury", "area_denial", "enrage", "echo_cascade"],
+        "tells": ["storm_eye_formation", "ground_cracks", "cascade_buildup"],
+        "duration_seconds": 150
+      }
+    ]
+  },
+
+  "rewards": {
+    "first_completion": {
+      "xp": 1500,
+      "cr": 750,
+      "cosmetic": "effect-storm-aura"
+    },
+    "subsequent_completions": {
+      "xp": 750,
+      "cr": 375
+    },
+    "leaderboard_top_10": {
+      "xp_bonus": 800,
+      "title": "Sentinel Slayer II",
+      "exclusive_cosmetic": "costume-sentinel-vanquisher"
+    }
+  },
+
+  "difficulty": {
+    "hp_scaling": {
+      "solo": 1.0,
+      "duo": 1.6
+    },
+    "success_rate_target": 0.50,
+    "average_attempts_target": 3.5
+  },
+
+  "accessibility": {
+    "color_blind_mode": true,
+    "telegraphs_enhanced": true,
+    "audio_cues": true,
+    "subtitle_tells": true
+  },
+
+  "rbac": {
+    "trigger_permission": "liveops.admin",
+    "view_stats": "liveops.analyst"
+  },
+
+  "white_hat": true,
+  "anti_cheat": {
+    "damage_validation": true,
+    "position_validation": true,
+    "timing_validation": true,
+    "replay_recording": true
+  }
+}

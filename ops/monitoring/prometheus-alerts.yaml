@@ -1,0 +1,222 @@
+groups:
+  - name: lydian_iq_slo_alerts
+    interval: 30s
+    rules:
+      # High p95 Latency Alert
+      - alert: HighP95Latency
+        expr: |
+          histogram_quantile(0.95,
+            rate(http_request_duration_seconds_bucket{service="lydian-iq-api"}[5m])
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          slo: latency
+        annotations:
+          summary: "High p95 latency detected"
+          description: "p95 latency is {{ $value }}s (threshold: 2s) for {{ $labels.path }}"
+          runbook: "https://docs.ailydian.com/runbooks/high-latency"
+
+      # Critical p99 Latency Alert
+      - alert: CriticalP99Latency
+        expr: |
+          histogram_quantile(0.99,
+            rate(http_request_duration_seconds_bucket{service="lydian-iq-api"}[5m])
+          ) > 5
+        for: 2m
+        labels:
+          severity: critical
+          service: lydian-iq-api
+          slo: latency
+        annotations:
+          summary: "Critical p99 latency detected"
+          description: "p99 latency is {{ $value }}s (threshold: 5s)"
+          runbook: "https://docs.ailydian.com/runbooks/critical-latency"
+
+      # Error Budget Exhaustion
+      - alert: ErrorBudgetExhausted
+        expr: |
+          sum(rate(http_requests_total{service="lydian-iq-api",status=~"5.."}[24h]))
+          /
+          sum(rate(http_requests_total{service="lydian-iq-api"}[24h]))
+          > 0.01
+        for: 10m
+        labels:
+          severity: critical
+          service: lydian-iq-api
+          slo: availability
+        annotations:
+          summary: "Error budget exhausted"
+          description: "Error rate is {{ $value | humanizePercentage }} (budget: 1%)"
+          runbook: "https://docs.ailydian.com/runbooks/error-budget"
+
+      # High Rate Limit Rejections
+      - alert: HighRateLimitRejections
+        expr: |
+          sum(rate(http_requests_total{service="lydian-iq-api",status="429"}[5m]))
+          /
+          sum(rate(http_requests_total{service="lydian-iq-api"}[5m]))
+          > 0.02
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          slo: rate_limit
+        annotations:
+          summary: "High rate limit rejection rate"
+          description: "Rate limit rejection rate is {{ $value | humanizePercentage }} (threshold: 2%)"
+          runbook: "https://docs.ailydian.com/runbooks/rate-limiting"
+
+      # Low Cache Hit Rate
+      - alert: LowCacheHitRate
+        expr: |
+          sum(rate(cache_hits_total{service="lydian-iq-api"}[5m]))
+          /
+          (sum(rate(cache_hits_total{service="lydian-iq-api"}[5m]))
+          + sum(rate(cache_misses_total{service="lydian-iq-api"}[5m])))
+          < 0.70
+        for: 10m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          slo: cache
+        annotations:
+          summary: "Low cache hit rate"
+          description: "Cache hit rate is {{ $value | humanizePercentage }} (threshold: 70%)"
+          runbook: "https://docs.ailydian.com/runbooks/cache-performance"
+
+      # Database Connection Pool Exhaustion
+      - alert: DatabaseConnectionPoolNearExhaustion
+        expr: |
+          pg_stat_database_numbackends{datname="lydian_iq_v3"}
+          /
+          pg_settings_max_connections
+          > 0.80
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          component: database
+        annotations:
+          summary: "Database connection pool near exhaustion"
+          description: "{{ $value | humanizePercentage }} of connections used"
+          runbook: "https://docs.ailydian.com/runbooks/db-connections"
+
+      # High CPU Usage
+      - alert: HighCPUUsage
+        expr: |
+          rate(container_cpu_usage_seconds_total{namespace="production",pod=~"lydian-iq-api.*"}[5m]) * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          component: infrastructure
+        annotations:
+          summary: "High CPU usage on {{ $labels.pod }}"
+          description: "CPU usage is {{ $value }}% (threshold: 80%)"
+          runbook: "https://docs.ailydian.com/runbooks/high-cpu"
+
+      # High Memory Usage
+      - alert: HighMemoryUsage
+        expr: |
+          container_memory_working_set_bytes{namespace="production",pod=~"lydian-iq-api.*"}
+          /
+          container_spec_memory_limit_bytes{namespace="production",pod=~"lydian-iq-api.*"}
+          > 0.85
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          component: infrastructure
+        annotations:
+          summary: "High memory usage on {{ $labels.pod }}"
+          description: "Memory usage is {{ $value | humanizePercentage }}"
+          runbook: "https://docs.ailydian.com/runbooks/high-memory"
+
+      # Pod Restart Loop
+      - alert: PodRestartLoop
+        expr: |
+          rate(kube_pod_container_status_restarts_total{namespace="production",pod=~"lydian-iq-api.*"}[15m]) > 0
+        for: 5m
+        labels:
+          severity: critical
+          service: lydian-iq-api
+          component: infrastructure
+        annotations:
+          summary: "Pod {{ $labels.pod }} is restarting"
+          description: "Pod has restarted {{ $value }} times in 15 minutes"
+          runbook: "https://docs.ailydian.com/runbooks/pod-restart"
+
+      # Privacy Budget Near Exhaustion
+      - alert: PrivacyBudgetNearExhaustion
+        expr: |
+          dp_privacy_budget_consumed{service="lydian-iq-api"}
+          /
+          dp_privacy_budget_total{service="lydian-iq-api"}
+          > 0.80
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          component: privacy
+        annotations:
+          summary: "Privacy budget near exhaustion for {{ $labels.endpoint }}"
+          description: "{{ $value | humanizePercentage }} of epsilon budget consumed"
+          runbook: "https://docs.ailydian.com/runbooks/privacy-budget"
+
+      # OIDC Token Validation Failures
+      - alert: HighOIDCValidationFailures
+        expr: |
+          rate(oidc_token_validation_failures_total{service="lydian-iq-api"}[5m]) > 5
+        for: 5m
+        labels:
+          severity: warning
+          service: lydian-iq-api
+          component: auth
+        annotations:
+          summary: "High OIDC token validation failure rate"
+          description: "{{ $value }} validation failures per second"
+          runbook: "https://docs.ailydian.com/runbooks/oidc-failures"
+
+      # JWT Key Rotation Overdue
+      - alert: JWTKeyRotationOverdue
+        expr: |
+          time() - jwt_key_rotation_timestamp_seconds{service="lydian-iq-api"} > 86400
+        for: 1m
+        labels:
+          severity: critical
+          service: lydian-iq-api
+          component: auth
+        annotations:
+          summary: "JWT key rotation overdue"
+          description: "Last rotation was {{ $value | humanizeDuration }} ago (max: 24h)"
+          runbook: "https://docs.ailydian.com/runbooks/jwt-rotation"
+
+      # Low HPA Replica Count
+      - alert: LowHPAReplicaCount
+        expr: |
+          kube_horizontalpodautoscaler_status_current_replicas{horizontalpodautoscaler="lydian-iq-api-hpa"} < 2
+        for: 2m
+        labels:
+          severity: critical
+          service: lydian-iq-api
+          component: infrastructure
+        annotations:
+          summary: "Low HPA replica count"
+          description: "Only {{ $value }} replicas running (minimum: 2)"
+          runbook: "https://docs.ailydian.com/runbooks/low-replicas"
+
+      # Redis Connection Failures
+      - alert: RedisConnectionFailures
+        expr: |
+          rate(redis_connection_errors_total{service="lydian-iq-api"}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          service: lydian-iq-api
+          component: cache
+        annotations:
+          summary: "Redis connection failures detected"
+          description: "{{ $value }} connection errors per second"
+          runbook: "https://docs.ailydian.com/runbooks/redis-failures"
