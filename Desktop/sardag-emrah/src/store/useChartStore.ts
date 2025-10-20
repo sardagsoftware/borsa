@@ -52,6 +52,7 @@ export const useChartStore = create<State>((set) => ({
         VOL_BREAKOUT: 'Volume Breakout',
         PRICE_SR_BREAK: 'Support/Resistance Break',
         MA_PULLBACK: 'MA Crossover Pullback',
+        MULTI_STRATEGY: 'Multi-Strategy Signal',
       }[a.type] || a.type;
 
       const directionEmoji = a.direction === 'UP' ? '📈' : a.direction === 'DOWN' ? '📉' : '🔔';

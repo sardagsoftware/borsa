@@ -165,10 +165,11 @@ self.addEventListener('notificationclick', (event) => {
   }
 });
 
-// Background sync
+// Background sync - SCANNER SYNC
 self.addEventListener('sync', (event) => {
   console.log('[SW] Background sync:', event.tag);
 
+  // Market data sync
   if (event.tag === 'sync-market-data') {
     event.waitUntil(
       fetch('/api/market/overview')
@@ -182,7 +183,75 @@ self.addEventListener('sync', (event) => {
         })
     );
   }
+
+  // Scanner sync - NEW!
+  if (event.tag === 'scanner-sync') {
+    event.waitUntil(scanAndNotify());
+  }
 });
+
+// Periodic Background Sync - Chrome only
+self.addEventListener('periodicsync', (event) => {
+  console.log('[SW] Periodic sync:', event.tag);
+
+  if (event.tag === 'scanner-periodic') {
+    event.waitUntil(scanAndNotify());
+  }
+});
+
+// Scanner function - scans for signals and shows notifications
+async function scanAndNotify() {
+  try {
+    console.log('[SW] 🔍 Scanning for signals...');
+
+    const response = await fetch('/api/scanner/signals?limit=20&type=STRONG_BUY');
+
+    if (!response.ok) {
+      throw new Error(`Scanner API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    console.log(`[SW] Scan complete: ${data.found} signals from ${data.scanned} coins`);
+
+    // Show notifications for found signals
+    if (data.found > 0 && data.signals) {
+      for (const signal of data.signals) {
+        const symbolDisplay = signal.symbol.replace('USDT', '');
+        const emoji = signal.signal === 'STRONG_BUY' ? '🚀' : '✅';
+
+        await self.registration.showNotification(
+          `${emoji} ${symbolDisplay} - AL SİNYALİ`,
+          {
+            body: `${signal.strategies}/6 Strateji • %${Math.floor(signal.confidence)} Güven\nGiriş: $${signal.entryPrice.toFixed(2)}`,
+            icon: '/icon-192x192.png',
+            badge: '/icon-96x96.png',
+            tag: signal.symbol, // Group by symbol
+            requireInteraction: true,
+            vibrate: [200, 100, 200, 100, 200],
+            data: {
+              symbol: signal.symbol,
+              url: `/market?symbol=${signal.symbol}`,
+              signal: signal.signal,
+              confidence: signal.confidence
+            },
+            actions: [
+              { action: 'view', title: 'Detayları Gör', icon: '/icon-chart-96x96.png' },
+              { action: 'dismiss', title: 'Kapat', icon: '/icon-close-96x96.png' }
+            ]
+          }
+        );
+
+        console.log(`[SW] ✅ Notification shown for ${signal.symbol}`);
+      }
+    }
+
+    return data;
+  } catch (error) {
+    console.error('[SW] Scanner error:', error);
+    return null;
+  }
+}
 
 // Message event (for commands from main thread)
 self.addEventListener('message', (event) => {

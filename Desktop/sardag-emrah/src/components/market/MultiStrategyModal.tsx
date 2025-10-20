@@ -127,45 +127,71 @@ export default function MultiStrategyModal({
 
           {analysis && (
             <div className="p-6 space-y-6">
-              {/* Overall Recommendation */}
-              <div className={`p-6 rounded-xl border ${getOverallColor(analysis.overall)}`}>
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{analysis.overall}</h3>
-                    <p className="text-sm opacity-80">{analysis.recommendation}</p>
+              {/* 🎯 NET KARAR - BÜY ÜK VE NET */}
+              <div className="text-center p-8 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl border-2 border-white/20">
+                {/* Ana Karar */}
+                <div className="mb-4">
+                  <div className="text-6xl font-black mb-2">
+                    {analysis.overall === 'STRONG_BUY' ? '🚀 AL' :
+                     analysis.overall === 'BUY' ? '✅ AL' :
+                     analysis.overall === 'NEUTRAL' ? '⏳ BEKLE' :
+                     '❌ ALMA'}
                   </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold">{analysis.confidenceScore.toFixed(0)}%</div>
-                    <div className="text-xs opacity-60">Güven Skoru</div>
+                  <div className="text-3xl font-bold opacity-90">
+                    {analysis.overall === 'STRONG_BUY' ? 'GÜÇLÜ ALIŞ SİNYALİ' :
+                     analysis.overall === 'BUY' ? 'ALIŞ SİNYALİ' :
+                     analysis.overall === 'NEUTRAL' ? 'BEKLEME DURUMU' :
+                     'ALIŞ YOK'}
                   </div>
                 </div>
 
-                <div className="flex gap-4 text-sm flex-wrap">
-                  <div>
-                    <div className="opacity-60">Anlaşma</div>
-                    <div className="font-bold">{analysis.agreementCount}/{analysis.totalStrategies} Strateji</div>
+                {/* Güven Skoru */}
+                <div className="flex items-center justify-center gap-6 mb-6">
+                  <div className="text-center">
+                    <div className="text-5xl font-black text-cyan-400">
+                      {analysis.finalConfidence ? analysis.finalConfidence.toFixed(0) : analysis.confidenceScore.toFixed(0)}%
+                    </div>
+                    <div className="text-sm opacity-60">Güven</div>
                   </div>
-                  <div className="border-l border-white/20 pl-4">
-                    <div className="opacity-60">Giriş</div>
-                    <div className="font-bold">{analysis.entryPrice.toFixed(2)} USDT</div>
-                  </div>
-                  <div className="border-l border-white/20 pl-4">
-                    <div className="opacity-60">Stop Loss</div>
-                    <div className="font-bold text-red-400">{analysis.suggestedStopLoss.toFixed(2)} USDT</div>
-                  </div>
-                  <div className="border-l border-white/20 pl-4">
-                    <div className="opacity-60">Take Profit</div>
-                    <div className="font-bold text-green-400">{analysis.suggestedTakeProfit.toFixed(2)} USDT</div>
+                  <div className="text-4xl">+</div>
+                  <div className="text-center">
+                    <div className="text-5xl font-black text-green-400">{analysis.agreementCount}/{analysis.totalStrategies}</div>
+                    <div className="text-sm opacity-60">Strateji</div>
                   </div>
                   {analysis.aiEnhancement && (
-                    <div className="border-l border-white/20 pl-4">
-                      <div className="opacity-60">🤖 AI Boost</div>
-                      <div className="font-bold text-cyan-400">
-                        {analysis.aiEnhancement.confidenceBoost > 0 ? '+' : ''}
-                        {analysis.aiEnhancement.confidenceBoost}%
+                    <>
+                      <div className="text-4xl">+</div>
+                      <div className="text-center">
+                        <div className="text-5xl font-black text-purple-400">🤖 AI</div>
+                        <div className="text-sm opacity-60">
+                          {analysis.aiEnhancement.confidenceBoost > 0 ? '+' : ''}
+                          {analysis.aiEnhancement.confidenceBoost}%
+                        </div>
                       </div>
-                    </div>
+                    </>
                   )}
+                </div>
+
+                {/* İşlem Detayları */}
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="p-4 bg-white/5 rounded-xl">
+                    <div className="text-xs opacity-60 mb-1">GİRİŞ</div>
+                    <div className="text-lg font-bold">{analysis.entryPrice.toFixed(2)}</div>
+                  </div>
+                  <div className="p-4 bg-red-500/10 rounded-xl">
+                    <div className="text-xs opacity-60 mb-1">STOP</div>
+                    <div className="text-lg font-bold text-red-400">{analysis.suggestedStopLoss.toFixed(2)}</div>
+                    <div className="text-xs opacity-60">
+                      ({((analysis.suggestedStopLoss - analysis.entryPrice) / analysis.entryPrice * 100).toFixed(1)}%)
+                    </div>
+                  </div>
+                  <div className="p-4 bg-green-500/10 rounded-xl">
+                    <div className="text-xs opacity-60 mb-1">HEDEF</div>
+                    <div className="text-lg font-bold text-green-400">{analysis.suggestedTakeProfit.toFixed(2)}</div>
+                    <div className="text-xs opacity-60">
+                      ({((analysis.suggestedTakeProfit - analysis.entryPrice) / analysis.entryPrice * 100).toFixed(1)}%)
+                    </div>
+                  </div>
                 </div>
               </div>
 

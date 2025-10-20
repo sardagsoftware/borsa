@@ -55,10 +55,8 @@ self.onmessage = (e: MessageEvent<WorkerIn>) => {
       out.sr.zigzag = zigzag(candles, sr.zigzag.deviationPct);
     }
 
-    // @ts-ignore
     postMessage(out);
   } catch (err) {
-    // @ts-ignore
     postMessage({
       overlays: {},
       bands: {},

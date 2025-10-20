@@ -1,15 +1,16 @@
 /**
- * MARKET OVERVIEW API - CoinGecko
+ * MARKET OVERVIEW API - Binance Futures (ALL USDT Perpetuals)
  *
- * Free, no geo-restrictions, reliable
- * Rate limit: 50 calls/minute (generous)
+ * Direct from Binance Futures API
+ * Real-time data for ALL USDT perpetual contracts
+ * No rate limits, free, reliable
  */
 
 import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-export const revalidate = 60; // Cache for 1 min
+export const revalidate = 30; // Cache for 30 sec (real-time)
 
 interface MarketTicker {
   symbol: string;
@@ -25,11 +26,11 @@ interface MarketTicker {
 
 export async function GET() {
   try {
-    console.log('[Market API] Fetching from CoinGecko...');
+    console.log('[Market API] Fetching ALL USDT perpetuals from Binance Futures...');
 
-    // CoinGecko: Top 250 coins by market cap
-    const response = await fetch(
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false&price_change_percentage=24h',
+    // Get 24h ticker data for ALL symbols
+    const tickerResponse = await fetch(
+      'https://fapi.binance.com/fapi/v1/ticker/24hr',
       {
         headers: {
           'Accept': 'application/json',
@@ -37,35 +38,51 @@ export async function GET() {
       }
     );
 
-    if (!response.ok) {
-      throw new Error(`CoinGecko API error: ${response.status}`);
+    if (!tickerResponse.ok) {
+      throw new Error(`Binance API error: ${tickerResponse.status}`);
     }
 
-    const data = await response.json();
+    const allTickers = await tickerResponse.json();
 
-    // Format to our structure
-    const tickers: MarketTicker[] = data.map((coin: any, index: number) => ({
-      symbol: `${coin.symbol.toUpperCase()}USDT`, // Add USDT for consistency
-      price: coin.current_price || 0,
-      change24h: coin.price_change_24h || 0,
-      changePercent24h: coin.price_change_percentage_24h || 0,
-      high24h: coin.high_24h || coin.current_price,
-      low24h: coin.low_24h || coin.current_price,
-      volume24h: coin.total_volume || 0,
-      quoteVolume: coin.market_cap || 0,
-      rank: index + 1,
-    }));
+    // Filter only USDT perpetual futures (exclude delivery contracts)
+    const usdtTickers = allTickers.filter((t: any) =>
+      t.symbol.endsWith('USDT') &&
+      !t.symbol.includes('_') // Exclude delivery contracts (BTCUSDT_251227)
+    );
 
-    console.log(`[Market API] ✅ Got ${tickers.length} coins from CoinGecko`);
+    console.log(`[Market API] Filtered ${usdtTickers.length} USDT perpetuals from ${allTickers.length} total`);
+
+    // Format to our structure and sort by volume
+    const tickers: MarketTicker[] = usdtTickers
+      .map((ticker: any) => ({
+        symbol: ticker.symbol,
+        price: parseFloat(ticker.lastPrice),
+        change24h: parseFloat(ticker.priceChange),
+        changePercent24h: parseFloat(ticker.priceChangePercent),
+        high24h: parseFloat(ticker.highPrice),
+        low24h: parseFloat(ticker.lowPrice),
+        volume24h: parseFloat(ticker.volume),
+        quoteVolume: parseFloat(ticker.quoteVolume),
+        rank: 0, // Will be set after sorting
+      }))
+      .sort((a: MarketTicker, b: MarketTicker) => b.quoteVolume - a.quoteVolume) // Sort by volume
+      .map((ticker: MarketTicker, index: number) => ({
+        ...ticker,
+        rank: index + 1,
+      }));
+
+    console.log(`[Market API] ✅ Got ${tickers.length} USDT perpetuals from Binance Futures`);
+    console.log(`[Market API] Top 5: ${tickers.slice(0, 5).map(t => t.symbol).join(', ')}`);
 
     return NextResponse.json({
       success: true,
       data: tickers,
       timestamp: Date.now(),
-      source: 'coingecko',
+      source: 'binance-futures',
+      total: tickers.length,
     }, {
       headers: {
-        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
       },
     });
   } catch (error) {

@@ -12,9 +12,10 @@ import type { CoinSignal } from "@/lib/market/coin-scanner";
 interface SignalNotificationProps {
   signals: CoinSignal[];
   onClose: () => void;
+  onCoinClick?: (symbol: string) => void; // New: callback to open coin modal
 }
 
-export default function SignalNotification({ signals, onClose }: SignalNotificationProps) {
+export default function SignalNotification({ signals, onClose, onCoinClick }: SignalNotificationProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -75,7 +76,13 @@ export default function SignalNotification({ signals, onClose }: SignalNotificat
         {signals.slice(0, 5).map((signal) => (
           <div
             key={signal.symbol}
-            className="bg-white/10 rounded p-2 flex items-center justify-between"
+            onClick={() => {
+              if (onCoinClick) {
+                onCoinClick(signal.symbol);
+                handleClose();
+              }
+            }}
+            className="bg-white/10 hover:bg-white/20 rounded p-2 flex items-center justify-between cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <div>
               <div className="font-mono font-bold text-white">

@@ -22,6 +22,8 @@ import QuickReference from "@/components/ui/QuickReference";
 import WatchlistPanel from "@/components/ui/WatchlistPanel";
 import PriceAlerts from "@/components/ui/PriceAlerts";
 import MACrossoverScanner from "@/components/scanner/MACrossoverScanner";
+import UniversalMAScanner from "@/components/scanner/UniversalMAScanner";
+import MultiStrategyScanner from "@/components/scanner/MultiStrategyScanner";
 
 const ChartCanvas = dynamic(() => import("@/components/chart/ChartCanvas"), { ssr: false });
 
@@ -537,6 +539,27 @@ export default function PremiumChartsPage() {
             interval: signal.timeframe,
             strength: signal.strength,
             timestamp: signal.timestamp,
+          });
+        }}
+      />
+
+      {/* MULTI-STRATEGY BACKGROUND SCANNER - 6 STRATEJİ */}
+      <MultiStrategyScanner
+        enabled={true}
+        onSignalFound={(analysis) => {
+          // Çoklu strateji sinyali bulunduğunda alerts sistemine ekle
+          pushAlert({
+            id: `${analysis.symbol}_${analysis.timestamp}_multi`,
+            symbol: analysis.symbol,
+            tf: analysis.timeframe,
+            time: analysis.timestamp,
+            type: 'MULTI_STRATEGY',
+            direction: 'UP',
+            price: analysis.entryPrice,
+            message: `${analysis.overall}: ${analysis.agreementCount}/6 strategies agree (${analysis.confidenceScore.toFixed(0)}% confidence)`,
+            interval: analysis.timeframe,
+            strength: Math.floor(analysis.confidenceScore / 10), // Convert 0-100 to 0-10
+            timestamp: analysis.timestamp,
           });
         }}
       />

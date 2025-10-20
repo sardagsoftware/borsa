@@ -77,7 +77,7 @@ Focus on: pattern strength, risk assessment, and actionable insights.`
           }
         ],
         temperature: 0.1, // Low temperature for consistent results
-        max_tokens: 500,
+        max_tokens: 1500, // Increased for fuller AI power
         response_format: { type: 'json_object' }
       }),
     });

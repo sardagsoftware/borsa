@@ -3,13 +3,14 @@
 import { useEffect, useRef } from "react";
 import { scanMultipleSymbols, type MACrossoverSignal } from "@/lib/signals/ma-crossover-pullback";
 import toast from "react-hot-toast";
+import { notificationManager } from "@/lib/pwa/notifications";
 
 /**
  * MA CROSSOVER PULLBACK BACKGROUND SCANNER
  *
  * Tüm coinler için otomatik tarama yapar:
  * - 20 popüler coin
- * - Her 5 dakikada bir
+ * - Her 15 saniyede bir
  * - Arka planda çalışır
  * - Sinyal bulunca toast notification gösterir
  */
@@ -78,6 +79,16 @@ export default function MACrossoverScanner({
               }
             );
 
+            // Browser notification göster (mobilde çalışır)
+            notificationManager.notifySignal({
+              symbol: signal.symbol.replace('USDT', ''),
+              type: 'MA7 PULLBACK',
+              message: `✅ MA7 Golden Cross • ${signal.greenCandlesCount} Yeşil Mum • Güç: ${signal.strength}/10`,
+              strength: signal.strength,
+            }).catch(err => {
+              console.warn('[MA Scanner] Browser notification failed:', err);
+            });
+
             // Callback varsa çağır
             if (onSignalFound) {
               onSignalFound(signal);
@@ -102,11 +113,11 @@ export default function MACrossoverScanner({
       }
     };
 
-    // İlk tarama 10 saniye sonra (sayfa yüklendikten sonra)
-    const initialTimer = setTimeout(runScan, 10000);
+    // İlk tarama 5 saniye sonra (sayfa yüklendikten sonra)
+    const initialTimer = setTimeout(runScan, 5000);
 
-    // Her 5 dakikada bir tarama (300000ms)
-    const interval = setInterval(runScan, 300000);
+    // Her 15 saniyede bir tarama (15000ms)
+    const interval = setInterval(runScan, 15000);
 
     return () => {
       clearTimeout(initialTimer);

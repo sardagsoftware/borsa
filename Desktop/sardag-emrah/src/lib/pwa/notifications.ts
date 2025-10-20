@@ -78,6 +78,34 @@ class NotificationManager {
     );
   }
 
+  /**
+   * Request notification permission (mobile-friendly)
+   */
+  async requestPermission(): Promise<boolean> {
+    if (!this.isSupported()) {
+      console.warn('[PWA] Notifications not supported');
+      return false;
+    }
+
+    try {
+      // For mobile Safari, we need to request in a user gesture
+      if (this.permission === 'default') {
+        this.permission = await Notification.requestPermission();
+      }
+
+      if (this.permission === 'granted') {
+        console.log('[PWA] ✅ Notification permission granted');
+        return true;
+      } else {
+        console.warn('[PWA] ⚠️ Notification permission denied');
+        return false;
+      }
+    } catch (error) {
+      console.error('[PWA] Permission request failed:', error);
+      return false;
+    }
+  }
+
   isGranted(): boolean {
     return this.permission === 'granted';
   }

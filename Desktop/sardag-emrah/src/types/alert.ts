@@ -1,4 +1,4 @@
-export type AlertType = "VOL_BREAKOUT" | "PRICE_SR_BREAK" | "MA_PULLBACK";
+export type AlertType = "VOL_BREAKOUT" | "PRICE_SR_BREAK" | "MA_PULLBACK" | "MULTI_STRATEGY";
 export type AlertDirection = "UP" | "DOWN";
 
 export type BreakoutAlert = {

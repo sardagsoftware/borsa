@@ -8,7 +8,7 @@
   }
 
   html, body {
-    @apply h-full overflow-hidden;
+    @apply h-full overflow-y-auto;
   }
 
   body {
@@ -17,6 +17,19 @@
 
   * {
     @apply border-border;
+  }
+
+  /* Theme Transition (smooth color changes) */
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *:before,
+  html.theme-transitioning *:after {
+    transition: background-color 250ms ease-in-out,
+                border-color 250ms ease-in-out,
+                color 250ms ease-in-out,
+                fill 250ms ease-in-out,
+                stroke 250ms ease-in-out !important;
+    transition-delay: 0 !important;
   }
 }
 
@@ -47,6 +60,68 @@
     @apply px-3 py-2 rounded-md bg-white/10 focus:bg-white/15
            outline-none text-sm cursor-pointer
            focus:ring-2 focus:ring-accent-blue/50;
+  }
+
+  /* Accessibility utilities */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Focus visible (keyboard only) */
+  .focus-visible {
+    @apply outline-none;
+  }
+
+  .focus-visible:focus-visible {
+    @apply ring-4 ring-accent-blue/50 ring-offset-2 ring-offset-bg;
+  }
+
+  /* High contrast focus for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-4 focus:ring-accent-blue/50;
+  }
+
+  .focus-ring-green {
+    @apply focus:outline-none focus:ring-4 focus:ring-green-500/50;
+  }
+
+  .focus-ring-red {
+    @apply focus:outline-none focus:ring-4 focus:ring-red-500/50;
+  }
+
+  /* Skip link animation */
+  @keyframes skip-link-enter {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .skip-link:focus {
+    animation: skip-link-enter 0.2s ease-out;
   }
 
   .card {
@@ -157,6 +232,42 @@
 
 .slide-in-from-bottom {
   animation: slide-in-from-bottom 0.3s ease-out;
+}
+
+/* Skeleton Shimmer Animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .animate-in,
+  .slide-in-from-left,
+  .slide-in-from-right,
+  .slide-in-from-bottom {
+    animation: none;
+  }
 }
 
 /* Mobile-first improvements */

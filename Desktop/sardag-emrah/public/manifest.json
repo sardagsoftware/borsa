@@ -1,7 +1,7 @@
 {
-  "name": "UKal AI - Crypto Trading Intelligence",
-  "short_name": "UKal AI",
-  "description": "Real-time crypto market analysis with AI-powered trading signals",
+  "name": "SARDAG - Premium Crypto Trading AI",
+  "short_name": "SARDAG",
+  "description": "Professional crypto market analysis with AI-powered trading intelligence",
   "start_url": "/market",
   "display": "standalone",
   "background_color": "#0a0e1a",
@@ -105,7 +105,7 @@
   },
   "protocol_handlers": [
     {
-      "protocol": "web+ukalai",
+      "protocol": "web+sardag",
       "url": "/market?symbol=%s"
     }
   ],
