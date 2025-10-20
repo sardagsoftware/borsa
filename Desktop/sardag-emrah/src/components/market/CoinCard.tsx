@@ -3,6 +3,7 @@
 import type { MarketData } from "@/hooks/useMarketData";
 import SparklineChart from "./SparklineChart";
 import { getRiskColorPalette, getRiskEmoji, getRiskText, type RiskScore } from "@/lib/market/risk-calculator";
+import WatchlistButton from "@/components/watchlist/WatchlistButton";
 
 // Helper functions
 function formatPrice(price: number): string {
@@ -77,101 +78,61 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
   // Sparkline color
   const sparklineColor = changePercent7d >= 0 ? "#10b981" : "#ef4444";
 
-  // Border color based on RISK level (changes on each scan)
-  const getBorderClass = () => {
-    // Top performer takes priority
+  // 🎯 ALIM SİNYALİ GÜÇ SEVİYESİ BAZLI BORDER + GLOW SİSTEMİ
+  // Border + box-shadow ile tam görünürlük - köşelerde kesilme yok!
+  const getBorderAndGlowClass = () => {
+    // 🏆 Top Performer - Sadece altın border (glow yok)
     if (isTopPerformer) {
-      return 'border-3 border-yellow-500 hover:border-yellow-400 transition-colors';
+      return 'border-4 border-yellow-500 hover:border-yellow-400 transition-all';
     }
 
-    // ⚠️ CRITICAL: Risk-based styling with STATIC Tailwind classes (NO SHADOWS - border only!)
-    if (riskScore) {
-      // Get palette index for rotation
-      const paletteIndex = scanCount % 4;
-      const level = riskScore.level;
-
-      // PALETTE 0: Green -> Yellow -> Red
-      if (paletteIndex === 0) {
-        if (level === 'VERY_LOW') return 'border-3 border-emerald-500 hover:border-emerald-400 transition-colors';
-        if (level === 'LOW') return 'border-3 border-lime-500 hover:border-lime-400 transition-colors';
-        if (level === 'MEDIUM') return 'border-3 border-yellow-500 hover:border-yellow-400 transition-colors';
-        if (level === 'HIGH') return 'border-3 border-orange-500 hover:border-orange-400 transition-colors';
-        if (level === 'VERY_HIGH') return 'border-3 border-red-500 hover:border-red-400 animate-pulse transition-colors';
-      }
-
-      // PALETTE 1: Blue -> Purple -> Pink
-      if (paletteIndex === 1) {
-        if (level === 'VERY_LOW') return 'border-3 border-cyan-500 hover:border-cyan-400 transition-colors';
-        if (level === 'LOW') return 'border-3 border-blue-500 hover:border-blue-400 transition-colors';
-        if (level === 'MEDIUM') return 'border-3 border-purple-500 hover:border-purple-400 transition-colors';
-        if (level === 'HIGH') return 'border-3 border-fuchsia-500 hover:border-fuchsia-400 transition-colors';
-        if (level === 'VERY_HIGH') return 'border-3 border-pink-500 hover:border-pink-400 animate-pulse transition-colors';
-      }
-
-      // PALETTE 2: Teal -> Indigo -> Rose
-      if (paletteIndex === 2) {
-        if (level === 'VERY_LOW') return 'border-3 border-teal-500 hover:border-teal-400 transition-colors';
-        if (level === 'LOW') return 'border-3 border-sky-500 hover:border-sky-400 transition-colors';
-        if (level === 'MEDIUM') return 'border-3 border-indigo-500 hover:border-indigo-400 transition-colors';
-        if (level === 'HIGH') return 'border-3 border-rose-500 hover:border-rose-400 transition-colors';
-        if (level === 'VERY_HIGH') return 'border-3 border-red-600 hover:border-red-500 animate-pulse transition-colors';
-      }
-
-      // PALETTE 3: Mint -> Amber -> Crimson
-      if (paletteIndex === 3) {
-        if (level === 'VERY_LOW') return 'border-3 border-green-400 hover:border-green-300 transition-colors';
-        if (level === 'LOW') return 'border-3 border-yellow-400 hover:border-yellow-300 transition-colors';
-        if (level === 'MEDIUM') return 'border-3 border-amber-500 hover:border-amber-400 transition-colors';
-        if (level === 'HIGH') return 'border-3 border-orange-600 hover:border-orange-500 transition-colors';
-        if (level === 'VERY_HIGH') return 'border-3 border-red-700 hover:border-red-600 animate-pulse transition-colors';
-      }
-
-      // Fallback (default palette)
-      if (level === 'VERY_HIGH') return 'border-3 border-red-500 hover:border-red-400 animate-pulse transition-colors';
-      if (level === 'HIGH') return 'border-3 border-orange-500 hover:border-orange-400 transition-colors';
-      if (level === 'MEDIUM') return 'border-3 border-yellow-500 hover:border-yellow-400 transition-colors';
-      if (level === 'LOW') return 'border-3 border-lime-500 hover:border-lime-400 transition-colors';
-      return 'border-3 border-emerald-500 hover:border-emerald-400 transition-colors';
-    }
-
-    // Fallback: Confidence score-based styling (if no risk score)
+    // 💎 SİNYAL GÜCÜ BAZLI RENK SİSTEMİ (Confidence Score)
+    // Zayıf → Orta → Buy → Strong Buy → Diamond
     if (confidenceScore !== undefined && confidenceScore >= 30) {
+      // 💎 DIAMOND (90-100%): Ultra güçlü AL - Yeşil patlama
       if (confidenceScore >= 90) {
-        return 'border-3 border-emerald-400 hover:border-emerald-300 animate-pulse transition-colors';
+        return 'border-4 border-emerald-400 hover:border-emerald-300 shadow-[0_0_25px_rgba(52,211,153,0.7),0_0_50px_rgba(52,211,153,0.4),0_0_75px_rgba(52,211,153,0.2)] hover:shadow-[0_0_35px_rgba(52,211,153,0.9),0_0_70px_rgba(52,211,153,0.5)] animate-pulse transition-all';
       }
+
+      // 🚀 STRONG BUY (80-89%): Çok güçlü AL - Yeşil güçlü glow
       if (confidenceScore >= 80) {
-        return 'border-3 border-green-500 hover:border-green-400 transition-colors';
+        return 'border-4 border-green-500 hover:border-green-400 shadow-[0_0_20px_rgba(34,197,94,0.6),0_0_40px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.8),0_0_60px_rgba(34,197,94,0.4)] transition-all';
       }
+
+      // ✅ BUY (70-79%): Güçlü AL - Lime glow
       if (confidenceScore >= 70) {
-        return 'border-3 border-green-600 hover:border-green-500 transition-colors';
+        return 'border-4 border-lime-500 hover:border-lime-400 shadow-[0_0_18px_rgba(132,204,22,0.5),0_0_35px_rgba(132,204,22,0.25)] hover:shadow-[0_0_25px_rgba(132,204,22,0.7),0_0_50px_rgba(132,204,22,0.35)] transition-all';
       }
+
+      // 🟢 MODERATE BUY (60-69%): Orta seviye AL - Sarı hafif glow
       if (confidenceScore >= 60) {
-        return 'border-3 border-lime-600 hover:border-lime-500 transition-colors';
+        return 'border-4 border-yellow-500 hover:border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.4),0_0_30px_rgba(234,179,8,0.2)] hover:shadow-[0_0_20px_rgba(234,179,8,0.6),0_0_40px_rgba(234,179,8,0.3)] transition-all';
       }
+
+      // 🟡 WEAK (50-59%): Zayıf sinyal - Turuncu, glow yok
       if (confidenceScore >= 50) {
-        return 'border-3 border-yellow-600 hover:border-yellow-500 transition-colors';
+        return 'border-4 border-orange-500 hover:border-orange-400 shadow-[0_0_10px_rgba(249,115,22,0.3)] hover:shadow-[0_0_15px_rgba(249,115,22,0.5)] transition-all';
       }
-      if (confidenceScore >= 40) {
-        return 'border-3 border-orange-600 hover:border-orange-500 transition-colors';
-      }
+
+      // ⚠️ VERY WEAK (30-49%): Çok zayıf - Kırmızı, glow yok
       if (confidenceScore >= 30) {
-        return 'border-3 border-red-600 hover:border-red-500 transition-colors';
+        return 'border-4 border-red-500 hover:border-red-400 shadow-[0_0_8px_rgba(239,68,68,0.3)] hover:shadow-[0_0_12px_rgba(239,68,68,0.5)] transition-all';
       }
     }
 
-    // Fallback to signal strength (legacy)
+    // 🔄 Fallback: Legacy signal strength (eski sistem uyumluluğu)
     if (hasSignal && signalStrength === 'STRONG_BUY') {
-      return 'border-3 border-green-500 hover:border-green-400 animate-pulse transition-colors';
+      return 'border-4 border-green-500 hover:border-green-400 shadow-[0_0_20px_rgba(34,197,94,0.6),0_0_40px_rgba(34,197,94,0.3)] animate-pulse transition-all';
     }
     if (hasSignal && signalStrength === 'BUY') {
-      return 'border-3 border-green-600 hover:border-green-500 transition-colors';
+      return 'border-4 border-lime-500 hover:border-lime-400 shadow-[0_0_15px_rgba(132,204,22,0.5)] transition-all';
     }
     if (hasSignal) {
-      return 'border-3 border-blue-600 hover:border-blue-500 transition-colors';
+      return 'border-4 border-blue-600 hover:border-blue-500 shadow-[0_0_12px_rgba(37,99,235,0.4)] transition-all';
     }
 
-    // Default: No signal, no risk
-    return 'border border-white/10 hover:border-accent-blue/50 transition-colors';
+    // 🔘 Default: Sinyal yok - Minimal border
+    return 'border-2 border-white/10 hover:border-white/20 transition-all';
   };
 
   return (
@@ -179,14 +140,23 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
       onClick={onClick}
       className={`
         group relative
-        bg-gradient-to-br from-[#1a1f2e] to-[#0f1419]
-        rounded-lg p-3
+        bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-sm
+        rounded-xl p-4 md:p-5
         cursor-pointer
-        transition-all duration-200
-        hover:scale-[1.02]
-        ${getBorderClass()}
+        hover:scale-[1.03] hover:-translate-y-1
+        transition-all duration-300 ease-out
+        overflow-hidden
+        ${getBorderAndGlowClass()}
       `}
     >
+      {/* Glass reflection overlay - adds premium depth effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
+
+      {/* Watchlist Button (top-left corner) */}
+      <div className="absolute top-2 left-2 z-10">
+        <WatchlistButton symbol={symbol} size="sm" />
+      </div>
+
       {/* Risk Badge (shows on top-left for all coins) */}
       {!isTopPerformer && riskScore && (
         <div
@@ -261,13 +231,13 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
           )}
 
           {/* Symbol */}
-          <div className="font-mono font-bold text-sm text-white">
+          <div className="font-mono font-extrabold text-base md:text-lg text-white tracking-tight">
             {symbolDisplay}
           </div>
         </div>
 
         {/* 7d Change */}
-        <div className={`flex items-center gap-1 text-xs font-bold ${changeColor}`}>
+        <div className={`flex items-center gap-1 text-sm font-semibold ${changeColor}`}>
           <span>{changeEmoji}</span>
           <span>
             {changePercent7d ? `${changePercent7d >= 0 ? '+' : ''}${changePercent7d.toFixed(2)}%` : 'N/A'}
@@ -298,7 +268,7 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
       {/* Footer: Price + Volume */}
       <div className="space-y-1">
         {/* Price */}
-        <div className="font-mono text-base font-bold text-white">
+        <div className="font-mono text-lg md:text-xl font-extrabold text-white tracking-tight">
           ${formatPrice(price)}
         </div>
 
@@ -317,8 +287,8 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
         </div>
       </div>
 
-      {/* Hover Effect: Click Hint */}
-      <div className="absolute inset-0 bg-gradient-to-r from-accent-blue/0 via-accent-blue/5 to-accent-blue/0 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg pointer-events-none" />
+      {/* Hover Effect: Click Hint - subtle blue glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-accent-blue/0 via-accent-blue/5 to-accent-blue/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
     </div>
   );
 }

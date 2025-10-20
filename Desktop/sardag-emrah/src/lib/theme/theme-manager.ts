@@ -310,3 +310,35 @@ export function initializeThemeManager(config?: Partial<ThemeConfig>): ThemeMana
   themeManagerInstance = new ThemeManager(config);
   return themeManagerInstance;
 }
+
+/**
+ * Helper: Get current theme
+ */
+export function getTheme(): 'dark' | 'light' | 'auto' {
+  const manager = getThemeManager();
+  const mode = manager.getMode();
+  return mode === 'system' ? 'auto' : mode;
+}
+
+/**
+ * Helper: Set theme
+ */
+export function setTheme(theme: 'dark' | 'light' | 'auto'): void {
+  const manager = getThemeManager();
+  const mode: ThemeMode = theme === 'auto' ? 'system' : theme;
+  manager.setMode(mode);
+}
+
+/**
+ * Helper: Apply theme on app load
+ */
+export function applyTheme(theme: 'dark' | 'light' | 'auto'): void {
+  setTheme(theme);
+}
+
+/**
+ * Helper: Initialize theme system
+ */
+export function initTheme(): void {
+  getThemeManager();
+}
