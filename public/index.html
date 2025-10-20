@@ -1516,8 +1516,8 @@
       alpha: true
     });
 
-    // Mobile: Use lower pixel ratio for better performance
-    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+    // HIGH-DPI/Retina: Use high pixel ratio for crisp rendering on mobile
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -1542,7 +1542,7 @@
       camera.updateProjectionMatrix();
 
       renderer.setSize(width, height);
-      renderer.setPixelRatio(isMobileNow ? 1 : Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
     }
 
     window.addEventListener('resize', handleResize);
@@ -1804,7 +1804,7 @@
     // ========== Create AI Hub Markers (Kaspersky Style - Bright and Prominent) ==========
     const hubMarkers = [];
     aiHubs.forEach(hub => {
-      const markerGeometry = new THREE.SphereGeometry(0.2, 16, 16); // Larger markers
+      const markerGeometry = new THREE.SphereGeometry(0.12, 16, 16); // Optimized for mobile
       const markerMaterial = new THREE.MeshBasicMaterial({
         color: hub.color,
         transparent: true,
@@ -1817,7 +1817,7 @@
       earth.add(marker);
 
       // Bright pulsing glow (Kaspersky style)
-      const glowGeometry = new THREE.SphereGeometry(0.35, 16, 16); // Larger glow
+      const glowGeometry = new THREE.SphereGeometry(0.20, 16, 16); // Mobile-optimized glow
       const glowMaterial = new THREE.MeshBasicMaterial({
         color: hub.color,
         transparent: true,
@@ -1875,7 +1875,7 @@
     // Her ülkeye minimal amber glow ekle (çok az belirgin, arka yansıma yok)
     countries.forEach(country => {
       // Sadece çok yumuşak amber glow (marker yok, sadece hafif ışıma)
-      const glowGeometry = new THREE.SphereGeometry(0.25, 12, 12); // Küçük, hafif glow
+      const glowGeometry = new THREE.SphereGeometry(0.15, 12, 12); // Minimal mobile glow
       const glowMaterial = new THREE.MeshBasicMaterial({
         color: 0xFFBF00, // Amber
         transparent: true,
@@ -1935,7 +1935,7 @@
       earth.add(line);
 
       // Create animated particle (Neon style - bright and glowing)
-      const particleGeometry = new THREE.SphereGeometry(0.12, 16, 16); // Smoother particles
+      const particleGeometry = new THREE.SphereGeometry(0.08, 16, 16); // Mobile-sized particles
       const particleMaterial = new THREE.MeshBasicMaterial({
         color: color,
         transparent: true,
@@ -1945,7 +1945,7 @@
       earth.add(particle);
 
       // Neon glow effect (bright outer glow WITHOUT background reflection)
-      const particleGlow = new THREE.SphereGeometry(0.28, 16, 16); // Larger neon glow
+      const particleGlow = new THREE.SphereGeometry(0.16, 16, 16); // Mobile neon glow
       const particleGlowMat = new THREE.MeshBasicMaterial({
         color: color,
         transparent: true,
