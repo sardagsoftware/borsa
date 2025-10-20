@@ -1,0 +1,34 @@
+{
+  "id": "yemeksepeti",
+  "name": "Yemeksepeti",
+  "vendor": "Yemeksepeti",
+  "version": "1.0.0",
+  "mode": "partner_required",
+  "status": "disabled",
+  "tosUrl": "https://www.yemeksepeti.com/terms",
+  "privacyUrl": "https://www.yemeksepeti.com/privacy",
+  "documentation": "https://partners.yemeksepeti.com/docs",
+  "supportEmail": "partner-support@yemeksepeti.com",
+  "webhookUrl": "/webhooks/yemeksepeti",
+  "auth": {
+    "strategy": "api_key",
+    "headerName": "Authorization"
+  },
+  "defaultRateLimit": {
+    "maxRequests": 8,
+    "windowMs": 1000,
+    "burstSize": 16,
+    "strategy": "token_bucket"
+  },
+  "legalGate": {
+    "requiresPartnerApproval": true,
+    "approvalProcess": "Apply at https://partners.yemeksepeti.com/apply",
+    "complianceNotes": [
+      "Partner API access only",
+      "No scraping or unauthorized access",
+      "KVKK & GDPR compliant data handling",
+      "Restaurant consent required for menu operations",
+      "Order data retention: 7 days → anonymize"
+    ]
+  }
+}

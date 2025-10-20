@@ -1,0 +1,608 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files - LyDian | Document Management & Storage</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        :root {
+            --primary-orange: #ff7300;
+            --primary-orange-light: #ff8533;
+            --primary-orange-dark: #e65f00;
+            --secondary-white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --background-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-light));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: var(--secondary-white);
+            box-shadow: 0 2px 20px var(--shadow-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .file-manager {
+            background: var(--secondary-white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            margin-bottom: 2rem;
+        }
+
+        .file-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--secondary-white);
+        }
+
+        .btn-secondary {
+            background: var(--background-light);
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .file-search {
+            position: relative;
+            width: 300px;
+        }
+
+        .file-search input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+
+        .file-search i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--primary-orange);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, rgba(255, 115, 0, 0.05), rgba(255, 133, 51, 0.05));
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-zone:hover {
+            background: linear-gradient(135deg, rgba(255, 115, 0, 0.1), rgba(255, 133, 51, 0.1));
+        }
+
+        .upload-zone.drag-over {
+            border-color: var(--primary-orange-dark);
+            background: linear-gradient(135deg, rgba(255, 115, 0, 0.15), rgba(255, 133, 51, 0.15));
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .file-item {
+            background: var(--background-light);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .file-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-color);
+            border-color: var(--primary-orange);
+        }
+
+        .file-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .file-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+
+        .file-size {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .file-type-document { color: #e74c3c; }
+        .file-type-image { color: #3498db; }
+        .file-type-video { color: #9b59b6; }
+        .file-type-audio { color: #f39c12; }
+        .file-type-archive { color: #95a5a6; }
+        .file-type-code { color: #2ecc71; }
+
+        .footer {
+            background: var(--text-dark);
+            color: var(--secondary-white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .file-toolbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .file-search {
+                width: 100%;
+            }
+
+            .file-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <i class="fas fa-brain"></i> LyDian Ultra Pro
+            </div>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="/search"><i class="fas fa-search"></i> Arama</a></li>
+                <li><a href="/files" class="active"><i class="fas fa-folder"></i> Dosyalar</a></li>
+                <li><a href="/settings"><i class="fas fa-cog"></i> Ayarlar</a></li>
+                <li><a href="/about"><i class="fas fa-info-circle"></i> Hakkında</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fas fa-folder-open"></i> Dosya Yöneticisi
+            </h1>
+            <p class="page-subtitle">
+                Dosyalarınızı yükleyin, organize edin ve AI ile analiz edin.
+                Güçlü arama ve filtreleme özellikleri ile dosyalarınızı kolayca yönetin.
+            </p>
+        </div>
+
+        <div class="file-manager">
+            <div class="file-toolbar">
+                <div class="file-actions">
+                    <button class="btn btn-primary" onclick="triggerFileUpload()">
+                        <i class="fas fa-upload"></i> Dosya Yükle
+                    </button>
+                    <button class="btn btn-secondary" onclick="createFolder()">
+                        <i class="fas fa-folder-plus"></i> Klasör Oluştur
+                    </button>
+                    <button class="btn btn-secondary" onclick="toggleView()">
+                        <i class="fas fa-th-large"></i> Görünüm
+                    </button>
+                </div>
+                <div class="file-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Dosya ara..." id="fileSearch" oninput="searchFiles()">
+                </div>
+            </div>
+
+            <div class="upload-zone" id="uploadZone" onclick="triggerFileUpload()">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Dosyaları buraya sürükleyin veya tıklayın</h3>
+                <p>Desteklenen formatlar: PDF, DOC, XLS, PPT, JPG, PNG, MP4, MP3 ve daha fazlası</p>
+            </div>
+
+            <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFileUpload(event)">
+
+            <div class="file-grid" id="fileGrid">
+                <!-- Örnek dosyalar -->
+                <div class="file-item" onclick="openFile('document1.pdf')">
+                    <div class="file-icon file-type-document">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="file-name">Proje Raporu.pdf</div>
+                    <div class="file-size">2.4 MB</div>
+                </div>
+
+                <div class="file-item" onclick="openFile('image1.jpg')">
+                    <div class="file-icon file-type-image">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <div class="file-name">Sunum Görseli.jpg</div>
+                    <div class="file-size">1.8 MB</div>
+                </div>
+
+                <div class="file-item" onclick="openFile('video1.mp4')">
+                    <div class="file-icon file-type-video">
+                        <i class="fas fa-file-video"></i>
+                    </div>
+                    <div class="file-name">Demo Video.mp4</div>
+                    <div class="file-size">25.6 MB</div>
+                </div>
+
+                <div class="file-item" onclick="openFile('audio1.mp3')">
+                    <div class="file-icon file-type-audio">
+                        <i class="fas fa-file-audio"></i>
+                    </div>
+                    <div class="file-name">Kayıt.mp3</div>
+                    <div class="file-size">5.2 MB</div>
+                </div>
+
+                <div class="file-item" onclick="openFile('code1.js')">
+                    <div class="file-icon file-type-code">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <div class="file-name">app.js</div>
+                    <div class="file-size">124 KB</div>
+                </div>
+
+                <div class="file-item" onclick="openFile('archive1.zip')">
+                    <div class="file-icon file-type-archive">
+                        <i class="fas fa-file-archive"></i>
+                    </div>
+                    <div class="file-name">backup.zip</div>
+                    <div class="file-size">45.3 MB</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 LyDian Ultra Pro. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // Drag and drop functionality
+        const uploadZone = document.getElementById('uploadZone');
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('drag-over');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('drag-over');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleFileUpload(event) {
+            const files = event.target.files;
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            for (let file of files) {
+                uploadFile(file);
+            }
+        }
+
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    addFileToGrid(file, data.fileId);
+                    showNotification('Dosya başarıyla yüklendi: ' + file.name, 'success');
+                } else {
+                    showNotification('Dosya yükleme hatası: ' + data.error, 'error');
+                }
+            })
+            .catch(error => {
+                showNotification('Dosya yükleme hatası: ' + error.message, 'error');
+            });
+        }
+
+        function addFileToGrid(file, fileId) {
+            const fileGrid = document.getElementById('fileGrid');
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.onclick = () => openFile(fileId);
+
+            const fileType = getFileType(file.name);
+            const fileSize = formatFileSize(file.size);
+
+            fileItem.innerHTML = `
+                <div class="file-icon ${fileType.class}">
+                    <i class="${fileType.icon}"></i>
+                </div>
+                <div class="file-name">${file.name}</div>
+                <div class="file-size">${fileSize}</div>
+            `;
+
+            fileGrid.appendChild(fileItem);
+        }
+
+        function getFileType(fileName) {
+            const extension = fileName.split('.').pop().toLowerCase();
+
+            const types = {
+                pdf: { icon: 'fas fa-file-pdf', class: 'file-type-document' },
+                doc: { icon: 'fas fa-file-word', class: 'file-type-document' },
+                docx: { icon: 'fas fa-file-word', class: 'file-type-document' },
+                xls: { icon: 'fas fa-file-excel', class: 'file-type-document' },
+                xlsx: { icon: 'fas fa-file-excel', class: 'file-type-document' },
+                ppt: { icon: 'fas fa-file-powerpoint', class: 'file-type-document' },
+                pptx: { icon: 'fas fa-file-powerpoint', class: 'file-type-document' },
+                jpg: { icon: 'fas fa-file-image', class: 'file-type-image' },
+                jpeg: { icon: 'fas fa-file-image', class: 'file-type-image' },
+                png: { icon: 'fas fa-file-image', class: 'file-type-image' },
+                gif: { icon: 'fas fa-file-image', class: 'file-type-image' },
+                mp4: { icon: 'fas fa-file-video', class: 'file-type-video' },
+                avi: { icon: 'fas fa-file-video', class: 'file-type-video' },
+                mov: { icon: 'fas fa-file-video', class: 'file-type-video' },
+                mp3: { icon: 'fas fa-file-audio', class: 'file-type-audio' },
+                wav: { icon: 'fas fa-file-audio', class: 'file-type-audio' },
+                zip: { icon: 'fas fa-file-archive', class: 'file-type-archive' },
+                rar: { icon: 'fas fa-file-archive', class: 'file-type-archive' },
+                js: { icon: 'fas fa-file-code', class: 'file-type-code' },
+                html: { icon: 'fas fa-file-code', class: 'file-type-code' },
+                css: { icon: 'fas fa-file-code', class: 'file-type-code' },
+                py: { icon: 'fas fa-file-code', class: 'file-type-code' }
+            };
+
+            return types[extension] || { icon: 'fas fa-file', class: 'file-type-document' };
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function searchFiles() {
+            const searchTerm = document.getElementById('fileSearch').value.toLowerCase();
+            const fileItems = document.querySelectorAll('.file-item');
+
+            fileItems.forEach(item => {
+                const fileName = item.querySelector('.file-name').textContent.toLowerCase();
+                if (fileName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function createFolder() {
+            const folderName = prompt('Klasör adı:');
+            if (folderName) {
+                fetch('/api/create-folder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: folderName })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Klasör oluşturuldu: ' + folderName, 'success');
+                        // Add folder to grid
+                    } else {
+                        showNotification('Klasör oluşturma hatası: ' + data.error, 'error');
+                    }
+                });
+            }
+        }
+
+        function toggleView() {
+            const fileGrid = document.getElementById('fileGrid');
+            fileGrid.classList.toggle('list-view');
+        }
+
+        function openFile(fileId) {
+            // AI ile dosya analizi
+            fetch('/api/analyze-file', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ fileId: fileId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showFilePreview(data.analysis);
+                }
+            });
+        }
+
+        function showFilePreview(analysis) {
+            alert('Dosya Analizi:\n' + analysis.summary);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                color: white;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                background: ${type === 'success' ? 'var(--primary-orange)' : '#e74c3c'};
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

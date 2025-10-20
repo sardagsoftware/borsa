@@ -1,0 +1,78 @@
+{
+  "$schema": "../experiment-schema.json",
+  "id": "abx-boss-hp-tune",
+  "name": "Mini-Boss HP Tuning",
+  "version": "1.0.0",
+  "status": "active",
+  "start_date": "2025-10-27T00:00:00Z",
+  "end_date": "2025-11-10T00:00:00Z",
+  "duration_days": 14,
+  "hypothesis": "Reducing mini-boss HP by 10% will improve success rate without reducing perceived challenge",
+  "metrics": {
+    "primary": "boss_success_rate",
+    "secondary": [
+      "average_attempts_to_defeat",
+      "time_to_defeat_seconds",
+      "player_satisfaction_nps"
+    ]
+  },
+  "arms": [
+    {
+      "name": "control",
+      "description": "Current mini-boss HP (100% baseline)",
+      "allocation": 0.50,
+      "parameters": {
+        "hp_multiplier": 1.00,
+        "colossus_base_hp": 50000,
+        "warden_base_hp": 45000
+      }
+    },
+    {
+      "name": "variant_reduced",
+      "description": "Reduced mini-boss HP (90% of baseline)",
+      "allocation": 0.50,
+      "parameters": {
+        "hp_multiplier": 0.90,
+        "colossus_base_hp": 45000,
+        "warden_base_hp": 40500
+      }
+    }
+  ],
+  "allocation_strategy": {
+    "method": "random",
+    "seed": "boss-hp-2025",
+    "stratification": [
+      "player_level_band",
+      "previous_boss_attempts"
+    ],
+    "exclusions": [
+      "speedrunners",
+      "test_accounts"
+    ]
+  },
+  "statistics": {
+    "minimum_detectable_effect": 0.08,
+    "statistical_power": 0.80,
+    "alpha": 0.05,
+    "minimum_sample_size_per_arm": 500
+  },
+  "ethics": {
+    "fair_distribution": true,
+    "no_harm": true,
+    "transparent": false,
+    "can_opt_out": false,
+    "note": "Difficulty tuning is standard game design practice"
+  },
+  "compliance": {
+    "gdpr_compliant": true,
+    "data_retention_days": 180,
+    "pii_collected": false
+  },
+  "monitoring": {
+    "check_interval_hours": 12,
+    "early_stop_criteria": {
+      "significant_result": "p < 0.05",
+      "negative_impact": "nps_decrease > 10_points"
+    }
+  }
+}

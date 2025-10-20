@@ -1,0 +1,55 @@
+# robots.txt for LyDian AI Ecosystem
+# https://www.ailydian.com
+# Generated: 2025-10-09
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow sensitive areas
+Disallow: /api/
+Disallow: /auth/
+Disallow: /.env
+Disallow: /admin/
+Disallow: /dashboard-sardag.html
+
+# Allow Google, Bing, and other major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# AI/LLM Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.ailydian.com/sitemap.xml
+
+# Crawl-delay (optional, prevents server overload)
+Crawl-delay: 1
+
+# Host preference
+Host: https://www.ailydian.com

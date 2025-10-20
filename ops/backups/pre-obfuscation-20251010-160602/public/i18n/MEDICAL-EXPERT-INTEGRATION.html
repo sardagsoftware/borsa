@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Medical AI - Healthcare Intelligence Expert</title>
+
+    <!-- RTL Support CSS - Add this -->
+    <link rel="stylesheet" href="/css/rtl-support.css">
+
+    <!-- Your existing CSS -->
+    <style>
+        /* Your existing styles */
+    </style>
+
+    <!-- i18n Manager - Add this BEFORE closing </head> -->
+    <script src="/js/i18n-manager.js"></script>
+</head>
+<body>
+
+    <!-- ============================================================
+         SIDEBAR - Updated with data-i18n attributes
+         ============================================================ -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <span data-i18n="sidebar.logo">LyDian Medical AI</span>
+            </div>
+        </div>
+
+        <!-- New Consultation Button -->
+        <button class="new-consultation-btn" onclick="newConsultation()">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 4v16m8-8H4"/>
+            </svg>
+            <span data-i18n="header.newConsultation">New Consultation</span>
+        </button>
+
+        <!-- Specializations List -->
+        <div class="specializations-list">
+            <!-- Medical Specialties Category -->
+            <div class="nav-category open">
+                <div class="nav-category-header">
+                    <span data-i18n="specialties.title">Medical Specialties</span>
+                    <svg class="dropdown-arrow" width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="nav-category-content">
+                    <!-- General Medicine -->
+                    <div class="specialization-item active" data-specialty="general" onclick="showPanel('general')">
+                        <div class="specialization-icon">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                        </div>
+                        <span data-i18n="specialties.generalMedicine">General Medicine</span>
+                    </div>
+
+                    <!-- Cardiology -->
+                    <div class="specialization-item" data-specialty="cardiology" onclick="showPanel('cardiology')">
+                        <div class="specialization-icon">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <span data-i18n="specialties.cardiology">Cardiology</span>
+                    </div>
+
+                    <!-- Neurology -->
+                    <div class="specialization-item" data-specialty="neurology" onclick="showPanel('neurology')">
+                        <div class="specialization-icon">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            </svg>
+                        </div>
+                        <span data-i18n="specialties.neurology">Neurology</span>
+                    </div>
+
+                    <!-- Oncology -->
+                    <div class="specialization-item" data-specialty="oncology" onclick="showPanel('oncology')">
+                        <div class="specialization-icon">⚕️</div>
+                        <span data-i18n="specialties.oncology">Oncology</span>
+                    </div>
+
+                    <!-- Pediatrics -->
+                    <div class="specialization-item" data-specialty="pediatrics" onclick="showPanel('pediatrics')">
+                        <div class="specialization-icon">👶</div>
+                        <span data-i18n="specialties.pediatrics">Pediatrics</span>
+                    </div>
+
+                    <!-- Psychiatry -->
+                    <div class="specialization-item" data-specialty="psychiatry" onclick="showPanel('psychiatry')">
+                        <div class="specialization-icon">🧠</div>
+                        <span data-i18n="specialties.psychiatry">Psychiatry</span>
+                    </div>
+
+                    <!-- Orthopedics -->
+                    <div class="specialization-item" data-specialty="orthopedics" onclick="showPanel('orthopedics')">
+                        <div class="specialization-icon">🦴</div>
+                        <span data-i18n="specialties.orthopedics">Orthopedics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Tools Category -->
+            <div class="nav-category">
+                <div class="nav-category-header">
+                    <span data-i18n="tools.title">Medical Tools</span>
+                    <svg class="dropdown-arrow" width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="nav-category-content">
+                    <!-- RAG Search -->
+                    <div class="specialization-item" onclick="showPanel('rag-search')">
+                        <div class="specialization-icon">🔍</div>
+                        <div>
+                            <div data-i18n="tools.ragSearch">RAG Search</div>
+                            <small data-i18n="tools.ragSearchDesc" style="opacity: 0.7; font-size: 0.75rem;">Search PubMed & Guidelines</small>
+                        </div>
+                    </div>
+
+                    <!-- DICOM Upload -->
+                    <div class="specialization-item" onclick="showPanel('dicom-upload')">
+                        <div class="specialization-icon">📷</div>
+                        <div>
+                            <div data-i18n="tools.dicomUpload">DICOM Upload</div>
+                            <small data-i18n="tools.dicomUploadDesc" style="opacity: 0.7; font-size: 0.75rem;">Medical Imaging Analysis</small>
+                        </div>
+                    </div>
+
+                    <!-- FHIR Patient -->
+                    <div class="specialization-item" onclick="showPanel('fhir-patient')">
+                        <div class="specialization-icon">📋</div>
+                        <div>
+                            <div data-i18n="tools.fhirPatient">FHIR Patient</div>
+                            <small data-i18n="tools.fhirPatientDesc" style="opacity: 0.7; font-size: 0.75rem;">Patient Data Management</small>
+                        </div>
+                    </div>
+
+                    <!-- Speech Transcription -->
+                    <div class="specialization-item" onclick="showPanel('speech-transcription')">
+                        <div class="specialization-icon">🎤</div>
+                        <div>
+                            <div data-i18n="tools.speechTranscription">Speech Transcription</div>
+                            <small data-i18n="tools.speechTranscriptionDesc" style="opacity: 0.7; font-size: 0.75rem;">Voice-to-Text Medical Notes</small>
+                        </div>
+                    </div>
+
+                    <!-- Medical Translation -->
+                    <div class="specialization-item" onclick="showPanel('translate')">
+                        <div class="specialization-icon">🌍</div>
+                        <div>
+                            <div data-i18n="tools.translation">Medical Translation</div>
+                            <small data-i18n="tools.translationDesc" style="opacity: 0.7; font-size: 0.75rem;">Multi-language Medical Text</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <button class="emergency-btn" onclick="showEmergencyModal()">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                </svg>
+                <div>
+                    <div style="font-size: 0.875rem;" data-i18n="header.emergencyNumbers">Emergency Numbers</div>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN CHAT AREA
+         ============================================================ -->
+    <div class="main-chat">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()" data-i18n-title="sidebar.toggleSidebar">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
+                <div class="chat-title">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span data-i18n="specialties.generalMedicine">General Medicine</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <!-- Language Selector - IMPORTANT -->
+                <select id="languageSelector" class="language-selector">
+                    <!-- Options populated automatically by i18n-manager.js -->
+                </select>
+
+                <button class="header-btn" onclick="showSettingsModal()">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                    </svg>
+                    <span data-i18n="settings.title">Settings</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Medical Disclaimer Banner -->
+        <div class="medical-disclaimer-banner">
+            <div class="disclaimer-icon-banner">⚠️</div>
+            <div>
+                <div style="font-weight: 600; margin-bottom: 0.25rem;" data-i18n="disclaimer.title">Medical Disclaimer</div>
+                <div style="font-size: 0.875rem;" data-i18n="disclaimer.text">
+                    This AI assistant provides general medical information only. Always consult qualified healthcare professionals for diagnosis and treatment. In emergencies, call emergency services immediately.
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be inserted here -->
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <textarea
+                    id="chatInput"
+                    class="chat-input"
+                    rows="1"
+                    data-i18n-placeholder="chat.inputPlaceholder"
+                    placeholder="Describe your symptoms, ask medical questions, or upload medical images..."></textarea>
+                <div class="input-actions">
+                    <button class="input-btn" id="voiceBtn" onclick="handleVoiceInput()" data-i18n-title="chat.voiceInput">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                        </svg>
+                    </button>
+                    <button class="input-btn" id="fileBtn" onclick="handleFileUpload()" data-i18n-title="chat.fileUpload">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                    </button>
+                    <button class="send-btn" id="sendBtn" onclick="sendMessage()" data-i18n-title="chat.sendButton">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                        <span data-i18n="chat.sendButton">Send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         CALCULATOR PANELS - Example with data-i18n
+         ============================================================ -->
+    <div id="generalPanel" class="calculator-panel" style="display: none;">
+        <div class="calculator-header">
+            <h2 data-i18n="calculators.general.title">General Medical Calculator</h2>
+            <p data-i18n="calculators.general.subtitle">Vital Signs & BMI Assessment</p>
+        </div>
+
+        <div class="calculator-section">
+            <h3 data-i18n="calculators.general.vitalSigns">Vital Signs</h3>
+            <div class="form-grid">
+                <input type="number" id="gmSystolic" data-i18n-placeholder="calculators.general.systolic" placeholder="Systolic BP (mmHg)">
+                <input type="number" id="gmDiastolic" data-i18n-placeholder="calculators.general.diastolic" placeholder="Diastolic BP (mmHg)">
+                <input type="number" id="gmHeartRate" data-i18n-placeholder="calculators.general.heartRate" placeholder="Heart Rate (bpm)">
+                <input type="number" id="gmTemp" data-i18n-placeholder="calculators.general.temperature" placeholder="Temperature (°C)" step="0.1">
+                <input type="number" id="gmSpO2" data-i18n-placeholder="calculators.general.spO2" placeholder="SpO2 (%)">
+                <input type="number" id="gmRespRate" data-i18n-placeholder="calculators.general.respRate" placeholder="Resp Rate (/min)">
+            </div>
+        </div>
+
+        <div class="calculator-section">
+            <h3 data-i18n="calculators.general.bodyMetrics">Body Metrics</h3>
+            <div class="form-grid">
+                <input type="number" id="gmWeight" data-i18n-placeholder="calculators.general.weight" placeholder="Weight (kg)" step="0.1">
+                <input type="number" id="gmHeight" data-i18n-placeholder="calculators.general.height" placeholder="Height (m)" step="0.01">
+            </div>
+        </div>
+
+        <div class="calculator-section">
+            <h3 data-i18n="calculators.general.patientInfo">Patient Information</h3>
+            <input type="text" id="gmPatientName" data-i18n-placeholder="calculators.general.patientName" placeholder="Patient Name">
+            <div class="form-grid">
+                <input type="number" id="gmPatientAge" data-i18n-placeholder="calculators.general.age" placeholder="Age">
+                <select id="gmPatientGender">
+                    <option value="male" data-i18n="calculators.general.male">Male</option>
+                    <option value="female" data-i18n="calculators.general.female">Female</option>
+                    <option value="other" data-i18n="calculators.general.other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="calculate-btn" onclick="calculateGeneral()">
+            <span data-i18n="calculators.general.calculate">Calculate</span>
+        </button>
+
+        <div id="generalResults" class="results-container" style="display: none;">
+            <h3 data-i18n="calculators.general.results">Results</h3>
+            <div id="generalResultsContent"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT - Initialize and Handle Events
+         ============================================================ -->
+    <script>
+        // Wait for i18n to be ready
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('✓ Medical Expert i18n initialized');
+
+            // Listen for language changes
+            window.addEventListener('languageChanged', (event) => {
+                console.log('Language changed:', event.detail);
+
+                // Update any dynamic content here
+                updateDynamicContent(event.detail.language, event.detail.isRTL);
+            });
+        });
+
+        function updateDynamicContent(language, isRTL) {
+            // Update specialty panel title when changed
+            const currentSpecialty = document.querySelector('.specialization-item.active');
+            if (currentSpecialty) {
+                const specialtyKey = currentSpecialty.getAttribute('data-specialty');
+                const title = document.querySelector('.chat-title span');
+                if (title && specialtyKey) {
+                    title.textContent = window.t(`specialties.${specialtyKey}`);
+                }
+            }
+
+            // Adjust layouts for RTL if needed
+            if (isRTL) {
+                console.log('RTL mode activated');
+                // Any additional RTL-specific JavaScript logic
+            } else {
+                console.log('LTR mode activated');
+            }
+        }
+
+        // Example: Using translations in JavaScript
+        function showSuccessMessage() {
+            alert(window.t('status.success'));
+        }
+
+        function showErrorMessage(error) {
+            alert(window.t('status.error') + ': ' + error);
+        }
+
+        // Example: Dynamic content translation
+        function addCalculatorResult(key, value, unit) {
+            const container = document.getElementById('generalResultsContent');
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+
+            const label = document.createElement('span');
+            label.textContent = window.t(key);
+
+            const valueSpan = document.createElement('span');
+            valueSpan.textContent = `${window.medicalI18n.formatNumber(value)} ${unit}`;
+
+            resultItem.appendChild(label);
+            resultItem.appendChild(valueSpan);
+            container.appendChild(resultItem);
+        }
+    </script>
+
+</body>
+</html>

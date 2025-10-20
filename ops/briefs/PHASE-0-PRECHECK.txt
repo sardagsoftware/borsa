@@ -1,0 +1,23 @@
+═══════════════════════════════════════════════════════════
+PHASE 0 — PRECHECK & CONTEXT
+═══════════════════════════════════════════════════════════
+Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+✅ TOOLS VERIFIED:
+   - az (Azure CLI)
+   - curl, jq, dig
+
+✅ AZURE LOGIN:
+   Subscription: 931c7633-e61e-4a37-8798-fe1f6f20580e
+   Name: Azure aboneliği 1
+   State: Enabled
+
+✅ WORKSPACE:
+   ~/Desktop/ailydian-ultra-pro/ops
+
+⚠️  ENV TOKENS:
+   VERCEL_TOKEN: Will check...
+   AZ_SUBSCRIPTION: Set to active subscription
+
+STATUS: READY FOR PHASE 1
+═══════════════════════════════════════════════════════════

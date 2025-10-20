@@ -1,0 +1,22 @@
+# Ailydian Messaging - Robots.txt
+# E2EE Secure Messaging Platform
+
+# Allow search engines on public pages only
+User-agent: *
+Allow: /
+Disallow: /chat-test
+Disallow: /crypto-test
+Disallow: /delivery-test
+Disallow: /files-test
+Disallow: /video-test
+Disallow: /location-test
+Disallow: /billing-test
+Disallow: /dashboard-test
+Disallow: /api/
+Disallow: /auth/
+
+# Sitemap
+Sitemap: https://messaging.ailydian.com/sitemap.xml
+
+# Crawl delay (be nice to server)
+Crawl-delay: 10

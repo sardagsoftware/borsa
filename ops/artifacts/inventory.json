@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "generated_at": "2025-10-08T19:06:00Z",
+    "scan_type": "automated_discovery",
+    "total_source_files": 898,
+    "orchestrator": "Claude SRE Agent"
+  },
+  "project": {
+    "name": "ailydian-ultra-pro",
+    "version": "1.0.0",
+    "package_manager": "pnpm@9.15.9",
+    "repository": "https://github.com/sardagsoftware/borsa.git",
+    "license": "ISC"
+  },
+  "architecture": {
+    "runtime": "Node.js",
+    "framework": "Express.js 5.1.0",
+    "deployment": "Vercel Serverless Functions",
+    "port": 3100,
+    "protocol": "HTTP/2"
+  },
+  "infrastructure": {
+    "cloud_provider": "Azure + Vercel",
+    "regions": ["westeurope", "northeurope"],
+    "cdn": "Vercel Edge Network",
+    "database": {
+      "primary": "PostgreSQL (Supabase)",
+      "cache": "Redis (Upstash)",
+      "vector": "Neo4j + Weaviate",
+      "orm": "Prisma 6.16.3"
+    },
+    "storage": "Azure Blob Storage",
+    "secrets": "Azure Key Vault"
+  },
+  "domains": {
+    "production": [
+      "www.ailydian.com",
+      "blockchain.ailydian.com",
+      "travel.ailydian.com",
+      "borsa.ailydian.com",
+      "earth.newsai",
+      "video.ailydian.com",
+      "medical.ailydian.com",
+      "hukuk.ailydian.com",
+      "smartcity.ailydian.com",
+      "lydianiq.ailydian.com"
+    ],
+    "vercel_deployments": 10
+  },
+  "services": {
+    "ai_models": 23,
+    "expert_systems": 12,
+    "api_endpoints": 50,
+    "websocket_channels": 4,
+    "translation_languages": 130
+  },
+  "directories": {
+    "api": {
+      "path": "./api",
+      "description": "Serverless API endpoints",
+      "submodules": [
+        "admin", "ai-assistant", "analytics", "auth", "billing",
+        "chat", "cultural-advisor", "decision", "email", "enterprise",
+        "files", "health", "hospital", "image", "knowledge",
+        "lydian-iq", "medical", "models", "payment", "search",
+        "settings", "system", "translate", "users", "webhooks"
+      ]
+    },
+    "ai-brain": {
+      "path": "./ai-brain",
+      "description": "AI orchestration & expert systems",
+      "files": [
+        "autonomous-developer.js",
+        "continuous-learning.js",
+        "azure-google-zai-translation-system.js",
+        "global-seo-backlink-system.js",
+        "system-scanner-bot.js"
+      ]
+    },
+    "middleware": {
+      "path": "./middleware",
+      "description": "Security, auth, rate-limiting",
+      "files": [
+        "security.js", "rate-limiter.js", "csrf.js", "rbac.js",
+        "encryption.js", "audit-logger.js", "tpm-governor.ts",
+        "idempotency.ts", "gdpr-kvkk-compliance.js"
+      ]
+    },
+    "public": {
+      "path": "./public",
+      "description": "Static frontend files",
+      "files": [
+        "index.html", "chat.html", "lydian-iq.html",
+        "medical.html", "video-ai.html", "auth.html"
+      ]
+    },
+    "infra": {
+      "path": "./infra",
+      "description": "IaC, monitoring, load testing",
+      "subdirectories": [
+        "azure-functions",
+        "monitoring",
+        "load-testing"
+      ]
+    },
+    "database": {
+      "path": "./database",
+      "description": "Migrations, Redis cache, init scripts",
+      "files": [
+        "redis-cache-layer.js",
+        "init-db.js",
+        "migrations/001_add_role_column.js"
+      ]
+    },
+    "security": {
+      "path": "./security",
+      "description": "Security configs, CORS, rate-limiter",
+      "files": [
+        "cors-config.js",
+        "payment-validator.js",
+        "rate-limiter.js"
+      ]
+    }
+  },
+  "dependencies": {
+    "azure_services": [
+      "@azure/identity",
+      "@azure/keyvault-secrets",
+      "@azure/openai",
+      "@azure/storage-blob",
+      "@azure/cosmos",
+      "@azure/monitor-opentelemetry-exporter",
+      "@azure/arm-*"
+    ],
+    "ai_providers": [
+      "@anthropic-ai/sdk",
+      "openai",
+      "google-auth-library"
+    ],
+    "observability": [
+      "applicationinsights",
+      "@opentelemetry/api",
+      "@opentelemetry/sdk-trace-node",
+      "winston"
+    ],
+    "security": [
+      "helmet",
+      "csurf",
+      "bcrypt",
+      "jsonwebtoken",
+      "passport",
+      "validator",
+      "dompurify"
+    ],
+    "database_orm": [
+      "@prisma/client",
+      "pg",
+      "ioredis",
+      "neo4j-driver",
+      "weaviate-client",
+      "@supabase/supabase-js"
+    ],
+    "api_framework": [
+      "express",
+      "cors",
+      "body-parser",
+      "express-rate-limit",
+      "express-session",
+      "apollo-server-express",
+      "graphql"
+    ]
+  },
+  "security": {
+    "authentication": ["JWT", "OAuth2", "API Keys", "HMAC"],
+    "authorization": "RBAC",
+    "encryption": "AES-256-GCM",
+    "compliance": ["HIPAA", "GDPR", "KVKV", "SOC2"],
+    "rate_limiting": "Token bucket + Redis",
+    "csrf_protection": "Active",
+    "cors": "Whitelist-based",
+    "security_headers": ["HSTS", "CSP", "X-Frame-Options", "XSS-Protection"]
+  },
+  "features": {
+    "chat": true,
+    "translation": true,
+    "multimodal": true,
+    "i18n": true,
+    "websocket": true,
+    "graphql": true,
+    "token_governor": true,
+    "hipaa_audit": true,
+    "redis_cache": true,
+    "rag": true,
+    "vector_search": true
+  },
+  "testing": {
+    "e2e": "Playwright 1.55.1",
+    "load": "k6 (infra/load-testing)",
+    "unit": "Not configured",
+    "smoke": "Built-in (/api/smoke-test)"
+  },
+  "ci_cd": {
+    "platform": "GitHub Actions",
+    "workflows": ".github/workflows",
+    "deployment": "Vercel CLI"
+  },
+  "monitoring": {
+    "apm": "Application Insights",
+    "logs": "Winston + Azure Log Analytics",
+    "tracing": "OpenTelemetry",
+    "dashboards": "infra/monitoring/azure-dashboard.json"
+  },
+  "risks": {
+    "jwt_secret_weak": "CRITICAL - Common words detected",
+    "system_scanner_errors": "MEDIUM - Bot errors in production",
+    "multiple_processes": "LOW - Duplicate server processes",
+    "missing_pentest_consent": "INFO - Passive DAST only"
+  },
+  "recommendations": [
+    "Strengthen JWT_SECRET (min 32 chars, random)",
+    "Fix SystemScannerBot.checkSystemHealth function",
+    "Implement process manager (PM2)",
+    "Obtain pentest consent for active DAST",
+    "Add unit tests",
+    "Configure Azure AFD + WAF",
+    "Implement APIM for API management",
+    "Add DB migration rollback scripts"
+  ]
+}

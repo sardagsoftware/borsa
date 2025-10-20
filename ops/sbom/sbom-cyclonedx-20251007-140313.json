@@ -1,0 +1,14 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2025-10-07T11:03:14Z",
+    "component": {
+      "type": "application",
+      "name": "ailydian-ultra-pro",
+      "version": "1.0.0"
+    }
+  },
+  "components": []
+}

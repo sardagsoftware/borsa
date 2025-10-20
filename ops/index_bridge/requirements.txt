@@ -1,0 +1,19 @@
+# LyDian AI - Index Bridge Requirements
+# Python 3.8+
+
+# HTTP requests
+requests>=2.31.0
+
+# Google Authentication
+google-auth>=2.23.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.1
+
+# JSON processing (built-in, no install needed)
+# json
+
+# Date/time handling (built-in)
+# datetime
+
+# Path handling (built-in)
+# pathlib

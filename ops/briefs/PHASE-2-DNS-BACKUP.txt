@@ -1,0 +1,18 @@
+═══════════════════════════════════════════════════════════
+PHASE 2 — DNS BACKUP (Vercel API)
+═══════════════════════════════════════════════════════════
+Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+✅ DNS RECORDS BACKED UP:
+   - ailydian.com → ops/preflight-dns-ailydian.json
+   - newsai.earth → ops/preflight-dns-newsai.json
+
+🔐 TOKEN STATUS:
+   VERCEL_TOKEN: JfJA...CSbp (masked)
+
+📋 BACKUP SUMMARY:
+   Both apex domains backed up successfully
+   Records can be restored via Vercel API if rollback needed
+
+🎯 NEXT: PHASE 3 - Custom Domain Validation (TXT _dnsauth)
+═══════════════════════════════════════════════════════════

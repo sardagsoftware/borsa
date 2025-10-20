@@ -1,0 +1,33 @@
+{
+  "id": "getir",
+  "name": "Getir",
+  "vendor": "Getir",
+  "version": "1.0.0",
+  "mode": "partner_required",
+  "status": "disabled",
+  "tosUrl": "https://getir.com/terms",
+  "privacyUrl": "https://getir.com/privacy",
+  "documentation": "https://partner.getir.com/docs",
+  "supportEmail": "partner-support@getir.com",
+  "webhookUrl": "/webhooks/getir",
+  "auth": {
+    "strategy": "api_key",
+    "headerName": "Authorization"
+  },
+  "defaultRateLimit": {
+    "maxRequests": 5,
+    "windowMs": 1000,
+    "burstSize": 10,
+    "strategy": "token_bucket"
+  },
+  "legalGate": {
+    "requiresPartnerApproval": true,
+    "approvalProcess": "Apply at https://partner.getir.com",
+    "complianceNotes": [
+      "Partner API access only",
+      "No scraping or reverse engineering",
+      "KVKK compliant data handling",
+      "Restaurant consent required for menu sync"
+    ]
+  }
+}

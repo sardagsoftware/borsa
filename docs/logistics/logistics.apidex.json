@@ -1,0 +1,344 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-10-09T22:00:00Z",
+  "metadata": {
+    "total_vendors": 6,
+    "country": "TR",
+    "vertical": "logistics",
+    "public_api_count": 2,
+    "partner_required_count": 4,
+    "compliance": ["KVKK", "GDPR", "BTK"],
+    "retention_days": 7,
+    "data_sensitivity": "high",
+    "pii_fields": ["name", "phone", "address"],
+    "purpose_tag": "shipment"
+  },
+  "vendors": [
+    {
+      "vendor": "aras",
+      "name": "Aras Kargo",
+      "country": "TR",
+      "vertical": "logistics",
+      "status": "partner_required",
+      "signup_url": "https://www.araskargo.com.tr/kurumsal/musteri-hizmetleri",
+      "docs_url": "https://api.araskargo.com.tr/docs",
+      "postman_url": "",
+      "auth": "api_key",
+      "api_endpoints": {
+        "base_url": "https://api.araskargo.com.tr/v1",
+        "create_shipment": "/shipments",
+        "get_tracking": "/tracking/{trackingNo}",
+        "cancel_shipment": "/shipments/{trackingNo}/cancel",
+        "get_label": "/shipments/{trackingNo}/label"
+      },
+      "rate_limit": {
+        "requests_per_second": 5,
+        "burst_size": 10
+      },
+      "features": {
+        "domestic": true,
+        "international": false,
+        "cod": true,
+        "insurance": true,
+        "label_formats": ["PDF", "ZPL"],
+        "webhook_support": true
+      },
+      "notes": "Turkey's largest cargo company. Partner API requires business agreement. API Key authentication. KVKK compliant.",
+      "legal": {
+        "tos_url": "https://www.araskargo.com.tr/sozlesme",
+        "privacy_url": "https://www.araskargo.com.tr/kvkk",
+        "data_residency": "TR",
+        "gdpr_compliant": true,
+        "kvkk_compliant": true
+      },
+      "pricing": {
+        "model": "weight_based",
+        "currency": "TRY",
+        "zones": ["domestic"]
+      }
+    },
+    {
+      "vendor": "yurtici",
+      "name": "Yurtiçi Kargo",
+      "country": "TR",
+      "vertical": "logistics",
+      "status": "partner_required",
+      "signup_url": "https://www.yurticikargo.com/kurumsal/entegrasyon",
+      "docs_url": "https://developer.yurticikargo.com",
+      "postman_url": "",
+      "auth": "oauth2",
+      "api_endpoints": {
+        "base_url": "https://api.yurticikargo.com/v2",
+        "oauth_token": "/oauth/token",
+        "create_shipment": "/shipments",
+        "get_tracking": "/tracking/{trackingNo}",
+        "cancel_shipment": "/shipments/{trackingNo}/cancel",
+        "get_label": "/shipments/{trackingNo}/label"
+      },
+      "rate_limit": {
+        "requests_per_second": 5,
+        "burst_size": 10
+      },
+      "features": {
+        "domestic": true,
+        "international": true,
+        "cod": true,
+        "insurance": true,
+        "label_formats": ["PDF", "ZPL"],
+        "webhook_support": true
+      },
+      "notes": "Major Turkish logistics provider. OAuth 2.0 client credentials flow. Webhook callbacks for status updates.",
+      "legal": {
+        "tos_url": "https://www.yurticikargo.com/sozlesme",
+        "privacy_url": "https://www.yurticikargo.com/kvkk",
+        "data_residency": "TR",
+        "gdpr_compliant": true,
+        "kvkk_compliant": true
+      },
+      "pricing": {
+        "model": "weight_distance",
+        "currency": "TRY",
+        "zones": ["domestic", "international"]
+      }
+    },
+    {
+      "vendor": "ups",
+      "name": "UPS Turkey",
+      "country": "TR",
+      "vertical": "logistics",
+      "status": "public_api",
+      "signup_url": "https://www.ups.com/upsdeveloperkit",
+      "docs_url": "https://developer.ups.com/",
+      "postman_url": "https://www.postman.com/ups-api",
+      "auth": "oauth2",
+      "api_endpoints": {
+        "base_url": "https://onlinetools.ups.com/api",
+        "oauth_token": "/oauth/token",
+        "create_shipment": "/shipments/v1/ship",
+        "get_tracking": "/track/v1/details/{trackingNo}",
+        "cancel_shipment": "/shipments/v1/void",
+        "get_label": "/shipments/v1/label"
+      },
+      "rate_limit": {
+        "requests_per_second": 10,
+        "burst_size": 20
+      },
+      "features": {
+        "domestic": true,
+        "international": true,
+        "cod": false,
+        "insurance": true,
+        "label_formats": ["PDF", "ZPL", "GIF"],
+        "webhook_support": false
+      },
+      "notes": "Global logistics provider. Public developer portal with sandbox. OAuth 2.0. Export control compliance required for international shipments.",
+      "legal": {
+        "tos_url": "https://www.ups.com/us/en/support/shipping-support/terms-conditions.page",
+        "privacy_url": "https://www.ups.com/us/en/help-center/legal-terms-conditions/privacy-notice.page",
+        "data_residency": "global",
+        "gdpr_compliant": true,
+        "kvkk_compliant": true,
+        "export_control": true
+      },
+      "pricing": {
+        "model": "zone_weight",
+        "currency": "USD",
+        "zones": ["domestic", "international", "express"]
+      }
+    },
+    {
+      "vendor": "hepsijet",
+      "name": "Hepsijet",
+      "country": "TR",
+      "vertical": "logistics",
+      "status": "partner_required",
+      "signup_url": "https://hepsijet.com/kurumsal",
+      "docs_url": "https://api.hepsijet.com/docs",
+      "postman_url": "",
+      "auth": "api_key",
+      "api_endpoints": {
+        "base_url": "https://api.hepsijet.com/v1",
+        "create_shipment": "/shipments",
+        "get_tracking": "/tracking/{trackingNo}",
+        "cancel_shipment": "/shipments/{trackingNo}/cancel",
+        "get_label": "/shipments/{trackingNo}/label"
+      },
+      "rate_limit": {
+        "requests_per_second": 5,
+        "burst_size": 10
+      },
+      "features": {
+        "domestic": true,
+        "international": false,
+        "cod": true,
+        "insurance": true,
+        "label_formats": ["PDF"],
+        "webhook_support": true
+      },
+      "notes": "Hepsiburada logistics arm. Partner API for Hepsiburada sellers. Fast same-day delivery in major cities.",
+      "legal": {
+        "tos_url": "https://hepsijet.com/sozlesme",
+        "privacy_url": "https://hepsijet.com/kvkk",
+        "data_residency": "TR",
+        "gdpr_compliant": true,
+        "kvkk_compliant": true
+      },
+      "pricing": {
+        "model": "flat_rate",
+        "currency": "TRY",
+        "zones": ["domestic"]
+      }
+    },
+    {
+      "vendor": "mng",
+      "name": "MNG Kargo",
+      "country": "TR",
+      "vertical": "logistics",
+      "status": "partner_required",
+      "signup_url": "https://www.mngkargo.com.tr/kurumsal/entegrasyon",
+      "docs_url": "https://api.mngkargo.com.tr/docs",
+      "postman_url": "",
+      "auth": "api_key",
+      "api_endpoints": {
+        "base_url": "https://api.mngkargo.com.tr/v1",
+        "create_shipment": "/shipments",
+        "get_tracking": "/tracking/{trackingNo}",
+        "cancel_shipment": "/shipments/{trackingNo}/cancel",
+        "get_label": "/shipments/{trackingNo}/label"
+      },
+      "rate_limit": {
+        "requests_per_second": 5,
+        "burst_size": 10
+      },
+      "features": {
+        "domestic": true,
+        "international": true,
+        "cod": true,
+        "insurance": true,
+        "label_formats": ["PDF", "ZPL"],
+        "webhook_support": true
+      },
+      "notes": "Major Turkish cargo company. API Key authentication. Webhook support for real-time status updates. International shipping available.",
+      "legal": {
+        "tos_url": "https://www.mngkargo.com.tr/sozlesme",
+        "privacy_url": "https://www.mngkargo.com.tr/kvkk",
+        "data_residency": "TR",
+        "gdpr_compliant": true,
+        "kvkk_compliant": true
+      },
+      "pricing": {
+        "model": "weight_distance",
+        "currency": "TRY",
+        "zones": ["domestic", "international"]
+      }
+    },
+    {
+      "vendor": "surat",
+      "name": "Sürat Kargo",
+      "country": "TR",
+      "vertical": "logistics",
+      "status": "partner_required",
+      "signup_url": "https://www.suratkargo.com.tr/kurumsal/entegrasyon",
+      "docs_url": "https://api.suratkargo.com.tr/docs",
+      "postman_url": "",
+      "auth": "api_key",
+      "api_endpoints": {
+        "base_url": "https://api.suratkargo.com.tr/v1",
+        "create_shipment": "/shipments",
+        "get_tracking": "/tracking/{trackingNo}",
+        "cancel_shipment": "/shipments/{trackingNo}/cancel",
+        "get_label": "/shipments/{trackingNo}/label"
+      },
+      "rate_limit": {
+        "requests_per_second": 5,
+        "burst_size": 10
+      },
+      "features": {
+        "domestic": true,
+        "international": false,
+        "cod": true,
+        "insurance": true,
+        "label_formats": ["PDF"],
+        "webhook_support": false
+      },
+      "notes": "Turkish logistics provider. Partner API requires business agreement. Domestic shipping focus. API Key authentication.",
+      "legal": {
+        "tos_url": "https://www.suratkargo.com.tr/sozlesme",
+        "privacy_url": "https://www.suratkargo.com.tr/kvkk",
+        "data_residency": "TR",
+        "gdpr_compliant": true,
+        "kvkk_compliant": true
+      },
+      "pricing": {
+        "model": "weight_based",
+        "currency": "TRY",
+        "zones": ["domestic"]
+      }
+    }
+  ],
+  "unified_schema": {
+    "description": "Unified logistics schema for all vendors",
+    "shipment_statuses": [
+      "created",
+      "label_ready",
+      "picked_up",
+      "in_transit",
+      "out_for_delivery",
+      "delivered",
+      "exception",
+      "canceled"
+    ],
+    "required_fields": {
+      "create_shipment": ["orderId", "vendor", "to", "from", "dims"],
+      "to_address": ["name", "phone", "line1", "city", "zip", "country"],
+      "from_address": ["name", "phone", "line1", "city", "zip", "country"],
+      "dims": ["length_cm", "width_cm", "height_cm", "weight_kg"]
+    },
+    "optional_fields": {
+      "shipment": ["insurance_value", "cod_amount", "delivery_notes", "reference_no"],
+      "address": ["line2", "state", "company"]
+    }
+  },
+  "security": {
+    "webhook_signature": "HMAC-SHA256",
+    "replay_window_seconds": 300,
+    "ip_allowlist_required": false,
+    "tls_version": "1.3",
+    "pii_fields": ["name", "phone", "address"],
+    "pii_retention_days": 7,
+    "pii_purpose_tag": "shipment"
+  },
+  "compliance": {
+    "kvkk": {
+      "enabled": true,
+      "purpose_limitation": "shipment_only",
+      "data_minimization": true,
+      "retention_period_days": 7,
+      "redaction_cron": "daily"
+    },
+    "gdpr": {
+      "enabled": true,
+      "lawful_basis": "contract",
+      "data_subject_rights": ["access", "rectification", "erasure", "portability"]
+    },
+    "export_control": {
+      "enabled": true,
+      "sanctioned_countries": ["RU", "BY", "IR", "KP", "SY"],
+      "compliance_check": "pre_shipment"
+    }
+  },
+  "observability": {
+    "metrics": [
+      "shipment_latency_ms",
+      "shipment_success_ratio",
+      "carrier_error_ratio",
+      "label_generation_latency_ms",
+      "tracking_update_latency_ms"
+    ],
+    "slo": {
+      "create_shipment_p95_ms": 2000,
+      "get_tracking_p95_ms": 1000,
+      "error_budget_percent": 1
+    }
+  }
+}

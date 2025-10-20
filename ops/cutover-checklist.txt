@@ -1,0 +1,40 @@
+═══════════════════════════════════════════════════════════════
+FULL CUTOVER CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+AFD Endpoint: aly-fd-endpoint-demo.z01.azurefd.net
+
+CUTOVER STATUS:
+───────────────────────────────────────────────────────────────
+□ All 6 domains updated in DNS
+□ DNS propagation complete (5-10 minutes)
+□ All domains validated (dig, curl, headers)
+□ p95 latency < 200ms
+□ 5xx error rate < 1%
+□ Azure CDN headers present (x-azure-ref, server: Microsoft-Azure-CDN)
+
+BLUE-GREEN STRATEGY:
+───────────────────────────────────────────────────────────────
+✓ Blue backend (Vercel): KEEP HOT for 72 hours
+✓ Green frontend (AFD): 100% traffic
+✓ At T+72h: Schedule database contract migration
+✓ Monitor SLO metrics continuously
+
+MONITORING TARGETS:
+───────────────────────────────────────────────────────────────
+Target: p95 latency ≤ 120ms
+Threshold: p95 latency < 200ms
+Rollback trigger: p95 > 200ms for 5+ minutes
+
+Target: 5xx error rate < 0.5%
+Threshold: 5xx error rate < 1%
+Rollback trigger: 5xx > 1% for 5+ minutes
+
+ROLLBACK CAPABILITY:
+───────────────────────────────────────────────────────────────
+✓ DNS backups: preflight-dns-*.json
+✓ Rollback script: ./rollback.sh
+✓ Recovery time: < 5 minutes (TTL=300)
+✓ AFD cache purge: Included in rollback
+
+═══════════════════════════════════════════════════════════════

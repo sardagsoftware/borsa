@@ -1,0 +1,76 @@
+{
+  "$schema": "../experiment-schema.json",
+  "id": "abx-xp-curve-s1",
+  "name": "Season 1 XP Curve Optimization",
+  "version": "1.0.0",
+  "status": "active",
+  "start_date": "2025-10-20T00:00:00Z",
+  "end_date": "2025-11-03T00:00:00Z",
+  "duration_days": 14,
+  "hypothesis": "A slightly steeper XP curve (1.15x) will increase player engagement and session duration without causing frustration",
+  "metrics": {
+    "primary": "session_duration_minutes",
+    "secondary": [
+      "daily_active_users",
+      "trial_completion_rate",
+      "churn_rate_d7"
+    ]
+  },
+  "arms": [
+    {
+      "name": "control",
+      "description": "Current XP curve (1.12x scaling)",
+      "allocation": 0.50,
+      "parameters": {
+        "xp_scaling_factor": 1.12,
+        "base_xp_per_level": 1000
+      }
+    },
+    {
+      "name": "variant_a",
+      "description": "Increased XP curve (1.15x scaling)",
+      "allocation": 0.50,
+      "parameters": {
+        "xp_scaling_factor": 1.15,
+        "base_xp_per_level": 1000
+      }
+    }
+  ],
+  "allocation_strategy": {
+    "method": "random",
+    "seed": "xp-curve-s1-2025",
+    "stratification": [
+      "region",
+      "age_band"
+    ],
+    "exclusions": [
+      "new_players_less_than_1_hour",
+      "test_accounts"
+    ]
+  },
+  "statistics": {
+    "minimum_detectable_effect": 0.05,
+    "statistical_power": 0.80,
+    "alpha": 0.05,
+    "minimum_sample_size_per_arm": 1000
+  },
+  "ethics": {
+    "fair_distribution": true,
+    "no_harm": true,
+    "transparent": true,
+    "can_opt_out": false,
+    "note": "Experiment does not affect gameplay balance or fairness"
+  },
+  "compliance": {
+    "gdpr_compliant": true,
+    "data_retention_days": 180,
+    "pii_collected": false
+  },
+  "monitoring": {
+    "check_interval_hours": 6,
+    "early_stop_criteria": {
+      "significant_result": "p < 0.01",
+      "negative_impact": "churn_rate_increase > 0.10"
+    }
+  }
+}
