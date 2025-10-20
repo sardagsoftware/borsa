@@ -24,7 +24,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const express = require('express');
-const securityHeaders = require('./middleware/security-headers');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -33,42 +32,9 @@ const WebSocket = require('ws');
 const multer = require('multer');
 const sharp = require('sharp');
 const fs = require('fs').promises;
-const fsSync = require('fs'); // For sync operations (Swagger YAML loading)
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
 const { v4: uuidv4 } = require('uuid');
-
-// 🔍 SENTRY ERROR TRACKING - Production Monitoring (Beyaz Şapkalı)
-const {
-  initSentry,
-  requestHandler: sentryRequestHandler,
-  tracingHandler: sentryTracingHandler,
-  errorHandler: sentryErrorHandler,
-  captureException: sentryCaptureException
-} = require('./lib/monitoring/sentry');
-
-// 📚 SWAGGER/OPENAPI DOCUMENTATION (Interactive API Docs)
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yaml');
-
-// 📝 WINSTON LOGGER - Global Logging System (Beyaz Şapkalı)
-const logger = require('./lib/logger');
-
-// 🔒 SECURITY FIXES - PENETRATION TEST 2025-10-10
-const { corsOptions } = require('./security/cors-whitelist'); // CORS whitelist (fixes wildcard)
-const { sessionConfig } = require('./middleware/session-secure-config'); // Secure session flags
-const SecureErrorHandler = require('./lib/error-handler'); // Stack trace protection
-const { secureUpload, malwareScanMiddleware } = require('./middleware/file-upload-secure'); // File upload security
-
-// 🔒 AI MODEL OBFUSCATION - Trade Secret Protection
-const {
-  obfuscateResponseMiddleware,
-  removeAIHeadersMiddleware,
-  obfuscateConsoleOutput
-} = require('./middleware/ai-model-obfuscator');
-
-// Initialize console obfuscation for production
-obfuscateConsoleOutput();
 
 // 🚀 FIRILDAK AI ENGINE - MULTI-PROVIDER INTEGRATION
 const FirildakAIEngine = require('./ai-integrations/firildak-ai-engine');
@@ -85,12 +51,8 @@ const { hipaaAuditMiddleware, hipaaAuditErrorHandler } = require('./lib/middlewa
 
 // 🛡️ SECURITY MIDDLEWARE
 const { initializeSecurity } = require('./middleware/security');
-const { setupSessionManagement } = require('./middleware/session-manager');
 const { setupRateLimiting } = require('./middleware/rate-limit');
 const { initializeHTTPSSecurity } = require('./middleware/enforce-https');
-
-// 🔒 GLOBAL RATE LIMITING - Enhanced protection against brute force and DDoS
-const { apiLimiter, authLimiter, aiLimiter, uploadLimiter } = require('./middleware/rate-limit-global');
 
 // 🔐 ENTERPRISE SECURITY & COMPLIANCE - PHASE F
 const { authenticate, requireRole, requirePermission, securityHeaders: newSecurityHeaders } = require('./middleware/api-auth');
@@ -103,13 +65,7 @@ const { complianceHeaders, requireConsent, getComplianceManager } = require('./m
 const { setupFullSecurity, requireAdmin: strictRequireAdmin } = require('./security/security-integration');
 
 // 🔒 NIRVANA LEVEL SECURITY HEADERS
-const nirvanaSecurityHeaders = (req, res, next) => {
-  // Dynamic CSP based on environment
-  const isDev = process.env.NODE_ENV !== 'production';
-  const messagingDomain = isDev
-    ? 'http://localhost:3200 http://localhost:3000'
-    : 'https://messaging.ailydian.com https://www.ailydian.com https://ailydian.com';
-
+const securityHeaders = (req, res, next) => {
   res.setHeader('Content-Security-Policy',
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.jsdelivr.net https://unpkg.com https://d3js.org; " +
@@ -118,27 +74,20 @@ const nirvanaSecurityHeaders = (req, res, next) => {
     "img-src 'self' data: https: blob:; " +
     "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
     "connect-src 'self' https://vercel.live https://*.pusher.com https://*.ailydian.com https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://cdn.jsdelivr.net https://fonts.gstatic.com https://d3js.org; " +
-    `frame-src 'self' ${messagingDomain}; ` +
     "frame-ancestors 'self'; " +
     "base-uri 'self'; " +
     "form-action 'self'"
   );
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
-  // X-Frame-Options handled by Helmet (configured as DENY in middleware/security.js)
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-
-  // Dynamic Permissions-Policy
-  const permissionsDomain = isDev
-    ? '(self "http://localhost:3200")'
-    : '(self "https://messaging.ailydian.com")';
-  res.setHeader('Permissions-Policy', `camera=${permissionsDomain}, microphone=${permissionsDomain}, geolocation=${permissionsDomain}`);
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   next();
 };
 
-// 📁 MULTER FILE UPLOAD CONFIGURATION (Legacy - replaced by secureUpload)
-// 🔒 SECURITY: Use secureUpload from middleware/file-upload-secure.js instead
+// 📁 MULTER FILE UPLOAD CONFIGURATION
 const uploadStorage = multer.memoryStorage();
 const upload = multer({
   storage: uploadStorage,
@@ -169,28 +118,8 @@ const upload = multer({
 const app = express();
 const server = http.createServer(app);
 
-// 🔍 Initialize Sentry (must be early in the app lifecycle)
-initSentry(app);
-
 // 🚀 ADVANCED CACHING SYSTEM - ENTERPRISE GRADE
 const NodeCache = require('node-cache');
-
-// ⚡ PHASE 4: Redis Cache for Performance
-const { Redis } = require('@upstash/redis');
-let redisCache = null;
-if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-  redisCache = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    automaticDeserialization: true,
-  });
-  logger.info('✅ Redis Cache: Enabled', { provider: 'Upstash' });
-  console.log('✅ Redis Cache: Enabled (Upstash)'); // Keep for backwards compatibility
-} else {
-  logger.warn('⚠️  Redis Cache: Disabled', { reason: 'missing env variables: UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN' });
-  console.warn('⚠️  Redis Cache: Disabled (missing env variables)');
-  console.warn('   Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to enable');
-}
 
 // Cache instances with different TTL strategies
 const memoryCache = new NodeCache({
@@ -537,21 +466,14 @@ initializeHTTPSSecurity(app);
 // 2. Security Headers (Helmet, CSRF)
 initializeSecurity(app);
 
-// 2.5. Session Management (Redis-backed, secure cookies)
-setupSessionManagement(app);
-
 // 3. Rate Limiting (after security headers)
 setupRateLimiting(app);
 
 // 4. STRICT-OMEGA Security Integration (CRITICAL & MEDIUM vulnerability fixes)
 setupFullSecurity(app);
 
-// 🔍 SENTRY REQUEST TRACKING (Must be first for accurate error tracking)
-app.use(sentryRequestHandler());
-app.use(sentryTracingHandler());
-
-// 🔒 NIRVANA LEVEL SECURITY HEADERS
-app.use(nirvanaSecurityHeaders);
+// 🔒 NIRVANA LEVEL SECURITY HEADERS (First in chain)
+app.use(securityHeaders);
 
 // 🔐 PHASE F: ENTERPRISE SECURITY & COMPLIANCE LAYER
 // Order matters: DDoS → Audit → Auth → Rate Limit → Compliance
@@ -571,19 +493,6 @@ app.use(auditMiddleware({
   console: process.env.NODE_ENV !== 'production',
   signLogs: process.env.NODE_ENV === 'production'
 }));
-
-// 📝 WINSTON REQUEST LOGGING (Beyaz Şapkalı - Sanitized logging)
-app.use((req, res, next) => {
-  const startTime = Date.now();
-
-  // Capture response finish event
-  res.on('finish', () => {
-    const responseTime = Date.now() - startTime;
-    logger.logRequest(req, res.statusCode, responseTime);
-  });
-
-  next();
-});
 
 // 4. Middleware
 // CORS is now handled by setupFullSecurity() with strict whitelist
@@ -606,47 +515,8 @@ app.use(complianceHeaders);
 // 9. PII Masking in Logs
 app.use(maskPIIInLogs);
 
-// 🚀 CACHE HEADERS MIDDLEWARE - Performance Optimization (Phase J)
-// Implements intelligent caching strategy based on resource type
-const cacheControl = (req, res, next) => {
-  const path = req.path;
-
-  // Versioned static assets (immutable) - assets with ?v= query parameter
-  if (path.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)\?v=/)) {
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  }
-  // JavaScript & CSS files (1 hour, serve stale for 24 hours while revalidating)
-  else if (path.match(/\.(js|css)$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
-  }
-  // Images (1 day cache)
-  else if (path.match(/\.(png|jpg|jpeg|gif|svg|webp|avif|ico)$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-  }
-  // Fonts (1 year - fonts rarely change)
-  else if (path.match(/\.(woff|woff2|ttf|eot)$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  }
-  // HTML pages (always revalidate)
-  else if (path.match(/\.html?$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
-  }
-  // API endpoints (5 minutes, serve stale for 10 minutes while revalidating)
-  else if (path.startsWith('/api/')) {
-    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
-  }
-
-  next();
-};
-
-// 10. Cache Headers
-app.use(cacheControl);
-
-// 11. Static file serving
+// 10. Static file serving
 app.use(express.static('public'));
-
-// Security Headers Middleware
-app.use(nirvanaSecurityHeaders);
 
 // 🤖 FIRILDAK AI ENGINE INITIALIZATION
 const firildakAI = new FirildakAIEngine();
@@ -749,7 +619,6 @@ class ZAIDevPackIntegration {
 }`,
         api: `// Z.AI Generated API Integration
 const express = require('express');
-const securityHeaders = require('./middleware/security-headers');
 const router = express.Router();
 
 ${this.generateAPIEndpoints(prompt)}
@@ -2480,6 +2349,26 @@ app.get('/chat', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'chat.html'));
 });
 
+// 🧠 LYDIAN IQ ROUTE (Ultra Intelligence Platform)
+app.get('/lydian-iq', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'lydian-iq.html'));
+});
+
+// 🏥 MEDICAL EXPERT ROUTE
+app.get('/medical-expert', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'medical-expert.html'));
+});
+
+// ⚖️ LEGAL AI ROUTE (HukukAI Pro)
+app.get('/legal-expert', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'legal-expert.html'));
+});
+
+// 🔍 LEGAL SEARCH ROUTE
+app.get('/lydian-legal-search', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'lydian-legal-search.html'));
+});
+
 // 📊 DASHBOARD ROUTE
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
@@ -2724,68 +2613,16 @@ app.get('/api/docs', (req, res) => {
 });
 
 // AI Models API
-app.get('/api/models', async (req, res) => {
-  const cacheKey = 'api:models:all';
-  const cacheTTL = 300; // 5 minutes
-
-  try {
-    // Try Redis cache first
-    if (redisCache) {
-      const cached = await redisCache.get(cacheKey);
-      if (cached) {
-        res.setHeader('X-Cache', 'HIT');
-        res.setHeader('X-Cache-Key', cacheKey);
-        return res.json(cached);
-      }
-    }
-
-    // Cache MISS - generate response
-    const response = {
-      success: true,
-      models: aiModels,
-      count: aiModels.length,
-      available_count: aiModels.filter(m => m.available).length,
-      categories: [...new Set(aiModels.map(m => m.category))],
-      providers: [...new Set(aiModels.map(m => m.provider))]
-    };
-
-    // Store in Redis cache
-    if (redisCache) {
-      await redisCache.setex(cacheKey, cacheTTL, response);
-      res.setHeader('X-Cache', 'MISS');
-      res.setHeader('X-Cache-Key', cacheKey);
-    }
-
-    res.json(response);
-  } catch (error) {
-    console.error('[Cache Error]', error);
-    // Fallback to non-cached response on error
-    res.json({
-      success: true,
-      models: aiModels,
-      count: aiModels.length,
-      available_count: aiModels.filter(m => m.available).length,
-      categories: [...new Set(aiModels.map(m => m.category))],
-      providers: [...new Set(aiModels.map(m => m.provider))]
-    });
-  }
+app.get('/api/models', (req, res) => {
+  res.json({
+    success: true,
+    models: aiModels,
+    count: aiModels.length,
+    available_count: aiModels.filter(m => m.available).length,
+    categories: [...new Set(aiModels.map(m => m.category))],
+    providers: [...new Set(aiModels.map(m => m.provider))]
+  });
 });
-
-// 🔒 GENERAL API RATE LIMITING - Apply to all API endpoints (100 req/15min)
-app.use('/api', apiLimiter);
-
-// 🔒 AI ENDPOINT RATE LIMITING - Stricter for expensive AI operations (30 req/15min)
-// Note: Middleware applied to /api/chat automatically covers all sub-routes
-app.use('/api/chat', aiLimiter);
-app.use('/api/lydian-iq', aiLimiter);
-app.use('/api/medical', aiLimiter);
-app.use('/api/ai', aiLimiter);
-app.use('/api/stream', aiLimiter);
-
-// 🔒 FILE UPLOAD RATE LIMITING - Prevent abuse (10 uploads/hour)
-app.use('/api/upload', uploadLimiter);
-app.use('/api/rag/upload', uploadLimiter);
-app.use('/api/dicom/upload', uploadLimiter);
 
 // Chat API - Real AI Integration System
 app.post('/api/chat', async (req, res) => {
@@ -3771,171 +3608,20 @@ app.get('/api/models/:id', (req, res) => {
 });
 
 // Health Check
-app.get('/api/health', async (req, res) => {
-  const cacheKey = 'api:health:basic';
-  const cacheTTL = 10; // 10 seconds - short TTL for health checks
-
-  try {
-    // Try Redis cache first
-    if (redisCache) {
-      const cached = await redisCache.get(cacheKey);
-      if (cached) {
-        res.setHeader('X-Cache', 'HIT');
-        res.setHeader('X-Cache-Key', cacheKey);
-        return res.json(cached);
-      }
-    }
-
-    // Cache MISS - generate response
-    const response = {
-      status: 'healthy',
-      timestamp: new Date().toISOString(),
-      server: 'LyDian',
-      version: '2.0.0',
-      models_count: aiModels.length,
-      uptime: process.uptime()
-    };
-
-    // Store in Redis cache
-    if (redisCache) {
-      await redisCache.setex(cacheKey, cacheTTL, response);
-      res.setHeader('X-Cache', 'MISS');
-      res.setHeader('X-Cache-Key', cacheKey);
-    }
-
-    res.json(response);
-  } catch (error) {
-    console.error('[Cache Error]', error);
-    // Fallback to non-cached response
-    res.json({
-      status: 'healthy',
-      timestamp: new Date().toISOString(),
-      server: 'LyDian',
-      version: '2.0.0',
-      models_count: aiModels.length,
-      uptime: process.uptime()
-    });
-  }
-});
-
-// Detailed Health Check with subsystems
-const healthCheck = require('./api/health-check');
-app.get('/api/health/detailed', healthCheck.detailedHealthCheck);
-
-// 🚩 Feature Flags Endpoint - Canary Deployment Support
-app.get('/ops/canary/feature-flags.json', (req, res) => {
-  const fs = require('fs');
-  const path = require('path');
-  const flagsPath = path.join(__dirname, 'ops', 'canary', 'feature-flags.json');
-
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes cache
-
-  fs.readFile(flagsPath, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Failed to read feature-flags.json:', err);
-      return res.status(500).json({
-        error: 'Failed to load feature flags',
-        version: '1.0.0',
-        flags: {} // Empty fallback
-      });
-    }
-
-    try {
-      // Validate JSON before sending
-      const parsed = JSON.parse(data);
-      res.json(parsed);
-    } catch (parseErr) {
-      console.error('Invalid feature-flags.json:', parseErr);
-      res.status(500).json({
-        error: 'Invalid feature flags format',
-        version: '1.0.0',
-        flags: {}
-      });
-    }
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    server: 'LyDian',
+    version: '2.0.0',
+    models_count: aiModels.length,
+    uptime: process.uptime()
   });
-});
-
-// 📊 Feature Flags Monitoring Endpoint
-app.post('/api/monitoring/feature-flags', (req, res) => {
-  // Accept monitoring data from feature flags system
-  // Validate req.body exists
-  if (!req.body || typeof req.body !== 'object') {
-    return res.status(400).json({
-      error: 'Invalid request body',
-      code: 'INVALID_BODY'
-    });
-  }
-
-  const { flag, value, reason, userBucket, timestamp } = req.body;
-
-  // Validate required fields
-  if (!flag) {
-    return res.status(400).json({
-      error: 'Missing required field: flag',
-      code: 'MISSING_FIELD'
-    });
-  }
-
-  // Log for analytics (in production, send to monitoring service)
-  console.log('🚩 Feature Flag Evaluation:', {
-    flag,
-    value,
-    reason,
-    userBucket,
-    timestamp: timestamp ? new Date(timestamp).toISOString() : new Date().toISOString()
-  });
-
-  // Respond with 204 No Content (fire-and-forget)
-  res.status(204).end();
 });
 
 // 🔵 Azure Metrics API - Real Azure Data Integration
 const azureMetrics = require('./api/azure-metrics');
 app.get('/api/azure/metrics', azureMetrics.handleMetricsRequest);
-
-// 🔌 Connectors API - E-commerce, Delivery, Logistics (ChatGPT-style tool calling)
-const connectorsAPI = require('./api/connectors/execute');
-app.get('/api/connectors/list', connectorsAPI.listConnectors);
-app.post('/api/connectors/execute', connectorsAPI.executeAction);
-
-// 🎯 Intent-First Natural Language API Endpoints
-// Finance - Loan Comparison
-const loanAPI = require('./api/finance/loan/compare');
-app.post('/api/finance/loan/compare', loanAPI.compareLoan);
-
-// Travel - Hotel/Flight Search
-const travelAPI = require('./api/travel/search');
-app.post('/api/travel/search', travelAPI.searchTrip);
-
-// Economy - Price Optimization
-const economyAPI = require('./api/economy/optimize');
-app.post('/api/economy/optimize', economyAPI.optimizePrice);
-
-// Insights - Price Trend Analysis
-const insightsAPI = require('./api/insights/price-trend');
-app.get('/api/insights/price-trend', insightsAPI.getPriceTrend);
-
-// ESG - Carbon Footprint Calculation
-const esgAPI = require('./api/esg/calculate-carbon');
-app.post('/api/esg/calculate-carbon', esgAPI.calculateCarbon);
-
-// UI Telemetry - Track intent parsing & action execution
-const telemetryAPI = require('./api/ui-telemetry');
-app.post('/api/ui-telemetry', telemetryAPI.recordTelemetry);
-app.get('/api/telemetry/stats', telemetryAPI.getTelemetryStats);
-
-// Metrics - Token counting, latency measurement, and cost calculation
-const metricsAPI = require('./api/metrics/measure');
-app.post('/api/metrics/measure', metricsAPI.measureMetrics);
-app.get('/api/metrics/summary', metricsAPI.getUsageSummary);
-app.get('/api/metrics/daily', metricsAPI.getDailyMetrics);
-
-// Feature Flags - Control feature availability
-const featureFlagsAPI = require('./api/monitoring/feature-flags');
-app.get('/api/monitoring/feature-flags', featureFlagsAPI.getFeatureFlags);
-app.get('/api/monitoring/feature-flags/:featureKey', featureFlagsAPI.checkFeature);
-app.put('/api/monitoring/feature-flags/:featureKey', featureFlagsAPI.updateFeatureFlag);
 
 // Google Veo Video Generation API
 app.post('/api/video/generate', async (req, res) => {
@@ -4179,49 +3865,7 @@ app.post('/api/search', (req, res) => {
 });
 
 // 📤 COMPREHENSIVE FILE UPLOAD & PROCESSING API
-// 🔒 SECURITY: Using secureUpload with malware scanning
-app.post('/api/upload',
-  (req, res, next) => {
-    secureUpload.single('file')(req, res, (err) => {
-      if (err) {
-        // Handle multer errors
-        if (err.code === 'LIMIT_FILE_SIZE') {
-          return res.status(413).json({
-            success: false,
-            error: 'File too large',
-            message: 'Maximum file size is 20MB',
-            code: 'FILE_TOO_LARGE'
-          });
-        }
-        if (err.code === 'LIMIT_FILE_COUNT') {
-          return res.status(400).json({
-            success: false,
-            error: 'Too many files',
-            message: 'Maximum 10 files allowed',
-            code: 'TOO_MANY_FILES'
-          });
-        }
-        if (err.code === 'LIMIT_UNEXPECTED_FILE') {
-          return res.status(400).json({
-            success: false,
-            error: 'Unexpected field',
-            message: err.message,
-            code: 'UNEXPECTED_FIELD'
-          });
-        }
-        // Other multer/validation errors
-        return res.status(400).json({
-          success: false,
-          error: 'File upload failed',
-          message: err.message,
-          code: 'UPLOAD_ERROR'
-        });
-      }
-      next();
-    });
-  },
-  malwareScanMiddleware,
-  async (req, res) => {
+app.post('/api/upload', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -4274,8 +3918,7 @@ app.post('/api/upload',
 });
 
 // 🎤 VOICE INPUT & SPEECH-TO-TEXT API
-// 🔒 SECURITY: Using secureUpload with malware scanning
-app.post('/api/voice/speech-to-text', secureUpload.single('audio'), malwareScanMiddleware, async (req, res) => {
+app.post('/api/voice/speech-to-text', upload.single('audio'), async (req, res) => {
   try {
     const { language = 'tr-TR', continuous = false } = req.body;
 
@@ -4547,7 +4190,7 @@ app.post('/api/image/generate', async (req, res) => {
   }
 });
 
-// 🌍 ENHANCED TRANSLATION API (with caching)
+// 🌍 ENHANCED TRANSLATION API
 app.post('/api/translate', async (req, res) => {
   try {
     const { text, from = 'auto', to = 'en', format = 'text' } = req.body;
@@ -4557,26 +4200,6 @@ app.post('/api/translate', async (req, res) => {
         success: false,
         error: 'Text to translate is required'
       });
-    }
-
-    // Generate cache key from text hash + language pair
-    const crypto = require('crypto');
-    const textHash = crypto.createHash('md5').update(text).digest('hex').substring(0, 16);
-    const cacheKey = `api:translate:${from}:${to}:${textHash}`;
-    const cacheTTL = 3600; // 1 hour - translations don't change
-
-    // Try Redis cache first
-    if (redisCache) {
-      try {
-        const cached = await redisCache.get(cacheKey);
-        if (cached) {
-          res.setHeader('X-Cache', 'HIT');
-          res.setHeader('X-Cache-Key', cacheKey);
-          return res.json(cached);
-        }
-      } catch (cacheError) {
-        console.error('[Cache Error]', cacheError);
-      }
     }
 
     console.log(`🌍 Translating from ${from} to ${to}: ${text.substring(0, 50)}...`);
@@ -4629,7 +4252,7 @@ app.post('/api/translate', async (req, res) => {
       confidence = 0.95;
     }
 
-    const response = {
+    res.json({
       success: true,
       data: {
         original: text,
@@ -4647,20 +4270,7 @@ app.post('/api/translate', async (req, res) => {
         characterCount: text.length
       },
       timestamp: new Date().toISOString()
-    };
-
-    // Store in Redis cache
-    if (redisCache) {
-      try {
-        await redisCache.setex(cacheKey, cacheTTL, response);
-        res.setHeader('X-Cache', 'MISS');
-        res.setHeader('X-Cache-Key', cacheKey);
-      } catch (cacheError) {
-        console.error('[Cache Error]', cacheError);
-      }
-    }
-
-    res.json(response);
+    });
 
   } catch (error) {
     console.error('Translation error:', error);
@@ -5234,10 +4844,6 @@ const webSearch = require('./api/web-search');
 app.get('/api/web-search', webSearch.handleSearch);
 app.post('/api/web-search/clear-cache', webSearch.clearCache);
 app.get('/api/web-search/stats', webSearch.getCacheStats);
-
-// Perplexity Search API - Azure OpenAI Web Search Integration
-const perplexitySearch = require('./api/perplexity-search');
-app.post('/api/perplexity-search', perplexitySearch);
 
 // RAG API - Retrieval-Augmented Generation
 const rag = require('./api/rag');
@@ -7499,9 +7105,8 @@ app.post('/api/medical/chat', medicalChat);
 
 const speechTranscription = require('./api/medical/speech-transcription');
 
-// Speech Transcription API - POST /api/medical/transcribe (with secure upload)
-// 🔒 SECURITY: Using secureUpload with malware scanning
-app.post('/api/medical/transcribe', secureUpload.single('audio'), malwareScanMiddleware, speechTranscription.handleTranscription);
+// Speech Transcription API - POST /api/medical/transcribe (with multer audio upload)
+app.post('/api/medical/transcribe', upload.single('audio'), speechTranscription.handleTranscription);
 
 // Get Supported Languages - GET /api/medical/speech/languages
 app.get('/api/medical/speech/languages', speechTranscription.getSupportedLanguages);
@@ -7540,8 +7145,7 @@ app.get('/api/fhir/metadata', fhirApi.getMetadata);
 const dicomApi = require('./api/medical/dicom-api');
 
 // DICOM Upload (STOW-RS)
-// 🔒 SECURITY: Using secureUpload with malware scanning
-app.post('/api/dicom/upload', secureUpload.single('dicom'), malwareScanMiddleware, dicomApi.uploadDicom);
+app.post('/api/dicom/upload', upload.single('dicom'), dicomApi.uploadDicom);
 
 // DICOM Search (QIDO-RS)
 app.get('/api/dicom/studies', dicomApi.searchStudies);
@@ -7635,22 +7239,6 @@ app.post('/api/medical/oncology/tumor-markers', oncologyTools.handleTumorMarker)
 
 const PORT = process.env.PORT || 3100;
 
-// 📚 SWAGGER UI - INTERACTIVE API DOCUMENTATION (Beyaz Şapkalı - Public APIs only)
-try {
-  const openApiSpec = YAML.parse(fsSync.readFileSync(path.join(__dirname, 'docs', 'openapi.yaml'), 'utf8'));
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec, {
-    customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: "AiLydian API Docs",
-    customfavIcon: "/lydian-logo.png"
-  }));
-  console.log('✅ Swagger UI available at /api-docs');
-} catch (error) {
-  console.warn('⚠️  Swagger UI failed to load:', error.message);
-}
-
-// 🔍 SENTRY ERROR HANDLER (Must be last middleware, before server.listen)
-app.use(sentryErrorHandler());
-
 // Only start server if not in cluster master mode
 if (shouldStartServer) {
   server.listen(PORT, async () => {
@@ -7666,50 +7254,22 @@ if (shouldStartServer) {
   console.log(`📊 Memory Usage: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
-  // 📝 WINSTON STRUCTURED LOGGING (Beyaz Şapkalı)
-  logger.info('🚀 AiLydian Ultra Pro Server Started', {
-    port: PORT,
-    environment: process.env.NODE_ENV || 'development',
-    urls: {
-      local: `http://localhost:${PORT}`,
-      network: `http://127.0.0.1:${PORT}`,
-      websocket: `ws://localhost:${PORT}`
-    },
-    aiModels: {
-      total: aiModels.length,
-      categories: [...new Set(aiModels.map(m => m.category))].length,
-      providers: [...new Set(aiModels.map(m => m.provider))].length
-    },
-    memory: {
-      heapUsed: `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)} MB`,
-      heapTotal: `${Math.round(process.memoryUsage().heapTotal / 1024 / 1024)} MB`
-    },
-    nodeVersion: process.version,
-    platform: process.platform
-  });
-
   // 🎯 Initialize Token Governor System
   try {
     console.log('🎯 Initializing Token Governor System...');
-    logger.info('🎯 Initializing Token Governor System');
     await initializeTokenGovernor();
     console.log('✅ Token Governor: ACTIVE (5 models, TPM management, fail-safe sentinels)');
-    logger.info('✅ Token Governor: ACTIVE', { models: 5, features: ['TPM management', 'fail-safe sentinels'] });
   } catch (error) {
     console.warn('⚠️  Token Governor initialization failed (running without governance):', error.message);
-    logger.warn('⚠️  Token Governor initialization failed', { error: error.message, fallback: 'running without governance' });
   }
 
   // 🏥 Initialize HIPAA Audit Logger
   try {
     console.log('🏥 Initializing HIPAA Audit Logger...');
-    logger.info('🏥 Initializing HIPAA Audit Logger');
     await initializeAuditLogger();
     console.log('✅ HIPAA Audit Logger: ACTIVE (6-year retention, tamper-evident, GDPR/KVKK compliant)');
-    logger.info('✅ HIPAA Audit Logger: ACTIVE', { retention: '6 years', features: ['tamper-evident', 'GDPR/KVKK compliant'] });
   } catch (error) {
     console.error('❌ HIPAA Audit Logger initialization failed:', error.message);
-    logger.error('❌ HIPAA Audit Logger initialization failed', { error: error.message });
   }
 
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
@@ -10144,16 +9704,12 @@ const apolloServer = new ApolloServer({
 */
 
 // Express middleware setup
-// 🔒 SECURE CORS - Whitelist only (CVE-CORS-WILDCARD-2025 fix)
-app.use(cors(corsOptions));
-
-// 🔒 AI MODEL OBFUSCATION - Hide AI provider names from all responses
-app.use(obfuscateResponseMiddleware);
-app.use(removeAIHeadersMiddleware);
-
-// 🔒 SECURE SESSION - httpOnly, secure, sameSite flags (SESSION-SECURITY-2025 fix)
-const session = require('express-session');
-app.use(session(sessionConfig));
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key', 'X-Requested-With']
+}));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -10183,9 +9739,6 @@ app.use('/api', (req, res, next) => {
       req.path.startsWith('/rro/') ||       // Risk & Resilience OS
       req.path.startsWith('/atg/') ||       // Automated Trust Graph
       req.path.startsWith('/svf/') ||       // Synthetic Data Factory
-      req.path.startsWith('/search') ||     // 🔍 Search API - Unified Surface
-      req.path === '/capabilities' ||       // System capabilities
-      req.path === '/health' ||             // Health check
       req.path === '/smart-cities/health' ||  // Smart Cities health check
       req.path === '/insan-iq/health' ||      // İnsan IQ health check
       req.path === '/lydian-iq/health' ||     // LyDian IQ health check
@@ -10196,12 +9749,6 @@ app.use('/api', (req, res, next) => {
   }
   return tenantMiddleware(req, res, next);
 });
-
-// 🔒 ENHANCED RATE LIMITING - Granular protection per endpoint type
-// Apply auth rate limiter to authentication endpoints (strictest)
-app.use('/api/auth/login', authLimiter);
-app.use('/api/auth/register', authLimiter);
-app.use('/api/auth/reset-password', authLimiter);
 
 // 🔐 AUTHENTICATION ROUTES - ChatGPT Style Auth System
 const authRoutes = require('./api/auth');
@@ -17501,26 +17048,9 @@ app.use('/api/azure/legal', azureMultimodalRoutes);
 app.use('/api/legal-ai', legalAIAPI);  // ✅ Use direct API for chat
 app.use('/api/legal-services', legalAIRoutes);  // Keep other services
 
-// 🌐 HYBRID UI/UX ROUTES - i18n & Search & Health
-// ==================================================
-const menuAPIRoutes = require('./routes/api/menu');
-const searchAPIRoutes = require('./routes/api/search');
-const healthmapAPIRoutes = require('./routes/api/healthmap');
-const incidentPushAPIRoutes = require('./routes/api/incident-push');
-app.use('/api/menu', menuAPIRoutes);  // Localized menu data
-app.use('/api/search', searchAPIRoutes);  // Fuse.js powered search
-app.use('/api/healthmap', healthmapAPIRoutes);  // Multi-page health check
-app.use('/api/incident-push', incidentPushAPIRoutes);  // Slack/Jira incident push
-
 // 🗄️ Knowledge Graph API (Neo4j)
 const knowledgeGraphAPI = require('./api/knowledge-graph');
 app.use('/api/knowledge-graph', knowledgeGraphAPI);
-
-// 📚 Knowledge Base API (Wikipedia + PubMed + NASA + Azure)
-const knowledgeSearchAPI = require('./api/knowledge/search');
-const knowledgeChatAPI = require('./api/knowledge/chat');
-app.post('/api/knowledge/search', knowledgeSearchAPI);
-app.post('/api/knowledge/chat', knowledgeChatAPI);
 
 // 🧠 Neuro Health AI APIs
 const neuroImagingAnalysis = require('./api/neuro/imaging-analysis');
@@ -17533,21 +17063,6 @@ app.use('/api/neuro/imaging-analysis', neuroImagingAnalysis);
 app.use('/api/neuro/health-index', neuroHealthIndex);
 app.use('/api/neuro/risk-assessment', neuroRiskAssessment);
 app.use('/api/neuro/digital-twin', neuroDigitalTwin);
-
-// 🛡️ AI GOVERNANCE & COMPLIANCE (ACE - AI Compliance Engine)
-const complianceAPI = require('./api/governance/compliance');
-const trustIndexAPI = require('./api/governance/trust-index');
-const emergencyAPI = require('./api/governance/emergency');
-const governanceAuthLogin = require('./api/governance/auth/login');
-const governanceAuthRegister = require('./api/governance/auth/register');
-const governanceModels = require('./api/governance/models/index');
-
-app.use('/api/governance/compliance', complianceAPI);
-app.use('/api/governance/trust-index', trustIndexAPI);
-app.use('/api/governance/emergency', emergencyAPI);
-app.use('/api/governance/auth/login', governanceAuthLogin);
-app.use('/api/governance/auth/register', governanceAuthRegister);
-app.use('/api/governance/models', governanceModels);
 app.use('/api/neuro/clinician-portal', neuroClinicianPortal);
 
 // 🔬 Medical AI APIs with Token Governor Integration
@@ -17724,521 +17239,18 @@ app.use('/api/phn', cigPhnAPI);      // Halk Sağlığı Nowcasting
 // 🏙️ Unified Civic Intelligence API - Real-time Smart City Data
 app.use('/api/civic', civicAPI);
 
-// 🧠 LYDIAN-IQ v2.0 - POST-INTEGRATOR VISION ENDPOINTS
-
-// 📊 V3: Economy Optimizer - Demand Forecasting & Price Optimization
-app.post('/api/economy/optimize', async (req, res) => {
-  try {
-    const { goal = 'margin', channels = [], time_horizon_days = 30, constraints = {}, include_carbon = false } = req.body;
-
-    const optimization_id = crypto.randomUUID();
-    const timestamp = new Date().toISOString();
-    const expires_at = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-
-    // Mock demand forecast
-    const demand_forecast = 450 + Math.floor(Math.random() * 100);
-
-    // Mock price recommendations
-    const recommendations = [
-      {
-        action: 'adjust_price',
-        sku: 'PROD-' + Math.floor(Math.random() * 100000),
-        channel: channels[0] || 'trendyol',
-        current_value: 129.99,
-        recommended_value: 149.99,
-        expected_impact: '+12% margin, +8% revenue',
-        confidence: 0.87,
-        reasoning: 'Demand forecast shows 450 units/month with low price elasticity (-0.3)',
-      },
-      {
-        action: 'run_promotion',
-        sku: 'PROD-' + Math.floor(Math.random() + 100000),
-        channel: channels[1] || 'hepsiburada',
-        current_value: '0%',
-        recommended_value: '15%',
-        expected_impact: '+25% volume, +10% revenue',
-        confidence: 0.82,
-        reasoning: 'Monte Carlo simulation: 15% discount optimal for volume boost',
-      },
-    ];
-
-    // Carbon footprint calculation
-    const carbon_footprint = include_carbon ? {
-      total_kg_co2: 850.5,
-      reduction_opportunity_kg: 120.3,
-      recommendations: ['Switch 30% routes to rail (DEFRA: 0.022 kg/tkm)'],
-    } : undefined;
-
-    // Explainability
-    const explainability = {
-      top_features: [
-        { name: 'demand_forecast', importance: 0.42 },
-        { name: 'competitor_price', importance: 0.31 },
-        { name: 'stock_level', importance: 0.18 },
-      ],
-      natural_language_summary: `${goal} optimizasyonu için en önemli faktör talep tahmini (450 ünite/ay). Rakip fiyat analizi ve stok seviyesi de göz önünde bulunduruldu. Önerilen ${recommendations.length} aksiyon ile ${goal === 'margin' ? '%12 marj artışı' : '%15 gelir artışı'} beklenmektedir.`,
-    };
-
-    res.status(200).json({
-      optimization_id,
-      goal,
-      status: 'simulated',
-      recommendations,
-      projected_metrics: {
-        revenue_change_percent: goal === 'revenue' ? 15.2 : 8.5,
-        margin_change_percent: goal === 'margin' ? 12.3 : 6.2,
-        volume_change_percent: 18.7,
-        carbon_change_kg: include_carbon ? -120.3 : 0,
-      },
-      risks: [
-        { type: 'competitor_reaction', probability: 0.35, impact: 'medium' },
-        { type: 'demand_volatility', probability: 0.22, impact: 'low' },
-      ],
-      guardrails_passed: ['min_margin_15pct', 'max_discount_30pct', 'min_stock_10units'],
-      explainability,
-      carbon_footprint,
-      created_at: timestamp,
-      expires_at,
-    });
-  } catch (error) {
-    console.error('Economy optimization error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// 🔍 V5: Trust Layer - Explainability Engine (SHAP-style)
-app.post('/api/trust/explain', async (req, res) => {
-  try {
-    const {
-      decisionType,
-      modelName,
-      modelVersion = '1.0.0',
-      prediction,
-      confidence,
-      features = {},
-      language = 'tr',
-    } = req.body;
-
-    const decision_id = crypto.randomUUID();
-    const timestamp = new Date().toISOString();
-
-    // Calculate mock SHAP values (in production, these come from the ML model)
-    const featureNames = Object.keys(features);
-    const shapValues = {};
-    let totalImportance = 0;
-
-    featureNames.forEach((name, idx) => {
-      const importance = Math.random() * (1 - idx * 0.15);
-      shapValues[name] = importance;
-      totalImportance += importance;
-    });
-
-    // Normalize to sum to 1
-    Object.keys(shapValues).forEach(name => {
-      shapValues[name] = shapValues[name] / totalImportance;
-    });
-
-    // Sort by importance
-    const feature_importances = Object.entries(shapValues)
-      .map(([feature_name, importance]) => ({
-        feature_name,
-        importance: Math.round(importance * 1000) / 1000,
-        feature_value: features[feature_name],
-        contribution_direction: importance > 0.1 ? 'positive' : importance < -0.1 ? 'negative' : 'neutral',
-      }))
-      .sort((a, b) => Math.abs(b.importance) - Math.abs(a.importance));
-
-    // Generate natural language summary
-    const topFeature = feature_importances[0];
-    const summaries = {
-      tr: `Bu ${decisionType} kararında en önemli faktör "${topFeature.feature_name}" (%${(topFeature.importance * 100).toFixed(0)}). Model "${modelName}" tahmin değeri ${prediction} ile %${(confidence * 100).toFixed(0)} güven seviyesinde. İlk 3 faktör toplam %${((feature_importances.slice(0, 3).reduce((sum, f) => sum + f.importance, 0)) * 100).toFixed(0)} etkiye sahip.`,
-      en: `For this ${decisionType} decision, the most important factor is "${topFeature.feature_name}" (${(topFeature.importance * 100).toFixed(0)}%). Model "${modelName}" predicts ${prediction} with ${(confidence * 100).toFixed(0)}% confidence. Top 3 factors account for ${((feature_importances.slice(0, 3).reduce((sum, f) => sum + f.importance, 0)) * 100).toFixed(0)}% of the impact.`,
-    };
-
-    const explanation = {
-      decision_id,
-      decision_type: decisionType,
-      model_name: modelName,
-      model_version: modelVersion,
-      prediction,
-      confidence,
-      feature_importances,
-      natural_language_summary: summaries[language] || summaries.en,
-      timestamp,
-      explainability_method: 'shap',
-    };
-
-    res.status(200).json({ explanation });
-  } catch (error) {
-    console.error('Explainability error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// 🔐 V5: Trust Layer - Operation Signing (Ed25519)
-app.post('/api/trust/sign-operation', async (req, res) => {
-  try {
-    const { operation_type, payload, actor } = req.body;
-
-    const operation_id = crypto.randomUUID();
-    const timestamp = new Date().toISOString();
-    const nonce = crypto.randomBytes(16).toString('hex');
-
-    // Generate Ed25519 key pair
-    const { publicKey, privateKey } = crypto.generateKeyPairSync('ed25519');
-
-    // Create canonical payload
-    const canonicalPayload = JSON.stringify({
-      operation_id,
-      operation_type,
-      payload,
-      actor,
-      timestamp,
-      nonce,
-    });
-
-    // Sign with Ed25519
-    const signature = crypto.sign(null, Buffer.from(canonicalPayload, 'utf8'), privateKey);
-
-    const signedOperation = {
-      operation_id,
-      operation_type,
-      payload,
-      actor,
-      timestamp,
-      nonce,
-      signature: signature.toString('base64'),
-      public_key: publicKey.export({ type: 'spki', format: 'der' }).toString('base64'),
-      algorithm: 'Ed25519',
-    };
-
-    res.status(200).json({ signed_operation: signedOperation });
-  } catch (error) {
-    console.error('Operation signing error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// 📦 V5: Trust Layer - Evidence Pack Generation
-app.post('/api/trust/evidence-pack', async (req, res) => {
-  try {
-    const { events = [], format = 'json' } = req.body;
-
-    const pack_id = crypto.randomUUID();
-    const timestamp = new Date().toISOString();
-
-    // Build Merkle tree from events
-    const eventHashes = events.map(e => crypto.createHash('sha256').update(JSON.stringify(e)).digest('hex'));
-
-    // Simple Merkle root calculation (in production, use full tree)
-    const merkle_root = crypto.createHash('sha256')
-      .update(eventHashes.join(''))
-      .digest('hex');
-
-    // Generate integrity hash
-    const integrity_hash = crypto.createHash('sha256')
-      .update(JSON.stringify({ pack_id, events, merkle_root, timestamp }))
-      .digest('hex');
-
-    const evidencePack = {
-      pack_id,
-      merkle_root,
-      integrity_hash,
-      events_count: events.length,
-      timestamp,
-      format,
-      verification_url: `https://ailydian.com/verify?pack=${pack_id}`,
-    };
-
-    res.status(200).json({ evidence_pack: evidencePack });
-  } catch (error) {
-    console.error('Evidence pack error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// 🤖 V8: FEDERATED LEARNING — Privacy-Preserving Distributed ML
-
-app.post('/api/fl/start-round', async (req, res) => {
-  try {
-    const { model_version = 'price-predictor-v1', target_participants = 50, duration_minutes = 60, epsilon = 1.0 } = req.body;
-
-    const round_id = crypto.randomUUID();
-    const started_at = new Date();
-    const ends_at = new Date(started_at.getTime() + duration_minutes * 60 * 1000);
-
-    const round = {
-      round_id,
-      model_version,
-      started_at: started_at.toISOString(),
-      ends_at: ends_at.toISOString(),
-      target_participants,
-      actual_participants: 0,
-      status: 'active',
-      epsilon,
-    };
-
-    res.status(200).json({ round });
-  } catch (error) {
-    console.error('FL start round error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-app.post('/api/fl/submit-update', async (req, res) => {
-  try {
-    const { client_id, round_id, model_weights, num_samples, loss } = req.body;
-
-    if (!client_id || !round_id || !model_weights || !num_samples) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    // Add DP noise (Gaussian mechanism)
-    const epsilon = 1.0;
-    const sigma = Math.sqrt(2 * Math.log(1.25 / 0.00001)) / epsilon;
-    const noisedWeights = model_weights.map(w => {
-      const u1 = Math.random();
-      const u2 = Math.random();
-      const noise = sigma * Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
-      return w + noise;
-    });
-
-    res.status(200).json({
-      accepted: true,
-      message: 'Update accepted with DP noise applied',
-      privacy_guarantee: `ε=${epsilon}-differential privacy`,
-    });
-  } catch (error) {
-    console.error('FL submit update error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-app.get('/api/fl/rounds/active', async (req, res) => {
-  try {
-    // Mock active rounds
-    const activeRounds = [
-      {
-        round_id: crypto.randomUUID(),
-        model_version: 'price-predictor-v1',
-        started_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
-        ends_at: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
-        target_participants: 50,
-        actual_participants: 32,
-        status: 'active',
-        epsilon: 1.0,
-      },
-    ];
-
-    res.status(200).json({ rounds: activeRounds });
-  } catch (error) {
-    console.error('FL active rounds error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// 🌱 V10: ESG / CARBON INTELLIGENCE
-
-app.post('/api/esg/calculate-carbon', async (req, res) => {
-  try {
-    const { shipment_id, distance_km, weight_kg, transport_mode, carrier } = req.body;
-
-    if (!shipment_id || !distance_km || !weight_kg || !transport_mode || !carrier) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    // DEFRA 2023 emission factors
-    const emissionFactors = {
-      ground: { default: 0.065, aras: 0.062, ups: 0.058 },
-      air: { default: 0.600 },
-      sea: { default: 0.011 },
-      rail: { default: 0.022 },
-    };
-
-    const modeFactors = emissionFactors[transport_mode] || emissionFactors.ground;
-    const emission_factor = modeFactors[carrier.toLowerCase()] || modeFactors.default;
-
-    // Calculate: (distance × weight / 1000) × emission_factor
-    const carbon_kg_co2 = (distance_km * weight_kg / 1000) * emission_factor;
-    const green_label = transport_mode === 'rail' || transport_mode === 'sea';
-    const offset_cost_usd = (carbon_kg_co2 / 1000) * 15; // $15/tonne
-
-    const recommendations = [];
-    if (transport_mode === 'air') {
-      recommendations.push('Switch to ground transport for 85% carbon reduction');
-    }
-    if (transport_mode === 'ground' && distance_km > 500) {
-      recommendations.push('Consider rail for 65% reduction on long routes');
-    }
-
-    res.status(200).json({
-      shipment_id,
-      carbon_kg_co2: Math.round(carbon_kg_co2 * 100) / 100,
-      emission_factor,
-      transport_mode,
-      green_label,
-      offset_cost_usd: Math.round(offset_cost_usd * 100) / 100,
-      recommendations,
-    });
-  } catch (error) {
-    console.error('ESG carbon calculation error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-app.get('/api/esg/metrics', async (req, res) => {
-  try {
-    const { period = '2025-10' } = req.query;
-
-    // Mock ESG metrics
-    const metrics = {
-      period,
-      total_shipments: 1542,
-      total_carbon_kg_co2: 8765.3,
-      avg_carbon_per_shipment: 5.68,
-      green_deliveries_percent: 28.5,
-      carbon_reduction_vs_baseline_percent: 17.2,
-      top_polluting_routes: [
-        { route: 'Istanbul → Ankara (Air)', carbon_kg: 450.5 },
-        { route: 'İzmir → Adana (Ground)', carbon_kg: 180.2 },
-        { route: 'Antalya → Bursa (Ground)', carbon_kg: 145.8 },
-      ],
-      recommendations: [
-        'Increase green delivery adoption to 40% for major carbon savings',
-        'Switch 30% of air shipments to ground transport',
-        'Implement carbon offset program',
-      ],
-    };
-
-    res.status(200).json({ metrics });
-  } catch (error) {
-    console.error('ESG metrics error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// 📦 V7: MARKETPLACE / DEVSDK
-
-app.get('/api/marketplace/plugins', async (req, res) => {
-  try {
-    const { category, pricing } = req.query;
-
-    // Mock marketplace listings
-    const allPlugins = [
-      {
-        plugin_id: 'pricing-rules-v1',
-        name: 'Dynamic Pricing Rules',
-        description: 'AI-powered pricing optimization based on demand and competition',
-        version: '1.0.0',
-        author: { name: 'Lydian-IQ Team', verified: true },
-        category: 'commerce',
-        pricing: 'free',
-        rating: 4.8,
-        installs_count: 1523,
-        verified: true,
-        security_score: 98,
-        last_updated: '2025-10-01',
-        tags: ['pricing', 'ai', 'optimization'],
-      },
-      {
-        plugin_id: 'credit-formatter-v1',
-        name: 'Credit Offer Formatter',
-        description: 'Format and display credit offers with compliance checks',
-        version: '1.2.0',
-        author: { name: 'Finance Tools Inc', verified: true },
-        category: 'finance',
-        pricing: 'freemium',
-        rating: 4.5,
-        installs_count: 892,
-        verified: true,
-        security_score: 95,
-        last_updated: '2025-09-28',
-        tags: ['finance', 'credit', 'compliance'],
-      },
-      {
-        plugin_id: 'shipping-label-v1',
-        name: 'Shipping Label Generator',
-        description: 'Generate shipping labels for multiple carriers',
-        version: '2.0.0',
-        author: { name: 'Logistics Plus', verified: true },
-        category: 'logistics',
-        pricing: 'paid',
-        rating: 4.9,
-        installs_count: 2341,
-        verified: true,
-        security_score: 99,
-        last_updated: '2025-10-05',
-        tags: ['shipping', 'labels', 'carriers'],
-      },
-    ];
-
-    let plugins = allPlugins;
-    if (category) {
-      plugins = plugins.filter(p => p.category === category);
-    }
-    if (pricing) {
-      plugins = plugins.filter(p => p.pricing === pricing);
-    }
-
-    res.status(200).json({ plugins, total: plugins.length });
-  } catch (error) {
-    console.error('Marketplace plugins error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-app.post('/api/marketplace/plugins/:plugin_id/install', async (req, res) => {
-  try {
-    const { plugin_id } = req.params;
-
-    res.status(200).json({
-      success: true,
-      plugin_id,
-      message: 'Plugin installed successfully',
-      installed_at: new Date().toISOString(),
-    });
-  } catch (error) {
-    console.error('Plugin install error:', error);
-    res.status(500).json({ error: 'Internal server error', message: error.message });
-  }
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// 🚀 LYDIAN-IQ UNIFIED SURFACE API ENDPOINTS
-// ═══════════════════════════════════════════════════════════════════════════
-
-// Test endpoint
-app.get('/api/v1/test-unified', require('./api/v1/test-unified'));
-
-// Shipment tracking
-app.post('/api/v1/shipment/track', require('./api/v1/shipment/track'));
-
-// Product sync
-app.post('/api/v1/product/sync', require('./api/v1/product/sync'));
-
-console.log('✅ Lydian-IQ Unified Surface API endpoints registered');
-
-
-// ═══════════════════════════════════════════════════════════════════════════
-// 🔍 SEARCH API - UNIFIED SURFACE
-// ═══════════════════════════════════════════════════════════════════════════
-
-const SearchController = require('./services/gateway/src/search/SearchController');
-
-// Search endpoint (no rate limiting for now)
-app.get('/api/search', SearchController.search);
-app.get('/api/search/_status', SearchController.status);
-
-console.log('✅ Search API endpoints registered');
-
-// 🔒 GLOBAL ERROR HANDLER - Must be AFTER all routes (STACK-TRACE-EXPOSURE-2025 fix)
-app.use(SecureErrorHandler.middleware());
-
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
-app.use(SecureErrorHandler.notFoundHandler());
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    error: 'API endpoint not found',
+    path: req.path,
+    method: req.method,
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Server startup is handled by the cluster condition above
 
 // 🚀 Vercel Serverless Function Export
 module.exports = app;
-

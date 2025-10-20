@@ -53,6 +53,30 @@
       "destination": "/public/index.html"
     },
     {
+      "source": "/lydian-iq",
+      "destination": "/public/lydian-iq.html"
+    },
+    {
+      "source": "/chat",
+      "destination": "/public/chat.html"
+    },
+    {
+      "source": "/medical-expert",
+      "destination": "/public/medical-expert.html"
+    },
+    {
+      "source": "/legal-expert",
+      "destination": "/public/legal-expert.html"
+    },
+    {
+      "source": "/lydian-legal-search",
+      "destination": "/public/lydian-legal-search.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/public/dashboard.html"
+    },
+    {
       "source": "/((?!api).*)",
       "destination": "/public/$1"
     }
