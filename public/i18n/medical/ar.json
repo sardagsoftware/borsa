@@ -1,0 +1,115 @@
+{
+  "app": {
+    "title": "الذكاء الاصطناعي الطبي LyDian",
+    "subtitle": "خبير الذكاء الصحي",
+    "description": "مساعد ذكاء اصطناعي طبي متقدم مع دعم متعدد التخصصات"
+  },
+  "header": {
+    "newConsultation": "استشارة جديدة",
+    "emergencyNumbers": "أرقام الطوارئ",
+    "languageSelector": "اللغة"
+  },
+  "sidebar": {
+    "logo": "الذكاء الطبي LyDian",
+    "toggleSidebar": "تبديل الشريط الجانبي"
+  },
+  "disclaimer": {
+    "title": "إخلاء المسؤولية الطبية",
+    "text": "يوفر هذا المساعد الذكي معلومات طبية عامة فقط. استشر دائماً متخصصي الرعاية الصحية المؤهلين للتشخيص والعلاج. في حالات الطوارئ، اتصل فوراً بخدمات الطوارئ.",
+    "understand": "فهمت"
+  },
+  "specialties": {
+    "title": "التخصصات الطبية",
+    "generalMedicine": "الطب العام",
+    "cardiology": "أمراض القلب",
+    "neurology": "طب الأعصاب",
+    "oncology": "الأورام",
+    "pediatrics": "طب الأطفال",
+    "psychiatry": "الطب النفسي",
+    "orthopedics": "جراحة العظام",
+    "radiology": "الأشعة",
+    "emergency": "طب الطوارئ",
+    "dermatology": "الأمراض الجلدية"
+  },
+  "tools": {
+    "title": "الأدوات الطبية",
+    "ragSearch": "بحث RAG",
+    "ragSearchDesc": "البحث في PubMed والإرشادات",
+    "dicomUpload": "تحميل DICOM",
+    "dicomUploadDesc": "تحليل التصوير الطبي",
+    "fhirPatient": "مريض FHIR",
+    "fhirPatientDesc": "إدارة بيانات المرضى",
+    "speechTranscription": "تحويل الصوت إلى نص",
+    "speechTranscriptionDesc": "ملاحظات طبية صوتية",
+    "translation": "الترجمة الطبية",
+    "translationDesc": "نص طبي متعدد اللغات"
+  },
+  "chat": {
+    "inputPlaceholder": "صف أعراضك، اطرح أسئلة طبية أو قم بتحميل صور طبية...",
+    "sendButton": "إرسال",
+    "voiceInput": "إدخال صوتي",
+    "fileUpload": "تحميل ملف",
+    "clearChat": "مسح المحادثة",
+    "newChat": "محادثة جديدة",
+    "thinking": "الذكاء الاصطناعي يحلل...",
+    "typing": "يكتب..."
+  },
+  "calculators": {
+    "general": {
+      "title": "الحاسبة الطبية العامة",
+      "subtitle": "تقييم العلامات الحيوية ومؤشر كتلة الجسم",
+      "vitalSigns": "العلامات الحيوية",
+      "systolic": "ضغط الدم الانقباضي (ملم زئبق)",
+      "diastolic": "ضغط الدم الانبساطي (ملم زئبق)",
+      "heartRate": "معدل ضربات القلب (نبضة/دقيقة)",
+      "temperature": "درجة الحرارة (°س)",
+      "spO2": "تشبع الأكسجين (%)",
+      "respRate": "معدل التنفس (/دقيقة)",
+      "bodyMetrics": "قياسات الجسم",
+      "weight": "الوزن (كجم)",
+      "height": "الطول (م)",
+      "patientInfo": "معلومات المريض",
+      "patientName": "اسم المريض",
+      "age": "العمر",
+      "gender": "الجنس",
+      "male": "ذكر",
+      "female": "أنثى",
+      "other": "آخر",
+      "medications": "الأدوية (صيغة JSON)",
+      "physician": "معلومات الطبيب",
+      "physicianName": "اسم الطبيب",
+      "licenseNumber": "رقم الترخيص",
+      "calculate": "احسب",
+      "results": "النتائج"
+    }
+  },
+  "buttons": {
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "confirm": "تأكيد",
+    "clear": "مسح",
+    "reset": "إعادة تعيين",
+    "upload": "تحميل",
+    "download": "تنزيل",
+    "print": "طباعة",
+    "export": "تصدير",
+    "import": "استيراد"
+  },
+  "status": {
+    "loading": "جارٍ التحميل...",
+    "processing": "جارٍ المعالجة...",
+    "analyzing": "جارٍ التحليل...",
+    "saving": "جارٍ الحفظ...",
+    "success": "نجح!",
+    "error": "حدث خطأ",
+    "warning": "تحذير",
+    "info": "معلومات"
+  }
+}

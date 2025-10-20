@@ -1,0 +1,5187 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>LyDian AI - Multi-Model Intelligence Platform</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+
+    <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
+    <script src="/js/geo-language.js">
+// Mask sensitive API response data
+function maskApiResponse(response) {
+  if (response && typeof response === 'object') {
+    // Mask model information
+    if (response.model) response.model = 'ai-engine';
+    if (response.engine) response.engine = 'ai-engine';
+    if (response.provider) response.provider = 'ai-provider';
+
+    // Mask headers
+    if (response.headers) {
+      delete response.headers['x-request-id'];
+      delete response.headers['openai-'];
+      delete response.headers['anthropic-'];
+    }
+  }
+  return response;
+}
+</script>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+/* ============================================================
+   ✨ CLEAN WHITE PREMIUM CHAT INTERFACE 2025
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* ✨ CLEAN COLOR SYSTEM - Green & Orange Accents */
+    --accent-green: #10A37F;
+    --accent-green-bright: #13C896;
+    --accent-orange: #FF6B4A;
+    --accent-orange-bright: #FF8A6D;
+
+    /* 🎨 CLEAN GRADIENTS */
+    --gradient-primary: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    --gradient-subtle: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(255, 107, 74, 0.1) 100%);
+    --gradient-header: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+
+    /* 🤍 WHITE BACKGROUND SYSTEM */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F9FAFB;
+    --bg-tertiary: #F3F4F6;
+    --bg-hover: #FFFFFF;
+
+    /* 📝 TEXT COLORS */
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-tertiary: #6B7280;
+    --text-muted: #9CA3AF;
+
+    /* 🌟 CLEAN SHADOWS */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-green: 0 4px 12px rgba(16, 163, 127, 0.15);
+    --shadow-orange: 0 4px 12px rgba(255, 107, 74, 0.15);
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+    /* 🔲 CLEAN BORDERS */
+    --border-light: 1px solid #E5E7EB;
+    --border-medium: 1px solid #D1D5DB;
+    --border-green: 1px solid #10A37F;
+    --border-orange: 1px solid #FF6B4A;
+}
+
+/* ============================================================
+   🌊 KEYFRAME ANIMATIONS
+   ============================================================ */
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes borderRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes hoverLift {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+    100% {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+}
+
+@keyframes borderShine {
+    0%, 100% {
+        border-color: #10A37F;
+    }
+    50% {
+        border-color: #FF6B4A;
+    }
+}
+
+@keyframes neonPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 100px;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes typingDot {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    30% {
+        transform: translateY(-12px);
+        opacity: 1;
+    }
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes subtleGlow {
+    0%, 100% {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+    50% {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+}
+
+/* 🔄 Loading dots animation */
+.loading-dots {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Plus dropdown show class (matches 'active' functionality) */
+.plus-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ============================================================
+   🎨 BASE STYLES
+   ============================================================ */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: #1a1a1a;
+    color: #FFFFFF;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   📐 LAYOUT
+   ============================================================ */
+
+.chat-container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   🎯 CLEAN SIDEBAR (MODERN & MINIMAL)
+   ============================================================ */
+
+/* ========== SIDEBAR (Dark with WHITE text) ========== */
+.sidebar {
+    width: 280px;
+    background: #1a1a1a;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 100;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Force ALL sidebar text to be WHITE */
+.sidebar,
+.sidebar *,
+.sidebar-header,
+.sidebar-header *,
+.logo,
+.conversation-item,
+.conversation-item *,
+.user-name,
+.user-email {
+    color: #FFFFFF !important;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-280px);
+}
+
+/* ========== PREMIUM DARK SIDEBAR HEADER ========== */
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: transparent; /* Match chat page background - no dark area */
+}
+
+.logo {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 2rem;
+    font-weight: 900 !important;
+    color: #FFFFFF; /* White text for dark theme */
+    letter-spacing: 0.08em !important;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* 🔘 Sidebar Toggle Button - Visible on desktop, inside sidebar */
+.sidebar-toggle {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex !important; /* Show on desktop */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 101;
+    padding: 0;
+}
+
+.sidebar-toggle:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: #FFFFFF !important;
+    transition: all 0.3s;
+}
+
+.sidebar-toggle img {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebar-toggle:hover svg {
+    fill: #FFFFFF !important;
+}
+
+.sidebar-toggle:hover img {
+    transform: scale(1.1);
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    left: 1rem !important; /* Stay visible when collapsed */
+    position: fixed !important;
+    z-index: 1000 !important;
+    transform: translateY(-50%) translateX(280px) !important; /* Move out from collapsed sidebar */
+}
+
+/* Floating Open Button - Visible on Dark Background */
+.sidebar-open-btn {
+    position: fixed;
+    left: 1.5rem;
+    top: 1.5rem;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 14px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 99;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.sidebar.collapsed ~ .main-chat .sidebar-open-btn {
+    display: flex;
+}
+
+.sidebar-open-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-open-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF !important;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+/* ⭐ New Chat Button - WHITE/GRAY */
+/* ========== PREMIUM NEW CHAT BUTTON (Dark Theme) ========== */
+.new-chat-btn {
+    margin: 1.5rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.new-chat-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.new-chat-btn:active {
+    transform: translateY(0);
+}
+
+.new-chat-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #FFFFFF;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s;
+}
+
+.new-chat-btn:hover svg {
+    transform: rotate(90deg);
+}
+
+.new-chat-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* 📜 Chat History */
+.chat-history {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #10A37F transparent;
+}
+
+.chat-history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    border-radius: 10px;
+}
+
+.chat-item {
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.5rem;
+    background: transparent; /* No background */
+    border: none; /* No border */
+    border-left: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInLeft 0.4s ease;
+    box-shadow: none; /* No shadow */
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chat-item:hover {
+    background: rgba(31, 41, 55, 0.05); /* Very subtle hover */
+    border-left: none;
+    transform: translateX(2px);
+    box-shadow: none;
+}
+
+.chat-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-item-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1F2937;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-item-preview {
+    font-size: 0.75rem;
+    color: #6B7280;
+}
+
+.chat-item-delete {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 1px solid 1px solid #E5E7EB;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    opacity: 0;
+    flex-shrink: 0;
+}
+
+.chat-item:hover .chat-item-delete {
+    opacity: 1;
+}
+
+.chat-item-delete:hover {
+    background: #8B0000; /* Dark red - same as send button */
+    border-color: #8B0000;
+    transform: scale(1.1);
+}
+
+.chat-item-delete svg {
+    width: 14px;
+    height: 14px;
+    fill: #6B7280;
+    transition: fill 0.3s;
+}
+
+.chat-item-delete:hover svg {
+    fill: #FFFFFF;
+}
+
+/* 🔍 Sidebar Search */
+.sidebar-search {
+    padding: 0.125rem 0.5rem;
+    height: 24px;
+    min-height: 24px;
+    max-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    margin: 1rem;
+    transition: all 0.3s;
+}
+
+.sidebar-search:focus-within {
+    border-color: #10A37F;
+    box-shadow: 0 2px 8px rgba(16, 163, 127, 0.15);
+}
+
+.sidebar-search svg {
+    width: 16px;
+    height: 16px;
+    fill: #10A37F !important;
+    stroke: none !important;
+    color: #10A37F !important;
+    flex-shrink: 0;
+}
+
+.sidebar-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #1F2937;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 0;
+    outline: none;
+}
+
+.sidebar-search input::placeholder {
+    color: #6B7280;
+}
+
+/* 👤 Sidebar Footer & User Menu */
+.sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    background: transparent;
+}
+
+.user-menu {
+    position: relative;
+}
+
+/* ========== PREMIUM USER INFO (Dark Theme) ========== */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05); /* Subtle dark background */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Light border */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.user-info:hover {
+    border-color: #10A37F; /* Green hover */
+    box-shadow: 0 0 20px rgba(16, 163, 127, 0.2); /* Green glow */
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #FFFFFF !important;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.user-avatar svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #FFFFFF !important;
+}
+
+
+.user-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #FFFFFF; /* White for dark theme */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-email {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6); /* Light gray for dark theme */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-menu-arrow {
+    width: 20px;
+    height: 20px;
+    fill: #FFFFFF !important;
+    transition: transform 0.3s;
+}
+
+.user-info.active .user-menu-arrow {
+    transform: rotate(180deg);
+}
+
+/* User Dropdown */
+.user-dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin-bottom: 0.5rem;
+    background: #1a1a1a; /* FIXED: Solid background matching entire interface */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    color: #FFFFFF !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background: rgba(16, 163, 127, 0.1);
+    color: #10A37F !important;
+}
+
+.dropdown-item.logout:hover {
+    background: rgba(255, 107, 74, 0.1);
+    color: #FF6B4A !important;
+}
+
+.dropdown-item svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+}
+
+/* ============================================================
+   💬 MAIN CHAT AREA
+   ============================================================ */
+
+/* ========== PREMIUM CHAT AREA BACKGROUND (Dark Theme) ========== */
+.main-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #1a1a1a; /* FIXED: Solid background matching entire interface */
+}
+
+/* 🎯 Top Header (Dark Theme) */
+.chat-header {
+    padding: 1rem 2rem;
+    background: #1a1a1a;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 280px; /* FIXED - Account for sidebar width */
+    width: calc(100% - 280px); /* FIXED - Full width minus sidebar */
+    z-index: 150; /* FIXED: Higher than sidebar (100) to stay above messages */
+    box-shadow: none;
+    /* REMOVED: No transition, stays fixed */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Model selector removed */
+
+/* 📊 Token Counter */
+.token-counter {
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.token-counter-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.token-counter-value {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 🔧 Header Actions */
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.header-btn {
+    min-width: 48px;
+    height: 48px;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.header-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #10A37F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 163, 127, 0.3);
+}
+
+.header-btn:active {
+    transform: translateY(0);
+}
+
+.header-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #FFFFFF;
+    stroke: #FFFFFF;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.header-btn span {
+    display: inline-block;
+}
+
+/* Prominent Header Buttons (Download & Share) - BLACK like neon icons */
+.header-btn-prominent {
+    background: transparent;
+    border: 2px solid #000000;
+    color: #000000;
+    min-width: 110px;
+}
+
+.header-btn-prominent svg {
+    fill: none;
+    stroke: #000000;
+}
+
+.header-btn-prominent:hover {
+    background: transparent;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: none;
+}
+
+/* 🎯 Header Buttons - Minimal Icon-Only Style */
+.header-btn-icon {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    padding: 0;
+}
+
+.header-btn-icon svg {
+    fill: #FFFFFF !important; /* White for dark theme */
+    transition: transform 0.25s ease;
+}
+
+.header-btn-icon:hover {
+    transform: scale(1.2);
+}
+
+.header-btn-icon:hover svg {
+    transform: scale(1.1);
+}
+
+.header-btn-icon:active {
+    transform: scale(0.95);
+}
+
+/* ============================================================
+   💭 MESSAGES AREA
+   ============================================================ */
+
+/* ========== GOOGLE STUDIO LAYOUT: CENTERED CHAT AREA ========== */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    padding-top: 100px; /* Space below navbar to prevent overlap */
+    padding-bottom: 180px; /* Space for fixed bottom input */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Google Studio generous spacing */
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #10A37F transparent;
+    /* Center chat area with max-width */
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    /* Prevent overflow above navbar */
+    max-height: calc(100vh - 80px);
+    position: relative;
+    z-index: 1; /* Below navbar (z-index: 150) */
+}
+
+.messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    border-radius: 10px;
+}
+
+/* 🌟 Empty State */
+.empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    gap: 1.5rem;
+    position: relative;
+    animation: fadeInScale 0.6s ease;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    display: none;
+}
+
+/* 🧠 NEURAL QUANTUM BRAIN LOADER - Centered in Response Area */
+.mini-spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    animation: fadeInScale 0.8s ease, floatAnimation 3s ease-in-out infinite;
+    z-index: 10;
+    filter: drop-shadow(0 0 24px rgba(124, 92, 255, 0.15));
+}
+
+.mini-spinner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+/* Floating animation for AI brain */
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-10px);
+    }
+}
+
+/* 🌌 LYDIAN ORBIT ANIMATION - Premium Interactive SVG Orbit */
+
+/* 👤 USER WELCOME TEXT - Above Orbit */
+.user-welcome-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 11;
+    pointer-events: none;
+}
+
+.welcome-user-name {
+    display: none;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+}
+
+/* LyDian Orbit SVG Animations */
+.lydian-orbit-ring-1 {
+    transform-origin: center;
+    animation: orbitRotate1 36s linear infinite;
+}
+
+.lydian-orbit-ring-2 {
+    transform-origin: center;
+    animation: orbitRotate2 24s linear infinite reverse;
+}
+
+.lydian-orbit-ring-3 {
+    transform-origin: center;
+    animation: orbitRotate3 12s linear infinite;
+}
+
+@keyframes orbitRotate1 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes orbitRotate2 {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes orbitRotate3 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Lissajous satellite motion */
+.lydian-lissajous {
+    animation: lissajousFly 10s linear infinite;
+}
+
+@keyframes lissajousFly {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(45px, -35px); }
+    50%  { transform: translate(0, -60px); }
+    75%  { transform: translate(-45px, -35px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Pyramid animations removed - replaced with LyDian Orbit */
+
+/* 💡 Suggestion Chips */
+.suggestion-chips {
+    display: none;
+    animation: slideInUp 0.8s ease 0.3s both;
+}
+
+.suggestion-chip {
+    padding: 0.875rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.suggestion-chip:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #10A37F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 163, 127, 0.35);
+    color: #10A37F;
+}
+
+/* ============================================================
+   💬 MESSAGE BUBBLES (CLEAN DESIGN)
+   ============================================================ */
+
+/* ========== ORIGINAL CENTERED LAYOUT (No Icons) ========== */
+.message {
+    display: flex;
+    gap: 0.75rem;
+    animation: messageAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 85%; /* Wider bubbles for better readability */
+    padding: 0;
+}
+
+/* User messages: Right aligned */
+.message.user {
+    align-self: flex-end; /* Align to right */
+    flex-direction: row-reverse;
+}
+
+/* AI messages: Left aligned, FULL WIDTH for square/wide layout */
+.message.assistant {
+    align-self: flex-start; /* Align to left */
+    flex-direction: row;
+    max-width: 100%; /* Full width for AI responses */
+}
+
+/* ========== AVATARS HIDDEN (Icon-less Layout) ========== */
+.message-avatar {
+    display: none; /* Hide all avatars */
+}
+
+/* User Avatar: Green gradient with glow */
+.message.user .message-avatar {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* AI Assistant Avatar: subtle dark */
+.message.assistant .message-avatar {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 2px 4px rgba(14, 165, 233, 0.2),
+        0 4px 8px rgba(16, 163, 127, 0.15),
+        0 0 16px rgba(14, 165, 233, 0.2);
+    position: relative;
+}
+
+/* Premium hover effect with rotation & glow */
+.message:hover .message-avatar {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow:
+        0 4px 8px rgba(16, 163, 127, 0.3),
+        0 8px 16px rgba(16, 163, 127, 0.2),
+        0 0 24px rgba(16, 163, 127, 0.3);
+}
+
+.message.assistant:hover .message-avatar {
+    box-shadow:
+        0 4px 8px rgba(14, 165, 233, 0.3),
+        0 8px 16px rgba(14, 165, 233, 0.2),
+        0 0 24px rgba(14, 165, 233, 0.3);
+}
+
+.message-avatar svg {
+    width: 20px; /* Proportional to 32px avatar */
+    height: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.message.user .message-avatar svg {
+    fill: #FFFFFF; /* White on gradient */
+}
+
+/* Pulse animation for user icon */
+@keyframes pulse-user {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+.message.user .message-avatar svg {
+    animation: pulse-user 2s ease-in-out infinite;
+}
+
+.message.assistant .message-avatar svg {
+    fill: none;
+    stroke: #FFFFFF; /* White on gradient */
+    stroke-width: 2;
+}
+
+/* Spinning orbit animation for Lydian */
+@keyframes spin-orbit {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.message.assistant .message-avatar svg {
+    animation: spin-orbit 3s linear infinite;
+}
+
+/* 💬 Message Content */
+.message-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ========== MESSAGE BUBBLES (Original Style with Background) ========== */
+.message-text {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.message.user .message-text {
+    border-left: 4px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.message.assistant .message-text {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    /* Neon white text */
+    color: #FFFFFF;
+    
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+/* Premium hover effect with lift & glow */
+.message:hover .message-text {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 12px 24px rgba(0, 0, 0, 0.08),
+        0 24px 48px rgba(0, 0, 0, 0.06);
+}
+
+.message.user:hover .message-text {
+    box-shadow:
+        0 4px 6px rgba(16, 163, 127, 0.2),
+        0 12px 24px rgba(16, 163, 127, 0.15),
+        0 24px 48px rgba(16, 163, 127, 0.1);
+    border-left-color: #0D8A68;
+}
+
+.message-text p {
+    margin-bottom: 0.75rem;
+}
+
+.message-text p:last-child {
+    margin-bottom: 0;
+}
+
+.message-text strong {
+    font-weight: 700;
+    color: #FFFFFF; /* Clean white, no colors */
+}
+
+.message-text em {
+    font-style: italic;
+    color: #FFFFFF; /* Clean white, no colors */
+}
+
+.message-text code {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF; /* Clean white, no colors */
+}
+
+/* 🕒 Message Timestamp */
+.message-timestamp {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+    opacity: 0.7;
+    font-weight: 400;
+}
+
+/* ⚡ Message Actions */
+.message-actions {
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.message-content:hover .message-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message-action-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.message-action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #10A37F;
+    color: #10A37F;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+}
+
+.message-action-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* 🔄 Typing Indicator */
+.typing-indicator {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+}
+
+.typing-dot {
+    width: 10px;
+    height: 10px;
+    background: #10A37F;
+    border-radius: 50%;
+    animation: typingDot 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ============================================================
+   ✍️ INPUT AREA (CLEAN & MODERN)
+   ============================================================ */
+
+/* ========== GOOGLE STUDIO LAYOUT: FIXED BOTTOM INPUT ========== */
+.input-container {
+    padding: 1rem 2rem 1rem;
+    position: fixed; /* Fixed at bottom like Google Studio */
+    bottom: 0;
+    left: 280px; /* Account for sidebar width - FIXED */
+    width: calc(100% - 280px); /* Full width minus sidebar - FIXED */
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: #1a1a1a; /* FIXED: Solid background matching entire interface */
+    border-top: none; /* Remove border for cleaner look */
+    z-index: 50;
+    /* REMOVED: No transition, stays fixed */
+}
+
+/* Input container içinde empty state'de olduğunda */
+.empty-state .input-container {
+    padding: 0;
+    max-width: 900px;
+}
+
+/* 📋 LYDIAN AI DISCLAIMER - Professional Corporate Notice */
+.ai-disclaimer {
+    margin-top: 0.5rem;
+    padding: 0.625rem 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ai-disclaimer strong {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.ai-disclaimer a {
+    color: rgba(16, 163, 127, 0.8);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(16, 163, 127, 0.3);
+    transition: all 0.2s ease;
+}
+
+.ai-disclaimer a:hover {
+    color: #10A37F;
+    border-bottom-color: #10A37F;
+}
+
+/* ⚡ AI MODE SELECTORS */
+.input-mode-selectors {
+    display: none; /* HIDDEN - Replaced with inline neon icons */
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4B5563;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.mode-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #4B5563;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover {
+    background: rgba(16, 163, 127, 0.1);
+    border-color: rgba(16, 163, 127, 0.3);
+    color: #10A37F;
+    transform: translateY(-2px);
+}
+
+.mode-btn:hover svg {
+    fill: #10A37F;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    border-color: transparent;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(16, 163, 127, 0.25);
+}
+
+.mode-btn.active svg {
+    fill: #FFFFFF;
+}
+
+.mode-btn:active {
+    transform: translateY(0);
+}
+
+/* 🔄 PROMINENT LOADING ANIMATION */
+.loading-indicator {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(255, 107, 74, 0.1) 100%);
+    border: 2px solid #10A37F;
+    border-radius: 16px;
+    animation: fadeInScale 0.3s ease;
+}
+
+.loading-indicator.active {
+    display: flex;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #E5E7EB;
+    border-top-color: #10A37F;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1F2937;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-dots {
+    display: inline-flex;
+    gap: 0.25rem;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background: #1F2937;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========== PREMIUM GLASSMORPHISM INPUT (Google Studio Style) ========== */
+.input-wrapper {
+    max-width: 100%;
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+    /* Dark Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 0.5rem 1.5rem;
+    /* Premium multi-layer shadow for dark theme */
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        0 16px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        0 16px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+/* ========== GOOGLE STUDIO LAYOUT: AUTO-GROW TEXTAREA ========== */
+#messageInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    resize: none;
+    min-height: 42px; /* Compact modern height */
+    max-height: 180px; /* Reduced max height */
+    overflow-y: auto; /* Auto-scroll when max height reached */
+    scrollbar-width: thin;
+    scrollbar-color: #10A37F transparent;
+    padding: 0.5rem 0;
+    padding-left: 200px; /* More space for icons - avoid overlapping with code icon */
+    padding-right: 0.5rem;
+}
+
+#messageInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#messageInput::-webkit-scrollbar {
+    width: 6px;
+}
+
+#messageInput::-webkit-scrollbar-thumb {
+    background: #10A37F;
+    border-radius: 10px;
+}
+
+/* 🎬 Input Actions - LEFT SIDE OF INPUT, VERTICALLY CENTERED */
+.input-actions {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    z-index: 60;
+    pointer-events: auto;
+}
+
+/* 🌟 NEON AI MODE ICONS (Premium Design - Compact, No Border) */
+.neon-icons-container {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    backdrop-filter: none;
+}
+
+/* 🌟 MOBILE ONLY ELEMENTS - Hidden on desktop */
+.mobile-plus-btn,
+.mobile-search-btn,
+.mobile-toggle-btn,
+.mobile-logo-toggle,
+.mobile-logo-text,
+.mobile-logo-container,
+.mobile-dropdown-trigger,
+.mobile-dropdown-menu,
+.mobile-sidebar {
+    display: none;
+}
+
+/* 🌟 NEON ICONS - COMPACT PREMIUM DESIGN */
+.neon-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    opacity: 0.7;
+}
+
+.neon-icon svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+    fill: #FFFFFF !important; /* White for dark theme */
+}
+
+.neon-icon:hover {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+.neon-icon:hover svg {
+    transform: scale(1.05);
+}
+
+.neon-icon:active {
+    transform: scale(0.95);
+}
+
+/* Active state for neon icons - WITH PULSE ANIMATION */
+.neon-icon.active {
+    opacity: 1;
+    background: rgba(16, 163, 127, 0.15);
+    border-radius: 8px;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+.neon-icon.active svg {
+    fill: #10A37F !important; /* Teal highlight when active */
+    animation: iconRotate 3s ease-in-out infinite;
+}
+
+/* Pulse animation for active icon */
+@keyframes iconPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(16, 163, 127, 0.7);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(16, 163, 127, 0);
+        transform: scale(1.05);
+    }
+}
+
+/* Subtle rotate/bounce for SVG inside */
+@keyframes iconRotate {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1.15) rotate(0deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Ripple animation on icon click */
+@keyframes rippleAnimation {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* REMOVED: Plus Button & Dropdown - CSS kaldırıldı, boş işlevi yok */
+
+.input-action-btn {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(255, 107, 74, 0.1) 100%);
+    border: 1px solid #10A37F;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(16, 163, 127, 0.15);
+}
+
+.input-action-btn:hover {
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    border-color: transparent;
+    transform: scale(1.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.input-action-btn:hover svg {
+    fill: #FFFFFF;
+}
+
+.input-action-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #1F2937;
+    stroke: #1F2937;
+    transition: all 0.3s;
+}
+
+/* 🚀 Send Button - GREY-WHITE (No Neon, Absolute Positioned Far Right) */
+#sendBtn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(75, 85, 99, 0.6); /* Grey background - semi-transparent */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* White border */
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    z-index: 61;
+}
+
+#sendBtn:hover {
+    background: rgba(107, 114, 128, 0.8); /* Lighter grey on hover */
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+    transform: translateY(-50%) scale(1.05);
+}
+
+#sendBtn:active {
+    transform: translateY(-50%) scale(0.95);
+    background: rgba(55, 65, 81, 0.8); /* Darker grey on press */
+}
+
+#sendBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+    box-shadow: none;
+}
+
+#sendBtn svg {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF; /* White icon */
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+/* 📊 Input Stats - INSIDE WRAPPER, VERTICALLY CENTERED RIGHT SIDE */
+.input-stats {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+}
+
+.char-count {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.token-count {
+    font-family: 'JetBrains Mono', monospace;
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}
+
+/* ============================================================
+   🎨 MODALS & OVERLAYS
+   ============================================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeInScale 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: rgba(26, 26, 26, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+    animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modal-close {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FF6B4A;
+    transform: rotate(90deg);
+    box-shadow: 0 4px 12px rgba(255, 107, 74, 0.3);
+}
+
+.modal-close svg {
+    width: 20px;
+    height: 20px;
+    fill: #FFFFFF;
+    transition: fill 0.3s;
+}
+
+.modal-close:hover svg {
+    fill: #FF6B4A;
+}
+
+/* 🎨 Theme Options */
+.theme-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.theme-option {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+.theme-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 163, 127, 0.3);
+    border-color: #10A37F;
+}
+
+.theme-option.active {
+    border-color: #10A37F;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(16, 163, 127, 0.25);
+}
+
+.theme-preview {
+    width: 100%;
+    height: 60px;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 4px;
+    padding: 8px;
+}
+
+.theme-preview-color {
+    flex: 1;
+    border-radius: 4px;
+}
+
+.theme-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #FFFFFF;
+}
+
+/* ============================================================
+   📱 RESPONSIVE DESIGN
+   ============================================================ */
+
+/* ============================================================
+   📱 RESPONSIVE DESIGN - MOBILE FIRST
+   ============================================================ */
+
+/* Tablet & Below (768px) */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-280px); /* Start hidden on mobile */
+        height: 100vh;
+        width: 280px;
+        z-index: 1000;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(-100%);
+    }
+
+    /* Sidebar toggle remains hidden on mobile - use .mobile-logo-toggle instead */
+    .sidebar-toggle {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .chat-container {
+        padding: 0;
+    }
+
+    .chat-header {
+        padding: 0.75rem 1rem;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        justify-content: space-between;
+        background: transparent !important; /* Remove any background */
+        border: none !important;
+    }
+
+    .header-left {
+        display: none; /* Hide on mobile */
+    }
+
+    .header-actions {
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: flex-end;
+        background: transparent !important; /* Remove background on mobile */
+    }
+
+    .header-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0.4rem;
+        min-width: 36px;
+        background: transparent !important; /* No background */
+        border: none !important; /* No border */
+    }
+
+    .header-btn-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        background: transparent !important;
+        border: none !important;
+    }
+
+    .header-btn svg,
+    .header-btn-icon svg {
+        width: 20px;
+        height: 20px;
+        fill: #FFFFFF; /* White icons */
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .messages-container {
+        padding: 1rem 0.75rem;
+        max-height: calc(100vh - 200px);
+    }
+
+    .message {
+        max-width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .message-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .message-actions {
+        gap: 0.5rem;
+        margin-top: 1rem !important; /* Mobilde butonlardan uzak */
+    }
+
+    .action-btn {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* Kullanıcı mesajına daha fazla bottom margin - butonlara değmesin */
+    .user-message {
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .input-wrapper {
+        padding: 0.5rem;
+        margin: 0;
+        width: 100%;
+    }
+
+    .input-container {
+        padding: 1rem;
+        gap: 0.75rem;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .chat-header {
+        left: 0;
+        width: 100%;
+    }
+
+    /* Input area as flex column */
+    .input-area {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .input-row {
+        order: 2;
+    }
+
+    #messageInput {
+        font-size: 1rem;
+        min-height: 52px;
+        padding: 1rem 60px 1rem 60px !important; /* Space for plus button left, send right */
+        width: 100%;
+        line-height: 1.6;
+        border-radius: 16px;
+        text-align: left;
+    }
+
+    #messageInput::placeholder {
+        font-size: 0.95rem;
+        opacity: 0.7;
+        letter-spacing: 0.01em;
+        text-align: left;
+    }
+
+    .input-actions {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 0.5rem;
+        z-index: 100;
+    }
+
+    /* 🎯 MOBILE PLUS BUTTON - Grey tone, no green glow */
+    .mobile-plus-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+    }
+
+    .mobile-plus-btn svg {
+        width: 24px;
+        height: 24px;
+        fill: rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-plus-btn.active svg {
+        transform: rotate(45deg);
+    }
+
+    .mobile-plus-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* 🎯 MOBILE ICONS MENU - Slide up animation */
+    .neon-icons-container {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        background: rgba(11, 15, 25, 0.95);
+        border: 2px solid rgba(16, 163, 127, 0.3);
+        border-radius: 16px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+    }
+
+    .neon-icons-container.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .neon-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 10px;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+    }
+
+    .neon-icon:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(16, 163, 127, 0.4);
+    }
+
+    .neon-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Active state on mobile - more visible */
+    .neon-icon.active {
+        background: rgba(16, 163, 127, 0.3);
+        border-color: rgba(16, 163, 127, 0.8);
+        box-shadow: 0 0 16px rgba(16, 163, 127, 0.5);
+    }
+
+    /* Token/char counter - Below input, no background */
+    .input-stats {
+        position: relative !important;
+        display: flex !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        margin-top: 0.5rem !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        font-size: 0.75rem !important;
+        order: 3 !important;
+    }
+
+    .input-stats span {
+        color: rgba(255, 255, 255, 0.6) !important;
+        opacity: 1 !important;
+        white-space: nowrap !important;
+        font-weight: 400 !important;
+    }
+
+    /* Mobilde sadece sayılar ve ikonlar - yazıları gizle */
+    .input-stats .count-label {
+        display: none !important;
+    }
+
+    .input-stats svg {
+        opacity: 0.8 !important;
+    }
+
+    /* Hide mobile search button */
+    .mobile-search-btn {
+        display: none !important;
+    }
+
+    /* 🎛️ MOBILE TOGGLE BUTTON - Hide old one */
+    .mobile-toggle-btn {
+        display: none !important;
+    }
+
+    /* 📱 Mobile Logo Toggle - Show on mobile, aligned with header */
+    .mobile-logo-toggle {
+        display: flex !important;
+        position: relative !important; /* Changed from fixed to relative */
+        width: auto !important; /* Auto width for logo + text */
+        height: 36px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem; /* Space between logo and text */
+    }
+
+    .mobile-logo-toggle img {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        flex-shrink: 0;
+    }
+
+    .mobile-logo-text {
+        display: inline-block !important;
+        font-size: 1.125rem !important;
+        font-weight: 600 !important;
+        color: #FFFFFF !important;
+        white-space: nowrap;
+    }
+
+    /* 📱 Mobile Logo Container - Flex wrapper */
+    .mobile-logo-container {
+        display: flex !important;
+        position: fixed !important;
+        top: 0.75rem !important;
+        left: 1rem !important;
+        z-index: 9999 !important;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    /* 📱 Mobile Dropdown Trigger - V icon button */
+    .mobile-dropdown-trigger {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 20px !important;
+        height: 20px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .mobile-dropdown-trigger:active {
+        transform: scale(0.9);
+    }
+
+    .mobile-dropdown-trigger.open {
+        transform: rotate(180deg);
+    }
+
+    /* 📱 Mobile Dropdown Menu - Simple list, no shadow/border */
+    .mobile-dropdown-menu {
+        display: none;
+        position: fixed;
+        top: 2.75rem; /* Right below logo text */
+        left: 4rem; /* Align with logo text, not icon */
+        z-index: 9998;
+        background: transparent;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .mobile-dropdown-menu.show {
+        display: flex !important;
+    }
+
+    /* 📱 Mobile Dropdown Items - Minimal style */
+    .mobile-dropdown-item {
+        font-size: 0.875rem !important;
+        font-weight: 400 !important;
+        color: #FFFFFF !important;
+        text-decoration: none !important;
+        padding: 0.25rem 0 !important;
+        background: transparent !important;
+        border: none !important;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+    }
+
+    .mobile-dropdown-item:hover {
+        opacity: 0.7;
+    }
+
+    /* 📱 MOBILE SIDEBAR MENU - Slide from right */
+    .mobile-sidebar {
+        display: flex !important; /* Show on mobile */
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100vh;
+        background: rgba(11, 15, 25, 0.98);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10000;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .mobile-sidebar.open {
+        right: 0;
+    }
+
+    .mobile-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-sidebar-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #FFFFFF;
+    }
+
+    .mobile-sidebar-close {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-sidebar-close:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-sidebar-close svg {
+        width: 20px;
+        height: 20px;
+        fill: rgba(255, 255, 255, 0.8);
+    }
+
+    .mobile-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.875rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+    }
+
+    .mobile-menu-item:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .mobile-menu-item svg {
+        width: 20px;
+        height: 20px;
+        fill: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Hide header actions when sidebar is open */
+    .header-actions.hide-on-sidebar-open {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .input-action-btn,
+    #sendBtn {
+        min-width: 44px;
+        min-height: 44px;
+        width: 44px;
+        height: 44px;
+        padding: 0.5rem;
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .plus-dropdown {
+        min-width: 200px;
+        left: 0;
+        right: auto;
+    }
+
+    .plus-dropdown-item {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .empty-state {
+        padding-top: 1rem;
+        gap: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .mini-spinner-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .chat-item {
+        padding: 0.875rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .chat-item-title {
+        font-size: 0.9rem;
+    }
+
+    .chat-item-preview {
+        font-size: 0.75rem;
+    }
+
+    .new-chat-btn {
+        padding: 0.875rem;
+        font-size: 0.9rem;
+    }
+
+    .sidebar-footer {
+        padding: 0.875rem;
+    }
+
+    .user-menu {
+        padding: 0.75rem;
+    }
+
+    .user-name {
+        font-size: 0.9rem;
+    }
+
+    .user-email {
+        font-size: 0.75rem;
+    }
+
+    .user-dropdown {
+        bottom: 100%;
+        top: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .input-stats {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile Small (480px) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 85vw;
+        max-width: 280px;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .chat-header {
+        padding: 0.75rem;
+    }
+
+    .header-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0.4rem;
+    }
+
+    .messages-container {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .message {
+        padding: 0.875rem;
+        border-radius: 12px;
+        max-width: 95%; /* Wider on mobile */
+    }
+
+    .message.assistant {
+        max-width: 100%; /* Full width for AI on mobile */
+    }
+
+    .message-content {
+        font-size: 0.9rem;
+    }
+
+    .input-wrapper {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .input-container {
+        padding: 0.625rem;
+    }
+
+    #messageInput {
+        font-size: 16px;
+        padding: 0.625rem 0.875rem;
+    }
+
+    .input-action-btn,
+    #sendBtn {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 0.4rem;
+    }
+
+    .plus-dropdown {
+        min-width: 180px;
+    }
+
+    .plus-dropdown-item {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.85rem;
+    }
+
+    .mini-spinner-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .empty-state {
+        padding-top: 0.75rem;
+        gap: 0.75rem;
+    }
+
+    .chat-item {
+        padding: 0.75rem;
+    }
+
+    .new-chat-btn {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .sidebar-footer {
+        padding: 0.75rem;
+    }
+
+    .input-stats {
+        font-size: 0.7rem;
+        gap: 0.75rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .messages-container {
+        max-height: calc(100vh - 160px);
+    }
+
+    .sidebar {
+        width: 260px;
+    }
+}
+
+/* Tablet Portrait (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 280px;
+    }
+
+    .main-content {
+        margin-left: 280px;
+    }
+
+    .messages-container {
+        padding: 1.5rem;
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .input-container {
+        max-width: 900px;
+    }
+}
+
+/* ============================================================
+   🎯 UTILITY CLASSES
+   ============================================================ */
+
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeInScale 0.5s ease;
+}
+
+.slide-in-up {
+    animation: slideInUp 0.5s ease;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s ease;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s ease;
+}
+
+/* ============================================================
+   🌟 SPECIAL EFFECTS
+   ============================================================ */
+
+/* Clean Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Border Shine Animation */
+@keyframes borderPulse {
+    0%, 100% {
+        border-color: #10A37F;
+    }
+    50% {
+        border-color: #FF6B4A;
+    }
+}
+
+.border-animated {
+    animation: borderPulse 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   🎬 LOADING STATES
+   ============================================================ */
+
+.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #10A37F;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ============================================================
+   ✨ FIRE SPARKS ANIMATION
+   ============================================================ */
+
+.fire-sparks {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.spark {
+    position: absolute;
+    bottom: 0;
+    width: 5px;
+    height: 5px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkRise linear forwards;
+    box-shadow: 0 0 4px var(--text-secondary);
+}
+
+@keyframes sparkRise {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--drift)) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* ========== SIDEBAR SEARCH OVERRIDE (ULTRA PRIORITY) ========== */
+.chat-sidebar .sidebar-search {
+    padding: 0.125rem 0.5rem !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    line-height: 1 !important;
+}
+
+.chat-sidebar .sidebar-search svg {
+    width: 16px !important;
+    height: 16px !important;
+    fill: #10A37F !important;
+    stroke: none !important;
+}
+
+.chat-sidebar .sidebar-search input {
+    font-size: 0.8rem !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+}
+
+/* ========== MICROPHONE RECORDING ANIMATION ========== */
+.neon-mic.recording {
+    animation: pulse-recording 1s ease-in-out infinite;
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* ============================================================
+   ⏱️ GUEST TIMER COUNTDOWN - 5 MINUTE LIMIT
+   ============================================================ */
+.guest-timer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: #FF6B4A;
+    font-weight: 700;
+    font-size: 14px;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideInFromRight 0.5s ease-out;
+}
+
+.guest-timer.warning {
+    animation: pulseWarning 1s ease-in-out infinite;
+}
+
+.guest-timer.warning .guest-timer-time {
+    color: #EF4444;
+}
+
+/* Modern Premium Hourglass Icon */
+.guest-timer-icon {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    animation: hourglassFlip 3s ease-in-out infinite;
+}
+
+@keyframes hourglassFlip {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+.guest-timer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.guest-timer-label {
+    font-size: 10px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.guest-timer-time {
+    font-size: 20px;
+    font-weight: 900 !important;
+    letter-spacing: 1px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseWarning {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .guest-timer {
+        top: 10px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .guest-timer-icon {
+        font-size: 16px;
+    }
+
+    .guest-timer-label {
+        font-size: 9px;
+    }
+
+    .guest-timer-time {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .guest-timer {
+        top: 70px;
+        right: 10px;
+        padding: 8px 14px;
+    }
+
+    .guest-timer-text {
+        gap: 0;
+    }
+
+    .guest-timer-time {
+        font-size: 16px;
+    }
+}
+
+@keyframes pulse-recording {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+}
+
+.neon-mic.recording svg {
+    fill: #EF4444 !important;
+}
+
+    </style>
+</head>
+<body>
+    <!-- 🚀 MAIN CHAT CONTAINER -->
+    <div class="chat-container">
+
+        <!-- 📂 SIDEBAR -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <img src="/lydian-logo.png" alt="LyDian Logo">
+                </button>
+                <div class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                    <span>LyDian</span>
+                </div>
+            </div>
+
+            <button class="new-chat-btn" id="newChatBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+                <span>Yeni Sohbet</span>
+            </button>
+
+            <div class="chat-history" id="chat-history">
+                <!-- Chat history items will be added here -->
+            </div>
+
+            <!-- 👤 USER MENU (Bottom of sidebar) -->
+            <div class="sidebar-footer">
+                <div class="sidebar-search">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input type="text" placeholder="Ara..." id="sidebarSearch">
+                </div>
+
+                <div class="user-menu">
+                    <div class="user-info" id="userMenuBtn">
+                        <div class="user-avatar">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <div class="user-details">
+                            <div class="user-name">Kullanıcı</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                        <svg class="user-menu-arrow" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </div>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/settings.html" class="dropdown-item" data-testid="menu-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+                            </svg>
+                            Ayarlar
+                        </a>
+                        <a href="/billing.html" class="dropdown-item" data-testid="menu-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+                            </svg>
+                            Ödeme & Plan
+                        </a>
+                        <a href="/api-reference.html" class="dropdown-item" data-testid="menu-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                            </svg>
+                            API Anahtarları
+                        </a>
+                        <a href="/help.html" class="dropdown-item" data-testid="menu-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                            </svg>
+                            Yardım & Destek
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/login.html" class="dropdown-item logout" data-testid="menu-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                            </svg>
+                            Çıkış Yap
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 💬 MAIN CHAT AREA -->
+        <div class="main-chat">
+            <!-- 🎯 HEADER -->
+            <!-- 🎛️ MOBILE LOGO WITH DROPDOWN -->
+            <div class="mobile-logo-container">
+                <button class="mobile-logo-toggle" id="mobileToggleBtn" title="Menü">
+                    <img src="/lydian-logo.png" alt="LyDian Logo">
+                    <span class="mobile-logo-text">LyDian</span>
+                </button>
+                <button class="mobile-dropdown-trigger" id="mobileDropdownBtn" aria-label="Menü">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu" id="mobileDropdownMenu">
+                    <a href="/lydian-iq.html" target="_blank" rel="noopener noreferrer" class="mobile-dropdown-item">IQ</a>
+                    <a href="/medical-expert.html" target="_blank" rel="noopener noreferrer" class="mobile-dropdown-item">TIP</a>
+                    <a href="/knowledge-base.html" target="_blank" rel="noopener noreferrer" class="mobile-dropdown-item">BANK</a>
+                </div>
+            </div>
+
+            <!-- 📱 MOBILE SIDEBAR MENU (Slide from right) -->
+            <div class="mobile-sidebar" id="mobileSidebar">
+                <div class="mobile-sidebar-header">
+                    <span class="mobile-sidebar-title">Menü</span>
+                    <button class="mobile-sidebar-close" id="mobileSidebarClose">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mobile-menu-item" id="menuDownload">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+                    </svg>
+                    <span>Sohbeti İndir</span>
+                </div>
+
+                <div class="mobile-menu-item" id="menuShare">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                    </svg>
+                    <span>Sohbeti Paylaş</span>
+                </div>
+            </div>
+
+            <div class="chat-header">
+                <div class="header-left" style="display: flex; align-items: center; gap: 10px;">
+                    <!-- Logo removed per user request -->
+                </div>
+
+                <div class="header-actions">
+                    <!-- REMOVED: Görsel ve Video butonları (arama motorunda zaten var) -->
+
+                    <!-- 📥 Download Button - Minimal (Icon only) -->
+                    <button class="header-btn-icon" id="downloadBtn" title="Sohbeti İndir">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+                        </svg>
+                    </button>
+                    <!-- 🔗 Share Button - Minimal (Icon only) -->
+                    <button class="header-btn-icon" id="shareBtn" title="Sohbeti Paylaş">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 💭 MESSAGES -->
+            <div class="messages-container" id="messagesContainer">
+                <div class="empty-state" id="emptyState">
+                    <!-- Particles background -->
+                    <div class="particles" id="particles"></div>
+
+                    <!-- 👤 USER WELCOME TEXT -->
+                    <div class="user-welcome-text" id="userWelcomeText">
+                        <div class="welcome-user-name" id="welcomeUserName">Hoşgeldiniz</div>
+                        <div class="welcome-message">Size Nasıl Yardımcı Olabilirim?</div>
+                    </div>
+
+                    <!-- 🌌 LyDian Orbit Loader -->
+                    <div class="mini-spinner-container">
+                        <div class="mini-spinner">
+                            <svg viewBox="-60 -60 120 120" width="120" height="120" role="img" aria-label="LyDian orbit">
+                                <defs>
+                                    <radialGradient id="g-core" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#7C5CFF" stop-opacity="1" />
+                                        <stop offset="60%" stop-color="#00E0FF" stop-opacity="0.4" />
+                                        <stop offset="100%" stop-color="#0B0F19" stop-opacity="0" />
+                                    </radialGradient>
+                                    <linearGradient id="g-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#7C5CFF" />
+                                        <stop offset="100%" stop-color="#00E0FF" />
+                                    </linearGradient>
+                                    <linearGradient id="g-2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#00E0FF" />
+                                        <stop offset="100%" stop-color="#FF9D00" />
+                                    </linearGradient>
+                                    <linearGradient id="g-3" x1="100%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF9D00" />
+                                        <stop offset="100%" stop-color="#7C5CFF" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Background aura -->
+                                <circle r="48" fill="url(#g-core)" opacity="0.2" />
+
+                                <!-- Orbit 1 - Outer ellipse -->
+                                <g class="lydian-orbit-ring-1">
+                                    <ellipse rx="50" ry="30" fill="none" stroke="url(#g-1)" stroke-opacity="0.7" stroke-width="0.8" />
+                                    <circle cx="50" cy="0" r="2" fill="#00E0FF" />
+                                    <circle cx="-50" cy="0" r="2" fill="#00E0FF" />
+                                </g>
+
+                                <!-- Orbit 2 - Middle circle -->
+                                <g class="lydian-orbit-ring-2">
+                                    <circle r="38" fill="none" stroke="url(#g-2)" stroke-opacity="0.8" stroke-width="0.8" />
+                                    <circle cx="38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="-38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="38" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="-38" r="1.5" fill="#FF9D00" />
+                                </g>
+
+                                <!-- Orbit 3 - Inner circle -->
+                                <g class="lydian-orbit-ring-3">
+                                    <circle r="25" fill="none" stroke="url(#g-3)" stroke-opacity="0.9" stroke-width="1" stroke-dasharray="1.5 5" />
+                                </g>
+
+                                <!-- Lissajous satellites -->
+                                <g class="lydian-lissajous">
+                                    <circle r="2.5" fill="#7C5CFF" />
+                                </g>
+
+                                <!-- Core nucleus -->
+                                <circle r="12" fill="#111827" />
+                                <circle r="12" fill="url(#g-core)" opacity="0.35" />
+                                <circle r="0.8" fill="#7C5CFF" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ⚡ PROMINENT LOADING INDICATOR (Shows during AI queries) -->
+                <div class="loading-indicator" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">
+                        <span>AI düşünüyor</span>
+                        <div class="loading-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ✨ FIRE SPARKS CONTAINER -->
+                <div id="fireSparks" class="fire-sparks"></div>
+            </div>
+
+            <!-- ✍️ INPUT AREA -->
+            <div class="input-container" id="mainInputContainer">
+                <!-- ⚡ AI MODE SELECTORS (VISIBLE & PROMINENT) -->
+                <div class="input-mode-selectors">
+                    <button class="mode-btn active" data-mode="general" title="Genel Sohbet">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        </svg>
+                        <span>Genel</span>
+                    </button>
+                    <button class="mode-btn" data-mode="deep-think" title="Derin Düşünce (ERNIE)" data-ai-type="deep-think">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
+                        </svg>
+                        <span>Derin Düşünce</span>
+                    </button>
+                    <button class="mode-btn" data-mode="web-search" title="Web Arama (Groq)" data-ai-type="web-search">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                        <span>Web Arama</span>
+                    </button>
+                </div>
+
+                <!-- 🤖 AI MODEL SELECTORS (Advanced, Premium, Ultra) -->
+                <div class="input-mode-selectors" style="margin-top: 0.5rem; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
+                    <button class="mode-btn" data-model="model-a" title="Advanced Mode">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span>Advanced</span>
+                    </button>
+                    <button class="mode-btn active" data-model="model-p" title="Premium Mode">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18.5c-3.87-1.18-6.5-4.85-6.5-8.5V8.3l6.5-3.11 6.5 3.11V12c0 3.65-2.63 7.32-6.5 8.5z"/>
+                        </svg>
+                        <span>Premium</span>
+                    </button>
+                    <button class="mode-btn" data-model="model-u" title="Ultra Mode">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 2L1 12l11 10 11-10L12 2zm0 2.83L19.17 12 12 19.17 4.83 12 12 4.83z"/>
+                        </svg>
+                        <span>Ultra</span>
+                    </button>
+                    <button class="mode-btn" data-model="model-r" title="Research Mode">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
+                        </svg>
+                        <span>Research</span>
+                    </button>
+                </div>
+
+                <div class="input-wrapper">
+                    <div class="input-area">
+                        <div class="input-row">
+                            <textarea
+                                id="messageInput"
+                                placeholder="Mesajınızı buraya yazın..."
+                                rows="1"
+                                autocomplete="on"
+                                autocorrect="on"
+                                autocapitalize="sentences"
+                                spellcheck="true"
+                            ></textarea>
+
+                            <div class="input-actions">
+                                <!-- 🎯 MOBILE PLUS BUTTON -->
+                                <button class="mobile-plus-btn" id="mobilePlusBtn" title="AI Araçları">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                    </svg>
+                                </button>
+
+                                <!-- 🌟 NEON AI MODE ICONS (Inline) -->
+                                <div class="neon-icons-container">
+                                    <button class="neon-icon neon-thinking" id="neonDeepThinkBtn" title="Aktif">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="neon-icon neon-search" id="neonWebSearchBtn" title="Aktif">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="neon-icon neon-image" id="neonImageBtn" title="Aktif">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="neon-icon neon-video" id="neonVideoBtn" title="Aktif">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Aktif">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="neon-icon neon-code" id="neonCodeBtn" title="Aktif">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <!-- Hidden file inputs for Google Studio style upload -->
+                                <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+                                <input type="file" id="videoFileInput" accept="video/*" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div class="input-stats">
+                            <span class="char-count">
+                                <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-right: 4px;">
+                                    <path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                                </svg>
+                                <span id="charCount">0</span><span class="count-label"> karakter</span>
+                            </span>
+                            <span class="token-count">
+                                <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-right: 4px;">
+                                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                ~<span id="tokenCount">0</span><span class="count-label"> token</span>
+                            </span>
+                            <!-- ⚡ Real-time Speed & Token Display (after query) -->
+                            <span class="speed-display" id="speedDisplay" style="display:none;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-right: 4px;">
+                                    <path fill="currentColor" d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44z"/>
+                                    <path fill="currentColor" d="M10.59 15.41a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/>
+                                </svg>
+                                <span id="speedValue">0</span> token/s
+                            </span>
+                            <span class="response-tokens" id="responseTokens" style="display:none;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-right: 4px;">
+                                    <path fill="currentColor" d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                                </svg>
+                                <span id="responseTokenValue">0</span> tokens
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 🔍 MOBILE SEARCH BUTTON -->
+                    <button class="mobile-search-btn" id="mobileSearchBtn" title="Ara">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+
+                    <!-- 🚀 SEND BUTTON - Grey-White Neon, Far Right Next to Token Counter -->
+                    <button id="sendBtn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 📋 LYDIAN AI DISCLAIMER - Professional Corporate Notice -->
+                <div class="ai-disclaimer" style="display: none;">
+                    <strong>LyDian AI Hata Yapabilir.</strong> Önemli bilgiler için doğrulama yapmanızı öneririz.
+                    Kullanım koşulları ve gizlilik politikası için <a href="/terms.html" target="_blank">buraya tıklayın</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎨 THEME MODAL -->
+    <div class="modal-overlay" id="themeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Tema Seçin</h2>
+                <button class="modal-close" id="closeThemeModalBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="theme-options">
+                <div class="theme-option active" data-theme="dark">
+                    <div class="theme-preview" >
+                        <div class="theme-preview-color" style="background: #10A37F;"></div>
+                        <div class="theme-preview-color" style="background: #FF6B4A;"></div>
+                        <div class="theme-preview-color" style="background: #FFF;"></div>
+                    </div>
+                    <div class="theme-name">Neon Dark</div>
+                </div>
+                <div class="theme-option" data-theme="ocean">
+                    <div class="theme-preview" >
+                        <div class="theme-preview-color" style="background: #00D4FF;"></div>
+                        <div class="theme-preview-color" style="background: #4AE3FF;"></div>
+                        <div class="theme-preview-color" style="background: #00A8CC;"></div>
+                    </div>
+                    <div class="theme-name">Ocean Blue</div>
+                </div>
+                <div class="theme-option" data-theme="forest">
+                    <div class="theme-preview" >
+                        <div class="theme-preview-color" style="background: #00FF88;"></div>
+                        <div class="theme-preview-color" style="background: #4AFFAA;"></div>
+                        <div class="theme-preview-color" style="background: #00CC6A;"></div>
+                    </div>
+                    <div class="theme-name">Forest Green</div>
+                </div>
+                <div class="theme-option" data-theme="purple">
+                    <div class="theme-preview" >
+                        <div class="theme-preview-color" style="background: #B24BF3;"></div>
+                        <div class="theme-preview-color" style="background: #C77DFF;"></div>
+                        <div class="theme-preview-color" style="background: #9333EA;"></div>
+                    </div>
+                    <div class="theme-name">Purple Dream</div>
+                </div>
+                <div class="theme-option" data-theme="sunset">
+                    <div class="theme-preview" >
+                        <div class="theme-preview-color" style="background: #FF6B9D;"></div>
+                        <div class="theme-preview-color" style="background: #FF8FAB;"></div>
+                        <div class="theme-preview-color" style="background: #E64A7A;"></div>
+                    </div>
+                    <div class="theme-name">Sunset Pink</div>
+                </div>
+                <div class="theme-option" data-theme="minimal-dark">
+                    <div class="theme-preview" >
+                        <div class="theme-preview-color" style="background: #FFF;"></div>
+                        <div class="theme-preview-color" style="background: #E5E5E5;"></div>
+                        <div class="theme-preview-color" style="background: #D0D0D0;"></div>
+                    </div>
+                    <div class="theme-name">Minimal Dark</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎬 IMAGE MODAL -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Görsel Oluştur</h2>
+                <button class="modal-close" id="closeImageModalBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div style="padding: 1rem 0;">
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">
+                    LyDian AI ile görsel oluştur
+                </p>
+                <textarea
+                    id="imagePromptInput"
+                    placeholder="Görsel açıklaması..."
+                    style="width: 100%; min-height: 100px; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #FFFFFF; font-family: inherit; resize: vertical;"
+                ></textarea>
+                <button
+                    id="generateImageBtn"
+                    
+                >
+                    Oluştur
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎬 VIDEO MODAL -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Video Oluştur</h2>
+                <button class="modal-close" id="closeVideoModalBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div style="padding: 1rem 0;">
+                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">
+                    LyDian AI ile video oluştur
+                </p>
+                <textarea
+                    id="videoPromptInput"
+                    placeholder="Video açıklaması..."
+                    style="width: 100%; min-height: 100px; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #FFFFFF; font-family: inherit; resize: vertical;"
+                ></textarea>
+                <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">Süre (saniye)</label>
+                        <input
+                            type="number"
+                            id="videoDuration"
+                            value="5"
+                            min="3"
+                            max="30"
+                            style="width: 100%; padding: 0.75rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #FFFFFF; font-family: inherit;"
+                        >
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">Çözünürlük</label>
+                        <select
+                            id="videoResolution"
+                            style="width: 100%; padding: 0.75rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #FFFFFF; font-family: inherit;"
+                        >
+                            <option value="720p">720p</option>
+                            <option value="1080p" selected>1080p</option>
+                            <option value="4k">4K</option>
+                        </select>
+                    </div>
+                </div>
+                <button
+                    id="generateVideoBtn"
+                    
+                >
+                    Video Oluştur
+                </button>
+                <div id="videoGenerationStatus" style="margin-top: 1rem; padding: 1rem; background: rgba(16, 163, 127, 0.1); border: 1px solid #10A37F; border-radius: 12px; display: none;">
+                    <p id="videoStatusText" style="color: #FFFFFF;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚀 JAVASCRIPT -->
+    <script>
+        // ========== STATE ==========
+        const state = {
+            messages: [],
+            currentChatId: null,
+            isTyping: false,
+            selectedengine: 'enterprise-ai',  // Default: Premium AI
+            selectedAiType: 'general'  // 🎯 Track specialized AI mode
+        };
+
+        // ========== ELEMENTS ==========
+        const elements = {
+            sidebar: document.getElementById('sidebar'),
+            sidebarToggle: document.getElementById('sidebarToggle'),
+            sidebarOpenBtn: document.getElementById('sidebarOpenBtn'),
+            newChatBtn: document.getElementById('newChatBtn'),
+            chatHistory: document.getElementById('chat-history'),
+            messagesContainer: document.getElementById('messagesContainer'),
+            messageInput: document.getElementById('messageInput'),
+            sendBtn: document.getElementById('sendBtn'),
+            charCount: document.getElementById('charCount'),
+            tokenCount: document.getElementById('tokenCount'),
+            tokenCountHeader: document.getElementById('tokenCountHeader'),
+            emptyState: document.getElementById('emptyState'),
+            themeBtn: document.getElementById('themeBtn'),
+            themeModal: document.getElementById('themeModal'),
+            closeThemeModalBtn: document.getElementById('closeThemeModalBtn'),
+            imageBtn: document.getElementById('imageBtn'),
+            imageModal: document.getElementById('imageModal'),
+            closeImageModalBtn: document.getElementById('closeImageModalBtn'),
+            videoBtn: document.getElementById('videoBtn'),
+            videoModal: document.getElementById('videoModal'),
+            closeVideoModalBtn: document.getElementById('closeVideoModalBtn'),
+            downloadBtn: document.getElementById('downloadBtn'),
+            deepThinkBtn: document.getElementById('deepThinkBtn'),
+            webSearchBtn: document.getElementById('webSearchBtn'),
+            shareBtn: document.getElementById('shareBtn'),
+            speedDisplay: document.getElementById('speedDisplay'),
+            speedValue: document.getElementById('speedValue'),
+            responseTokens: document.getElementById('responseTokens'),
+            responseTokenValue: document.getElementById('responseTokenValue'),
+            plusBtn: document.getElementById('plusBtn'),
+            plusDropdown: document.getElementById('plusDropdown'),
+            // 🌟 Neon AI Mode Icons
+            neonDeepThinkBtn: document.getElementById('neonDeepThinkBtn'),
+            neonWebSearchBtn: document.getElementById('neonWebSearchBtn'),
+            neonImageBtn: document.getElementById('neonImageBtn'),
+            neonVideoBtn: document.getElementById('neonVideoBtn'),
+            neonMicBtn: document.getElementById('neonMicBtn'),
+            neonCodeBtn: document.getElementById('neonCodeBtn')
+        };
+
+        // ========== EVENT LISTENERS ==========
+
+        // Sidebar toggle
+        if (elements.sidebarToggle && elements.sidebar) {
+            elements.sidebarToggle.addEventListener('click', () => {
+                console.log('🔘 Sidebar toggle clicked');
+                elements.sidebar.classList.toggle('collapsed');
+            });
+            console.log('✅ Sidebar toggle listener added');
+        } else {
+            console.error('❌ Sidebar toggle elements not found:', {
+                sidebarToggle: !!elements.sidebarToggle,
+                sidebar: !!elements.sidebar
+            });
+        }
+
+        if (elements.sidebarOpenBtn && elements.sidebar) {
+            elements.sidebarOpenBtn.addEventListener('click', () => {
+                console.log('📂 Sidebar open clicked');
+                elements.sidebar.classList.remove('collapsed');
+            });
+            console.log('✅ Sidebar open listener added');
+        }
+
+        // New chat
+        if (elements.newChatBtn) {
+            elements.newChatBtn.addEventListener('click', () => {
+                console.log('🆕 New chat button clicked');
+                startNewChat();
+            });
+            console.log('✅ New chat listener added');
+        } else {
+            console.error('❌ New chat button not found');
+        }
+
+        // Message input
+        elements.messageInput.addEventListener('input', (e) => {
+            // Auto-resize
+            e.target.style.height = 'auto';
+            e.target.style.height = e.target.scrollHeight + 'px';
+
+            // Update counters
+            const text = e.target.value;
+            const charCount = text.length;
+            const tokenCount = Math.ceil(charCount / 4); // Rough estimate
+
+            if (elements.charCount) elements.charCount.textContent = charCount;
+            if (elements.tokenCount) elements.tokenCount.textContent = tokenCount;
+            if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = tokenCount;
+
+            // Enable/disable send button
+            if (elements.sendBtn) elements.sendBtn.disabled = text.trim().length === 0;
+        });
+
+        elements.messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Send button
+        elements.sendBtn.addEventListener('click', sendMessage);
+
+        // Theme modal (LEGACY - Theme system removed, keeping for safety)
+        if (elements.themeBtn && elements.themeModal && elements.closeThemeModalBtn) {
+            elements.themeBtn.addEventListener('click', () => {
+                elements.themeModal.classList.add('active');
+                updateActiveThemeOption();
+            });
+
+            elements.closeThemeModalBtn.addEventListener('click', () => {
+                elements.themeModal.classList.remove('active');
+            });
+
+            elements.themeModal.addEventListener('click', (e) => {
+                if (e.target === elements.themeModal) {
+                    elements.themeModal.classList.remove('active');
+                }
+            });
+
+            // Theme options
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const themeName = option.dataset.theme;
+                    setTheme(themeName);
+                    localStorage.setItem('lydian_theme', themeName);
+                    updateActiveThemeOption();
+                    showToast(`✨ ${option.querySelector('.theme-name').textContent} aktif!`);
+                    setTimeout(() => {
+                        elements.themeModal.classList.remove('active');
+                    }, 600);
+                });
+            });
+        }
+
+        // Image modal (LEGACY - Buttons removed from header, keeping modals for safety)
+        if (elements.imageBtn && elements.imageModal && elements.closeImageModalBtn) {
+            elements.imageBtn.addEventListener('click', () => {
+                elements.imageModal.classList.add('active');
+            });
+
+            elements.closeImageModalBtn.addEventListener('click', () => {
+                elements.imageModal.classList.remove('active');
+            });
+
+            const generateImageBtn = document.getElementById('generateImageBtn');
+            if (generateImageBtn) {
+                generateImageBtn.addEventListener('click', async () => {
+                    const imagePromptInput = document.getElementById('imagePromptInput');
+                    const prompt = imagePromptInput?.value.trim();
+                    if (!prompt) {
+                        alert('Lütfen görsel açıklaması girin!');
+                        return;
+                    }
+
+                    elements.imageModal.classList.remove('active');
+                    addMessage('assistant', `🎨 **Görsel Oluşturuluyor...**\n\n**Prompt:** ${prompt}\n\n*LyDian AI ile görsel oluşturuluyor...*`);
+                });
+            }
+        }
+
+        // Video modal (LEGACY - Buttons removed from header, keeping modals for safety)
+        if (elements.videoBtn && elements.videoModal && elements.closeVideoModalBtn) {
+            elements.videoBtn.addEventListener('click', () => {
+                elements.videoModal.classList.add('active');
+            });
+
+            elements.closeVideoModalBtn.addEventListener('click', () => {
+                elements.videoModal.classList.remove('active');
+            });
+
+            const generateVideoBtn = document.getElementById('generateVideoBtn');
+            if (generateVideoBtn) {
+                generateVideoBtn.addEventListener('click', async () => {
+                    const videoPromptInput = document.getElementById('videoPromptInput');
+                    const prompt = videoPromptInput?.value.trim();
+                    if (!prompt) {
+                        alert('Lütfen video açıklaması girin!');
+                        return;
+                    }
+
+                    const videoDuration = document.getElementById('videoDuration');
+                    const videoResolution = document.getElementById('videoResolution');
+                    const duration = videoDuration?.value;
+                    const resolution = videoResolution?.value;
+
+                    elements.videoModal.classList.remove('active');
+                    addMessage('assistant', `🎬 **Video Oluşturuluyor...**\n\n**Prompt:** ${prompt}\n**Süre:** ${duration}s\n**Çözünürlük:** ${resolution}\n\n*LyDian AI ile video oluşturuluyor...*`);
+                });
+            }
+        }
+
+        // Download
+        if (elements.downloadBtn) {
+            elements.downloadBtn.addEventListener('click', () => {
+                const format = prompt('İndirme formatı seçin:\n1. JSON\n2. TXT\n3. MD (Markdown)\n4. CSV\n\nNumara girin (1-4):', '1');
+
+                if (!format) return;
+
+                const formatMap = {
+                    '1': 'json',
+                    '2': 'txt',
+                    '3': 'md',
+                    '4': 'csv'
+                };
+
+                const selectedFormat = formatMap[format] || 'json';
+                downloadConversation(selectedFormat);
+            });
+        }
+
+        // 🧠 Deep Think Button (ERNIE multi-language)
+        if (elements.deepThinkBtn) {
+            elements.deepThinkBtn.addEventListener('click', () => {
+                state.selectedAiType = 'reasoning'; // Uses LyDian AI Reasoning Engine
+                showToast('🧠 Derin Düşünce Modu Aktif (ERNIE/Zhipu)');
+            });
+        }
+
+        // 🌐 Web Search Button (Groq)
+        if (elements.webSearchBtn) {
+            elements.webSearchBtn.addEventListener('click', () => {
+                state.selectedAiType = 'web-search';
+                showToast('🌐 Web Arama Modu Aktif (Groq)');
+            });
+        }
+
+        // 🌟 NEON AI MODE ICON HANDLERS (Premium Inline Icons)
+        // Helper function to toggle active neon icon with animation
+        function toggleNeonIcon(activeIcon) {
+            // Remove active class from all neon icons
+            const allNeonIcons = [
+                elements.neonDeepThinkBtn,
+                elements.neonWebSearchBtn,
+                elements.neonImageBtn,
+                elements.neonVideoBtn,
+                elements.neonMicBtn,
+                elements.neonCodeBtn
+            ].filter(Boolean);
+
+            allNeonIcons.forEach(icon => icon.classList.remove('active'));
+
+            // Add active class to clicked icon with animation
+            if (activeIcon) {
+                activeIcon.classList.add('active');
+
+                // Trigger click animation (scale bounce)
+                activeIcon.style.animation = 'none';
+                setTimeout(() => {
+                    activeIcon.style.animation = '';
+                }, 10);
+
+                // Create ripple effect
+                createRippleEffect(activeIcon);
+            }
+        }
+
+        // Create ripple effect on icon click
+        function createRippleEffect(element) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${rect.width}px;
+                height: ${rect.height}px;
+                border-radius: 50%;
+                background: rgba(16, 163, 127, 0.5);
+                transform: scale(0);
+                animation: rippleAnimation 0.6s ease-out;
+                pointer-events: none;
+                left: 0;
+                top: 0;
+            `;
+
+            element.style.position = 'relative';
+            element.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // 🎯 MOBILE PLUS BUTTON - Toggle icon menu
+        const mobilePlusBtn = document.getElementById('mobilePlusBtn');
+        const neonIconsContainer = document.querySelector('.neon-icons-container');
+
+        if (mobilePlusBtn && neonIconsContainer) {
+            mobilePlusBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobilePlusBtn.classList.toggle('active');
+                neonIconsContainer.classList.toggle('show');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobilePlusBtn.contains(e.target) && !neonIconsContainer.contains(e.target)) {
+                    mobilePlusBtn.classList.remove('active');
+                    neonIconsContainer.classList.remove('show');
+                }
+            });
+
+            // Close menu after selecting an icon
+            neonIconsContainer.querySelectorAll('.neon-icon').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    setTimeout(() => {
+                        mobilePlusBtn.classList.remove('active');
+                        neonIconsContainer.classList.remove('show');
+                    }, 300);
+                });
+            });
+        }
+
+        // 🎛️ MOBILE TOGGLE BUTTON & SIDEBAR - Only close functionality
+        const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const mobileSidebarClose = document.getElementById('mobileSidebarClose');
+        const headerActions = document.querySelector('.header-actions');
+        const menuDownload = document.getElementById('menuDownload');
+        const menuShare = document.getElementById('menuShare');
+
+        function closeMobileSidebar() {
+            if (mobileSidebar) {
+                mobileSidebar.classList.remove('open');
+                if (headerActions) {
+                    headerActions.classList.remove('hide-on-sidebar-open');
+                }
+            }
+        }
+
+        // Mobile dropdown functionality
+        const mobileDropdownBtn = document.getElementById('mobileDropdownBtn');
+        const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
+
+        if (mobileDropdownBtn && mobileDropdownMenu) {
+            mobileDropdownBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileDropdownMenu.classList.toggle('show');
+                mobileDropdownBtn.classList.toggle('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.mobile-logo-container')) {
+                    mobileDropdownMenu.classList.remove('show');
+                    mobileDropdownBtn.classList.remove('open');
+                }
+            });
+        }
+
+        // Toggle button only closes the sidebar (no opening)
+        if (mobileToggleBtn) {
+            mobileToggleBtn.addEventListener('click', closeMobileSidebar);
+        }
+
+        if (mobileSidebarClose) {
+            mobileSidebarClose.addEventListener('click', closeMobileSidebar);
+        }
+
+        // Header download/share buttons open the sidebar on mobile
+        const originalDownloadBtn = document.getElementById('downloadBtn');
+        const originalShareBtn = document.getElementById('shareBtn');
+
+        if (originalDownloadBtn && window.innerWidth <= 768) {
+            originalDownloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (mobileSidebar) {
+                    mobileSidebar.classList.add('open');
+                    if (headerActions) {
+                        headerActions.classList.add('hide-on-sidebar-open');
+                    }
+                }
+            });
+        }
+
+        if (originalShareBtn && window.innerWidth <= 768) {
+            originalShareBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (mobileSidebar) {
+                    mobileSidebar.classList.add('open');
+                    if (headerActions) {
+                        headerActions.classList.add('hide-on-sidebar-open');
+                    }
+                }
+            });
+        }
+
+        // Menu actions - actually perform download/share
+        if (menuDownload) {
+            menuDownload.addEventListener('click', () => {
+                closeMobileSidebar();
+                // Trigger actual download
+                setTimeout(() => {
+                    if (originalDownloadBtn) {
+                        const clickEvent = new MouseEvent('click', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window
+                        });
+                        // Remove our handler temporarily
+                        const handler = originalDownloadBtn.onclick;
+                        originalDownloadBtn.onclick = null;
+                        originalDownloadBtn.dispatchEvent(clickEvent);
+                        originalDownloadBtn.onclick = handler;
+                    }
+                }, 300);
+            });
+        }
+
+        if (menuShare) {
+            menuShare.addEventListener('click', () => {
+                closeMobileSidebar();
+                // Trigger actual share
+                setTimeout(() => {
+                    if (originalShareBtn) {
+                        const clickEvent = new MouseEvent('click', {
+                            bubbles: true,
+                            cancelable: true,
+                            view: window
+                        });
+                        // Remove our handler temporarily
+                        const handler = originalShareBtn.onclick;
+                        originalShareBtn.onclick = null;
+                        originalShareBtn.dispatchEvent(clickEvent);
+                        originalShareBtn.onclick = handler;
+                    }
+                }, 300);
+            });
+        }
+
+        // 🧠 Neon Deep Thinking Icon
+        if (elements.neonDeepThinkBtn) {
+            elements.neonDeepThinkBtn.addEventListener('click', () => {
+                state.selectedAiType = 'reasoning';
+                toggleNeonIcon(elements.neonDeepThinkBtn);
+            });
+        }
+
+        // 🌐 Neon Web Search Icon
+        if (elements.neonWebSearchBtn) {
+            elements.neonWebSearchBtn.addEventListener('click', () => {
+                state.selectedAiType = 'web-search';
+                toggleNeonIcon(elements.neonWebSearchBtn);
+            });
+        }
+
+        // 🖼️ Neon Image Generation Icon (LyDian AI)
+        if (elements.neonImageBtn) {
+            elements.neonImageBtn.addEventListener('click', () => {
+                state.selectedAiType = 'image';
+                toggleNeonIcon(elements.neonImageBtn);
+                // No toast - only tooltip shows "Aktif"
+            });
+        }
+
+        // 🎥 Video Generation Icon (LyDian AI)
+        if (elements.neonVideoBtn) {
+            elements.neonVideoBtn.addEventListener('click', () => {
+                state.selectedAiType = 'video';
+                toggleNeonIcon(elements.neonVideoBtn);
+                // No toast - only tooltip shows "Aktif"
+            });
+        }
+
+        // 🎤 Voice Output Mode (LyDian AI TTS)
+        if (elements.neonMicBtn) {
+            elements.neonMicBtn.addEventListener('click', () => {
+                state.selectedAiType = 'voice';
+                toggleNeonIcon(elements.neonMicBtn);
+            });
+        }
+
+        // 💻 Code Mode Icon
+        if (elements.neonCodeBtn) {
+            elements.neonCodeBtn.addEventListener('click', () => {
+                state.selectedAiType = 'code';
+                state.selectedModel = 'code-model';
+                toggleNeonIcon(elements.neonCodeBtn);
+                // No toast message on click
+            });
+        }
+
+        // 🤖 MODEL SELECTOR BUTTONS (Advanced, Premium, Ultra, RAG)
+        document.querySelectorAll('[data-model]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all model buttons
+                document.querySelectorAll('[data-model]').forEach(b => b.classList.remove('active'));
+                // Add active to clicked button
+                btn.classList.add('active');
+                // Update state
+                state.selectedModel = btn.getAttribute('data-model');
+                showToast(`AI Asistanı Hazır`);
+            });
+        });
+
+        // 🔗 Share Button with Modal
+        if (elements.shareBtn) {
+            elements.shareBtn.addEventListener('click', () => {
+                shareConversation();
+            });
+        }
+
+        // Plus button dropdown toggle
+        if (elements.plusBtn && elements.plusDropdown) {
+            elements.plusBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                elements.plusDropdown.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!elements.plusBtn.contains(e.target) && !elements.plusDropdown.contains(e.target)) {
+                    elements.plusDropdown.classList.remove('show');
+                }
+            });
+
+            // Plus dropdown items
+            const plusDropdownItems = document.querySelectorAll('.plus-dropdown-item');
+            plusDropdownItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const aiType = item.getAttribute('data-ai-type');
+                    state.selectedAiType = aiType;
+                    elements.plusDropdown.classList.remove('show');
+                    showToast(`AI Mode: ${aiType}`);
+                });
+            });
+        }
+
+        // Suggestion chips
+        document.querySelectorAll('.suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                elements.messageInput.value = chip.dataset.prompt;
+                elements.messageInput.dispatchEvent(new Event('input'));
+                elements.messageInput.focus();
+            });
+        });
+
+        // ========== FUNCTIONS ==========
+
+        async function sendMessage() {
+            const message = elements.messageInput.value.trim();
+            if (!message || state.isTyping) return;
+
+            // Add user message
+            addMessage('user', message);
+
+            // Trigger fire sparks animation
+            triggerFireSparks();
+
+            // Clear input
+            elements.messageInput.value = '';
+            elements.messageInput.style.height = 'auto';
+            if (elements.sendBtn) elements.sendBtn.disabled = true;
+            if (elements.charCount) elements.charCount.textContent = '0';
+            if (elements.tokenCount) elements.tokenCount.textContent = '0';
+            if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = '0';
+
+            // Hide empty state
+            if (elements.emptyState) {
+                elements.emptyState.style.display = 'none';
+            }
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Track start time for speed calculation
+            const startTime = Date.now();
+
+            // Call backend API - Use model-specific or specialized endpoint
+            try {
+                // Silent API call - no model exposure in console
+
+                // Clean history: remove timestamp property for API compatibility
+                const cleanHistory = state.messages.slice(-10).map(msg => ({
+                    role: msg.role,
+                    content: msg.content
+                }));
+
+                // ALWAYS use specialized endpoint - it handles all models with fallback
+                let apiEndpoint = '/api/chat/specialized';
+                let requestBody = {
+                    message: message,
+                    aiType: state.selectedAiType,
+                    engine: state.selectedModel || 'primary',
+                    temperature: 0.7,
+                    max_tokens: 4000,
+                    history: cleanHistory,
+                    language: 'tr',  // Always Turkish
+                    locale: 'tr-TR'  // Turkish locale
+                };
+
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                // Silent status check - no model exposure
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    // Generic error - no model/API details exposed
+                    throw new Error(`Bağlantı hatası. Lütfen tekrar deneyin.`);
+                }
+
+                const data = await response.json();
+                hideTypingIndicator();
+
+                // Extract response from different API formats
+                let aiResponse = '';
+                if (data.response) {
+                    aiResponse = data.response;
+                } else if (data.message) {
+                    aiResponse = data.message;
+                } else if (data.content) {
+                    aiResponse = data.content;
+                } else if (data.choices && data.choices[0]?.message?.content) {
+                    aiResponse = data.choices[0].message.content;
+                }
+
+                if (aiResponse) {
+                    addMessage('assistant', aiResponse);
+                    // Silent success - no model exposure
+
+                    // 🎤 VOICE MODE: Play Azure AI Speech audio
+                    if (state.selectedAiType === 'voice' && data.audioData) {
+                        try {
+                            const audio = new Audio(data.audioData);
+                            audio.play();
+                            console.log('🔊 Azure AI Speech audio playing...');
+                        } catch (e) {
+                            console.error('Voice playback failed:', e);
+                        }
+                        state.selectedAiType = 'general'; // Reset mode
+                    }
+
+                    // Image and video are now handled by /api/chat/specialized - no extra processing needed
+
+                    // Save chat after getting response
+                    saveCurrentChat();
+
+                    // Track speed and tokens
+                    if (data.usage && data.usage.completion_tokens) {
+                        const completionTokens = data.usage.completion_tokens;
+                        const totalTime = Date.now() - startTime;
+                        const tokensPerSecond = (completionTokens / (totalTime / 1000)).toFixed(1);
+
+                        // Display speed and tokens
+                        if (elements.speedDisplay) {
+                            elements.speedDisplay.style.display = 'inline';
+                            elements.speedValue.textContent = tokensPerSecond;
+                        }
+                        if (elements.responseTokens) {
+                            elements.responseTokens.style.display = 'inline';
+                            elements.responseTokenValue.textContent = completionTokens;
+                        }
+                    }
+                } else {
+                    throw new Error('Invalid response from API');
+                }
+            } catch (error) {
+                // Silent error - no technical details exposed
+                hideTypingIndicator();
+                addMessage('assistant', `⚠️ **Bağlantı Hatası**\n\nSunucu ile iletişim kurulamadı. Lütfen tekrar deneyin.`);
+            }
+        }
+
+        function addMessage(role, content) {
+            const message = { role, content, timestamp: Date.now() };
+            state.messages.push(message);
+
+            // İlk mesaj gönderildiğinde empty state'i gizle
+            if (elements.emptyState && elements.emptyState.style.display !== 'none') {
+                elements.emptyState.style.display = 'none';
+            }
+
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${role}`;
+
+            const avatarSvg = role === 'user'
+                ? '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>'
+                : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" opacity="0.5"/><circle cx="12" cy="4" r="1.5"/><circle cx="12" cy="20" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="20" cy="12" r="1.5"/></svg>';
+
+            const timeStr = new Date(message.timestamp).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+            const dateStr = new Date(message.timestamp).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+            messageEl.innerHTML = `
+                <div class="message-avatar">${avatarSvg}</div>
+                <div class="message-content">
+                    <div class="message-text">${formatMessage(content)}</div>
+                    <div class="message-timestamp">${timeStr} • ${dateStr}</div>
+                    ${role === 'assistant' ? `
+                        <div class="message-actions">
+                            <button class="message-action-btn" onclick="copyMessage(this)">
+                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                                Kopyala
+                            </button>
+                            <button class="message-action-btn" onclick="regenerateMessage(this)">
+                                <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                                Yeniden Oluştur
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            elements.messagesContainer.appendChild(messageEl);
+            messageEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        function showTypingIndicator() {
+            state.isTyping = true;
+            const indicator = document.createElement('div');
+            indicator.className = 'message assistant';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = `
+                <div class="message-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M20,18c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2H4C2.9,4,2,4.9,2,6v10c0,1.1,0.9,2,2,2H0v2h24v-2H20z M4,6h16v10H4V6z"/></svg>
+                </div>
+                <div class="message-content">
+                    <div class="typing-indicator" id="typing">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            elements.messagesContainer.appendChild(indicator);
+            indicator.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideTypingIndicator() {
+            state.isTyping = false;
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        function triggerFireSparks() {
+            const container = document.getElementById('fireSparks');
+            if (!container) return;
+
+            // Create 25 sparks
+            const sparkCount = 25;
+            const colors = ['#10A37F', '#FF6B4A', '#FFFFFF']; // Teal, orange, white for dark theme
+
+            for (let i = 0; i < sparkCount; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+
+                // Random properties
+                const startX = Math.random() * 100; // Random horizontal position (0-100%)
+                const drift = (Math.random() - 0.5) * 100; // Random drift (-50px to +50px)
+                const duration = 1.5 + Math.random() * 1; // Duration between 1.5s - 2.5s
+                const delay = Math.random() * 0.3; // Stagger start times
+                const size = 4 + Math.random() * 2; // Size between 4px - 6px
+                const color = colors[Math.floor(Math.random() * colors.length)];
+
+                // Apply styles
+                spark.style.left = `${startX}%`;
+                spark.style.width = `${size}px`;
+                spark.style.height = `${size}px`;
+                spark.style.background = color;
+                spark.style.boxShadow = `0 0 4px ${color}`;
+                spark.style.animationDuration = `${duration}s`;
+                spark.style.animationDelay = `${delay}s`;
+                spark.style.setProperty('--drift', `${drift}px`);
+
+                container.appendChild(spark);
+
+                // Remove spark after animation completes
+                setTimeout(() => {
+                    spark.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+
+        function formatMessage(text) {
+            return text
+                .split('\n').map(line => `<p>${escapeHtml(line)}</p>`).join('')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code>$1</code>')
+                .replace(/!\[(.*?)\]\((https?:\/\/[^\)]+)\)/g, function(match, alt, url) {
+                    return `<div style="position: relative; display: inline-block; margin: 10px 0;">
+                        <img src="${url}" alt="${alt}" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <a href="${url}" download target="_blank" style="position: absolute; bottom: 12px; right: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 500; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4); transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            İndir
+                        </a>
+                    </div>`;
+                }) // Markdown images with download button
+                .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'); // Markdown links
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function startNewChat() {
+            state.messages = [];
+            state.currentChatId = null;
+            elements.messagesContainer.innerHTML = `
+                <div class="empty-state" id="emptyState">
+                    <div class="particles" id="particles"></div>
+                    <div class="user-welcome-text" id="userWelcomeText">
+                        <div class="welcome-user-name" id="welcomeUserName">Hoşgeldiniz</div>
+                        <div class="welcome-message">Size Nasıl Yardımcı Olabilirim?</div>
+                    </div>
+                    <div class="mini-spinner-container">
+                        <div class="mini-spinner">
+                            <svg viewBox="-60 -60 120 120" width="120" height="120" role="img" aria-label="LyDian orbit">
+                                <defs>
+                                    <radialGradient id="g-core-2" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#7C5CFF" stop-opacity="1" />
+                                        <stop offset="60%" stop-color="#00E0FF" stop-opacity="0.4" />
+                                        <stop offset="100%" stop-color="#0B0F19" stop-opacity="0" />
+                                    </radialGradient>
+                                    <linearGradient id="g-1-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#7C5CFF" />
+                                        <stop offset="100%" stop-color="#00E0FF" />
+                                    </linearGradient>
+                                    <linearGradient id="g-2-2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#00E0FF" />
+                                        <stop offset="100%" stop-color="#FF9D00" />
+                                    </linearGradient>
+                                    <linearGradient id="g-3-2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#FF9D00" />
+                                        <stop offset="100%" stop-color="#7C5CFF" />
+                                    </linearGradient>
+                                </defs>
+                                <circle r="48" fill="url(#g-core-2)" opacity="0.2" />
+                                <g class="lydian-orbit-ring-1">
+                                    <ellipse rx="50" ry="30" fill="none" stroke="url(#g-1-2)" stroke-opacity="0.7" stroke-width="0.8" />
+                                    <circle cx="50" cy="0" r="2" fill="#00E0FF" />
+                                    <circle cx="-50" cy="0" r="2" fill="#00E0FF" />
+                                </g>
+                                <g class="lydian-orbit-ring-2">
+                                    <circle r="38" fill="none" stroke="url(#g-2-2)" stroke-opacity="0.8" stroke-width="0.8" />
+                                    <circle cx="38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="-38" cy="0" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="38" r="1.5" fill="#FF9D00" />
+                                    <circle cx="0" cy="-38" r="1.5" fill="#FF9D00" />
+                                </g>
+                                <g class="lydian-orbit-ring-3">
+                                    <circle r="25" fill="none" stroke="url(#g-3-2)" stroke-opacity="0.9" stroke-width="1" stroke-dasharray="1.5 5" />
+                                </g>
+                                <g class="lydian-lissajous">
+                                    <circle r="2.5" fill="#7C5CFF" />
+                                </g>
+                                <circle r="12" fill="#111827" />
+                                <circle r="12" fill="url(#g-core-2)" opacity="0.35" />
+                                <circle r="0.8" fill="#7C5CFF" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="suggestion-chips">
+                        <div class="suggestion-chip" data-prompt="Kuantum bilişimi detaylı açıkla">🔬 Kuantum Bilişim</div>
+                        <div class="suggestion-chip" data-prompt="Python'da makine öğrenimi örneği yaz">🤖 Python ML Kodu</div>
+                        <div class="suggestion-chip" data-prompt="2024 yapay zeka trendleri neler?">✨ AI Trendleri</div>
+                        <div class="suggestion-chip" data-prompt="Verimli çalışma teknikleri öner">⚡ Verimlilik İpuçları</div>
+                    </div>
+                </div>
+            `;
+            elements.emptyState = document.getElementById('emptyState');
+            initParticles();
+
+            document.querySelectorAll('.suggestion-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    elements.messageInput.value = chip.dataset.prompt;
+                    elements.messageInput.dispatchEvent(new Event('input'));
+                    elements.messageInput.focus();
+                });
+            });
+        }
+
+        // 📥 Download conversation in multiple formats
+        function downloadConversation(format) {
+            if (state.messages.length === 0) {
+                showToast('❌ İndirilecek mesaj yok!');
+                return;
+            }
+
+            let content = '';
+            let mimeType = '';
+            let filename = `chat-${Date.now()}`;
+
+            switch(format) {
+                case 'json':
+                    content = JSON.stringify(state.messages, null, 2);
+                    mimeType = 'application/json';
+                    filename += '.json';
+                    break;
+                case 'txt':
+                    content = state.messages.map(m => `[${m.role.toUpperCase()}]: ${m.content}`).join('\n\n');
+                    mimeType = 'text/plain';
+                    filename += '.txt';
+                    break;
+                case 'md':
+                    content = '# LYDIAN Chat Export\n\n';
+                    content += state.messages.map(m => {
+                        const prefix = m.role === 'user' ? '### 👤 User' : '### 🤖 Assistant';
+                        return `${prefix}\n\n${m.content}\n\n---\n`;
+                    }).join('\n');
+                    mimeType = 'text/markdown';
+                    filename += '.md';
+                    break;
+                case 'csv':
+                    content = 'Role,Content,Timestamp\n';
+                    content += state.messages.map(m => {
+                        const escapedContent = (m.content || '').replace(/"/g, '""');
+                        return `"${m.role}","${escapedContent}","${new Date().toISOString()}"`;
+                    }).join('\n');
+                    mimeType = 'text/csv';
+                    filename += '.csv';
+                    break;
+            }
+
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast(`✅ Sohbet ${format.toUpperCase()} olarak indirildi!`);
+        }
+
+        // 🔗 Share conversation
+        function shareConversation() {
+            if (state.messages.length === 0) {
+                showToast('❌ Paylaşılacak mesaj yok!');
+                return;
+            }
+
+            const shareText = state.messages.map(m => `[${m.role}]: ${m.content}`).join('\n\n');
+
+            // Try Web Share API first (mobile)
+            if (navigator.share) {
+                navigator.share({
+                    title: 'LYDIAN Chat',
+                    text: shareText
+                }).then(() => {
+                    showToast('✅ Sohbet paylaşıldı!');
+                }).catch(() => {
+                    copyToClipboard(shareText);
+                });
+            } else {
+                // Fallback: Copy to clipboard
+                copyToClipboard(shareText);
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('✅ Sohbet panoya kopyalandı!');
+                }).catch(() => {
+                    showToast('❌ Panoya kopyalanamadı!');
+                });
+            } else {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('✅ Sohbet panoya kopyalandı!');
+            }
+        }
+
+        function getTitle() {
+            const firstMessage = state.messages.find(m => m.role === 'user');
+            if (firstMessage) {
+                return firstMessage.content.substring(0, 40) + (firstMessage.content.length > 40 ? '...' : '');
+            }
+            return 'Yeni Sohbet';
+        }
+
+        function setTheme(themeName) {
+            document.body.removeAttribute('data-theme');
+            if (themeName !== 'dark') {
+                document.body.setAttribute('data-theme', themeName);
+            }
+            console.log('🎨 Tema değiştirildi:', themeName);
+        }
+
+        function updateActiveThemeOption() {
+            const currentTheme = localStorage.getItem('lydian_theme') || 'dark';
+            document.querySelectorAll('.theme-option').forEach(option => {
+                if (option.dataset.theme === currentTheme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.style.cssText = `
+                    position: fixed;
+                    bottom: 2rem;
+                    right: 2rem;
+                    background: rgba(26, 26, 26, 0.98);
+                    color: #FFFFFF;
+                    padding: 1rem 1.5rem;
+                    border-radius: 14px;
+                    border: 1px solid #10A37F;
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                    z-index: 10000;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    pointer-events: none;
+                `;
+                document.body.appendChild(toast);
+            }
+
+            toast.textContent = message;
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            }, 10);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+            }, 2500);
+        }
+
+        function initParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+
+            particlesContainer.innerHTML = '';
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Copy message
+        window.copyMessage = async function(button) {
+            const messageContent = button.closest('.message-content').querySelector('.message-text');
+            const text = messageContent.innerText;
+
+            try {
+                await navigator.clipboard.writeText(text);
+                const originalText = button.innerHTML;
+                button.innerHTML = `
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Kopyalandı!
+                `;
+                button.style.color = '#10A37F';
+
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.color = '';
+                }, 2000);
+            } catch (error) {
+                console.error('Kopyalama hatası:', error);
+                alert('Kopyalama başarısız oldu!');
+            }
+        };
+
+        // Regenerate message
+        window.regenerateMessage = async function(button) {
+            if (state.isTyping) {
+                alert('Lütfen mevcut yanıt tamamlanana kadar bekleyin.');
+                return;
+            }
+
+            const messageElements = Array.from(elements.messagesContainer.querySelectorAll('.message'));
+            const currentMessageEl = button.closest('.message');
+            const currentIndex = messageElements.indexOf(currentMessageEl);
+
+            let lastUserMessage = null;
+            for (let i = currentIndex - 1; i >= 0; i--) {
+                if (messageElements[i].classList.contains('user')) {
+                    const messageText = messageElements[i].querySelector('.message-text');
+                    lastUserMessage = messageText.innerText;
+                    break;
+                }
+            }
+
+            if (!lastUserMessage) {
+                alert('Yeniden oluşturulacak mesaj bulunamadı!');
+                return;
+            }
+
+            currentMessageEl.remove();
+            const messageIndex = state.messages.findIndex((msg, idx) =>
+                msg.role === 'assistant' && idx === currentIndex
+            );
+            if (messageIndex !== -1) {
+                state.messages.splice(messageIndex, 1);
+            }
+
+            showTypingIndicator();
+
+            try {
+                // Clean history: remove timestamp property for API compatibility
+                const cleanHistory = state.messages.slice(-10).map(msg => ({
+                    role: msg.role,
+                    content: msg.content
+                }));
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept-Language': 'tr-TR',
+                        'Content-Language': 'tr'
+                    },
+                    body: JSON.stringify({
+                        engine: 'llama', // Llama 3.3 70B as primary model
+                        message: lastUserMessage,
+                        temperature: 0.9,
+                        max_tokens: 8000, // Maximum detail
+                        history: cleanHistory,
+                        language: 'tr',
+                        locale: 'tr-TR'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                hideTypingIndicator();
+
+                if (data.success && data.response) {
+                    addMessage('assistant', data.response);
+                    console.log('🔄 Message regenerated successfully');
+                } else {
+                    throw new Error('Invalid response from API');
+                }
+            } catch (error) {
+                console.error('❌ Regeneration Error:', error);
+                hideTypingIndicator();
+                addMessage('assistant', `⚠️ **Yeniden Oluşturma Hatası**\n\nMesaj yeniden oluşturulamadı.\n\n*Hata: ${error.message}*`);
+            }
+        };
+
+        // User menu dropdown toggle
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+
+        console.log('🔍 User menu elements:', {
+            userMenuBtn: !!userMenuBtn,
+            userDropdown: !!userDropdown
+        });
+
+        if (userMenuBtn && userDropdown) {
+            userMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('👤 User menu clicked');
+                userDropdown.classList.toggle('active');
+                userMenuBtn.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove('active');
+                    userMenuBtn.classList.remove('active');
+                }
+            });
+            console.log('✅ User menu listener added');
+        } else {
+            console.error('❌ User menu elements not found');
+        }
+
+        // Sidebar search functionality
+        const sidebarSearch = document.getElementById('sidebarSearch');
+        if (sidebarSearch) {
+            sidebarSearch.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                const chatItems = elements.chatHistory.querySelectorAll('.chat-item');
+
+                chatItems.forEach(item => {
+                    const title = item.querySelector('.chat-item-title')?.textContent.toLowerCase() || '';
+                    const preview = item.querySelector('.chat-item-preview')?.textContent.toLowerCase() || '';
+
+                    if (title.includes(searchTerm) || preview.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // ========== USER NAME DISPLAY ==========
+
+        function loadUserName() {
+            try {
+                // Get user data from localStorage (set during login)
+                const userDataStr = localStorage.getItem('lydian_user');
+                if (userDataStr) {
+                    const userData = JSON.parse(userDataStr);
+                    const userName = userData.name || userData.username || 'Misafir';
+                    updateWelcomeText(userName);
+                } else {
+                    // Default fallback
+                    updateWelcomeText('Hoşgeldiniz');
+                }
+            } catch (e) {
+                console.warn('Could not load user name:', e);
+                updateWelcomeText('Hoşgeldiniz');
+            }
+        }
+
+        function updateWelcomeText(userName) {
+            const welcomeUserName = document.getElementById('welcomeUserName');
+            if (welcomeUserName) {
+                welcomeUserName.textContent = userName;
+            }
+        }
+
+        // ========== INITIALIZATION ==========
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Mobilde sidebar kapalı başlasın
+            if (window.innerWidth <= 768) {
+                elements.sidebar.classList.add('collapsed');
+            }
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('lydian_theme') || 'dark';
+            setTheme(savedTheme);
+
+            // Initialize particles
+            initParticles();
+
+            // Load and display user name from login
+            loadUserName();
+
+            // Load chat history (only valid chat objects with id, title, messages)
+            const chatKeys = Object.keys(localStorage).filter(key => key.startsWith('chat_'));
+            chatKeys.forEach(key => {
+                try {
+                    const chatData = JSON.parse(localStorage.getItem(key));
+                    // Validate it's a proper chat object (not shared or other data)
+                    if (chatData && chatData.id && chatData.messages && Array.isArray(chatData.messages)) {
+                        addChatToHistory(chatData);
+                    }
+                } catch (e) {
+                    console.warn('Invalid chat data for key:', key);
+                }
+            });
+
+            console.log('🚀 LyDian Quantum Chat initialized');
+        });
+
+        function addChatToHistory(chatData) {
+            const chatItem = document.createElement('div');
+            chatItem.className = 'chat-item';
+            chatItem.dataset.chatId = chatData.id;
+            chatItem.dataset.testid = 'chat-history-item';
+            chatItem.innerHTML = `
+                <div class="chat-item-content">
+                    <div class="chat-item-title">${chatData.title}</div>
+                    <div class="chat-item-preview">${new Date(chatData.timestamp).toLocaleDateString('tr-TR')}</div>
+                </div>
+                <button class="chat-item-delete" onclick="deleteChatFromHistory('${chatData.id}', event)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                </button>
+            `;
+
+            // Click handler for chat item (not delete button)
+            chatItem.addEventListener('click', (e) => {
+                if (!e.target.closest('.chat-item-delete')) {
+                    loadChat(chatData.id);
+                }
+            });
+
+            elements.chatHistory.insertBefore(chatItem, elements.chatHistory.firstChild);
+        }
+
+        // Save current chat to localStorage
+        function saveCurrentChat() {
+            if (state.messages.length === 0) return;
+
+            // Create or update chat ID
+            if (!state.currentChatId) {
+                state.currentChatId = `chat_${Date.now()}`;
+            }
+
+            // Get first user message as title (max 50 chars)
+            const firstUserMessage = state.messages.find(msg => msg.role === 'user');
+            const title = firstUserMessage
+                ? firstUserMessage.content.substring(0, 50) + (firstUserMessage.content.length > 50 ? '...' : '')
+                : 'Yeni Sohbet';
+
+            const chatData = {
+                id: state.currentChatId,
+                title: title,
+                timestamp: Date.now(),
+                messages: state.messages
+            };
+
+            // Save to localStorage
+            localStorage.setItem(state.currentChatId, JSON.stringify(chatData));
+
+            // Check if already in chat history UI
+            const existingItem = document.querySelector(`[data-chat-id="${state.currentChatId}"]`);
+            if (!existingItem) {
+                // Add to chat history UI only if it's a new chat
+                addChatToHistory(chatData);
+            }
+
+            console.log('💾 Chat saved:', state.currentChatId);
+        }
+
+        // Delete chat from history
+        window.deleteChatFromHistory = function(chatId, event) {
+            event.stopPropagation();
+
+            if (confirm('Bu sohbeti silmek istediğinizden emin misiniz?')) {
+                // Remove from DOM
+                const chatItem = document.querySelector(`[data-chat-id="${chatId}"]`);
+                if (chatItem) {
+                    chatItem.style.animation = 'slideOutLeft 0.3s ease';
+                    setTimeout(() => {
+                        chatItem.remove();
+                    }, 300);
+                }
+
+                // Remove chat data from localStorage (CRITICAL FIX)
+                localStorage.removeItem(chatId);
+
+                // Also remove from chatHistory array (if exists)
+                const savedChats = JSON.parse(localStorage.getItem('chatHistory') || '[]');
+                const updatedChats = savedChats.filter(chat => chat.id !== chatId);
+                localStorage.setItem('chatHistory', JSON.stringify(updatedChats));
+
+                console.log('🗑️ Chat deleted:', chatId);
+            }
+        };
+
+        function loadChat(chatId) {
+            const chatData = JSON.parse(localStorage.getItem(chatId));
+            if (chatData) {
+                state.messages = chatData.messages;
+                state.currentChatId = chatId;
+                renderMessages();
+            }
+        }
+
+        function renderMessages() {
+            elements.messagesContainer.innerHTML = '';
+            state.messages.forEach(msg => {
+                addMessage(msg.role, msg.content);
+            });
+        }
+
+        // ============================================================
+        // 🚨 5 MINUTE GUEST USAGE TIMER - COUNTDOWN DISPLAY
+        // ============================================================
+        (function initGuestTimer() {
+            // Check if user is logged in (you can modify this check based on your auth system)
+            const isUserLoggedIn = localStorage.getItem('userToken') ||
+                                   localStorage.getItem('isLoggedIn') ||
+                                   sessionStorage.getItem('userToken');
+
+            // If user is logged in, don't start timer
+            if (isUserLoggedIn) {
+                console.log('✅ User is logged in - no timer needed');
+                return;
+            }
+
+            // Check if timer has already started
+            const timerStartTime = localStorage.getItem('guestChatStartTime');
+            const currentTime = Date.now();
+
+            if (!timerStartTime) {
+                // First time visiting chat page - set start time
+                localStorage.setItem('guestChatStartTime', currentTime.toString());
+                console.log('⏰ Guest timer started - 5 minutes remaining');
+            }
+
+            // Create timer UI element with modern animated hourglass
+            const timerElement = document.createElement('div');
+            timerElement.className = 'guest-timer';
+            timerElement.innerHTML = `
+                <div class="guest-timer-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <defs>
+                            <linearGradient id="hourglassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF6B4A"/>
+                                <stop offset="100%" style="stop-color:#FF8A6D"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Hourglass Frame -->
+                        <path d="M8 4 L24 4 L24 6 L20 10 L16 14 L20 18 L24 22 L24 24 L24 28 L8 28 L8 24 L8 22 L12 18 L16 14 L12 10 L8 6 L8 4 Z"
+                              stroke="url(#hourglassGradient)" stroke-width="2" fill="none"/>
+                        <!-- Top Sand -->
+                        <path d="M10 6 L22 6 L18 10 L14 10 Z" fill="url(#hourglassGradient)" opacity="0.6">
+                            <animate attributeName="d"
+                                     dur="3s"
+                                     repeatCount="indefinite"
+                                     values="M10 6 L22 6 L18 10 L14 10 Z;
+                                             M10 6 L22 6 L17 11 L15 11 Z;
+                                             M10 6 L22 6 L16.5 12 L15.5 12 Z"/>
+                        </path>
+                        <!-- Bottom Sand -->
+                        <path d="M10 26 L22 26 L18 22 L14 22 Z" fill="url(#hourglassGradient)" opacity="0.6">
+                            <animate attributeName="d"
+                                     dur="3s"
+                                     repeatCount="indefinite"
+                                     values="M10 26 L22 26 L18 22 L14 22 Z;
+                                             M10 26 L22 26 L17 21 L15 21 Z;
+                                             M10 26 L22 26 L16 19 L16 19 Z"/>
+                        </path>
+                        <!-- Falling Sand Particles -->
+                        <circle cx="16" cy="13" r="0.5" fill="#FF6B4A">
+                            <animate attributeName="cy" dur="1s" repeatCount="indefinite" values="13;18;13"/>
+                            <animate attributeName="opacity" dur="1s" repeatCount="indefinite" values="1;0.3;1"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="guest-timer-text">
+                    <div class="guest-timer-label">Kalan Süre</div>
+                    <div class="guest-timer-time" id="guestTimerDisplay">05:00</div>
+                </div>
+            `;
+            document.body.appendChild(timerElement);
+
+            const timerDisplay = document.getElementById('guestTimerDisplay');
+
+            // Update countdown every second
+            const countdownInterval = setInterval(() => {
+                const startTime = parseInt(localStorage.getItem('guestChatStartTime'));
+                const fiveMinutesInMs = 5 * 60 * 1000; // 5 minutes
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = fiveMinutesInMs - elapsedTime;
+
+                // If time is up, redirect
+                if (remainingTime <= 0) {
+                    clearInterval(countdownInterval);
+                    alert('5 dakikalık ücretsiz deneme süreniz doldu. Devam etmek için lütfen giriş yapın veya kayıt olun.');
+                    window.location.href = '/auth.html';
+                    return;
+                }
+
+                // Calculate minutes and seconds
+                const totalSeconds = Math.floor(remainingTime / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+
+                // Format as MM:SS
+                const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timerDisplay.textContent = formattedTime;
+
+                // Add warning state when less than 1 minute remaining
+                if (remainingTime < 60000) {
+                    timerElement.classList.add('warning');
+                }
+            }, 1000);
+
+            // Calculate initial remaining time
+            const startTime = parseInt(localStorage.getItem('guestChatStartTime'));
+            const fiveMinutesInMs = 5 * 60 * 1000;
+            const elapsedTime = currentTime - startTime;
+            const remainingTime = fiveMinutesInMs - elapsedTime;
+
+            // If time is already up, redirect immediately
+            if (remainingTime <= 0) {
+                console.log('⏰ Guest time expired - redirecting to auth page');
+                alert('5 dakikalık ücretsiz deneme süreniz doldu. Devam etmek için lütfen giriş yapın veya kayıt olun.');
+                window.location.href = '/auth.html';
+                return;
+            }
+
+            console.log(`⏰ Guest timer - ${Math.floor(remainingTime / 1000)} seconds remaining`);
+        })();
+    </script>
+
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
+
+    <!-- 🌍 LyDian i18n System - Auto-integrated -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+    </script>
+
+</body>
+</html>

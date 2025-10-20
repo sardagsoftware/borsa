@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akıllı Şehir Platformu - LyDian</title>
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        /* Lydian White Theme Variables */
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --lydian-success: #10B981;
+            --lydian-warning: #F59E0B;
+            --lydian-error: #EF4444;
+            --lydian-info: #3B82F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header - Lydian Detached Box Style */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            max-width: 1400px;
+            width: calc(100% - 80px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            padding: 0;
+        }
+
+        .header-content {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive !important;
+            font-size: 2.25rem;
+            font-weight: 900 !important;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--black);
+            background: rgba(16, 163, 127, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 120px auto 0;
+            padding: 4rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+        }
+
+        .hero-cta:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.4);
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            max-width: 1400px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .stat-badge.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--lydian-success);
+        }
+
+        /* Module Grid */
+        .modules-section {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--black);
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-card {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--module-color), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--module-color);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .module-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .module-description {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .module-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .module-stat {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .module-stat-label {
+            font-size: 0.75rem;
+            color: var(--lydian-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .module-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--module-color);
+        }
+
+        /* Module Color Schemes */
+        .module-card[data-module="rro"] {
+            --module-color: #EF4444;
+            --module-glow: rgba(239, 68, 68, 0.3);
+        }
+
+        .module-card[data-module="phn"] {
+            --module-color: #10B981;
+            --module-glow: rgba(16, 185, 129, 0.3);
+        }
+
+        .module-card[data-module="sci"] {
+            --module-color: #F59E0B;
+            --module-glow: rgba(245, 158, 11, 0.3);
+        }
+
+        .module-card[data-module="umo"] {
+            --module-color: #3B82F6;
+            --module-glow: rgba(59, 130, 246, 0.3);
+        }
+
+        .module-card[data-module="ebb"] {
+            --module-color: #8B5CF6;
+            --module-glow: rgba(139, 92, 246, 0.3);
+        }
+
+        .module-card[data-module="tode"] {
+            --module-color: #EC4899;
+            --module-glow: rgba(236, 72, 153, 0.3);
+        }
+
+        .module-card[data-module="cc"] {
+            --module-color: #14B8A6;
+            --module-glow: rgba(20, 184, 166, 0.3);
+        }
+
+        .module-card[data-module="svf"] {
+            --module-color: #7C5CFF;
+            --module-glow: rgba(124, 92, 255, 0.3);
+        }
+
+        .module-card[data-module="map"] {
+            --module-color: #06B6D4;
+            --module-glow: rgba(6, 182, 212, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--lydian-bg-secondary);
+            border-top: 1px solid var(--lydian-border);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--lydian-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 21V13H6V21H3ZM8 21V9H11V21H8ZM13 21V5H16V21H13ZM18 21V1H21V21H18Z"/>
+                    </svg>
+                </span>
+                <span>LyDian</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Ana Sayfa</a>
+                <a href="/docs.html" class="nav-link">Dokümantasyon</a>
+                <a href="/dashboard.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/chat.html" class="nav-link">AI Sohbet</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Akıllı Şehir Platformu</h1>
+        <p class="hero-subtitle">
+            Yapay Zeka Destekli Kentsel Yönetim ve Dayanıklılık Platformu
+            <br>Gizlilik Öncelikli, Doğrulanabilir, Canlı Karar Destek Sistemi
+        </p>
+        <a href="#modules" class="hero-cta">
+            <span>Modülleri Keşfet</span>
+            <span>→</span>
+        </a>
+    </section>
+
+    <!-- Stats Panel -->
+    <section class="stats-panel">
+        <div class="stat-card">
+            <div class="stat-value" id="uptime-stat">99.9%</div>
+            <div class="stat-label">Sistem Çalışma Süresi</div>
+            <span class="stat-badge success">Operasyonel</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="latency-stat">124ms</div>
+            <div class="stat-label">Ortalama Yanıt Süresi</div>
+            <span class="stat-badge success">Mükemmel</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="proof-stat">95.8%</div>
+            <div class="stat-label">Doğrulama Kapsamı</div>
+            <span class="stat-badge success">Hedef Tutturuldu</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="privacy-stat">0</div>
+            <div class="stat-label">Gizlilik İhlali</div>
+            <span class="stat-badge success">Güvenli</span>
+        </div>
+    </section>
+
+    <!-- Modules Grid -->
+    <section class="modules-section" id="modules">
+        <h2 class="section-title">Platform Modülleri</h2>
+        <div class="module-grid">
+            <!-- RRO Module -->
+            <div class="module-card" data-module="rro" onclick="location.href='/civic-rro.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Risk ve Dayanıklılık İşletim Sistemi</h3>
+                <p class="module-description">
+                    Afet müdahale için kaynak tahsis optimizasyonu ile çoklu tehlike erken uyarı sistemi.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Uyarı Gecikmesi</div>
+                        <div class="module-stat-value">&lt;120s</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Aktif Uyarılar</div>
+                        <div class="module-stat-value" id="rro-alerts">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHN Module -->
+            <div class="module-card" data-module="phn" onclick="location.href='/civic-phn.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Halk Sağlığı Anlık Tahmin</h3>
+                <p class="module-description">
+                    Diferansiyel gizlilik koruması ve tıbbi malzeme tahmini ile canlı hastalık tahmin sistemi.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Tahmin MAPE</div>
+                        <div class="module-stat-value">6.4%</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Bölgeler</div>
+                        <div class="module-stat-value">47</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCI Module -->
+            <div class="module-card" data-module="sci" onclick="location.href='/civic-sci.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Tedarik Zinciri Bütünlüğü</h3>
+                <p class="module-description">
+                    Anomali tespiti ve sahtecilik önleme ile uçtan uca tedarik zinciri takip sistemi.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">İzlenen Partiler</div>
+                        <div class="module-stat-value">12.4K</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Anomaliler</div>
+                        <div class="module-stat-value" id="sci-anomalies">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UMO Module -->
+            <div class="module-card" data-module="umo" onclick="location.href='/civic-umo.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Kentsel Mobilite Orkestratörü</h3>
+                <p class="module-description">
+                    Canlı trafik tahmini ve çok modlu yolculuk planlaması ile RL tabanlı rota optimizasyonu.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Karar Süresi</div>
+                        <div class="module-stat-value">187ms</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Günlük Rota</div>
+                        <div class="module-stat-value">8.9K</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EBB Module -->
+            <div class="module-card" data-module="ebb" onclick="location.href='/civic-ebb.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Enerji Dengeleme Beyin</h3>
+                <p class="module-description">
+                    Kenar uyumlu talep yanıtı ve yenilenebilir entegrasyon ile şebeke enerji dengeleme sistemi.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Kenar Gecikmesi</div>
+                        <div class="module-stat-value">94ms</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Şebeke Sağlığı</div>
+                        <div class="module-stat-value">98%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODE Module -->
+            <div class="module-card" data-module="tode" onclick="location.href='/civic-tode.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Güvenilir Açık Veri Değişimi</h3>
+                <p class="module-description">
+                    Detaylı erişim kontrolü, telif muhasebesi ve gizlilik uyumluluğu ile veri pazarı platformu.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Veri Setleri</div>
+                        <div class="module-stat-value">247</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">İzinler</div>
+                        <div class="module-stat-value">1.2K</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CC Module -->
+            <div class="module-card" data-module="cc" onclick="location.href='/civic-cc.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Sivil Yardımcı Pilot</h3>
+                <p class="module-description">
+                    RAG, çoklu dil desteği ve kanıta dayalı yanıtlar ile doğrulanabilir AI asistan sistemi.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Sorgu Süresi</div>
+                        <div class="module-stat-value">624ms</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Kanıtlar</div>
+                        <div class="module-stat-value">96%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SVF Module -->
+            <div class="module-card" data-module="svf" onclick="location.href='/civic-svf.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Sentetik Veri Fabrikası</h3>
+                <p class="module-description">
+                    Diferansiyel gizlilik ve fayda doğrulama ile gizlilik koruyucu sentetik veri üretim sistemi.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Bugünkü İşler</div>
+                        <div class="module-stat-value">18</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Başarı Oranı</div>
+                        <div class="module-stat-value">99.4%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAP Module -->
+            <div class="module-card" data-module="map" onclick="location.href='/civic-map.html'">
+                <span class="module-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </span>
+                <h3 class="module-name">Model Doğrulama ve Kanıt</h3>
+                <p class="module-description">
+                    Merkle ağacı kanıtları ve SGX enklave doğrulama desteği ile AI şeffaflık katmanı.
+                </p>
+                <div class="module-stats">
+                    <div class="module-stat">
+                        <div class="module-stat-label">Kayıtlı Kanıtlar</div>
+                        <div class="module-stat-value">1.2M</div>
+                    </div>
+                    <div class="module-stat">
+                        <div class="module-stat-label">Kapsam</div>
+                        <div class="module-stat-value">95.8%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/docs.html" class="footer-link">Dokümantasyon</a>
+            <a href="/api.html" class="footer-link">API Referansı</a>
+            <a href="https://github.com/ailydian/cig" class="footer-link">GitHub</a>
+            <a href="/status.html" class="footer-link">Sistem Durumu</a>
+        </div>
+        <p>&copy; 2025 Ailydian. Tüm hakları saklıdır. | Gizlilik Öncelikli AI Platformu</p>
+    </footer>
+
+    <script>
+        // Canlı istatistik güncellemeleri simülasyonu
+        function updateStats() {
+            // Çalışma süresi (her zaman yüksek)
+            const uptime = (99.8 + Math.random() * 0.2).toFixed(1);
+            document.getElementById('uptime-stat').textContent = uptime + '%';
+
+            // Gecikme (rastgele dalgalanma)
+            const latency = Math.floor(100 + Math.random() * 100);
+            document.getElementById('latency-stat').textContent = latency + 'ms';
+
+            // Doğrulama kapsamı
+            const proof = (95 + Math.random() * 2).toFixed(1);
+            document.getElementById('proof-stat').textContent = proof + '%';
+
+            // Uyarılar (rastgele 0-3)
+            const alerts = Math.floor(Math.random() * 4);
+            document.getElementById('rro-alerts').textContent = alerts;
+
+            // Anomaliler (rastgele 0-5)
+            const anomalies = Math.floor(Math.random() * 6);
+            document.getElementById('sci-anomalies').textContent = anomalies;
+        }
+
+        // Her 5 saniyede bir istatistikleri güncelle
+        setInterval(updateStats, 5000);
+
+        // İlk güncelleme
+        updateStats();
+
+        // Kaydırma animasyonları ekle
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

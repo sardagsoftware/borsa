@@ -1,0 +1,98 @@
+{
+  "id": "finale-bonus-xp",
+  "type": "progression",
+  "name": "Season Finale: Bonus XP Weekend",
+  "description": "1.5x XP multiplier for all activities during the final week",
+  "week": 6,
+  "start": "2026-02-26T00:00:00+03:00",
+  "end": "2026-03-01T00:00:00+03:00",
+  "duration_days": 3,
+
+  "multiplier": {
+    "xp": 1.5,
+    "applies_to": [
+      "trials",
+      "puzzles",
+      "boss_encounters",
+      "side_quests",
+      "collectibles",
+      "exploration"
+    ],
+    "stacks_with": ["daily_bonus", "premium_pass"]
+  },
+
+  "objectives": [
+    {
+      "id": "finale-push",
+      "name": "Earn 2000 XP During Finale",
+      "count": 2000,
+      "reward": {"cr": 500, "cosmetic": "title-storm-veteran"}
+    },
+    {
+      "id": "complete-season",
+      "name": "Reach Season Max Level",
+      "count": 1,
+      "reward": {"xp": 1000, "cr": 1000, "cosmetic": "frame-echo-storms"}
+    }
+  ],
+
+  "leaderboards": {
+    "finale_xp_earned": {
+      "enabled": true,
+      "top_10_reward": {"title": "Storm Legend", "cr": 2000},
+      "top_100_reward": {"title": "Storm Hero", "cr": 500},
+      "duration": "2026-02-26T00:00:00+03:00 to 2026-03-01T00:00:00+03:00"
+    }
+  },
+
+  "activities": {
+    "storm_marathon": {
+      "name": "Storm Marathon",
+      "description": "Complete all storm puzzles in one session",
+      "reward": {"xp": 1500, "cr": 600}
+    },
+    "echo_hunt": {
+      "name": "Echo Hunt",
+      "description": "Find all hidden echo resonators",
+      "reward": {"xp": 1200, "cr": 500}
+    },
+    "finale_cutscene": {
+      "name": "Witness the Finale",
+      "description": "Watch the Season 2 finale cutscene",
+      "reward": {"xp": 500, "cosmetic": "emote-storm-salute"}
+    }
+  },
+
+  "notifications": {
+    "countdown": {
+      "enabled": true,
+      "times": ["2026-02-25T18:00:00+03:00", "2026-02-26T00:00:00+03:00", "2026-02-28T12:00:00+03:00"]
+    },
+    "in_game_banner": true,
+    "email": true,
+    "push": true
+  },
+
+  "analytics": {
+    "track_metrics": [
+      "average_xp_earned",
+      "participation_rate",
+      "completion_rate",
+      "session_length"
+    ],
+    "retention_impact": true
+  },
+
+  "compliance": {
+    "transparent_rules": true,
+    "equal_opportunity": true,
+    "no_pay_advantage": true
+  },
+
+  "white_hat": true,
+  "anti_cheat": {
+    "xp_rate_validation": true,
+    "activity_completion_validation": true,
+    "session_continuity_check": true
+  }
+}

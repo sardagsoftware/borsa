@@ -1,0 +1,139 @@
+<!-- ============================================================================
+AZURE API MANAGEMENT - GLOBAL POLICY
+=============================================================================
+Applied to: All APIs
+Features: JWT validation, rate limiting, circuit breaker, logging
+============================================================================ -->
+
+<policies>
+    <inbound>
+        <!-- CORS Policy -->
+        <cors allow-credentials="true">
+            <allowed-origins>
+                <origin>https://ailydian.com</origin>
+                <origin>https://travel.ailydian.com</origin>
+                <origin>https://borsa.ailydian.com</origin>
+                <origin>https://blockchain.ailydian.com</origin>
+                <origin>https://video.ailydian.com</origin>
+                <origin>https://docs.ailydian.com</origin>
+            </allowed-origins>
+            <allowed-methods>
+                <method>GET</method>
+                <method>POST</method>
+                <method>PUT</method>
+                <method>DELETE</method>
+                <method>PATCH</method>
+                <method>OPTIONS</method>
+            </allowed-methods>
+            <allowed-headers>
+                <header>*</header>
+            </allowed-headers>
+            <expose-headers>
+                <header>*</header>
+            </expose-headers>
+        </cors>
+
+        <!-- JWT Token Validation -->
+        <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
+            <openid-config url="https://ailydian.b2clogin.com/ailydian.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_signupsignin" />
+            <required-claims>
+                <claim name="aud" match="all">
+                    <value>@(context.Request.OriginalUrl.Host)</value>
+                </claim>
+            </required-claims>
+        </validate-jwt>
+
+        <!-- Rate Limiting (Quota) -->
+        <rate-limit-by-key calls="1000" renewal-period="60" counter-key="@(context.Request.IpAddress)" />
+
+        <!-- Per-User Quota -->
+        <quota-by-key calls="10000" renewal-period="86400" counter-key="@(context.Request.Headers.GetValueOrDefault("Authorization",""))" />
+
+        <!-- Circuit Breaker Pattern -->
+        <retry condition="@(context.Response.StatusCode >= 500)" count="3" interval="1" max-interval="10" delta="1" first-fast-retry="true">
+            <forward-request timeout="30" />
+        </retry>
+
+        <!-- Request Logging -->
+        <log-to-eventhub logger-id="ailydian-logger">
+            @{
+                return new JObject(
+                    new JProperty("EventTime", DateTime.UtcNow.ToString()),
+                    new JProperty("ServiceName", "APIM"),
+                    new JProperty("RequestId", context.RequestId),
+                    new JProperty("IpAddress", context.Request.IpAddress),
+                    new JProperty("Method", context.Request.Method),
+                    new JProperty("Url", context.Request.Url.ToString())
+                ).ToString();
+            }
+        </log-to-eventhub>
+
+        <!-- Security Headers -->
+        <set-header name="X-Frame-Options" exists-action="override">
+            <value>DENY</value>
+        </set-header>
+        <set-header name="X-Content-Type-Options" exists-action="override">
+            <value>nosniff</value>
+        </set-header>
+        <set-header name="Strict-Transport-Security" exists-action="override">
+            <value>max-age=31536000; includeSubDomains</value>
+        </set-header>
+
+        <!-- Remove Internal Headers -->
+        <set-header name="X-Powered-By" exists-action="delete" />
+        <set-header name="X-AspNet-Version" exists-action="delete" />
+    </inbound>
+
+    <backend>
+        <forward-request timeout="120" />
+    </backend>
+
+    <outbound>
+        <!-- Response Logging -->
+        <log-to-eventhub logger-id="ailydian-logger">
+            @{
+                return new JObject(
+                    new JProperty("EventTime", DateTime.UtcNow.ToString()),
+                    new JProperty("ServiceName", "APIM"),
+                    new JProperty("RequestId", context.RequestId),
+                    new JProperty("StatusCode", context.Response.StatusCode),
+                    new JProperty("ResponseTime", context.Elapsed.TotalMilliseconds)
+                ).ToString();
+            }
+        </log-to-eventhub>
+
+        <!-- Cache Control -->
+        <cache-store duration="300" />
+    </outbound>
+
+    <on-error>
+        <!-- Error Logging -->
+        <log-to-eventhub logger-id="ailydian-logger">
+            @{
+                return new JObject(
+                    new JProperty("EventTime", DateTime.UtcNow.ToString()),
+                    new JProperty("ServiceName", "APIM"),
+                    new JProperty("RequestId", context.RequestId),
+                    new JProperty("ErrorSource", context.LastError.Source),
+                    new JProperty("ErrorReason", context.LastError.Reason),
+                    new JProperty("ErrorMessage", context.LastError.Message)
+                ).ToString();
+            }
+        </log-to-eventhub>
+
+        <!-- Error Response -->
+        <return-response>
+            <set-status code="500" reason="Internal Server Error" />
+            <set-header name="Content-Type" exists-action="override">
+                <value>application/json</value>
+            </set-header>
+            <set-body>@{
+                return new JObject(
+                    new JProperty("error", "Internal Server Error"),
+                    new JProperty("message", "An error occurred while processing your request"),
+                    new JProperty("requestId", context.RequestId)
+                ).ToString();
+            }</set-body>
+        </return-response>
+    </on-error>
+</policies>

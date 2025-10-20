@@ -1,0 +1,209 @@
+docs/
+├── ar/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── asyncapi/
+│   ├── events.insan-iq.yml
+│   ├── events.lydian-iq.yml
+│   └── events.smart-cities.yml
+├── cli/
+├── de/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── en/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── es/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── examples/
+│   ├── rest/
+│   ├── sdk-csharp/
+│   ├── sdk-go/
+│   ├── sdk-java/
+│   ├── sdk-py/
+│   ├── sdk-ts/
+│   └── webhook/
+├── fr/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── it/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── ja/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── openapi/
+│   ├── insan-iq.v1.yml
+│   ├── lydian-iq.v1.yml
+│   └── smart-cities.v1.yml
+├── ops/
+│   ├── brief/
+│   ├── ci/
+│   ├── search-index/
+│   └── spell-style/
+├── ru/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+├── sdks/
+│   ├── csharp/
+│   ├── go/
+│   ├── java/
+│   ├── python/
+│   └── typescript/
+├── tr/
+│   ├── change-log/
+│   ├── cli/
+│   ├── compliance-security/
+│   ├── concepts/
+│   ├── cookbooks/
+│   ├── getting-started/
+│   ├── glossary/
+│   ├── guides/
+│   ├── reference/
+│   │   ├── insan-iq/
+│   │   ├── lydian-iq/
+│   │   └── smart-cities/
+│   ├── roadmap/
+│   ├── sdk/
+│   ├── sla-slo/
+│   ├── tutorials/
+│   └── webhooks/
+└── zh-CN/
+    ├── change-log/
+    ├── cli/
+    ├── compliance-security/
+    ├── concepts/
+    ├── cookbooks/
+    ├── getting-started/
+    ├── glossary/
+    ├── guides/
+    ├── reference/
+    │   ├── insan-iq/
+    │   ├── lydian-iq/
+    │   └── smart-cities/
+    ├── roadmap/
+    ├── sdk/
+    ├── sla-slo/
+    ├── tutorials/
+    └── webhooks/

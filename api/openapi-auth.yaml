@@ -1,0 +1,491 @@
+openapi: 3.0.3
+info:
+  title: Lydian-IQ Authentication & Tenant API
+  description: |
+    OAuth 2.0 / OIDC authentication and tenant management API for Lydian-IQ v3.0.
+    
+    Features:
+    - OAuth 2.0 Authorization Code Flow with PKCE
+    - JWT access tokens (RS256)
+    - Refresh token rotation
+    - RBAC/ABAC with scopes and roles
+    - Tenant registration and management
+  version: 3.0.0
+  contact:
+    name: Lydian-IQ Support
+    email: support@ailydian.com
+  license:
+    name: Proprietary
+    
+servers:
+  - url: http://localhost:3100
+    description: Local development
+  - url: https://api.ailydian.com
+    description: Production
+
+tags:
+  - name: OIDC
+    description: OpenID Connect endpoints
+  - name: Tenant
+    description: Tenant registration and management
+  - name: Marketplace
+    description: Plugin marketplace (requires auth)
+  - name: ESG
+    description: ESG metrics (requires auth)
+
+paths:
+  /.well-known/openid-configuration:
+    get:
+      tags: [OIDC]
+      summary: OIDC Discovery
+      description: Returns OIDC provider configuration
+      responses:
+        '200':
+          description: OIDC configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OIDCConfiguration'
+                
+  /oidc/jwks.json:
+    get:
+      tags: [OIDC]
+      summary: JSON Web Key Set
+      description: Returns public keys for JWT verification
+      responses:
+        '200':
+          description: JWKS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWKS'
+                
+  /oidc/authorize:
+    get:
+      tags: [OIDC]
+      summary: Authorization Endpoint
+      description: |
+        OAuth 2.0 authorization endpoint with PKCE.
+        Returns authorization code.
+      parameters:
+        - name: response_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [code]
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: redirect_uri
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+        - name: scope
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "marketplace.read esg.read"
+        - name: state
+          in: query
+          schema:
+            type: string
+        - name: code_challenge
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: code_challenge_method
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [S256]
+        - name: tenant_id
+          in: query
+          description: Tenant ID (for demo purposes)
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to redirect_uri with code
+        '400':
+          description: Invalid request
+          
+  /oidc/token:
+    post:
+      tags: [OIDC]
+      summary: Token Endpoint
+      description: Exchange authorization code for tokens
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/TokenRequestCode'
+                - $ref: '#/components/schemas/TokenRequestRefresh'
+      responses:
+        '200':
+          description: Tokens issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid grant
+          
+  /tenant/register:
+    post:
+      tags: [Tenant]
+      summary: Register Tenant
+      description: Register a new tenant organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantRegistration'
+      responses:
+        '201':
+          description: Tenant registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '400':
+          description: Invalid request
+          
+  /api/marketplace/plugins:
+    get:
+      tags: [Marketplace]
+      summary: List Plugins
+      description: Browse marketplace plugins
+      security:
+        - BearerAuth: [marketplace.read]
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [pricing, compliance, logistics, analytics]
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Plugin list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+          
+  /api/marketplace/plugins/{id}/install:
+    post:
+      tags: [Marketplace]
+      summary: Install Plugin
+      description: Install a plugin for the tenant
+      security:
+        - BearerAuth: [marketplace.install]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Plugin installed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+          
+  /api/esg/metrics:
+    get:
+      tags: [ESG]
+      summary: Get ESG Metrics
+      description: Get ESG metrics for a period
+      security:
+        - BearerAuth: [esg.read]
+      parameters:
+        - name: period
+          in: query
+          schema:
+            type: string
+            example: "2025-10"
+      responses:
+        '200':
+          description: ESG metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ESGMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+            
+  schemas:
+    OIDCConfiguration:
+      type: object
+      properties:
+        issuer:
+          type: string
+        authorization_endpoint:
+          type: string
+        token_endpoint:
+          type: string
+        jwks_uri:
+          type: string
+        response_types_supported:
+          type: array
+          items:
+            type: string
+        scopes_supported:
+          type: array
+          items:
+            type: string
+        code_challenge_methods_supported:
+          type: array
+          items:
+            type: string
+            
+    JWKS:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: object
+            properties:
+              kty:
+                type: string
+              use:
+                type: string
+              kid:
+                type: string
+              alg:
+                type: string
+              n:
+                type: string
+              e:
+                type: string
+                
+    TokenRequestCode:
+      type: object
+      required: [grant_type, code, redirect_uri, client_id, code_verifier]
+      properties:
+        grant_type:
+          type: string
+          enum: [authorization_code]
+        code:
+          type: string
+        redirect_uri:
+          type: string
+        client_id:
+          type: string
+        code_verifier:
+          type: string
+          
+    TokenRequestRefresh:
+      type: object
+      required: [grant_type, refresh_token]
+      properties:
+        grant_type:
+          type: string
+          enum: [refresh_token]
+        refresh_token:
+          type: string
+          
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 1800
+        refresh_token:
+          type: string
+        scope:
+          type: string
+          
+    TenantRegistration:
+      type: object
+      required: [organization_name, tax_id, email]
+      properties:
+        organization_name:
+          type: string
+          example: "Acme Corp"
+        tax_id:
+          type: string
+          example: "1234567890"
+        email:
+          type: string
+          format: email
+          example: "admin@acme.com"
+        roles:
+          type: array
+          items:
+            type: string
+            enum: [admin, developer, analyst, ops, ml_engineer, institution]
+          default: [admin]
+          
+    Tenant:
+      type: object
+      properties:
+        tenant_id:
+          type: string
+        organization_name:
+          type: string
+        email:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        scopes:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+          
+    PluginList:
+      type: object
+      properties:
+        plugins:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plugin'
+        total:
+          type: integer
+        tenant_id:
+          type: string
+          
+    Plugin:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        author:
+          type: string
+        category:
+          type: string
+        security_score:
+          type: integer
+        installs:
+          type: integer
+        rating:
+          type: number
+        capabilities:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+          
+    InstallResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        plugin_id:
+          type: string
+        tenant_id:
+          type: string
+        installed_at:
+          type: string
+          format: date-time
+        message:
+          type: string
+          
+    ESGMetrics:
+      type: object
+      properties:
+        metrics:
+          type: object
+          properties:
+            period:
+              type: string
+            tenant_id:
+              type: string
+            total_shipments:
+              type: integer
+            total_carbon_kg_co2:
+              type: number
+            avg_carbon_per_shipment:
+              type: number
+            green_deliveries_percent:
+              type: number
+            carbon_reduction_vs_baseline_percent:
+              type: number
+            top_polluting_routes:
+              type: array
+              items:
+                type: object
+            recommendations:
+              type: array
+              items:
+                type: string
+                
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: string

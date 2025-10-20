@@ -1,0 +1,95 @@
+{
+  "id": "photo-contest-storm-trails",
+  "type": "community",
+  "name": "PhotoMode Contest: Storm Trails",
+  "description": "Capture the beauty of Echo Storms with your best storm trail screenshots",
+  "week": 3,
+  "start": "2026-01-29T00:00:00+03:00",
+  "submission_deadline": "2026-02-04T23:59:59+03:00",
+  "judging_period": "2026-02-05T00:00:00+03:00 to 2026-02-05T23:59:59+03:00",
+  "winners_announced": "2026-02-06T18:00:00+03:00",
+
+  "theme": {
+    "primary": "Storm Trails",
+    "keywords": ["lightning", "storm", "echo", "resonance", "weather"],
+    "biomes_eligible": ["canyon-night-storm", "ruins-sand-gale"]
+  },
+
+  "submission_rules": {
+    "max_submissions_per_player": 3,
+    "resolution_min": [1920, 1080],
+    "resolution_max": [7680, 4320],
+    "file_size_max_mb": 15,
+    "formats": ["jpg", "png"],
+    "allowed_filters": ["ingame_photomode_only"],
+    "external_editing": false,
+    "watermarks": false
+  },
+
+  "moderation": {
+    "auto_check": ["resolution", "file_size", "format"],
+    "manual_review_sla_hours": 24,
+    "appeal_window_hours": 48,
+    "guidelines": [
+      "Original in-game screenshots only",
+      "No offensive imagery or text",
+      "No copyrighted material",
+      "No personal information",
+      "No exploit or glitch usage"
+    ]
+  },
+
+  "prizes": {
+    "1st_place": {
+      "cash_usd": 100,
+      "cosmetic": "costume-stormcatcher-legendary",
+      "title": "Storm Master",
+      "featured": "community_gallery"
+    },
+    "2nd_place": {
+      "cash_usd": 50,
+      "cosmetic": "effect-lightning-trail-epic",
+      "title": "Storm Chaser"
+    },
+    "3rd_place": {
+      "cash_usd": 25,
+      "cosmetic": "effect-wind-aura-rare",
+      "title": "Storm Witness"
+    },
+    "honorable_mentions": {
+      "count": 7,
+      "cosmetic": "pose-storm-stance",
+      "cr": 500
+    }
+  },
+
+  "judging_criteria": {
+    "composition": 0.30,
+    "creativity": 0.30,
+    "theme_adherence": 0.25,
+    "technical_quality": 0.15
+  },
+
+  "community_voting": {
+    "enabled": true,
+    "weight": 0.20,
+    "finalist_count": 20,
+    "voting_start": "2026-02-05T12:00:00+03:00",
+    "voting_end": "2026-02-05T20:00:00+03:00"
+  },
+
+  "accessibility": {
+    "alt_text_required": true,
+    "description_max_chars": 500
+  },
+
+  "compliance": {
+    "ugc_policy": "human_review_first",
+    "privacy": "no_pii_allowed",
+    "copyright": "original_work_only",
+    "age_restriction": "13+"
+  },
+
+  "white_hat": true,
+  "moderation_team": ["senior_moderator", "community_manager"]
+}

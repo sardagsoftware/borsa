@@ -1,0 +1,1046 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Ultra Pro - Enterprise AI Platform</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        /* MINIMAL COPILOT-STYLE DESIGN SYSTEM */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a9c0;
+            --text-muted: #6b7280;
+            --accent-primary: #22c55e;
+            --accent-secondary: #16a34a;
+            --border-color: #374151;
+            --hover-bg: #374151;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 100;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            margin-left: auto;
+        }
+
+        .sidebar-close:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .model-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .model-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .model-item {
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .model-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .model-item.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .model-name {
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .model-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .model-item.active .model-meta {
+            color: var(--bg-primary);
+            opacity: 0.8;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-secondary);
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .header-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .system-status {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            animation: pulse 2s infinite;
+        }
+
+        .status-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* CHAT AREA */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.875rem;
+        }
+
+        .message.user .message-avatar {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+        }
+
+        .message-content {
+            flex: 1;
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .message.user .message-content {
+            background: var(--bg-tertiary);
+        }
+
+        /* SEARCH INPUT */
+        .search-container {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .action-btn.primary {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .action-btn.primary:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* PLUS MENU */
+        .plus-menu {
+            position: relative;
+        }
+
+        .plus-dropdown {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow);
+            display: none;
+            min-width: 200px;
+        }
+
+        .plus-dropdown.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .dropdown-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .dropdown-item i {
+            width: 16px;
+            text-align: center;
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 2px;
+        }
+
+        .loading-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: loadingDots 1.4s infinite;
+        }
+
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes loadingDots {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                z-index: 200;
+            }
+
+            .main-content {
+                width: 100%;
+            }
+        }
+
+        /* WELCOME STATE */
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .welcome-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+
+        .welcome-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">LyDian Ultra Pro</div>
+            <button class="sidebar-close" onclick="toggleSidebar()">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- AI Models -->
+            <div class="model-section">
+                <div class="section-title">AI Models</div>
+                <div class="model-list" id="modelList">
+                    <!-- Models will be populated here -->
+                </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="model-section">
+                <div class="section-title">System Status</div>
+                <div class="model-item">
+                    <div class="model-name">Active Models</div>
+                    <div class="model-meta" id="activeModelsCount">Loading...</div>
+                </div>
+                <div class="model-item">
+                    <div class="model-name">System Health</div>
+                    <div class="model-meta" id="systemHealth">Checking...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- HEADER -->
+        <div class="header">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="ph ph-sidebar"></i>
+            </button>
+            <div class="header-title">Enterprise AI Assistant</div>
+            <div class="system-status">
+                <div class="status-indicator"></div>
+                <div class="status-text">All systems operational</div>
+            </div>
+        </div>
+
+        <!-- CHAT CONTAINER -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome State -->
+                <div class="welcome-container" id="welcomeContainer">
+                    <div class="welcome-icon">
+                        <i class="ph ph-brain"></i>
+                    </div>
+                    <div class="welcome-title">Welcome to LyDian Ultra Pro</div>
+                    <div class="welcome-subtitle">
+                        Your enterprise AI platform integrating 23 AI models, Azure services,
+                        Google APIs, and advanced analytics capabilities.
+                    </div>
+                    <div class="welcome-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalModels">23</div>
+                            <div class="stat-label">AI Models</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalProviders">13</div>
+                            <div class="stat-label">Providers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEARCH INPUT -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input
+                        type="text"
+                        class="search-input"
+                        id="searchInput"
+                        placeholder="Ask anything to your AI assistant..."
+                        onkeypress="handleKeyPress(event)"
+                    >
+
+                    <!-- PLUS MENU -->
+                    <div class="plus-menu">
+                        <button class="action-btn" onclick="togglePlusMenu()">
+                            <i class="ph ph-plus"></i>
+                        </button>
+                        <div class="plus-dropdown" id="plusDropdown">
+                            <div class="dropdown-item" onclick="attachFile()">
+                                <i class="ph ph-paperclip"></i>
+                                <span>Attach File</span>
+                            </div>
+                            <div class="dropdown-item" onclick="startVoiceInput()">
+                                <i class="ph ph-microphone"></i>
+                                <span>Voice Input</span>
+                            </div>
+                            <div class="dropdown-item" onclick="captureImage()">
+                                <i class="ph ph-camera"></i>
+                                <span>Capture Image</span>
+                            </div>
+                            <div class="dropdown-item" onclick="analyzeData()">
+                                <i class="ph ph-chart-bar"></i>
+                                <span>Analyze Data</span>
+                            </div>
+                            <div class="dropdown-item" onclick="generateCode()">
+                                <i class="ph ph-code"></i>
+                                <span>Generate Code</span>
+                            </div>
+                            <div class="dropdown-item" onclick="translateText()">
+                                <i class="ph ph-translate"></i>
+                                <span>Translate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="action-btn primary" onclick="sendMessage()">
+                        <i class="ph ph-paper-plane-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GLOBAL STATE
+        let currentModel = null;
+        let models = [];
+        let isLoading = false;
+        let messageHistory = [];
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            loadModels();
+            initializeSystem();
+        });
+
+        // SIDEBAR TOGGLE
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // PLUS MENU TOGGLE
+        function togglePlusMenu() {
+            const dropdown = document.getElementById('plusDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close plus menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.plus-menu')) {
+                document.getElementById('plusDropdown').classList.remove('show');
+            }
+        });
+
+        // LOAD AI MODELS
+        async function loadModels() {
+            try {
+                const response = await fetch('/api/models');
+                const data = await response.json();
+
+                if (data.success) {
+                    models = data.models;
+                    populateModelList(data.models);
+                    updateStats(data);
+
+                    // Select first model by default
+                    if (models.length > 0) {
+                        selectModel(models[0]);
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load models:', error);
+            }
+        }
+
+        // POPULATE MODEL LIST
+        function populateModelList(models) {
+            const modelList = document.getElementById('modelList');
+            modelList.innerHTML = '';
+
+            // Group by provider
+            const grouped = {};
+            models.forEach(model => {
+                if (!grouped[model.provider]) {
+                    grouped[model.provider] = [];
+                }
+                grouped[model.provider].push(model);
+            });
+
+            // Create provider sections
+            Object.entries(grouped).forEach(([provider, providerModels]) => {
+                providerModels.forEach(model => {
+                    const modelItem = document.createElement('div');
+                    modelItem.className = 'model-item';
+                    modelItem.onclick = () => selectModel(model);
+
+                    modelItem.innerHTML = `
+                        <div class="model-name">${model.name}</div>
+                        <div class="model-meta">${model.provider.toUpperCase()} • ${model.tokens}</div>
+                    `;
+
+                    modelList.appendChild(modelItem);
+                });
+            });
+        }
+
+        // SELECT MODEL
+        function selectModel(model) {
+            // Update UI
+            document.querySelectorAll('.model-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            event.target.closest('.model-item').classList.add('active');
+
+            currentModel = model;
+            console.log('Selected model:', model.name);
+        }
+
+        // UPDATE STATS
+        function updateStats(data) {
+            document.getElementById('totalModels').textContent = data.count;
+            document.getElementById('totalProviders').textContent = data.providers.length;
+            document.getElementById('activeModelsCount').textContent = `${data.available_count}/${data.count} Active`;
+            document.getElementById('systemHealth').textContent = 'Excellent';
+        }
+
+        // HANDLE KEY PRESS
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // SEND MESSAGE
+        async function sendMessage() {
+            const input = document.getElementById('searchInput');
+            const message = input.value.trim();
+
+            if (!message || isLoading) return;
+
+            // Hide welcome container
+            const welcomeContainer = document.getElementById('welcomeContainer');
+            if (welcomeContainer) {
+                welcomeContainer.style.display = 'none';
+            }
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show loading
+            showLoading();
+
+            try {
+                // Call unified search with all APIs
+                const response = await performUnifiedSearch(message);
+                hideLoading();
+                addMessage(response, 'assistant');
+            } catch (error) {
+                hideLoading();
+                addMessage('System temporarily unavailable. Please try again.', 'assistant', true);
+            }
+        }
+
+        // ADD MESSAGE
+        function addMessage(content, sender, isError = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+
+            const avatar = sender === 'user' ? 'U' : 'AI';
+            const avatarIcon = sender === 'user' ? 'ph-user' : 'ph-brain';
+
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="ph ${avatarIcon}"></i>
+                </div>
+                <div class="message-content" ${isError ? 'style="border-color: #ef4444; background: rgba(239, 68, 68, 0.1);"' : ''}>
+                    ${content}
+                </div>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            messageHistory.push({ content, sender, timestamp: Date.now() });
+        }
+
+        // SHOW/HIDE LOADING
+        function showLoading() {
+            isLoading = true;
+            const chatMessages = document.getElementById('chatMessages');
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message assistant';
+            loadingDiv.id = 'loadingMessage';
+
+            loadingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="ph ph-brain"></i>
+                </div>
+                <div class="message-content">
+                    <div class="loading">
+                        <span>Processing</span>
+                        <div class="loading-dots">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideLoading() {
+            isLoading = false;
+            const loadingMessage = document.getElementById('loadingMessage');
+            if (loadingMessage) {
+                loadingMessage.remove();
+            }
+        }
+
+        // UNIFIED SEARCH WITH ALL APIs
+        async function performUnifiedSearch(query) {
+            const startTime = Date.now();
+
+            // Detect query type
+            const queryType = detectQueryType(query);
+            let apiCalls = [];
+
+            // Core AI Brain Systems
+            apiCalls.push(fetch('/api/azure/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    query: query,
+                    searchType: 'hybrid',
+                    vectorSearch: true,
+                    ragEnabled: true,
+                    semanticRanking: true
+                })
+            }));
+
+            // Azure Radiology & Medical Document Analysis
+            if (/radyoloji|röntgen|mr|ct|medikal|sağlık|hastalık|tanı|medical|health|diagnosis/.test(query.toLowerCase())) {
+                apiCalls.push(fetch('/api/azure/health/radiology', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: query,
+                        analysisType: 'comprehensive',
+                        includeAnomaly: true,
+                        generateReport: true
+                    })
+                }));
+            }
+
+            // Google Banana API
+            apiCalls.push(fetch('/api/google/banana', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    query: query,
+                    features: ['search', 'discovery', 'semantic', 'realtime'],
+                    personalization: true,
+                    contextAware: true
+                })
+            }));
+
+            // Google Veo API
+            if (queryType.needsMultimodal || /video|film|görsel|animasyon|visual|movie/.test(query.toLowerCase())) {
+                apiCalls.push(fetch('/api/google/veo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: query,
+                        mode: 'understand_and_generate',
+                        videoQuality: 'ultra',
+                        generatePreview: true
+                    })
+                }));
+            }
+
+            // Serverless AI Models
+            apiCalls.push(fetch('/api/serverless/multi-model', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    query: query,
+                    models: ['enterprise-ai-3.5-sonnet', 'gpt-4-turbo', 'gemini-ultra', 'llama-3'],
+                    mode: 'consensus',
+                    temperature: 0.7
+                })
+            }));
+
+            // Execute all API calls
+            const results = await Promise.allSettled(apiCalls);
+            const processingTime = Date.now() - startTime;
+
+            // Process results
+            const responses = [];
+            for (let i = 0; i < results.length; i++) {
+                if (results[i].status === 'fulfilled') {
+                    try {
+                        const data = await results[i].value.json();
+                        if (data.success) {
+                            responses.push(data);
+                        }
+                    } catch (e) {
+                        console.warn('Response parse error:', e);
+                    }
+                }
+            }
+
+            // Generate response
+            let response = `**Analysis completed in ${processingTime}ms**\n\n`;
+
+            if (responses.length > 0) {
+                response += `**${responses.length} systems responded successfully:**\n\n`;
+
+                responses.forEach((res, index) => {
+                    if (res.data) {
+                        response += `${index + 1}. ${res.data}\n\n`;
+                    }
+                });
+
+                // Add suggestions
+                const suggestions = [
+                    "For detailed analysis, try: 'analyze in detail'",
+                    "For alternative approach, try: 'alternative perspective'",
+                    "For data visualization, try: 'generate charts'",
+                    "For summary, try: 'summarize findings'"
+                ];
+
+                response += `\n**Suggestion:** ${suggestions[Math.floor(Math.random() * suggestions.length)]}`;
+            } else {
+                response += "No systems responded successfully. Please try rephrasing your query.";
+            }
+
+            return response;
+        }
+
+        // DETECT QUERY TYPE
+        function detectQueryType(query) {
+            const lowerQuery = query.toLowerCase();
+
+            return {
+                needsTranslation: /translate|çevir|translat/.test(lowerQuery),
+                needsMultimodal: /image|video|görsel|resim|ses|audio|visual/.test(lowerQuery),
+                needsCode: /code|kod|program|script|function/.test(lowerQuery),
+                needsAnalysis: /analiz|analysis|chart|grafik|data|veri/.test(lowerQuery),
+                needsRAG: /search|ara|bul|find|document/.test(lowerQuery)
+            };
+        }
+
+        // PLUS MENU FUNCTIONS
+        function attachFile() {
+            document.getElementById('plusDropdown').classList.remove('show');
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.txt,.pdf,.doc,.docx,.jpg,.png,.svg';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    addMessage(`File attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`, 'user');
+                    addMessage(`File received. How can I help you analyze this file?`, 'assistant');
+                }
+            };
+            input.click();
+        }
+
+        function startVoiceInput() {
+            document.getElementById('plusDropdown').classList.remove('show');
+
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                addMessage('Voice input not supported in your browser.', 'assistant', true);
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = () => {
+                addMessage('Voice input started. Please speak...', 'assistant');
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('searchInput').value = transcript;
+                addMessage(`Voice input: "${transcript}"`, 'user');
+            };
+
+            recognition.onerror = (event) => {
+                addMessage(`Voice input error: ${event.error}`, 'assistant', true);
+            };
+
+            recognition.start();
+        }
+
+        function captureImage() {
+            document.getElementById('plusDropdown').classList.remove('show');
+            addMessage('Image capture feature will be implemented soon.', 'assistant');
+        }
+
+        function analyzeData() {
+            document.getElementById('plusDropdown').classList.remove('show');
+            document.getElementById('searchInput').value = 'Please analyze the data and provide insights';
+        }
+
+        function generateCode() {
+            document.getElementById('plusDropdown').classList.remove('show');
+            document.getElementById('searchInput').value = 'Generate code for ';
+        }
+
+        function translateText() {
+            document.getElementById('plusDropdown').classList.remove('show');
+            document.getElementById('searchInput').value = 'Translate this text: ';
+        }
+
+        // SYSTEM INITIALIZATION
+        function initializeSystem() {
+            console.log('LyDian Ultra Pro initialized');
+
+            // Health check
+            setInterval(async () => {
+                try {
+                    const response = await fetch('/api/health');
+                    const data = await response.json();
+
+                    const statusText = document.querySelector('.status-text');
+                    if (data.status === 'healthy') {
+                        statusText.textContent = 'All systems operational';
+                    } else {
+                        statusText.textContent = 'System issues detected';
+                    }
+                } catch (error) {
+                    document.querySelector('.status-text').textContent = 'Connection issues';
+                }
+            }, 30000);
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

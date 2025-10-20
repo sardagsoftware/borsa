@@ -1,0 +1,113 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fırıldak AI - Quantum-Powered Legal Intelligence</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --legal-gold: #C4A962;
+            --legal-navy: #1C2536;
+            --legal-navy-light: #2C3E50;
+            --quantum-blue: #4A90E2;
+            --ai-green: #10B981;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1C2536 0%, #2C3E50 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(28, 37, 54, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--legal-gold);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--legal-gold), var(--quantum-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .features {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(196, 169, 98, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 style="color: var(--legal-gold);">⚖️ Fırıldak AI</h1>
+    </header>
+    
+    <section class="hero">
+        <h1 class="title">Quantum-Powered Legal Intelligence</h1>
+        <p style="font-size: 1.3rem; margin-top: 1rem;">150+ dil • Azure Quantum • Blockchain Verified</p>
+    </section>
+    
+    <section class="features">
+        <div class="card">
+            <h3>🔬 Quantum Dava Stratejisi</h3>
+            <p>Azure Quantum ile optimize edilmiş legal strategy</p>
+        </div>
+        <div class="card">
+            <h3>📊 %89 Doğruluk Oranı</h3>
+            <p>BERT + LSTM ile dava sonucu tahmini</p>
+        </div>
+        <div class="card">
+            <h3>🌍 150+ Dil Desteği</h3>
+            <p>Global hukuk sistemleri</p>
+        </div>
+    </section>
+    
+    <div style="text-align: center; padding: 3rem;">
+        <p style="font-size: 1.5rem; color: var(--legal-gold);">
+            🚀 Phase 1 Development Started
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.7;">
+            Roadmap: /docs/FIRILDAK-AI-GLOBAL-ROADMAP.md
+        </p>
+    </div>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

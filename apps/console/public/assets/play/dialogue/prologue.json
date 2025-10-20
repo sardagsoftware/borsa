@@ -1,0 +1,32 @@
+[
+  {
+    "id": "DLG-01",
+    "speaker": "Elif Melisa Sarı",
+    "tr": "Sardes bizi bekliyor... yankıyı dikkatle dinle.",
+    "en": "Sardis awaits... listen to the echo carefully."
+  },
+  {
+    "id": "DLG-02",
+    "speaker": "Melih Sarı",
+    "tr": "Frekansı aşırı zorlama; yapılar eski ve hassas.",
+    "en": "Don't push the frequency too hard; these structures are old and delicate."
+  },
+  {
+    "id": "DLG-03",
+    "speaker": "Elif Melisa Sarı",
+    "tr": "Bu kapıyı açmak için bulmacayı çözmemiz gerekiyor.",
+    "en": "We need to solve the puzzle to open this door."
+  },
+  {
+    "id": "DLG-04",
+    "speaker": "Melih Sarı",
+    "tr": "Boss'u yendiğimizde yol açılacak. Hazır mısın?",
+    "en": "The path will open when we defeat the boss. Are you ready?"
+  },
+  {
+    "id": "DLG-05",
+    "speaker": "Elif Melisa Sarı",
+    "tr": "Başardık! Sardis'in sırları artık bizimle...",
+    "en": "We did it! The secrets of Sardis are now with us..."
+  }
+]

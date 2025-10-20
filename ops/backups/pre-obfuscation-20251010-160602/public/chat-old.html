@@ -1,0 +1,1415 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Sohbet - 23 Yapay Zeka Modeli</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23D97757'/><text x='50' y='70' text-anchor='middle' font-size='60' fill='white'>💬</text></svg>">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========== CLAUDE ANTHROPIC THEME - PREMIUM CHAT ========== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Enterprise AI Copper Neon Palette */
+            --enterprise-ai-copper-primary: #FF6B4A;
+            --enterprise-ai-copper-light: #FF8A6B;
+            --enterprise-ai-copper-lighter: #FFB399;
+            --enterprise-ai-copper-dark: #E64A2E;
+            --enterprise-ai-copper-darker: #CC3214;
+            --neon-copper: #FF6B4A;
+            --neon-glow: rgba(255, 107, 74, 0.6);
+
+            /* Dark Premium Colors */
+            --enterprise-ai-bg-primary: #0A0A0B;
+            --enterprise-ai-bg-secondary: #111113;
+            --enterprise-ai-bg-tertiary: #1A1A1D;
+            --enterprise-ai-bg-hover: #222225;
+            --enterprise-ai-bg-card: #141416;
+
+            /* Text Colors */
+            --enterprise-ai-text-primary: #FFFFFF;
+            --enterprise-ai-text-secondary: #B8B8B8;
+            --enterprise-ai-text-tertiary: #6B6B6B;
+            --enterprise-ai-text-muted: #4A4A4A;
+
+            /* Borders */
+            --enterprise-ai-border: rgba(255, 107, 74, 0.15);
+            --enterprise-ai-border-bright: rgba(255, 107, 74, 0.4);
+
+            /* Neon Gradients */
+            --gradient-copper: linear-gradient(135deg, #FF6B4A 0%, #E64A2E 100%);
+            --gradient-neon: linear-gradient(135deg, #FF6B4A 0%, #FF8A6B 50%, #E64A2E 100%);
+            --gradient-bg: linear-gradient(180deg, #0A0A0B 0%, #111113 100%);
+
+            /* Neon Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 30px var(--neon-glow), 0 0 60px rgba(255, 107, 74, 0.3);
+            --shadow-neon-sm: 0 0 10px var(--neon-glow);
+            --shadow-neon-md: 0 0 20px var(--neon-glow), 0 0 40px rgba(255, 107, 74, 0.4);
+            --shadow-neon-lg: 0 0 30px var(--neon-glow), 0 0 60px rgba(255, 107, 74, 0.5);
+        }
+
+        body {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gradient-bg);
+            color: var(--enterprise-ai-text-primary);
+            height: 100vh;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ========== LAYOUT ========== */
+
+        .chat-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ========== SIDEBAR ========== */
+
+        .sidebar {
+            width: 280px;
+            background: var(--enterprise-ai-bg-primary);
+            border-right: 1px solid var(--enterprise-ai-border);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--enterprise-ai-border);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--gradient-copper);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .new-chat-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin: 1rem;
+            background: var(--gradient-copper);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .new-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .new-chat-btn:active {
+            transform: translateY(0);
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 0.75rem;
+        }
+
+        .chat-list-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--enterprise-ai-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .chat-item {
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 0.25rem;
+            position: relative;
+        }
+
+        .chat-item:hover {
+            background: var(--enterprise-ai-bg-tertiary);
+        }
+
+        .chat-item.active {
+            background: rgba(217, 119, 87, 0.1);
+            border-left: 3px solid var(--enterprise-ai-copper-primary);
+        }
+
+        .chat-item-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--enterprise-ai-text-primary);
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-item-preview {
+            font-size: 0.75rem;
+            color: var(--enterprise-ai-text-tertiary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .model-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .model-badge.enterprise-ai { background: var(--enterprise-ai-copper-primary); }
+        .model-badge.gpt { background: #10A37F; }
+        .model-badge.gemini { background: #4285F4; }
+        .model-badge.groq { background: #F97316; }
+
+        /* ========== MAIN CHAT AREA ========== */
+
+        .main-chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--enterprise-ai-bg-secondary);
+            overflow: hidden;
+        }
+
+        /* ========== MODEL SELECTOR BAR ========== */
+
+        .model-selector-bar {
+            background: var(--enterprise-ai-bg-primary);
+            border-bottom: 1px solid var(--enterprise-ai-border);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 100;
+        }
+
+        .current-model {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-copper);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+            font-weight: 500;
+        }
+
+        .current-model:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .current-model-icon {
+            font-size: 1.25rem;
+        }
+
+        .current-model-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .current-model-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .current-model-meta {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+
+        .model-dropdown-trigger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            transition: transform 0.2s;
+        }
+
+        .model-dropdown-trigger:hover {
+            transform: scale(1.1);
+        }
+
+        /* Model Dropdown */
+        .model-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 1.5rem;
+            right: 1.5rem;
+            background: var(--enterprise-ai-bg-primary);
+            border: 1px solid var(--enterprise-ai-border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            max-height: 600px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .model-dropdown.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .model-search {
+            padding: 1rem;
+            border-bottom: 1px solid var(--enterprise-ai-border);
+        }
+
+        .model-search input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--enterprise-ai-border);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .model-search input:focus {
+            border-color: var(--enterprise-ai-copper-primary);
+            box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1);
+        }
+
+        .model-category {
+            padding: 1rem;
+            border-bottom: 1px solid var(--enterprise-ai-border);
+        }
+
+        .model-category:last-child {
+            border-bottom: none;
+        }
+
+        .model-category-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--enterprise-ai-text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .model-option {
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .model-option:hover {
+            background: var(--enterprise-ai-bg-tertiary);
+        }
+
+        .model-option.selected {
+            background: rgba(217, 119, 87, 0.1);
+            border-left: 3px solid var(--enterprise-ai-copper-primary);
+        }
+
+        .model-option-main {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .model-option-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .model-option-info {
+            flex: 1;
+        }
+
+        .model-option-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--enterprise-ai-text-primary);
+            margin-bottom: 0.125rem;
+        }
+
+        .model-option-meta {
+            font-size: 0.75rem;
+            color: var(--enterprise-ai-text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .model-option-badge {
+            font-size: 0.65rem;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge-fast { background: #DCFCE7; color: #166534; }
+        .badge-smart { background: #DBEAFE; color: #1E40AF; }
+        .badge-vision { background: #FCE7F3; color: #9F1239; }
+        .badge-secure { background: #FEF3C7; color: #92400E; }
+
+        /* ========== MESSAGES AREA ========== */
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .message {
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .message.user {
+            background: transparent;
+        }
+
+        .message.assistant {
+            background: var(--enterprise-ai-bg-primary);
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .message-avatar.user {
+            background: var(--enterprise-ai-text-secondary);
+            color: white;
+        }
+
+        .message-avatar.assistant {
+            background: var(--gradient-copper);
+            color: white;
+        }
+
+        .model-indicator {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--enterprise-ai-bg-primary);
+            font-size: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        .message-content {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .message-model {
+            font-weight: 600;
+            color: var(--enterprise-ai-copper-primary);
+        }
+
+        .message-meta {
+            color: var(--enterprise-ai-text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .message-text {
+            line-height: 1.6;
+            color: var(--enterprise-ai-text-primary);
+            font-size: 0.9375rem;
+        }
+
+        .message-text p {
+            margin-bottom: 1em;
+        }
+
+        .message-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-text code {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85em;
+        }
+
+        .message-text pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .message-text pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .message-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .message-action-btn {
+            padding: 0.375rem 0.75rem;
+            background: transparent;
+            border: 1px solid var(--enterprise-ai-border);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--enterprise-ai-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .message-action-btn:hover {
+            background: var(--enterprise-ai-bg-tertiary);
+            color: var(--enterprise-ai-copper-primary);
+            border-color: var(--enterprise-ai-copper-primary);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 0.375rem;
+            padding: 0.75rem 1rem;
+            background: var(--enterprise-ai-bg-tertiary);
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--enterprise-ai-copper-primary);
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        /* ========== INPUT AREA ========== */
+
+        .input-area {
+            background: var(--enterprise-ai-bg-primary);
+            border-top: 1px solid var(--enterprise-ai-border);
+            padding: 1.5rem;
+        }
+
+        .input-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.75rem;
+            background: var(--enterprise-ai-bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .input-container:focus-within {
+            border-color: var(--enterprise-ai-copper-primary);
+            box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1);
+        }
+
+        .message-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.9375rem;
+            resize: none;
+            min-height: 24px;
+            max-height: 150px;
+            line-height: 1.5;
+            color: var(--enterprise-ai-text-primary);
+        }
+
+        .message-input::placeholder {
+            color: var(--enterprise-ai-text-tertiary);
+        }
+
+        .input-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: var(--enterprise-ai-text-tertiary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+        }
+
+        .input-action-btn:hover {
+            background: var(--enterprise-ai-bg-hover);
+            color: var(--enterprise-ai-copper-primary);
+        }
+
+        .send-button {
+            padding: 0.5rem 1.25rem;
+            background: var(--gradient-copper);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .send-button:hover:not(:disabled) {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .input-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.75rem;
+            padding: 0 0.5rem;
+            font-size: 0.75rem;
+            color: var(--enterprise-ai-text-tertiary);
+        }
+
+        .token-counter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* ========== EMPTY STATE ========== */
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--enterprise-ai-text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .empty-state-subtitle {
+            font-size: 1rem;
+            color: var(--enterprise-ai-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .suggestion-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            max-width: 700px;
+        }
+
+        .suggestion-chip {
+            padding: 0.75rem 1.25rem;
+            background: var(--enterprise-ai-bg-primary);
+            border: 1px solid var(--enterprise-ai-border);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--enterprise-ai-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion-chip:hover {
+            background: rgba(217, 119, 87, 0.1);
+            border-color: var(--enterprise-ai-copper-primary);
+            color: var(--enterprise-ai-copper-primary);
+            transform: translateY(-2px);
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 1000;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .model-selector-bar {
+                padding: 0.75rem 1rem;
+            }
+
+            .message {
+                padding: 1rem;
+            }
+
+            .input-area {
+                padding: 1rem;
+            }
+        }
+
+        /* ========== SCROLLBAR ========== */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(217, 119, 87, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(217, 119, 87, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">⚡ LyDian Sohbet</div>
+            </div>
+
+            <button class="new-chat-btn" id="newChatBtn">
+                <span>+</span>
+                <span>Yeni Sohbet</span>
+            </button>
+
+            <div class="chat-list" id="chatList">
+                <div class="chat-list-section">
+                    <div class="section-title">Bugün</div>
+                    <!-- Chat items will be added dynamically -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="main-chat">
+            <!-- Model Selector Bar -->
+            <div class="model-selector-bar">
+                <div class="current-model" id="currentModel">
+                    <span class="current-model-icon">🤖</span>
+                    <div class="current-model-info">
+                        <div class="current-model-name">Ultra Intelligence Model</div>
+                        <div class="current-model-meta">128K bağlam • $3/1M token</div>
+                    </div>
+                    <button class="model-dropdown-trigger" id="modelDropdownTrigger">▼</button>
+                </div>
+
+                <!-- Model Dropdown -->
+                <div class="model-dropdown" id="modelDropdown">
+                    <div class="model-search">
+                        <input type="text" placeholder="23 yapay zeka modelinde ara..." id="modelSearch">
+                    </div>
+
+                    <div class="model-category">
+                        <div class="model-category-title">⭐ Favoriler</div>
+                        <div class="model-option selected" data-model="enterprise-ai-3.5-sonnet">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: var(--enterprise-ai-copper-primary);">C</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">Ultra Intelligence Model</div>
+                                    <div class="model-option-meta">
+                                        <span>128K</span>
+                                        <span>•</span>
+                                        <span>$3/1M</span>
+                                        <span class="model-option-badge badge-smart">🧠 En İyi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-category">
+                        <div class="model-category-title">🚀 Hızlı & Ekonomik</div>
+                        <div class="model-option" data-model="groq-mixtral">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: #F97316;">G</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">Groq Mixtral 8x7B</div>
+                                    <div class="model-option-meta">
+                                        <span>32K</span>
+                                        <span>•</span>
+                                        <span>$0.2/1M</span>
+                                        <span class="model-option-badge badge-fast">⚡ Süper Hızlı</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-option" data-model="gpt-3.5-turbo">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: #10A37F;">G</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">GPT-3.5 Turbo</div>
+                                    <div class="model-option-meta">
+                                        <span>16K</span>
+                                        <span>•</span>
+                                        <span>$2/1M</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-category">
+                        <div class="model-category-title">🧠 Akıl Yürütme Uzmanları</div>
+                        <div class="model-option" data-model="premium-intelligence-v2">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: var(--enterprise-ai-copper-dark);">C</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">Premium Intelligence Model</div>
+                                    <div class="model-option-meta">
+                                        <span>200K</span>
+                                        <span>•</span>
+                                        <span>$15/1M</span>
+                                        <span class="model-option-badge badge-smart">🧠 Üst Düzey Akıl Yürütme</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-option" data-model="gpt-4-turbo">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: #10A37F;">G</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">GPT-4 Turbo</div>
+                                    <div class="model-option-meta">
+                                        <span>128K</span>
+                                        <span>•</span>
+                                        <span>$10/1M</span>
+                                        <span class="model-option-badge badge-smart">🧠 Güçlü Mantık</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-category">
+                        <div class="model-category-title">👁️ Görsel & Multimodal</div>
+                        <div class="model-option" data-model="gpt-4-vision">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: #10A37F;">G</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">GPT-4 Vision</div>
+                                    <div class="model-option-meta">
+                                        <span>128K</span>
+                                        <span>•</span>
+                                        <span>$10/1M</span>
+                                        <span class="model-option-badge badge-vision">👁️ Görsel Analiz</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-option" data-model="gemini-pro-vision">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: #4285F4;">G</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">Gemini Pro Vision</div>
+                                    <div class="model-option-meta">
+                                        <span>32K</span>
+                                        <span>•</span>
+                                        <span>$2/1M</span>
+                                        <span class="model-option-badge badge-vision">👁️ Multimodal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-category">
+                        <div class="model-category-title">🔐 Kurumsal (Azure)</div>
+                        <div class="model-option" data-model="azure-gpt-4">
+                            <div class="model-option-main">
+                                <div class="model-option-icon" style="background: #0078D4;">A</div>
+                                <div class="model-option-info">
+                                    <div class="model-option-name">Azure GPT-4 Turbo</div>
+                                    <div class="model-option-meta">
+                                        <span>128K</span>
+                                        <span>•</span>
+                                        <span>$10/1M</span>
+                                        <span class="model-option-badge badge-secure">🔐 Güvenli</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Container -->
+            <div class="messages-container" id="messagesContainer">
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-state-icon">💬</div>
+                    <h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1>
+                    <p class="empty-state-subtitle">
+                        Enterprise AI, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.
+                    </p>
+                    <div class="suggestion-chips">
+                        <div class="suggestion-chip" data-prompt="Kuantum bilişimi basit terimlerle açıkla">
+                            Kuantum bilişimi açıkla
+                        </div>
+                        <div class="suggestion-chip" data-prompt="Liste sıralamak için Python fonksiyonu yaz">
+                            Python kodu yaz
+                        </div>
+                        <div class="suggestion-chip" data-prompt="Meditasyonun faydaları nelerdir?">
+                            Meditasyonun faydaları
+                        </div>
+                        <div class="suggestion-chip" data-prompt="Son yapay zeka trendlerini özetle">
+                            Son AI trendleri
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <div class="input-container">
+                        <textarea
+                            class="message-input"
+                            id="messageInput"
+                            placeholder="Herhangi bir şey sor... (Yeni satır için Shift+Enter)"
+                            rows="1"
+                        ></textarea>
+                        <div class="input-actions">
+                            <button class="input-action-btn" title="Dosya ekle">📎</button>
+                            <button class="input-action-btn" title="Sesli giriş">🎤</button>
+                            <button class="input-action-btn" title="Görsel ekle">🖼️</button>
+                        </div>
+                        <button class="send-button" id="sendButton" disabled>Gönder</button>
+                    </div>
+                    <div class="input-footer">
+                        <div class="token-counter">
+                            <span>Karakter: <strong id="charCount">0</strong></span>
+                            <span>•</span>
+                            <span>Tahmini token: <strong id="tokenCount">0</strong></span>
+                        </div>
+                        <div>
+                            <span>Maliyet: <strong id="costEstimate">$0.00</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ========== APP STATE ==========
+
+        const state = {
+            currentModel: {
+                id: 'enterprise-ai-3.5-sonnet',
+                name: 'Ultra Intelligence Model',
+                icon: '🤖',
+                context: '128K',
+                price: '$3/1M',
+                provider: 'advanced-ai-platform'
+            },
+            messages: [],
+            isTyping: false,
+            chatHistory: []
+        };
+
+        // ========== DOM ELEMENTS ==========
+
+        const elements = {
+            modelDropdownTrigger: document.getElementById('modelDropdownTrigger'),
+            modelDropdown: document.getElementById('modelDropdown'),
+            currentModel: document.getElementById('currentModel'),
+            messageInput: document.getElementById('messageInput'),
+            sendButton: document.getElementById('sendButton'),
+            messagesContainer: document.getElementById('messagesContainer'),
+            emptyState: document.getElementById('emptyState'),
+            charCount: document.getElementById('charCount'),
+            tokenCount: document.getElementById('tokenCount'),
+            costEstimate: document.getElementById('costEstimate'),
+            newChatBtn: document.getElementById('newChatBtn'),
+            modelSearch: document.getElementById('modelSearch')
+        };
+
+        // ========== MODEL DATA ==========
+
+        const models = {
+            'enterprise-ai-3.5-sonnet': { name: 'Ultra Intelligence Model', icon: '🤖', context: '128K', price: 3, provider: 'Advanced AI Platform' },
+            'premium-intelligence-v2': { name: 'Premium Intelligence Model', icon: '🤖', context: '200K', price: 15, provider: 'Advanced AI Platform' },
+            'gpt-4-turbo': { name: 'GPT-4 Turbo', icon: '🤖', context: '128K', price: 10, provider: 'OpenAI' },
+            'gpt-4-vision': { name: 'GPT-4 Vision', icon: '👁️', context: '128K', price: 10, provider: 'OpenAI' },
+            'gpt-3.5-turbo': { name: 'GPT-3.5 Turbo', icon: '⚡', context: '16K', price: 2, provider: 'OpenAI' },
+            'gemini-pro-vision': { name: 'Gemini Pro Vision', icon: '👁️', context: '32K', price: 2, provider: 'Google' },
+            'groq-mixtral': { name: 'Groq Mixtral 8x7B', icon: '⚡', context: '32K', price: 0.2, provider: 'Groq' },
+            'azure-gpt-4': { name: 'Azure GPT-4 Turbo', icon: '🔐', context: '128K', price: 10, provider: 'Azure' }
+        };
+
+        // ========== EVENT LISTENERS ==========
+
+        // Model dropdown toggle
+        elements.modelDropdownTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            elements.modelDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!elements.modelDropdown.contains(e.target) && !elements.modelDropdownTrigger.contains(e.target)) {
+                elements.modelDropdown.classList.remove('active');
+            }
+        });
+
+        // Model selection
+        document.querySelectorAll('.model-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const modelId = this.dataset.model;
+                switchModel(modelId);
+            });
+        });
+
+        // Model search
+        elements.modelSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.model-option').forEach(option => {
+                const modelName = option.querySelector('.model-option-name').textContent.toLowerCase();
+                option.style.display = modelName.includes(searchTerm) ? 'flex' : 'none';
+            });
+        });
+
+        // Send message
+        elements.sendButton.addEventListener('click', sendMessage);
+
+        // Enter to send (Shift+Enter for new line)
+        elements.messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (!elements.sendButton.disabled) {
+                    sendMessage();
+                }
+            }
+        });
+
+        // Auto-resize textarea
+        elements.messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+
+            // Update character count
+            const charCount = this.value.length;
+            const tokenCount = Math.ceil(charCount / 4); // Rough estimate
+            const cost = (tokenCount / 1000000) * state.currentModel.price;
+
+            elements.charCount.textContent = charCount;
+            elements.tokenCount.textContent = tokenCount.toLocaleString();
+            elements.costEstimate.textContent = `$${cost.toFixed(4)}`;
+
+            // Enable/disable send button
+            elements.sendButton.disabled = !this.value.trim();
+        });
+
+        // Suggestion chips
+        document.querySelectorAll('.suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const prompt = this.dataset.prompt;
+                elements.messageInput.value = prompt;
+                elements.messageInput.dispatchEvent(new Event('input'));
+                elements.messageInput.focus();
+            });
+        });
+
+        // New chat
+        elements.newChatBtn.addEventListener('click', () => {
+            if (confirm('Yeni bir sohbet başlatılsın mı? Mevcut konuşma kaydedilecek.')) {
+                saveCurrentChat();
+                startNewChat();
+            }
+        });
+
+        // ========== FUNCTIONS ==========
+
+        function switchModel(modelId) {
+            const model = models[modelId];
+            if (!model) return;
+
+            state.currentModel = {
+                id: modelId,
+                name: model.name,
+                icon: model.icon,
+                context: model.context,
+                price: model.price,
+                provider: model.provider
+            };
+
+            // Update UI
+            document.querySelector('.current-model-name').textContent = model.name;
+            document.querySelector('.current-model-meta').textContent = `${model.context} bağlam • $${model.price}/1M token`;
+            document.querySelector('.current-model-icon').textContent = model.icon;
+
+            // Update selection in dropdown
+            document.querySelectorAll('.model-option').forEach(opt => {
+                opt.classList.toggle('selected', opt.dataset.model === modelId);
+            });
+
+            // Close dropdown
+            elements.modelDropdown.classList.remove('active');
+
+            // Add system message if chat has started
+            if (state.messages.length > 0) {
+                addSystemMessage(`🔄 ${model.name} modeline geçildi`);
+            }
+        }
+
+        async function sendMessage() {
+            const message = elements.messageInput.value.trim();
+            if (!message || state.isTyping) return;
+
+            // Add user message
+            addMessage('user', message);
+
+            // Clear input
+            elements.messageInput.value = '';
+            elements.messageInput.style.height = 'auto';
+            elements.sendButton.disabled = true;
+            elements.charCount.textContent = '0';
+            elements.tokenCount.textContent = '0';
+            elements.costEstimate.textContent = '$0.00';
+
+            // Hide empty state
+            if (elements.emptyState) {
+                elements.emptyState.style.display = 'none';
+            }
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Simulate AI response (in real app, call API)
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateMockResponse(message);
+                addMessage('assistant', response);
+            }, 2000);
+        }
+
+        function addMessage(role, content) {
+            const message = { role, content, model: state.currentModel, timestamp: new Date() };
+            state.messages.push(message);
+
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${role}`;
+
+            if (role === 'user') {
+                messageEl.innerHTML = `
+                    <div class="message-avatar user">👤</div>
+                    <div class="message-content">
+                        <div class="message-text">${escapeHtml(content)}</div>
+                    </div>
+                `;
+            } else {
+                messageEl.innerHTML = `
+                    <div class="message-avatar assistant">
+                        ${state.currentModel.icon}
+                        <div class="model-indicator" style="background: var(--enterprise-ai-copper-primary);">
+                            ${state.currentModel.provider.charAt(0)}
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-model">${state.currentModel.name}</span>
+                            <span class="message-meta">
+                                <span>2.3s</span>
+                                <span>•</span>
+                                <span>1,245 tokens</span>
+                            </span>
+                        </div>
+                        <div class="message-text">${formatMessage(content)}</div>
+                        <div class="message-actions">
+                            <button class="message-action-btn">👍 Faydalı</button>
+                            <button class="message-action-btn">📋 Kopyala</button>
+                            <button class="message-action-btn">🔄 Yeniden Oluştur</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            elements.messagesContainer.appendChild(messageEl);
+            messageEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        function addSystemMessage(content) {
+            const messageEl = document.createElement('div');
+            messageEl.style.cssText = 'display: flex; justify-content: center; padding: 0.75rem;';
+            messageEl.innerHTML = `
+                <div style="padding: 0.5rem 1rem; background: rgba(217, 119, 87, 0.1); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 20px; font-size: 0.875rem; color: var(--enterprise-ai-copper-dark);">
+                    ${content}
+                </div>
+            `;
+            elements.messagesContainer.appendChild(messageEl);
+            messageEl.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showTypingIndicator() {
+            state.isTyping = true;
+            const indicator = document.createElement('div');
+            indicator.className = 'message assistant';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = `
+                <div class="message-avatar assistant">
+                    ${state.currentModel.icon}
+                </div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-model">${state.currentModel.name} yazıyor...</span>
+                    </div>
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            elements.messagesContainer.appendChild(indicator);
+            indicator.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideTypingIndicator() {
+            state.isTyping = false;
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function generateMockResponse(prompt) {
+            // Mock AI responses based on model
+            const responses = {
+                'enterprise-ai-3.5-sonnet': `Bunu yanıtlamaktan mutluluk duyarım. ${prompt}
+
+Sorunuza göre kapsamlı bir yanıt:
+
+1. Öncelikle bunu temel bileşenlerine ayıralım
+2. Ardından detaylı analiz sunayım
+3. Son olarak uygulanabilir öneriler sunayım
+
+Anlaşılması gereken en önemli şey, bunun birden fazla faktörün dikkatli bir şekilde değerlendirilmesini gerektirmesidir. Herhangi bir özel konuya daha derinlemesine dalmamı ister misiniz?`,
+
+                'gpt-4-turbo': `"${prompt}" sorusuna yanıtım:
+
+**Önemli Noktalar:**
+- Durumun kapsamlı analizi
+- Göz önünde bulundurulması gereken birden fazla bakış açısı
+- Pratik öneriler
+
+Daha fazla detaya ihtiyacınız olursa bildirin!`,
+
+                'groq-mixtral': `⚡ Hızlı yanıt: ${prompt}
+
+Işık hızında sunulan önemli içgörülerle hızlı cevap!`
+            };
+
+            return responses[state.currentModel.id] || `Yanıt: ${prompt}\n\nBu ${state.currentModel.name} modelinden simüle edilmiş bir yanıttır.`;
+        }
+
+        function formatMessage(text) {
+            // Simple markdown-like formatting
+            return text
+                .split('\n').map(line => `<p>${escapeHtml(line)}</p>`).join('')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code>$1</code>');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function startNewChat() {
+            state.messages = [];
+            elements.messagesContainer.innerHTML = '<div class="empty-state" id="emptyState"><div class="empty-state-icon">💬</div><h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1><p class="empty-state-subtitle">Enterprise AI, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.</p></div>';
+            elements.emptyState = document.getElementById('emptyState');
+        }
+
+        function saveCurrentChat() {
+            if (state.messages.length > 0) {
+                const chat = {
+                    id: Date.now(),
+                    title: state.messages[0].content.slice(0, 50) + '...',
+                    messages: state.messages,
+                    timestamp: new Date()
+                };
+                state.chatHistory.push(chat);
+                // In real app: save to localStorage or backend
+            }
+        }
+
+        // ========== INITIALIZE ==========
+
+        console.log('🚀 LyDian Chat initialized');
+        console.log(`📊 Current model: ${state.currentModel.name}`);
+        console.log('💬 Ready to chat with 23 AI models!');
+    </script>
+</body>
+</html>

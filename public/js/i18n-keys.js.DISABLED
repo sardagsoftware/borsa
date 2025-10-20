@@ -1,0 +1,12 @@
+/**
+ * AiLydian Ultra Pro - i18n Translation Keys
+ * DISABLED: Translation system is disabled
+ */
+
+// Empty translation object
+const I18N_TRANSLATIONS = {};
+
+// Expose empty API
+window.I18N_TRANSLATIONS = I18N_TRANSLATIONS;
+
+console.log('🔕 i18n system disabled');

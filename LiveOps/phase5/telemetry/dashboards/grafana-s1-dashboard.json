@@ -1,0 +1,303 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "ailydian-s1-kpis",
+    "title": "Ailydian Season 1 - KPI Dashboard",
+    "tags": ["liveops", "season1", "kpi"],
+    "timezone": "Europe/Istanbul",
+    "schemaVersion": 38,
+    "version": 1,
+    "refresh": "1m",
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "type": "stat",
+        "title": "Crash-Free Rate",
+        "gridPos": {"x": 0, "y": 0, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT ROUND((COUNT(*) FILTER (WHERE crashed = FALSE)::NUMERIC / COUNT(*)::NUMERIC) * 100, 2) as crash_free_rate FROM telemetry_sessions WHERE session_start >= NOW() - INTERVAL '1 hour'",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "red"},
+                {"value": 97, "color": "orange"},
+                {"value": 98, "color": "yellow"},
+                {"value": 98.5, "color": "green"}
+              ]
+            }
+          }
+        },
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "type": "stat",
+        "title": "p95 GPU Frame Time",
+        "gridPos": {"x": 6, "y": 0, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY frame_time_ms) as p95_gpu FROM telemetry_gpu_performance WHERE timestamp >= NOW() - INTERVAL '1 hour' AND frame_time_ms > 0 AND frame_time_ms < 1000",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "ms",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "green"},
+                {"value": 16.6, "color": "yellow"},
+                {"value": 18, "color": "orange"},
+                {"value": 20, "color": "red"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 3,
+        "type": "stat",
+        "title": "Server Latency (p95)",
+        "gridPos": {"x": 12, "y": 0, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY response_time_ms) as p95_latency FROM server_metrics_latency WHERE timestamp >= NOW() - INTERVAL '1 hour' AND response_time_ms > 0",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "ms",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "green"},
+                {"value": 150, "color": "yellow"},
+                {"value": 200, "color": "orange"},
+                {"value": 300, "color": "red"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 4,
+        "type": "stat",
+        "title": "DAU (Daily Active Users)",
+        "gridPos": {"x": 18, "y": 0, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT COUNT(DISTINCT user_id) as dau FROM telemetry_sessions WHERE DATE_TRUNC('day', session_start) = DATE_TRUNC('day', NOW())",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "color": {"mode": "thresholds"},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "blue"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 5,
+        "type": "timeseries",
+        "title": "Retention Cohorts (D1, D7, D30)",
+        "gridPos": {"x": 0, "y": 4, "w": 12, "h": 8},
+        "targets": [
+          {
+            "datasource": "PostgreSQL",
+            "rawSql": "SELECT DATE_TRUNC('day', cohort_date) as time, ROUND(AVG(d1_retention_pct), 2) as \"D1 Retention\" FROM (...) GROUP BY time ORDER BY time",
+            "refId": "A",
+            "legendFormat": "D1 Retention"
+          },
+          {
+            "datasource": "PostgreSQL",
+            "rawSql": "SELECT DATE_TRUNC('day', cohort_date) as time, ROUND(AVG(d7_retention_pct), 2) as \"D7 Retention\" FROM (...) GROUP BY time ORDER BY time",
+            "refId": "B",
+            "legendFormat": "D7 Retention"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth",
+              "fillOpacity": 10
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {"id": "byName", "options": "D1 Retention"},
+              "properties": [{"id": "color", "value": {"mode": "fixed", "fixedColor": "green"}}]
+            },
+            {
+              "matcher": {"id": "byName", "options": "D7 Retention"},
+              "properties": [{"id": "color", "value": {"mode": "fixed", "fixedColor": "blue"}}]
+            }
+          ]
+        }
+      },
+      {
+        "id": 6,
+        "type": "timeseries",
+        "title": "Economy Health - Earn/Spend Ratio",
+        "gridPos": {"x": 12, "y": 4, "w": 12, "h": 8},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT DATE_TRUNC('hour', transaction_time) as time, ROUND(SUM(CASE WHEN transaction_type = 'earn' THEN amount ELSE 0 END)::NUMERIC / NULLIF(SUM(CASE WHEN transaction_type = 'spend' THEN amount ELSE 0 END)::NUMERIC, 0), 2) as earn_spend_ratio FROM economy_transactions WHERE transaction_time >= NOW() - INTERVAL '24 hours' AND currency_type = 'CR' GROUP BY time ORDER BY time",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "smooth"
+            }
+          }
+        },
+        "options": {
+          "tooltip": {"mode": "multi"},
+          "legend": {"displayMode": "list"}
+        }
+      },
+      {
+        "id": 7,
+        "type": "stat",
+        "title": "Inflation Index",
+        "gridPos": {"x": 0, "y": 12, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT ROUND(AVG(current_price / baseline_price), 2) as inflation_index FROM (...)",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "decimals": 2,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "green"},
+                {"value": 1.10, "color": "yellow"},
+                {"value": 1.15, "color": "red"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 8,
+        "type": "stat",
+        "title": "NPS Score",
+        "gridPos": {"x": 6, "y": 12, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT ROUND(((SUM(CASE WHEN score >= 9 THEN 1 ELSE 0 END)::NUMERIC / COUNT(*)::NUMERIC) - (SUM(CASE WHEN score <= 6 THEN 1 ELSE 0 END)::NUMERIC / COUNT(*)::NUMERIC)) * 100, 0) as nps FROM surveys_nps WHERE submitted_at >= NOW() - INTERVAL '7 days'",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "red"},
+                {"value": 30, "color": "orange"},
+                {"value": 40, "color": "yellow"},
+                {"value": 50, "color": "green"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 9,
+        "type": "stat",
+        "title": "Boss Success Rate",
+        "gridPos": {"x": 12, "y": 12, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT ROUND((COUNT(*) FILTER (WHERE result = 'success')::NUMERIC / COUNT(*)::NUMERIC) * 100, 2) as success_rate FROM gameplay_boss_encounters WHERE encounter_time >= NOW() - INTERVAL '24 hours'",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "red"},
+                {"value": 20, "color": "orange"},
+                {"value": 30, "color": "yellow"},
+                {"value": 45, "color": "green"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 10,
+        "type": "stat",
+        "title": "Fraud Indicators",
+        "gridPos": {"x": 18, "y": 12, "w": 6, "h": 4},
+        "targets": [{
+          "datasource": "PostgreSQL",
+          "rawSql": "SELECT COUNT(DISTINCT user_id) as fraud_count FROM economy_transactions WHERE transaction_type = 'earn' AND currency_type = 'CR' AND transaction_time >= NOW() - INTERVAL '24 hours' GROUP BY DATE_TRUNC('day', transaction_time), user_id HAVING SUM(amount) > 5000",
+          "refId": "A"
+        }],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"value": 0, "color": "green"},
+                {"value": 1, "color": "yellow"},
+                {"value": 5, "color": "orange"},
+                {"value": 20, "color": "red"}
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "name": "Season Events",
+          "datasource": "PostgreSQL",
+          "enable": true,
+          "iconColor": "rgba(255, 96, 96, 1)",
+          "query": "SELECT event_time as time, event_name as text FROM liveops_events WHERE event_time >= $__from AND event_time <= $__to"
+        }
+      ]
+    },
+    "templating": {
+      "list": []
+    }
+  },
+  "overwrite": true,
+  "message": "Initial S1 KPI Dashboard"
+}

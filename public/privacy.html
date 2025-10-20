@@ -1,0 +1,998 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Gizlilik Politikası - Kişisel verilerinizin korunması ve güvenliği">
+    <title>Privacy Policy - LyDian | Data Protection & Security</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2.25rem;
+            font-weight: 700 !important;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-800);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* ========== HERO ========== */
+
+        .hero {
+            padding: 12rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .last-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        /* ========== CONTENT ========== */
+
+        .content {
+            padding: 4rem 2rem;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .toc {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .toc-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc-list a:hover {
+            color: var(--primary);
+        }
+
+        .toc-list a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 800px;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-number {
+            color: var(--primary);
+        }
+
+        .section-content {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--gray-600);
+        }
+
+        .section-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin: 2rem 0 1rem;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .section-content strong {
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(16, 163, 127, 0.1));
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-box-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: var(--gray-50);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            color: var(--gray-900);
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: var(--black);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .contact-box h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 1rem 0;
+            color: var(--gray-300);
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+
+        /* ========== FOOTER ========== */
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2rem;
+            font-weight: 700 !important;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em !important;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-500);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">                <picture>
+                  <source srcset="/lydian-logo.avif" type="image/avif">
+                  <source srcset="/lydian-logo.webp" type="image/webp">
+                  <img src="/lydian-logo.png" alt="LyDian Logo" loading="lazy">
+                </picture>LyDian</a>
+
+            <ul class="nav-links">
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/docs.html">Dokümantasyon</a></li>
+                <li><a href="/about.html">Hakkımızda</a></li>
+            </ul>
+
+            <a href="/chat.html" class="btn btn-primary">Başlayın</a>
+
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Gizlilik Politikası</h1>
+            <p class="hero-description">
+                Kişisel verilerinizin korunması ve güvenliği bizim için önceliktir.
+            </p>
+            <div class="last-updated">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Son Güncelleme: 1 Ocak 2025
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content">
+        <div class="content-wrapper">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="toc">
+                    <div class="toc-title">İçindekiler</div>
+                    <ul class="toc-list">
+                        <li><a href="#giris">Giriş</a></li>
+                        <li><a href="#toplanan-veriler">Toplanan Veriler</a></li>
+                        <li><a href="#veri-kullanimi">Veri Kullanımı</a></li>
+                        <li><a href="#veri-paylasimi">Veri Paylaşımı</a></li>
+                        <li><a href="#kullanici-haklari">Kullanıcı Hakları</a></li>
+                        <li><a href="#guvenlik">Güvenlik Önlemleri</a></li>
+                        <li><a href="#cerezler">Çerezler ve Takip</a></li>
+                        <li><a href="#cocuklar">Çocukların Gizliliği</a></li>
+                        <li><a href="#iletisim">İletişim</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Section 1 -->
+                <section id="giris" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">1.</span> Giriş
+                    </h2>
+                    <div class="section-content">
+                        <p>
+                            Bu Gizlilik Politikası, LyDian platformunu kullanırken kişisel verilerinizin nasıl
+                            toplandığını, kullanıldığını, saklandığını ve korunduğunu açıklamaktadır. KVKK
+                            (Kişisel Verilerin Korunması Kanunu) ve GDPR (General Data Protection Regulation)
+                            uyumlu olarak hazırlanmıştır.
+                        </p>
+                        <p>
+                            Platformumuzu kullanarak bu gizlilik politikasını kabul etmiş sayılırsınız.
+                            Politikamızda değişiklik yapılması durumunda, güncel versiyonu web sitemizde
+                            yayınlayacağız ve önemli değişiklikler için size bildirimde bulunacağız.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section id="toplanan-veriler" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">2.</span> Toplanan Veriler
+                    </h2>
+                    <div class="section-content">
+                        <h3>Hesap Bilgileri</h3>
+                        <ul>
+                            <li>E-posta adresi</li>
+                            <li>Kullanıcı adı</li>
+                            <li>Profil bilgileri (isteğe bağlı)</li>
+                            <li>Hesap oluşturma tarihi</li>
+                        </ul>
+
+                        <h3>Kullanım Verileri</h3>
+                        <ul>
+                            <li>Platform üzerindeki aktiviteleriniz</li>
+                            <li>AI modelleri ile etkileşim geçmişi</li>
+                            <li>Oturum süreleri ve sıklığı</li>
+                            <li>Tercih ve ayarlarınız</li>
+                        </ul>
+
+                        <h3>Teknik Veriler</h3>
+                        <ul>
+                            <li>IP adresi</li>
+                            <li>Tarayıcı bilgileri</li>
+                            <li>Cihaz bilgileri</li>
+                            <li>Çerezler ve benzer teknolojiler</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <div class="info-box-title">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                                Önemli Not
+                            </div>
+                            <p>
+                                AI modellerine gönderdiğiniz mesajlar güvenli bir şekilde işlenir ve üçüncü taraf
+                                AI sağlayıcılarına iletilir. Bu veriler yalnızca sizin talebinizi işlemek için kullanılır.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="veri-kullanimi" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">3.</span> Veri Kullanım Amaçları
+                    </h2>
+                    <div class="section-content">
+                        <p>Verilerinizi şu amaçlarla kullanırız:</p>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Veri Türü</th>
+                                    <th>Kullanım Amacı</th>
+                                    <th>Saklama Süresi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hesap Bilgileri</td>
+                                    <td>Kimlik doğrulama, hesap yönetimi</td>
+                                    <td>Hesap aktif olduğu sürece</td>
+                                </tr>
+                                <tr>
+                                    <td>Sohbet Geçmişi</td>
+                                    <td>Kişiselleştirme, deneyim iyileştirme</td>
+                                    <td>30 gün</td>
+                                </tr>
+                                <tr>
+                                    <td>Kullanım Analitikleri</td>
+                                    <td>Platform geliştirme, performans iyileştirme</td>
+                                    <td>12 ay</td>
+                                </tr>
+                                <tr>
+                                    <td>Teknik Loglar</td>
+                                    <td>Güvenlik, hata tespiti</td>
+                                    <td>90 gün</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <ul>
+                            <li><strong>Hizmet Sunumu:</strong> AI modellerine erişim ve yanıt üretimi</li>
+                            <li><strong>Kişiselleştirme:</strong> Kullanıcı deneyimini iyileştirme</li>
+                            <li><strong>Güvenlik:</strong> Hesap güvenliği ve dolandırıcılık önleme</li>
+                            <li><strong>Geliştirme:</strong> Platform özelliklerini geliştirme</li>
+                            <li><strong>İletişim:</strong> Önemli güncellemeler ve destek</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section id="veri-paylasimi" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">4.</span> Veri Paylaşımı
+                    </h2>
+                    <div class="section-content">
+                        <p>
+                            Kişisel verilerinizi aşağıdaki durumlar dışında üçüncü taraflarla paylaşmayız:
+                        </p>
+
+                        <h3>AI Sağlayıcıları</h3>
+                        <p>Mesajlarınız güvenli API bağlantıları üzerinden şu sağlayıcılara iletilir:</p>
+                        <ul>
+                            <li>Cloud-AI-Provider (GPT modelleri)</li>
+                            <li>Advanced AI Platform (LyDian Enterprise modelleri)</li>
+                            <li>Google (Neural-G modelleri)</li>
+                            <li>Meta (Llama modelleri)</li>
+                            <li>Diğer desteklenen AI sağlayıcılar</li>
+                        </ul>
+
+                        <h3>Yasal Gereklilikler</h3>
+                        <p>
+                            Yasal yükümlülüklerimiz gereği, mahkeme kararı veya resmi makam talepleri
+                            doğrultusunda veri paylaşımı yapabiliriz.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 5 -->
+                <section id="kullanici-haklari" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">5.</span> Kullanıcı Hakları
+                    </h2>
+                    <div class="section-content">
+                        <p>KVKK ve GDPR kapsamında aşağıdaki haklara sahipsiniz:</p>
+
+                        <h3>Erişim Hakkı</h3>
+                        <p>Hangi kişisel verilerinizin işlendiğini öğrenme hakkınız vardır.</p>
+
+                        <h3>Düzeltme Hakkı</h3>
+                        <p>Yanlış veya eksik verilerinizin düzeltilmesini talep edebilirsiniz.</p>
+
+                        <h3>Silme Hakkı</h3>
+                        <p>Verilerinizin silinmesini talep edebilirsiniz (hesap kapatma dahil).</p>
+
+                        <h3>Taşınabilirlik Hakkı</h3>
+                        <p>Verilerinizi yapılandırılmış bir formatta alabilirsiniz.</p>
+
+                        <h3>İtiraz Hakkı</h3>
+                        <p>Veri işleme faaliyetlerine itiraz edebilirsiniz.</p>
+                    </div>
+                </section>
+
+                <!-- Section 6 -->
+                <section id="guvenlik" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">6.</span> Güvenlik Önlemleri
+                    </h2>
+                    <div class="section-content">
+                        <h3>Teknik Güvenlik</h3>
+                        <ul>
+                            <li><strong>Şifreleme:</strong> TLS 1.3 ve AES-256 şifreleme</li>
+                            <li><strong>Erişim Kontrolü:</strong> Çok faktörlü kimlik doğrulama</li>
+                            <li><strong>Ağ Güvenliği:</strong> Firewall ve DDoS koruması</li>
+                            <li><strong>Monitoring:</strong> 7/24 güvenlik izleme</li>
+                        </ul>
+
+                        <h3>Operasyonel Güvenlik</h3>
+                        <ul>
+                            <li>Düzenli güvenlik denetimleri</li>
+                            <li>Personel güvenlik eğitimleri</li>
+                            <li>Veri yedekleme prosedürleri</li>
+                            <li>Olay müdahale planları</li>
+                        </ul>
+
+                        <h3>Uyumluluk</h3>
+                        <ul>
+                            <li>ISO 27001 standartları</li>
+                            <li>SOC 2 Type II denetimi</li>
+                            <li>KVKK ve GDPR uyumluluğu</li>
+                            <li>Düzenli penetrasyon testleri</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Section 7 -->
+                <section id="cerezler" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">7.</span> Çerezler ve Takip
+                    </h2>
+                    <div class="section-content">
+                        <p>Platform fonksiyonalitesi ve analitik için çerezler kullanıyoruz. Detaylı bilgi için <a href="/cookies.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
+
+                        <h3>Kullandığımız Çerez Türleri</h3>
+                        <ul>
+                            <li><strong>Zorunlu Çerezler:</strong> Platform işlevselliği için gerekli</li>
+                            <li><strong>Performans Çerezleri:</strong> Site performansını ölçmek için</li>
+                            <li><strong>Fonksiyonel Çerezler:</strong> Tercihlerinizi hatırlamak için</li>
+                            <li><strong>Analitik Çerezler:</strong> Kullanım istatistikleri için (anonim)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Section 8 -->
+                <section id="cocuklar" class="section">
+                    <h2 class="section-title">
+                        <span class="section-number">8.</span> Çocukların Gizliliği
+                    </h2>
+                    <div class="section-content">
+                        <p>
+                            LyDian 13 yaş altındaki çocuklara yönelik değildir. Bilerek 13 yaş altındaki
+                            çocuklardan kişisel veri toplamayız.
+                        </p>
+                        <p>
+                            Eğer 13-18 yaş arasındaysanız, platformu kullanmadan önce ebeveyn/vasi
+                            izni almanız gerekmektedir.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Contact Box -->
+                <div class="contact-box" id="iletisim">
+                    <h3>İletişim Bilgileri</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--gray-300);">Gizlilik konularında sorularınız için:</p>
+
+                    <div class="contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <strong>E-posta:</strong> privacy@lydian.ai
+                    </div>
+
+                    <div class="contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        <strong>Veri Koruma Sorumlusu:</strong> dpo@lydian.ai
+                    </div>
+
+                    <div class="contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <strong>Yanıt Süresi:</strong> 72 saat içinde
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <p class="footer-description">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ürünler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
+                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+                        <li><a href="/video-ai.html">Video AI</a></li>
+                        <li><a href="/api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Çözümler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/enterprise.html">Enterprise</a></li>
+                        <li><a href="/education.html">Eğitim</a></li>
+                        <li><a href="/research.html">Araştırma</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Şirket</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html">Hakkımızda</a></li>
+                        <li><a href="/careers.html">Kariyer</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="/help.html">Yardım Merkezi</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Gizlilik Politikası</a>
+                    <a href="/terms.html">Kullanım Koşulları</a>
+                    <a href="/cookies.html">Çerezler</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Table of contents active link
+        const sections = document.querySelectorAll('.section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-100px 0px -66%'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Smooth scroll for TOC links
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+
+    <!-- 🌍 LyDian i18n System - Auto-integrated -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+    </script>
+
+</body>
+</html>

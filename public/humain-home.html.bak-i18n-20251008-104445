@@ -1,0 +1,951 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian - Enterprise AI Platform</title>
+    <meta name="description" content="LyDian enterprise AI platform - Transforming thoughts into actions through advanced AI">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- ChatGPT Style Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Inline Righteous Font for Logo -->
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* Force Righteous font on ALL logos */
+        .lydian-logo,
+        .lydian-logo-text,
+        .lydians-hero-title,
+        .letter-ai,
+        .letter-l {
+            font-family: 'Caveat', cursive !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.08em !important;
+        }
+    </style>
+
+    <!-- LyDian CSS Framework -->
+    <link rel="stylesheet" href="/css/lydians-inspired.css">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+
+    <style>
+        /* Additional LyDian specific styles */
+        .special-gradient {
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 25%, #7fb069 50%, #a7c957 75%, #c5e8b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pulse-animation {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .slide-up {
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Dots -->
+    <div class="floating-dots"></div>
+    <div class="floating-dots-extra"></div>
+
+    <!-- Main Container -->
+    <div class="lydians-container">
+        <!-- Header Navigation -->
+        <header class="lydians-header">
+            <nav class="lydians-nav">
+                <!-- LyDian Logo -->
+                <a href="/" class="lydian-logo">
+                    <div class="lydian-logo-text">
+                        <span class="letter-a">A</span>i<span class="letter-l">L</span>ydian
+                        <span class="lydian-beta">BETA</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Menu -->
+                <ul class="lydians-nav-menu">
+                    <li class="lydians-nav-item">
+                        <a href="/chat" class="lydians-nav-link active" target="_blank">LyDians Chat</a>
+                    </li>
+                    <li class="lydians-nav-item">
+                        <a href="/ai-assistant" class="lydians-nav-link" target="_blank">LyDians Create</a>
+                    </li>
+                    <li class="lydians-nav-item">
+                        <a href="/analytics" class="lydians-nav-link" target="_blank">LyDians IQ</a>
+                    </li>
+                    <li class="lydians-nav-item">
+                        <a href="/developers" class="lydians-nav-link" target="_blank">Developers</a>
+                    </li>
+                    <li class="lydians-nav-item">
+                        <a href="/api-docs" class="lydians-nav-link" target="_blank">API Docs</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="lydians-hero">
+            <h1 class="lydians-hero-title slide-up">
+                <span class="letter-ai special-gradient">A</span>i<span class="letter-l special-gradient">L</span>ydian
+            </h1>
+
+            <h2 class="lydians-hero-subtitle slide-up">
+                TRANSFORMING THOUGHTS INTO ACTIONS<br>
+                THROUGH AN ENTERPRISE AI PLATFORM
+            </h2>
+
+            <p class="lydians-hero-description slide-up">
+                Just ask, and tasks are automated right where your team works.
+                Experience the future of AI with Azure, Google, OpenAI, and Enterprise AI integration.
+            </p>
+
+            <!-- Chat Interface -->
+            <div class="lydians-chat-container slide-up">
+                <textarea
+                    id="lydiansCharInput"
+                    class="lydians-chat-input"
+                    placeholder="LyDians'a sorunuzu yazın..."
+                    rows="3"
+                ></textarea>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn-lydians btn-lydians-primary" onclick="startChat()">
+                            <span class="material-icons">send</span>
+                            Sohbete Başla
+                        </button>
+                        <button class="btn-lydians btn-lydians-secondary" onclick="showExamples()">
+                            <span class="material-icons">lightbulb</span>
+                            Örnekleri Gör
+                        </button>
+                    </div>
+
+                    <div style="font-size: 14px; color: var(--asana-text-muted);">
+                        <span class="pulse-animation">●</span> 23 AI modeli aktif
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section class="lydians-capabilities">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h3 style="font-size: 3rem; font-weight: 700; color: var(--asana-text-primary); margin-bottom: 1rem;">
+                    Enterprise AI Capabilities
+                </h3>
+                <p style="font-size: 1.25rem; color: var(--asana-text-secondary); max-width: 600px; margin: 0 auto;">
+                    Tek platformda tüm AI modellerinin gücünü kullanın
+                </p>
+            </div>
+
+            <div class="lydians-capabilities-grid">
+                <!-- Azure AI Suite -->
+                <div class="lydians-capability-card" onclick="openAzureStudio()">
+                    <div class="lydians-capability-icon">
+                        <span class="material-icons">cloud</span>
+                    </div>
+                    <h4 class="lydians-capability-title">Azure AI Suite</h4>
+                    <p class="lydians-capability-description">
+                        Microsoft Azure'un tam AI ekosistemi: GPT-4 Turbo, Document Intelligence, Cognitive Services ve Quantum hesaplama yetenekleri.
+                    </p>
+                    <div class="lydians-capability-tags">
+                        <span class="lydians-tag">GPT-4 Turbo</span>
+                        <span class="lydians-tag">Document AI</span>
+                        <span class="lydians-tag">Quantum</span>
+                        <span class="lydians-tag">Enterprise</span>
+                    </div>
+                </div>
+
+                <!-- Google Vertex AI -->
+                <div class="lydians-capability-card" onclick="openGoogleStudio()">
+                    <div class="lydians-capability-icon">
+                        <span class="material-icons">auto_awesome</span>
+                    </div>
+                    <h4 class="lydians-capability-title">Google Vertex AI</h4>
+                    <p class="lydians-capability-description">
+                        Google'ın Gemini Ultra, PaLM 2 ve Bard Advanced modelleri ile multimodal AI deneyimi ve vision capabilities.
+                    </p>
+                    <div class="lydians-capability-tags">
+                        <span class="lydians-tag">Gemini Ultra</span>
+                        <span class="lydians-tag">PaLM 2</span>
+                        <span class="lydians-tag">Multimodal</span>
+                        <span class="lydians-tag">Vision</span>
+                    </div>
+                </div>
+
+                <!-- Advanced AI Platform Enterprise AI -->
+                <div class="lydians-capability-card" onclick="openEnterprise AIStudio()">
+                    <div class="lydians-capability-icon">
+                        <span class="material-icons">psychology</span>
+                    </div>
+                    <h4 class="lydians-capability-title">Advanced AI Platform Enterprise AI</h4>
+                    <p class="lydians-capability-description">
+                        Premium Intelligence Model ve Sonnet ile güvenli, etik ve gelişmiş reasoning yetenekleri. 200K context window ile uzun dökümanlar.
+                    </p>
+                    <div class="lydians-capability-tags">
+                        <span class="lydians-tag">Premium Intelligence Model</span>
+                        <span class="lydians-tag">Constitutional AI</span>
+                        <span class="lydians-tag">200K Context</span>
+                        <span class="lydians-tag">Güvenlik</span>
+                    </div>
+                </div>
+
+                <!-- AI Orchestration -->
+                <div class="lydians-capability-card" onclick="openOrchestrationStudio()">
+                    <div class="lydians-capability-icon">
+                        <span class="material-icons">device_hub</span>
+                    </div>
+                    <h4 class="lydians-capability-title">AI Orchestration</h4>
+                    <p class="lydians-capability-description">
+                        Akıllı routing ile en uygun AI modelini otomatik seçim, paralel işlem yönetimi ve fallback mekanizmaları.
+                    </p>
+                    <div class="lydians-capability-tags">
+                        <span class="lydians-tag">Auto Route</span>
+                        <span class="lydians-tag">Load Balance</span>
+                        <span class="lydians-tag">Fallback</span>
+                        <span class="lydians-tag">Performance</span>
+                    </div>
+                </div>
+
+                <!-- Enterprise Analytics -->
+                <div class="lydians-capability-card" onclick="openAnalytics()">
+                    <div class="lydians-capability-icon">
+                        <span class="material-icons">analytics</span>
+                    </div>
+                    <h4 class="lydians-capability-title">Enterprise Analytics</h4>
+                    <p class="lydians-capability-description">
+                        Real-time kullanım metrikleri, maliyet analizi, performans izleme ve predictive scaling yetenekleri.
+                    </p>
+                    <div class="lydians-capability-tags">
+                        <span class="lydians-tag">Real-time</span>
+                        <span class="lydians-tag">Cost Analysis</span>
+                        <span class="lydians-tag">Monitoring</span>
+                        <span class="lydians-tag">Scaling</span>
+                    </div>
+                </div>
+
+                <!-- Developer Platform -->
+                <div class="lydians-capability-card" onclick="openDeveloperPlatform()">
+                    <div class="lydians-capability-icon">
+                        <span class="material-icons">code</span>
+                    </div>
+                    <h4 class="lydians-capability-title">Developer Platform</h4>
+                    <p class="lydians-capability-description">
+                        RESTful API, WebSocket streams, SDK'lar ve webhooks ile full-stack AI entegrasyonu. Enterprise-grade güvenlik.
+                    </p>
+                    <div class="lydians-capability-tags">
+                        <span class="lydians-tag">REST API</span>
+                        <span class="lydians-tag">WebSocket</span>
+                        <span class="lydians-tag">SDK</span>
+                        <span class="lydians-tag">Webhooks</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/i18n.js"></script>
+    <script src="/js/firildak-app.js"></script>
+    <script>
+        // LyDians Style Interface Management
+        class LyDiansInterface {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupAnimations();
+                this.setupEventListeners();
+                this.initializeAI();
+            }
+
+            setupAnimations() {
+                // Add slide-up animation to elements as they become visible
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('slide-up');
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe capability cards
+                document.querySelectorAll('.lydians-capability-card').forEach(card => {
+                    observer.observe(card);
+                });
+            }
+
+            setupEventListeners() {
+                const chatInput = document.getElementById('lydiansCharInput');
+
+                chatInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.startChat();
+                    }
+                });
+
+                // Auto-resize textarea
+                chatInput.addEventListener('input', (e) => {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                });
+            }
+
+            initializeAI() {
+                // Initialize FirildakApp if available
+                if (window.FirildakApp) {
+                    this.firildakApp = new FirildakApp();
+                }
+
+                // Check AI models status
+                this.checkAIStatus();
+            }
+
+            async checkAIStatus() {
+                try {
+                    const response = await fetch('/api/status');
+                    const status = await response.json();
+
+                    if (status.models) {
+                        document.querySelector('.pulse-animation').nextElementSibling.textContent =
+                            `${status.models.length} AI modeli aktif`;
+                    }
+                } catch (error) {
+                    console.log('AI status check failed:', error);
+                }
+            }
+
+            async startChat() {
+                const chatInput = document.getElementById('lydiansCharInput');
+                const query = chatInput.value.trim();
+
+                if (!query) return;
+
+                // Open chat interface with the query
+                const chatUrl = `/studio?q=${encodeURIComponent(query)}`;
+                window.open(chatUrl, '_blank');
+
+                // Clear input
+                chatInput.value = '';
+                chatInput.style.height = 'auto';
+            }
+
+            showExamples() {
+                const examples = [
+                    "Azure AI ile document intelligence kullanarak bu PDF'i analiz et",
+                    "Google Gemini ile bu görseli açıkla ve içeriğini özetle",
+                    "Enterprise AI ile bu kodu review et ve iyileştirme önerileri ver",
+                    "Tüm AI modellerini karşılaştırarak en iyi cevabı ver",
+                    "Bu veriyi analiz edip predictive model oluştur"
+                ];
+
+                const randomExample = examples[Math.floor(Math.random() * examples.length)];
+                document.getElementById('lydiansCharInput').value = randomExample;
+            }
+        }
+
+        // Global Functions for Capability Cards
+        function openAzureStudio() {
+            window.open('/studio?model=azure', '_blank');
+        }
+
+        function openGoogleStudio() {
+            window.open('/studio?model=google', '_blank');
+        }
+
+        function openEnterprise AIStudio() {
+            window.open('/studio?model=enterprise-ai', '_blank');
+        }
+
+        function openOrchestrationStudio() {
+            window.open('/studio?model=orchestration', '_blank');
+        }
+
+        function openAnalytics() {
+            window.open('/analytics', '_blank');
+        }
+
+        function openDeveloperPlatform() {
+            window.open('/docs/api', '_blank');
+        }
+
+        function startChat() {
+            lydiansInterface.startChat();
+        }
+
+        function showExamples() {
+            lydiansInterface.showExamples();
+        }
+
+        // Initialize LyDians Interface
+        let lydiansInterface;
+        document.addEventListener('DOMContentLoaded', () => {
+            lydiansInterface = new LyDiansInterface();
+        });
+
+        // Performance optimizations
+        window.addEventListener('load', () => {
+            // Preload critical routes
+            const preloadLinks = ['/studio', '/docs/api', '/analytics'];
+            preloadLinks.forEach(link => {
+                const linkElement = document.createElement('link');
+                linkElement.rel = 'prefetch';
+                linkElement.href = link;
+                document.head.appendChild(linkElement);
+            });
+        });
+    </script>
+
+    <!-- 🏢 Enterprise Footer -->
+    <footer class="enterprise-footer">
+        <div class="footer-background">
+            <div class="footer-gradient"></div>
+        </div>
+
+        <div class="footer-content">
+            <!-- Main Footer Sections -->
+            <div class="footer-sections">
+                <!-- Company Info -->
+                <div class="footer-section company-info">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">
+                        <div class="lydian-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                            <span class="letter-a">A</span>i<span class="letter-l">L</span>ydian
+                        </div>
+                        <p class="company-tagline">Next-Generation Enterprise AI Platform</p>
+                    </div>
+                    <p class="company-description">
+                        LyDian transforms how enterprises interact with artificial intelligence,
+                        providing seamless integration across Microsoft Azure, Google Cloud, and cutting-edge AI models.
+                    </p>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">AI Models</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Services -->
+                <div class="footer-section">
+                    <h3 class="section-title">
+                        <i class="material-icons">smart_toy</i>
+                        AI Services
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/studio?model=azure" target="_blank">
+                            <i class="material-icons">cloud</i>
+                            Azure AI Studio
+                        </a></li>
+                        <li><a href="/studio?model=google" target="_blank">
+                            <i class="material-icons">search</i>
+                            Google AI Gemini
+                        </a></li>
+                        <li><a href="/studio?model=enterprise-ai" target="_blank">
+                            <i class="material-icons">psychology</i>
+                            Advanced AI Platform Enterprise AI
+                        </a></li>
+                        <li><a href="/chat" target="_blank">
+                            <i class="material-icons">chat</i>
+                            LyDians Chat
+                        </a></li>
+                        <li><a href="/developers" target="_blank">
+                            <i class="material-icons">code</i>
+                            Z.AI Developer
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Enterprise Solutions -->
+                <div class="footer-section">
+                    <h3 class="section-title">
+                        <i class="material-icons">business</i>
+                        Enterprise
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/enterprise" target="_blank">
+                            <i class="material-icons">corporate_fare</i>
+                            Enterprise Solutions
+                        </a></li>
+                        <li><a href="/api" target="_blank">
+                            <i class="material-icons">api</i>
+                            API Gateway
+                        </a></li>
+                        <li><a href="/security" target="_blank">
+                            <i class="material-icons">security</i>
+                            Security & Compliance
+                        </a></li>
+                        <li><a href="/analytics" target="_blank">
+                            <i class="material-icons">analytics</i>
+                            Analytics Dashboard
+                        </a></li>
+                        <li><a href="/integration" target="_blank">
+                            <i class="material-icons">integration_instructions</i>
+                            System Integration
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Developer Resources -->
+                <div class="footer-section">
+                    <h3 class="section-title">
+                        <i class="material-icons">developer_mode</i>
+                        Developers
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/docs" target="_blank">
+                            <i class="material-icons">description</i>
+                            API Documentation
+                        </a></li>
+                        <li><a href="/sdk" target="_blank">
+                            <i class="material-icons">extension</i>
+                            SDKs & Libraries
+                        </a></li>
+                        <li><a href="/playground" target="_blank">
+                            <i class="material-icons">science</i>
+                            API Playground
+                        </a></li>
+                        <li><a href="/webhooks" target="_blank">
+                            <i class="material-icons">webhook</i>
+                            Webhooks
+                        </a></li>
+                        <li><a href="/community" target="_blank">
+                            <i class="material-icons">groups</i>
+                            Developer Community
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Support & Resources -->
+                <div class="footer-section">
+                    <h3 class="section-title">
+                        <i class="material-icons">support_agent</i>
+                        Support
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/help" target="_blank">
+                            <i class="material-icons">help_center</i>
+                            Help Center
+                        </a></li>
+                        <li><a href="/contact" target="_blank">
+                            <i class="material-icons">contact_support</i>
+                            Contact Us
+                        </a></li>
+                        <li><a href="/status" target="_blank">
+                            <i class="material-icons">monitor_heart</i>
+                            System Status
+                        </a></li>
+                        <li><a href="/changelog" target="_blank">
+                            <i class="material-icons">update</i>
+                            Changelog
+                        </a></li>
+                        <li><a href="/roadmap" target="_blank">
+                            <i class="material-icons">timeline</i>
+                            Product Roadmap
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <!-- Legal Links -->
+                    <div class="legal-links">
+                        <a href="/privacy" target="_blank">Privacy Policy</a>
+                        <a href="/terms" target="_blank">Terms of Service</a>
+                        <a href="/cookies" target="_blank">Cookie Policy</a>
+                        <a href="/gdpr" target="_blank">GDPR Compliance</a>
+                    </div>
+
+                    <!-- Real-time System Info -->
+                    <div class="system-info">
+                        <div class="server-status">
+                            <span class="status-indicator active"></span>
+                            <span>All Systems Operational</span>
+                        </div>
+                        <div class="server-time">
+                            <i class="material-icons">schedule</i>
+                            <span id="serverTime">--:--:-- UTC</span>
+                        </div>
+                        <div class="server-location">
+                            <i class="material-icons">public</i>
+                            <span>Global Edge Network</span>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        <p>&copy; 2025 LyDian Enterprise AI Platform. All rights reserved.</p>
+                        <p class="version-info">Platform v2.1.0 | Built with Enterprise-Grade Security</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Buttons -->
+        <div class="footer-fabs">
+            <button class="fab support-fab" title="24/7 Support">
+                <i class="material-icons">support_agent</i>
+            </button>
+            <button class="fab feedback-fab" title="Feedback">
+                <i class="material-icons">feedback</i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Footer Enhancement Script -->
+    <script>
+        // Real-time server time update
+        function updateServerTime() {
+            const now = new Date();
+            const timeString = now.toUTCString().split(' ')[4];
+            document.getElementById('serverTime').textContent = timeString + ' UTC';
+        }
+
+        // Update time every second
+        setInterval(updateServerTime, 1000);
+        updateServerTime();
+
+        // Support FAB functionality
+        document.querySelector('.support-fab').addEventListener('click', () => {
+            window.open('/contact', '_blank');
+        });
+
+        // Feedback FAB functionality
+        document.querySelector('.feedback-fab').addEventListener('click', () => {
+            window.open('/feedback', '_blank');
+        });
+    </script>
+
+    <!-- Enhanced Footer Styles -->
+    <style>
+        .enterprise-footer {
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            border-top: 3px solid var(--asana-green-primary);
+            margin-top: 100px;
+            overflow: hidden;
+        }
+
+        .footer-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+        }
+
+        .footer-gradient {
+            background: linear-gradient(45deg,
+                var(--asana-green-primary) 0%,
+                var(--color-gpt-blue) 25%,
+                var(--color-enterprise-ai-orange) 50%,
+                var(--color-gemini-blue) 75%,
+                var(--asana-green-primary) 100%);
+            height: 100%;
+            animation: gradientFlow 15s ease-in-out infinite;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-sections {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h3.section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--asana-green-primary);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section h3.section-title i {
+            font-size: 20px;
+        }
+
+        .company-info .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .lydian-logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .lydian-logo .letter-a {
+            color: var(--asana-green-primary);
+        }
+
+        .lydian-logo .letter-l {
+            color: var(--color-gpt-blue);
+        }
+
+        .company-tagline {
+            color: var(--asana-green-primary);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .company-description {
+            color: #b3b3b3;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .company-stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            color: var(--asana-green-primary);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--asana-green-primary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+        }
+
+        .footer-bottom-content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .legal-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: var(--asana-green-primary);
+        }
+
+        .system-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .server-status,
+        .server-time,
+        .server-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--asana-green-primary);
+            animation: pulse 2s infinite;
+        }
+
+        .copyright {
+            text-align: right;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .version-info {
+            margin-top: 5px;
+            font-size: 11px;
+        }
+
+        .footer-fabs {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background: var(--asana-green-primary);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 212, 170, 0.4);
+        }
+
+        .fab i {
+            font-size: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-sections {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 30px;
+            }
+
+            .company-info {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-sections {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .legal-links {
+                justify-content: center;
+            }
+
+            .copyright {
+                text-align: center;
+            }
+        }
+    </style>
+
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>
