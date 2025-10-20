@@ -1,0 +1,203 @@
+# Economy Balance Configuration - Season 1
+# KVKV/GDPR/PDPL Compliant - No P2W
+# Last Updated: 2025-10-11
+
+version: "1.0.0"
+season: "S1"
+
+# Currency System
+currencies:
+  CR: # Chordstone Remnants (primary currency)
+    name: "Chordstone Remnants"
+    abbreviation: "CR"
+    max_cap: 999999
+    display_format: "{amount:,} CR"
+
+  premium: # Premium currency (PC only, Lydian Store)
+    name: "Ancient Crystals"
+    abbreviation: "AC"
+    max_cap: 50000
+    display_format: "{amount} AC"
+    platform_restrictions:
+      - pc
+    monetization: true
+
+# Drop Rates (percentages)
+drop_rates:
+  common:
+    min: 0.65  # 65%
+    max: 0.75  # 75%
+    currency_range: [10, 25]
+
+  rare:
+    min: 0.20  # 20%
+    max: 0.30  # 30%
+    currency_range: [30, 60]
+
+  epic:
+    min: 0.04  # 4%
+    max: 0.08  # 8%
+    currency_range: [75, 150]
+
+  legendary:
+    min: 0.005 # 0.5%
+    max: 0.015 # 1.5%
+    currency_range: [200, 500]
+
+# XP Curve (logarithmic scaling)
+xp_system:
+  base_xp_per_level: 1000
+  scaling_factor: 1.12
+  max_level: 50
+
+  # XP source rewards
+  sources:
+    enemy_defeat:
+      basic: 15
+      elite: 50
+      mini_boss: 200
+      boss: 1000
+
+    quest_completion:
+      daily: 200
+      weekly: 1000
+      story: 500
+
+    exploration:
+      location_discovery: 100
+      collectible_found: 50
+      secret_found: 150
+
+    trial_completion:
+      easy: 200
+      medium: 300
+      hard: 500
+
+# Crafting System
+crafting:
+  materials:
+    ancient_shard:
+      vendor_price: 50
+      drop_rate: 0.25
+
+    runic_fragment:
+      vendor_price: 150
+      drop_rate: 0.10
+
+    chordstone_core:
+      vendor_price: 500
+      drop_rate: 0.03
+
+  recipes:
+    health_potion:
+      materials:
+        ancient_shard: 2
+      currency_cost: 100
+      craft_time_seconds: 5
+
+    weapon_upgrade_tier1:
+      materials:
+        ancient_shard: 5
+        runic_fragment: 2
+      currency_cost: 500
+      craft_time_seconds: 300
+
+    weapon_upgrade_tier2:
+      materials:
+        runic_fragment: 8
+        chordstone_core: 1
+      currency_cost: 2000
+      craft_time_seconds: 900
+
+# Vendor Prices
+vendor:
+  cosmetics:
+    costume_common: 800
+    costume_rare: 1200
+    costume_epic: 1800
+    costume_legendary: 2400
+
+    accessory_common: 400
+    accessory_rare: 600
+    accessory_epic: 900
+
+    weapon_effect_common: 300
+    weapon_effect_rare: 400
+    weapon_effect_epic: 750
+
+  consumables:
+    health_potion: 150
+    stamina_potion: 120
+    xp_boost_1h: 500
+
+  discounts:
+    week4_sale:
+      percentage: 10
+      applies_to: ["cosmetics"]
+      start: "2025-11-10T12:00:00+03:00"
+      end: "2025-11-10T23:00:00+03:00"
+
+# Anti-Inflation Guardrails
+anti_inflation:
+  soft_caps:
+    daily_earn_limit: 5000  # Max CR earned per day
+    weekly_earn_limit: 30000 # Max CR earned per week
+
+  diminishing_returns:
+    enabled: true
+    threshold: 3000  # After earning 3000 CR in a day
+    decay_rate: 0.85 # Each subsequent reward reduced by 15%
+
+  monitoring:
+    inflation_index_target: 1.00
+    inflation_index_warning: 1.10
+    inflation_index_critical: 1.15
+
+  fairness:
+    p2w: false
+    cosmetic_only: true
+    gameplay_advantage_forbidden: true
+
+# Earn/Spend Balance
+balance_targets:
+  earn_spend_ratio: 1.2  # Ideal: players earn 20% more than they spend
+  earn_spend_ratio_min: 1.0
+  earn_spend_ratio_max: 1.5
+
+  daily_average_earn: 2000
+  daily_average_spend: 1600
+
+# Black Market Detection
+fraud_detection:
+  enabled: true
+
+  anomaly_thresholds:
+    rapid_currency_gain: 10000  # per hour
+    abnormal_transaction_frequency: 50  # per hour
+    impossible_completion_time: true
+
+  actions:
+    flag_for_review: true
+    auto_ban: false  # Human review required
+    freeze_account: true  # Temporary until review
+
+# Telemetry Tags
+telemetry:
+  tracked_events:
+    - currency_earned
+    - currency_spent
+    - item_purchased
+    - item_crafted
+    - drop_received
+    - vendor_transaction
+    - inflation_index_calculated
+
+  retention: 180  # days (GDPR compliant)
+
+# Compliance
+compliance:
+  kvkv: true
+  gdpr: true
+  pdpl: true
+  transparent_monetization: true
+  no_predatory_practices: true

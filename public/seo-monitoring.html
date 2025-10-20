@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian AI - Master SEO Monitoring Dashboard</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 280px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border-right: 1px solid #334155;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar-hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid #334155;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-menu {
+            padding: 16px 0;
+        }
+
+        .menu-section {
+            margin-bottom: 24px;
+        }
+
+        .menu-section-title {
+            padding: 8px 24px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: #818cf8;
+        }
+
+        .menu-item.active {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            border-left-color: #818cf8;
+            font-weight: 600;
+        }
+
+        .menu-icon {
+            font-size: 1.25rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.full-width {
+            margin-left: 0;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #cbd5e1;
+        }
+
+        .hamburger:hover {
+            color: #818cf8;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 8px 32px rgba(79, 70, 229, 0.2);
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .status-error {
+            background: #ef4444;
+            color: white;
+        }
+
+        .status-info {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Button */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.sidebar-open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: #475569;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #10b981;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(24px);
+        }
+
+        /* Loading */
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">LyDian AI</div>
+            <div class="text-xs text-gray-400 mt-1">Master Monitoring Dashboard</div>
+        </div>
+
+        <div class="sidebar-menu">
+            <!-- Ana Modüller -->
+            <div class="menu-section">
+                <div class="menu-section-title">Ana Modüller</div>
+                <a class="menu-item active" data-section="dashboard">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="menu-item" data-section="seo-overview">
+                    <span class="menu-icon">🔍</span>
+                    <span>SEO Overview</span>
+                </a>
+                <a class="menu-item" data-section="google-console">
+                    <span class="menu-icon">📈</span>
+                    <span>Google Search Console</span>
+                </a>
+            </div>
+
+            <!-- Arama Motorları -->
+            <div class="menu-section">
+                <div class="menu-section-title">Arama Motorları</div>
+                <a class="menu-item" data-section="google">
+                    <span class="menu-icon">🌐</span>
+                    <span>Google Indexing</span>
+                </a>
+                <a class="menu-item" data-section="bing">
+                    <span class="menu-icon">🅱️</span>
+                    <span>Bing Webmaster</span>
+                </a>
+                <a class="menu-item" data-section="yandex">
+                    <span class="menu-icon">🔴</span>
+                    <span>Yandex Webmaster</span>
+                </a>
+            </div>
+
+            <!-- AI Platformlar -->
+            <div class="menu-section">
+                <div class="menu-section-title">AI Platformlar</div>
+                <a class="menu-item" data-section="ai-platforms">
+                    <span class="menu-icon">🤖</span>
+                    <span>Tüm AI Platformlar</span>
+                </a>
+                <a class="menu-item" data-section="cloud-ai-provider">
+                    <span class="menu-icon">💡</span>
+                    <span>Cloud-AI-Provider / ChatGPT</span>
+                </a>
+                <a class="menu-item" data-section="gemini">
+                    <span class="menu-icon">💎</span>
+                    <span>Neural G</span>
+                </a>
+                <a class="menu-item" data-section="claude">
+                    <span class="menu-icon">🎭</span>
+                    <span>Anthropic Claude</span>
+                </a>
+            </div>
+
+            <!-- Analytics -->
+            <div class="menu-section">
+                <div class="menu-section-title">Analytics & Reports</div>
+                <a class="menu-item" data-section="performance">
+                    <span class="menu-icon">⚡</span>
+                    <span>Performans Analizi</span>
+                </a>
+                <a class="menu-item" data-section="sitemap">
+                    <span class="menu-icon">🗺️</span>
+                    <span>Sitemap Yönetimi</span>
+                </a>
+                <a class="menu-item" data-section="top-pages">
+                    <span class="menu-icon">🏆</span>
+                    <span>Top Performing Pages</span>
+                </a>
+            </div>
+
+            <!-- Sistem -->
+            <div class="menu-section">
+                <div class="menu-section-title">Sistem</div>
+                <a class="menu-item" data-section="alerts">
+                    <span class="menu-icon">🔔</span>
+                    <span>Alertler & Bildirimler</span>
+                </a>
+                <a class="menu-item" data-section="settings">
+                    <span class="menu-icon">⚙️</span>
+                    <span>Ayarlar</span>
+                </a>
+                <a class="menu-item" data-section="docs">
+                    <span class="menu-icon">📚</span>
+                    <span>Dokümantasyon</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="flex items-center gap-4">
+                <div class="hamburger" id="hamburger">☰</div>
+                <div>
+                    <h1 class="text-xl font-bold" id="pageTitle">Ana Dashboard</h1>
+                    <p class="text-xs text-gray-400" id="pageSubtitle">Tüm sistemlerin genel durumu</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Auto Refresh -->
+                <div class="flex items-center gap-2 text-sm">
+                    <span class="text-gray-400">Otomatik Yenileme:</span>
+                    <div class="toggle-switch active" id="autoRefreshToggle"></div>
+                </div>
+
+                <!-- Language Toggle -->
+                <div class="flex items-center gap-2 text-sm">
+                    <span class="text-gray-400">Dil:</span>
+                    <button class="btn btn-primary text-xs" id="langToggle">TR / EN</button>
+                </div>
+
+                <!-- Refresh Button -->
+                <button class="btn btn-primary" onclick="refreshData()">
+                    🔄 Yenile
+                </button>
+
+                <!-- Last Update -->
+                <div class="text-right text-sm">
+                    <div class="text-gray-400">Son Güncelleme</div>
+                    <div class="font-semibold" id="lastUpdate">Yükleniyor...</div>
+                    <div class="text-xs text-gray-500">
+                        <span id="autoRefreshCountdown">60</span>s
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="p-6" id="contentArea">
+            <!-- Dashboard Section -->
+            <div id="section-dashboard">
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="card metric-card">
+                        <div class="text-sm opacity-90 mb-2">📊 Toplam URL</div>
+                        <div class="metric-value" id="totalUrls">-</div>
+                        <div class="text-xs opacity-75 mt-2">Sitemap'teki toplam</div>
+                    </div>
+
+                    <div class="card metric-card">
+                        <div class="text-sm opacity-90 mb-2">✅ Başarı Oranı</div>
+                        <div class="metric-value" id="successRate">-</div>
+                        <div class="text-xs opacity-75 mt-2">Submission başarısı</div>
+                    </div>
+
+                    <div class="card metric-card">
+                        <div class="text-sm opacity-90 mb-2">🖱️ Toplam Tıklama</div>
+                        <div class="metric-value" id="totalClicks">-</div>
+                        <div class="text-xs opacity-75 mt-2">Son 7 gün (GSC)</div>
+                    </div>
+
+                    <div class="card metric-card">
+                        <div class="text-sm opacity-90 mb-2">📍 Ortalama Pozisyon</div>
+                        <div class="metric-value" id="avgPosition">-</div>
+                        <div class="text-xs opacity-75 mt-2">Google arama sonuçları</div>
+                    </div>
+                </div>
+
+                <!-- Search Engines & GSC -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Search Engines -->
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-4">🔍 Arama Motorları Durumu</h2>
+                        <div class="space-y-4" id="searchEnginesStatus">
+                            <div class="loading text-center py-8">Yükleniyor...</div>
+                        </div>
+                    </div>
+
+                    <!-- GSC Quick Stats -->
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-4">📈 Google Search Console</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-blue-500/20 rounded-lg">
+                                <div class="text-2xl font-bold" id="gscClicks">-</div>
+                                <div class="text-sm text-gray-300 mt-1">Tıklama</div>
+                            </div>
+                            <div class="text-center p-4 bg-purple-500/20 rounded-lg">
+                                <div class="text-2xl font-bold" id="gscImpressions">-</div>
+                                <div class="text-sm text-gray-300 mt-1">Gösterim</div>
+                            </div>
+                            <div class="text-center p-4 bg-green-500/20 rounded-lg">
+                                <div class="text-2xl font-bold" id="gscCtr">-</div>
+                                <div class="text-sm text-gray-300 mt-1">CTR (%)</div>
+                            </div>
+                            <div class="text-center p-4 bg-orange-500/20 rounded-lg">
+                                <div class="text-2xl font-bold" id="gscPosition">-</div>
+                                <div class="text-sm text-gray-300 mt-1">Pozisyon</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="gscChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Platforms & Top Pages -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- AI Platforms -->
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-4">🤖 AI Platform Durumu</h2>
+                        <div class="grid grid-cols-2 gap-3" id="aiPlatformsGrid">
+                            <div class="loading text-center py-8 col-span-2">Yükleniyor...</div>
+                        </div>
+                    </div>
+
+                    <!-- Top Pages -->
+                    <div class="card">
+                        <h2 class="text-xl font-bold mb-4">🏆 En İyi Sayfalar</h2>
+                        <div class="space-y-2" id="topPagesList">
+                            <div class="loading text-center py-8">Yükleniyor...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other sections will be dynamically loaded -->
+            <div id="section-seo-overview" style="display: none;">
+                <div class="card">
+                    <h2 class="text-2xl font-bold mb-4">🔍 SEO Overview</h2>
+                    <p class="text-gray-400">SEO genel bakış modülü yükleniyor...</p>
+                </div>
+            </div>
+
+            <div id="section-google-console" style="display: none;">
+                <div class="card">
+                    <h2 class="text-2xl font-bold mb-4">📈 Google Search Console</h2>
+                    <p class="text-gray-400">Google Search Console detayları yükleniyor...</p>
+                </div>
+            </div>
+
+            <!-- Add more sections as needed -->
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentLang = 'tr';
+        let autoRefresh = true;
+        let refreshInterval = null;
+        let countdownInterval = null;
+        let countdownSeconds = 60;
+        let gscChart = null;
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const hamburger = document.getElementById('hamburger');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-open');
+        });
+
+        // Menu navigation
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = item.getAttribute('data-section');
+
+                // Update active state
+                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                // Show section
+                showSection(section);
+
+                // Close sidebar on mobile
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.remove('sidebar-open');
+                }
+            });
+        });
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('[id^="section-"]').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show selected section
+            const sectionEl = document.getElementById(`section-${sectionName}`);
+            if (sectionEl) {
+                sectionEl.style.display = 'block';
+            }
+
+            // Update page title
+            const titles = {
+                'dashboard': { tr: 'Ana Dashboard', en: 'Main Dashboard' },
+                'seo-overview': { tr: 'SEO Genel Bakış', en: 'SEO Overview' },
+                'google-console': { tr: 'Google Search Console', en: 'Google Search Console' },
+                'google': { tr: 'Google Indexing', en: 'Google Indexing' },
+                'bing': { tr: 'Bing Webmaster', en: 'Bing Webmaster' },
+                'yandex': { tr: 'Yandex Webmaster', en: 'Yandex Webmaster' },
+                'ai-platforms': { tr: 'AI Platformlar', en: 'AI Platforms' },
+                'performance': { tr: 'Performans Analizi', en: 'Performance Analysis' },
+                'sitemap': { tr: 'Sitemap Yönetimi', en: 'Sitemap Management' },
+                'top-pages': { tr: 'En İyi Sayfalar', en: 'Top Pages' },
+                'alerts': { tr: 'Alertler', en: 'Alerts' },
+                'settings': { tr: 'Ayarlar', en: 'Settings' },
+                'docs': { tr: 'Dokümantasyon', en: 'Documentation' }
+            };
+
+            document.getElementById('pageTitle').textContent = titles[sectionName]?.[currentLang] || sectionName;
+        }
+
+        // Auto refresh toggle
+        const autoRefreshToggle = document.getElementById('autoRefreshToggle');
+        autoRefreshToggle.addEventListener('click', () => {
+            autoRefresh = !autoRefresh;
+            autoRefreshToggle.classList.toggle('active');
+
+            if (autoRefresh) {
+                startAutoRefresh();
+            } else {
+                stopAutoRefresh();
+            }
+        });
+
+        // Language toggle
+        const langToggle = document.getElementById('langToggle');
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            langToggle.textContent = currentLang === 'tr' ? 'TR / EN' : 'EN / TR';
+            // Update UI text based on language
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            // Update static text based on current language
+            // This would be expanded in production
+        }
+
+        // Load data from lydian-master-dashboard
+        async function loadData() {
+            try {
+                // For production: fetch from lydian-master-dashboard monitoring system
+                // For now: using placeholder data structure
+
+                const data = {
+                    timestamp: new Date().toISOString(),
+                    results: {
+                        search_engines: {
+                            google: { success: 45, failure: 0, skipped: 0 },
+                            bing: { success: 45, failure: 0, skipped: 0 },
+                            yandex: { success: 45, failure: 0, skipped: 0 }
+                        },
+                        google_search_console: {
+                            analytics: {
+                                summary: {
+                                    total_clicks: 12450,
+                                    total_impressions: 345600,
+                                    average_ctr: 3.60,
+                                    average_position: 8.5
+                                },
+                                top_pages: [
+                                    { page: 'https://www.ailydian.com/medical-ai', clicks: 2340, impressions: 45600 },
+                                    { page: 'https://www.ailydian.com/legal-ai', clicks: 1890, impressions: 38200 },
+                                    { page: 'https://www.ailydian.com/lydian-iq', clicks: 1560, impressions: 34500 }
+                                ]
+                            },
+                            sitemaps: [{
+                                path: 'https://www.ailydian.com/sitemap.xml',
+                                contents: { submitted: 125, indexed: 118 }
+                            }]
+                        },
+                        ai_platforms: {
+                            cloud-ai-provider: { feed_accessible: true },
+                            gemini: { feed_accessible: true },
+                            anthropic: { feed_accessible: true },
+                            groq: { feed_accessible: true },
+                            perplexity: { feed_accessible: true },
+                            brave: { feed_accessible: true }
+                        }
+                    }
+                };
+
+                updateDashboard(data);
+            } catch (error) {
+                console.error('Data load error:', error);
+            }
+        }
+
+        function updateDashboard(data) {
+            // Update last update time
+            document.getElementById('lastUpdate').textContent = new Date(data.timestamp).toLocaleString(currentLang);
+
+            // Update key metrics
+            const sitemaps = data.results.google_search_console?.sitemaps;
+            const totalUrls = sitemaps?.[0]?.contents?.submitted || 0;
+            document.getElementById('totalUrls').textContent = totalUrls;
+
+            // Success rate
+            const engines = data.results.search_engines;
+            const totalSuccess = (engines.google?.success || 0) + (engines.bing?.success || 0) + (engines.yandex?.success || 0);
+            const totalAttempts = totalSuccess + (engines.google?.failure || 0) + (engines.bing?.failure || 0) + (engines.yandex?.failure || 0);
+            const successRate = totalAttempts > 0 ? ((totalSuccess / totalAttempts) * 100).toFixed(1) : 0;
+            document.getElementById('successRate').textContent = successRate + '%';
+
+            // GSC metrics
+            const analytics = data.results.google_search_console?.analytics?.summary;
+            if (analytics) {
+                document.getElementById('totalClicks').textContent = analytics.total_clicks?.toLocaleString(currentLang) || '0';
+                document.getElementById('avgPosition').textContent = analytics.average_position?.toFixed(1) || '0';
+
+                document.getElementById('gscClicks').textContent = analytics.total_clicks?.toLocaleString(currentLang) || '0';
+                document.getElementById('gscImpressions').textContent = analytics.total_impressions?.toLocaleString(currentLang) || '0';
+                document.getElementById('gscCtr').textContent = analytics.average_ctr?.toFixed(2) || '0';
+                document.getElementById('gscPosition').textContent = analytics.average_position?.toFixed(1) || '0';
+
+                updateGSCChart(analytics);
+            }
+
+            // Update search engines
+            updateSearchEngines(engines);
+
+            // Update AI platforms
+            updateAIPlatforms(data.results.ai_platforms);
+
+            // Update top pages
+            updateTopPages(data.results.google_search_console?.analytics?.top_pages || []);
+        }
+
+        function updateSearchEngines(engines) {
+            const container = document.getElementById('searchEnginesStatus');
+            const enginesList = [
+                { key: 'google', name: 'Google', emoji: '🌐', color: 'blue' },
+                { key: 'bing', name: 'Bing', emoji: '🅱️', color: 'purple' },
+                { key: 'yandex', name: 'Yandex', emoji: '🔴', color: 'red' }
+            ];
+
+            container.innerHTML = enginesList.map(engine => {
+                const data = engines[engine.key] || {};
+                const success = data.success || 0;
+                const failed = data.failure || 0;
+                const skipped = data.skipped || 0;
+
+                let statusClass = 'status-success';
+                let statusText = 'Başarılı';
+                if (skipped > 0) {
+                    statusClass = 'status-warning';
+                    statusText = 'Atlandı';
+                } else if (failed > 0) {
+                    statusClass = 'status-warning';
+                    statusText = 'Kısmi';
+                }
+
+                return `
+                    <div class="flex items-center justify-between p-4 bg-${engine.color}-500/10 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">${engine.emoji}</span>
+                            <div>
+                                <div class="font-semibold">${engine.name}</div>
+                                <div class="text-sm text-gray-400">Başarılı: ${success} / Başarısız: ${failed}</div>
+                            </div>
+                        </div>
+                        <span class="status-badge ${statusClass}">${statusText}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateGSCChart(analytics) {
+            const ctx = document.getElementById('gscChart').getContext('2d');
+
+            if (gscChart) {
+                gscChart.destroy();
+            }
+
+            gscChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tıklama', 'Gösterim (÷1000)', 'CTR (×10)', 'Pozisyon'],
+                    datasets: [{
+                        label: 'GSC Metrikleri',
+                        data: [
+                            analytics.total_clicks || 0,
+                            (analytics.total_impressions || 0) / 1000,
+                            (analytics.average_ctr || 0) * 10,
+                            analytics.average_position || 0
+                        ],
+                        backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(168, 85, 247, 0.8)', 'rgba(34, 197, 94, 0.8)', 'rgba(249, 115, 22, 0.8)']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } }
+                }
+            });
+        }
+
+        function updateAIPlatforms(platforms) {
+            const container = document.getElementById('aiPlatformsGrid');
+            const platformData = [
+                { key: 'cloud-ai-provider', name: 'Cloud-AI-Provider', emoji: '🤖' },
+                { key: 'gemini', name: 'Neural-G', emoji: '💎' },
+                { key: 'anthropic', name: 'Claude', emoji: '🎭' },
+                { key: 'groq', name: 'Groq', emoji: '⚡' },
+                { key: 'perplexity', name: 'Perplexity', emoji: '🔍' },
+                { key: 'brave', name: 'Brave', emoji: '🦁' }
+            ];
+
+            container.innerHTML = platformData.map(platform => {
+                const data = platforms[platform.key] || {};
+                const accessible = data.feed_accessible;
+
+                return `
+                    <div class="text-center p-4 bg-slate-700/50 rounded-lg">
+                        <div class="text-2xl mb-2">${platform.emoji}</div>
+                        <div class="text-sm font-semibold mb-2">${platform.name}</div>
+                        <span class="status-badge ${accessible ? 'status-success' : 'status-error'}">
+                            ${accessible ? '✓ Erişilebilir' : '✗ Erişilemez'}
+                        </span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateTopPages(topPages) {
+            const container = document.getElementById('topPagesList');
+
+            if (!topPages || topPages.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-400">Veri bulunamadı</div>';
+                return;
+            }
+
+            container.innerHTML = topPages.slice(0, 5).map((page, index) => {
+                const ctr = ((page.clicks / page.impressions) * 100).toFixed(2);
+                return `
+                    <div class="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
+                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                            <div class="text-lg font-bold text-${['blue', 'purple', 'green', 'orange', 'pink'][index]}-400">#${index + 1}</div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-medium truncate" title="${page.page}">
+                                    ${page.page.replace('https://www.ailydian.com', '')}
+                                </div>
+                                <div class="text-xs text-gray-400">${page.clicks} tıklama • ${page.impressions?.toLocaleString()} gösterim • ${ctr}% CTR</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function refreshData() {
+            loadData();
+            resetCountdown();
+        }
+
+        function startAutoRefresh() {
+            if (refreshInterval) clearInterval(refreshInterval);
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            refreshInterval = setInterval(() => {
+                loadData();
+                resetCountdown();
+            }, 60000);
+
+            countdownInterval = setInterval(() => {
+                countdownSeconds--;
+                document.getElementById('autoRefreshCountdown').textContent = countdownSeconds;
+                if (countdownSeconds <= 0) countdownSeconds = 60;
+            }, 1000);
+        }
+
+        function stopAutoRefresh() {
+            if (refreshInterval) clearInterval(refreshInterval);
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function resetCountdown() {
+            countdownSeconds = 60;
+            document.getElementById('autoRefreshCountdown').textContent = countdownSeconds;
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            if (autoRefresh) startAutoRefresh();
+        });
+    </script>
+
+</body>
+</html>

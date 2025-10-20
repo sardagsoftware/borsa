@@ -1,0 +1,115 @@
+{
+  "name": "LyDian Medical AI - Enterprise Healthcare Platform",
+  "short_name": "Medical AI",
+  "description": "Enterprise-grade Medical AI Assistant with Epic FHIR Integration",
+  "start_url": "/medical-expert.html",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0066CC",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["medical", "health", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/lydian-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Medical AI Assistant"
+    },
+    {
+      "src": "/lydian-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Epic FHIR Dashboard"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Medical Chat",
+      "short_name": "Chat",
+      "description": "Start medical AI consultation",
+      "url": "/medical-expert.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Epic FHIR",
+      "short_name": "FHIR",
+      "description": "Epic FHIR dashboard",
+      "url": "/epic-fhir-dashboard.html",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Cardiology",
+      "short_name": "Heart",
+      "description": "Cardiac risk calculators",
+      "url": "/medical-expert.html#cardiology",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Emergency",
+      "short_name": "911",
+      "description": "Emergency medical tools",
+      "url": "/medical-expert.html#emergency",
+      "icons": [
+        {
+          "src": "/lydian-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7"
+}

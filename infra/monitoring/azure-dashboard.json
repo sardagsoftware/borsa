@@ -1,0 +1,136 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dashboardName": {
+      "type": "string",
+      "defaultValue": "Ailydian-Production-Dashboard"
+    },
+    "appInsightsName": {
+      "type": "string"
+    },
+    "containerAppName": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Portal/dashboards",
+      "apiVersion": "2020-09-01-preview",
+      "name": "[parameters('dashboardName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "lenses": [
+          {
+            "order": 0,
+            "parts": [
+              {
+                "position": { "x": 0, "y": 0, "rowSpan": 4, "colSpan": 6 },
+                "metadata": {
+                  "type": "Extension/AppInsightsExtension/PartType/MetricsChartPart",
+                  "settings": {
+                    "title": "Request Rate (RPS)",
+                    "subtitle": "Requests per second",
+                    "metrics": [
+                      {
+                        "resourceId": "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]",
+                        "name": "requests/rate",
+                        "aggregationType": "avg"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "position": { "x": 6, "y": 0, "rowSpan": 4, "colSpan": 6 },
+                "metadata": {
+                  "type": "Extension/AppInsightsExtension/PartType/MetricsChartPart",
+                  "settings": {
+                    "title": "Response Time (p95)",
+                    "subtitle": "95th percentile latency",
+                    "metrics": [
+                      {
+                        "resourceId": "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]",
+                        "name": "requests/duration",
+                        "aggregationType": "percentile",
+                        "percentile": 95
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "position": { "x": 0, "y": 4, "rowSpan": 4, "colSpan": 6 },
+                "metadata": {
+                  "type": "Extension/AppInsightsExtension/PartType/MetricsChartPart",
+                  "settings": {
+                    "title": "Error Rate",
+                    "subtitle": "Failed requests percentage",
+                    "metrics": [
+                      {
+                        "resourceId": "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]",
+                        "name": "requests/failed",
+                        "aggregationType": "avg"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "position": { "x": 6, "y": 4, "rowSpan": 4, "colSpan": 6 },
+                "metadata": {
+                  "type": "Extension/AppInsightsExtension/PartType/MetricsChartPart",
+                  "settings": {
+                    "title": "Container CPU Usage",
+                    "subtitle": "CPU percentage",
+                    "metrics": [
+                      {
+                        "resourceId": "[resourceId('Microsoft.App/containerApps', parameters('containerAppName'))]",
+                        "name": "UsageNanoCores",
+                        "aggregationType": "avg"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "position": { "x": 0, "y": 8, "rowSpan": 4, "colSpan": 6 },
+                "metadata": {
+                  "type": "Extension/AppInsightsExtension/PartType/MetricsChartPart",
+                  "settings": {
+                    "title": "Container Memory Usage",
+                    "subtitle": "Memory in MB",
+                    "metrics": [
+                      {
+                        "resourceId": "[resourceId('Microsoft.App/containerApps', parameters('containerAppName'))]",
+                        "name": "WorkingSetBytes",
+                        "aggregationType": "avg"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "position": { "x": 6, "y": 8, "rowSpan": 4, "colSpan": 6 },
+                "metadata": {
+                  "type": "Extension/AppInsightsExtension/PartType/MetricsChartPart",
+                  "settings": {
+                    "title": "Active Replicas",
+                    "subtitle": "Container instances",
+                    "metrics": [
+                      {
+                        "resourceId": "[resourceId('Microsoft.App/containerApps', parameters('containerAppName'))]",
+                        "name": "Replicas",
+                        "aggregationType": "avg"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

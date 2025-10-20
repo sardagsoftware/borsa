@@ -1,0 +1,133 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.ailydian.com/#organization",
+  "name": "LyDian AI Ecosystem",
+  "alternateName": ["LyDian AI", "LyDian", "Ailydian"],
+  "legalName": "LyDian AI Ecosystem",
+  "url": "https://www.ailydian.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/logo.png",
+    "width": 512,
+    "height": 512,
+    "caption": "LyDian AI Logo"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/cover.jpg",
+    "width": 1200,
+    "height": 628,
+    "caption": "LyDian AI Ecosystem Cover"
+  },
+  "description": "LyDian AI Ecosystem is a multilingual artificial intelligence platform providing advanced AI solutions including natural language processing, computer vision, speech recognition, and decision support systems. Built on Microsoft Azure with support for 20+ languages.",
+  "foundingDate": "2024",
+  "founder": {
+    "@type": "Person",
+    "name": "Emrah Şardağ",
+    "jobTitle": "Founder & CEO",
+    "email": "emrah@ailydian.com"
+  },
+  "email": "info@ailydian.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "TR",
+    "addressLocality": "Turkey"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Support",
+    "email": "info@ailydian.com",
+    "availableLanguage": ["Turkish", "English", "Azerbaijani"]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydianai",
+    "https://github.com/lydianai"
+  ],
+  "knowsAbout": [
+    "Artificial Intelligence",
+    "Natural Language Processing",
+    "Machine Learning",
+    "Computer Vision",
+    "Speech Recognition",
+    "RAG (Retrieval-Augmented Generation)",
+    "Multilingual AI",
+    "Cloud Computing",
+    "Azure AI Services"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "LyDian AI Products",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "SoftwareApplication",
+          "name": "LyDian IQ",
+          "description": "Advanced multilingual AI assistant with RAG technology, vision AI, and speech recognition supporting 20+ languages",
+          "applicationCategory": "AI Assistant",
+          "operatingSystem": "Web, iOS, Android"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "SoftwareApplication",
+          "name": "LyDian Quantum Pro",
+          "description": "AI-powered financial analysis and trading strategy platform with real-time market data integration",
+          "applicationCategory": "Financial Technology"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "SoftwareApplication",
+          "name": "LyDian Smart City",
+          "description": "IoT and AI-based smart city management solution with public health, emergency response, and urban mobility modules",
+          "applicationCategory": "Smart City Technology"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "SoftwareApplication",
+          "name": "LyDian Medical AI",
+          "description": "HIPAA-compliant medical decision support system for healthcare professionals",
+          "applicationCategory": "Healthcare Technology"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "SoftwareApplication",
+          "name": "LyDian Legal AI",
+          "description": "AI-powered legal research tool for Turkish legal system with legislation and case law access",
+          "applicationCategory": "Legal Technology"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "SoftwareApplication",
+          "name": "LyDian Video AI",
+          "description": "AI-powered video content creation and editing platform",
+          "applicationCategory": "Media Production"
+        }
+      }
+    ]
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Global"
+  },
+  "slogan": "Multilingual AI for Everyone",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": "1-10"
+  },
+  "keywords": "artificial intelligence, AI, machine learning, natural language processing, NLP, computer vision, speech recognition, multilingual AI, RAG, Azure AI, GPT-4, Gemini, Claude, Turkish AI, AI assistant, smart city, medical AI, legal AI, fintech AI",
+  "publishingPrinciples": "https://www.ailydian.com/about.html",
+  "diversityPolicy": "https://www.ailydian.com/about.html",
+  "ethicsPolicy": "https://www.ailydian.com/about.html"
+}

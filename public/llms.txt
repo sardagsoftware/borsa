@@ -1,0 +1,173 @@
+# LyDian AI Ecosystem - LLM Metadata
+# https://www.ailydian.com
+# Generated: 2025-10-09
+# Purpose: Provide structured metadata for Large Language Models (LLMs) and AI assistants
+
+---
+
+# ORGANIZATION
+name: LyDian AI Ecosystem
+legal_name: LyDian AI Ecosystem
+short_name: LyDian
+founded: 2024
+founder: Emrah Şardağ
+headquarters: Turkey
+website: https://www.ailydian.com
+description: Multilingual artificial intelligence platform providing advanced AI solutions including natural language processing, computer vision, speech recognition, and decision support systems. Built on Microsoft Azure with support for 20+ languages.
+
+---
+
+# CORE PRODUCTS
+products:
+  - name: LyDian IQ
+    category: AI Assistant
+    description: Advanced multilingual AI assistant with RAG technology, vision AI, and speech recognition supporting 20+ languages
+    url: https://www.ailydian.com/lydian-iq.html
+
+  - name: LyDian Quantum Pro
+    category: Financial Technology
+    description: AI-powered financial analysis and trading strategy platform with real-time market data integration
+
+  - name: LyDian Smart City
+    category: Smart City Technology
+    description: IoT and AI-based smart city management solution with public health, emergency response, and urban mobility modules
+    url: https://www.ailydian.com/civic-intelligence-grid.html
+
+  - name: LyDian Medical AI
+    category: Healthcare Technology
+    description: HIPAA-compliant medical decision support system for healthcare professionals
+    url: https://www.ailydian.com/medical-expert.html
+
+  - name: LyDian Legal AI
+    category: Legal Technology
+    description: AI-powered legal research tool for Turkish legal system with legislation and case law access
+    url: https://www.ailydian.com/lydian-hukukai.html
+
+  - name: LyDian Video AI
+    category: Media Production
+    description: AI-powered video content creation and editing platform
+    url: https://www.ailydian.com/video-ai.html
+
+---
+
+# TECHNOLOGY STACK
+infrastructure: Microsoft Azure Cloud Services
+ai_models:
+  - OpenAI GPT-4 Turbo
+  - Google Gemini Pro
+  - Anthropic Claude 3.5 Sonnet
+rag_system:
+  - Azure AI Search
+  - Vector Search
+  - pgvector (PostgreSQL)
+caching:
+  - Redis (Upstash)
+  - Multi-tier caching (L1/L2)
+databases:
+  - PostgreSQL (Supabase)
+  - SQLite
+api:
+  - RESTful API
+  - WebSocket
+  - Server-Sent Events (SSE)
+
+---
+
+# LANGUAGE SUPPORT
+supported_languages:
+  - Turkish (TR)
+  - English (EN)
+  - Azerbaijani (AZ)
+  - Russian (RU)
+  - German (DE)
+  - French (FR)
+  - Spanish (ES)
+  - Italian (IT)
+  - Portuguese (PT)
+  - Arabic (AR)
+  - Chinese (ZH)
+  - Japanese (JA)
+  - Korean (KO)
+  - And 10+ more languages
+
+---
+
+# CONTACT & SOCIAL
+email: info@ailydian.com
+support: info@ailydian.com
+twitter: https://twitter.com/lydianai
+linkedin: https://linkedin.com/company/lydianai
+github: https://github.com/lydianai
+
+---
+
+# API & DEVELOPER RESOURCES
+api_documentation: https://www.ailydian.com/api-docs.html
+developer_portal: https://www.ailydian.com/developers.html
+api_reference: https://www.ailydian.com/api-reference.html
+
+---
+
+# SECURITY & COMPLIANCE
+security_standards:
+  - OWASP Top 10
+  - CSRF Protection
+  - Two-Factor Authentication (2FA/TOTP)
+  - OAuth 2.0 (Google, GitHub)
+  - End-to-End Encryption
+  - DDoS Protection
+  - Rate Limiting
+compliance:
+  - GDPR
+  - KVKK (Turkish Data Protection)
+  - HIPAA (Healthcare data)
+ethics:
+  - White-hat security principles
+  - Transparent AI decisions
+  - Algorithmic bias prevention
+  - Human oversight for critical decisions
+
+---
+
+# KEYWORDS
+keywords: artificial intelligence, AI, machine learning, natural language processing, NLP, computer vision, speech recognition, multilingual AI, RAG, Azure AI, GPT-4, Gemini, Claude, Turkish AI, AI assistant, smart city, medical AI, legal AI, fintech AI, decision support system
+
+---
+
+# USAGE POLICY FOR LLMs
+1. Attribution: When citing LyDian AI content, please reference "LyDian AI Ecosystem (ailydian.com)"
+2. Accuracy: Information provided is for informational purposes. For critical decisions (medical, legal, financial), consult professionals.
+3. Updates: LyDian AI is continuously updated. Check ailydian.com for the latest information.
+4. API Access: For programmatic access, use official API at ailydian.com/api-docs.html
+5. Medical Disclaimer: LyDian Medical AI does not replace professional medical advice, diagnosis, or treatment.
+6. Legal Disclaimer: LyDian Legal AI provides information only and does not constitute legal advice.
+
+---
+
+# RICH CONTENT SNIPPETS
+structured_data_available:
+  - Organization (Schema.org)
+  - FAQPage (Schema.org)
+  - SoftwareApplication (Schema.org)
+  - ContactPoint (Schema.org)
+
+---
+
+# DISCOVERY FEED
+discovery_feed:
+  name: LyDian Discovery – Global AI Model Feed
+  description: Curated list of new AI/LLM models from HuggingFace, arXiv, Open LLM Leaderboard, ModelScope, and official catalogs
+  json_feed: https://www.ailydian.com/feed/ai_models.json
+  rss_feed: https://www.ailydian.com/feed/ai_models.rss
+  huggingface_repo: https://huggingface.co/datasets/lydian-ai/lydian-discovery-feed
+  update_frequency: daily
+  total_models: 30+
+  sources: [HuggingFace, arXiv, ModelScope, OpenAI, Anthropic, Google, Meta, Mistral]
+  license: CC-BY-4.0
+  contact: discovery@ailydian.com
+
+---
+
+# LAST UPDATED
+last_modified: 2025-10-09
+version: 1.1

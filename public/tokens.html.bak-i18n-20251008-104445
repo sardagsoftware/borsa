@@ -1,0 +1,521 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token System - LyDian | Blockchain-Based AI Credits</title>
+    <link rel="stylesheet" href="/css/ailydians-inspired.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .token-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--asana-green-primary) 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+        }
+
+        .token-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .token-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .token-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .token-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4aa, #90EE90);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .token-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .token-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--asana-green-primary);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .token-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--asana-green-primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .token-tiers {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .tiers-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card.premium {
+            border-color: var(--asana-green-primary);
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--asana-green-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tier-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--asana-green-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-period {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .tier-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .tier-features li i {
+            color: var(--asana-green-primary);
+            margin-right: 0.8rem;
+        }
+
+        .tier-button {
+            background: var(--asana-green-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .tier-button:hover {
+            background: #00b896;
+            transform: translateY(-2px);
+        }
+
+        .real-time-data {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .data-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .data-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .data-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--asana-green-primary);
+        }
+
+        .nav-back {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-back:hover {
+            background: var(--asana-green-primary);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .token-container {
+                padding: 0 1rem;
+            }
+
+            .token-title {
+                font-size: 2rem;
+            }
+
+            .token-stats,
+            .token-features,
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <a href="/" class="nav-back">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="token-page">
+        <div class="token-container">
+            <!-- Header -->
+            <div class="token-header">
+                <div class="token-logo">🪙</div>
+                <h1 class="token-title">LyDian Token (ALT)</h1>
+                <p class="token-subtitle">Blockchain tabanlı AI yakıt sistemi - Her AI isteğiniz için akıllı token kullanımı</p>
+            </div>
+
+            <!-- Real-time Stats -->
+            <div class="token-stats">
+                <div class="stat-card">
+                    <i class="fas fa-coins stat-icon"></i>
+                    <div class="stat-value" id="totalTokens">10,000,000</div>
+                    <div class="stat-label">Toplam Token Arzı</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-fire stat-icon"></i>
+                    <div class="stat-value" id="burnedTokens">2,456,789</div>
+                    <div class="stat-label">Yakılan Token</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line stat-icon"></i>
+                    <div class="stat-value" id="tokenPrice">$0.25</div>
+                    <div class="stat-label">Anlık Token Fiyatı</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-value" id="activeUsers">15,678</div>
+                    <div class="stat-label">Aktif Kullanıcı</div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="token-features">
+                <div class="feature-card">
+                    <i class="fas fa-robot feature-icon"></i>
+                    <h3 class="feature-title">AI Yakıt Sistemi</h3>
+                    <p class="feature-description">Her AI modeli farklı token tüketimine sahip. GPT-4, Enterprise AI, Z.AI gibi premium modeller daha fazla token harcar.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-brain feature-icon"></i>
+                    <h3 class="feature-title">Akıllı Fiyatlandırma</h3>
+                    <p class="feature-description">Token tüketimi model karmaşıklığı, istek uzunluğu ve real-time talebe göre dinamik olarak hesaplanır.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-recycle feature-icon"></i>
+                    <h3 class="feature-title">Deflasyonist Model</h3>
+                    <p class="feature-description">Kullanılan tokenların %1'i yakılır, arzı azaltarak değer artışı sağlar.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-gift feature-icon"></i>
+                    <h3 class="feature-title">Kazanım Sistemi</h3>
+                    <p class="feature-description">Platform kullanımı, referans getirme ve günlük giriş ile ücretsiz token kazanın.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3 class="feature-title">Blockchain Güvenlik</h3>
+                    <p class="feature-description">Ethereum tabanlı ERC-20 token ile maksimum güvenlik ve şeffaflık.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-exchange-alt feature-icon"></i>
+                    <h3 class="feature-title">Anında Transfer</h3>
+                    <p class="feature-description">Kullanıcılar arası token transferi ve marketplace entegrasyonu.</p>
+                </div>
+            </div>
+
+            <!-- Pricing Tiers -->
+            <div class="token-tiers">
+                <h2 class="tiers-title">Token Paketleri</h2>
+                <div class="tiers-grid">
+                    <div class="tier-card">
+                        <h3 class="tier-name">Başlangıç</h3>
+                        <div class="tier-price">1,000</div>
+                        <div class="tier-period">Token / $10</div>
+                        <ul class="tier-features">
+                            <li><i class="fas fa-check"></i> Temel AI modelleri</li>
+                            <li><i class="fas fa-check"></i> Günlük 100 istek</li>
+                            <li><i class="fas fa-check"></i> Email destek</li>
+                            <li><i class="fas fa-check"></i> Topluluk erişimi</li>
+                        </ul>
+                        <button class="tier-button">Satın Al</button>
+                    </div>
+
+                    <div class="tier-card premium">
+                        <div class="tier-badge">En Popüler</div>
+                        <h3 class="tier-name">Professional</h3>
+                        <div class="tier-price">5,000</div>
+                        <div class="tier-period">Token / $40 (20% İndirim)</div>
+                        <ul class="tier-features">
+                            <li><i class="fas fa-check"></i> Tüm AI modelleri</li>
+                            <li><i class="fas fa-check"></i> Sınırsız istek</li>
+                            <li><i class="fas fa-check"></i> Öncelikli destek</li>
+                            <li><i class="fas fa-check"></i> API erişimi</li>
+                            <li><i class="fas fa-check"></i> Özel entegrasyonlar</li>
+                        </ul>
+                        <button class="tier-button">Satın Al</button>
+                    </div>
+
+                    <div class="tier-card">
+                        <h3 class="tier-name">Enterprise</h3>
+                        <div class="tier-price">25,000</div>
+                        <div class="tier-period">Token / $150 (40% İndirim)</div>
+                        <ul class="tier-features">
+                            <li><i class="fas fa-check"></i> Kurumsal AI çözümleri</li>
+                            <li><i class="fas fa-check"></i> Özel model fine-tuning</li>
+                            <li><i class="fas fa-check"></i> 7/24 premium destek</li>
+                            <li><i class="fas fa-check"></i> SLA garantisi</li>
+                            <li><i class="fas fa-check"></i> Özel infrastructure</li>
+                            <li><i class="fas fa-check"></i> Compliance sertifikaları</li>
+                        </ul>
+                        <button class="tier-button">İletişime Geç</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Data -->
+            <div class="real-time-data">
+                <h2 class="data-title">Anlık Platform Verileri</h2>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">Bugün Tüketilen</div>
+                        <div class="data-value" id="dailyConsumed">45,238</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Aktif İşlem</div>
+                        <div class="data-value" id="activeTransactions">1,247</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Network Hash Rate</div>
+                        <div class="data-value" id="hashRate">98.7%</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Ortalama Gas Fee</div>
+                        <div class="data-value" id="gasFee">12 Gwei</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Market Cap</div>
+                        <div class="data-value" id="marketCap">$2.5M</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">24h Hacim</div>
+                        <div class="data-value" id="volume">$156K</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Real-time data updates
+        function updateRealTimeData() {
+            // Simulate real-time updates
+            const updates = {
+                totalTokens: Math.floor(Math.random() * 1000000) + 9000000,
+                burnedTokens: Math.floor(Math.random() * 500000) + 2000000,
+                tokenPrice: (Math.random() * 0.1 + 0.2).toFixed(3),
+                activeUsers: Math.floor(Math.random() * 5000) + 15000,
+                dailyConsumed: Math.floor(Math.random() * 10000) + 40000,
+                activeTransactions: Math.floor(Math.random() * 500) + 1000,
+                hashRate: (Math.random() * 2 + 97).toFixed(1),
+                gasFee: Math.floor(Math.random() * 10) + 8,
+                marketCap: (Math.random() * 1 + 2).toFixed(1),
+                volume: Math.floor(Math.random() * 50) + 130
+            };
+
+            Object.keys(updates).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    if (key === 'tokenPrice') {
+                        element.textContent = '$' + updates[key];
+                    } else if (key === 'hashRate') {
+                        element.textContent = updates[key] + '%';
+                    } else if (key === 'gasFee') {
+                        element.textContent = updates[key] + ' Gwei';
+                    } else if (key === 'marketCap') {
+                        element.textContent = '$' + updates[key] + 'M';
+                    } else if (key === 'volume') {
+                        element.textContent = '$' + updates[key] + 'K';
+                    } else {
+                        element.textContent = updates[key].toLocaleString();
+                    }
+                }
+            });
+        }
+
+        // Update data every 3 seconds
+        setInterval(updateRealTimeData, 3000);
+
+        // Initial update
+        updateRealTimeData();
+
+        // Button click handlers
+        document.querySelectorAll('.tier-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const tierName = this.closest('.tier-card').querySelector('.tier-name').textContent;
+                alert(`${tierName} paketi için işlem başlatılıyor...`);
+            });
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

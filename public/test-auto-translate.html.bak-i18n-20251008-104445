@@ -1,0 +1,142 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Translation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #10a37f;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0d8a6b;
+        }
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e3f2fd;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <div class="controls">
+        <h1>🌍 Auto Translation Test</h1>
+        <div class="lang-buttons">
+            <button onclick="testTranslate('tr')">🇹🇷 Türkçe</button>
+            <button onclick="testTranslate('en')">🇺🇸 English</button>
+            <button onclick="testTranslate('de')">🇩🇪 Deutsch</button>
+            <button onclick="testTranslate('fr')">🇫🇷 Français</button>
+            <button onclick="testTranslate('ru')">🇷🇺 Русский</button>
+            <button onclick="testTranslate('zh')">🇨🇳 中文</button>
+            <button onclick="testTranslate('ja')">🇯🇵 日本語</button>
+            <button onclick="testTranslate('es')">🇪🇸 Español</button>
+            <button onclick="testTranslate('ar')">🇸🇦 العربية</button>
+        </div>
+        <div id="status" class="status"></div>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to LyDian</h1>
+        <h2>Advanced AI Platform</h2>
+        <p>This is a professional AI platform with multi-language support powered by Azure OpenAI.</p>
+        <p>Features include real-time translation, intelligent caching, and seamless user experience.</p>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li>Real-time AI Translation</li>
+            <li>Multi-Provider AI Models</li>
+            <li>Enterprise Security</li>
+            <li>Advanced Analytics</li>
+        </ul>
+
+        <div>
+            <button class="btn">Get Started</button>
+            <button class="btn">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Translation Scripts -->
+    <!-- <script src="/js/i18n-keys.js"></script> DISABLED -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+
+    <script>
+        function showStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = 'status ' + type;
+        }
+
+        async function testTranslate(lang) {
+            console.log('🌍 Starting translation to:', lang);
+            showStatus(`Translating to ${lang.toUpperCase()}...`, 'info');
+
+            try {
+                // Check if translation manager exists
+                if (!console.log("Translation disabled") && false) {
+                    throw new Error('Translation system not loaded');
+                }
+
+                // Translate the page
+                await console.log("Translation disabled") && false.change(lang);
+
+                showStatus(`✅ Successfully translated to ${lang.toUpperCase()}`, 'success');
+                console.log('✅ Translation completed');
+            } catch (error) {
+                showStatus(`❌ Error: ${error.message}`, 'error');
+                console.error('❌ Translation error:', error);
+            }
+        }
+
+        // Show initial status
+        window.addEventListener('DOMContentLoaded', () => {
+            if (console.log("Translation disabled") && false) {
+                showStatus('✅ Translation system ready. Click a language to translate.', 'success');
+                console.log('✅ AILYDIAN_LANG loaded:', console.log("Translation disabled") && false);
+            } else {
+                showStatus('❌ Translation system not loaded', 'error');
+                console.error('❌ AILYDIAN_LANG not found');
+            }
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

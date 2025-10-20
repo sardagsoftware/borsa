@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "commonjs",
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../../packages/app-sdk" },
+    { "path": "../../packages/connectors-core" },
+    { "path": "../../packages/connectors-commerce" },
+    { "path": "../../packages/schema" }
+  ]
+}

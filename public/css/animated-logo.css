@@ -1,0 +1,432 @@
+/**
+ * 🎨 ANIMATED AILYDIAN LOGO DESIGN
+ * Unique typography and animations for AiL letters
+ * Enterprise-grade branding system
+ */
+
+/* ========================================
+   AILYDIAN LOGO TYPOGRAPHY & ANIMATIONS
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800;900&display=swap');
+
+.ailydian-logo {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 600;
+    font-size: 28px;
+    color: #0d7377;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.ailydian-logo:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+/* ========================================
+   SPECIAL AiL LETTERS STYLING
+   ======================================== */
+
+.ailydian-logo .letter-a {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 900;
+    font-size: 1.3em;
+    color: #14a085;
+    text-shadow: 0 0 20px rgba(20, 160, 133, 0.6);
+    position: relative;
+    display: inline-block;
+    animation: pulseGlow 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.ailydian-logo .letter-i {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #7fb069;
+    position: relative;
+    display: inline-block;
+    animation: bounce 2s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+.ailydian-logo .letter-l {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 900;
+    font-size: 1.3em;
+    color: #0d7377;
+    text-shadow: 0 0 20px rgba(13, 115, 119, 0.6);
+    position: relative;
+    display: inline-block;
+    animation: rotateGlow 4s ease-in-out infinite;
+    animation-delay: 0.4s;
+    transform-origin: center bottom;
+}
+
+.ailydian-logo .letter-ydians {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 500;
+    font-size: 1em;
+    color: #a7c957;
+    position: relative;
+    display: inline-block;
+    animation: slideIn 2.5s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+
+/* ========================================
+   LOGO ANIMATIONS
+   ======================================== */
+
+@keyframes pulseGlow {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 20px rgba(20, 160, 133, 0.6);
+        color: #14a085;
+    }
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 30px rgba(20, 160, 133, 0.9), 0 0 40px rgba(20, 160, 133, 0.6);
+        color: #0d7377;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+    60% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes rotateGlow {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        text-shadow: 0 0 20px rgba(13, 115, 119, 0.6);
+        color: #0d7377;
+    }
+    25% {
+        transform: rotate(5deg) scale(1.05);
+        text-shadow: 0 0 25px rgba(13, 115, 119, 0.8);
+        color: #14a085;
+    }
+    75% {
+        transform: rotate(-5deg) scale(1.05);
+        text-shadow: 0 0 25px rgba(13, 115, 119, 0.8);
+        color: #14a085;
+    }
+}
+
+@keyframes slideIn {
+    0%, 100% {
+        transform: translateX(0) opacity(1);
+    }
+    50% {
+        transform: translateX(3px);
+        opacity: 0.9;
+    }
+}
+
+/* ========================================
+   LOGO VARIANTS FOR DIFFERENT SIZES
+   ======================================== */
+
+.ailydian-logo-large {
+    font-size: 42px;
+}
+
+.ailydian-logo-medium {
+    font-size: 32px;
+}
+
+.ailydian-logo-small {
+    font-size: 24px;
+}
+
+.ailydian-logo-mini {
+    font-size: 18px;
+}
+
+/* ========================================
+   CHAT LOGO SPECIFIC STYLING
+   ======================================== */
+
+.ailydian-logo-chat {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 700;
+    font-size: 24px;
+    color: #0d7377;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.ailydian-logo-chat .letter-a,
+.ailydian-logo-chat .letter-l {
+    font-weight: 900;
+    font-size: 1.2em;
+    position: relative;
+    animation: chatLogoPulse 3s ease-in-out infinite;
+}
+
+.ailydian-logo-chat .letter-a {
+    color: #14a085;
+    text-shadow: 0 0 15px rgba(20, 160, 133, 0.5);
+}
+
+.ailydian-logo-chat .letter-l {
+    color: #0d7377;
+    text-shadow: 0 0 15px rgba(13, 115, 119, 0.5);
+    animation-delay: 0.5s;
+}
+
+.ailydian-beta {
+    font-size: 10px;
+    font-weight: 600;
+    color: #10b981;
+    background: linear-gradient(45deg, #10b981, #059669);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: betaGlow 2s ease-in-out infinite;
+}
+
+@keyframes chatLogoPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+@keyframes betaGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+    }
+}
+
+/* ========================================
+   HOMEPAGE LOGO STYLING
+   ======================================== */
+
+.ailydian-logo-homepage {
+    font-family: 'Righteous', cursive !important;
+    font-weight: 800;
+    font-size: 48px;
+    background: linear-gradient(135deg, #14a085, #0d7377, #7fb069);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+    animation: homepageFloat 6s ease-in-out infinite;
+}
+
+.ailydian-logo-homepage .letter-a,
+.ailydian-logo-homepage .letter-l {
+    font-size: 1.4em;
+    position: relative;
+    display: inline-block;
+}
+
+.ailydian-logo-homepage .letter-a {
+    animation: homepageRotate 4s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.ailydian-logo-homepage .letter-l {
+    animation: homepageScale 3s ease-in-out infinite;
+    animation-delay: 0.5s;
+    transform-origin: bottom;
+}
+
+@keyframes homepageFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes homepageRotate {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes homepageScale {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(1.2);
+    }
+}
+
+/* ========================================
+   LOADING SPINNER LOGO
+   ======================================== */
+
+.ailydian-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Righteous', cursive !important;
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.spinner-letter {
+    animation: spinnerBounce 1.2s ease-in-out infinite;
+    color: #14a085;
+    text-shadow: 0 0 10px rgba(20, 160, 133, 0.6);
+}
+
+.spinner-letter:nth-child(1) {
+    animation-delay: 0s;
+    color: #14a085;
+}
+
+.spinner-letter:nth-child(2) {
+    animation-delay: 0.2s;
+    color: #0d7377;
+}
+
+.spinner-letter:nth-child(3) {
+    animation-delay: 0.4s;
+    color: #7fb069;
+}
+
+@keyframes spinnerBounce {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .ailydian-logo {
+        font-size: 22px;
+    }
+
+    .ailydian-logo-homepage {
+        font-size: 36px;
+    }
+
+    .ailydian-logo-chat {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ailydian-logo {
+        font-size: 18px;
+    }
+
+    .ailydian-logo-homepage {
+        font-size: 28px;
+    }
+
+    .ailydian-logo-chat {
+        font-size: 18px;
+    }
+
+    .ailydian-beta {
+        font-size: 8px;
+        padding: 1px 4px;
+    }
+}
+
+/* ========================================
+   HOVER EFFECTS
+   ======================================== */
+
+.ailydian-logo:hover .letter-a {
+    animation-duration: 1s;
+    color: #0d7377;
+}
+
+.ailydian-logo:hover .letter-l {
+    animation-duration: 1s;
+    color: #14a085;
+}
+
+.ailydian-logo:hover .letter-i {
+    color: #a7c957;
+}
+
+.ailydian-logo:hover .letter-ydians {
+    color: #c5e8b7;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .ailydian-logo *,
+    .ailydian-logo-chat *,
+    .ailydian-logo-homepage *,
+    .ailydian-spinner * {
+        animation: none !important;
+    }
+}
+
+/* ========================================
+   DARK MODE SUPPORT
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+    .ailydian-logo {
+        color: #14a085;
+    }
+
+    .ailydian-logo .letter-a {
+        color: #14a085;
+        text-shadow: 0 0 20px rgba(20, 160, 133, 0.6);
+    }
+
+    .ailydian-logo .letter-l {
+        color: #0d7377;
+        text-shadow: 0 0 20px rgba(13, 115, 119, 0.6);
+    }
+
+    .ailydian-logo .letter-i {
+        color: #7fb069;
+    }
+
+    .ailydian-logo .letter-ydians {
+        color: #a7c957;
+    }
+}

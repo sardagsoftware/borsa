@@ -1,0 +1,386 @@
+/**
+ * AILYDIAN ULTRA PRO - THEME SYSTEM
+ * Dark/Light Mode with smooth transitions
+ * Zero tolerance for flickering or janky animations
+ */
+
+/* ============================================================
+   CSS VARIABLES - LIGHT MODE (DEFAULT)
+   ============================================================ */
+
+:root {
+    /* Background Colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F9FAFB;
+    --bg-tertiary: #F3F4F6;
+    --bg-hover: #F9FAFB;
+    --bg-modal: rgba(255, 255, 255, 0.98);
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Text Colors */
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #6B7280;
+    --text-muted: #9CA3AF;
+    --text-inverse: #FFFFFF;
+
+    /* Border Colors */
+    --border-color: #E5E7EB;
+    --border-medium: #D1D5DB;
+    --border-dark: #9CA3AF;
+
+    /* Accent Colors */
+    --accent-primary: #10A37F;
+    --accent-hover: #0D8F6E;
+    --accent-secondary: #FF6B4A;
+    --accent-secondary-hover: #FF8A6D;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
+    --gradient-subtle: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(255, 107, 74, 0.1) 100%);
+    --gradient-header: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+}
+
+/* ============================================================
+   DARK MODE THEME
+   ============================================================ */
+
+[data-theme="dark"] {
+    /* Background Colors */
+    --bg-primary: #111827;
+    --bg-secondary: #1F2937;
+    --bg-tertiary: #374151;
+    --bg-hover: #1F2937;
+    --bg-modal: rgba(17, 24, 39, 0.98);
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+
+    /* Text Colors */
+    --text-primary: #F9FAFB;
+    --text-secondary: #D1D5DB;
+    --text-tertiary: #9CA3AF;
+    --text-muted: #6B7280;
+    --text-inverse: #111827;
+
+    /* Border Colors */
+    --border-color: #374151;
+    --border-medium: #4B5563;
+    --border-dark: #6B7280;
+
+    /* Accent Colors */
+    --accent-primary: #10B981;
+    --accent-hover: #059669;
+    --accent-secondary: #F59E0B;
+    --accent-secondary-hover: #D97706;
+
+    /* Shadows - Darker for dark mode */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #10B981 0%, #F59E0B 100%);
+    --gradient-subtle: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    --gradient-header: linear-gradient(180deg, #111827 0%, #1F2937 100%);
+}
+
+/* ============================================================
+   SMOOTH TRANSITIONS FOR ALL THEME-AFFECTED ELEMENTS
+   ============================================================ */
+
+* {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* Exclude animations from theme transitions */
+.animated-element,
+.typewriter-text,
+.loading-spinner,
+.particle,
+[class*="animation-"],
+[class*="animate-"] {
+    transition: none !important;
+}
+
+/* ============================================================
+   THEME TOGGLE BUTTON
+   ============================================================ */
+
+.theme-toggle {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-primary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: all 0.3s ease;
+}
+
+/* Sun icon (visible in dark mode) */
+.theme-toggle .sun-icon {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Moon icon (visible in light mode) */
+.theme-toggle .moon-icon {
+    position: absolute;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+}
+
+/* ============================================================
+   LANGUAGE SELECTOR STYLES
+   ============================================================ */
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.language-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.language-flag {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.language-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 200px;
+    background: var(--bg-modal);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-xl);
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.language-selector:hover .language-dropdown,
+.language-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.language-option:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.language-option.active {
+    background: var(--gradient-subtle);
+    border-color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.language-name {
+    flex: 1;
+}
+
+/* ============================================================
+   THEME-AWARE COMPONENT OVERRIDES
+   ============================================================ */
+
+/* Glassmorphism effect for modals/dropdowns */
+.modal,
+.dropdown,
+.tooltip,
+[class*="modal"],
+[class*="dropdown"] {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Code blocks in dark mode */
+[data-theme="dark"] pre,
+[data-theme="dark"] code {
+    background: var(--bg-tertiary);
+    color: #10B981;
+    border-color: var(--border-color);
+}
+
+/* Scrollbar styling for both themes */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) var(--bg-secondary);
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .theme-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .language-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .language-dropdown {
+        min-width: 180px;
+    }
+}
+
+/* ============================================================
+   PRINT STYLES (FORCE LIGHT MODE)
+   ============================================================ */
+
+@media print {
+    [data-theme="dark"] {
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F9FAFB;
+        --text-primary: #111827;
+        --text-secondary: #4B5563;
+        --border-color: #E5E7EB;
+    }
+}
+
+/* ============================================================
+   PREFERS-COLOR-SCHEME DETECTION
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        /* Auto-detect system preference if no theme is set */
+        --bg-primary: #111827;
+        --bg-secondary: #1F2937;
+        --text-primary: #F9FAFB;
+        --text-secondary: #D1D5DB;
+        --border-color: #374151;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

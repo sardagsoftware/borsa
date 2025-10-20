@@ -1,0 +1,415 @@
+# ☸️ AZURE KUBERNETES SERVICE (AKS) CLUSTER CONFIGURATION
+# Enterprise-grade Kubernetes deployment for Ailydian Ultra Pro
+#
+# Features:
+# - Auto-scaling (1-100 nodes)
+# - Multi-zone deployment
+# - Azure CNI networking
+# - Azure Monitor integration
+# - Azure AD RBAC
+# - Managed identity
+
+apiVersion: v1
+kind: ClusterConfig
+metadata:
+  name: ailydian-aks-cluster
+  region: eastus
+  version: "1.28"
+
+# Cluster Configuration
+cluster:
+  name: ailydian-aks
+  resourceGroup: ailydian-ultra-pro-rg
+  location: eastus
+  kubernetesVersion: "1.28.3"
+
+  # DNS and Networking
+  dnsPrefix: ailydian-aks
+  networkPlugin: azure  # Azure CNI for better network performance
+  networkPolicy: azure  # Azure Network Policy for pod-to-pod security
+
+  # RBAC and Identity
+  enableRBAC: true
+  aadProfile:
+    managed: true
+    enableAzureRBAC: true
+    adminGroupObjectIDs:
+      - "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # Admin group ID
+
+  # Identity
+  identity:
+    type: SystemAssigned
+
+  # API Server Access
+  apiServerAccessProfile:
+    authorizedIPRanges:
+      - "0.0.0.0/0"  # Allow from anywhere (restrict in production)
+    enablePrivateCluster: false
+
+  # Add-ons
+  addonProfiles:
+    # Azure Monitor
+    omsagent:
+      enabled: true
+      config:
+        logAnalyticsWorkspaceResourceID: /subscriptions/{subscriptionId}/resourceGroups/ailydian-ultra-pro-rg/providers/Microsoft.OperationalInsights/workspaces/ailydian-logs
+
+    # Azure Policy
+    azurepolicy:
+      enabled: true
+      config:
+        version: v2
+
+    # HTTP Application Routing (disabled - use Ingress instead)
+    httpApplicationRouting:
+      enabled: false
+
+    # Azure Key Vault
+    azureKeyvaultSecretsProvider:
+      enabled: true
+      config:
+        enableSecretRotation: "true"
+        rotationPollInterval: "2m"
+
+# Node Pools
+nodePools:
+  # System Node Pool (for Kubernetes system pods)
+  - name: systempool
+    mode: System
+    vmSize: Standard_D4s_v3  # 4 vCPUs, 16 GB RAM
+    osDiskSizeGB: 128
+    osDiskType: Managed
+    count: 3  # Fixed 3 nodes
+    minCount: 3
+    maxCount: 5
+    enableAutoScaling: true
+    availabilityZones:
+      - "1"
+      - "2"
+      - "3"
+    maxPods: 30
+    nodeLabels:
+      nodepool-type: system
+      environment: production
+    nodeTaints:
+      - "CriticalAddonsOnly=true:NoSchedule"
+    tags:
+      environment: production
+      nodepool: system
+
+  # User Node Pool (for application workloads)
+  - name: userpool
+    mode: User
+    vmSize: Standard_D8s_v3  # 8 vCPUs, 32 GB RAM
+    osDiskSizeGB: 256
+    osDiskType: Managed
+    count: 3  # Initial 3 nodes
+    minCount: 3
+    maxCount: 20
+    enableAutoScaling: true
+    availabilityZones:
+      - "1"
+      - "2"
+      - "3"
+    maxPods: 110
+    nodeLabels:
+      nodepool-type: user
+      environment: production
+      workload: application
+    tags:
+      environment: production
+      nodepool: user
+
+  # GPU Node Pool (for AI/ML workloads)
+  - name: gpupool
+    mode: User
+    vmSize: Standard_NC6s_v3  # 6 vCPUs, 112 GB RAM, 1x V100 GPU
+    osDiskSizeGB: 256
+    osDiskType: Managed
+    count: 0  # Start with 0, scale up on demand
+    minCount: 0
+    maxCount: 5
+    enableAutoScaling: true
+    availabilityZones:
+      - "1"
+    maxPods: 30
+    nodeLabels:
+      nodepool-type: gpu
+      accelerator: nvidia-tesla-v100
+      workload: ai-ml
+    nodeTaints:
+      - "nvidia.com/gpu=true:NoSchedule"
+    tags:
+      environment: production
+      nodepool: gpu
+
+# Networking
+networking:
+  serviceCidr: 10.0.0.0/16
+  dnsServiceIP: 10.0.0.10
+  dockerBridgeCidr: 172.17.0.1/16
+
+  # Virtual Network
+  vnetSubnetID: /subscriptions/{subscriptionId}/resourceGroups/ailydian-ultra-pro-rg/providers/Microsoft.Network/virtualNetworks/ailydian-vnet/subnets/aks-subnet
+
+  # Load Balancer
+  loadBalancerSku: Standard
+  outboundType: loadBalancer
+
+# Auto-scaler Profile
+autoScalerProfile:
+  scan-interval: "10s"
+  scale-down-delay-after-add: "10m"
+  scale-down-delay-after-delete: "10s"
+  scale-down-delay-after-failure: "3m"
+  scale-down-unneeded-time: "10m"
+  scale-down-unready-time: "20m"
+  scale-down-utilization-threshold: "0.5"
+  max-graceful-termination-sec: "600"
+  balance-similar-node-groups: "true"
+  expander: least-waste
+  skip-nodes-with-local-storage: "false"
+  skip-nodes-with-system-pods: "true"
+
+# Monitoring and Diagnostics
+monitoring:
+  enabled: true
+
+  # Azure Monitor Metrics
+  metrics:
+    - name: node_cpu_usage_percentage
+      aggregation: Average
+      threshold: 80
+      alert: true
+    - name: node_memory_working_set_percentage
+      aggregation: Average
+      threshold: 80
+      alert: true
+    - name: kube_pod_status_ready
+      aggregation: Average
+      threshold: 0.9
+      alert: true
+
+  # Diagnostic Settings
+  diagnosticSettings:
+    - category: kube-apiserver
+      enabled: true
+      retentionDays: 30
+    - category: kube-controller-manager
+      enabled: true
+      retentionDays: 30
+    - category: kube-scheduler
+      enabled: true
+      retentionDays: 30
+    - category: kube-audit
+      enabled: true
+      retentionDays: 90
+    - category: cluster-autoscaler
+      enabled: true
+      retentionDays: 30
+
+# Security
+security:
+  # Azure Policy for Kubernetes
+  azurePolicy:
+    enabled: true
+
+  # Pod Security
+  podSecurityPolicy:
+    enabled: true
+
+  # Network Security
+  networkPolicy: azure
+
+  # Secrets Encryption
+  secretsEncryption:
+    enabled: true
+    keyVaultKeyId: https://ailydian-kv.vault.azure.net/keys/aks-encryption/xxxxx
+
+# Backup and Disaster Recovery
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retentionDays: 30
+  storageAccount: ailydianaksbackup
+
+# Cost Management
+costManagement:
+  # Node pool scaling policies
+  scalingPolicies:
+    - nodePool: userpool
+      schedule:
+        # Scale down during off-peak hours
+        - cron: "0 22 * * *"  # 10 PM
+          minNodes: 3
+          maxNodes: 10
+        # Scale up during peak hours
+        - cron: "0 6 * * *"   # 6 AM
+          minNodes: 5
+          maxNodes: 20
+
+  # Spot instances (for non-critical workloads)
+  spotInstances:
+    enabled: true
+    maxPrice: -1  # Pay up to regular price
+    evictionPolicy: Delete
+    nodePools:
+      - userpool
+
+# Deployment Strategy
+deploymentStrategy:
+  type: RollingUpdate
+  maxSurge: 1
+  maxUnavailable: 0
+
+# Pricing Estimate (Monthly)
+pricing:
+  # Control Plane: Free (managed by Azure)
+  controlPlane: $0
+
+  # System Node Pool (3x Standard_D4s_v3)
+  systemPool:
+    vmCost: $140.16/node
+    nodes: 3
+    total: $420.48
+
+  # User Node Pool (3-20x Standard_D8s_v3)
+  userPool:
+    vmCost: $280.32/node
+    minNodes: 3
+    maxNodes: 20
+    averageNodes: 5
+    total: $1,401.60  # Based on 5 nodes average
+
+  # GPU Node Pool (0-5x Standard_NC6s_v3)
+  gpuPool:
+    vmCost: $3,060/node
+    averageNodes: 0
+    total: $0  # Only when needed
+
+  # Load Balancer
+  loadBalancer: $20
+
+  # Public IP
+  publicIP: $5
+
+  # Managed Disks
+  disks: $50
+
+  # Azure Monitor
+  monitoring: $30
+
+  # Estimated Total
+  estimatedTotal: $1,927.08/month
+
+  # Cost Optimization
+  optimized:
+    useSpotInstances: true
+    spotSavings: -30%
+    optimizedTotal: $1,348.96/month
+
+# Azure CLI Commands for Deployment
+azureCLI:
+  # Create resource group
+  - az group create --name ailydian-ultra-pro-rg --location eastus
+
+  # Create virtual network
+  - az network vnet create --resource-group ailydian-ultra-pro-rg --name ailydian-vnet --address-prefix 10.0.0.0/8 --subnet-name aks-subnet --subnet-prefix 10.240.0.0/16
+
+  # Create AKS cluster
+  - |
+    az aks create \
+      --resource-group ailydian-ultra-pro-rg \
+      --name ailydian-aks \
+      --location eastus \
+      --kubernetes-version 1.28.3 \
+      --node-count 3 \
+      --node-vm-size Standard_D8s_v3 \
+      --network-plugin azure \
+      --network-policy azure \
+      --service-cidr 10.0.0.0/16 \
+      --dns-service-ip 10.0.0.10 \
+      --enable-managed-identity \
+      --enable-aad \
+      --enable-azure-rbac \
+      --enable-addons monitoring \
+      --workspace-resource-id /subscriptions/{subscriptionId}/resourceGroups/ailydian-ultra-pro-rg/providers/Microsoft.OperationalInsights/workspaces/ailydian-logs \
+      --enable-cluster-autoscaler \
+      --min-count 3 \
+      --max-count 20 \
+      --zones 1 2 3 \
+      --attach-acr ailydianacr
+
+  # Add GPU node pool
+  - |
+    az aks nodepool add \
+      --resource-group ailydian-ultra-pro-rg \
+      --cluster-name ailydian-aks \
+      --name gpupool \
+      --node-count 0 \
+      --node-vm-size Standard_NC6s_v3 \
+      --enable-cluster-autoscaler \
+      --min-count 0 \
+      --max-count 5 \
+      --node-taints nvidia.com/gpu=true:NoSchedule \
+      --labels nodepool-type=gpu accelerator=nvidia-tesla-v100
+
+  # Get credentials
+  - az aks get-credentials --resource-group ailydian-ultra-pro-rg --name ailydian-aks
+
+  # Verify cluster
+  - kubectl get nodes
+  - kubectl get pods --all-namespaces
+
+# Terraform Alternative
+terraform:
+  resource: azurerm_kubernetes_cluster
+  example: |
+    resource "azurerm_kubernetes_cluster" "ailydian" {
+      name                = "ailydian-aks"
+      location            = azurerm_resource_group.ailydian.location
+      resource_group_name = azurerm_resource_group.ailydian.name
+      dns_prefix          = "ailydian-aks"
+      kubernetes_version  = "1.28.3"
+
+      default_node_pool {
+        name                = "userpool"
+        node_count          = 3
+        vm_size             = "Standard_D8s_v3"
+        enable_auto_scaling = true
+        min_count           = 3
+        max_count           = 20
+        zones               = ["1", "2", "3"]
+      }
+
+      identity {
+        type = "SystemAssigned"
+      }
+
+      network_profile {
+        network_plugin    = "azure"
+        network_policy    = "azure"
+        load_balancer_sku = "standard"
+      }
+
+      addon_profile {
+        oms_agent {
+          enabled                    = true
+          log_analytics_workspace_id = azurerm_log_analytics_workspace.ailydian.id
+        }
+      }
+    }
+
+notes: |
+  Azure Kubernetes Service (AKS) provides enterprise-grade container orchestration
+  with auto-scaling, multi-zone deployment, Azure Monitor integration, and 99.95% SLA.
+
+  Key Features:
+  - Auto-scaling (HPA + Cluster Autoscaler)
+  - Multi-zone high availability
+  - Azure AD RBAC integration
+  - Azure Monitor for containers
+  - GPU support for AI/ML workloads
+  - Rolling updates with zero downtime
+
+  Cost: ~$1,350-$1,930/month depending on load

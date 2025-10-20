@@ -1,0 +1,314 @@
+{
+  "locale": "en",
+  "name": "English",
+  "rtl": false,
+
+  "ui": {
+    "composer": {
+      "placeholder": "Ask something or specify a task...",
+      "sendButton": "Send",
+      "sending": "Sending...",
+      "hint": "Press Enter to send, Shift+Enter for new line"
+    },
+    "chips": {
+      "title": "Suggestions",
+      "confidence": "confidence",
+      "clickToUse": "Click to use"
+    },
+    "messages": {
+      "empty": "No messages yet. Start asking something!",
+      "loading": "Loading...",
+      "error": "An error occurred",
+      "retry": "Retry",
+      "thinking": "Thinking..."
+    },
+    "toggle": {
+      "show": "Show Intent UI",
+      "hide": "Hide Intent UI"
+    }
+  },
+
+  "intents": {
+    "track_shipment": {
+      "label": "Track Shipment",
+      "description": "Track your cargo shipment",
+      "icon": "📦",
+      "examples": [
+        "Where is my Aras shipment?",
+        "Track MNG: 123456789",
+        "Has my package arrived?"
+      ]
+    },
+    "compare_loans": {
+      "label": "Compare Loans",
+      "description": "Compare loan offers from banks",
+      "icon": "💰",
+      "examples": [
+        "I need a 50000 TL loan",
+        "100000 TL mortgage",
+        "Which loan is best?"
+      ]
+    },
+    "find_hotels": {
+      "label": "Find Hotels",
+      "description": "Find hotels for your destination",
+      "icon": "🏨",
+      "examples": [
+        "Recommend hotels in Antalya",
+        "2 nights in Bodrum",
+        "Istanbul hotels"
+      ]
+    },
+    "get_economy_advice": {
+      "label": "Economy Advice",
+      "description": "Get advice based on economic conditions",
+      "icon": "📈",
+      "examples": [
+        "What does rising dollar mean?",
+        "How will inflation affect me?",
+        "What's your economic advice?"
+      ]
+    },
+    "get_market_insights": {
+      "label": "Market Insights",
+      "description": "View stock market and trends",
+      "icon": "📊",
+      "examples": [
+        "BIST100 analysis",
+        "Will gold prices rise?",
+        "How's the market?"
+      ]
+    },
+    "calculate_carbon": {
+      "label": "Carbon Footprint",
+      "description": "Calculate your carbon emissions",
+      "icon": "🌱",
+      "examples": [
+        "500 km car trip carbon footprint",
+        "My electricity consumption is 200 kWh",
+        "What's my carbon footprint?"
+      ]
+    }
+  },
+
+  "cards": {
+    "shipment": {
+      "title": "Shipment Information",
+      "trackingCode": "Tracking Code",
+      "vendor": "Carrier",
+      "status": "Status",
+      "location": "Location",
+      "estimatedDelivery": "Estimated Delivery",
+      "lastUpdate": "Last Update",
+      "statusCodes": {
+        "in_transit": "In Transit",
+        "out_for_delivery": "Out for Delivery",
+        "delivered": "Delivered",
+        "pending": "Pending",
+        "returned": "Returned"
+      }
+    },
+    "loan": {
+      "title": "Loan Offers",
+      "bestOffer": "BEST OFFER",
+      "bank": "Bank",
+      "amount": "Amount",
+      "monthly": "Monthly Payment",
+      "rate": "Interest Rate",
+      "term": "Term",
+      "totalPayment": "Total Payment",
+      "otherOffers": "Other Offers",
+      "months": "months",
+      "compare": "Compare"
+    },
+    "hotel": {
+      "title": "Hotel Recommendations",
+      "results": "results",
+      "rating": "Rating",
+      "amenities": "Amenities",
+      "pricePerNight": "per night",
+      "total": "Total",
+      "nights": "nights",
+      "bookNow": "Book Now"
+    },
+    "economy": {
+      "title": "Economy Advice",
+      "recommendations": "Recommendations",
+      "impact": "Impact",
+      "positive": "Positive",
+      "negative": "Negative",
+      "neutral": "Neutral"
+    },
+    "insights": {
+      "title": "Market Analysis",
+      "trend": "Trend",
+      "change": "Change",
+      "high": "High",
+      "low": "Low",
+      "average": "Average",
+      "direction": {
+        "up": "Rising",
+        "down": "Falling",
+        "stable": "Stable"
+      }
+    },
+    "esg": {
+      "title": "Carbon Footprint",
+      "total": "Total Emissions",
+      "breakdown": "Breakdown",
+      "transportation": "Transportation",
+      "energy": "Energy",
+      "waste": "Waste",
+      "equivalent": "This is equivalent to",
+      "trees": "trees' annual absorption",
+      "cars": "km car journey"
+    }
+  },
+
+  "errors": {
+    "generic": "An error occurred. Please try again.",
+    "network": "Network connection error.",
+    "timeout": "Request timed out.",
+    "validation": "Invalid input.",
+    "notFound": "Requested data not found.",
+    "unauthorized": "You don't have permission for this action.",
+    "serverError": "Server error. Please try again later."
+  },
+
+  "success": {
+    "messageSent": "Message sent",
+    "actionCompleted": "Action completed",
+    "dataSaved": "Data saved",
+    "settingsUpdated": "Settings updated"
+  },
+
+  "vendors": {
+    "cargo": {
+      "aras": "Aras Cargo",
+      "mng": "MNG Cargo",
+      "yurtici": "Yurtiçi Cargo",
+      "surat": "Sürat Cargo",
+      "ups": "UPS",
+      "dhl": "DHL",
+      "fedex": "FedEx",
+      "tnt": "TNT",
+      "ptt": "PTT Cargo",
+      "hepsijet": "HepsiJet"
+    },
+    "banks": {
+      "ziraat": "Ziraat Bank",
+      "halkbank": "Halkbank",
+      "vakifbank": "VakıfBank",
+      "akbank": "Akbank",
+      "garanti": "Garanti BBVA",
+      "yapikredi": "Yapı Kredi",
+      "isbank": "İş Bank",
+      "denizbank": "DenizBank",
+      "teb": "TEB",
+      "ing": "ING"
+    }
+  },
+
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "seeMore": "See More",
+    "seeLess": "See Less"
+  },
+
+  "date": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "daysAgo": "{count} days ago",
+    "hoursAgo": "{count} hours ago",
+    "minutesAgo": "{count} minutes ago",
+    "justnow": "Just now"
+  },
+
+  "numbers": {
+    "thousand": "thousand",
+    "million": "million",
+    "billion": "billion",
+    "trillion": "trillion"
+  },
+
+  "complaint": {
+    "title": "Create Complaint",
+    "subtitle": "Report your issues in GDPR compliant manner, find solutions",
+    "form": {
+      "brand": "Brand You're Complaining About",
+      "brandPlaceholder": "Select brand...",
+      "brandHelp": "Can't find your brand? Please contact us.",
+      "product": "Product or Service Name",
+      "productPlaceholder": "e.g. iPhone 15 Pro, Internet Package, etc.",
+      "title": "Complaint Title",
+      "titlePlaceholder": "e.g. Product arrived defective and not being refunded",
+      "description": "Complaint Details",
+      "descriptionPlaceholder": "Please describe your issue in detail. When did it start? What steps have you tried? What was the brand's response?",
+      "descriptionHelp": "Minimum 50 characters required.",
+      "severity": "Severity Level",
+      "severityLow": "Low",
+      "severityMedium": "Medium",
+      "severityHigh": "High",
+      "severityCritical": "Critical",
+      "severityHelp": "Low: Minor issues | Medium: Hinders usage | High: Unusable | Critical: Material/moral damage",
+      "evidence": "Evidence Files (Optional)",
+      "evidenceUpload": "Upload photo or document",
+      "evidenceHelp": "Invoice, email, screenshot, etc. (Max 10MB, 5 files)",
+      "removeFile": "Remove",
+      "terms": "I have read and accept the Terms of Service and Privacy Policy.",
+      "kvkk": "I have read the GDPR Notice and consent to the processing of my personal data.",
+      "required": "*",
+      "charCount": "{current}/{max}"
+    },
+    "alerts": {
+      "privacyWarning": "Privacy Warning:",
+      "privacyText": "Do not share personal information such as phone number, email address, or ID number in your complaint. Your personal data will be protected under GDPR.",
+      "nextSteps": "Next Steps:",
+      "nextStepsText": "Your complaint will be published after review. Brand representatives will see your complaint and respond to you. Status updates will be sent to your email address."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "submit": "Submit Complaint"
+    },
+    "success": {
+      "title": "Complaint Received!",
+      "message": "Your complaint has been successfully recorded and submitted for moderation.",
+      "complaintId": "Complaint ID: {id}",
+      "newComplaint": "Create New Complaint"
+    },
+    "errors": {
+      "brandLoadFailed": "Brands could not be loaded. Cannot connect to API.",
+      "brandsLoading": "Loading brands...",
+      "connecting": "Connecting... ({retry}/{max})",
+      "retry": "Retry",
+      "minLength": "Complaint details must be at least 50 characters.",
+      "acceptTerms": "Please accept the terms of service and GDPR notice.",
+      "maxFiles": "You can upload maximum {max} files.",
+      "fileTooBig": "\"{name}\" file is too large. Maximum 10MB.",
+      "fileExists": "\"{name}\" already added.",
+      "submitFailed": "An error occurred. Please try again."
+    },
+    "languages": {
+      "title": "Select Language",
+      "tr": "Türkçe",
+      "en": "English",
+      "ar": "العربية"
+    }
+  }
+}
