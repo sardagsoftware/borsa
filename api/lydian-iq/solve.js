@@ -8,44 +8,52 @@
 // Use native fetch (Node.js 18+) - no external dependencies needed
 // In Node.js 18+, fetch is globally available
 
-// LyDian IQ Configuration - Azure-First Multi-Provider with RAG
+// LyDian IQ Configuration - Groq-First Multi-Provider (Real Data Priority)
 const AI_CONFIG = {
-    // Priority 1: Azure OpenAI (Enterprise Deep Thinking)
-    azure: {
-        apiKey: process.env.AZURE_OPENAI_API_KEY || '',
-        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : '',
-        model: 'gpt-4-turbo',
-        maxTokens: 8192,
+    // Priority 1: Groq (Ultra-Fast + Real Data)
+    groq: {
+        apiKey: process.env.GROQ_API_KEY || '',
+        endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'open-model-l3-max' : 'llama-3.3-70b-versatile',
+        realModel: 'llama-3.3-70b-versatile',
+        maxTokens: 8000,
         defaultTemperature: 0.3,
-        apiVersion: '2024-02-01',
-        supportsRAG: true
+        supportsRAG: false,
+        priority: 1
     },
     // Priority 2: Anthropic Claude (Best for reasoning)
     anthropic: {
         apiKey: process.env.ANTHROPIC_API_KEY || '',
         endpoint: 'https://api.anthropic.com/v1/messages',
-        model: 'claude-3-5-sonnet-20241022', // Latest stable model
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'neural-alpha-standard' : 'claude-3-5-sonnet-20241022',
+        realModel: 'claude-3-5-sonnet-20241022',
         maxTokens: 8192,
         defaultTemperature: 0.3,
-        supportsRAG: false
+        supportsRAG: false,
+        priority: 2
     },
-    // Priority 3: OpenAI GPT-4
+    // Priority 3: Azure OpenAI (Enterprise Backup)
+    azure: {
+        apiKey: process.env.AZURE_OPENAI_API_KEY || '',
+        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : '',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'gpt-4-turbo',
+        realModel: 'gpt-4-turbo',
+        maxTokens: 8192,
+        defaultTemperature: 0.3,
+        apiVersion: '2024-02-01',
+        supportsRAG: true,
+        priority: 3
+    },
+    // Priority 4: OpenAI GPT-4 (Final Fallback)
     openai: {
         apiKey: process.env.OPENAI_API_KEY || '',
         endpoint: 'https://api.openai.com/v1/chat/completions',
-        model: 'gpt-4-turbo-preview',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'gpt-4-turbo-preview',
+        realModel: 'gpt-4-turbo-preview',
         maxTokens: 4096,
         defaultTemperature: 0.3,
-        supportsRAG: false
-    },
-    // Priority 4: Groq (Ultra-Fast)
-    groq: {
-        apiKey: process.env.GROQ_API_KEY || '',
-        endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: 'llama-3.3-70b-versatile',
-        maxTokens: 8000,
-        defaultTemperature: 0.3,
-        supportsRAG: false
+        supportsRAG: false,
+        priority: 4
     },
     // Azure Cognitive Search (RAG)
     azureSearch: {
@@ -172,16 +180,7 @@ function extractReasoningChain(text) {
         }
     }
 
-    // If still no reasoning chain, create default
-    if (reasoningChain.length === 0) {
-        reasoningChain.push(
-            'Problemi analiz ediyorum',
-            'Çözüm yollarını değerlendiriyorum',
-            'En uygun yaklaşımı uyguluyorum',
-            'Sonucu doğruluyorum'
-        );
-    }
-
+    // Return empty array if no reasoning chain found (no mock data)
     return reasoningChain;
 }
 
@@ -203,7 +202,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
-        model: config.model,
+        model: config.realModel || config.model, // Use realModel for API call
         max_tokens: options.maxTokens || config.maxTokens,
         temperature: options.temperature || config.defaultTemperature,
         messages: [
@@ -214,11 +213,15 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
         ]
     };
 
-    console.log(`🧠 Calling Claude API for domain: ${domain}, language: ${language}`);
+    console.log(`🧠 Calling Primary AI Engine for domain: ${domain}, language: ${language}`);
     console.log(`📝 Problem length: ${problem.length} chars`);
     console.log(`🌍 Response language: ${language}`);
 
     const startTime = Date.now();
+
+    // AbortController for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), AI_CONFIG.timeout);
 
     try {
         const response = await fetch(config.endpoint, {
@@ -229,8 +232,10 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
                 'anthropic-version': '2023-06-01'
             },
             body: JSON.stringify(requestBody),
-            timeout: AI_CONFIG.timeout
+            signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -240,7 +245,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ Claude response received in ${responseTime}s`);
+        console.log(`✅ Primary AI response received in ${responseTime}s`);
 
         const fullResponse = data.content[0]?.text || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -255,8 +260,8 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.input_tokens + data.usage?.output_tokens || 0,
-                model: 'Claude 3.7 Sonnet',
-                provider: 'Anthropic',
+                model: 'LyDian IQ AI',
+                provider: 'LyDian AI',
                 confidence: 0.995,
                 mode: 'production'
             }
@@ -275,7 +280,7 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
-        model: config.model,
+        model: config.realModel || config.model, // Use realModel for API call
         messages: [
             {
                 role: 'system',
@@ -291,9 +296,13 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
         stream: false
     };
 
-    console.log(`🧠 Calling OpenAI GPT-4 for domain: ${domain}`);
+    console.log(`🧠 Calling Secondary AI Engine for domain: ${domain}`);
 
     const startTime = Date.now();
+
+    // AbortController for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), AI_CONFIG.timeout);
 
     try {
         const response = await fetch(config.endpoint, {
@@ -303,8 +312,10 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
                 'Authorization': `Bearer ${config.apiKey}`
             },
             body: JSON.stringify(requestBody),
-            timeout: AI_CONFIG.timeout
+            signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -314,7 +325,7 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ OpenAI response received in ${responseTime}s`);
+        console.log(`✅ Secondary AI response received in ${responseTime}s`);
 
         const fullResponse = data.choices[0]?.message?.content || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -329,8 +340,8 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
-                model: 'GPT-4 Turbo',
-                provider: 'OpenAI',
+                model: 'LyDian IQ AI',
+                provider: 'LyDian AI',
                 confidence: 0.99,
                 mode: 'production'
             }
@@ -349,7 +360,7 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
 
     const requestBody = {
-        model: config.model,
+        model: config.realModel || config.model, // Use realModel for API call
         messages: [
             {
                 role: 'system',
@@ -365,9 +376,13 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
         stream: false
     };
 
-    console.log(`⚡ Calling Groq LLaMA for domain: ${domain}`);
+    console.log(`⚡ Calling Fast AI Engine for domain: ${domain}`);
 
     const startTime = Date.now();
+
+    // AbortController for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), AI_CONFIG.timeout);
 
     try {
         const response = await fetch(config.endpoint, {
@@ -377,8 +392,10 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
                 'Authorization': `Bearer ${config.apiKey}`
             },
             body: JSON.stringify(requestBody),
-            timeout: AI_CONFIG.timeout
+            signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -388,7 +405,7 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ Groq response received in ${responseTime}s`);
+        console.log(`✅ Fast AI response received in ${responseTime}s`);
 
         const fullResponse = data.choices[0]?.message?.content || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -403,8 +420,8 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
-                model: 'LLaMA 3.3 70B',
-                provider: 'Groq',
+                model: 'LyDian IQ AI',
+                provider: 'LyDian AI',
                 confidence: 0.98,
                 mode: 'production'
             }
@@ -422,13 +439,10 @@ function generateFallbackResponse(problem, domain, language = 'tr-TR') {
 
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
 
-    const reasoningChain = [
-        'API konfigürasyonu kontrol ediliyor',
-        'Alternatif çözüm yolları araştırılıyor',
-        'Sistem yöneticisine bilgi veriliyor'
-    ];
+    // No mock reasoning chain - return empty array
+    const reasoningChain = [];
 
-    const solution = `# ⚠️ API Konfigürasyonu Gerekli\n\n**Problem:** ${problem}\n\n## Durum\n\nLyDian IQ API'si şu anda kullanılamıyor. Lütfen sistem yöneticisiyle iletişime geçin.\n\n### Gereksinimler\n\n1. **API Anahtarı**: En az bir AI provider API anahtarı gereklidir\n2. **Desteklenen Providers**: Claude, OpenAI, Groq\n3. **Konfigürasyon**: .env dosyasında API anahtarlarını ayarlayın\n\n## Çözüm\n\nSistem yöneticisi tarafından API anahtarları yapılandırıldıktan sonra ${domainConfig.name} alanındaki sorular yanıtlanabilecektir.\n\n**Mevcut Yetenekler:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** API konfigürasyonu tamamlandıktan sonra production modunda çalışacaktır.`;
+    const solution = `# ⚠️ API Konfigürasyonu Gerekli\n\n**Problem:** ${problem}\n\n## Durum\n\nLyDian IQ AI sistemi şu anda kullanılamıyor. Lütfen sistem yöneticisiyle iletişime geçin.\n\n### Gereksinimler\n\n1. **API Anahtarı**: AI sistemi API anahtarı gereklidir\n2. **Konfigürasyon**: Ortam değişkenlerinde API anahtarlarını ayarlayın\n\n## Çözüm\n\nSistem yöneticisi tarafından API yapılandırması tamamlandıktan sonra ${domainConfig.name} alanındaki sorular yanıtlanabilecektir.\n\n**Mevcut Yetenekler:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** API konfigürasyonu tamamlandıktan sonra production modunda çalışacaktır.`;
 
     return {
         success: false,
@@ -496,17 +510,17 @@ module.exports = async (req, res) => {
         try {
             // Try Groq first (ultra-fast - user request)
             if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 10) {
-                console.log('🎯 Strategy: Using Groq LLaMA (Primary - User Request) with retry');
+                console.log('🎯 Strategy: Using Fast AI Engine (Primary) with retry');
                 result = await retryWithBackoff(() => callGroqAPI(problem, domain, language, options));
             }
             // Fallback to Claude (best reasoning)
             else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 10) {
-                console.log('🎯 Strategy: Using Claude 3.5 Sonnet (Fallback) with retry');
+                console.log('🎯 Strategy: Using Primary AI Engine (Fallback) with retry');
                 result = await retryWithBackoff(() => callClaudeAPI(problem, domain, language, options));
             }
             // Fallback to OpenAI
             else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 10) {
-                console.log('🎯 Strategy: Using OpenAI GPT-4 (Tertiary) with retry');
+                console.log('🎯 Strategy: Using Secondary AI Engine (Tertiary) with retry');
                 result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, language, options));
             }
             // No API keys available
@@ -520,16 +534,16 @@ module.exports = async (req, res) => {
             // Try fallback providers (also with retry)
             try {
                 if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 10) {
-                    console.log('🔄 Fallback: Trying Claude with retry...');
+                    console.log('🔄 Fallback: Trying Primary AI Engine with retry...');
                     result = await retryWithBackoff(() => callClaudeAPI(problem, domain, language, options));
                 } else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 10) {
-                    console.log('🔄 Fallback: Trying OpenAI with retry...');
+                    console.log('🔄 Fallback: Trying Secondary AI Engine with retry...');
                     result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, language, options));
                 } else if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 10) {
-                    console.log('🔄 Fallback: Trying Groq with retry...');
+                    console.log('🔄 Fallback: Trying Fast AI Engine with retry...');
                     result = await retryWithBackoff(() => callGroqAPI(problem, domain, language, options));
                 } else {
-                    throw new Error('All API providers failed');
+                    throw new Error('All AI providers failed');
                 }
             } catch (fallbackError) {
                 console.error('⚠️ All APIs failed after retries, using demo mode:', fallbackError.message);
