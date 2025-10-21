@@ -152,8 +152,8 @@ export default function CoinCard({ coin, onClick, isTopPerformer, hasSignal, sig
       {/* Glass reflection overlay - adds premium depth effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
 
-      {/* Watchlist Button (top-left corner) */}
-      <div className="absolute top-2 left-2 z-10">
+      {/* Watchlist Button (bottom-right corner) */}
+      <div className="absolute bottom-2 right-2 z-10">
         <WatchlistButton symbol={symbol} size="sm" />
       </div>
 

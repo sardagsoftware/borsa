@@ -2,8 +2,6 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Providers } from "@/components/providers/Providers";
 import { SkipToContent } from "@/components/accessibility/SkipToContent";
-import Header from "@/components/layout/Header";
-import MobileBottomNav from "@/components/mobile/MobileBottomNav";
 
 const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.ukalai.ai";
 
@@ -159,11 +157,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SkipToContent />
         <Providers>
-          <Header />
           <main id="main-content" tabIndex={-1}>
             {children}
           </main>
-          <MobileBottomNav />
         </Providers>
 
         {/* Initialize Web Vitals Monitoring */}
