@@ -1,0 +1,25 @@
+name: Vercel Production Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Manuel trigger için
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        run: |
+          echo "🚀 Triggering Vercel deployment..."
+          echo "Project: ailydian"
+          echo "Org: emrahsardag-yandexcoms-projects"
+          echo "Domain: www.ailydian.com"
+
+          # This will trigger through GitHub-Vercel integration
+          echo "✅ Push detected - Vercel will auto-deploy"
