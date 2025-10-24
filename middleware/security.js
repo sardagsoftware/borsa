@@ -4,31 +4,48 @@
 // ==========================================
 
 const helmet = require('helmet');
-// const csrf = require('csurf'); // ❌ DEPRECATED - Replaced with custom implementation
-const { csrfProtection, injectCSRFToken, generateCSRFToken } = require('../security/csrf-protection');
+const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
 
 // Production environment check
 const isProduction = process.env.NODE_ENV === 'production';
+const allowLegacyInlineScripts = process.env.ALLOW_LEGACY_INLINE !== 'false';
+
+if (!allowLegacyInlineScripts) {
+    console.log('🔒 Inline script izinleri kapalı. CSP nonce/hash gerekecek.');
+} else {
+    console.log('⚠️ Inline script desteği aktif (ALLOW_LEGACY_INLINE !== "false").');
+}
+
+const helmetScriptSrc = allowLegacyInlineScripts
+    ? ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://unpkg.com", "https://d3js.org"]
+    : ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com", "https://d3js.org"];
+
+const helmetScriptSrcAttr = allowLegacyInlineScripts
+    ? ["'unsafe-inline'", "'unsafe-hashes'"]
+    : ["'unsafe-hashes'"];
 
 // ==========================================
-// HELMET SECURITY HEADERS
+// HELMET SECURITY HEADERS - ENHANCED (CRITICAL FIX)
 // ==========================================
 function setupHelmet(app) {
     app.use(helmet({
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                // 🔒 SECURITY FIX: Removed 'unsafe-eval' and 'unsafe-inline' - XSS protection
-                scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
-                scriptSrcAttr: ["'self'"], // Removed unsafe-inline - use event listeners instead
+                // ✅ FIXED: Removed 'unsafe-eval' (critical security risk)
+                scriptSrc: helmetScriptSrc,
+                scriptSrcAttr: helmetScriptSrcAttr,
                 styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
                 fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
                 imgSrc: ["'self'", "data:", "https:", "blob:"],
+                // ✅ Added AI API endpoints
                 connectSrc: ["'self'", "http://localhost:3200", "https://api.openai.com", "https://api.anthropic.com", "https://api.groq.com", "https://generativelanguage.googleapis.com", "wss:", "ws:"],
                 mediaSrc: ["'self'", "https://videos.pexels.com", "https:", "data:", "blob:"],
                 frameSrc: ["'self'"],
                 objectSrc: ["'none'"],
+                baseUri: ["'self'"],
+                formAction: ["'self'"],
                 upgradeInsecureRequests: isProduction ? [] : null
             }
         },
@@ -51,31 +68,33 @@ function setupHelmet(app) {
 }
 
 // ==========================================
-// CSRF PROTECTION - MODERN IMPLEMENTATION
+// CSRF PROTECTION
 // ==========================================
 function setupCSRF(app) {
     // Cookie parser is required for CSRF
     app.use(cookieParser());
 
-    // Inject CSRF token into all responses
-    app.use(injectCSRFToken);
+    // CSRF protection middleware
+    const csrfProtection = csrf({
+        cookie: {
+            httpOnly: true,
+            secure: isProduction,
+            sameSite: 'strict'
+        }
+    });
 
-    // Apply CSRF protection to specific routes
+    // Apply CSRF to specific routes (not to API endpoints for now)
     app.use('/api/auth/login', csrfProtection);
     app.use('/api/auth/register', csrfProtection);
     app.use('/api/auth/reset-password', csrfProtection);
     app.use('/api/settings', csrfProtection);
-    app.use('/api/admin', csrfProtection);
-    app.use('/api/payment', csrfProtection); // Protect payment endpoints
 
     // CSRF token endpoint for frontend
-    app.get('/api/csrf-token', (req, res) => {
-        const sessionId = req.session?.id || req.cookies?.sessionId || 'default';
-        const token = generateCSRFToken(sessionId);
-        res.json({ csrfToken: token });
+    app.get('/api/csrf-token', csrfProtection, (req, res) => {
+        res.json({ csrfToken: req.csrfToken() });
     });
 
-    console.log('🛡️ Modern CSRF protection active (csurf deprecated → custom implementation)');
+    console.log('🛡️ CSRF protection active for auth and settings routes');
 }
 
 // ==========================================
@@ -92,21 +111,46 @@ function getSecureCookieOptions() {
 }
 
 // ==========================================
-// JWT SECRET VALIDATION
+// JWT SECRET VALIDATION (CRITICAL SECURITY FIX)
 // ==========================================
 function validateJWTSecrets() {
+    // JWT_SECRET is MANDATORY in ALL environments (dev + production)
+    if (!process.env.JWT_SECRET) {
+        throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+    }
+
+    // Minimum length validation (256-bit = 32 bytes = 44 base64 chars)
+    if (process.env.JWT_SECRET.length < 32) {
+        throw new Error('🚨 CRITICAL: JWT_SECRET must be at least 32 characters long (256-bit security)!');
+    }
+
+    // Forbidden default values
+    const forbiddenSecrets = [
+        'your-secret-key',
+        'your-secret-key-change-this',
+        'ailydian-ultra-pro-secret-key-change-in-production',
+        'change-me',
+        'secret',
+        'password'
+    ];
+
+    if (forbiddenSecrets.some(forbidden => process.env.JWT_SECRET.includes(forbidden))) {
+        throw new Error('🚨 CRITICAL: JWT_SECRET cannot contain default/weak values!');
+    }
+
     if (isProduction) {
-        if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'ailydian-ultra-pro-secret-key-change-in-production') {
-            throw new Error('🚨 CRITICAL: JWT_SECRET must be set in production and cannot be the default value!');
+        // Additional production checks
+        if (!process.env.SESSION_SECRET) {
+            throw new Error('🚨 CRITICAL: SESSION_SECRET must be set in production!');
         }
-        if (!process.env.JWT_REFRESH_SECRET || process.env.JWT_REFRESH_SECRET === 'ailydian-ultra-pro-refresh-secret') {
-            throw new Error('🚨 CRITICAL: JWT_REFRESH_SECRET must be set in production and cannot be the default value!');
+
+        if (process.env.SESSION_SECRET.length < 32) {
+            throw new Error('🚨 CRITICAL: SESSION_SECRET must be at least 32 characters long!');
         }
-        console.log('✅ JWT secrets validated for production');
+
+        console.log('✅ JWT and session secrets validated for production');
     } else {
-        if (!process.env.JWT_SECRET) {
-            console.warn('⚠️ WARNING: JWT_SECRET not set, using default (development only)');
-        }
+        console.log('✅ JWT secret validated for development');
     }
 }
 

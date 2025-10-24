@@ -1,7 +1,6 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
 // Note: Vercel automatically loads environment variables, no dotenv needed
 const OpenAI = require('openai');
-const { handleCORS } = require('../../security/cors-config');
 
 // HIDDEN AI MODELS - User never knows
 const MODELS = {
@@ -98,8 +97,11 @@ SEN / أنت / YOU ARE: LyDian AI - Universal Multilingual Assistant`
 };
 
 module.exports = async (req, res) => {
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
@@ -116,56 +118,109 @@ module.exports = async (req, res) => {
       return res.status(400).json({ success: false, error: 'Mesaj gerekli' });
     }
 
-    // Smart model selection (hidden from user)
-    let selectedModel = MODELS.primary;
-
-    // Code detection - use fast model
-    if (message.includes('```') || message.includes('code') || message.includes('kod')) {
-      selectedModel = MODELS.fast;
-    }
-    // Long complex queries - use primary
-    else if (message.length > 500) {
-      selectedModel = MODELS.primary;
-    }
-
-    const apiKey = selectedModel.key();
-    if (!apiKey) {
-      // Fallback to another model
-      selectedModel = MODELS.gpt4mini;
-      const fallbackKey = selectedModel.key();
-      if (!fallbackKey) {
-        return res.status(500).json({
-          success: false,
-          error: 'AI servisi geçici olarak kullanılamıyor'
-        });
-      }
-    }
-
-    // Initialize AI client
-    const client = new OpenAI({
-      apiKey: apiKey,
-      baseURL: selectedModel.url
-    });
-
     // Clean history
     const cleanHistory = history.map(msg => ({
       role: msg.role,
       content: msg.content
     }));
 
-    // Make API call
-    const completion = await client.chat.completions.create({
-      model: selectedModel.name,
-      messages: [
-        MULTILINGUAL_SYSTEM,
-        ...cleanHistory,
-        { role: 'user', content: message }
-      ],
-      temperature,
-      max_tokens
-    });
+    // ✅ GROQ-FIRST PROVIDER CASCADE: Groq → Claude → Azure → OpenAI
+    const providers = [];
 
-    const response = completion.choices[0].message.content;
+    // Smart model selection for Groq
+    const isCodeQuery = message.includes('```') || message.includes('code') || message.includes('kod');
+    const groqModel = isCodeQuery ? MODELS.fast : MODELS.primary;
+
+    // 🎯 Priority 1: Groq (Ultra-Fast)
+    if (groqModel.key()) {
+      providers.push({
+        name: `Groq ${groqModel.name}`,
+        model: groqModel,
+        setup: () => new OpenAI({
+          apiKey: groqModel.key(),
+          baseURL: groqModel.url
+        })
+      });
+    }
+
+    // Priority 2: Anthropic Claude (Best Reasoning)
+    // Note: Claude uses different API - skip for now
+    // if (MODELS.claude.key()) { ... }
+
+    // Priority 3: Azure OpenAI (if configured)
+    if (MODELS.azure && MODELS.azure.key && MODELS.azure.key() && MODELS.azure.url) {
+      providers.push({
+        name: 'Azure OpenAI',
+        model: MODELS.azure,
+        setup: () => new OpenAI({
+          apiKey: MODELS.azure.key(),
+          baseURL: MODELS.azure.url,
+          defaultQuery: { 'api-version': MODELS.azure.apiVersion },
+          defaultHeaders: { 'api-key': MODELS.azure.key() }
+        })
+      });
+    }
+
+    // Priority 4: OpenAI GPT-4o-mini (Final Fallback)
+    if (MODELS.gpt4mini.key()) {
+      providers.push({
+        name: 'OpenAI GPT-4o-mini',
+        model: MODELS.gpt4mini,
+        setup: () => new OpenAI({
+          apiKey: MODELS.gpt4mini.key(),
+          baseURL: MODELS.gpt4mini.url
+        })
+      });
+    }
+
+    if (providers.length === 0) {
+      return res.status(503).json({
+        success: false,
+        error: 'AI servisi geçici olarak kullanılamıyor - Hiçbir provider yapılandırılmadı'
+      });
+    }
+
+    // Try providers in cascade
+    let response = null;
+    let completion = null;
+    let usedProvider = null;
+
+    for (let i = 0; i < providers.length; i++) {
+      const provider = providers[i];
+
+      try {
+        console.log(`${i === 0 ? '🎯' : '🔄'} ${i === 0 ? 'Using' : 'Fallback to'} ${provider.name} (Chat Specialized)`);
+
+        const client = provider.setup();
+
+        completion = await client.chat.completions.create({
+          model: provider.model.name,
+          messages: [
+            MULTILINGUAL_SYSTEM,
+            ...cleanHistory,
+            { role: 'user', content: message }
+          ],
+          temperature,
+          max_tokens
+        });
+
+        response = completion.choices[0].message.content;
+        usedProvider = provider.name;
+        console.log(`✅ ${provider.name} response completed`);
+
+        // Success - break the loop
+        break;
+
+      } catch (error) {
+        console.error(`❌ ${provider.name} failed: ${error.message}`);
+
+        // Continue to next provider
+        if (i === providers.length - 1) {
+          // All providers failed
+          throw new Error('All AI providers failed');
+        }
+      }
+    }
 
     // NEVER reveal which AI was used
     res.status(200).json({

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm install --legacy-peer-deps",
+  "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "echo 'API Functions Ready'",
   "outputDirectory": "public",
   "rewrites": [
@@ -117,7 +117,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://api.openai.com https://*.anthropic.com https://api.groq.com https://*.azure.com https://*.openai.azure.com https://generativelanguage.googleapis.com https://*.googleapis.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://videos.pexels.com https://assets.mixkit.co https:; connect-src 'self' https://api.openai.com https://*.anthropic.com https://api.groq.com https://*.azure.com https://*.openai.azure.com https://generativelanguage.googleapis.com https://*.googleapis.com; frame-ancestors 'none';"
         }
       ]
     },

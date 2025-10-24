@@ -1,6 +1,6 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
 const OpenAI = require('openai');
-const { handleCORS } = require('../../security/cors-config');
+const { getMultilingualSystemPrompt } = require('../../lib/prompts/lydian');
 
 // HIDDEN AI MODELS - User never knows | Azure OpenAI Integrated
 const MODELS = {
@@ -60,79 +60,12 @@ const MODELS = {
   }
 };
 
-// MULTILINGUAL SYSTEM PROMPT - AUTOMATIC LANGUAGE DETECTION WITH VARIETY
-const RESPONSE_STYLES = [
-  'Be comprehensive and thorough with examples',
-  'Provide in-depth analysis with practical insights',
-  'Give detailed explanations with step-by-step guidance',
-  'Offer extensive coverage with real-world applications',
-  'Present complete information with actionable recommendations'
-];
-
-const getMultilingualSystem = () => {
-  const style = RESPONSE_STYLES[Math.floor(Math.random() * RESPONSE_STYLES.length)];
-
-  return {
-    role: 'system',
-    content: `You are LyDian AI, a universal multilingual assistant.
-
-**🎯 RESPONSE STYLE:** ${style}
-
-**🌍 CRITICAL RULE - AUTOMATIC LANGUAGE DETECTION:**
-ALWAYS detect the user's question language and respond in THE SAME LANGUAGE.
-
-**📝 VARIETY & DETAIL REQUIREMENTS:**
-- NEVER use repetitive phrases or formulaic responses
-- Vary your sentence structure and vocabulary extensively
-- Provide rich, detailed answers with specific examples
-- Use diverse transitions and connectors between ideas
-- Include nuanced explanations and multiple perspectives
-- Avoid generic statements - be specific and concrete
-
-**TÜRKÇE (TURKISH):**
-- Soru Türkçe ise → MUTLAKA Türkçe cevap ver
-- ÇOK DETAYLI, kapsamlı ve profesyonel yanıtlar
-- Farklı kelime ve ifadeler kullan, tekrar etme
-- Örneklerle zenginleştir, spesifik ol
-- Markdown formatında düzgün yapı
-- ASLA model adı söyleme (GPT, Claude, Gemini yasak)
-- Sadece "LyDian AI" olarak tanıt
-
-**ENGLISH:**
-- If question is in English → Respond in English
-- HIGHLY DETAILED, comprehensive, professional answers
-- Use varied vocabulary and expressions
-- Enrich with examples, be specific
-- Proper Markdown formatting
-- NEVER reveal AI model name
-- Only identify as "LyDian AI"
-
-**العربية (ARABIC):**
-- إذا كان السؤال بالعربية → أجب بالعربية
-- إجابات مفصلة جداً واحترافية
-- استخدم مفردات وتعبيرات متنوعة
-- أغنِ بالأمثلة، كن محدداً
-- تنسيق Markdown صحيح
-- لا تذكر اسم النموذج أبداً
-- قدم نفسك كـ "LyDian AI" فقط
-
-**IMPORTANT:**
-1. Detect language from user's question
-2. Respond in EXACTLY the same language
-3. Be HIGHLY detailed and comprehensive (minimum 3-4 paragraphs)
-4. Use varied vocabulary - avoid repetitive words
-5. Include specific examples, data, or analogies
-6. Use proper Markdown formatting with headers, lists, and emphasis
-7. Never mention GPT, Claude, Gemini, or any AI model name
-8. Always identify only as "LyDian AI"
-
-YOU ARE: LyDian AI - Universal Multilingual Assistant`
-  };
-};
-
 module.exports = async (req, res) => {
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
@@ -149,13 +82,29 @@ module.exports = async (req, res) => {
       return res.status(400).json({ success: false, error: 'Mesaj gerekli' });
     }
 
-    // Build provider cascade (Azure → Groq → OpenAI)
+    // Build provider cascade (✅ GROQ-FIRST: Groq → Claude → Azure → OpenAI)
     const providers = [];
 
-    // Azure OpenAI (Priority 1)
+    // ✅ Groq (Priority 1 - Ultra-Fast, 0.5-1s response)
+    if (MODELS.primary.key()) {
+      providers.push({
+        name: 'Groq Llama 3.3 70B',
+        model: MODELS.primary,
+        setup: () => new OpenAI({
+          apiKey: MODELS.primary.key(),
+          baseURL: MODELS.primary.url
+        })
+      });
+    }
+
+    // Anthropic Claude (Priority 2 - Best Reasoning)
+    // Note: Claude uses different API, add if implemented
+    // if (MODELS.claude.key()) { ... }
+
+    // Azure OpenAI (Priority 3 - Enterprise Backup)
     if (MODELS.azure.key() && MODELS.azure.url) {
       providers.push({
-        name: 'Azure OpenAI',
+        name: 'Azure OpenAI GPT-4 Turbo',
         model: MODELS.azure,
         setup: () => new OpenAI({
           apiKey: MODELS.azure.key(),
@@ -166,19 +115,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Groq (Priority 2 - Fast)
-    if (MODELS.primary.key()) {
-      providers.push({
-        name: 'Groq Llama 3.3',
-        model: MODELS.primary,
-        setup: () => new OpenAI({
-          apiKey: MODELS.primary.key(),
-          baseURL: MODELS.primary.url
-        })
-      });
-    }
-
-    // OpenAI (Priority 3 - Fallback)
+    // OpenAI (Priority 4 - Final Fallback)
     if (MODELS.gpt4mini.key()) {
       providers.push({
         name: 'OpenAI GPT-4o-mini',
@@ -219,7 +156,7 @@ module.exports = async (req, res) => {
         completion = await client.chat.completions.create({
           model: provider.model.name,
           messages: [
-            getMultilingualSystem(),
+            getMultilingualSystemPrompt(),
             ...cleanHistory,
             { role: 'user', content: message }
           ],

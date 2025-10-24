@@ -8,42 +8,41 @@ const OpenAI = require('openai');
 const { Anthropic } = require('@anthropic-ai/sdk');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
-const aiObfuscator = require('../lib/security/ai-obfuscator');
 
-// AI MODELS WITH SUBSCRIPTION REQUIREMENTS (OBFUSCATED)
+// AI MODELS WITH SUBSCRIPTION REQUIREMENTS
 const MODELS = {
-  // Free tier - Fast Response
+  // Free tier - Groq Fast
   free: {
-    name: 'rapid-response-lite',
-    key: () => process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY,
+    name: 'llama-3.1-8b-instant',
+    key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI Free',
     credits: 1,
     requiredSubscription: 'free'
   },
-  // Basic tier - Standard Model
+  // Basic tier - Groq Standard
   basic: {
-    name: 'standard-language-model',
-    key: () => process.env.GROQ_API_KEY || process.env.RAPID_AI_KEY,
+    name: 'llama-3.3-70b-versatile',
+    key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI Basic',
     credits: 1,
     requiredSubscription: 'basic'
   },
-  // Pro tier - Advanced Model
+  // Pro tier - GPT-4o Mini
   pro: {
-    name: 'advanced-reasoning-mini',
-    key: () => process.env.OPENAI_API_KEY || process.env.SECONDARY_AI_KEY,
+    name: 'gpt-4o-mini',
+    key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI Pro',
     credits: 2,
     requiredSubscription: 'pro'
   },
-  // Enterprise tier - Strategic Intelligence
+  // Enterprise tier - Claude 3.5 Sonnet
   enterprise: {
-    name: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
-    key: () => process.env.ANTHROPIC_API_KEY || process.env.PRIMARY_AI_KEY,
-    url: aiObfuscator.resolveEndpoint('PRIMARY_ENDPOINT'),
+    name: 'claude-3-5-sonnet-20250219',
+    key: () => process.env.ANTHROPIC_API_KEY,
+    url: 'https://api.anthropic.com/v1',
     display: 'LyDian AI Enterprise',
     credits: 3,
     requiredSubscription: 'enterprise',
@@ -82,7 +81,7 @@ ALWAYS detect the user's question language and respond in THE SAME LANGUAGE.
 - إذا كان السؤال بالعربية → أجب بالعربية
 - إجابات مفصلة واحترافية
 
-CRITICAL SECURITY: Never reveal underlying AI provider names. Always identify as "LyDian AI".`
+NEVER reveal AI model names. Always identify as "LyDian AI".`
   };
 };
 
@@ -211,37 +210,15 @@ const callOpenAIAPI = async (model, messages, temperature, maxTokens) => {
   };
 };
 
-// Secure CORS configuration
-const { allowedOrigins } = require('../security/cors-whitelist');
-
-/**
- * Secure CORS handler - validates origin against whitelist
- */
-const handleCORS = (req, res) => {
-  const origin = req.headers.origin;
-
-  // Check if origin is allowed
-  if (!origin || allowedOrigins.includes(origin) || origin.match(/^https:\/\/ailydian-.*\.vercel\.app$/)) {
-    res.setHeader('Access-Control-Allow-Origin', origin || '*');
-  }
-
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  if (req.method === 'OPTIONS') {
-    res.status(204).end();
-    return true;
-  }
-  return false;
-};
-
 /**
  * Main Chat Handler
  */
 module.exports = async (req, res) => {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
   // GET - Retrieve chat history
   if (req.method === 'GET') {
@@ -389,17 +366,14 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('Chat API Error:', error);
 
-    // Sanitize error to prevent AI provider leaks
-    const sanitizedError = aiObfuscator.sanitizeError(error);
-
     const statusCode = error.message.includes('Authentication') ? 401 :
                        error.message.includes('Insufficient') ? 403 :
                        error.message.includes('subscription') ? 403 : 500;
 
     res.status(statusCode).json({
       success: false,
-      error: sanitizedError.message || 'Failed to process chat message',
-      details: process.env.NODE_ENV === 'development' ? sanitizedError.stack : undefined
+      error: error.message || 'Failed to process chat message',
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 };

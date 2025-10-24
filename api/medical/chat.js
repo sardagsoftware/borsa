@@ -9,7 +9,6 @@ const Anthropic = require('@anthropic-ai/sdk');
 // Google Gemini support removed to avoid dependency issues
 // const { GoogleGenerativeAI } = require('@google/generative-ai');
 const axios = require('axios');
-const { handleCORS } = require('../../middleware/cors-handler');
 
 // Azure OpenAI
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
@@ -26,8 +25,14 @@ const GOOGLE_AI_KEY = process.env.GOOGLE_AI_KEY;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 module.exports = async (req, res) => {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -51,39 +56,46 @@ module.exports = async (req, res) => {
     const systemPrompt = buildMedicalSystemPrompt(specialty, language, patientContext);
 
     // Select AI model and generate response with cascading fallback
+    // ✅ GROQ-FIRST STRATEGY: Groq → Claude → Azure → Fallback
     let aiResponse;
     let modelUsed;
     let lastError = null;
 
-    // Try Primary AI Engine (Azure OpenAI GPT-4)
-    if (AZURE_OPENAI_KEY && AZURE_OPENAI_ENDPOINT) {
-      try {
-        aiResponse = await queryAzureOpenAI(message, systemPrompt, conversationHistory);
-        modelUsed = 'Ailydian Medical AI - Premium Model';
-      } catch (error) {
-        console.error('Azure OpenAI failed:', error.message);
-        lastError = error;
-      }
-    }
-
-    // Fallback to Secondary AI Engine (Anthropic Claude)
-    if (!aiResponse && ANTHROPIC_API_KEY) {
-      try {
-        aiResponse = await queryAnthropic(message, systemPrompt, conversationHistory);
-        modelUsed = 'Ailydian Medical AI - Advanced Model';
-      } catch (error) {
-        console.error('Anthropic Claude failed:', error.message);
-        lastError = error;
-      }
-    }
-
-    // Fallback to Fast AI Engine (Groq)
+    // 🎯 Priority 1: Groq (Ultra-Fast, 0.5-1s response)
     if (!aiResponse && GROQ_API_KEY) {
       try {
+        console.log('🤖 Trying Groq (Priority 1)...');
         aiResponse = await queryGroq(message, systemPrompt, conversationHistory);
-        modelUsed = 'Ailydian Medical AI - Ultra-Fast Model';
+        modelUsed = 'LyDian Medical AI - Ultra-Fast Model';
+        console.log('✅ Groq succeeded');
       } catch (error) {
-        console.error('Groq failed:', error.message);
+        console.error('❌ Groq failed:', error.message);
+        lastError = error;
+      }
+    }
+
+    // Priority 2: Anthropic Claude (Best Reasoning)
+    if (!aiResponse && ANTHROPIC_API_KEY) {
+      try {
+        console.log('🔄 Fallback to Anthropic Claude (Priority 2)...');
+        aiResponse = await queryAnthropic(message, systemPrompt, conversationHistory);
+        modelUsed = 'LyDian Medical AI - Advanced Model';
+        console.log('✅ Claude succeeded');
+      } catch (error) {
+        console.error('❌ Anthropic Claude failed:', error.message);
+        lastError = error;
+      }
+    }
+
+    // Priority 3: Azure OpenAI GPT-4 (Enterprise Backup)
+    if (!aiResponse && AZURE_OPENAI_KEY && AZURE_OPENAI_ENDPOINT) {
+      try {
+        console.log('🔄 Fallback to Azure OpenAI (Priority 3)...');
+        aiResponse = await queryAzureOpenAI(message, systemPrompt, conversationHistory);
+        modelUsed = 'LyDian Medical AI - Premium Model';
+        console.log('✅ Azure OpenAI succeeded');
+      } catch (error) {
+        console.error('❌ Azure OpenAI failed:', error.message);
         lastError = error;
       }
     }

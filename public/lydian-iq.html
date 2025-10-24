@@ -177,6 +177,37 @@
             animation: pulse-dot 2s infinite;
         }
 
+        .timer-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 500;
+            color: #3b82f6;
+        }
+
+        .timer-badge.warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .timer-badge.danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            animation: pulse-badge 1s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -325,8 +356,56 @@
         .composer-actions {
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
+            gap: var(--space-xs);
             padding: 0 var(--space-md) var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        /* Suggestion chips inside composer */
+        .composer-actions .suggestion-chip {
+            padding: 5px 10px;
+            font-size: 11px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Send button always on the right - Icon only (no background/border) */
+        #sendButton {
+            margin-left: auto;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+        }
+
+        #sendButton svg {
+            width: 28px !important;
+            height: 28px !important;
+            stroke: var(--color-accent-primary) !important;
+            fill: none;
+            stroke-width: 2.5;
+            transition: all 0.2s ease;
+        }
+
+        #sendButton:hover:not(:disabled) {
+            transform: scale(1.1);
+            background: transparent !important;
+        }
+
+        #sendButton:hover:not(:disabled) svg {
+            stroke: var(--color-accent-secondary) !important;
+            transform: translateX(2px);
+        }
+
+        #sendButton:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        #sendButton:disabled svg {
+            stroke: var(--color-text-muted);
+            opacity: 0.3;
         }
 
         .icon-button {
@@ -361,12 +440,18 @@
         .icon-button svg {
             width: 18px;
             height: 18px;
+            stroke: currentColor;
+            fill: none;
         }
 
         .icon-button.primary {
             background: var(--color-accent-primary);
             border-color: var(--color-accent-primary);
-            color: var(--color-bg-primary);
+            color: white;
+        }
+
+        .icon-button.primary svg {
+            stroke: white;
         }
 
         .icon-button.primary:hover:not(:disabled) {
@@ -386,14 +471,6 @@
             50% { opacity: 0.7; }
         }
 
-        .suggestions {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            gap: var(--space-sm);
-            margin-top: var(--space-sm);
-            flex-wrap: wrap;
-        }
 
         .suggestion-chip {
             padding: 6px 12px;
@@ -669,6 +746,7 @@
             display: flex;
             align-items: center;
             gap: var(--space-xs);
+            flex-shrink: 0; /* Prevent shrinking on mobile */
         }
 
         .icon-button {
@@ -941,44 +1019,73 @@
                 max-width: 100%;
             }
 
+            /* 📱 MOBILE PREMIUM: Header optimization */
             .header {
-                padding: var(--space-md) var(--space-sm);
-                flex-direction: column;
-                align-items: flex-start;
+                padding: var(--space-lg) var(--space-md);
+                flex-direction: row; /* Keep horizontal on mobile */
+                align-items: center;
+                gap: var(--space-md);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+            }
+
+            .header > div:first-child {
+                flex: 1;
+                display: flex;
+                align-items: center;
                 gap: var(--space-md);
             }
 
-            .header > div {
-                width: 100%;
-                justify-content: space-between;
+            .header > div:last-child {
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
             }
 
             .logo {
-                width: 36px;
-                height: 36px;
+                width: 40px; /* Slightly bigger */
+                height: 40px;
+                flex-shrink: 0;
             }
 
             .logo svg {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
             }
 
             .header-info h1 {
-                font-size: 15px;
+                font-size: 16px; /* Larger, more premium */
+                font-weight: 700;
+                letter-spacing: -0.02em;
             }
 
-            .header-info p {
-                font-size: 11px;
-            }
-
+            /* 📱 MOBILE PREMIUM: Status badge */
             .status-badge {
-                font-size: 10px;
-                padding: 4px 8px;
+                font-size: 11px;
+                padding: 6px 10px;
+                border-radius: var(--radius-full);
             }
 
+            /* 📱 MOBILE PREMIUM: Timer badge */
+            .timer-badge {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+
+            .timer-badge svg {
+                width: 12px;
+                height: 12px;
+                font-weight: 600;
+            }
+
+            /* 📱 MOBILE PREMIUM: Language selector */
             #languageSelector {
-                font-size: 11px !important;
-                padding: 6px 8px !important;
+                font-size: 12px !important;
+                padding: 8px 10px !important;
+                border-radius: var(--radius-md) !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                font-weight: 500;
             }
 
             .messages {
@@ -1001,15 +1108,59 @@
                 padding: 6px;
             }
 
+            /* 📱 MOBILE PREMIUM: Icon buttons optimized for touch */
             .icon-button {
-                width: 40px;
-                height: 40px;
+                width: 44px; /* Larger tap target (Apple HIG: 44px minimum) */
+                height: 44px;
                 -webkit-tap-highlight-color: transparent;
+                background: rgba(255, 255, 255, 0.08); /* More visible */
+                border: 1.5px solid rgba(255, 255, 255, 0.15);
+                border-radius: var(--radius-md); /* Slightly rounder */
             }
 
             .icon-button svg {
-                width: 20px;
-                height: 20px;
+                width: 22px; /* Bigger icons */
+                height: 22px;
+            }
+
+            /* 📱 MOBILE PREMIUM: Send button - larger icon on mobile */
+            #sendButton {
+                width: 44px;
+                height: 44px;
+            }
+
+            #sendButton svg {
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+            /* 📱 MOBILE PREMIUM: Metadata layout optimization */
+            .metadata {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-md);
+                padding: var(--space-md);
+                background: rgba(255, 255, 255, 0.02);
+                border-radius: var(--radius-md);
+                margin-top: var(--space-md);
+            }
+
+            .metadata-info {
+                width: 100%;
+                justify-content: flex-start;
+                font-size: 12px;
+            }
+
+            .metadata-actions {
+                width: 100%;
+                justify-content: flex-end;
+                gap: var(--space-sm); /* More spacing between buttons */
+            }
+
+            /* 📱 MOBILE PREMIUM: Enhanced button hover effects */
+            .icon-button:active {
+                transform: scale(0.95);
+                background: rgba(255, 255, 255, 0.12);
             }
 
             .btn {
@@ -1018,14 +1169,19 @@
                 -webkit-tap-highlight-color: transparent;
             }
 
+            /* 📱 MOBILE PREMIUM: Response cards */
             .inline-card {
-                padding: var(--space-md);
+                padding: var(--space-lg);
+                border-radius: var(--radius-lg);
+                margin: var(--space-md) 0;
             }
 
             .solution {
-                font-size: 13px;
-                max-height: 400px;
-                padding: var(--space-md);
+                font-size: 14px; /* Slightly larger for readability */
+                line-height: 1.7; /* Better line spacing */
+                max-height: 500px; /* More content visible */
+                padding: var(--space-lg);
+                border-radius: var(--radius-md);
             }
 
             .reasoning-step {
@@ -1033,8 +1189,46 @@
             }
 
             .suggestion-chip {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+
+            .composer-actions .suggestion-chip {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            .composer-actions {
+                gap: 6px;
+                padding: 0 var(--space-sm) var(--space-sm);
+            }
+
+            /* Mobilde voice ve send butonları her zaman görünür */
+            #voiceButton, #sendButton {
+                flex-shrink: 0;
+            }
+
+            /* Mobilde suggestion chiplerini gizle veya küçült */
+            .composer-actions .suggestion-chip {
+                display: none;
+            }
+
+            /* Alternatif: Suggestion chip'leri alt satıra al */
+            .composer-actions {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            /* 📱 MOBILE PREMIUM: AI Disclaimer */
+            .ai-disclaimer {
                 font-size: 11px;
-                padding: 6px 10px;
+                padding: var(--space-xs) var(--space-sm);
+                line-height: 1.5;
+            }
+
+            .ai-disclaimer svg {
+                width: 12px;
+                height: 12px;
             }
 
             .dock {
@@ -1208,12 +1402,35 @@
             display: none !important;
         }
 
+        /* AI Disclaimer */
+        .ai-disclaimer {
+            text-align: center;
+            padding: var(--space-sm) var(--space-md);
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            opacity: 0.7;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ai-disclaimer svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: -2px;
+            margin-right: 4px;
+            opacity: 0.6;
+        }
+
         @supports (padding: env(safe-area-inset-bottom)) {
             .composer {
                 padding-bottom: env(safe-area-inset-bottom);
             }
         }
     </style>
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
     <div class="toast-container" id="toastContainer"></div>
@@ -1229,10 +1446,16 @@
                     </div>
                     <div class="header-info">
                         <h1>LyDian IQ Ultra</h1>
-                        <p>Kurumsal Yapay Zeka Platformu</p>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <div class="timer-badge" id="timerBadge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span id="timerText">15:00</span>
+                    </div>
                     <div class="status-badge">
                         <div class="status-dot"></div>
                         <span id="statusText">CANLI</span>
@@ -1271,7 +1494,18 @@
                                 <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
                             </svg>
                         </button>
-                        <div style="flex: 1;"></div>
+                        <div class="suggestion-chip" data-example="Denklemi adım adım çöz: 2x + 5 = 15">
+                            Matematik Problemi
+                        </div>
+                        <div class="suggestion-chip" data-example="Python'da binary search algoritması yaz ve açıkla">
+                            Kodlama Görevi
+                        </div>
+                        <div class="suggestion-chip" data-example="Fotosentezi moleküler seviyede açıkla">
+                            Bilim Sorusu
+                        </div>
+                        <div class="suggestion-chip" data-example="Yeni ürün lansmanı için strateji öner">
+                            Strateji Danışmanlığı
+                        </div>
                         <button class="icon-button primary" id="sendButton" title="Gönder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
@@ -1280,19 +1514,14 @@
                     </div>
                 </div>
 
-                <div class="suggestions">
-                    <div class="suggestion-chip" data-example="Denklemi adım adım çöz: 2x + 5 = 15">
-                        Matematik Problemi
-                    </div>
-                    <div class="suggestion-chip" data-example="Python'da binary search algoritması yaz ve açıkla">
-                        Kodlama Görevi
-                    </div>
-                    <div class="suggestion-chip" data-example="Fotosentezi moleküler seviyede açıkla">
-                        Bilim Sorusu
-                    </div>
-                    <div class="suggestion-chip" data-example="Yeni ürün lansmanı için strateji öner">
-                        Strateji Danışmanlığı
-                    </div>
+                <!-- AI Disclaimer -->
+                <div class="ai-disclaimer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    LyDian AI yanıt üretirken hata yapabilir. Kritik kararlar için profesyonel danışmanlık alınız.
                 </div>
             </div>
         </div>
@@ -1574,7 +1803,9 @@
             totalResponseTime: 0,
             recognition: null,
             isRecording: false,
-            currentLang: localStorage.getItem('lang') || 'tr'
+            currentLang: localStorage.getItem('lang') || 'tr',
+            timerInterval: null,
+            remainingSeconds: 900 // 15 minutes = 900 seconds
         };
 
         let elements;
@@ -1651,6 +1882,114 @@
             } else {
                 state.recognition.start();
             }
+        }
+
+        // ⏱️ TIMER SYSTEM - 15 Minute Free Trial
+        function initTimer() {
+            // Check if user is authenticated
+            const isAuthenticated = checkAuthentication();
+
+            if (isAuthenticated) {
+                // Hide timer for authenticated users
+                const timerBadge = document.getElementById('timerBadge');
+                if (timerBadge) timerBadge.style.display = 'none';
+                return;
+            }
+
+            // Check if timer already started
+            const timerStartTime = localStorage.getItem('lydianIQ_timerStart');
+            const now = Date.now();
+
+            if (timerStartTime) {
+                // Calculate elapsed time
+                const elapsed = Math.floor((now - parseInt(timerStartTime)) / 1000);
+                state.remainingSeconds = Math.max(0, 900 - elapsed);
+            } else {
+                // Start new timer
+                localStorage.setItem('lydianIQ_timerStart', now.toString());
+                state.remainingSeconds = 900;
+            }
+
+            // If time is up, redirect immediately
+            if (state.remainingSeconds <= 0) {
+                redirectToAuth();
+                return;
+            }
+
+            // Update UI and start countdown
+            updateTimerDisplay();
+            state.timerInterval = setInterval(() => {
+                state.remainingSeconds--;
+                updateTimerDisplay();
+
+                if (state.remainingSeconds <= 0) {
+                    clearInterval(state.timerInterval);
+                    redirectToAuth();
+                }
+            }, 1000);
+        }
+
+        function checkAuthentication() {
+            // Check if user has valid session
+            const sessionToken = localStorage.getItem('sessionToken') ||
+                                 sessionStorage.getItem('sessionToken') ||
+                                 document.cookie.includes('session=');
+            return !!sessionToken;
+        }
+
+        function updateTimerDisplay() {
+            const timerText = document.getElementById('timerText');
+            const timerBadge = document.getElementById('timerBadge');
+
+            if (!timerText || !timerBadge) return;
+
+            const minutes = Math.floor(state.remainingSeconds / 60);
+            const seconds = state.remainingSeconds % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            timerText.textContent = timeString;
+
+            // Update badge style based on remaining time
+            timerBadge.classList.remove('warning', 'danger');
+
+            if (state.remainingSeconds <= 60) {
+                // Last minute - danger (red)
+                timerBadge.classList.add('danger');
+            } else if (state.remainingSeconds <= 300) {
+                // Last 5 minutes - warning (yellow)
+                timerBadge.classList.add('warning');
+            }
+
+            // Show warning toast at specific intervals
+            if (state.remainingSeconds === 300) {
+                showToast('5 Dakika Kaldı', 'Devam etmek için giriş yapın', 'info');
+            } else if (state.remainingSeconds === 60) {
+                showToast('1 Dakika Kaldı!', 'Lütfen giriş yapın veya kayıt olun', 'error');
+            }
+        }
+
+        function redirectToAuth() {
+            showToast(
+                'Süre Doldu',
+                'Devam etmek için giriş yapın veya kayıt olun. Yönlendiriliyorsunuz...',
+                'error'
+            );
+
+            setTimeout(() => {
+                // Save current page to return after login
+                localStorage.setItem('returnUrl', window.location.pathname);
+                window.location.href = '/auth.html?return=lydian-iq';
+            }, 2000);
+        }
+
+        function resetTimer() {
+            // Called after successful login
+            localStorage.removeItem('lydianIQ_timerStart');
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+            }
+            const timerBadge = document.getElementById('timerBadge');
+            if (timerBadge) timerBadge.style.display = 'none';
         }
 
         function addMessage(role, content, isHTML = false) {
@@ -2095,6 +2434,7 @@
             };
 
             initVoiceInput();
+            initTimer(); // Start 15-minute free trial timer
 
             elements.sendButton.addEventListener('click', sendMessage);
             elements.voiceButton.addEventListener('click', toggleVoiceInput);
