@@ -180,5 +180,5 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "deploymentTrigger": "force-deploy-quantum-2025-10-24T20:45:00Z"
+  "deploymentTrigger": "force-deploy-quantum-final-2025-10-24T22:25:00Z"
 }
