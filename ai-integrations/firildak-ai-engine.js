@@ -9,6 +9,9 @@ const { EventEmitter } = require('events');
 // 🔐 ULTRA-SECURE: Import encrypted Emrah Şardağ system prompt
 const { getEmrahSardagPrompt } = require('./emrah-sardag-system-prompt');
 
+// 🚦 CONCURRENT REQUEST MANAGER: Prevent "Too many concurrent requests" errors
+const { getConcurrentManager } = require('../middleware/concurrent-request-manager');
+
 class FirildakAIEngine extends EventEmitter {
     constructor() {
         super();
@@ -18,10 +21,14 @@ class FirildakAIEngine extends EventEmitter {
         this.requestQueue = [];
         this.isProcessing = false;
 
+        // Initialize concurrent request manager (max 3 concurrent for extra safety margin)
+        this.concurrentManager = getConcurrentManager({ maxConcurrent: 3, retryAttempts: 3 });
+
         this.initializeProviders();
         this.startPerformanceMonitoring();
 
         console.log('🧠 FIRILDAK AI Engine Initialized - Real-time Multi-Provider System Active');
+        console.log('🚦 Concurrent Request Manager Active - Max 3 concurrent AI requests');
     }
 
     initializeProviders() {
@@ -102,17 +109,19 @@ class FirildakAIEngine extends EventEmitter {
         const startTime = Date.now();
         const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-        try {
-            console.log(`🔄 FIRILDAK Processing: ${request.message?.substring(0, 50)}...`);
+        // Wrap the entire request processing in concurrent manager
+        return await this.concurrentManager.execute(async () => {
+            try {
+                console.log(`🔄 FIRILDAK Processing: ${request.message?.substring(0, 50)}...`);
 
-            // Smart provider and model selection
-            const selectedProvider = await this.selectOptimalProvider(request);
-            const selectedModel = await this.selectOptimalModel(request, selectedProvider);
+                // Smart provider and model selection
+                const selectedProvider = await this.selectOptimalProvider(request);
+                const selectedModel = await this.selectOptimalModel(request, selectedProvider);
 
-            console.log(`🎯 Selected: ${selectedProvider.name} / ${selectedModel.name}`);
+                console.log(`🎯 Selected: ${selectedProvider.name} / ${selectedModel.name}`);
 
-            // Execute the request
-            const response = await this.executeAIRequest(request, selectedProvider, selectedModel);
+                // Execute the request
+                const response = await this.executeAIRequest(request, selectedProvider, selectedModel);
 
             const processingTime = Date.now() - startTime;
 
@@ -162,6 +171,7 @@ class FirildakAIEngine extends EventEmitter {
                 };
             }
         }
+        }, { priority: request.priority || 0 }); // End of concurrentManager.execute()
     }
 
     async selectOptimalProvider(request) {

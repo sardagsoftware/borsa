@@ -36,49 +36,52 @@
 }
 
 :root {
-    /* Medical Blue Color System */
-    --medical-primary: #0066CC;
-    --medical-primary-hover: #0052A3;
-    --medical-secondary: #00A3E0;
-    --medical-accent: #4FC3F7;
-    --medical-success: #10B981;
-    --medical-warning: #F59E0B;
-    --medical-error: #EF4444;
-    --medical-info: #3B82F6;
+    /* Premium Neon Black Color System */
+    --bg-0: #0A0B0D;
+    --bg-1: #111214;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-2: rgba(255, 255, 255, 0.03);
+    --stroke: rgba(255, 255, 255, 0.08);
+    --txt-1: #FFFFFF;
+    --txt-2: #B0B0B0;
+    --accent-1: #00E0AE;  /* Neon green */
+    --accent-2: #6E84FF;  /* Electric blue */
+    --accent-3: #B86BFF;  /* Purple */
+    --warning: #FDB022;   /* Gold warning */
+    --medical-success: #00E0AE;
+    --medical-error: #FF6B9D;
 
-    /* Clean Gradients */
-    --gradient-medical: linear-gradient(135deg, #0066CC 0%, #00A3E0 100%);
-    --gradient-success: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-    --gradient-header: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+    /* Neon Gradients */
+    --gradient-medical: linear-gradient(135deg, rgba(0,224,174,0.15), rgba(110,132,255,0.15));
+    --gradient-success: linear-gradient(135deg, #00E0AE, #6E84FF);
+    --gradient-accent: linear-gradient(135deg, var(--accent-1), var(--accent-2));
 
-    /* White Background System */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F9FAFB;
-    --bg-tertiary: #F3F4F6;
-    --bg-hover: #FFFFFF;
-    --bg-sidebar: #1E3A8A;
-    --bg-sidebar-hover: #1E40AF;
+    /* Background System */
+    --bg-primary: var(--bg-0);
+    --bg-secondary: var(--bg-1);
+    --bg-tertiary: var(--glass);
+    --bg-hover: var(--glass);
 
     /* Text Colors */
-    --text-primary: #1F2937;
-    --text-secondary: #4B5563;
-    --text-tertiary: #6B7280;
-    --text-muted: #9CA3AF;
-    --text-inverse: #ffffff;
+    --text-primary: var(--txt-1);
+    --text-secondary: var(--txt-2);
+    --text-tertiary: #888888;
+    --text-inverse: #000000;
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-medical: 0 4px 12px rgba(0, 102, 204, 0.15);
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+    /* Neon Shadows */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+    --shadow-base: 0 8px 24px rgba(0,0,0,0.4);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.5);
+    --shadow-lg: 0 16px 48px rgba(0,0,0,0.6);
+    --shadow-xl: 0 24px 64px rgba(0,0,0,0.7);
+    --shadow-medical: 0 8px 24px rgba(0,224,174,0.3);
+    --shadow-hover: 0 12px 32px rgba(0,224,174,0.25);
+    --shadow-neon: 0 0 20px rgba(0,224,174,0.5);
 
     /* Borders */
-    --border-light: 1px solid #E5E7EB;
-    --border-medium: 1px solid #D1D5DB;
-    --border-medical: 1px solid #0066CC;
+    --border-light: 1px solid var(--stroke);
+    --border-medium: 1px solid rgba(255, 255, 255, 0.12);
+    --border-medical: 1px solid var(--accent-1);
     --border-dark: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -164,10 +167,13 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
+    background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                var(--bg-0);
+    color: var(--txt-1);
     min-height: 100vh;
     display: flex;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -178,11 +184,14 @@ body {
 
 .sidebar {
     width: 280px;
-    background: var(--bg-sidebar);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    border-right: var(--border-dark);
+    border-right: 1px solid var(--stroke);
+    box-shadow: var(--shadow-base);
 }
 
 .sidebar.collapsed {
@@ -201,11 +210,12 @@ body {
     font-family: 'Righteous', cursive;
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--text-inverse);
+    color: #FFFFFF;
     display: flex;
     align-items: center;
     gap: 0.75rem;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(0,224,174,0.3);
 }
 
 .logo-icon {
@@ -225,7 +235,7 @@ body {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    color: var(--text-inverse);
+    color: #FFFFFF;
     font-weight: 600;
     font-size: 0.9375rem;
     cursor: pointer;
@@ -264,13 +274,13 @@ body {
 
 .specialization-item:hover {
     background: var(--bg-sidebar-hover);
-    color: var(--text-inverse);
+    color: #FFFFFF;
     transform: translateX(4px);
 }
 
 .specialization-item.active {
     background: var(--bg-sidebar-hover);
-    color: var(--text-inverse);
+    color: #FFFFFF;
     border-left: 3px solid var(--medical-secondary);
 }
 
@@ -307,7 +317,7 @@ body {
 
 .nav-category-header:hover {
     background: rgba(255, 255, 255, 0.05);
-    color: var(--text-inverse);
+    color: #FFFFFF;
 }
 
 .nav-category-header .dropdown-arrow {
@@ -965,6 +975,9 @@ body {
     background: var(--medical-primary);
 }
     </style>
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
     <!-- Sidebar -->
