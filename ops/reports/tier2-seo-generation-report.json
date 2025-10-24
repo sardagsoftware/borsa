@@ -1,0 +1,240 @@
+{
+  "timestamp": "2025-10-24T23:26:34.136Z",
+  "pages": {
+    "index.html": {
+      "tr": {
+        "status": "success",
+        "title_length": 41,
+        "description_length": 140,
+        "keywords_count": 7
+      },
+      "en": {
+        "status": "success",
+        "title_length": 49,
+        "description_length": 123,
+        "keywords_count": 7
+      },
+      "de": {
+        "status": "success",
+        "title_length": 51,
+        "description_length": 137,
+        "keywords_count": 6
+      },
+      "ar": {
+        "status": "success",
+        "title_length": 51,
+        "description_length": 116,
+        "keywords_count": 4
+      },
+      "ru": {
+        "status": "success",
+        "title_length": 50,
+        "description_length": 137,
+        "keywords_count": 4
+      },
+      "zh": {
+        "status": "success",
+        "title_length": 30,
+        "description_length": 80,
+        "keywords_count": 5
+      }
+    },
+    "lydian-iq.html": {
+      "tr": {
+        "status": "success",
+        "title_length": 53,
+        "description_length": 121,
+        "keywords_count": 6
+      },
+      "en": {
+        "status": "success",
+        "title_length": 55,
+        "description_length": 122,
+        "keywords_count": 6
+      },
+      "de": {
+        "status": "success",
+        "title_length": 49,
+        "description_length": 149,
+        "keywords_count": 5
+      },
+      "ar": {
+        "status": "success",
+        "title_length": 44,
+        "description_length": 135,
+        "keywords_count": 3
+      },
+      "ru": {
+        "status": "success",
+        "title_length": 50,
+        "description_length": 143,
+        "keywords_count": 4
+      },
+      "zh": {
+        "status": "success",
+        "title_length": 31,
+        "description_length": 84,
+        "keywords_count": 5
+      }
+    },
+    "medical-expert.html": {
+      "tr": {
+        "status": "success",
+        "title_length": 47,
+        "description_length": 134,
+        "keywords_count": 6
+      },
+      "en": {
+        "status": "success",
+        "title_length": 55,
+        "description_length": 139,
+        "keywords_count": 5
+      },
+      "de": {
+        "status": "success",
+        "title_length": 48,
+        "description_length": 133,
+        "keywords_count": 4
+      },
+      "ar": {
+        "status": "success",
+        "title_length": 49,
+        "description_length": 124,
+        "keywords_count": 3
+      },
+      "ru": {
+        "status": "success",
+        "title_length": 46,
+        "description_length": 139,
+        "keywords_count": 4
+      },
+      "zh": {
+        "status": "success",
+        "title_length": 35,
+        "description_length": 85,
+        "keywords_count": 5
+      }
+    },
+    "chat.html": {
+      "tr": {
+        "status": "success",
+        "title_length": 48,
+        "description_length": 131,
+        "keywords_count": 6
+      },
+      "en": {
+        "status": "success",
+        "title_length": 49,
+        "description_length": 132,
+        "keywords_count": 6
+      },
+      "de": {
+        "status": "success",
+        "title_length": 41,
+        "description_length": 128,
+        "keywords_count": 5
+      },
+      "ar": {
+        "status": "success",
+        "title_length": 42,
+        "description_length": 144,
+        "keywords_count": 5
+      },
+      "ru": {
+        "status": "success",
+        "title_length": 46,
+        "description_length": 143,
+        "keywords_count": 5
+      },
+      "zh": {
+        "status": "success",
+        "title_length": 35,
+        "description_length": 94,
+        "keywords_count": 6
+      }
+    },
+    "legal-expert.html": {
+      "tr": {
+        "status": "success",
+        "title_length": 50,
+        "description_length": 138,
+        "keywords_count": 6
+      },
+      "en": {
+        "status": "success",
+        "title_length": 53,
+        "description_length": 129,
+        "keywords_count": 5
+      },
+      "de": {
+        "status": "success",
+        "title_length": 50,
+        "description_length": 136,
+        "keywords_count": 5
+      },
+      "ar": {
+        "status": "success",
+        "title_length": 47,
+        "description_length": 144,
+        "keywords_count": 3
+      },
+      "ru": {
+        "status": "success",
+        "title_length": 42,
+        "description_length": 152,
+        "keywords_count": 4
+      },
+      "zh": {
+        "status": "success",
+        "title_length": 31,
+        "description_length": 82,
+        "keywords_count": 5
+      }
+    },
+    "ai-advisor-hub.html": {
+      "tr": {
+        "status": "success",
+        "title_length": 50,
+        "description_length": 144,
+        "keywords_count": 5
+      },
+      "en": {
+        "status": "success",
+        "title_length": 48,
+        "description_length": 150,
+        "keywords_count": 5
+      },
+      "de": {
+        "status": "success",
+        "title_length": 48,
+        "description_length": 139,
+        "keywords_count": 4
+      },
+      "ar": {
+        "status": "success",
+        "title_length": 51,
+        "description_length": 147,
+        "keywords_count": 3
+      },
+      "ru": {
+        "status": "success",
+        "title_length": 46,
+        "description_length": 161,
+        "keywords_count": 4
+      },
+      "zh": {
+        "status": "success",
+        "title_length": 33,
+        "description_length": 86,
+        "keywords_count": 5
+      }
+    }
+  },
+  "summary": {
+    "total_pages": 6,
+    "total_languages": 6,
+    "total_combinations": 36,
+    "generated": 36,
+    "errors": 0
+  }
+}

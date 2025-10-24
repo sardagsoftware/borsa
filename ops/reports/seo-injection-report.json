@@ -1,0 +1,134 @@
+{
+  "timestamp": "2025-10-24T23:34:19.545Z",
+  "results": [
+    {
+      "success": true,
+      "page": "index.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "lydian-iq.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "medical-expert.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "chat.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "legal-expert.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "ai-advisor-hub.html",
+      "lang": "tr"
+    }
+  ],
+  "validations": [
+    {
+      "page": "index.html",
+      "checks": {
+        "hasTitle": true,
+        "hasDescription": true,
+        "hasKeywords": true,
+        "hasCanonical": true,
+        "hasHreflang": true,
+        "hasOG": true,
+        "hasTwitter": true,
+        "hasGEO": true,
+        "hasSchema": true
+      },
+      "valid": true
+    },
+    {
+      "page": "lydian-iq.html",
+      "checks": {
+        "hasTitle": true,
+        "hasDescription": true,
+        "hasKeywords": true,
+        "hasCanonical": true,
+        "hasHreflang": true,
+        "hasOG": true,
+        "hasTwitter": true,
+        "hasGEO": true,
+        "hasSchema": true
+      },
+      "valid": true
+    },
+    {
+      "page": "medical-expert.html",
+      "checks": {
+        "hasTitle": true,
+        "hasDescription": true,
+        "hasKeywords": true,
+        "hasCanonical": true,
+        "hasHreflang": true,
+        "hasOG": true,
+        "hasTwitter": true,
+        "hasGEO": true,
+        "hasSchema": true
+      },
+      "valid": true
+    },
+    {
+      "page": "chat.html",
+      "checks": {
+        "hasTitle": true,
+        "hasDescription": true,
+        "hasKeywords": true,
+        "hasCanonical": true,
+        "hasHreflang": true,
+        "hasOG": true,
+        "hasTwitter": true,
+        "hasGEO": true,
+        "hasSchema": true
+      },
+      "valid": true
+    },
+    {
+      "page": "legal-expert.html",
+      "checks": {
+        "hasTitle": true,
+        "hasDescription": true,
+        "hasKeywords": true,
+        "hasCanonical": true,
+        "hasHreflang": true,
+        "hasOG": true,
+        "hasTwitter": true,
+        "hasGEO": true,
+        "hasSchema": true
+      },
+      "valid": true
+    },
+    {
+      "page": "ai-advisor-hub.html",
+      "checks": {
+        "hasTitle": true,
+        "hasDescription": true,
+        "hasKeywords": true,
+        "hasCanonical": true,
+        "hasHreflang": true,
+        "hasOG": true,
+        "hasTwitter": true,
+        "hasGEO": true,
+        "hasSchema": true
+      },
+      "valid": true
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "successful": 6,
+    "failed": 0,
+    "validated": 6,
+    "success_rate": 100
+  }
+}
