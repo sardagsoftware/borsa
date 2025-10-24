@@ -361,12 +361,13 @@
             flex-wrap: wrap;
         }
 
-        /* Suggestion chips inside composer */
+        /* Suggestion chips inside composer - Small, frameless, premium */
         .composer-actions .suggestion-chip {
-            padding: 5px 10px;
-            font-size: 11px;
+            padding: 4px 10px;
+            font-size: 10px;
             white-space: nowrap;
             flex-shrink: 0;
+            letter-spacing: 0.01em;
         }
 
         /* Send button always on the right - Icon only (no background/border) */
@@ -474,20 +475,34 @@
 
         .suggestion-chip {
             padding: 6px 12px;
-            background: var(--color-surface-2);
-            border: 1px solid var(--color-border);
+            background: transparent;
+            border: none;
             border-radius: var(--radius-full);
-            font-size: 12px;
-            color: var(--color-text-secondary);
+            font-size: 11px;
+            color: var(--color-text-muted);
             cursor: pointer;
-            transition: all var(--transition-base);
-            font-weight: 500;
+            transition: all var(--transition-fast);
+            font-weight: 400;
+            position: relative;
+        }
+
+        .suggestion-chip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--color-surface-2);
+            border-radius: var(--radius-full);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            z-index: -1;
         }
 
         .suggestion-chip:hover {
-            background: var(--color-surface-3);
-            border-color: var(--color-border-hover);
             color: var(--color-text-primary);
+        }
+
+        .suggestion-chip:hover::before {
+            opacity: 1;
         }
 
         .dock-panel {
@@ -573,6 +588,8 @@
             background: transparent;
             backdrop-filter: none;
             border: none;
+            position: relative;
+            overflow: hidden;
             border-radius: 0;
             padding: var(--space-md) 0;
             margin-top: var(--space-md);
@@ -733,6 +750,25 @@
             justify-content: space-between;
             gap: var(--space-md);
             flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metadata::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(74, 222, 128, 0.1) 50%,
+                transparent 100%
+            );
+            animation: shimmer 5s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .metadata-info {
@@ -779,27 +815,45 @@
             transform: translateY(0);
         }
 
+        .copy-icon-btn {
+            transition: all var(--transition-base);
+        }
+
         .copy-icon-btn:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
         }
 
         .copy-icon-btn:hover svg {
             stroke: rgb(59, 130, 246);
         }
 
+        .share-icon-btn {
+            transition: all var(--transition-base);
+        }
+
         .share-icon-btn:hover {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 16px rgba(34, 197, 94, 0.2);
+            transform: translateY(-2px);
         }
 
         .share-icon-btn:hover svg {
             stroke: rgb(34, 197, 94);
         }
 
+        .clear-icon-btn {
+            transition: all var(--transition-base);
+        }
+
         .clear-icon-btn:hover {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
+            transform: translateY(-2px);
         }
 
         .clear-icon-btn:hover svg {
@@ -878,6 +932,56 @@
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
             30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        /* 🌊 PREMIUM STREAMING DATA FLOW ANIMATION */
+        @keyframes dataFlow {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .inline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                transparent 100%
+            );
+            animation: shimmer 3s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .inline-card.streaming {
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.01) 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.01) 75%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: dataFlow 4s linear infinite;
         }
 
         .toast-container {
