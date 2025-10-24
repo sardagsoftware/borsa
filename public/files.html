@@ -38,18 +38,22 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--background-light);
-            color: var(--text-dark);
+            background: radial-gradient(1400px 900px at 70% 15%, rgba(255,115,0,.08), transparent 60%),
+                        radial-gradient(1200px 700px at 20% 80%, rgba(255,115,0,.05), transparent 65%),
+                        #0A0B0D;
+            color: #FFFFFF;
             line-height: 1.6;
         }
 
         .navbar {
-            background: var(--secondary-white);
-            box-shadow: 0 2px 20px var(--shadow-color);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nav-container {
@@ -62,13 +66,11 @@
         }
 
         .logo {
-            font-family: 'Righteous', cursive;
+            font-family: 'Inter', sans-serif;
             font-size: 1.8rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(255,115,0,0.5);
         }
 
         .nav-links {
@@ -102,10 +104,8 @@
         .page-title {
             font-size: 3rem;
             font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #FFFFFF;
+            text-shadow: 0 0 20px rgba(255,115,0,0.4);
             margin-bottom: 1rem;
         }
 
@@ -117,10 +117,12 @@
         }
 
         .file-manager {
-            background: var(--secondary-white);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px var(--shadow-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             margin-bottom: 2rem;
         }
 
@@ -604,34 +606,5 @@
         }
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>

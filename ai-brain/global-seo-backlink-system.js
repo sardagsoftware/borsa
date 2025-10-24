@@ -242,9 +242,9 @@ class GlobalSEOBacklinkSystem {
         try {
             await this.validateSEOTools();
             await this.setupSearchEngineIntegrations();
-            // await this.initializeKeywordTracking(); // TODO: Implement method
+            await this.initializeKeywordTracking();
             await this.startContinuousOptimization();
-            // await this.setupAlexaVoiceOptimization(); // TODO: Implement voice optimization methods
+            await this.setupAlexaVoiceOptimization();
 
             console.log('✅ Global SEO System aktif!');
             console.log(`🎯 Kapsam: ${Object.keys(this.searchEngines).length} arama motoru`);

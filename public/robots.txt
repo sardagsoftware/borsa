@@ -1,18 +1,18 @@
-# robots.txt for LyDian AI Ecosystem
-# https://www.ailydian.com
-# Generated: 2025-10-09
+# Ailydian Enterprise - Robots.txt
+# Generated: 2025-10-03
 
-# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Disallow sensitive areas
-Disallow: /api/
-Disallow: /auth/
-Disallow: /.env
+Disallow: /api/private/
 Disallow: /admin/
+Disallow: /dashboard/private/
 
-# Allow Google, Bing, and other major search engines
+# Sitemaps
+Sitemap: https://www.ailydian.com/sitemap-index.xml
+Sitemap: https://www.ailydian.com/sitemap-core.xml
+
+# Search Engine Bots
 User-agent: Googlebot
 Allow: /
 
@@ -22,80 +22,17 @@ Allow: /
 User-agent: Slurp
 Allow: /
 
-# AI/LLM Crawlers
-# OpenAI
-User-agent: GPTBot
+User-agent: DuckDuckBot
 Allow: /
 
-User-agent: ChatGPT-User
+User-agent: Baiduspider
 Allow: /
 
-# Google AI
-User-agent: Google-Extended
+User-agent: facebookexternalhit
 Allow: /
 
-User-agent: GoogleOther
+User-agent: Twitterbot
 Allow: /
 
-# Anthropic
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-# Common Crawl
-User-agent: CCBot
-Allow: /
-
-# Perplexity AI
-User-agent: PerplexityBot
-Allow: /
-
-# You.com
-User-agent: YouBot
-Allow: /
-
-# Apple Intelligence
-User-agent: Applebot-Extended
-Allow: /
-
-# Groq
-User-agent: GroqBot
-Allow: /
-
-# Cohere
-User-agent: cohere-ai
-Allow: /
-
-# Diffbot
-User-agent: Diffbot
-Allow: /
-
-# Academic & Research Crawlers
-# Semantic Scholar (Allen Institute for AI)
-User-agent: SemanticScholarBot
-Allow: /
-
-# Internet Archive (Wayback Machine)
-User-agent: ia_archiver
-Allow: /
-
-User-agent: archive.org_bot
-Allow: /
-
-# Common Crawl (used by many AI models)
-# Already allowed via CCBot above
-
-# Sitemap and Feed locations
-Sitemap: https://www.ailydian.com/sitemap.xml
-Sitemap: https://www.ailydian.com/feed/updates.xml
-
-# Crawl-delay (optional, prevents server overload)
+# Crawl-delay
 Crawl-delay: 1
-
-# Host preference
-Host: https://www.ailydian.com

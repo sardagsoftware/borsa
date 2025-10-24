@@ -18,8 +18,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/global-lydian-branding.css">
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
 </head>
-<body class="chat-body">
+<body class="chat-body" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
     <!-- Header -->
     <div class="header">
         <div class="header-left">
@@ -298,192 +301,306 @@
     </script>
 
     <style>
+        /* ============================================ */
+        /* PREMIUM NEON BLACK THEME - LYDIAN DESIGN    */
+        /* ============================================ */
+        :root {
+            --bg-0: #0A0B0D;
+            --bg-1: #111214;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-2: rgba(255, 255, 255, 0.03);
+            --stroke: rgba(255, 255, 255, 0.08);
+            --txt-1: #FFFFFF;
+            --txt-2: #B0B0B0;
+            --accent-1: #00E0AE;  /* Neon green */
+            --accent-2: #6E84FF;  /* Electric blue */
+            --accent-3: #B86BFF;  /* Purple */
+            --warning: #FDB022;   /* Gold warning */
+        }
+
+        body.chat-body {
+            background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                        radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                        var(--bg-0) !important;
+            color: var(--txt-1);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
         .specialist-header {
-            background: linear-gradient(135deg, var(--asana-green-primary), var(--asana-green-light));
-            color: white;
+            background: linear-gradient(135deg, rgba(0,224,174,0.15), rgba(110,132,255,0.15));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--stroke);
+            color: var(--txt-1);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 16px;
             margin: 1rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
         .specialist-icon {
             font-size: 3rem;
-            opacity: 0.9;
+            color: var(--accent-1);
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(0,224,174,0.5));
         }
 
         .specialist-info h1 {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .specialist-info p {
             margin: 0.5rem 0 0 0;
-            opacity: 0.9;
+            color: var(--txt-2);
             font-size: 1rem;
+            line-height: 1.5;
         }
 
         .legal-disclaimer {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 1rem;
+            background: linear-gradient(135deg, rgba(253,176,34,0.1), rgba(253,176,34,0.05));
+            border: 1px solid rgba(253,176,34,0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
             margin: 1rem;
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
-            color: #856404;
+            gap: 1rem;
+            color: var(--txt-1);
+            backdrop-filter: blur(10px);
         }
 
         .disclaimer-icon {
-            color: #f39c12;
-            font-size: 1.2rem;
+            color: var(--warning);
+            font-size: 1.5rem;
             margin-top: 0.1rem;
+            filter: drop-shadow(0 0 4px rgba(253,176,34,0.5));
+        }
+
+        .disclaimer-text {
+            flex: 1;
+        }
+
+        .disclaimer-text strong {
+            color: var(--warning);
+            font-weight: 700;
         }
 
         .expertise-areas {
             margin: 1rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            padding: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
         }
 
         .expertise-areas h3 {
-            margin-bottom: 1rem;
-            color: var(--asana-green-primary);
-            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--txt-1);
+            font-weight: 700;
+            font-size: 1.3rem;
         }
 
         .expertise-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1rem;
         }
 
         .expertise-card {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            background: var(--glass-2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--stroke);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .expertise-card:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--asana-green-primary);
+            background: var(--glass);
+            border-color: var(--accent-1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,224,174,0.15);
         }
 
         .expertise-card i {
-            font-size: 1.5rem;
-            color: var(--asana-green-primary);
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            color: var(--accent-1);
+            margin-bottom: 0.75rem;
+            display: block;
+            filter: drop-shadow(0 0 6px rgba(0,224,174,0.4));
         }
 
         .expertise-card h4 {
-            margin: 0.5rem 0;
-            color: var(--chat-text);
+            margin: 0.75rem 0 0.5rem 0;
+            color: var(--txt-1);
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .expertise-card p {
             margin: 0;
-            color: var(--chat-text-muted);
+            color: var(--txt-2);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .quick-actions {
             margin: 1rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            padding: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
         }
 
         .quick-actions h3 {
-            margin-bottom: 1rem;
-            color: var(--asana-green-primary);
-            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--txt-1);
+            font-weight: 700;
+            font-size: 1.3rem;
         }
 
         .action-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
         }
 
         .action-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--chat-text);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
+            background: var(--glass-2);
+            border: 1px solid var(--stroke);
+            color: var(--txt-1);
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: inherit;
         }
 
         .action-btn:hover {
-            background: var(--asana-green-primary);
-            border-color: var(--asana-green-primary);
-            color: white;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-color: var(--accent-1);
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,224,174,0.3);
+        }
+
+        .action-btn i {
+            font-size: 1.2rem;
         }
 
         .specialist-badge {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--asana-green-primary);
+            color: var(--accent-1);
             font-weight: 600;
             font-size: 0.9rem;
+        }
+
+        .specialist-badge i {
+            filter: drop-shadow(0 0 4px rgba(0,224,174,0.5));
         }
 
         .legal-footer {
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--stroke);
         }
 
         .legal-footer small {
-            color: #f39c12;
+            color: var(--warning);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.85rem;
         }
 
         .typing-indicator {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            border-radius: 12px;
             margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
         }
 
         .typing-dots {
             display: flex;
-            gap: 0.25rem;
+            gap: 0.4rem;
         }
 
         .typing-dots span {
-            width: 8px;
-            height: 8px;
-            background: var(--asana-green-primary);
+            width: 10px;
+            height: 10px;
+            background: var(--accent-1);
             border-radius: 50%;
             animation: typing 1.4s infinite ease-in-out;
+            box-shadow: 0 0 8px rgba(0,224,174,0.5);
         }
 
         .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
         .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
 
         @keyframes typing {
-            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-            40% { opacity: 1; transform: scale(1); }
+            0%, 80%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Message styling */
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, rgba(110,132,255,0.15), rgba(184,107,255,0.1));
+            border: 1px solid var(--stroke);
+            margin-left: 2rem;
+        }
+
+        .assistant-message {
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            margin-right: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .message-content {
+            color: var(--txt-1);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .timestamp {
+            color: var(--txt-2);
+            font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
@@ -498,6 +615,16 @@
             .specialist-header {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .specialist-icon {
+                font-size: 2.5rem;
+            }
+
+            .user-message,
+            .assistant-message {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
             }
         }
     </style>

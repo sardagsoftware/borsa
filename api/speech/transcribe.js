@@ -2,20 +2,24 @@
  * Azure Speech-to-Text Medical Transcription API
  * Real-time medical voice transcription with medical terminology
  * Supports 8 languages with medical vocabulary
- * White-Hat Security Implementation
  */
 
 const sdk = require('microsoft-cognitiveservices-speech-sdk');
 const multiparty = require('multiparty');
-const { handleCORS } = require('../../security/cors-config');
 
 // Azure Speech credentials
 const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
 const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION || 'eastus';
 
 module.exports = async (req, res) => {
-  // 🔒 SECURE CORS - Whitelist-based, NO WILDCARD
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -68,9 +72,12 @@ module.exports = async (req, res) => {
     const speechConfig = sdk.SpeechConfig.fromSubscription(AZURE_SPEECH_KEY, AZURE_SPEECH_REGION);
     speechConfig.speechRecognitionLanguage = speechLanguage;
 
+    // Enable medical phrase lists for better accuracy
+    const phraseList = sdk.PhraseListGrammar.fromRecognizer(recognizer);
+    addMedicalPhrases(phraseList, specialty);
+
     // Create audio config from file
-    const fs = require('fs');
-    const audioBuffer = fs.readFileSync(audioFile.path);
+    const audioBuffer = require('fs').readFileSync(audioFile.path);
     const pushStream = sdk.AudioInputStream.createPushStream();
     pushStream.write(audioBuffer);
     pushStream.close();
@@ -79,10 +86,6 @@ module.exports = async (req, res) => {
 
     // Create speech recognizer
     const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
-
-    // Enable medical phrase lists for better accuracy
-    const phraseList = sdk.PhraseListGrammar.fromRecognizer(recognizer);
-    addMedicalPhrases(phraseList, specialty);
 
     // Perform transcription
     const transcription = await new Promise((resolve, reject) => {
@@ -127,20 +130,15 @@ module.exports = async (req, res) => {
     // Get medical terminology corrections
     const correctedText = applyMedicalTerminology(transcription, specialty, language);
 
-    // Clean up temp file
-    const fs = require('fs');
-    fs.unlinkSync(audioFile.path);
-
     res.status(200).json({
       success: true,
-      text: correctedText || transcription,
       transcription: correctedText || transcription,
       originalTranscription: transcription,
       language: speechLanguage,
       specialty: specialty,
       medicalEntities: medicalEntities,
       confidence: 0.85,
-      duration: Math.round(audioFile.size / 16000), // Approximate duration in seconds
+      duration: audioFile.size / 16000, // Approximate duration in seconds (assuming 16kHz)
       timestamp: new Date().toISOString()
     });
 

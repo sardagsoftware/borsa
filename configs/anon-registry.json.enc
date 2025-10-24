@@ -1,0 +1,128 @@
+{
+  "$schema": "./anon-registry.schema.json",
+  "version": "1.0.0",
+  "encrypted": true,
+  "encryption": {
+    "algorithm": "AES-256-GCM",
+    "keyDerivation": "PBKDF2-SHA256",
+    "iterations": 100000,
+    "note": "Encryption key should be stored in ANON_REGISTRY_KEY env var"
+  },
+  "models": {
+    "m1": {
+      "id": "m1",
+      "hash": "a7f3c9d1e8b4f6a2",
+      "capabilities": ["text", "vision", "function-calling"],
+      "tier": "premium",
+      "context": 128000,
+      "cost_tier": 1
+    },
+    "m2": {
+      "id": "m2",
+      "hash": "b2e8d4c7a3f1e9b6",
+      "capabilities": ["text", "vision", "function-calling"],
+      "tier": "premium",
+      "context": 128000,
+      "cost_tier": 1
+    },
+    "m3": {
+      "id": "m3",
+      "hash": "c9a5e1d8f4b7c2a6",
+      "capabilities": ["text"],
+      "tier": "standard",
+      "context": 128000,
+      "cost_tier": 2
+    },
+    "m4": {
+      "id": "m4",
+      "hash": "d3f7b9e2a8c4d1f6",
+      "capabilities": ["text", "vision"],
+      "tier": "standard",
+      "context": 16000,
+      "cost_tier": 3
+    },
+    "m5": {
+      "id": "m5",
+      "hash": "e1b4d7c9f2a8e6b3",
+      "capabilities": ["text", "reasoning"],
+      "tier": "experimental",
+      "context": 64000,
+      "cost_tier": 1
+    },
+    "m6": {
+      "id": "m6",
+      "hash": "f8c2e5d1a9b7f4c6",
+      "capabilities": ["text", "vision", "multimodal"],
+      "tier": "experimental",
+      "context": 1000000,
+      "cost_tier": 0
+    },
+    "m7": {
+      "id": "m7",
+      "hash": "a2d9f5c8e1b4d7a6",
+      "capabilities": ["text", "fast"],
+      "tier": "basic",
+      "context": 8000,
+      "cost_tier": 4
+    },
+    "m8": {
+      "id": "m8",
+      "hash": "b7e3d1c9a5f2e8b4",
+      "capabilities": ["text"],
+      "tier": "basic",
+      "context": 4000,
+      "cost_tier": 5
+    }
+  },
+  "providers": {
+    "p1": {
+      "id": "p1",
+      "hash": "provider_a3f9c2e8",
+      "region": "us-east",
+      "fallback": "p2"
+    },
+    "p2": {
+      "id": "p2",
+      "hash": "provider_b7e1d4c9",
+      "region": "eu-west",
+      "fallback": "p3"
+    },
+    "p3": {
+      "id": "p3",
+      "hash": "provider_c9a5f1e8",
+      "region": "global",
+      "fallback": null
+    }
+  },
+  "mappings": {
+    "default": "m1",
+    "medical": "m1",
+    "legal": "m1",
+    "general": "m3",
+    "vision": "m2",
+    "coding": "m5",
+    "reasoning": "m5",
+    "experimental": "m6",
+    "fast": "m7",
+    "basic": "m8"
+  },
+  "costs": {
+    "m1": { "input": 2.50, "output": 10.00, "unit": "per_million_tokens" },
+    "m2": { "input": 2.50, "output": 10.00, "unit": "per_million_tokens" },
+    "m3": { "input": 0.15, "output": 0.60, "unit": "per_million_tokens" },
+    "m4": { "input": 0.50, "output": 1.50, "unit": "per_million_tokens" },
+    "m5": { "input": 3.00, "output": 15.00, "unit": "per_million_tokens" },
+    "m6": { "input": 0.00, "output": 0.00, "unit": "per_million_tokens" },
+    "m7": { "input": 0.05, "output": 0.15, "unit": "per_million_tokens" },
+    "m8": { "input": 0.10, "output": 0.30, "unit": "per_million_tokens" }
+  },
+  "metadata": {
+    "created": "2025-10-07",
+    "lastModified": "2025-10-07",
+    "note": "This registry maps public model IDs to internal implementations",
+    "security": "CONFIDENTIAL - Do not commit decryption key",
+    "usage": "Use ModelProviderAdapter to resolve model IDs at runtime"
+  },
+  "decryption_note": "To decrypt: node ops/tools/decrypt-registry.js --key=$ANON_REGISTRY_KEY",
+  "plaintext_mapping_note": "PRODUCTION: Replace this with actual encrypted blob. This plaintext version is for Phase 0 only."
+}

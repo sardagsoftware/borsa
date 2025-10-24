@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
+    "test:smoke": "playwright test --config=playwright.smoke.config.ts",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "dev": "PORT=3100 node server.js",

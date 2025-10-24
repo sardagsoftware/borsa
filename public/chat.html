@@ -42,44 +42,52 @@
 }
 
 :root {
-    /* ✨ CLEAN COLOR SYSTEM - Green & Orange Accents */
-    --accent-green: #10A37F;
-    --accent-green-bright: #13C896;
-    --accent-orange: #FF6B4A;
-    --accent-orange-bright: #FF8A6D;
+    /* Premium Neon Black Color System */
+    --bg-0: #0A0B0D;
+    --bg-1: #111214;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-2: rgba(255, 255, 255, 0.03);
+    --stroke: rgba(255, 255, 255, 0.08);
+    --txt-1: #FFFFFF;
+    --txt-2: #B0B0B0;
+    --accent-1: #00E0AE;  /* Neon green */
+    --accent-2: #6E84FF;  /* Electric blue */
+    --accent-3: #B86BFF;  /* Purple */
+    --warning: #FDB022;   /* Gold warning */
 
-    /* 🎨 CLEAN GRADIENTS */
-    --gradient-primary: linear-gradient(135deg, #10A37F 0%, #FF6B4A 100%);
-    --gradient-subtle: linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(255, 107, 74, 0.1) 100%);
-    --gradient-header: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+    /* Neon Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    --gradient-subtle: linear-gradient(135deg, rgba(0,224,174,0.1), rgba(110,132,255,0.1));
+    --gradient-accent: linear-gradient(135deg, rgba(0,224,174,0.15), rgba(110,132,255,0.15));
 
-    /* 🤍 WHITE BACKGROUND SYSTEM */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F9FAFB;
-    --bg-tertiary: #F3F4F6;
-    --bg-hover: #FFFFFF;
+    /* Background System */
+    --bg-primary: var(--bg-0);
+    --bg-secondary: var(--bg-1);
+    --bg-tertiary: var(--glass);
+    --bg-hover: var(--glass);
 
-    /* 📝 TEXT COLORS */
-    --text-primary: #1F2937;
-    --text-secondary: #4B5563;
-    --text-tertiary: #6B7280;
-    --text-muted: #9CA3AF;
+    /* Text Colors */
+    --text-primary: var(--txt-1);
+    --text-secondary: var(--txt-2);
+    --text-tertiary: #888888;
+    --text-muted: #666666;
 
-    /* 🌟 CLEAN SHADOWS */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-green: 0 4px 12px rgba(16, 163, 127, 0.15);
-    --shadow-orange: 0 4px 12px rgba(255, 107, 74, 0.15);
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+    /* Neon Shadows */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+    --shadow-base: 0 8px 24px rgba(0,0,0,0.4);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.5);
+    --shadow-lg: 0 16px 48px rgba(0,0,0,0.6);
+    --shadow-xl: 0 24px 64px rgba(0,0,0,0.7);
+    --shadow-green: 0 8px 24px rgba(0,224,174,0.3);
+    --shadow-orange: 0 8px 24px rgba(110,132,255,0.3);
+    --shadow-hover: 0 12px 32px rgba(0,224,174,0.25);
+    --shadow-neon: 0 0 20px rgba(0,224,174,0.5);
 
-    /* 🔲 CLEAN BORDERS */
-    --border-light: 1px solid #E5E7EB;
-    --border-medium: 1px solid #D1D5DB;
-    --border-green: 1px solid #10A37F;
-    --border-orange: 1px solid #FF6B4A;
+    /* Borders */
+    --border-light: 1px solid var(--stroke);
+    --border-medium: 1px solid rgba(255, 255, 255, 0.12);
+    --border-green: 1px solid var(--accent-1);
+    --border-orange: 1px solid var(--accent-2);
 }
 
 /* ============================================================
@@ -270,11 +278,14 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-    background: #1a1a1a;
-    color: #FFFFFF;
+    background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                var(--bg-0);
+    color: var(--txt-1);
     overflow: hidden;
     height: 100vh;
     position: relative;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -901,17 +912,17 @@ body {
     display: inline-block;
 }
 
-/* Prominent Header Buttons (Download & Share) - BLACK like neon icons */
+/* Prominent Header Buttons (Download & Share) - CYAN like neon icons */
 .header-btn-prominent {
     background: transparent;
-    border: 2px solid #000000;
-    color: #000000;
+    border: 2px solid #00E0AE;
+    color: #00E0AE;
     min-width: 110px;
 }
 
 .header-btn-prominent svg {
     fill: none;
-    stroke: #000000;
+    stroke: #00E0AE;
 }
 
 .header-btn-prominent:hover {
@@ -3048,6 +3059,9 @@ body {
 }
 
     </style>
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
     <!-- 🚀 MAIN CHAT CONTAINER -->

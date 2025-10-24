@@ -2,102 +2,57 @@ import { test, expect } from '@playwright/test';
 
 const BASE_URL = 'http://localhost:3100';
 
-// 🎯 Global timeout increase for better stability
-test.use({ timeout: 60000 }); // 60s per test
-
 test.describe('Landing (/) smoke', () => {
-  test('hero video + CTA görünüyor', async ({ page }) => {
+  test('üst navigasyon ve CTA öğeleri görünür', async ({ page }) => {
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
 
-    // Ensure page is fully loaded before checking h1
-    await page.waitForLoadState('domcontentloaded');
-
-    // Hero başlık kontrolü (LyDian branding) with explicit wait
-    await page.waitForSelector('h1', { state: 'visible', timeout: 30000 });
-    await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('h1')).toContainText('AI Platform');
-
-    // CTA butonları kontrolü (Turkish: "Ücretsiz Başlayın")
-    await expect(page.getByRole('link', { name: /ücretsiz başlayın/i })).toBeVisible();
-
-    // Pills were removed in LyDian redesign - test skipped
-    // await expect(page.locator('.pill')).toHaveCount(6);
+    await expect(page).toHaveTitle(/LyDian AI/i);
+    await expect(page.locator('.brand')).toHaveText(/LyDian/i);
+    await expect(page.locator('#live-search-input')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Şimdi Dene/i })).toBeVisible();
+    await expect(page.locator('#orbit-stage')).toHaveCount(1);
   });
 
-  test('Title Case normalizasyon çalışıyor', async ({ page }) => {
+  test('navigasyon öğeleri büyük harfle başlıyor', async ({ page }) => {
     await page.goto(BASE_URL);
 
-    // Footer linklerini kontrol et
-    const menuItems = await page.locator('[data-testid="menu-item"]').allInnerTexts();
-
-    // En az bir menü öğesi olmalı
+    const menuItems = await page.locator('nav[aria-label="Ana navigasyon"] .nav-link').allInnerTexts();
     expect(menuItems.length).toBeGreaterThan(0);
 
-    // İlk karakterlerin büyük harf veya sayı olup olmadığını kontrol et
-    for (const txt of menuItems) {
-      const firstChar = txt.trim()[0];
-      // ASCII büyük harf, Unicode büyük harf, veya sayı (örn: "3D", "24/7")
-      expect(firstChar).toMatch(/[A-ZÇĞİÖŞÜ0-9]/);
+    for (const item of menuItems) {
+      const trimmed = item.trim();
+      if (trimmed.length === 0) continue;
+      expect(trimmed[0]).toMatch(/[A-ZÇĞİÖŞÜ]/);
     }
   });
 });
 
 test.describe('Auth (/auth) smoke', () => {
-  test('form alanları ve butonlar - email step', async ({ page }) => {
+  test('form alanları ve butonlar', async ({ page }) => {
     await page.goto(`${BASE_URL}/auth.html`, { waitUntil: 'networkidle' });
-    await page.waitForLoadState('domcontentloaded');
 
-    // Wait for email input to be visible (increased timeout)
-    await page.waitForSelector('#email-input', { state: 'visible', timeout: 30000 });
-
-    // Email step form alanları kontrolü
-    await expect(page.getByLabel(/email/i)).toBeVisible();
-
-    // Butonlar kontrolü - email step
-    await expect(page.getByRole('button', { name: /devam et/i }).first()).toBeVisible();
-
-    // A11y kontrol - aria labels
-    const emailInput = page.getByLabel(/email/i);
-    await expect(emailInput).toHaveAttribute('aria-label', 'Email address');
+    const emailInput = page.getByPlaceholder('E-posta adresi');
+    await expect(emailInput).toBeVisible();
+    await expect(page.getByRole('button', { name: /Google ile devam et/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Microsoft Hesabı ile devam et/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Devam et/i }).first()).toBeVisible();
   });
 
-  test('multi-step form çalışıyor', async ({ page }) => {
-    await page.goto(`${BASE_URL}/auth.html`, { waitUntil: 'networkidle' });
-    await page.waitForLoadState('domcontentloaded');
-
-    // Wait for email input to be visible (increased timeout)
-    await page.waitForSelector('#email-input', { state: 'visible', timeout: 30000 });
-
-    // Step 1: Email girişi
-    await page.getByLabel(/email/i).fill('test@example.com');
-
-    // Directly trigger password step (bypassing API for E2E test)
-    await page.evaluate(() => {
-      // Simulate existing user by showing password step
-      const passwordStep = document.getElementById('password-step');
-      const emailDisplay = document.getElementById('user-email-display');
-
-      if (passwordStep) {
-        passwordStep.classList.remove('hidden');
-        if (emailDisplay) {
-          emailDisplay.textContent = 'test@example.com';
-        }
-      }
+  test('form submit çalışıyor', async ({ page }) => {
+    await page.route('**/api/auth/check-email', route => {
+      route.fulfill({
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ exists: true })
+      });
     });
 
-    // Step 2: Password step görünmeli
-    await expect(page.locator('#password-step')).toBeVisible({ timeout: 1000 });
+    await page.goto(`${BASE_URL}/auth.html`);
 
-    // Password input görünür olmalı
-    const passwordInput = page.getByLabel(/password/i);
-    await expect(passwordInput).toBeVisible();
-    await expect(passwordInput).toHaveAttribute('aria-label', 'Password');
+    await page.getByPlaceholder('E-posta adresi').fill('test@example.com');
+    await page.getByRole('button', { name: /^Devam et$/i }).first().click();
 
-    // Password girişi (test için)
-    await passwordInput.fill('password123');
-
-    // Note: We don't actually submit because that would require valid credentials
-    // This test verifies the multi-step UI flow works correctly
+    await expect(page.locator('#password-step')).toBeVisible({ timeout: 3000 });
   });
 });
 
@@ -105,79 +60,48 @@ test.describe('Chat (/chat) baseline', () => {
   test('history yüklenir ve shared_ hariçlenir', async ({ page }) => {
     await page.goto(`${BASE_URL}/chat.html`);
 
-    // Directly create history items in DOM (bypassing localStorage loading logic)
     await page.evaluate(() => {
-      const chatHistory = document.getElementById('chat-history');
-      if (chatHistory) {
-        // Create a visible history item
-        const historyItem = document.createElement('div');
-        historyItem.setAttribute('data-testid', 'chat-history-item');
-        historyItem.className = 'chat-history-item';
-        historyItem.textContent = 'Test Chat 1';
-        chatHistory.appendChild(historyItem);
-
-        // Verify shared_ items are NOT created
-        // (This simulates the filtering logic that should exist)
-      }
+      (window as any).addMessage('user', 'Test Chat 1');
+      (window as any).addMessage('assistant', 'Yanıt 1');
+      (window as any).saveCurrentChat();
     });
 
-    // History item kontrolü
-    const histItems = page.locator('[data-testid="chat-history-item"]');
+    const histItems = page.locator('.chat-item');
     await expect(histItems.first()).toBeVisible();
 
-    // "SHOULD_SKIP" metni olmamalı (we only created Test Chat 1)
-    const allText = await page.locator('#chat-history').textContent();
-    expect(allText).not.toContain('SHOULD_SKIP');
+    const allText = await page.locator('#chatHistory').textContent();
     expect(allText).toContain('Test Chat 1');
   });
 
   test('copyMessage ve regenerateMessage çalışır', async ({ page }) => {
-    await page.goto(`${BASE_URL}/chat.html`, { waitUntil: 'networkidle' });
-    await page.waitForLoadState('domcontentloaded');
+    await page.goto(`${BASE_URL}/chat.html`);
 
-    // Wait for messages container to be ready (increased timeout for stability)
-    await page.waitForSelector('#messagesContainer', { state: 'attached', timeout: 30000 });
-
-    // Directly create a message with copy/regenerate buttons in DOM
     await page.evaluate(() => {
-      const messagesContainer = document.getElementById('messagesContainer');
-      if (messagesContainer) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message assistant';
-        messageDiv.innerHTML = `
-          <div class="message-content">Hello World from Assistant</div>
-          <div class="message-actions">
-            <button class="copy-btn" role="button">Copy</button>
-            <button class="regenerate-btn" role="button">Regenerate</button>
-          </div>
-        `;
-        messagesContainer.appendChild(messageDiv);
+      if (!navigator.clipboard) {
+        (navigator as any).clipboard = {};
       }
+      navigator.clipboard.writeText = async () => {};
     });
 
-    // Wait for buttons to be created and visible
-    await page.waitForSelector('button[role="button"]', { state: 'visible', timeout: 5000 });
+    await page.evaluate(() => {
+      (window as any).addMessage('assistant', 'Hello World from Assistant');
+    });
 
-    // Copy butonunu bul ve tıkla
-    const copyBtn = page.getByRole('button', { name: /copy/i }).first();
+    const copyBtn = page.getByRole('button', { name: /Kopyala/i }).first();
     await expect(copyBtn).toBeVisible();
     await copyBtn.click();
 
-    // Note: Actual copy behavior depends on click handler being attached
-    // This test verifies the buttons exist and are clickable
+    await expect(copyBtn).toContainText('Kopyalandı!', { timeout: 500 });
 
-    // Regenerate butonunu bul
-    const regenBtn = page.getByRole('button', { name: /regenerate/i });
+    const regenBtn = page.getByRole('button', { name: /Yeniden Oluştur/i });
     await expect(regenBtn).toBeVisible();
   });
 
   test('menü ve başlıklar Title Case', async ({ page }) => {
     await page.goto(`${BASE_URL}/chat.html`);
-    
-    // Menü öğelerini al
-    const menuItems = await page.locator('[data-testid="menu-item"]').allInnerTexts();
-    
-    // Her bir menü öğesinin ilk harfi büyük olmalı
+
+    const menuItems = await page.locator('.user-dropdown .dropdown-item').allInnerTexts();
+
     for (const txt of menuItems) {
       const trimmed = txt.trim();
       if (trimmed.length > 0) {
@@ -187,29 +111,23 @@ test.describe('Chat (/chat) baseline', () => {
   });
 
   test('typing indicator animasyonu', async ({ page }) => {
-    // Simplified test: Just verify typing indicator CSS exists
-    await page.goto(`${BASE_URL}/chat.html`, { waitUntil: 'domcontentloaded' });
-
-    // Check if typing indicator CSS is present in the page
-    const hasTypingCSS = await page.evaluate(() => {
-      // Check if .typing-indicator class is defined in stylesheets
-      for (const sheet of Array.from(document.styleSheets)) {
-        try {
-          const rules = Array.from(sheet.cssRules || sheet.rules || []);
-          const hasTypingClass = rules.some((rule: any) =>
-            rule.selectorText && rule.selectorText.includes('.typing-indicator')
-          );
-          if (hasTypingClass) return true;
-        } catch (e) {
-          // Skip cross-origin stylesheets
-          continue;
-        }
-      }
-      return false;
+    await page.route('**/api/chat', async route => {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      route.fulfill({
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ success: true, response: 'Test yanıtı', usage: { completion_tokens: 32 } })
+      });
     });
 
-    // Just verify the CSS exists - actual animation testing requires full chat session
-    expect(hasTypingCSS).toBe(true);
+    await page.goto(`${BASE_URL}/chat.html`);
+
+    await page.fill('#messageInput', 'Test message');
+    await page.click('#sendBtn');
+
+    const typing = page.locator('#typingIndicator');
+    await expect(typing).toBeVisible();
+    await expect(typing).toBeHidden({ timeout: 4000 });
   });
 });
 
@@ -224,19 +142,11 @@ test.describe('Performance & A11y', () => {
   });
 
   test('Tüm sayfalar yüklenebilir', async ({ page }) => {
-    test.setTimeout(60000); // 60 seconds for loading multiple pages
-
     const pages = ['/', '/auth.html', '/chat.html'];
-
+    
     for (const path of pages) {
-      const response = await page.goto(`${BASE_URL}${path}`, { waitUntil: 'domcontentloaded', timeout: 15000 });
-
-      // Accept both 200 OK and 429 Rate Limit (test is running too fast)
-      const status = response?.status();
-      expect(status === 200 || status === 429).toBe(true);
-
-      // Add delay between page loads to avoid rate limiting
-      await page.waitForTimeout(1000); // 1 second delay
+      const response = await page.goto(`${BASE_URL}${path}`);
+      expect(response?.status()).toBe(200);
     }
   });
 });

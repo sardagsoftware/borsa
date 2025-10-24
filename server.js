@@ -2691,6 +2691,11 @@ app.get('/api/docs', (req, res) => {
   });
 });
 
+// 🌌 QUANTUM COMPUTING APIs
+app.post('/api/quantum/vqe', require('./api/quantum/vqe'));
+app.get('/api/quantum/stats', require('./api/quantum/stats'));
+app.post('/api/medical/quantum-analysis', require('./api/medical/quantum-analysis'));
+
 // AI Models API
 app.get('/api/models', (req, res) => {
   res.json({

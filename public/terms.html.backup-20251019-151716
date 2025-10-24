@@ -1,0 +1,829 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Kullanım Koşulları - Platformumuzun kullanım şartları ve yasal bilgiler">
+    <title>Terms of Service - LyDian | User Agreement & Policies</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2.25rem;
+            font-weight: 700 !important;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .hero-meta {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        /* CONTENT */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem 8rem;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .toc {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc a:hover,
+        .toc a.active {
+            color: var(--primary);
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            max-width: 800px;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-right: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin: 2rem 0 1rem;
+        }
+
+        .section-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .section-content li {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.1), rgba(255, 107, 74, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+            border-left: 4px solid #EF4444;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .warning-box strong {
+            color: #EF4444;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2rem;
+            font-weight: 700 !important;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em !important;
+            line-height: 1.7;
+            color: var(--gray-500);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">                <picture>
+                  <source srcset="/lydian-logo.avif" type="image/avif">
+                  <source srcset="/lydian-logo.webp" type="image/webp">
+                  <img src="/lydian-logo.png" alt="LyDian Logo" loading="lazy">
+                </picture>LyDian</a>
+            <ul class="nav-links">
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/docs.html">Dokümantasyon</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+                <li><a href="/developers.html">Geliştiriciler</a></li>
+            </ul>
+            <div><a href="/chat.html" class="btn">Başlayın</a></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Kullanım Koşulları</h1>
+            <p class="hero-description">
+                LyDian platformunu kullanarak bu koşulları kabul etmiş sayılırsınız.
+            </p>
+            <div class="hero-meta">Son Güncelleme: 1 Ocak 2025</div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="content-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-title">İçindekiler</div>
+            <ul class="toc">
+                <li><a href="#section-1">1. Kabul ve Onay</a></li>
+                <li><a href="#section-2">2. Hesap Oluşturma</a></li>
+                <li><a href="#section-3">3. Hizmet Kullanımı</a></li>
+                <li><a href="#section-4">4. Fikri Mülkiyet</a></li>
+                <li><a href="#section-5">5. Gizlilik</a></li>
+                <li><a href="#section-6">6. Ücretlendirme</a></li>
+                <li><a href="#section-7">7. Sorumluluk Sınırı</a></li>
+                <li><a href="#section-8">8. Hesap Sonlandırma</a></li>
+                <li><a href="#section-9">9. Değişiklikler</a></li>
+                <li><a href="#section-10">10. İletişim</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <section id="section-1" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">1</span>
+                    Kabul ve Onay
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Bu Kullanım Koşulları ("Koşullar"), LyDian AI platformunu ("Hizmet", "Platform")
+                        kullanımınızı düzenler. Platformu kullanarak bu koşulları tamamen okuduğunuzu,
+                        anladığınızı ve kabul ettiğinizi beyan edersiniz.
+                    </p>
+                    <p>
+                        Bu koşulları kabul etmiyorsanız, lütfen platformu kullanmayınız. Platformun
+                        herhangi bir özelliğini kullanmanız, bu koşulları kabul ettiğiniz anlamına gelir.
+                    </p>
+                    <div class="highlight-box">
+                        <strong>Önemli Bilgi</strong>
+                        Bu koşullar zaman zaman güncellenebilir. Önemli değişiklikler için size bildirim
+                        gönderilecektir. Güncellemelerden sonra platformu kullanmaya devam etmeniz,
+                        yeni koşulları kabul ettiğiniz anlamına gelir.
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-2" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">2</span>
+                    Hesap Oluşturma
+                </h2>
+                <div class="section-content">
+                    <h3>Hesap Bilgileri</h3>
+                    <p>
+                        Platform hizmetlerini kullanmak için hesap oluşturmanız gerekebilir.
+                        Hesap oluştururken doğru, güncel ve eksiksiz bilgi vermeyi kabul edersiniz.
+                    </p>
+
+                    <h3>Yaş Gereksinimleri</h3>
+                    <ul>
+                        <li>13 yaş altı kullanıcılar için platform kullanımı yasaktır</li>
+                        <li>13-18 yaş arası kullanıcılar ebeveyn veya vasi izni ile kullanabilir</li>
+                        <li>18 yaş üstü kullanıcılar tam yetki ile kullanabilir</li>
+                    </ul>
+
+                    <h3>Hesap Güvenliği</h3>
+                    <p>
+                        Hesap bilgilerinizin güvenliğinden siz sorumlusunuz. Şifrenizi güvenli tutmayı
+                        ve yetkisiz erişimi derhal bildirmeyi kabul edersiniz. Hesabınız üzerinden
+                        gerçekleştirilen tüm aktivitelerden sorumlusunuz.
+                    </p>
+
+                    <div class="warning-box">
+                        <strong>Güvenlik Uyarısı</strong>
+                        Şifrenizi asla başkalarıyla paylaşmayın. LyDian çalışanları hiçbir zaman
+                        sizden şifrenizi istemez.
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-3" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">3</span>
+                    Hizmet Kullanımı
+                </h2>
+                <div class="section-content">
+                    <h3>İzin Verilen Kullanım</h3>
+                    <ul>
+                        <li>Kişisel ve ticari amaçlı AI asistan hizmetleri</li>
+                        <li>Metin, görsel ve ses içerik analizi</li>
+                        <li>Araştırma ve eğitim amaçlı kullanım</li>
+                        <li>Yaratıcı içerik ve proje geliştirme</li>
+                        <li>Veri analizi ve raporlama</li>
+                    </ul>
+
+                    <h3>Yasaklanan Kullanım</h3>
+                    <ul>
+                        <li>Yasadışı aktiviteler veya yasaları ihlal eden içerik</li>
+                        <li>Zararlı, tehdit edici veya taciz edici içerik</li>
+                        <li>Telif hakkı korumalı içeriğin izinsiz kullanımı</li>
+                        <li>Yanıltıcı bilgi veya dezenformasyon üretimi</li>
+                        <li>Spam, phishing veya kötü amaçlı yazılım dağıtımı</li>
+                        <li>Başkalarının gizliliğini ihlal edici kullanım</li>
+                        <li>Sistemin güvenliğini tehdit edici aktiviteler</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>Önemli Kısıtlama</strong>
+                        LyDian tıbbi, hukuki veya finansal profesyonel tavsiye sağlamaz.
+                        Bu alanlarda profesyonel danışmanlık almanız gerekir.
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-4" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">4</span>
+                    Fikri Mülkiyet
+                </h2>
+                <div class="section-content">
+                    <h3>Platform Hakları</h3>
+                    <p>
+                        LyDian platformu, tasarımı, kaynak kodu, algoritmalar ve marka unsurları
+                        bizim fikri mülkiyetimizdir ve telif hakkı yasaları ile korunmaktadır.
+                    </p>
+
+                    <h3>Kullanıcı İçeriği</h3>
+                    <p>
+                        Platforma yüklediğiniz veya girdiğiniz içeriğin fikri mülkiyet hakları
+                        size aittir. Ancak platformu kullanmanız için gerekli sınırlı lisansı
+                        bize vermiş olursunuz.
+                    </p>
+
+                    <h3>AI Üretimi İçerik</h3>
+                    <p>
+                        AI tarafından üretilen içeriğin kullanımı konusunda dikkatli olunması
+                        önerilir. Ticari kullanım öncesi hukuki danışmanlık alınması tavsiye edilir.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-5" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">5</span>
+                    Gizlilik
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Kişisel verilerinizin toplanması, kullanılması ve korunması hakkında
+                        detaylı bilgi için <a href="/privacy.html" style="color: var(--primary); text-decoration: none;">Gizlilik Politikamızı</a>
+                        inceleyiniz.
+                    </p>
+                    <p>
+                        Platformu kullanarak, Gizlilik Politikamızda açıklanan şekilde
+                        verilerinizin işlenmesini kabul etmiş olursunuz.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-6" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">6</span>
+                    Ücretlendirme
+                </h2>
+                <div class="section-content">
+                    <h3>Ücretsiz Hizmetler</h3>
+                    <p>
+                        Temel AI asistan hizmetleri sınırlı kullanım ile ücretsiz sunulur.
+                        Kullanım limitleri aylık olarak sıfırlanır.
+                    </p>
+
+                    <h3>Ücretli Abonelikler</h3>
+                    <p>
+                        Premium özelliklere erişim için ücretli abonelik planları mevcuttur.
+                        Ödemeler aylık veya yıllık olarak yapılabilir. İptal işlemi 24 saat
+                        önceden yapılmalıdır.
+                    </p>
+
+                    <h3>İade Politikası</h3>
+                    <p>
+                        Hizmetin başladığı tarihten itibaren 14 gün içinde iade talep edebilirsiniz.
+                        Kullanılan hizmet miktarı düşüldükten sonra kalan tutar iade edilir.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-7" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">7</span>
+                    Sorumluluk Sınırı
+                </h2>
+                <div class="section-content">
+                    <h3>Hizmet Sürekliliği</h3>
+                    <p>
+                        Platformun kesintisiz çalışacağını garanti etmiyoruz. Bakım, güncelleme
+                        veya teknik sorunlar nedeniyle hizmet kesintileri yaşanabilir.
+                    </p>
+
+                    <h3>İçerik Doğruluğu</h3>
+                    <p>
+                        AI tarafından üretilen yanıtların doğruluğunu garanti etmiyoruz.
+                        Önemli kararlar almadan önce bilgileri doğrulamanız önerilir.
+                    </p>
+
+                    <h3>Zarar Sorumluluğu</h3>
+                    <ul>
+                        <li>Direkt, dolaylı veya özel zararlardan sorumlu değiliz</li>
+                        <li>Veri kaybı, iş kaybı veya kâr kaybından sorumlu değiliz</li>
+                        <li>Sorumluluğumuz ödenen ücret miktarı ile sınırlıdır</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-8" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">8</span>
+                    Hesap Sonlandırma
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Kullanım koşullarının ihlali durumunda hesabınızı askıya alabilir veya
+                        sonlandırabiliriz. Hesap sonlandırma durumunda verileriniz 30 gün içinde silinir.
+                    </p>
+                    <p>
+                        Hesabınızı istediğiniz zaman kapatabilirsiniz. Hesap kapatma öncesinde
+                        verilerinizi yedeklemeniz önerilir.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-9" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">9</span>
+                    Değişiklikler
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Bu kullanım koşullarını zaman zaman güncelleyebiliriz. Önemli değişiklikler
+                        için 30 gün önceden bildirim yaparız. Güncellenmiş koşullar yürürlüğe
+                        girdiğinde platformu kullanmaya devam ederek yeni koşulları kabul etmiş sayılırsınız.
+                    </p>
+                </div>
+            </section>
+
+            <section id="section-10" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">10</span>
+                    İletişim
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Bu kullanım koşulları hakkında sorularınız varsa bizimle iletişime geçebilirsiniz:
+                    </p>
+                    <ul>
+                        <li>E-posta: legal@lydian.ai</li>
+                        <li>Adres: İstanbul, Türkiye</li>
+                        <li>Web: lydian.ai/contact</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <strong>Yasal Bilgilendirme</strong>
+                        Bu koşullar Türkiye Cumhuriyeti hukukuna tabidir. Uyuşmazlıklar
+                        İstanbul mahkemelerinde çözülür.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <p class="footer-description">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ürünler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
+                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+                        <li><a href="/video-ai.html">Video AI</a></li>
+                        <li><a href="/api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Geliştiriciler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/developers.html">Developer Portal</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                        <li><a href="/docs.html">Dokümantasyon</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Şirket</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html">Hakkımızda</a></li>
+                        <li><a href="/careers.html">Kariyer</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Yasal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/privacy.html">Gizlilik</a></li>
+                        <li><a href="/terms.html">Koşullar</a></li>
+                        <li><a href="/cookies.html">Çerezler</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Gizlilik Politikası</a>
+                    <a href="/terms.html">Kullanım Koşulları</a>
+                    <a href="/cookies.html">Çerezler</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active TOC highlighting
+        const sections = document.querySelectorAll('.section');
+        const tocLinks = document.querySelectorAll('.toc a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+
+    <!-- 🌍 LyDian i18n System - Auto-integrated -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+    </script>
+
+</body>
+</html>

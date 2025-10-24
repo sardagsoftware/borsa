@@ -2,7 +2,6 @@
 // Hidden AI - Maximum Capabilities
 
 const { GoogleAuth } = require('google-auth-library');
-const { handleCORS } = require('../security/cors-config');
 
 // Vertex AI Configuration (Hidden from user)
 const VERTEX_CONFIG = {
@@ -30,8 +29,11 @@ async function getAccessToken() {
 
 module.exports = async (req, res) => {
   // CORS
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {

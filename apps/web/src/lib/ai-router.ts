@@ -4,7 +4,8 @@ import {
   GeminiAdapter,
   MistralAdapter,
   ZhipuAdapter,
-  YiAdapter
+  YiAdapter,
+  ZaiAdapter
 } from '@ailydian/ai-adapters';
 import { IntelligentRouter } from '@ailydian/ai-routing';
 
@@ -46,6 +47,11 @@ export function getIntelligentRouter(): IntelligentRouter {
     if (process.env.ZHIPU_API_KEY) {
       const zhipuAdapter = new ZhipuAdapter(process.env.ZHIPU_API_KEY);
       router.registerAdapter(zhipuAdapter);
+    }
+
+    if (process.env.Z_AI_API_KEY) {
+      const zaiAdapter = new ZaiAdapter(process.env.Z_AI_API_KEY);
+      router.registerAdapter(zaiAdapter);
     }
 
     if (process.env.YI_API_KEY) {

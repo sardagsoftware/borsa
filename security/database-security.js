@@ -75,30 +75,47 @@ class DatabaseSecurity {
         return true;
     }
 
-    // Data encryption for sensitive fields
-    // 🔒 SECURITY FIX: Use createCipheriv instead of deprecated createCipher
+    // Data encryption for sensitive fields (CRITICAL FIX: AES-256-GCM)
     encryptSensitiveData(data) {
         if (!data) return data;
 
-        const iv = crypto.randomBytes(16);
-        const cipher = crypto.createCipheriv(this.encryptionAlgorithm, this.encryptionKey, iv);
+        try {
+            const iv = crypto.randomBytes(16);
+            // ✅ FIXED: Modern AES-256-GCM with authenticated encryption
+            const cipher = crypto.createCipheriv('aes-256-gcm', this.encryptionKey, iv);
 
-        let encrypted = cipher.update(JSON.stringify(data), 'utf8', 'hex');
-        encrypted += cipher.final('hex');
+            let encrypted = cipher.update(JSON.stringify(data), 'utf8', 'hex');
+            encrypted += cipher.final('hex');
 
-        return {
-            encrypted,
-            iv: iv.toString('hex'),
-            algorithm: this.encryptionAlgorithm
-        };
+            // Get authentication tag for integrity verification
+            const authTag = cipher.getAuthTag();
+
+            return {
+                encrypted,
+                iv: iv.toString('hex'),
+                authTag: authTag.toString('hex')
+            };
+        } catch (error) {
+            console.error('❌ Failed to encrypt data:', error);
+            throw error;
+        }
     }
 
     decryptSensitiveData(encryptedData) {
-        if (!encryptedData || !encryptedData.encrypted || !encryptedData.iv) return null;
+        if (!encryptedData || !encryptedData.encrypted) return null;
 
         try {
-            const iv = Buffer.from(encryptedData.iv, 'hex');
-            const decipher = crypto.createDecipheriv(this.encryptionAlgorithm, this.encryptionKey, iv);
+            // ✅ FIXED: Modern AES-256-GCM decryption with authentication
+            const decipher = crypto.createDecipheriv(
+                'aes-256-gcm',
+                this.encryptionKey,
+                Buffer.from(encryptedData.iv, 'hex')
+            );
+
+            // Set authentication tag for integrity verification
+            if (encryptedData.authTag) {
+                decipher.setAuthTag(Buffer.from(encryptedData.authTag, 'hex'));
+            }
 
             let decrypted = decipher.update(encryptedData.encrypted, 'hex', 'utf8');
             decrypted += decipher.final('utf8');

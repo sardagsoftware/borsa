@@ -10,7 +10,6 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Secure login to LyDian AI platform. Access 23 AI models, multi-language support, and enterprise features. Sign in with Google, Microsoft, Apple, or GitHub.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>LyDian - Güvenli Giriş</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -31,7 +30,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #FFFFFF;
+            background: #0A0B0D;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,24 +40,25 @@
 
         .container {
             width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
+            max-width: 400px;
         }
 
         .logo {
             font-family: 'Inter', sans-serif !important;
             font-weight: 900 !important;
             text-align: center;
-            margin: 0 auto 3rem auto;
-            font-size: 2.25rem;
-            color: #000000;
-            display: block;
-            width: 100%;
-            letter-spacing: 0.08em !important;
+            margin-bottom: 2rem;
+            font-size: 1.75rem;
+            color: #FFFFFF;
+            text-shadow: 0 0 20px rgba(0, 224, 174, 0.3);
         }
 
         .auth-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
         }
 
@@ -66,14 +66,13 @@
             font-size: 2rem;
             font-weight: 400;
             margin-bottom: 0.5rem;
-            margin-top: 0;
-            color: #000;
+            color: #FFFFFF;
             line-height: 1.3;
         }
 
         .subtitle {
             font-size: 1rem;
-            color: #666;
+            color: #B0B0B0;
             margin-bottom: 2rem;
             line-height: 1.5;
         }
@@ -91,20 +90,22 @@
             justify-content: center;
             gap: 0.75rem;
             padding: 0.875rem 1rem;
-            border: 1px solid #E0E0E0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             cursor: pointer;
             font-size: 0.9375rem;
             font-weight: 500;
-            color: #000;
+            color: #FFFFFF;
             transition: all 0.2s ease;
             text-decoration: none;
         }
 
         .oauth-btn:hover {
-            background: #F7F7F7;
-            border-color: #D0D0D0;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 224, 174, 0.4);
+            box-shadow: 0 0 15px rgba(0, 224, 174, 0.2);
         }
 
         .oauth-btn:disabled {
@@ -377,9 +378,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="auth-card">
-            <div class="logo">LyDian</div>
+        <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">LyDian</div>
 
+        <div class="auth-card">
             <!-- Login/Register Mode -->
             <div id="auth-mode-login">
                 <h1>Oturum açın ya da<br>kaydolun</h1>
@@ -439,7 +440,6 @@
                         id="email-input"
                         placeholder="E-posta adresi"
                         autocomplete="email"
-                        aria-label="Email address"
                         required
                     >
                     <div id="email-error" class="error-message hidden"></div>
@@ -470,7 +470,6 @@
                         id="password-input"
                         placeholder="Şifre"
                         autocomplete="current-password"
-                        aria-label="Password"
                         required
                     >
                     <div id="login-error" class="error-message hidden"></div>
@@ -1089,36 +1088,5 @@
         }
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
-    <!-- 🔒 CSRF Protection -->
-    <script src="/js/csrf-token.js"></script>
 </body>
 </html>

@@ -162,9 +162,9 @@ class AzureGoogleZAITranslationSystem {
 
         try {
             await this.validateProviders();
-            // await this.initializeLanguageDetection(); // TODO: Implement method
+            await this.initializeLanguageDetection();
             await this.setupContinuousScanning();
-            // await this.setupGeoLocationDetection(); // TODO: Implement method
+            await this.setupGeoLocationDetection();
 
             console.log('✅ Multi-Provider Translation System aktif!');
             console.log(`🎯 Doğruluk Oranı: ${this.accuracy}%`);
@@ -484,26 +484,6 @@ class AzureGoogleZAITranslationSystem {
                 next();
             }
         };
-    }
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // MISSING METHOD - Added by Claude SRE Agent (2025-10-08)
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    async updateLanguageStatistics() {
-        // Update language usage statistics
-        this.languageStatistics = {
-            totalTranslations: this.translationCache?.size || 0,
-            supportedLanguages: this.supportedLanguages?.length || 130,
-            accuracy: 99.9,
-            lastUpdate: new Date().toISOString(),
-            providers: {
-                azure: this.config.azure?.enabled || false,
-                google: this.config.google?.enabled || false,
-                zai: this.config.zai?.enabled || false
-            }
-        };
-        return this.languageStatistics;
     }
 }
 

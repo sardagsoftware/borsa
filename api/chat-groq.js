@@ -3,7 +3,6 @@
 
 require('dotenv').config();
 const OpenAI = require('openai');
-const { handleCORS } = require('../middleware/cors-handler');
 
 // Groq Configuration
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -56,8 +55,13 @@ function checkRateLimit(userId = 'anonymous') {
 }
 
 async function handleRequest(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({

@@ -27,10 +27,14 @@ const ROLES = {
 };
 
 /**
- * JWT secret key (in production, use environment variable)
+ * JWT secret key - validated by middleware/security.js
  * For RS256, this should be a private/public key pair
  */
-const JWT_SECRET = process.env.JWT_SECRET || 'ailydian-ace-secret-key-change-in-production';
+if (!process.env.JWT_SECRET) {
+  throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+}
+
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_ALGORITHM = process.env.JWT_ALGORITHM || 'HS256'; // HS256 for symmetric, RS256 for asymmetric
 
 /**

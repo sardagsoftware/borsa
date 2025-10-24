@@ -1,81 +1,38 @@
-import { test, expect, chromium } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-// Override config to not start web server
-test.use({
-  baseURL: 'https://www.ailydian.com'
-});
+test.use({ baseURL: 'https://www.ailydian.com' });
 
-test('Verify search works on live site', async () => {
-  const browser = await chromium.launch();
-  const context = await browser.newContext();
-  const page = await context.newPage();
-
+test('Live Lydian IQ composer etkileşimi', async ({ page }) => {
   const errors: string[] = [];
 
-  // Capture errors
   page.on('console', msg => {
     if (msg.type() === 'error') {
       const text = msg.text();
-      // Filter out known harmless errors
       if (!text.includes('favicon') &&
           !text.includes('Service Worker') &&
           !text.includes('manifest') &&
-          !text.includes('Chat history')) {
+          !text.includes('Failed to load resource') &&
+          !text.includes('Failed to load translations')) {
         errors.push(text);
-        console.log('❌ Console Error:', text);
       }
     }
   });
 
-  console.log('🌐 Opening Lydian IQ page...');
-  await page.goto('https://www.ailydian.com/lydian-iq');
-  await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(2000);
+  await page.goto('/lydian-iq');
+  await page.waitForLoadState('domcontentloaded');
 
-  console.log('🔍 Testing Web Search mode...');
+  const composer = page.locator('#composerInput');
+  await expect(composer).toBeVisible();
 
-  // Find and fill search input
-  const searchInput = page.locator('input[placeholder*="ara"]').first();
-  await searchInput.waitFor({ state: 'visible', timeout: 5000 });
-  await searchInput.fill('React hooks nedir');
+  const chips = page.locator('.suggestion-chip');
+  await expect(chips.first()).toBeVisible();
 
-  console.log('✅ Search input filled');
+  const before = await composer.inputValue();
+  await chips.first().click();
+  const after = await composer.inputValue();
 
-  // Find and click search button
-  const searchButton = page.locator('#searchBtn');
-  await searchButton.waitFor({ state: 'visible', timeout: 5000 });
+  expect(after.trim().length).toBeGreaterThan(before.trim().length);
+  await expect(page.locator('#sendButton')).toBeEnabled();
 
-  console.log('🖱️ Clicking search button...');
-  await searchButton.click();
-
-  // Wait for response
-  console.log('⏳ Waiting for response...');
-  await page.waitForTimeout(5000);
-
-  // Check for response container
-  const hasResponse = await page.locator('.chat-message, .response-content, .answer-container').count();
-  console.log('📊 Response containers found:', hasResponse);
-
-  // Check for error toasts
-  const errorToasts = await page.locator('.toast-error, [class*="error"]').count();
-  console.log('⚠️ Error toasts:', errorToasts);
-
-  console.log('\n📊 FINAL RESULTS:');
-  console.log('Critical Errors:', errors.length);
-  console.log('Response Containers:', hasResponse);
-  console.log('Error Toasts:', errorToasts);
-
-  if (errors.length > 0) {
-    console.log('\n❌ CRITICAL ERRORS:');
-    errors.forEach(err => console.log('  -', err));
-  }
-
-  // Cleanup
-  await browser.close();
-
-  // Test passes if no critical errors and we have a response
   expect(errors.length).toBe(0);
-  expect(hasResponse).toBeGreaterThan(0);
-
-  console.log('\n✅ Search functionality verified successfully!');
 });

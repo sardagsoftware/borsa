@@ -5,9 +5,7 @@
  */
 
 const fs = require('fs');
-const { handleCORS } = require('../security/cors-config');
 const path = require('path');
-const { handleCORS } = require('../security/cors-config');
 
 // Load environment variables manually
 const envPath = path.join(__dirname, '../.env');
@@ -69,8 +67,13 @@ const RATE_LIMIT_MAX_REQUESTS = 60;
 async function handleTranslate(req, res) {
     try {
         // CORS headers for browser requests - MUST BE FIRST
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader('Access-Control-Max-Age', '86400');
+
+        // Handle preflight
+        if (req.method === 'OPTIONS') {
             res.statusCode = 204;
             res.end();
             return;
@@ -286,5 +289,71 @@ function isRateLimited(clientIP) {
  * Health check endpoint
  */
 async function handleHealth(req, res) {
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json');
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({
+        status: 'healthy',
+        service: 'AiLydian Translation API',
+        version: '1.0.0',
+        supportedLanguages: Object.keys(SUPPORTED_LANGUAGES),
+        cacheSize: translationCache.size,
+        timestamp: new Date().toISOString()
+    }));
+}
+
+/**
+ * Vercel serverless function export
+ */
+module.exports = async (req, res) => {
+    // Route handling
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const pathname = url.pathname;
+
+    if (pathname === '/api/translate' || pathname === '/translate') {
+        return handleTranslate(req, res);
+    } else if (pathname === '/api/translate/health' || pathname === '/translate/health') {
+        return handleHealth(req, res);
+    } else {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({
+            error: 'Not found',
+            message: 'Endpoint not found'
+        }));
+    }
+};
+
+// For local testing
+if (require.main === module) {
+    const http = require('http');
+    const PORT = process.env.PORT || 3100;
+
+    const server = http.createServer(async (req, res) => {
+        // Parse body for POST requests
+        if (req.method === 'POST') {
+            let body = '';
+            req.on('data', chunk => {
+                body += chunk.toString();
+            });
+            req.on('end', async () => {
+                try {
+                    req.body = JSON.parse(body);
+                } catch (e) {
+                    req.body = {};
+                }
+                await module.exports(req, res);
+            });
+        } else {
+            req.body = {};
+            await module.exports(req, res);
+        }
+    });
+
+    server.listen(PORT, () => {
+        console.log(`🌍 Translation API server running on http://localhost:${PORT}`);
+        console.log(`📍 Endpoint: POST http://localhost:${PORT}/api/translate`);
+        console.log(`💚 Health check: GET http://localhost:${PORT}/api/translate/health`);
+    });
+}

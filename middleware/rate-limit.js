@@ -476,13 +476,11 @@ function setupRateLimiting(app) {
   console.log('\n🚦 Initializing Rate Limiting...');
   console.log(`   Storage: ${useRedis ? 'Redis (distributed)' : 'Memory (single-instance)'}`);
 
-  // Skip rate limiting in development mode for easier testing (unless explicitly enabled for E2E tests)
+  // Skip rate limiting in development mode for easier testing
   const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-  const enableForTesting = process.env.ENABLE_RATE_LIMITING === 'true';
 
-  if (isDevelopment && !enableForTesting) {
+  if (isDevelopment) {
     console.log('⚠️  Rate limiting DISABLED (development mode)');
-    console.log('   💡 To enable for E2E tests: ENABLE_RATE_LIMITING=true');
     return;
   }
 

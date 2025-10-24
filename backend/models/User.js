@@ -16,72 +16,6 @@ const SALT_ROUNDS = 12;
 
 class User {
   /**
-   * Validate password strength (Beyaz Şapkalı Security)
-   * @param {string} password - Password to validate
-   * @returns {Object} - { valid: boolean, errors: string[] }
-   */
-  static validatePasswordStrength(password) {
-    const errors = [];
-
-    // Minimum length check
-    if (password.length < 8) {
-      errors.push('Password must be at least 8 characters long');
-    }
-
-    // Maximum length check (prevent DoS attacks)
-    if (password.length > 128) {
-      errors.push('Password must not exceed 128 characters');
-    }
-
-    // Uppercase letter check
-    if (!/[A-Z]/.test(password)) {
-      errors.push('Password must contain at least one uppercase letter');
-    }
-
-    // Lowercase letter check
-    if (!/[a-z]/.test(password)) {
-      errors.push('Password must contain at least one lowercase letter');
-    }
-
-    // Number check
-    if (!/[0-9]/.test(password)) {
-      errors.push('Password must contain at least one number');
-    }
-
-    // Special character check
-    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
-      errors.push('Password must contain at least one special character');
-    }
-
-    // Common password check (basic list - expand in production)
-    const commonPasswords = [
-      'password', 'password123', '12345678', 'qwerty', 'abc123',
-      'password1', '111111', '123123', 'admin', 'letmein',
-      'welcome', 'monkey', 'dragon', 'master', 'sunshine',
-      'princess', 'football', 'shadow', 'iloveyou', '123456789'
-    ];
-
-    if (commonPasswords.includes(password.toLowerCase())) {
-      errors.push('Password is too common. Please choose a stronger password');
-    }
-
-    // Sequential characters check
-    if (/(?:abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|012|123|234|345|456|567|678|789)/i.test(password)) {
-      errors.push('Password should not contain sequential characters');
-    }
-
-    // Repeated characters check
-    if (/(.)\1{2,}/.test(password)) {
-      errors.push('Password should not contain repeated characters (e.g., aaa, 111)');
-    }
-
-    return {
-      valid: errors.length === 0,
-      errors
-    };
-  }
-
-  /**
    * Create a new user
    */
   static async createUser({ email, password, name, phone = null }) {
@@ -99,10 +33,9 @@ class User {
         throw new Error('Invalid email format');
       }
 
-      // Validate password strength (Beyaz Şapkalı Security)
-      const passwordValidation = this.validatePasswordStrength(password);
-      if (!passwordValidation.valid) {
-        throw new Error(`Password validation failed:\n${passwordValidation.errors.join('\n')}`);
+      // Validate password strength
+      if (password.length < 8) {
+        throw new Error('Password must be at least 8 characters long');
       }
 
       // Check if user already exists
@@ -361,20 +294,13 @@ class User {
   }
 
   /**
-   * Verify password (for login API compatibility)
-   */
-  static async verifyPassword(plainPassword, hashedPassword) {
-    return await bcrypt.compare(plainPassword, hashedPassword);
-  }
-
-  /**
    * Find user by email
    */
   static findByEmail(email) {
     const db = getDatabase();
     try {
       const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
-      return user;  // Don't sanitize here - login needs passwordHash
+      return user ? this.sanitizeUser(user) : null;
     } finally {
       db.close();
     }

@@ -5,7 +5,6 @@ const sdk = require('microsoft-cognitiveservices-speech-sdk');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { handleCORS } = require('../middleware/cors-handler');
 
 // Azure Speech Configuration
 const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
@@ -46,8 +45,14 @@ function validateCredentials() {
 
 // Speech-to-Text Handler (Transcription)
 async function handleTranscribe(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -178,8 +183,14 @@ async function handleTranscribe(req, res) {
 
 // Text-to-Speech Handler (Synthesis)
 async function handleSynthesize(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -297,8 +308,7 @@ async function handleSynthesize(req, res) {
 
 // Get available voices
 async function getVoices(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   // Validate credentials
   const credCheck = validateCredentials();

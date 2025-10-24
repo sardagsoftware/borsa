@@ -7,7 +7,6 @@ const OpenAI = require('openai');
 const { Anthropic } = require('@anthropic-ai/sdk');
 const axios = require('axios');
 const { getModelConfig, getActiveModels } = require('./models-config');
-const { handleCORS } = require('../middleware/cors-handler');
 
 // Rate limiting
 const requestLog = new Map();
@@ -179,8 +178,13 @@ async function callAzureOpenAIAPI(config, messages, max_tokens, temperature) {
 
 // Main request handler
 async function handleRequest(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method === 'GET') {
     // Return available models (without exposing real model names)
@@ -274,7 +278,6 @@ async function handleRequest(req, res) {
       case 'zhipu':
       case 'asi':
       case 'z-ai':
-      case 'zenmux':
       default:
         result = await callOpenAICompatibleAPI(modelConfig, messageArray, max_tokens, temperature);
         break;

@@ -24,7 +24,7 @@
         }
 
         :root {
-            /* LyDian Enterprise Copper Palette */
+            /* Enterprise AI Copper Palette */
             --enterprise-ai-copper-primary: #D97757;
             --enterprise-ai-copper-light: #E69070;
             --enterprise-ai-copper-lighter: #F4B090;
@@ -891,7 +891,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="model-option" data-model="standard-x3-turbo">
+                        <div class="model-option" data-model="gpt-3.5-turbo">
                             <div class="model-option-main">
                                 <div class="model-option-icon" style="background: #10A37F;">G</div>
                                 <div class="model-option-info">
@@ -922,11 +922,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="model-option" data-model="advanced-model-x4-turbo">
+                        <div class="model-option" data-model="gpt-4-turbo">
                             <div class="model-option-main">
                                 <div class="model-option-icon" style="background: #10A37F;">G</div>
                                 <div class="model-option-info">
-                                    <div class="model-option-name">Advanced-Model-X4 Turbo</div>
+                                    <div class="model-option-name">GPT-4 Turbo</div>
                                     <div class="model-option-meta">
                                         <span>128K</span>
                                         <span>•</span>
@@ -940,11 +940,11 @@
 
                     <div class="model-category">
                         <div class="model-category-title">👁️ Görsel & Multimodal</div>
-                        <div class="model-option" data-model="advanced-model-x4-vision">
+                        <div class="model-option" data-model="gpt-4-vision">
                             <div class="model-option-main">
                                 <div class="model-option-icon" style="background: #10A37F;">G</div>
                                 <div class="model-option-info">
-                                    <div class="model-option-name">Advanced-Model-X4 Vision</div>
+                                    <div class="model-option-name">GPT-4 Vision</div>
                                     <div class="model-option-meta">
                                         <span>128K</span>
                                         <span>•</span>
@@ -958,7 +958,7 @@
                             <div class="model-option-main">
                                 <div class="model-option-icon" style="background: #4285F4;">G</div>
                                 <div class="model-option-info">
-                                    <div class="model-option-name">Neural-G-Pro Vision</div>
+                                    <div class="model-option-name">Gemini Pro Vision</div>
                                     <div class="model-option-meta">
                                         <span>32K</span>
                                         <span>•</span>
@@ -972,11 +972,11 @@
 
                     <div class="model-category">
                         <div class="model-category-title">🔐 Kurumsal (Azure)</div>
-                        <div class="model-option" data-model="azure-advanced-model-x4">
+                        <div class="model-option" data-model="azure-gpt-4">
                             <div class="model-option-main">
                                 <div class="model-option-icon" style="background: #0078D4;">A</div>
                                 <div class="model-option-info">
-                                    <div class="model-option-name">Azure Advanced-Model-X4 Turbo</div>
+                                    <div class="model-option-name">Azure GPT-4 Turbo</div>
                                     <div class="model-option-meta">
                                         <span>128K</span>
                                         <span>•</span>
@@ -997,7 +997,7 @@
                     <div class="empty-state-icon">💬</div>
                     <h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1>
                     <p class="empty-state-subtitle">
-                        LyDian Enterprise, Premium-Model-X4, Neural-G, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.
+                        Enterprise AI, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.
                     </p>
                     <div class="suggestion-chips">
                         <div class="suggestion-chip" data-prompt="Kuantum bilişimi basit terimlerle açıkla">
@@ -1087,12 +1087,12 @@
         const models = {
             'enterprise-ai-3.5-sonnet': { name: 'Ultra Intelligence Model', icon: '🤖', context: '128K', price: 3, provider: 'Advanced AI Platform' },
             'premium-intelligence-v2': { name: 'Premium Intelligence Model', icon: '🤖', context: '200K', price: 15, provider: 'Advanced AI Platform' },
-            'premium-model-turbo': { name: 'Advanced-Model-X4 Turbo', icon: '🤖', context: '128K', price: 10, provider: 'OpenAI' },
-            'premium-model-vision': { name: 'Advanced-Model-X4 Vision', icon: '👁️', context: '128K', price: 10, provider: 'OpenAI' },
-            'standard-x3-turbo': { name: 'GPT-3.5 Turbo', icon: '⚡', context: '16K', price: 2, provider: 'OpenAI' },
-            'gemini-pro-vision': { name: 'Neural-G-Pro Vision', icon: '👁️', context: '32K', price: 2, provider: 'Google' },
+            'gpt-4-turbo': { name: 'GPT-4 Turbo', icon: '🤖', context: '128K', price: 10, provider: 'OpenAI' },
+            'gpt-4-vision': { name: 'GPT-4 Vision', icon: '👁️', context: '128K', price: 10, provider: 'OpenAI' },
+            'gpt-3.5-turbo': { name: 'GPT-3.5 Turbo', icon: '⚡', context: '16K', price: 2, provider: 'OpenAI' },
+            'gemini-pro-vision': { name: 'Gemini Pro Vision', icon: '👁️', context: '32K', price: 2, provider: 'Google' },
             'groq-mixtral': { name: 'Groq Mixtral 8x7B', icon: '⚡', context: '32K', price: 0.2, provider: 'Groq' },
-            'azure-advanced-model-x4': { name: 'Azure Advanced-Model-X4 Turbo', icon: '🔐', context: '128K', price: 10, provider: 'Azure' }
+            'azure-gpt-4': { name: 'Azure GPT-4 Turbo', icon: '🔐', context: '128K', price: 10, provider: 'Azure' }
         };
 
         // ========== EVENT LISTENERS ==========
@@ -1341,7 +1341,7 @@ Sorunuza göre kapsamlı bir yanıt:
 
 Anlaşılması gereken en önemli şey, bunun birden fazla faktörün dikkatli bir şekilde değerlendirilmesini gerektirmesidir. Herhangi bir özel konuya daha derinlemesine dalmamı ister misiniz?`,
 
-                'premium-model-turbo': `"${prompt}" sorusuna yanıtım:
+                'gpt-4-turbo': `"${prompt}" sorusuna yanıtım:
 
 **Önemli Noktalar:**
 - Durumun kapsamlı analizi
@@ -1375,7 +1375,7 @@ Işık hızında sunulan önemli içgörülerle hızlı cevap!`
 
         function startNewChat() {
             state.messages = [];
-            elements.messagesContainer.innerHTML = '<div class="empty-state" id="emptyState"><div class="empty-state-icon">💬</div><h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1><p class="empty-state-subtitle">LyDian Enterprise, Premium-Model-X4, Neural-G, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.</p></div>';
+            elements.messagesContainer.innerHTML = '<div class="empty-state" id="emptyState"><div class="empty-state-icon">💬</div><h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1><p class="empty-state-subtitle">Enterprise AI, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.</p></div>';
             elements.emptyState = document.getElementById('emptyState');
         }
 

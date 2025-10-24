@@ -322,21 +322,25 @@ class GlobalSOCSystem extends EventEmitter {
         }
     }
 
-    // Encryption methods
+    // Encryption methods (CRITICAL FIX: AES-256-GCM)
     encrypt(data, keyName = 'master') {
         const key = this.encryptionKeys.get(keyName);
         if (!key) throw new Error(`Encryption key '${keyName}' not found`);
 
         const iv = crypto.randomBytes(16);
-        const cipher = crypto.createCipher(this.securityPolicies.encryptionAlgorithm, key);
+        // ✅ FIXED: Modern AES-256-GCM with authenticated encryption
+        const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
 
         let encrypted = cipher.update(data, 'utf8', 'hex');
         encrypted += cipher.final('hex');
 
+        // Get authentication tag for integrity verification
+        const authTag = cipher.getAuthTag();
+
         return {
             encrypted,
             iv: iv.toString('hex'),
-            tag: cipher.getAuthTag ? cipher.getAuthTag().toString('hex') : null
+            tag: authTag.toString('hex')
         };
     }
 
@@ -344,9 +348,15 @@ class GlobalSOCSystem extends EventEmitter {
         const key = this.encryptionKeys.get(keyName);
         if (!key) throw new Error(`Encryption key '${keyName}' not found`);
 
-        const decipher = crypto.createDecipher(this.securityPolicies.encryptionAlgorithm, key);
+        // ✅ FIXED: Modern AES-256-GCM decryption with authentication
+        const decipher = crypto.createDecipheriv(
+            'aes-256-gcm',
+            key,
+            Buffer.from(encryptedData.iv, 'hex')
+        );
 
-        if (encryptedData.tag && decipher.setAuthTag) {
+        // Set authentication tag for integrity verification
+        if (encryptedData.tag) {
             decipher.setAuthTag(Buffer.from(encryptedData.tag, 'hex'));
         }
 

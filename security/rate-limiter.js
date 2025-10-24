@@ -4,15 +4,55 @@
  */
 
 const rateLimit = require('express-rate-limit');
+const { RedisStore } = require('rate-limit-redis');
+const Redis = require('ioredis');
 
-// Redis is optional - use memory store for now
-// TODO: Re-enable Redis when properly configured
+// Redis client for distributed rate limiting
 let redisClient = null;
+
+const shouldUseRedis =
+  process.env.REDIS_HOST &&
+  process.env.REDIS_PORT &&
+  process.env.REDIS_HOST.trim() !== '' &&
+  process.env.REDIS_PORT.trim() !== '';
+
+if (shouldUseRedis) {
+  try {
+    redisClient = new Redis({
+      host: process.env.REDIS_HOST,
+      port: Number(process.env.REDIS_PORT),
+      password: process.env.REDIS_PASSWORD || undefined,
+      username: process.env.REDIS_USERNAME || undefined,
+      tls: process.env.REDIS_TLS === 'true' ? {} : undefined,
+      retryStrategy: (times) => Math.min(times * 100, 3000)
+    });
+
+    redisClient.on('connect', () => {
+      console.log('✅ Redis rate limiting aktif (distributed mode)');
+    });
+
+    redisClient.on('error', (error) => {
+      console.error('⚠️ Redis bağlanma hatası, bellek içi rate limiting yedek olarak kullanılacak:', error.message);
+    });
+  } catch (error) {
+    console.warn('⚠️ Redis bağlantısı oluşturulamadı, bellek içi rate limiting kullanılacak:', error.message);
+    redisClient = null;
+  }
+} else {
+  console.warn('⚠️ REDIS_HOST/REDIS_PORT tanımlı değil; rate limiting bellek içi çalışıyor.');
+}
+
+const createRedisStore = (prefix) =>
+  redisClient
+    ? new RedisStore({
+        client: redisClient,
+        prefix
+      })
+    : undefined;
 
 // General API rate limiter
 const apiLimiter = rateLimit({
-  // Using memory store (default) instead of Redis
-  // store: undefined means use default MemoryStore
+  store: createRedisStore('rl:api:'),
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // 100 requests per window
   message: {
@@ -30,7 +70,7 @@ const apiLimiter = rateLimit({
 
 // Strict rate limiter for authentication endpoints
 const authLimiter = rateLimit({
-  // Using memory store (default)
+  store: createRedisStore('rl:auth:'),
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // Only 5 login attempts per window
   message: {
@@ -43,10 +83,7 @@ const authLimiter = rateLimit({
 
 // Payment endpoint rate limiter
 const paymentLimiter = rateLimit({
-  store: redisClient ? new RedisStore({
-    client: redisClient,
-    prefix: 'rl:payment:'
-  }) : undefined,
+  store: createRedisStore('rl:payment:'),
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 10, // Max 10 payment attempts per hour
   message: {
@@ -58,10 +95,7 @@ const paymentLimiter = rateLimit({
 
 // AI/Chat endpoint rate limiter (more generous)
 const aiLimiter = rateLimit({
-  store: redisClient ? new RedisStore({
-    client: redisClient,
-    prefix: 'rl:ai:'
-  }) : undefined,
+  store: createRedisStore('rl:ai:'),
   windowMs: 60 * 1000, // 1 minute
   max: 20, // 20 AI requests per minute
   message: {

@@ -1,421 +1,579 @@
-# 🧠 LYDIAN IQ - KAPSAMLI ROADMAP 2025
-## Backend + Frontend Analizi ve Geliştirme Planı
+# 🚀 LYDIAN IQ - ULTRA INTELLIGENCE PLATFORM
+## Derinlemesine Özellik Analizi & Gelecek Roadmap
 
-**Tarih:** 2025-10-07  
-**Versiyon:** 2.0  
-**Güvenlik:** Beyaz Şapkalı Disiplin Aktif
+**Tarih:** 6 Ekim 2025
+**Versiyon:** 2.0
+**Mevcut Kod:** 2,212 satır
+**Fonksiyon Sayısı:** 19
 
 ---
 
 ## 📊 MEVCUT DURUM ANALİZİ
 
-### ✅ **Güçlü Yönler**
+### ✅ Var Olan Özellikler (2212 satır kod):
+1. **PWA Desteği** - Mobil uygulama olarak yüklenebilir
+2. **Sesli Arama** - Mikrofon ile soru sorma
+3. **Real-time AI Backend** - Claude/OpenAI/Groq entegrasyonu
+4. **Domain Auto-Detection** - Matematik, Kodlama, Bilim, Strateji, Lojistik
+5. **Paylaşım Özellikleri** - WhatsApp, Link, Download, Clear
+6. **Responsive Design** - Mobil/Desktop uyumlu
+7. **Open Graph** - Sosyal medya önizlemeleri
+8. **Service Worker** - Offline destek
+9. **Super Power Mode** - Gelişmiş AI parametreleri
+10. **Typewriter Effect** - Yanıt animasyonu
 
-#### Frontend (4626 satır HTML):
-1. **Premium UI/UX:**
-   - Türk Adalet Sistemi renk paleti (#C4A962 adalet altını, #1C2536 cüppe lacivert)
-   - Animated gradient orbs (3 adet floating orbs)
-   - Glassmorphism design pattern
-   - Neural network SVG animasyonları
-   - Responsive design (768px, 480px breakpoints)
+### 🎯 Güçlü Yanlar:
+- ✅ Modern, minimal tasarım
+- ✅ Enterprise-grade güvenlik
+- ✅ Multi-provider AI desteği
+- ✅ White-hat etik yaklaşım
+- ✅ PWA ile native deneyim
 
-2. **Multimodal Özellikler:**
-   - File upload support (resim/PDF)
-   - Voice input (Web Speech API)
-   - Markdown rendering (marked.js)
-   - LaTeX math rendering (KaTeX)
-   - Syntax highlighting (Prism.js - 11 dil desteği)
-
-3. **PWA Özellikleri:**
-   - Manifest file
-   - Service worker ready
-   - Apple touch icons
-   - Meta tags (OG, Twitter, WhatsApp optimize)
-
-4. **Reasoning Visualizer:**
-   - Animated thought process
-   - Step-by-step confidence scoring
-   - Glassmorphism reasoning cards
-   - Ethics monitor integration
-
-#### Backend (552 satır Node.js):
-1. **Multi-Provider AI Strategy:**
-   - Azure OpenAI (GPT-4 Turbo) - RAG destekli
-   - Anthropic Claude 3.7 Sonnet
-   - OpenAI GPT-4 Turbo
-   - Groq LLaMA 3.3 70B (ultra-fast)
-
-2. **Intelligent Fallback:**
-   - Retry with exponential backoff (3 retry, 1s initial delay)
-   - Provider cascade: Groq → OpenAI → Claude → Demo
-   - Graceful degradation
-
-3. **Domain Specialization:**
-   - Mathematics (Calculus, Linear Algebra, Statistics)
-   - Coding (Algorithm, Optimization, Debugging)
-   - Science (Physics, Chemistry, Biology)
-   - Strategy (Game Theory, Decision Making)
-   - Logistics (Supply Chain, Route Optimization)
-
-4. **Multi-Language Support:**
-   - 10 dil desteği (TR, EN, DE, FR, ES, IT, RU, ZH, JA, AR)
-   - Language-enforced prompts
-   - Culturally appropriate responses
+### ⚠️ Eksik/Geliştirilebilir Alanlar:
+- ❌ Sohbet geçmişi yok (conversation history)
+- ❌ Kullanıcı hesap sistemi yok
+- ❌ Multi-modal destek sınırlı (görsel, PDF yok)
+- ❌ Kod çalıştırma/sandbox yok
+- ❌ Gerçek zamanlı işbirliği yok
+- ❌ Analytics/metriks takibi yok
+- ❌ Özelleştirilebilir AI kişiliği yok
+- ❌ Plugin/eklenti sistemi yok
+- ❌ Dark/Light theme toggle yok
+- ❌ Markdown/LaTeX rendering yok
 
 ---
 
-## 🚨 TESPİT EDİLEN SORUNLAR VE EKSIKLER
+## 🗺️ ROADMAP: KISA VADELI (1-2 Hafta)
 
-### 🔴 **Critical Issues**
+### 🔥 PHASE 1: TEMEL İYİLEŞTİRMELER
 
-1. **Güvenlik (Beyaz Şapkalı):**
-   - ❌ API keys hardcoded in frontend (leakage riski)
-   - ❌ No rate limiting on API endpoint
-   - ❌ CORS set to '*' (wildcard - production risk)
-   - ❌ No input sanitization for XSS/injection attacks
-   - ❌ No CSRF token implementation
-   - ❌ API response'da error details expose ediliyor
+#### 1.1 Sohbet Geçmişi (Conversation History) ⭐ P0
+**Öncelik:** 🔴 Kritik
+**Süre:** 2-3 gün
+**Etki:** Çok Yüksek
 
-2. **Backend Performans:**
-   - ❌ No caching mechanism (aynı soruya her seferinde API call)
-   - ❌ No request queuing (concurrent request handling yok)
-   - ❌ Azure Cognitive Search RAG integration incomplete
-   - ❌ No streaming response (uzun yanıtlarda UX kötü)
-   - ❌ No token usage tracking/limits (cost control yok)
+**Özellikler:**
+- ✨ LocalStorage ile istemci-tarafı kayıt
+- ✨ Sidebar sohbet listesi
+- ✨ Arama/filtreleme
+- ✨ Export tüm sohbetler (JSON/ZIP)
+- ✨ Favorilere ekleme (⭐)
+- ✨ Etiketleme/kategorileme
+- ✨ Tarih gruplandırma (Bugün, Dün, Bu Hafta)
 
-3. **Frontend UX:**
-   - ❌ No conversation history persistence (localStorage/DB)
-   - ❌ File upload preview var ama backend integration yok
-   - ❌ Voice input var ama transcription API integration yok
-   - ❌ No "Edit and Resubmit" fonksiyonu
-   - ❌ No "Copy to Clipboard" hızlı aksiyonu
-   - ❌ Reasoning steps collapsible değil (uzun reasoning'de kalabalık)
+**Teknik Detaylar:**
+```javascript
+// LocalStorage Schema
+const conversationSchema = {
+  conversations: [
+    {
+      id: "uuid-v4",
+      timestamp: 1696595400000,
+      title: "Kuadratik denklem çözümü",
+      query: "ax^2 + bx + c = 0 nasıl çözülür?",
+      response: "...",
+      domain: "mathematics",
+      favorite: false,
+      tags: ["calculus", "homework"],
+      metadata: {
+        model: "Claude 3.5 Sonnet",
+        tokens: 1234,
+        responseTime: "2.5s",
+        provider: "Anthropic"
+      }
+    }
+  ],
+  settings: {
+    autoSave: true,
+    maxConversations: 1000,
+    retentionDays: 90
+  }
+}
+```
 
-4. **Multimodal Eksikleri:**
-   - ❌ Image upload var ama vision API integration yok
-   - ❌ PDF upload var ama text extraction yok
-   - ❌ No image generation capability
-   - ❌ No document analysis/summarization
-
-### 🟡 **Medium Priority Issues**
-
-5. **Database & Persistence:**
-   - ❌ No conversation storage (user sessions kayboluyuyor)
-   - ❌ No user authentication (herkes aynı API'yi kullanıyor)
-   - ❌ No analytics/telemetry (hangi domain'ler popüler?)
-   - ❌ No feedback mechanism (yanıt kalitesi tracking yok)
-
-6. **Advanced Features Eksik:**
-   - ❌ No conversation branching (multi-turn dialog)
-   - ❌ No context window management (uzun conversation'larda token limit)
-   - ❌ No follow-up question suggestions
-   - ❌ No export conversation (PDF/Markdown)
-
-7. **UI/UX İyileştirmeleri:**
-   - ❌ No dark mode toggle (sadece dark theme var)
-   - ❌ No font size adjustment
-   - ❌ No keyboard shortcuts guide
-   - ❌ Loading states generic (domain-specific animations olabilir)
-
----
-
-## 🎯 PHASE-BASED ROADMAP
-
-### **PHASE 1: GÜVENLİK & ALTYAPI (2 Hafta)** 🔒
-
-#### 1.1 Güvenlik Hardening (Beyaz Şapkalı)
-- [ ] **Backend API Key Management:**
-  - Environment variable validation
-  - Key rotation mechanism
-  - Separate keys for dev/staging/production
-  - Audit logging for API calls
-
-- [ ] **Rate Limiting & DDoS Protection:**
-  - IP-based rate limiting (10 requests/minute)
-  - Token bucket algorithm
-  - Gradual backoff for abusers
-  - Whitelist for trusted clients
-
-- [ ] **Input Sanitization:**
-  - XSS protection (DOMPurify integration)
-  - SQL injection prevention (prepared statements)
-  - HTML entity encoding
-  - Max input length enforcement
-
-- [ ] **CORS Hardening:**
-  - Whitelist specific domains (ailydian.com, localhost:3000)
-  - Remove wildcard '*'
-  - Add preflight request handling
-
-- [ ] **CSRF Protection:**
-  - CSRF token generation
-  - Token validation on POST requests
-  - SameSite cookie flags
-
-- [ ] **Error Handling:**
-  - Generic error messages in production
-  - Detailed error logging (server-side only)
-  - No stack trace exposure
-
-#### 1.2 Caching & Performance
-- [ ] **Redis Integration:**
-  - Cache identical queries (hash-based key)
-  - TTL: 1 hour for static domains
-  - Cache invalidation on provider errors
-
-- [ ] **Request Queuing:**
-  - Bull queue for concurrent requests
-  - Priority queue (premium users first)
-  - Max concurrent: 50 requests
-
-- [ ] **Response Streaming:**
-  - Server-Sent Events (SSE) implementation
-  - Chunk-based response delivery
-  - Progress indicators in frontend
+**UI Mockup:**
+```
+┌─────────────────────────────────────────────┐
+│  ☰ Geçmiş  |  Yeni Sohbet [+]              │
+├─────────────────────────────────────────────┤
+│  🔍 [Ara sohbetlerde...]                    │
+├─────────────────────────────────────────────┤
+│  📌 Favoriler (3)                           │
+│  ⭐ Kuadratik denklem çözümü - 2 sa önce    │
+│  ⭐ Python array sort - Dün                 │
+│  ⭐ Fibonacci optimizasyonu - 3 gün önce    │
+├─────────────────────────────────────────────┤
+│  📅 Bugün (5)                               │
+│  🧮 Türev hesaplama - 10 dk önce            │
+│  💻 React useEffect hook - 1 sa önce        │
+│  📊 İstatistik analiz - 3 sa önce           │
+├─────────────────────────────────────────────┤
+│  📅 Dün (8)                                 │
+│  🔬 DNA yapısı - Dün 15:30                  │
+│  ♟️ Satranç stratejisi - Dün 12:00          │
+└─────────────────────────────────────────────┘
+```
 
 ---
 
-### **PHASE 2: MULTIMODAL INTEGRATION (3 Hafta)** 📸
+#### 1.2 Multi-Modal Destek (Görsel + Dosya) ⭐ P0
+**Öncelik:** 🔴 Kritik
+**Süre:** 3-4 gün
+**Etki:** Çok Yüksek
 
-#### 2.1 Vision API Integration
-- [ ] **Image Analysis:**
-  - Azure Computer Vision API
-  - OCR for text extraction from images
-  - Object detection
-  - Image description generation
+**Özellikler:**
+- ✨ Görsel upload (drag & drop)
+- ✨ PDF yükleme ve analiz
+- ✨ Kod dosyası yükleme (.py, .js, .java, vb.)
+- ✨ Görsel üzerinde AI analizi (Claude Vision API)
+- ✨ OCR desteği (metni görüntüden çıkartma)
+- ✨ Çoklu dosya yükleme (max 10 dosya)
+- ✨ Dosya önizleme
+- ✨ Dosya boyutu optimizasyonu
 
-- [ ] **Vision-Language Models:**
-  - GPT-4 Vision integration
-  - Claude 3 Sonnet Vision
-  - Image + Text reasoning
+**Desteklenen Formatlar:**
+- 🖼️ **Görseller:** PNG, JPG, JPEG, WebP, GIF (max 10MB)
+- 📄 **Dökümanlar:** PDF, DOCX, TXT, MD (max 25MB)
+- 💻 **Kod:** .py, .js, .ts, .java, .cpp, .go, .rs, .php
+- 📊 **Veri:** CSV, JSON, XLSX (max 5MB)
 
-#### 2.2 Document Processing
-- [ ] **PDF Analysis:**
-  - PDF.js for text extraction
-  - Table extraction (Tabula)
-  - Multi-page document summarization
-  - Citation extraction
+**API Integration:**
+```javascript
+// Claude Vision API için
+const analyzeImage = async (imageFile) => {
+  const base64 = await fileToBase64(imageFile);
 
-- [ ] **Voice Transcription:**
-  - Azure Speech Services
-  - Real-time voice-to-text
-  - Multi-language transcription
-  - Speaker diarization (gelecekte)
+  const response = await fetch('/api/lydian-iq/solve', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      problem: query,
+      domain: 'vision',
+      image: {
+        data: base64,
+        mimeType: imageFile.type
+      }
+    })
+  });
+};
+```
 
-#### 2.3 Image Generation
-- [ ] **DALL-E / Stable Diffusion:**
-  - Generate images from text descriptions
-  - Style transfer
-  - Image editing suggestions
+**UI:**
+```
+┌─────────────────────────────────────────────┐
+│  [Soru sor veya dosya sürükle...]          │
+│                                             │
+│  📎 Dosya Ekle  📸 Kamera  🎤 Mikrofon     │
+└─────────────────────────────────────────────┘
 
----
-
-### **PHASE 3: DATABASE & PERSISTENCE (2 Hafta)** 💾
-
-#### 3.1 Database Setup
-- [ ] **PostgreSQL Schema:**
-  - Users table (id, email, created_at, subscription_tier)
-  - Conversations table (id, user_id, title, created_at)
-  - Messages table (id, conversation_id, role, content, metadata)
-  - Analytics table (query_count, domain, response_time, provider)
-
-- [ ] **ORM Integration:**
-  - Prisma ORM
-  - Migration scripts
-  - Seed data for testing
-
-#### 3.2 User Authentication
-- [ ] **NextAuth.js Integration:**
-  - Google OAuth
-  - GitHub OAuth
-  - Email/password with JWT
-  - Session management
-
-#### 3.3 Conversation Management
-- [ ] **History UI:**
-  - Sidebar with conversation list
-  - Search conversations
-  - Delete/archive conversations
-  - Export conversations (Markdown/PDF)
-
----
-
-### **PHASE 4: ADVANCED AI FEATURES (3 Hafta)** 🤖
-
-#### 4.1 RAG (Retrieval-Augmented Generation)
-- [ ] **Azure Cognitive Search:**
-  - Index creation for knowledge base
-  - Semantic search
-  - Vector embeddings (text-embedding-ada-002)
-  - Hybrid search (keyword + semantic)
-
-- [ ] **Knowledge Base:**
-  - Upload custom documents (PDF, DOCX, TXT)
-  - Automatic chunking and indexing
-  - Source citation in responses
-
-#### 4.2 Advanced Reasoning
-- [ ] **Chain-of-Thought Prompting:**
-  - Explicit reasoning steps
-  - Self-consistency checking
-  - Multi-perspective analysis
-
-- [ ] **Tool Use (Function Calling):**
-  - Calculator integration
-  - Web search API
-  - Code execution sandbox
-  - Database queries
-
-#### 4.3 Multi-Turn Dialog
-- [ ] **Context Management:**
-  - Conversation window (last 10 messages)
-  - Token counting and truncation
-  - Context summarization
-
-- [ ] **Follow-up Suggestions:**
-  - AI-generated next questions
-  - Topic exploration
+[Dosya yüklenince:]
+┌─────────────────────────────────────────────┐
+│  📄 matematik_problemi.pdf (245 KB)   [×]   │
+│  🖼️ diagram.png (180 KB)             [×]   │
+│  💻 fibonacci.py (3 KB)               [×]   │
+│                                             │
+│  "Bu dosyalardaki matematiksel denklemi     │
+│   çöz, Python koduyla birlikte açıkla"      │
+│                                             │
+│  [🚀 Gönder] [🗑️ Hepsini Temizle]          │
+└─────────────────────────────────────────────┘
+```
 
 ---
 
-### **PHASE 5: UI/UX ENHANCEMENTS (2 Hafta)** 🎨
+#### 1.3 Markdown & LaTeX Rendering ⭐ P0
+**Öncelik:** 🔴 Kritik
+**Süre:** 1-2 gün
+**Etki:** Yüksek
 
-#### 5.1 Tema & Accessibility
-- [ ] **Dark/Light Mode Toggle:**
-  - System preference detection
-  - Smooth transition animations
-  - Persist user choice (localStorage)
+**Özellikler:**
+- ✨ Markdown desteği (başlıklar, listeler, bağlantılar, kalın/italik)
+- ✨ LaTeX matematik formülleri (KaTeX library)
+- ✨ Syntax highlighting (Prism.js - 200+ dil)
+- ✨ Mermaid diyagramlar (flowchart, sequence, gantt)
+- ✨ Tablo formatı
+- ✨ Blockquote ve kod blokları
+- ✨ Emoji desteği
+- ✨ Checkbox/todo list
 
-- [ ] **Accessibility:**
-  - ARIA labels
-  - Keyboard navigation (Tab, Shift+Tab, Enter)
-  - Screen reader compatibility
-  - Font size controls
+**Libraries:**
+- `marked.js` - Markdown parser (11KB gzipped)
+- `KaTeX` - LaTeX rendering (115KB gzipped)
+- `Prism.js` - Syntax highlighting (2KB core + diller)
+- `Mermaid.js` - Diyagram oluşturma (200KB gzipped)
 
-#### 5.2 Advanced UI Components
-- [ ] **Command Palette (Ctrl+K):**
-  - Quick actions (New chat, Search history, Change theme)
-  - Keyboard-first navigation
+**Örnek Render:**
+```markdown
+## Kuadratik Denklem Çözümü
 
-- [ ] **Code Editor:**
-  - Monaco Editor integration
-  - Syntax highlighting
-  - Code execution preview
+Formül:
+$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
-- [ ] **LaTeX Editor:**
-  - Live preview
-  - Common math symbols palette
+**Adımlar:**
+1. Diskriminant hesapla: $\Delta = b^2 - 4ac$
+2. Kökleri bul
 
-#### 5.3 Export & Sharing
-- [ ] **Export Options:**
-  - Markdown export
-  - PDF export (with custom branding)
-  - HTML export
+\```python
+import numpy as np
+a, b, c = 1, -5, 6
+delta = b**2 - 4*a*c
+x1 = (-b + np.sqrt(delta)) / (2*a)
+x2 = (-b - np.sqrt(delta)) / (2*a)
+print(f"x1 = {x1}, x2 = {x2}")
+\```
 
-- [ ] **Share Links:**
-  - Generate shareable conversation links
-  - Time-limited sharing (24h, 7 days)
-  - Password protection
+| Değer | Sonuç |
+|-------|-------|
+| x₁    | 3.0   |
+| x₂    | 2.0   |
 
----
-
-### **PHASE 6: MONITORING & ANALYTICS (1 Hafta)** 📊
-
-#### 6.1 Analytics Dashboard
-- [ ] **Metrics:**
-  - Total queries per day/week/month
-  - Domain popularity breakdown
-  - Average response time per provider
-  - Error rate tracking
-
-- [ ] **User Analytics:**
-  - Active users (DAU, MAU)
-  - Retention rate
-  - Most popular features
-
-#### 6.2 Logging & Monitoring
-- [ ] **Structured Logging:**
-  - Winston or Pino logger
-  - Log levels (debug, info, warn, error)
-  - Log rotation
-
-- [ ] **Error Tracking:**
-  - Sentry integration
-  - Error grouping
-  - Slack/Discord notifications for critical errors
-
-#### 6.3 Health Checks
-- [ ] **API Health:**
-  - /health endpoint
-  - Provider availability check
-  - Database connectivity check
+> 💡 **Not:** Bu yöntem her zaman gerçek kök vermez!
+```
 
 ---
 
-## 🏆 ÖZET: 3 AYLIK SPRINT PLAN
+#### 1.4 Dark/Light Theme Toggle ⭐ P1
+**Öncelik:** 🟡 Yüksek
+**Süre:** 1 gün
+**Etki:** Orta
 
-| Phase | Süre | Öncelik | Deliverables |
-|-------|------|---------|--------------|
-| Phase 1: Güvenlik & Altyapı | 2 hafta | 🔴 Critical | Rate limiting, CSRF protection, Redis cache |
-| Phase 2: Multimodal | 3 hafta | 🟠 High | Vision API, PDF analysis, Voice transcription |
-| Phase 3: Database & Persistence | 2 hafta | 🟠 High | PostgreSQL, Authentication, History UI |
-| Phase 4: Advanced AI | 3 hafta | 🟡 Medium | RAG, Tool Use, Multi-turn dialog |
-| Phase 5: UI/UX Enhancements | 2 hafta | 🟡 Medium | Dark mode, Command palette, Export |
-| Phase 6: Monitoring | 1 hafta | 🟢 Low | Analytics, Logging, Health checks |
+**Özellikler:**
+- ✨ Dark/Light/Auto mode
+- ✨ Sistem tercihini algılama (prefers-color-scheme)
+- ✨ Geçiş animasyonu
+- ✨ LocalStorage kayıt
+- ✨ Tüm renk paletinin dinamik değişimi
 
-**Toplam Süre:** 13 hafta (~3 ay)
+**Implementation:**
+```javascript
+const themes = {
+  dark: {
+    '--bg-dark': '#1C2536',
+    '--text-primary': '#F8F7F4',
+    // ...
+  },
+  light: {
+    '--bg-dark': '#FFFFFF',
+    '--text-primary': '#1C2536',
+    // ...
+  }
+};
 
----
+function toggleTheme() {
+  const current = localStorage.getItem('theme') || 'dark';
+  const newTheme = current === 'dark' ? 'light' : 'dark';
 
-## 🔧 TEKNOLOJİ STACK ÖNERİLERİ
+  document.documentElement.style.setProperty('--bg-dark', themes[newTheme]['--bg-dark']);
+  // ... diğer renkler
 
-### Backend:
-- **Framework:** Next.js 14 (App Router) veya Fastify
-- **Database:** PostgreSQL + Prisma ORM
-- **Cache:** Redis (Upstash)
-- **Queue:** Bull + Redis
-- **Auth:** NextAuth.js veya Clerk
-- **Logging:** Winston + Sentry
+  localStorage.setItem('theme', newTheme);
+}
+```
 
-### Frontend:
-- **UI Framework:** React 18 + TailwindCSS
-- **State Management:** Zustand veya Jotai
-- **Forms:** React Hook Form + Zod
-- **Editor:** Monaco Editor (code), KaTeX (math)
-
-### AI & ML:
-- **Primary:** Azure OpenAI (RAG with Cognitive Search)
-- **Fallback:** Anthropic Claude, OpenAI, Groq
-- **Vision:** Azure Computer Vision, GPT-4 Vision
-- **Embeddings:** text-embedding-ada-002
-
-### Deployment:
-- **Platform:** Vercel (serverless functions)
-- **CDN:** BunnyCDN (static assets)
-- **Database:** Supabase (PostgreSQL + Auth)
-- **Cache:** Upstash Redis
-
----
-
-## 📌 HEMEN BAŞLANACAK İLK 3 GÖREV
-
-1. **🔒 Rate Limiting Implementasyonu** (2 gün)
-   - Vercel Edge Functions kullanarak IP-based rate limiting
-   - 10 requests/minute limit
-   - 429 status code + retry-after header
-
-2. **🛡️ Input Sanitization** (1 gün)
-   - DOMPurify integration (frontend)
-   - Zod schema validation (backend)
-   - Max length enforcement (10,000 chars)
-
-3. **💾 Redis Caching** (2 gün)
-   - Upstash Redis setup
-   - Cache identical queries (MD5 hash key)
-   - 1 hour TTL
+**UI Button:**
+```
+[🌓 Tema]  veya  [☀️] / [🌙]
+```
 
 ---
 
-**Generated:** 2025-10-07  
-**Engineer:** Claude Code (Sardag AI Platform)  
-**Status:** 🚀 Ready for Implementation
+#### 1.5 Keyboard Shortcuts ⭐ P1
+**Öncelik:** 🟡 Yüksek
+**Süre:** 1 gün
+**Etki:** Orta-Yüksek
+
+**Kısayollar:**
+- `Ctrl+Enter` - Sorguyu gönder
+- `Ctrl+K` - Yeni sohbet
+- `Ctrl+H` - Geçmişi aç/kapat
+- `Ctrl+/` - Kısayol listesini göster
+- `Ctrl+D` - Sohbeti indir
+- `Ctrl+S` - Sohbeti kaydet
+- `Ctrl+F` - Sohbette ara
+- `Esc` - Modal/Sidebar kapat
+- `Ctrl+L` - Temizle
+
+**Modal:**
+```
+┌─────────────────────────────────────────────┐
+│  ⌨️ Klavye Kısayolları                      │
+├─────────────────────────────────────────────┤
+│  Ctrl+Enter   Sorguyu gönder                │
+│  Ctrl+K       Yeni sohbet                   │
+│  Ctrl+H       Geçmişi aç/kapat              │
+│  Ctrl+/       Bu listeyi göster             │
+│  Ctrl+D       İndir                         │
+│  Esc          Kapat                         │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+#### 1.6 Kod Çalıştırma (Code Execution Sandbox) ⭐ P1
+**Öncelik:** 🟡 Yüksek
+**Süre:** 4-5 gün
+**Etki:** Çok Yüksek
+
+**Özellikler:**
+- ✨ Python sandbox (Pyodide - browser-based)
+- ✨ JavaScript sandbox (QuickJS/sandboxed iframe)
+- ✨ Güvenli izole ortam
+- ✨ Kod çıktısını gösterme (stdout/stderr)
+- ✨ Hata yakalama ve debugging
+- ✨ Kod düzenleme (Monaco Editor)
+- ✨ Paket/library yükleme (npm, pip)
+- ✨ Çalışma süresi limiti (5 saniye timeout)
+- ✨ Bellek limiti (256MB)
+
+**Desteklenen Diller:**
+- 🐍 **Python** (Pyodide - numpy, pandas, matplotlib)
+- 🟨 **JavaScript** (sandboxed)
+- ☕ **Java** (Judge0 API)
+- 🦀 **Rust** (Rust Playground API)
+
+**UI:**
+```
+[AI'ın ürettiği kod]
+┌─────────────────────────────────────────────┐
+│ def fibonacci(n):                           │
+│     if n <= 1:                              │
+│         return n                            │
+│     return fibonacci(n-1) + fibonacci(n-2)  │
+│                                             │
+│ print([fibonacci(i) for i in range(10)])    │
+│                                             │
+│ [▶️ Çalıştır] [✏️ Düzenle] [📋 Kopyala]     │
+└─────────────────────────────────────────────┘
+
+[Çıktı:]
+┌─────────────────────────────────────────────┐
+│ 📊 Çıktı:                                   │
+│ [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]           │
+│                                             │
+│ ⏱️ Süre: 0.03s | 💾 Bellek: 2.1MB           │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+#### 1.7 Suggested Follow-Up Questions ⭐ P1
+**Öncelik:** 🟡 Yüksek
+**Süre:** 1-2 gün
+**Etki:** Orta
+
+**Özellikler:**
+- ✨ AI tarafından önerilen takip soruları
+- ✨ Bağlamsal öneriler (context-aware)
+- ✨ Tek tıkla soru gönderimi
+- ✨ 3-5 öneri göster
+
+**Örnek:**
+```
+[AI yanıtından sonra]
+┌─────────────────────────────────────────────┐
+│ 💭 Devam soruları:                          │
+│                                             │
+│ • Bunu Python'da nasıl yaparım?             │
+│ • Daha detaylı açıkla                       │
+│ • Örnek kodla göster                        │
+│ • Performans optimizasyonu?                 │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+#### 1.8 Response Rating (Thumbs Up/Down) ⭐ P1
+**Öncelik:** 🟡 Yüksek
+**Süre:** 1 gün
+**Etki:** Orta (feedback için kritik)
+
+**Özellikler:**
+- ✨ Yanıt kalitesi değerlendirmesi
+- ✨ Opsiyonel feedback notu
+- ✨ Analytics entegrasyonu
+- ✨ A/B testing için data toplama
+
+**UI:**
+```
+[AI yanıtının altında]
+┌─────────────────────────────────────────────┐
+│ Bu yanıt faydalı oldu mu?                   │
+│ [👍 Evet] [👎 Hayır]                        │
+└─────────────────────────────────────────────┘
+
+[Thumbs down tıklanınca:]
+┌─────────────────────────────────────────────┐
+│ Neyi daha iyi yapabiliriz?                  │
+│ [Textarea...]                               │
+│ [Gönder] [İptal]                            │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 ROADMAP: ORTA VADELI (1-2 Ay)
+
+### 🔥 PHASE 2: GELİŞMİŞ ÖZELLİKLER
+
+#### 2.1 Kullanıcı Hesap Sistemi ⭐ P2
+**Süre:** 5-7 gün
+**Backend:** Firebase Auth / Supabase Auth
+
+**Özellikler:**
+- ✨ Email/şifre kaydı
+- ✨ OAuth (Google, GitHub, Microsoft)
+- ✨ Sohbet senkronizasyonu (cloud)
+- ✨ Kullanım limitleri/quotas
+- ✨ Premium tier özellikleri
+- ✨ BYOK (Bring Your Own API Key)
+- ✨ Profil yönetimi
+
+---
+
+#### 2.2 AI Kişilik Özelleştirmesi ⭐ P2
+**Süre:** 3-4 gün
+
+**Özellikler:**
+- ✨ Ton seçimi (Resmi, Arkadaşça, Profesyonel)
+- ✨ Yanıt uzunluğu (Kısa/Orta/Detaylı)
+- ✨ Uzmanlık alanı seçimi
+- ✨ Özel system promptlar
+- ✨ Kayıtlı profiller
+
+---
+
+#### 2.3 Analytics Dashboard ⭐ P2
+**Süre:** 4-5 gün
+
+**Özellikler:**
+- ✨ Kullanım grafikleri
+- ✨ Token/maliyet takibi
+- ✨ Domain istatistikleri
+- ✨ Yanıt süresi metrikleri
+- ✨ Memnuniyet skorları
+
+---
+
+#### 2.4 Text-to-Speech ⭐ P2
+**Süre:** 2-3 gün
+**API:** OpenAI TTS / ElevenLabs
+
+**Özellikler:**
+- ✨ AI yanıtlarını sesli okuma
+- ✨ Ses tonu/hız ayarı
+- ✨ Podcast export (MP3)
+- ✨ Arka planda oynatma
+
+---
+
+#### 2.5 Plugin Sistemi ⭐ P3
+**Süre:** 2-3 hafta
+
+**Plugins:**
+- 🔬 Wolfram Alpha
+- 📚 Google Scholar
+- 💻 GitHub Gist Export
+- 📊 Data visualization (Chart.js)
+- 🌐 Web scraping
+- 📝 Notion/Obsidian export
+
+---
+
+## 🌟 ROADMAP: UZUN VADELİ (3-6 Ay)
+
+### 🔥 PHASE 3: ENTERPRISE FEATURES
+
+#### 3.1 Multi-Agent System
+- ✨ Özelleşmiş AI ajanları
+- ✨ Görev dağılımı
+- ✨ Paralel problem çözme
+
+#### 3.2 Knowledge Graph
+- ✨ Neo4j entegrasyonu
+- ✨ Semantic search
+- ✨ Graph visualization
+
+#### 3.3 Mobile Native Apps
+- 📱 iOS App (Swift/React Native)
+- 🤖 Android App (Kotlin/React Native)
+- 💻 Desktop App (Tauri)
+
+#### 3.4 API Marketplace
+- ✨ Developer API
+- ✨ SDKs (Python, JS, Go)
+- ✨ Webhook support
+
+---
+
+## 🎯 ÖNCELİKLENDİRME MATRİSİ
+
+| Özellik | Etki | Çaba | Öncelik | Süre |
+|---------|------|------|---------|------|
+| Sohbet Geçmişi | 🔴🔴🔴 | 🔴🔴 | **P0** | 2-3 gün |
+| Multi-Modal | 🔴🔴🔴 | 🔴🔴🔴 | **P0** | 3-4 gün |
+| Markdown/LaTeX | 🔴🔴🔴 | 🔴 | **P0** | 1-2 gün |
+| Dark Theme | 🔴🔴 | 🟢 | **P1** | 1 gün |
+| Keyboard Shortcuts | 🔴🔴 | 🟢 | **P1** | 1 gün |
+| Kod Çalıştırma | 🔴🔴🔴 | 🔴🔴🔴🔴 | **P1** | 4-5 gün |
+| Suggested Questions | 🔴🔴 | 🔴 | **P1** | 1-2 gün |
+| Rating System | 🔴🔴 | 🟢 | **P1** | 1 gün |
+| User Accounts | 🔴🔴🔴 | 🔴🔴🔴🔴 | **P2** | 5-7 gün |
+| AI Kişilik | 🔴🔴 | 🔴🔴 | **P2** | 3-4 gün |
+| Plugin System | 🔴🔴🔴 | 🔴🔴🔴🔴🔴 | **P3** | 2-3 hafta |
+
+---
+
+## 📈 BAŞARI METRİKLERİ
+
+### Kullanıcı Deneyimi:
+- ⚡ İlk yanıt süresi: **<2 saniye**
+- 📊 Kullanıcı memnuniyeti: **>90%**
+- 🔄 Günlük aktif kullanıcı: **>1,000**
+- ⏱️ Ortalama sohbet süresi: **>5 dakika**
+- 🎯 Görev tamamlama oranı: **>85%**
+
+### Teknik:
+- 🚀 Lighthouse Score: **>95**
+- 📱 PWA Install Rate: **>20%**
+- 🔐 Güvenlik Audit: **A+ rating**
+- ⚡ Core Web Vitals: **Tüm yeşil**
+- 📦 Bundle size: **<500KB (gzipped)**
+
+---
+
+## 🎯 SONRAKİ ADIMLAR
+
+### Bu Hafta (Hızlı Kazanımlar):
+1. ✅ Dark/Light theme toggle
+2. ✅ Keyboard shortcuts
+3. ✅ Markdown rendering
+4. ✅ Response rating
+
+### Gelecek Hafta:
+1. ✅ Sohbet geçmişi (LocalStorage)
+2. ✅ LaTeX matematik formülleri
+3. ✅ Suggested questions
+4. ✅ Code copy button
+
+### Bu Ay:
+1. ✅ Multi-modal file upload
+2. ✅ Code execution sandbox
+3. ✅ Export PDF/Markdown
+4. ✅ Analytics başlangıcı
+
+---
+
+**🚀 ÖNERİLEN YOLHARITA:**
+
+1. **Hafta 1:** Quick wins (dark theme, shortcuts, markdown) ⚡
+2. **Hafta 2:** Sohbet geçmişi + LaTeX rendering 📚
+3. **Hafta 3-4:** Multi-modal destek (görsel, PDF) 🖼️
+4. **Hafta 5-6:** Kod çalıştırma sandbox 💻
+5. **Ay 2:** User accounts + analytics 👤
+
+**Tavsiye:** Phase 1'deki P0 ve P1 öncelikli özelliklere odaklan, kullanıcı feedback'i topla, iteratif geliştir.
+
+---
+
+© 2025 LyDian AI - Ultra Intelligence Platform
+**Version:** 2.0 | **Last Updated:** 6 Ekim 2025

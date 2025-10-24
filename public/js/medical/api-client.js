@@ -1,11 +1,3 @@
-
-// Production console log suppression
-if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-  console.log = function() {};
-  console.debug = function() {};
-  console.info = function() {};
-}
-
 /**
  * LyDian Medical AI - API Client Module
  * Centralized API communication for all medical services
@@ -107,7 +99,7 @@ const MedicalAPI = {
     },
 
     async assessNeuroRisk(data) {
-        return this.request('/neuro/ri[REDACTED]assessment', {
+        return this.request('/neuro/risk-assessment', {
             method: 'POST',
             body: JSON.stringify(data)
         });

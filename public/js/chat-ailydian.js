@@ -1,11 +1,3 @@
-
-// Production console log suppression
-if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-  console.log = function() {};
-  console.debug = function() {};
-  console.info = function() {};
-}
-
 /**
  * 💬 CHAT.AILYDIAN.COM JAVASCRIPT
  * Modern AI Chat Interface with Real-time Features
@@ -413,7 +405,7 @@ class AiLydianChat {
             },
             body: JSON.stringify({
                 message: message,
-                engine: this.currentModel,
+                model: this.currentModel,
                 conversation_id: this.currentConversation?.id,
                 timestamp: new Date().toISOString()
             })
@@ -556,7 +548,7 @@ class AiLydianChat {
     // Model Selection
     selectModel(modelOption) {
         const modelData = {
-            engine: modelOption.dataset.model,
+            model: modelOption.dataset.model,
             icon: modelOption.dataset.icon,
             name: modelOption.querySelector('span').textContent
         };
@@ -566,7 +558,7 @@ class AiLydianChat {
         // Update UI
         const selectedModel = document.getElementById('selectedModel');
         if (selectedModel) {
-            selectedModel.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            selectedModel.innerHTML = `
                 <i class="${modelData.icon}"></i>
                 <span>${modelData.name}</span>
                 <i class="fas fa-chevron-down"></i>
@@ -1209,7 +1201,7 @@ class AiLydianChat {
             animation: pulse 1.5s infinite; box-shadow: 0 4px 20px rgba(231,76,60,0.3);
         `;
 
-        indicator.innerHTML = AilydianSanitizer.sanitizeHTML(`
+        indicator.innerHTML = `
             <div style="width: 12px; height: 12px; background: white; border-radius: 50%; animation: blink 1s infinite;"></div>
             <span>Recording... Click anywhere to stop</span>
         `;
@@ -1265,7 +1257,7 @@ class AiLydianChat {
     selectCapability(capability) {
         // Set appropriate model based on capability
         const capabilityModelMap = {
-            'azure': 'azure-Advanced AIo',
+            'azure': 'azure-gpt-4o',
             'google': 'google-gemini-pro',
             'zai': 'zai-developer',
             'deepseek': 'deepseek-r1',
@@ -1333,7 +1325,7 @@ class AiLydianChat {
         const messageInput = document.getElementById('messageInput');
 
         this.isRecording = true;
-        voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML('<i class="fas fa-stop"></i>';
+        voiceBtn.innerHTML = '<i class="fas fa-stop"></i>';
         voiceBtn.style.background = '#ef4444';
 
         this.recognition.onresult = (event) => {
@@ -1371,7 +1363,7 @@ class AiLydianChat {
 
         const voiceBtn = document.getElementById('voiceBtn');
         if (voiceBtn) {
-            voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML('<i class="fas fa-microphone"></i>';
+            voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
             voiceBtn.style.background = '';
         }
 
@@ -1482,7 +1474,7 @@ class AiLydianChat {
         const chatMessages = document.getElementById('chatMessages');
         const imageContainer = document.createElement('div');
         imageContainer.className = 'image-preview-container';
-        imageContainer.innerHTML = AilydianSanitizer.sanitizeHTML(`
+        imageContainer.innerHTML = `
             <img src="${base64Image}" alt="Uploaded image preview" style="max-width: 300px; max-height: 200px; border-radius: 8px; margin: 10px 0;">
         `;
 
@@ -1498,7 +1490,7 @@ class AiLydianChat {
         const processingDiv = document.createElement('div');
         processingDiv.id = 'processingIndicator';
         processingDiv.className = 'processing-indicator';
-        processingDiv.innerHTML = AilydianSanitizer.sanitizeHTML(`
+        processingDiv.innerHTML = `
             <div class="processing-content">
                 <div class="spinner"></div>
                 <span>${message}</span>
@@ -1569,7 +1561,7 @@ class AiLydianChat {
         const historyList = document.getElementById('historyList');
         if (!historyList || !this.conversations) return;
 
-        historyList.innerHTML = AilydianSanitizer.sanitizeHTML('';
+        historyList.innerHTML = '';
 
         this.conversations.slice(-10).reverse().forEach(conversation => {
             const item = document.createElement('div');
@@ -1588,7 +1580,7 @@ class AiLydianChat {
         // Clear messages
         const messagesContainer = document.getElementById('messagesContainer');
         if (messagesContainer) {
-            messagesContainer.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            messagesContainer.innerHTML = '';
         }
 
         // Show welcome screen
@@ -1970,7 +1962,7 @@ class AiLydianChat {
             animation: slideIn 0.3s; color: var(--text-color, #e1e1e1);
         `;
 
-        dialog.innerHTML = AilydianSanitizer.sanitizeHTML(`
+        dialog.innerHTML = `
             <div class="dialog-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h3 style="margin: 0; color: var(--primary-color, #3498db);">${title}</h3>
                 <button onclick="window.aiLydianChat.closeDialog()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-color, #e1e1e1);">&times;</button>

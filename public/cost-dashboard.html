@@ -8,6 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💰 Cost Tracking Dashboard - LyDian Ultra Pro</title>
   <style>
+    :root {
+      --bg-0: #0A0B0D;
+      --txt-1: #FFFFFF;
+      --txt-2: #B0B0B0;
+      --accent-1: #00E0AE;
+      --accent-2: #6E84FF;
+      --glass: rgba(255, 255, 255, 0.05);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -16,7 +25,10 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                  radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                  var(--bg-0);
+      color: var(--txt-1);
       min-height: 100vh;
       padding: 20px;
     }
@@ -27,22 +39,25 @@
     }
 
     .header {
-      background: white;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(110, 132, 255, 0.1);
       margin-bottom: 30px;
     }
 
     .header h1 {
-      color: #2d3748;
+      color: var(--txt-1);
       font-size: 32px;
       font-weight: 700;
       margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(0, 224, 174, 0.3);
     }
 
     .header p {
-      color: #718096;
+      color: var(--txt-2);
       font-size: 16px;
     }
 
@@ -54,31 +69,37 @@
     }
 
     .stat-card {
-      background: white;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 25px;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(110, 132, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .stat-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.4), 0 0 30px rgba(0, 224, 174, 0.2);
     }
 
     .stat-card.critical {
-      border-left: 4px solid #f56565;
+      border-left: 4px solid #FF4D6D;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(255, 77, 109, 0.3);
     }
 
     .stat-card.warning {
-      border-left: 4px solid #ed8936;
+      border-left: 4px solid #FFB800;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(255, 184, 0, 0.3);
     }
 
     .stat-card.healthy {
-      border-left: 4px solid #48bb78;
+      border-left: 4px solid #00E0AE;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(0, 224, 174, 0.3);
     }
 
     .stat-label {
-      color: #718096;
+      color: var(--txt-2);
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
@@ -87,41 +108,47 @@
     }
 
     .stat-value {
-      color: #2d3748;
+      color: var(--txt-1);
       font-size: 36px;
       font-weight: 700;
       margin-bottom: 5px;
+      text-shadow: 0 0 15px rgba(0, 224, 174, 0.3);
     }
 
     .stat-change {
       font-size: 14px;
-      color: #48bb78;
+      color: #00E0AE;
     }
 
     .stat-change.negative {
-      color: #f56565;
+      color: #FF4D6D;
     }
 
     .chart-container {
-      background: white;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(110, 132, 255, 0.1);
       margin-bottom: 30px;
     }
 
     .chart-container h2 {
-      color: #2d3748;
+      color: var(--txt-1);
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(0, 224, 174, 0.2);
     }
 
     .models-list {
-      background: white;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(110, 132, 255, 0.1);
       margin-bottom: 30px;
     }
 
@@ -130,7 +157,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .model-item:last-child {
@@ -139,19 +166,20 @@
 
     .model-name {
       font-weight: 600;
-      color: #2d3748;
+      color: var(--txt-1);
     }
 
     .model-cost {
       font-size: 18px;
       font-weight: 700;
-      color: #667eea;
+      color: var(--accent-1);
+      text-shadow: 0 0 10px rgba(0, 224, 174, 0.5);
     }
 
     .progress-bar {
       width: 100%;
       height: 12px;
-      background: #e2e8f0;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 6px;
       overflow: hidden;
       margin: 10px 0;
@@ -159,16 +187,19 @@
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(90deg, #00E0AE 0%, #6E84FF 100%);
+      box-shadow: 0 0 15px rgba(0, 224, 174, 0.5);
       transition: width 0.5s ease;
     }
 
     .progress-fill.warning {
-      background: linear-gradient(90deg, #ed8936 0%, #f56565 100%);
+      background: linear-gradient(90deg, #FFB800 0%, #FF4D6D 100%);
+      box-shadow: 0 0 15px rgba(255, 184, 0, 0.5);
     }
 
     .progress-fill.critical {
-      background: linear-gradient(90deg, #f56565 0%, #c53030 100%);
+      background: linear-gradient(90deg, #FF4D6D 0%, #c53030 100%);
+      box-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
     }
 
     .alert {
@@ -178,33 +209,42 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      backdrop-filter: blur(12px);
     }
 
     .alert.critical {
-      background: #fff5f5;
-      border-left: 4px solid #f56565;
-      color: #c53030;
+      background: rgba(255, 77, 109, 0.1);
+      border: 1px solid rgba(255, 77, 109, 0.3);
+      border-left: 4px solid #FF4D6D;
+      color: #FF4D6D;
+      box-shadow: 0 0 20px rgba(255, 77, 109, 0.2);
     }
 
     .alert.warning {
-      background: #fffaf0;
-      border-left: 4px solid #ed8936;
-      color: #c05621;
+      background: rgba(255, 184, 0, 0.1);
+      border: 1px solid rgba(255, 184, 0, 0.3);
+      border-left: 4px solid #FFB800;
+      color: #FFB800;
+      box-shadow: 0 0 20px rgba(255, 184, 0, 0.2);
     }
 
     .recommendations {
-      background: white;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(110, 132, 255, 0.1);
       margin-bottom: 30px;
     }
 
     .recommendation-item {
       padding: 15px;
-      background: #f7fafc;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       margin-bottom: 15px;
+      color: var(--txt-1);
     }
 
     .recommendation-item:last-child {
@@ -214,38 +254,43 @@
     .savings {
       display: inline-block;
       padding: 5px 10px;
-      background: #c6f6d5;
-      color: #22543d;
+      background: rgba(0, 224, 174, 0.2);
+      color: #00E0AE;
+      border: 1px solid rgba(0, 224, 174, 0.3);
       border-radius: 5px;
       font-weight: 600;
       font-size: 14px;
+      box-shadow: 0 0 10px rgba(0, 224, 174, 0.2);
     }
 
     .loading {
       text-align: center;
       padding: 50px;
-      color: white;
+      color: var(--txt-1);
       font-size: 18px;
     }
 
     .export-btn {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #00E0AE 0%, #6E84FF 100%);
       color: white;
       border: none;
       padding: 12px 24px;
       border-radius: 10px;
       font-weight: 600;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 20px rgba(0, 224, 174, 0.3);
     }
 
     .export-btn:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 224, 174, 0.5);
     }
 
     #dailyChart {
       height: 300px;
-      background: #f7fafc;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       padding: 20px;
     }
@@ -456,34 +501,5 @@
     fetchDashboard();
   </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>

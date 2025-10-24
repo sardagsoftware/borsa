@@ -17,12 +17,6 @@ test-results
 playwright-report
 *.spec.js
 *.test.js
-*.spec.ts
-*.test.ts
-
-# TypeScript API files (not compiled, causes build errors)
-api/**/*.ts
-!api/**/*.d.ts
 
 # IDE
 .vscode
@@ -49,16 +43,6 @@ monitoring
 # Apps (using separate repos)
 apps
 
-# API endpoints (causing bundle size > 250MB due to node_modules)
-# Temporarily disabled for translation-only deployment
-api
-
-# Packages (SDK development, not for production)
-packages
-
-# Services (microservices development, not for production)
-services
-
 # Multi-language libraries (local only)
 multi-language-libraries
 
@@ -71,8 +55,8 @@ database
 # Backend (local only, if separate)
 backend
 
-# Security - REQUIRED by API endpoints!
-# security
+# Security (local only)
+security
 
 # AI integrations (local only, if not needed)
 ai-integrations
@@ -81,13 +65,3 @@ ai-integrations
 *.tar.gz
 *.zip
 *.rar
-
-# Heavy dependencies (reduce bundle size)
-node_modules/puppeteer
-node_modules/canvas
-node_modules/@azure/cognitiveservices-*
-node_modules/@azure/arm-*
-node_modules/onnxruntime-node
-node_modules/sharp
-node_modules/neo4j-driver
-node_modules/weaviate-client

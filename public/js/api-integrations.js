@@ -1,11 +1,3 @@
-
-// Production console log suppression
-if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-  console.log = function() {};
-  console.debug = function() {};
-  console.info = function() {};
-}
-
 // 🌐 AiLydian Ultra Pro - Enterprise API Integrations
 // Microsoft Translation, Google Translate, Z.AI, and Mixtral APIs
 
@@ -241,7 +233,7 @@ class EnterpriseAPIManager {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    engine: model,
+                    model: model,
                     messages: [
                         { role: 'system', content: systemPrompt },
                         { role: 'user', content: prompt }
@@ -357,7 +349,7 @@ class EnterpriseAPIManager {
             id: 'mixtral-demo-' + Date.now(),
             object: 'chat.completion',
             created: Math.floor(Date.now() / 1000),
-            engine: 'mixtral-8x7b-demo',
+            model: 'mixtral-8x7b-demo',
             choices: [{
                 index: 0,
                 message: {

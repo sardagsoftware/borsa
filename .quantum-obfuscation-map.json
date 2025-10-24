@@ -1,0 +1,46 @@
+{
+  "obfuscationMap": {
+    "purpose": "White-hat security obfuscation - Hide third-party provider names from end users",
+    "strategy": "Replace all user-facing 'BlueQubit' references with generic 'Quantum Gateway' branding",
+    "mappings": {
+      "frontend": {
+        "BlueQubit": "Quantum Gateway",
+        "bluequbit.io": "quantum-provider.internal",
+        "BlueQubit Integration": "Quantum Gateway Active",
+        "BlueQubit Platform": "Quantum Computing Platform"
+      },
+      "backend": {
+        "BLUEQUBIT_API_KEY": "QUANTUM_GATEWAY_KEY",
+        "bluequbit_client": "quantum_gateway_client",
+        "bluequbit_job": "quantum_job",
+        "comments": "Replace 'BlueQubit' with 'External Quantum Provider'"
+      },
+      "icons": {
+        "🌌": "quantum-icon.svg",
+        "⚛️": "atom-icon.svg",
+        "🏥": "medical-icon.svg",
+        "📊": "stats-icon.svg",
+        "💡": "info-icon.svg",
+        "🚀": "launch-icon.svg",
+        "🧬": "dna-icon.svg",
+        "🔄": "refresh-icon.svg",
+        "✅": "check-icon.svg",
+        "❌": "error-icon.svg"
+      }
+    },
+    "filesAffected": [
+      "/public/index.html",
+      "/public/quantum-test.html",
+      "/api/quantum/vqe.js",
+      "/api/medical/quantum-analysis.js",
+      "/services/quantum-gateway.js",
+      "/apps/quantum/vqe_molecular_simulation.py",
+      "/apps/quantum/test_bluequbit_connection.py"
+    ],
+    "preserveIntegrity": {
+      "pythonPackageName": "bluequbit - KEEP (actual package import)",
+      "apiEndpoints": "Internal variable names can be obfuscated",
+      "environmentVariables": "Rename BLUEQUBIT_API_KEY to QUANTUM_GATEWAY_KEY"
+    }
+  }
+}

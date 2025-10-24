@@ -3,7 +3,6 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { handleCORS } = require('../middleware/cors-handler');
 
 // Google AI Configuration
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
@@ -89,8 +88,14 @@ function convertToGeminiFormat(messages, systemPrompt = null) {
 
 // Main request handler
 async function handleRequest(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -339,9 +344,7 @@ async function handleRequest(req, res) {
 
 // Get available models
 function getModels(req, res) {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
-
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(200).json({
     success: true,
     models: Object.keys(GEMINI_MODELS).map(key => ({

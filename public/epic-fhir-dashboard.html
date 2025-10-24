@@ -359,10 +359,6 @@
         }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css">
-
-    <!-- 🛡️ XSS Protection: DOMPurify -->
-    <script src="/js/lib/dompurify-loader.js"></script>
-    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -599,15 +595,15 @@
 
                 if (status.status === 'healthy') {
                     badge.className = 'status-badge healthy';
-                    badge.innerHTML = AilydianSanitizer.sanitizeHTML('<span>●</span> Connected';
+                    badge.innerHTML = '<span>●</span> Connected';
                 } else {
                     badge.className = 'status-badge unhealthy';
-                    badge.innerHTML = AilydianSanitizer.sanitizeHTML('<span>●</span> Disconnected';
+                    badge.innerHTML = '<span>●</span> Disconnected';
                 }
             } catch (error) {
                 const badge = document.getElementById('connectionStatus');
                 badge.className = 'status-badge unhealthy';
-                badge.innerHTML = AilydianSanitizer.sanitizeHTML('<span>●</span> Error';
+                badge.innerHTML = '<span>●</span> Error';
             }
         }
 
@@ -621,7 +617,7 @@
             const results = document.getElementById('patientResults');
 
             loading.style.display = 'block';
-            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            results.innerHTML = '';
 
             try {
                 const params = { [searchType]: searchValue };
@@ -653,11 +649,11 @@
                     // Update stats
                     document.getElementById('statPatients').textContent = data.total || data.entry.length;
                 } else {
-                    results.innerHTML = AilydianSanitizer.sanitizeHTML('<p style="text-align:center; color: var(--text-secondary);">No patients found</p>';
+                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No patients found</p>';
                 }
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -675,7 +671,7 @@
             const results = document.getElementById('appointmentResults');
 
             loading.style.display = 'block';
-            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            results.innerHTML = '';
 
             try {
                 const appointmentData = {
@@ -711,7 +707,7 @@
 
                 loading.style.display = 'none';
 
-                results.innerHTML = AilydianSanitizer.sanitizeHTML(`
+                results.innerHTML = `
                     <div class="result-item" style="border-color: var(--success);">
                         <div class="result-header">
                             <div class="result-title">✅ Appointment Created</div>
@@ -730,7 +726,7 @@
                 e.target.reset();
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -745,7 +741,7 @@
             const results = document.getElementById('observationResults');
 
             loading.style.display = 'block';
-            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            results.innerHTML = '';
 
             try {
                 const params = { patientId, category: category || null };
@@ -777,11 +773,11 @@
 
                     document.getElementById('statObservations').textContent = data.total || data.entry.length;
                 } else {
-                    results.innerHTML = AilydianSanitizer.sanitizeHTML('<p style="text-align:center; color: var(--text-secondary);">No observations found</p>';
+                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No observations found</p>';
                 }
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -795,7 +791,7 @@
             const results = document.getElementById('medicationResults');
 
             loading.style.display = 'block';
-            results.innerHTML = AilydianSanitizer.sanitizeHTML('';
+            results.innerHTML = '';
 
             try {
                 const params = { patientId };
@@ -825,11 +821,11 @@
 
                     document.getElementById('statMedications').textContent = data.total || data.entry.length;
                 } else {
-                    results.innerHTML = AilydianSanitizer.sanitizeHTML('<p style="text-align:center; color: var(--text-secondary);">No medications found</p>';
+                    results.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">No medications found</p>';
                 }
             } catch (error) {
                 loading.style.display = 'none';
-                results.innerHTML = AilydianSanitizer.sanitizeHTML(`<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
+                results.innerHTML = `<p style="text-align:center; color: var(--error);">Error: ${error.message}</p>`;
             }
         });
 
@@ -838,34 +834,5 @@
         setInterval(checkConnection, 60000); // Check every minute
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>

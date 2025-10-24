@@ -15,8 +15,14 @@ const AZURE_HEALTH_INSIGHTS_KEY = process.env.AZURE_HEALTH_INSIGHTS_KEY;
 const AZURE_HEALTH_INSIGHTS_ENDPOINT = process.env.AZURE_HEALTH_INSIGHTS_ENDPOINT;
 
 module.exports = async (req, res) => {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -50,7 +56,6 @@ module.exports = async (req, res) => {
 
     const imageFile = files.image[0];
     const imageBuffer = require('fs').readFileSync(imageFile.path);
-const { handleCORS } = require('../../middleware/cors-handler');
     const specialty = fields.specialty ? fields.specialty[0] : 'general';
     const language = fields.language ? fields.language[0] : 'en';
 

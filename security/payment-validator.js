@@ -4,14 +4,7 @@
  */
 
 const crypto = require('crypto');
-
-// Initialize Stripe only if API key is provided
-let stripe = null;
-if (process.env.STRIPE_SECRET_KEY) {
-  stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-} else {
-  console.warn('⚠️  Stripe API key not configured - payment features will be disabled');
-}
+const stripe = process.env.STRIPE_SECRET_KEY ? require('stripe')(process.env.STRIPE_SECRET_KEY) : null;
 
 // Pricing configuration (server-side source of truth)
 const PRICING_PLANS = {
@@ -27,7 +20,7 @@ const PRICING_PLANS = {
  */
 function validateStripeWebhook(req, endpointSecret) {
   if (!stripe) {
-    throw new Error('Stripe not configured');
+    throw new Error('Stripe is not configured');
   }
 
   const sig = req.headers['stripe-signature'];
@@ -49,22 +42,44 @@ function validateStripeWebhook(req, endpointSecret) {
 }
 
 /**
- * Validate payment price (server-side)
+ * Validate payment price (server-side) - CRITICAL FIX
  * Fixes: CRITICAL - Price manipulation possible
  */
-function validatePaymentPrice(plan, clientPrice) {
+function validatePaymentPrice(plan, clientPrice, options = {}) {
   const serverPrice = PRICING_PLANS[plan]?.price;
 
   if (!serverPrice && serverPrice !== 0) {
-    throw new Error('Invalid plan');
+    throw new Error(`Invalid plan: ${plan}`);
   }
 
-  // NEVER trust client-provided price
-  // Always use server-side price
+  // ✅ CRITICAL FIX: Validate client price matches server price
+  if (clientPrice !== undefined && clientPrice !== null) {
+    // Allow small floating-point tolerance (0.01)
+    const tolerance = options.tolerance || 0.01;
+    const priceDiff = Math.abs(clientPrice - serverPrice);
+
+    if (priceDiff > tolerance) {
+      // Log suspicious activity
+      console.error('🚨 PRICE MANIPULATION DETECTED:', {
+        plan,
+        clientPrice,
+        serverPrice,
+        diff: priceDiff,
+        timestamp: new Date().toISOString()
+      });
+
+      throw new Error(
+        `Price mismatch detected: Client sent ${clientPrice}, server expects ${serverPrice}`
+      );
+    }
+  }
+
+  // NEVER trust client-provided price - always use server-side price
   return {
     valid: true,
     price: serverPrice, // Use server price, not client price
-    plan: plan
+    plan: plan,
+    validated: true
   };
 }
 
@@ -145,10 +160,6 @@ async function verifyUSDTTransaction(txHash, expectedAmount, recipientAddress) {
  * Generate payment session with server-side pricing
  */
 async function createPaymentSession(userId, plan) {
-  if (!stripe) {
-    throw new Error('Stripe not configured');
-  }
-
   const pricing = validatePaymentPrice(plan, null);
 
   // Create Stripe session with server-side pricing

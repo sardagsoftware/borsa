@@ -5,6 +5,16 @@
 
 // Available connectors (demo mode - real SDK integration coming)
 const CONNECTORS = {
+  // Web Search (REAL INTEGRATION)
+  'perplexity': {
+    name: 'Perplexity',
+    category: 'search',
+    actions: ['web.search', 'realtime.info'],
+    icon: '🔍',
+    description: 'Gerçek zamanlı web arama ve güncel bilgi',
+    realIntegration: true
+  },
+
   // E-Commerce
   'trendyol': {
     name: 'Trendyol',
@@ -95,6 +105,7 @@ async function listConnectors(req, res) {
 
   // Group by category
   const grouped = {
+    search: connectors.filter(c => c.category === 'search'),
     commerce: connectors.filter(c => c.category === 'commerce'),
     delivery: connectors.filter(c => c.category === 'delivery'),
     logistics: connectors.filter(c => c.category === 'logistics'),

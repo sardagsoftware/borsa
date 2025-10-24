@@ -15,9 +15,12 @@ const neo4j = require('neo4j-driver');
 
 class Neo4jKnowledgeGraph {
   constructor() {
+    const neo4jUri = process.env.NEO4J_URI || 'bolt://localhost:7687';
+    const neo4jUser = process.env.NEO4J_USERNAME || 'neo4j';
+    const neo4jPass = process.env.NEO4J_PASSWORD || 'password';
     this.driver = neo4j.driver(
-      process.env.NEO4J_URI,
-      neo4j.auth.basic(process.env.NEO4J_USERNAME, process.env.NEO4J_PASSWORD)
+      neo4jUri,
+      neo4j.auth.basic(neo4jUser, neo4jPass)
     );
   }
 

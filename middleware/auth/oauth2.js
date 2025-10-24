@@ -14,7 +14,12 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY || ''
 );
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+// JWT_SECRET is validated by middleware/security.js - no fallback allowed
+if (!process.env.JWT_SECRET) {
+  throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+}
+
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_ISSUER = process.env.JWT_ISSUER || 'https://auth.lydian.com';
 
 /**

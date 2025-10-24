@@ -150,73 +150,8 @@
         </div>
     </section>
 
-    <!-- Search Results Section (Moved to Top for Better UX) -->
-    <section class="search-results-section" id="searchResultsSection" style="display: none;">
-        <div class="container">
-            <!-- Sticky Results Header -->
-            <div class="results-header-sticky">
-                <div class="results-info-bar">
-                    <h2 class="results-title">
-                        <i class="fas fa-search"></i>
-                        Arama Sonuçları
-                    </h2>
-                    <div class="results-meta">
-                        <span class="results-count-badge" id="resultsCount">0 sonuç</span>
-                        <span class="results-time-badge" id="resultsTime">0.0s</span>
-                    </div>
-                </div>
-
-                <!-- Quick Action Buttons -->
-                <div class="results-quick-actions">
-                    <button onclick="refineSearch()" class="quick-action-btn">
-                        <i class="fas fa-filter"></i> Filtrele
-                    </button>
-                    <button onclick="sortResults('relevance')" class="quick-action-btn">
-                        <i class="fas fa-sort"></i> Sırala
-                    </button>
-                    <button onclick="exportResults()" class="quick-action-btn">
-                        <i class="fas fa-download"></i> Dışa Aktar
-                    </button>
-                    <button onclick="clearSearch()" class="quick-action-btn clear-btn">
-                        <i class="fas fa-times"></i> Temizle
-                    </button>
-                </div>
-            </div>
-
-            <!-- Loading State -->
-            <div class="results-loading" id="resultsLoading" style="display: none;">
-                <div class="loading-animation">
-                    <div class="loading-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <p>Bilgiler aranıyor...</p>
-                </div>
-            </div>
-
-            <!-- Results Grid -->
-            <div class="results-grid-enhanced" id="resultsGrid">
-                <!-- Results will be dynamically loaded here -->
-            </div>
-
-            <!-- Pagination -->
-            <div class="results-pagination" id="resultsPagination">
-                <!-- Pagination controls -->
-            </div>
-
-            <!-- Back to Categories Button -->
-            <div class="back-to-explore">
-                <button onclick="backToCategories()" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                    Kategorilere Dön
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Knowledge Categories -->
-    <section class="knowledge-categories" id="knowledgeCategories">
+    <section class="knowledge-categories">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
@@ -392,6 +327,27 @@
         </div>
     </section>
 
+    <!-- Search Results Section (Initially Hidden) -->
+    <section class="search-results-section" id="searchResultsSection" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="results-title">Arama Sonuçları</h2>
+                <div class="results-info">
+                    <span id="resultsCount">0 sonuç bulundu</span>
+                    <span class="results-time" id="resultsTime">0.0 saniye</span>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be dynamically loaded here -->
+            </div>
+
+            <div class="results-pagination" id="resultsPagination">
+                <!-- Pagination controls -->
+            </div>
+        </div>
+    </section>
+
     <!-- AI Assistant Integration -->
     <section class="ai-assistant-section">
         <div class="container">
@@ -546,37 +502,5 @@
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
-    <!-- Phase M: CSS Route Loader -->
-    <script src="/js/css-route-loader.js"></script>
-
 </body>
 </html>

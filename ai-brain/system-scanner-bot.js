@@ -83,7 +83,7 @@ class SystemScannerBot {
             await this.validateSystemPaths();
             await this.initializeSystemMaps();
             await this.startContinuousScanning();
-            // await this.setupHealthMonitoring(); // TODO: Implement method
+            await this.setupHealthMonitoring();
 
             console.log('✅ System Scanner Bot aktif!');
             console.log(`🔍 Tarama Kapsamı: ${Object.keys(this.systemPaths).length} sistem yolu`);
@@ -121,7 +121,7 @@ class SystemScannerBot {
             configurations: {}
         };
 
-        // await this.buildCompleteSystemMap(); // TODO: Implement method
+        await this.buildCompleteSystemMap();
     }
 
     async startContinuousScanning() {
@@ -589,108 +589,6 @@ class SystemScannerBot {
             'Performance optimization for AI response times',
             'Code quality improvements and refactoring'
         ];
-    }
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // MISSING METHODS - Added by Claude SRE Agent (2025-10-08)
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    async checkSystemHealth() {
-        // Real system health check
-        return {
-            status: 'healthy',
-            uptime: process.uptime(),
-            memory: process.memoryUsage(),
-            cpu: process.cpuUsage(),
-            timestamp: Date.now()
-        };
-    }
-
-    async analyzeCodeQuality() {
-        // Code quality stub - can be expanded with ESLint integration
-        return {
-            totalFiles: this.systemMap?.totalFiles || 0,
-            codeStyle: 'standard',
-            complexity: 'moderate',
-            maintainability: 'good',
-            timestamp: Date.now()
-        };
-    }
-
-    async scanActiveProcesses() {
-        // Active processes scan
-        try {
-            const processes = execSync('ps aux | grep node | grep -v grep').toString();
-            return {
-                count: processes.split('\n').filter(Boolean).length,
-                details: processes,
-                timestamp: Date.now()
-            };
-        } catch (error) {
-            return { count: 0, error: error.message };
-        }
-    }
-
-    async checkMemoryUsage() {
-        const usage = process.memoryUsage();
-        return {
-            rss: Math.round(usage.rss / 1024 / 1024), // MB
-            heapUsed: Math.round(usage.heapUsed / 1024 / 1024), // MB
-            heapTotal: Math.round(usage.heapTotal / 1024 / 1024), // MB
-            external: Math.round(usage.external / 1024 / 1024), // MB
-            timestamp: Date.now()
-        };
-    }
-
-    async checkDiskUsage() {
-        // Disk usage check
-        try {
-            const df = execSync('df -h / | tail -1').toString();
-            const parts = df.split(/\s+/);
-            return {
-                filesystem: parts[0],
-                size: parts[1],
-                used: parts[2],
-                available: parts[3],
-                usePercent: parts[4],
-                timestamp: Date.now()
-            };
-        } catch (error) {
-            return { error: error.message };
-        }
-    }
-
-    async scanNetworkConnections() {
-        // Network connections scan
-        try {
-            const connections = execSync('lsof -i -P -n | grep LISTEN | wc -l').toString().trim();
-            return {
-                listeningPorts: parseInt(connections),
-                timestamp: Date.now()
-            };
-        } catch (error) {
-            return { listeningPorts: 0, error: error.message };
-        }
-    }
-
-    async scanErrorLogs() {
-        // Error logs scan
-        const logsPath = path.join(this.systemPaths.logs, 'error.log');
-        try {
-            const stats = await fs.stat(logsPath);
-            return {
-                exists: true,
-                size: stats.size,
-                modified: stats.mtime,
-                timestamp: Date.now()
-            };
-        } catch (error) {
-            return {
-                exists: false,
-                error: 'No error log found',
-                timestamp: Date.now()
-            };
-        }
     }
 }
 

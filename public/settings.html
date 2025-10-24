@@ -97,11 +97,12 @@
             font-family: 'Caveat', cursive !important;
             font-size: 2.25rem;
             font-weight: 700 !important;
-            color: #000000;
+            color: #FFFFFF;
             text-decoration: none;
             letter-spacing: 0.08em !important;
             display: flex;
             align-items: center;
+            text-shadow: 0 0 10px rgba(0,224,174,0.3);
         }
 
         .nav-links {
@@ -721,7 +722,7 @@
                             <div class="switch-title">Kullanım İstatistikleri</div>
                             <div class="switch-desc">Hizmeti geliştirmek için anonim veri toplanır</div>
                         </div>
-                        <div class="switch active" data-privacy="usage" onclick="toggleSwitch(this); updatePrivacySettings()"></div>
+                        <div class="switch active" onclick="toggleSwitch(this)"></div>
                     </div>
 
                     <div class="switch-container">
@@ -729,7 +730,7 @@
                             <div class="switch-title">Sohbet Geçmişi</div>
                             <div class="switch-desc">Sohbet geçmişinizi sunucuda saklayın</div>
                         </div>
-                        <div class="switch active" data-privacy="chat" onclick="toggleSwitch(this); updatePrivacySettings()"></div>
+                        <div class="switch active" onclick="toggleSwitch(this)"></div>
                     </div>
 
                     <div class="switch-container">
@@ -737,7 +738,7 @@
                             <div class="switch-title">Kişiselleştirme</div>
                             <div class="switch-desc">Deneyiminizi kişiselleştirmek için veri kullanımı</div>
                         </div>
-                        <div class="switch active" data-privacy="personalize" onclick="toggleSwitch(this); updatePrivacySettings()"></div>
+                        <div class="switch active" onclick="toggleSwitch(this)"></div>
                     </div>
                 </div>
 
@@ -754,8 +755,8 @@
                     </p>
 
                     <div style="display: flex; gap: 1rem;">
-                        <button class="btn-save" onclick="exportData()">Verilerimi İndir</button>
-                        <button class="btn-danger" onclick="deleteAccount()">Hesabı Sil</button>
+                        <button class="btn-save">Verilerimi İndir</button>
+                        <button class="btn-danger">Hesabı Sil</button>
                     </div>
                 </div>
             </div>
@@ -772,20 +773,20 @@
 
                     <div class="form-group">
                         <label class="form-label">Mevcut Şifre</label>
-                        <input type="password" id="current-password" class="form-input" placeholder="••••••••">
+                        <input type="password" class="form-input" placeholder="••••••••">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Yeni Şifre</label>
-                        <input type="password" id="new-password" class="form-input" placeholder="••••••••">
+                        <input type="password" class="form-input" placeholder="••••••••">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Yeni Şifre (Tekrar)</label>
-                        <input type="password" id="new-password-confirm" class="form-input" placeholder="••••••••">
+                        <input type="password" class="form-input" placeholder="••••••••">
                     </div>
 
-                    <button class="btn-save" onclick="updatePassword()">Şifreyi Güncelle</button>
+                    <button class="btn-save">Şifreyi Güncelle</button>
                 </div>
 
                 <div class="settings-card">
@@ -801,10 +802,8 @@
                             <div class="switch-title">2FA Etkinleştir</div>
                             <div class="switch-desc">Hesabınıza ekstra güvenlik katmanı ekleyin</div>
                         </div>
-                        <div class="switch" id="2fa-toggle" onclick="toggle2FA(this)"></div>
+                        <div class="switch" onclick="toggleSwitch(this)"></div>
                     </div>
-
-                    <button class="btn-save" onclick="enable2FA()" style="margin-top: 1rem;">2FA Kurulumunu Başlat</button>
                 </div>
             </div>
 
@@ -1029,11 +1028,6 @@
                         section.classList.remove('active');
                     }
                 });
-
-                // Load data for the section
-                if (sectionName === 'api') {
-                    loadAPIKeys();
-                }
             });
         });
 
@@ -1041,440 +1035,9 @@
         function toggleSwitch(element) {
             element.classList.toggle('active');
         }
-
-        // ============ UTILITY FUNCTIONS ============
-
-        async function apiCall(url, method = 'GET', body = null) {
-            const options = {
-                method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            };
-
-            if (body) {
-                options.body = JSON.stringify(body);
-            }
-
-            const response = await fetch(url, options);
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Request failed');
-            }
-
-            return data;
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                background: ${type === 'success' ? '#10A37F' : '#EF4444'};
-                color: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                z-index: 10000;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // ============ PASSWORD MANAGEMENT ============
-
-        async function updatePassword() {
-            const currentPassword = document.getElementById('current-password').value;
-            const newPassword = document.getElementById('new-password').value;
-            const confirmPassword = document.getElementById('new-password-confirm').value;
-
-            if (!currentPassword || !newPassword || !confirmPassword) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-
-            if (newPassword !== confirmPassword) {
-                showNotification('New passwords do not match', 'error');
-                return;
-            }
-
-            if (newPassword.length < 8) {
-                showNotification('Password must be at least 8 characters', 'error');
-                return;
-            }
-
-            try {
-                await apiCall('/api/auth/update-password', 'POST', {
-                    currentPassword,
-                    newPassword
-                });
-                showNotification('Password updated successfully');
-                document.getElementById('current-password').value = '';
-                document.getElementById('new-password').value = '';
-                document.getElementById('new-password-confirm').value = '';
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        // ============ 2FA MANAGEMENT ============
-
-        function toggle2FA(element) {
-            const isEnabled = element.classList.contains('active');
-
-            if (isEnabled) {
-                disable2FA();
-            } else {
-                enable2FA();
-            }
-        }
-
-        async function enable2FA() {
-            try {
-                const data = await apiCall('/api/user/settings/enable-2fa', 'POST');
-
-                // Show QR code modal
-                showModal(`
-                    <h2 style="margin-bottom: 1rem;">Scan QR Code</h2>
-                    <p style="margin-bottom: 1rem; color: var(--gray-600);">
-                        Scan this code with your authenticator app (Google Authenticator, Authy, etc.)
-                    </p>
-                    <div style="text-align: center; margin: 2rem 0;">
-                        <img src="${data.data.qrCodeUrl}" alt="QR Code" style="max-width: 250px;">
-                    </div>
-                    <p style="margin-bottom: 0.5rem; font-weight: 600;">Or enter this code manually:</p>
-                    <div style="background: var(--gray-100); padding: 1rem; border-radius: 8px; font-family: monospace; word-break: break-all; margin-bottom: 1.5rem;">
-                        ${data.data.secret}
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Enter 6-digit code:</label>
-                        <input type="text" id="2fa-code" placeholder="123456" maxlength="6" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 8px;">
-                    </div>
-                    <button onclick="confirm2FA()" class="btn-save" style="width: 100%; margin: 0;">
-                        Verify & Enable 2FA
-                    </button>
-                `);
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        async function confirm2FA() {
-            const code = document.getElementById('2fa-code').value;
-
-            if (!code || code.length !== 6) {
-                showNotification('Please enter a 6-digit code', 'error');
-                return;
-            }
-
-            try {
-                const data = await apiCall('/api/user/settings/confirm-2fa', 'POST', { code });
-
-                // Show backup codes
-                showModal(`
-                    <h2 style="margin-bottom: 1rem;">✅ 2FA Enabled!</h2>
-                    <p style="margin-bottom: 1rem; color: var(--gray-600);">
-                        Save these backup codes in a safe place. Each code can only be used once.
-                    </p>
-                    <div style="background: var(--gray-100); padding: 1rem; border-radius: 8px; font-family: monospace; max-height: 200px; overflow-y: auto; margin-bottom: 1.5rem;">
-                        ${data.data.backupCodes.map(code => `<div style="padding: 0.25rem 0;">${code}</div>`).join('')}
-                    </div>
-                    <button onclick="closeModal(); location.reload()" class="btn-save" style="width: 100%; margin: 0;">
-                        Done
-                    </button>
-                `);
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        async function disable2FA() {
-            const password = prompt('Enter your password to disable 2FA:');
-
-            if (!password) return;
-
-            try {
-                await apiCall('/api/user/settings/disable-2fa', 'POST', { password });
-                showNotification('2FA has been disabled');
-                location.reload();
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        // ============ API KEY MANAGEMENT ============
-
-        async function loadAPIKeys() {
-            try {
-                const data = await apiCall('/api/user/settings/list-api-keys');
-                displayAPIKeys(data.data.keys);
-            } catch (error) {
-                console.error('Failed to load API keys:', error);
-            }
-        }
-
-        function displayAPIKeys(keys) {
-            const container = document.querySelector('[data-section="api"]');
-            const keysCard = container.querySelector('.settings-card');
-
-            if (keys.length === 0) {
-                keysCard.innerHTML = `
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                        </div>
-                        <div class="card-title">API Anahtarları</div>
-                    </div>
-                    <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Henüz API anahtarınız yok.</p>
-                    <button onclick="generateAPIKey()" class="btn-save">Yeni Anahtar Oluştur</button>
-                `;
-                return;
-            }
-
-            let html = `
-                <div class="card-header">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                    </div>
-                    <div class="card-title">API Anahtarları (${keys.length})</div>
-                </div>
-            `;
-
-            keys.forEach(key => {
-                const statusColor = key.status === 'active' && !key.isExpired ? '#10A37F' : '#EF4444';
-                const statusText = key.isExpired ? 'Expired' : key.status;
-
-                html += `
-                    <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <strong>${key.name}</strong>
-                            <span style="padding: 0.25rem 0.75rem; background: ${statusColor}; color: white; border-radius: 12px; font-size: 0.75rem;">
-                                ${statusText}
-                            </span>
-                        </div>
-                        <div style="font-family: monospace; color: var(--gray-600); font-size: 0.9rem; margin-bottom: 0.5rem;">
-                            ${key.keyPrefix}
-                        </div>
-                        <div style="font-size: 0.85rem; color: var(--gray-500);">
-                            Created: ${new Date(key.createdAt).toLocaleDateString()}
-                        </div>
-                        ${key.status === 'active' && !key.isExpired ? `
-                            <button onclick="revokeAPIKey(${key.id}, '${key.name}')" class="btn-danger" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.85rem;">
-                                Revoke
-                            </button>
-                        ` : ''}
-                    </div>
-                `;
-            });
-
-            html += `
-                <button onclick="generateAPIKey()" class="btn-save" style="margin-top: 1rem;">
-                    Yeni Anahtar Oluştur
-                </button>
-            `;
-
-            keysCard.innerHTML = html;
-        }
-
-        async function generateAPIKey() {
-            const name = prompt('Enter a name for this API key:');
-
-            if (!name || name.trim().length < 3) {
-                showNotification('Key name must be at least 3 characters', 'error');
-                return;
-            }
-
-            try {
-                const data = await apiCall('/api/user/settings/generate-api-key', 'POST', { name: name.trim() });
-
-                // Show the key (only time it's visible!)
-                showModal(`
-                    <h2 style="margin-bottom: 1rem;">🔑 API Key Generated</h2>
-                    <p style="margin-bottom: 1rem; color: var(--gray-600);">
-                        Save this key now. You won't be able to see it again!
-                    </p>
-                    <div style="background: var(--gray-100); padding: 1rem; border-radius: 8px; font-family: monospace; word-break: break-all; margin-bottom: 1.5rem; font-size: 0.9rem;">
-                        ${data.data.apiKey}
-                    </div>
-                    <button onclick="copyToClipboard('${data.data.apiKey}')" class="btn-save" style="width: 100%; margin-bottom: 0.5rem;">
-                        Copy to Clipboard
-                    </button>
-                    <button onclick="closeModal(); loadAPIKeys()" class="btn-secondary" style="width: 100%; margin: 0;">
-                        Done
-                    </button>
-                `);
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        async function revokeAPIKey(keyId, keyName) {
-            if (!confirm(`Are you sure you want to revoke "${keyName}"? This action cannot be undone.`)) {
-                return;
-            }
-
-            try {
-                await apiCall('/api/user/settings/revoke-api-key', 'POST', { keyId });
-                showNotification('API key revoked successfully');
-                loadAPIKeys();
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        // ============ PRIVACY SETTINGS ============
-
-        async function updatePrivacySettings() {
-            const settings = {
-                usageStatistics: document.querySelector('[data-privacy="usage"]')?.classList.contains('active') ?? true,
-                chatHistory: document.querySelector('[data-privacy="chat"]')?.classList.contains('active') ?? true,
-                personalization: document.querySelector('[data-privacy="personalize"]')?.classList.contains('active') ?? true
-            };
-
-            try {
-                await apiCall('/api/user/settings/update-privacy', 'POST', settings);
-                showNotification('Privacy settings updated');
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        async function exportData() {
-            try {
-                showNotification('Preparing your data export...');
-                window.location.href = '/api/user/settings/export-data';
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        async function deleteAccount() {
-            const password = prompt('Enter your password to confirm account deletion:');
-
-            if (!password) return;
-
-            const confirmation = prompt('Type DELETE (in capital letters) to confirm:');
-
-            if (confirmation !== 'DELETE') {
-                showNotification('Account deletion cancelled', 'error');
-                return;
-            }
-
-            try {
-                await apiCall('/api/user/settings/delete-account', 'POST', { password, confirmation });
-                showNotification('Account deleted successfully');
-                setTimeout(() => {
-                    window.location.href = '/';
-                }, 2000);
-            } catch (error) {
-                showNotification(error.message, 'error');
-            }
-        }
-
-        // ============ MODAL FUNCTIONS ============
-
-        function showModal(html) {
-            const modal = document.createElement('div');
-            modal.id = 'modal';
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                padding: 1rem;
-            `;
-
-            modal.innerHTML = `
-                <div style="background: white; padding: 2rem; border-radius: 16px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto;">
-                    ${html}
-                </div>
-            `;
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-
-            document.body.appendChild(modal);
-        }
-
-        function closeModal() {
-            document.getElementById('modal')?.remove();
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            showNotification('Copied to clipboard!');
-        }
-
-        // Add CSS for animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load API keys if on that section
-            const apiSection = document.querySelector('[data-section="api"]');
-            if (apiSection && apiSection.classList.contains('active')) {
-                loadAPIKeys();
-            }
-        });
     </script>
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>

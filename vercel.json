@@ -77,6 +77,10 @@
       "destination": "/public/dashboard.html"
     },
     {
+      "source": "/quantum-test",
+      "destination": "/public/quantum-test.html"
+    },
+    {
       "source": "/((?!api).*)",
       "destination": "/public/$1"
     }
@@ -176,5 +180,5 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "deploymentTrigger": "force-deploy-2025-10-24T19:31:00Z"
+  "deploymentTrigger": "force-deploy-quantum-2025-10-24T20:45:00Z"
 }

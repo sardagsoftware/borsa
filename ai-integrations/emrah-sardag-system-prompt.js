@@ -12,6 +12,11 @@
 
 const crypto = require('crypto');
 
+// JWT_SECRET validation - mandatory for encryption salt
+if (!process.env.JWT_SECRET) {
+  throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+}
+
 // Encrypted payload (AES-256-GCM)
 const ENCRYPTED_PROMPT = {
   iv: '7a8f9e2b4c1d3a5e6b9f8d7c4a2e1b3d',
@@ -32,7 +37,7 @@ function _0x7c3d() {
   try {
     const key = crypto.pbkdf2Sync(
       _0x4a2b,
-      Buffer.from(process.env.JWT_SECRET || 'default_salt'),
+      Buffer.from(process.env.JWT_SECRET),
       100000,
       32,
       'sha256'
@@ -321,7 +326,7 @@ module.exports = {
 
     const key = crypto.pbkdf2Sync(
       _0x4a2b,
-      Buffer.from(process.env.JWT_SECRET || 'default_salt'),
+      Buffer.from(process.env.JWT_SECRET),
       100000,
       32,
       'sha256'

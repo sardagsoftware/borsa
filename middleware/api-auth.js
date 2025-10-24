@@ -14,22 +14,14 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-// Configuration
+// Configuration - JWT_SECRET is validated by middleware/security.js
+if (!process.env.JWT_SECRET) {
+  throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+}
+
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRY = process.env.JWT_EXPIRY || '24h';
 const API_KEY_HEADER = 'X-LyDian-API-Key';
-
-// 🔒 SECURITY: Validate JWT_SECRET on startup
-if (!JWT_SECRET || JWT_SECRET.length < 32) {
-  const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
-  if (isProduction) {
-    throw new Error('🚨 CRITICAL SECURITY: JWT_SECRET must be set in production (minimum 32 characters)');
-  } else {
-    console.warn('⚠️  WARNING: JWT_SECRET not set - using development fallback (INSECURE)');
-    // Only use fallback in development
-    const JWT_SECRET = crypto.randomBytes(64).toString('hex');
-  }
-}
 
 // Role hierarchy (higher number = more permissions)
 const ROLES = {

@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3100';
-const IS_PRODUCTION = BASE_URL.includes('ailydian.com');
 
 test.describe('Production Smoke Tests', () => {
 
@@ -15,9 +14,6 @@ test.describe('Production Smoke Tests', () => {
   });
 
   test('Detailed health check should include all subsystems', async ({ request }) => {
-    // Small delay to avoid rate limiting from parallel tests
-    await new Promise(resolve => setTimeout(resolve, 100));
-
     const response = await request.get(`${BASE_URL}/api/health/detailed`);
     expect(response.status()).toBeLessThanOrEqual(200);
 
@@ -30,7 +26,7 @@ test.describe('Production Smoke Tests', () => {
 
   test('Homepage should load successfully', async ({ page }) => {
     await page.goto(BASE_URL);
-    await expect(page).toHaveTitle(/LyDian/i);
+    await expect(page).toHaveTitle(/Ailydian/i);
   });
 
   test('HTTPS redirect should work in production', async ({ request }) => {
@@ -43,21 +39,9 @@ test.describe('Production Smoke Tests', () => {
   });
 
   test('Rate limiting should return 429 when exceeded', async ({ request }) => {
-    // Skip this test on localhost - it's designed for production validation only
-    test.skip(!IS_PRODUCTION, 'Rate limiting test is for production only');
-
-    test.setTimeout(30000); // 30 seconds for rate limit test
-
-    // Fetch CSRF token first
-    const csrfResponse = await request.get(`${BASE_URL}/api/csrf-token`);
-    const { csrfToken } = await csrfResponse.json();
-
-    // Rapidly hit auth endpoint with valid CSRF token (auth tier: 5 req/5min)
+    // Rapidly hit auth endpoint
     const requests = Array(10).fill(null).map(() =>
       request.post(`${BASE_URL}/api/auth/login`, {
-        headers: {
-          'csrf-token': csrfToken
-        },
         data: { email: 'test@test.com', password: 'test' }
       })
     );
@@ -86,14 +70,6 @@ test.describe('Production Smoke Tests', () => {
   });
 
   test('File upload should reject files > 10MB', async ({ request }) => {
-    // Skip this test on localhost - it's designed for production validation only
-    test.skip(!IS_PRODUCTION, 'File upload test is for production only');
-
-    test.setTimeout(30000); // 30 seconds for file upload test
-
-    // Small delay to avoid rate limiting from parallel tests
-    await new Promise(resolve => setTimeout(resolve, 100));
-
     const largeFile = Buffer.alloc(11 * 1024 * 1024); // 11MB
 
     const response = await request.post(`${BASE_URL}/api/upload`, {

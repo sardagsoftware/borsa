@@ -6,7 +6,8 @@
  */
 
 const Anthropic = require('@anthropic-ai/sdk');
-const { OpenAI, AzureOpenAI } = require('openai');
+const OpenAI = require('openai');
+const { AzureOpenAI } = require('@azure/openai');
 const { DefaultAzureCredential, ClientSecretCredential } = require('@azure/identity');
 
 // Initialize Azure OpenAI client (PRIMARY PROVIDER) using Service Principal Authentication

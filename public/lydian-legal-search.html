@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LyDian Hukuk AI: Türkiye hukuk sistemine özel yapay zeka asistanı. Mevzuat taraması, içtihat analizi, dava dosyası hazırlama. Avukatlar için AI çözümü.">
     <title>LyDian Hukuk AI - Hukuki Danışmanlık Asistanı</title>
     <link rel="icon" type="image/png" href="/lydian-logo.png">
 
@@ -696,17 +695,16 @@ h1, h2, h3 {
     position: absolute;
     top: calc(100% + 0.5rem);
     right: 0;
-    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
-    border: 2px solid #D97706;
+    background: #FFFFFF;
+    border: var(--border-light);
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(217, 119, 6, 0.3), 0 0 0 1px rgba(217, 119, 6, 0.1);
-    min-width: 220px;
+    box-shadow: var(--shadow-xl);
+    min-width: 200px;
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
     transition: all 0.3s ease;
     z-index: 1000;
-    backdrop-filter: blur(10px);
 }
 
 .export-dropdown.active {
@@ -717,14 +715,13 @@ h1, h2, h3 {
 
 .export-dropdown-item {
     padding: 0.875rem 1rem;
-    color: #FFFFFF;
+    color: var(--text-primary);
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.75rem;
     transition: all 0.3s ease;
     font-size: 0.9375rem;
-    font-weight: 500;
     border: none;
     background: transparent;
     width: 100%;
@@ -740,31 +737,19 @@ h1, h2, h3 {
 }
 
 .export-dropdown-item:hover {
-    background: linear-gradient(90deg, rgba(217, 119, 6, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
-    color: #FBBF24;
-    transform: translateX(4px);
-    border-left: 3px solid #D97706;
+    background: var(--bg-secondary);
 }
 
 .export-dropdown-item svg {
     width: 20px;
     height: 20px;
-    color: #D97706;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 0 4px rgba(217, 119, 6, 0.3));
-}
-
-.export-dropdown-item:hover svg {
-    color: #FBBF24;
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+    color: var(--justice-gold);
 }
 
 .export-dropdown-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, #D97706 50%, transparent 100%);
-    margin: 0.5rem 0;
-    box-shadow: 0 0 8px rgba(217, 119, 6, 0.3);
+    background: var(--border-light);
+    margin: 0.25rem 0;
 }
 
 /* Messages Container */
@@ -1131,40 +1116,6 @@ h1, h2, h3 {
     box-shadow: 0 4px 12px rgba(196, 169, 98, 0.4);
 }
 
-/* 🎤 VOICE RECORDING ANIMATIONS */
-#voiceBtn.recording {
-    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
-    border-color: #ef4444 !important;
-    animation: pulse-recording 1.5s ease-in-out infinite;
-}
-
-#voiceBtn.recording svg {
-    color: white !important;
-    stroke: white !important;
-}
-
-@keyframes pulse-recording {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
-        transform: scale(1.05);
-    }
-}
-
-#voiceBtn.processing {
-    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
-    border-color: #3b82f6 !important;
-    animation: spin-processing 1s linear infinite;
-}
-
-@keyframes spin-processing {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 .send-btn {
     background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon)) !important;
     color: white;
@@ -1303,31 +1254,9 @@ h1, h2, h3 {
     </style>
 
     <!-- Export Libraries - Using CDN.jsdelivr.net (CSP Compliant) -->
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js">
-// Mask sensitive API response data
-function maskApiResponse(response) {
-  if (response && typeof response === 'object') {
-    // Mask model information
-    if (response.model) response.model = 'ai-engine';
-    if (response.engine) response.engine = 'ai-engine';
-    if (response.provider) response.provider = 'ai-provider';
-
-    // Mask headers
-    if (response.headers) {
-      delete response.headers['x-request-id'];
-      delete response.headers['ai-provider-'];
-      delete response.headers['ai-system-'];
-    }
-  }
-  return response;
-}
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
-
-    <!-- XSS Protection -->
-    <script src="/js/lib/dompurify-loader.js"></script>
-    <script src="/js/lib/sanitizer.js"></script>
 </head>
 <body>
     <!-- 📱 Mobil Sidebar Overlay -->
@@ -1336,10 +1265,7 @@ function maskApiResponse(response) {
     <!-- Sidebar: Conversation History -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; display: flex; align-items: center; gap: 0.5rem; position: relative;">
-                ⚖️ LyDian Hukuk AI
-                <span style="position: absolute; top: -8px; right: -45px; background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%); color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);">beta</span>
-            </div>
+            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">⚖️ LyDian Hukuk</div>
         </div>
 
         <button class="new-chat-btn" id="newChatBtn">
@@ -1347,7 +1273,7 @@ function maskApiResponse(response) {
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            <span data-i18n="newChat">Yeni Sohbet</span>
+            <span data-i18n="newChat">New Chat</span>
         </button>
 
         <div class="conversations-list" id="conversationsList">
@@ -1361,7 +1287,7 @@ function maskApiResponse(response) {
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                 </svg>
-                <span data-i18n="userMenuAccount">Hesabım</span>
+                <span data-i18n="userMenuAccount">My Account</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron">
                     <polyline points="6 9 12 15 18 9"/>
                 </svg>
@@ -1372,7 +1298,7 @@ function maskApiResponse(response) {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                     </svg>
-                    <span data-i18n="menuProfile">Profilim</span>
+                    <span data-i18n="menuProfile">My Profile</span>
                 </div>
                 <div class="user-dropdown-item" id="archiveMenuItem">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1380,14 +1306,14 @@ function maskApiResponse(response) {
                         <rect x="1" y="3" width="22" height="5"/>
                         <line x1="10" y1="12" x2="14" y2="12"/>
                     </svg>
-                    <span data-i18n="menuArchive">Arşiv</span>
+                    <span data-i18n="menuArchive">Archive</span>
                 </div>
                 <div class="user-dropdown-item" id="settingsMenuItem">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="3"/>
                         <path d="M12 1v6m0 6v6m-9-9h6m6 0h6"/>
                     </svg>
-                    <span data-i18n="menuSettings">Ayarlar</span>
+                    <span data-i18n="menuSettings">Settings</span>
                 </div>
                 <div class="user-dropdown-divider"></div>
                 <div class="user-dropdown-item" id="logoutMenuItem">
@@ -1396,7 +1322,7 @@ function maskApiResponse(response) {
                         <polyline points="16 17 21 12 16 7"/>
                         <line x1="21" y1="12" x2="9" y2="12"/>
                     </svg>
-                    <span data-i18n="menuLogout">Çıkış Yap</span>
+                    <span data-i18n="menuLogout">Logout</span>
                 </div>
             </div>
         </div>
@@ -1414,6 +1340,7 @@ function maskApiResponse(response) {
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
+                <h1 class="chat-title" data-i18n="legalAI">LyDian Legal AI</h1>
             </div>
 
             <div class="header-right">
@@ -1430,7 +1357,7 @@ function maskApiResponse(response) {
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                        <span data-i18n="exportShare">Dışa Aktar & Paylaş</span>
+                        <span data-i18n="exportShare">Export</span>
                     </button>
                     <div class="export-dropdown" id="exportDropdown">
                         <button class="export-dropdown-item" onclick="exportToPDF()">
@@ -1438,7 +1365,7 @@ function maskApiResponse(response) {
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
                             </svg>
-                            <span data-i18n="exportPDF">PDF Olarak Kaydet</span>
+                            <span data-i18n="exportPDF">Save as PDF</span>
                         </button>
                         <button class="export-dropdown-item" onclick="exportToDOCX()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1448,7 +1375,7 @@ function maskApiResponse(response) {
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                                 <line x1="10" y1="9" x2="8" y2="9"></line>
                             </svg>
-                            <span data-i18n="exportWord">Word Olarak Kaydet</span>
+                            <span data-i18n="exportWord">Save as Word</span>
                         </button>
                         <button class="export-dropdown-item" onclick="exportToTXT()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1457,7 +1384,7 @@ function maskApiResponse(response) {
                                 <line x1="16" y1="13" x2="8" y2="13"></line>
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                             </svg>
-                            <span data-i18n="exportText">Metin Olarak Kaydet</span>
+                            <span data-i18n="exportText">Save as Text</span>
                         </button>
                         <div class="export-dropdown-divider"></div>
                         <button class="export-dropdown-item" onclick="copyShareLink()">
@@ -1489,7 +1416,8 @@ function maskApiResponse(response) {
             <div class="empty-state" id="emptyState">
                 <div class="welcome-section">
                     <div class="welcome-icon">⚖️</div>
-                    <p class="welcome-subtitle" data-i18n="welcomeSubtitle">Hukuki sorularınız için yapay zeka destekli danışmanlık</p>
+                    <h2 class="welcome-title" data-i18n="welcomeTitle">Welcome to LyDian Legal AI</h2>
+                    <p class="welcome-subtitle" data-i18n="welcomeSubtitle">AI-powered legal consultation for your legal questions</p>
                 </div>
 
                 <div class="quick-actions">
@@ -1500,8 +1428,8 @@ function maskApiResponse(response) {
                                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionLawSearch">Kanun Maddesi Ara</div>
-                        <div class="quick-action-desc" data-i18n="quickActionLawSearchDesc">TMK, TCK, TTK, İK maddelerine eriş</div>
+                        <div class="quick-action-title" data-i18n="quickActionLawSearch">Search Legal Articles</div>
+                        <div class="quick-action-desc" data-i18n="quickActionLawSearchDesc">Access TMK, TCK, TTK, İK articles</div>
                     </div>
 
                     <div class="quick-action-card" data-action="case-law">
@@ -1512,8 +1440,8 @@ function maskApiResponse(response) {
                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionCaseLaw">İçtihat Ara</div>
-                        <div class="quick-action-desc" data-i18n="quickActionCaseLawDesc">Yargıtay ve Danıştay kararları</div>
+                        <div class="quick-action-title" data-i18n="quickActionCaseLaw">Search Case Law</div>
+                        <div class="quick-action-desc" data-i18n="quickActionCaseLawDesc">Supreme Court and Council of State decisions</div>
                     </div>
 
                     <div class="quick-action-card" data-action="contract">
@@ -1526,8 +1454,8 @@ function maskApiResponse(response) {
                                 <polyline points="10 9 9 9 8 9"></polyline>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionContract">Sözleşme Taslağı</div>
-                        <div class="quick-action-desc" data-i18n="quickActionContractDesc">Basit bir kira sözleşmesi taslağı hazırla</div>
+                        <div class="quick-action-title" data-i18n="quickActionContract">Contract Draft</div>
+                        <div class="quick-action-desc" data-i18n="quickActionContractDesc">Create contracts quickly</div>
                     </div>
 
                     <div class="quick-action-card" data-action="precedent">
@@ -1537,8 +1465,8 @@ function maskApiResponse(response) {
                                 <path d="m21 21-4.35-4.35"></path>
                             </svg>
                         </div>
-                        <div class="quick-action-title" data-i18n="quickActionPrecedent">Emsal Araştırma</div>
-                        <div class="quick-action-desc" data-i18n="quickActionPrecedentDesc">Benzer davaları incele</div>
+                        <div class="quick-action-title" data-i18n="quickActionPrecedent">Precedent Research</div>
+                        <div class="quick-action-desc" data-i18n="quickActionPrecedentDesc">Browse similar cases</div>
                     </div>
                 </div>
             </div>
@@ -1566,7 +1494,7 @@ function maskApiResponse(response) {
                     <textarea
                         class="message-input"
                         id="messageInput"
-                        placeholder="Hukuki sorunuzu sorun veya içtihat arayın..."
+                        placeholder="Type your legal question..."
                         data-i18n-placeholder="inputPlaceholder"
                         rows="1"
                     ></textarea>
@@ -1611,11 +1539,6 @@ function maskApiResponse(response) {
                             </svg>
                         </button>
                     </div>
-                </div>
-
-                <!-- AI Disclaimer (outside input-wrapper) -->
-                <div style="padding: 8px 12px; margin-top: 12px; font-size: 11px; color: rgba(196, 169, 98, 0.5); text-align: center; line-height: 1.5; font-style: italic;">
-                    LyDian Hukuk AI hata yapabilir. Önemli konularda profesyonel bir hukuk danışmanına başvurun. - <span style="font-weight: 500; color: var(--primary-accent);">Sardag</span>
                 </div>
             </div>
         </div>
@@ -1827,29 +1750,11 @@ const sendBtn = document.getElementById('sendBtn');
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
     await loadTranslations(); // 🌍 Load translations first
-
-    // 🧹 Clean state on page load - ensure fresh start
-    // Remove any cached/rendered messages from DOM
-    const messagesContainer = document.getElementById('messagesContainer');
-    const emptyState = document.getElementById('emptyState');
-    if (messagesContainer && emptyState) {
-        // Remove all dynamically added messages (keep only empty state)
-        const existingMessages = messagesContainer.querySelectorAll('.message');
-        existingMessages.forEach(msg => msg.remove());
-        // Ensure empty state is visible
-        emptyState.style.display = 'flex';
-    }
-
-    // Ensure state is clean
-    state.currentConversationId = null;
-    state.messages = [];
-
     loadUserData();
     loadConversations();
     setupEventListeners();
     console.log('✅ LyDian Hukuk AI Chat Yüklendi');
     console.log(`🌍 Active Language: ${currentLang}`);
-    console.log('🧹 Temiz durum başlatıldı (no cached messages)');
 });
 
 // 📱 Window resize handler - mobil/desktop geçişlerini yönet
@@ -2070,13 +1975,13 @@ function saveConversations() {
 
 // Render Conversations
 function renderConversations() {
-    conversationsList.innerHTML = AilydianSanitizer.sanitizeHTML(state.conversations.map(conv => `
+    conversationsList.innerHTML = state.conversations.map(conv => `
         <div class="conversation-item ${conv.id === state.currentConversationId ? 'active' : ''}"
              data-id="${conv.id}">
-            <div class="conversation-title">${escapeHtml(conv.title)}</div>
+            <div class="conversation-title">${conv.title}</div>
             <div class="conversation-date">${formatDate(conv.date)}</div>
         </div>
-    `).join(''));
+    `).join('');
 
     // Add click handlers
     document.querySelectorAll('.conversation-item').forEach(item => {
@@ -2156,7 +2061,7 @@ async function sendMessage() {
 
     // Get user settings
     const settings = JSON.parse(localStorage.getItem('legalAI_settings') || '{}');
-    const aiModel = settings.aiModel || 'premium-model-1'; // LyDian Enterprise model
+    const aiModel = settings.aiModel || 'premium-model-1'; // Enterprise AI model
     const temperature = settings.temperature || 0.7;
     const maxTokens = settings.maxTokens || 4096;
 
@@ -2212,7 +2117,7 @@ async function sendMessage() {
                 const lang = matchObj.lang;
 
                 // Neo4j'den emsal davaları getir (multi-language support)
-                const kgResponse = await fetch(`/api/knowledge-graph/precedents/${encodeURIComponent(article)}`);
+                const kgResponse = await fetch(`http://localhost:3100/api/knowledge-graph/precedents/${encodeURIComponent(article)}`);
                 const kgData = await kgResponse.json();
 
                 if (kgData.success && kgData.precedents && kgData.precedents.length > 0) {
@@ -2271,43 +2176,12 @@ async function sendMessage() {
                 systemPrompt: systemPrompt,
                 knowledgeContext: knowledgeContext,
                 settings: {
-                    engine: aiModel,
+                    model: aiModel,
                     temperature: temperature,
                     maxTokens: maxTokens
                 }
             })
         });
-
-        // Handle HTTP errors
-        if (!response.ok) {
-            const data = await response.json().catch(() => ({}));
-            hideTypingIndicator();
-
-            // Rate limit error - show user-friendly message
-            if (response.status === 429) {
-                // Safely parse retryAfter, default to 900 seconds (15 minutes)
-                let retryAfterSeconds = 900; // default
-
-                if (data && typeof data.retryAfter === 'number' && !isNaN(data.retryAfter)) {
-                    retryAfterSeconds = data.retryAfter;
-                } else if (data && typeof data.retryAfter === 'string') {
-                    retryAfterSeconds = parseInt(data.retryAfter, 10) || 900;
-                }
-
-                const minutes = Math.ceil(retryAfterSeconds / 60);
-                const errorMsg = currentLang === 'tr'
-                    ? `Çok fazla istek gönderdiniz. Lütfen ${minutes} dakika sonra tekrar deneyin.`
-                    : `Too many requests. Please try again in ${minutes} minutes.`;
-
-                showErrorMessage(errorMsg, 'rate-limit');
-                return;
-            }
-
-            // Other errors
-            const errorMsg = data.error || data.message || 'Bir hata oluştu';
-            showErrorMessage(errorMsg, 'api-error');
-            return;
-        }
 
         const data = await response.json();
 
@@ -2343,23 +2217,8 @@ async function sendMessage() {
     } catch (error) {
         hideTypingIndicator();
         console.error('❌ Hata:', error);
-        showErrorMessage(error.message, 'network-error');
+        alert('Bir hata oluştu: ' + error.message);
     }
-}
-
-// Show error message in chat
-function showErrorMessage(message, type = 'error') {
-    const errorMessage = {
-        id: Date.now().toString(),
-        role: 'system',
-        content: `⚠️ ${message}`,
-        timestamp: new Date().toISOString(),
-        type: type
-    };
-
-    state.messages.push(errorMessage);
-    renderMessages();
-    saveCurrentConversation();
 }
 
 // Save Current Conversation
@@ -2383,24 +2242,12 @@ function renderMessages() {
 
     const messagesHTML = state.messages.map((msg, index) => {
         const isUser = msg.role === 'user';
-        const isSystem = msg.role === 'system';
         const time = formatTime(msg.timestamp);
-
-        // System messages (errors, warnings)
-        if (isSystem) {
-            return `
-                <div class="message system" style="margin-bottom: 16px;">
-                    <div style="padding: 12px 16px; border-radius: 8px; background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; color: #dc2626;">
-                        ${escapeHtml(msg.content)}
-                    </div>
-                </div>
-            `;
-        }
 
         // Clean AI response from any model badges or technical headers
         let cleanContent = msg.content;
         if (!isUser) {
-            // Remove "✨ **Azure Advanced AI Turbo Yanıtı**" and similar patterns
+            // Remove "✨ **Azure GPT-4 Turbo Yanıtı**" and similar patterns
             cleanContent = cleanContent
                 .replace(/✨\s*\*\*Azure\s+GPT[^*]*\*\*/gi, '')
                 .replace(/✨\s*\*\*.*?Turbo.*?Yanıt[^*]*\*\*/gi, '')
@@ -2428,7 +2275,7 @@ function renderMessages() {
             <div class="message ${msg.role}" style="position: relative; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px;">
                 ${avatarHTML}
                 <div class="message-content" style="flex: 1;">
-                    <div class="message-bubble" style="position: relative; padding: 12px 16px; border-radius: 12px; background: transparent; color: var(--text-primary); border: 1px solid ${isUser ? 'var(--primary-accent)' : 'rgba(196, 169, 98, 0.2)'};">
+                    <div class="message-bubble" style="position: relative; padding: 12px 16px; border-radius: 12px; background: ${isUser ? 'var(--primary-accent)' : 'var(--bg-secondary)'}; color: ${isUser ? '#ffffff' : 'var(--text-primary)'};">
                         ${escapeHtml(cleanContent)}
                     </div>
                     <div class="message-time" style="font-size: 12px; color: var(--text-tertiary); margin-top: 4px;">${time}</div>
@@ -2482,7 +2329,7 @@ function showTypingIndicator() {
     const indicator = document.createElement('div');
     indicator.id = 'typingIndicator';
     indicator.className = 'message ai';
-    indicator.innerHTML = AilydianSanitizer.sanitizeHTML(`
+    indicator.innerHTML = `
         <div class="message-avatar">⚖️</div>
         <div class="message-content">
             <div class="message-bubble">
@@ -2493,7 +2340,7 @@ function showTypingIndicator() {
                 </div>
             </div>
         </div>
-    `);
+    `;
     messagesContainer.appendChild(indicator);
     scrollToBottom();
 }
@@ -2573,7 +2420,7 @@ function formatTime(dateStr) {
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
-    return AilydianSanitizer.sanitizeHTML(div.innerHTML.replace(/\n/g, '<br>'));
+    return div.innerHTML.replace(/\n/g, '<br>');
 }
 
 function scrollToBottom() {
@@ -2596,14 +2443,7 @@ async function handleVoiceInput() {
     if (!isRecording) {
         // Start recording
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                audio: {
-                    echoCancellation: true,
-                    noiseSuppression: true,
-                    autoGainControl: true
-                }
-            });
-
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             mediaRecorder = new MediaRecorder(stream);
             audioChunks = [];
 
@@ -2612,29 +2452,8 @@ async function handleVoiceInput() {
             };
 
             mediaRecorder.onstop = async () => {
-                // Show processing state
-                voiceBtn.classList.remove('recording');
-                voiceBtn.classList.add('processing');
-                voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                `);
-
                 const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
                 await transcribeAudio(audioBlob);
-
-                // Reset button after processing
-                voiceBtn.classList.remove('processing');
-                voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                        <line x1="12" y1="19" x2="12" y2="23"/>
-                        <line x1="8" y1="23" x2="16" y2="23"/>
-                    </svg>
-                `);
 
                 // Stop all tracks
                 stream.getTracks().forEach(track => track.stop());
@@ -2643,26 +2462,18 @@ async function handleVoiceInput() {
             mediaRecorder.start();
             isRecording = true;
 
-            // Visual feedback with animation
-            voiceBtn.classList.add('recording');
-            voiceBtn.innerHTML = AilydianSanitizer.sanitizeHTML(`
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+            // Visual feedback
+            voiceBtn.style.background = '#ef4444';
+            voiceBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="6" y="6" width="12" height="12" rx="2"/>
                 </svg>
-            `);
+            `;
 
-            console.log('🎤 Ses kaydı başladı... (Türkçe hukuk terimleri aktif)');
+            console.log('🎤 Ses kaydı başladı...');
         } catch (error) {
             console.error('❌ Mikrofon erişim hatası:', error);
-            let errorMsg = 'Mikrofon erişimi reddedildi. ';
-            if (error.name === 'NotAllowedError') {
-                errorMsg += 'Lütfen tarayıcı ayarlarından mikrofon izni verin.';
-            } else if (error.name === 'NotFoundError') {
-                errorMsg += 'Mikrofon bulunamadı. Lütfen bir mikrofon bağlayın.';
-            } else {
-                errorMsg += error.message;
-            }
-            alert(errorMsg);
+            alert('Mikrofon erişimi reddedildi. Lütfen tarayıcı ayarlarından izin verin.');
         }
     } else {
         // Stop recording
@@ -2670,10 +2481,18 @@ async function handleVoiceInput() {
             mediaRecorder.stop();
             isRecording = false;
 
-            // Remove recording animation
-            voiceBtn.classList.remove('recording');
+            // Reset button
+            voiceBtn.style.background = '';
+            voiceBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+            `;
 
-            console.log('🎤 Ses kaydı durdu, hukuki transkript işleniyor...');
+            console.log('🎤 Ses kaydı durdu, transkript ediliyor...');
         }
     }
 }
@@ -2684,18 +2503,12 @@ async function transcribeAudio(audioBlob) {
 
         const formData = new FormData();
         formData.append('audio', audioBlob, 'recording.wav');
-        formData.append('language', 'tr-TR'); // Turkish legal language support
+        formData.append('language', 'tr-TR'); // Turkish language support
 
-        // 🏛️ LEGAL-SPECIFIC SPEECH-TO-TEXT API
-        const response = await fetch('/api/speech/transcribe-legal', {
+        const response = await fetch('http://localhost:3100/api/speech/transcribe', {
             method: 'POST',
-            body: formData,
-            credentials: 'include'
+            body: formData
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
 
         const data = await response.json();
         hideTypingIndicator();
@@ -2703,43 +2516,14 @@ async function transcribeAudio(audioBlob) {
         if (data.success && data.text) {
             messageInput.value = data.text;
             messageInput.focus();
-
-            // Show legal entities found (if any)
-            if (data.legalEntities) {
-                const { legalTerms, caseTypes, courts } = data.legalEntities;
-                const foundTerms = [];
-
-                if (legalTerms?.length > 0) foundTerms.push(`Hukuki terimler: ${legalTerms.join(', ')}`);
-                if (caseTypes?.length > 0) foundTerms.push(`Dava türleri: ${caseTypes.join(', ')}`);
-                if (courts?.length > 0) foundTerms.push(`Mahkemeler: ${courts.join(', ')}`);
-
-                if (foundTerms.length > 0) {
-                    console.log('🔍 Tespit edilen hukuki kavramlar:', foundTerms.join(' | '));
-                }
-            }
-
-            console.log('✅ Hukuki transkript tamamlandı:', data.text);
-            console.log(`📊 Güven skoru: ${Math.round(data.confidence * 100)}%`);
+            console.log('✅ Transkript tamamlandı:', data.text);
         } else {
-            throw new Error(data.error || data.message || 'Transkript başarısız');
+            throw new Error(data.error || 'Transkript başarısız');
         }
     } catch (error) {
         hideTypingIndicator();
         console.error('❌ Transkript hatası:', error);
-
-        // User-friendly error messages
-        let errorMessage = 'Ses tanıma hatası: ';
-        if (error.message.includes('not configured')) {
-            errorMessage += 'Azure Speech servisi yapılandırılmamış. Lütfen yazarak soru sorun.';
-        } else if (error.message.includes('403')) {
-            errorMessage += 'Erişim engellendi. Lütfen sayfayı yenileyin.';
-        } else if (error.message.includes('500')) {
-            errorMessage += 'Sunucu hatası. Lütfen daha sonra tekrar deneyin.';
-        } else {
-            errorMessage += error.message;
-        }
-
-        alert(errorMessage);
+        alert('Ses transkript hatası: ' + error.message);
     }
 }
 
@@ -2757,7 +2541,7 @@ async function handleImageUpload(event) {
         const formData = new FormData();
         formData.append('image', file);
 
-        const response = await fetch('/api/azure/legal/computer-vision', {
+        const response = await fetch('http://localhost:3100/api/azure/legal/computer-vision', {
             method: 'POST',
             body: formData
         });
@@ -2789,7 +2573,7 @@ async function handleImageUpload(event) {
                 id: (Date.now() + 2).toString(),
                 role: 'ai',
                 content: analysisContent,
-                engine: 'Azure Computer Vision',
+                model: 'Azure Computer Vision',
                 timestamp: new Date().toISOString()
             };
 
@@ -2826,7 +2610,7 @@ async function handleDocumentUpload(event) {
         formData.append('file', file);
         formData.append('documentType', 'legal'); // Legal document type
 
-        const response = await fetch('/api/azure/legal/document-intelligence', {
+        const response = await fetch('http://localhost:3100/api/azure/legal/document-intelligence', {
             method: 'POST',
             body: formData
         });
@@ -2862,7 +2646,7 @@ async function handleDocumentUpload(event) {
                 id: (Date.now() + 2).toString(),
                 role: 'ai',
                 content: analysisContent,
-                engine: 'Azure Document Intelligence',
+                model: 'Azure Document Intelligence',
                 timestamp: new Date().toISOString()
             };
 
@@ -3008,7 +2792,7 @@ function showSettingsModal() {
     // Default settings
     const defaultSettings = {
         language: settings.language || 'tr',
-        aiengine: settings.aiModel || 'premium-model-1',
+        aiModel: settings.aiModel || 'premium-model-1',
         temperature: settings.temperature || 0.7,
         maxTokens: settings.maxTokens || 2000,
         autoSave: settings.autoSave !== false,
@@ -3166,7 +2950,7 @@ function closeSettingsModal() {
 function saveSettings() {
     const settings = {
         language: document.getElementById('settingsLanguage').value,
-        aiengine: document.getElementById('settingsAIModel').value,
+        aiModel: document.getElementById('settingsAIModel').value,
         temperature: parseFloat(document.getElementById('settingsTemperature').value),
         maxTokens: parseInt(document.getElementById('settingsMaxTokens').value),
         autoSave: document.getElementById('settingsAutoSave').checked,
@@ -3523,36 +3307,5 @@ document.head.appendChild(style);
 
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
-    <!-- 🔒 CSRF Protection -->
-    <script src="/js/csrf-token.js"></script>
 </body>
 </html>

@@ -6,8 +6,11 @@
 
 module.exports = async (req, res) => {
     // CORS headers
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
@@ -18,8 +21,16 @@ module.exports = async (req, res) => {
     const { action, text, audioData } = req.body;
 
     // Azure Speech Configuration
-    const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY || '4b34da7b17144b1bab1f18f20ebcee1d';
-    const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION || 'swedencentral';
+    const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
+    const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION;
+
+    if (!AZURE_SPEECH_KEY || !AZURE_SPEECH_REGION) {
+        return res.status(503).json({
+            success: false,
+            error: 'Azure Speech service is not configured',
+            message: 'AZURE_SPEECH_KEY ve AZURE_SPEECH_REGION ortam değişkenlerini tanımlayın.'
+        });
+    }
 
     try {
         if (action === 'text-to-speech') {

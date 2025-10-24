@@ -1,0 +1,30 @@
+{
+  "reportDir": "logs/zai-monitor",
+  "maxPromptChars": 6000,
+  "maskPatterns": [
+    "(sk-[A-Za-z0-9\\-_]{10,})",
+    "(eyJ[A-Za-z0-9\\-_]+\\.[A-Za-z0-9\\-_]+\\.[A-Za-z0-9\\-_]+)"
+  ],
+  "commands": [
+    {
+      "name": "smoke",
+      "cmd": "pnpm",
+      "args": ["test", "--", "tests/production-smoke.spec.ts"],
+      "critical": true,
+      "cwd": "."
+    },
+    {
+      "name": "playwright-smoke",
+      "cmd": "pnpm",
+      "args": ["test:smoke"],
+      "critical": false,
+      "cwd": "."
+    }
+  ],
+  "promptTemplate": "Aşağıdaki komut çıktılarında hata ve tasarım regresyonu ipuçlarını bul ve aksiyon öner. Raporu Türkçe, kısa maddeler halinde ver.",
+  "webhook": {
+    "enabled": false,
+    "url": "",
+    "headers": {}
+  }
+}

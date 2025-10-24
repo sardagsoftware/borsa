@@ -2,7 +2,6 @@
 // Returns real-time metrics for the Medical Expert AI system
 
 const { readFileSync, existsSync } = require('fs');
-const { handleCORS } = require('../../middleware/cors-handler');
 
 const METRICS_FILE = '/tmp/medical-expert-metrics.json';
 
@@ -17,8 +16,14 @@ const defaultMetrics = {
 };
 
 module.exports = async (req, res) => {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'GET') {
     return res.status(405).json({

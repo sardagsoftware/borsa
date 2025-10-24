@@ -1,0 +1,635 @@
+<!-- Cache-Buster: 1759941900 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Yardım Merkezi - Dokümantasyon, rehberler ve sık sorulan sorular.">
+    <title>Help - LyDian | Support Center & FAQs</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-800);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+            padding-top: 72px;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 3.5rem 1rem 1.5rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-result-item:hover {
+            background: var(--gray-50);
+        }
+
+        /* Categories */
+        .categories-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .categories-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .category-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .category-description {
+            font-size: 1rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        /* Articles */
+        .articles-section {
+            padding: 6rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .article-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .article-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .article-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* Videos */
+        .videos-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .video-embed {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .video-content {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .categories-grid,
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">                <picture>
+                  <source srcset="/lydian-logo.avif" type="image/avif">
+                  <source srcset="/lydian-logo.webp" type="image/webp">
+                  <img src="/lydian-logo.png" alt="LyDian Logo" loading="lazy">
+                </picture>LyDian</a>
+            <ul class="nav-links">
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/lydian-iq.html">LydianIQ</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+                <li><a href="/models.html">Modeller</a></li>
+            </ul>
+            <div>
+                <a href="/auth.html" class="btn btn-primary">Giriş Yap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-gradient">Size nasıl yardımcı olabiliriz?</span>
+            </h1>
+            <p class="hero-description">
+                LyDian platformunu keşfedin - 23 AI modeli, 12 uzman sistem
+            </p>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Yardım konularında ara..." id="helpSearch">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="categories-container">
+            <div class="section-header">
+                <h2 class="section-title">Popüler Konular</h2>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" onclick="window.location.href='/chat.html'">
+                    <div class="category-icon">
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">AI Chat</h3>
+                    <p class="category-description">
+                        23 AI modeli ile sohbet edin - Neural-Alpha, Premium-Model-X4, Neural-G, DeepSeek ve daha fazlası
+                    </p>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='/lydian-iq.html'">
+                    <div class="category-icon">
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">LydianIQ</h3>
+                    <p class="category-description">
+                        Gelişmiş problem çözme ve analiz sistemi - Multimodal AI desteği
+                    </p>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='/api-reference.html'">
+                    <div class="category-icon">
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">API Dokümantasyonu</h3>
+                    <p class="category-description">
+                        RESTful API, WebSocket, GraphQL entegrasyonları ve kod örnekleri
+                    </p>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='/models.html'">
+                    <div class="category-icon">
+                        <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28">
+                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="category-title">AI Modelleri</h3>
+                    <p class="category-description">
+                        23 farklı AI modeli - Her model için özellikler ve kullanım senaryoları
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles -->
+    <section class="articles-section">
+        <div class="categories-container">
+            <div class="section-header">
+                <h2 class="section-title">Hızlı Başlangıç Rehberleri</h2>
+            </div>
+            <div>
+                <div class="article-item" onclick="window.location.href='/chat.html'">
+                    <div>
+                        <h3 class="article-title">🤖 İlk AI Chat Konuşmanızı Başlatın</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">Neural-Alpha, Premium-Model-X4, Neural-G ve 23 model ile tanışın</p>
+                    </div>
+                </div>
+                <div class="article-item" onclick="window.location.href='/lydian-iq.html'">
+                    <div>
+                        <h3 class="article-title">💡 LydianIQ ile Problem Çözme</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">Multimodal AI ile görsel, ses ve metin analizi</p>
+                    </div>
+                </div>
+                <div class="article-item" onclick="window.location.href='/api-reference.html'">
+                    <div>
+                        <h3 class="article-title">🔌 API Entegrasyonu</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">RESTful API ile uygulamanıza LyDian'ı entegre edin</p>
+                    </div>
+                </div>
+                <div class="article-item" onclick="window.location.href='/models.html'">
+                    <div>
+                        <h3 class="article-title">🧠 Hangi Model Benim İçin Uygun?</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">23 modelin karşılaştırması ve kullanım önerileri</p>
+                    </div>
+                </div>
+                <div class="article-item" onclick="window.location.href='/auth.html'">
+                    <div>
+                        <h3 class="article-title">🔒 Hesap ve Güvenlik</h3>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">OAuth, API anahtarları ve güvenlik ayarları</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos -->
+    <section class="videos-section">
+        <div class="categories-container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Özellikleri</h2>
+            </div>
+            <div class="videos-grid">
+                <div class="video-card" onclick="window.location.href='/chat.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">🤖 23 AI Modeli</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Neural-Alpha Premium, Premium Model X4, Neural-G-Pro, DeepSeek R1, Mistral, Llama</p>
+                        <span style="color: var(--primary); font-weight: 600;">Şimdi Dene →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/lydian-iq.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">💡 LydianIQ</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Multimodal problem çözme - Görsel, ses ve metin analizi</p>
+                        <span style="color: var(--primary); font-weight: 600;">Keşfet →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/video-ai.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">🎬 Video AI</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Google Veo - AI ile video oluşturma ve düzenleme</p>
+                        <span style="color: var(--primary); font-weight: 600;">Video Üret →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/image-generation.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">🎨 Görsel Oluşturma</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">DALL-E, Midjourney, Stable Diffusion entegrasyonu</p>
+                        <span style="color: var(--primary); font-weight: 600;">Görsel Üret →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/research.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">🔬 Araştırma Asistanı</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">Web araştırması, RAG ve vektör arama</p>
+                        <span style="color: var(--primary); font-weight: 600;">Araştır →</span>
+                    </div>
+                </div>
+                <div class="video-card" onclick="window.location.href='/api-reference.html'">
+                    <div class="video-content">
+                        <h3 class="video-title">⚡ Real-time API</h3>
+                        <p style="color: var(--gray-600); margin-bottom: 0.5rem;">REST, WebSocket, GraphQL - 50+ endpoint</p>
+                        <span style="color: var(--primary); font-weight: 600;">API Docs →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Real search functionality
+        const searchInput = document.getElementById('helpSearch');
+        const searchResults = document.getElementById('searchResults');
+
+        const searchableContent = [
+            { title: 'AI Chat', description: '23 AI modeli ile sohbet', url: '/chat.html' },
+            { title: 'LydianIQ', description: 'Problem çözme sistemi', url: '/lydian-iq.html' },
+            { title: 'API Dokümantasyonu', description: 'RESTful API referansı', url: '/api-reference.html' },
+            { title: 'Modeller', description: '23 AI modeli listesi', url: '/models.html' },
+            { title: 'Video AI', description: 'Google Veo entegrasyonu', url: '/video-ai.html' },
+            { title: 'Görsel Oluşturma', description: 'DALL-E, Stable Diffusion', url: '/image-generation.html' },
+            { title: 'Araştırma', description: 'Web araştırma ve RAG', url: '/research.html' },
+            { title: 'Giriş Yap', description: 'OAuth ve hesap yönetimi', url: '/auth.html' }
+        ];
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                return;
+            }
+
+            const results = searchableContent.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.description.toLowerCase().includes(query)
+            );
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <div class="search-result-item" onclick="window.location.href='${item.url}'">
+                        <h4 style="font-weight: 600; margin-bottom: 0.25rem;">${item.title}</h4>
+                        <p style="font-size: 0.875rem; color: var(--gray-600);">${item.description}</p>
+                    </div>
+                `).join('');
+                searchResults.classList.add('active');
+            } else {
+                searchResults.innerHTML = '<div class="search-result-item">Sonuç bulunamadı</div>';
+                searchResults.classList.add('active');
+            }
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-bar')) {
+                searchResults.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

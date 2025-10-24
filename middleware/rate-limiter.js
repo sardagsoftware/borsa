@@ -163,22 +163,16 @@ function rateLimiter(options = {}) {
   } = options;
 
   return async (req, res, next) => {
-    // 🔒 SECURITY FIX: Always enforce rate limiting, adjust limits for dev
+    // Skip rate limiting in development mode
     const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-
-    // Get original limits
-    let user = req.user || { role: 'GUEST', id: 'anonymous' };
-    let limits = RATE_LIMITS[user.role] || RATE_LIMITS.GUEST;
-
-    // Relax limits in development (10x) but still enforce
     if (isDevelopment) {
-      limits = {
-        ...limits,
-        requests: limits.requests * 10
-      };
+      return next();
     }
 
     try {
+      const user = req.user || { role: 'GUEST', id: 'anonymous' };
+      const limits = RATE_LIMITS[user.role] || RATE_LIMITS.GUEST;
+
       // Generate unique key for this user/IP
       const key = keyGenerator(req);
 
@@ -345,14 +339,6 @@ function concurrentLimiter() {
   const activRequests = new Map();
 
   return (req, res, next) => {
-    // Skip concurrent limiting in development mode (unless explicitly enabled for testing)
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
-    const forceEnable = process.env.ENABLE_RATE_LIMITING === 'true';
-
-    if (isDevelopment && !forceEnable) {
-      return next();
-    }
-
     const user = req.user || { role: 'GUEST', id: 'anonymous' };
     const limits = RATE_LIMITS[user.role] || RATE_LIMITS.GUEST;
     const key = user.id;

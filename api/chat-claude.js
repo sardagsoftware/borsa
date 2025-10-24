@@ -1,45 +1,43 @@
-// AI Chat API - Enterprise Language Model Integration
-// Secure obfuscation layer for AI provider isolation
+// Claude API - Anthropic Integration
+// Supports Claude 3.5 Sonnet and other Claude models
 
 require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
-const { handleCORS } = require('../security/cors-config');
-const aiObfuscator = require('../lib/security/ai-obfuscator');
 
-// AI Configuration - Environment-based
-const AI_API_KEY = process.env.ANTHROPIC_API_KEY || process.env.PRIMARY_AI_KEY;
+// Claude Configuration
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
-// AI Model Configurations - Obfuscated Names
-const AI_MODELS = {
-  'strategic-reasoning': {
-    name: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
+// Claude Model Configurations
+const CLAUDE_MODELS = {
+  'claude-3-5-sonnet': {
+    name: 'claude-3-5-sonnet-20241022',
     maxTokens: 8192,
     contextWindow: 200000,
-    description: 'Most intelligent AI model'
+    description: 'Most intelligent Claude model'
   },
-  'strategic-reasoning-latest': {
-    name: aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE'),
+  'claude-3-5-sonnet-latest': {
+    name: 'claude-3-5-sonnet-20241022',
     maxTokens: 8192,
     contextWindow: 200000,
-    description: 'Latest strategic reasoning model'
+    description: 'Latest Claude 3.5 Sonnet'
   },
-  'advanced-processor': {
-    name: aiObfuscator.resolveModel('ADVANCED_LANGUAGE_PROCESSOR'),
+  'claude-3-opus': {
+    name: 'claude-3-opus-20240229',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Most powerful AI model'
+    description: 'Most powerful Claude model'
   },
-  'legacy-reasoning': {
-    name: aiObfuscator.resolveModel('LEGACY_REASONING_V3'),
+  'claude-3-sonnet': {
+    name: 'claude-3-sonnet-20240229',
     maxTokens: 4096,
     contextWindow: 200000,
     description: 'Balanced performance and speed'
   },
-  'rapid-response': {
-    name: aiObfuscator.resolveModel('RAPID_RESPONSE_UNIT'),
+  'claude-3-haiku': {
+    name: 'claude-3-haiku-20240307',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Fastest AI model'
+    description: 'Fastest Claude model'
   }
 };
 
@@ -66,8 +64,14 @@ function checkRateLimit(userId = 'anonymous') {
 
 // Main request handler
 async function handleRequest(req, res) {
-  // 🔒 SECURE CORS - Whitelist-based, NO WILDCARD
-  if (handleCORS(req, res)) return; // Handle OPTIONS preflight
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -77,12 +81,12 @@ async function handleRequest(req, res) {
   }
 
   // Validate API key
-  if (!AI_API_KEY) {
-    console.error('❌ AI API key not configured');
+  if (!ANTHROPIC_API_KEY) {
+    console.error('❌ Anthropic API key not configured');
     return res.status(500).json({
       success: false,
-      error: 'AI API not configured',
-      message: 'Please configure AI service credentials'
+      error: 'Claude API not configured',
+      message: 'Please set ANTHROPIC_API_KEY environment variable'
     });
   }
 
@@ -100,7 +104,7 @@ async function handleRequest(req, res) {
     const {
       message,
       messages = [],
-      model = 'strategic-reasoning',
+      model = 'claude-3-5-sonnet',
       temperature = 1.0,
       max_tokens = 4096,
       stream = false,
@@ -116,40 +120,40 @@ async function handleRequest(req, res) {
     }
 
     // Validate model
-    if (!AI_MODELS[model]) {
+    if (!CLAUDE_MODELS[model]) {
       return res.status(400).json({
         success: false,
-        error: `Invalid model. Available: ${Object.keys(AI_MODELS).join(', ')}`
+        error: `Invalid model. Available: ${Object.keys(CLAUDE_MODELS).join(', ')}`
       });
     }
 
-    // Initialize AI client
+    // Initialize Anthropic client
     const anthropic = new Anthropic({
-      apiKey: AI_API_KEY
+      apiKey: ANTHROPIC_API_KEY
     });
 
-    // Prepare messages for AI
-    const aiMessages = [];
+    // Prepare messages for Claude
+    const claudeMessages = [];
 
     if (messages.length > 0) {
       // Use provided messages
-      aiMessages.push(...messages);
+      claudeMessages.push(...messages);
     } else {
       // Single message
-      aiMessages.push({
+      claudeMessages.push({
         role: 'user',
         content: message
       });
     }
 
-    // Log request (obfuscated)
-    console.log(`🤖 AI Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
+    // Log request
+    console.log(`🤖 Claude Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
 
     const requestParams = {
-      model: AI_MODELS[model].name,
-      messages: aiMessages,
+      model: CLAUDE_MODELS[model].name,
+      messages: claudeMessages,
       temperature: Math.max(0, Math.min(1, temperature)),
-      max_tokens: Math.min(max_tokens, AI_MODELS[model].maxTokens)
+      max_tokens: Math.min(max_tokens, CLAUDE_MODELS[model].maxTokens)
     };
 
     // Add system prompt if provided
@@ -217,13 +221,13 @@ async function handleRequest(req, res) {
         .map(block => block.text)
         .join('\n');
 
-      console.log(`✅ AI Response received - ${responseText.length} characters`);
+      console.log(`✅ Claude Response received - ${responseText.length} characters`);
 
       res.status(200).json({
         success: true,
         response: responseText,
         model: model,
-        provider: 'Lydian AI',
+        provider: 'Anthropic',
         usage: {
           input_tokens: response.usage.input_tokens,
           output_tokens: response.usage.output_tokens
@@ -234,18 +238,15 @@ async function handleRequest(req, res) {
     }
 
   } catch (error) {
-    console.error('❌ AI API Error:', error);
+    console.error('❌ Claude API Error:', error);
 
-    // Sanitize error messages to hide provider info
-    const sanitizedError = aiObfuscator.sanitizeError(error);
-
-    // Handle specific API errors
+    // Handle specific Anthropic errors
     if (error.status) {
       if (error.status === 401) {
         return res.status(401).json({
           success: false,
           error: 'Authentication failed',
-          message: 'Invalid AI API key'
+          message: 'Invalid Anthropic API key'
         });
       }
 
@@ -253,7 +254,7 @@ async function handleRequest(req, res) {
         return res.status(429).json({
           success: false,
           error: 'Rate limit exceeded',
-          message: 'AI service rate limit reached'
+          message: 'Anthropic API rate limit reached'
         });
       }
 
@@ -261,7 +262,7 @@ async function handleRequest(req, res) {
         return res.status(400).json({
           success: false,
           error: 'Invalid request',
-          message: sanitizedError.message || 'Bad request to AI service'
+          message: error.message || 'Bad request to Claude API'
         });
       }
 
@@ -269,15 +270,15 @@ async function handleRequest(req, res) {
         return res.status(503).json({
           success: false,
           error: 'Service overloaded',
-          message: 'AI service is temporarily overloaded'
+          message: 'Claude API is temporarily overloaded'
         });
       }
     }
 
     res.status(500).json({
       success: false,
-      error: 'AI request failed',
-      message: sanitizedError.message,
+      error: 'Claude request failed',
+      message: error.message,
       timestamp: new Date().toISOString()
     });
   }
@@ -285,14 +286,12 @@ async function handleRequest(req, res) {
 
 // Get available models
 function getModels(req, res) {
-  // 🔒 SECURE CORS - Whitelist-based, NO WILDCARD
-  if (handleCORS(req, res)) return;
-
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(200).json({
     success: true,
-    models: Object.keys(AI_MODELS).map(key => ({
+    models: Object.keys(CLAUDE_MODELS).map(key => ({
       id: key,
-      ...AI_MODELS[key]
+      ...CLAUDE_MODELS[key]
     }))
   });
 }
@@ -301,5 +300,5 @@ function getModels(req, res) {
 module.exports = {
   handleRequest,
   getModels,
-  AI_MODELS
+  CLAUDE_MODELS
 };

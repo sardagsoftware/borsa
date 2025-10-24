@@ -5,3 +5,4 @@ export * from './gemini-adapter';
 export * from './mistral-adapter';
 export * from './zhipu-adapter';
 export * from './yi-adapter';
+export * from './zai-adapter';

@@ -842,7 +842,7 @@
                 <div class="pill-dropdown" id="dropdown-legal-analysis">
                     <div class="dropdown-header">🏛️ Hukuki Analiz Sistemi</div>
                     <div class="dropdown-content">
-                        Advanced-Model-X4 Turbo ile derin hukuki analiz. Tüm hukuk dallarında uzman görüş.
+                        GPT-4 Turbo ile derin hukuki analiz. Tüm hukuk dallarında uzman görüş.
                     </div>
                     <div class="api-status loading" id="status-legal-analysis">
                         <span>⏳</span> API Kontrol Ediliyor...
@@ -864,7 +864,7 @@
                             <li><strong>Otomatik Kelime Düzeltme:</strong> Hukuki terimlerdeki yazım hataları düzeltilir</li>
                             <li><strong>Kayıt Kapanınca Otomatik Analiz:</strong>
                                 <ul style="margin: 4px 0; padding-left: 20px;">
-                                    <li>📋 Yapılandırılmış dava dosyası oluşturulur (Advanced-Model-X4)</li>
+                                    <li>📋 Yapılandırılmış dava dosyası oluşturulur (GPT-4)</li>
                                     <li>⚖️ İlgili emsal kararlar aranır (Yargıtay/Danıştay)</li>
                                     <li>🏛️ Kapsamlı hukuki değerlendirme yapılır</li>
                                     <li>📊 İlgili kanun maddeleri ve içtihatlar raporlanır</li>
@@ -873,7 +873,7 @@
                             </li>
                         </ol>
                         <div style="margin-top: 12px; padding: 8px; background: #e3f2fd; border-left: 3px solid #2196f3; border-radius: 4px; font-size: 12px;">
-                            <strong>✨ Özellikler:</strong> Web Speech API (Gerçek Zamanlı) + Azure Speech Services + Advanced-Model-X4 Turbo Expert + Azure AI Search (RAG)
+                            <strong>✨ Özellikler:</strong> Web Speech API (Gerçek Zamanlı) + Azure Speech Services + GPT-4 Turbo Expert + Azure AI Search (RAG)
                         </div>
                     </div>
                     <div class="api-status loading" id="status-voice-case">
@@ -1035,7 +1035,7 @@
         let audioChunks = [];
 
         // Azure Speech Services Configuration - REAL API CREDENTIALS
-        const AZURE_SPEECH_KEY = '4b34da7b17144b1bab1f18f20ebcee1d';
+        const AZURE_SPEECH_KEY = '<your-azure-speech-key>';
         const AZURE_SPEECH_REGION = 'swedencentral';
 
         // Turkish spell check dictionary - common legal terms and corrections
@@ -1274,12 +1274,12 @@
 
                 const precedentData = await precedentResponse.json();
 
-                // Step 3: Comprehensive Legal Analysis with Advanced-Model-X4
+                // Step 3: Comprehensive Legal Analysis with GPT-4
                 const analysisResponse = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        model: 'premium-model-turbo',
+                        model: 'gpt-4-turbo',
                         message: `
 KAPSAMLI HUKUKİ ANALİZ TALEBİ:
 
@@ -1358,7 +1358,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                     <div class="result-header">
                         <div>
                             <div class="result-title">📋 Yapılandırılmış Dava Dosyası</div>
-                            <div class="result-meta">Advanced-Model-X4 ile oluşturuldu • Profesyonel format</div>
+                            <div class="result-meta">GPT-4 ile oluşturuldu • Profesyonel format</div>
                         </div>
                         <div class="result-badge">Dava Dosyası</div>
                     </div>
@@ -1386,7 +1386,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                     <div class="result-header">
                         <div>
                             <div class="result-title">🏛️ Kapsamlı Hukuki Değerlendirme</div>
-                            <div class="result-meta">Advanced-Model-X4 Turbo Expert Analysis • Kanun & İçtihat Referanslı</div>
+                            <div class="result-meta">GPT-4 Turbo Expert Analysis • Kanun & İçtihat Referanslı</div>
                         </div>
                         <div class="result-badge">Expert Analiz</div>
                     </div>
@@ -1780,7 +1780,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                     case 'legal-analysis':
                         endpoint = '/api/chat';
                         testPayload = {
-                            model: 'premium-model-turbo',
+                            model: 'gpt-4-turbo',
                             message: 'Test',
                             temperature: 0.7,
                             max_tokens: 10
@@ -1831,7 +1831,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                     case 'gdpr':
                         endpoint = '/api/chat';
                         testPayload = {
-                            model: 'premium-model-turbo',
+                            model: 'gpt-4-turbo',
                             message: 'GDPR test',
                             temperature: 0.7,
                             max_tokens: 10
@@ -1948,7 +1948,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            model: 'premium-model-turbo',
+                            model: 'gpt-4-turbo',
                             message: query,
                             temperature: 0.7,
                             max_tokens: 2048,
@@ -2007,7 +2007,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
-                                model: 'premium-model-turbo',
+                                model: 'gpt-4-turbo',
                                 message: `Şu dava için emsal kararları ara ve analiz et:\n\n${query}\n\nLütfen:\n1. Benzer Yargıtay kararlarını listele\n2. İlgili mevzuat maddelerini belirt\n3. Karar gerekçelerini açıkla\n4. Müvekkil lehine sonuç önerisi sun`,
                                 temperature: 0.7,
                                 max_tokens: 2048,
@@ -2126,7 +2126,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                             <div class="result-header">
                                 <div>
                                     <div class="result-title">Hukuki Analiz Sonucu</div>
-                                    <div class="result-meta">Advanced-Model-X4 Turbo tarafından analiz edildi</div>
+                                    <div class="result-meta">GPT-4 Turbo tarafından analiz edildi</div>
                                 </div>
                                 <div class="result-badge">AI Analiz</div>
                             </div>
@@ -2252,7 +2252,7 @@ Profesyonel, detaylı ve yapılandırılmış bir rapor hazırla.
                                 <p><strong>Oluşturulan Dava Dosyası:</strong></p>
                                 <pre style="white-space: pre-wrap; background: #f5f5f5; padding: 12px; border-radius: 8px;">${caseFileContent}</pre>
 
-                                <br><small style="color: var(--text-gray);">🛡️ Beyaz Şapka Kuralları Aktif • ${data.demoMode ? 'DEMO MOD - Gerçek analiz için API anahtarı ekleyin' : 'Advanced-Model-X4 Turbo ile Analiz Edildi'}</small>
+                                <br><small style="color: var(--text-gray);">🛡️ Beyaz Şapka Kuralları Aktif • ${data.demoMode ? 'DEMO MOD - Gerçek analiz için API anahtarı ekleyin' : 'GPT-4 Turbo ile Analiz Edildi'}</small>
                             </div>
                         </div>
                     `;

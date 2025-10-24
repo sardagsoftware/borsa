@@ -1,84 +1,83 @@
 {
-  "name": "LyDian IQ - Ultra Intelligence Platform",
+  "name": "LyDian IQ",
   "short_name": "LyDian IQ",
-  "description": "Enterprise-grade AI platform with voice recognition, multi-language support, 72 connectors, and advanced reasoning capabilities. Professional AI assistant for iOS, Android, and all browsers.",
-  "start_url": "/lydian-iq.html?source=pwa",
+  "description": "Enterprise-grade AI platform with voice recognition, multi-language support, and advanced reasoning capabilities",
+  "start_url": "/lydian-iq.html",
   "scope": "/",
-  "id": "/lydian-iq",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "any",
-  "background_color": "#0a0a0a",
-  "theme_color": "#FFFFFF",
+  "background_color": "#1C2536",
+  "theme_color": "#C4A962",
   "dir": "ltr",
-  "lang": "tr-TR",
-  "categories": ["productivity", "education", "utilities", "business", "reference", "ai"],
+  "lang": "en-US",
+  "categories": ["productivity", "education", "utilities", "business"],
   "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "prefer_related_applications": false,
   "related_applications": [],
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "48x48",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/lydian-logo.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/lydian-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/lydian-logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/lydian-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -92,29 +91,29 @@
   ],
   "screenshots": [
     {
-      "src": "/og-image.png",
+      "src": "/lydian-logo.png",
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "LyDian IQ Main Interface - Mobile View"
+      "label": "LyDian IQ Main Interface"
     },
     {
-      "src": "/og-image.png",
+      "src": "/lydian-logo.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "LyDian IQ Desktop View - 72 Connectors"
+      "label": "LyDian IQ Desktop View"
     }
   ],
   "shortcuts": [
     {
       "name": "New Query",
       "short_name": "Query",
-      "description": "Start a new AI query with Lydian-IQ",
+      "description": "Start a new AI query",
       "url": "/lydian-iq.html",
       "icons": [
         {
-          "src": "/icon-192.png",
+          "src": "/lydian-logo.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -123,37 +122,37 @@
     {
       "name": "Voice Search",
       "short_name": "Voice",
-      "description": "Start voice search with AI",
+      "description": "Start voice search",
       "url": "/lydian-iq.html?voice=1",
       "icons": [
         {
-          "src": "/icon-192.png",
+          "src": "/lydian-logo.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "Web Search",
-      "short_name": "Web",
-      "description": "Search with Perplexity AI",
-      "url": "/lydian-iq.html?mode=web",
+      "name": "Super Power Mode",
+      "short_name": "Super",
+      "description": "Enable enhanced reasoning",
+      "url": "/lydian-iq.html?superpower=1",
       "icons": [
         {
-          "src": "/icon-192.png",
+          "src": "/lydian-logo.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "Connectors",
-      "short_name": "Connect",
-      "description": "Access 72 business connectors",
-      "url": "/lydian-iq.html?mode=connector",
+      "name": "History",
+      "short_name": "History",
+      "description": "View conversation history",
+      "url": "/lydian-iq.html?history=1",
       "icons": [
         {
-          "src": "/icon-192.png",
+          "src": "/lydian-logo.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -180,21 +179,13 @@
     {
       "action": "/lydian-iq.html",
       "accept": {
-        "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"],
-        "application/pdf": [".pdf"],
-        "text/*": [".txt", ".md", ".json", ".csv"]
+        "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp"],
+        "application/pdf": [".pdf"]
       }
     }
   ],
   "launch_handler": {
     "client_mode": ["navigate-existing", "auto"]
   },
-  "handle_links": "preferred",
-  "edge_side_panel": {
-    "preferred_width": 480
-  },
-  "scope_extensions": [
-    {"origin": "https://ailydian.com"},
-    {"origin": "https://*.ailydian.com"}
-  ]
+  "handle_links": "preferred"
 }

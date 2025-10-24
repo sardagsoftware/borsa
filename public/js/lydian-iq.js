@@ -1,11 +1,3 @@
-
-// Production console log suppression
-if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-  console.log = function() {};
-  console.debug = function() {};
-  console.info = function() {};
-}
-
 // ========================================
 // LyDian IQ Reasoning Engine - Frontend
 // Version: 1.0.0 - Sardag Edition
@@ -226,13 +218,13 @@ class DeepSeekR1Frontend {
         const reasoningStepsCompact = document.getElementById('reasoningStepsCompact');
         if (!reasoningStepsCompact) return;
 
-        reasoningStepsCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
+        reasoningStepsCompact.innerHTML = '';
 
         reasoningChain.forEach((step, index) => {
             const stepEl = document.createElement('div');
             stepEl.className = 'reasoning-step-compact';
 
-            stepEl.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            stepEl.innerHTML = `
                 <span class="step-number-compact">${index + 1}</span>
                 <span class="step-text-compact">${this.escapeHtml(step)}</span>
             `;
@@ -299,7 +291,7 @@ class DeepSeekR1Frontend {
         // Update performance metrics with premium icon
         const performanceMetricsCompact = document.getElementById('performanceMetricsCompact');
         if (performanceMetricsCompact) {
-            performanceMetricsCompact.innerHTML = AilydianSanitizer.sanitizeHTML(`
+            performanceMetricsCompact.innerHTML = `
                 <div class="metrics-grid-compact">
                     <div class="metric-card-compact">
                         <i class="fas fa-crown" style="color: #FF6B4A;"></i>
@@ -530,7 +522,7 @@ class DeepSeekR1Frontend {
                 reasoningChain: [
                     'Stratejik hedefleri belirliyorum',
                     'Alternatifleri değerlendiriyorum',
-                    'Ri[REDACTED]fayda analizini yapıyorum',
+                    'Risk-fayda analizini yapıyorum',
                     'Optimal stratejiyi seçiyorum',
                     'Uygulama planını oluşturuyorum'
                 ],
@@ -579,9 +571,9 @@ class DeepSeekR1Frontend {
         const solutionContentCompact = document.getElementById('solutionContentCompact');
         const performanceMetricsCompact = document.getElementById('performanceMetricsCompact');
 
-        if (reasoningStepsCompact) reasoningStepsCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
-        if (solutionContentCompact) solutionContentCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
-        if (performanceMetricsCompact) performanceMetricsCompact.innerHTML = AilydianSanitizer.sanitizeHTML('';
+        if (reasoningStepsCompact) reasoningStepsCompact.innerHTML = '';
+        if (solutionContentCompact) solutionContentCompact.innerHTML = '';
+        if (performanceMetricsCompact) performanceMetricsCompact.innerHTML = '';
 
         console.log('✅ Response cleared');
     }

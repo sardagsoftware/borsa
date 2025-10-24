@@ -149,13 +149,10 @@ router.post('/reset', async (req, res) => {
       });
     }
 
-    // 🔒 SECURITY: Beyaz Şapkalı Password Validation
-    const passwordValidation = User.validatePasswordStrength(newPassword);
-    if (!passwordValidation.valid) {
+    if (newPassword.length < 8) {
       return res.status(400).json({
         success: false,
-        error: 'Password validation failed',
-        errors: passwordValidation.errors
+        error: 'Password must be at least 8 characters long'
       });
     }
 

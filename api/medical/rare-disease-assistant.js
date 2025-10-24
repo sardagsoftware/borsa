@@ -7,15 +7,11 @@
  */
 
 const { createSecureError } = require('../neuro/_azure-config');
-const { handleCORS } = require('../../security/cors-config');
 const { SSEStreamer } = require('../../lib/io/streaming');
-const { handleCORS } = require('../../security/cors-config');
 const { executeWithSentinel, getSentinel } = require('../../lib/middleware/tokenGovernorMiddleware');
-const { handleCORS } = require('../../security/cors-config');
 
 // 🧬 ORPHANET API INTEGRATION - 7,000+ Rare Diseases
 const { orphaNetService } = require('../../lib/medical/orphanet-api-service');
-const { handleCORS } = require('../../security/cors-config');
 
 // Initialize Azure OpenAI (optional - fallback to demo if not configured)
 let azureOpenAI = null;
@@ -307,8 +303,11 @@ function generateClinicalReasoning(patientData, matches) {
 
 module.exports = async (req, res) => {
     // CORS
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 

@@ -85,12 +85,17 @@
         }
 
         .logo {
-            font-family: 'Caveat', cursive !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 2.25rem;
-            font-weight: 700 !important;
-            color: #000000;
+            font-weight: 900 !important;
+            color: #FFFFFF;
             text-decoration: none;
             letter-spacing: 0.08em !important;
+            text-shadow: 0 0 10px rgba(0,224,174,0.3);
+        }
+
+        .nav-links {
+            display: flex;
             gap: 2rem;
             list-style: none;
         }
@@ -405,14 +410,12 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; letter-spacing: 0.08em !important; color: #000000 !important;">LyDian</a>
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
             <ul class="nav-links">
-                <li><a href="/chat.html">AI Sohbet</a></li>
-                <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
-                <li><a href="/video-ai.html">Video AI</a></li>
-                <li><a href="/api.html">API</a></li>
-                <li><a href="/enterprise.html">Enterprise</a></li>
-                <li><a href="/docs.html">Dokümanlar</a></li>
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/docs.html">Dokümantasyon</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+                <li><a href="/developers.html">Geliştiriciler</a></li>
             </ul>
             <div><a href="/chat.html" class="btn">Başlayın</a></div>
         </div>
@@ -701,7 +704,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; letter-spacing: 0.08em !important; color: #FFFFFF;">LyDian</div>
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
                     <p class="footer-description">
                         Yapay zeka teknolojileriyle geleceği şekillendiren,
                         yenilikçi çözümler sunan AI platformu.
@@ -719,11 +722,11 @@
                 </div>
 
                 <div class="footer-column">
-                    <h3>Çözümler</h3>
+                    <h3>Geliştiriciler</h3>
                     <ul class="footer-links">
-                        <li><a href="/enterprise.html">Enterprise</a></li>
-                        <li><a href="/education.html">Eğitim</a></li>
-                        <li><a href="/research.html">Araştırma</a></li>
+                        <li><a href="/developers.html">Developer Portal</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                        <li><a href="/docs.html">Dokümantasyon</a></li>
                     </ul>
                 </div>
 
@@ -743,7 +746,6 @@
                         <li><a href="/privacy.html">Gizlilik</a></li>
                         <li><a href="/terms.html">Koşullar</a></li>
                         <li><a href="/cookies.html">Çerezler</a></li>
-                        <li><a href="/help.html">Yardım</a></li>
                     </ul>
                 </div>
             </div>
@@ -795,34 +797,5 @@
         });
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-    <!-- 🌍 LyDian i18n System - Auto-integrated -->
-    <script src="/js/feature-flags.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script>
-        (async function() {
-            try {
-                // 1. Initialize feature flags
-                const flags = new FeatureFlags();
-                await flags.init();
-
-                // 2. Check if i18n is enabled
-                if (flags.isEnabled('i18n_system_enabled')) {
-                    // 3. Initialize locale engine
-                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
-                    await i18n.init();
-
-                    // 4. Make available globally
-                    window.i18n = i18n;
-
-                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
-                }
-            } catch (error) {
-                console.warn('⚠️ i18n initialization failed:', error);
-            }
-        })();
-    </script>
-
 </body>
 </html>

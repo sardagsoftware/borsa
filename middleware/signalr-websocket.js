@@ -17,6 +17,12 @@ const signalR = require('@microsoft/signalr');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
+// JWT_SECRET validation - mandatory for security
+if (!process.env.JWT_SECRET) {
+    throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+}
+const JWT_SECRET = process.env.JWT_SECRET;
+
 // Azure Application Insights integration
 let appInsights;
 try {
@@ -160,25 +166,21 @@ const rateLimiter = new RateLimiter(100, 60000); // 100 requests per minute
  * Generate SignalR access token
  */
 function generateAccessToken(userId, expiresIn = '1h') {
-    const secret = process.env.JWT_SECRET || 'your-secret-key';
-
     const payload = {
         userId,
         type: 'signalr',
         iat: Math.floor(Date.now() / 1000)
     };
 
-    return jwt.sign(payload, secret, { expiresIn });
+    return jwt.sign(payload, JWT_SECRET, { expiresIn });
 }
 
 /**
  * Verify SignalR access token
  */
 function verifyAccessToken(token) {
-    const secret = process.env.JWT_SECRET || 'your-secret-key';
-
     try {
-        const decoded = jwt.verify(token, secret);
+        const decoded = jwt.verify(token, JWT_SECRET);
         return decoded;
     } catch (error) {
         trackSignalREvent('TokenVerificationFailed', { error: error.message });

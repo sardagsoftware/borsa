@@ -4,9 +4,7 @@
  */
 
 const crypto = require('crypto');
-const { handleCORS } = require('../../security/cors-config');
 const { createSecureError } = require('./_azure-config');
-const { handleCORS } = require('../../security/cors-config');
 
 // Demo clinician database (in production: use LyDian Auth or database)
 const DEMO_CLINICIANS = {
@@ -94,8 +92,11 @@ function getClinicianStats(licenseNumber) {
 // Authentication
 module.exports = async (req, res) => {
     // CORS
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
