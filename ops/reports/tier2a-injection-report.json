@@ -1,0 +1,62 @@
+{
+  "timestamp": "2025-10-24T23:51:25.263Z",
+  "tier": "2A",
+  "results": [
+    {
+      "success": true,
+      "page": "about.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "billing.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "contact.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "enterprise.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "api.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "docs.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "auth.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "help.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "models.html",
+      "lang": "tr"
+    },
+    {
+      "success": true,
+      "page": "research.html",
+      "lang": "tr"
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "successful": 10,
+    "failed": 0,
+    "success_rate": 100
+  }
+}
