@@ -1,0 +1,270 @@
+asyncapi: 3.0.0
+info:
+  title: LyDian İnsan IQ Events API
+  version: 1.0.0
+  description: |
+    Event-driven API for persona, skill, and assistant lifecycle events.
+    
+  contact:
+    name: LyDian API Support
+    email: api-support@lydian.com
+
+servers:
+  production:
+    host: events.lydian.com
+    protocol: wss
+  kafka:
+    host: kafka.lydian.com:9092
+    protocol: kafka
+
+channels:
+  persona/created:
+    address: persona.created
+    messages:
+      personaCreated:
+        $ref: '#/components/messages/personaCreated'
+
+  skill/published:
+    address: skill.published
+    messages:
+      skillPublished:
+        $ref: '#/components/messages/skillPublished'
+
+  session/started:
+    address: session.started
+    messages:
+      sessionStarted:
+        $ref: '#/components/messages/sessionStarted'
+
+  session/completed:
+    address: session.completed
+    messages:
+      sessionCompleted:
+        $ref: '#/components/messages/sessionCompleted'
+
+operations:
+  onPersonaCreated:
+    action: receive
+    channel:
+      $ref: '#/channels/persona~1created'
+    messages:
+      - $ref: '#/components/messages/personaCreated'
+
+  onSkillPublished:
+    action: receive
+    channel:
+      $ref: '#/channels/skill~1published'
+    messages:
+      - $ref: '#/components/messages/skillPublished'
+
+  onSessionStarted:
+    action: receive
+    channel:
+      $ref: '#/channels/session~1started'
+    messages:
+      - $ref: '#/components/messages/sessionStarted'
+
+  onSessionCompleted:
+    action: receive
+    channel:
+      $ref: '#/channels/session~1completed'
+    messages:
+      - $ref: '#/components/messages/sessionCompleted'
+
+components:
+  messages:
+    personaCreated:
+      name: personaCreated
+      title: Persona Created
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/personaCreatedPayload'
+
+    skillPublished:
+      name: skillPublished
+      title: Skill Published
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/skillPublishedPayload'
+
+    sessionStarted:
+      name: sessionStarted
+      title: Session Started
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/sessionStartedPayload'
+
+    sessionCompleted:
+      name: sessionCompleted
+      title: Session Completed
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/sessionCompletedPayload'
+
+  schemas:
+    personaCreatedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: persona.created
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, name, traits]
+          properties:
+            id:
+              type: string
+              pattern: '^persona_[0-9A-HJKMNP-TV-Z]{26}$'
+            name:
+              type: string
+            traits:
+              type: object
+              additionalProperties: true
+            skills:
+              type: array
+              items:
+                type: string
+            createdAt:
+              type: string
+              format: date-time
+
+    skillPublishedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: skill.published
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, name, category, version]
+          properties:
+            id:
+              type: string
+              pattern: '^skill_[0-9A-HJKMNP-TV-Z]{26}$'
+            name:
+              type: string
+            category:
+              type: string
+            description:
+              type: string
+            version:
+              type: string
+            publishedAt:
+              type: string
+              format: date-time
+
+    sessionStartedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: session.started
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, assistantId, status]
+          properties:
+            id:
+              type: string
+              pattern: '^sess_[0-9A-HJKMNP-TV-Z]{26}$'
+            assistantId:
+              type: string
+              pattern: '^asst_[0-9A-HJKMNP-TV-Z]{26}$'
+            status:
+              type: string
+              enum: [active]
+            startedAt:
+              type: string
+              format: date-time
+
+    sessionCompletedPayload:
+      type: object
+      required: [eventId, eventType, timestamp, data]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: session.completed
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required: [id, assistantId, status, duration]
+          properties:
+            id:
+              type: string
+              pattern: '^sess_[0-9A-HJKMNP-TV-Z]{26}$'
+            assistantId:
+              type: string
+            status:
+              type: string
+              enum: [completed, failed]
+            duration:
+              type: number
+              description: Session duration in seconds
+            completedAt:
+              type: string
+              format: date-time

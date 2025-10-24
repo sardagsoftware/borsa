@@ -10,6 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
         * {
             margin: 0;
             padding: 0;
@@ -139,8 +147,9 @@
         }
 
         .logo {
+            font-family: 'Righteous', cursive;
             font-size: 1.75rem;
-            font-weight: 900 !important;
+            font-weight: 700 !important;
             background: linear-gradient(135deg, var(--judge-gold), var(--judge-burgundy));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -198,7 +207,7 @@
 
         .hero h1 {
             font-size: 3.5rem;
-            font-weight: 900 !important;
+            font-weight: 700 !important;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--judge-gold), var(--text-primary));
             -webkit-background-clip: text;
@@ -665,6 +674,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Animated Background -->
@@ -689,7 +699,7 @@
                 </svg>
             </div>
             <div>
-                <div class="logo">LyDian Hukuk AI</div>
+                <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">LyDian Hukuk AI</div>
                 <div class="tagline">Adalet için Teknoloji • Teknoloji için Etik</div>
             </div>
         </div>
@@ -1086,5 +1096,6 @@ Sorgunuz çalıştırıldığında sonuç burada görünecek...
         console.log('⚖️ LyDian Hukuk AI Pro - Premium arayüz yüklendi!');
         console.log('Çeviri | GDPR | Dava Analizi | Hukuki Arama');
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

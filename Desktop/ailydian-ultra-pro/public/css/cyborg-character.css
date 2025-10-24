@@ -1,0 +1,551 @@
+/**
+ * 🤖 AiLydian Cyborg Character - Ultra Realistic
+ * Dr. Lydia Sentinel - The Creator
+ * Version: 4.0.0 CYBORG EDITION
+ * Inspired by: Human-AI Hybrid Concept
+ * 100% CSS - No External Images
+ */
+
+/* ========== CYBORG CHARACTER CONTAINER ========== */
+
+.cyborg-character {
+    position: relative;
+    width: 450px;
+    height: 600px;
+    transform-style: preserve-3d;
+    animation: cyborg-float 6s ease-in-out infinite;
+}
+
+@keyframes cyborg-float {
+    0%, 100% { transform: translateY(0) rotateY(0deg); }
+    50% { transform: translateY(-20px) rotateY(5deg); }
+}
+
+/* ========== HEAD (SPLIT FACE: HUMAN + MECHANICAL) ========== */
+
+.cyborg-head {
+    position: absolute;
+    width: 180px;
+    height: 220px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    perspective: 1000px;
+}
+
+/* Left side - Human */
+.cyborg-face-human {
+    position: absolute;
+    width: 90px;
+    height: 220px;
+    left: 0;
+    background: linear-gradient(135deg,
+        #f5d6c6 0%,
+        #e8baa8 40%,
+        #d4a18f 100%
+    );
+    border-radius: 50% 0 0 40%;
+    box-shadow:
+        inset -15px 0 30px rgba(0, 0, 0, 0.2),
+        inset 10px 10px 20px rgba(255, 255, 255, 0.1);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Right side - Mechanical */
+.cyborg-face-mech {
+    position: absolute;
+    width: 90px;
+    height: 220px;
+    right: 0;
+    background: linear-gradient(225deg,
+        #2c3e50 0%,
+        #34495e 30%,
+        #4a5f7f 60%,
+        #5d7a9e 100%
+    );
+    border-radius: 0 50% 40% 0;
+    box-shadow:
+        inset 15px 0 30px rgba(0, 0, 0, 0.4),
+        inset -5px -5px 20px rgba(100, 180, 255, 0.3),
+        0 0 30px rgba(64, 156, 255, 0.4);
+    overflow: hidden;
+}
+
+/* Mechanical circuits */
+.cyborg-circuits {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(0deg,
+            transparent 0,
+            transparent 10px,
+            rgba(64, 156, 255, 0.1) 10px,
+            rgba(64, 156, 255, 0.1) 11px
+        ),
+        repeating-linear-gradient(90deg,
+            transparent 0,
+            transparent 10px,
+            rgba(64, 156, 255, 0.1) 10px,
+            rgba(64, 156, 255, 0.1) 11px
+        );
+    opacity: 0.6;
+    animation: circuit-pulse 3s ease-in-out infinite;
+}
+
+@keyframes circuit-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+/* ========== LONG HAIR ========== */
+
+.cyborg-hair {
+    position: absolute;
+    width: 200px;
+    height: 280px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* Hair strands */
+.hair-strand {
+    position: absolute;
+    width: 40px;
+    height: 280px;
+    background: linear-gradient(180deg,
+        #e8e8e8 0%,
+        #d0d0d0 30%,
+        #b8b8b8 70%,
+        #a0a0a0 100%
+    );
+    border-radius: 50%;
+    opacity: 0.9;
+    transform-origin: top center;
+}
+
+.hair-strand:nth-child(1) {
+    left: 0;
+    animation: hair-wave1 4s ease-in-out infinite;
+}
+
+.hair-strand:nth-child(2) {
+    left: 40px;
+    animation: hair-wave2 4.5s ease-in-out infinite;
+}
+
+.hair-strand:nth-child(3) {
+    left: 80px;
+    animation: hair-wave3 5s ease-in-out infinite;
+}
+
+.hair-strand:nth-child(4) {
+    left: 120px;
+    animation: hair-wave2 4.2s ease-in-out infinite;
+}
+
+.hair-strand:nth-child(5) {
+    right: 0;
+    animation: hair-wave1 4.8s ease-in-out infinite;
+}
+
+@keyframes hair-wave1 {
+    0%, 100% { transform: rotate(0deg) scaleY(1); }
+    50% { transform: rotate(-3deg) scaleY(1.02); }
+}
+
+@keyframes hair-wave2 {
+    0%, 100% { transform: rotate(0deg) scaleY(1); }
+    50% { transform: rotate(2deg) scaleY(1.01); }
+}
+
+@keyframes hair-wave3 {
+    0%, 100% { transform: rotate(0deg) scaleY(1); }
+    50% { transform: rotate(-2deg) scaleY(1.03); }
+}
+
+/* ========== EYES ========== */
+
+/* Human eye (left) */
+.cyborg-eye-human {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 80px;
+    left: 30px;
+    background: radial-gradient(circle,
+        #000000 0%,
+        #1a1a1a 40%,
+        #4a90e2 50%,
+        #ffffff 60%,
+        #f5d6c6 100%
+    );
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: eye-blink-human 5s ease-in-out infinite;
+}
+
+@keyframes eye-blink-human {
+    0%, 48%, 52%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+/* Mechanical eye (right) - Glowing */
+.cyborg-eye-mech {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 76px;
+    right: 25px;
+    background: radial-gradient(circle,
+        #ffffff 0%,
+        #64fcff 20%,
+        #409cff 50%,
+        #2c3e50 80%
+    );
+    border-radius: 50%;
+    box-shadow:
+        0 0 20px rgba(100, 252, 255, 0.8),
+        0 0 40px rgba(64, 156, 255, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: mech-eye-glow 2s ease-in-out infinite;
+}
+
+@keyframes mech-eye-glow {
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(100, 252, 255, 0.8),
+            0 0 40px rgba(64, 156, 255, 0.6);
+    }
+    50% {
+        box-shadow:
+            0 0 30px rgba(100, 252, 255, 1),
+            0 0 60px rgba(64, 156, 255, 0.9),
+            0 0 90px rgba(64, 156, 255, 0.5);
+    }
+}
+
+/* Eye ring/scanner */
+.cyborg-eye-ring {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -6px;
+    left: -6px;
+    border: 2px solid rgba(64, 156, 255, 0.6);
+    border-radius: 50%;
+    animation: scanner-rotate 3s linear infinite;
+}
+
+@keyframes scanner-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ========== NOSE & MOUTH ========== */
+
+.cyborg-nose {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    top: 110px;
+    left: 80px;
+    background: linear-gradient(135deg,
+        rgba(212, 161, 143, 0.8) 0%,
+        rgba(232, 186, 168, 0.6) 100%
+    );
+    border-radius: 40% 40% 50% 50%;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cyborg-mouth {
+    position: absolute;
+    width: 50px;
+    height: 8px;
+    top: 160px;
+    left: 65px;
+    background: linear-gradient(90deg,
+        rgba(180, 100, 100, 0.6) 0%,
+        rgba(200, 120, 120, 0.4) 50%,
+        rgba(44, 62, 80, 0.8) 100%
+    );
+    border-radius: 0 0 50% 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== NECK & SHOULDERS ========== */
+
+.cyborg-neck {
+    position: absolute;
+    width: 80px;
+    height: 60px;
+    top: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg,
+        #e8baa8 0%,
+        #d4a18f 40%,
+        #34495e 60%,
+        #2c3e50 100%
+    );
+    border-radius: 20%;
+}
+
+.cyborg-shoulders {
+    position: absolute;
+    width: 280px;
+    height: 120px;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg,
+        #2c3e50 0%,
+        #34495e 40%,
+        #4a5f7f 100%
+    );
+    border-radius: 40px 40px 20px 20px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 -10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Suit collar */
+.cyborg-collar {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    top: 260px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border-radius: 0 0 30% 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== MECHANICAL ARM (Right) ========== */
+
+.cyborg-arm-mech {
+    position: absolute;
+    width: 70px;
+    height: 200px;
+    top: 280px;
+    right: 20px;
+    background: linear-gradient(180deg,
+        #4a5f7f 0%,
+        #34495e 50%,
+        #2c3e50 100%
+    );
+    border-radius: 30px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        inset -5px -5px 20px rgba(64, 156, 255, 0.2);
+    transform-origin: top center;
+    animation: mech-arm-move 5s ease-in-out infinite;
+}
+
+@keyframes mech-arm-move {
+    0%, 100% { transform: rotate(5deg); }
+    50% { transform: rotate(-10deg); }
+}
+
+/* Mechanical joints */
+.mech-joint {
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(90deg,
+        rgba(64, 156, 255, 0.3) 0%,
+        rgba(64, 156, 255, 0.6) 50%,
+        rgba(64, 156, 255, 0.3) 100%
+    );
+    border-top: 1px solid rgba(64, 156, 255, 0.8);
+    border-bottom: 1px solid rgba(64, 156, 255, 0.8);
+}
+
+.mech-joint-1 { top: 40%; }
+.mech-joint-2 { top: 70%; }
+
+/* Mechanical hand */
+.cyborg-hand-mech {
+    position: absolute;
+    width: 65px;
+    height: 70px;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg,
+        #34495e 0%,
+        #2c3e50 100%
+    );
+    border-radius: 40% 40% 50% 50%;
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(64, 156, 255, 0.3);
+}
+
+/* Fingers */
+.mech-finger {
+    position: absolute;
+    width: 12px;
+    height: 35px;
+    bottom: 0;
+    background: linear-gradient(180deg,
+        #34495e 0%,
+        #2c3e50 100%
+    );
+    border-radius: 40%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.mech-finger:nth-child(1) { left: 5px; }
+.mech-finger:nth-child(2) { left: 20px; height: 40px; }
+.mech-finger:nth-child(3) { left: 35px; height: 38px; }
+.mech-finger:nth-child(4) { right: 5px; height: 30px; }
+
+/* ========== HUMAN ARM (Left) ========== */
+
+.cyborg-arm-human {
+    position: absolute;
+    width: 60px;
+    height: 180px;
+    top: 290px;
+    left: 30px;
+    background: linear-gradient(180deg,
+        #2c3e50 0%,
+        #e8baa8 40%,
+        #d4a18f 100%
+    );
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform-origin: top center;
+    animation: human-arm-move 6s ease-in-out infinite;
+}
+
+@keyframes human-arm-move {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.cyborg-hand-human {
+    position: absolute;
+    width: 55px;
+    height: 65px;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle,
+        #f5d6c6 0%,
+        #e8baa8 60%,
+        #d4a18f 100%
+    );
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== GLOWING AURA ========== */
+
+.cyborg-aura {
+    position: absolute;
+    width: 500px;
+    height: 650px;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse,
+        rgba(64, 156, 255, 0.2) 0%,
+        rgba(64, 156, 255, 0.1) 40%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    animation: aura-pulse 4s ease-in-out infinite;
+    z-index: -2;
+    pointer-events: none;
+}
+
+@keyframes aura-pulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* ========== TECH PARTICLES ========== */
+
+.tech-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(64, 156, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(64, 156, 255, 0.8);
+    animation: particle-float 6s ease-in-out infinite;
+}
+
+.tech-particle:nth-child(1) {
+    top: 20%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.tech-particle:nth-child(2) {
+    top: 40%;
+    right: 5%;
+    animation-delay: 1s;
+}
+
+.tech-particle:nth-child(3) {
+    top: 60%;
+    right: 12%;
+    animation-delay: 2s;
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-30px) translateX(10px);
+        opacity: 1;
+    }
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 1024px) {
+    .cyborg-character {
+        width: 380px;
+        height: 500px;
+        transform: scale(0.85);
+    }
+}
+
+@media (max-width: 768px) {
+    .cyborg-character {
+        width: 320px;
+        height: 420px;
+        transform: scale(0.7);
+    }
+}
+
+/* ========== PERFORMANCE ========== */
+
+.cyborg-character,
+.cyborg-head,
+.cyborg-hair,
+.cyborg-arm-mech,
+.cyborg-arm-human {
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}

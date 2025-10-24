@@ -24,31 +24,31 @@
         }
 
         :root {
-            /* Claude Copper Neon Palette */
-            --claude-copper-primary: #FF6B4A;
-            --claude-copper-light: #FF8A6B;
-            --claude-copper-lighter: #FFB399;
-            --claude-copper-dark: #E64A2E;
-            --claude-copper-darker: #CC3214;
+            /* Enterprise AI Copper Neon Palette */
+            --enterprise-ai-copper-primary: #FF6B4A;
+            --enterprise-ai-copper-light: #FF8A6B;
+            --enterprise-ai-copper-lighter: #FFB399;
+            --enterprise-ai-copper-dark: #E64A2E;
+            --enterprise-ai-copper-darker: #CC3214;
             --neon-copper: #FF6B4A;
             --neon-glow: rgba(255, 107, 74, 0.6);
 
             /* Dark Premium Colors */
-            --claude-bg-primary: #0A0A0B;
-            --claude-bg-secondary: #111113;
-            --claude-bg-tertiary: #1A1A1D;
-            --claude-bg-hover: #222225;
-            --claude-bg-card: #141416;
+            --enterprise-ai-bg-primary: #0A0A0B;
+            --enterprise-ai-bg-secondary: #111113;
+            --enterprise-ai-bg-tertiary: #1A1A1D;
+            --enterprise-ai-bg-hover: #222225;
+            --enterprise-ai-bg-card: #141416;
 
             /* Text Colors */
-            --claude-text-primary: #FFFFFF;
-            --claude-text-secondary: #B8B8B8;
-            --claude-text-tertiary: #6B6B6B;
-            --claude-text-muted: #4A4A4A;
+            --enterprise-ai-text-primary: #FFFFFF;
+            --enterprise-ai-text-secondary: #B8B8B8;
+            --enterprise-ai-text-tertiary: #6B6B6B;
+            --enterprise-ai-text-muted: #4A4A4A;
 
             /* Borders */
-            --claude-border: rgba(255, 107, 74, 0.15);
-            --claude-border-bright: rgba(255, 107, 74, 0.4);
+            --enterprise-ai-border: rgba(255, 107, 74, 0.15);
+            --enterprise-ai-border-bright: rgba(255, 107, 74, 0.4);
 
             /* Neon Gradients */
             --gradient-copper: linear-gradient(135deg, #FF6B4A 0%, #E64A2E 100%);
@@ -69,7 +69,7 @@
         body {
             font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--gradient-bg);
-            color: var(--claude-text-primary);
+            color: var(--enterprise-ai-text-primary);
             height: 100vh;
             overflow: hidden;
             letter-spacing: -0.01em;
@@ -91,8 +91,8 @@
 
         .sidebar {
             width: 280px;
-            background: var(--claude-bg-primary);
-            border-right: 1px solid var(--claude-border);
+            background: var(--enterprise-ai-bg-primary);
+            border-right: 1px solid var(--enterprise-ai-border);
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease;
@@ -100,7 +100,7 @@
 
         .sidebar-header {
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid var(--claude-border);
+            border-bottom: 1px solid var(--enterprise-ai-border);
         }
 
         .logo {
@@ -154,7 +154,7 @@
         .section-title {
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             padding: 0.5rem 0.75rem;
@@ -171,18 +171,18 @@
         }
 
         .chat-item:hover {
-            background: var(--claude-bg-tertiary);
+            background: var(--enterprise-ai-bg-tertiary);
         }
 
         .chat-item.active {
             background: rgba(217, 119, 87, 0.1);
-            border-left: 3px solid var(--claude-copper-primary);
+            border-left: 3px solid var(--enterprise-ai-copper-primary);
         }
 
         .chat-item-title {
             font-size: 0.875rem;
             font-weight: 500;
-            color: var(--claude-text-primary);
+            color: var(--enterprise-ai-text-primary);
             margin-bottom: 0.25rem;
             white-space: nowrap;
             overflow: hidden;
@@ -191,7 +191,7 @@
 
         .chat-item-preview {
             font-size: 0.75rem;
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -212,7 +212,7 @@
             color: white;
         }
 
-        .model-badge.claude { background: var(--claude-copper-primary); }
+        .model-badge.enterprise-ai { background: var(--enterprise-ai-copper-primary); }
         .model-badge.gpt { background: #10A37F; }
         .model-badge.gemini { background: #4285F4; }
         .model-badge.groq { background: #F97316; }
@@ -223,15 +223,15 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: var(--claude-bg-secondary);
+            background: var(--enterprise-ai-bg-secondary);
             overflow: hidden;
         }
 
         /* ========== MODEL SELECTOR BAR ========== */
 
         .model-selector-bar {
-            background: var(--claude-bg-primary);
-            border-bottom: 1px solid var(--claude-border);
+            background: var(--enterprise-ai-bg-primary);
+            border-bottom: 1px solid var(--enterprise-ai-border);
             padding: 0.75rem 1.5rem;
             display: flex;
             align-items: center;
@@ -298,8 +298,8 @@
             top: calc(100% + 0.5rem);
             left: 1.5rem;
             right: 1.5rem;
-            background: var(--claude-bg-primary);
-            border: 1px solid var(--claude-border);
+            background: var(--enterprise-ai-bg-primary);
+            border: 1px solid var(--enterprise-ai-border);
             border-radius: 12px;
             box-shadow: var(--shadow-xl);
             max-height: 600px;
@@ -326,13 +326,13 @@
 
         .model-search {
             padding: 1rem;
-            border-bottom: 1px solid var(--claude-border);
+            border-bottom: 1px solid var(--enterprise-ai-border);
         }
 
         .model-search input {
             width: 100%;
             padding: 0.75rem 1rem;
-            border: 1px solid var(--claude-border);
+            border: 1px solid var(--enterprise-ai-border);
             border-radius: 8px;
             font-size: 0.875rem;
             outline: none;
@@ -340,13 +340,13 @@
         }
 
         .model-search input:focus {
-            border-color: var(--claude-copper-primary);
+            border-color: var(--enterprise-ai-copper-primary);
             box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1);
         }
 
         .model-category {
             padding: 1rem;
-            border-bottom: 1px solid var(--claude-border);
+            border-bottom: 1px solid var(--enterprise-ai-border);
         }
 
         .model-category:last-child {
@@ -356,7 +356,7 @@
         .model-category-title {
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.75rem;
@@ -377,12 +377,12 @@
         }
 
         .model-option:hover {
-            background: var(--claude-bg-tertiary);
+            background: var(--enterprise-ai-bg-tertiary);
         }
 
         .model-option.selected {
             background: rgba(217, 119, 87, 0.1);
-            border-left: 3px solid var(--claude-copper-primary);
+            border-left: 3px solid var(--enterprise-ai-copper-primary);
         }
 
         .model-option-main {
@@ -410,13 +410,13 @@
         .model-option-name {
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--claude-text-primary);
+            color: var(--enterprise-ai-text-primary);
             margin-bottom: 0.125rem;
         }
 
         .model-option-meta {
             font-size: 0.75rem;
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -453,7 +453,7 @@
         }
 
         .message.assistant {
-            background: var(--claude-bg-primary);
+            background: var(--enterprise-ai-bg-primary);
         }
 
         .message-avatar {
@@ -469,7 +469,7 @@
         }
 
         .message-avatar.user {
-            background: var(--claude-text-secondary);
+            background: var(--enterprise-ai-text-secondary);
             color: white;
         }
 
@@ -485,7 +485,7 @@
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            border: 2px solid var(--claude-bg-primary);
+            border: 2px solid var(--enterprise-ai-bg-primary);
             font-size: 0.5rem;
             display: flex;
             align-items: center;
@@ -509,11 +509,11 @@
 
         .message-model {
             font-weight: 600;
-            color: var(--claude-copper-primary);
+            color: var(--enterprise-ai-copper-primary);
         }
 
         .message-meta {
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
             display: flex;
             align-items: center;
             gap: 0.375rem;
@@ -521,7 +521,7 @@
 
         .message-text {
             line-height: 1.6;
-            color: var(--claude-text-primary);
+            color: var(--enterprise-ai-text-primary);
             font-size: 0.9375rem;
         }
 
@@ -566,10 +566,10 @@
         .message-action-btn {
             padding: 0.375rem 0.75rem;
             background: transparent;
-            border: 1px solid var(--claude-border);
+            border: 1px solid var(--enterprise-ai-border);
             border-radius: 6px;
             font-size: 0.75rem;
-            color: var(--claude-text-secondary);
+            color: var(--enterprise-ai-text-secondary);
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
@@ -578,9 +578,9 @@
         }
 
         .message-action-btn:hover {
-            background: var(--claude-bg-tertiary);
-            color: var(--claude-copper-primary);
-            border-color: var(--claude-copper-primary);
+            background: var(--enterprise-ai-bg-tertiary);
+            color: var(--enterprise-ai-copper-primary);
+            border-color: var(--enterprise-ai-copper-primary);
         }
 
         /* Typing Indicator */
@@ -588,7 +588,7 @@
             display: flex;
             gap: 0.375rem;
             padding: 0.75rem 1rem;
-            background: var(--claude-bg-tertiary);
+            background: var(--enterprise-ai-bg-tertiary);
             border-radius: 20px;
             width: fit-content;
         }
@@ -597,7 +597,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--claude-copper-primary);
+            background: var(--enterprise-ai-copper-primary);
             animation: typingBounce 1.4s infinite;
         }
 
@@ -612,8 +612,8 @@
         /* ========== INPUT AREA ========== */
 
         .input-area {
-            background: var(--claude-bg-primary);
-            border-top: 1px solid var(--claude-border);
+            background: var(--enterprise-ai-bg-primary);
+            border-top: 1px solid var(--enterprise-ai-border);
             padding: 1.5rem;
         }
 
@@ -627,7 +627,7 @@
             display: flex;
             align-items: flex-end;
             gap: 0.75rem;
-            background: var(--claude-bg-tertiary);
+            background: var(--enterprise-ai-bg-tertiary);
             border: 2px solid transparent;
             border-radius: 12px;
             padding: 0.75rem;
@@ -635,7 +635,7 @@
         }
 
         .input-container:focus-within {
-            border-color: var(--claude-copper-primary);
+            border-color: var(--enterprise-ai-copper-primary);
             box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1);
         }
 
@@ -650,11 +650,11 @@
             min-height: 24px;
             max-height: 150px;
             line-height: 1.5;
-            color: var(--claude-text-primary);
+            color: var(--enterprise-ai-text-primary);
         }
 
         .message-input::placeholder {
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
         }
 
         .input-actions {
@@ -669,7 +669,7 @@
             border-radius: 6px;
             border: none;
             background: transparent;
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
@@ -679,8 +679,8 @@
         }
 
         .input-action-btn:hover {
-            background: var(--claude-bg-hover);
-            color: var(--claude-copper-primary);
+            background: var(--enterprise-ai-bg-hover);
+            color: var(--enterprise-ai-copper-primary);
         }
 
         .send-button {
@@ -713,7 +713,7 @@
             margin-top: 0.75rem;
             padding: 0 0.5rem;
             font-size: 0.75rem;
-            color: var(--claude-text-tertiary);
+            color: var(--enterprise-ai-text-tertiary);
         }
 
         .token-counter {
@@ -743,13 +743,13 @@
         .empty-state-title {
             font-size: 1.75rem;
             font-weight: 700;
-            color: var(--claude-text-primary);
+            color: var(--enterprise-ai-text-primary);
             margin-bottom: 0.75rem;
         }
 
         .empty-state-subtitle {
             font-size: 1rem;
-            color: var(--claude-text-secondary);
+            color: var(--enterprise-ai-text-secondary);
             margin-bottom: 2rem;
             max-width: 500px;
         }
@@ -764,19 +764,19 @@
 
         .suggestion-chip {
             padding: 0.75rem 1.25rem;
-            background: var(--claude-bg-primary);
-            border: 1px solid var(--claude-border);
+            background: var(--enterprise-ai-bg-primary);
+            border: 1px solid var(--enterprise-ai-border);
             border-radius: 20px;
             font-size: 0.875rem;
-            color: var(--claude-text-secondary);
+            color: var(--enterprise-ai-text-secondary);
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .suggestion-chip:hover {
             background: rgba(217, 119, 87, 0.1);
-            border-color: var(--claude-copper-primary);
-            color: var(--claude-copper-primary);
+            border-color: var(--enterprise-ai-copper-primary);
+            color: var(--enterprise-ai-copper-primary);
             transform: translateY(-2px);
         }
 
@@ -858,7 +858,7 @@
                 <div class="current-model" id="currentModel">
                     <span class="current-model-icon">🤖</span>
                     <div class="current-model-info">
-                        <div class="current-model-name">Claude 3.5 Sonnet</div>
+                        <div class="current-model-name">Ultra Intelligence Model</div>
                         <div class="current-model-meta">128K bağlam • $3/1M token</div>
                     </div>
                     <button class="model-dropdown-trigger" id="modelDropdownTrigger">▼</button>
@@ -872,11 +872,11 @@
 
                     <div class="model-category">
                         <div class="model-category-title">⭐ Favoriler</div>
-                        <div class="model-option selected" data-model="claude-3.5-sonnet">
+                        <div class="model-option selected" data-model="enterprise-ai-3.5-sonnet">
                             <div class="model-option-main">
-                                <div class="model-option-icon" style="background: var(--claude-copper-primary);">C</div>
+                                <div class="model-option-icon" style="background: var(--enterprise-ai-copper-primary);">C</div>
                                 <div class="model-option-info">
-                                    <div class="model-option-name">Claude 3.5 Sonnet</div>
+                                    <div class="model-option-name">Ultra Intelligence Model</div>
                                     <div class="model-option-meta">
                                         <span>128K</span>
                                         <span>•</span>
@@ -921,11 +921,11 @@
 
                     <div class="model-category">
                         <div class="model-category-title">🧠 Akıl Yürütme Uzmanları</div>
-                        <div class="model-option" data-model="claude-3-opus">
+                        <div class="model-option" data-model="premium-intelligence-v2">
                             <div class="model-option-main">
-                                <div class="model-option-icon" style="background: var(--claude-copper-dark);">C</div>
+                                <div class="model-option-icon" style="background: var(--enterprise-ai-copper-dark);">C</div>
                                 <div class="model-option-info">
-                                    <div class="model-option-name">Claude 3 Opus</div>
+                                    <div class="model-option-name">Premium Intelligence Model</div>
                                     <div class="model-option-meta">
                                         <span>200K</span>
                                         <span>•</span>
@@ -1010,7 +1010,7 @@
                     <div class="empty-state-icon">💬</div>
                     <h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1>
                     <p class="empty-state-subtitle">
-                        Claude, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.
+                        Enterprise AI, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.
                     </p>
                     <div class="suggestion-chips">
                         <div class="suggestion-chip" data-prompt="Kuantum bilişimi basit terimlerle açıkla">
@@ -1066,12 +1066,12 @@
 
         const state = {
             currentModel: {
-                id: 'claude-3.5-sonnet',
-                name: 'Claude 3.5 Sonnet',
+                id: 'enterprise-ai-3.5-sonnet',
+                name: 'Ultra Intelligence Model',
                 icon: '🤖',
                 context: '128K',
                 price: '$3/1M',
-                provider: 'anthropic'
+                provider: 'advanced-ai-platform'
             },
             messages: [],
             isTyping: false,
@@ -1098,8 +1098,8 @@
         // ========== MODEL DATA ==========
 
         const models = {
-            'claude-3.5-sonnet': { name: 'Claude 3.5 Sonnet', icon: '🤖', context: '128K', price: 3, provider: 'Anthropic' },
-            'claude-3-opus': { name: 'Claude 3 Opus', icon: '🤖', context: '200K', price: 15, provider: 'Anthropic' },
+            'enterprise-ai-3.5-sonnet': { name: 'Ultra Intelligence Model', icon: '🤖', context: '128K', price: 3, provider: 'Advanced AI Platform' },
+            'premium-intelligence-v2': { name: 'Premium Intelligence Model', icon: '🤖', context: '200K', price: 15, provider: 'Advanced AI Platform' },
             'gpt-4-turbo': { name: 'GPT-4 Turbo', icon: '🤖', context: '128K', price: 10, provider: 'OpenAI' },
             'gpt-4-vision': { name: 'GPT-4 Vision', icon: '👁️', context: '128K', price: 10, provider: 'OpenAI' },
             'gpt-3.5-turbo': { name: 'GPT-3.5 Turbo', icon: '⚡', context: '16K', price: 2, provider: 'OpenAI' },
@@ -1272,7 +1272,7 @@
                 messageEl.innerHTML = `
                     <div class="message-avatar assistant">
                         ${state.currentModel.icon}
-                        <div class="model-indicator" style="background: var(--claude-copper-primary);">
+                        <div class="model-indicator" style="background: var(--enterprise-ai-copper-primary);">
                             ${state.currentModel.provider.charAt(0)}
                         </div>
                     </div>
@@ -1303,7 +1303,7 @@
             const messageEl = document.createElement('div');
             messageEl.style.cssText = 'display: flex; justify-content: center; padding: 0.75rem;';
             messageEl.innerHTML = `
-                <div style="padding: 0.5rem 1rem; background: rgba(217, 119, 87, 0.1); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 20px; font-size: 0.875rem; color: var(--claude-copper-dark);">
+                <div style="padding: 0.5rem 1rem; background: rgba(217, 119, 87, 0.1); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 20px; font-size: 0.875rem; color: var(--enterprise-ai-copper-dark);">
                     ${content}
                 </div>
             `;
@@ -1344,7 +1344,7 @@
         function generateMockResponse(prompt) {
             // Mock AI responses based on model
             const responses = {
-                'claude-3.5-sonnet': `Bunu yanıtlamaktan mutluluk duyarım. ${prompt}
+                'enterprise-ai-3.5-sonnet': `Bunu yanıtlamaktan mutluluk duyarım. ${prompt}
 
 Sorunuza göre kapsamlı bir yanıt:
 
@@ -1388,7 +1388,7 @@ Işık hızında sunulan önemli içgörülerle hızlı cevap!`
 
         function startNewChat() {
             state.messages = [];
-            elements.messagesContainer.innerHTML = '<div class="empty-state" id="emptyState"><div class="empty-state-icon">💬</div><h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1><p class="empty-state-subtitle">Claude, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.</p></div>';
+            elements.messagesContainer.innerHTML = '<div class="empty-state" id="emptyState"><div class="empty-state-icon">💬</div><h1 class="empty-state-title">23 Yapay Zeka Modeli ile Sohbet Et</h1><p class="empty-state-subtitle">Enterprise AI, GPT-4, Gemini, Groq ve daha fazlası arasından seçim yap. Konuşman sırasında istediğin zaman model değiştirebilirsin.</p></div>';
             elements.emptyState = document.getElementById('emptyState');
         }
 

@@ -12,6 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
         /* ============================================================
            ⚖️ LyDian Hukuk AI - KÜRESEL HUKUK YAPAY ZEKA PLATFORMU
            Adalet • Teknoloji • Etik
@@ -120,6 +128,7 @@
         }
 
         .logo {
+            font-family: 'Righteous', cursive;
             font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
@@ -178,7 +187,7 @@
 
         .hero h1 {
             font-size: 3rem;
-            font-weight: 900 !important;
+            font-weight: 700 !important;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--justice-gold), var(--justice-white));
             -webkit-background-clip: text;
@@ -408,6 +417,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Animated Background -->
@@ -419,7 +429,7 @@
     <!-- Header -->
     <header class="header">
         <div class="logo-section">
-            <div class="logo">⚖️ LyDian Hukuk AI</div>
+            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">⚖️ LyDian Hukuk AI</div>
             <div class="tagline">Adalet için Teknoloji • Teknoloji için Etik</div>
         </div>
         <div class="status-badge">
@@ -875,5 +885,6 @@
         console.log('Quantum Computing ⚛️ | Blockchain 🔗 | Knowledge Graph 🧠');
         console.log('150+ Dil 🌍 | Global Legal Systems ⚖️ | GDPR 🛡️');
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

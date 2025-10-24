@@ -57,7 +57,7 @@
     <!-- Icons -->
     <link rel="icon" type="image/png" href="/lydian-logo.png">
     <link rel="apple-touch-icon" href="/lydian-logo.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/lydian-manifest.json">
     
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -411,7 +411,17 @@
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-        
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
         /* ============================================================
            MAIN SEARCH AREA - Центральный элемент
            ============================================================ */
@@ -1122,6 +1132,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Animated Background -->
@@ -1799,7 +1810,131 @@
             filePreviewList: document.getElementById('filePreviewList'),
             clearFilesBtn: document.getElementById('clearFilesBtn')
         };
-        
+
+        // ============================================================
+        // REASONING VISUALIZER - Collapsible Reasoning Steps
+        // ============================================================
+        window.ReasoningVisualizer = {
+            display(reasoningChain, confidence = 0.95) {
+                if (!reasoningChain || reasoningChain.length === 0) {
+                    return '';
+                }
+
+                const uniqueId = 'reasoning-' + Date.now();
+                const stepsHTML = reasoningChain.map((step, index) => `
+                    <div class="reasoning-step" style="
+                        margin-bottom: 1rem;
+                        padding: 1rem;
+                        background: var(--glass);
+                        backdrop-filter: blur(10px);
+                        border: 1px solid var(--border);
+                        border-radius: 12px;
+                        border-left: 4px solid var(--justice-gold);
+                    ">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                            <div style="
+                                width: 32px;
+                                height: 32px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                                border-radius: 50%;
+                                color: white;
+                                font-weight: bold;
+                                font-size: 0.9rem;
+                            ">${index + 1}</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: var(--justice-gold);">
+                                    ${step.title || `Adım ${index + 1}`}
+                                </div>
+                                ${step.confidence ? `
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                        Güven: ${(step.confidence * 100).toFixed(0)}%
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <div style="color: var(--text-primary); line-height: 1.6;">
+                            ${step.description || step.content || step}
+                        </div>
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="reasoning-container" style="
+                        margin: 1.5rem 0;
+                        padding: 1.5rem;
+                        background: rgba(28, 37, 54, 0.4);
+                        backdrop-filter: blur(20px);
+                        border: 1px solid var(--border);
+                        border-radius: 16px;
+                    ">
+                        <div onclick="toggleReasoning('${uniqueId}')" style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            cursor: pointer;
+                            padding: 0.5rem;
+                            border-radius: 8px;
+                            transition: background 0.3s ease;
+                        " onmouseover="this.style.background='rgba(196, 169, 98, 0.1)'" onmouseout="this.style.background='transparent'">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--justice-gold)" stroke-width="2.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                                </svg>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 1.1rem; color: var(--justice-gold);">
+                                        🧠 Düşünce Süreci
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                                        ${reasoningChain.length} adım • Güven: ${(confidence * 100).toFixed(0)}%
+                                    </div>
+                                </div>
+                            </div>
+                            <svg id="${uniqueId}-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--justice-gold)" stroke-width="3" style="transition: transform 0.3s ease;">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div id="${uniqueId}" style="
+                            max-height: 0;
+                            overflow: hidden;
+                            transition: max-height 0.4s ease, margin-top 0.4s ease;
+                        ">
+                            <div style="padding-top: 1.5rem;">
+                                ${stepsHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        };
+
+        // Toggle reasoning visibility
+        window.toggleReasoning = function(id) {
+            const container = document.getElementById(id);
+            const chevron = document.getElementById(id + '-chevron');
+
+            if (!container) return;
+
+            if (container.style.maxHeight === '0px' || !container.style.maxHeight) {
+                // Expand
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.marginTop = '1rem';
+                if (chevron) {
+                    chevron.style.transform = 'rotate(180deg)';
+                }
+            } else {
+                // Collapse
+                container.style.maxHeight = '0px';
+                container.style.marginTop = '0px';
+                if (chevron) {
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            }
+        };
+
         // ============================================================
         // SUPER POWER MODE
         // ============================================================
@@ -2381,6 +2516,26 @@ ${new Date().toLocaleDateString('tr-TR')} | ${new Date().toLocaleTimeString('tr-
                         <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
                 </button>
+                <button onclick="copyResponseToClipboard()" title="Panoya Kopyala" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    padding: 0;
+                    background: var(--glass);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid var(--border);
+                    border-radius: 50%;
+                    color: var(--justice-gold);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.background='linear-gradient(135deg, var(--justice-gold), var(--justice-maroon))'; this.style.color='white'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='var(--glass)'; this.style.color='var(--justice-gold)'; this.style.transform='scale(1)';">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
                 <button onclick="clearConversation()" title="Temizle" style="
                     display: flex;
                     align-items: center;
@@ -2509,6 +2664,73 @@ _LyDian IQ: Ultra İstihbarat Platformu - Yapay Zeka Bilgeniz_`;
             } catch (error) {
                 console.error('❌ Paylaşım hatası:', error);
                 alert('Link oluşturulamadı. Lütfen tekrar deneyin.');
+            }
+        }
+
+        // Copy response to clipboard
+        async function copyResponseToClipboard() {
+            try {
+                const response = elements.responseContent.innerText;
+
+                if (!response || response.trim() === '') {
+                    alert('Kopyalanacak yanıt bulunamadı!');
+                    return;
+                }
+
+                // Copy to clipboard using modern API
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(response);
+
+                    // Show success notification
+                    const successMsg = document.createElement('div');
+                    successMsg.textContent = '✅ Yanıt panoya kopyalandı!';
+                    successMsg.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
+                        color: white;
+                        padding: 1rem 1.5rem;
+                        border-radius: 12px;
+                        font-weight: 600;
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                        z-index: 10000;
+                        animation: slideInRight 0.3s ease;
+                    `;
+                    document.body.appendChild(successMsg);
+
+                    // Remove after 3 seconds
+                    setTimeout(() => {
+                        successMsg.style.animation = 'slideOutRight 0.3s ease';
+                        setTimeout(() => {
+                            successMsg.remove();
+                        }, 300);
+                    }, 3000);
+
+                    console.log('✅ Yanıt panoya kopyalandı');
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = response;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                        alert('✅ Yanıt panoya kopyalandı!');
+                    } catch (err) {
+                        alert('⚠️ Kopyalama başarısız. Lütfen tarayıcınızı güncelleyin.');
+                    }
+
+                    document.body.removeChild(textArea);
+                }
+
+            } catch (error) {
+                console.error('❌ Kopyalama hatası:', error);
+                alert('Kopyalama başarısız. Lütfen tekrar deneyin.');
             }
         }
 
@@ -4301,7 +4523,7 @@ ${response}
 
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js')
+                    navigator.serviceWorker.register('/lydian-iq-sw.js')
                         .then((registration) => {
                             console.log('✅ LyDian IQ Service Worker registered:', registration.scope);
                         })
@@ -4334,7 +4556,7 @@ ${response}
                 return false;
             }
 
-            // Only show install button if not installed
+            // Show install button in header (next to theme toggle)
             if (!isPWAInstalled()) {
                 showInstallButton();
             }
@@ -4347,57 +4569,27 @@ ${response}
             });
 
             function showInstallButton() {
+                // Find header-right to insert button
+                const headerRight = document.querySelector('.header-right');
+                if (!headerRight) return;
+
                 const installBtn = document.createElement('button');
                 installBtn.id = 'pwa-install-btn';
-                installBtn.title = 'Mobil Uygulama Olarak İndir';
+                installBtn.className = 'mode-toggle icon-only';
+                installBtn.title = 'LyDian IQ\'yı İndir (PWA)';
+                installBtn.style.marginRight = '0.5rem';
                 installBtn.innerHTML = `
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
                         <path d="M12 10v4"></path>
                         <polyline points="9 12 12 15 15 12"></polyline>
                     </svg>
                 `;
-                installBtn.style.cssText = `
-                    position: fixed;
-                    bottom: 2rem;
-                    right: 2rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 56px;
-                    height: 56px;
-                    padding: 0;
-                    background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon));
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.4);
-                    z-index: 999;
-                    transition: all 0.3s ease;
-                    animation: pulse-install 2s infinite;
-                `;
-
-                // Mobile responsive adjustment
-                if (window.innerWidth <= 768) {
-                    installBtn.style.bottom = '6rem'; // Higher position on mobile to avoid text overlap
-                    installBtn.style.right = '1rem';
-                    installBtn.style.width = '48px';
-                    installBtn.style.height = '48px';
-                }
 
                 installBtn.addEventListener('click', async () => {
-                    // Open PWA install modal with platform instructions
-                    const pwaModal = document.getElementById('pwaInstallModal');
-                    if (pwaModal) {
-                        pwaModal.classList.add('active');
-                        console.log('📱 PWA Install modal opened');
-                    }
-
-                    // Also trigger native install prompt if available (for Chrome/Edge desktop)
-                    if (deferredPrompt && (navigator.userAgent.includes('Chrome') || navigator.userAgent.includes('Edg'))) {
-                        setTimeout(async () => {
+                    // Trigger native install prompt directly - no alerts, just action
+                    if (deferredPrompt) {
+                        try {
                             deferredPrompt.prompt();
                             const { outcome } = await deferredPrompt.userChoice;
                             console.log(`📱 PWA install outcome: ${outcome}`);
@@ -4405,26 +4597,21 @@ ${response}
                             if (outcome === 'accepted') {
                                 console.log('✅ PWA installed successfully');
                                 localStorage.setItem('pwa-installed', 'true');
-                                pwaModal.classList.remove('active');
                                 installBtn.remove();
                             }
 
                             deferredPrompt = null;
-                        }, 500);
+                        } catch (error) {
+                            console.error('PWA install error:', error);
+                        }
+                    } else {
+                        // Platform doesn't support native install prompt
+                        console.log('ℹ️ Native PWA install not available on this platform');
                     }
                 });
 
-                installBtn.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                    this.style.boxShadow = '0 12px 40px rgba(196, 169, 98, 0.5)';
-                });
-
-                installBtn.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                    this.style.boxShadow = '0 8px 32px rgba(196, 169, 98, 0.3)';
-                });
-
-                document.body.appendChild(installBtn);
+                // Insert before theme toggle button (first button in header)
+                headerRight.insertBefore(installBtn, headerRight.firstChild);
             }
 
             // Listen for app installed event
@@ -4435,187 +4622,44 @@ ${response}
             });
         });
 
-        // PWA Install Button Animation
-        const installStyle = document.createElement('style');
-        installStyle.textContent = `
-            @keyframes pulse-install {
+        // PWA Install Button - Premium Animated Style
+        const installBtnStyle = document.createElement('style');
+        installBtnStyle.textContent = `
+            #pwa-install-btn {
+                animation: pulse-glow 2s ease-in-out infinite;
+                transition: all 0.3s ease;
+            }
+
+            @keyframes pulse-glow {
                 0%, 100% {
-                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.3);
+                    box-shadow: 0 0 0 0 rgba(196, 169, 98, 0.5);
+                    transform: scale(1);
                 }
                 50% {
-                    box-shadow: 0 8px 32px rgba(196, 169, 98, 0.6);
+                    box-shadow: 0 0 0 10px rgba(196, 169, 98, 0);
+                    transform: scale(1.08);
                 }
             }
+
+            #pwa-install-btn:hover {
+                animation: none;
+                transform: scale(1.15) !important;
+                background: linear-gradient(135deg, var(--justice-gold), var(--justice-maroon)) !important;
+                box-shadow: 0 4px 20px rgba(196, 169, 98, 0.6) !important;
+            }
+
+            #pwa-install-btn:active {
+                transform: scale(0.95) !important;
+            }
         `;
-        document.head.appendChild(installStyle);
+        document.head.appendChild(installBtnStyle);
     </script>
 
     <!-- 🚀 LyDian IQ Enhancements v2.0 - JavaScript Module -->
     <script src="/js/lydian-iq-enhancements.js"></script>
 
-    <!-- 📱 PWA Install Modal -->
-    <div id="pwaInstallModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
-            <button class="modal-close" onclick="document.getElementById('pwaInstallModal').classList.remove('active')">&times;</button>
-
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="margin: 0 auto 1.5rem; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
-                    <img src="/lydian-logo.svg" alt="LyDian" style="width: 100%; height: 100%; object-fit: contain; animation: pulse 2s infinite;" />
-                </div>
-                <h2 class="modal-title" style="margin-bottom: 0.5rem;">📱 LyDian IQ Mobil Uygulama</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 0;">Yapay Zeka ile Geleceği Keşfedin</p>
-            </div>
-
-            <div class="modal-body">
-                <!-- iOS Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">🍎</div>
-                        <h3>iPhone & iPad (Safari)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Safari tarayıcısında bu sayfayı açın</li>
-                        <li>Alt kısımdaki <strong>Paylaş</strong> butonuna <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> dokunun</li>
-                        <li><strong>"Ana Ekrana Ekle"</strong> seçeneğini seçin</li>
-                        <li><strong>"Ekle"</strong> butonuna basın</li>
-                        <li>✅ Ana ekranınızda LyDian IQ simgesi görünecek!</li>
-                    </ol>
-                </div>
-
-                <!-- Android Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">🤖</div>
-                        <h3>Android (Chrome)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Chrome tarayıcısında bu sayfayı açın</li>
-                        <li>Sağ üstteki <strong>3 nokta menü</strong> ⋮ butonuna dokunun</li>
-                        <li><strong>"Ana ekrana ekle"</strong> veya <strong>"Uygulama yükle"</strong> seçeneğini seçin</li>
-                        <li><strong>"Yükle"</strong> veya <strong>"Ekle"</strong> butonuna basın</li>
-                        <li>✅ Ana ekranınızda LyDian IQ uygulaması görünecek!</li>
-                    </ol>
-                </div>
-
-                <!-- Huawei Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">🌸</div>
-                        <h3>Huawei (Tarayıcı)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Huawei tarayıcısında bu sayfayı açın</li>
-                        <li>Menü butonuna (⋮ veya ☰) dokunun</li>
-                        <li><strong>"Ana ekrana ekle"</strong> seçeneğini bulun</li>
-                        <li>İsim ve konum ayarlarını yapın</li>
-                        <li>✅ Ana ekranınızda LyDian IQ simgesi görünecek!</li>
-                    </ol>
-                </div>
-
-                <!-- Desktop Installation -->
-                <div class="pwa-platform-card">
-                    <div class="pwa-platform-header">
-                        <div class="pwa-platform-icon">💻</div>
-                        <h3>Bilgisayar (Chrome/Edge)</h3>
-                    </div>
-                    <ol class="pwa-steps">
-                        <li>Chrome veya Edge tarayıcısında bu sayfayı açın</li>
-                        <li>Adres çubuğunun sağındaki <strong>yükle ikonu</strong> ⊕ butonuna tıklayın</li>
-                        <li>Veya menüden (⋮) <strong>"Yükle LyDian IQ"</strong> seçeneğini seçin</li>
-                        <li><strong>"Yükle"</strong> butonuna tıklayın</li>
-                        <li>✅ Masaüstünüzde veya uygulama menüsünde LyDian IQ görünecek!</li>
-                    </ol>
-                </div>
-
-                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(196, 169, 98, 0.1); border-radius: 12px; border: 1px solid rgba(196, 169, 98, 0.3);">
-                    <h4 style="margin-bottom: 1rem; color: var(--justice-gold); display: flex; align-items: center; gap: 0.5rem;">
-                        <span>🌟</span> PWA Avantajları
-                    </h4>
-                    <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
-                        <li>⚡ Daha hızlı yükleme ve çalışma</li>
-                        <li>📴 Offline erişim desteği</li>
-                        <li>🔔 Bildirim desteği (yakında)</li>
-                        <li>📱 Tam ekran uygulama deneyimi</li>
-                        <li>💾 Az depolama alanı kullanımı</li>
-                        <li>🔒 Güvenli ve güncel</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PWA Platform Card Styles -->
-    <style>
-        .pwa-platform-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(196, 169, 98, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .pwa-platform-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(196, 169, 98, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .pwa-platform-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(196, 169, 98, 0.2);
-        }
-
-        .pwa-platform-icon {
-            font-size: 2.5rem;
-            line-height: 1;
-        }
-
-        .pwa-platform-header h3 {
-            margin: 0;
-            color: var(--justice-gold);
-            font-size: 1.3rem;
-        }
-
-        .pwa-steps {
-            margin: 0;
-            padding-left: 1.5rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .pwa-steps li {
-            margin-bottom: 0.75rem;
-        }
-
-        .pwa-steps li:last-child {
-            margin-bottom: 0;
-            color: var(--justice-gold);
-            font-weight: 600;
-        }
-
-        .pwa-steps strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .pwa-platform-card {
-                padding: 1rem;
-            }
-
-            .pwa-platform-icon {
-                font-size: 2rem;
-            }
-
-            .pwa-platform-header h3 {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+    <!-- 🚀 PWA Installation Manager - DISABLED (using header button only) -->
+    <!-- <script src="/lydian-iq-pwa-perfect.js"></script> -->
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

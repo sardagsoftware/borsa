@@ -1,0 +1,46 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - heading "AILYDIAN Chat" [level=1] [ref=e3]
+    - navigation [ref=e4]:
+      - link "Home" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - link "Settings" [ref=e6] [cursor=pointer]:
+        - /url: /settings.html
+      - link "Docs" [ref=e7] [cursor=pointer]:
+        - /url: /docs.html
+      - link "Api" [ref=e8] [cursor=pointer]:
+        - /url: /api-docs.html
+  - main [ref=e9]:
+    - complementary [ref=e10]:
+      - generic [ref=e11]: Chat History
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - generic [ref=e15]: AI
+          - generic [ref=e16]:
+            - generic [ref=e17]: Hello! How can I help you today?
+            - generic [ref=e18]:
+              - button "Copy" [active] [ref=e19] [cursor=pointer]:
+                - img [ref=e20] [cursor=pointer]
+                - text: Copy
+              - button "Regenerate" [ref=e23] [cursor=pointer]:
+                - img [ref=e24] [cursor=pointer]
+                - text: Regenerate
+        - generic [ref=e27]:
+          - generic [ref=e28]: AI
+          - generic [ref=e29]:
+            - generic [ref=e30]: Hello World from Assistant
+            - generic [ref=e31]:
+              - button "Copy" [ref=e32] [cursor=pointer]:
+                - img [ref=e33] [cursor=pointer]
+                - text: Copy
+              - button "Regenerate" [ref=e36] [cursor=pointer]:
+                - img [ref=e37] [cursor=pointer]
+                - text: Regenerate
+      - generic [ref=e40]:
+        - textbox "Type your message..." [ref=e41]
+        - button "Send" [ref=e42] [cursor=pointer]
+```

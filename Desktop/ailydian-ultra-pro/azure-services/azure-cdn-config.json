@@ -1,0 +1,373 @@
+{
+  "name": "Ailydian Ultra Pro - Azure CDN Configuration",
+  "description": "Global content delivery network for static assets, images, and API responses",
+  "version": "1.0.0",
+  "cdnProfile": {
+    "name": "ailydian-cdn-profile",
+    "sku": "Standard_Microsoft",
+    "resourceGroup": "ailydian-ultra-pro-rg",
+    "location": "global",
+    "optimizationType": "GeneralWebDelivery"
+  },
+  "endpoints": [
+    {
+      "name": "ailydian-static",
+      "originHostName": "ailydian.blob.core.windows.net",
+      "originPath": "/static",
+      "contentTypesToCompress": [
+        "text/plain",
+        "text/html",
+        "text/css",
+        "text/javascript",
+        "application/javascript",
+        "application/json",
+        "application/xml",
+        "image/svg+xml",
+        "font/woff",
+        "font/woff2"
+      ],
+      "isCompressionEnabled": true,
+      "queryStringCachingBehavior": "IgnoreQueryString",
+      "isHttpAllowed": false,
+      "isHttpsAllowed": true,
+      "customDomain": "cdn.ailydian.com",
+      "cachingRules": [
+        {
+          "name": "Static Assets - Long Cache",
+          "path": "/static/js/*",
+          "cacheDuration": "P365D",
+          "queryStringCaching": "IgnoreQueryString"
+        },
+        {
+          "name": "Static Assets - CSS",
+          "path": "/static/css/*",
+          "cacheDuration": "P365D",
+          "queryStringCaching": "IgnoreQueryString"
+        },
+        {
+          "name": "Images - Long Cache",
+          "path": "/static/images/*",
+          "cacheDuration": "P30D",
+          "queryStringCaching": "UseQueryString"
+        },
+        {
+          "name": "Fonts - Very Long Cache",
+          "path": "/static/fonts/*",
+          "cacheDuration": "P365D",
+          "queryStringCaching": "IgnoreQueryString"
+        }
+      ]
+    },
+    {
+      "name": "ailydian-api",
+      "originHostName": "ailydian.com",
+      "originPath": "/api",
+      "isCompressionEnabled": true,
+      "queryStringCachingBehavior": "UseQueryString",
+      "isHttpAllowed": false,
+      "isHttpsAllowed": true,
+      "cachingRules": [
+        {
+          "name": "AI Models List - Medium Cache",
+          "path": "/api/ai/models",
+          "cacheDuration": "PT1H",
+          "queryStringCaching": "IgnoreQueryString"
+        },
+        {
+          "name": "AI Providers List - Medium Cache",
+          "path": "/api/ai/providers",
+          "cacheDuration": "PT1H",
+          "queryStringCaching": "IgnoreQueryString"
+        },
+        {
+          "name": "User Profile - Short Cache",
+          "path": "/api/user/profile",
+          "cacheDuration": "PT5M",
+          "queryStringCaching": "UseQueryString",
+          "bypassCacheOnCookie": "auth_token"
+        }
+      ]
+    }
+  ],
+  "originGroups": [
+    {
+      "name": "ailydian-origin-group",
+      "origins": [
+        {
+          "name": "primary-origin",
+          "hostName": "ailydian.com",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "priority": 1,
+          "weight": 1000,
+          "enabled": true
+        },
+        {
+          "name": "failover-origin",
+          "hostName": "ailydian-backup.azurewebsites.net",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "priority": 2,
+          "weight": 500,
+          "enabled": true
+        }
+      ],
+      "healthProbeSettings": {
+        "probePath": "/health",
+        "probeRequestType": "HEAD",
+        "probeProtocol": "Https",
+        "probeIntervalInSeconds": 30
+      },
+      "loadBalancingSettings": {
+        "sampleSize": 4,
+        "successfulSamplesRequired": 2,
+        "additionalLatencyInMilliseconds": 50
+      }
+    }
+  ],
+  "securityPolicies": {
+    "minimumTlsVersion": "TLS12",
+    "customDomainHttpsParameters": {
+      "certificateSource": "AzureKeyVault",
+      "protocolType": "ServerNameIndication",
+      "minimumTlsVersion": "TLS12"
+    },
+    "wafPolicy": {
+      "enabled": true,
+      "mode": "Prevention",
+      "ruleSetType": "OWASP",
+      "ruleSetVersion": "3.2",
+      "customRules": [
+        {
+          "name": "BlockBadBots",
+          "priority": 1,
+          "ruleType": "MatchRule",
+          "matchConditions": [
+            {
+              "matchVariable": "RequestHeader",
+              "selector": "User-Agent",
+              "operator": "Contains",
+              "matchValue": ["bot", "crawler", "spider", "scraper"]
+            }
+          ],
+          "action": "Block"
+        },
+        {
+          "name": "RateLimitPerIP",
+          "priority": 2,
+          "ruleType": "RateLimitRule",
+          "matchConditions": [
+            {
+              "matchVariable": "RemoteAddr",
+              "operator": "IPMatch",
+              "matchValue": ["0.0.0.0/0"]
+            }
+          ],
+          "rateLimitThreshold": 100,
+          "rateLimitDuration": "PT1M",
+          "action": "Block"
+        }
+      ]
+    }
+  },
+  "optimizationRules": [
+    {
+      "name": "Image Format Optimization",
+      "description": "Serve WebP images to supported browsers",
+      "conditions": [
+        {
+          "matchVariable": "RequestHeader",
+          "selector": "Accept",
+          "operator": "Contains",
+          "matchValue": "image/webp"
+        }
+      ],
+      "actions": [
+        {
+          "actionType": "UrlRewrite",
+          "sourcePattern": "(.+)\\.(jpg|png)",
+          "destination": "$1.webp"
+        }
+      ]
+    },
+    {
+      "name": "Mobile Optimization",
+      "description": "Serve optimized assets for mobile devices",
+      "conditions": [
+        {
+          "matchVariable": "RequestHeader",
+          "selector": "User-Agent",
+          "operator": "Contains",
+          "matchValue": ["Mobile", "Android", "iPhone"]
+        }
+      ],
+      "actions": [
+        {
+          "actionType": "UrlRewrite",
+          "sourcePattern": "/images/(.+)",
+          "destination": "/images/mobile/$1"
+        }
+      ]
+    }
+  ],
+  "performanceMetrics": {
+    "targetLatency": {
+      "northAmerica": "< 50ms",
+      "europe": "< 80ms",
+      "asia": "< 120ms",
+      "global": "< 150ms"
+    },
+    "cacheHitRatio": {
+      "target": "> 90%",
+      "alert": "< 80%"
+    },
+    "bandwidthSavings": {
+      "target": "70-80% reduction",
+      "compressionRatio": "5:1 average"
+    }
+  },
+  "deployment": {
+    "azureCLI": [
+      "# 1. Create CDN profile",
+      "az cdn profile create --name ailydian-cdn-profile --resource-group ailydian-ultra-pro-rg --sku Standard_Microsoft --location global",
+      "",
+      "# 2. Create CDN endpoint for static assets",
+      "az cdn endpoint create --name ailydian-static --profile-name ailydian-cdn-profile --resource-group ailydian-ultra-pro-rg --origin ailydian.blob.core.windows.net --origin-path /static --enable-compression true --content-types-to-compress 'text/plain' 'text/html' 'text/css' 'application/javascript'",
+      "",
+      "# 3. Create custom domain",
+      "az cdn custom-domain create --endpoint-name ailydian-static --hostname cdn.ailydian.com --name ailydian-cdn --profile-name ailydian-cdn-profile --resource-group ailydian-ultra-pro-rg",
+      "",
+      "# 4. Enable HTTPS on custom domain",
+      "az cdn custom-domain enable-https --endpoint-name ailydian-static --name ailydian-cdn --profile-name ailydian-cdn-profile --resource-group ailydian-ultra-pro-rg",
+      "",
+      "# 5. Configure caching rules",
+      "az cdn endpoint rule add --name ailydian-static --profile-name ailydian-cdn-profile --resource-group ailydian-ultra-pro-rg --order 1 --rule-name 'StaticAssetsLongCache' --match-variable UrlPath --operator BeginsWith --match-values '/static/js/' '/static/css/' --action-name CacheExpiration --cache-behavior Override --cache-duration '365.00:00:00'",
+      "",
+      "# 6. Enable diagnostics",
+      "az monitor diagnostic-settings create --resource /subscriptions/{subscription-id}/resourceGroups/ailydian-ultra-pro-rg/providers/Microsoft.Cdn/profiles/ailydian-cdn-profile/endpoints/ailydian-static --name cdn-diagnostics --workspace ailydian-log-analytics --logs '[{\"category\": \"CoreAnalytics\", \"enabled\": true}]'",
+      "",
+      "# 7. Purge CDN cache (when needed)",
+      "az cdn endpoint purge --content-paths '/*' --name ailydian-static --profile-name ailydian-cdn-profile --resource-group ailydian-ultra-pro-rg"
+    ],
+    "terraform": "# Use azurerm_cdn_profile and azurerm_cdn_endpoint resources"
+  },
+  "assetTypes": {
+    "javascript": {
+      "extensions": [".js", ".mjs", ".jsx"],
+      "cacheDuration": "P365D",
+      "compression": "Brotli + Gzip",
+      "minification": true,
+      "bundling": true,
+      "versioning": "contenthash"
+    },
+    "css": {
+      "extensions": [".css", ".scss", ".sass"],
+      "cacheDuration": "P365D",
+      "compression": "Brotli + Gzip",
+      "minification": true,
+      "bundling": true,
+      "versioning": "contenthash"
+    },
+    "images": {
+      "extensions": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"],
+      "cacheDuration": "P30D",
+      "compression": "None (already compressed)",
+      "optimization": {
+        "formats": ["WebP", "AVIF"],
+        "quality": 85,
+        "resize": true,
+        "lazyLoading": true
+      }
+    },
+    "fonts": {
+      "extensions": [".woff", ".woff2", ".ttf", ".otf", ".eot"],
+      "cacheDuration": "P365D",
+      "compression": "None (WOFF2 already compressed)",
+      "preload": true,
+      "fontDisplay": "swap"
+    },
+    "videos": {
+      "extensions": [".mp4", ".webm", ".ogg"],
+      "cacheDuration": "P7D",
+      "compression": "None",
+      "streaming": "HLS + DASH",
+      "adaptiveBitrate": true
+    }
+  },
+  "cachePurgeStrategies": {
+    "onDeploy": {
+      "paths": ["/static/js/*", "/static/css/*"],
+      "reason": "New deployment with updated assets"
+    },
+    "onContentUpdate": {
+      "paths": ["/api/ai/models", "/api/ai/providers"],
+      "reason": "Content changed in database"
+    },
+    "manual": {
+      "paths": ["/*"],
+      "reason": "Full cache clear for troubleshooting"
+    }
+  },
+  "costEstimation": {
+    "monthly": {
+      "dataTransfer": {
+        "northAmerica": "$0.087/GB for first 10TB",
+        "europe": "$0.087/GB for first 10TB",
+        "estimatedUsage": "5TB/month",
+        "cost": "$435/month"
+      },
+      "httpRequests": {
+        "first10M": "$0.0075 per 10,000 requests",
+        "estimatedRequests": "50M requests/month",
+        "cost": "$37.50/month"
+      },
+      "totalMonthly": "$472.50/month"
+    },
+    "optimization": [
+      "Use Azure Front Door for global load balancing (higher cost, better performance)",
+      "Implement image compression to reduce data transfer by 70% → -$304/month",
+      "Enable Brotli compression for text assets → -$50/month",
+      "Optimized total: $118/month (75% savings)"
+    ]
+  },
+  "monitoring": {
+    "metrics": [
+      {
+        "name": "Cache Hit Ratio",
+        "target": "> 90%",
+        "alert": "< 80%",
+        "query": "AzureDiagnostics | where ResourceType == 'CDN/ENDPOINTS' | summarize HitRatio = (sum(CacheHit) * 100.0) / sum(TotalRequests) by bin(TimeGenerated, 5m)"
+      },
+      {
+        "name": "Origin Latency",
+        "target": "< 200ms",
+        "alert": "> 500ms",
+        "query": "AzureDiagnostics | where ResourceType == 'CDN/ENDPOINTS' | summarize AvgLatency = avg(OriginLatency) by bin(TimeGenerated, 5m)"
+      },
+      {
+        "name": "Error Rate",
+        "target": "< 0.1%",
+        "alert": "> 1%",
+        "query": "AzureDiagnostics | where ResourceType == 'CDN/ENDPOINTS' | summarize ErrorRate = (countif(httpStatusCode >= 500) * 100.0) / count() by bin(TimeGenerated, 5m)"
+      },
+      {
+        "name": "Data Transfer Volume",
+        "target": "< 10TB/month",
+        "alert": "> 15TB/month",
+        "query": "AzureDiagnostics | where ResourceType == 'CDN/ENDPOINTS' | summarize TotalGB = sum(bytes) / 1073741824 by bin(TimeGenerated, 1h)"
+      }
+    ]
+  },
+  "environmentVariables": {
+    "CDN_STATIC_URL": "https://cdn.ailydian.com/static",
+    "CDN_IMAGES_URL": "https://cdn.ailydian.com/images",
+    "CDN_ENABLED": "true",
+    "CDN_PURGE_ON_DEPLOY": "true"
+  },
+  "integrationExample": {
+    "html": "<script src=\"https://cdn.ailydian.com/static/js/app.abc123.js\"></script>\n<link rel=\"stylesheet\" href=\"https://cdn.ailydian.com/static/css/main.def456.css\">\n<img src=\"https://cdn.ailydian.com/images/logo.webp\" alt=\"Ailydian Logo\">",
+    "javascript": "const CDN_URL = process.env.CDN_STATIC_URL || '';\nconst imageUrl = `${CDN_URL}/images/user-avatar.webp`;",
+    "react": "const cdnUrl = process.env.REACT_APP_CDN_URL;\nreturn <img src={`${cdnUrl}/images/hero.webp`} alt=\"Hero\" />;"
+  },
+  "notes": "Azure CDN provides global content delivery with 99.99% SLA, automatic failover, and compression. Optimized configuration can reduce data transfer costs by 75%."
+}

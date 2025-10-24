@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 4K Video Hero - Demo Karşılaştırma | LyDian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: white;
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-family: 'Righteous', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #64fcff 0%, #10A37F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header .instruction {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(100, 252, 255, 0.1);
+            border: 1px solid rgba(100, 252, 255, 0.3);
+            border-radius: 16px;
+            font-size: 1rem;
+        }
+
+        /* Demo Grid */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Demo Card */
+        .demo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, var(--accent-color) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .demo-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--accent-color-alpha);
+        }
+
+        .demo-card.demo-1 { --accent-color: #64fcff; --accent-color-alpha: rgba(100, 252, 255, 0.3); }
+        .demo-card.demo-2 { --accent-color: #10A37F; --accent-color-alpha: rgba(16, 163, 127, 0.3); }
+        .demo-card.demo-3 { --accent-color: #00FF41; --accent-color-alpha: rgba(0, 255, 65, 0.3); }
+        .demo-card.demo-4 { --accent-color: #ec4899; --accent-color-alpha: rgba(236, 72, 153, 0.3); }
+
+        .demo-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px var(--accent-color));
+        }
+
+        .demo-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+        }
+
+        .demo-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .demo-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+        }
+
+        .demo-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .demo-features li {
+            padding: 8px 0;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .demo-features li::before {
+            content: '✓';
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .demo-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--accent-color);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px var(--accent-color-alpha);
+        }
+
+        .demo-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px var(--accent-color-alpha);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Righteous', cursive;
+        }
+
+        .comparison-table {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(16, 163, 127, 0.4);
+        }
+
+        .footer a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 163, 127, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.875rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>🎬 4K Video Hero Demos</h1>
+            <p>
+                LyDian anasayfası için hazırlanan 4 farklı video hero tasarımını karşılaştırın.
+                <br>
+                Her demo, benzersiz görsel stil ve atmosfer sunuyor.
+            </p>
+            <div class="instruction">
+                <strong>📝 Talimat:</strong> Her kartın üzerine tıklayarak demoları tam ekranda test edin.
+                <br>
+                Beğendiğiniz tasarımı seçin, production'a entegre edelim!
+            </div>
+        </div>
+
+        <!-- Demo Grid -->
+        <div class="demo-grid">
+
+            <!-- Demo 1: Neural Network -->
+            <div class="demo-card demo-1" onclick="window.open('/hero-video-demo-1-neural.html', '_blank')">
+                <div class="demo-icon">🧠</div>
+                <h3 class="demo-title">Neural Network</h3>
+                <p class="demo-subtitle">Mavi-Cyan Tema</p>
+                <p class="demo-description">
+                    Sinir ağı visualizasyonu ile teknolojik ve bilimsel bir atmosfer.
+                </p>
+                <ul class="demo-features">
+                    <li>Parlak mavi-cyan tonları</li>
+                    <li>Nöral ağ animasyonları</li>
+                    <li>Teknoloji odaklı tasarım</li>
+                    <li>Profesyonel & kurumsal</li>
+                </ul>
+                <a href="/hero-video-demo-1-neural.html" target="_blank" class="demo-link" onclick="event.stopPropagation()">
+                    👁️ Demo'yu Görüntüle
+                </a>
+            </div>
+
+            <!-- Demo 2: Digital Particles -->
+            <div class="demo-card demo-2" onclick="window.open('/hero-video-demo-2-particles.html', '_blank')">
+                <div class="demo-icon">✨</div>
+                <h3 class="demo-title">Digital Particles</h3>
+                <p class="demo-subtitle">Yeşil-Turkuaz Tema</p>
+                <p class="demo-description">
+                    Dijital partiküller ve quantum computing estetiği.
+                </p>
+                <ul class="demo-features">
+                    <li>Canlı yeşil-turkuaz renk paleti</li>
+                    <li>Enerji dolu partiküller</li>
+                    <li>Modern & dinamik</li>
+                    <li>Innovation vurgusu</li>
+                </ul>
+                <a href="/hero-video-demo-2-particles.html" target="_blank" class="demo-link" onclick="event.stopPropagation()">
+                    👁️ Demo'yu Görüntüle
+                </a>
+            </div>
+
+            <!-- Demo 3: Matrix Data Flow -->
+            <div class="demo-card demo-3" onclick="window.open('/hero-video-demo-3-matrix.html', '_blank')">
+                <div class="demo-icon">💚</div>
+                <h3 class="demo-title">Matrix Data Flow</h3>
+                <p class="demo-subtitle">Yeşil Matrix Tema</p>
+                <p class="demo-description">
+                    Klasik Matrix estetiği ile kod akışı animasyonları.
+                </p>
+                <ul class="demo-features">
+                    <li>İkonik Matrix yeşili</li>
+                    <li>Kod akışı efektleri</li>
+                    <li>Hacker/developer kültürü</li>
+                    <li>Retro-futuristik</li>
+                </ul>
+                <a href="/hero-video-demo-3-matrix.html" target="_blank" class="demo-link" onclick="event.stopPropagation()">
+                    👁️ Demo'yu Görüntüle
+                </a>
+            </div>
+
+            <!-- Demo 4: Abstract AI -->
+            <div class="demo-card demo-4" onclick="window.open('/hero-video-demo-4-abstract.html', '_blank')">
+                <div class="demo-icon">🎨</div>
+                <h3 class="demo-title">Abstract AI</h3>
+                <p class="demo-subtitle">Mor-Pembe Tema</p>
+                <p class="demo-description">
+                    Abstract visualizasyonlar ile yaratıcı ve artistik bir yaklaşım.
+                </p>
+                <ul class="demo-features">
+                    <li>Canlı mor-pembe gradient</li>
+                    <li>Aurora efektleri</li>
+                    <li>Yaratıcılık & inovasyon</li>
+                    <li>Premium & lüks his</li>
+                </ul>
+                <a href="/hero-video-demo-4-abstract.html" target="_blank" class="demo-link" onclick="event.stopPropagation()">
+                    👁️ Demo'yu Görüntüle
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2>📊 Detaylı Karşılaştırma</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Özellik</th>
+                        <th>Neural Network</th>
+                        <th>Digital Particles</th>
+                        <th>Matrix Data Flow</th>
+                        <th>Abstract AI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Renk Paleti</strong></td>
+                        <td>Mavi-Cyan</td>
+                        <td>Yeşil-Turkuaz</td>
+                        <td>Yeşil (Matrix)</td>
+                        <td>Mor-Pembe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Atmosfer</strong></td>
+                        <td>Teknolojik</td>
+                        <td>Enerjetik</td>
+                        <td>Futuristik</td>
+                        <td>Yaratıcı</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hedef Kitle</strong></td>
+                        <td>Kurumsal</td>
+                        <td>Startup'lar</td>
+                        <td>Developerlar</td>
+                        <td>Kreatif Sektör</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Görsel Etki</strong></td>
+                        <td>Profesyonel</td>
+                        <td>Dinamik</td>
+                        <td>İkonik</td>
+                        <td>Sanatsal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marka Uyumu</strong></td>
+                        <td>Enterprise AI</td>
+                        <td>Quantum Computing</td>
+                        <td>Developer Tools</td>
+                        <td>Creative AI</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>
+                <strong>Hangisini seçmeliyiz?</strong>
+                <br>
+                Favori tasarımınızı test ettikten sonra bana bildirin.
+                <br>
+                Seçtiğiniz video'yu hemen production'a entegre edeyim! 🚀
+            </p>
+            <a href="/">
+                🏠 Anasayfaya Dön
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

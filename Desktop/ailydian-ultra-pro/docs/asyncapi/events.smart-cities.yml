@@ -1,0 +1,370 @@
+asyncapi: 3.0.0
+info:
+  title: LyDian Smart Cities Events API
+  version: 1.0.0
+  description: |
+    Event-driven API for smart city real-time communications.
+    
+    All events include HMAC-SHA256 signature verification headers for security.
+    
+  contact:
+    name: LyDian API Support
+    email: api-support@lydian.com
+    url: https://lydian.com/support
+  license:
+    name: Commercial
+    url: https://lydian.com/terms
+
+servers:
+  production:
+    host: events.lydian.com
+    protocol: wss
+    description: Production WebSocket server
+  kafka:
+    host: kafka.lydian.com:9092
+    protocol: kafka
+    description: Kafka event stream
+
+channels:
+  city/asset/created:
+    address: city.asset.created
+    messages:
+      cityAssetCreated:
+        $ref: '#/components/messages/cityAssetCreated'
+    description: Asset created in a city
+
+  city/alert/triggered:
+    address: city.alert.triggered
+    messages:
+      cityAlertTriggered:
+        $ref: '#/components/messages/cityAlertTriggered'
+    description: Alert triggered in a city
+
+  city/metric/updated:
+    address: city.metric.updated
+    messages:
+      cityMetricUpdated:
+        $ref: '#/components/messages/cityMetricUpdated'
+    description: City metric data updated
+
+  city/event/reported:
+    address: city.event.reported
+    messages:
+      cityEventReported:
+        $ref: '#/components/messages/cityEventReported'
+    description: City event reported
+
+operations:
+  onCityAssetCreated:
+    action: receive
+    channel:
+      $ref: '#/channels/city~1asset~1created'
+    summary: Receive city asset created events
+    messages:
+      - $ref: '#/components/messages/cityAssetCreated'
+
+  onCityAlertTriggered:
+    action: receive
+    channel:
+      $ref: '#/channels/city~1alert~1triggered'
+    summary: Receive city alert triggered events
+    messages:
+      - $ref: '#/components/messages/cityAlertTriggered'
+
+  onCityMetricUpdated:
+    action: receive
+    channel:
+      $ref: '#/channels/city~1metric~1updated'
+    summary: Receive city metric updated events
+    messages:
+      - $ref: '#/components/messages/cityMetricUpdated'
+
+  onCityEventReported:
+    action: receive
+    channel:
+      $ref: '#/channels/city~1event~1reported'
+    summary: Receive city event reported events
+    messages:
+      - $ref: '#/components/messages/cityEventReported'
+
+components:
+  messages:
+    cityAssetCreated:
+      name: cityAssetCreated
+      title: City Asset Created
+      summary: Triggered when a new IoT asset is registered in a city
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+            description: HMAC-SHA256 signature for verification
+          X-Lydian-Timestamp:
+            type: integer
+            description: Unix timestamp of event
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+            description: Unique event identifier
+      payload:
+        $ref: '#/components/schemas/cityAssetCreatedPayload'
+
+    cityAlertTriggered:
+      name: cityAlertTriggered
+      title: City Alert Triggered
+      summary: Triggered when a new alert is created for a city
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/cityAlertTriggeredPayload'
+
+    cityMetricUpdated:
+      name: cityMetricUpdated
+      title: City Metric Updated
+      summary: Triggered when city metrics are updated
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/cityMetricUpdatedPayload'
+
+    cityEventReported:
+      name: cityEventReported
+      title: City Event Reported
+      summary: Triggered when a city event is reported
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Lydian-Signature:
+            type: string
+          X-Lydian-Timestamp:
+            type: integer
+          X-Lydian-Event-ID:
+            type: string
+            format: uuid
+      payload:
+        $ref: '#/components/schemas/cityEventReportedPayload'
+
+  schemas:
+    cityAssetCreatedPayload:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - timestamp
+        - data
+      properties:
+        eventId:
+          type: string
+          format: uuid
+          description: Unique event identifier
+        eventType:
+          type: string
+          const: city.asset.created
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp
+        data:
+          type: object
+          required:
+            - id
+            - cityId
+            - type
+            - name
+            - location
+            - status
+          properties:
+            id:
+              type: string
+              pattern: '^asset_[0-9A-HJKMNP-TV-Z]{26}$'
+            cityId:
+              type: string
+              pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+            type:
+              type: string
+              enum:
+                - traffic_light
+                - speed_camera
+                - cctv_camera
+                - air_quality_sensor
+                - noise_sensor
+                - parking_sensor
+                - street_light
+                - water_meter
+                - energy_meter
+                - weather_station
+            name:
+              type: string
+            location:
+              type: object
+              required: [latitude, longitude]
+              properties:
+                latitude:
+                  type: number
+                  minimum: -90
+                  maximum: 90
+                longitude:
+                  type: number
+                  minimum: -180
+                  maximum: 180
+            status:
+              type: string
+              enum: [active, inactive, maintenance, error]
+            metadata:
+              type: object
+              additionalProperties: true
+
+    cityAlertTriggeredPayload:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - timestamp
+        - data
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: city.alert.triggered
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required:
+            - id
+            - cityId
+            - title
+            - status
+            - severity
+          properties:
+            id:
+              type: string
+              pattern: '^alert_[0-9A-HJKMNP-TV-Z]{26}$'
+            cityId:
+              type: string
+              pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+            title:
+              type: string
+            description:
+              type: string
+            status:
+              type: string
+              enum: [active, resolved, acknowledged]
+            severity:
+              type: string
+              enum: [low, medium, high, critical]
+            createdAt:
+              type: string
+              format: date-time
+
+    cityMetricUpdatedPayload:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - timestamp
+        - data
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: city.metric.updated
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required:
+            - cityId
+            - metricKind
+            - value
+            - unit
+          properties:
+            cityId:
+              type: string
+              pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+            metricKind:
+              type: string
+              enum: [traffic, energy, air, water]
+            value:
+              type: number
+            unit:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+
+    cityEventReportedPayload:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - timestamp
+        - data
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+          const: city.event.reported
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          required:
+            - id
+            - cityId
+            - type
+            - severity
+            - title
+          properties:
+            id:
+              type: string
+              pattern: '^event_[0-9A-HJKMNP-TV-Z]{26}$'
+            cityId:
+              type: string
+              pattern: '^city_[0-9A-HJKMNP-TV-Z]{26}$'
+            type:
+              type: string
+              enum: [security, disaster, traffic, maintenance, other]
+            severity:
+              type: string
+              enum: [low, medium, high, critical]
+            title:
+              type: string
+            description:
+              type: string
+            location:
+              type: object
+              properties:
+                latitude:
+                  type: number
+                longitude:
+                  type: number

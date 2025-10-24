@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎭 LyDian - Gerçek Karakterler Demo | Realistic Human + AI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/hero-realistic-characters.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section with Realistic Characters -->
+    <section class="hero hero-realistic">
+        <div class="character-scene">
+            <!-- Left: Text Content -->
+            <div class="scene-text-content">
+                <div class="hero-badge-realistic">
+                    <span>✨</span>
+                    Gerçekçi AI Karakterleri
+                </div>
+
+                <h1 class="hero-title-realistic">
+                    LyDian ile
+                    <br>
+                    Geleceği Şekillendirin
+                </h1>
+
+                <div class="typewriter-container-realistic">
+                    <span id="typewriter-realistic" style="
+                        font-family: 'Caveat', cursive;
+                        font-size: 2.5rem;
+                        font-weight: 700;
+                        color: #FFFFFF;
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                    "></span>
+                </div>
+
+                <p class="hero-subtitle-realistic">
+                    Gerçek insanlar ve yapay zeka yardımcıları bir arada.
+                    <br>
+                    CSS ile oluşturulmuş fotorealistik karakterler ve canlı animasyonlar.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="/chat.html" class="btn btn-primary" style="
+                        padding: 16px 32px;
+                        background: #10A37F;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 50px;
+                        font-weight: 700;
+                        display: inline-block;
+                        box-shadow: 0 10px 30px rgba(16, 163, 127, 0.3);
+                    ">
+                        Hemen Başla
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Character Stage -->
+            <div class="characters-stage">
+                <!-- Characters will be created by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions Panel -->
+    <div style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 300px;
+        font-size: 0.875rem;
+        z-index: 1000;
+    ">
+        <h3 style="margin-bottom: 12px; color: #10A37F;">🎭 Karakterler</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;">👤 <strong>İnsan:</strong> Merkez</li>
+            <li style="margin-bottom: 8px;">🟢 <strong>Legal AI:</strong> Sol üst</li>
+            <li style="margin-bottom: 8px;">🔴 <strong>Medical AI:</strong> Sağ üst</li>
+            <li style="margin-bottom: 8px;">🔵 <strong>Code AI:</strong> Sol alt</li>
+            <li style="margin-bottom: 8px;">🟣 <strong>Analytics AI:</strong> Sağ alt</li>
+            <li style="margin-bottom: 8px;">🟠 <strong>Voice AI:</strong> Sol orta</li>
+            <li style="margin-bottom: 8px;">🔷 <strong>Video AI:</strong> Sağ orta</li>
+        </ul>
+        <p style="margin-top: 16px; font-size: 0.75rem; opacity: 0.7;">
+            Karakterlere tıklayarak etkileşime geçin!
+        </p>
+    </div>
+
+    <script src="/js/hero-realistic-controller.js"></script>
+
+</body>
+</html>

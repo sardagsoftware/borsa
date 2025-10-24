@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/righteous/v17/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --lydian-accent: #10A37F;
+            --lydian-accent-light: #0D8F6E;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
+            --phn-pink: #EC4899;
+            --phn-pink-light: #F472B6;
+            --phn-green: #10B981;
+            --phn-orange: #F59E0B;
+            --phn-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--lydian-bg-primary);
+            color: var(--lydian-text-primary);
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: calc(100% - 80px);
+            max-width: 1400px;
+        }
+
+        .header-content {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--lydian-border);
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: #000000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
+        }
+
+        .hero-icon {
+            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
+            color: var(--phn-pink);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--lydian-text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1600px;
+            margin: -3rem auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--phn-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--lydian-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .stat-trend {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            color: var(--phn-red);
+        }
+
+        .trend-down {
+            color: var(--phn-green);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title svg {
+            width: 32px;
+            height: 32px;
+            color: var(--phn-pink);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chart-title svg {
+            width: 24px;
+            height: 24px;
+            color: var(--phn-pink);
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .time-btn {
+            padding: 0.5rem 1rem;
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            color: var(--lydian-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-btn:hover {
+            background: rgba(16, 163, 127, 0.05);
+            border-color: var(--lydian-accent);
+            color: var(--lydian-accent);
+        }
+
+        .time-btn.active {
+            background: var(--lydian-accent);
+            border-color: var(--lydian-accent);
+            color: white;
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 100%;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(180deg, var(--phn-pink), var(--phn-pink-light));
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--phn-pink);
+            white-space: nowrap;
+        }
+
+        .bar-label {
+            font-size: 0.85rem;
+            color: var(--lydian-text-secondary);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .alerts-panel {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .alert-item {
+            background: var(--lydian-bg-tertiary);
+            border-left: 4px solid var(--phn-pink);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .alert-item:hover {
+            transform: translateX(4px);
+        }
+
+        .alert-item.warning {
+            border-left-color: var(--phn-orange);
+        }
+
+        .alert-item.critical {
+            border-left-color: var(--phn-red);
+        }
+
+        .alert-item.normal {
+            border-left-color: var(--phn-green);
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            color: var(--lydian-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-title svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .alert-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--phn-red);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--phn-orange);
+        }
+
+        .badge-info {
+            background: rgba(236, 72, 153, 0.2);
+            color: var(--phn-pink);
+        }
+
+        .alert-description {
+            color: var(--lydian-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-meta {
+            color: var(--lydian-text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .regional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .region-card {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .region-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.15);
+        }
+
+        .region-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .region-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--phn-pink);
+        }
+
+        .region-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .region-info p {
+            font-size: 0.9rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .metric-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .metric-value.high {
+            color: var(--phn-red);
+        }
+
+        .metric-value.medium {
+            color: var(--phn-orange);
+        }
+
+        .metric-value.low {
+            color: var(--phn-green);
+        }
+
+        .supply-forecast {
+            background: var(--lydian-bg-secondary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .supply-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .supply-info {
+            flex: 1;
+        }
+
+        .supply-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .supply-meta {
+            font-size: 0.85rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .supply-status {
+            text-align: right;
+        }
+
+        .supply-level {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .supply-trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--lydian-bg-primary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--phn-pink);
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.critical {
+            background: var(--phn-red);
+        }
+
+        .progress-fill.warning {
+            background: var(--phn-orange);
+        }
+
+        .progress-fill.normal {
+            background: var(--phn-green);
+        }
+
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 163, 127, 0.1);
+            border: 1px solid var(--lydian-accent);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--lydian-accent);
+            margin-top: 0.5rem;
+        }
+
+        .privacy-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                width: calc(100% - 40px);
+                top: 10px;
+            }
+
+            .header-content {
+                padding: 0.75rem 1rem;
+            }
+
+            .hero {
+                padding: 7rem 1rem 3rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .time-selector {
+                flex-wrap: wrap;
+            }
+
+            .regional-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
+            <nav class="nav-links">
+                <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/civic-phn.html" class="nav-link" style="color: var(--lydian-accent);">HST</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+        </svg>
+        <h1 class="hero-title">Halk Sağlığı Tahmin Sistemi</h1>
+        <p class="hero-subtitle">
+            Gerçek Zamanlı Hastalık İzleme • Gizlilik Korumalı Analitik • Yapay Zeka Destekli Tahminler • Tıbbi Malzeme Öngörüsü
+        </p>
+    </section>
+
+    <!-- Live Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value" id="active-cases">2,847</div>
+            <div class="stat-label">Aktif Vakalar (7 günlük)</div>
+            <div class="stat-trend trend-down" id="cases-trend">▼ Geçen haftaya göre %12.4</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="r-value">0.87</div>
+            <div class="stat-label">Bulaşma Oranı (R)</div>
+            <div class="stat-trend trend-down" id="r-trend">▼ Salgın eşiğinin altında</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="hospital-capacity">73%</div>
+            <div class="stat-label">Hastane Kapasitesi</div>
+            <div class="stat-trend trend-up" id="capacity-trend">▲ Dünkü değere göre %5.2</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="regions-monitored">147</div>
+            <div class="stat-label">İzlenen Bölgeler</div>
+            <div class="stat-trend" style="color: var(--phn-pink);">Canlı veri akışı</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Nowcasting Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Hastalık Görülme Sıklığı Tahmini
+                    </h3>
+                    <div class="time-selector">
+                        <button class="time-btn" data-range="7">7G</button>
+                        <button class="time-btn active" data-range="14">14G</button>
+                        <button class="time-btn" data-range="30">30G</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart" id="nowcast-chart">
+                        <!-- Chart bars will be generated by JavaScript -->
+                    </div>
+                </div>
+                <div class="privacy-badge">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    Diferansiyel Gizlilik ile Korunuyor (DP ε=1.5)
+                </div>
+            </div>
+
+            <!-- Alerts Panel -->
+            <div class="alerts-panel">
+                <h3 class="section-title" style="font-size: 1.25rem;">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    Sağlık Uyarıları
+                </h3>
+
+                <div id="alerts-container">
+                    <div class="alert-item critical">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                                Grip Salgını - 7. Bölge
+                            </div>
+                            <span class="alert-badge badge-critical">KRİTİK</span>
+                        </div>
+                        <div class="alert-description">
+                            Mevsimsel grip vakaları salgın eşiğini aştı. Gelişmiş gözetim sistemi aktif.
+                        </div>
+                        <div class="alert-meta">
+                            <strong>Tahmini Zirve:</strong> 3-5 gün • <strong>Güven:</strong> %94
+                        </div>
+                    </div>
+
+                    <div class="alert-item warning">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Hastane Kapasitesi - 3. Bölge
+                            </div>
+                            <span class="alert-badge badge-warning">UYARI</span>
+                        </div>
+                        <div class="alert-description">
+                            YBÜ kapasitesi %85'te. Komşu bölgelerden kaynak tahsisi değerlendirilebilir.
+                        </div>
+                        <div class="alert-meta">
+                            <strong>Tahmin:</strong> Stabil • <strong>Aksiyon:</strong> İzle
+                        </div>
+                    </div>
+
+                    <div class="alert-item normal">
+                        <div class="alert-header">
+                            <div class="alert-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Aşı Kampanyası - 12. Bölge
+                            </div>
+                            <span class="alert-badge badge-info">BİLGİ</span>
+                        </div>
+                        <div class="alert-description">
+                            Aşılama kapsamı %78'e ulaştı. Ay sonuna kadar hedefe ulaşılacak.
+                        </div>
+                        <div class="alert-meta">
+                            <strong>Hedef:</strong> %85 • <strong>Son Tarih:</strong> 23 gün
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regional Health Metrics -->
+        <section>
+            <h2 class="section-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                </svg>
+                Bölgesel Sağlık Metrikleri
+            </h2>
+            <div class="regional-grid">
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Merkez İlçe</h4>
+                            <p>Nüfus: 1.2M</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value high">847</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value medium">1.12</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value medium">%68</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill warning" style="width: 68%"></div>
+                    </div>
+                </div>
+
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Kuzey Bölgesi</h4>
+                            <p>Nüfus: 890K</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value low">312</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value low">0.78</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value low">%42</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill normal" style="width: 42%"></div>
+                    </div>
+                </div>
+
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Doğu Bölgesi</h4>
+                            <p>Nüfus: 1.5M</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value high">1,124</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value high">1.34</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value critical">%89</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill critical" style="width: 89%"></div>
+                    </div>
+                </div>
+
+                <div class="region-card">
+                    <div class="region-header">
+                        <svg class="region-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="region-info">
+                            <h4>Batı Bölgesi</h4>
+                            <p>Nüfus: 720K</p>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Aktif Vakalar</span>
+                        <span class="metric-value medium">564</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">R Sayısı</span>
+                        <span class="metric-value medium">0.95</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">YBÜ Kapasitesi</span>
+                        <span class="metric-value low">%51</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill normal" style="width: 51%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medical Supply Forecast -->
+        <section>
+            <h2 class="section-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                Tıbbi Malzeme Tahmini (30 günlük)
+            </h2>
+            <div class="supply-forecast">
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">KKD (Maske, Eldiven, Önlük)</div>
+                        <div class="supply-meta">Mevcut Stok: 247.500 adet • Günlük Kullanım: 8.200 adet</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill normal" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-green);">%78</div>
+                        <div class="supply-trend" style="color: var(--phn-green);">▲ Yeterli</div>
+                    </div>
+                </div>
+
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">Ventilatör & YBÜ Ekipmanları</div>
+                        <div class="supply-meta">Mevcut: 142 adet • Kullanımda: 87 adet • Yedek: 55 adet</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill warning" style="width: 61%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-orange);">%61</div>
+                        <div class="supply-trend" style="color: var(--phn-orange);">▼ İzle</div>
+                    </div>
+                </div>
+
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">Aşılar & İlaçlar</div>
+                        <div class="supply-meta">Stok: 94.200 doz • Tahmin Edilen Talep: 112.000 doz</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill critical" style="width: 84%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-red);">%84</div>
+                        <div class="supply-trend" style="color: var(--phn-red);">▼ Yakında Sipariş</div>
+                    </div>
+                </div>
+
+                <div class="supply-item">
+                    <div class="supply-info">
+                        <div class="supply-name">Test Kitleri (PCR, Hızlı)</div>
+                        <div class="supply-meta">Mevcut: 67.800 kit • Günlük Test: 2.400 • Kapasite: Uygun</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill normal" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="supply-status">
+                        <div class="supply-level" style="color: var(--phn-green);">%72</div>
+                        <div class="supply-trend" style="color: var(--phn-green);">▲ Stabil</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Nowcasting Chart Data
+        const chartData = {
+            '7': [
+                { label: 'Mon', value: 387 },
+                { label: 'Tue', value: 412 },
+                { label: 'Wed', value: 394 },
+                { label: 'Thu', value: 428 },
+                { label: 'Fri', value: 445 },
+                { label: 'Sat', value: 402 },
+                { label: 'Sun', value: 379 }
+            ],
+            '14': [
+                { label: 'W1', value: 2847 },
+                { label: 'W2', value: 3124 },
+                { label: 'W3', value: 2956 },
+                { label: 'W4', value: 3287 },
+                { label: 'W5', value: 3456 },
+                { label: 'W6', value: 3189 },
+                { label: 'W7', value: 2934 },
+                { label: 'W8', value: 2847 }
+            ],
+            '30': [
+                { label: 'Jan', value: 12450 },
+                { label: 'Feb', value: 13780 },
+                { label: 'Mar', value: 11920 },
+                { label: 'Apr', value: 14560 },
+                { label: 'May', value: 13240 },
+                { label: 'Jun', value: 11890 }
+            ]
+        };
+
+        let currentRange = '14';
+
+        // Render Chart
+        function renderChart(range) {
+            const data = chartData[range];
+            const maxValue = Math.max(...data.map(d => d.value));
+            const chartContainer = document.getElementById('nowcast-chart');
+
+            chartContainer.innerHTML = data.map(item => {
+                const height = (item.value / maxValue) * 100;
+                return `
+                    <div class="bar-group">
+                        <div class="bar" style="height: ${height}%">
+                            <div class="bar-value">${item.value.toLocaleString()}</div>
+                        </div>
+                        <div class="bar-label">${item.label}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Time Range Selector
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentRange = btn.getAttribute('data-range');
+                renderChart(currentRange);
+            });
+        });
+
+        // Real-time Updates
+        function updateStats() {
+            // Active Cases
+            const cases = Math.floor(Math.random() * 500) + 2600;
+            document.getElementById('active-cases').textContent = cases.toLocaleString();
+
+            const casesTrend = (Math.random() * 20 - 10).toFixed(1);
+            const casesEl = document.getElementById('cases-trend');
+            casesEl.textContent = `${casesTrend > 0 ? '▲' : '▼'} Geçen haftaya göre %${Math.abs(casesTrend)}`;
+            casesEl.className = `stat-trend ${casesTrend > 0 ? 'trend-up' : 'trend-down'}`;
+
+            // R Value
+            const rValue = (Math.random() * 0.5 + 0.7).toFixed(2);
+            document.getElementById('r-value').textContent = rValue;
+
+            const rTrend = document.getElementById('r-trend');
+            if (rValue < 1.0) {
+                rTrend.textContent = '▼ Salgın eşiğinin altında';
+                rTrend.className = 'stat-trend trend-down';
+            } else {
+                rTrend.textContent = '▲ Salgın eşiğinin üstünde';
+                rTrend.className = 'stat-trend trend-up';
+            }
+
+            // Hospital Capacity
+            const capacity = Math.floor(Math.random() * 15) + 68;
+            document.getElementById('hospital-capacity').textContent = '%' + capacity;
+
+            const capacityTrend = (Math.random() * 10 - 5).toFixed(1);
+            const capacityEl = document.getElementById('capacity-trend');
+            capacityEl.textContent = `${capacityTrend > 0 ? '▲' : '▼'} Dünkü değere göre %${Math.abs(capacityTrend)}`;
+            capacityEl.className = `stat-trend ${capacityTrend > 0 ? 'trend-up' : 'trend-down'}`;
+        }
+
+        // Simulate new alert
+        function addRandomAlert() {
+            const alerts = [
+                {
+                    type: 'warning',
+                    badge: 'UYARI',
+                    title: 'COVID-19 Kümesi - İşyeri 5',
+                    description: 'Küçük küme tespit edildi. Temas izleme başlatıldı.',
+                    meta: '<strong>Vakalar:</strong> 7 • <strong>Durum:</strong> Kontrol Altında'
+                },
+                {
+                    type: 'normal',
+                    badge: 'BİLGİ',
+                    title: 'Sağlık Taraması - Okullar',
+                    description: 'Rutin sağlık taraması tamamlandı. Her şey normal.',
+                    meta: '<strong>Taranan:</strong> 1.247 öğrenci • <strong>Sonuç:</strong> Normal'
+                },
+                {
+                    type: 'warning',
+                    badge: 'UYARI',
+                    title: 'Malzeme Uyarısı - 9. Bölge',
+                    description: 'Hızlı test kitleri azalıyor. Tedarik planlandı.',
+                    meta: '<strong>Mevcut:</strong> 890 kit • <strong>Varış:</strong> 2 gün'
+                }
+            ];
+
+            const randomAlert = alerts[Math.floor(Math.random() * alerts.length)];
+            const container = document.getElementById('alerts-container');
+
+            const alertHTML = `
+                <div class="alert-item ${randomAlert.type}" style="animation: slideIn 0.5s;">
+                    <div class="alert-header">
+                        <div class="alert-title">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            ${randomAlert.title}
+                        </div>
+                        <span class="alert-badge badge-${randomAlert.type === 'critical' ? 'critical' : randomAlert.type === 'warning' ? 'warning' : 'info'}">${randomAlert.badge}</span>
+                    </div>
+                    <div class="alert-description">${randomAlert.description}</div>
+                    <div class="alert-meta">${randomAlert.meta}</div>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('afterbegin', alertHTML);
+
+            // Keep only last 5 alerts
+            const allAlerts = container.querySelectorAll('.alert-item');
+            if (allAlerts.length > 5) {
+                allAlerts[allAlerts.length - 1].remove();
+            }
+        }
+
+        // Initialize
+        renderChart(currentRange);
+        updateStats();
+
+        // Update stats every 5 seconds
+        setInterval(updateStats, 5000);
+
+        // Add random alert every 15 seconds
+        setInterval(addRandomAlert, 15000);
+
+        // Add slide-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

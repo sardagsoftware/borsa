@@ -1,0 +1,17 @@
+Vercel CLI 48.1.6
+Retrieving project…
+Deploying emrahsardag-yandexcoms-projects/ukalai
+Uploading [--------------------] (0.0B/49.6KB)
+Uploading [======--------------] (16.0KB/49.6KB)
+Uploading [============--------] (30.2KB/49.6KB)
+Uploading [==================--] (46.2KB/49.6KB)
+Uploading [====================] (49.6KB/49.6KB)
+Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ukalai/Ec9dBkUCwp5oLsC7himLpG84mDCT [3s]
+Production: https://ukalai-ky159vpe0-emrahsardag-yandexcoms-projects.vercel.app [3s]
+https://ukalai-ky159vpe0-emrahsardag-yandexcoms-projects.vercel.appQueued
+Building
+Completing
+
+Common next commands:
+- `vercel inspect ukalai-ky159vpe0-emrahsardag-yandexcoms-projects.vercel.app --logs`
+- `vercel redeploy ukalai-ky159vpe0-emrahsardag-yandexcoms-projects.vercel.app`

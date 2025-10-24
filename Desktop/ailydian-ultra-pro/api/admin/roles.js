@@ -1,4 +1,8 @@
 /**
+// PRODUCTION REQUIREMENT: Azure App Insights required
+if (!process.env.AZURE_APP_INSIGHTS_KEY) {
+  throw new Error("AZURE_APP_INSIGHTS_KEY required - no placeholder mode");
+}
  * 🔐 Admin - Role Management API
  * Manage user roles and permissions
  */

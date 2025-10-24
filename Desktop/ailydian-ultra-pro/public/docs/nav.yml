@@ -1,0 +1,150 @@
+# LyDian Enterprise Documentation Navigation Structure
+# This file defines the navigation hierarchy for all documentation
+
+meta:
+  platform: LyDian Enterprise Documentation Platform
+  version: 1.0.0
+  languages:
+    - tr: Turkish
+    - en: English
+    - de: German
+    - fr: French
+    - es: Spanish
+    - ar: Arabic
+    - ru: Russian
+    - it: Italian
+    - ja: Japanese
+    - zh-CN: Chinese (Simplified)
+
+modules:
+  - smart-cities:
+      name: Smart Cities
+      description: Urban intelligence and IoT management platform
+  - insan-iq:
+      name: İnsan IQ
+      description: Human intelligence and behavioral analytics
+  - lydian-iq:
+      name: LyDian IQ
+      description: AI-powered decision intelligence platform
+
+navigation:
+  - section: getting-started
+    title:
+      en: Getting Started
+      tr: Başlangıç
+    order: 1
+    
+  - section: guides
+    title:
+      en: Guides
+      tr: Kılavuzlar
+    order: 2
+    
+  - section: concepts
+    title:
+      en: Concepts
+      tr: Kavramlar
+    order: 3
+    
+  - section: reference
+    title:
+      en: API Reference
+      tr: API Referansı
+    order: 4
+    subsections:
+      - smart-cities
+      - insan-iq
+      - lydian-iq
+      
+  - section: webhooks
+    title:
+      en: Webhooks
+      tr: Webhook'lar
+    order: 5
+    
+  - section: cli
+    title:
+      en: CLI Tools
+      tr: CLI Araçları
+    order: 6
+    
+  - section: cookbooks
+    title:
+      en: Cookbooks
+      tr: Tarifler
+    order: 7
+    
+  - section: tutorials
+    title:
+      en: Tutorials
+      tr: Eğitimler
+    order: 8
+    
+  - section: sdk
+    title:
+      en: SDK Documentation
+      tr: SDK Dokümantasyonu
+    order: 9
+    
+  - section: change-log
+    title:
+      en: Change Log
+      tr: Değişiklik Günlüğü
+    order: 10
+    
+  - section: roadmap
+    title:
+      en: Roadmap
+      tr: Yol Haritası
+    order: 11
+    
+  - section: compliance-security
+    title:
+      en: Compliance & Security
+      tr: Uyumluluk & Güvenlik
+    order: 12
+    
+  - section: sla-slo
+    title:
+      en: SLA/SLO
+      tr: SLA/SLO
+    order: 13
+    
+  - section: glossary
+    title:
+      en: Glossary
+      tr: Sözlük
+    order: 14
+
+technical:
+  openapi:
+    - smart-cities.v1.yml
+    - insan-iq.v1.yml
+    - lydian-iq.v1.yml
+    
+  asyncapi:
+    - events.smart-cities.yml
+    - events.insan-iq.yml
+    - events.lydian-iq.yml
+    
+  sdks:
+    - typescript
+    - python
+    - go
+    - java
+    - csharp
+    
+  examples:
+    - rest
+    - sdk-ts
+    - sdk-py
+    - sdk-go
+    - sdk-java
+    - sdk-csharp
+    - webhook
+
+operations:
+  - ci: Continuous Integration
+  - search-index: Search Indexing
+  - spell-style: Spell & Style Checking
+  - brief: Documentation Briefs

@@ -1,0 +1,597 @@
+{
+  "name": "Ailydian Ultra Pro - Azure Cognitive Search Configuration",
+  "description": "Enterprise-grade full-text search with semantic search, multi-language support, and AI-powered recommendations",
+  "version": "1.0.0",
+  "searchService": {
+    "name": "ailydian-search",
+    "sku": "Standard",
+    "replicaCount": 2,
+    "partitionCount": 1,
+    "hostingMode": "default",
+    "resourceGroup": "ailydian-ultra-pro-rg",
+    "location": "eastus"
+  },
+  "indexes": [
+    {
+      "name": "conversations-index",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Edm.String",
+          "key": true,
+          "searchable": false,
+          "filterable": false,
+          "sortable": false,
+          "facetable": false
+        },
+        {
+          "name": "userId",
+          "type": "Edm.String",
+          "searchable": false,
+          "filterable": true,
+          "sortable": false,
+          "facetable": true
+        },
+        {
+          "name": "title",
+          "type": "Edm.String",
+          "searchable": true,
+          "filterable": false,
+          "sortable": true,
+          "facetable": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": ["ailydian-synonyms"]
+        },
+        {
+          "name": "messages",
+          "type": "Collection(Edm.ComplexType)",
+          "fields": [
+            {
+              "name": "role",
+              "type": "Edm.String",
+              "searchable": false,
+              "filterable": true
+            },
+            {
+              "name": "content",
+              "type": "Edm.String",
+              "searchable": true,
+              "analyzer": "en.lucene"
+            },
+            {
+              "name": "timestamp",
+              "type": "Edm.DateTimeOffset",
+              "filterable": true,
+              "sortable": true
+            }
+          ]
+        },
+        {
+          "name": "language",
+          "type": "Edm.String",
+          "searchable": false,
+          "filterable": true,
+          "facetable": true
+        },
+        {
+          "name": "aiModel",
+          "type": "Edm.String",
+          "searchable": false,
+          "filterable": true,
+          "facetable": true
+        },
+        {
+          "name": "tags",
+          "type": "Collection(Edm.String)",
+          "searchable": true,
+          "filterable": true,
+          "facetable": true
+        },
+        {
+          "name": "createdAt",
+          "type": "Edm.DateTimeOffset",
+          "filterable": true,
+          "sortable": true,
+          "facetable": false
+        },
+        {
+          "name": "updatedAt",
+          "type": "Edm.DateTimeOffset",
+          "filterable": true,
+          "sortable": true,
+          "facetable": false
+        },
+        {
+          "name": "messageCount",
+          "type": "Edm.Int32",
+          "filterable": true,
+          "sortable": true,
+          "facetable": true
+        },
+        {
+          "name": "sentiment",
+          "type": "Edm.String",
+          "searchable": false,
+          "filterable": true,
+          "facetable": true
+        }
+      ],
+      "scoringProfiles": [
+        {
+          "name": "recent-boost",
+          "text": {
+            "weights": {
+              "title": 3,
+              "messages/content": 2,
+              "tags": 1.5
+            }
+          },
+          "functions": [
+            {
+              "type": "freshness",
+              "fieldName": "updatedAt",
+              "boost": 2,
+              "interpolation": "logarithmic",
+              "freshness": {
+                "boostingDuration": "P30D"
+              }
+            }
+          ]
+        },
+        {
+          "name": "engagement-boost",
+          "functions": [
+            {
+              "type": "magnitude",
+              "fieldName": "messageCount",
+              "boost": 1.5,
+              "interpolation": "linear",
+              "magnitude": {
+                "boostingRangeStart": 5,
+                "boostingRangeEnd": 100
+              }
+            }
+          ]
+        }
+      ],
+      "suggesters": [
+        {
+          "name": "conversation-suggester",
+          "searchMode": "analyzingInfixMatching",
+          "sourceFields": ["title", "tags"]
+        }
+      ],
+      "semanticConfiguration": {
+        "name": "conversation-semantic",
+        "prioritizedFields": {
+          "titleField": {
+            "fieldName": "title"
+          },
+          "contentFields": [
+            {
+              "fieldName": "messages/content"
+            }
+          ],
+          "keywordsFields": [
+            {
+              "fieldName": "tags"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "documents-index",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Edm.String",
+          "key": true
+        },
+        {
+          "name": "title",
+          "type": "Edm.String",
+          "searchable": true,
+          "analyzer": "standard.lucene"
+        },
+        {
+          "name": "content",
+          "type": "Edm.String",
+          "searchable": true,
+          "analyzer": "en.lucene"
+        },
+        {
+          "name": "category",
+          "type": "Edm.String",
+          "filterable": true,
+          "facetable": true
+        },
+        {
+          "name": "language",
+          "type": "Edm.String",
+          "filterable": true,
+          "facetable": true
+        },
+        {
+          "name": "createdAt",
+          "type": "Edm.DateTimeOffset",
+          "filterable": true,
+          "sortable": true
+        }
+      ]
+    }
+  ],
+  "multiLanguageSupport": {
+    "enabled": true,
+    "languages": [
+      {
+        "code": "en",
+        "name": "English",
+        "analyzer": "en.lucene",
+        "stopwords": ["the", "a", "an", "is", "are"]
+      },
+      {
+        "code": "tr",
+        "name": "Turkish",
+        "analyzer": "tr.lucene",
+        "stopwords": ["bir", "ve", "bu", "şu"]
+      },
+      {
+        "code": "de",
+        "name": "German",
+        "analyzer": "de.lucene",
+        "stopwords": ["der", "die", "das", "und"]
+      },
+      {
+        "code": "fr",
+        "name": "French",
+        "analyzer": "fr.lucene",
+        "stopwords": ["le", "la", "les", "un", "une"]
+      },
+      {
+        "code": "es",
+        "name": "Spanish",
+        "analyzer": "es.lucene",
+        "stopwords": ["el", "la", "los", "las", "un", "una"]
+      },
+      {
+        "code": "it",
+        "name": "Italian",
+        "analyzer": "it.lucene",
+        "stopwords": ["il", "lo", "la", "i", "gli", "le"]
+      },
+      {
+        "code": "pt",
+        "name": "Portuguese",
+        "analyzer": "pt.lucene",
+        "stopwords": ["o", "a", "os", "as", "um", "uma"]
+      },
+      {
+        "code": "ru",
+        "name": "Russian",
+        "analyzer": "ru.lucene",
+        "stopwords": ["и", "в", "на", "с", "по"]
+      },
+      {
+        "code": "zh",
+        "name": "Chinese",
+        "analyzer": "zh-Hans.lucene",
+        "stopwords": ["的", "了", "是", "在"]
+      },
+      {
+        "code": "ja",
+        "name": "Japanese",
+        "analyzer": "ja.lucene",
+        "stopwords": ["の", "に", "は", "を", "が"]
+      }
+    ]
+  },
+  "synonymMaps": [
+    {
+      "name": "ailydian-synonyms",
+      "format": "solr",
+      "synonyms": [
+        "AI, artificial intelligence, machine learning, ML",
+        "GPT, ChatGPT, OpenAI",
+        "Claude, Anthropic",
+        "Gemini, Bard, Google AI",
+        "chat, conversation, dialogue, talk",
+        "search, find, lookup, query",
+        "assistant, helper, bot, agent",
+        "code, programming, coding, development",
+        "image, picture, photo, visual",
+        "text, content, writing, document"
+      ]
+    }
+  ],
+  "searchFeatures": {
+    "semanticSearch": {
+      "enabled": true,
+      "description": "AI-powered semantic understanding of queries",
+      "queryType": "semantic",
+      "features": [
+        "Understand intent behind queries",
+        "Find conceptually similar results",
+        "Re-rank results based on relevance",
+        "Generate captions and answers"
+      ]
+    },
+    "facetedSearch": {
+      "enabled": true,
+      "facets": [
+        {
+          "field": "language",
+          "type": "value",
+          "count": 10
+        },
+        {
+          "field": "aiModel",
+          "type": "value",
+          "count": 20
+        },
+        {
+          "field": "tags",
+          "type": "value",
+          "count": 50
+        },
+        {
+          "field": "createdAt",
+          "type": "range",
+          "ranges": [
+            "last-hour",
+            "last-day",
+            "last-week",
+            "last-month",
+            "last-year"
+          ]
+        },
+        {
+          "field": "messageCount",
+          "type": "range",
+          "ranges": [
+            "1-5",
+            "6-20",
+            "21-50",
+            "51-100",
+            "100+"
+          ]
+        },
+        {
+          "field": "sentiment",
+          "type": "value",
+          "values": ["positive", "neutral", "negative"]
+        }
+      ]
+    },
+    "autoComplete": {
+      "enabled": true,
+      "suggester": "conversation-suggester",
+      "mode": "twoTerms",
+      "fuzzyMatching": true,
+      "highlightPreTag": "<strong>",
+      "highlightPostTag": "</strong>"
+    },
+    "spellCheck": {
+      "enabled": true,
+      "mode": "twoTerms",
+      "distance": 2
+    },
+    "fuzzySearch": {
+      "enabled": true,
+      "minimumSimilarity": 0.8,
+      "prefixLength": 2
+    },
+    "highlighting": {
+      "enabled": true,
+      "preTags": ["<mark>"],
+      "postTags": ["</mark>"],
+      "fields": ["title", "messages/content", "tags"]
+    }
+  },
+  "indexers": [
+    {
+      "name": "conversations-indexer",
+      "dataSourceName": "ailydian-cosmosdb",
+      "targetIndexName": "conversations-index",
+      "schedule": {
+        "interval": "PT5M"
+      },
+      "fieldMappings": [
+        {
+          "sourceFieldName": "_id",
+          "targetFieldName": "id"
+        }
+      ],
+      "parameters": {
+        "batchSize": 100,
+        "maxFailedItems": 10,
+        "maxFailedItemsPerBatch": 5
+      }
+    }
+  ],
+  "skillsets": [
+    {
+      "name": "ai-enrichment-skillset",
+      "description": "AI-powered content enrichment",
+      "skills": [
+        {
+          "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+          "name": "language-detection",
+          "description": "Detect language of conversation",
+          "context": "/document",
+          "inputs": [
+            {
+              "name": "text",
+              "source": "/document/title"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "languageCode",
+              "targetName": "language"
+            }
+          ]
+        },
+        {
+          "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+          "name": "sentiment-analysis",
+          "description": "Analyze sentiment of messages",
+          "context": "/document",
+          "inputs": [
+            {
+              "name": "text",
+              "source": "/document/messages/*/content"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "sentiment",
+              "targetName": "sentiment"
+            }
+          ]
+        },
+        {
+          "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+          "name": "key-phrase-extraction",
+          "description": "Extract key phrases as tags",
+          "context": "/document",
+          "inputs": [
+            {
+              "name": "text",
+              "source": "/document/messages/*/content"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "keyPhrases",
+              "targetName": "tags"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "queryExamples": {
+    "simpleSearch": {
+      "query": "machine learning",
+      "searchMode": "all",
+      "queryType": "simple"
+    },
+    "semanticSearch": {
+      "query": "how to train AI models",
+      "searchMode": "all",
+      "queryType": "semantic",
+      "semanticConfiguration": "conversation-semantic",
+      "captions": "extractive",
+      "answers": "extractive"
+    },
+    "facetedSearch": {
+      "query": "AI",
+      "facets": ["language,count:10", "aiModel,count:20", "tags,count:50"],
+      "filter": "language eq 'en' and messageCount gt 10"
+    },
+    "autoComplete": {
+      "search": "mach",
+      "suggesterName": "conversation-suggester",
+      "searchMode": "analyzingInfixMatching",
+      "fuzzy": true
+    },
+    "suggestions": {
+      "search": "artificial",
+      "suggesterName": "conversation-suggester",
+      "top": 5,
+      "fuzzy": true,
+      "highlightPreTag": "<strong>",
+      "highlightPostTag": "</strong>"
+    }
+  },
+  "performanceMetrics": {
+    "searchLatency": {
+      "target": "< 100ms",
+      "p95": "< 200ms",
+      "p99": "< 500ms"
+    },
+    "indexingThroughput": {
+      "target": "> 1000 docs/sec",
+      "batchSize": 100
+    },
+    "relevanceScore": {
+      "target": "> 90%",
+      "measurement": "NDCG@10"
+    }
+  },
+  "deployment": {
+    "azureCLI": [
+      "# 1. Create Cognitive Search service",
+      "az search service create --name ailydian-search --resource-group ailydian-ultra-pro-rg --sku Standard --location eastus --replica-count 2 --partition-count 1",
+      "",
+      "# 2. Create index",
+      "az search index create --service-name ailydian-search --name conversations-index --resource-group ailydian-ultra-pro-rg --body @conversations-index.json",
+      "",
+      "# 3. Create synonym map",
+      "az search synonym-map create --service-name ailydian-search --name ailydian-synonyms --resource-group ailydian-ultra-pro-rg --synonyms 'AI,artificial intelligence'",
+      "",
+      "# 4. Create indexer",
+      "az search indexer create --service-name ailydian-search --name conversations-indexer --resource-group ailydian-ultra-pro-rg --body @conversations-indexer.json",
+      "",
+      "# 5. Run indexer",
+      "az search indexer run --service-name ailydian-search --name conversations-indexer --resource-group ailydian-ultra-pro-rg"
+    ],
+    "terraform": "# Use azurerm_search_service resource"
+  },
+  "costEstimation": {
+    "monthly": {
+      "standard_tier": {
+        "basePrice": "$250/month",
+        "replicas": "2 × $125/month = $250/month",
+        "storage": "25GB included, $0.40/GB after",
+        "queries": "Unlimited queries included",
+        "total": "$500/month"
+      },
+      "semantic_search": {
+        "price": "$500/month for 1M queries",
+        "estimatedUsage": "100K queries/month",
+        "cost": "$50/month"
+      },
+      "totalMonthly": "$550/month"
+    },
+    "optimization": [
+      "Use Basic tier for dev/staging ($75/month)",
+      "Reduce replicas to 1 if SLA allows (-$125/month)",
+      "Cache frequent queries in Redis (-50% queries)"
+    ]
+  },
+  "monitoring": {
+    "metrics": [
+      {
+        "name": "Search Latency (P95)",
+        "target": "< 100ms",
+        "alert": "> 200ms"
+      },
+      {
+        "name": "Query Success Rate",
+        "target": "> 99.9%",
+        "alert": "< 99%"
+      },
+      {
+        "name": "Indexing Latency",
+        "target": "< 5 minutes",
+        "alert": "> 10 minutes"
+      },
+      {
+        "name": "Storage Usage",
+        "target": "< 80%",
+        "alert": "> 90%"
+      }
+    ]
+  },
+  "environmentVariables": {
+    "AZURE_SEARCH_SERVICE_NAME": "ailydian-search",
+    "AZURE_SEARCH_ENDPOINT": "https://ailydian-search.search.windows.net",
+    "AZURE_SEARCH_ADMIN_KEY": "${AZURE_SEARCH_ADMIN_KEY}",
+    "AZURE_SEARCH_QUERY_KEY": "${AZURE_SEARCH_QUERY_KEY}",
+    "AZURE_SEARCH_INDEX_NAME": "conversations-index",
+    "AZURE_SEARCH_API_VERSION": "2023-11-01"
+  },
+  "notes": "Azure Cognitive Search provides enterprise-grade full-text search with semantic search, multi-language support, and AI-powered enrichment. Average search latency: 50-100ms for 90%+ relevance accuracy."
+}

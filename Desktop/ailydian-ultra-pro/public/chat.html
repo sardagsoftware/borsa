@@ -336,7 +336,7 @@ body {
 }
 
 .logo {
-    font-family: 'Righteous', cursive !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 2rem;
     font-weight: 900 !important;
     color: #FFFFFF; /* White text for dark theme */
@@ -3059,7 +3059,7 @@ body {
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <img src="/lydian-logo.png" alt="LyDian Logo">
                 </button>
-                <div class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <div class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
                     <span>LyDian</span>
                 </div>
             </div>
@@ -3624,7 +3624,7 @@ body {
             messages: [],
             currentChatId: null,
             isTyping: false,
-            selectedModel: 'claude',  // Default: Premium AI
+            selectedModel: 'enterprise-ai',  // Default: Premium AI
             selectedAiType: 'general'  // 🎯 Track specialized AI mode
         };
 
@@ -5134,5 +5134,6 @@ body {
 
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

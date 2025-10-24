@@ -58,7 +58,7 @@ class StatusIndicators {
                                 <span class="status-value" id="z-ai-status">-</span>
                             </div>
                             <div class="detail-row">
-                                <span>Claude:</span>
+                                <span>EnterpriseAI:</span>
                                 <span class="status-value" id="claude-status">-</span>
                             </div>
                         </div>

@@ -1,0 +1,454 @@
+/**
+ * LyDian Medical AI - RTL (Right-to-Left) Support
+ * Arabic, Hebrew, Persian, Urdu language support
+ * Version: 1.0.0
+ */
+
+/* ============================================================
+   RTL BASE STYLES
+   ============================================================ */
+
+[dir="rtl"] body,
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ============================================================
+   SIDEBAR RTL
+   ============================================================ */
+
+[dir="rtl"] .sidebar,
+body.rtl .sidebar {
+    border-right: none;
+    border-left: var(--border-dark);
+}
+
+[dir="rtl"] .sidebar.collapsed,
+body.rtl .sidebar.collapsed {
+    transform: translateX(300px);
+}
+
+[dir="rtl"] .specialization-item:hover,
+body.rtl .specialization-item:hover {
+    transform: translateX(-4px);
+}
+
+[dir="rtl"] .specialization-item.active,
+body.rtl .specialization-item.active {
+    border-left: none;
+    border-right: 3px solid var(--medical-secondary);
+}
+
+[dir="rtl"] .nav-category-header .dropdown-arrow,
+body.rtl .nav-category-header .dropdown-arrow {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+[dir="rtl"] .nav-category-content,
+body.rtl .nav-category-content {
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
+[dir="rtl"] .nav-category .specialization-item,
+body.rtl .nav-category .specialization-item {
+    padding-left: 1rem;
+    padding-right: 2.5rem;
+}
+
+/* ============================================================
+   HEADER RTL
+   ============================================================ */
+
+[dir="rtl"] .header-left,
+body.rtl .header-left {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header-right,
+body.rtl .header-right {
+    flex-direction: row-reverse;
+}
+
+/* ============================================================
+   CHAT INTERFACE RTL
+   ============================================================ */
+
+[dir="rtl"] .chat-messages,
+body.rtl .chat-messages {
+    direction: rtl;
+}
+
+[dir="rtl"] .message,
+body.rtl .message {
+    text-align: right;
+}
+
+[dir="rtl"] .message.user,
+body.rtl .message.user {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .message.assistant,
+body.rtl .message.assistant {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .message-avatar,
+body.rtl .message-avatar {
+    margin-left: 0.75rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .message.user .message-avatar,
+body.rtl .message.user .message-avatar {
+    margin-left: 0;
+    margin-right: 0.75rem;
+}
+
+/* ============================================================
+   INPUT AREA RTL
+   ============================================================ */
+
+[dir="rtl"] .chat-input-container,
+body.rtl .chat-input-container {
+    direction: rtl;
+}
+
+[dir="rtl"] .chat-input,
+body.rtl .chat-input {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .input-actions,
+body.rtl .input-actions {
+    flex-direction: row-reverse;
+}
+
+/* ============================================================
+   FORMS AND INPUTS RTL
+   ============================================================ */
+
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="number"],
+[dir="rtl"] textarea,
+[dir="rtl"] select,
+body.rtl input[type="text"],
+body.rtl input[type="number"],
+body.rtl textarea,
+body.rtl select {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .form-grid,
+body.rtl .form-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .form-label,
+body.rtl .form-label {
+    text-align: right;
+}
+
+/* ============================================================
+   CALCULATORS RTL
+   ============================================================ */
+
+[dir="rtl"] .calculator-panel,
+body.rtl .calculator-panel {
+    direction: rtl;
+}
+
+[dir="rtl"] .calculator-section,
+body.rtl .calculator-section {
+    text-align: right;
+}
+
+[dir="rtl"] .calculator-title,
+body.rtl .calculator-title {
+    text-align: right;
+}
+
+[dir="rtl"] .calculator-subtitle,
+body.rtl .calculator-subtitle {
+    text-align: right;
+}
+
+/* ============================================================
+   BUTTONS AND ACTIONS RTL
+   ============================================================ */
+
+[dir="rtl"] .btn-group,
+body.rtl .btn-group {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .icon-left,
+body.rtl .icon-left {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .icon-right,
+body.rtl .icon-right {
+    margin-right: 0.5rem;
+    margin-left: 0;
+}
+
+/* ============================================================
+   MODALS RTL
+   ============================================================ */
+
+[dir="rtl"] .modal-content,
+body.rtl .modal-content {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .modal-header,
+body.rtl .modal-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .modal-close,
+body.rtl .modal-close {
+    left: 1rem;
+    right: auto;
+}
+
+/* ============================================================
+   TABLES RTL
+   ============================================================ */
+
+[dir="rtl"] table,
+body.rtl table {
+    direction: rtl;
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td,
+body.rtl th,
+body.rtl td {
+    text-align: right;
+}
+
+/* ============================================================
+   LISTS RTL
+   ============================================================ */
+
+[dir="rtl"] ul,
+[dir="rtl"] ol,
+body.rtl ul,
+body.rtl ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+[dir="rtl"] li,
+body.rtl li {
+    text-align: right;
+}
+
+/* ============================================================
+   BADGES AND TAGS RTL
+   ============================================================ */
+
+[dir="rtl"] .badge,
+body.rtl .badge {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* ============================================================
+   TOOLTIPS RTL
+   ============================================================ */
+
+[dir="rtl"] .tooltip,
+body.rtl .tooltip {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ============================================================
+   DROPDOWNS RTL
+   ============================================================ */
+
+[dir="rtl"] .dropdown-menu,
+body.rtl .dropdown-menu {
+    left: auto;
+    right: 0;
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-item,
+body.rtl .dropdown-item {
+    text-align: right;
+    padding-right: 1rem;
+    padding-left: 0.5rem;
+}
+
+/* ============================================================
+   MEDICAL DISCLAIMER BANNER RTL
+   ============================================================ */
+
+[dir="rtl"] .medical-disclaimer-banner,
+body.rtl .medical-disclaimer-banner {
+    border-left: none;
+    border-right: 4px solid var(--medical-error);
+    flex-direction: row-reverse;
+}
+
+/* ============================================================
+   SPECIALTY CARDS RTL
+   ============================================================ */
+
+[dir="rtl"] .specialty-card,
+body.rtl .specialty-card {
+    text-align: right;
+}
+
+[dir="rtl"] .specialty-icon,
+body.rtl .specialty-icon {
+    margin-right: 0;
+    margin-left: 0.75rem;
+}
+
+/* ============================================================
+   RESULTS AND STATUS RTL
+   ============================================================ */
+
+[dir="rtl"] .result-item,
+body.rtl .result-item {
+    text-align: right;
+}
+
+[dir="rtl"] .status-indicator,
+body.rtl .status-indicator {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* ============================================================
+   ANIMATIONS RTL
+   ============================================================ */
+
+@keyframes slideInLeftRTL {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+[dir="rtl"] .slide-in-left,
+body.rtl .slide-in-left {
+    animation: slideInLeftRTL 0.3s ease;
+}
+
+/* ============================================================
+   SCROLLBAR RTL (For Webkit browsers)
+   ============================================================ */
+
+[dir="rtl"] ::-webkit-scrollbar,
+body.rtl ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* ============================================================
+   GRID LAYOUTS RTL
+   ============================================================ */
+
+[dir="rtl"] .grid-2-col,
+body.rtl .grid-2-col {
+    direction: rtl;
+}
+
+[dir="rtl"] .grid-3-col,
+body.rtl .grid-3-col {
+    direction: rtl;
+}
+
+/* ============================================================
+   ARABIC SPECIFIC FONTS
+   ============================================================ */
+
+[lang="ar"],
+[lang="ar"] * {
+    font-family: 'Tajawal', 'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Dubai', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ============================================================
+   UTILITY CLASSES RTL
+   ============================================================ */
+
+[dir="rtl"] .text-left,
+body.rtl .text-left {
+    text-align: right !important;
+}
+
+[dir="rtl"] .text-right,
+body.rtl .text-right {
+    text-align: left !important;
+}
+
+[dir="rtl"] .ml-auto,
+body.rtl .ml-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+[dir="rtl"] .mr-auto,
+body.rtl .mr-auto {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+[dir="rtl"] .float-left,
+body.rtl .float-left {
+    float: right !important;
+}
+
+[dir="rtl"] .float-right,
+body.rtl .float-right {
+    float: left !important;
+}
+
+/* ============================================================
+   RESPONSIVE RTL
+   ============================================================ */
+
+@media (max-width: 768px) {
+    [dir="rtl"] .sidebar,
+    body.rtl .sidebar {
+        transform: translateX(300px);
+    }
+
+    [dir="rtl"] .sidebar.active,
+    body.rtl .sidebar.active {
+        transform: translateX(0);
+    }
+}
+
+/* ============================================================
+   PRINT RTL
+   ============================================================ */
+
+@media print {
+    [dir="rtl"],
+    body.rtl {
+        direction: rtl;
+    }
+
+    [dir="rtl"] *,
+    body.rtl * {
+        text-align: right;
+    }
+}

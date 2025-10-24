@@ -93,7 +93,7 @@
         }
 
         .logo {
-            font-family: 'Righteous', cursive !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 2.25rem;
             font-weight: 900 !important;
             color: #000000;
@@ -492,7 +492,7 @@
         }
 
         .footer-logo {
-            font-family: 'Righteous', cursive !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 2rem;
             font-weight: 900 !important;
             color: #FFFFFF;
@@ -584,12 +584,13 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">LyDian</a>
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
 
             <ul class="nav-links">
                 <li><a href="/chat.html">LyDian AI</a></li>
@@ -797,6 +798,109 @@ main();
         </div>
     </section>
 
+    <!-- Documentation Section -->
+    <section class="sdk-section" style="background: var(--gray-50);">
+        <div class="section-header">
+            <h2 class="section-title">📚 API Documentation</h2>
+            <p class="section-description">
+                Comprehensive guides, concepts, tutorials ve best practices for LyDian platform
+            </p>
+        </div>
+
+        <div class="sdk-grid">
+            <!-- Smart Cities Documentation -->
+            <div class="sdk-card">
+                <div class="sdk-icon" style="background: linear-gradient(135deg, #0EA5E9, #06B6D4);">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v8.72c0 4.67-3.19 9.04-8 10.32-4.81-1.28-8-5.65-8-10.32v-8.72l8-3.6z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">Smart Cities API</h3>
+                <div class="sdk-version">12 Docs Available</div>
+                <p class="sdk-description">
+                    IoT sensors, metrics, alerts, traffic, energy ve smart city infrastructure documentation
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="/docs/en/guides/smart-cities-getting-started.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📖 Guides (4)
+                    </a>
+                    <a href="/docs/en/concepts/smart-cities-architecture.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        🧠 Concepts (2)
+                    </a>
+                    <a href="/docs/en/tutorials/smart-cities-traffic-dashboard.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        🎯 Tutorials (1)
+                    </a>
+                    <a href="/docs/en/cookbooks/smart-cities-iot-patterns.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📝 Cookbooks (1)
+                    </a>
+                </div>
+            </div>
+
+            <!-- İnsan IQ Documentation -->
+            <div class="sdk-card">
+                <div class="sdk-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">İnsan IQ API</h3>
+                <div class="sdk-version">2 Docs Available</div>
+                <p class="sdk-description">
+                    AI personas, skill assessments, learning paths, reasoning engine ve intelligent assistants
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="/docs/en/guides/insan-iq-getting-started.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📖 Guides (2)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🧠 Concepts (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🎯 Tutorials (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        📝 Cookbooks (Coming Soon)
+                    </a>
+                </div>
+            </div>
+
+            <!-- LyDian IQ Documentation -->
+            <div class="sdk-card">
+                <div class="sdk-icon" style="background: linear-gradient(135deg, #F59E0B, #F97316);">
+                    <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h8l-2 8 10-12h-8z"/>
+                    </svg>
+                </div>
+                <h3 class="sdk-title">LyDian IQ API</h3>
+                <div class="sdk-version">2 Docs Available</div>
+                <p class="sdk-description">
+                    Knowledge graphs, signal processing, event correlation, reasoning workflows ve analytics
+                </p>
+                <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="/docs/en/guides/lydian-iq-getting-started.md" class="btn btn-secondary" style="justify-content: flex-start; text-align: left;">
+                        📖 Guides (2)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🧠 Concepts (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        🎯 Tutorials (Coming Soon)
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="justify-content: flex-start; text-align: left; opacity: 0.5; cursor: not-allowed;">
+                        📝 Cookbooks (Coming Soon)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View All Documentation Button -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/docs.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                View All Documentation →
+            </a>
+        </div>
+    </section>
+
     <!-- Community Section -->
     <section class="community-section">
         <div class="section-header">
@@ -868,7 +972,7 @@ main();
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo">LyDian</div>
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
                     <p class="footer-description">
                         Yapay zeka teknolojileriyle geleceği şekillendiren,
                         yenilikçi çözümler sunan AI platformu.
@@ -941,5 +1045,6 @@ main();
     </script>
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

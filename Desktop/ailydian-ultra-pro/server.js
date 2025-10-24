@@ -61,6 +61,9 @@ const { maskPIIInLogs, encryptResponse, decryptRequest } = require('./middleware
 const { auditMiddleware, getAuditLogger, EVENT_TYPES, SEVERITY } = require('./middleware/audit-logger');
 const { complianceHeaders, requireConsent, getComplianceManager } = require('./middleware/gdpr-kvkk-compliance');
 
+// 🛡️ STRICT-OMEGA SECURITY INTEGRATION - CRITICAL & MEDIUM VULNERABILITY FIXES
+const { setupFullSecurity, requireAdmin: strictRequireAdmin } = require('./security/security-integration');
+
 // 🔒 NIRVANA LEVEL SECURITY HEADERS
 const securityHeaders = (req, res, next) => {
   res.setHeader('Content-Security-Policy',
@@ -466,6 +469,9 @@ initializeSecurity(app);
 // 3. Rate Limiting (after security headers)
 setupRateLimiting(app);
 
+// 4. STRICT-OMEGA Security Integration (CRITICAL & MEDIUM vulnerability fixes)
+setupFullSecurity(app);
+
 // 🔒 NIRVANA LEVEL SECURITY HEADERS (First in chain)
 app.use(securityHeaders);
 
@@ -489,7 +495,8 @@ app.use(auditMiddleware({
 }));
 
 // 4. Middleware
-app.use(cors());
+// CORS is now handled by setupFullSecurity() with strict whitelist
+// app.use(cors()); // REMOVED - Using strict CORS from security-integration
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
@@ -9729,9 +9736,9 @@ const oauthRoutes = require('./api/auth/oauth');
 app.use('/api/auth', authRoutes);
 app.use('/api/auth', oauthRoutes);
 
-// 🔐 RBAC ADMIN ROUTES - Role & Permission Management
+// 🔐 RBAC ADMIN ROUTES - Role & Permission Management (STRICT-OMEGA PROTECTED)
 const adminRolesRoutes = require('./api/admin/roles');
-app.use('/api/admin', adminRolesRoutes);
+app.use('/api/admin', strictRequireAdmin, adminRolesRoutes);
 
 // 📊 AZURE METRICS DASHBOARD API
 const metricsRoutes = require('./api/metrics/dashboard');
@@ -16950,6 +16957,14 @@ app.post('/api/lydian-iq/solve', async (req, res) => {
       error: 'Internal server error',
       message: 'LyDian IQ API hatası'
     });
+// 🔒 CSRF Token Endpoint
+app.get("/api/csrf-token", (req, res) => {
+  if (!req.session) req.session = {};
+  const csrfToken = require("crypto").randomBytes(32).toString("hex");
+  req.session.csrfToken = csrfToken;
+  res.json({ csrfToken });
+});
+
   }
 });
 

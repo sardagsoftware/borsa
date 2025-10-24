@@ -1,0 +1,45 @@
+{
+  "name": "sardag-emrah",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Professional TradingView-like platform with live data and technical analysis",
+  "author": "Sardag Emrah",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.5",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lightweight-charts": "4.1.1",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.546.0",
+    "nanoid": "^5.1.6",
+    "next": "^14.2.0",
+    "numeral": "^2.0.6",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-hot-toast": "^2.6.0",
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.1.12",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^20",
+    "@types/numeral": "^2.0.5",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

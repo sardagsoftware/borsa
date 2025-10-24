@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--
+    AiLydian Translation System - Quick Integration Template
+    Copy this template to add translation support to any page
+-->
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiLydian - Page Title</title>
+
+    <!-- STEP 1: Include Translation Library -->
+    <script src="/js/translation.js"></script>
+
+    <style>
+        /* STEP 2: Add Language Dropdown Styles (Copy from index.html) */
+        .language-selector {
+            position: relative;
+            margin-right: 1rem;
+        }
+
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 220px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .language-menu.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .language-option:hover {
+            background: rgba(16, 185, 129, 0.1);
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STEP 3: Add Language Dropdown to Navbar -->
+    <nav>
+        <div class="language-selector" id="languageSelector">
+            <button class="language-toggle" id="languageToggle">
+                <span class="language-flag" id="currentFlag">🇹🇷</span>
+                <span class="language-code" id="currentCode">TR</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </button>
+            <div class="language-menu" id="languageMenu">
+                <div class="language-option" data-lang="tr">
+                    <span class="flag">🇹🇷</span>
+                    <span class="name">Türkçe</span>
+                </div>
+                <div class="language-option" data-lang="en">
+                    <span class="flag">🇺🇸</span>
+                    <span class="name">English</span>
+                </div>
+                <div class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Deutsch</span>
+                </div>
+                <div class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">Français</span>
+                </div>
+                <div class="language-option" data-lang="ru">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Русский</span>
+                </div>
+                <div class="language-option" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="name">中文</span>
+                </div>
+                <div class="language-option" data-lang="ja">
+                    <span class="flag">🇯🇵</span>
+                    <span class="name">日本語</span>
+                </div>
+                <div class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="name">Español</span>
+                </div>
+                <div class="language-option" data-lang="ar">
+                    <span class="flag">🇸🇦</span>
+                    <span class="name">العربية</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- STEP 4: Add data-i18n attributes to translatable elements -->
+    <main>
+        <h1 data-i18n="home">Ana Sayfa</h1>
+        <p data-i18n="welcome">Hoş Geldiniz</p>
+
+        <button data-i18n="login">Giriş Yap</button>
+        <button data-i18n="signup">Kayıt Ol</button>
+
+        <!-- Input placeholders -->
+        <input type="text" placeholder="Ara..." data-i18n="search">
+
+        <!-- Navigation items -->
+        <nav>
+            <a href="/" data-i18n="home">Ana Sayfa</a>
+            <a href="/features" data-i18n="features">Özellikler</a>
+            <a href="/pricing" data-i18n="pricing">Fiyatlandırma</a>
+            <a href="/docs" data-i18n="docs">Dokümantasyon</a>
+        </nav>
+    </main>
+
+    <!-- STEP 5: Initialize Language Dropdown (Required) -->
+    <script>
+        (function() {
+            const languageToggle = document.getElementById('languageToggle');
+            const languageMenu = document.getElementById('languageMenu');
+            const currentFlag = document.getElementById('currentFlag');
+            const currentCode = document.getElementById('currentCode');
+
+            if (!languageToggle || !languageMenu) return;
+
+            const LANG_FLAGS = {
+                'tr': '🇹🇷', 'en': '🇺🇸', 'de': '🇩🇪', 'fr': '🇫🇷',
+                'ru': '🇷🇺', 'zh': '🇨🇳', 'ja': '🇯🇵', 'es': '🇪🇸', 'ar': '🇸🇦'
+            };
+
+            // Toggle dropdown
+            languageToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageMenu.classList.toggle('show');
+            });
+
+            // Handle language selection
+            languageMenu.addEventListener('click', async (e) => {
+                const option = e.target.closest('.language-option');
+                if (!option) return;
+
+                const lang = option.getAttribute('data-lang');
+                if (!lang) return;
+
+                languageMenu.classList.remove('show');
+                currentFlag.textContent = LANG_FLAGS[lang];
+                currentCode.textContent = lang.toUpperCase();
+
+                document.querySelectorAll('.language-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+
+                if (window.translationManager) {
+                    await window.translationManager.translatePage(lang);
+                }
+            });
+
+            // Close on outside click
+            document.addEventListener('click', () => {
+                languageMenu.classList.remove('show');
+            });
+
+            // Set initial language
+            if (window.translationManager) {
+                const currentLang = window.translationManager.getCurrentLanguage();
+                currentFlag.textContent = LANG_FLAGS[currentLang];
+                currentCode.textContent = currentLang.toUpperCase();
+            }
+        })();
+    </script>
+
+</body>
+</html>
+
+<!--
+    USAGE NOTES:
+
+    1. Add data-i18n attribute to any element you want to translate
+    2. Use translation keys from /js/i18n-keys.js
+    3. For dynamic content, the translation manager auto-detects new elements
+    4. Translations are cached in localStorage for performance
+
+    SUPPORTED TRANSLATION KEYS:
+    - common.home, common.features, common.pricing, etc.
+    - hero.title, hero.subtitle, hero.cta1, etc.
+    - chat.title, chat.placeholder, chat.send, etc.
+
+    ADVANCED USAGE:
+
+    // Translate programmatically
+    await window.translationManager.translatePage('de');
+
+    // Get current language
+    const lang = window.translationManager.getCurrentLanguage();
+
+    // Add language change observer
+    window.translationManager.addObserver((lang, meta) => {
+        console.log(`Changed to: ${meta.name}`);
+    });
+-->

@@ -365,7 +365,7 @@ h1, h2, h3 {
     font-weight: 700;
     color: var(--justice-gold);
     text-shadow: 0 0 20px rgba(196, 169, 98, 0.4);
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Righteous', cursive;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1265,7 +1265,7 @@ h1, h2, h3 {
     <!-- Sidebar: Conversation History -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">⚖️ LyDian Hukuk</div>
+            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">⚖️ LyDian Hukuk</div>
         </div>
 
         <button class="new-chat-btn" id="newChatBtn">
@@ -2830,7 +2830,7 @@ function showSettingsModal() {
                         <span data-i18n="settingsAIModelTitle">AI Model Ayarları</span>
                     </h3>
 
-                    <!-- AI Model Selection HIDDEN - Backend uses Claude 3.5 Sonnet (Anthropic) -->
+                    <!-- AI Model Selection HIDDEN - Backend uses Ultra Intelligence Model (Advanced AI Platform) -->
                     <input type="hidden" id="settingsAIModel" value="premium-model-1">
 
                     <div style="margin-bottom: 16px;">
@@ -3136,8 +3136,8 @@ function exportToDOCX() {
         .ai { background: rgba(139, 21, 56, 0.1); border-left: 4px solid #8B1538; }
         .role { font-weight: bold; color: #1F2937; margin-bottom: 8px; }
         .timestamp { color: #6B7280; font-size: 0.9em; margin-top: 8px; }
-    </style>
-</head>
+    <\/style>
+<\/head>
 <body>
     <h1>LyDian Hukuk AI - Görüşme Kaydı</h1>
     <p><strong>Tarih:</strong> ${new Date().toLocaleString('tr-TR')}</p>
@@ -3156,8 +3156,9 @@ function exportToDOCX() {
         });
 
         htmlContent += `
-</body>
-</html>
+    <script src="/js/mobile-menu-handler.js"><\/script>
+<\/body>
+<\/html>
 `;
 
         // Create blob and download
@@ -3305,5 +3306,6 @@ document.head.appendChild(style);
 
 
     </script>
+    <script src="/js/mobile-menu-handler.js"></script>
 </body>
 </html>

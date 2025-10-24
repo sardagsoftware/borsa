@@ -9,10 +9,7 @@ module.exports = async (req, res) => {
     const GITHUB_REDIRECT_URI = process.env.GITHUB_REDIRECT_URI || `${process.env.VERCEL_URL || 'http://localhost:5001'}/api/auth/github/callback`;
 
     if (!GITHUB_CLIENT_ID) {
-      return res.status(500).json({
-        success: false,
-        error: 'GitHub OAuth not configured'
-      });
+      return res.redirect(302, '/auth.html?error=oauth_not_configured&provider=github');
     }
 
     const authUrl = new URL('https://github.com/login/oauth/authorize');

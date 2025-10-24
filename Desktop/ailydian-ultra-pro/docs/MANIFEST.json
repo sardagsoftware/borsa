@@ -1,0 +1,107 @@
+{
+  "platform": "LyDian Enterprise Documentation Platform",
+  "version": "1.0.0",
+  "created": "2025-10-06",
+  "status": "IA Complete - Ready for Content",
+  "location": "/Users/sardag/Desktop/ailydian-ultra-pro/docs/",
+  
+  "statistics": {
+    "total_directories": 204,
+    "total_files": 31,
+    "languages": 10,
+    "modules": 3,
+    "sdk_support": 5,
+    "api_specs": 6
+  },
+  
+  "languages": [
+    { "code": "tr", "name": "Turkish", "flag": "🇹🇷" },
+    { "code": "en", "name": "English", "flag": "🇬🇧" },
+    { "code": "de", "name": "German", "flag": "🇩🇪" },
+    { "code": "fr", "name": "French", "flag": "🇫🇷" },
+    { "code": "es", "name": "Spanish", "flag": "🇪🇸" },
+    { "code": "ar", "name": "Arabic", "flag": "🇸🇦" },
+    { "code": "ru", "name": "Russian", "flag": "🇷🇺" },
+    { "code": "it", "name": "Italian", "flag": "🇮🇹" },
+    { "code": "ja", "name": "Japanese", "flag": "🇯🇵" },
+    { "code": "zh-CN", "name": "Chinese (Simplified)", "flag": "🇨🇳" }
+  ],
+  
+  "modules": [
+    {
+      "id": "smart-cities",
+      "name": "Smart Cities",
+      "description": "Urban intelligence and IoT management platform",
+      "apis": {
+        "rest": "openapi/smart-cities.v1.yml",
+        "events": "asyncapi/events.smart-cities.yml"
+      }
+    },
+    {
+      "id": "insan-iq",
+      "name": "İnsan IQ",
+      "description": "Human intelligence and behavioral analytics",
+      "apis": {
+        "rest": "openapi/insan-iq.v1.yml",
+        "events": "asyncapi/events.insan-iq.yml"
+      }
+    },
+    {
+      "id": "lydian-iq",
+      "name": "LyDian IQ",
+      "description": "AI-powered decision intelligence platform",
+      "apis": {
+        "rest": "openapi/lydian-iq.v1.yml",
+        "events": "asyncapi/events.lydian-iq.yml"
+      }
+    }
+  ],
+  
+  "sdks": [
+    { "id": "typescript", "name": "TypeScript/JavaScript", "path": "sdks/typescript/", "examples": "examples/sdk-ts/" },
+    { "id": "python", "name": "Python", "path": "sdks/python/", "examples": "examples/sdk-py/" },
+    { "id": "go", "name": "Go", "path": "sdks/go/", "examples": "examples/sdk-go/" },
+    { "id": "java", "name": "Java", "path": "sdks/java/", "examples": "examples/sdk-java/" },
+    { "id": "csharp", "name": "C#", "path": "sdks/csharp/", "examples": "examples/sdk-csharp/" }
+  ],
+  
+  "documentation_sections": [
+    { "id": "getting-started", "order": 1, "description": "Quick start guides and onboarding" },
+    { "id": "guides", "order": 2, "description": "Step-by-step how-to guides" },
+    { "id": "concepts", "order": 3, "description": "Conceptual documentation and architecture" },
+    { "id": "reference", "order": 4, "description": "API reference for all modules" },
+    { "id": "webhooks", "order": 5, "description": "Webhook integration guides" },
+    { "id": "cli", "order": 6, "description": "Command-line interface documentation" },
+    { "id": "cookbooks", "order": 7, "description": "Code recipes and patterns" },
+    { "id": "tutorials", "order": 8, "description": "In-depth learning paths" },
+    { "id": "sdk", "order": 9, "description": "SDK usage and integration" },
+    { "id": "change-log", "order": 10, "description": "Version history and updates" },
+    { "id": "roadmap", "order": 11, "description": "Future features and planning" },
+    { "id": "compliance-security", "order": 12, "description": "Security and compliance docs" },
+    { "id": "sla-slo", "order": 13, "description": "Service level agreements" },
+    { "id": "glossary", "order": 14, "description": "Term definitions" }
+  ],
+  
+  "infrastructure": {
+    "navigation": "nav.yml",
+    "structure_diagram": "STRUCTURE.txt",
+    "statistics": "STATS.md",
+    "operations": {
+      "ci": "ops/ci/",
+      "search": "ops/search-index/",
+      "style": "ops/spell-style/",
+      "briefs": "ops/brief/"
+    }
+  },
+  
+  "next_steps": [
+    "Populate content for each language section",
+    "Complete OpenAPI/AsyncAPI specifications",
+    "Create SDK documentation and examples",
+    "Build search indexing infrastructure",
+    "Set up CI/CD pipelines for automated builds",
+    "Implement translation workflow",
+    "Create style guide and linting rules",
+    "Generate API client SDKs from OpenAPI specs"
+  ]
+}

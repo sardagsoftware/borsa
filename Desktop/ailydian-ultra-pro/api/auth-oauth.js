@@ -108,6 +108,11 @@ function createOrUpdateUser(profile, provider) {
 // ========================================
 
 async function handleGoogleAuth(req, res) {
+  // 🔒 SECURITY: Check if OAuth is configured
+  if (!OAUTH_CONFIGS.google.clientId || OAUTH_CONFIGS.google.clientId.includes('your-')) {
+    return res.redirect('/auth.html?error=oauth_not_configured&provider=google');
+  }
+
   const state = generateState();
   oauthStates.set(state, { provider: 'google', timestamp: Date.now() });
 
@@ -166,6 +171,11 @@ async function handleGoogleCallback(req, res) {
 // ========================================
 
 async function handleMicrosoftAuth(req, res) {
+  // 🔒 SECURITY: Check if OAuth is configured
+  if (!OAUTH_CONFIGS.microsoft.clientId || OAUTH_CONFIGS.microsoft.clientId.includes('your-')) {
+    return res.redirect('/auth.html?error=oauth_not_configured&provider=microsoft');
+  }
+
   const state = generateState();
   oauthStates.set(state, { provider: 'microsoft', timestamp: Date.now() });
 
@@ -235,6 +245,11 @@ async function handleMicrosoftCallback(req, res) {
 // ========================================
 
 async function handleGithubAuth(req, res) {
+  // 🔒 SECURITY: Check if OAuth is configured
+  if (!OAUTH_CONFIGS.github.clientId || OAUTH_CONFIGS.github.clientId.includes('your-')) {
+    return res.redirect('/auth.html?error=oauth_not_configured&provider=github');
+  }
+
   const state = generateState();
   oauthStates.set(state, { provider: 'github', timestamp: Date.now() });
 
@@ -319,6 +334,11 @@ async function handleGithubCallback(req, res) {
 // ========================================
 
 async function handleAppleAuth(req, res) {
+  // 🔒 SECURITY: Check if OAuth is configured
+  if (!OAUTH_CONFIGS.apple.clientId || OAUTH_CONFIGS.apple.clientId.includes('your-')) {
+    return res.redirect('/auth.html?error=oauth_not_configured&provider=apple');
+  }
+
   const state = generateState();
   oauthStates.set(state, { provider: 'apple', timestamp: Date.now() });
 

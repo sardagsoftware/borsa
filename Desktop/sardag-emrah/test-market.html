@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARDAG Market Test</title>
+    <style>
+        body {
+            background: #0a0e1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #10b981; }
+        .error { background: #ef4444; }
+        .loading { background: #3b82f6; }
+        pre { background: #1e293b; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔍 SARDAG Market API Test</h1>
+
+    <div id="status" class="status loading">Testing API...</div>
+
+    <h2>API Response:</h2>
+    <pre id="result">Loading...</pre>
+
+    <h2>Console Logs:</h2>
+    <pre id="logs"></pre>
+
+    <script>
+        const logs = [];
+        const originalLog = console.log;
+        console.log = function(...args) {
+            logs.push(args.join(' '));
+            document.getElementById('logs').textContent = logs.join('\n');
+            originalLog.apply(console, args);
+        };
+
+        async function testAPI() {
+            try {
+                console.log('[Test] 🚀 Fetching from /api/market/overview...');
+
+                const response = await fetch('/api/market/overview', {
+                    cache: 'no-store',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                console.log('[Test] Response status:', response.status);
+                console.log('[Test] Response ok:', response.ok);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('[Test] Data received:', data.success);
+                console.log('[Test] Coins count:', data.data?.length || 0);
+
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+
+                if (data.success && data.data && data.data.length > 0) {
+                    document.getElementById('status').className = 'status success';
+                    document.getElementById('status').textContent = `✅ SUCCESS: ${data.data.length} coins loaded from ${data.source}`;
+                } else {
+                    document.getElementById('status').className = 'status error';
+                    document.getElementById('status').textContent = '❌ ERROR: No data received';
+                }
+            } catch (error) {
+                console.error('[Test] ❌ Error:', error);
+                document.getElementById('status').className = 'status error';
+                document.getElementById('status').textContent = '❌ ERROR: ' + error.message;
+                document.getElementById('result').textContent = error.stack || error.message;
+            }
+        }
+
+        testAPI();
+    </script>
+</body>
+</html>
