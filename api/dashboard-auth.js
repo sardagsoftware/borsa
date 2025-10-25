@@ -6,8 +6,16 @@ const blockedIPs = new Set();
 const MAX_REQUESTS_PER_MINUTE = 5;
 const BLOCK_DURATION = 30 * 60 * 1000; // 30 minutes
 
-// Emrah's private access key
-const PRIVATE_ACCESS_KEY = process.env.DASHBOARD_ACCESS_KEY || 'Xrubyphyton1985.!?';
+// Private access key from environment (no hardcoded fallback for security)
+const PRIVATE_ACCESS_KEY = process.env.DASHBOARD_ACCESS_KEY;
+
+if (!PRIVATE_ACCESS_KEY) {
+  console.error('🔴 CRITICAL: DASHBOARD_ACCESS_KEY environment variable not set!');
+  // Throw error in production to prevent insecure operation
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('DASHBOARD_ACCESS_KEY must be set in production environment');
+  }
+}
 
 module.exports = async (req, res) => {
   // Security headers
