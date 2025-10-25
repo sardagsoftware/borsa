@@ -307,7 +307,7 @@
     const AuthManager = {
       getToken() {
         try {
-          const token = localStorage.getItem('governance_token');
+          const token = /* httpOnly cookie - auto-sent */ null;
           if (!token) return null;
 
           const payload = this.decodeToken(token);
@@ -358,7 +358,7 @@
 
       const headers = {
         'Content-Type': 'application/json',
-        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...(token && { 'X-Deprecated': 'Using httpOnly cookies' }),
         ...options.headers
       };
 

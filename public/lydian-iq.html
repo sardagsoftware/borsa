@@ -2102,12 +2102,16 @@
             }, 1000);
         }
 
-        function checkAuthentication() {
-            // Check if user has valid session
-            const sessionToken = localStorage.getItem('sessionToken') ||
-                                 sessionStorage.getItem('sessionToken') ||
-                                 document.cookie.includes('session=');
-            return !!sessionToken;
+        async function checkAuthentication() {
+            // 🔐 httpOnly Cookie - check auth via API call
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
         }
 
         function updateTimerDisplay() {

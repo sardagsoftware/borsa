@@ -6,6 +6,7 @@
 
 const User = require('../../backend/models/User');
 const jwt = require('jsonwebtoken');
+const { clearAuthCookies, getCookie } = require('../../middleware/cookie-auth');
 
 module.exports = async (req, res) => {
   // CORS Headers
@@ -38,17 +39,16 @@ module.exports = async (req, res) => {
     let userId = null;
 
     // 🔒 BEYAZ ŞAPKALI: Extract user info from JWT token
-    const cookies = req.headers.cookie || '';
-    const tokenMatch = cookies.match(/auth_token=([^;]+)/);
-    const sessionIdMatch = cookies.match(/session_id=([^;]+)/);
+    const authToken = getCookie(req, 'auth_token');
+    const sessionId = getCookie(req, 'session_id');
 
-    if (tokenMatch) {
+    if (authToken) {
       try {
         const decoded = jwt.verify(
-          tokenMatch[1],
+          authToken,
           process.env.JWT_SECRET || 'your-secret-key-change-this'
         );
-        userId = decoded.id;
+        userId = decoded.userId || decoded.id;
       } catch (jwtError) {
         // Token invalid or expired - continue with logout anyway
         console.log('[Logout] Invalid JWT token');
@@ -56,16 +56,16 @@ module.exports = async (req, res) => {
     }
 
     // Delete session from database
-    if (sessionIdMatch || tokenMatch) {
+    if (sessionId || authToken) {
       try {
         const { getDatabase } = require('../../database/init-db');
         const db = getDatabase();
         try {
-          if (sessionIdMatch) {
-            db.prepare('DELETE FROM sessions WHERE sessionId = ?').run(sessionIdMatch[1]);
+          if (sessionId) {
+            db.prepare('DELETE FROM sessions WHERE sessionId = ?').run(sessionId);
           }
-          if (tokenMatch) {
-            db.prepare('DELETE FROM sessions WHERE token = ?').run(tokenMatch[1]);
+          if (authToken) {
+            db.prepare('DELETE FROM sessions WHERE token = ?').run(authToken);
           }
           // Also delete all sessions for this user
           if (userId) {
@@ -91,15 +91,8 @@ module.exports = async (req, res) => {
       });
     }
 
-    // 🔒 SECURITY: Clear all authentication cookies
-    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
-    const clearCookieOptions = `HttpOnly; ${isProduction ? 'Secure;' : ''} SameSite=Strict; Path=/; Max-Age=0`;
-
-    res.setHeader('Set-Cookie', [
-      `auth_token=; ${clearCookieOptions}`,
-      `session_id=; ${clearCookieOptions}`,
-      `lydian.sid=; ${clearCookieOptions}` // Express session cookie
-    ]);
+    // 🔒 SECURITY: Clear all authentication cookies (httpOnly + refresh + CSRF)
+    clearAuthCookies(res);
 
     console.log(`[Logout] User ${userId || 'unknown'} logged out successfully`);
 
@@ -112,14 +105,7 @@ module.exports = async (req, res) => {
     console.error('[Logout] Error:', error.message);
 
     // 🔒 SECURITY: Still clear cookies even if something fails
-    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
-    const clearCookieOptions = `HttpOnly; ${isProduction ? 'Secure;' : ''} SameSite=Strict; Path=/; Max-Age=0`;
-
-    res.setHeader('Set-Cookie', [
-      `auth_token=; ${clearCookieOptions}`,
-      `session_id=; ${clearCookieOptions}`,
-      `lydian.sid=; ${clearCookieOptions}`
-    ]);
+    clearAuthCookies(res);
 
     return res.status(200).json({
       success: true,

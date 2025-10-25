@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { trackFailedLogin, resetFailedLogin, isAccountLocked } = require('../../middleware/security-rate-limiters');
 const { sendAccountLockoutEmail, sendLoginNotificationEmail } = require('../../lib/email-service');
+const { setAuthCookies, setCSRFCookie, generateCSRFToken } = require('../../middleware/cookie-auth');
 
 module.exports = async (req, res) => {
   // Apply secure CORS
@@ -121,17 +122,29 @@ module.exports = async (req, res) => {
       });
     }
 
-    // 🔒 BEYAZ ŞAPKALI: Generate secure JWT token
-    const token = jwt.sign(
+    // 🔒 BEYAZ ŞAPKALI: Generate secure JWT tokens (access + refresh)
+    const accessToken = jwt.sign(
       {
-        id: user.id,
+        userId: user.id,
         email: user.email,
         role: user.role || 'USER',
         subscription: user.subscription || 'free'
       },
       process.env.JWT_SECRET || 'your-secret-key-change-this',
-      { expiresIn: '7d' }
+      { expiresIn: '15m', issuer: 'LyDian-Platform', audience: 'LyDian-API' }
     );
+
+    const refreshToken = jwt.sign(
+      {
+        userId: user.id,
+        type: 'refresh'
+      },
+      process.env.JWT_SECRET || 'your-secret-key-change-this',
+      { expiresIn: '7d', issuer: 'LyDian-Platform', audience: 'LyDian-API' }
+    );
+
+    // 🔒 BEYAZ ŞAPKALI: Generate CSRF token
+    const csrfToken = generateCSRFToken();
 
     // 🔒 BEYAZ ŞAPKALI: Generate session ID for Redis
     const sessionId = crypto.randomBytes(32).toString('hex');
@@ -148,7 +161,7 @@ module.exports = async (req, res) => {
           VALUES (?, ?, ?, ?, ?, ?)
         `).run(
           user.id,
-          token,
+          accessToken,
           sessionId,
           req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown',
           req.headers['user-agent'] || 'unknown',
@@ -162,14 +175,9 @@ module.exports = async (req, res) => {
       // Continue anyway - JWT is still valid
     }
 
-    // 🔒 SECURITY: Set httpOnly cookies (both session and JWT)
-    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
-    const cookieOptions = `HttpOnly; ${isProduction ? 'Secure;' : ''} SameSite=Strict; Max-Age=${7 * 24 * 60 * 60}; Path=/`;
-
-    res.setHeader('Set-Cookie', [
-      `auth_token=${token}; ${cookieOptions}`,
-      `session_id=${sessionId}; ${cookieOptions}`
-    ]);
+    // 🔒 SECURITY: Set httpOnly cookies (access token + refresh token + session)
+    setAuthCookies(res, accessToken, refreshToken);
+    setCSRFCookie(res, csrfToken);
 
     // Log successful login
     User.logActivity({
@@ -265,8 +273,10 @@ const { handleCORS } = require('../../middleware/cors-handler');
           subscription: user.subscription || 'free',
           credits: user.credits || 0
         },
-        // Include token for API clients
-        token: token
+        // CSRF token for client-side POST requests
+        csrfToken: csrfToken,
+        // Include token for API clients (backward compatibility)
+        token: accessToken
       }
     });
 

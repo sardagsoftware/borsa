@@ -5096,11 +5096,17 @@ body {
         // ============================================================
         // 🚨 5 MINUTE GUEST USAGE TIMER - COUNTDOWN DISPLAY
         // ============================================================
-        (function initGuestTimer() {
-            // Check if user is logged in (you can modify this check based on your auth system)
-            const isUserLoggedIn = localStorage.getItem('userToken') ||
-                                   localStorage.getItem('isLoggedIn') ||
-                                   sessionStorage.getItem('userToken');
+        (async function initGuestTimer() {
+            // 🔐 httpOnly Cookie - check auth via API call
+            let isUserLoggedIn = false;
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                isUserLoggedIn = response.ok;
+            } catch (error) {
+                isUserLoggedIn = false;
+            }
 
             // If user is logged in, don't start timer
             if (isUserLoggedIn) {

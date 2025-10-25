@@ -357,16 +357,9 @@
 
     async function fetchDashboard() {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          window.location.href = '/login.html';
-          return;
-        }
-
+        // 🔐 httpOnly Cookie Authentication - cookies sent automatically
         const response = await fetch('/api/cost-tracking/dashboard', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+          credentials: 'include' // Cookies sent automatically
         });
 
         if (response.status === 403) {
@@ -490,8 +483,8 @@
     }
 
     function exportData() {
-      const token = localStorage.getItem('token');
-      window.location.href = `/api/cost-tracking/export?format=csv&token=${token}`;
+      // 🔐 httpOnly Cookie - no need to pass token in URL (more secure)
+      window.location.href = `/api/cost-tracking/export?format=csv`;
     }
 
     // Auto-refresh every 30 seconds

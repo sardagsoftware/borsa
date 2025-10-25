@@ -247,67 +247,37 @@
         // ============================================================================
 
         /**
-         * Secure token management
-         * SECURITY: XSS prevention, token expiration check
+         * Authentication Manager
+         * 🔐 httpOnly Cookie Authentication
+         * SECURITY: Cookies are httpOnly - not accessible from JavaScript
          */
         const AuthManager = {
-            // Get token from localStorage (should be httpOnly cookie in production)
-            getToken() {
+            // httpOnly cookies sent automatically with credentials: 'include'
+            // No token management needed in localStorage
+
+            // Check if authenticated (test with API call)
+            async isAuthenticated() {
                 try {
-                    const token = localStorage.getItem('governance_token');
-                    if (!token) return null;
-
-                    // Check token expiration (JWT decode)
-                    const payload = this.decodeToken(token);
-                    if (!payload || !payload.exp) return null;
-
-                    const now = Math.floor(Date.now() / 1000);
-                    if (payload.exp < now) {
-                        // Token expired
-                        this.clearToken();
-                        return null;
-                    }
-
-                    return token;
+                    const response = await fetch('/api/auth/me', {
+                        credentials: 'include'
+                    });
+                    return response.ok;
                 } catch (error) {
-                    console.error('Token retrieval error');
-                    return null;
+                    return false;
                 }
             },
 
-            // Decode JWT token (base64)
-            decodeToken(token) {
+            // Clear session (logout)
+            async clearSession() {
                 try {
-                    const parts = token.split('.');
-                    if (parts.length !== 3) return null;
-
-                    const payload = parts[1];
-                    const decoded = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
-                    return JSON.parse(decoded);
+                    await fetch('/api/auth/logout', {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
                 } catch (error) {
-                    return null;
+                    console.error('Logout error');
                 }
-            },
-
-            // Clear token
-            clearToken() {
-                localStorage.removeItem('governance_token');
-                localStorage.removeItem('governance_user');
-            },
-
-            // Get user info
-            getUser() {
-                try {
-                    const userStr = localStorage.getItem('governance_user');
-                    return userStr ? JSON.parse(userStr) : null;
-                } catch (error) {
-                    return null;
-                }
-            },
-
-            // Check if user is authenticated
-            isAuthenticated() {
-                return this.getToken() !== null;
+                window.location.href = '/auth.html';
             }
         };
 
@@ -322,19 +292,12 @@
         }
 
         /**
-         * Secure API call with authentication
-         * SECURITY: CSRF protection, error handling
+         * Secure API call with httpOnly cookie authentication
+         * 🔐 SECURITY: httpOnly cookies, CSRF protection, error handling
          */
         async function secureAPICall(url, options = {}) {
-            const token = AuthManager.getToken();
-
-            if (!token) {
-                throw new Error('Not authenticated');
-            }
-
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
                 ...options.headers
             };
 
@@ -342,12 +305,11 @@
                 const response = await fetch(url, {
                     ...options,
                     headers,
-                    credentials: 'same-origin' // CSRF protection
+                    credentials: 'include' // httpOnly cookies sent automatically
                 });
 
                 if (response.status === 401 || response.status === 403) {
-                    // Unauthorized - clear token and redirect
-                    AuthManager.clearToken();
+                    // Unauthorized - redirect to login
                     window.location.href = '/auth.html';
                     throw new Error('Authentication failed');
                 }

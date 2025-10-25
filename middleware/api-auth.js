@@ -13,6 +13,7 @@
 
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const { getAuthToken } = require('./cookie-auth');
 
 // Configuration - JWT_SECRET is validated by middleware/security.js
 if (!process.env.JWT_SECRET) {
@@ -120,10 +121,10 @@ async function authenticate(req, res, next) {
   try {
     let user = null;
 
-    // Check for Bearer token (JWT)
-    const authHeader = req.headers.authorization;
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-      const token = authHeader.substring(7);
+    // Check for JWT token (supports both httpOnly cookies and Bearer header)
+    const token = getAuthToken(req);
+
+    if (token) {
       const decoded = verifyToken(token);
       user = {
         id: decoded.userId,

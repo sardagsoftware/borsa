@@ -90,3 +90,4 @@ ops/reports/*.md
 # Other
 .ai-obfuscation-map.json
 pnpm-workspace.yaml
+.vercel
