@@ -81,10 +81,6 @@
     {
       "source": "/",
       "destination": "/public/index.html"
-    },
-    {
-      "source": "/((?!api).*)",
-      "destination": "/public/$1"
     }
   ],
   "functions": {
