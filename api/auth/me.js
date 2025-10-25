@@ -4,8 +4,7 @@
 // 🔐 httpOnly Cookie Authentication
 // ============================================
 
-const { getAuthToken } = require('../../middleware/cookie-auth');
-const { verifyToken } = require('../../middleware/api-auth');
+const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
     // CORS Headers
@@ -35,8 +34,24 @@ module.exports = async (req, res) => {
     }
 
     try {
-        // 🔐 Get JWT token from httpOnly cookie or Authorization header
-        const token = getAuthToken(req);
+        // 🔐 Get JWT token from httpOnly cookie
+        let token = null;
+
+        if (req.headers.cookie) {
+            const cookies = req.headers.cookie.split(';').map(c => c.trim());
+            const authCookie = cookies.find(c => c.startsWith('auth_token='));
+            if (authCookie) {
+                token = authCookie.split('=')[1];
+            }
+        }
+
+        // Fallback to Authorization header
+        if (!token && req.headers.authorization) {
+            const authHeader = req.headers.authorization;
+            if (authHeader.startsWith('Bearer ')) {
+                token = authHeader.substring(7);
+            }
+        }
 
         if (!token) {
             return res.status(401).json({
@@ -47,15 +62,10 @@ module.exports = async (req, res) => {
         }
 
         // Verify JWT token
-        const decoded = verifyToken(token);
-
-        if (!decoded) {
-            return res.status(401).json({
-                success: false,
-                authenticated: false,
-                error: 'Invalid token'
-            });
-        }
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-this', {
+            issuer: 'LyDian-Platform',
+            audience: 'LyDian-API'
+        });
 
         // Return user info from JWT payload
         return res.status(200).json({
