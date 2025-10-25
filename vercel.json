@@ -49,8 +49,8 @@
       "destination": "/public/ailydian-indexnow-2025.txt"
     },
     {
-      "source": "/",
-      "destination": "/public/index.html"
+      "source": "/dashboard",
+      "destination": "/public/dashboard.html"
     },
     {
       "source": "/lydian-iq",
@@ -73,12 +73,12 @@
       "destination": "/public/lydian-legal-search.html"
     },
     {
-      "source": "/dashboard",
-      "destination": "/public/dashboard.html"
-    },
-    {
       "source": "/quantum-test",
       "destination": "/public/quantum-test.html"
+    },
+    {
+      "source": "/",
+      "destination": "/public/index.html"
     },
     {
       "source": "/((?!api).*)",
