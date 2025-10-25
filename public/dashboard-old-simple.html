@@ -1,0 +1,491 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LyDian Ultra Pro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+        }
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-0: #0A0B0D;
+            --txt-1: #FFFFFF;
+            --txt-2: #B0B0B0;
+            --accent-1: #00E0AE;
+            --accent-2: #6E84FF;
+            --glass: rgba(255, 255, 255, 0.05);
+
+            /* Legacy Compatibility */
+            --primary: #00E0AE;
+            --primary-hover: #00FFB8;
+            --accent: #6E84FF;
+            --bg: #0A0B0D;
+            --bg-light: rgba(255, 255, 255, 0.05);
+            --bg-lighter: rgba(255, 255, 255, 0.08);
+            --text: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                        radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                        var(--bg-0);
+            color: var(--txt-1);
+            min-height: 100vh;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-light);
+            border-right: 1px solid var(--border);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 2.25rem;
+            font-weight: 900 !important;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-menu {
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--bg-lighter);
+            color: var(--text);
+        }
+
+        .user-section {
+            padding: 1rem;
+            background: var(--bg-lighter);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-email {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: var(--bg-lighter);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .action-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            background: var(--bg-light);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+        }
+
+        .activity-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">LyDian</div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active">Dashboard</div>
+                <div class="nav-item">Chat</div>
+                <div class="nav-item">API</div>
+                <div class="nav-item">Usage</div>
+                <div class="nav-item">Settings</div>
+            </nav>
+
+            <div class="user-section">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div class="user-email" id="userEmail"></div>
+                </div>
+            </div>
+
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div id="loadingIndicator" class="loading">
+                Loading dashboard...
+            </div>
+
+            <div id="dashboardContent" style="display: none;">
+                <div class="header">
+                    <h1>Welcome back, <span id="welcomeName">User</span>!</h1>
+                    <p>Here's what's happening with your account today.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Credits</div>
+                        <div class="stat-value" id="statCredits">0</div>
+                        <div class="stat-change">Available balance</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Chat Messages</div>
+                        <div class="stat-value" id="statMessages">0</div>
+                        <div class="stat-change">This month</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Images Generated</div>
+                        <div class="stat-value" id="statImages">0</div>
+                        <div class="stat-change">This month</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Voice Minutes</div>
+                        <div class="stat-value" id="statVoice">0</div>
+                        <div class="stat-change">This month</div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2 class="section-title">Quick Actions</h2>
+                    <div class="actions-grid">
+                        <div class="action-card" onclick="window.location.href='/chat.html'">
+                            <div class="action-icon">💬</div>
+                            <div class="action-title">Start Chat</div>
+                            <div class="action-desc">Chat with AI assistants</div>
+                        </div>
+
+                        <div class="action-card" onclick="window.location.href='/api-reference.html'">
+                            <div class="action-icon">🔧</div>
+                            <div class="action-title">API Keys</div>
+                            <div class="action-desc">Manage your API access</div>
+                        </div>
+
+                        <div class="action-card" onclick="window.location.href='/settings.html'">
+                            <div class="action-icon">⚙️</div>
+                            <div class="action-title">Settings</div>
+                            <div class="action-desc">Account preferences</div>
+                        </div>
+
+                        <div class="action-card" onclick="window.location.href='/billing.html'">
+                            <div class="action-icon">💳</div>
+                            <div class="action-title">Billing</div>
+                            <div class="action-desc">Plans and payments</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div>
+                    <h2 class="section-title">Recent Activity</h2>
+                    <div class="activity-list" id="activityList">
+                        <div class="activity-item">
+                            <div class="activity-title">No recent activity</div>
+                            <div class="activity-time">Start using the platform to see your activity here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 🔐 httpOnly Cookie Authentication
+        // Cookies are automatically sent with credentials: 'include'
+
+        // Load user data
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include' // Cookies sent automatically
+                });
+
+                if (!response.ok) {
+                    throw new Error('Authentication failed');
+                }
+
+                const data = await response.json();
+                const user = data.user;
+
+                // Update user info
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+
+                // Set user avatar (first letter of name)
+                document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+
+                // Update stats
+                document.getElementById('statCredits').textContent = user.credits || 100;
+                document.getElementById('statMessages').textContent = user.stats?.chatMessages || 0;
+                document.getElementById('statImages').textContent = user.stats?.imagesGenerated || 0;
+                document.getElementById('statVoice').textContent = user.stats?.voiceMinutes || 0;
+
+                // Update recent activity
+                if (user.recentActivity && user.recentActivity.length > 0) {
+                    const activityHtml = user.recentActivity.map(activity => `
+                        <div class="activity-item">
+                            <div class="activity-title">${activity.description || activity.action}</div>
+                            <div class="activity-time">${new Date(activity.createdAt).toLocaleString()}</div>
+                        </div>
+                    `).join('');
+                    document.getElementById('activityList').innerHTML = activityHtml;
+                }
+
+                // Show dashboard
+                document.getElementById('loadingIndicator').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+
+            } catch (error) {
+                console.error('Failed to load dashboard:', error);
+                // Cookies are httpOnly - cleared on server side
+                window.location.href = '/login.html';
+            }
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    credentials: 'include' // Cookies sent automatically
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+
+            // Cookies cleared on server side
+            window.location.href = '/login.html';
+        });
+
+        // Load dashboard on page load
+        loadDashboard();
+    </script>
+    <!-- Translation System -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>
