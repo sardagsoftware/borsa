@@ -1,9 +1,11 @@
 // ============================================
 // 👤 GET CURRENT USER
-// Returns logged in user info from Redis session
+// Returns logged in user info from httpOnly cookie JWT
+// 🔐 httpOnly Cookie Authentication
 // ============================================
 
-const { getSession, getUserById } = require('../../lib/auth/redis-session-store');
+const { getAuthToken } = require('../../middleware/cookie-auth');
+const { verifyToken } = require('../../middleware/api-auth');
 
 module.exports = async (req, res) => {
     // CORS Headers
@@ -21,7 +23,7 @@ module.exports = async (req, res) => {
     }
 
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     if (req.method === 'OPTIONS') {
@@ -33,11 +35,10 @@ module.exports = async (req, res) => {
     }
 
     try {
-        // Get session ID from cookie
-        const cookies = req.headers.cookie || '';
-        const sessionIdMatch = cookies.match(/sessionId=([^;]+)/);
+        // 🔐 Get JWT token from httpOnly cookie or Authorization header
+        const token = getAuthToken(req);
 
-        if (!sessionIdMatch) {
+        if (!token) {
             return res.status(401).json({
                 success: false,
                 authenticated: false,
@@ -45,53 +46,42 @@ module.exports = async (req, res) => {
             });
         }
 
-        const sessionId = sessionIdMatch[1];
+        // Verify JWT token
+        const decoded = verifyToken(token);
 
-        // Get session from Redis
-        const session = await getSession(sessionId);
-
-        if (!session) {
+        if (!decoded) {
             return res.status(401).json({
                 success: false,
                 authenticated: false,
-                error: 'Session expired'
+                error: 'Invalid token'
             });
         }
 
-        // Get user from Redis
-        const user = await getUserById(session.userId);
-
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                authenticated: false,
-                error: 'User not found'
-            });
-        }
-
+        // Return user info from JWT payload
         return res.status(200).json({
             success: true,
             authenticated: true,
             user: {
-                id: user.id,
-                email: user.email,
-                name: user.name,
-                avatarUrl: user.avatarUrl,
-                provider: user.provider,
-                createdAt: user.createdAt
-            },
-            session: {
-                sessionId: sessionId,
-                createdAt: session.createdAt,
-                expiresAt: session.expiresAt
+                id: decoded.userId || decoded.id,
+                email: decoded.email,
+                role: decoded.role || 'USER',
+                subscription: decoded.subscription || 'free',
+                // Mock stats for now
+                credits: 100,
+                stats: {
+                    chatMessages: 0,
+                    imagesGenerated: 0,
+                    voiceMinutes: 0
+                }
             }
         });
 
     } catch (error) {
         console.error('[Auth Me] Error:', error.message);
-        return res.status(500).json({
+        return res.status(401).json({
             success: false,
-            error: 'Failed to get user info'
+            authenticated: false,
+            error: error.message || 'Authentication failed'
         });
     }
 };
