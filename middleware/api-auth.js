@@ -13,14 +13,54 @@
 
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const { getAuthToken } = require('./cookie-auth');
 
-// Configuration - JWT_SECRET is validated by middleware/security.js
-if (!process.env.JWT_SECRET) {
-  throw new Error('🚨 CRITICAL: JWT_SECRET must be set in environment variables!');
+// 🔐 SECURITY FIX: P0-2 - JWT Secret Validation (2025-10-26)
+// CRITICAL: JWT_SECRET must be set in production to prevent session loss on restart
+
+// Configuration
+let JWT_SECRET = process.env.JWT_SECRET;
+
+// Validate JWT_SECRET
+if (!JWT_SECRET) {
+  if (process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production') {
+    throw new Error(
+      '❌ FATAL SECURITY ERROR: JWT_SECRET environment variable is required in production.\n' +
+      'Set JWT_SECRET in your environment variables.\n' +
+      'Generate a secure secret: node -e "console.log(require(\'crypto\').randomBytes(64).toString(\'hex\'))"'
+    );
+  }
+
+  // Development fallback
+  console.warn('⚠️  WARNING: JWT_SECRET not set. Using temporary secret for DEVELOPMENT only.');
+  console.warn('⚠️  All sessions will be invalidated on server restart.');
+  console.warn('⚠️  Generate a secret: node -e "console.log(require(\'crypto\').randomBytes(64).toString(\'hex\'))"');
+
+  JWT_SECRET = crypto.randomBytes(64).toString('hex');
 }
 
-const JWT_SECRET = process.env.JWT_SECRET;
+// Validate secret strength
+if (JWT_SECRET.length < 32) {
+  throw new Error(
+    '❌ SECURITY ERROR: JWT_SECRET must be at least 32 characters long.\n' +
+    'Current length: ' + JWT_SECRET.length + '\n' +
+    'Generate a secure secret: node -e "console.log(require(\'crypto\').randomBytes(64).toString(\'hex\'))"'
+  );
+}
+
+// Prevent common weak secrets
+const WEAK_SECRETS = [
+  'secret', 'password', 'your-secret-here', 'change-me', 'jwt-secret',
+  'ailydian', 'lydian', 'test', '123456', 'default'
+];
+
+if (WEAK_SECRETS.includes(JWT_SECRET.toLowerCase())) {
+  throw new Error(
+    '❌ SECURITY ERROR: JWT_SECRET is using a weak/default value.\n' +
+    'Never use common words as secrets.\n' +
+    'Generate a secure secret: node -e "console.log(require(\'crypto\').randomBytes(64).toString(\'hex\'))"'
+  );
+}
+
 const JWT_EXPIRY = process.env.JWT_EXPIRY || '24h';
 const API_KEY_HEADER = 'X-LyDian-API-Key';
 
@@ -121,10 +161,10 @@ async function authenticate(req, res, next) {
   try {
     let user = null;
 
-    // Check for JWT token (supports both httpOnly cookies and Bearer header)
-    const token = getAuthToken(req);
-
-    if (token) {
+    // Check for Bearer token (JWT)
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.substring(7);
       const decoded = verifyToken(token);
       user = {
         id: decoded.userId,

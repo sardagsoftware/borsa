@@ -1,27 +1,16 @@
 // 🔐 Load environment variables FIRST!
 require('dotenv').config();
 
-// 🔇 PRODUCTION CONSOLE LOGGING CONTROL
-// Disable console.log in production to prevent sensitive data leaks
-if (process.env.NODE_ENV === 'production') {
-  const originalLog = console.log;
-  const originalWarn = console.warn;
+// 🔐 PRODUCTION LOGGER - P0-4 Fix (2025-10-26)
+// Replaces console.log with production-safe Winston logger
+const logger = require('./lib/logger/production-logger');
 
-  console.log = function() {
-    // Silent in production
-  };
-
-  console.warn = function() {
-    // Silent in production
-  };
-
-  // Keep console.error for critical issues
-  console.info = function() {};
-  console.debug = function() {};
-
-  console.productionLog = originalLog; // For emergency debugging
-  console.productionWarn = originalWarn; // For emergency debugging
-}
+// Log startup
+logger.info('🚀 AILYDIAN Ultra Pro Server Starting...', {
+  nodeVersion: process.version,
+  env: process.env.NODE_ENV,
+  port: process.env.PORT || 3100
+});
 
 const express = require('express');
 const cors = require('cors');
@@ -64,49 +53,19 @@ const { complianceHeaders, requireConsent, getComplianceManager } = require('./m
 // 🛡️ STRICT-OMEGA SECURITY INTEGRATION - CRITICAL & MEDIUM VULNERABILITY FIXES
 const { setupFullSecurity, requireAdmin: strictRequireAdmin } = require('./security/security-integration');
 
-// 🔒 ENHANCED SECURITY HEADERS - CRITICAL FIX (Removed unsafe-eval)
-const allowLegacyInlineScripts = process.env.ALLOW_LEGACY_INLINE !== 'false';
-
-if (!allowLegacyInlineScripts) {
-  console.log('🔒 Inline script desteği devre dışı (ALLOW_LEGACY_INLINE=false). CSP nonce/hash gerekecek.');
-} else {
-  console.log('⚠️ Inline script desteği aktif (ALLOW_LEGACY_INLINE !== false).');
-}
-
-const baseScriptSources = [
-  "'self'",
-  "https://vercel.live",
-  "https://va.vercel-scripts.com",
-  "https://cdn.jsdelivr.net",
-  "https://unpkg.com",
-  "https://d3js.org"
-];
-
-const scriptSrcValues = allowLegacyInlineScripts
-  ? ["'self'", "'unsafe-inline'", ...baseScriptSources.filter(src => src !== "'self'")]
-  : baseScriptSources;
-
-const scriptSrcElemValues = allowLegacyInlineScripts
-  ? ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://unpkg.com", "https://d3js.org"]
-  : ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com", "https://d3js.org"];
-
+// 🔒 NIRVANA LEVEL SECURITY HEADERS
 const securityHeaders = (req, res, next) => {
   res.setHeader('Content-Security-Policy',
     "default-src 'self'; " +
-    `script-src ${scriptSrcValues.join(' ')}; ` +
-    `script-src-elem ${scriptSrcElemValues.join(' ')}; ` +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://cdn.jsdelivr.net https://unpkg.com https://d3js.org; " +
+    "script-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://d3js.org; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net; " +
     "img-src 'self' data: https: blob:; " +
     "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
-    // ✅ Added AI API endpoints for fetch calls
-    "connect-src 'self' https://vercel.live https://*.pusher.com https://*.ailydian.com " +
-    "https://api.anthropic.com https://api.openai.com https://api.groq.com https://generativelanguage.googleapis.com " +
-    "https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://cdn.jsdelivr.net https://fonts.gstatic.com https://d3js.org; " +
+    "connect-src 'self' https://vercel.live https://*.pusher.com https://*.ailydian.com https://tile.openstreetmap.org https://*.basemaps.cartocdn.com https://cdn.jsdelivr.net https://fonts.gstatic.com https://d3js.org; " +
     "frame-ancestors 'self'; " +
     "base-uri 'self'; " +
-    "form-action 'self'; " +
-    "object-src 'none'; " + // Prevent Flash/Java execution
-    "upgrade-insecure-requests" // Auto-upgrade HTTP to HTTPS
+    "form-action 'self'"
   );
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   res.setHeader('X-Frame-Options', 'SAMEORIGIN');
@@ -117,18 +76,17 @@ const securityHeaders = (req, res, next) => {
   next();
 };
 
-// 📁 MULTER FILE UPLOAD CONFIGURATION - ENHANCED SECURITY
+// 📁 MULTER FILE UPLOAD CONFIGURATION
 const uploadStorage = multer.memoryStorage();
 const upload = multer({
   storage: uploadStorage,
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit (production security)
     fieldSize: 5 * 1024 * 1024,  // 5MB field limit
-    files: 10, // Max 10 files per request
-    fields: 20 // Max 20 fields per request
+    files: 10 // Max 10 files per request
   },
   fileFilter: (req, file, cb) => {
-    // ✅ CRITICAL FIX: Strict whitelist for file types
+    // Allow all file types for comprehensive AI processing
     const allowedTypes = [
       'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp',
       'application/pdf', 'application/msword',
@@ -138,39 +96,11 @@ const upload = multer({
       'video/mp4', 'video/avi', 'video/mov'
     ];
 
-    // ✅ CRITICAL FIX: File extension validation
-    const allowedExtensions = [
-      '.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp',
-      '.pdf', '.doc', '.docx',
-      '.txt', '.csv', '.json',
-      '.mp3', '.wav', '.ogg',
-      '.mp4', '.avi', '.mov'
-    ];
-
-    const ext = require('path').extname(file.originalname).toLowerCase();
-
-    // Validate both MIME type and extension
-    if (!allowedTypes.includes(file.mimetype)) {
-      return cb(new Error(`Unsupported file type: ${file.mimetype}`), false);
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error(`Unsupported file type: ${file.mimetype}`), false);
     }
-
-    if (!allowedExtensions.includes(ext)) {
-      return cb(new Error(`Unsupported file extension: ${ext}`), false);
-    }
-
-    // ✅ Prevent executable files
-    const dangerousExtensions = ['.exe', '.bat', '.cmd', '.sh', '.ps1', '.php', '.jsp', '.asp'];
-    if (dangerousExtensions.includes(ext)) {
-      console.error('🚨 DANGEROUS FILE UPLOAD ATTEMPT:', {
-        filename: file.originalname,
-        mimetype: file.mimetype,
-        ext,
-        timestamp: new Date().toISOString()
-      });
-      return cb(new Error('Executable files are not allowed'), false);
-    }
-
-    cb(null, true);
   }
 });
 
@@ -1998,26 +1928,6 @@ const aiModels = [
     available: true
   },
   {
-    id: 'glm-4-6',
-    name: 'GLM-4.6 Code Expert',
-    provider: 'z-ai',
-    tokens: '128K',
-    category: 'Z.AI',
-    description: 'Z.AI üst seviye kodlama ve analiz modeli',
-    capabilities: ['code', 'reasoning', 'analysis'],
-    available: !!process.env.Z_AI_API_KEY
-  },
-  {
-    id: 'glm-4-5v',
-    name: 'GLM-4.5v Vision',
-    provider: 'z-ai',
-    tokens: '8K',
-    category: 'Z.AI',
-    description: 'Z.AI görsel anlayış ve multimodal modeli',
-    capabilities: ['vision', 'multimodal', 'analysis'],
-    available: !!process.env.Z_AI_API_KEY
-  },
-  {
     id: 'z-ai-reasoning',
     name: 'Z.AI Reasoning',
     provider: 'z-ai',
@@ -2428,26 +2338,6 @@ app.get('/chat', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'chat.html'));
 });
 
-// 🧠 LYDIAN IQ ROUTE (Ultra Intelligence Platform)
-app.get('/lydian-iq', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'lydian-iq.html'));
-});
-
-// 🏥 MEDICAL EXPERT ROUTE
-app.get('/medical-expert', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'medical-expert.html'));
-});
-
-// ⚖️ LEGAL AI ROUTE (HukukAI Pro)
-app.get('/legal-expert', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'legal-expert.html'));
-});
-
-// 🔍 LEGAL SEARCH ROUTE
-app.get('/lydian-legal-search', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'lydian-legal-search.html'));
-});
-
 // 📊 DASHBOARD ROUTE
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
@@ -2690,11 +2580,6 @@ app.get('/api/docs', (req, res) => {
     }
   });
 });
-
-// 🌌 QUANTUM COMPUTING APIs
-app.post('/api/quantum/vqe', require('./api/quantum/vqe'));
-app.get('/api/quantum/stats', require('./api/quantum/stats'));
-app.post('/api/medical/quantum-analysis', require('./api/medical/quantum-analysis'));
 
 // AI Models API
 app.get('/api/models', (req, res) => {
@@ -7182,10 +7067,6 @@ app.post('/api/medical/chat', medicalChat);
 
 // Get Medical Specializations endpoint removed - not needed for chat.js
 
-// ⚖️ Legal Expert Chat API - POST /api/legal-expert/chat (Groq-first)
-const legalExpertChat = require('./api/legal-expert/chat');
-app.post('/api/legal-expert/chat', legalExpertChat);
-
 // 🎙️ ═══════════════════════════════════════════════════════════════════════════════════
 // AZURE SPEECH STT - MEDICAL TRANSCRIPTION API
 // Real Azure Speech SDK for clinical documentation
@@ -7326,16 +7207,15 @@ app.post('/api/medical/oncology/tumor-markers', oncologyTools.handleTumorMarker)
 // app.post('/api/medical/emergency/qsofa', emergencyTools.handleqSOFA);
 
 const PORT = process.env.PORT || 3100;
-const HOST = process.env.HOST || '0.0.0.0';
 
 // Only start server if not in cluster master mode
 if (shouldStartServer) {
-  server.listen(PORT, HOST, async () => {
+  server.listen(PORT, async () => {
   console.log('🚀 AILYDIAN ULTRA PRO SERVER BAŞLATILDI!');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log(`✅ Server Status: ACTIVE`);
-  console.log(`🌐 Local URL: http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${PORT}`);
-  console.log(`🌍 Network URL: http://${HOST}:${PORT}`);
+  console.log(`🌐 Local URL: http://localhost:${PORT}`);
+  console.log(`🌍 Network URL: http://127.0.0.1:${PORT}`);
   console.log(`🔗 WebSocket URL: ws://localhost:${PORT}`);
   console.log(`🤖 AI Models: ${aiModels.length} models loaded`);
   console.log(`📂 Categories: ${[...new Set(aiModels.map(m => m.category))].length} categories`);
@@ -16578,13 +16458,8 @@ app.get('/api/system/health', async (req, res) => {
   }
 });
 
-// 🎯 SPECIALIZED AI CHAT ENDPOINT - Icon-based AI Selection with Multi-Language Support (Groq-first)
-const chatSpecialized = require('./api/chat/specialized');
-app.post('/api/chat/specialized', chatSpecialized);
-
-// OLD INLINE CODE BELOW - DISABLED
-/*
-app.post('/api/chat/specialized-OLD', async (req, res) => {
+// 🎯 SPECIALIZED AI CHAT ENDPOINT - Icon-based AI Selection with Multi-Language Support
+app.post('/api/chat/specialized', async (req, res) => {
   const { message, aiType, history = [], temperature = 0.7, max_tokens = 2048, language, locale } = req.body;
 
   if (!message) {
@@ -17055,8 +16930,6 @@ app.post('/api/chat/specialized-OLD', async (req, res) => {
     });
   }
 });
-*/
-// END OF OLD INLINE CODE
 
 // ==================================================
 // 🧠 LYDIAN IQ REASONING ENGINE API
