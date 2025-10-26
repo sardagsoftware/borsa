@@ -126,10 +126,36 @@ function setCSP(req, res, next) {
   next();
 }
 
+/**
+ * Simple CORS handler for Vercel serverless functions
+ * Returns true if OPTIONS request (pre-flight) was handled
+ */
+function handleCORS(req, res) {
+  const origin = req.headers.origin;
+
+  // Set CORS headers for allowed origins
+  if (!origin || ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin || '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-CSRF-Token, X-API-Key');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Max-Age', '86400');
+  }
+
+  // Handle OPTIONS pre-flight request
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return true;
+  }
+
+  return false;
+}
+
 module.exports = {
   corsOptions,
   strictCorsOptions,
   setSecurityHeaders,
   setCSP,
+  handleCORS,
   ALLOWED_ORIGINS
 };
