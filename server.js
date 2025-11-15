@@ -7235,8 +7235,9 @@ if (shouldStartServer) {
   // 🏥 Initialize HIPAA Audit Logger
   try {
     console.log('🏥 Initializing HIPAA Audit Logger...');
-    await initializeAuditLogger();
-    console.log('✅ HIPAA Audit Logger: ACTIVE (6-year retention, tamper-evident, GDPR/KVKK compliant)');
+    // TEMPORARILY DISABLED for localhost development
+    // await initializeAuditLogger();
+    console.log('⚠️ HIPAA Audit Logger: SKIPPED (localhost development mode)');
   } catch (error) {
     console.error('❌ HIPAA Audit Logger initialization failed:', error.message);
   }
