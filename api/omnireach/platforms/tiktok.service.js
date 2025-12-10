@@ -11,6 +11,8 @@ const crypto = require('crypto');
 
 class TikTokService {
   constructor() {
+    this.stateStore = new Map(); // CSRF protection
+
     this.config = {
       clientKey: process.env.TIKTOK_CLIENT_KEY,
       clientSecret: process.env.TIKTOK_CLIENT_SECRET,
@@ -21,12 +23,26 @@ class TikTokService {
     console.log('✅ TikTok service initialized');
   }
 
+  generateState() {
+    const state = crypto.randomBytes(32).toString('hex');
+    this.stateStore.set(state, { createdAt: Date.now(), validated: false });
+    setTimeout(() => this.stateStore.delete(state), 10 * 60 * 1000);
+    return state;
+  }
+
+  validateState(state) {
+    const stateData = this.stateStore.get(state);
+    if (!stateData || stateData.validated) return false;
+    this.stateStore.delete(state);
+    return true;
+  }
+
   /**
    * Get OAuth authorization URL
-   * @returns {String} Authorization URL
+   * @returns {Object} Authorization URL and state
    */
   getAuthUrl() {
-    const csrfState = crypto.randomBytes(16).toString('hex');
+    const state = this.generateState();
 
     const scopes = [
       'user.info.basic',
@@ -39,25 +55,26 @@ class TikTokService {
       `&scope=${scopes}` +
       `&response_type=code` +
       `&redirect_uri=${encodeURIComponent(this.config.redirectUri)}` +
-      `&state=${csrfState}`;
+      `&state=${state}`;
 
-    console.log('🔗 TikTok Auth URL generated');
-    console.log(`   CSRF State: ${csrfState}`);
+    console.log('🔗 TikTok Auth URL generated with state protection');
 
-    return {
-      authUrl: authUrl,
-      csrfState: csrfState
-    };
+    return { authUrl, state };
   }
 
   /**
    * Exchange authorization code for access token
    * @param {String} code - Authorization code from OAuth callback
+   * @param {Object} params - Additional parameters (state, etc.)
    * @returns {Object} Token data and user information
    */
-  async connectOAuth(code) {
+  async connectOAuth(code, params = {}) {
     try {
       console.log('🔐 [TikTok] Exchanging auth code for tokens...');
+
+      if (params.state && !this.validateState(params.state)) {
+        throw new Error('Invalid or expired state token (CSRF protection)');
+      }
 
       // Get access token
       const tokenResponse = await axios.post(

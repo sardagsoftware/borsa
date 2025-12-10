@@ -8,9 +8,12 @@
 
 const axios = require('axios');
 const fs = require('fs');
+const crypto = require('crypto');
 
 class FacebookService {
   constructor() {
+    this.stateStore = new Map(); // CSRF protection
+
     this.config = {
       appId: process.env.FACEBOOK_APP_ID,
       appSecret: process.env.FACEBOOK_APP_SECRET,
@@ -21,9 +24,23 @@ class FacebookService {
     console.log('✅ Facebook service initialized');
   }
 
+  generateState() {
+    const state = crypto.randomBytes(32).toString('hex');
+    this.stateStore.set(state, { createdAt: Date.now(), validated: false });
+    setTimeout(() => this.stateStore.delete(state), 10 * 60 * 1000);
+    return state;
+  }
+
+  validateState(state) {
+    const stateData = this.stateStore.get(state);
+    if (!stateData || stateData.validated) return false;
+    this.stateStore.delete(state);
+    return true;
+  }
+
   /**
    * Get OAuth authorization URL
-   * @returns {String} Authorization URL
+   * @returns {Object} Authorization URL and state
    */
   getAuthUrl() {
     const scopes = [
@@ -34,24 +51,32 @@ class FacebookService {
       'publish_video'
     ].join(',');
 
+    const state = this.generateState();
+
     const authUrl = `https://www.facebook.com/v18.0/dialog/oauth?` +
       `client_id=${this.config.appId}` +
       `&redirect_uri=${encodeURIComponent(this.config.redirectUri)}` +
       `&scope=${scopes}` +
-      `&response_type=code`;
+      `&response_type=code` +
+      `&state=${state}`;
 
-    console.log('🔗 Facebook Auth URL generated');
-    return authUrl;
+    console.log('🔗 Facebook Auth URL generated with state protection');
+    return { authUrl, state };
   }
 
   /**
    * Exchange authorization code for access token
    * @param {String} code - Authorization code from OAuth callback
+   * @param {Object} params - Additional parameters (state, etc.)
    * @returns {Object} Token data and page information
    */
-  async connectOAuth(code) {
+  async connectOAuth(code, params = {}) {
     try {
       console.log('🔐 [Facebook] Exchanging auth code for tokens...');
+
+      if (params.state && !this.validateState(params.state)) {
+        throw new Error('Invalid or expired state token (CSRF protection)');
+      }
 
       // Step 1: Exchange code for user access token
       const tokenResponse = await axios.get(`${this.config.graphApiUrl}/oauth/access_token`, {
@@ -92,8 +117,16 @@ class FacebookService {
         console.log(`   - ${page.name} (${page.fanCount} fans)`);
       });
 
+      const primaryPage = pages[0];
+
       return {
         success: true,
+        tokens: {
+          access_token: userAccessToken,
+          page_access_token: primaryPage.accessToken,
+          token_type: 'bearer'
+        },
+        accountName: primaryPage.name,
         userAccessToken: userAccessToken,
         pages: pages
       };
@@ -103,6 +136,34 @@ class FacebookService {
         success: false,
         error: error.message
       };
+    }
+  }
+
+  async refreshAccessToken(accessToken) {
+    try {
+      console.log('🔄 [Facebook] Refreshing access token...');
+
+      const response = await axios.get(`${this.config.graphApiUrl}/oauth/access_token`, {
+        params: {
+          grant_type: 'fb_exchange_token',
+          client_id: this.config.appId,
+          client_secret: this.config.appSecret,
+          fb_exchange_token: accessToken
+        }
+      });
+
+      console.log('✅ [Facebook] Access token refreshed');
+      return {
+        success: true,
+        tokens: {
+          access_token: response.data.access_token,
+          token_type: 'bearer',
+          expires_in: response.data.expires_in
+        }
+      };
+    } catch (error) {
+      console.error('❌ [Facebook] Token refresh failed:', error.message);
+      return { success: false, error: error.message };
     }
   }
 

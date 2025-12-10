@@ -9,12 +9,15 @@
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
+const crypto = require('crypto');
 
 class InstagramService {
   constructor() {
+    this.stateStore = new Map(); // Temporary state storage for CSRF protection
+
     this.config = {
-      appId: process.env.INSTAGRAM_APP_ID,
-      appSecret: process.env.INSTAGRAM_APP_SECRET,
+      appId: process.env.INSTAGRAM_CLIENT_ID || process.env.INSTAGRAM_APP_ID,
+      appSecret: process.env.INSTAGRAM_CLIENT_SECRET || process.env.INSTAGRAM_APP_SECRET,
       redirectUri: process.env.INSTAGRAM_REDIRECT_URI || 'http://localhost:3500/api/omnireach/platforms/instagram/callback',
       graphApiUrl: 'https://graph.facebook.com/v18.0'
     };
@@ -23,8 +26,50 @@ class InstagramService {
   }
 
   /**
+   * Generate CSRF state token
+   * @returns {String} State token
+   */
+  generateState() {
+    const state = crypto.randomBytes(32).toString('hex');
+    this.stateStore.set(state, {
+      createdAt: Date.now(),
+      validated: false
+    });
+
+    // Auto-cleanup after 10 minutes
+    setTimeout(() => {
+      this.stateStore.delete(state);
+    }, 10 * 60 * 1000);
+
+    return state;
+  }
+
+  /**
+   * Validate CSRF state token
+   * @param {String} state - State token to validate
+   * @returns {Boolean} Valid or not
+   */
+  validateState(state) {
+    const stateData = this.stateStore.get(state);
+
+    if (!stateData) {
+      console.warn('⚠️ [Instagram] Invalid or expired state token');
+      return false;
+    }
+
+    if (stateData.validated) {
+      console.warn('⚠️ [Instagram] State token already used');
+      return false;
+    }
+
+    // Mark as validated and delete
+    this.stateStore.delete(state);
+    return true;
+  }
+
+  /**
    * Get OAuth authorization URL
-   * @returns {String} Authorization URL
+   * @returns {Object} Authorization URL and state
    */
   getAuthUrl() {
     const scopes = [
@@ -34,24 +79,36 @@ class InstagramService {
       'pages_read_engagement'
     ].join(',');
 
+    const state = this.generateState();
+
     const authUrl = `https://www.facebook.com/v18.0/dialog/oauth?` +
       `client_id=${this.config.appId}` +
       `&redirect_uri=${encodeURIComponent(this.config.redirectUri)}` +
       `&scope=${scopes}` +
-      `&response_type=code`;
+      `&response_type=code` +
+      `&state=${state}`;
 
-    console.log('🔗 Instagram Auth URL generated');
-    return authUrl;
+    console.log('🔗 Instagram Auth URL generated with state protection');
+    return { authUrl, state };
   }
 
   /**
    * Exchange authorization code for access token
    * @param {String} code - Authorization code from OAuth callback
+   * @param {Object} params - Additional parameters (state, etc.)
    * @returns {Object} Token data with Instagram Business Account ID
    */
-  async connectOAuth(code) {
+  async connectOAuth(code, params = {}) {
     try {
       console.log('🔐 [Instagram] Exchanging auth code for tokens...');
+
+      // Validate CSRF state token if provided
+      if (params.state) {
+        if (!this.validateState(params.state)) {
+          throw new Error('Invalid or expired state token (CSRF protection)');
+        }
+        console.log('✅ [Instagram] State token validated');
+      }
 
       // Step 1: Exchange code for access token
       const tokenResponse = await axios.get(`${this.config.graphApiUrl}/oauth/access_token`, {
@@ -109,7 +166,12 @@ class InstagramService {
 
       return {
         success: true,
-        accessToken: pageAccessToken,
+        tokens: {
+          access_token: pageAccessToken,
+          token_type: 'bearer'
+        },
+        accountName: `@${igAccount.username}`,
+        username: igAccount.username,
         igAccountId: igAccountId,
         account: {
           id: igAccountId,
@@ -123,6 +185,43 @@ class InstagramService {
       };
     } catch (error) {
       console.error('❌ [Instagram] OAuth connection failed:', error.message);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+
+  /**
+   * Refresh long-lived access token
+   * @param {String} accessToken - Short-lived access token
+   * @returns {Object} Long-lived token
+   */
+  async refreshAccessToken(accessToken) {
+    try {
+      console.log('🔄 [Instagram] Refreshing access token to long-lived...');
+
+      const response = await axios.get(`${this.config.graphApiUrl}/oauth/access_token`, {
+        params: {
+          grant_type: 'fb_exchange_token',
+          client_id: this.config.appId,
+          client_secret: this.config.appSecret,
+          fb_exchange_token: accessToken
+        }
+      });
+
+      console.log('✅ [Instagram] Access token refreshed (valid for ~60 days)');
+
+      return {
+        success: true,
+        tokens: {
+          access_token: response.data.access_token,
+          token_type: response.data.token_type,
+          expires_in: response.data.expires_in
+        }
+      };
+    } catch (error) {
+      console.error('❌ [Instagram] Token refresh failed:', error.message);
       return {
         success: false,
         error: error.message
