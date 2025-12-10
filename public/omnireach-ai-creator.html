@@ -1508,8 +1508,14 @@
         const data = await response.json();
 
         if (data.success && data.authUrl) {
-          // Store platform info in sessionStorage for callback
+          // Store platform info and state in sessionStorage for callback
           sessionStorage.setItem('omnireach_connecting_platform', platform);
+
+          // Store CSRF state token if provided
+          if (data.state) {
+            sessionStorage.setItem(`omnireach_state_${platform}`, data.state);
+            console.log('🔐 CSRF state token stored');
+          }
 
           // Open OAuth window
           const width = 600;
@@ -1704,18 +1710,33 @@
       try {
         console.log(`🔄 Processing OAuth callback for ${platform}...`);
 
+        // Retrieve and validate state token for CSRF protection
+        const urlParams = new URLSearchParams(window.location.search);
+        const returnedState = urlParams.get('state');
+        const storedState = sessionStorage.getItem(`omnireach_state_${platform}`);
+
+        const requestBody = { code };
+
+        // Include state token if available
+        if (returnedState) {
+          requestBody.state = returnedState;
+          console.log('🔐 Validating CSRF state token...');
+        }
+
         const response = await fetch(`${API_BASE}/platforms/${platform}/connect`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ code })
+          body: JSON.stringify(requestBody)
         });
 
         const data = await response.json();
 
         if (data.success) {
+          // Cleanup session storage
           sessionStorage.removeItem('omnireach_connecting_platform');
+          sessionStorage.removeItem(`omnireach_state_${platform}`);
 
           // Update UI
           updatePlatformUI(platform, true, data.accountName);
@@ -1734,7 +1755,9 @@
         console.error(`❌ OAuth callback error for ${platform}:`, error);
         alert(`❌ Platform bağlantısı tamamlanamadı: ${error.message}`);
 
+        // Cleanup on error
         sessionStorage.removeItem('omnireach_connecting_platform');
+        sessionStorage.removeItem(`omnireach_state_${platform}`);
       }
     }
 

@@ -302,11 +302,16 @@ router.get('/platforms/:platform/auth', (req, res) => {
       });
     }
 
-    const authUrl = service.getAuthUrl();
+    const authData = service.getAuthUrl();
+
+    // Handle both old string format and new object format
+    const authUrl = typeof authData === 'string' ? authData : authData.authUrl;
+    const state = typeof authData === 'object' ? authData.state : undefined;
 
     res.json({
       success: true,
       authUrl: authUrl,
+      state: state,
       platform: platform
     });
   } catch (error) {
@@ -338,9 +343,89 @@ router.post('/platforms/:platform/connect', async (req, res) => {
 
     const result = await service.connectOAuth(code, otherParams);
 
+    // If connection successful, store token in session
+    if (result.success && result.tokens) {
+      if (!req.session.platformTokens) {
+        req.session.platformTokens = {};
+      }
+
+      req.session.platformTokens[platform] = {
+        tokens: result.tokens,
+        accountName: result.channel?.title || result.username || result.accountName || '',
+        connectedAt: new Date().toISOString()
+      };
+
+      console.log(`✅ [API] ${platform} tokens stored in session`);
+    }
+
     res.json(result);
   } catch (error) {
     console.error('❌ [API] Platform connect error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/omnireach/platforms/:platform/status
+ * Get platform connection status
+ */
+router.get('/platforms/:platform/status', (req, res) => {
+  try {
+    const { platform } = req.params;
+
+    // Check if platform tokens exist in session
+    const platformTokens = req.session?.platformTokens?.[platform];
+
+    if (platformTokens && platformTokens.tokens) {
+      res.json({
+        success: true,
+        connected: true,
+        accountName: platformTokens.accountName,
+        connectedAt: platformTokens.connectedAt
+      });
+    } else {
+      res.json({
+        success: true,
+        connected: false,
+        accountName: ''
+      });
+    }
+  } catch (error) {
+    console.error('❌ [API] Platform status error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/**
+ * DELETE /api/omnireach/platforms/:platform/disconnect
+ * Disconnect platform account
+ */
+router.delete('/platforms/:platform/disconnect', (req, res) => {
+  try {
+    const { platform } = req.params;
+
+    if (req.session?.platformTokens?.[platform]) {
+      delete req.session.platformTokens[platform];
+      console.log(`🔌 [API] ${platform} disconnected`);
+
+      res.json({
+        success: true,
+        message: `${platform} disconnected successfully`
+      });
+    } else {
+      res.json({
+        success: true,
+        message: `${platform} was not connected`
+      });
+    }
+  } catch (error) {
+    console.error('❌ [API] Platform disconnect error:', error);
     res.status(500).json({
       success: false,
       error: error.message

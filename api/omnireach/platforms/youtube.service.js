@@ -9,11 +9,13 @@
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 class YouTubeService {
   constructor() {
     this.oauth2Client = null;
     this.youtube = null;
+    this.stateStore = new Map(); // Temporary state storage for CSRF protection
 
     this.config = {
       clientId: process.env.YOUTUBE_CLIENT_ID,
@@ -47,8 +49,50 @@ class YouTubeService {
   }
 
   /**
+   * Generate CSRF state token
+   * @returns {String} State token
+   */
+  generateState() {
+    const state = crypto.randomBytes(32).toString('hex');
+    this.stateStore.set(state, {
+      createdAt: Date.now(),
+      validated: false
+    });
+
+    // Auto-cleanup after 10 minutes
+    setTimeout(() => {
+      this.stateStore.delete(state);
+    }, 10 * 60 * 1000);
+
+    return state;
+  }
+
+  /**
+   * Validate CSRF state token
+   * @param {String} state - State token to validate
+   * @returns {Boolean} Valid or not
+   */
+  validateState(state) {
+    const stateData = this.stateStore.get(state);
+
+    if (!stateData) {
+      console.warn('⚠️ [YouTube] Invalid or expired state token');
+      return false;
+    }
+
+    if (stateData.validated) {
+      console.warn('⚠️ [YouTube] State token already used');
+      return false;
+    }
+
+    // Mark as validated and delete
+    this.stateStore.delete(state);
+    return true;
+  }
+
+  /**
    * Get OAuth authorization URL
-   * @returns {String} Authorization URL
+   * @returns {Object} Authorization URL and state
    */
   getAuthUrl() {
     const scopes = [
@@ -57,24 +101,36 @@ class YouTubeService {
       'https://www.googleapis.com/auth/youtube.force-ssl'
     ];
 
+    const state = this.generateState();
+
     const authUrl = this.oauth2Client.generateAuthUrl({
       access_type: 'offline',
       scope: scopes,
-      prompt: 'consent'
+      prompt: 'consent',
+      state: state
     });
 
-    console.log('🔗 YouTube Auth URL generated');
-    return authUrl;
+    console.log('🔗 YouTube Auth URL generated with state protection');
+    return { authUrl, state };
   }
 
   /**
    * Exchange authorization code for tokens
    * @param {String} code - Authorization code from OAuth callback
+   * @param {Object} params - Additional parameters (state, etc.)
    * @returns {Object} Token data
    */
-  async connectOAuth(code) {
+  async connectOAuth(code, params = {}) {
     try {
       console.log('🔐 [YouTube] Exchanging auth code for tokens...');
+
+      // Validate CSRF state token if provided
+      if (params.state) {
+        if (!this.validateState(params.state)) {
+          throw new Error('Invalid or expired state token (CSRF protection)');
+        }
+        console.log('✅ [YouTube] State token validated');
+      }
 
       const { tokens } = await this.oauth2Client.getToken(code);
       this.oauth2Client.setCredentials(tokens);
@@ -94,6 +150,7 @@ class YouTubeService {
       return {
         success: true,
         tokens: tokens,
+        accountName: channel.snippet.title,
         channel: {
           id: channel.id,
           title: channel.snippet.title,
@@ -107,6 +164,33 @@ class YouTubeService {
       };
     } catch (error) {
       console.error('❌ [YouTube] OAuth connection failed:', error.message);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+
+  /**
+   * Refresh access token
+   * @param {Object} tokens - Current tokens with refresh_token
+   * @returns {Object} New tokens
+   */
+  async refreshAccessToken(tokens) {
+    try {
+      console.log('🔄 [YouTube] Refreshing access token...');
+
+      this.oauth2Client.setCredentials(tokens);
+      const { credentials } = await this.oauth2Client.refreshAccessToken();
+
+      console.log('✅ [YouTube] Access token refreshed');
+
+      return {
+        success: true,
+        tokens: credentials
+      };
+    } catch (error) {
+      console.error('❌ [YouTube] Token refresh failed:', error.message);
       return {
         success: false,
         error: error.message
