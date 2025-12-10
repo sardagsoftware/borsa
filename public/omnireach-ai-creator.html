@@ -79,6 +79,15 @@
       gap: 10px;
     }
 
+    .brand svg {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
     .badge {
       padding: 4px 12px;
       border-radius: 6px;
@@ -86,6 +95,12 @@
       font-weight: 700;
       background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
       color: #FFF;
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
     }
 
     .nav-btns {
@@ -102,7 +117,9 @@
       border: none;
       font-size: 14px;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .btn-outline {
@@ -114,6 +131,7 @@
     .btn-outline:hover {
       background: var(--glass);
       border-color: var(--accent-2);
+      transform: translateY(-2px);
     }
 
     .btn-primary {
@@ -142,6 +160,28 @@
       border-radius: 24px;
       margin-bottom: 3rem;
       border: 1px solid var(--stroke);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(110, 132, 255, 0.1), transparent 30%);
+      animation: rotate 8s linear infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
@@ -206,6 +246,17 @@
       background: var(--glass-2);
       color: var(--accent-2);
       border-left: 3px solid var(--accent-2);
+      transform: translateX(5px);
+    }
+
+    .nav-item svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover svg {
+      transform: scale(1.2);
     }
 
     /* Main Content */
@@ -229,6 +280,24 @@
       border-radius: 16px;
       padding: 1.5rem;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(110, 132, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
     }
 
     .stat-card:hover {
@@ -283,6 +352,9 @@
       font-weight: 800;
       margin-bottom: 1.5rem;
       color: var(--txt-1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     /* Script Editor */
@@ -298,6 +370,12 @@
       resize: vertical;
       width: 100%;
       outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .editor:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px rgba(110, 132, 255, 0.2);
     }
 
     /* Avatar Preview */
@@ -312,6 +390,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .avatar-preview:hover {
+      border-color: var(--accent-2);
     }
 
     .avatar-placeholder {
@@ -322,9 +405,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
       margin-bottom: 1rem;
       box-shadow: 0 20px 60px rgba(110, 132, 255, 0.4);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 20px 60px rgba(110, 132, 255, 0.4); }
+      50% { box-shadow: 0 20px 80px rgba(110, 132, 255, 0.8); }
     }
 
     /* Voice Waveform */
@@ -373,6 +461,7 @@
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
+      transition: all 0.3s ease;
     }
 
     .pipeline-step.completed {
@@ -409,11 +498,18 @@
     .platform-card:hover {
       transform: translateY(-4px);
       border-color: var(--accent-2);
+      box-shadow: 0 8px 30px rgba(110, 132, 255, 0.3);
     }
 
-    .platform-icon {
-      font-size: 48px;
+    .platform-icon svg {
+      width: 48px;
+      height: 48px;
       margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .platform-card:hover .platform-icon svg {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .platform-name {
@@ -478,25 +574,109 @@
       box-shadow: 0 0 0 3px rgba(110, 132, 255, 0.2);
     }
 
-    /* Loading */
-    .loading {
+    /* Modal/Popup */
+    .modal-overlay {
       display: none;
-      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
       align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
       padding: 2rem;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideUp 0.3s ease;
     }
 
-    .loader {
-      width: 48px;
-      height: 48px;
-      border: 4px solid var(--glass);
-      border-top-color: var(--accent-2);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--txt-1);
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--danger);
+      transform: rotate(90deg);
+    }
+
+    .modal h2 {
+      margin-bottom: 1.5rem;
+      color: var(--txt-1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+    }
+
+    .modal-section h3 {
+      color: var(--accent-2);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-section p, .modal-section ul {
+      color: var(--txt-2);
+      line-height: 1.6;
+    }
+
+    .modal-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .modal-section li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: start;
+      gap: 10px;
+    }
+
+    .modal-section li::before {
+      content: '→';
+      color: var(--accent-2);
+      font-weight: 700;
     }
 
     /* Responsive */
@@ -512,6 +692,11 @@
       .stats-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
+
+      .modal {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+      }
     }
   </style>
 </head>
@@ -520,12 +705,41 @@
   <header class="header">
     <div class="header-container">
       <a href="/index.html" class="brand">
-        🚀 OmniReach AI Creator
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#grad1)"/>
+          <path d="M16 8L20 12L16 16L12 12L16 8Z" fill="white" opacity="0.9"/>
+          <path d="M16 16L20 20L16 24L12 20L16 16Z" fill="white" opacity="0.7"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#6E84FF"/>
+              <stop offset="100%" stop-color="#B86BFF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        OmniReach AI Creator
         <span class="badge">PREMIUM</span>
       </a>
       <div class="nav-btns">
-        <a href="/index.html" class="btn btn-outline">← Ana Sayfa</a>
-        <button class="btn btn-primary" onclick="alert('Demo modunda çalışıyor!')">Test Et</button>
+        <button class="btn btn-outline" onclick="openGuideModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <circle cx="12" cy="17" r="0.5" fill="currentColor"/>
+          </svg>
+          Nasıl Kullanılır
+        </button>
+        <a href="/index.html" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Ana Sayfa
+        </a>
+        <button class="btn btn-primary" onclick="alert('Demo modunda çalışıyor!')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Test Et
+        </button>
       </div>
     </div>
   </header>
@@ -534,11 +748,31 @@
   <div class="container">
     <!-- Hero -->
     <div class="hero">
-      <h1>🎬 Faceless Content Creator Engine</h1>
-      <p>AI-powered avatar, script, voice ve multi-platform publishing sistemi. YouTube, Instagram, Facebook, TikTok ve X (Twitter) için etik ve profesyonel içerik üretimi.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-        <button class="btn btn-primary" onclick="switchPanel('creator')">🎬 Yeni İçerik Oluştur</button>
-        <button class="btn btn-outline" onclick="switchPanel('jobs')">📊 İşlerim</button>
+      <div class="hero-content">
+        <h1>AI-Powered Content Creator Engine</h1>
+        <p>Yapay zeka destekli avatar, senaryo, ses sentezi ve çoklu platform yayımlama sistemi. YouTube, Instagram, Facebook, TikTok ve X için etik ve profesyonel içerik üretimi.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+          <button class="btn btn-primary" onclick="switchPanel('creator')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+            Yeni İçerik Oluştur
+          </button>
+          <button class="btn btn-outline" onclick="switchPanel('jobs')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+              <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+            </svg>
+            İşlerim
+          </button>
+        </div>
       </div>
     </div>
 
@@ -572,19 +806,41 @@
       <div class="sidebar">
         <div class="sidebar-title">Kontrol Paneli</div>
         <div class="nav-item active" onclick="switchPanel('creator')">
-          🎬 İçerik Oluşturucu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+            <line x1="7" y1="2" x2="7" y2="22"/>
+            <line x1="17" y1="2" x2="17" y2="22"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+          </svg>
+          İçerik Oluşturucu
         </div>
         <div class="nav-item" onclick="switchPanel('jobs')">
-          📊 İşlerim
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+            <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+          </svg>
+          İşlerim
         </div>
         <div class="nav-item" onclick="switchPanel('platforms')">
-          🌐 Platform Bağlantıları
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Platform Bağlantıları
         </div>
         <div class="nav-item" onclick="switchPanel('settings')">
-          ⚙️ Ayarlar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"/>
+          </svg>
+          Ayarlar
         </div>
         <div class="nav-item" onclick="switchPanel('compliance')">
-          🛡️ Compliance
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Compliance
         </div>
       </div>
 
@@ -592,7 +848,15 @@
       <div class="main-content">
         <!-- Content Creator Panel -->
         <div id="panel-creator" class="panel active">
-          <div class="panel-title">🎬 Yeni İçerik Oluştur</div>
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+            </svg>
+            Yeni İçerik Oluştur
+          </div>
 
           <div class="form-group">
             <label class="form-label">Proje Adı</label>
@@ -608,9 +872,21 @@
             <div>
               <label class="form-label">Avatar Seçimi</label>
               <div class="avatar-preview">
-                <div class="avatar-placeholder">🤖</div>
+                <div class="avatar-placeholder">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
                 <p style="color: var(--txt-2);">Avatar önizlemesi</p>
-                <button class="btn btn-outline" style="margin-top: 1rem;">Avatar Seç</button>
+                <button class="btn btn-outline" style="margin-top: 1rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  Avatar Seç
+                </button>
               </div>
             </div>
             <div>
@@ -639,31 +915,60 @@
             <div class="platform-grid">
               <label class="platform-card">
                 <input type="checkbox" checked style="display: none;">
-                <div class="platform-icon">📺</div>
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/>
+                  </svg>
+                </div>
                 <div class="platform-name">YouTube</div>
                 <div class="platform-status connected">Bağlı</div>
               </label>
               <label class="platform-card">
                 <input type="checkbox" checked style="display: none;">
-                <div class="platform-icon">📸</div>
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="url(#instagram-grad)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <defs>
+                      <linearGradient id="instagram-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f09433"/>
+                        <stop offset="25%" stop-color="#e6683c"/>
+                        <stop offset="50%" stop-color="#dc2743"/>
+                        <stop offset="75%" stop-color="#cc2366"/>
+                        <stop offset="100%" stop-color="#bc1888"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
                 <div class="platform-name">Instagram</div>
                 <div class="platform-status connected">Bağlı</div>
               </label>
               <label class="platform-card">
                 <input type="checkbox" style="display: none;">
-                <div class="platform-icon">👥</div>
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="#1877F2">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
                 <div class="platform-name">Facebook</div>
                 <div class="platform-status">Bağlı Değil</div>
               </label>
               <label class="platform-card">
                 <input type="checkbox" checked style="display: none;">
-                <div class="platform-icon">🎵</div>
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                </div>
                 <div class="platform-name">TikTok</div>
                 <div class="platform-status connected">Bağlı</div>
               </label>
               <label class="platform-card">
                 <input type="checkbox" style="display: none;">
-                <div class="platform-icon">𝕏</div>
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </div>
                 <div class="platform-name">X (Twitter)</div>
                 <div class="platform-status">Bağlı Değil</div>
               </label>
@@ -671,39 +976,76 @@
           </div>
 
           <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
-            <button class="btn btn-outline">📝 Taslak Kaydet</button>
-            <button class="btn btn-primary" onclick="startRendering()">🚀 Render ve Yayınla</button>
+            <button class="btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/>
+                <polyline points="7 3 7 8 15 8"/>
+              </svg>
+              Taslak Kaydet
+            </button>
+            <button class="btn btn-primary" onclick="startRendering()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+              </svg>
+              Render ve Yayınla
+            </button>
           </div>
         </div>
 
         <!-- Jobs Panel -->
         <div id="panel-jobs" class="panel">
-          <div class="panel-title">📊 İçerik İşleri</div>
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+              <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+            </svg>
+            İçerik İşleri
+          </div>
 
           <div class="pipeline">
             <div class="pipeline-step completed">
-              <div style="font-size: 32px; margin-bottom: 0.5rem;">✅</div>
-              <div style="font-weight: 700;">Script Hazır</div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Script Hazır</div>
               <div style="font-size: 12px; color: var(--txt-2);">Tamamlandı</div>
             </div>
             <div class="pipeline-step completed">
-              <div style="font-size: 32px; margin-bottom: 0.5rem;">🎤</div>
-              <div style="font-weight: 700;">Voice Render</div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Voice Render</div>
               <div style="font-size: 12px; color: var(--txt-2);">Tamamlandı</div>
             </div>
             <div class="pipeline-step processing">
-              <div style="font-size: 32px; margin-bottom: 0.5rem;">🎬</div>
-              <div style="font-weight: 700;">Video Compose</div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6E84FF" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                <line x1="7" y1="2" x2="7" y2="22"/>
+                <line x1="17" y1="2" x2="17" y2="22"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Video Compose</div>
               <div style="font-size: 12px; color: var(--txt-2);">İşleniyor...</div>
             </div>
             <div class="pipeline-step">
-              <div style="font-size: 32px; margin-bottom: 0.5rem;">🔍</div>
-              <div style="font-weight: 700;">Ethics Check</div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Ethics Check</div>
               <div style="font-size: 12px; color: var(--txt-2);">Bekliyor</div>
             </div>
             <div class="pipeline-step">
-              <div style="font-size: 32px; margin-bottom: 0.5rem;">🚀</div>
-              <div style="font-weight: 700;">Publishing</div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="16 12 12 8 8 12"/>
+                <line x1="12" y1="16" x2="12" y2="8"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Publishing</div>
               <div style="font-size: 12px; color: var(--txt-2);">Bekliyor</div>
             </div>
           </div>
@@ -715,15 +1057,26 @@
 
         <!-- Platforms Panel -->
         <div id="panel-platforms" class="panel">
-          <div class="panel-title">🌐 Platform Bağlantıları</div>
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            Platform Bağlantıları
+          </div>
 
           <div style="display: grid; gap: 1rem;">
             <div class="stat-card">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 32px;">📺</div>
-                  <div style="font-weight: 700; margin-top: 0.5rem;">YouTube</div>
-                  <div style="font-size: 12px; color: var(--success);">Bağlı - @myChannel</div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="#FF0000">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">YouTube</div>
+                    <div style="font-size: 12px; color: var(--success);">Bağlı - @myChannel</div>
+                  </div>
                 </div>
                 <button class="btn btn-outline">Yönet</button>
               </div>
@@ -731,10 +1084,23 @@
 
             <div class="stat-card">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 32px;">📸</div>
-                  <div style="font-weight: 700; margin-top: 0.5rem;">Instagram</div>
-                  <div style="font-size: 12px; color: var(--success);">Bağlı - @myProfile</div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="url(#instagram-grad2)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <defs>
+                      <linearGradient id="instagram-grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f09433"/>
+                        <stop offset="25%" stop-color="#e6683c"/>
+                        <stop offset="50%" stop-color="#dc2743"/>
+                        <stop offset="75%" stop-color="#cc2366"/>
+                        <stop offset="100%" stop-color="#bc1888"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">Instagram</div>
+                    <div style="font-size: 12px; color: var(--success);">Bağlı - @myProfile</div>
+                  </div>
                 </div>
                 <button class="btn btn-outline">Yönet</button>
               </div>
@@ -742,10 +1108,14 @@
 
             <div class="stat-card">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 32px;">👥</div>
-                  <div style="font-weight: 700; margin-top: 0.5rem;">Facebook</div>
-                  <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="#1877F2">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">Facebook</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
                 </div>
                 <button class="btn btn-primary">Bağla</button>
               </div>
@@ -753,10 +1123,14 @@
 
             <div class="stat-card">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 32px;">🎵</div>
-                  <div style="font-weight: 700; margin-top: 0.5rem;">TikTok</div>
-                  <div style="font-size: 12px; color: var(--success);">Bağlı - @myTikTok</div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">TikTok</div>
+                    <div style="font-size: 12px; color: var(--success);">Bağlı - @myTikTok</div>
+                  </div>
                 </div>
                 <button class="btn btn-outline">Yönet</button>
               </div>
@@ -764,10 +1138,14 @@
 
             <div class="stat-card">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 32px;">𝕏</div>
-                  <div style="font-weight: 700; margin-top: 0.5rem;">X (Twitter)</div>
-                  <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">X (Twitter)</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
                 </div>
                 <button class="btn btn-primary">Bağla</button>
               </div>
@@ -777,7 +1155,13 @@
 
         <!-- Settings Panel -->
         <div id="panel-settings" class="panel">
-          <div class="panel-title">⚙️ Ayarlar</div>
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"/>
+            </svg>
+            Ayarlar
+          </div>
 
           <div class="form-group">
             <label class="form-label">Varsayılan Voice Profile</label>
@@ -809,27 +1193,67 @@
             </div>
           </div>
 
-          <button class="btn btn-primary">💾 Ayarları Kaydet</button>
+          <button class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            Ayarları Kaydet
+          </button>
         </div>
 
         <!-- Compliance Panel -->
         <div id="panel-compliance" class="panel">
-          <div class="panel-title">🛡️ Compliance & Ethics</div>
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Compliance & Ethics
+          </div>
 
           <div style="margin-bottom: 2rem;">
             <div class="compliance-badge secure">
-              ✅ Sistem Güvenli ve Uyumlu
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Sistem Güvenli ve Uyumlu
             </div>
           </div>
 
           <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid var(--stroke); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
             <h3 style="margin-bottom: 1rem;">Etik Kurallar</h3>
             <ul style="list-style: none; padding: 0;">
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ Kimlik Taklit Koruması Aktif</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ Otomatik Watermark Ekleme</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ İçerik Moderasyonu</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ Platform Politikaları Uyumluluğu</li>
-              <li style="padding: 0.5rem 0;">✅ Tüm İşlemler Loglanıyor</li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Kimlik Taklit Koruması Aktif
+              </li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Otomatik Watermark Ekleme
+              </li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                İçerik Moderasyonu
+              </li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Platform Politikaları Uyumluluğu
+              </li>
+              <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Tüm İşlemler Loglanıyor
+              </li>
             </ul>
           </div>
 
@@ -843,6 +1267,139 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Guide Modal -->
+  <div id="guideModal" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" onclick="closeGuideModal()">×</button>
+
+      <h2>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <circle cx="12" cy="17" r="0.5" fill="currentColor"/>
+        </svg>
+        OmniReach AI Creator Kullanım Kılavuzu
+      </h2>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Genel Bakış
+        </h3>
+        <p>OmniReach AI Creator, yapay zeka destekli faceless (yüzsüz) video içeriği oluşturmanızı ve bu içerikleri YouTube, Instagram, Facebook, TikTok ve X (Twitter) gibi platformlarda otomatik olarak yayımlamanızı sağlayan profesyonel bir sistemdir.</p>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          Hızlı Başlangıç
+        </h3>
+        <ul>
+          <li><strong>Adım 1:</strong> Sol menüden "İçerik Oluşturucu" paneline gidin</li>
+          <li><strong>Adım 2:</strong> Proje adını girin ve içerik senaryonuzu yazın veya AI ile oluşturun</li>
+          <li><strong>Adım 3:</strong> Avatar seçin - AI tarafından oluşturulacak dijital karakter</li>
+          <li><strong>Adım 4:</strong> Voice Profile seçin - Türkçe veya İngilizce profesyonel sesler</li>
+          <li><strong>Adım 5:</strong> Hedef platformları seçin (YouTube, Instagram, vb.)</li>
+          <li><strong>Adım 6:</strong> "Render ve Yayınla" butonuna tıklayın</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M2 12h20"/>
+          </svg>
+          Panel Açıklamaları
+        </h3>
+        <ul>
+          <li><strong>İçerik Oluşturucu:</strong> Yeni video içeriği oluşturma ve render işlemi başlatma paneli</li>
+          <li><strong>İşlerim:</strong> Render sürecindeki ve tamamlanmış içeriklerin durumunu görüntüleme paneli</li>
+          <li><strong>Platform Bağlantıları:</strong> Sosyal medya hesaplarınızı OAuth ile güvenli şekilde bağlama paneli</li>
+          <li><strong>Ayarlar:</strong> Varsayılan ses profili, video kalitesi ve watermark ayarları</li>
+          <li><strong>Compliance:</strong> Etik kurallar ve içerik uyumluluk durumunun kontrol paneli</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Etik ve Uyumluluk
+        </h3>
+        <p>OmniReach AI Creator, WHITE-HAT (beyaz şapkalı) prensiplerine göre çalışır:</p>
+        <ul>
+          <li>Tüm içeriklere otomatik "AI Generated" watermark eklenir</li>
+          <li>Kimlik taklit koruması aktiftir - gerçek kişilerin taklit edilmesi engellenir</li>
+          <li>Platform politikalarına uygunluk otomatik kontrol edilir</li>
+          <li>İçerik moderasyonu ile zararlı içerik üretimi önlenir</li>
+          <li>Tüm işlemler loglama sistemi ile takip edilir</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          İçerik Üretim Süreci
+        </h3>
+        <ul>
+          <li><strong>Script Analizi:</strong> Yazılan senaryo AI tarafından analiz edilir ve optimize edilir</li>
+          <li><strong>Avatar Üretimi:</strong> Azure DALL-E 3 ile photorealistic avatar görsel üretilir</li>
+          <li><strong>Voice Synthesis:</strong> Azure Cognitive Services veya ElevenLabs ile doğal ses sentezlenir</li>
+          <li><strong>Video Composition:</strong> FFmpeg kullanılarak avatar + ses birleştirilip video oluşturulur</li>
+          <li><strong>Ethics Check:</strong> Ethics Guard modülü ile uyumluluk kontrolü yapılır</li>
+          <li><strong>Publishing:</strong> Seçilen platformlara OAuth ile güvenli yayımlama gerçekleştirilir</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Platform Özellikleri
+        </h3>
+        <ul>
+          <li><strong>YouTube:</strong> 1080p video, thumbnail, başlık, açıklama ve tag yönetimi</li>
+          <li><strong>Instagram:</strong> Reels formatı, 90 saniye limit, otomatik feed paylaşımı</li>
+          <li><strong>Facebook:</strong> Video post veya Reel, sayfa yönetimi</li>
+          <li><strong>TikTok:</strong> Vertical video (9:16), 60 saniye optimizasyon</li>
+          <li><strong>X (Twitter):</strong> Video tweet, 2:20 dakika limit</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Önemli Notlar
+        </h3>
+        <ul>
+          <li>İlk kullanımda platform bağlantılarını OAuth ile gerçekleştirmeniz gerekir</li>
+          <li>Video render süresi içerik uzunluğuna göre 2-5 dakika arasında değişir</li>
+          <li>Ethics Guard tarafından reddedilen içerikler yayımlanmaz</li>
+          <li>Tüm içerikler watermark ile işaretlenir (ayarlardan değiştirilemez)</li>
+          <li>Demo modda gerçek render ve yayımlama işlemi yapılmaz</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -874,14 +1431,29 @@
       document.getElementById('panel-creator').classList.remove('active');
     }
 
-    // Status check simulation
-    setInterval(() => {
-      const healthCount = document.getElementById('health-count');
-      if (healthCount) {
-        const current = parseInt(healthCount.textContent);
-        healthCount.textContent = Math.min(current + Math.floor(Math.random() * 2), 16);
+    function openGuideModal() {
+      document.getElementById('guideModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGuideModal() {
+      document.getElementById('guideModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('guideModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeGuideModal();
       }
-    }, 5000);
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeGuideModal();
+      }
+    });
   </script>
 </body>
 </html>
