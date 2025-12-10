@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniReach AI Creator Engine - Ailydian</title>
+
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/lydian-favicon.png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg-0: #0A0B0D;
+      --bg-1: #FFFFFF;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-2: rgba(255, 255, 255, 0.05);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --txt-1: #FFFFFF;
+      --txt-2: #B0B0B0;
+      --accent-1: #00E0AE;
+      --accent-2: #6E84FF;
+      --accent-3: #B86BFF;
+      --danger: #FF4757;
+      --warning: #FFA502;
+      --success: #26DE81;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.15), transparent 60%),
+                  radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.12), transparent 65%),
+                  var(--bg-0);
+      color: var(--txt-1);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid var(--stroke);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--txt-1);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      color: #FFF;
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--stroke);
+      color: var(--txt-1);
+    }
+
+    .btn-outline:hover {
+      background: var(--glass);
+      border-color: var(--accent-2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      color: #FFF;
+      box-shadow: 0 8px 30px rgba(110, 132, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(110, 132, 255, 0.6);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, rgba(110, 132, 255, 0.1), rgba(184, 107, 255, 0.1));
+      border-radius: 24px;
+      margin-bottom: 3rem;
+      border: 1px solid var(--stroke);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFF, var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--txt-2);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Dashboard Grid */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--txt-1);
+    }
+
+    .nav-item {
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--txt-2);
+      font-weight: 600;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: var(--glass-2);
+      color: var(--accent-2);
+      border-left: 3px solid var(--accent-2);
+    }
+
+    /* Main Content */
+    .main-content {
+      display: grid;
+      gap: 2rem;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(110, 132, 255, 0.3);
+      border-color: var(--accent-2);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--txt-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--txt-1);
+    }
+
+    .stat-change {
+      font-size: 12px;
+      margin-top: 0.5rem;
+    }
+
+    .stat-change.positive {
+      color: var(--success);
+    }
+
+    /* Content Panels */
+    .panel {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 2rem;
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--txt-1);
+    }
+
+    /* Script Editor */
+    .editor {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 1.5rem;
+      min-height: 300px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      color: var(--txt-1);
+      font-size: 14px;
+      resize: vertical;
+      width: 100%;
+      outline: none;
+    }
+
+    /* Avatar Preview */
+    .avatar-preview {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px dashed var(--stroke);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: 1rem;
+      box-shadow: 0 20px 60px rgba(110, 132, 255, 0.4);
+    }
+
+    /* Voice Waveform */
+    .waveform {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 120px;
+    }
+
+    .wave-bar {
+      width: 4px;
+      background: var(--accent-2);
+      border-radius: 4px;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { height: 20px; }
+      50% { height: 80px; }
+    }
+
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.5s; }
+
+    /* Render Pipeline */
+    .pipeline {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .pipeline-step {
+      min-width: 200px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .pipeline-step.completed {
+      border-color: var(--success);
+    }
+
+    .pipeline-step.processing {
+      border-color: var(--accent-2);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(110, 132, 255, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(110, 132, 255, 0); }
+    }
+
+    /* Platform Grid */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .platform-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .platform-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-2);
+    }
+
+    .platform-icon {
+      font-size: 48px;
+      margin-bottom: 1rem;
+    }
+
+    .platform-name {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .platform-status {
+      font-size: 12px;
+      color: var(--txt-2);
+    }
+
+    .platform-status.connected {
+      color: var(--success);
+    }
+
+    /* Compliance Badge */
+    .compliance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .compliance-badge.secure {
+      background: rgba(38, 222, 129, 0.2);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    /* Form Groups */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--txt-1);
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 8px;
+      color: var(--txt-1);
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px rgba(110, 132, 255, 0.2);
+    }
+
+    /* Loading */
+    .loading {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--glass);
+      border-top-color: var(--accent-2);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/index.html" class="brand">
+        🚀 OmniReach AI Creator
+        <span class="badge">PREMIUM</span>
+      </a>
+      <div class="nav-btns">
+        <a href="/index.html" class="btn btn-outline">← Ana Sayfa</a>
+        <button class="btn btn-primary" onclick="alert('Demo modunda çalışıyor!')">Test Et</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <h1>🎬 Faceless Content Creator Engine</h1>
+      <p>AI-powered avatar, script, voice ve multi-platform publishing sistemi. YouTube, Instagram, Facebook, TikTok ve X (Twitter) için etik ve profesyonel içerik üretimi.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+        <button class="btn btn-primary" onclick="switchPanel('creator')">🎬 Yeni İçerik Oluştur</button>
+        <button class="btn btn-outline" onclick="switchPanel('jobs')">📊 İşlerim</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Toplam İçerik</div>
+        <div class="stat-value">127</div>
+        <div class="stat-change positive">+12% bu ay</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Aktif Projeler</div>
+        <div class="stat-value">8</div>
+        <div class="stat-change positive">+3 yeni</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Platform Bağlantıları</div>
+        <div class="stat-value">5/5</div>
+        <div class="stat-change positive">Tümü aktif</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Compliance Skoru</div>
+        <div class="stat-value">100%</div>
+        <div class="stat-change positive">Güvenli</div>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-title">Kontrol Paneli</div>
+        <div class="nav-item active" onclick="switchPanel('creator')">
+          🎬 İçerik Oluşturucu
+        </div>
+        <div class="nav-item" onclick="switchPanel('jobs')">
+          📊 İşlerim
+        </div>
+        <div class="nav-item" onclick="switchPanel('platforms')">
+          🌐 Platform Bağlantıları
+        </div>
+        <div class="nav-item" onclick="switchPanel('settings')">
+          ⚙️ Ayarlar
+        </div>
+        <div class="nav-item" onclick="switchPanel('compliance')">
+          🛡️ Compliance
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Content Creator Panel -->
+        <div id="panel-creator" class="panel active">
+          <div class="panel-title">🎬 Yeni İçerik Oluştur</div>
+
+          <div class="form-group">
+            <label class="form-label">Proje Adı</label>
+            <input type="text" class="form-input" placeholder="Örn: AI Teknolojileri Serisi #1">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Script / Senaryo</label>
+            <textarea class="editor" placeholder="İçerik senaryonuzu buraya yazın veya AI ile otomatik oluşturun...">Merhaba! Bugün sizlerle yapay zeka teknolojilerinin geleceğini konuşacağız...</textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+            <div>
+              <label class="form-label">Avatar Seçimi</label>
+              <div class="avatar-preview">
+                <div class="avatar-placeholder">🤖</div>
+                <p style="color: var(--txt-2);">Avatar önizlemesi</p>
+                <button class="btn btn-outline" style="margin-top: 1rem;">Avatar Seç</button>
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Voice Profile</label>
+              <div class="form-group">
+                <select class="form-select">
+                  <option>Türkçe - Profesyonel Erkek</option>
+                  <option>Türkçe - Profesyonel Kadın</option>
+                  <option>English - Professional Male</option>
+                  <option>English - Professional Female</option>
+                </select>
+              </div>
+              <div class="waveform">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Hedef Platformlar</label>
+            <div class="platform-grid">
+              <label class="platform-card">
+                <input type="checkbox" checked style="display: none;">
+                <div class="platform-icon">📺</div>
+                <div class="platform-name">YouTube</div>
+                <div class="platform-status connected">Bağlı</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" checked style="display: none;">
+                <div class="platform-icon">📸</div>
+                <div class="platform-name">Instagram</div>
+                <div class="platform-status connected">Bağlı</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">👥</div>
+                <div class="platform-name">Facebook</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" checked style="display: none;">
+                <div class="platform-icon">🎵</div>
+                <div class="platform-name">TikTok</div>
+                <div class="platform-status connected">Bağlı</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">𝕏</div>
+                <div class="platform-name">X (Twitter)</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+            <button class="btn btn-outline">📝 Taslak Kaydet</button>
+            <button class="btn btn-primary" onclick="startRendering()">🚀 Render ve Yayınla</button>
+          </div>
+        </div>
+
+        <!-- Jobs Panel -->
+        <div id="panel-jobs" class="panel">
+          <div class="panel-title">📊 İçerik İşleri</div>
+
+          <div class="pipeline">
+            <div class="pipeline-step completed">
+              <div style="font-size: 32px; margin-bottom: 0.5rem;">✅</div>
+              <div style="font-weight: 700;">Script Hazır</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Tamamlandı</div>
+            </div>
+            <div class="pipeline-step completed">
+              <div style="font-size: 32px; margin-bottom: 0.5rem;">🎤</div>
+              <div style="font-weight: 700;">Voice Render</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Tamamlandı</div>
+            </div>
+            <div class="pipeline-step processing">
+              <div style="font-size: 32px; margin-bottom: 0.5rem;">🎬</div>
+              <div style="font-weight: 700;">Video Compose</div>
+              <div style="font-size: 12px; color: var(--txt-2);">İşleniyor...</div>
+            </div>
+            <div class="pipeline-step">
+              <div style="font-size: 32px; margin-bottom: 0.5rem;">🔍</div>
+              <div style="font-weight: 700;">Ethics Check</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Bekliyor</div>
+            </div>
+            <div class="pipeline-step">
+              <div style="font-size: 32px; margin-bottom: 0.5rem;">🚀</div>
+              <div style="font-weight: 700;">Publishing</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Bekliyor</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <p style="color: var(--txt-2); text-align: center;">İşlem detayları burada görüntülenecek</p>
+          </div>
+        </div>
+
+        <!-- Platforms Panel -->
+        <div id="panel-platforms" class="panel">
+          <div class="panel-title">🌐 Platform Bağlantıları</div>
+
+          <div style="display: grid; gap: 1rem;">
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 32px;">📺</div>
+                  <div style="font-weight: 700; margin-top: 0.5rem;">YouTube</div>
+                  <div style="font-size: 12px; color: var(--success);">Bağlı - @myChannel</div>
+                </div>
+                <button class="btn btn-outline">Yönet</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 32px;">📸</div>
+                  <div style="font-weight: 700; margin-top: 0.5rem;">Instagram</div>
+                  <div style="font-size: 12px; color: var(--success);">Bağlı - @myProfile</div>
+                </div>
+                <button class="btn btn-outline">Yönet</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 32px;">👥</div>
+                  <div style="font-weight: 700; margin-top: 0.5rem;">Facebook</div>
+                  <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 32px;">🎵</div>
+                  <div style="font-weight: 700; margin-top: 0.5rem;">TikTok</div>
+                  <div style="font-size: 12px; color: var(--success);">Bağlı - @myTikTok</div>
+                </div>
+                <button class="btn btn-outline">Yönet</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 32px;">𝕏</div>
+                  <div style="font-weight: 700; margin-top: 0.5rem;">X (Twitter)</div>
+                  <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="panel-settings" class="panel">
+          <div class="panel-title">⚙️ Ayarlar</div>
+
+          <div class="form-group">
+            <label class="form-label">Varsayılan Voice Profile</label>
+            <select class="form-select">
+              <option>Türkçe - Profesyonel Erkek</option>
+              <option>Türkçe - Profesyonel Kadın</option>
+              <option>English - Professional Male</option>
+              <option>English - Professional Female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Video Çözünürlük</label>
+            <select class="form-select">
+              <option>1080p (Full HD)</option>
+              <option>720p (HD)</option>
+              <option>4K (Ultra HD)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Otomatik Watermark</label>
+            <select class="form-select">
+              <option selected>Etkin (Önerilen)</option>
+              <option>Devre Dışı</option>
+            </select>
+            <div style="font-size: 12px; color: var(--txt-2); margin-top: 0.5rem;">
+              Etik kullanım için watermark eklenmesi önerilir
+            </div>
+          </div>
+
+          <button class="btn btn-primary">💾 Ayarları Kaydet</button>
+        </div>
+
+        <!-- Compliance Panel -->
+        <div id="panel-compliance" class="panel">
+          <div class="panel-title">🛡️ Compliance & Ethics</div>
+
+          <div style="margin-bottom: 2rem;">
+            <div class="compliance-badge secure">
+              ✅ Sistem Güvenli ve Uyumlu
+            </div>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid var(--stroke); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <h3 style="margin-bottom: 1rem;">Etik Kurallar</h3>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ Kimlik Taklit Koruması Aktif</li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ Otomatik Watermark Ekleme</li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ İçerik Moderasyonu</li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke);">✅ Platform Politikaları Uyumluluğu</li>
+              <li style="padding: 0.5rem 0;">✅ Tüm İşlemler Loglanıyor</li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid var(--stroke); border-radius: 12px; padding: 1.5rem;">
+            <h3 style="margin-bottom: 1rem;">Son İşlem Logları</h3>
+            <div style="font-family: monospace; font-size: 12px; color: var(--txt-2);">
+              <div>[2025-01-10 14:23:45] ✅ Content approved - Job#127</div>
+              <div>[2025-01-10 14:22:31] ✅ Ethics check passed - Job#127</div>
+              <div>[2025-01-10 14:21:18] ✅ Video rendered - Job#127</div>
+              <div>[2025-01-10 14:19:42] ✅ Voice generated - Job#127</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchPanel(panelName) {
+      // Hide all panels
+      document.querySelectorAll('.panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+
+      // Hide all nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Show selected panel
+      document.getElementById('panel-' + panelName).classList.add('active');
+
+      // Highlight nav item
+      event.currentTarget.classList.add('active');
+    }
+
+    function startRendering() {
+      alert('🎬 Render işlemi başlatıldı!\n\n✅ Script analizi yapılıyor\n✅ Avatar ve voice hazırlanıyor\n✅ Ethics guard kontrolü yapılıyor\n\nDEMO modunda çalışıyor - Gerçek render yakında!');
+
+      // Switch to jobs panel
+      document.getElementById('panel-jobs').classList.add('active');
+      document.getElementById('panel-creator').classList.remove('active');
+    }
+
+    // Status check simulation
+    setInterval(() => {
+      const healthCount = document.getElementById('health-count');
+      if (healthCount) {
+        const current = parseInt(healthCount.textContent);
+        healthCount.textContent = Math.min(current + Math.floor(Math.random() * 2), 16);
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
