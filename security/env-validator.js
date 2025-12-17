@@ -87,7 +87,7 @@ function validateDatabaseURL(url) {
   }
 
   // Check if URL contains password in plain text
-  const urlPattern = /^(postgres|mongodb|mysql):\/\/.+/i;
+  const urlPattern = /^(postgres|postgresql|mongodb|mysql|sqlite):\/\/.+/i;
   if (!urlPattern.test(url)) {
     throw new Error('Invalid database URL format');
   }

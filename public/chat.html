@@ -5094,35 +5094,18 @@ body {
         }
 
         // ============================================================
-        // 🚨 5 MINUTE GUEST USAGE TIMER - COUNTDOWN DISPLAY
+        // ✅ UNLIMITED GUEST ACCESS - TIMER DISABLED
+        // User requested: Remove 5-minute limit, make chat unlimited
         // ============================================================
         (async function initGuestTimer() {
-            // 🔐 httpOnly Cookie - check auth via API call
-            let isUserLoggedIn = false;
-            try {
-                const response = await fetch('/api/auth/me', {
-                    credentials: 'include'
-                });
-                isUserLoggedIn = response.ok;
-            } catch (error) {
-                isUserLoggedIn = false;
-            }
+            console.log('✅ Guest chat timer DISABLED - unlimited access enabled');
 
-            // If user is logged in, don't start timer
-            if (isUserLoggedIn) {
-                console.log('✅ User is logged in - no timer needed');
-                return;
-            }
+            // Clear any existing timer data from localStorage
+            localStorage.removeItem('guestChatStartTime');
 
-            // Check if timer has already started
-            const timerStartTime = localStorage.getItem('guestChatStartTime');
-            const currentTime = Date.now();
-
-            if (!timerStartTime) {
-                // First time visiting chat page - set start time
-                localStorage.setItem('guestChatStartTime', currentTime.toString());
-                console.log('⏰ Guest timer started - 5 minutes remaining');
-            }
+            // No timer functionality - unlimited access for all users
+            // This allows both logged-in and guest users to use chat without restrictions
+            return; // Exit early - no timer needed
 
             // Create timer UI element with modern animated hourglass
             const timerElement = document.createElement('div');
