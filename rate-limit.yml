@@ -1,0 +1,171 @@
+# ===================================================================
+# 🛡️ AILYDIAN GROQ API RATE LIMITING CONFIGURATION
+# ===================================================================
+#
+# Purpose: Protect Groq API from abuse with sliding window rate limiting
+# Algorithm: Sliding Window (most accurate, prevents burst attacks)
+# Capacity: 100 requests per 60 seconds per IP
+#
+# Usage with Ngrok:
+#   ngrok http 3000 \
+#     --domain your-endpoint.ngrok.app \
+#     --traffic-policy-file rate-limit.yml
+#
+# Created: 2025-12-15
+# Version: 1.0.0
+# ===================================================================
+
+on_http_request:
+  # Apply rate limiting to all /api routes
+  - expressions:
+      - req.url.contains('/api')
+    actions:
+      # Rate Limit Action
+      - type: rate_limit
+        config:
+          name: groq_api_rate_limit
+          algorithm: sliding_window
+          capacity: 100              # 100 requests
+          rate: 60s                  # per 60 seconds
+          bucket_key:
+            - conn.client_ip         # Track by client IP address
+
+      # Custom Response on Rate Limit Exceeded
+      - type: custom-response
+        config:
+          status_code: 429
+          content: |
+            {
+              "error": "Rate limit exceeded",
+              "message": "Too many requests. Please try again later.",
+              "limit": 100,
+              "window": "60 seconds",
+              "retry_after": 60
+            }
+          headers:
+            content-type:
+              - application/json
+            retry-after:
+              - "60"
+            x-ratelimit-limit:
+              - "100"
+            x-ratelimit-remaining:
+              - "0"
+            x-ratelimit-reset:
+              - "${time.now + 60}"
+
+  # Special rate limit for Groq-specific endpoints (more strict)
+  - expressions:
+      - req.url.contains('/api/lydian-iq')
+      - req.url.contains('/api/chat-groq')
+    actions:
+      - type: rate_limit
+        config:
+          name: groq_strict_rate_limit
+          algorithm: sliding_window
+          capacity: 50               # 50 requests (stricter)
+          rate: 60s                  # per 60 seconds
+          bucket_key:
+            - conn.client_ip
+
+      - type: custom-response
+        config:
+          status_code: 429
+          content: |
+            {
+              "error": "Groq API rate limit exceeded",
+              "message": "High-demand endpoint. Please reduce request frequency.",
+              "limit": 50,
+              "window": "60 seconds",
+              "retry_after": 60
+            }
+          headers:
+            content-type:
+              - application/json
+            retry-after:
+              - "60"
+
+  # Rate limit for heavy operations (Medical, Legal AI)
+  - expressions:
+      - req.url.contains('/api/medical')
+      - req.url.contains('/api/legal')
+    actions:
+      - type: rate_limit
+        config:
+          name: heavy_operations_rate_limit
+          algorithm: sliding_window
+          capacity: 30               # 30 requests (most strict)
+          rate: 60s
+          bucket_key:
+            - conn.client_ip
+
+  # Add rate limit headers to all responses
+  - expressions:
+      - "true"                       # Apply to all requests
+    actions:
+      - type: add-headers
+        config:
+          headers:
+            x-ratelimit-policy:
+              - "sliding_window"
+            x-powered-by:
+              - "Ailydian-API-Gateway"
+            x-content-type-options:
+              - "nosniff"
+            x-frame-options:
+              - "DENY"
+            x-xss-protection:
+              - "1; mode=block"
+
+# ===================================================================
+# 📊 RATE LIMIT TIERS
+# ===================================================================
+#
+# Tier 1: General API (/api/*)
+#   - Capacity: 100 requests/minute
+#   - Use Case: Standard API calls, health checks, status
+#
+# Tier 2: Groq AI Endpoints (/api/lydian-iq, /api/chat-groq)
+#   - Capacity: 50 requests/minute
+#   - Use Case: Direct Groq API calls (most expensive)
+#
+# Tier 3: Heavy AI Operations (/api/medical, /api/legal)
+#   - Capacity: 30 requests/minute
+#   - Use Case: Complex AI reasoning with large context
+#
+# ===================================================================
+
+# ===================================================================
+# 🚀 DEPLOYMENT COMMANDS
+# ===================================================================
+#
+# 1. Start your server:
+#    cd ~/Desktop/ailydian-ultra-pro/ailydian-from-github
+#    PORT=3000 npm start
+#
+# 2. Start ngrok with rate limiting:
+#    ngrok http 3000 \
+#      --domain ailydian-api.ngrok.app \
+#      --traffic-policy-file rate-limit.yml
+#
+# 3. Test rate limiting:
+#    # Should work
+#    curl https://ailydian-api.ngrok.app/api/health
+#
+#    # Should hit rate limit after 100 requests
+#    for i in {1..105}; do curl https://ailydian-api.ngrok.app/api/health; done
+#
+# ===================================================================
+
+# ===================================================================
+# 🔒 SECURITY FEATURES
+# ===================================================================
+#
+# ✅ Sliding Window Algorithm (prevents burst attacks)
+# ✅ IP-based tracking (per-client limits)
+# ✅ Custom 429 responses with retry-after headers
+# ✅ Separate limits for expensive operations
+# ✅ Security headers on all responses
+# ✅ NoSniff, Frame-Options, XSS-Protection
+#
+# ===================================================================
