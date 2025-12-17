@@ -213,7 +213,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+            background: linear-gradient(180deg, #0A0A0F 0%, #1A1A24 100%);
             padding-top: 72px;
         }
 
@@ -231,7 +231,7 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(16, 163, 127, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 224, 174, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             top: -400px;
             left: 50%;
@@ -258,12 +258,12 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 224, 174, 0.3);
             border-radius: 50px;
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--primary);
+            color: #00E0AE;
             margin-bottom: 2rem;
             animation: fadeInUp 0.8s ease-out;
         }
@@ -271,7 +271,7 @@
         .hero-badge-dot {
             width: 8px;
             height: 8px;
-            background: var(--primary);
+            background: #00E0AE;
             border-radius: 50%;
             animation: pulse-dot 2s ease-in-out infinite;
             position: relative;
@@ -282,7 +282,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: var(--primary);
+            background: #00E0AE;
             border-radius: 50%;
             animation: pulse-ring 2s ease-in-out infinite;
         }
@@ -319,7 +319,7 @@
         }
 
         .hero-title-gradient {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #00E0AE, #B86BFF);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -349,7 +349,7 @@
 
         .status-section {
             padding: 6rem 2rem;
-            background: var(--white);
+            background: #0A0A0F;
         }
 
         .status-container {
@@ -366,16 +366,16 @@
 
         .metric-card {
             padding: 2rem;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             transition: all 0.3s ease;
         }
 
         .metric-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--primary);
+            box-shadow: 0 12px 40px rgba(0, 224, 174, 0.2);
+            border-color: #00E0AE;
         }
 
         .metric-header {
@@ -388,7 +388,7 @@
         .metric-icon {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #00E0AE, #B86BFF);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -416,7 +416,7 @@
         .metric-value {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #00E0AE, #B86BFF);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -425,7 +425,7 @@
 
         .metric-trend {
             font-size: 0.875rem;
-            color: var(--primary);
+            color: #00E0AE;
             font-weight: 600;
         }
 
@@ -437,7 +437,7 @@
 
         .services-section {
             padding: 4rem 2rem;
-            background: var(--gray-50);
+            background: #1A1A24;
         }
 
         .section-title {
@@ -458,8 +458,8 @@
 
         .service-card {
             padding: 2rem;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -529,18 +529,18 @@
         }
 
         .status-badge.operational {
-            background: rgba(16, 163, 127, 0.1);
-            color: var(--primary);
+            background: rgba(0, 224, 174, 0.1);
+            color: #00E0AE;
         }
 
         .status-badge.degraded {
             background: rgba(249, 115, 22, 0.1);
-            color: #F97316;
+            color: #ffa726;
         }
 
         .status-badge.down {
             background: rgba(239, 68, 68, 0.1);
-            color: #EF4444;
+            color: #ff4757;
         }
 
         .status-badge::before {
@@ -562,7 +562,7 @@
             }
             50% {
                 opacity: 0.7;
-                box-shadow: 0 0 0 4px rgba(16, 163, 127, 0.2);
+                box-shadow: 0 0 0 4px rgba(0, 224, 174, 0.3);
             }
         }
 
@@ -579,7 +579,7 @@
         .service-metric-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary);
+            color: #00E0AE;
         }
 
         .service-metric-label {
@@ -593,16 +593,16 @@
 
         .uptime-section {
             padding: 6rem 2rem;
-            background: var(--gray-50);
+            background: #0A0A0F;
         }
 
         .uptime-graph {
             max-width: 1200px;
             margin: 3rem auto;
             padding: 2rem;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            border: 1px solid var(--gray-200);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .uptime-days {
@@ -621,19 +621,19 @@
         }
 
         .uptime-day.perfect {
-            background: #10A37F;
+            background: #00E0AE;
         }
 
         .uptime-day.good {
-            background: #84CC16;
+            background: #00C49A;
         }
 
         .uptime-day.degraded {
-            background: #F97316;
+            background: #ffa726;
         }
 
         .uptime-day.down {
-            background: #EF4444;
+            background: #ff4757;
         }
 
         .uptime-day:hover {
@@ -667,16 +667,16 @@
 
         .chart-section {
             padding: 6rem 2rem;
-            background: var(--white);
+            background: #1A1A24;
         }
 
         .response-chart {
             max-width: 1200px;
             margin: 3rem auto;
             padding: 2rem;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            border: 1px solid var(--gray-200);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .chart-bars {
@@ -691,7 +691,7 @@
 
         .chart-bar {
             flex: 1;
-            background: var(--gradient-green);
+            background: linear-gradient(135deg, #00E0AE 0%, #00C49A 100%);
             border-radius: 8px 8px 0 0;
             position: relative;
             transition: all 0.3s ease;
@@ -751,7 +751,7 @@
 
         .subscribe-section {
             padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            background: linear-gradient(135deg, #0A0A0F 0%, #1A1A24 100%);
         }
 
         .subscribe-container {
@@ -783,29 +783,30 @@
         .subscribe-input {
             flex: 1;
             padding: 1rem 1.5rem;
-            border: 2px solid var(--gray-200);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
         }
 
         .subscribe-input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(16, 163, 127, 0.1);
+            border-color: #00E0AE;
+            box-shadow: 0 0 0 4px rgba(0, 224, 174, 0.2);
         }
 
         .subscribe-input.gradient-border {
             border: 2px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        var(--gradient-green) border-box;
+            background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)) padding-box,
+                        linear-gradient(135deg, #00E0AE, #B86BFF) border-box;
         }
 
         .subscribe-btn {
             padding: 1rem 2rem;
-            background: var(--gradient-green);
-            color: var(--white);
+            background: linear-gradient(135deg, #00E0AE, #00C49A);
+            color: #0A0A0F;
             border: none;
             border-radius: 12px;
             font-size: 1rem;
@@ -817,7 +818,7 @@
 
         .subscribe-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(16, 163, 127, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 224, 174, 0.4);
         }
 
         .subscribe-btn:active {
@@ -835,14 +836,14 @@
         }
 
         .subscribe-message.success {
-            background: rgba(16, 163, 127, 0.1);
-            color: var(--primary);
+            background: rgba(0, 224, 174, 0.1);
+            color: #00E0AE;
             opacity: 1;
         }
 
         .subscribe-message.error {
-            background: rgba(239, 68, 68, 0.1);
-            color: #EF4444;
+            background: rgba(255, 71, 87, 0.1);
+            color: #ff4757;
             opacity: 1;
         }
 
@@ -850,7 +851,7 @@
 
         .incidents-section {
             padding: 6rem 2rem;
-            background: var(--white);
+            background: #0A0A0F;
         }
 
         .timeline {
@@ -874,7 +875,7 @@
             width: 48px;
             height: 48px;
             flex-shrink: 0;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #00E0AE, #B86BFF);
             border-radius: 12px;
             display: flex;
             align-items: center;

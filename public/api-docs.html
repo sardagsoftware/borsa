@@ -19,15 +19,16 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #fafafa;
+            background: #0A0A0F;
+            color: #FFFFFF;
         }
 
         /* Custom header */
         .api-header {
-            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            background: linear-gradient(135deg, #00E0AE 0%, #00C49A 100%);
             color: white;
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 224, 174, 0.3);
         }
 
         .api-header .container {
@@ -47,10 +48,11 @@
         }
 
         .api-nav {
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .api-nav .container {
@@ -62,7 +64,7 @@
         }
 
         .api-nav a {
-            color: #4a5568;
+            color: #B4B4C8;
             text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
@@ -71,13 +73,13 @@
         }
 
         .api-nav a:hover {
-            background: #f7fafc;
-            color: #10A37F;
+            background: rgba(255, 255, 255, 0.08);
+            color: #00E0AE;
         }
 
         .api-nav a.active {
-            background: #10A37F;
-            color: white;
+            background: #00E0AE;
+            color: #0A0A0F;
         }
 
         /* Swagger UI container */
@@ -97,8 +99,8 @@
         }
 
         .swagger-ui .scheme-container {
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1rem;
             border-radius: 0.5rem;
             margin-bottom: 2rem;
@@ -106,13 +108,13 @@
 
         /* Custom buttons */
         .swagger-ui .btn {
-            background: #10A37F;
-            border-color: #10A37F;
+            background: #00E0AE;
+            border-color: #00E0AE;
         }
 
         .swagger-ui .btn:hover {
-            background: #0D8F6E;
-            border-color: #0D8F6E;
+            background: #00C49A;
+            border-color: #00C49A;
         }
 
         .swagger-ui .opblock.opblock-post {
@@ -137,14 +139,14 @@
 
         /* Try it out section */
         .swagger-ui .try-out__btn {
-            background: #10A37F;
-            color: white;
+            background: #00E0AE;
+            color: #0A0A0F;
             border: none;
         }
 
         .swagger-ui .execute-wrapper .btn {
-            background: #49cc90;
-            border-color: #49cc90;
+            background: #00E0AE;
+            border-color: #00E0AE;
         }
 
         /* Response section */
@@ -161,21 +163,21 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: #10A37F;
-            color: white;
+            background: #00E0AE;
+            color: #0A0A0F;
             padding: 1rem 1.5rem;
             border-radius: 2rem;
             text-decoration: none;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(16, 163, 127, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 224, 174, 0.4);
             transition: all 0.3s;
             z-index: 1000;
         }
 
         .back-home:hover {
-            background: #0D8F6E;
+            background: #00C49A;
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(16, 163, 127, 0.5);
+            box-shadow: 0 6px 25px rgba(0, 224, 174, 0.5);
         }
 
         /* Loading spinner */
@@ -187,8 +189,8 @@
         }
 
         .spinner {
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #10A37F;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #00E0AE;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -202,8 +204,8 @@
 
         /* Quick start banner */
         .quick-start {
-            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
-            color: white;
+            background: linear-gradient(135deg, #00E0AE 0%, #00C49A 100%);
+            color: #0A0A0F;
             padding: 2rem;
             border-radius: 1rem;
             margin: 2rem auto;
