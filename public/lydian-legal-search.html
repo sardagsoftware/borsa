@@ -695,10 +695,10 @@ h1, h2, h3 {
     position: absolute;
     top: calc(100% + 0.5rem);
     right: 0;
-    background: #FFFFFF;
-    border: var(--border-light);
+    background: var(--bg-sidebar);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 12px;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     min-width: 200px;
     opacity: 0;
     transform: translateY(-10px);
@@ -737,18 +737,23 @@ h1, h2, h3 {
 }
 
 .export-dropdown-item:hover {
-    background: var(--bg-secondary);
+    background: var(--bg-sidebar-hover);
 }
 
 .export-dropdown-item svg {
     width: 20px;
     height: 20px;
     color: var(--justice-gold);
+    flex-shrink: 0;
+}
+
+.export-dropdown-item span {
+    color: var(--text-primary);
 }
 
 .export-dropdown-divider {
     height: 1px;
-    background: var(--border-light);
+    background: rgba(212, 175, 55, 0.15);
     margin: 0.25rem 0;
 }
 
@@ -1344,12 +1349,6 @@ h1, h2, h3 {
             </div>
 
             <div class="header-right">
-                <!-- Language Toggle Button -->
-                <button class="lang-toggle-btn" id="langToggle" onclick="toggleLanguage()" title="Change Language">
-                    <span id="langIcon">🇹🇷</span>
-                    <span id="langText">TR</span>
-                </button>
-
                 <div class="export-btn-container">
                     <button class="export-btn" id="exportBtn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1392,7 +1391,7 @@ h1, h2, h3 {
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                             </svg>
-                            <span data-i18n="copyLink">Linki Kopyala</span>
+                            <span>Copy Link</span>
                         </button>
                         <button class="export-dropdown-item" onclick="shareConversation()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1402,7 +1401,7 @@ h1, h2, h3 {
                                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
                                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                             </svg>
-                            <span data-i18n="share">Paylaş</span>
+                            <span>Share</span>
                         </button>
                     </div>
                 </div>
@@ -1551,9 +1550,9 @@ h1, h2, h3 {
 
 // 🌍 MULTI-LANGUAGE TRANSLATION SYSTEM
 let translations = {};
-// ⚠️ FİX: Her zaman Türkçe başla, localStorage temizle
+// English only - no language switching
 localStorage.removeItem('lydian-legal-lang'); // Clear old language setting
-let currentLang = 'tr'; // ALWAYS start in Turkish
+let currentLang = 'en'; // English only
 
 // Load translation file
 async function loadTranslations() {
