@@ -1641,7 +1641,7 @@ function applyTranslations() {
 
 }
 
-// Change language function - KESIN KÖKTEN ÇÖZÜM - V4 (User Dropdown Fix)
+// Change language function - KESIN KÖKTEN ÇÖZÜM - V5 (Scroll Position Fix)
 function changeLanguage(lang, event) {
     // ÖNCE tüm event propagation'u durdur
     if (event) {
@@ -1655,12 +1655,19 @@ function changeLanguage(lang, event) {
 
     console.log(`🌍 Dil değiştiriliyor: ${lang}`);
 
-    // ✅ KÖKTEN FIX: Hem modal hem user dropdown durumunu kaydet
+    // ✅ KÖKTEN FIX 1: Scroll pozisyonunu kaydet
+    const scrollPosition = {
+        x: window.scrollX || window.pageXOffset,
+        y: window.scrollY || window.pageYOffset
+    };
+    console.log(`📍 Scroll pozisyonu kaydedildi: x=${scrollPosition.x}, y=${scrollPosition.y}`);
+
+    // ✅ KÖKTEN FIX 2: Hem modal hem user dropdown durumunu kaydet
     const settingsModal = document.getElementById('settingsModal');
     const userDropdown = document.getElementById('userDropdown');
     const userMenuBtn = document.getElementById('userMenuBtn');
 
-    const wasModalOpen = settingsModal !== null;
+    const wasModalOpen = settingsModal !== null && settingsModal.style.display === 'flex';
     const wasUserDropdownActive = userDropdown?.classList.contains('active') || false;
     const wasUserBtnActive = userMenuBtn?.classList.contains('active') || false;
 
@@ -1714,7 +1721,17 @@ function changeLanguage(lang, event) {
         }
     }, 150);
 
-    console.log(`✅ Dil değiştirildi: ${lang} - Tüm UI durumu korundu`);
+    // ✅ KÖKTEN FIX 3: Scroll pozisyonunu restore et (immediate + delayed)
+    // Immediate restore
+    window.scrollTo(scrollPosition.x, scrollPosition.y);
+
+    // Delayed restore (reflow tamamlandıktan sonra tekrar)
+    setTimeout(() => {
+        window.scrollTo(scrollPosition.x, scrollPosition.y);
+        console.log(`✅ Scroll pozisyonu geri yüklendi: x=${scrollPosition.x}, y=${scrollPosition.y}`);
+    }, 100);
+
+    console.log(`✅ Dil değiştirildi: ${lang} - Tüm UI durumu korundu (modal, dropdown, scroll)`);
 
     return false;
 }
@@ -2786,6 +2803,17 @@ function saveProfile() {
 
 // Settings Modal Function
 function showSettingsModal() {
+    // ✅ KÖKTEN FIX: Eğer modal zaten varsa, sadece göster - yeniden oluşturma!
+    const existingModal = document.getElementById('settingsModal');
+    if (existingModal) {
+        console.log('✅ Modal zaten var - sadece gösteriliyor');
+        existingModal.style.display = 'flex';
+        existingModal.style.visibility = 'visible';
+        existingModal.style.opacity = '1';
+        existingModal.style.pointerEvents = 'auto';
+        return; // ÖNEMLİ: Yeni modal oluşturma!
+    }
+
     // Get settings from localStorage
     const settings = JSON.parse(localStorage.getItem('legalAI_settings') || '{}');
 
@@ -2800,7 +2828,7 @@ function showSettingsModal() {
         theme: settings.theme || 'light'
     };
 
-    // Create modal HTML
+    // Create modal HTML (sadece modal yoksa)
     const modalHTML = `
         <div id="settingsModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;">
             <div style="background: var(--bg-primary); border-radius: 16px; padding: 32px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: var(--shadow-xl);">
