@@ -59,16 +59,35 @@
     }
 }
 
-/* Mobile responsive */
+/* Mobile responsive - FIXED: No overlap with search */
 @media (max-width: 768px) {
     .return-to-upload-btn {
+        position: fixed;
         top: auto;
-        bottom: 80px;
+        bottom: 20px;
         right: 20px;
         left: 20px;
         width: calc(100% - 40px);
         justify-content: center;
         padding: 14px 24px;
+        font-size: 0.9375rem;
+        z-index: 999; /* Lower than mobile menu (1000) */
+        margin: 0;
+    }
+
+    /* Add padding to content when button is visible */
+    .medical-search-container,
+    .statistics-dashboard {
+        margin-bottom: 100px !important;
+    }
+}
+
+/* Tablet responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .return-to-upload-btn {
+        top: 90px;
+        right: 20px;
+        padding: 14px 28px;
         font-size: 0.9375rem;
     }
 }

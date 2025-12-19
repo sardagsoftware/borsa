@@ -1,0 +1,465 @@
+/**
+ * MOBILE MENU FIX - Medical LyDian 2025
+ * Fixes mobile toggle menu issues:
+ * - Restores mega menu dropdown functionality
+ * - Fixes user menu dropdown
+ * - Perfect mobile responsiveness
+ */
+
+/* ===== MOBILE NAVIGATION IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+
+    /* Mobile Menu Toggle - Always visible */
+    .mobile-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.1), rgba(39, 174, 96, 0.1));
+        border: 2px solid rgba(11, 83, 148, 0.2);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle:hover {
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.15), rgba(39, 174, 96, 0.15));
+        border-color: rgba(11, 83, 148, 0.4);
+        transform: scale(1.05);
+    }
+
+    .mobile-menu-toggle svg {
+        width: 24px;
+        height: 24px;
+        color: #0B5394;
+    }
+
+    /* Top Navigation - Mobile optimized */
+    .top-nav {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        padding: 12px 20px !important;
+        height: auto !important;
+    }
+
+    .nav-brand {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
+    .mobile-menu-toggle {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .user-menu-container {
+        order: 3;
+        margin-left: 12px;
+    }
+
+    /* Hide desktop navigation items on mobile */
+    .nav-links,
+    .nav-item:not(.user-menu-container) {
+        display: none !important;
+    }
+
+    /* MEGA MENU - Mobile Dropdown Fix */
+    .nav-item:hover .mega-menu,
+    .nav-item.active .mega-menu {
+        display: grid !important;
+        position: fixed !important;
+        top: 72px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        max-height: calc(100vh - 72px) !important;
+        overflow-y: auto !important;
+        background: #FFFFFF !important;
+        border: none !important;
+        border-top: 2px solid #E2E8F0 !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+        border-radius: 0 !important;
+        padding: 1.5rem 1rem !important;
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+        z-index: 1000 !important;
+        animation: slideDown 0.3s ease-out !important;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mega Menu Items - Mobile */
+    .mega-menu-item {
+        width: 100% !important;
+        padding: 1rem !important;
+        text-align: left !important;
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.03), rgba(39, 174, 96, 0.03)) !important;
+        border: 1px solid rgba(11, 83, 148, 0.15) !important;
+        border-radius: 12px !important;
+        transition: all 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 1rem !important;
+    }
+
+    .mega-menu-item:hover,
+    .mega-menu-item:active {
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.1), rgba(39, 174, 96, 0.1)) !important;
+        border-color: rgba(11, 83, 148, 0.3) !important;
+        transform: translateX(4px) !important;
+    }
+
+    .mega-menu-icon {
+        width: 40px !important;
+        height: 40px !important;
+        flex-shrink: 0 !important;
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.1), rgba(39, 174, 96, 0.1)) !important;
+        border-radius: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .mega-menu-icon svg {
+        width: 20px !important;
+        height: 20px !important;
+        color: #0B5394 !important;
+    }
+
+    /* USER MENU - Mobile Dropdown Fix */
+    .user-menu-container {
+        position: relative !important;
+        display: flex !important;
+    }
+
+    .user-menu-toggle {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.1), rgba(39, 174, 96, 0.1)) !important;
+        border: 2px solid rgba(11, 83, 148, 0.2) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .user-menu-toggle:hover {
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.15), rgba(39, 174, 96, 0.15)) !important;
+        border-color: rgba(11, 83, 148, 0.4) !important;
+    }
+
+    .user-menu-toggle svg {
+        width: 24px !important;
+        height: 24px !important;
+        color: #0B5394 !important;
+    }
+
+    /* User Dropdown Menu */
+    .user-menu-dropdown {
+        display: none !important;
+        position: fixed !important;
+        top: 72px !important;
+        right: 20px !important;
+        width: calc(100vw - 40px) !important;
+        max-width: 320px !important;
+        background: #FFFFFF !important;
+        border: 2px solid #E2E8F0 !important;
+        border-radius: 16px !important;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15) !important;
+        padding: 1rem !important;
+        z-index: 1002 !important;
+        animation: fadeInScale 0.3s ease-out !important;
+    }
+
+    .user-menu-container.active .user-menu-dropdown {
+        display: block !important;
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .user-menu-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.875rem !important;
+        padding: 0.875rem 1rem !important;
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.03), rgba(39, 174, 96, 0.03)) !important;
+        border: 1px solid rgba(11, 83, 148, 0.1) !important;
+        border-radius: 10px !important;
+        margin-bottom: 0.5rem !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        font-size: 0.9375rem !important;
+        font-weight: 500 !important;
+        color: #1a1a1a !important;
+    }
+
+    .user-menu-item:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .user-menu-item:hover {
+        background: linear-gradient(135deg, rgba(11, 83, 148, 0.1), rgba(39, 174, 96, 0.1)) !important;
+        border-color: rgba(11, 83, 148, 0.3) !important;
+        transform: translateX(4px) !important;
+    }
+
+    .user-menu-item svg {
+        width: 18px !important;
+        height: 18px !important;
+        color: #0B5394 !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Sidebar - Hide on mobile */
+    .sidebar {
+        transform: translateX(-100%) !important;
+        position: fixed !important;
+        left: 0 !important;
+        top: 72px !important;
+        height: calc(100vh - 72px) !important;
+        z-index: 999 !important;
+        transition: transform 0.3s ease !important;
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0) !important;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Main content - Full width on mobile */
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 20px 16px !important;
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+        display: none !important;
+        position: fixed !important;
+        top: 72px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(4px) !important;
+        z-index: 998 !important;
+        animation: fadeIn 0.3s ease !important;
+    }
+
+    .mobile-menu-overlay.active {
+        display: block !important;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Specializations Grid - Mobile */
+    .specializations-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 1rem !important;
+    }
+
+    .specialization-item {
+        padding: 1.25rem 1rem !important;
+    }
+
+    /* AI Features - Mobile */
+    .ai-features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Panel Content - Mobile padding */
+    .panel-content {
+        padding: 1rem !important;
+    }
+
+    /* Forms - Mobile */
+    .form-group {
+        margin-bottom: 1.25rem !important;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 0.875rem !important;
+    }
+
+    /* Buttons - Mobile */
+    .btn,
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.9375rem !important;
+        width: 100% !important;
+    }
+
+    /* Cards - Mobile */
+    .card,
+    .medical-card {
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .mega-menu {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .specializations-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .sidebar {
+        width: 240px !important;
+    }
+
+    .main-content {
+        margin-left: 240px !important;
+    }
+}
+
+/* Small mobile (iPhone SE, etc.) */
+@media (max-width: 375px) {
+    .top-nav {
+        padding: 10px 16px !important;
+    }
+
+    .nav-brand {
+        font-size: 1.125rem !important;
+    }
+
+    .mobile-menu-toggle,
+    .user-menu-toggle {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .mega-menu-item {
+        padding: 0.875rem !important;
+        font-size: 0.875rem !important;
+    }
+
+    .user-menu-dropdown {
+        right: 16px !important;
+        width: calc(100vw - 32px) !important;
+    }
+}
+
+/* Large mobile / Small tablet */
+@media (min-width: 600px) and (max-width: 768px) {
+    .mega-menu {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .specializations-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .mega-menu,
+    .user-menu-dropdown {
+        max-height: calc(100vh - 60px) !important;
+        overflow-y: auto !important;
+    }
+
+    .sidebar {
+        top: 60px !important;
+        height: calc(100vh - 60px) !important;
+    }
+
+    .mobile-menu-overlay {
+        top: 60px !important;
+    }
+}
+
+/* Fix for safe area (iPhone X, etc.) */
+@supports (padding-top: env(safe-area-inset-top)) {
+    @media (max-width: 768px) {
+        .top-nav {
+            padding-top: max(12px, env(safe-area-inset-top)) !important;
+        }
+
+        .mega-menu,
+        .user-menu-dropdown {
+            top: calc(72px + env(safe-area-inset-top)) !important;
+        }
+
+        .sidebar {
+            top: calc(72px + env(safe-area-inset-top)) !important;
+            height: calc(100vh - 72px - env(safe-area-inset-top)) !important;
+        }
+    }
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+}
+
+/* Smooth scrolling */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .mega-menu,
+    .user-menu-dropdown,
+    .sidebar {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Touch optimization */
+@media (max-width: 768px) {
+    button,
+    .clickable,
+    .mega-menu-item,
+    .user-menu-item,
+    .nav-item {
+        -webkit-tap-highlight-color: rgba(11, 83, 148, 0.1);
+        touch-action: manipulation;
+    }
+}
+
+/* Accessibility - Focus states on mobile */
+@media (max-width: 768px) {
+    button:focus,
+    .mega-menu-item:focus,
+    .user-menu-item:focus {
+        outline: 2px solid #0B5394 !important;
+        outline-offset: 2px !important;
+    }
+}
