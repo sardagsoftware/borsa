@@ -190,7 +190,7 @@ class PredictiveAnalyticsEngine {
 
         // Trend analysis
         const trends = this.analyzeSepsisTrends(historicalVitals);
-        if (trends.rapidDeterior ation) sepsisScore += 4;
+        if (trends.rapidDeterioration) sepsisScore += 4;
 
         const probability = this.logisticFunction(sepsisScore, 14, 0.35);
 
@@ -254,7 +254,7 @@ class PredictiveAnalyticsEngine {
         return {
             currentStage: akiStage,
             stageName: ["No AKI", "Stage 1", "Stage 2", "Stage 3"][akiStage],
-            baseline Cr: baselineCreatinine,
+            baselineCr: baselineCreatinine,
             currentCr: currentCr,
             creatinineIncrease: crIncrease,
             urineOutput: uop,
