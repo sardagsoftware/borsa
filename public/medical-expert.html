@@ -4555,7 +4555,7 @@ Example: [{"name":"Amoxicillin","strength":"500mg","dosage":"1 tablet","frequenc
 
     <!-- USA Early Diagnosis Panel -->
     <div class="modal" id="usaDiagnosisModal">
-        <div class="modal-content" style="max-width: 1200px; background: #FFFFFF;">
+        <div class="modal-content" style="max-width: 1200px; background: #1E1E1E; border: 1px solid rgba(255,255,255,0.1);">
             <div class="modal-header" style="background: linear-gradient(135deg, #27AE60 0%, #0B5394 100%); padding: 2rem; border-radius: 12px 12px 0 0;">
                 <div class="modal-title" style="display: flex; align-items: center; gap: 1rem; color: white;">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4575,18 +4575,18 @@ Example: [{"name":"Amoxicillin","strength":"500mg","dosage":"1 tablet","frequenc
                     </svg>
                 </button>
             </div>
-            <div class="modal-body" style="padding: 2rem; background: #F8F9FA;">
+            <div class="modal-body" style="padding: 2rem; background: #2A2A2A;">
                 <div class="diagnosis-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
                     <!-- State Selection -->
-                    <div class="diagnosis-card" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                    <div class="diagnosis-card" style="background: #1E1E1E; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.2s;">
                         <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="10" r="3"/>
                                 <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/>
                             </svg>
-                            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #212529;">Select State</h3>
+                            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #FFFFFF;">Select State</h3>
                         </div>
-                        <select class="state-selector" id="usaStateSelector" style="width: 100%; padding: 0.75rem; border: 2px solid #E9ECEF; border-radius: 8px; font-size: 0.95rem; color: #212529; background: white;">
+                        <select class="state-selector" id="usaStateSelector" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.95rem; color: #FFFFFF; background: #2A2A2A;">
                             <option value="">Choose your state...</option>
                             <option value="Alabama">Alabama</option>
                             <option value="Alaska">Alaska</option>
@@ -4642,7 +4642,7 @@ Example: [{"name":"Amoxicillin","strength":"500mg","dosage":"1 tablet","frequenc
                     </div>
 
                     <!-- Symptoms Input -->
-                    <div class="diagnosis-card" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                    <div class="diagnosis-card" style="background: #1E1E1E; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.2s;">
                         <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B5394" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -4651,27 +4651,27 @@ Example: [{"name":"Amoxicillin","strength":"500mg","dosage":"1 tablet","frequenc
                                 <line x1="16" y1="17" x2="8" y2="17"/>
                                 <polyline points="10 9 9 9 8 9"/>
                             </svg>
-                            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #212529;">Symptoms</h3>
+                            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #FFFFFF;">Symptoms</h3>
                         </div>
-                        <textarea class="symptoms-input" id="usaSymptoms" placeholder="Describe your symptoms (e.g., fever, cough, fatigue)..." style="width: 100%; min-height: 120px; padding: 0.75rem; border: 2px solid #E9ECEF; border-radius: 8px; font-size: 0.95rem; color: #212529; resize: vertical; font-family: inherit;"></textarea>
+                        <textarea class="symptoms-input" id="usaSymptoms" placeholder="Describe your symptoms (e.g., fever, cough, fatigue)..." style="width: 100%; min-height: 120px; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.95rem; color: #FFFFFF; background: #2A2A2A; resize: vertical; font-family: inherit;"></textarea>
                     </div>
 
                     <!-- Patient Info -->
-                    <div class="diagnosis-card" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                    <div class="diagnosis-card" style="background: #1E1E1E; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.2s;">
                         <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                                 <circle cx="12" cy="7" r="4"/>
                             </svg>
-                            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #212529;">Patient Info</h3>
+                            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #FFFFFF;">Patient Info</h3>
                         </div>
                         <div class="form-group" style="margin-bottom: 1rem;">
-                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: #495057;">Age</label>
-                            <input type="number" class="form-input" id="usaPatientAge" placeholder="Age" style="width: 100%; padding: 0.75rem; border: 2px solid #E9ECEF; border-radius: 8px; font-size: 0.95rem; color: #212529;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: #B0B0B0;">Age</label>
+                            <input type="number" class="form-input" id="usaPatientAge" placeholder="Age" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.95rem; color: #FFFFFF; background: #2A2A2A;">
                         </div>
                         <div class="form-group">
-                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: #495057;">Gender</label>
-                            <select class="form-input" id="usaPatientGender" style="width: 100%; padding: 0.75rem; border: 2px solid #E9ECEF; border-radius: 8px; font-size: 0.95rem; color: #212529; background: white;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500; color: #B0B0B0;">Gender</label>
+                            <select class="form-input" id="usaPatientGender" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.95rem; color: #FFFFFF; background: #2A2A2A;">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
@@ -4680,7 +4680,7 @@ Example: [{"name":"Amoxicillin","strength":"500mg","dosage":"1 tablet","frequenc
                     </div>
                 </div>
 
-                <button class="analyze-btn" onclick="runUSADiagnosisAnalysis()" style="width: 100%; padding: 1.25rem 2rem; background: linear-gradient(135deg, #27AE60 0%, #0B5394 100%); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: all 0.3s; box-shadow: 0 4px 16px rgba(39, 174, 96, 0.3);">
+                <button class="analyze-btn" onclick="runUSADiagnosisAnalysis()" style="width: 100%; padding: 1.25rem 2rem; background: linear-gradient(135deg, #27AE60 0%, #0B5394 100%); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: all 0.3s; box-shadow: 0 4px 16px rgba(39, 174, 96, 0.4);">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>
                         <path d="M12 6v6l4 2"/>
