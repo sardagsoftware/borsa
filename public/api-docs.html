@@ -3,13 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive LyDian API documentation with live testing. Access 23 AI models, connectors, and enterprise features through our comprehensive REST API.">
-    <title>API Documentation - LyDian Platform</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
-
-    <!-- Swagger UI CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
-
+    <title>Medical LyDian - API Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,345 +12,859 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-tertiary: #E9ECEF;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-tertiary: #6C757D;
+            --accent-primary: #0B5394;
+            --accent-secondary: #27AE60;
+            --border-light: #E4E6EB;
+            --border-medium: #CED4DA;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0A0A0F;
-            color: #FFFFFF;
+            font-family: 'IBM Plex Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
         }
 
-        /* Custom header */
-        .api-header {
-            background: linear-gradient(135deg, #00E0AE 0%, #00C49A 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 224, 174, 0.3);
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--border-light);
         }
 
-        .api-header .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .api-header h1 {
+        .header-title {
             font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
 
-        .api-header p {
-            font-size: 1.125rem;
-            opacity: 0.9;
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
         }
 
-        .api-nav {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .header-badges {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            letter-spacing: 0.3px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: var(--bg-secondary);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
-        .api-nav .container {
-            max-width: 1400px;
+        .nav-tabs {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            gap: 2rem;
-            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
-        .api-nav a {
-            color: #B4B4C8;
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
+            font-size: 0.95rem;
         }
 
-        .api-nav a:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: #00E0AE;
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-primary);
         }
 
-        .api-nav a.active {
-            background: #00E0AE;
-            color: #0A0A0F;
+        .nav-tab.active {
+            background: var(--accent-primary);
+            color: #ffffff;
         }
 
-        /* Swagger UI container */
-        #swagger-ui {
-            max-width: 1400px;
-            margin: 2rem auto;
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
             padding: 0 2rem;
         }
 
-        /* Swagger UI customizations */
-        .swagger-ui .topbar {
-            display: none;
+        /* Section */
+        .section {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
 
-        .swagger-ui .info {
-            margin: 2rem 0;
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
         }
 
-        .swagger-ui .scheme-container {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 0.5rem;
+        .section-description {
+            color: var(--text-secondary);
             margin-bottom: 2rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
-        /* Custom buttons */
-        .swagger-ui .btn {
-            background: #00E0AE;
-            border-color: #00E0AE;
+        /* Endpoint Card */
+        .endpoint {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-primary);
         }
 
-        .swagger-ui .btn:hover {
-            background: #00C49A;
-            border-color: #00C49A;
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .swagger-ui .opblock.opblock-post {
-            border-color: #49cc90;
-            background: rgba(73, 204, 144, 0.1);
+        .method {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .swagger-ui .opblock.opblock-get {
-            border-color: #61affe;
-            background: rgba(97, 175, 254, 0.1);
+        .method.post {
+            background: var(--accent-secondary);
+            color: #ffffff;
         }
 
-        .swagger-ui .opblock.opblock-put {
-            border-color: #fca130;
-            background: rgba(252, 161, 48, 0.1);
+        .method.get {
+            background: var(--accent-primary);
+            color: #ffffff;
         }
 
-        .swagger-ui .opblock.opblock-delete {
-            border-color: #f93e3e;
-            background: rgba(249, 62, 62, 0.1);
+        .endpoint-path {
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
         }
 
-        /* Try it out section */
-        .swagger-ui .try-out__btn {
-            background: #00E0AE;
-            color: #0A0A0F;
+        .endpoint-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 1.5rem;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            border: 1px solid var(--border-medium);
+        }
+
+        .code-block code {
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            display: block;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #333333;
+        }
+
+        .code-lang {
+            color: #999999;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: var(--accent-primary);
+            color: #ffffff;
             border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
-        .swagger-ui .execute-wrapper .btn {
-            background: #00E0AE;
-            border-color: #00E0AE;
+        .copy-btn:hover {
+            background: #094172;
         }
 
-        /* Response section */
-        .swagger-ui .responses-wrapper {
+        /* Parameter Table */
+        .param-table {
+            width: 100%;
+            margin-top: 1.5rem;
+            border-collapse: collapse;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .param-table th {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-light);
+            font-size: 0.9rem;
+        }
+
+        .param-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+
+        .param-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .param-table tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .param-name {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .param-type {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .param-required {
+            color: #E74C3C;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
-        .swagger-ui .response {
-            border-radius: 0.5rem;
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
         }
 
-        /* Back to home */
-        .back-home {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #00E0AE;
-            color: #0A0A0F;
-            padding: 1rem 1.5rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0, 224, 174, 0.4);
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        .back-home:hover {
-            background: #00C49A;
+        .feature-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 224, 174, 0.5);
         }
 
-        /* Loading spinner */
-        .loading {
+        .feature-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .status-badge.mayo {
+            background: #E74C3C;
+            color: #ffffff;
+        }
+
+        .status-badge.new {
+            background: var(--accent-secondary);
+            color: #ffffff;
+        }
+
+        .status-badge.pro {
+            background: var(--accent-primary);
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 400px;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #00E0AE;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
+        .footer-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .footer-link:hover {
+            color: var(--accent-primary);
         }
 
-        /* Quick start banner */
-        .quick-start {
-            background: linear-gradient(135deg, #00E0AE 0%, #00C49A 100%);
-            color: #0A0A0F;
-            padding: 2rem;
-            border-radius: 1rem;
-            margin: 2rem auto;
-            max-width: 1400px;
+        .footer-copyright {
+            margin-top: 2rem;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
         }
 
-        .quick-start h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .quick-start pre {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-        }
-
-        .quick-start code {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.875rem;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title { font-size: 2rem; }
+            .section { padding: 2rem 1.5rem; }
+            .container { padding: 0 1rem; }
+            .feature-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Custom Header -->
-    <div class="api-header">
-        <div class="container">
-            <h1>🚀 LyDian Platform API</h1>
-            <p>Interactive API documentation with real-time testing</p>
+    <!-- Header -->
+    <div class="header">
+        <h1 class="header-title">Medical LyDian API Documentation</h1>
+        <p class="header-subtitle">Enterprise Healthcare AI Platform - Mayo Clinic Integration</p>
+        <div class="header-badges">
+            <div class="badge">Real-time Processing</div>
+            <div class="badge">HIPAA Compliant</div>
+            <div class="badge">Multi-language Support</div>
+            <div class="badge">Mayo Clinic Powered</div>
         </div>
     </div>
 
     <!-- Navigation -->
-    <div class="api-nav">
-        <div class="container">
-            <a href="/api-reference.html">API Reference</a>
-            <a href="/developers.html">Developer Portal</a>
-            <a href="/api-reference.html#authentication">Authentication</a>
-            <a href="/api-reference.html#rate-limits">Rate Limiting</a>
-            <a href="https://github.com/lydian-ai" target="_blank">GitHub</a>
+    <div class="nav-container">
+        <div class="nav-tabs">
+            <a href="#quick-start" class="nav-tab active">Quick Start</a>
+            <a href="#endpoints" class="nav-tab">API Endpoints</a>
+            <a href="#authentication" class="nav-tab">Authentication</a>
+            <a href="#features" class="nav-tab">Features</a>
+            <a href="#support" class="nav-tab">Support</a>
         </div>
     </div>
 
-    <!-- Quick Start Banner -->
-    <div class="quick-start" style="margin: 2rem 2rem 0 2rem;">
-        <h2>⚡ Quick Start</h2>
-        <p style="margin-bottom: 1rem;">Get started with the LyDian API in seconds:</p>
-        <pre><code># Install the SDK
-npm install @lydian/smart-cities-sdk
+    <div class="container">
+        <!-- Quick Start -->
+        <div class="section" id="quick-start">
+            <h2 class="section-title">Quick Start Guide</h2>
+            <p class="section-description">
+                Get started with Medical LyDian API in minutes. Our RESTful API provides access to advanced medical AI capabilities,
+                Mayo Clinic clinical protocols, and comprehensive healthcare analytics.
+            </p>
 
-# Or use curl
-curl -X GET "https://api.lydian.com/v1/smart-cities/cities" \
-  -H "X-API-Key: YOUR_API_KEY"</code></pre>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">1. Get API Key</div>
+                    <div class="feature-desc">Contact us to receive your enterprise API key for immediate access</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">2. Make Request</div>
+                    <div class="feature-desc">Send HTTP requests to our secure endpoints</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">3. Get Results</div>
+                    <div class="feature-desc">Receive AI-powered medical insights instantly</div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">cURL</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <code>curl -X POST https://ailydian.com/api/medical/chat \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: YOUR_API_KEY" \
+  -d '{"message": "Patient with chest pain", "specialty": "cardiology"}'</code>
+            </div>
+        </div>
+
+        <!-- Medical AI Chat API -->
+        <div class="section" id="endpoints">
+            <h2 class="section-title">Medical AI Chat API <span class="status-badge pro">PRO</span></h2>
+            <p class="section-description">
+                Advanced AI-powered medical consultation system. Provides real-time medical insights across 50+ specialties
+                with comprehensive patient context analysis.
+            </p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/medical/chat</span>
+                </div>
+                <p class="endpoint-description">
+                    Engage in intelligent medical consultations with multi-model AI that understands context,
+                    medical history, and provides evidence-based recommendations.
+                </p>
+
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">message</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td><span class="param-required">Required</span></td>
+                            <td>Patient symptoms or medical query</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">specialty</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>Optional</td>
+                            <td>Medical specialty (cardiology, oncology, etc.)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">language</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td>Optional</td>
+                            <td>Response language (default: en)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">patientContext</span></td>
+                            <td><span class="param-type">object</span></td>
+                            <td>Optional</td>
+                            <td>Patient medical history and demographics</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Request</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <code>{
+  "message": "55-year-old male with chest pain radiating to left arm",
+  "specialty": "cardiology",
+  "language": "en",
+  "patientContext": {
+    "age": 55,
+    "sex": "male",
+    "medicalHistory": ["hypertension", "diabetes"],
+    "currentMedications": ["metformin", "lisinopril"]
+  }
+}</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mayo Clinic CDSS API -->
+        <div class="section">
+            <h2 class="section-title">Mayo Clinic CDSS API <span class="status-badge mayo">Mayo Clinic</span> <span class="status-badge new">New</span></h2>
+            <p class="section-description">
+                Clinical Decision Support System powered by Mayo Clinic's 26 petabyte dataset.
+                Access evidence-based protocols, diagnostic criteria, and treatment guidelines from world-renowned medical experts.
+            </p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/medical/mayo-clinic-protocols</span>
+                </div>
+                <p class="endpoint-description">
+                    Leverage Mayo Clinic's comprehensive clinical knowledge base for accurate diagnosis,
+                    risk assessment, and personalized treatment planning.
+                </p>
+
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">symptoms</span></td>
+                            <td><span class="param-type">array</span></td>
+                            <td><span class="param-required">Required</span></td>
+                            <td>List of patient symptoms</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">vitalSigns</span></td>
+                            <td><span class="param-type">object</span></td>
+                            <td>Optional</td>
+                            <td>Blood pressure, heart rate, temperature, etc.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">labResults</span></td>
+                            <td><span class="param-type">object</span></td>
+                            <td>Optional</td>
+                            <td>Laboratory test results</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">medicalHistory</span></td>
+                            <td><span class="param-type">array</span></td>
+                            <td>Optional</td>
+                            <td>Patient's medical history</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">specialty</span></td>
+                            <td><span class="param-type">string</span></td>
+                            <td><span class="param-required">Required</span></td>
+                            <td>cardiovascular, oncology, neurology, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Request</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <code>{
+  "symptoms": ["chest pain", "shortness of breath", "diaphoresis"],
+  "vitalSigns": {
+    "systolic": 145,
+    "diastolic": 95,
+    "heartRate": 95,
+    "temperature": 37.2,
+    "respiratoryRate": 20
+  },
+  "labResults": {
+    "troponin": 0.8,
+    "bnp": 450,
+    "creatinine": 1.2
+  },
+  "medicalHistory": ["hypertension", "hyperlipidemia", "smoking"],
+  "specialty": "cardiovascular"
+}</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cancer Diagnosis API -->
+        <div class="section">
+            <h2 class="section-title">Cancer Diagnosis API <span class="status-badge pro">PRO</span></h2>
+            <p class="section-description">
+                AI-powered cancer risk assessment and diagnosis using advanced image analysis and TCIA (The Cancer Imaging Archive) data integration.
+            </p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/medical/cancer-diagnosis</span>
+                </div>
+                <p class="endpoint-description">
+                    Analyze medical images, patient symptoms, and clinical data to provide comprehensive cancer risk assessments.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Request</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <code>{
+  "patientAge": 58,
+  "patientSex": "male",
+  "symptoms": "persistent cough, weight loss, hemoptysis",
+  "riskFactors": ["smoking history", "family history"],
+  "images": ["base64_encoded_ct_scan", "base64_encoded_xray"],
+  "imagingType": "CT chest with contrast"
+}</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="section">
+            <h2 class="section-title">System Status & Health Check</h2>
+            <p class="section-description">
+                Monitor API availability, performance metrics, and system capabilities in real-time.
+            </p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/medical/mayo-clinic-protocols</span>
+                </div>
+                <p class="endpoint-description">
+                    Retrieve current system status, uptime, and available features.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Response</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <code>{
+  "status": "operational",
+  "uptime": "99.98%",
+  "latency": "145ms",
+  "capabilities": {
+    "mayoClinicCDSS": true,
+    "medicalAI": true,
+    "cancerDiagnosis": true,
+    "multiLanguage": true
+  }
+}</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication -->
+        <div class="section" id="authentication">
+            <h2 class="section-title">Authentication & Security</h2>
+            <p class="section-description">
+                All API requests require authentication using API keys. We implement enterprise-grade security with HIPAA compliance.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">API Key Authentication</div>
+                    <div class="feature-desc">Secure token-based authentication for all endpoints</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">HIPAA Compliant</div>
+                    <div class="feature-desc">Full compliance with healthcare data regulations</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">End-to-End Encryption</div>
+                    <div class="feature-desc">All data encrypted in transit and at rest</div>
+                </div>
+            </div>
+
+            <div class="code-block" style="margin-top: 2rem;">
+                <div class="code-header">
+                    <span class="code-lang">Authentication Header</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <code>X-API-Key: your_api_key_here
+Content-Type: application/json</code>
+            </div>
+
+            <p style="margin-top: 2rem; color: var(--text-secondary);">
+                <strong>To obtain an API key:</strong> Contact us at
+                <a href="mailto:api@lydian.medical" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">api@lydian.medical</a>
+            </p>
+        </div>
+
+        <!-- Features -->
+        <div class="section" id="features">
+            <h2 class="section-title">Platform Features</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">Advanced AI Models</div>
+                    <div class="feature-desc">Specialized medical AI with context-aware analysis</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Mayo Clinic Protocols</div>
+                    <div class="feature-desc">26PB dataset with clinical guidelines and protocols</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Multi-language Support</div>
+                    <div class="feature-desc">Support for 50+ languages with medical terminology</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Real-time Processing</div>
+                    <div class="feature-desc">Sub-second response times for critical decisions</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Analytics Dashboard</div>
+                    <div class="feature-desc">Comprehensive usage analytics and insights</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Image Analysis</div>
+                    <div class="feature-desc">CT, MRI, X-ray analysis with TCIA integration</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="section" id="support">
+            <h2 class="section-title">Support & Resources</h2>
+            <p class="section-description">
+                Our dedicated support team is here to help you integrate and optimize Medical LyDian API.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-title">Email Support</div>
+                    <div class="feature-desc">
+                        <a href="mailto:medical-support@lydian.ai" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">medical-support@lydian.ai</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">API Support</div>
+                    <div class="feature-desc">
+                        <a href="mailto:api@lydian.medical" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">api@lydian.medical</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">Medical Dashboard</div>
+                    <div class="feature-desc">
+                        <a href="/medical-dashboard.html" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Access Admin Portal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Swagger UI Container -->
-    <div id="swagger-ui"></div>
-
-    <!-- Loading indicator -->
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <p class="footer-title">Medical LyDian</p>
+            <p class="footer-subtitle">Enterprise Healthcare AI Platform</p>
+            <div class="footer-links">
+                <a href="/medical-expert.html" class="footer-link">Medical AI</a>
+                <a href="/medical-dashboard.html" class="footer-link">Dashboard</a>
+                <a href="mailto:api@lydian.medical" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+            </div>
+            <p class="footer-copyright">
+                2025 Medical LyDian. All rights reserved. HIPAA Compliant.
+            </p>
+        </div>
     </div>
-
-    <!-- Back to Home -->
-    <a href="/" class="back-home">← Back to Home</a>
-
-    <!-- Swagger UI -->
-    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-standalone-preset.js"></script>
 
     <script>
-        // Initialize Swagger UI
-        window.onload = function() {
-            const ui = SwaggerUIBundle({
-                url: "/docs/api/openapi.yaml",
-                dom_id: '#swagger-ui',
-                deepLinking: true,
-                presets: [
-                    SwaggerUIBundle.presets.apis,
-                    SwaggerUIStandalonePreset
-                ],
-                plugins: [
-                    SwaggerUIBundle.plugins.DownloadUrl
-                ],
-                layout: "StandaloneLayout",
-                defaultModelsExpandDepth: 1,
-                defaultModelExpandDepth: 1,
-                docExpansion: "list",
-                filter: true,
-                showRequestHeaders: true,
-                showCommonExtensions: true,
-                tryItOutEnabled: true,
-                persistAuthorization: true,
-                onComplete: function() {
-                    // Hide loading indicator
-                    document.getElementById('loading').style.display = 'none';
-
-                    // Pre-fill API key if available (from localStorage)
-                    const savedApiKey = localStorage.getItem('lydian_api_key');
-                    if (savedApiKey) {
-                        const authBtn = document.querySelector('.authorize');
-                        if (authBtn) {
-                            console.log('API key found in localStorage');
-                        }
-                    }
-                },
-                onFailure: function(error) {
-                    console.error('Failed to load API documentation:', error);
-                    document.getElementById('loading').innerHTML = `
-                        <div style="text-align: center; color: #e53e3e;">
-                            <h3>Failed to load API documentation</h3>
-                            <p>Please make sure the OpenAPI spec file is available at /docs/api/openapi.yaml</p>
-                            <p style="margin-top: 1rem;">
-                                <a href="/developers.html" style="color: #667eea;">← Back to Developer Portal</a>
-                            </p>
-                        </div>
-                    `;
-                },
-                requestInterceptor: function(req) {
-                    // Add custom headers if needed
-                    req.headers['Accept'] = 'application/json';
-                    return req;
-                },
-                responseInterceptor: function(res) {
-                    // Log responses for debugging
-                    console.log('API Response:', res);
-                    return res;
-                }
+        function copyCode(btn) {
+            const codeBlock = btn.closest('.code-block').querySelector('code');
+            const text = codeBlock.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = originalText, 2000);
             });
+        }
 
-            window.ui = ui;
-
-            // Save API key to localStorage when authorized
-            window.addEventListener('message', function(event) {
-                if (event.data && event.data.type === 'auth-complete') {
-                    const apiKey = event.data.apiKey;
-                    if (apiKey) {
-                        localStorage.setItem('lydian_api_key', apiKey);
-                        console.log('API key saved to localStorage');
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                if (tab.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(tab.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
                     }
                 }
             });
-        };
+        });
     </script>
-
-    <!-- Phase N: i18n Otomatik Dil Sistemi -->
-    <script src="/js/auto-locale-detector.js"></script>
-    <script src="/js/locale-engine.js"></script>
-    <script src="/js/locale-switcher.js"></script>
-    <script src="/js/lydian-master-init.js"></script>
 </body>
 </html>

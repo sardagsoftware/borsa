@@ -1,0 +1,311 @@
+╔═══════════════════════════════════════════════════════════════════════════════════╗
+║                    GROQ AI MEDICAL DOCUMENT RAG ARCHITECTURE                      ║
+╚═══════════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                 CLIENT LAYER                                    │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       │ HTTP POST/GET
+                                       │ multipart/form-data
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              API ENDPOINT LAYER                                 │
+│                           /api/medical/groq-rag                                 │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│  • CORS Headers                                                                 │
+│  • Rate Limiting (50 req/min)                                                   │
+│  • Request Validation                                                           │
+│  • Error Handling                                                               │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                    ┌──────────────────┴───────────────────┐
+                    │                                      │
+                    ▼                                      ▼
+┌──────────────────────────────────┐    ┌──────────────────────────────────┐
+│   DOCUMENT PROCESSING LAYER      │    │      API INFO ENDPOINT           │
+│                                  │    │                                  │
+│  ┌────────────────────────────┐ │    │  GET Request Handler             │
+│  │  File Upload Handler       │ │    │  • Service Information           │
+│  │  (formidable)              │ │    │  • Model Configurations          │
+│  └────────────────────────────┘ │    │  • Capabilities List             │
+│              │                   │    │  • Supported Formats             │
+│              ▼                   │    │  • Configuration Status          │
+│  ┌────────────────────────────┐ │    └──────────────────────────────────┘
+│  │  Document Type Detection   │ │
+│  │  • PDF                     │ │
+│  │  • Image (PNG/JPG/TIFF)    │ │
+│  │  • Text                    │ │
+│  └────────────────────────────┘ │
+│              │                   │
+│     ┌────────┴────────┐          │
+│     ▼                 ▼          │
+│  ┌──────┐     ┌────────────┐    │
+│  │ PDF  │     │   IMAGE    │    │
+│  │Parse │     │    OCR     │    │
+│  └──────┘     └────────────┘    │
+│     │                 │          │
+│     │                 ▼          │
+│     │         ┌──────────────┐  │
+│     │         │ Azure Doc    │  │
+│     │         │Intelligence  │  │
+│     │         └──────────────┘  │
+│     │                 │          │
+│     └────────┬────────┘          │
+│              ▼                   │
+│  ┌────────────────────────────┐ │
+│  │  Extracted Text            │ │
+│  │  • Validation (min 50 ch)  │ │
+│  │  • Cleanup                 │ │
+│  └────────────────────────────┘ │
+└──────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                          RAG PROCESSING LAYER                                   │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌────────────────────────────────────────────────────────────────┐            │
+│  │              PROMPT ENGINEERING                                │            │
+│  ├────────────────────────────────────────────────────────────────┤            │
+│  │  System Prompt:                                                │            │
+│  │  • Medical AI assistant role definition                        │            │
+│  │  • Analysis requirements                                       │            │
+│  │  • Medical terminology standards                               │            │
+│  │  • ICD-10, SNOMED CT, LOINC, RxNorm                           │            │
+│  │  • JSON schema specification                                   │            │
+│  │  • Medical disclaimer requirements                             │            │
+│  │                                                                │            │
+│  │  User Prompt:                                                  │            │
+│  │  • Extracted document text                                     │            │
+│  │  • Patient context (optional)                                  │            │
+│  │  • Analysis instructions                                       │            │
+│  └────────────────────────────────────────────────────────────────┘            │
+│                              │                                                  │
+│                              ▼                                                  │
+│  ┌────────────────────────────────────────────────────────────────┐            │
+│  │              GROQ AI INFERENCE                                 │            │
+│  ├────────────────────────────────────────────────────────────────┤            │
+│  │  Model Selection:                                              │            │
+│  │  ┌──────────────────────────────────────────────────────┐      │            │
+│  │  │ llama-3.3-70b-versatile (default)                   │      │            │
+│  │  │ • 128K context window                                │      │            │
+│  │  │ • Ultra-fast inference (~1-2s)                       │      │            │
+│  │  │ • Best for comprehensive analysis                    │      │            │
+│  │  └──────────────────────────────────────────────────────┘      │            │
+│  │  ┌──────────────────────────────────────────────────────┐      │            │
+│  │  │ mixtral-8x7b                                         │      │            │
+│  │  │ • 32K context window                                 │      │            │
+│  │  │ • Ultra-fast inference (~1-2s)                       │      │            │
+│  │  │ • Excellent for structured extraction                │      │            │
+│  │  └──────────────────────────────────────────────────────┘      │            │
+│  │                                                                │            │
+│  │  Settings:                                                     │            │
+│  │  • Temperature: 0.2 (low for medical accuracy)                │            │
+│  │  • Max Tokens: 8192                                            │            │
+│  │  • Response Format: JSON                                       │            │
+│  └────────────────────────────────────────────────────────────────┘            │
+└─────────────────────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                        ANALYSIS ENRICHMENT LAYER                                │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ┌────────────────────────────────────────────────────────────────┐            │
+│  │  JSON Response Processing                                      │            │
+│  │  • Parse AI response                                           │            │
+│  │  • Validate structure                                          │            │
+│  │  • Add missing fields                                          │            │
+│  └────────────────────────────────────────────────────────────────┘            │
+│                              │                                                  │
+│                              ▼                                                  │
+│  ┌────────────────────────────────────────────────────────────────┐            │
+│  │  Data Enrichment                                               │            │
+│  │  • Sort findings by severity (critical → low)                  │            │
+│  │  • Sort timeline by date (newest → oldest)                     │            │
+│  │  • Calculate quality metrics                                   │            │
+│  │  • Add medical disclaimer                                      │            │
+│  │  • Generate metadata                                           │            │
+│  └────────────────────────────────────────────────────────────────┘            │
+│                              │                                                  │
+│                              ▼                                                  │
+│  ┌────────────────────────────────────────────────────────────────┐            │
+│  │  Quality Metrics Calculation                                   │            │
+│  │  • totalFindings                                               │            │
+│  │  • criticalFindings                                            │            │
+│  │  • medicationCount                                             │            │
+│  │  • diagnosisCount                                              │            │
+│  │  • highRiskFactors                                             │            │
+│  │  • urgentRecommendations                                       │            │
+│  └────────────────────────────────────────────────────────────────┘            │
+└─────────────────────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                         STRUCTURED JSON OUTPUT                                  │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  Core Clinical Data:                  Advanced Analytics:                      │
+│  ├─ summary                           ├─ timeline                              │
+│  ├─ keyFindings                       ├─ labResults                            │
+│  ├─ medications                       ├─ vitalSigns                            │
+│  ├─ diagnoses (with ICD-10)           ├─ earlyDiagnosisIndicators            │
+│  ├─ riskFactors                       └─ clinicalNotes                         │
+│  └─ recommendations                                                            │
+│                                                                                 │
+│  Metadata:                            Compliance:                              │
+│  ├─ model information                 ├─ disclaimer                            │
+│  ├─ inference time                    └─ timestamp                             │
+│  ├─ token usage                                                                │
+│  ├─ document metadata                                                          │
+│  └─ qualityMetrics                                                             │
+└─────────────────────────────────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                             RESPONSE DELIVERY                                   │
+│                              HTTP 200 OK                                        │
+│                        Content-Type: application/json                           │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+
+╔═══════════════════════════════════════════════════════════════════════════════════╗
+║                              DATA FLOW DIAGRAM                                    ║
+╚═══════════════════════════════════════════════════════════════════════════════════╝
+
+  ┌─────────┐
+  │  Client │
+  └────┬────┘
+       │
+       │ 1. Upload Document (PDF/Image/Text)
+       │    POST /api/medical/groq-rag
+       │
+       ▼
+  ┌────────────────┐
+  │  API Endpoint  │◄────── Rate Limiter (50/min)
+  └────┬───────────┘
+       │
+       │ 2. Parse multipart/form-data
+       │
+       ▼
+  ┌────────────────┐
+  │ Document Type  │
+  │   Detection    │
+  └────┬───────────┘
+       │
+       ├──► PDF ──────────► pdf-parse ──────────┐
+       │                                         │
+       ├──► Image ────────► Azure OCR ──────────┤
+       │                    (optional)           │
+       │                                         ▼
+       └──► Text ──────────────────────────► Extracted
+                                              Text
+                                                │
+                                                │ 3. Build prompts
+                                                │
+                                                ▼
+  ┌──────────────────────────────────────────────────┐
+  │              Groq AI API                         │
+  │  ┌────────────────────────────────────────────┐  │
+  │  │  llama-3.3-70b-versatile / mixtral-8x7b   │  │
+  │  │  • Ultra-fast inference                    │  │
+  │  │  • Medical analysis                        │  │
+  │  │  • Structured JSON output                  │  │
+  │  └────────────────────────────────────────────┘  │
+  └──────────────────────┬───────────────────────────┘
+                         │
+                         │ 4. JSON Response
+                         │
+                         ▼
+  ┌──────────────────────────────────┐
+  │   Response Enrichment            │
+  │   • Sort by severity             │
+  │   • Calculate metrics            │
+  │   • Add disclaimer               │
+  │   • Format dates                 │
+  └──────────────────┬───────────────┘
+                     │
+                     │ 5. Final JSON
+                     │
+                     ▼
+  ┌──────────────────────────────────┐
+  │    Client Receives:              │
+  │    • Summary                     │
+  │    • Key Findings                │
+  │    • Medications                 │
+  │    • Diagnoses (ICD-10)          │
+  │    • Risk Factors                │
+  │    • Recommendations             │
+  │    • Timeline                    │
+  │    • Lab Results                 │
+  │    • Vital Signs                 │
+  │    • Early Diagnosis Indicators  │
+  │    • Quality Metrics             │
+  │    • Metadata                    │
+  └──────────────────────────────────┘
+
+
+╔═══════════════════════════════════════════════════════════════════════════════════╗
+║                          TECHNOLOGY STACK                                         ║
+╚═══════════════════════════════════════════════════════════════════════════════════╝
+
+  AI/ML Layer:
+  ┌──────────────────────────────────────────────────────────────┐
+  │  • Groq AI (Ultra-fast LLM inference)                        │
+  │    - llama-3.3-70b-versatile (primary)                       │
+  │    - mixtral-8x7b (alternative)                              │
+  │  • OpenAI SDK (Groq-compatible client)                       │
+  └──────────────────────────────────────────────────────────────┘
+
+  Document Processing:
+  ┌──────────────────────────────────────────────────────────────┐
+  │  • pdf-parse (PDF text extraction)                           │
+  │  • Azure Document Intelligence (OCR - optional)              │
+  │  • formidable (file upload handling)                         │
+  └──────────────────────────────────────────────────────────────┘
+
+  API Layer:
+  ┌──────────────────────────────────────────────────────────────┐
+  │  • Node.js / Express.js                                      │
+  │  • CORS middleware                                           │
+  │  • Rate limiting (in-memory)                                 │
+  └──────────────────────────────────────────────────────────────┘
+
+  Medical Standards:
+  ┌──────────────────────────────────────────────────────────────┐
+  │  • ICD-10 (diagnosis codes)                                  │
+  │  • SNOMED CT (clinical terminology)                          │
+  │  • LOINC (lab test codes)                                    │
+  │  • RxNorm (medication codes)                                 │
+  └──────────────────────────────────────────────────────────────┘
+
+
+╔═══════════════════════════════════════════════════════════════════════════════════╗
+║                        PERFORMANCE CHARACTERISTICS                                ║
+╚═══════════════════════════════════════════════════════════════════════════════════╝
+
+  Speed:
+  ├─ Document Upload: ~100-500ms (depending on size)
+  ├─ PDF Extraction: ~200-1000ms (per document)
+  ├─ OCR Processing: ~2-5 seconds (if needed)
+  ├─ Groq Inference: ~1-2 seconds ⚡ ULTRA-FAST
+  ├─ Post-processing: ~50-200ms
+  └─ Total: ~2-5 seconds (typical)
+
+  Scalability:
+  ├─ Rate Limit: 50 requests/minute (per IP/user)
+  ├─ Max File Size: 50MB
+  ├─ Max Context: 128K tokens (llama-3.3-70b)
+  └─ Concurrent: Limited by Groq API rate limits
+
+  Accuracy:
+  ├─ Medical Entity Recognition: High (GPT-4 level)
+  ├─ ICD-10 Assignment: Suggestions (verify manually)
+  ├─ OCR Confidence: Varies by image quality
+  └─ Structured Extraction: Excellent
+
+
+═══════════════════════════════════════════════════════════════════════════════════
+                            END OF ARCHITECTURE DIAGRAM
+═══════════════════════════════════════════════════════════════════════════════════

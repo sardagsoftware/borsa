@@ -1,0 +1,637 @@
+/**
+ * MEDICAL EXPERT - PREMIUM UI/UX ENHANCEMENTS
+ * Hospital-Grade Premium Design System
+ * Advanced Animations & Micro-interactions
+ *
+ * @version 3.0.0
+ * @design-system Premium Medical
+ * @accessibility WCAG 2.1 AA Compliant
+ */
+
+/* ============================================================
+   PREMIUM DESIGN TOKENS
+   ============================================================ */
+
+:root {
+    /* Premium Gradients */
+    --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-medical-glow: linear-gradient(135deg,
+        rgba(0, 102, 204, 0.9) 0%,
+        rgba(0, 163, 224, 0.8) 100%);
+    --gradient-success-soft: linear-gradient(135deg,
+        rgba(16, 185, 129, 0.1) 0%,
+        rgba(52, 211, 153, 0.05) 100%);
+    --gradient-card-hover: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 1) 100%);
+
+    /* Glass Morphism */
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+    /* Premium Shadows */
+    --shadow-premium: 0 20px 60px rgba(0, 0, 0, 0.12),
+                      0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-glow-medical: 0 0 40px rgba(0, 102, 204, 0.2),
+                           0 0 20px rgba(0, 102, 204, 0.1);
+    --shadow-glow-success: 0 0 40px rgba(16, 185, 129, 0.2);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    /* Smooth Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Blur Effects */
+    --blur-light: blur(10px);
+    --blur-medium: blur(20px);
+    --blur-heavy: blur(40px);
+}
+
+/* ============================================================
+   PREMIUM ANIMATIONS
+   ============================================================ */
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 102, 204, 0.3),
+                    0 0 40px rgba(0, 102, 204, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 102, 204, 0.5),
+                    0 0 60px rgba(0, 102, 204, 0.2);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes progressBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes notification-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-100%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ============================================================
+   GLASS MORPHISM EFFECTS
+   ============================================================ */
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur-medium);
+    -webkit-backdrop-filter: var(--blur-medium);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-4px);
+}
+
+/* ============================================================
+   PREMIUM MESSAGE BUBBLES
+   ============================================================ */
+
+.message-bubble {
+    position: relative;
+    padding: 1.25rem 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 1rem;
+    animation: messageAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.message-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    transition: 0.5s;
+}
+
+.message-bubble:hover::before {
+    left: 100%;
+}
+
+.message-bubble.user {
+    background: var(--gradient-medical);
+    color: white;
+    margin-left: auto;
+    max-width: 80%;
+    box-shadow: var(--shadow-glow-medical);
+}
+
+.message-bubble.assistant {
+    background: white;
+    color: var(--text-primary);
+    max-width: 90%;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 102, 204, 0.1);
+}
+
+.message-bubble.assistant:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 102, 204, 0.2);
+}
+
+/* ============================================================
+   PREMIUM BUTTONS
+   ============================================================ */
+
+.btn-premium {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-smooth);
+    background: var(--gradient-medical);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-premium::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-premium:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-premium);
+}
+
+.btn-premium:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+}
+
+/* Ripple Effect */
+.btn-premium::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.btn-premium:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+}
+
+/* ============================================================
+   LOADING SKELETONS
+   ============================================================ */
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 0%,
+        #e0e0e0 20%,
+        #f0f0f0 40%,
+        #f0f0f0 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    border-radius: 8px;
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-text:last-child {
+    width: 60%;
+}
+
+.skeleton-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.skeleton-card {
+    height: 200px;
+    border-radius: 16px;
+}
+
+/* ============================================================
+   PREMIUM TOOLTIPS
+   ============================================================ */
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition-bounce);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: var(--blur-light);
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.tooltip-container:hover .tooltip {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+/* ============================================================
+   PREMIUM NOTIFICATIONS
+   ============================================================ */
+
+.notification {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    min-width: 320px;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-premium);
+    z-index: 10000;
+    animation: notification-slide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-left: 4px solid var(--medical-primary);
+}
+
+.notification.success {
+    border-left-color: var(--medical-success);
+}
+
+.notification.error {
+    border-left-color: var(--medical-error);
+}
+
+.notification.warning {
+    border-left-color: var(--medical-warning);
+}
+
+.notification.info {
+    border-left-color: var(--medical-info);
+}
+
+/* ============================================================
+   PREMIUM PROGRESS INDICATORS
+   ============================================================ */
+
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 102, 204, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient-medical);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+.progress-bar.indeterminate {
+    width: 30% !important;
+    animation: progressBar 1.5s infinite ease-in-out;
+}
+
+/* ============================================================
+   PREMIUM INPUT FIELDS
+   ============================================================ */
+
+.input-premium {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(0, 102, 204, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    background: white;
+    color: var(--text-primary);
+}
+
+.input-premium:focus {
+    outline: none;
+    border-color: var(--medical-primary);
+    box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+}
+
+.input-premium:hover {
+    border-color: var(--medical-primary);
+}
+
+.input-premium::placeholder {
+    color: var(--text-muted);
+}
+
+/* Floating Label */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    position: absolute;
+    top: 1rem;
+    left: 1.25rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+    background: white;
+    padding: 0 0.25rem;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -0.5rem;
+    left: 1rem;
+    font-size: 0.875rem;
+    color: var(--medical-primary);
+}
+
+/* ============================================================
+   PREMIUM CARDS
+   ============================================================ */
+
+.card-premium {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-medical);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card-premium:hover::before {
+    transform: scaleX(1);
+}
+
+.card-premium:hover {
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-6px);
+}
+
+/* ============================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================================ */
+
+/* Focus Visible (Keyboard Navigation) */
+*:focus-visible {
+    outline: 3px solid var(--medical-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --text-primary: #000000;
+        --bg-primary: #FFFFFF;
+        --medical-primary: #0052A3;
+    }
+
+    .btn-premium,
+    .message-bubble.user {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .glass-card {
+        background: rgba(30, 41, 59, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .card-premium {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* ============================================================
+   MICRO-INTERACTIONS
+   ============================================================ */
+
+/* Hover Lift Effect */
+.hover-lift {
+    transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Hover Glow Effect */
+.hover-glow {
+    transition: var(--transition-smooth);
+}
+
+.hover-glow:hover {
+    box-shadow: var(--shadow-glow-medical);
+}
+
+/* Click Feedback */
+.click-feedback:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Floating Animation */
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .message-bubble {
+        max-width: 95% !important;
+        padding: 1rem 1.25rem;
+    }
+
+    .notification {
+        min-width: 280px;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .card-premium {
+        padding: 1.5rem;
+    }
+}
+
+/* ============================================================
+   PRINT STYLES (For Medical Records)
+   ============================================================ */
+
+@media print {
+    .glass-card,
+    .card-premium {
+        box-shadow: none;
+        border: 1px solid #e0e0e0;
+    }
+
+    .btn-premium,
+    .notification {
+        display: none;
+    }
+
+    .message-bubble {
+        page-break-inside: avoid;
+    }
+}

@@ -19,6 +19,7 @@ const formidable = require('formidable');
 const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const { optionalAuthenticate, legacyCompatibility } = require('../auth/jwt-middleware');
 
 class MedicalFileManager {
     constructor() {
@@ -568,18 +569,15 @@ module.exports = async function handler(req, res) {
         return res.status(200).end();
     }
 
-    // Authentication check
-    const token = req.headers.authorization?.replace('Bearer ', '');
-    if (!token) {
-        return res.status(401).json({
-            success: false,
-            error: 'Authentication required'
+    // Apply JWT authentication (optional) with legacy fallback
+    await new Promise((resolve) => {
+        optionalAuthenticate(req, res, () => {
+            legacyCompatibility(req, res, resolve);
         });
-    }
+    });
 
-    // TODO: Verify token and get user ID
-    // For now, using a mock user ID (should be extracted from JWT)
-    const userId = req.query.userId || 'mock-user-id';
+    // Get userId from authenticated user or fallback
+    const userId = req.user?.userId;
 
     try {
         if (req.method === 'GET') {

@@ -1,0 +1,739 @@
+/**
+ * ============================================================
+ * ULTRA PREMIUM 2025 THEME OVERRIDE
+ * Applies glassmorphism and modern design system
+ * ============================================================
+ */
+
+/* Force Ultra Premium 2025 theme on all major containers */
+body {
+    background: var(--ultra-gradient-mesh) !important;
+    color: var(--ultra-gray-800, #1E293B) !important;
+    font-family: var(--ultra-font-primary) !important;
+}
+
+/* Medical Disclaimer Banner - Fix text visibility on yellow/red background */
+.medical-disclaimer-banner {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1)) !important;
+    border-left: 4px solid #DC2626 !important;
+}
+
+.disclaimer-text {
+    color: #1F2937 !important;  /* Dark gray for high contrast on light red/yellow background */
+    font-weight: 500 !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.6 !important;
+}
+
+.disclaimer-icon-banner {
+    background: #DC2626 !important;
+    color: #FFFFFF !important;
+}
+
+/* Main Chat Area - Ultra Premium Glassmorphism */
+.main-chat {
+    background: transparent !important;
+}
+
+/* Input Area - Light Background (No Black) */
+.input-area {
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.85)) !important;
+    backdrop-filter: var(--ultra-blur-md, blur(12px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-md, blur(12px)) !important;
+    border-top: 1px solid var(--ultra-gray-200, #E2E8F0) !important;
+}
+
+/* Medical Upload Zone - Light Glassmorphism */
+.medical-upload-zone {
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.7)) !important;
+    backdrop-filter: var(--ultra-blur-lg, blur(16px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-lg, blur(16px)) !important;
+    border: 2px dashed var(--ultra-gray-300, #CBD5E1) !important;
+    border-radius: var(--ultra-radius-lg, 16px) !important;
+}
+
+.medical-upload-zone:hover {
+    background: rgba(10, 77, 140, 0.05) !important;
+    border-color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+.upload-icon {
+    color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+.upload-text {
+    color: var(--ultra-gray-900, #0F172A) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+}
+
+.upload-subtext {
+    color: var(--ultra-gray-600, #475569) !important;
+}
+
+/* Chat Header - Hidden (using top-nav instead) */
+.chat-header {
+    display: none !important;
+}
+
+/* Messages Container - Ultra Premium Glassmorphism */
+.messages-container {
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: calc(100vh - 300px) !important;
+}
+
+/* Empty State - Centered for cleaner interface */
+.empty-state {
+    background: transparent !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 2rem !important;
+}
+
+.empty-icon {
+    background: var(--ultra-gradient-primary) !important;
+    box-shadow: var(--ultra-shadow-colored-primary) !important;
+    margin-top: 2rem !important;
+}
+
+.empty-title {
+    color: var(--ultra-gray-900, #0F172A) !important;
+    font-weight: var(--ultra-weight-bold, 700) !important;
+    margin-top: 1rem !important;
+}
+
+.empty-subtitle {
+    color: var(--ultra-gray-600, #475569) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Quick Actions - Positioned Earlier */
+.quick-actions {
+    margin-top: 1rem !important;
+}
+
+/* Quick Action Cards - Ultra Premium Glassmorphism */
+.quick-action-card {
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.7)) !important;
+    backdrop-filter: var(--ultra-blur-lg, blur(16px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-lg, blur(16px)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: var(--ultra-radius-lg, 16px) !important;
+    box-shadow: var(--ultra-shadow-md) !important;
+    color: var(--ultra-gray-900, #0F172A) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.quick-action-card:hover {
+    background: rgba(255, 255, 255, 0.85) !important;
+    box-shadow: var(--ultra-shadow-xl) !important;
+    transform: translateY(-4px) !important;
+    border-color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+.quick-action-icon {
+    background: var(--ultra-gradient-primary) !important;
+    color: var(--ultra-white, #FFFFFF) !important;
+    box-shadow: var(--ultra-shadow-colored-primary) !important;
+}
+
+.quick-action-title {
+    color: var(--ultra-gray-900, #0F172A) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+}
+
+.quick-action-description {
+    color: var(--ultra-gray-600, #475569) !important;
+}
+
+/* Sidebar - Ultra Premium Glassmorphism */
+.sidebar {
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.7)) !important;
+    backdrop-filter: var(--ultra-blur-xl, blur(24px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-xl, blur(24px)) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: var(--ultra-shadow-lg) !important;
+    transition: transform var(--ultra-transition-base) !important;
+}
+
+/* Sidebar Collapsed State - Hide completely, no white space */
+.sidebar.collapsed {
+    transform: translateX(-100%) !important;
+    visibility: hidden !important;
+}
+
+.sidebar-header {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.logo {
+    color: var(--ultra-gray-900, #0F172A) !important;
+    font-weight: var(--ultra-weight-bold, 700) !important;
+}
+
+/* New Consultation Button - Ultra Premium Primary */
+.new-consultation-btn {
+    background: var(--ultra-gradient-primary) !important;
+    border: none !important;
+    color: var(--ultra-white, #FFFFFF) !important;
+    box-shadow: var(--ultra-shadow-colored-primary) !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.new-consultation-btn:hover {
+    box-shadow: var(--ultra-shadow-lg) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Specializations List */
+.specializations-list {
+    background: transparent !important;
+}
+
+/* Specialization Items - Ultra Premium Hover States */
+.specialization-item {
+    color: var(--ultra-gray-700, #334155) !important;
+    background: transparent !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.specialization-item:hover {
+    background: var(--ultra-primary-alpha, rgba(10, 77, 140, 0.1)) !important;
+    color: var(--ultra-primary, #0A4D8C) !important;
+    transform: translateX(4px) !important;
+}
+
+.specialization-item.active {
+    background: var(--ultra-gradient-primary) !important;
+    color: var(--ultra-white, #FFFFFF) !important;
+    box-shadow: var(--ultra-shadow-colored-primary) !important;
+}
+
+.specialization-icon {
+    background: var(--ultra-primary-alpha, rgba(10, 77, 140, 0.1)) !important;
+    color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+/* Nav Category Headers - Ultra Premium */
+.nav-category-header {
+    color: var(--ultra-gray-700, #334155) !important;
+    background: transparent !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.nav-category-header:hover {
+    background: var(--ultra-primary-alpha, rgba(10, 77, 140, 0.08)) !important;
+    color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+/* Dropdown Arrow Colors - Ultra Premium */
+.dropdown-arrow {
+    color: var(--ultra-gray-500, #64748B) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.nav-category-header:hover .dropdown-arrow {
+    color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+.nav-category.open .nav-category-header {
+    background: var(--ultra-primary-alpha, rgba(10, 77, 140, 0.12)) !important;
+    color: var(--ultra-primary, #0A4D8C) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+}
+
+.nav-category.open .dropdown-arrow {
+    color: var(--ultra-primary, #0A4D8C) !important;
+}
+
+.nav-category-content {
+    background: transparent !important;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border-top: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+}
+
+.emergency-btn {
+    background: var(--hospital-accent-coral, #E74C3C) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+.emergency-btn:hover {
+    background: var(--hospital-critical, #C0392B) !important;
+}
+
+/* User Menu Button */
+.user-menu-btn {
+    background: linear-gradient(135deg, var(--hospital-primary-blue, #0B5394), var(--hospital-primary-light, #3498DB)) !important;
+    color: #FFFFFF !important;
+}
+
+/* Header Buttons - Ultra Premium Style */
+.header-btn {
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.7)) !important;
+    backdrop-filter: var(--ultra-blur-md, blur(8px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-md, blur(8px)) !important;
+    border: 2px solid var(--ultra-gray-300, #CBD5E1) !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    color: var(--ultra-gray-700, #334155) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+    transition: all var(--ultra-transition-base) !important;
+    padding: 0.625rem 1rem !important;
+}
+
+.header-btn:hover {
+    background: var(--ultra-gradient-primary) !important;
+    border-color: var(--ultra-primary, #0A4D8C) !important;
+    color: var(--ultra-white, #FFFFFF) !important;
+    box-shadow: var(--ultra-shadow-colored-primary) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Language Selector - Ultra Premium Style */
+.language-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 40px;
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.7)) !important;
+    backdrop-filter: var(--ultra-blur-md, blur(8px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-md, blur(8px)) !important;
+    border: 2px solid var(--ultra-gray-300, #CBD5E1) !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    color: var(--ultra-gray-700, #334155) !important;
+    font-weight: var(--ultra-weight-bold, 700) !important;
+    font-size: 0.8125rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.lang-btn:hover::before {
+    left: 100%;
+}
+
+.lang-btn:hover {
+    border-color: var(--ultra-primary, #0A4D8C) !important;
+    background: var(--ultra-primary-alpha, rgba(10, 77, 140, 0.1)) !important;
+    box-shadow: 0 4px 12px rgba(10, 77, 140, 0.2) !important;
+    transform: translateY(-2px) scale(1.05);
+}
+
+.lang-btn:active {
+    transform: translateY(0) scale(1);
+}
+
+.lang-btn.active {
+    background: var(--ultra-gradient-primary) !important;
+    border-color: var(--ultra-primary, #0A4D8C) !important;
+    color: white !important;
+    box-shadow: 0 6px 16px rgba(10, 77, 140, 0.3) !important;
+}
+
+.lang-btn.active .lang-flag {
+    animation: langPulse 2s ease-in-out infinite;
+}
+
+@keyframes langPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+.lang-flag {
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* AI Status Badge - Ultra Premium */
+#aiStatusBadge {
+    background: var(--ultra-gradient-success) !important;
+    color: var(--ultra-white, #FFFFFF) !important;
+    box-shadow: var(--ultra-shadow-colored-success) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: var(--ultra-radius-full, 9999px) !important;
+}
+
+/* Note: Medical Disclaimer Banner styles defined at top of file */
+
+.disclaimer-icon-banner {
+    color: var(--hospital-accent-amber, #F39C12) !important;
+}
+
+/* Input Container - Ultra Premium Glassmorphism */
+.input-container {
+    background: var(--ultra-glass-white, rgba(255, 255, 255, 0.7)) !important;
+    backdrop-filter: var(--ultra-blur-lg, blur(16px)) !important;
+    -webkit-backdrop-filter: var(--ultra-blur-lg, blur(16px)) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: var(--ultra-shadow-md) !important;
+    border-radius: var(--ultra-radius-lg, 16px) !important;
+    padding: var(--ultra-space-lg, 1.5rem) !important;
+}
+
+/* Message Input - Ultra Premium Style */
+.message-input {
+    background: var(--ultra-white, #FFFFFF) !important;
+    border: 2px solid var(--ultra-gray-300, #CBD5E1) !important;
+    color: var(--ultra-gray-900, #0F172A) !important;
+    font-family: var(--ultra-font-primary, 'Inter'), sans-serif !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.message-input:focus {
+    border-color: var(--ultra-primary, #0A4D8C) !important;
+    box-shadow: 0 0 0 4px var(--ultra-primary-alpha, rgba(10, 77, 140, 0.1)) !important;
+    outline: none !important;
+}
+
+.message-input::placeholder {
+    color: var(--ultra-gray-400, #94A3B8) !important;
+}
+
+/* Send Button - Ultra Premium Primary */
+.send-btn {
+    background: var(--ultra-gradient-primary) !important;
+    color: var(--ultra-white, #FFFFFF) !important;
+    border: none !important;
+    box-shadow: var(--ultra-shadow-colored-primary) !important;
+    border-radius: var(--ultra-radius-md, 12px) !important;
+    font-weight: var(--ultra-weight-semibold, 600) !important;
+    transition: all var(--ultra-transition-base) !important;
+}
+
+.send-btn:hover {
+    box-shadow: var(--ultra-shadow-lg) !important;
+    transform: translateY(-2px) !important;
+}
+
+.send-btn:disabled {
+    background: var(--ultra-gray-300, #CBD5E1) !important;
+    opacity: 0.5 !important;
+    box-shadow: none !important;
+}
+
+/* Input Actions */
+.input-action-btn {
+    background: transparent !important;
+    border: none !important;
+    color: var(--hospital-text-secondary, #495057) !important;
+}
+
+.input-action-btn:hover {
+    background: rgba(11, 83, 148, 0.08) !important;
+    color: var(--hospital-primary-blue, #0B5394) !important;
+}
+
+/* Message Bubbles */
+.message {
+    background: transparent !important;
+}
+
+.message.user .message-content {
+    background: linear-gradient(135deg, var(--hospital-primary-blue, #0B5394), var(--hospital-primary-light, #3498DB)) !important;
+    color: #FFFFFF !important;
+}
+
+.message.assistant .message-content {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+.message-avatar {
+    background: linear-gradient(135deg, var(--hospital-healing-green, #27AE60), var(--hospital-healing-light, #52BE80)) !important;
+    color: #FFFFFF !important;
+}
+
+.message.user .message-avatar {
+    background: linear-gradient(135deg, var(--hospital-primary-blue, #0B5394), var(--hospital-primary-light, #3498DB)) !important;
+}
+
+/* Modal System - Hospital Light */
+.modal {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.modal-content {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.modal-header {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border-bottom: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+}
+
+.modal-title {
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+.modal-body {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+.modal-close {
+    background: transparent !important;
+    color: var(--hospital-text-secondary, #495057) !important;
+}
+
+.modal-close:hover {
+    background: var(--hospital-bg-secondary, #F8F9FA) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+/* Form Elements in Modals */
+.modal input,
+.modal textarea,
+.modal select {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border: 1px solid var(--hospital-border-medium, #CED4DA) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+.modal input:focus,
+.modal textarea:focus,
+.modal select:focus {
+    border-color: var(--hospital-primary-blue, #0B5394) !important;
+    box-shadow: 0 0 0 3px rgba(11, 83, 148, 0.1) !important;
+}
+
+/* Loading States */
+.loading-spinner {
+    color: var(--hospital-primary-blue, #0B5394) !important;
+}
+
+.spinner {
+    border-color: rgba(11, 83, 148, 0.2) !important;
+    border-top-color: var(--hospital-primary-blue, #0B5394) !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--hospital-bg-secondary, #F8F9FA);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--hospital-border-strong, #ADB5BD);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--hospital-text-tertiary, #6C757D);
+}
+
+/* Dropdown Menus */
+.dropdown-menu {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.dropdown-item {
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+.dropdown-item:hover {
+    background: var(--hospital-bg-secondary, #F8F9FA) !important;
+    color: var(--hospital-primary-blue, #0B5394) !important;
+}
+
+/* Tooltip */
+.tooltip {
+    background: var(--hospital-neutral-800, #212529) !important;
+    color: #FFFFFF !important;
+}
+
+/* Notification/Alert Messages */
+.notification {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+.notification.success {
+    border-left: 4px solid var(--hospital-healing-green, #27AE60) !important;
+}
+
+.notification.error {
+    border-left: 4px solid var(--hospital-accent-coral, #E74C3C) !important;
+}
+
+.notification.warning {
+    border-left: 4px solid var(--hospital-accent-amber, #F39C12) !important;
+}
+
+.notification.info {
+    border-left: 4px solid var(--hospital-primary-blue, #0B5394) !important;
+}
+
+/* Code Blocks */
+pre, code {
+    background: var(--hospital-neutral-100, #F0F2F5) !important;
+    border: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+/* Tables */
+table {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+    border: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+}
+
+th {
+    background: var(--hospital-bg-secondary, #F8F9FA) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+    border-bottom: 2px solid var(--hospital-border-medium, #CED4DA) !important;
+}
+
+td {
+    border-bottom: 1px solid var(--hospital-border-light, #E4E6EB) !important;
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+tr:hover {
+    background: var(--hospital-bg-secondary, #F8F9FA) !important;
+}
+
+/* Tabs */
+.tab-button {
+    background: transparent !important;
+    border-bottom: 2px solid transparent !important;
+    color: var(--hospital-text-secondary, #495057) !important;
+}
+
+.tab-button:hover {
+    color: var(--hospital-primary-blue, #0B5394) !important;
+    border-bottom-color: rgba(11, 83, 148, 0.3) !important;
+}
+
+.tab-button.active {
+    color: var(--hospital-primary-blue, #0B5394) !important;
+    border-bottom-color: var(--hospital-primary-blue, #0B5394) !important;
+    font-weight: 600 !important;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background: var(--hospital-neutral-200, #E4E6EB) !important;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--hospital-primary-blue, #0B5394), var(--hospital-primary-light, #3498DB)) !important;
+}
+
+/* Checkbox & Radio */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--hospital-primary-blue, #0B5394) !important;
+}
+
+/* File Upload */
+.file-upload-area {
+    background: var(--hospital-bg-secondary, #F8F9FA) !important;
+    border: 2px dashed var(--hospital-border-medium, #CED4DA) !important;
+    color: var(--hospital-text-secondary, #495057) !important;
+}
+
+.file-upload-area:hover {
+    border-color: var(--hospital-primary-blue, #0B5394) !important;
+    background: rgba(11, 83, 148, 0.05) !important;
+}
+
+/* Ensure all text is readable */
+* {
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+p {
+    color: var(--hospital-text-primary, #212529) !important;
+}
+
+a {
+    color: var(--hospital-primary-blue, #0B5394) !important;
+}
+
+a:hover {
+    color: var(--hospital-primary-dark, #084B83) !important;
+}
+
+/* Fix any remaining dark backgrounds */
+[style*="background: #"] {
+    background: var(--hospital-bg-primary, #FFFFFF) !important;
+}
+
+[style*="background-color: #0"] {
+    background-color: var(--hospital-bg-primary, #FFFFFF) !important;
+}
+
+[style*="background-color: #1"] {
+    background-color: var(--hospital-bg-primary, #FFFFFF) !important;
+}
+
+[style*="background-color: #2"] {
+    background-color: var(--hospital-bg-secondary, #F8F9FA) !important;
+}
+
+/* Animation for smooth theme transition */
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        transition: background-color 0.2s ease,
+                    border-color 0.2s ease,
+                    color 0.2s ease;
+    }
+}

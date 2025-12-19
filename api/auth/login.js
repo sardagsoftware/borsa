@@ -1,290 +1,183 @@
 /**
- * User login endpoint
- * Vercel Serverless Function
- * Beyaz Şapkalı Security - Session + JWT hybrid authentication + Account lockout
+ * USER LOGIN ENDPOINT
+ * Authenticates users and issues JWT tokens
+ *
+ * @version 2.0.0
  */
 
-const User = require('../../backend/models/User');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const { trackFailedLogin, resetFailedLogin, isAccountLocked } = require('../../middleware/security-rate-limiters');
-const { sendAccountLockoutEmail, sendLoginNotificationEmail } = require('../../lib/email-service');
-const { setAuthCookies, setCSRFCookie, generateCSRFToken } = require('../../middleware/cookie-auth');
+const bcrypt = require('bcrypt');
+const { Client } = require('pg');
+const {
+    generateAccessToken,
+    generateRefreshToken
+} = require('./jwt-middleware');
 
-module.exports = async (req, res) => {
-  // Apply secure CORS
-  if (handleCORS(req, res)) return;
+/**
+ * Database client singleton
+ */
+let dbClient = null;
 
-  // Only allow POST
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Method not allowed' });
-  }
-
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({
-        success: false,
-        message: 'Email and password are required'
-      });
-    }
-
-    // 🔒 BEYAZ ŞAPKALI: Check if account is locked (before database lookup)
-    const lockStatus = await isAccountLocked(email.toLowerCase().trim());
-    if (lockStatus.locked) {
-      return res.status(429).json({
-        success: false,
-        message: `Account temporarily locked due to too many failed login attempts. Try again in ${lockStatus.lockDuration} seconds.`,
-        code: 'ACCOUNT_LOCKED',
-        lockDuration: lockStatus.lockDuration
-      });
-    }
-
-    // Find user
-    const user = await User.findByEmail(email.toLowerCase().trim());
-
-    if (!user) {
-      // 🔒 SECURITY: Generic error message to prevent email enumeration
-      // But still track as failed attempt
-      await trackFailedLogin(email.toLowerCase().trim());
-
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid email or password'
-      });
-    }
-
-    // 🔒 SECURITY: Check if user account is active
-    if (user.status && user.status !== 'active') {
-      return res.status(403).json({
-        success: false,
-        message: 'Account is not active. Please contact support.',
-        code: 'ACCOUNT_INACTIVE'
-      });
-    }
-
-    // Verify password (fixed: user.passwordHash not user.password)
-    const isValidPassword = await User.verifyPassword(password, user.passwordHash);
-
-    if (!isValidPassword) {
-      // 🔒 BEYAZ ŞAPKALI: Track failed login attempt
-      const failedAttempt = await trackFailedLogin(email.toLowerCase().trim());
-
-      // Log activity
-      User.logActivity({
-        userId: user.id,
-        action: 'login_failed',
-        description: 'Failed login attempt - invalid password',
-        ipAddress: req.headers['x-forwarded-for'] || req.connection?.remoteAddress,
-        userAgent: req.headers['user-agent'],
-        metadata: {
-          attemptsRemaining: failedAttempt.attemptsRemaining,
-          locked: failedAttempt.locked
-        }
-      });
-
-      // If account just got locked, inform user and send email notification
-      if (failedAttempt.locked) {
-        // 🔒 BEYAZ ŞAPKALI: Send lockout notification email (async, don't wait)
-        sendAccountLockoutEmail(user, failedAttempt.lockDuration).catch(err => {
-          console.error('Failed to send lockout email:', err.message);
+async function getDbClient() {
+    if (!dbClient) {
+        dbClient = new Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
         });
-
-        return res.status(429).json({
-          success: false,
-          message: `Too many failed login attempts. Your account has been locked for ${failedAttempt.lockDuration} seconds.`,
-          code: 'ACCOUNT_LOCKED',
-          lockDuration: failedAttempt.lockDuration
-        });
-      }
-
-      // Return generic error with remaining attempts hint
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid email or password',
-        attemptsRemaining: failedAttempt.attemptsRemaining
-      });
+        await dbClient.connect();
     }
+    return dbClient;
+}
 
-    // 🔒 BEYAZ ŞAPKALI: Reset failed login attempts on successful login
-    await resetFailedLogin(email.toLowerCase().trim());
+/**
+ * Login user with email and password
+ */
+async function loginUser(email, password) {
+    const db = await getDbClient();
 
-    // Check if 2FA is enabled
-    if (user.twoFactorEnabled) {
-      // Don't create session yet, return userId for 2FA verification
-      return res.status(200).json({
-        success: true,
-        data: {
-          requiresTwoFactor: true,
-          userId: user.id
-        }
-      });
-    }
-
-    // 🔒 BEYAZ ŞAPKALI: Generate secure JWT tokens (access + refresh)
-    const accessToken = jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        role: user.role || 'USER',
-        subscription: user.subscription || 'free'
-      },
-      process.env.JWT_SECRET || 'your-secret-key-change-this',
-      { expiresIn: '15m', issuer: 'LyDian-Platform', audience: 'LyDian-API' }
+    // Find user by email
+    const userResult = await db.query(
+        'SELECT id, email, password, role, full_name, status FROM users WHERE email = $1',
+        [email]
     );
 
-    const refreshToken = jwt.sign(
-      {
-        userId: user.id,
-        type: 'refresh'
-      },
-      process.env.JWT_SECRET || 'your-secret-key-change-this',
-      { expiresIn: '7d', issuer: 'LyDian-Platform', audience: 'LyDian-API' }
+    if (userResult.rows.length === 0) {
+        throw new Error('Invalid email or password');
+    }
+
+    const user = userResult.rows[0];
+
+    // Check if account is active
+    if (user.status !== 'active') {
+        throw new Error(`Account is ${user.status}. Please contact support.`);
+    }
+
+    // Verify password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+        throw new Error('Invalid email or password');
+    }
+
+    // Generate tokens
+    const accessToken = generateAccessToken(
+        user.id,
+        user.email,
+        user.role || 'patient',
+        {
+            fullName: user.full_name
+        }
     );
 
-    // 🔒 BEYAZ ŞAPKALI: Generate CSRF token
-    const csrfToken = generateCSRFToken();
+    const refreshToken = generateRefreshToken(user.id, user.email);
 
-    // 🔒 BEYAZ ŞAPKALI: Generate session ID for Redis
-    const sessionId = crypto.randomBytes(32).toString('hex');
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 7); // 7 days
+    // Store refresh token in database
+    await db.query(
+        `INSERT INTO user_sessions (id, user_id, refresh_token, expires_at, created_at)
+         VALUES (uuid_generate_v4(), $1, $2, NOW() + INTERVAL '7 days', NOW())`,
+        [user.id, refreshToken]
+    );
 
-    // Create session in database (for Redis sync)
-    try {
-      const { getDatabase } = require('../../database/init-db');
-      const db = getDatabase();
-      try {
-        db.prepare(`
-          INSERT INTO sessions (userId, token, sessionId, ipAddress, userAgent, expiresAt)
-          VALUES (?, ?, ?, ?, ?, ?)
-        `).run(
-          user.id,
-          accessToken,
-          sessionId,
-          req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown',
-          req.headers['user-agent'] || 'unknown',
-          expiresAt.toISOString()
-        );
-      } finally {
-        db.close();
-      }
-    } catch (dbError) {
-      console.error('Session creation error:', dbError);
-      // Continue anyway - JWT is still valid
-    }
+    // Log login activity
+    await db.query(
+        `INSERT INTO user_activity_feed (id, user_id, activity_type, title, description, created_at)
+         VALUES (uuid_generate_v4(), $1, 'user_login', 'User Login', 'Successful login from new session', NOW())`,
+        [user.id]
+    );
 
-    // 🔒 SECURITY: Set httpOnly cookies (access token + refresh token + session)
-    setAuthCookies(res, accessToken, refreshToken);
-    setCSRFCookie(res, csrfToken);
-
-    // Log successful login
-    User.logActivity({
-      userId: user.id,
-      action: 'user_login',
-      description: 'User logged in successfully',
-      ipAddress: req.headers['x-forwarded-for'] || req.connection?.remoteAddress,
-      userAgent: req.headers['user-agent']
-    });
-
-    // 🔒 BEYAZ ŞAPKALI: Check if this is a new login (new IP/device)
-    // Send notification email for security awareness
-    try {
-      const currentIp = req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown';
-      const { getDatabase } = require('../../database/init-db');
-const { handleCORS } = require('../../middleware/cors-handler');
-      const db = getDatabase();
-
-      try {
-        // Check if this IP has logged in within last 30 days
-        const recentLogin = db.prepare(`
-          SELECT * FROM sessions
-          WHERE userId = ? AND ipAddress = ?
-          AND createdAt > datetime('now', '-30 days')
-          ORDER BY createdAt DESC
-          LIMIT 1
-        `).get(user.id, currentIp);
-
-        // If no recent login from this IP, send notification
-        if (!recentLogin) {
-          const userAgent = req.headers['user-agent'] || 'Unknown';
-
-          // Simple user agent parsing
-          let device = 'Unknown Device';
-          let browser = 'Unknown Browser';
-
-          if (userAgent.includes('Mobile') || userAgent.includes('Android')) {
-            device = 'Mobile Device';
-          } else if (userAgent.includes('iPad') || userAgent.includes('iPhone')) {
-            device = 'iOS Device';
-          } else if (userAgent.includes('Macintosh')) {
-            device = 'Mac Computer';
-          } else if (userAgent.includes('Windows')) {
-            device = 'Windows Computer';
-          } else if (userAgent.includes('Linux')) {
-            device = 'Linux Computer';
-          }
-
-          if (userAgent.includes('Chrome')) {
-            browser = 'Google Chrome';
-          } else if (userAgent.includes('Firefox')) {
-            browser = 'Mozilla Firefox';
-          } else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
-            browser = 'Safari';
-          } else if (userAgent.includes('Edge')) {
-            browser = 'Microsoft Edge';
-          } else if (userAgent.includes('Opera')) {
-            browser = 'Opera';
-          }
-
-          // Send login notification email (async, don't block response)
-          sendLoginNotificationEmail(user, {
-            ipAddress: currentIp,
-            userAgent,
-            timestamp: new Date().toISOString(),
-            device,
-            browser,
-            location: 'Unknown' // Could integrate with IP geolocation service
-          }).catch(err => {
-            console.error('Failed to send login notification email:', err.message);
-          });
-
-          console.log(`[Security] New login notification sent to ${user.email} for IP ${currentIp}`);
-        }
-      } finally {
-        db.close();
-      }
-    } catch (error) {
-      console.error('Login notification check error:', error.message);
-      // Don't fail the login if notification fails
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: 'Login successful',
-      data: {
-        requiresTwoFactor: false,
+    return {
         user: {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role || 'USER',
-          subscription: user.subscription || 'free',
-          credits: user.credits || 0
+            id: user.id,
+            email: user.email,
+            fullName: user.full_name,
+            role: user.role || 'patient'
         },
-        // CSRF token for client-side POST requests
-        csrfToken: csrfToken,
-        // Include token for API clients (backward compatibility)
-        token: accessToken
-      }
-    });
+        accessToken,
+        refreshToken,
+        expiresIn: '15m'
+    };
+}
 
-  } catch (error) {
-    console.error('Login error:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Internal server error'
-    });
-  }
-};
+/**
+ * API Handler
+ */
+export default async function handler(req, res) {
+    // CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
+    if (req.method !== 'POST') {
+        return res.status(405).json({
+            success: false,
+            error: 'Method not allowed'
+        });
+    }
+
+    try {
+        const { email, password } = req.body;
+
+        // Validation
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                error: 'Email and password are required',
+                code: 'VALIDATION_ERROR'
+            });
+        }
+
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Invalid email format',
+                code: 'INVALID_EMAIL'
+            });
+        }
+
+        // Attempt login
+        const loginResult = await loginUser(email, password);
+
+        // Set refresh token as HTTP-only cookie for security
+        res.setHeader('Set-Cookie', `refresh_token=${loginResult.refreshToken}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=604800`);
+
+        return res.status(200).json({
+            success: true,
+            data: {
+                user: loginResult.user,
+                accessToken: loginResult.accessToken,
+                expiresIn: loginResult.expiresIn
+            },
+            message: 'Login successful'
+        });
+
+    } catch (error) {
+        console.error('Login error:', error);
+
+        if (error.message.includes('Invalid email or password')) {
+            return res.status(401).json({
+                success: false,
+                error: 'Invalid email or password',
+                code: 'INVALID_CREDENTIALS'
+            });
+        }
+
+        if (error.message.includes('Account is')) {
+            return res.status(403).json({
+                success: false,
+                error: error.message,
+                code: 'ACCOUNT_DISABLED'
+            });
+        }
+
+        return res.status(500).json({
+            success: false,
+            error: 'Login failed',
+            code: 'SERVER_ERROR',
+            details: error.message
+        });
+    }
+}

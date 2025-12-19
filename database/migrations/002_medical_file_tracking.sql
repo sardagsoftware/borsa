@@ -481,3 +481,37 @@ COMMENT ON TABLE medical_device_detections IS 'Stores detected medical device in
 COMMENT ON TABLE user_upload_stats IS 'Daily aggregated statistics for user uploads and usage';
 COMMENT ON TABLE medical_consultations IS 'Medical consultation records linking users, files, and physicians';
 COMMENT ON TABLE user_activity_feed IS 'Real-time activity feed for user dashboard';
+
+-- ============================================================================
+-- JWT AUTHENTICATION TABLES
+-- ============================================================================
+
+-- User Sessions for Refresh Token Management
+CREATE TABLE IF NOT EXISTS user_sessions (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    refresh_token TEXT NOT NULL,
+    expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    revoked BOOLEAN DEFAULT FALSE,
+    revoked_at TIMESTAMP WITH TIME ZONE,
+    last_used_at TIMESTAMP WITH TIME ZONE,
+    ip_address INET,
+    user_agent TEXT,
+    device_info JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(refresh_token)
+);
+
+-- Indexes for user_sessions
+CREATE INDEX IF NOT EXISTS idx_user_sessions_user_id ON user_sessions(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_sessions_refresh_token ON user_sessions(refresh_token);
+CREATE INDEX IF NOT EXISTS idx_user_sessions_expires_at ON user_sessions(expires_at);
+CREATE INDEX IF NOT EXISTS idx_user_sessions_revoked ON user_sessions(revoked) WHERE revoked = FALSE;
+
+-- Trigger to update user_sessions updated_at
+CREATE TRIGGER update_user_sessions_updated_at
+    BEFORE UPDATE ON user_sessions
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+COMMENT ON TABLE user_sessions IS 'JWT refresh token sessions for user authentication';

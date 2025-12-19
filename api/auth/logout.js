@@ -1,115 +1,81 @@
 /**
- * User logout endpoint
- * Vercel Serverless Function
- * Beyaz Şapkalı Security - Properly destroy sessions and tokens
+ * USER LOGOUT ENDPOINT
  */
 
-const User = require('../../backend/models/User');
-const jwt = require('jsonwebtoken');
-const { clearAuthCookies, getCookie } = require('../../middleware/cookie-auth');
+const { Client } = require('pg');
+const { authenticate } = require('./jwt-middleware');
 
-module.exports = async (req, res) => {
-  // CORS Headers
-  const allowedOrigins = [
-    'https://www.ailydian.com',
-    'https://ailydian.com',
-    'https://ailydian-ultra-pro.vercel.app',
-    'http://localhost:3000',
-    'http://localhost:3100'
-  ];
+let dbClient = null;
 
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
+async function getDbClient() {
+    if (!dbClient) {
+        dbClient = new Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+        });
+        await dbClient.connect();
+    }
+    return dbClient;
+}
 
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
+async function logoutUser(userId, revokeAll = false, refreshToken = null) {
+    const db = await getDbClient();
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-  }
-
-  try {
-    let userId = null;
-
-    // 🔒 BEYAZ ŞAPKALI: Extract user info from JWT token
-    const authToken = getCookie(req, 'auth_token');
-    const sessionId = getCookie(req, 'session_id');
-
-    if (authToken) {
-      try {
-        const decoded = jwt.verify(
-          authToken,
-          process.env.JWT_SECRET || 'your-secret-key-change-this'
+    if (revokeAll) {
+        await db.query(
+            'UPDATE user_sessions SET revoked = true, revoked_at = NOW() WHERE user_id = $1 AND revoked = false',
+            [userId]
         );
-        userId = decoded.userId || decoded.id;
-      } catch (jwtError) {
-        // Token invalid or expired - continue with logout anyway
-        console.log('[Logout] Invalid JWT token');
-      }
+        return { revokedCount: 'all' };
+    } else if (refreshToken) {
+        const result = await db.query(
+            'UPDATE user_sessions SET revoked = true, revoked_at = NOW() WHERE user_id = $1 AND refresh_token = $2 AND revoked = false RETURNING id',
+            [userId, refreshToken]
+        );
+        return { revokedCount: result.rowCount };
     }
 
-    // Delete session from database
-    if (sessionId || authToken) {
-      try {
-        const { getDatabase } = require('../../database/init-db');
-        const db = getDatabase();
-        try {
-          if (sessionId) {
-            db.prepare('DELETE FROM sessions WHERE sessionId = ?').run(sessionId);
-          }
-          if (authToken) {
-            db.prepare('DELETE FROM sessions WHERE token = ?').run(authToken);
-          }
-          // Also delete all sessions for this user
-          if (userId) {
-            db.prepare('DELETE FROM sessions WHERE userId = ? AND expiresAt < datetime("now", "+7 days")').run(userId);
-          }
-        } finally {
-          db.close();
+    return { revokedCount: 0 };
+}
+
+export default async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') return res.status(200).end();
+    if (req.method !== 'POST') return res.status(405).json({ success: false, error: 'Method not allowed' });
+
+    await new Promise((resolve, reject) => {
+        authenticate(req, res, (err) => {
+            if (err) reject(err);
+            else resolve();
+        });
+    });
+
+    if (!req.user) {
+        return res.status(401).json({ success: false, error: 'Authentication required', code: 'NOT_AUTHENTICATED' });
+    }
+
+    try {
+        const { revokeAll } = req.body;
+        let refreshToken = null;
+        if (req.cookies && req.cookies.refresh_token) {
+            refreshToken = req.cookies.refresh_token;
         }
-      } catch (dbError) {
-        console.error('[Logout] Database error:', dbError.message);
-        // Continue with logout even if DB fails
-      }
+
+        const result = await logoutUser(req.user.userId, revokeAll, refreshToken);
+
+        res.setHeader('Set-Cookie', 'refresh_token=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0');
+
+        return res.status(200).json({
+            success: true,
+            message: revokeAll ? 'Logged out from all devices' : 'Logged out successfully',
+            data: result
+        });
+
+    } catch (error) {
+        console.error('Logout error:', error);
+        return res.status(500).json({ success: false, error: 'Logout failed', code: 'SERVER_ERROR', details: error.message });
     }
-
-    // Log logout activity
-    if (userId) {
-      User.logActivity({
-        userId,
-        action: 'user_logout',
-        description: 'User logged out',
-        ipAddress: req.headers['x-forwarded-for'] || req.connection?.remoteAddress,
-        userAgent: req.headers['user-agent']
-      });
-    }
-
-    // 🔒 SECURITY: Clear all authentication cookies (httpOnly + refresh + CSRF)
-    clearAuthCookies(res);
-
-    console.log(`[Logout] User ${userId || 'unknown'} logged out successfully`);
-
-    return res.status(200).json({
-      success: true,
-      message: 'Logged out successfully'
-    });
-
-  } catch (error) {
-    console.error('[Logout] Error:', error.message);
-
-    // 🔒 SECURITY: Still clear cookies even if something fails
-    clearAuthCookies(res);
-
-    return res.status(200).json({
-      success: true,
-      message: 'Logged out'
-    });
-  }
-};
+}

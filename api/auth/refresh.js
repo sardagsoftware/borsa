@@ -1,116 +1,101 @@
 /**
- * Refresh token endpoint
- * Vercel Serverless Function
- * Beyaz Şapkalı Security - Silent token refresh for httpOnly cookies
+ * TOKEN REFRESH ENDPOINT
+ * Refreshes expired access tokens using refresh token
  */
 
-const jwt = require('jsonwebtoken');
-const { getCookie, setAuthCookies } = require('../../middleware/cookie-auth');
+const { Client } = require('pg');
+const { generateAccessToken, verifyRefreshToken } = require('./jwt-middleware');
 
-module.exports = async (req, res) => {
-  // CORS Headers
-  const allowedOrigins = [
-    'https://www.ailydian.com',
-    'https://ailydian.com',
-    'https://ailydian-ultra-pro.vercel.app',
-    'http://localhost:3000',
-    'http://localhost:3100'
-  ];
+let dbClient = null;
 
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-  }
-
-  try {
-    // 🔒 BEYAZ ŞAPKALI: Get refresh token from httpOnly cookie
-    const refreshToken = getCookie(req, 'refresh_token');
-
-    if (!refreshToken) {
-      return res.status(401).json({
-        success: false,
-        error: 'No refresh token',
-        message: 'Please log in again',
-        code: 'REFRESH_TOKEN_MISSING'
-      });
+async function getDbClient() {
+    if (!dbClient) {
+        dbClient = new Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+        });
+        await dbClient.connect();
     }
+    return dbClient;
+}
 
-    // 🔒 BEYAZ ŞAPKALI: Verify refresh token
-    let decoded;
-    try {
-      decoded = jwt.verify(
-        refreshToken,
-        process.env.JWT_SECRET || 'your-secret-key-change-this',
-        {
-          issuer: 'LyDian-Platform',
-          audience: 'LyDian-API'
-        }
-      );
-    } catch (jwtError) {
-      console.error('[Refresh] Invalid refresh token:', jwtError.message);
-      return res.status(401).json({
-        success: false,
-        error: 'Invalid refresh token',
-        message: 'Please log in again',
-        code: 'REFRESH_TOKEN_INVALID'
-      });
-    }
+async function refreshAccessToken(refreshToken) {
+    const db = await getDbClient();
+    const decoded = verifyRefreshToken(refreshToken);
 
-    // 🔒 SECURITY: Verify it's actually a refresh token
-    if (decoded.type !== 'refresh') {
-      console.error('[Refresh] Token is not a refresh token');
-      return res.status(401).json({
-        success: false,
-        error: 'Invalid token type',
-        message: 'Please log in again',
-        code: 'INVALID_TOKEN_TYPE'
-      });
-    }
-
-    // 🔒 BEYAZ ŞAPKALI: Generate new access token (15 minutes)
-    const newAccessToken = jwt.sign(
-      {
-        userId: decoded.userId,
-        email: decoded.email,
-        role: decoded.role || 'USER',
-        subscription: decoded.subscription || 'free'
-      },
-      process.env.JWT_SECRET || 'your-secret-key-change-this',
-      {
-        expiresIn: '15m',
-        issuer: 'LyDian-Platform',
-        audience: 'LyDian-API'
-      }
+    const sessionResult = await db.query(
+        'SELECT id, user_id, expires_at, revoked FROM user_sessions WHERE refresh_token = $1 AND user_id = $2',
+        [refreshToken, decoded.userId]
     );
 
-    // 🔒 SECURITY: Set new access token cookie (keep same refresh token)
-    setAuthCookies(res, newAccessToken, refreshToken);
+    if (sessionResult.rows.length === 0) throw new Error('Invalid refresh token');
+    
+    const session = sessionResult.rows[0];
+    if (session.revoked) throw new Error('Refresh token has been revoked');
+    if (new Date(session.expires_at) < new Date()) throw new Error('Refresh token expired');
 
-    console.log(`[Refresh] Token refreshed for user ${decoded.userId}`);
+    const userResult = await db.query(
+        'SELECT id, email, role, full_name, status FROM users WHERE id = $1',
+        [decoded.userId]
+    );
 
-    return res.status(200).json({
-      success: true,
-      message: 'Token refreshed successfully'
-    });
+    if (userResult.rows.length === 0) throw new Error('User not found');
+    
+    const user = userResult.rows[0];
+    if (user.status !== 'active') throw new Error('Account is not active');
 
-  } catch (error) {
-    console.error('[Refresh] Error:', error.message);
-    return res.status(500).json({
-      success: false,
-      error: 'Internal server error',
-      message: 'Token refresh failed'
-    });
-  }
-};
+    const accessToken = generateAccessToken(user.id, user.email, user.role || 'patient', { fullName: user.full_name });
+
+    await db.query('UPDATE user_sessions SET last_used_at = NOW() WHERE id = $1', [session.id]);
+
+    return {
+        accessToken,
+        expiresIn: '15m',
+        user: { id: user.id, email: user.email, fullName: user.full_name, role: user.role || 'patient' }
+    };
+}
+
+export default async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') return res.status(200).end();
+    if (req.method !== 'POST') return res.status(405).json({ success: false, error: 'Method not allowed' });
+
+    try {
+        let refreshToken = req.body.refreshToken;
+        if (!refreshToken && req.cookies && req.cookies.refresh_token) {
+            refreshToken = req.cookies.refresh_token;
+        }
+
+        if (!refreshToken) {
+            return res.status(400).json({ success: false, error: 'Refresh token is required', code: 'NO_REFRESH_TOKEN' });
+        }
+
+        const result = await refreshAccessToken(refreshToken);
+
+        return res.status(200).json({
+            success: true,
+            data: { accessToken: result.accessToken, expiresIn: result.expiresIn, user: result.user },
+            message: 'Token refreshed successfully'
+        });
+
+    } catch (error) {
+        console.error('Token refresh error:', error);
+
+        if (error.message.includes('expired')) {
+            return res.status(401).json({ success: false, error: 'Refresh token expired', code: 'REFRESH_TOKEN_EXPIRED', hint: 'Please login again' });
+        }
+
+        if (error.message.includes('revoked')) {
+            return res.status(401).json({ success: false, error: 'Refresh token has been revoked', code: 'REFRESH_TOKEN_REVOKED', hint: 'Please login again' });
+        }
+
+        if (error.message.includes('Invalid')) {
+            return res.status(401).json({ success: false, error: 'Invalid refresh token', code: 'INVALID_REFRESH_TOKEN' });
+        }
+
+        return res.status(500).json({ success: false, error: 'Token refresh failed', code: 'SERVER_ERROR', details: error.message });
+    }
+}
