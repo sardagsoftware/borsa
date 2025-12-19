@@ -3016,6 +3016,17 @@ body {
                         </div>
                         <span>Orthopedics</span>
                     </div>
+
+                    <!-- 🇺🇸 USA Early Diagnosis - NEW! -->
+                    <div class="specialization-item menu-item-featured" data-specialty="usa-diagnosis" onclick="showPanel('usa-diagnosis')">
+                        <div class="specialization-icon">
+                            <span style="font-size: 20px;">🇺🇸</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1;">
+                            <span style="font-weight: 600;">USA Early Diagnosis</span>
+                            <span class="item-badge">NEW</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -4535,6 +4546,122 @@ Example: [{"name":"Amoxicillin","strength":"500mg","dosage":"1 tablet","frequenc
         </div>
     </div>
 
+    <!-- 🇺🇸 USA Early Diagnosis Panel -->
+    <div class="modal" id="usaDiagnosisModal">
+        <div class="modal-content" style="max-width: 1200px;">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span style="font-size: 24px;">🇺🇸</span>
+                    USA Early Diagnosis System
+                </div>
+                <button class="modal-close" onclick="closePanel('usaDiagnosisModal', event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="panel-subtitle" style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">State-specific disease risk analysis powered by CDC, Mayo Clinic, and NIH</p>
+
+                <div class="diagnosis-grid">
+                    <!-- State Selection -->
+                    <div class="diagnosis-card">
+                        <div class="card-icon">🗺️</div>
+                        <h3>Select State</h3>
+                        <select class="state-selector" id="usaStateSelector">
+                            <option value="">Choose your state...</option>
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa">Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
+                            <option value="Maryland">Maryland</option>
+                            <option value="Massachusetts">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New Hampshire">New Hampshire</option>
+                            <option value="New Jersey">New Jersey</option>
+                            <option value="New Mexico">New Mexico</option>
+                            <option value="New York">New York</option>
+                            <option value="North Carolina">North Carolina</option>
+                            <option value="North Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode Island">Rhode Island</option>
+                            <option value="South Carolina">South Carolina</option>
+                            <option value="South Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
+                        </select>
+                    </div>
+
+                    <!-- Symptoms Input -->
+                    <div class="diagnosis-card">
+                        <div class="card-icon">📝</div>
+                        <h3>Symptoms</h3>
+                        <textarea class="symptoms-input" id="usaSymptoms" placeholder="Describe your symptoms (e.g., fever, cough, fatigue)..."></textarea>
+                    </div>
+
+                    <!-- Patient Info -->
+                    <div class="diagnosis-card">
+                        <div class="card-icon">👤</div>
+                        <h3>Patient Info</h3>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" class="form-input" id="usaPatientAge" placeholder="Age">
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-input" id="usaPatientGender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="analyze-btn" onclick="runUSADiagnosisAnalysis()">
+                    <span class="btn-icon">🔬</span>
+                    Run Comprehensive Analysis
+                </button>
+
+                <div class="results-container" id="usaDiagnosisResults" style="display: none; margin-top: 2rem;">
+                    <!-- Results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
 /* ============================================================
    LYDIAN MEDICAL AI - MAIN APPLICATION LOGIC
@@ -4699,6 +4826,7 @@ function showPanel(panelType) {
         'pediatrics': 'pediatricsModal',
         'psychiatry': 'psychiatryModal',
         'orthopedics': 'orthopedicsModal',
+        'usa-diagnosis': 'usaDiagnosisModal',
         // Advanced Medical AI
         'rare-disease': 'rareDiseaseModal',
         'mental-health': 'mentalHealthModal',
@@ -7567,6 +7695,154 @@ async function applyOttawaKneeRules() {
     } catch (error) {
         displayResult('ottawaKneeResult', `Error: ${error.message}`, true);
     }
+}
+
+// ============================================================
+// 🇺🇸 USA EARLY DIAGNOSIS SYSTEM
+// ============================================================
+
+async function runUSADiagnosisAnalysis() {
+    const state = document.getElementById('usaStateSelector').value;
+    const symptoms = document.getElementById('usaSymptoms').value.trim();
+    const age = document.getElementById('usaPatientAge').value;
+    const gender = document.getElementById('usaPatientGender').value;
+
+    if (!state || !symptoms) {
+        alert('Please select a state and enter symptoms');
+        return;
+    }
+
+    // Show loading
+    const resultsContainer = document.getElementById('usaDiagnosisResults');
+    resultsContainer.style.display = 'block';
+    resultsContainer.innerHTML = `
+        <div class="loading-state" style="text-align: center; padding: 3rem;">
+            <div class="loading-spinner" style="width: 48px; height: 48px; border: 4px solid rgba(39, 174, 96, 0.1); border-top-color: #27AE60; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+            <p>Analyzing with CDC, Mayo Clinic, and NIH data...</p>
+        </div>
+    `;
+
+    try {
+        // Call USA Diagnosis API
+        const response = await fetch('/api/medical/usa-diagnosis', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                action: 'COMPREHENSIVE_ANALYSIS',
+                patientData: {
+                    state,
+                    symptoms: symptoms.split(',').map(s => s.trim()),
+                    age: parseInt(age) || 35,
+                    gender,
+                    chiefComplaint: symptoms,
+                    id: 'temp-' + Date.now()
+                }
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            displayUSADiagnosisResults(data.result);
+        } else {
+            throw new Error(data.error || 'Analysis failed');
+        }
+    } catch (error) {
+        console.error('USA Diagnosis Error:', error);
+        resultsContainer.innerHTML = `
+            <div class="error-state" style="text-align: center; padding: 2rem; color: #E74C3C; background: rgba(231, 76, 60, 0.05); border-radius: 10px;">
+                <p>❌ Error: ${error.message}</p>
+                <p>Please try again or contact support.</p>
+            </div>
+        `;
+    }
+}
+
+function displayUSADiagnosisResults(results) {
+    const resultsContainer = document.getElementById('usaDiagnosisResults');
+
+    function getRiskColor(score) {
+        if (score < 30) return '#27AE60'; // Green
+        if (score < 60) return '#F39C12'; // Orange
+        return '#E74C3C'; // Red
+    }
+
+    resultsContainer.innerHTML = `
+        <div class="results-panels" style="display: grid; gap: 1.5rem;">
+            <!-- Overall Risk Score -->
+            <div class="result-card risk-card" style="background: white; border: 1px solid #E4E6EB; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); text-align: center; background: linear-gradient(135deg, rgba(39, 174, 96, 0.05), rgba(11, 83, 148, 0.05));">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">📊 Overall Risk Score</h3>
+                <div class="risk-score" style="font-size: 3rem; font-weight: 700; margin: 1rem 0; color: ${getRiskColor(results.overallRiskScore)};">
+                    ${results.overallRiskScore}/100
+                </div>
+                <div class="urgency-badge urgency-${results.urgencyLevel.level.toLowerCase()}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.875rem; font-weight: 600; background: ${results.urgencyLevel.level === 'EMERGENCY' ? '#E74C3C' : results.urgencyLevel.level === 'URGENT' ? '#F39C12' : '#27AE60'}; color: white;">
+                    ${results.urgencyLevel.level}: ${results.urgencyLevel.action}
+                </div>
+            </div>
+
+            <!-- State-Specific Risks -->
+            <div class="result-card" style="background: white; border: 1px solid #E4E6EB; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">🗺️ ${results.stateSpecificRisks.state} Health Risks</h3>
+                <ul class="risk-list" style="list-style: none; padding: 0;">
+                    ${results.stateSpecificRisks.highRiskConditions?.map(condition =>
+                        `<li style="padding: 0.5rem 0; border-bottom: 1px solid #E4E6EB;">${condition}</li>`
+                    ).join('') || '<li>No specific risks found</li>'}
+                </ul>
+                <h4 style="margin-top: 1rem;">Recommended Screening:</h4>
+                <ul class="screening-list" style="list-style: none; padding: 0;">
+                    ${results.stateSpecificRisks.recommendedScreening?.map(screening =>
+                        `<li style="padding: 0.5rem 0; border-bottom: 1px solid #E4E6EB;">${screening}</li>`
+                    ).join('') || '<li>Follow standard USPSTF guidelines</li>'}
+                </ul>
+            </div>
+
+            ${results.cdcEarlyWarning.totalMatches > 0 ? `
+                <div class="result-card warning-card" style="background: white; border: 1px solid #E4E6EB; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); border-left: 4px solid #F39C12; background: rgba(243, 156, 18, 0.03);">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">⚠️ CDC Early Warning Signals</h3>
+                    <p class="warning-urgency" style="font-weight: 600; color: #F39C12; margin-bottom: 1rem;">${results.cdcEarlyWarning.highestUrgency}</p>
+                    ${results.cdcEarlyWarning.conditions.map(condition => `
+                        <div class="warning-item" style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #E4E6EB;">
+                            <h4 style="margin-bottom: 0.5rem;">${condition.condition}</h4>
+                            <p><strong>Match Type:</strong> ${condition.matchType}</p>
+                            <p><strong>Action:</strong> ${condition.recommendedAction}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            ` : ''}
+
+            <!-- Next Steps -->
+            <div class="result-card action-card" style="background: white; border: 1px solid #E4E6EB; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); border-left: 4px solid #27AE60;">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">📋 Next Steps</h3>
+                <ol class="action-list" style="list-style: none; padding: 0;">
+                    ${results.nextSteps.map(step => `
+                        <li style="margin-bottom: 1rem; padding-left: 0.5rem;">
+                            <strong>${step.action}</strong>
+                            <span class="step-urgency" style="font-size: 0.75rem; color: #6C757D; margin-left: 0.5rem;">(${step.urgency})</span>
+                            <p style="margin: 0.25rem 0 0 0;">${step.reason}</p>
+                        </li>
+                    `).join('')}
+                </ol>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="result-card" style="background: white; border: 1px solid #E4E6EB; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">💡 Actionable Recommendations</h3>
+                ${results.actionableRecommendations.slice(0, 5).map(rec => `
+                    <div class="recommendation-item" style="padding: 1rem; background: rgba(39, 174, 96, 0.03); border-radius: 8px; margin-bottom: 0.75rem;">
+                        <span class="rec-category" style="display: inline-block; padding: 0.25rem 0.75rem; background: #27AE60; color: white; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem;">${rec.category}</span>
+                        <p style="margin: 0.5rem 0;">${rec.action}</p>
+                        <small>Source: ${rec.source}</small>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <div class="disclaimer" style="margin-top: 2rem; padding: 1rem; background: rgba(243, 156, 18, 0.05); border-left: 4px solid #F39C12; border-radius: 4px; font-size: 0.875rem; color: #6C757D;">
+            ⚠️ ${results.disclaimer}
+        </div>
+    `;
 }
 
 // Initialize on load
