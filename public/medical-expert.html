@@ -5192,9 +5192,21 @@ function toggleMobileMenu() {
     const toggle = document.getElementById('mobileMenuToggle');
     const menuIcon = document.getElementById('menuIcon');
     const closeIcon = document.getElementById('closeIcon');
+    const body = document.body;
 
     if (menu && toggle) {
         const isActive = menu.classList.toggle('active');
+
+        // Toggle body scroll lock
+        if (isActive) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+            // Close all mega menus when closing main menu
+            document.querySelectorAll('.top-nav-item.active').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
 
         // Toggle icons
         if (menuIcon && closeIcon) {
