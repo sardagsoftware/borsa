@@ -1,0 +1,280 @@
+/**
+ * ANALYSIS PANELS FIX - Premium Professional Styling
+ * Fixes contrast issues and adds premium animated icons
+ */
+
+/* ===== ANALYSIS TITLE FIX ===== */
+.analysis-title {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;  /* Dark text for better contrast */
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    text-shadow: none !important;
+    letter-spacing: -0.01em;
+}
+
+/* ===== SUBTITLE FIX ===== */
+.analysis-subtitle,
+.medical-analysis-panel p {
+    color: #4a5568 !important;  /* Medium gray for subtitles */
+    font-weight: 500 !important;
+}
+
+/* ===== ANALYSIS PANEL IMPROVEMENTS ===== */
+.medical-analysis-panel {
+    background: #ffffff !important;
+    border: 2px solid #e2e8f0 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.medical-analysis-panel:hover {
+    border-color: #0B5394 !important;
+    box-shadow: 0 8px 24px rgba(11, 83, 148, 0.15) !important;
+    transform: translateY(-4px) !important;
+}
+
+/* ===== ANALYSIS HEADER WITH PREMIUM ICON ===== */
+.analysis-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+}
+
+/* ===== PREMIUM ANIMATED ICONS ===== */
+.analysis-icon {
+    width: 56px !important;
+    height: 56px !important;
+    background: linear-gradient(135deg, rgba(11, 83, 148, 0.1), rgba(39, 174, 96, 0.1)) !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid rgba(11, 83, 148, 0.2) !important;
+    animation: iconPulse 3s ease-in-out infinite !important;
+    transition: all 0.3s ease !important;
+}
+
+.analysis-icon svg {
+    width: 28px !important;
+    height: 28px !important;
+    color: #0B5394 !important;
+    filter: drop-shadow(0 2px 4px rgba(11, 83, 148, 0.2)) !important;
+}
+
+.medical-analysis-panel:hover .analysis-icon {
+    background: linear-gradient(135deg, rgba(11, 83, 148, 0.15), rgba(39, 174, 96, 0.15)) !important;
+    border-color: rgba(11, 83, 148, 0.4) !important;
+    transform: scale(1.05) rotate(5deg) !important;
+}
+
+/* ===== PREMIUM ICON ANIMATIONS ===== */
+@keyframes iconPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(11, 83, 148, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(11, 83, 148, 0);
+    }
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes iconRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== ICON VARIANTS ===== */
+.analysis-icon.icon-vision {
+    animation: iconFloat 3s ease-in-out infinite, iconPulse 3s ease-in-out infinite !important;
+}
+
+.analysis-icon.icon-velocity {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(11, 83, 148, 0.1)) !important;
+}
+
+.analysis-icon.icon-velocity svg {
+    color: #27AE60 !important;
+    animation: iconRotate 20s linear infinite !important;
+}
+
+.analysis-icon.icon-device svg {
+    color: #6366F1 !important;
+}
+
+/* ===== ERROR STATE IMPROVEMENTS ===== */
+.analysis-error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.02)) !important;
+    border: 2px dashed rgba(239, 68, 68, 0.3) !important;
+    color: #dc2626 !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+}
+
+.analysis-error-title {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: #dc2626 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.analysis-error-message {
+    font-size: 0.875rem !important;
+    color: #7f1d1d !important;
+    font-weight: 500 !important;
+}
+
+/* ===== STATUS BADGES ===== */
+.status-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.025em !important;
+}
+
+.status-badge.status-unavailable {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    color: #dc2626 !important;
+}
+
+.status-badge.status-processing {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)) !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    color: #2563eb !important;
+    animation: processingPulse 2s ease-in-out infinite !important;
+}
+
+.status-badge.status-success {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(22, 163, 74, 0.1)) !important;
+    border: 1px solid rgba(39, 174, 96, 0.3) !important;
+    color: #27AE60 !important;
+}
+
+@keyframes processingPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ===== LOADING SPINNER FOR ICONS ===== */
+.analysis-icon.loading svg {
+    animation: iconRotate 2s linear infinite !important;
+}
+
+/* ===== RESULTS METRICS IMPROVEMENTS ===== */
+.analysis-metrics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, rgba(11, 83, 148, 0.03), rgba(39, 174, 96, 0.03)) !important;
+    border: 1px solid rgba(11, 83, 148, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.metric-card:hover {
+    border-color: rgba(11, 83, 148, 0.4) !important;
+    box-shadow: 0 4px 12px rgba(11, 83, 148, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.metric-label {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: #6b7280 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.metric-value {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #0B5394 !important;
+    font-family: 'IBM Plex Mono', monospace !important;
+}
+
+/* ===== PREMIUM SUBTITLE STYLING ===== */
+.panel-subtitle {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.375rem 0.875rem !important;
+    background: linear-gradient(135deg, rgba(11, 83, 148, 0.08), rgba(39, 174, 96, 0.08)) !important;
+    border: 1px solid rgba(11, 83, 148, 0.2) !important;
+    border-radius: 8px !important;
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    color: #0B5394 !important;
+    letter-spacing: 0.025em !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .analysis-icon {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .analysis-icon svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .analysis-metrics {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    .analysis-icon,
+    .status-badge,
+    .medical-analysis-panel {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .analysis-icon {
+        animation: none !important;
+    }
+
+    .medical-analysis-panel {
+        break-inside: avoid !important;
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+}

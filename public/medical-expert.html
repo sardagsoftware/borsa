@@ -21,6 +21,8 @@
 
     <!-- Hospital Light Theme Override - Final Layer -->
     <link rel="stylesheet" href="/css/hospital-light-theme-override.css">
+    <!-- Analysis Panels Fix - Premium Professional Styling -->
+    <link rel="stylesheet" href="/css/analysis-panels-fix.css">
 
     <!-- TOP NAVIGATION DASHBOARD - Modern Full-Width Layout -->
     <link rel="stylesheet" href="/css/top-nav-dashboard.css">
@@ -5515,7 +5517,7 @@ async function handleFileUpload(event) {
             }),
 
             // Velocity Engine RAG Analysis for document/image
-            fetch('/api/medical/groq-rag', {
+            fetch('/api/medical/lydian-rag', {
                 method: 'POST',
                 body: formData
             }).then(res => res.json()).catch(err => {
@@ -5968,7 +5970,7 @@ function generateGroqAnalysisContent(groq) {
         return `
             <div class="analysis-loading">
                 <div style="color: var(--medical-error); font-weight: 600;">Analysis unavailable</div>
-                <div style="font-size: 0.875rem; color: var(--text-tertiary);">Groq RAG service temporarily unavailable</div>
+                <div style="font-size: 0.875rem; color: var(--text-tertiary);">LyDian RAG service temporarily unavailable</div>
             </div>
         `;
     }
