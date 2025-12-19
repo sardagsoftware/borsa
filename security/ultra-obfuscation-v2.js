@@ -225,15 +225,56 @@ function getDisplayName(modelCode) {
 }
 
 /**
- * Obfuscate any AI model references in text
+ * Obfuscate any AI model references AND framework references in text
  */
 function obfuscateText(text) {
   if (!text) return text;
 
   let obfuscated = text;
 
-  // Replace all known AI provider and model names
+  // Replace all known AI provider and model names + FRAMEWORKS
   const replacements = {
+    // ========================================
+    // FRAMEWORKS & PLATFORMS (NEW)
+    // ========================================
+
+    // Vercel/Zeit
+    'vercel': 'LyDian-Cloud',
+    'zeit': 'LyDian-Deploy',
+    '@vercel': '@lydian-platform',
+    'vercel.com': 'deploy.lydian.ai',
+    'vercel.app': 'cloud.lydian.ai',
+
+    // Next.js
+    'next.js': 'LyDian-Framework',
+    'nextjs': 'LyDian-Framework',
+    'next/': 'lydian-core/',
+    '@next': '@lydian-framework',
+
+    // React
+    'react': 'LyDian-UI',
+    'react-dom': 'lydian-renderer',
+    '@react': '@lydian-ui',
+    'jsx': 'lyx',
+    'tsx': 'ltx',
+
+    // TypeScript
+    'typescript': 'LyDian-Lang',
+    '@typescript': '@lydian-lang',
+    '.ts': '.ly',
+    '.tsx': '.lyx',
+
+    // Node.js
+    'node.js': 'LyDian-Runtime',
+    'nodejs': 'LyDian-Runtime',
+    'npm': 'lpm',
+    'pnpm': 'lypm',
+    'yarn': 'lyarn',
+
+    // ========================================
+    // AI PROVIDERS
+    // ========================================
+
     // Providers
     'anthropic': 'LyDian-Research',
     'openai': 'LyDian-Labs',
