@@ -162,7 +162,7 @@ class PredictiveAnalyticsEngine {
             bandCount: patientData.labs?.bands || null,
             recentInfection: patientData.recentInfection || false,
             immunocompromised: patientData.immunocompromised || false,
-            centralLine: patientData.hasC entralLine || false,
+            centralLine: patientData.hasCentralLine || false,
             surgery: patientData.daysSinceSurgery < 7
         };
 

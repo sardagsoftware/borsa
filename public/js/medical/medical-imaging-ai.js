@@ -402,7 +402,7 @@ class MedicalImagingAI {
                 grade: cancerDetection.grade,
                 invasiveness: cancerDetection.invasive ? "invasive" : "in-situ",
                 confidence: cancerDetection.confidence,
-                mitosis Count: cancerDetection.mitosisCount
+                mitosisCount: cancerDetection.mitosisCount
             };
         }
 
