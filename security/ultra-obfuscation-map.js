@@ -222,22 +222,60 @@ function getDisplayName(secureCode) {
 
 /**
  * Obfuscate model name in text/logs
+ * ENHANCED: Ultra-comprehensive pattern matching
  */
 function obfuscateText(text) {
   if (!text) return text;
 
   let obfuscated = text;
 
-  // Replace all known model names
-  obfuscated = obfuscated.replace(/claude[-\s]?(3\.5|3|2)?[-\s]?(sonnet|opus|haiku)?/gi, 'LyDian-Engine');
-  obfuscated = obfuscated.replace(/gpt[-\s]?(4|3\.5|3)?[-\s]?(turbo)?/gi, 'LyDian-Core');
-  obfuscated = obfuscated.replace(/llama[-\s]?(3\.3|3\.1|3|2)?[-\s]?\d*[bB]?/gi, 'LyDian-Velocity');
-  obfuscated = obfuscated.replace(/mixtral[-\s]?\d*x?\d*[bB]?/gi, 'LyDian-Distributed');
-  obfuscated = obfuscated.replace(/gemini[-\s]?(pro|ultra)?[-\s]?(vision)?/gi, 'LyDian-Multimodal');
-  obfuscated = obfuscated.replace(/mistral[-\s]?(large|medium|small)?/gi, 'LyDian-Enterprise');
+  // Claude models - all variations
+  obfuscated = obfuscated.replace(/claude[-\s]?(3\.5|3\.0|3|2\.1|2\.0|2)?[-\s]?(sonnet|opus|haiku)?[-\s]?\d*/gi, 'LyDian-Engine');
+  obfuscated = obfuscated.replace(/claude/gi, 'LyDian-Engine');
+
+  // OpenAI GPT models - all variations
+  obfuscated = obfuscated.replace(/gpt[-\s]?(4o?|4[-\s]?turbo|4|3\.5[-\s]?turbo|3\.5|3)?[-\s]?(preview|vision|omni)?/gi, 'LyDian-Core');
+  obfuscated = obfuscated.replace(/text[-\s]?davinci[-\s]?\d*/gi, 'LyDian-Core');
+  obfuscated = obfuscated.replace(/text[-\s]?curie[-\s]?\d*/gi, 'LyDian-Core');
+  obfuscated = obfuscated.replace(/gpt/gi, 'LyDian-Core');
+
+  // Llama models - all variations
+  obfuscated = obfuscated.replace(/llama[-\s]?(3\.3|3\.2|3\.1|3\.0|3|2)?[-\s]?\d*[bB]?[-\s]?(versatile|instruct|chat)?/gi, 'LyDian-Velocity');
+  obfuscated = obfuscated.replace(/llama/gi, 'LyDian-Velocity');
+
+  // Mixtral models
+  obfuscated = obfuscated.replace(/mixtral[-\s]?\d*x?\d*[bB]?[-\s]?\d*/gi, 'LyDian-Distributed');
+  obfuscated = obfuscated.replace(/mixtral/gi, 'LyDian-Distributed');
+
+  // Gemini models
+  obfuscated = obfuscated.replace(/gemini[-\s]?(1\.5|1\.0|1)?[-\s]?(pro|ultra|nano)?[-\s]?(vision|exp)?[-\s]?\d*/gi, 'LyDian-Multimodal');
+  obfuscated = obfuscated.replace(/gemini/gi, 'LyDian-Multimodal');
+
+  // Mistral models
+  obfuscated = obfuscated.replace(/mistral[-\s]?(large|medium|small)?[-\s]?(latest)?[-\s]?\d*/gi, 'LyDian-Enterprise');
+  obfuscated = obfuscated.replace(/mistral/gi, 'LyDian-Enterprise');
+
+  // Provider names
   obfuscated = obfuscated.replace(/groq/gi, 'LyDian-Acceleration');
   obfuscated = obfuscated.replace(/anthropic/gi, 'LyDian-Research');
   obfuscated = obfuscated.replace(/openai/gi, 'LyDian-Labs');
+  obfuscated = obfuscated.replace(/google\s+ai/gi, 'LyDian-Vision');
+  obfuscated = obfuscated.replace(/meta\s+ai/gi, 'LyDian-Open');
+
+  // API endpoints and SDK references
+  obfuscated = obfuscated.replace(/api\.anthropic\.com/gi, 'api.lydian.ai');
+  obfuscated = obfuscated.replace(/api\.openai\.com/gi, 'api.lydian.ai');
+  obfuscated = obfuscated.replace(/generativelanguage\.googleapis\.com/gi, 'api.lydian.ai');
+  obfuscated = obfuscated.replace(/api\.groq\.com/gi, 'api.lydian.ai');
+
+  // SDK package names
+  obfuscated = obfuscated.replace(/@anthropic-ai\/sdk/gi, '@lydian/ai-sdk');
+  obfuscated = obfuscated.replace(/openai/gi, 'LyDian-SDK');
+
+  // Model identifier patterns in URLs/requests
+  obfuscated = obfuscated.replace(/models\/claude/gi, 'models/lydian-engine');
+  obfuscated = obfuscated.replace(/models\/gpt/gi, 'models/lydian-core');
+  obfuscated = obfuscated.replace(/deployments\/gpt/gi, 'deployments/lydian-core');
 
   return obfuscated;
 }

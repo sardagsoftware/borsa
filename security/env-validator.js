@@ -24,7 +24,19 @@ const SENSITIVE_KEYS = [
   'CONNECTION_STRING',
   'PRIVATE_KEY',
   'STRIPE',
-  'TRONGRID'
+  'TRONGRID',
+  'ANTHROPIC',
+  'OPENAI',
+  'GROQ',
+  'GOOGLE_API',
+  'AZURE',
+  'CLAUDE',
+  'GPT',
+  'MODEL_',
+  'PROVIDER_',
+  'OBFUSCATION_KEY',
+  'JWT_SECRET',
+  'SESSION_SECRET'
 ];
 
 /**
