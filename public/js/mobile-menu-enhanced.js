@@ -80,14 +80,18 @@
      * Setup mega menu items
      */
     function setupMegaMenus() {
-        const navItems = document.querySelectorAll('.nav-item');
+        // Handle both .nav-item and .top-nav-item
+        const navItems = document.querySelectorAll('.nav-item, .top-nav-item');
 
         navItems.forEach(navItem => {
             const megaMenu = navItem.querySelector('.mega-menu');
+            const navLink = navItem.querySelector('.top-nav-link');
 
-            if (megaMenu && window.innerWidth <= 768) {
-                // On mobile, toggle mega menu on nav item click
-                navItem.addEventListener('click', (e) => {
+            if (megaMenu) {
+                // On mobile, toggle mega menu on nav link click
+                const clickTarget = navLink || navItem;
+
+                clickTarget.addEventListener('click', (e) => {
                     if (window.innerWidth <= 768) {
                         e.preventDefault();
                         e.stopPropagation();
@@ -103,6 +107,7 @@
                         // Close menu after selection
                         setTimeout(() => {
                             closeAllMenus();
+                            toggleMobileMenu(); // Also close the mobile menu
                         }, 300);
                     });
                 });
@@ -241,7 +246,7 @@
                 });
 
                 if (!clickedInsideMega) {
-                    document.querySelectorAll('.nav-item.active').forEach(item => {
+                    document.querySelectorAll('.nav-item.active, .top-nav-item.active').forEach(item => {
                         item.classList.remove('active');
                     });
                 }
@@ -268,8 +273,8 @@
      * Close all menus
      */
     function closeAllMenus() {
-        // Close mega menus
-        document.querySelectorAll('.nav-item.active').forEach(item => {
+        // Close mega menus (both .nav-item and .top-nav-item)
+        document.querySelectorAll('.nav-item.active, .top-nav-item.active').forEach(item => {
             item.classList.remove('active');
         });
 

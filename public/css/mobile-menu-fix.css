@@ -66,6 +66,8 @@
     }
 
     /* MEGA MENU - Mobile Dropdown Fix */
+    .top-nav-item:hover .mega-menu,
+    .top-nav-item.active .mega-menu,
     .nav-item:hover .mega-menu,
     .nav-item.active .mega-menu {
         display: grid !important;
