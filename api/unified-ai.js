@@ -1,25 +1,74 @@
-// LyDian Unified AI API - All Models Hidden
+// 🔐 LyDian Unified AI API - ULTRA SECURE - Zero AI Name Exposure
 require('dotenv').config();
 const OpenAI = require('openai');
+const obf = require('../security/ultra-obfuscation-v2');
 
-// Hidden AI Configuration - User never knows which AI they're using
+// 🔒 ENCRYPTED AI Configuration - NO plaintext model names
+// Using ultra-obfuscation-v2.js for military-grade security
 const AI_ENGINES = {
   chat: {
-    primary: { model: 'llama-3.3-70b-versatile', provider: 'groq', key: process.env.GROQ_API_KEY, url: 'https://api.groq.com/openai/v1' },
-    fallback1: { model: 'gpt-4o-mini', provider: 'openai', key: process.env.OPENAI_API_KEY, url: undefined },
-    fallback2: { model: 'gemma2-9b-it', provider: 'groq', key: process.env.GROQ_API_KEY, url: 'https://api.groq.com/openai/v1' }
+    primary: {
+      code: 'VE_LLAMA_33',
+      provider: 'LyDian-Acceleration',
+      key: process.env.GROQ_API_KEY,
+      url: 'https://api.groq.com/openai/v1'
+    },
+    fallback1: {
+      code: 'NC_RAPID_35',
+      provider: 'LyDian-Labs',
+      key: process.env.OPENAI_API_KEY,
+      url: undefined
+    },
+    fallback2: {
+      code: 'VE_GEMMA_9B',
+      provider: 'LyDian-Acceleration',
+      key: process.env.GROQ_API_KEY,
+      url: 'https://api.groq.com/openai/v1'
+    }
   },
   deep_think: {
-    primary: { model: 'ERNIE-4.0-Turbo', provider: 'ernie', key: process.env.ERNIE_API_KEY, url: 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro' }
+    primary: {
+      code: 'EC_ERNIE_4',
+      provider: 'LyDian-Enterprise',
+      key: process.env.ERNIE_API_KEY,
+      url: 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro'
+    }
   },
   code: {
-    primary: { model: 'deepseek-coder', provider: 'deepseek', key: process.env.DEEPSEEK_API_KEY, url: 'https://api.deepseek.com' }
+    primary: {
+      code: 'NC_DEEPSEEK',
+      provider: 'LyDian-Code',
+      key: process.env.DEEPSEEK_API_KEY,
+      url: 'https://api.deepseek.com'
+    }
   },
   rag: {
-    primary: { model: 'gpt-4o', provider: 'openai', key: process.env.OPENAI_API_KEY, url: undefined },
-    fallback: { model: 'azure-gpt-4', provider: 'azure', key: process.env.AZURE_API_KEY, url: process.env.AZURE_ENDPOINT }
+    primary: {
+      code: 'NC_TURBO_4',
+      provider: 'LyDian-Labs',
+      key: process.env.OPENAI_API_KEY,
+      url: undefined
+    },
+    fallback: {
+      code: 'NC_AZURE_4',
+      provider: 'LyDian-Cloud',
+      key: process.env.AZURE_API_KEY,
+      url: process.env.AZURE_ENDPOINT
+    }
   }
 };
+
+// Helper function to decrypt model config safely
+function getSecureModelName(engineCode) {
+  try {
+    const config = obf.getModelConfig(engineCode);
+    return config.model;
+  } catch (error) {
+    // Fallback to safe generic name if decryption fails
+    console.error(obf.sanitizeLog(`Decryption failed for ${engineCode}`));
+    return 'lydian-ai-engine';
+  }
+}
 
 // Turkish System Prompt - Force Turkish responses
 const TURKISH_SYSTEM = {
@@ -55,20 +104,23 @@ module.exports = async (req, res) => {
     }
 
     // Select engine based on task (hidden from user)
-    let engine;
+    let engineConfig;
     switch (taskType) {
       case 'deep_think':
-        engine = AI_ENGINES.deep_think.primary;
+        engineConfig = AI_ENGINES.deep_think.primary;
         break;
       case 'code':
-        engine = AI_ENGINES.code.primary;
+        engineConfig = AI_ENGINES.code.primary;
         break;
       case 'rag':
-        engine = AI_ENGINES.rag.primary;
+        engineConfig = AI_ENGINES.rag.primary;
         break;
       default:
-        engine = AI_ENGINES.chat.primary;
+        engineConfig = AI_ENGINES.chat.primary;
     }
+
+    // Decrypt model name securely (never exposed to client)
+    const modelName = getSecureModelName(engineConfig.code);
 
     // Try primary, fallback if fails
     let response;
@@ -76,12 +128,12 @@ module.exports = async (req, res) => {
 
     try {
       const client = new OpenAI({
-        apiKey: engine.key,
-        baseURL: engine.url
+        apiKey: engineConfig.key,
+        baseURL: engineConfig.url
       });
 
       const completion = await client.chat.completions.create({
-        model: engine.model,
+        model: modelName, // Decrypted internally only
         messages: [
           TURKISH_SYSTEM,
           ...history,
@@ -93,17 +145,20 @@ module.exports = async (req, res) => {
 
       response = completion.choices[0].message.content;
     } catch (primaryError) {
-      console.error('Primary engine failed:', primaryError.message);
+      // Sanitize error logs (remove any AI names)
+      console.error(obf.sanitizeLog(`Primary engine failed: ${primaryError.message}`));
 
       // Fallback to chat primary
-      const fallback = AI_ENGINES.chat.primary;
+      const fallbackConfig = AI_ENGINES.chat.primary;
+      const fallbackModel = getSecureModelName(fallbackConfig.code);
+
       const fallbackClient = new OpenAI({
-        apiKey: fallback.key,
-        baseURL: fallback.url
+        apiKey: fallbackConfig.key,
+        baseURL: fallbackConfig.url
       });
 
       const fallbackCompletion = await fallbackClient.chat.completions.create({
-        model: fallback.model,
+        model: fallbackModel,
         messages: [
           TURKISH_SYSTEM,
           ...history,
@@ -117,16 +172,23 @@ module.exports = async (req, res) => {
       usedEngine = 'fallback';
     }
 
+    // Sanitize response (remove any leaked AI names)
+    const sanitizedResponse = obf.sanitizeLog(response);
+
     // Return response WITHOUT revealing which AI was used
     res.status(200).json({
       success: true,
-      response: response,
+      response: sanitizedResponse,
       provider: 'LyDian AI', // Generic name, never reveal actual model
+      engine: obf.getDisplayName(engineConfig.code), // Safe display name only
       timestamp: new Date().toISOString()
     });
 
   } catch (error) {
-    console.error('❌ Unified AI Error:', error);
+    // Sanitize all error messages
+    const safeError = obf.sanitizeLog(error.message);
+    console.error('❌ Unified AI Error:', safeError);
+
     res.status(500).json({
       success: false,
       error: 'AI işlemi başarısız oldu',
