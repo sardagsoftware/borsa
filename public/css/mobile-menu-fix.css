@@ -59,26 +59,16 @@
         margin-left: 12px;
     }
 
-    /* Top Nav Menu - Hidden by default on mobile, shown when active */
+    /* Top Nav Menu - Use transform for mobile menu (works with existing inline styles) */
     .top-nav-menu {
-        display: none !important;
-        position: fixed !important;
-        top: 72px !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100vw !important;
-        height: calc(100vh - 72px) !important;
-        background: #FFFFFF !important;
-        overflow-y: auto !important;
-        z-index: 999 !important;
-        padding: 1rem !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        /* DO NOT use display:none - it conflicts with transform approach */
+        /* The menu uses transform: translateX(-100%) by default in inline styles */
+        /* We just need to ensure proper styling when visible */
     }
 
     .top-nav-menu.active {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 0.5rem !important;
+        /* Menu slides in via transform: translateX(0) in inline styles */
+        /* Just ensure proper flex layout when active */
     }
 
     /* Show top-nav-items in mobile menu */
