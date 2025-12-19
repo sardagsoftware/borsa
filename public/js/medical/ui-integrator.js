@@ -52,9 +52,16 @@ class MedicalUIIntegrator {
             this.returnToUpload();
         });
 
-        document.body.appendChild(button);
-
-        console.log('✅ Return button injected');
+        // Insert button into input actions area (next to Submit button)
+        const inputActions = document.querySelector('.input-actions');
+        if (inputActions) {
+            inputActions.appendChild(button);
+            console.log('✅ Return button injected next to Submit button');
+        } else {
+            // Fallback: append to body if input-actions not found
+            document.body.appendChild(button);
+            console.log('⚠️ Return button injected to body (fallback)');
+        }
     }
 
     /**
