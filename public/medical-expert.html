@@ -847,8 +847,8 @@ body {
 .message-input {
     flex: 1;
     padding: 1rem 1.5rem;
-    background: white;
-    border: 2px solid rgba(0, 102, 204, 0.15);
+    background: #2A2A2A;
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
     font-size: 0.9375rem;
     font-family: 'Inter', sans-serif;
@@ -856,12 +856,13 @@ body {
     min-height: 56px;
     max-height: 200px;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: none;
     line-height: 1.5;
+    color: #FFFFFF;
 }
 
 .message-input::placeholder {
-    color: #9CA3AF;
+    color: #6B7280;
     font-weight: 400;
 }
 
@@ -869,7 +870,7 @@ body {
     outline: none;
     border-color: var(--medical-primary);
     box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.08), 0 4px 16px rgba(0, 102, 204, 0.12);
-    background: white;
+    background: #2A2A2A;
     animation: focusGlow 0.3s ease-out;
 }
 
@@ -919,16 +920,16 @@ body {
     height: 56px;
     min-width: 56px;
     min-height: 56px;
-    background: white;
-    border: 2px solid rgba(0, 102, 204, 0.15);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--text-secondary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    color: #B0B0B0;
+    box-shadow: none;
     flex-shrink: 0;
 }
 
