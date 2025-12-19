@@ -59,39 +59,18 @@
         margin-left: 12px;
     }
 
-    /* Top Nav Menu - Use transform for mobile menu (works with existing inline styles) */
-    .top-nav-menu {
-        /* DO NOT use display:none - it conflicts with transform approach */
-        /* The menu uses transform: translateX(-100%) by default in inline styles */
-        /* We just need to ensure proper styling when visible */
-    }
+    /* IMPORTANT: Do NOT override .top-nav-menu positioning/display */
+    /* The menu uses transform: translateX(-100%) in inline CSS */
+    /* We only add supplementary styles here, not overrides */
 
-    .top-nav-menu.active {
-        /* Menu slides in via transform: translateX(0) in inline styles */
-        /* Just ensure proper flex layout when active */
-    }
-
-    /* Show top-nav-items in mobile menu */
-    .top-nav-menu .top-nav-item {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-    }
-
-    /* Top nav link styling on mobile */
-    .top-nav-menu .top-nav-link {
-        width: 100% !important;
-        padding: 1rem !important;
-        background: linear-gradient(135deg, rgba(11, 83, 148, 0.05), rgba(39, 174, 96, 0.05)) !important;
-        border: 1px solid rgba(11, 83, 148, 0.2) !important;
-        border-radius: 12px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        font-size: 1rem !important;
-        font-weight: 600 !important;
-        color: #1a1a1a !important;
-        cursor: pointer !important;
+    /* FORCE HIDE: Yeni Görüntü Yükle button on mobile */
+    #return-to-upload-btn,
+    .return-to-upload-btn,
+    button.return-to-upload-btn {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 
     /* MEGA MENU - Mobile Dropdown Fix */
