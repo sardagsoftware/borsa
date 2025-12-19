@@ -1637,8 +1637,17 @@
         padding: 0.625rem 0.75rem;
     }
 
-    .top-nav-logo span {
-        display: none !important;
+    /* Keep logo text visible on small screens */
+    .top-nav-logo-text {
+        display: flex !important;
+    }
+
+    .logo-main {
+        font-size: 0.8rem !important;
+    }
+
+    .logo-sub {
+        font-size: 0.5625rem !important;
     }
 
     .top-nav-search-input {
