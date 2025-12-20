@@ -1,31 +1,19 @@
 {
-  "timestamp": "2025-12-20T14:31:40.247Z",
+  "timestamp": "2025-12-20T15:07:20.650Z",
   "duplicates": {
     "descriptions": [],
     "titles": [
       {
-        "title": "LyDian Hukuk AI - Küresel Hukuk Yapay Zeka Platformu",
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
         "files": [
-          "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-hukukai-pro.html",
           "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-hukukai-v2.html",
-          "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-hukukai.html"
-        ]
-      },
-      {
-        "title": "LyDian Hukuk AI - Hukuki Danışmanlık Asistanı",
-        "files": [
-          "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-legal-chat.html",
+          "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-hukukai.html",
           "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-legal-search.html"
         ]
       }
     ]
   },
   "fixes": [
-    {
-      "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-hukukai-v2.html",
-      "type": "title",
-      "status": "fixed"
-    },
     {
       "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/lydian-hukukai.html",
       "type": "title",
@@ -41,14 +29,14 @@
   "robots": "/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/public/robots.txt",
   "indexnow": [
     {
-      "success": false,
+      "success": true,
       "engine": "bing",
-      "error": "IndexNow failed: 411"
+      "status": 202
     },
     {
-      "success": false,
+      "success": true,
       "engine": "yandex",
-      "error": "IndexNow failed: 400"
+      "status": 202
     },
     {
       "success": false,

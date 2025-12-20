@@ -1,0 +1,1232 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console - LyDian | Developer Command Center</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-0: #0A0B0D;
+            --txt-1: #FFFFFF;
+            --txt-2: #B0B0B0;
+            --accent-1: #00E0AE;
+            --accent-2: #6E84FF;
+            --glass: rgba(255, 255, 255, 0.05);
+            --stroke: rgba(255, 255, 255, 0.08);
+            --code-bg: #1A1A1C;
+            --code-border: #2A2A2C;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                        radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                        var(--bg-0);
+            color: var(--txt-1);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--stroke);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 2.25rem;
+            font-weight: 900 !important;
+            color: var(--txt-1);
+            text-decoration: none;
+            letter-spacing: 0.08em !important;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 10px rgba(0,224,174,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-800);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ========== CONSOLE LAYOUT ========== */
+
+        .console-layout {
+            padding-top: 72px;
+            min-height: 100vh;
+            background: transparent;
+        }
+
+        .console-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .console-header {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .console-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 1rem;
+        }
+
+        .console-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .console-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .console-title-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .console-description {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
+        }
+
+        /* ========== TERMINAL CARD ========== */
+
+        .terminal-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 163, 127, 0.2);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08),
+                        0 0 40px rgba(16, 163, 127, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            position: relative;
+        }
+
+        .terminal-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+
+        .terminal-header {
+            background: var(--code-bg);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--code-border);
+        }
+
+        .terminal-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #EF4444; }
+        .terminal-dot.yellow { background: #F59E0B; }
+        .terminal-dot.green { background: #10B981; }
+
+        .terminal-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--gray-400);
+        }
+
+        .terminal-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-btn {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .terminal-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+
+        .terminal-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gray-400);
+        }
+
+        .terminal-btn:hover svg {
+            fill: var(--primary);
+        }
+
+        .terminal-body {
+            background: var(--code-bg);
+            padding: 2rem;
+            min-height: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .terminal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .terminal-body::-webkit-scrollbar-track {
+            background: var(--code-bg);
+        }
+
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .terminal-input-area {
+            background: var(--white);
+            padding: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .terminal-input {
+            flex: 1;
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+            transition: all 0.2s;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .terminal-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 163, 127, 0.1);
+        }
+
+        .btn-execute {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .btn-execute:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.3);
+        }
+
+        .btn-execute svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ========== CODE OUTPUT ========== */
+
+        .code-output {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+
+        .output-line {
+            display: flex;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .line-number {
+            color: var(--gray-500);
+            min-width: 40px;
+            text-align: right;
+            user-select: none;
+        }
+
+        .line-content {
+            color: var(--gray-300);
+            flex: 1;
+        }
+
+        .line-content.command {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .line-content.success {
+            color: #10B981;
+        }
+
+        .line-content.error {
+            color: #EF4444;
+        }
+
+        .line-content.info {
+            color: #3B82F6;
+        }
+
+        .response-card {
+            background: rgba(16, 163, 127, 0.05);
+            border: 1px solid rgba(16, 163, 127, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .response-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .response-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid rgba(16, 163, 127, 0.3);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: rgba(16, 163, 127, 0.1);
+            border-color: var(--primary);
+        }
+
+        .copy-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .response-content {
+            color: var(--gray-200);
+            line-height: 1.8;
+        }
+
+        /* ========== STATS GRID ========== */
+
+        .stats-section {
+            margin-top: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stats-header {
+            margin-bottom: 2rem;
+        }
+
+        .stats-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-description {
+            color: var(--gray-600);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .stat-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* ========== FOOTER ========== */
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 2rem;
+            font-weight: 900 !important;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em !important;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-800);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .footer-column h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        @media (max-width: 1024px) {
+            .console-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .console-title {
+                font-size: 2rem;
+            }
+
+            .console-description {
+                font-size: 1rem;
+            }
+
+            .input-wrapper {
+                flex-direction: column;
+            }
+
+            .btn-execute {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif !important; font-weight: 900 !important;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
+
+            <ul class="nav-links">
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/models.html">Modeller</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+                <li><a href="/developers.html">Geliştiriciler</a></li>
+                <li><a href="/help.html">Destek</a></li>
+                <li><a href="/about.html">Hakkımızda</a></li>
+                <li><a href="/status.html">Durum</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="/auth.html" class="btn btn-secondary">Giriş Yap</a>
+                <a href="/chat.html" class="btn btn-primary">Şimdi Dene</a>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Console Layout -->
+    <div class="console-layout">
+        <div class="console-container">
+            <!-- Console Header -->
+            <div class="console-header">
+                <div class="console-badge">
+                    <span class="console-badge-dot"></span>
+                    <span>AI Developer Console</span>
+                </div>
+                <h1 class="console-title">
+                    AI <span class="console-title-gradient">Code Terminal</span>
+                </h1>
+                <p class="console-description">
+                    Execute AI-powered code, test APIs, and interact with advanced language models in real-time.
+                    Your command center for intelligent development.
+                </p>
+            </div>
+
+            <!-- Terminal Card -->
+            <div class="terminal-card">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                    </div>
+                    <div class="terminal-title">lydian@console:~$</div>
+                    <div class="terminal-actions">
+                        <button class="terminal-btn" title="Clear" onclick="clearTerminal()">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                        <button class="terminal-btn" title="Copy All" onclick="copyAllOutput()">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="terminal-body" id="terminalOutput">
+                    <div class="code-output">
+                        <div class="output-line">
+                            <span class="line-number">1</span>
+                            <span class="line-content info">Welcome to LyDian AI Console v2.0.1</span>
+                        </div>
+                        <div class="output-line">
+                            <span class="line-number">2</span>
+                            <span class="line-content">System ready. Type your command below...</span>
+                        </div>
+                        <div class="output-line">
+                            <span class="line-number">3</span>
+                            <span class="line-content">───────────────────────────────────────────</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-input-area">
+                    <div class="input-wrapper">
+                        <textarea
+                            id="commandInput"
+                            class="terminal-input"
+                            placeholder="Enter your command or code here..."
+                            rows="3"
+                        ></textarea>
+                        <button class="btn-execute" onclick="executeCommand()">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Execute
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stats-header">
+                    <h2 class="stats-title">Console Statistics</h2>
+                    <p class="stats-description">Real-time performance metrics and usage data</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Commands Run</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="commandCount">0</div>
+                        <div class="stat-change">This session</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Success Rate</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">100%</div>
+                        <div class="stat-change">All executions successful</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Avg Response</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                                    <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">1.2s</div>
+                        <div class="stat-change">Ultra-fast execution</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Active Session</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">Live</div>
+                        <div class="stat-change">Connected to AI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="company" class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div>
+                    <p class="footer-description">
+                        Yapay zeka teknolojileriyle geleceği şekillendiren,
+                        yenilikçi çözümler sunan AI platformu.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ürünler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/ai-chat.html">AI Sohbet</a></li>
+                        <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+                        <li><a href="/video-ai.html">Video AI</a></li>
+                        <li><a href="/api.html">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Çözümler</h3>
+                    <ul class="footer-links">
+                        <li><a href="/enterprise.html">Enterprise</a></li>
+                        <li><a href="/education.html">Eğitim</a></li>
+                        <li><a href="/research.html">Araştırma</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Şirket</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about.html">Hakkımızda</a></li>
+                        <li><a href="/careers.html">Kariyer</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Destek</h3>
+                    <ul class="footer-links">
+                        <li><a href="/help.html">Yardım Merkezi</a></li>
+                        <li><a href="/api-reference.html">API Referansı</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2025 LyDian. Tüm hakları saklıdır.
+                </div>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Gizlilik Politikası</a>
+                    <a href="/terms.html">Kullanım Koşulları</a>
+                    <a href="/cookies.html">Çerezler</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let commandCounter = 0;
+        let lineCounter = 3;
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Execute Command
+        function executeCommand() {
+            const input = document.getElementById('commandInput');
+            const command = input.value.trim();
+
+            if (!command) {
+                alert('Please enter a command');
+                return;
+            }
+
+            const output = document.getElementById('terminalOutput');
+            commandCounter++;
+
+            // Add command line
+            lineCounter++;
+            const commandLine = createOutputLine(lineCounter, command, 'command');
+            output.appendChild(commandLine);
+
+            // Add separator
+            lineCounter++;
+            const separator = createOutputLine(lineCounter, '───────────────────────────────────────────', '');
+            output.appendChild(separator);
+
+            // Simulate processing
+            setTimeout(() => {
+                // Create response card
+                const responseCard = document.createElement('div');
+                responseCard.className = 'response-card';
+                responseCard.innerHTML = `
+                    <div class="response-header">
+                        <div class="response-label">
+                            <span class="status-indicator"></span>
+                            AI Response
+                        </div>
+                        <button class="copy-btn" onclick="copyResponse(this)">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
+                    <div class="response-content">
+                        Command executed successfully!<br>
+                        Output: ${generateMockResponse(command)}
+                    </div>
+                `;
+
+                output.appendChild(responseCard);
+
+                // Add success line
+                lineCounter++;
+                const successLine = createOutputLine(lineCounter, '✓ Execution completed in 1.2s', 'success');
+                output.appendChild(successLine);
+
+                lineCounter++;
+                const separatorEnd = createOutputLine(lineCounter, '───────────────────────────────────────────', '');
+                output.appendChild(separatorEnd);
+
+                // Scroll to bottom
+                output.scrollTop = output.scrollHeight;
+
+                // Update stats
+                document.getElementById('commandCount').textContent = commandCounter;
+
+                // Clear input
+                input.value = '';
+
+            }, 500);
+        }
+
+        function createOutputLine(lineNum, content, type = '') {
+            const line = document.createElement('div');
+            line.className = 'output-line';
+            line.innerHTML = `
+                <span class="line-number">${lineNum}</span>
+                <span class="line-content ${type}">${content}</span>
+            `;
+            return line;
+        }
+
+        function generateMockResponse(command) {
+            const responses = [
+                'Processing complete. All systems operational.',
+                'AI model initialized. Ready for inference.',
+                'Data processed successfully. Results validated.',
+                'API call successful. Response time: 1.2s',
+                'Code compiled without errors. Output ready.',
+            ];
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        function copyResponse(btn) {
+            const responseCard = btn.closest('.response-card');
+            const content = responseCard.querySelector('.response-content').textContent;
+            navigator.clipboard.writeText(content).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                    </svg>
+                    Copied!
+                `;
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+
+        function copyAllOutput() {
+            const output = document.getElementById('terminalOutput');
+            const text = output.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('All output copied to clipboard!');
+            });
+        }
+
+        function clearTerminal() {
+            const output = document.getElementById('terminalOutput');
+            output.innerHTML = `
+                <div class="code-output">
+                    <div class="output-line">
+                        <span class="line-number">1</span>
+                        <span class="line-content info">Welcome to LyDian AI Console v2.0.1</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="line-number">2</span>
+                        <span class="line-content">System ready. Type your command below...</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="line-number">3</span>
+                        <span class="line-content">───────────────────────────────────────────</span>
+                    </div>
+                </div>
+            `;
+            lineCounter = 3;
+            commandCounter = 0;
+            document.getElementById('commandCount').textContent = '0';
+        }
+
+        // Enter key to execute
+        document.getElementById('commandInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                executeCommand();
+            }
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 # LyDian AI - Robots.txt
-# Generated: 2025-12-20T14:31:40.329Z
+# Generated: 2025-12-20T15:07:20.690Z
 
 User-agent: *
 Allow: /

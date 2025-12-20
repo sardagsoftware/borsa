@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRO - Risk ve Dayanıklılık İşletim Sistemi | LyDian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --lydian-accent: #10A37F;
+            --lydian-bg-primary: #FFFFFF;
+            --lydian-bg-secondary: #FFFFFF;
+            --lydian-bg-tertiary: #F9FAFB;
+            --lydian-text-primary: #000000;
+            --lydian-text-secondary: #4B5563;
+            --lydian-border: rgba(0, 0, 0, 0.08);
+            --rro-red: #EF4444;
+            --rro-orange: #F59E0B;
+            --rro-green: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--lydian-bg-primary);
+            color: var(--lydian-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 80px);
+            max-width: 1400px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--lydian-border);
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: #000000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+            background: rgba(16, 163, 127, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--rro-red);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .hero {
+            margin-top: 100px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .hero-icon {
+            margin: 0 auto 1rem;
+            width: 64px;
+            height: 64px;
+            color: var(--rro-red);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-panel {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .stat-row:hover {
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--lydian-text-secondary);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .stat-value.critical {
+            color: var(--rro-red);
+        }
+
+        .stat-value.warning {
+            color: var(--rro-orange);
+        }
+
+        .stat-value.normal {
+            color: var(--rro-green);
+        }
+
+        .map-container {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        #map {
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .alerts-section {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-item {
+            background: var(--lydian-bg-tertiary);
+            border-left: 4px solid var(--rro-red);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .alert-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .alert-item.warning {
+            border-left-color: var(--rro-orange);
+        }
+
+        .alert-item.info {
+            border-left-color: #3B82F6;
+        }
+
+        .alert-content h4 {
+            color: var(--lydian-text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-meta {
+            color: var(--lydian-text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .alert-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--rro-red);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--rro-orange);
+        }
+
+        .badge-info {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            box-shadow: 0 8px 30px rgba(16, 163, 127, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .resource-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--lydian-accent);
+        }
+
+        .resource-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .resource-status {
+            font-size: 0.9rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--lydian-bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--rro-green);
+            transition: width 0.3s;
+        }
+
+        .progress-fill.critical {
+            background: var(--rro-red);
+        }
+
+        .progress-fill.warning {
+            background: var(--rro-orange);
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Leaflet Popup Custom Style */
+        .leaflet-popup-content-wrapper {
+            background: #FFFFFF;
+            color: var(--lydian-text-primary);
+            border-radius: 12px;
+            border: 1px solid var(--lydian-border);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .leaflet-popup-tip {
+            background: #FFFFFF;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                width: calc(100% - 40px);
+                top: 10px;
+                padding: 0.75rem 1rem;
+            }
+
+            .hero {
+                margin-top: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
+            <nav class="nav-links">
+                <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
+                <a href="/civic-rro.html" class="nav-link active">RRO</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <h1 class="hero-title">Risk ve Dayanıklılık İşletim Sistemi</h1>
+        <p class="hero-subtitle">
+            Çoklu Tehlike Erken Uyarı • Kaynak Tahsisi • Gerçek Zamanlı Olay İzleme
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Stats Panel -->
+            <div class="stats-panel">
+                <h3 class="section-title">
+                    <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Sistem Durumu
+                </h3>
+
+                <div class="stat-row">
+                    <span class="stat-label">Aktif Uyarılar</span>
+                    <span class="stat-value critical" id="active-alerts">3</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Müdahale Süresi</span>
+                    <span class="stat-value normal" id="response-time">94s</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Kapsama Alanı</span>
+                    <span class="stat-value normal">47 İlçe</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Görevlendirilen Kaynaklar</span>
+                    <span class="stat-value warning" id="deployed-resources">67%</span>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Sistem Çalışma Süresi</span>
+                    <span class="stat-value normal">99.94%</span>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <!-- Active Alerts -->
+        <div class="alerts-section">
+            <h3 class="section-title">
+                <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                </svg>
+                Aktif Uyarılar
+            </h3>
+
+            <div id="alerts-container">
+                <div class="alert-item">
+                    <div class="alert-content">
+                        <h4>
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                            </svg>
+                            Orman Yangını Riski - Sektör 7
+                        </h4>
+                        <p>Yüksek rüzgar koşulları tespit edildi. Ormanlık alanlarda yangın riski yükseldi.</p>
+                        <div class="alert-meta">
+                            <strong>Konum:</strong> 41.0082°K, 28.9784°D • <strong>Öncelik:</strong> Kritik • <strong>Tahmini Süre:</strong> 2s 15d
+                        </div>
+                    </div>
+                    <span class="alert-badge badge-critical">KRİTİK</span>
+                </div>
+
+                <div class="alert-item warning">
+                    <div class="alert-content">
+                        <h4>
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                            </svg>
+                            Sel Uyarısı - İlçe 12
+                        </h4>
+                        <p>Şiddetli yağış bekleniyor. Nehir seviyeleri yükseliyor. Alçak bölgeleri tahliye edin.</p>
+                        <div class="alert-meta">
+                            <strong>Konum:</strong> 40.9922°K, 29.0215°D • <strong>Öncelik:</strong> Yüksek • <strong>Tahmini Süre:</strong> 4s 30d
+                        </div>
+                    </div>
+                    <span class="alert-badge badge-warning">UYARI</span>
+                </div>
+
+                <div class="alert-item info">
+                    <div class="alert-content">
+                        <h4>
+                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Deprem Tatbikatı - Bölge 3
+                        </h4>
+                        <p>Planlanmış deprem hazırlık tatbikatı. Tüm personel istasyonlara bildirilecek.</p>
+                        <div class="alert-meta">
+                            <strong>Konum:</strong> Birden fazla bölge • <strong>Tür:</strong> Tatbikat • <strong>Başlangıç:</strong> Yarın 10:00
+                        </div>
+                    </div>
+                    <span class="alert-badge badge-info">BİLGİ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Assessment Charts -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin: 2rem 0;">
+            <!-- Overall Risk Score Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; color: var(--rro-red);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Genel Risk Skoru</h3>
+                </div>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="overallRiskChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Risk Categories Bar Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; color: var(--rro-orange);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Risk Kategorileri</h3>
+                </div>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="riskCategoriesChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Multi-dimensional Risk Radar Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; grid-column: span 2;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <svg style="width: 24px; height: 24px; color: var(--lydian-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Çok Boyutlu Risk Analizi</h3>
+                </div>
+                <div style="height: 400px; position: relative;">
+                    <canvas id="riskRadarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>İlk Müdahale Ekipleri</h4>
+                        <p class="resource-status">284 / 350 Hazır</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 81%"></div>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>Acil Durum Araçları</h4>
+                        <p class="resource-status">47 / 75 Görevde</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill warning" style="width: 63%"></div>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>Barınma Merkezleri</h4>
+                        <p class="resource-status">12 / 18 Aktif</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 67%"></div>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-header">
+                    <svg class="resource-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                    <div class="resource-info">
+                        <h4>İkmal Depoları</h4>
+                        <p class="resource-status">%89 Stok Seviyesi</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 89%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // GLOBAL STATE AND CONFIGURATION
+        // ==========================================
+        let map;
+        let mapMarkers = [];
+        const AUTO_REFRESH_INTERVAL = 30000; // 30 seconds
+        const iconColors = {
+            critical: '#EF4444',
+            warning: '#F59E0B',
+            info: '#3B82F6',
+            normal: '#10B981'
+        };
+
+        // ==========================================
+        // UTILITY FUNCTIONS
+        // ==========================================
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') return unsafe;
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function showLoadingState(elementId, isLoading) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (isLoading) {
+                    element.innerHTML = '<span style="color: var(--lydian-text-secondary);">Yükleniyor...</span>';
+                }
+            }
+        }
+
+        function showErrorState(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = `<span style="color: var(--rro-red);">Hata: ${escapeHtml(message)}</span>`;
+            }
+        }
+
+        // ==========================================
+        // API FETCH FUNCTIONS
+        // ==========================================
+        async function loadRisks() {
+            try {
+                showLoadingState('active-alerts', true);
+                const response = await fetch('/api/rro/v1/risks');
+                const data = await response.json();
+
+                if (data.success && data.risks) {
+                    updateRiskStats(data.risks);
+                    return data.risks;
+                } else {
+                    throw new Error(data.error || 'Risk verileri yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Risk yükleme hatası:', error);
+                showErrorState('active-alerts', error.message);
+                return [];
+            }
+        }
+
+        async function loadMapData() {
+            try {
+                const response = await fetch('/api/rro/v1/map-data');
+                const data = await response.json();
+
+                if (data.success && data.markers) {
+                    updateMap(data.markers);
+                    return data.markers;
+                } else {
+                    throw new Error(data.error || 'Harita verileri yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Harita verileri yükleme hatası:', error);
+                // Don't show error on map, just log it
+                return [];
+            }
+        }
+
+        async function loadAlerts() {
+            try {
+                const alertsContainer = document.getElementById('alerts-container');
+                if (alertsContainer) {
+                    alertsContainer.innerHTML = '<p style="color: var(--lydian-text-secondary);">Yükleniyor...</p>';
+                }
+
+                const response = await fetch('/api/rro/v1/alerts');
+                const data = await response.json();
+
+                if (data.success && data.alerts) {
+                    updateAlerts(data.alerts);
+                    return data.alerts;
+                } else {
+                    throw new Error(data.error || 'Uyarılar yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Uyarı yükleme hatası:', error);
+                const alertsContainer = document.getElementById('alerts-container');
+                if (alertsContainer) {
+                    alertsContainer.innerHTML = `<p style="color: var(--rro-red);">Hata: ${escapeHtml(error.message)}</p>`;
+                }
+                return [];
+            }
+        }
+
+        async function loadInfrastructure() {
+            try {
+                const response = await fetch('/api/rro/v1/infrastructure');
+                const data = await response.json();
+
+                if (data.success && data.resources) {
+                    updateInfrastructure(data.resources);
+                    return data.resources;
+                } else {
+                    throw new Error(data.error || 'Altyapı verileri yüklenemedi');
+                }
+            } catch (error) {
+                console.error('Altyapı verileri yükleme hatası:', error);
+                // Don't break the UI, just log the error
+                return null;
+            }
+        }
+
+        // ==========================================
+        // UI UPDATE FUNCTIONS
+        // ==========================================
+        function updateRiskStats(risks) {
+            // Count active critical alerts
+            const criticalCount = risks.filter(r => r.severity === 'critical' || r.priority === 'critical').length;
+            const alertElement = document.getElementById('active-alerts');
+            if (alertElement) {
+                alertElement.textContent = criticalCount;
+                alertElement.className = 'stat-value ' + (criticalCount > 5 ? 'critical' : criticalCount > 2 ? 'warning' : 'normal');
+            }
+
+            // Update response time if provided
+            if (risks.responseTime) {
+                const responseElement = document.getElementById('response-time');
+                if (responseElement) {
+                    responseElement.textContent = escapeHtml(risks.responseTime);
+                }
+            }
+
+            // Update deployed resources if provided
+            if (risks.deployedPercentage) {
+                const deployedElement = document.getElementById('deployed-resources');
+                if (deployedElement) {
+                    deployedElement.textContent = risks.deployedPercentage + '%';
+                    const percentage = parseInt(risks.deployedPercentage);
+                    deployedElement.className = 'stat-value ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : 'normal');
+                }
+            }
+        }
+
+        function updateMap(markers) {
+            // Clear existing markers
+            mapMarkers.forEach(marker => map.removeLayer(marker));
+            mapMarkers = [];
+
+            // Validate and add new markers
+            if (!Array.isArray(markers)) {
+                console.error('Invalid markers data:', markers);
+                return;
+            }
+
+            markers.forEach(markerData => {
+                // Validate marker data
+                if (!markerData.coords || !Array.isArray(markerData.coords) || markerData.coords.length !== 2) {
+                    console.warn('Invalid marker coordinates:', markerData);
+                    return;
+                }
+
+                const [lat, lng] = markerData.coords;
+                if (isNaN(lat) || isNaN(lng)) {
+                    console.warn('Invalid lat/lng values:', markerData);
+                    return;
+                }
+
+                const severity = markerData.severity || 'info';
+                const color = iconColors[severity] || iconColors.info;
+
+                const marker = L.circleMarker([lat, lng], {
+                    radius: 12,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                // Escape all user-provided content
+                const title = escapeHtml(markerData.title || 'Bilinmeyen Olay');
+                const description = escapeHtml(markerData.description || 'Açıklama yok');
+                const severityText = escapeHtml(severity.toUpperCase());
+
+                marker.bindPopup(`
+                    <div style="padding: 0.5rem;">
+                        <h4 style="margin-bottom: 0.5rem;">${title}</h4>
+                        <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${description}</p>
+                        <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${color}20; color: ${color}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+                            ${severityText}
+                        </span>
+                    </div>
+                `);
+
+                mapMarkers.push(marker);
+            });
+        }
+
+        function updateAlerts(alerts) {
+            const alertsContainer = document.getElementById('alerts-container');
+            if (!alertsContainer) return;
+
+            if (!Array.isArray(alerts) || alerts.length === 0) {
+                alertsContainer.innerHTML = '<p style="color: var(--lydian-text-secondary);">Aktif uyarı bulunmuyor.</p>';
+                return;
+            }
+
+            const severityIcons = {
+                critical: '<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>',
+                warning: '<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>',
+                info: '<svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+            };
+
+            const alertsHtml = alerts.map(alert => {
+                const severity = alert.severity || alert.priority || 'info';
+                const severityClass = severity === 'critical' ? '' : severity === 'warning' ? 'warning' : 'info';
+                const badgeClass = `badge-${severity}`;
+                const icon = severityIcons[severity] || severityIcons.info;
+
+                const title = escapeHtml(alert.title || 'Başlıksız Uyarı');
+                const description = escapeHtml(alert.description || alert.message || 'Açıklama yok');
+                const location = escapeHtml(alert.location || 'Bilinmiyor');
+                const priority = escapeHtml(alert.priority || severity);
+                const metadata = alert.metadata || alert.estimatedTime || '';
+
+                return `
+                    <div class="alert-item ${severityClass}">
+                        <div class="alert-content">
+                            <h4>
+                                ${icon}
+                                ${title}
+                            </h4>
+                            <p>${description}</p>
+                            <div class="alert-meta">
+                                <strong>Konum:</strong> ${location} • <strong>Öncelik:</strong> ${priority}${metadata ? ' • ' + escapeHtml(metadata) : ''}
+                            </div>
+                        </div>
+                        <span class="alert-badge ${badgeClass}">${escapeHtml(severity.toUpperCase())}</span>
+                    </div>
+                `;
+            }).join('');
+
+            alertsContainer.innerHTML = alertsHtml;
+        }
+
+        function updateInfrastructure(resources) {
+            if (!resources || typeof resources !== 'object') {
+                console.warn('Invalid infrastructure data:', resources);
+                return;
+            }
+
+            // Update first responders
+            if (resources.firstResponders) {
+                const { available, total, percentage } = resources.firstResponders;
+                const card = document.querySelector('.resource-card:nth-child(1)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `${available} / ${total} Hazır`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+
+            // Update emergency vehicles
+            if (resources.emergencyVehicles) {
+                const { deployed, total, percentage } = resources.emergencyVehicles;
+                const card = document.querySelector('.resource-card:nth-child(2)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `${deployed} / ${total} Görevde`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+
+            // Update shelters
+            if (resources.shelters) {
+                const { active, total, percentage } = resources.shelters;
+                const card = document.querySelector('.resource-card:nth-child(3)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `${active} / ${total} Aktif`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+
+            // Update supply depots
+            if (resources.supplyDepots) {
+                const { percentage } = resources.supplyDepots;
+                const card = document.querySelector('.resource-card:nth-child(4)');
+                if (card) {
+                    const status = card.querySelector('.resource-status');
+                    const progressBar = card.querySelector('.progress-fill');
+                    if (status) status.textContent = `%${percentage} Stok Seviyesi`;
+                    if (progressBar) {
+                        progressBar.style.width = percentage + '%';
+                        progressBar.className = 'progress-fill ' + (percentage < 50 ? 'critical' : percentage < 70 ? 'warning' : '');
+                    }
+                }
+            }
+        }
+
+        // ==========================================
+        // INITIALIZATION AND AUTO-REFRESH
+        // ==========================================
+        async function loadAllData() {
+            try {
+                // Load all data in parallel
+                await Promise.all([
+                    loadRisks(),
+                    loadMapData(),
+                    loadAlerts(),
+                    loadInfrastructure()
+                ]);
+            } catch (error) {
+                console.error('Veri yükleme hatası:', error);
+            }
+        }
+
+        function initializeMap() {
+            // Leaflet Harita Başlat (İstanbul merkez)
+            map = L.map('map').setView([41.0082, 28.9784], 10);
+
+            // Açık tema harita karoları
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize map
+            initializeMap();
+
+            // Load initial data
+            await loadAllData();
+
+            // Set up auto-refresh every 30 seconds
+            setInterval(loadAllData, AUTO_REFRESH_INTERVAL);
+
+            console.log('RRO Dashboard initialized with auto-refresh every', AUTO_REFRESH_INTERVAL / 1000, 'seconds');
+        });
+    </script>
+
+    <!-- Chart.js for Risk Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
+
+    <!-- Risk Assessment Charts Initialization -->
+    <script>
+        async function initRiskCharts() {
+            // Wait for CivicCharts library to load
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts not loaded yet, retrying...');
+                setTimeout(initRiskCharts, 500);
+                return;
+            }
+
+            try {
+                // Fetch risk assessment data
+                const riskData = await window.CivicCharts.fetchData('/risk/assessment');
+
+                if (riskData) {
+                    // Risk Categories Bar Chart
+                    if (riskData.riskCategories) {
+                        const categories = riskData.riskCategories;
+                        window.CivicCharts.createBarChart('riskCategoriesChart', {
+                            data: {
+                                labels: Object.keys(categories),
+                                datasets: [{
+                                    label: 'Risk Seviyesi',
+                                    data: Object.values(categories),
+                                    backgroundColor: [
+                                        '#EF4444', // Critical
+                                        '#F59E0B', // High
+                                        '#10B981', // Medium
+                                        '#3B82F6', // Low
+                                        '#EC4899'  // Info
+                                    ]
+                                }]
+                            },
+                            showLegend: false
+                        });
+                    }
+
+                    // Overall Risk Score Gauge (using Doughnut)
+                    if (riskData.overallScore !== undefined) {
+                        const score = riskData.overallScore;
+                        window.CivicCharts.createDoughnutChart('overallRiskChart', {
+                            data: {
+                                labels: ['Risk Skoru', 'Güvenli'],
+                                datasets: [{
+                                    data: [score, 100 - score],
+                                    backgroundColor: [
+                                        score > 70 ? '#EF4444' : score > 40 ? '#F59E0B' : '#10B981',
+                                        '#E5E7EB'
+                                    ],
+                                    borderWidth: 0
+                                }]
+                            },
+                            legendPosition: 'bottom'
+                        });
+                    }
+
+                    // Multi-dimensional Risk Radar Chart
+                    if (riskData.riskDimensions) {
+                        const dimensions = riskData.riskDimensions;
+                        window.CivicCharts.createRadarChart('riskRadarChart', {
+                            data: {
+                                labels: Object.keys(dimensions),
+                                datasets: [{
+                                    label: 'Risk Analizi',
+                                    data: Object.values(dimensions),
+                                    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                                    borderColor: '#EF4444',
+                                    pointBackgroundColor: '#EF4444',
+                                    pointBorderColor: '#fff',
+                                    pointHoverBackgroundColor: '#fff',
+                                    pointHoverBorderColor: '#EF4444'
+                                }]
+                            }
+                        });
+                    }
+
+                    console.log('✅ Risk assessment charts initialized');
+                }
+
+                // Set up real-time updates for risk data (every 45 seconds)
+                window.CivicCharts.startRealTimeUpdates('riskCategoriesChart', '/risk/assessment', 45000);
+                window.CivicCharts.startRealTimeUpdates('overallRiskChart', '/risk/assessment', 45000);
+
+            } catch (error) {
+                console.error('Risk charts initialization error:', error);
+            }
+        }
+
+        // Initialize charts when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initRiskCharts);
+        } else {
+            initRiskCharts();
+        }
+    </script>
+
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

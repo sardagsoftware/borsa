@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat ECW Test - Smoke Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-result {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #10A37F;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .test-result.error {
+            border-left-color: #FF6B4A;
+        }
+        .test-result.success {
+            border-left-color: #13C896;
+        }
+        button {
+            padding: 10px 20px;
+            background: #10A37F;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #13C896;
+        }
+        #console-log {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Chat.html ECW Integration - Smoke Test</h1>
+    <p>Bu sayfa chat.html'deki ECW entegrasyonunu test eder.</p>
+
+    <div id="test-results"></div>
+
+    <h2>🎯 Manuel Testler</h2>
+    <button onclick="testECWIntegration()">1. ECW Integration Test</button>
+    <button onclick="testECWWidget()">2. ECW Widget Test</button>
+    <button onclick="testChatHTML()">3. Chat.html Yüklenme Testi</button>
+    <button onclick="window.open('/chat.html', '_blank')">4. Chat.html Aç (Yeni Tab)</button>
+
+    <h2>📋 Console Log</h2>
+    <div id="console-log"></div>
+
+    <!-- ECW Scripts -->
+    <script src="/js/ecw-integration.js"></script>
+    <script src="/js/ecw-widget.js"></script>
+
+    <script>
+        const results = document.getElementById('test-results');
+        const consoleLog = document.getElementById('console-log');
+
+        // Override console to capture logs
+        const originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error
+        };
+
+        function logToPage(type, ...args) {
+            const logEntry = document.createElement('div');
+            logEntry.style.color = type === 'error' ? '#FF6B4A' : type === 'warn' ? '#FFB74D' : '#13C896';
+            logEntry.textContent = `[${type.toUpperCase()}] ${args.join(' ')}`;
+            consoleLog.appendChild(logEntry);
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }
+
+        console.log = function(...args) {
+            originalConsole.log.apply(console, args);
+            logToPage('log', ...args);
+        };
+
+        console.warn = function(...args) {
+            originalConsole.warn.apply(console, args);
+            logToPage('warn', ...args);
+        };
+
+        console.error = function(...args) {
+            originalConsole.error.apply(console, args);
+            logToPage('error', ...args);
+        };
+
+        function addResult(name, success, message) {
+            const div = document.createElement('div');
+            div.className = 'test-result ' + (success ? 'success' : 'error');
+            div.innerHTML = `
+                <strong>${success ? '✅' : '❌'} ${name}</strong><br>
+                ${message}
+            `;
+            results.appendChild(div);
+        }
+
+        // Test 1: ECW Integration
+        async function testECWIntegration() {
+            console.log('Starting ECW Integration Test...');
+
+            try {
+                if (typeof window.ecwIntegration === 'undefined') {
+                    addResult('ECW Integration', false, 'window.ecwIntegration undefined. Script yüklenmedi.');
+                    return;
+                }
+
+                addResult('ECW Integration', true, 'ECW Integration class yüklendi.');
+
+                // Initialize
+                const userId = 'test-user-' + Date.now();
+                await window.ecwIntegration.initialize(userId);
+
+                if (window.ecwIntegration.initialized) {
+                    addResult('ECW Initialize', true, `User ID: ${userId}`);
+                } else {
+                    addResult('ECW Initialize', false, 'Initialize edilemedi.');
+                }
+
+            } catch (error) {
+                addResult('ECW Integration', false, error.message);
+                console.error('ECW Integration Error:', error);
+            }
+        }
+
+        // Test 2: ECW Widget
+        async function testECWWidget() {
+            console.log('Starting ECW Widget Test...');
+
+            try {
+                if (typeof window.ecwWidget === 'undefined') {
+                    addResult('ECW Widget', false, 'window.ecwWidget undefined. Script yüklenmedi.');
+                    return;
+                }
+
+                addResult('ECW Widget', true, 'ECW Widget class yüklendi.');
+
+                // Check if widget is initialized
+                if (window.ecwWidget.widget) {
+                    addResult('ECW Widget DOM', true, 'Widget DOM element oluşturuldu.');
+                } else {
+                    addResult('ECW Widget DOM', false, 'Widget DOM element yok. Init edilmedi.');
+                }
+
+            } catch (error) {
+                addResult('ECW Widget', false, error.message);
+                console.error('ECW Widget Error:', error);
+            }
+        }
+
+        // Test 3: Chat.html Yüklenme
+        async function testChatHTML() {
+            console.log('Starting Chat.html Load Test...');
+
+            try {
+                const response = await fetch('/chat.html');
+
+                if (!response.ok) {
+                    addResult('Chat.html HTTP', false, `HTTP ${response.status}: ${response.statusText}`);
+                    return;
+                }
+
+                addResult('Chat.html HTTP', true, `HTTP 200 OK (${response.headers.get('content-type')})`);
+
+                const html = await response.text();
+
+                // Check ECW script tags
+                const hasECWIntegration = html.includes('ecw-integration.js');
+                const hasECWWidget = html.includes('ecw-widget.js');
+
+                addResult('ECW Script Tags',
+                    hasECWIntegration && hasECWWidget,
+                    `ECW Integration: ${hasECWIntegration ? '✓' : '✗'}, ECW Widget: ${hasECWWidget ? '✓' : '✗'}`
+                );
+
+                // Check for syntax errors in HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const parserError = doc.querySelector('parsererror');
+
+                if (parserError) {
+                    addResult('HTML Syntax', false, 'HTML parse hatası bulundu: ' + parserError.textContent);
+                } else {
+                    addResult('HTML Syntax', true, 'HTML geçerli, parse edildi.');
+                }
+
+                // Check sendMessage function
+                const hasSendMessage = html.includes('async function sendMessage');
+                const hasECWTracking = html.includes('🌍 ECW TRACKING');
+
+                addResult('sendMessage Function',
+                    hasSendMessage && hasECWTracking,
+                    `sendMessage: ${hasSendMessage ? '✓' : '✗'}, ECW Tracking: ${hasECWTracking ? '✓' : '✗'}`
+                );
+
+            } catch (error) {
+                addResult('Chat.html Test', false, error.message);
+                console.error('Chat.html Test Error:', error);
+            }
+        }
+
+        // Auto-run on load
+        window.addEventListener('DOMContentLoaded', async () => {
+            console.log('✓ Test page loaded');
+            console.log('Waiting for ECW scripts...');
+
+            // Wait a bit for scripts to load
+            setTimeout(async () => {
+                await testECWIntegration();
+                await testECWWidget();
+                await testChatHTML();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

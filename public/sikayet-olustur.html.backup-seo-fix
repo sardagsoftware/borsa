@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LCI - Şikayetinizi KVKK uyumlu şekilde oluşturun ve çözüm bulun">
+    <meta name="robots" content="index, follow">
+    <title>Şikayet Oluştur - LCI | Lydian Complaint Intelligence</title>
+
+    <!-- SEO - Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/sikayet-olustur.html?lang=tr">
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/sikayet-olustur.html?lang=en">
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/sikayet-olustur.html?lang=ar">
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/sikayet-olustur.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+
+    <!-- Arabic Font for RTL Support -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- i18n Manager -->
+    <script src="/i18n/i18n-manager.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0E8C6F;
+            --primary-light: rgba(16, 163, 127, 0.1);
+            --accent: #FF6B4A;
+            --accent-light: rgba(255, 107, 74, 0.1);
+            --gray-50: #FAFBFC;
+            --gray-100: #F3F5F7;
+            --gray-200: #E9ECEF;
+            --gray-300: #DEE2E6;
+            --gray-400: #CED4DA;
+            --gray-500: #6C757D;
+            --gray-600: #495057;
+            --gray-700: #343A40;
+            --gray-800: #212529;
+            --gray-900: #0D1117;
+            --error: #EF4444;
+            --error-light: rgba(239, 68, 68, 0.1);
+            --warning: #F59E0B;
+            --warning-light: rgba(245, 158, 11, 0.1);
+            --success: #10B981;
+            --success-light: rgba(16, 185, 129, 0.1);
+            --info: #3B82F6;
+            --info-light: rgba(59, 130, 246, 0.1);
+
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            color: var(--gray-900);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            transition: direction 0.3s ease;
+        }
+
+        /* RTL Support for Arabic */
+        body[dir="rtl"] {
+            font-family: 'Noto Sans Arabic', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.08)"/></svg>') repeat;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10A37F, #667eea, #764ba2);
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary), #0E8C6F);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(16, 163, 127, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gray-900), var(--gray-700));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 17px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-xl);
+            padding: 50px;
+            margin-bottom: 30px;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 18px 22px;
+            border-radius: 14px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 14px;
+            line-height: 1.6;
+            border: 1px solid transparent;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .alert-info {
+            background: var(--info-light);
+            border-color: rgba(59, 130, 246, 0.2);
+            color: #1E40AF;
+        }
+
+        .alert-warning {
+            background: var(--warning-light);
+            border-color: rgba(245, 158, 11, 0.2);
+            color: #92400E;
+        }
+
+        .alert-success {
+            background: var(--success-light);
+            border-color: rgba(16, 185, 129, 0.2);
+            color: #065F46;
+        }
+
+        .alert-error {
+            background: var(--error-light);
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #991B1B;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--gray-800);
+            margin-bottom: 10px;
+        }
+
+        .form-label svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
+        .required {
+            color: var(--error);
+            margin-left: 4px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 15px;
+            font-family: inherit;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            background: white;
+            color: var(--gray-900);
+            transition: all 0.25s ease;
+        }
+
+        .form-input:hover,
+        .form-select:hover,
+        .form-textarea:hover {
+            border-color: var(--gray-400);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.7;
+        }
+
+        .form-help {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-help svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .char-counter {
+            font-size: 12px;
+            color: var(--gray-500);
+            text-align: right;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* Evidence Upload */
+        .upload-area {
+            border: 2px dashed var(--gray-300);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            background: var(--gray-50);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            margin-bottom: 16px;
+            color: var(--gray-500);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .file-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .file-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .file-remove {
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .file-remove:hover {
+            background: #DC2626;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Radio Group */
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .radio-option {
+            position: relative;
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 22px;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: white;
+        }
+
+        .radio-label svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-label {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .radio-label:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .checkbox-group:hover {
+            background: var(--gray-100);
+        }
+
+        .checkbox-input {
+            width: 22px;
+            height: 22px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--gray-700);
+            cursor: pointer;
+            line-height: 1.6;
+        }
+
+        .checkbox-label a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .checkbox-label a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 14px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 28px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #0E8C6F);
+            color: white;
+            box-shadow: 0 4px 16px rgba(16, 163, 127, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--gray-300);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+            animation: modalZoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes modalZoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--success), #0D9488);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+        }
+
+        .modal h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+
+        .modal p {
+            font-size: 16px;
+            color: var(--gray-600);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .complaint-id {
+            background: var(--gray-100);
+            padding: 16px;
+            border-radius: 12px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 28px;
+            word-break: break-all;
+            color: var(--primary);
+            border: 1px solid var(--gray-200);
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 70px;
+            height: 70px;
+            border: 5px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(20px);
+        }
+
+        body[dir="rtl"] .lang-switcher {
+            right: auto;
+            left: 24px;
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-btn:hover {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--primary), #0E8C6F);
+            color: white;
+            box-shadow: 0 2px 8px rgba(16, 163, 127, 0.3);
+        }
+
+        .lang-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .header {
+                padding: 36px 24px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .form-container {
+                padding: 32px 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 36px 28px;
+            }
+
+            .lang-switcher {
+                top: 12px;
+                right: 12px;
+                padding: 4px;
+            }
+
+            body[dir="rtl"] .lang-switcher {
+                right: auto;
+                left: 12px;
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+
+        /* Loading State */
+        .loading-brands {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray-500);
+        }
+
+        .retry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.2s;
+        }
+
+        .retry-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="tr" onclick="switchLanguage('tr')" title="Türkçe">
+                    <i data-lucide="globe"></i>
+                    TR
+                </button>
+                <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" title="English">
+                    <i data-lucide="globe"></i>
+                    EN
+                </button>
+                <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')" title="العربية">
+                    <i data-lucide="globe"></i>
+                    AR
+                </button>
+            </div>
+
+            <div class="logo">
+                <i data-lucide="file-text" style="width: 44px; height: 44px; color: white;"></i>
+            </div>
+            <h1 data-i18n="complaint.title">Şikayet Oluştur</h1>
+            <p data-i18n="complaint.subtitle">Sorunlarınızı KVKK uyumlu şekilde bildirin, çözüm bulun</p>
+        </div>
+
+        <!-- Form -->
+        <div class="form-container">
+            <!-- Privacy Warning (Dynamic i18n) -->
+            <div class="alert alert-warning">
+                <div class="alert-icon">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <div id="privacyWarningText">
+                    <!-- Will be populated by i18n -->
+                </div>
+            </div>
+
+            <form id="complaintForm">
+                <!-- Brand Selection -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i data-lucide="building-2"></i>
+                        Şikayet Ettiğiniz Marka<span class="required">*</span>
+                    </label>
+                    <select id="brandSelect" class="form-select" required>
+                        <option value="">Marka seçiniz...</option>
+                    </select>
+                    <div id="brandLoadingState" class="loading-brands" style="display: none;">
+                        <div class="spinner" style="width: 24px; height: 24px; margin: 0 auto 12px; border-width: 3px;"></div>
+                        <div>Markalar yükleniyor...</div>
+                    </div>
+                    <div class="form-help">
+                        <i data-lucide="info"></i>
+                        Markanızı bulamıyor musunuz? Lütfen bizimle iletişime geçin.
+                    </div>
+                </div>
+
+                <!-- Product/Service -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i data-lucide="package"></i>
+                        Ürün veya Hizmet Adı<span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="product"
+                        class="form-input"
+                        placeholder="Örn: iPhone 15 Pro, İnternet Paketi, vb."
+                        required
+                        maxlength="200"
+                    >
+                </div>
+
+                <!-- Title -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i data-lucide="heading"></i>
+                        Şikayet Başlığı<span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="title"
+                        class="form-input"
+                        placeholder="Örn: Ürün arızalı geldi ve iade edilmiyor"
+                        required
+                        maxlength="200"
+                    >
+                    <div class="char-counter">
+                        <span id="titleCounter">0</span>/200
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i data-lucide="align-left"></i>
+                        Şikayet Detayı<span class="required">*</span>
+                    </label>
+                    <textarea
+                        id="description"
+                        class="form-textarea"
+                        placeholder="Lütfen sorununuzu detaylı şekilde anlatın. Ne zaman başladı? Hangi adımları denediniz? Markanın yanıtı ne oldu?"
+                        required
+                        maxlength="5000"
+                    ></textarea>
+                    <div class="char-counter">
+                        <span id="descCounter">0</span>/5000
+                    </div>
+                    <div class="form-help">
+                        <i data-lucide="info"></i>
+                        Minimum 50 karakter gereklidir.
+                    </div>
+                </div>
+
+                <!-- Severity -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i data-lucide="alert-circle"></i>
+                        Önem Derecesi<span class="required">*</span>
+                    </label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="severity" id="severity-low" value="LOW" checked>
+                            <label for="severity-low" class="radio-label">
+                                <i data-lucide="circle" style="color: #10B981;"></i>
+                                Düşük
+                            </label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="severity" id="severity-medium" value="MEDIUM">
+                            <label for="severity-medium" class="radio-label">
+                                <i data-lucide="circle" style="color: #F59E0B;"></i>
+                                Orta
+                            </label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="severity" id="severity-high" value="HIGH">
+                            <label for="severity-high" class="radio-label">
+                                <i data-lucide="circle" style="color: #FF6B4A;"></i>
+                                Yüksek
+                            </label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="severity" id="severity-critical" value="CRITICAL">
+                            <label for="severity-critical" class="radio-label">
+                                <i data-lucide="circle" style="color: #EF4444;"></i>
+                                Kritik
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-help">
+                        <i data-lucide="lightbulb"></i>
+                        <span><strong>Düşük:</strong> Ufak aksaklıklar | <strong>Orta:</strong> Kullanımı zorlaştırıyor | <strong>Yüksek:</strong> Kullanılamıyor | <strong>Kritik:</strong> Maddi/manevi zarar</span>
+                    </div>
+                </div>
+
+                <!-- Evidence Upload -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i data-lucide="paperclip"></i>
+                        Kanıt Dosyaları (Opsiyonel)
+                    </label>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i data-lucide="cloud-upload" style="width: 56px; height: 56px;"></i>
+                        </div>
+                        <p style="font-weight: 600; margin-bottom: 6px; font-size: 16px;">Fotoğraf veya belge yükleyin</p>
+                        <p style="font-size: 13px; color: var(--gray-500);">Fatura, e-posta, ekran görüntüsü vb. (Maks 10MB, 5 dosya)</p>
+                        <input
+                            type="file"
+                            id="fileInput"
+                            class="file-input"
+                            multiple
+                            accept="image/*,.pdf,.doc,.docx"
+                        >
+                    </div>
+                    <div class="file-list" id="fileList"></div>
+                </div>
+
+                <!-- Terms Checkbox -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            class="checkbox-input"
+                            required
+                        >
+                        <label for="terms" class="checkbox-label">
+                            <a href="https://www.ailydian.com/terms" target="_blank">Kullanım Koşulları</a>'nı ve
+                            <a href="https://www.ailydian.com/privacy" target="_blank">Gizlilik Politikası</a>'nı okudum, kabul ediyorum.<span class="required">*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- KVKK Checkbox -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input
+                            type="checkbox"
+                            id="kvkk"
+                            class="checkbox-input"
+                            required
+                        >
+                        <label for="kvkk" class="checkbox-label">
+                            <a href="https://www.ailydian.com/kvkk" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, kişisel verilerimin işlenmesine izin veriyorum.<span class="required">*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Error Display -->
+                <div id="errorAlert" class="alert alert-error" style="display: none;">
+                    <div class="alert-icon">
+                        <i data-lucide="x-circle"></i>
+                    </div>
+                    <div id="errorMessage"></div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                        <i data-lucide="x"></i>
+                        İptal
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i data-lucide="send"></i>
+                        Şikayeti Gönder
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Info Box (Dynamic i18n) -->
+        <div class="alert alert-info">
+            <div class="alert-icon">
+                <i data-lucide="info"></i>
+            </div>
+            <div id="nextStepsText">
+                <!-- Will be populated by i18n -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i data-lucide="check" style="width: 44px; height: 44px;"></i>
+            </div>
+            <h2>Şikayetiniz Alındı!</h2>
+            <p>Şikayetiniz başarıyla kaydedildi ve moderasyon sürecine alındı.</p>
+            <div class="complaint-id" id="complaintIdDisplay"></div>
+            <button class="btn btn-primary" onclick="location.reload()">
+                <i data-lucide="refresh-cw"></i>
+                Yeni Şikayet Oluştur
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // API Configuration - Environment aware with fallback
+        const API_BASE_URL = window.location.hostname === 'localhost'
+            ? 'http://localhost:3201/v1'
+            : 'https://www.ailydian.com/api/lci/v1';
+
+        // Initialize i18n
+        const i18n = new I18nManager({
+            defaultLocale: new URLSearchParams(window.location.search).get('lang') || 'tr',
+            fallbackLocale: 'en',
+            basePath: '/i18n/locales'
+        });
+
+        // State
+        let selectedFiles = [];
+        let brands = [];
+        let retryCount = 0;
+        const MAX_RETRIES = 3;
+
+        // DOM Elements
+        const form = document.getElementById('complaintForm');
+        const brandSelect = document.getElementById('brandSelect');
+        const brandLoadingState = document.getElementById('brandLoadingState');
+        const titleInput = document.getElementById('title');
+        const descInput = document.getElementById('description');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorMessage = document.getElementById('errorMessage');
+        const successModal = document.getElementById('successModal');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const complaintIdDisplay = document.getElementById('complaintIdDisplay');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize i18n
+            await initializeI18n();
+
+            // Load brands and setup form
+            loadBrands();
+            setupCharCounters();
+            setupFileUpload();
+            lucide.createIcons(); // Reinitialize icons after DOM changes
+        });
+
+        // Initialize i18n system
+        async function initializeI18n() {
+            const currentLang = i18n.getCurrentLocale();
+
+            // Load all locales
+            await Promise.all([
+                i18n.loadLocale('tr'),
+                i18n.loadLocale('en'),
+                i18n.loadLocale('ar')
+            ]);
+
+            // Set current locale
+            await i18n.setLocale(currentLang);
+
+            // Update UI with translations
+            updatePageTranslations();
+
+            // Update active language button
+            updateLanguageButtons(currentLang);
+        }
+
+        // Switch language
+        async function switchLanguage(locale) {
+            await i18n.setLocale(locale);
+            updatePageTranslations();
+            updateLanguageButtons(locale);
+
+            // Update URL parameter
+            const url = new URL(window.location);
+            url.searchParams.set('lang', locale);
+            window.history.pushState({}, '', url);
+
+            // Update page title and meta tags
+            const pageTitle = i18n.t('complaint.title') + ' - LCI | Lydian Complaint Intelligence';
+            document.title = pageTitle;
+            document.querySelector('meta[name="description"]').content = i18n.t('complaint.subtitle');
+        }
+
+        // Update all translations on the page
+        function updatePageTranslations() {
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = i18n.t(key);
+
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    if (element.hasAttribute('placeholder')) {
+                        element.placeholder = translation;
+                    }
+                } else {
+                    element.textContent = translation;
+                }
+            });
+
+            // Update specific elements manually
+            updateStaticText();
+            lucide.createIcons(); // Refresh icons
+        }
+
+        // Update static text that needs special handling
+        function updateStaticText() {
+            // Privacy warning - specific element
+            const privacyWarningText = document.getElementById('privacyWarningText');
+            if (privacyWarningText) {
+                privacyWarningText.innerHTML = `<strong>${i18n.t('complaint.alerts.privacyWarning')}</strong> ${i18n.t('complaint.alerts.privacyText')}`;
+            }
+
+            // Next steps info - specific element
+            const nextStepsText = document.getElementById('nextStepsText');
+            if (nextStepsText) {
+                nextStepsText.innerHTML = `<strong>${i18n.t('complaint.alerts.nextSteps')}</strong> ${i18n.t('complaint.alerts.nextStepsText')}`;
+            }
+
+            // Form labels and placeholders
+            brandSelect.innerHTML = `<option value="">${i18n.t('complaint.form.brandPlaceholder')}</option>`;
+
+            // Re-populate brands if already loaded
+            if (brands.length > 0) {
+                brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand.id;
+                    option.textContent = brand.name;
+                    brandSelect.appendChild(option);
+                });
+            }
+
+            // Update placeholders
+            document.getElementById('product').placeholder = i18n.t('complaint.form.productPlaceholder');
+            document.getElementById('title').placeholder = i18n.t('complaint.form.titlePlaceholder');
+            document.getElementById('description').placeholder = i18n.t('complaint.form.descriptionPlaceholder');
+
+            // Update severity labels
+            document.querySelector('label[for="severity-low"]').innerHTML = `
+                <i data-lucide="circle" style="color: #10B981;"></i>
+                ${i18n.t('complaint.form.severityLow')}
+            `;
+            document.querySelector('label[for="severity-medium"]').innerHTML = `
+                <i data-lucide="circle" style="color: #F59E0B;"></i>
+                ${i18n.t('complaint.form.severityMedium')}
+            `;
+            document.querySelector('label[for="severity-high"]').innerHTML = `
+                <i data-lucide="circle" style="color: #FF6B4A;"></i>
+                ${i18n.t('complaint.form.severityHigh')}
+            `;
+            document.querySelector('label[for="severity-critical"]').innerHTML = `
+                <i data-lucide="circle" style="color: #EF4444;"></i>
+                ${i18n.t('complaint.form.severityCritical')}
+            `;
+
+            lucide.createIcons();
+        }
+
+        // Update language button active state
+        function updateLanguageButtons(currentLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === currentLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Load brands from API with retry mechanism
+        async function loadBrands() {
+            brandLoadingState.style.display = 'block';
+            brandSelect.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/brands?status=ACTIVE`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    // Add timeout
+                    signal: AbortSignal.timeout(10000)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: Markalar yüklenemedi`);
+                }
+
+                brands = await response.json();
+
+                // Clear loading state
+                brandLoadingState.style.display = 'none';
+                brandSelect.disabled = false;
+
+                // Populate brands
+                brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand.id;
+                    option.textContent = brand.name;
+                    brandSelect.appendChild(option);
+                });
+
+                console.log(`✅ ${brands.length} marka yüklendi`);
+                retryCount = 0; // Reset retry count on success
+
+            } catch (error) {
+                console.error('Markalar yüklenemedi:', error);
+
+                if (retryCount < MAX_RETRIES) {
+                    retryCount++;
+                    brandLoadingState.innerHTML = `
+                        <div class="spinner" style="width: 24px; height: 24px; margin: 0 auto 12px; border-width: 3px;"></div>
+                        <div>${i18n.t('complaint.errors.connecting', { retry: retryCount, max: MAX_RETRIES })}</div>
+                    `;
+
+                    // Retry with exponential backoff
+                    setTimeout(() => loadBrands(), 2000 * retryCount);
+                } else {
+                    // Show retry button after max retries
+                    brandLoadingState.innerHTML = `
+                        <div style="color: var(--error); margin-bottom: 12px;">
+                            <i data-lucide="alert-circle" style="width: 24px; height: 24px; margin-bottom: 8px;"></i>
+                            <div>${i18n.t('complaint.errors.brandLoadFailed')}</div>
+                        </div>
+                        <button class="retry-btn" onclick="retryLoadBrands()">
+                            <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i>
+                            ${i18n.t('complaint.errors.retry')}
+                        </button>
+                    `;
+                    lucide.createIcons();
+                    brandSelect.disabled = false;
+
+                    // Also load fallback brands
+                    loadFallbackBrands();
+                }
+            }
+        }
+
+        // Retry function for manual retry
+        function retryLoadBrands() {
+            retryCount = 0;
+            loadBrands();
+        }
+
+        // Fallback brands if API fails
+        function loadFallbackBrands() {
+            const fallbackBrands = [
+                { id: 'fallback-1', name: 'Turkcell' },
+                { id: 'fallback-2', name: 'Vodafone' },
+                { id: 'fallback-3', name: 'Türk Telekom' },
+                { id: 'fallback-4', name: 'Apple' },
+                { id: 'fallback-5', name: 'Samsung' },
+                { id: 'fallback-6', name: 'Migros' },
+                { id: 'fallback-7', name: 'Trendyol' },
+                { id: 'fallback-8', name: 'Hepsiburada' },
+            ];
+
+            fallbackBrands.forEach(brand => {
+                const option = document.createElement('option');
+                option.value = brand.id;
+                option.textContent = brand.name + ' (Geçici)';
+                brandSelect.appendChild(option);
+            });
+
+            console.warn('⚠️ Fallback brands loaded');
+        }
+
+        // Character counters
+        function setupCharCounters() {
+            titleInput.addEventListener('input', () => {
+                document.getElementById('titleCounter').textContent = titleInput.value.length;
+            });
+
+            descInput.addEventListener('input', () => {
+                document.getElementById('descCounter').textContent = descInput.value.length;
+            });
+        }
+
+        // File upload handlers
+        function setupFileUpload() {
+            uploadArea.addEventListener('click', () => fileInput.click());
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+        }
+
+        function handleFiles(files) {
+            const maxFiles = 5;
+            const maxSize = 10 * 1024 * 1024; // 10MB
+
+            if (selectedFiles.length + files.length > maxFiles) {
+                showError(i18n.t('complaint.errors.maxFiles', { max: maxFiles }));
+                return;
+            }
+
+            Array.from(files).forEach(file => {
+                if (file.size > maxSize) {
+                    showError(i18n.t('complaint.errors.fileTooBig', { name: file.name }));
+                    return;
+                }
+
+                if (selectedFiles.some(f => f.name === file.name)) {
+                    showError(i18n.t('complaint.errors.fileExists', { name: file.name }));
+                    return;
+                }
+
+                selectedFiles.push(file);
+                addFileToList(file);
+            });
+
+            fileInput.value = ''; // Reset input
+            lucide.createIcons(); // Refresh icons
+        }
+
+        function addFileToList(file) {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <div class="file-icon">
+                        <i data-lucide="${getFileIconName(file.type)}"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 14px; color: var(--gray-900);">${file.name}</div>
+                        <div style="font-size: 12px; color: var(--gray-500);">${formatFileSize(file.size)}</div>
+                    </div>
+                </div>
+                <button type="button" class="file-remove" onclick="removeFile('${file.name}')">
+                    <i data-lucide="trash-2"></i>
+                    Kaldır
+                </button>
+            `;
+            fileList.appendChild(fileItem);
+            lucide.createIcons();
+        }
+
+        function removeFile(fileName) {
+            selectedFiles = selectedFiles.filter(f => f.name !== fileName);
+            renderFileList();
+        }
+
+        function renderFileList() {
+            fileList.innerHTML = '';
+            selectedFiles.forEach(file => addFileToList(file));
+        }
+
+        function getFileIconName(type) {
+            if (type.startsWith('image/')) return 'image';
+            if (type.includes('pdf')) return 'file-text';
+            if (type.includes('word') || type.includes('document')) return 'file-text';
+            return 'file';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validation
+            if (descInput.value.length < 50) {
+                showError(i18n.t('complaint.errors.minLength'));
+                return;
+            }
+
+            if (!document.getElementById('terms').checked || !document.getElementById('kvkk').checked) {
+                showError(i18n.t('complaint.errors.acceptTerms'));
+                return;
+            }
+
+            // Show loading
+            loadingOverlay.classList.add('active');
+            submitBtn.disabled = true;
+
+            try {
+                // Get form data
+                const severity = document.querySelector('input[name="severity"]:checked').value;
+                const brandId = brandSelect.value;
+
+                // Create complaint
+                const complaintData = {
+                    brandId,
+                    title: titleInput.value.trim(),
+                    description: descInput.value.trim(),
+                    product: document.getElementById('product').value.trim(),
+                    severity,
+                    // In production, get from auth
+                    userId: 'anonymous-user-id'
+                };
+
+                const response = await fetch(`${API_BASE_URL}/complaints`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(complaintData)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || i18n.t('complaint.errors.submitFailed'));
+                }
+
+                const complaint = await response.json();
+
+                // Upload evidence files if any
+                if (selectedFiles.length > 0) {
+                    await uploadEvidence(complaint.id);
+                }
+
+                // Show success
+                showSuccess(complaint.id);
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showError(error.message || i18n.t('complaint.errors.submitFailed'));
+            } finally {
+                loadingOverlay.classList.remove('active');
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Upload evidence files
+        async function uploadEvidence(complaintId) {
+            for (const file of selectedFiles) {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('complaintId', complaintId);
+                formData.append('description', `Kanıt: ${file.name}`);
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/evidence/upload`, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        console.error(`Failed to upload ${file.name}`);
+                    }
+                } catch (error) {
+                    console.error(`Error uploading ${file.name}:`, error);
+                }
+            }
+        }
+
+        // Show error
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorAlert.style.display = 'flex';
+            lucide.createIcons();
+
+            // Scroll to error
+            errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                errorAlert.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show success modal
+        function showSuccess(complaintId) {
+            complaintIdDisplay.textContent = i18n.t('complaint.success.complaintId', { id: complaintId });
+
+            // Update success modal text
+            document.querySelector('.modal h2').textContent = i18n.t('complaint.success.title');
+            document.querySelector('.modal p').textContent = i18n.t('complaint.success.message');
+            document.querySelector('.modal .btn').innerHTML = `
+                <i data-lucide="refresh-cw"></i>
+                ${i18n.t('complaint.success.newComplaint')}
+            `;
+
+            successModal.classList.add('active');
+            lucide.createIcons();
+
+            // Reset form
+            form.reset();
+            selectedFiles = [];
+            renderFileList();
+        }
+
+        // PII Detection Warning (basic client-side check)
+        descInput.addEventListener('input', () => {
+            const text = descInput.value;
+            const hasPII = /(\d{11})|(\d{3}[-.\s]?\d{3}[-.\s]?\d{4})|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g.test(text);
+
+            if (hasPII) {
+                descInput.style.borderColor = 'var(--warning)';
+                descInput.style.background = 'var(--warning-light)';
+            } else {
+                descInput.style.borderColor = '';
+                descInput.style.background = '';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LyDian Görsel Oluşturma - AI ile profesyonel görseller oluşturun">
+    <title>Image Generation - LyDian | AI-Powered DALL-E 3 & Imagen 3</title>
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #000000; --white: #FFFFFF;
+            --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+            --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151;
+            --gray-800: #1F2937; --gray-900: #111827;
+            --primary: #10A37F; --accent: #FF6B4A;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { font-family: 'Caveat', cursive !important; font-size: 2.25rem; font-weight: 700 !important; color: #000; text-decoration: none;  }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--gray-700); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-flex; }
+        .btn-secondary { background: transparent; color: var(--gray-700); }
+        .btn-primary { background: var(--black); color: var(--white); }
+        .hero { min-height: 90vh; display: flex; align-items: center; background: linear-gradient(135deg, #FF6B4A 0%, #10A37F 100%); padding-top: 72px; }
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem; text-align: center; color: white; }
+        .hero-title { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-description { font-size: 1.5rem; max-width: 800px; margin: 0 auto 3rem; }
+        .btn-white { background: white; color: black; padding: 1rem 2rem; font-size: 1.1rem; border-radius: 12px; }
+        .features { padding: 8rem 2rem; background: white; }
+        .features-container { max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-description { font-size: 1.25rem; color: var(--gray-600); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .feature-card { padding: 2.5rem; background: white; border: 1px solid var(--gray-200); border-radius: 16px; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+        .feature-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .feature-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .feature-description { color: var(--gray-600); }
+        .gallery { padding: 8rem 2rem; background: var(--gray-50); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1400px; margin: 3rem auto 0; }
+        .gallery-item { border-radius: 16px; overflow: hidden; aspect-ratio: 1; background: linear-gradient(135deg, var(--primary), var(--accent)); opacity: 0.2; }
+        .footer { padding: 4rem 2rem 2rem; background: var(--gray-900); color: var(--gray-500); }
+        .footer-container { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo { font-family: 'Caveat', cursive !important; font-size: 2rem; color: white; margin-bottom: 1rem;  }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a { color: var(--gray-500); text-decoration: none; }
+        .footer-column h3 { color: white; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--gray-800); display: flex; justify-content: space-between; }
+        .footer-legal { display: flex; gap: 2rem; }
+        .footer-legal a { color: var(--gray-500); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-description { font-size: 1.125rem; }
+            .section-title { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
+            <ul class="nav-links">
+                <li><a href="/chat.html">LyDian AI</a></li>
+                <li><a href="/docs.html">Dokümantasyon</a></li>
+                <li><a href="/api-reference.html">API</a></li>
+            </ul>
+            <div><a href="/auth.html" class="btn btn-secondary">Giriş Yap</a> <a href="/chat.html" class="btn btn-primary">Şimdi Dene</a></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Hayal gücünüzü<br>görsele dönüştürün</h1>
+            <p class="hero-description">Gelişmiş AI modelleriyle metin açıklamalarından profesyonel kalitede görseller oluşturun. Sınırsız yaratıcılık, sınırsız olasılıklar.</p>
+            <a href="/chat.html" class="btn btn-white">Görsel Oluşturmaya Başlayın</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Profesyonel görsel oluşturma</h2>
+                <p class="section-description">En gelişmiş AI görsel oluşturma teknolojileri</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">4K Çözünürlük</h3>
+                    <p class="feature-description">Ultra yüksek çözünürlükte görseller oluşturun. Baskı kalitesinde detaylı ve net sonuçlar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Stil Transfer</h3>
+                    <p class="feature-description">Görsellerinize farklı sanat stilleri uygulayın. Empresyonizmden dijital sanata kadar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Batch İşleme</h3>
+                    <p class="feature-description">Aynı anda birden fazla görsel oluşturun. Zamandan tasarruf edin, verimliliği artırın.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">İnpainting</h3>
+                    <p class="feature-description">Görsellerin belirli kısımlarını AI ile düzenleyin ve yeniden oluşturun.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Görsel Çeşitlendirme</h3>
+                    <p class="feature-description">Bir görselden farklı varyasyonlar oluşturun. Yaratıcı alternatifleri keşfedin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Hızlı Üretim</h3>
+                    <p class="feature-description">Saniyeler içinde görsel oluşturun. Gerçek zamanlı önizleme ve düzenleme.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">AI tarafından oluşturulan görseller</h2>
+                <p class="section-description">LyDian ile oluşturulmuş örnek görseller. Her görsel metin açıklamalarından üretilmiştir.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 5rem;">
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1686904423955-b5b0c8f3b231?w=800&q=80" alt="AI Generated Art" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Futuristik Şehir Manzarası</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Neon ışıklarla aydınlatılmış futuristik şehir, cyberpunk stil, 4K"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1707343843437-caacff5cfa74?w=800&q=80" alt="AI Generated Portrait" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Digital Portre</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Renkli saçlı kadın portresi, dijital sanat, yüksek detay"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1707343848552-893e05dba6ac?w=800&q=80" alt="AI Abstract Art" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Abstract Sanat</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Renkli soyut kompozisyon, geometrik şekiller, modern sanat"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1706885093476-b1e54f26af5f?w=800&q=80" alt="AI Fantasy Art" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Fantezi Dünyası</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Büyülü orman, parlak mantarlar, fantastik yaratıklar"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1706885093473-7c30ca921c00?w=800&q=80" alt="AI Space Art" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Uzay Manzarası</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Nebula bulutları arasında uzay istasyonu, kozmik renkler"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1706885093422-700e5beec0bc?w=800&q=80" alt="AI Nature Art" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Doğa ve Teknoloji</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Orman içinde teknolojik yapılar, organik ve mekanik uyum"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1706885093477-daacba4f0926?w=800&q=80" alt="AI Character Design" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Karakter Tasarımı</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Güçlü kahraман karakteri, çizgi roman stili, dinamik poz"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                    <div >
+                        <img src="https://images.unsplash.com/photo-1706885093479-dd3c71ce4954?w=800&q=80" alt="AI Architecture" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black);">Mimari Konsept</h3>
+                        <p style="color: var(--gray-600); font-size: 0.875rem; margin-bottom: 1rem;">Prompt: "Modern minimalist bina, cam yüzey, gün batımı ışığı"</p>
+                        <button style="width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">Benzer Görsel Oluştur</button>
+                    </div>
+                </div>
+            </div>
+
+            <div >
+                <h3 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem;">Hayal gücünüzü serbest bırakın</h3>
+                <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">4K çözünürlükte, profesyonel kalitede görseller oluşturun</p>
+                <a href="/chat.html" style="display: inline-block; padding: 1rem 2.5rem; background: white; color: var(--black); text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">Görsel Oluşturmaya Başla</a>
+            </div>
+
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <h2 class="section-title" style="margin-bottom: 3rem;">Nasıl Çalışır?</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div >1</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--black);">Hayal Edin</h3>
+                        <p style="color: var(--gray-600);">Oluşturmak istediğiniz görseli detaylı olarak tanımlayın</p>
+                    </div>
+                    <div style="text-align: center; padding: 2rem;">
+                        <div >2</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--black);">AI İşlesin</h3>
+                        <p style="color: var(--gray-600);">Gelişmiş AI modellerimiz görselinizi saniyeler içinde oluşturur</p>
+                    </div>
+                    <div style="text-align: center; padding: 2rem;">
+                        <div >3</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--black);">İndirin</h3>
+                        <p style="color: var(--gray-600);">Yüksek çözünürlükte görselinizi indirin ve kullanın</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div><div class="footer-logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; color: #FFFFFF;">LyDian</div><p>Yapay zeka ile geleceği şekillendirin</p></div>
+                <div class="footer-column"><h3>Ürünler</h3><ul class="footer-links"><li><a href="/ai-chat.html">AI Sohbet</a></li><li><a href="/image-generation.html">Görsel Oluşturma</a></li><li><a href="/video-ai.html">Video AI</a></li><li><a href="/api.html">API</a></li></ul></div>
+                <div class="footer-column"><h3>Çözümler</h3><ul class="footer-links"><li><a href="/enterprise.html">Enterprise</a></li><li><a href="/education.html">Eğitim</a></li><li><a href="/research.html">Araştırma</a></li></ul></div>
+                <div class="footer-column"><h3>Şirket</h3><ul class="footer-links"><li><a href="/about.html">Hakkımızda</a></li><li><a href="/careers.html">Kariyer</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/contact.html">İletişim</a></li></ul></div>
+                <div class="footer-column"><h3>Destek</h3><ul class="footer-links"><li><a href="/help.html">Yardım Merkezi</a></li><li><a href="/api-reference.html">API Referansı</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2025 LyDian. Tüm hakları saklıdır.</div>
+                <div class="footer-legal"><a href="/privacy.html">Gizlilik Politikası</a><a href="/terms.html">Kullanım Koşulları</a><a href="/cookies.html">Çerezler</a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

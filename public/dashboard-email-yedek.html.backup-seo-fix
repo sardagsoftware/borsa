@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Dashboard - LyDian Ultra Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar.collapsed {
+            width: 70px;
+        }
+
+        /* Logo */
+        .sidebar-logo {
+            padding: 24px 20px;
+            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00E0AE 0%, #6E84FF 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Righteous', sans-serif;
+            color: #ffffff;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar.collapsed .logo-text {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+        }
+
+        /* Email Accounts */
+        .email-accounts {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+        }
+
+        .account-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .account-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: #00E0AE;
+        }
+
+        .account-item.active {
+            background: rgba(0, 224, 174, 0.1);
+            border-left-color: #00E0AE;
+        }
+
+        .account-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #00E0AE 0%, #6E84FF 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .account-info {
+            flex: 1;
+            min-width: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar.collapsed .account-info {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+        }
+
+        .account-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .account-email {
+            font-size: 12px;
+            color: #888888;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .unread-badge {
+            background: #ef4444;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #000000;
+        }
+
+        /* Header */
+        .header {
+            background: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-toggle {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #00E0AE;
+        }
+
+        .search-box {
+            width: 400px;
+            background: #000000;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #00E0AE;
+            background: #0a0a0a;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-btn {
+            background: transparent;
+            border: 1px solid #333333;
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-btn:hover {
+            background: rgba(0, 224, 174, 0.1);
+            border-color: #00E0AE;
+        }
+
+        .notification-indicator {
+            position: relative;
+        }
+
+        .notification-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            border: 2px solid #0a0a0a;
+        }
+
+        /* Email List */
+        .email-list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .email-item {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .email-item:hover {
+            background: #0f0f0f;
+            border-color: #00E0AE;
+            transform: translateX(4px);
+        }
+
+        .email-item.unread {
+            border-left: 3px solid #C4A962;
+        }
+
+        .email-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .sender-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #00E0AE 0%, #6E84FF 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .email-meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .email-from {
+            font-weight: 600;
+            font-size: 15px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .email-time {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        .email-subject {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .email-preview {
+            font-size: 14px;
+            color: #888888;
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .email-labels {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .email-label {
+            background: rgba(0, 224, 174, 0.1);
+            color: #C4A962;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .empty-text {
+            font-size: 14px;
+            color: #888888;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                height: 100vh;
+                z-index: 1000;
+                box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .sidebar.collapsed {
+                left: -280px;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .header {
+                padding: 16px;
+            }
+
+            .email-list-container {
+                padding: 12px;
+            }
+
+            .email-item {
+                padding: 16px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C4A962;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #1a1a1a;
+            border-top-color: #C4A962;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 60px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: #0a0a0a;
+            border: 1px solid #C4A962;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-icon {
+            font-size: 24px;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .toast-message {
+            font-size: 13px;
+            color: #888888;
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: #888888;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .toast-close:hover {
+            color: #ffffff;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Logo -->
+            <div class="sidebar-logo">
+                <div class="logo-icon">📊</div>
+                <span class="logo-text">LyDian</span>
+            </div>
+
+            <!-- Email Accounts -->
+            <div class="email-accounts" id="emailAccounts">
+                <!-- Accounts will be injected here -->
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                    <input
+                        type="text"
+                        class="search-box"
+                        id="searchBox"
+                        placeholder="Ara..."
+                    >
+                </div>
+                <div class="header-right">
+                    <button class="header-btn" id="composeBtn">
+                        ✏️ Yeni Email
+                    </button>
+                    <button class="header-btn" id="refreshBtn">
+                        🔄 Yenile
+                    </button>
+                    <button class="header-btn notification-indicator" id="notificationBtn">
+                        🔔
+                    </button>
+                </div>
+            </header>
+
+            <!-- Email List -->
+            <div class="email-list-container" id="emailListContainer">
+                <div class="loading-spinner"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Configuration
+        const EMAIL_ACCOUNTS = [
+            { id: 'admin', name: 'Admin', email: 'admin@ailydian.com', icon: '👑', unread: 5 },
+            { id: 'support', name: 'Support', email: 'support@ailydian.com', icon: '🛠️', unread: 12 },
+            { id: 'info', name: 'Info', email: 'info@ailydian.com', icon: 'ℹ️', unread: 3 },
+            { id: 'emrah', name: 'Emrah', email: 'emrah@ailydian.com', icon: '👤', unread: 8 },
+            { id: 'sales', name: 'Sales', email: 'sales@ailydian.com', icon: '💰', unread: 0 },
+            { id: 'contact', name: 'Contact', email: 'contact@ailydian.com', icon: '📮', unread: 2 },
+            { id: 'hello', name: 'Hello', email: 'hello@ailydian.com', icon: '👋', unread: 0 },
+            { id: 'team', name: 'Team', email: 'team@ailydian.com', icon: '👥', unread: 6 },
+            { id: 'security', name: 'Security', email: 'security@ailydian.com', icon: '🔒', unread: 1 },
+            { id: 'noreply', name: 'No Reply', email: 'noreply@ailydian.com', icon: '🚫', unread: 0 }
+        ];
+
+        // Mock email data
+        const MOCK_EMAILS = {
+            'admin': [
+                { from: 'John Doe', time: '10:30', subject: 'Q4 Report Review', preview: 'Please review the Q4 financial report attached...', unread: true, labels: ['Important', 'Finance'] },
+                { from: 'Jane Smith', time: 'Dün', subject: 'System Update Notice', preview: 'Scheduled maintenance this weekend...', unread: false, labels: ['System'] },
+            ],
+            'support': [
+                { from: 'Alice Johnson', time: '11:45', subject: 'Login Issue', preview: 'I am unable to log in to my account...', unread: true, labels: ['Urgent', 'Support'] },
+                { from: 'Bob Williams', time: '09:15', subject: 'Feature Request', preview: 'Could you add dark mode support?', unread: true, labels: ['Enhancement'] },
+            ],
+            'info': [
+                { from: 'Contact Form', time: '13:20', subject: 'New Inquiry', preview: 'Someone submitted a contact form...', unread: true, labels: ['Lead'] },
+            ],
+            'emrah': [
+                { from: 'GitHub', time: '15:00', subject: 'Pull Request Merged', preview: 'Your pull request has been merged...', unread: true, labels: ['GitHub', 'Dev'] },
+                { from: 'Vercel', time: '14:30', subject: 'Deployment Successful', preview: 'Your project has been deployed...', unread: true, labels: ['Vercel', 'Deploy'] },
+            ]
+        };
+
+        // State
+        let currentAccount = 'admin';
+        let sidebarOpen = true;
+
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const emailAccounts = document.getElementById('emailAccounts');
+        const emailListContainer = document.getElementById('emailListContainer');
+        const searchBox = document.getElementById('searchBox');
+        const composeBtn = document.getElementById('composeBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const notificationBtn = document.getElementById('notificationBtn');
+
+        // Initialize
+        function init() {
+            renderAccounts();
+            selectAccount('admin');
+            setupEventListeners();
+            requestNotificationPermission();
+            simulateRealTimeUpdates();
+        }
+
+        // Render accounts
+        function renderAccounts() {
+            emailAccounts.innerHTML = EMAIL_ACCOUNTS.map(account => `
+                <div class="account-item ${account.id === currentAccount ? 'active' : ''}" data-account="${account.id}">
+                    <div class="account-icon">${account.icon}</div>
+                    <div class="account-info">
+                        <span class="account-name">${account.name}</span>
+                        <div class="account-email">${account.email}</div>
+                    </div>
+                    ${account.unread > 0 ? `<span class="unread-badge">${account.unread}</span>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Select account
+        function selectAccount(accountId) {
+            currentAccount = accountId;
+            renderAccounts();
+            renderEmails(accountId);
+        }
+
+        // Render emails
+        function renderEmails(accountId) {
+            const emails = MOCK_EMAILS[accountId] || [];
+
+            if (emails.length === 0) {
+                emailListContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <div class="empty-title">Gelen Kutusu Boş</div>
+                        <div class="empty-text">Henüz email yok</div>
+                    </div>
+                `;
+                return;
+            }
+
+            emailListContainer.innerHTML = emails.map((email, index) => `
+                <div class="email-item ${email.unread ? 'unread' : ''}" data-index="${index}">
+                    <div class="email-header">
+                        <div class="sender-avatar">${email.from.charAt(0)}</div>
+                        <div class="email-meta">
+                            <div class="email-from">${email.from}</div>
+                            <div class="email-time">${email.time}</div>
+                        </div>
+                    </div>
+                    <div class="email-subject">${email.subject}</div>
+                    <div class="email-preview">${email.preview}</div>
+                    ${email.labels ? `
+                        <div class="email-labels">
+                            ${email.labels.map(label => `<span class="email-label">${label}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Menu toggle
+            menuToggle.addEventListener('click', () => {
+                sidebarOpen = !sidebarOpen;
+                sidebar.classList.toggle('open');
+                if (window.innerWidth > 768) {
+                    sidebar.classList.toggle('collapsed');
+                }
+            });
+
+            // Account selection
+            emailAccounts.addEventListener('click', (e) => {
+                const accountItem = e.target.closest('.account-item');
+                if (accountItem) {
+                    const accountId = accountItem.dataset.account;
+                    selectAccount(accountId);
+                }
+            });
+
+            // Search
+            searchBox.addEventListener('input', (e) => {
+                // TODO: Implement search functionality
+                console.log('Search:', e.target.value);
+            });
+
+            // Refresh
+            refreshBtn.addEventListener('click', () => {
+                showNotification('🔄', 'Yenileniyor...', 'Emailler kontrol ediliyor');
+                setTimeout(() => {
+                    showNotification('✅', 'Güncelleme Tamamlandı', 'Yeni email bulunamadı');
+                }, 1500);
+            });
+
+            // Compose
+            composeBtn.addEventListener('click', () => {
+                showNotification('✏️', 'Yeni Email', 'Email oluşturma özelliği yakında...');
+            });
+
+            // Notifications
+            notificationBtn.addEventListener('click', () => {
+                showNotification('🔔', 'Bildirimler', 'Bildirim merkezi yakında...');
+            });
+
+            // Email click
+            emailListContainer.addEventListener('click', (e) => {
+                const emailItem = e.target.closest('.email-item');
+                if (emailItem) {
+                    showNotification('📧', 'Email Açılıyor', 'Email detay görünümü yakında...');
+                }
+            });
+        }
+
+        // Show notification toast
+        function showNotification(icon, title, message) {
+            // Remove existing toasts
+            document.querySelectorAll('.notification-toast').forEach(toast => toast.remove());
+
+            const toast = document.createElement('div');
+            toast.className = 'notification-toast';
+            toast.innerHTML = `
+                <div class="toast-icon">${icon}</div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close">×</button>
+            `;
+            document.body.appendChild(toast);
+
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.remove();
+            });
+
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        // Request notification permission
+        async function requestNotificationPermission() {
+            if ('Notification' in window && Notification.permission === 'default') {
+                try {
+                    await Notification.requestPermission();
+                } catch (error) {
+                    console.error('Notification permission error:', error);
+                }
+            }
+        }
+
+        // Show browser notification
+        function showBrowserNotification(title, body, icon = '📧') {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(title, {
+                    body: body,
+                    icon: '/lydian-logo.png',
+                    badge: '/lydian-logo.png',
+                    tag: 'email-notification',
+                    requireInteraction: false
+                });
+            }
+        }
+
+        // Simulate real-time updates
+        function simulateRealTimeUpdates() {
+            // Simulate new email every 30 seconds
+            setInterval(() => {
+                const randomAccount = EMAIL_ACCOUNTS[Math.floor(Math.random() * EMAIL_ACCOUNTS.length)];
+                showNotification('📬', 'Yeni Email', `${randomAccount.email} - Yeni bir email aldınız`);
+                showBrowserNotification('Yeni Email Alındı', `${randomAccount.name} hesabınızda yeni bir email var`);
+            }, 30000);
+        }
+
+        // Start
+        init();
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

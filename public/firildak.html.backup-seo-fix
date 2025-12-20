@@ -1,0 +1,254 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fırıldak - LyDian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v13/1cXxaUPXBpj2rGoU7C9mj3uEicG01A.woff2) format('woff2');
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --neon-primary: #FF6B4A; --neon-secondary: #FF8A6B; --neon-accent: #E64A2E;
+            --neon-glow: rgba(255, 107, 74, 0.6); --bg-primary: #0A0A0B; --bg-secondary: #111113;
+            --bg-card: #141416; --bg-hover: #1A1A1C; --text-primary: #FFFFFF;
+            --text-secondary: #B8B8B8; --text-tertiary: #6B6B6B;
+            --border-neon: 1px solid rgba(255, 107, 74, 0.3);
+            --shadow-neon: 0 0 20px var(--neon-glow), 0 0 40px rgba(255, 107, 74, 0.4);
+            --shadow-neon-strong: 0 0 30px var(--neon-glow), 0 0 60px rgba(255, 107, 74, 0.5);
+        }
+        body {
+            font-family: 'Sora', sans-serif; background: var(--bg-primary);
+            color: var(--text-primary); min-height: 100vh; overflow: hidden;
+        }
+        .container {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; min-height: 100vh; padding: 2rem;
+            position: relative;
+        }
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 3rem; font-weight: 800; margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em; animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .spinner-container {
+            position: relative; width: 300px; height: 300px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .spinner {
+            width: 200px; height: 200px; border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--neon-primary);
+            border-right-color: var(--neon-secondary);
+            animation: spin 1.5s linear infinite;
+            box-shadow: var(--shadow-neon-strong);
+        }
+        .spinner::before {
+            content: ''; position: absolute; top: 10px; left: 10px;
+            right: 10px; bottom: 10px; border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--neon-secondary);
+            border-left-color: var(--neon-accent);
+            animation: spin 2s linear infinite reverse;
+        }
+        .spinner::after {
+            content: ''; position: absolute; top: 20px; left: 20px;
+            right: 20px; bottom: 20px; border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--neon-accent);
+            border-bottom-color: var(--neon-primary);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .status-text {
+            margin-top: 3rem; font-size: 1.2rem; color: var(--text-secondary);
+            text-align: center; animation: fadeInOut 2s ease-in-out infinite;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .metrics {
+            margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2rem; width: 100%; max-width: 800px;
+        }
+        .metric-card {
+            background: var(--bg-card); border: var(--border-neon);
+            border-radius: 12px; padding: 1.5rem; text-align: center;
+            transition: all 0.3s;
+        }
+        .metric-card:hover {
+            border-color: var(--neon-primary); box-shadow: var(--shadow-neon);
+            transform: translateY(-4px);
+        }
+        .metric-value {
+            font-size: 2rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .metric-label {
+            color: var(--text-tertiary); font-size: 0.9rem;
+            text-transform: lowercase;
+        }
+        .particles {
+            position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0; pointer-events: none; overflow: hidden;
+        }
+        .particle {
+            position: absolute; width: 4px; height: 4px;
+            background: var(--neon-primary); border-radius: 50%;
+            opacity: 0; animation: float 8s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        .controls {
+            position: fixed; bottom: 2rem; display: flex; gap: 1rem;
+        }
+        .control-btn {
+            padding: 1rem 2rem; background: var(--bg-card); border: var(--border-neon);
+            border-radius: 12px; color: var(--text-primary); cursor: pointer;
+            transition: all 0.3s; font-family: 'Sora', sans-serif;
+            font-size: 0.9rem; text-transform: lowercase;
+        }
+        .control-btn:hover {
+            background: var(--neon-primary); border-color: var(--neon-primary);
+            box-shadow: var(--shadow-neon);
+        }
+        @media (max-width: 768px) {
+            .metrics { grid-template-columns: 1fr; gap: 1rem; }
+            .spinner-container { width: 200px; height: 200px; }
+            .spinner { width: 150px; height: 150px; }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">LyDian</div>
+
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="status-text" id="statusText">ai modelleri senkronize ediliyor...</div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-value" id="requestCount">0</div>
+                <div class="metric-label">işlenen istekler</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="activeModels">23</div>
+                <div class="metric-label">aktif modeller</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="uptime">100%</div>
+                <div class="metric-label">sistem çalışma oranı</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="window.location.href='/chat.html'">
+                Sohbet Başlat
+            </button>
+            <button class="control-btn" onclick="window.location.href='/docs.html'">
+                Dokümantasyon
+            </button>
+            <button class="control-btn" onclick="window.location.href='/api.html'">
+                Api Referansı
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Particle animation
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Status text rotation
+        const statusTexts = [
+            'ai modelleri senkronize ediliyor...',
+            'neural network optimize ediliyor...',
+            'dil paketleri yükleniyor...',
+            'veri işleme aktif...',
+            'sistem hazır...'
+        ];
+        let currentStatusIndex = 0;
+
+        setInterval(() => {
+            currentStatusIndex = (currentStatusIndex + 1) % statusTexts.length;
+            document.getElementById('statusText').textContent = statusTexts[currentStatusIndex];
+        }, 3000);
+
+        // Animated counters
+        let requestCount = 0;
+        setInterval(() => {
+            requestCount += Math.floor(Math.random() * 10) + 1;
+            document.getElementById('requestCount').textContent = requestCount.toLocaleString('tr-TR');
+        }, 2000);
+
+        // Random active models
+        setInterval(() => {
+            const models = 20 + Math.floor(Math.random() * 4);
+            document.getElementById('activeModels').textContent = models;
+        }, 5000);
+
+        // System uptime simulation
+        const startTime = Date.now();
+        setInterval(() => {
+            const uptime = 99.9 + (Math.random() * 0.1);
+            document.getElementById('uptime').textContent = uptime.toFixed(2) + '%';
+        }, 10000);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'c') window.location.href = '/chat.html';
+            if (e.key === 'd') window.location.href = '/docs.html';
+            if (e.key === 'a') window.location.href = '/api.html';
+        });
+
+        // Add glow effect to spinner on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const spinner = document.querySelector('.spinner');
+            const rect = spinner.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const angle = Math.atan2(y, x) * (180 / Math.PI);
+            spinner.style.filter = `hue-rotate(${angle}deg)`;
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

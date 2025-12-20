@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 Cache Temizleme - LyDian IQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .steps {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .step {
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step.done {
+            background: rgba(76, 175, 80, 0.3);
+        }
+
+        .step-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Cache Temizleniyor</h1>
+
+        <div class="status" id="status">
+            Cache temizleme başlatılıyor...
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="steps" id="steps">
+            <div class="step" id="step1">
+                <span class="step-icon">⏳</span>
+                <span>LocalStorage temizleniyor...</span>
+            </div>
+            <div class="step" id="step2">
+                <span class="step-icon">⏳</span>
+                <span>SessionStorage temizleniyor...</span>
+            </div>
+            <div class="step" id="step3">
+                <span class="step-icon">⏳</span>
+                <span>IndexedDB temizleniyor...</span>
+            </div>
+            <div class="step" id="step4">
+                <span class="step-icon">⏳</span>
+                <span>Service Worker kayıtları siliniyor...</span>
+            </div>
+            <div class="step" id="step5">
+                <span class="step-icon">⏳</span>
+                <span>Cache Storage temizleniyor...</span>
+            </div>
+            <div class="step" id="step6">
+                <span class="step-icon">⏳</span>
+                <span>Cookies temizleniyor...</span>
+            </div>
+        </div>
+
+        <div class="countdown" id="countdown" style="display: none;">3</div>
+
+        <button class="btn" id="manualBtn" style="display: none;">
+            Elle Yönlendir
+        </button>
+    </div>
+
+    <script>
+        let progress = 0;
+        const steps = [
+            { id: 'step1', action: clearLocalStorage, name: 'LocalStorage' },
+            { id: 'step2', action: clearSessionStorage, name: 'SessionStorage' },
+            { id: 'step3', action: clearIndexedDB, name: 'IndexedDB' },
+            { id: 'step4', action: unregisterServiceWorkers, name: 'Service Workers' },
+            { id: 'step5', action: clearCacheStorage, name: 'Cache Storage' },
+            { id: 'step6', action: clearCookies, name: 'Cookies' }
+        ];
+
+        function updateProgress(percent) {
+            document.getElementById('progress').style.width = percent + '%';
+        }
+
+        function markStepDone(stepId, icon = '✅') {
+            const step = document.getElementById(stepId);
+            step.classList.add('done');
+            step.querySelector('.step-icon').textContent = icon;
+        }
+
+        function clearLocalStorage() {
+            return new Promise((resolve) => {
+                try {
+                    localStorage.clear();
+                    console.log('✅ LocalStorage cleared');
+                    resolve();
+                } catch (err) {
+                    console.warn('⚠️ LocalStorage clear failed:', err);
+                    resolve();
+                }
+            });
+        }
+
+        function clearSessionStorage() {
+            return new Promise((resolve) => {
+                try {
+                    sessionStorage.clear();
+                    console.log('✅ SessionStorage cleared');
+                    resolve();
+                } catch (err) {
+                    console.warn('⚠️ SessionStorage clear failed:', err);
+                    resolve();
+                }
+            });
+        }
+
+        async function clearIndexedDB() {
+            try {
+                const databases = await indexedDB.databases();
+                for (const db of databases) {
+                    indexedDB.deleteDatabase(db.name);
+                    console.log('✅ IndexedDB deleted:', db.name);
+                }
+            } catch (err) {
+                console.warn('⚠️ IndexedDB clear failed:', err);
+            }
+        }
+
+        async function unregisterServiceWorkers() {
+            try {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (const registration of registrations) {
+                    await registration.unregister();
+                    console.log('✅ Service Worker unregistered');
+                }
+            } catch (err) {
+                console.warn('⚠️ Service Worker unregister failed:', err);
+            }
+        }
+
+        async function clearCacheStorage() {
+            try {
+                const cacheNames = await caches.keys();
+                for (const name of cacheNames) {
+                    await caches.delete(name);
+                    console.log('✅ Cache deleted:', name);
+                }
+            } catch (err) {
+                console.warn('⚠️ Cache Storage clear failed:', err);
+            }
+        }
+
+        function clearCookies() {
+            return new Promise((resolve) => {
+                try {
+                    const cookies = document.cookie.split(';');
+                    for (const cookie of cookies) {
+                        const [name] = cookie.split('=');
+                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                    }
+                    console.log('✅ Cookies cleared');
+                    resolve();
+                } catch (err) {
+                    console.warn('⚠️ Cookie clear failed:', err);
+                    resolve();
+                }
+            });
+        }
+
+        async function runCleanup() {
+            document.getElementById('status').textContent = 'Cache temizleme devam ediyor...';
+
+            for (let i = 0; i < steps.length; i++) {
+                const step = steps[i];
+
+                // Update status
+                document.getElementById('status').textContent = `${step.name} temizleniyor...`;
+
+                // Run action
+                await step.action();
+
+                // Mark done
+                markStepDone(step.id);
+
+                // Update progress
+                progress = ((i + 1) / steps.length) * 100;
+                updateProgress(progress);
+
+                // Small delay for visual feedback
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+
+            // All done
+            document.getElementById('status').textContent = '✅ Tüm cache temizlendi!';
+
+            // Show countdown
+            document.getElementById('countdown').style.display = 'block';
+            let count = 3;
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                document.getElementById('countdown').textContent = count;
+
+                if (count === 0) {
+                    clearInterval(countdownInterval);
+                    // Redirect with force refresh
+                    const timestamp = Date.now();
+                    window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
+
+                    // Fallback: Show manual button
+                    setTimeout(() => {
+                        document.getElementById('countdown').style.display = 'none';
+                        document.getElementById('manualBtn').style.display = 'inline-block';
+                    }, 2000);
+                }
+            }, 1000);
+        }
+
+        // Manual redirect button
+        document.getElementById('manualBtn').addEventListener('click', () => {
+            const timestamp = Date.now();
+            window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
+        });
+
+        // Auto-start cleanup
+        window.addEventListener('load', () => {
+            setTimeout(runCleanup, 500);
+        });
+
+        // Prevent back button
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Governance Dashboard - AILydian ACE</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(16, 163, 127, 0.3);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1.2em;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(16, 163, 127, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 163, 127, 0.6);
+            box-shadow: 0 10px 30px rgba(16, 163, 127, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .metric-label {
+            color: #aaa;
+            font-size: 0.95em;
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .badge-platinum {
+            background: linear-gradient(135deg, #E5E4E2, #FFFFFF);
+            color: #000;
+        }
+
+        .badge-gold {
+            background: linear-gradient(135deg, #FFD700, #FFED4E);
+            color: #000;
+        }
+
+        .badge-silver {
+            background: linear-gradient(135deg, #C0C0C0, #E8E8E8);
+            color: #000;
+        }
+
+        .badge-bronze {
+            background: linear-gradient(135deg, #CD7F32, #E9B872);
+            color: #000;
+        }
+
+        .badge-pass {
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            color: #fff;
+        }
+
+        .badge-fail {
+            background: linear-gradient(135deg, #FF4444, #FF6B6B);
+            color: #fff;
+        }
+
+        .framework-list {
+            list-style: none;
+        }
+
+        .framework-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #10A37F;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .framework-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .framework-region {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active {
+            background: #10A37F;
+        }
+
+        .status-warning {
+            background: #FFA500;
+        }
+
+        .status-error {
+            background: #FF4444;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10A37F, #00D9FF);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(16, 163, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #10A37F;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .emergency-log {
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .log-entry {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9em;
+        }
+
+        .log-time {
+            color: #888;
+            font-size: 0.85em;
+        }
+    </style>
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ AI Governance Dashboard</h1>
+            <p class="subtitle">ACE - AI Compliance Engine | AILydian Ultra Pro</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Compliance Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📋</div>
+                    <div class="card-title">Compliance Frameworks</div>
+                </div>
+                <div id="compliance-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading compliance data...
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="runComplianceCheck()">
+                        Validate Model
+                    </button>
+                    <button class="btn btn-secondary" onclick="refreshCompliance()">
+                        Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Trust Index Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Trust Index</div>
+                </div>
+                <div id="trust-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading trust metrics...
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="calculateTrust()">
+                        Calculate Trust
+                    </button>
+                    <button class="btn btn-secondary" onclick="refreshTrust()">
+                        Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Emergency Controls Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚨</div>
+                    <div class="card-title">Emergency Controls</div>
+                </div>
+                <div id="emergency-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading emergency status...
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="activateKillSwitch()">
+                        Activate Kill Switch
+                    </button>
+                    <button class="btn btn-secondary" onclick="refreshEmergency()">
+                        Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Endpoints Info -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <div class="card-header">
+                <div class="card-icon">🔌</div>
+                <div class="card-title">Available API Endpoints</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                <div class="framework-item">
+                    <div class="framework-name">Compliance</div>
+                    <div class="framework-region">GET /api/governance/compliance/frameworks</div>
+                    <div class="framework-region">POST /api/governance/compliance/validate</div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-name">Trust Index</div>
+                    <div class="framework-region">GET /api/governance/trust-index/stats</div>
+                    <div class="framework-region">POST /api/governance/trust-index/calculate</div>
+                </div>
+                <div class="framework-item">
+                    <div class="framework-name">Emergency</div>
+                    <div class="framework-region">GET /api/governance/emergency/status</div>
+                    <div class="framework-region">POST /api/governance/emergency/kill-switch</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+
+        // Load data on page load
+        window.addEventListener('load', () => {
+            loadCompliance();
+            loadTrustIndex();
+            loadEmergencyStatus();
+        });
+
+        // Compliance Functions
+        async function loadCompliance() {
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/compliance/frameworks`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayCompliance(data.data);
+                } else {
+                    throw new Error('Failed to load compliance data');
+                }
+            } catch (error) {
+                document.getElementById('compliance-content').innerHTML = `
+                    <div style="color: #FF4444; padding: 20px; text-align: center;">
+                        ⚠️ Error loading compliance data<br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displayCompliance(frameworks) {
+            const html = `
+                <ul class="framework-list">
+                    ${frameworks.map(f => `
+                        <li class="framework-item">
+                            <div class="framework-name">${f.name}</div>
+                            <div class="framework-region">
+                                ${f.region} • ${f.requirementCount} requirements
+                            </div>
+                        </li>
+                    `).join('')}
+                </ul>
+                <div class="metric">
+                    <span class="metric-label">Total Frameworks</span>
+                    <span class="metric-value">${frameworks.length}</span>
+                </div>
+            `;
+            document.getElementById('compliance-content').innerHTML = html;
+        }
+
+        // Trust Index Functions
+        async function loadTrustIndex() {
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/trust-index/stats`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayTrustIndex(data.data);
+                } else {
+                    throw new Error('Failed to load trust data');
+                }
+            } catch (error) {
+                document.getElementById('trust-content').innerHTML = `
+                    <div style="color: #FF4444; padding: 20px; text-align: center;">
+                        ⚠️ Error loading trust data<br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displayTrustIndex(stats) {
+            const html = `
+                <div class="metric">
+                    <span class="metric-label">Total Models</span>
+                    <span class="metric-value">${stats.totalModels}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Average Score</span>
+                    <span class="metric-value">${stats.averageScore.toFixed(1)}</span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div style="margin-bottom: 10px; color: #aaa;">Trust Tier Distribution</div>
+                    <div>
+                        <span class="badge badge-platinum">🏆 Platinum: ${stats.tierDistribution.PLATINUM}</span>
+                        <span class="badge badge-gold">🥇 Gold: ${stats.tierDistribution.GOLD}</span>
+                        <span class="badge badge-silver">🥈 Silver: ${stats.tierDistribution.SILVER}</span>
+                        <span class="badge badge-bronze">🥉 Bronze: ${stats.tierDistribution.BRONZE}</span>
+                    </div>
+                </div>
+            `;
+            document.getElementById('trust-content').innerHTML = html;
+        }
+
+        // Emergency Functions
+        async function loadEmergencyStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/emergency/status`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayEmergencyStatus(data.data);
+                } else {
+                    throw new Error('Failed to load emergency status');
+                }
+            } catch (error) {
+                document.getElementById('emergency-content').innerHTML = `
+                    <div style="color: #FF4444; padding: 20px; text-align: center;">
+                        ⚠️ Error loading emergency status<br>
+                        <small>${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displayEmergencyStatus(status) {
+            const summary = status.summary;
+            const html = `
+                <div class="metric">
+                    <span class="metric-label">
+                        <span class="status-indicator ${summary.activeKillSwitches > 0 ? 'status-error' : 'status-active'}"></span>
+                        Active Kill Switches
+                    </span>
+                    <span class="metric-value">${summary.activeKillSwitches}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">
+                        <span class="status-indicator ${summary.openCircuitBreakers > 0 ? 'status-warning' : 'status-active'}"></span>
+                        Open Circuit Breakers
+                    </span>
+                    <span class="metric-value">${summary.openCircuitBreakers}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Total Circuit Breakers</span>
+                    <span class="metric-value">${summary.totalCircuitBreakers}</span>
+                </div>
+                ${summary.recentEmergencies.length > 0 ? `
+                    <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 10px; color: #aaa;">Recent Events</div>
+                        <div class="emergency-log">
+                            ${summary.recentEmergencies.slice(0, 5).map(e => `
+                                <div class="log-entry">
+                                    <div>${e.type.replace(/_/g, ' ')}</div>
+                                    <div class="log-time">${new Date(e.timestamp).toLocaleString()}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+            document.getElementById('emergency-content').innerHTML = html;
+        }
+
+        // Action Functions
+        function refreshCompliance() {
+            loadCompliance();
+        }
+
+        function refreshTrust() {
+            loadTrustIndex();
+        }
+
+        function refreshEmergency() {
+            loadEmergencyStatus();
+        }
+
+        async function runComplianceCheck() {
+            const modelId = prompt('Enter Model ID to validate:', 'test-model-' + Date.now());
+            if (!modelId) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/compliance/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modelId,
+                        framework: 'GDPR'
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(`Compliance Check Complete!\n\nFramework: ${result.data.frameworkName}\nScore: ${result.data.score}%\nStatus: ${result.data.compliant ? 'PASS ✅' : 'FAIL ❌'}\n\nPassed: ${result.data.passedChecks}/${result.data.totalChecks}`);
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error running compliance check: ' + error.message);
+            }
+        }
+
+        async function calculateTrust() {
+            const modelId = prompt('Enter Model ID:', 'test-model-' + Date.now());
+            if (!modelId) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/trust-index/calculate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modelId,
+                        transparency: 85,
+                        accountability: 90,
+                        fairness: 88,
+                        privacy: 92,
+                        robustness: 87
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(`Trust Index Calculated!\n\nModel: ${result.data.modelId}\nScore: ${result.data.globalTrustScore}\nTier: ${result.data.tier} ${result.data.badge}\n\nScores:\nTransparency: 85\nAccountability: 90\nFairness: 88\nPrivacy: 92\nRobustness: 87`);
+                    loadTrustIndex();
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error calculating trust: ' + error.message);
+            }
+        }
+
+        async function activateKillSwitch() {
+            const modelId = prompt('⚠️ WARNING: Activate Kill Switch\n\nEnter Model ID:', 'test-model-' + Date.now());
+            if (!modelId) return;
+
+            const reason = prompt('Enter reason for activation:', 'Emergency shutdown');
+            if (!reason) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/governance/emergency/kill-switch`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modelId,
+                        reason,
+                        triggeredBy: 'dashboard-user'
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(`🚨 Kill Switch Activated!\n\nModel: ${result.data.modelId}\nStatus: ${result.data.status}\nReason: ${result.data.reason}\n\nAll endpoints for this model are now blocked.`);
+                    loadEmergencyStatus();
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error activating kill switch: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

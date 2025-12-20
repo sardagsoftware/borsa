@@ -1,0 +1,115 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #10A37F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0D8F6E;
+        }
+        #result {
+            background: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .success {
+            color: #10A37F;
+        }
+        .error {
+            color: #FF6B4A;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Chat API Test</h1>
+
+    <div class="test-section">
+        <h2>Test /api/chat/specialized</h2>
+        <button onclick="testChatAPI()">Test API</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function testChatAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '⏳ Testing API...';
+
+            try {
+                console.log('🔍 Sending request to /api/chat/specialized...');
+
+                const response = await fetch('/api/chat/specialized', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept-Language': 'tr-TR',
+                        'Content-Language': 'tr'
+                    },
+                    body: JSON.stringify({
+                        message: 'Merhaba, test mesajı',
+                        aiType: 'general',
+                        temperature: 0.7,
+                        max_tokens: 2048,
+                        history: [],
+                        language: 'tr',
+                        locale: 'tr-TR'
+                    })
+                });
+
+                console.log('📡 Response status:', response.status);
+                console.log('📡 Response ok:', response.ok);
+                console.log('📡 Response headers:', [...response.headers.entries()]);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Response data:', data);
+
+                resultDiv.innerHTML = `<div class="success">✅ SUCCESS!</div>\n\n` +
+                    `Status: ${response.status}\n` +
+                    `Provider: ${data.provider}\n` +
+                    `AI Type: ${data.aiType}\n\n` +
+                    `Response:\n${data.response}\n\n` +
+                    `Full JSON:\n${JSON.stringify(data, null, 2)}`;
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                resultDiv.innerHTML = `<div class="error">❌ ERROR!</div>\n\n` +
+                    `Message: ${error.message}\n` +
+                    `Stack: ${error.stack}`;
+            }
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

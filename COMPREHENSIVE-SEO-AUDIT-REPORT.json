@@ -1,0 +1,3536 @@
+{
+  "timestamp": "2025-12-20T15:10:48.659Z",
+  "stats": {
+    "total": 139,
+    "perfect": 5,
+    "good": 36,
+    "needsWork": 94,
+    "poor": 4,
+    "averageScore": "77.77",
+    "totalIssues": 104,
+    "totalWarnings": 412,
+    "missingTitle": 2,
+    "missingDescription": 2,
+    "missingKeywords": 2,
+    "missingH1": 44,
+    "missingCanonical": 2,
+    "missingSchema": 121,
+    "duplicateTitles": 1,
+    "duplicateDescriptions": 2
+  },
+  "duplicates": {
+    "titles": [
+      {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+        "files": [
+          "/ai-ops-center.html",
+          "/lydian-hukukai-v2.html",
+          "/lydian-hukukai.html",
+          "/lydian-legal-search.html",
+          "/status.html"
+        ],
+        "count": 5
+      }
+    ],
+    "descriptions": [
+      {
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "files": [
+          "/ai-assistant.html",
+          "/ai-cultural-advisor.html",
+          "/ai-decision-matrix.html",
+          "/ai-governance-dashboard.html",
+          "/ai-governance-demo.html",
+          "/ai-health-orchestrator.html",
+          "/ai-knowledge-assistant.html",
+          "/ai-learning-path.html",
+          "/ai-life-coach.html",
+          "/ai-meeting-insights.html",
+          "/ai-power-panel.html",
+          "/ai-startup-accelerator.html",
+          "/azure-dashboard.html",
+          "/blog.html",
+          "/cache-clear.html",
+          "/cache-dashboard.html",
+          "/careers.html",
+          "/changelog.html",
+          "/civic-atg.html",
+          "/civic-intelligence-grid.html",
+          "/civic-map.html",
+          "/civic-phn.html",
+          "/civic-rro.html",
+          "/civic-svf.html",
+          "/civic-umo.html",
+          "/connector-demo.html",
+          "/console.html",
+          "/cyborg-demo.html",
+          "/cyborg-orbital-full.html",
+          "/dashboard-email-yedek.html",
+          "/ecw-ailydian.html",
+          "/education.html",
+          "/email-dashboard.html",
+          "/email-setup-status.html",
+          "/epic-fhir-dashboard.html",
+          "/files.html",
+          "/firildak-ai.html",
+          "/firildak.html",
+          "/force-refresh.html",
+          "/hero-3d-lydian.html",
+          "/hero-cinematic-demo.html",
+          "/hero-particles-lydian.html",
+          "/hero-video-demo-1-neural.html",
+          "/hero-video-demo-2-particles.html",
+          "/hero-video-demo-3-matrix.html",
+          "/hero-video-demo-4-abstract.html",
+          "/hero-video-demos-index.html",
+          "/lydian-hukukai-pro.html",
+          "/lydian-hukukai-v2.html",
+          "/lydian-hukukai.html",
+          "/lydian-iq-new-ui.html",
+          "/lydian-legal-chat.html",
+          "/lydian-legal-search-enhanced.html",
+          "/lydian-legal-search.html",
+          "/medical-ai-dashboard.html",
+          "/medical-ai.html",
+          "/medical-dashboard.html",
+          "/offline.html",
+          "/omnireach-ai-creator.html",
+          "/pages/settings.html",
+          "/pages/users.html",
+          "/phase-l-results.html",
+          "/realistic-characters-demo.html",
+          "/search-meter-demo.html",
+          "/seo-monitoring.html",
+          "/system-status.html",
+          "/test-backend-connection.html",
+          "/test-chat-api.html",
+          "/test-chat-buttons.html",
+          "/test-chat-ecw.html",
+          "/test-i18n-demo.html",
+          "/test-language-system.html",
+          "/test-legal.html",
+          "/test-translation.html",
+          "/test.html",
+          "/tokens.html",
+          "/video-ai.html"
+        ],
+        "count": 77
+      },
+      {
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "files": [
+          "/api-docs.html",
+          "/cancer-diagnosis-dashboard.html",
+          "/connectors.html",
+          "/cost-dashboard.html",
+          "/ecw-demo.html",
+          "/forgot-password.html",
+          "/governance-compliance.html",
+          "/governance-leaderboard.html",
+          "/governance-trust-index.html",
+          "/hospital-dashboard.html",
+          "/i18n/MEDICAL-EXPERT-INTEGRATION.html",
+          "/lydian-legal-universal.html",
+          "/lydian-offline.html",
+          "/monitoring.html",
+          "/pages/notifications.html",
+          "/reset-password.html",
+          "/security-analytics.html",
+          "/test-auto-translate.html",
+          "/user-dashboard.html"
+        ],
+        "count": 19
+      }
+    ]
+  },
+  "analyses": [
+    {
+      "file": "/about.html",
+      "url": "https://www.ailydian.com/about",
+      "score": 100,
+      "issues": [],
+      "warnings": [],
+      "seo": {
+        "title": "Hakkımızda — LyDian AI Ekosistemi | Yapay Zeka Öncüleri",
+        "titleLength": 55,
+        "description": "LyDian AI, kurumsal yapay zeka çözümlerinde dünya lideri. 40+ dilde hizmet, 8 uzman AI danışman ve yenilikçi teknoloji ile işletmelere güç katıyoruz.",
+        "descriptionLength": 149,
+        "keywordCount": 5,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/ai-advisor-hub.html",
+      "url": "https://www.ailydian.com/ai-advisor-hub",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (75 karakter, max: 60)",
+        "Description çok uzun (203 karakter, max: 160)"
+      ],
+      "seo": {
+        "title": "AI Advisor Hub — 20 Uzman AI Danışmanı | İş, Finans, Sağlık, Mistik & Yaşam",
+        "titleLength": 75,
+        "description": "İş, finans, sağlık, yaşam koçu, mistik danışmanlık + Hayvan kovucu, frekans terapi, bitkisel tedavi, acil durum, ev organizasyonu ve daha fazlası. 20 uzman AI danışman. 7/24 kişiselleştirilmiş rehberlik.",
+        "descriptionLength": 203,
+        "keywordCount": 5,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/ai-assistant.html",
+      "url": "https://www.ailydian.com/ai-assistant",
+      "score": 77,
+      "issues": [],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI Assistant - Enterprise Virtual Intelligence Agent",
+        "titleLength": 59,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-chat.html",
+      "url": "https://www.ailydian.com/ai-chat",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "AI Chat - LyDian | Advanced Conversational Intelligence",
+        "titleLength": 55,
+        "description": "LyDian AI Sohbet - Gelişmiş yapay zeka modelleriyle doğal konuşmalar yapın",
+        "descriptionLength": 74,
+        "keywordCount": 4,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-cultural-advisor.html",
+      "url": "https://www.ailydian.com/ai-cultural-advisor",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Kültürel Uyum Danışmanı | LyDian AI",
+        "titleLength": 35,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-decision-matrix.html",
+      "url": "https://www.ailydian.com/ai-decision-matrix",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Karar Matrisi AI | LyDian AI",
+        "titleLength": 28,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-governance-dashboard.html",
+      "url": "https://www.ailydian.com/ai-governance-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "AI Yönetişim Kontrol Paneli - AILydian ACE",
+        "titleLength": 42,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-governance-demo.html",
+      "url": "https://www.ailydian.com/ai-governance-demo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "AI Governance Dashboard - AILydian ACE",
+        "titleLength": 38,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-health-orchestrator.html",
+      "url": "https://www.ailydian.com/ai-health-orchestrator",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Bütünsel Sağlık Orkestratörü | LyDian AI",
+        "titleLength": 40,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-knowledge-assistant.html",
+      "url": "https://www.ailydian.com/ai-knowledge-assistant",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Bilgi Tabanı Asistanı | LyDian AI",
+        "titleLength": 33,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-learning-path.html",
+      "url": "https://www.ailydian.com/ai-learning-path",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Öğrenme Yol Haritası | LyDian AI",
+        "titleLength": 32,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-life-coach.html",
+      "url": "https://www.ailydian.com/ai-life-coach",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Akıllı Yaşam Koçu | LyDian AI",
+        "titleLength": 29,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-meeting-insights.html",
+      "url": "https://www.ailydian.com/ai-meeting-insights",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Toplantı Analizi | LyDian AI",
+        "titleLength": 28,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-ops-center.html",
+      "url": "https://www.ailydian.com/ai-ops-center",
+      "score": 87,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (72 karakter, max: 60)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+        "titleLength": 72,
+        "description": "AI Training Operations Center - Monitoring, Benchmarks, Costs & Compliance",
+        "descriptionLength": 74,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-power-panel.html",
+      "url": "https://www.ailydian.com/ai-power-panel",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "⚡ AI Power Panel - 21 Models Consolidated",
+        "titleLength": 41,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ai-startup-accelerator.html",
+      "url": "https://www.ailydian.com/ai-startup-accelerator",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Startup Hızlandırıcı | LyDian AI",
+        "titleLength": 32,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/analytics.html",
+      "url": "https://www.ailydian.com/analytics",
+      "score": 87,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (61 karakter, max: 60)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Analytics - LyDian | Enterprise AI Performance & Cost Metrics",
+        "titleLength": 61,
+        "description": "Enterprise AI Analytics Dashboard - Real-time metrics, cost analysis, performance monitoring",
+        "descriptionLength": 92,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/api-docs.html",
+      "url": "https://www.ailydian.com/api-docs",
+      "score": 87,
+      "issues": [],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Medical LyDian - API Documentation",
+        "titleLength": 34,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/api-reference.html",
+      "url": "https://www.ailydian.com/api-reference",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "API Reference - LyDian",
+        "titleLength": 22,
+        "description": "LyDian API Reference - Complete API documentation with examples",
+        "descriptionLength": 63,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/api.html",
+      "url": "https://www.ailydian.com/api",
+      "score": 95,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (62 karakter, max: 60)"
+      ],
+      "seo": {
+        "title": "API Dokümantasyonu — LyDian AI | Geliştiriciler için Güçlü API",
+        "titleLength": 62,
+        "description": "LyDian AI RESTful API ile uygulamalarınıza yapay zeka entegre edin. Kapsamlı dokümantasyon, SDK'lar ve örnek kodlarla hızlı başlayın.",
+        "descriptionLength": 133,
+        "keywordCount": 5,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/auth.html",
+      "url": "https://www.ailydian.com/auth",
+      "score": 95,
+      "issues": [],
+      "warnings": [
+        "Birden fazla H1 (2)"
+      ],
+      "seo": {
+        "title": "Giriş & Kayıt — LyDian AI | Ücretsiz Hesap Oluşturun",
+        "titleLength": 52,
+        "description": "LyDian AI hesabınızı oluşturun ve yapay zekanın gücünü keşfedin. Google, Microsoft ile hızlı giriş veya e-posta ile kayıt. Ücretsiz deneme dahil.",
+        "descriptionLength": 145,
+        "keywordCount": 5,
+        "h1Count": 2,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/azure-dashboard.html",
+      "url": "https://www.ailydian.com/azure-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Ultra Pro - Azure Dashboard",
+        "titleLength": 34,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/billing.html",
+      "url": "https://www.ailydian.com/billing",
+      "score": 100,
+      "issues": [],
+      "warnings": [],
+      "seo": {
+        "title": "Fiyatlandırma & Faturalama — LyDian AI | Esnek Paketler",
+        "titleLength": 55,
+        "description": "LyDian AI esnek fiyatlandırma paketleri. Ücretsiz başlayın, kullandıkça ödeyin veya kurumsal planlarımızla tam kontrol. Şeffaf fiyatlandırma garantisi.",
+        "descriptionLength": 151,
+        "keywordCount": 5,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/blog.html",
+      "url": "https://www.ailydian.com/blog",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Blog - LyDian | AI Insights & Industry Updates",
+        "titleLength": 46,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/cache-clear.html",
+      "url": "https://www.ailydian.com/cache-clear",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Cache Temizle - Lydian IQ",
+        "titleLength": 25,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/cache-dashboard.html",
+      "url": "https://www.ailydian.com/cache-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Önbellek Dashboard - Ailydian",
+        "titleLength": 29,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/cancer-diagnosis-dashboard.html",
+      "url": "https://www.ailydian.com/cancer-diagnosis-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI",
+        "titleLength": 55,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/careers.html",
+      "url": "https://www.ailydian.com/careers",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Careers - LyDian | Join Our AI Innovation Team",
+        "titleLength": 46,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/changelog.html",
+      "url": "https://www.ailydian.com/changelog",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Changelog - LyDian | Platform Updates & Release Notes",
+        "titleLength": 53,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/chat.html",
+      "url": "https://www.ailydian.com/chat",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "AI Chat — Çok Modelli Yapay Zeka | LyDian Ultra AI Platform",
+        "titleLength": 59,
+        "description": "10+ AI modeli tek platformda. LyDian Quantum Reasoning, LyDian Velocity Engine, LyDian Vision. Görsel, kod, analiz. Ücretsiz başla ve AI gücünü keşfet.",
+        "descriptionLength": 151,
+        "keywordCount": 6,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/civic-atg.html",
+      "url": "https://www.ailydian.com/civic-atg",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Otomatik Güven Ağı - LyDian AI",
+        "titleLength": 30,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/civic-intelligence-grid.html",
+      "url": "https://www.ailydian.com/civic-intelligence-grid",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Akıllı Şehir Platformu - LyDian",
+        "titleLength": 31,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/civic-map.html",
+      "url": "https://www.ailydian.com/civic-map",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "MAP - Model Doğrulama ve Kanıt | LyDian CIG",
+        "titleLength": 43,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/civic-phn.html",
+      "url": "https://www.ailydian.com/civic-phn",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG",
+        "titleLength": 46,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/civic-rro.html",
+      "url": "https://www.ailydian.com/civic-rro",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "RRO - Risk ve Dayanıklılık İşletim Sistemi | LyDian CIG",
+        "titleLength": 55,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/civic-svf.html",
+      "url": "https://www.ailydian.com/civic-svf",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
+        "titleLength": 42,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/civic-umo.html",
+      "url": "https://www.ailydian.com/civic-umo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "KMO - Kentsel Mobilite Orkestratörü | LyDian CIG",
+        "titleLength": 48,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/connector-demo.html",
+      "url": "https://www.ailydian.com/connector-demo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🔌 Connector Integration Demo (Internal Testing Only)",
+        "titleLength": 53,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/connectors.html",
+      "url": "https://www.ailydian.com/connectors",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Global Connector Network | LyDian AI",
+        "titleLength": 36,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/console.html",
+      "url": "https://www.ailydian.com/console",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Console - LyDian | Developer Command Center",
+        "titleLength": 43,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/contact.html",
+      "url": "https://www.ailydian.com/contact",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "İletişim — LyDian AI | 7/24 Destek Ekibimizle Görüşün",
+        "titleLength": 53,
+        "description": "LyDian AI ile iletişime geçin. 7/24 canlı destek, kurumsal satış danışmanlığı ve teknik yardım. 40+ dilde hizmet, anında yanıt garantisi.",
+        "descriptionLength": 137,
+        "keywordCount": 5,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/cookies.html",
+      "url": "https://www.ailydian.com/cookies",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Cookie Policy - LyDian | Privacy & Data Management",
+        "titleLength": 50,
+        "description": "LyDian Çerez Politikası - Web sitemizde çerezlerin nasıl kullanıldığını öğrenin",
+        "descriptionLength": 79,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/cost-dashboard.html",
+      "url": "https://www.ailydian.com/cost-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "💰 Cost Tracking Dashboard - LyDian Ultra Pro",
+        "titleLength": 45,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/cyborg-demo.html",
+      "url": "https://www.ailydian.com/cyborg-demo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Character",
+        "titleLength": 47,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/cyborg-orbital-full.html",
+      "url": "https://www.ailydian.com/cyborg-orbital-full",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Orbital Hero",
+        "titleLength": 50,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/dashboard-email-yedek.html",
+      "url": "https://www.ailydian.com/dashboard-email-yedek",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Dashboard - LyDian Ultra Pro",
+        "titleLength": 28,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/dashboard.html",
+      "url": "https://www.ailydian.com/dashboard",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "Dashboard — LyDian Ultra Pro | Premium AI Platform",
+        "titleLength": 50,
+        "description": "10+ AI modeli tek platformda. OX5C9E2B, AX9F7E2B 3.5, LyDian Vision Pro, DALL-E 3. Görsel, kod, analiz. Ücretsiz başla ve AI gücünü keşfet.",
+        "descriptionLength": 139,
+        "keywordCount": 6,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/developer-search.html",
+      "url": "https://www.ailydian.com/developer-search",
+      "score": 87,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (72 karakter, max: 60)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Developer Search - Find APIs, SDKs, Documentation & Code Examples",
+        "titleLength": 72,
+        "description": "Search through LyDian's complete developer ecosystem - APIs, SDKs, documentation, code examples, and medical integrations.",
+        "descriptionLength": 122,
+        "keywordCount": 7,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/developers.html",
+      "url": "https://www.ailydian.com/developers",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Developers - LyDian | API & Integration Resources",
+        "titleLength": 49,
+        "description": "LyDian Developer Portal - SDK'lar, API araçları ve entegrasyon kılavuzları",
+        "descriptionLength": 74,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/docs.html",
+      "url": "https://www.ailydian.com/docs",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "Dokümantasyon — LyDian AI | Kapsamlı Kullanım Rehberleri",
+        "titleLength": 56,
+        "description": "LyDian AI platformu için eksiksiz dokümantasyon. Başlangıç rehberleri, API referansı, örnekler ve en iyi uygulamalar. 40+ dilde mevcut.",
+        "descriptionLength": 135,
+        "keywordCount": 5,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/ecw-ailydian.html",
+      "url": "https://www.ailydian.com/ecw-ailydian",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Ethics Tracker - Ailydian",
+        "titleLength": 25,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/ecw-demo.html",
+      "url": "https://www.ailydian.com/ecw-demo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "ECW Integration Demo - Ailydian",
+        "titleLength": 31,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/education.html",
+      "url": "https://www.ailydian.com/education",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Education - LyDian | AI Learning & Training Hub",
+        "titleLength": 47,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/email-dashboard.html",
+      "url": "https://www.ailydian.com/email-dashboard",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "📧 LyDian Email Manager | Ultra Pro",
+        "titleLength": 35,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/email-setup-status.html",
+      "url": "https://www.ailydian.com/email-setup-status",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Email Setup Status - Ailydian",
+        "titleLength": 29,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/enterprise-index.html",
+      "url": "https://www.ailydian.com/enterprise-index",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (101 karakter, max: 60)",
+        "Description çok uzun (217 karakter, max: 160)"
+      ],
+      "seo": {
+        "title": "LyDian Enterprise AI Platform - Global Scale AI Solutions | Microsoft Azure, Google, Z.AI Integration",
+        "titleLength": 101,
+        "description": "Enterprise-grade AI platform integrating Microsoft Azure AI, Google Gemini, and Z.AI services. 23 AI models, 84 languages, real-time processing, global deployment. Mobile-responsive, SEO-optimized, browser-compatible.",
+        "descriptionLength": 217,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/enterprise.html",
+      "url": "https://www.ailydian.com/enterprise",
+      "score": 100,
+      "issues": [],
+      "warnings": [],
+      "seo": {
+        "title": "Kurumsal Çözümler — LyDian AI | Ölçeklenebilir AI Platformu",
+        "titleLength": 59,
+        "description": "Fortune 500 şirketlerinin tercihi LyDian AI kurumsal çözümleri. Özel entegrasyon, SLA garantisi, özel model eğitimi ve 7/24 premium destek.",
+        "descriptionLength": 139,
+        "keywordCount": 5,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/epic-fhir-dashboard.html",
+      "url": "https://www.ailydian.com/epic-fhir-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Epic FHIR Dashboard - LyDian Medical AI",
+        "titleLength": 39,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/files.html",
+      "url": "https://www.ailydian.com/files",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Files - LyDian | Document Management & Storage",
+        "titleLength": 46,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/firildak-ai.html",
+      "url": "https://www.ailydian.com/firildak-ai",
+      "score": 72,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "Birden fazla H1 (2)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Fırıldak AI - Quantum-Powered Legal Intelligence",
+        "titleLength": 48,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 2,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/firildak.html",
+      "url": "https://www.ailydian.com/firildak",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "fırıldak - LyDian",
+        "titleLength": 17,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/force-refresh.html",
+      "url": "https://www.ailydian.com/force-refresh",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🔄 Cache Temizleme - LyDian IQ",
+        "titleLength": 30,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/forgot-password.html",
+      "url": "https://www.ailydian.com/forgot-password",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Forgot Password - LyDian Ultra Pro",
+        "titleLength": 34,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/google-studio.html",
+      "url": "https://www.ailydian.com/google-studio",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "AiLydians Studio - Enterprise AI Platform",
+        "titleLength": 41,
+        "description": "AiLydians Studio - Enterprise AI Platform - Azure, Google, LyDian Labs, Enterprise AI tüm AI modelleri tek platformda",
+        "descriptionLength": 117,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/governance-compliance.html",
+      "url": "https://www.ailydian.com/governance-compliance",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Uyumluluk Kontrolleri - LyDian AI Yönetim Merkezi",
+        "titleLength": 49,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/governance-dashboard.html",
+      "url": "https://www.ailydian.com/governance-dashboard",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI Yönetim Merkezi | AILydian",
+        "titleLength": 36,
+        "description": "LyDian AI Yönetim Merkezi - Model Kayıt, Uyumluluk ve Güven Endeksi",
+        "descriptionLength": 67,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/governance-leaderboard.html",
+      "url": "https://www.ailydian.com/governance-leaderboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Güven Skoru Liderlik Tablosu - LyDian AI Yönetim Merkezi",
+        "titleLength": 56,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/governance-models.html",
+      "url": "https://www.ailydian.com/governance-models",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Model Kayıt | LyDian AI Yönetim Merkezi",
+        "titleLength": 39,
+        "description": "AI Model Registry - Manage and track AI models lifecycle",
+        "descriptionLength": 56,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/governance-trust-index.html",
+      "url": "https://www.ailydian.com/governance-trust-index",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Güven Endeksi - LyDian AI Yönetim Merkezi",
+        "titleLength": 41,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/help.html",
+      "url": "https://www.ailydian.com/help",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "Yardım Merkezi — LyDian AI | SSS, Rehberler ve Destek",
+        "titleLength": 53,
+        "description": "LyDian AI yardım merkezi. Sık sorulan sorular, video rehberler, kullanım kılavuzları ve canlı destek. 7/24 yardıma hazırız.",
+        "descriptionLength": 123,
+        "keywordCount": 5,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/hero-3d-lydian.html",
+      "url": "https://www.ailydian.com/hero-3d-lydian",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🌐 LyDian - 3D Experience",
+        "titleLength": 25,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-cinematic-demo.html",
+      "url": "https://www.ailydian.com/hero-cinematic-demo",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🎬 LyDian - Cinematic Hero Demo | The AI Revolution",
+        "titleLength": 51,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-particles-lydian.html",
+      "url": "https://www.ailydian.com/hero-particles-lydian",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "✨ LyDian - AI Particle Universe",
+        "titleLength": 31,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-video-demo-1-neural.html",
+      "url": "https://www.ailydian.com/hero-video-demo-1-neural",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🧠 Demo 1: Neural Network Hero - LyDian",
+        "titleLength": 39,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-video-demo-2-particles.html",
+      "url": "https://www.ailydian.com/hero-video-demo-2-particles",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "✨ Demo 2: Digital Particles Hero - LyDian",
+        "titleLength": 41,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-video-demo-3-matrix.html",
+      "url": "https://www.ailydian.com/hero-video-demo-3-matrix",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "💚 Demo 3: Matrix Data Flow Hero - LyDian",
+        "titleLength": 41,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-video-demo-4-abstract.html",
+      "url": "https://www.ailydian.com/hero-video-demo-4-abstract",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🎨 Demo 4: Abstract AI Hero - LyDian",
+        "titleLength": 36,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hero-video-demos-index.html",
+      "url": "https://www.ailydian.com/hero-video-demos-index",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🎬 4K Video Hero - Demo Karşılaştırma | LyDian",
+        "titleLength": 46,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/hospital-dashboard.html",
+      "url": "https://www.ailydian.com/hospital-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Hospital Integration Dashboard - Lydian Medical",
+        "titleLength": 47,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/humain-home.html",
+      "url": "https://www.ailydian.com/humain-home",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian - Enterprise AI Platform",
+        "titleLength": 31,
+        "description": "LyDian enterprise AI platform - Transforming thoughts into actions through advanced AI",
+        "descriptionLength": 86,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/i18n/MEDICAL-EXPERT-INTEGRATION.html",
+      "url": "https://www.ailydian.com/i18n/MEDICAL-EXPERT-INTEGRATION",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Medical AI - Healthcare Intelligence Expert",
+        "titleLength": 50,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/image-generation.html",
+      "url": "https://www.ailydian.com/image-generation",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Image Generation - LyDian | AI-Powered DALL-E 3 & Imagen 3",
+        "titleLength": 58,
+        "description": "LyDian Görsel Oluşturma - AI ile profesyonel görseller oluşturun",
+        "descriptionLength": 64,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/index.html",
+      "url": "https://www.ailydian.com/index",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu",
+        "titleLength": 41,
+        "description": "Tıbbi AI, Hukuki AI, IQ Testi ve 8 Uzman Danışman. 40+ dilde çok modelli yapay zeka çözümleri. Hemen ücretsiz deneyin ve AI gücünü keşfedin.",
+        "descriptionLength": 140,
+        "keywordCount": 7,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/knowledge-base.html",
+      "url": "https://www.ailydian.com/knowledge-base",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Knowledge Base - LyDian | AI-Powered Information Hub",
+        "titleLength": 52,
+        "description": "65 Milyon Makale • 84 Dil • 67 Uzmanlık Alanı - Tarım, Uzay, Tıp, İklim ve daha fazlası",
+        "descriptionLength": 87,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/legal-expert.html",
+      "url": "https://www.ailydian.com/legal-expert",
+      "score": 100,
+      "issues": [],
+      "warnings": [],
+      "seo": {
+        "title": "Legal AI — Hukuki Yapay Zeka | 7/24 Hukuk Asistanı",
+        "titleLength": 50,
+        "description": "AI destekli hukuki danışmanlık. Sözleşme analizi, dava araştırma, yasal doküman hazırlama. 200K+ başarılı danışma. Hemen ücretsiz deneyin.",
+        "descriptionLength": 138,
+        "keywordCount": 6,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/lydian-hukukai-pro.html",
+      "url": "https://www.ailydian.com/lydian-hukukai-pro",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Hukuk AI - Küresel Hukuk Yapay Zeka Platformu",
+        "titleLength": 52,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-hukukai-v2.html",
+      "url": "https://www.ailydian.com/lydian-hukukai-v2",
+      "score": 62,
+      "issues": [
+        "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\"",
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Title çok uzun (72 karakter, max: 60)",
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+        "titleLength": 72,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-hukukai.html",
+      "url": "https://www.ailydian.com/lydian-hukukai",
+      "score": 52,
+      "issues": [
+        "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\"",
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Title çok uzun (72 karakter, max: 60)",
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+        "titleLength": 72,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-iq-new-ui.html",
+      "url": "https://www.ailydian.com/lydian-iq-new-ui",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Lydian-IQ v4.1 - Yeni Arayüz ✨",
+        "titleLength": 30,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-iq-unified-demo.html",
+      "url": "https://www.ailydian.com/lydian-iq-unified-demo",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Lydian-IQ Ultra | 72 Connector Platform",
+        "titleLength": 39,
+        "description": "Lydian-IQ Ultra - 72 Premium Connectors with Real-Time Integration",
+        "descriptionLength": 66,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-iq.html",
+      "url": "https://www.ailydian.com/lydian-iq",
+      "score": 100,
+      "issues": [],
+      "warnings": [],
+      "seo": {
+        "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+        "titleLength": 53,
+        "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz teste başla.",
+        "descriptionLength": 121,
+        "keywordCount": 6,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/lydian-legal-chat.html",
+      "url": "https://www.ailydian.com/lydian-legal-chat",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Hukuk AI - Hukuki Danışmanlık Asistanı",
+        "titleLength": 45,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-legal-search-enhanced.html",
+      "url": "https://www.ailydian.com/lydian-legal-search-enhanced",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
+        "titleLength": 59,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-legal-search-i18n.html",
+      "url": "https://www.ailydian.com/lydian-legal-search-i18n",
+      "score": 26,
+      "issues": [
+        "Title tag eksik",
+        "Meta description eksik",
+        "Meta keywords eksik"
+      ],
+      "warnings": [
+        "H1 tag eksik",
+        "Canonical URL eksik",
+        "OG title eksik",
+        "OG description eksik",
+        "OG image eksik",
+        "Hreflang tags eksik (çok dilli SEO için gerekli)",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": null,
+        "titleLength": 0,
+        "description": null,
+        "descriptionLength": 0,
+        "keywordCount": 0,
+        "h1Count": 0,
+        "hasCanonical": false,
+        "hasSchema": false,
+        "hreflangCount": 0,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-legal-search.html",
+      "url": "https://www.ailydian.com/lydian-legal-search",
+      "score": 57,
+      "issues": [
+        "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\"",
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Title çok uzun (72 karakter, max: 60)",
+        "Description çok uzun (183 karakter, max: 160)",
+        "Birden fazla H1 (2)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+        "titleLength": 72,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 2,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-legal-universal.html",
+      "url": "https://www.ailydian.com/lydian-legal-universal",
+      "score": 72,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Title çok uzun (62 karakter, max: 60)",
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Legal AI - Universal Legal Research & Analysis Platform",
+        "titleLength": 62,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-offline.html",
+      "url": "https://www.ailydian.com/lydian-offline",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Offline - LyDian IQ",
+        "titleLength": 19,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/lydian-os.html",
+      "url": "https://www.ailydian.com/lydian-os",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian OS - Global AI Operating System",
+        "titleLength": 38,
+        "description": "LyDian OS: Planet-scale AI operating system with attestation, compliance, and governance.",
+        "descriptionLength": 89,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/medical-ai-dashboard.html",
+      "url": "https://www.ailydian.com/medical-ai-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Medical AI Dashboard - LyDian Ultra Pro",
+        "titleLength": 39,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/medical-ai.html",
+      "url": "https://www.ailydian.com/medical-ai",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🩺 Medical AI Assistant - LyDian",
+        "titleLength": 32,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/medical-dashboard.html",
+      "url": "https://www.ailydian.com/medical-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Medical Dashboard - LyDian Platform",
+        "titleLength": 35,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/medical-expert.html",
+      "url": "https://www.ailydian.com/medical-expert",
+      "score": 85,
+      "issues": [],
+      "warnings": [
+        "Description çok uzun (170 karakter, max: 160)",
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "Medical Expert — 7/24 AI Tıbbi Asistan | Sağlık",
+        "titleLength": 47,
+        "description": "AI destekli profesyonel sağlık danışmanlığı. Çok modelli teşhis desteği, tıbbi analiz, acil triaj. 500K+ başarılı danışma. Enterprise-grade medical intelligence platform.",
+        "descriptionLength": 170,
+        "keywordCount": 6,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/models.html",
+      "url": "https://www.ailydian.com/models",
+      "score": 90,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik"
+      ],
+      "seo": {
+        "title": "AI Modelleri — LyDian AI | 50+ Güçlü Yapay Zeka Modeli",
+        "titleLength": 54,
+        "description": "LyDian AI platformunda 50+ son teknoloji yapay zeka modeli. OX5C9E2B, AX9F7E2B, LyDian Vision ve daha fazlası. Metin, görüntü, video ve ses için AI modelleri.",
+        "descriptionLength": 158,
+        "keywordCount": 6,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/monitoring.html",
+      "url": "https://www.ailydian.com/monitoring",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "System Monitoring Dashboard - LyDian AI",
+        "titleLength": 39,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/offline.html",
+      "url": "https://www.ailydian.com/offline",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Offline - AiLydian Ultra Pro",
+        "titleLength": 28,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/omnireach-ai-creator.html",
+      "url": "https://www.ailydian.com/omnireach-ai-creator",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "OmniReach AI Creator Engine - Ailydian",
+        "titleLength": 38,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/pages/notifications.html",
+      "url": "https://www.ailydian.com/pages/notifications",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Notifications - LyDian Ultra Pro",
+        "titleLength": 32,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/pages/settings.html",
+      "url": "https://www.ailydian.com/pages/settings",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Settings - LyDian Ultra Pro",
+        "titleLength": 27,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/pages/users.html",
+      "url": "https://www.ailydian.com/pages/users",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "User Management - LyDian Ultra Pro",
+        "titleLength": 34,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/performance-dashboard.html",
+      "url": "https://www.ailydian.com/performance-dashboard",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Performance Dashboard - AiLydian Ultra Pro",
+        "titleLength": 42,
+        "description": "Real-time performance monitoring and analytics dashboard",
+        "descriptionLength": 56,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/phase-l-results.html",
+      "url": "https://www.ailydian.com/phase-l-results",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Phase L: Code Splitting Results - LyDian Platform",
+        "titleLength": 49,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/privacy.html",
+      "url": "https://www.ailydian.com/privacy",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Privacy Policy - LyDian | Data Protection & Security",
+        "titleLength": 52,
+        "description": "LyDian Gizlilik Politikası - Kişisel verilerinizin korunması ve güvenliği",
+        "descriptionLength": 73,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/quantum-test.html",
+      "url": "https://www.ailydian.com/quantum-test",
+      "score": 82,
+      "issues": [],
+      "warnings": [
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Quantum Computing — LyDian AI",
+        "titleLength": 29,
+        "description": "LyDian Quantum Computing Platform - VQE Molecular Simulation with BlueQubit",
+        "descriptionLength": 75,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/realistic-characters-demo.html",
+      "url": "https://www.ailydian.com/realistic-characters-demo",
+      "score": 67,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🎭 LyDian - Gerçek Karakterler Demo | Realistic Human + AI",
+        "titleLength": 58,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/research.html",
+      "url": "https://www.ailydian.com/research",
+      "score": 95,
+      "issues": [],
+      "warnings": [
+        "Title çok uzun (61 karakter, max: 60)"
+      ],
+      "seo": {
+        "title": "Araştırma & Yenilikler — LyDian AI | Yapay Zeka Araştırmaları",
+        "titleLength": 61,
+        "description": "LyDian AI araştırma laboratuvarları. Son AI trendleri, teknik makaleler, case study'ler ve yenilikçi projeler. Yapay zeka geleceğini şekillendiriyoruz.",
+        "descriptionLength": 151,
+        "keywordCount": 5,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": true,
+        "hreflangCount": 7,
+        "ogComplete": true
+      }
+    },
+    {
+      "file": "/reset-password.html",
+      "url": "https://www.ailydian.com/reset-password",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Reset Password - LyDian Ultra Pro",
+        "titleLength": 33,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/search-meter-demo.html",
+      "url": "https://www.ailydian.com/search-meter-demo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Search Meter Demo - AiLydian",
+        "titleLength": 28,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/security-analytics.html",
+      "url": "https://www.ailydian.com/security-analytics",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Security Analytics Dashboard - Ailydian",
+        "titleLength": 39,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/seo-monitoring.html",
+      "url": "https://www.ailydian.com/seo-monitoring",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI - Master SEO Monitoring Dashboard",
+        "titleLength": 43,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/settings.html",
+      "url": "https://www.ailydian.com/settings",
+      "score": 87,
+      "issues": [],
+      "warnings": [
+        "Description çok kısa (34 karakter, min: 50)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Settings - LyDian | Account Configuration & Preferences",
+        "titleLength": 55,
+        "description": "LyDian - Ayarlar ve Hesap Yönetimi",
+        "descriptionLength": 34,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/sikayet-olustur.html",
+      "url": "https://www.ailydian.com/sikayet-olustur",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Şikayet Oluştur - LCI | Lydian Complaint Intelligence",
+        "titleLength": 53,
+        "description": "LCI - Şikayetinizi KVKK uyumlu şekilde oluşturun ve çözüm bulun",
+        "descriptionLength": 63,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 4,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/status-dashboard.html",
+      "url": "https://www.ailydian.com/status-dashboard",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Health Dashboard - LyDian",
+        "titleLength": 25,
+        "description": "LyDian Health Monitoring Dashboard - Real-time system status",
+        "descriptionLength": 60,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/status.html",
+      "url": "https://www.ailydian.com/status",
+      "score": 67,
+      "issues": [
+        "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\""
+      ],
+      "warnings": [
+        "Title çok uzun (72 karakter, max: 60)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+        "titleLength": 72,
+        "description": "LyDian Platform Status - Real-time system health and performance monitoring",
+        "descriptionLength": 75,
+        "keywordCount": 4,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/system-status.html",
+      "url": "https://www.ailydian.com/system-status",
+      "score": 62,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Title çok uzun (61 karakter, max: 60)",
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "System Status - LyDian | Enterprise Infrastructure Monitoring",
+        "titleLength": 61,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/terms.html",
+      "url": "https://www.ailydian.com/terms",
+      "score": 92,
+      "issues": [],
+      "warnings": [
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Terms of Service - LyDian | User Agreement & Policies",
+        "titleLength": 53,
+        "description": "LyDian Kullanım Koşulları - Platformumuzun kullanım şartları ve yasal bilgiler",
+        "descriptionLength": 78,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-auto-translate.html",
+      "url": "https://www.ailydian.com/test-auto-translate",
+      "score": 72,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "Birden fazla H1 (2)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Auto Translation Test",
+        "titleLength": 21,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 2,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-backend-connection.html",
+      "url": "https://www.ailydian.com/test-backend-connection",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "✅ Backend Bağlantı Testi - Lydian-IQ",
+        "titleLength": 36,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-chat-api.html",
+      "url": "https://www.ailydian.com/test-chat-api",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Chat API Test",
+        "titleLength": 13,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-chat-buttons.html",
+      "url": "https://www.ailydian.com/test-chat-buttons",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Chat Buttons Test",
+        "titleLength": 17,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-chat-ecw.html",
+      "url": "https://www.ailydian.com/test-chat-ecw",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Chat ECW Test - Smoke Test",
+        "titleLength": 26,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-i18n-demo.html",
+      "url": "https://www.ailydian.com/test-i18n-demo",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "🌍 LyDian i18n System - Live Demo",
+        "titleLength": 33,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-language-system.html",
+      "url": "https://www.ailydian.com/test-language-system",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian - Language System Test",
+        "titleLength": 29,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-legal.html",
+      "url": "https://www.ailydian.com/test-legal",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "LyDian Legal AI - Test",
+        "titleLength": 22,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test-translation.html",
+      "url": "https://www.ailydian.com/test-translation",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Translation Test",
+        "titleLength": 16,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/test.html",
+      "url": "https://www.ailydian.com/test",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Lydian IQ Test",
+        "titleLength": 14,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/tokens.html",
+      "url": "https://www.ailydian.com/tokens",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (183 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Token System - LyDian | Blockchain-Based AI Credits",
+        "titleLength": 51,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/user-dashboard.html",
+      "url": "https://www.ailydian.com/user-dashboard",
+      "score": 77,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Description çok uzun (205 karakter, max: 160)",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "User Dashboard - Medical LyDian",
+        "titleLength": 31,
+        "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+        "descriptionLength": 205,
+        "keywordCount": 10,
+        "h1Count": 1,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/verifyforzoho.html",
+      "url": "https://www.ailydian.com/verifyforzoho",
+      "score": 26,
+      "issues": [
+        "Title tag eksik",
+        "Meta description eksik",
+        "Meta keywords eksik"
+      ],
+      "warnings": [
+        "H1 tag eksik",
+        "Canonical URL eksik",
+        "OG title eksik",
+        "OG description eksik",
+        "OG image eksik",
+        "Hreflang tags eksik (çok dilli SEO için gerekli)",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": null,
+        "titleLength": 0,
+        "description": null,
+        "descriptionLength": 0,
+        "keywordCount": 0,
+        "h1Count": 0,
+        "hasCanonical": false,
+        "hasSchema": false,
+        "hreflangCount": 0,
+        "ogComplete": false
+      }
+    },
+    {
+      "file": "/video-ai.html",
+      "url": "https://www.ailydian.com/video-ai",
+      "score": 62,
+      "issues": [
+        "Duplicate description"
+      ],
+      "warnings": [
+        "Title çok uzun (64 karakter, max: 60)",
+        "Description çok uzun (183 karakter, max: 160)",
+        "H1 tag eksik",
+        "OG image eksik",
+        "Schema.org markup eksik"
+      ],
+      "seo": {
+        "title": "Video AI - LyDian | AI Video Generation with Google Veo & Runway",
+        "titleLength": 64,
+        "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+        "descriptionLength": 183,
+        "keywordCount": 10,
+        "h1Count": 0,
+        "hasCanonical": true,
+        "hasSchema": false,
+        "hreflangCount": 7,
+        "ogComplete": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,1896 @@
+{
+  "timestamp": "2025-12-20T15:10:35.403Z",
+  "stats": {
+    "total": 139,
+    "fixed": 122,
+    "alreadyGood": 17,
+    "totalFixes": 1068
+  },
+  "results": [
+    {
+      "file": "/about",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/ai-advisor-hub",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/ai-assistant",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-chat",
+      "fixes": [
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-cultural-advisor",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-decision-matrix",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-governance-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-governance-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-health-orchestrator",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-knowledge-assistant",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-learning-path",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-life-coach",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-meeting-insights",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-ops-center",
+      "fixes": [
+        "Added title",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-power-panel",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ai-startup-accelerator",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/analytics",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/api-docs",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/api-reference",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/api",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/auth",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/azure-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/billing",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/blog",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/cache-clear",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/cache-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/cancer-diagnosis-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/careers",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/changelog",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/chat",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/civic-atg",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/civic-intelligence-grid",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/civic-map",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/civic-phn",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/civic-rro",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/civic-svf",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/civic-umo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/connector-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/connectors",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/console",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/contact",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/cookies",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/cost-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/cyborg-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/cyborg-orbital-full",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/dashboard-email-yedek",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/dashboard",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/developer-search",
+      "fixes": [
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/developers",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/docs",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/ecw-ailydian",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/ecw-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/education",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/email-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/email-setup-status",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/enterprise-index",
+      "fixes": [
+        "Added canonical",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/enterprise",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/epic-fhir-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/files",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/firildak-ai",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/firildak",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/force-refresh",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/forgot-password",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/google-studio",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/governance-compliance",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/governance-dashboard",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/governance-leaderboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/governance-models",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/governance-trust-index",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/help",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/hero-3d-lydian",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-cinematic-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-particles-lydian",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-video-demo-1-neural",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-video-demo-2-particles",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-video-demo-3-matrix",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-video-demo-4-abstract",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hero-video-demos-index",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/hospital-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/humain-home",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/i18n/MEDICAL-EXPERT-INTEGRATION",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/image-generation",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/index",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/knowledge-base",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/legal-expert",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/lydian-hukukai-pro",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-hukukai-v2",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-hukukai",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-iq-new-ui",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-iq-unified-demo",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-iq",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/lydian-legal-chat",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-legal-search-enhanced",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-legal-search-i18n",
+      "fixes": [
+        "Added title",
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-legal-search",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-legal-universal",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-offline",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/lydian-os",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/medical-ai-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/medical-ai",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/medical-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/medical-expert",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/models",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/monitoring",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/offline",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/omnireach-ai-creator",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/pages/notifications",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/pages/settings",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/pages/users",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/performance-dashboard",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/phase-l-results",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/privacy",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/quantum-test",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/realistic-characters-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/research",
+      "fixes": [],
+      "fixed": false
+    },
+    {
+      "file": "/reset-password",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/search-meter-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/security-analytics",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/seo-monitoring",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/settings",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/sikayet-olustur",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/status-dashboard",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/status",
+      "fixes": [
+        "Added title",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/system-status",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/terms",
+      "fixes": [
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-auto-translate",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-backend-connection",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-chat-api",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-chat-buttons",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-chat-ecw",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-i18n-demo",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-language-system",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-legal",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test-translation",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/test",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/tokens",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/user-dashboard",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/verifyforzoho",
+      "fixes": [
+        "Added title",
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    },
+    {
+      "file": "/video-ai",
+      "fixes": [
+        "Added description",
+        "Added keywords",
+        "Added canonical",
+        "Added OG title",
+        "Added OG description",
+        "Added OG URL",
+        "Added OG type",
+        "Added OG locale",
+        "Added hreflang tags"
+      ],
+      "fixed": true
+    }
+  ]
+}

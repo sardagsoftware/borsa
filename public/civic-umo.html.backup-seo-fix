@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMO - Kentsel Mobilite Orkestratörü | LyDian CIG</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link rel="apple-touch-icon" href="/lydian-logo.png">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            src: url(data:font/woff2;base64,d09GMgABAAAAABBsAA4AAAAAIHgAABAXAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbg1ocg0oGYABMEQgKgViBLAtYAAE2AiQDhgQLIAAEIAWDYQeFbxuIFLP5EmS1gMqIpnTuZCW5yjS2D+2/QmNiY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2JjY2L/2f+/ttZaa621vva11lprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrfW1llprrbXWWmuttdZaa6211lprrfW/2f+/pra01lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa/1v9v+vtbXWWmv9b/b/r7W11lpr/W/2/6+1tdZaa621AAAAAAAA/xEAAAAAAP8RAAD/EQAA/xEAAAAAAAAAAAAA/xEAAP8RAAD/EQAA/xEAAAAAAAAAAAAA) format('woff2');
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-0: #0A0B0D;
+            --txt-1: #FFFFFF;
+            --txt-2: #B0B0B0;
+            --accent-1: #00E0AE;
+            --accent-2: #6E84FF;
+            --glass: rgba(255, 255, 255, 0.05);
+
+            /* Legacy Compatibility */
+            --lydian-accent: #00E0AE;
+            --lydian-bg-primary: rgba(255, 255, 255, 0.05);
+            --lydian-bg-secondary: rgba(255, 255, 255, 0.03);
+            --lydian-bg-tertiary: #0A0B0D;
+            --lydian-text-primary: #FFFFFF;
+            --lydian-text-secondary: #B0B0B0;
+            --lydian-border: rgba(255, 255, 255, 0.1);
+            --umo-indigo: #6E84FF;
+            --umo-green: #00E0AE;
+            --umo-yellow: #FFB800;
+            --umo-red: #FF4D6D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                        radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                        var(--bg-0);
+            color: var(--txt-1);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: calc(100% - 40px);
+            max-width: 1200px;
+        }
+
+        .header-content {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(110, 132, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: var(--txt-1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 224, 174, 0.3);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--lydian-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--lydian-accent);
+        }
+
+        .hero {
+            padding: 8rem 2rem 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .hero-icon {
+            margin: 0 auto 1rem;
+            width: 64px;
+            height: 64px;
+            color: var(--umo-indigo);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #10A37F, #FF6B4A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1600px;
+            margin: -2rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(16, 163, 127, 0.15);
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 0.5rem;
+            color: var(--umo-indigo);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--umo-indigo);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--lydian-text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: 600px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .map-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .map-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        #map {
+            height: calc(100% - 60px);
+            border-radius: 8px;
+        }
+
+        .route-panel {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--umo-indigo);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--lydian-text-primary);
+            font-size: 0.9rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            color: var(--lydian-text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #10A37F;
+            box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background: #10A37F;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background: #0D8F6E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .route-result {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .route-result.active {
+            display: block;
+        }
+
+        .route-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .route-metric {
+            text-align: center;
+        }
+
+        .route-metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--umo-indigo);
+        }
+
+        .route-metric-label {
+            font-size: 0.8rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .route-steps {
+            margin-top: 1rem;
+        }
+
+        .route-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--lydian-border);
+        }
+
+        .route-step:last-child {
+            border-bottom: none;
+        }
+
+        .step-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--umo-indigo);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-mode {
+            font-size: 0.75rem;
+            color: var(--lydian-text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-instruction {
+            font-size: 0.9rem;
+        }
+
+        .incidents-section {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .incidents-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .incident-card {
+            background: var(--lydian-bg-tertiary);
+            border-left: 4px solid var(--umo-yellow);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .incident-card.critical {
+            border-left-color: var(--umo-red);
+        }
+
+        .incident-card.normal {
+            border-left-color: var(--umo-green);
+        }
+
+        .incident-content {
+            flex: 1;
+        }
+
+        .incident-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .incident-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .incident-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .incident-description {
+            color: var(--lydian-text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .incident-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--lydian-text-secondary);
+        }
+
+        .incident-badge {
+            padding: 0.375rem 0.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--umo-red);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--umo-yellow);
+        }
+
+        .badge-normal {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--umo-green);
+        }
+
+        .traffic-flow-section {
+            background: #FFFFFF;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .flow-card {
+            background: var(--lydian-bg-tertiary);
+            border: 1px solid var(--lydian-border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .flow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .flow-route {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .flow-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-smooth {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--umo-green);
+        }
+
+        .status-moderate {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--umo-yellow);
+        }
+
+        .status-congested {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--umo-red);
+        }
+
+        .flow-metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .flow-metric span:first-child {
+            color: var(--lydian-text-secondary);
+            font-size: 0.8rem;
+            display: block;
+        }
+
+        .flow-metric span:last-child {
+            color: var(--lydian-text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--lydian-bg-primary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--umo-green);
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.moderate {
+            background: var(--umo-yellow);
+        }
+
+        .progress-fill.congested {
+            background: var(--umo-red);
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .map-legend {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Leaflet Popup Custom Style */
+        .leaflet-popup-content-wrapper {
+            background: #FFFFFF;
+            color: var(--lydian-text-primary);
+            border-radius: 8px;
+            border: 1px solid var(--lydian-border);
+        }
+
+        .leaflet-popup-tip {
+            background: #FFFFFF;
+        }
+
+        /* Animated pulse for live markers */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+</head>
+<body>
+    <!-- Başlık -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
+                <svg class="logo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                LyDian
+            </a>
+            <nav class="nav-links">
+                <a href="/civic-intelligence-grid.html" class="nav-link">Kontrol Paneli</a>
+                <a href="/civic-umo.html" class="nav-link" style="color: var(--umo-indigo);">KMO</a>
+                <a href="/" class="nav-link">Ana Sayfa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Kapak -->
+    <section class="hero">
+        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+        </svg>
+        <h1 class="hero-title">Kentsel Mobilite Orkestratörü</h1>
+        <p class="hero-subtitle">
+            Yapay Zeka Destekli Rota Optimizasyonu • Gerçek Zamanlı Trafik Akışı • Çok Modlu Seyahat Planlama
+        </p>
+    </section>
+
+    <!-- Canlı İstatistikler -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            <div class="stat-value" id="avg-speed">42</div>
+            <div class="stat-label">Ortalama Hız (km/sa)</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div class="stat-value" id="congestion">32<span style="font-size: 1rem;">%</span></div>
+            <div class="stat-label">Tıkanıklık Seviyesi</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+            </svg>
+            <div class="stat-value" id="routes-today">14.2<span style="font-size: 1rem;">B</span></div>
+            <div class="stat-label">Bugünkü Rotalar</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+            <div class="stat-value" id="active-vehicles">2.8<span style="font-size: 1rem;">B</span></div>
+            <div class="stat-label">Aktif Araçlar</div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div class="stat-value" id="incidents">7</div>
+            <div class="stat-label">Aktif Olaylar</div>
+        </div>
+    </div>
+
+    <!-- Ana İçerik -->
+    <div class="container">
+        <!-- Kontrol Paneli -->
+        <div class="dashboard-grid">
+            <!-- Trafik Haritası -->
+            <div class="map-container">
+                <div class="map-header">
+                    <div class="map-title">
+                        <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                        Canlı Trafik Akışı
+                    </div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: var(--umo-green);"></div>
+                            <span>Akıcı</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: var(--umo-yellow);"></div>
+                            <span>Orta</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: var(--umo-red);"></div>
+                            <span>Tıkanık</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="map"></div>
+            </div>
+
+            <!-- Rota Optimize Edici -->
+            <div class="route-panel">
+                <h3 class="section-title">
+                    <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                    </svg>
+                    Çok Modlu Seyahat Planlayıcı
+                </h3>
+
+                <form id="route-form">
+                    <div class="form-group">
+                        <label class="form-label">Nereden</label>
+                        <input type="text" class="form-input" id="from" placeholder="Başlangıç noktasını girin" value="Taksim Meydanı" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nereye</label>
+                        <input type="text" class="form-input" id="to" placeholder="Varış noktasını girin" value="Sultanahmet" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ulaşım Modu</label>
+                        <select class="form-select" id="mode">
+                            <option value="multimodal">Çok Modlu (Önerilen)</option>
+                            <option value="car">Otomobil</option>
+                            <option value="public">Toplu Taşıma</option>
+                            <option value="bike">Bisiklet</option>
+                            <option value="walk">Yürüyüş</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Optimizasyon Önceliği</label>
+                        <select class="form-select" id="priority">
+                            <option value="fastest">En Hızlı Rota</option>
+                            <option value="eco">En Çevre Dostu</option>
+                            <option value="cheap">En Ucuz</option>
+                            <option value="avoid-traffic">Trafikten Kaçın</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn" id="plan-btn">Seyahat Planla</button>
+                </form>
+
+                <div class="route-result" id="route-result">
+                    <div class="route-info">
+                        <div class="route-metric">
+                            <div class="route-metric-value" id="route-duration">24</div>
+                            <div class="route-metric-label">Dakika</div>
+                        </div>
+                        <div class="route-metric">
+                            <div class="route-metric-value" id="route-distance">8.2</div>
+                            <div class="route-metric-label">Kilometre</div>
+                        </div>
+                        <div class="route-metric">
+                            <div class="route-metric-value" id="route-cost">₺12</div>
+                            <div class="route-metric-label">Tahmini Maliyet</div>
+                        </div>
+                    </div>
+
+                    <div class="route-steps" id="route-steps">
+                        <!-- Adımlar buraya eklenecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canlı Olaylar -->
+        <div class="incidents-section">
+            <h3 class="section-title">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                Canlı Trafik Olayları
+            </h3>
+            <div class="incidents-grid" id="incidents-container">
+                <!-- Olaylar buraya eklenecek -->
+            </div>
+        </div>
+
+        <!-- Trafik Akış Analizi -->
+        <div class="traffic-flow-section">
+            <h3 class="section-title">
+                <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                Ana Yollar Trafik Akışı
+            </h3>
+            <div class="flow-grid" id="flow-container">
+                <!-- Akış kartları buraya eklenecek -->
+            </div>
+        </div>
+
+        <!-- Traffic Charts -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <!-- 24 Hour Traffic Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--lydian-text-primary);">24 Saatlik Trafik Yoğunluğu</h3>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="trafficTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Public Transport Usage Chart -->
+            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--lydian-text-primary);">Toplu Taşıma Kullanımı</h3>
+                <div style="height: 300px; position: relative;">
+                    <canvas id="publicTransportChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Civic Charts Library -->
+    <script src="/js/civic-charts-lib.js"></script>
+
+    <script>
+        // Initialize Leaflet Map (Istanbul center)
+        const map = L.map('map').setView([41.0082, 28.9784], 12);
+
+        // Light theme tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        // Global state
+        let trafficRoutes = [];
+        let trafficPolylines = [];
+        let incidentMarkers = [];
+
+        // Route colors
+        const routeColors = {
+            smooth: '#10B981',
+            moderate: '#F59E0B',
+            congested: '#EF4444'
+        };
+
+        const statusLabels = {
+            smooth: 'Akıcı',
+            moderate: 'Orta',
+            congested: 'Tıkanık'
+        };
+
+        // Security: Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Security: Validate input
+        function validateInput(value, maxLength = 200) {
+            if (typeof value !== 'string') return false;
+            if (value.length > maxLength) return false;
+            if (/<script|javascript:|on\w+=/i.test(value)) return false;
+            return true;
+        }
+
+        // Load traffic data from API
+        async function loadTrafficData() {
+            try {
+                const response = await fetch('/api/umo/v1/traffic');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load traffic data');
+                }
+
+                // Clear existing polylines
+                trafficPolylines.forEach(p => map.removeLayer(p));
+                trafficPolylines = [];
+
+                // Update global state
+                trafficRoutes = data.routes || [];
+
+                // Draw traffic routes on map
+                trafficRoutes.forEach(route => {
+                    const polyline = L.polyline(route.coords, {
+                        color: routeColors[route.status],
+                        weight: 5,
+                        opacity: 0.7
+                    }).addTo(map);
+
+                    polyline.bindPopup(`
+                        <div style="padding: 0.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">${escapeHtml(route.name)}</h4>
+                            <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">
+                                Hız: ${parseInt(route.speed)} km/sa<br>
+                                Aktif Araçlar: ${parseInt(route.vehicles)}
+                            </p>
+                            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${routeColors[route.status]}20; color: ${routeColors[route.status]}; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+                                ${statusLabels[route.status]}
+                            </span>
+                        </div>
+                    `);
+
+                    trafficPolylines.push(polyline);
+                });
+
+                // Render traffic flow cards
+                renderTrafficFlow();
+
+                // Update stats
+                updateStats(data.stats);
+
+            } catch (error) {
+                console.error('Trafik verisi yükleme hatası:', error);
+                showError('Trafik verileri yüklenirken bir hata oluştu. Lütfen tekrar deneyin.');
+            }
+        }
+
+        // Load transit status from API
+        async function loadTransitData() {
+            try {
+                const response = await fetch('/api/umo/v1/transit');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load transit data');
+                }
+
+                // Handle transit data (can be used for route planning)
+                return data.transit || [];
+
+            } catch (error) {
+                console.error('Toplu taşıma verisi yükleme hatası:', error);
+                return [];
+            }
+        }
+
+        // Load parking data from API
+        async function loadParkingData() {
+            try {
+                const response = await fetch('/api/umo/v1/parking');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load parking data');
+                }
+
+                // Add parking markers to map
+                const parkingData = data.parking || [];
+                parkingData.forEach(parking => {
+                    const marker = L.marker(parking.coords, {
+                        icon: L.divIcon({
+                            className: 'parking-icon',
+                            html: `<div style="background: #10A37F; color: white; padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 12px;">P</div>`
+                        })
+                    }).addTo(map);
+
+                    marker.bindPopup(`
+                        <div style="padding: 0.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">${escapeHtml(parking.name)}</h4>
+                            <p style="font-size: 0.9rem;">
+                                Müsait: ${parseInt(parking.available)}/${parseInt(parking.total)}<br>
+                                Ücret: ₺${parseFloat(parking.price).toFixed(2)}/saat
+                            </p>
+                        </div>
+                    `);
+                });
+
+            } catch (error) {
+                console.error('Otopark verisi yükleme hatası:', error);
+            }
+        }
+
+        // Load congestion heatmap from API
+        async function loadCongestionData() {
+            try {
+                const response = await fetch('/api/umo/v1/congestion');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Failed to load congestion data');
+                }
+
+                // Clear existing incident markers
+                incidentMarkers.forEach(m => map.removeLayer(m));
+                incidentMarkers = [];
+
+                const incidents = data.incidents || [];
+
+                // Incident icons
+                const incidentIcons = {
+                    critical: '#EF4444',
+                    warning: '#F59E0B',
+                    normal: '#10B981'
+                };
+
+                incidents.forEach(incident => {
+                    const color = incidentIcons[incident.severity] || incidentIcons.normal;
+                    const marker = L.circleMarker(incident.coords, {
+                        radius: 10,
+                        fillColor: color,
+                        color: '#fff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.9,
+                        className: 'pulse'
+                    }).addTo(map);
+
+                    marker.bindPopup(`
+                        <div style="padding: 0.5rem;">
+                            <h4 style="margin-bottom: 0.5rem;">${escapeHtml(incident.title)}</h4>
+                            <p style="margin-bottom: 0.5rem; font-size: 0.9rem;">${escapeHtml(incident.description)}</p>
+                            <div style="font-size: 0.8rem; color: var(--lydian-text-secondary);">
+                                Bildirilme: ${escapeHtml(incident.reportedAt)}
+                            </div>
+                        </div>
+                    `);
+
+                    incidentMarkers.push(marker);
+                });
+
+                // Render incidents list
+                renderIncidents(incidents);
+
+            } catch (error) {
+                console.error('Tıkanıklık verisi yükleme hatası:', error);
+            }
+        }
+
+        // Render incidents list
+        function renderIncidents(incidents) {
+            const container = document.getElementById('incidents-container');
+
+            if (!incidents || incidents.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--lydian-text-secondary); padding: 2rem;">Şu anda aktif olay bulunmuyor.</div>';
+                return;
+            }
+
+            const iconMap = {
+                accident: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',
+                construction: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>',
+                event: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>'
+            };
+
+            container.innerHTML = incidents.map(incident => {
+                return `
+                    <div class="incident-card ${incident.severity}">
+                        <div class="incident-content">
+                            <div class="incident-header">
+                                <svg class="incident-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    ${iconMap[incident.type] || iconMap.event}
+                                </svg>
+                                <div class="incident-title">${escapeHtml(incident.title)}</div>
+                            </div>
+                            <div class="incident-description">${escapeHtml(incident.description)}</div>
+                            <div class="incident-meta">
+                                <span>Bildirilme: ${escapeHtml(incident.reportedAt)}</span>
+                                <span>Konum: ${parseFloat(incident.coords[0]).toFixed(4)}, ${parseFloat(incident.coords[1]).toFixed(4)}</span>
+                            </div>
+                        </div>
+                        <span class="incident-badge badge-${incident.severity}">${incident.severity === 'critical' ? 'KRİTİK' : incident.severity === 'warning' ? 'UYARI' : 'NORMAL'}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render traffic flow
+        function renderTrafficFlow() {
+            const container = document.getElementById('flow-container');
+
+            if (!trafficRoutes || trafficRoutes.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--lydian-text-secondary); padding: 2rem;">Yükleniyor...</div>';
+                return;
+            }
+
+            container.innerHTML = trafficRoutes.map(route => {
+                const capacity = 100;
+                const usage = Math.min((route.vehicles / 10), 100);
+
+                return `
+                    <div class="flow-card">
+                        <div class="flow-header">
+                            <div class="flow-route">${escapeHtml(route.name)}</div>
+                            <div class="flow-status status-${route.status}">${statusLabels[route.status].toUpperCase()}</div>
+                        </div>
+                        <div class="flow-metrics">
+                            <div class="flow-metric">
+                                <span>Ortalama Hız</span>
+                                <span>${parseInt(route.speed)} km/sa</span>
+                            </div>
+                            <div class="flow-metric">
+                                <span>Araçlar</span>
+                                <span>${parseInt(route.vehicles)}</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${route.status}" style="width: ${usage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Update stats
+        function updateStats(stats) {
+            if (!stats) return;
+
+            if (stats.avgSpeed !== undefined) {
+                document.getElementById('avg-speed').textContent = parseInt(stats.avgSpeed);
+            }
+            if (stats.congestion !== undefined) {
+                document.getElementById('congestion').innerHTML = parseInt(stats.congestion) + '<span style="font-size: 1rem;">%</span>';
+            }
+            if (stats.routesToday !== undefined) {
+                document.getElementById('routes-today').innerHTML = parseFloat(stats.routesToday).toFixed(1) + '<span style="font-size: 1rem;">B</span>';
+            }
+            if (stats.activeVehicles !== undefined) {
+                document.getElementById('active-vehicles').innerHTML = parseFloat(stats.activeVehicles).toFixed(1) + '<span style="font-size: 1rem;">B</span>';
+            }
+            if (stats.incidents !== undefined) {
+                document.getElementById('incidents').textContent = parseInt(stats.incidents);
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            const container = document.getElementById('incidents-container');
+            container.innerHTML = `<div style="text-align: center; color: var(--umo-red); padding: 2rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px;">${escapeHtml(message)}</div>`;
+        }
+
+        // Handle route planning
+        document.getElementById('route-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fromInput = document.getElementById('from').value;
+            const toInput = document.getElementById('to').value;
+            const mode = document.getElementById('mode').value;
+            const priority = document.getElementById('priority').value;
+
+            // Validate inputs
+            if (!validateInput(fromInput) || !validateInput(toInput)) {
+                alert('Geçersiz giriş. Lütfen tekrar deneyin.');
+                return;
+            }
+
+            const btn = document.getElementById('plan-btn');
+            const result = document.getElementById('route-result');
+
+            btn.disabled = true;
+            btn.textContent = 'Rota Planlanıyor...';
+
+            try {
+                const response = await fetch('/api/umo/v1/routes/plan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        from: fromInput,
+                        to: toInput,
+                        mode: mode,
+                        priority: priority
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Rota planlanamadı');
+                }
+
+                // Render route steps
+                const steps = data.route.steps || [];
+                const stepsHtml = steps.map(step => {
+                    const icons = {
+                        walk: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>',
+                        metro: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>',
+                        tram: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>',
+                        bus: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>',
+                        car: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
+                        bike: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>'
+                    };
+
+                    const modeLabels = {
+                        walk: 'Yürüyüş',
+                        metro: 'Metro',
+                        tram: 'Tramvay',
+                        bus: 'Otobüs',
+                        car: 'Otomobil',
+                        bike: 'Bisiklet'
+                    };
+
+                    return `
+                        <div class="route-step">
+                            <svg class="step-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                ${icons[step.mode] || icons.walk}
+                            </svg>
+                            <div class="step-content">
+                                <div class="step-mode">${modeLabels[step.mode] || escapeHtml(step.mode)}</div>
+                                <div class="step-instruction">${escapeHtml(step.instruction)}</div>
+                                <div class="incident-meta">
+                                    <span>${escapeHtml(step.distance)}</span>
+                                    <span>${escapeHtml(step.duration)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.getElementById('route-steps').innerHTML = stepsHtml;
+                document.getElementById('route-duration').textContent = parseInt(data.route.totalDuration);
+                document.getElementById('route-distance').textContent = parseFloat(data.route.totalDistance).toFixed(1);
+                document.getElementById('route-cost').textContent = '₺' + parseFloat(data.route.estimatedCost).toFixed(0);
+
+                result.classList.add('active');
+
+            } catch (error) {
+                console.error('Rota planlama hatası:', error);
+                alert('Rota planlanırken bir hata oluştu. Lütfen tekrar deneyin.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Seyahat Planla';
+            }
+        });
+
+        // Initialize charts with Civic API data
+        async function initializeCharts() {
+            if (typeof window.CivicCharts === 'undefined') {
+                console.warn('CivicCharts library not loaded yet, retrying...');
+                setTimeout(initializeCharts, 500);
+                return;
+            }
+
+            console.log('🚗 Initializing Urban Mobility Charts...');
+
+            try {
+                // Fetch traffic data from Civic API
+                const trafficData = await window.CivicCharts.fetchData('/traffic/realtime');
+
+                if (trafficData && Array.isArray(trafficData)) {
+                    // 1. Traffic Trend Line Chart (24 hours)
+                    window.CivicCharts.createLineChart('trafficTrendChart', {
+                        data: {
+                            labels: trafficData.map(d => d.hour),
+                            datasets: [
+                                {
+                                    label: 'Tıkanıklık (%)',
+                                    data: trafficData.map(d => d.congestion),
+                                    borderColor: '#EF4444',
+                                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                },
+                                {
+                                    label: 'Ortalama Hız (km/sa)',
+                                    data: trafficData.map(d => d.avgSpeed),
+                                    borderColor: '#10A37F',
+                                    backgroundColor: 'rgba(16, 163, 127, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                }
+                            ]
+                        },
+                        showLegend: true
+                    });
+
+                    // 2. Public Transport Bar Chart
+                    window.CivicCharts.createBarChart('publicTransportChart', {
+                        data: {
+                            labels: trafficData.slice(0, 12).map(d => d.hour),
+                            datasets: [{
+                                label: 'Aktif Araçlar',
+                                data: trafficData.slice(0, 12).map(d => d.publicTransport),
+                                backgroundColor: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#EC4899', '#8B5CF6', '#14B8A6', '#6366F1', '#F59E0B', '#10A37F', '#7C5CFF', '#FF6B4A']
+                            }]
+                        },
+                        showLegend: false
+                    });
+                }
+
+                // Start real-time updates
+                window.CivicCharts.startRealTimeUpdates('trafficTrendChart', '/traffic/realtime', 30000);
+
+                console.log('✅ Urban Mobility charts initialized successfully');
+
+            } catch (error) {
+                console.error('Error initializing traffic charts:', error);
+            }
+        }
+
+        // Initialize - Load all data
+        async function initialize() {
+            await Promise.all([
+                loadTrafficData(),
+                loadTransitData(),
+                loadParkingData(),
+                loadCongestionData(),
+                initializeCharts()
+            ]);
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            loadTrafficData();
+            loadCongestionData();
+        }, 30000);
+
+        // Initialize on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initialize);
+        } else {
+            initialize();
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

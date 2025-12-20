@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Dr. Lydia Sentinel - LyDian Cyborg Character</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/hero-ai-animation.css">
+    <link rel="stylesheet" href="/css/cyborg-character.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .hero-cyborg {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .cyborg-left {
+            z-index: 10;
+        }
+        .cyborg-left h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #64fcff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .cyborg-left .typewriter {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #64fcff;
+            margin-bottom: 30px;
+        }
+        .cyborg-left p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        .cyborg-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        @media (max-width: 1024px) {
+            .hero-cyborg { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-cyborg">
+        <div class="cyborg-left">
+            <h1>Dr. Lydia Sentinel</h1>
+            <div class="typewriter" id="typewriter-cyborg">LyDian'ın Yaratıcısı</div>
+            <p>
+                Yapay zekayı anlamak için kendini dönüştüren bilim insanı.
+                Artık hem insan sezgisine hem AI gücüne sahip.
+                <br><br>
+                <strong>Yarı İnsan, Yarı AI - Tam Güç</strong>
+            </p>
+        </div>
+
+        <div class="cyborg-right">
+            <!-- Cyborg Character -->
+            <div class="cyborg-character">
+                <!-- Aura -->
+                <div class="cyborg-aura"></div>
+
+                <!-- Hair (behind head) -->
+                <div class="cyborg-hair">
+                    <div class="hair-strand"></div>
+                    <div class="hair-strand"></div>
+                    <div class="hair-strand"></div>
+                    <div class="hair-strand"></div>
+                    <div class="hair-strand"></div>
+                </div>
+
+                <!-- Head -->
+                <div class="cyborg-head">
+                    <div class="cyborg-face-human"></div>
+                    <div class="cyborg-face-mech">
+                        <div class="cyborg-circuits"></div>
+                    </div>
+                    <div class="cyborg-eye-human"></div>
+                    <div class="cyborg-eye-mech">
+                        <div class="cyborg-eye-ring"></div>
+                    </div>
+                    <div class="cyborg-nose"></div>
+                    <div class="cyborg-mouth"></div>
+                </div>
+
+                <!-- Neck & Shoulders -->
+                <div class="cyborg-neck"></div>
+                <div class="cyborg-collar"></div>
+                <div class="cyborg-shoulders"></div>
+
+                <!-- Left Arm (Human) -->
+                <div class="cyborg-arm-human">
+                    <div class="cyborg-hand-human"></div>
+                </div>
+
+                <!-- Right Arm (Mechanical) -->
+                <div class="cyborg-arm-mech">
+                    <div class="mech-joint mech-joint-1"></div>
+                    <div class="mech-joint mech-joint-2"></div>
+                    <div class="cyborg-hand-mech">
+                        <div class="mech-finger"></div>
+                        <div class="mech-finger"></div>
+                        <div class="mech-finger"></div>
+                        <div class="mech-finger"></div>
+                    </div>
+                </div>
+
+                <!-- Tech Particles -->
+                <div class="tech-particle"></div>
+                <div class="tech-particle"></div>
+                <div class="tech-particle"></div>
+            </div>
+
+            <!-- AI Orbital System (small, background) -->
+            <div class="global-ai-ecosystem" style="position: absolute; width: 350px; height: 350px; opacity: 0.3; z-index: -1;">
+                <div class="central-hub" style="width: 80px; height: 80px;">
+                    <div class="hub-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Typewriter
+        const texts = [
+            "LyDian'ın Yaratıcısı",
+            "İnsan-AI Hibriti",
+            "Geleceğin Vizyoneri",
+            "Yapay Zekanın Rehberi"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const el = document.getElementById('typewriter-cyborg');
+
+        function type() {
+            const current = texts[textIndex];
+            if (isDeleting) {
+                el.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                el.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === current.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                speed = 500;
+            }
+
+            setTimeout(type, speed);
+        }
+
+        type();
+    </script>
+</body>
+</html>

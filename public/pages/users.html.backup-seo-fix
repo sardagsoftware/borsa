@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - LyDian Ultra Pro</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="/styles/common.css" rel="stylesheet">
+
+    <style>
+        /* USER MANAGEMENT SPECIFIC STYLES */
+        .page-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .page-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-primary);
+        }
+
+        .btn.primary {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn.primary:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* FILTERS & SEARCH */
+        .filters-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-input, .filter-select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .filter-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        /* USERS TABLE */
+        .users-table-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .users-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .users-table tr:hover {
+            background: var(--hover-bg);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .user-email {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-badge.active {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent-primary);
+        }
+
+        .status-badge.inactive {
+            background: rgba(107, 114, 128, 0.1);
+            color: var(--text-muted);
+        }
+
+        .status-badge.suspended {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .role-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .action-btn.danger:hover {
+            color: #ef4444;
+        }
+
+        /* PAGINATION */
+        .pagination {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .pagination-info {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--hover-bg);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        /* MODAL STYLES */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem 1.5rem 0;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <!-- HEADER -->
+        <div class="header">
+            <button class="sidebar-toggle" onclick="goBack()">
+                <i class="ph ph-arrow-left"></i>
+            </button>
+            <div class="header-title">User Management</div>
+            <div class="system-status">
+                <div class="status-indicator"></div>
+                <div class="status-text">System operational</div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content" style="padding: 2rem; overflow-y: auto; height: calc(100vh - 80px);">
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <div class="page-title">User Management</div>
+                <div class="page-actions">
+                    <button class="btn" onclick="exportUsers()">
+                        <i class="ph ph-download"></i>
+                        Export
+                    </button>
+                    <button class="btn primary" onclick="showAddUserModal()">
+                        <i class="ph ph-plus"></i>
+                        Add User
+                    </button>
+                </div>
+            </div>
+
+            <!-- FILTERS -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <div class="filter-label">Search</div>
+                    <input type="text" class="filter-input" id="searchInput" placeholder="Search by name, email, or username..." onkeyup="filterUsers()">
+                </div>
+                <div class="filter-group">
+                    <div class="filter-label">Status</div>
+                    <select class="filter-select" id="statusFilter" onchange="filterUsers()">
+                        <option value="">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-label">Role</div>
+                    <select class="filter-select" id="roleFilter" onchange="filterUsers()">
+                        <option value="">All Roles</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                        <option value="superadmin">Super Admin</option>
+                        <option value="developer">Developer</option>
+                        <option value="analyst">Analyst</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-label">Actions</div>
+                    <button class="btn" onclick="clearFilters()">
+                        <i class="ph ph-funnel-x"></i>
+                        Clear
+                    </button>
+                </div>
+            </div>
+
+            <!-- USERS TABLE -->
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Last Activity</th>
+                            <th>2FA</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be populated here -->
+                    </tbody>
+                </table>
+
+                <!-- PAGINATION -->
+                <div class="pagination">
+                    <div class="pagination-info" id="paginationInfo">
+                        Showing 1-10 of 25 users
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" onclick="changePage(-1)" id="prevBtn">
+                            <i class="ph ph-caret-left"></i>
+                        </button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn" onclick="changePage(1)" id="nextBtn">
+                            <i class="ph ph-caret-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD/EDIT USER MODAL -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Add New User</div>
+                <button class="modal-close" onclick="closeUserModal()">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input type="text" class="form-input" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name</label>
+                        <input type="text" class="form-input" id="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" class="form-input" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="username">Username</label>
+                        <input type="text" class="form-input" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="role">Role</label>
+                        <select class="form-select" id="role" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                            <option value="developer">Developer</option>
+                            <option value="analyst">Analyst</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="department">Department</label>
+                        <input type="text" class="form-input" id="department">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="jobTitle">Job Title</label>
+                        <input type="text" class="form-input" id="jobTitle">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeUserModal()">Cancel</button>
+                <button class="btn primary" onclick="saveUser()">Save User</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GLOBAL STATE
+        let users = [];
+        let filteredUsers = [];
+        let currentPage = 1;
+        let usersPerPage = 10;
+        let editingUserId = null;
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUsers();
+        });
+
+        // LOAD USERS
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/users', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    users = data.users || [];
+                    filteredUsers = [...users];
+                    renderUsers();
+                } else {
+                    console.error('Failed to load users');
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+                // Show mock data for demonstration
+                loadMockUsers();
+            }
+        }
+
+        // MOCK DATA FOR DEMONSTRATION
+        function loadMockUsers() {
+            users = [
+                {
+                    id: '1',
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'john.doe@company.com',
+                    username: 'johndoe',
+                    role: 'admin',
+                    status: 'active',
+                    department: 'Engineering',
+                    jobTitle: 'Senior Developer',
+                    lastActivity: '2024-01-15T10:30:00Z',
+                    twoFactorEnabled: true,
+                    createdAt: '2024-01-01T00:00:00Z'
+                },
+                {
+                    id: '2',
+                    firstName: 'Jane',
+                    lastName: 'Smith',
+                    email: 'jane.smith@company.com',
+                    username: 'janesmith',
+                    role: 'user',
+                    status: 'active',
+                    department: 'Marketing',
+                    jobTitle: 'Marketing Manager',
+                    lastActivity: '2024-01-15T09:15:00Z',
+                    twoFactorEnabled: false,
+                    createdAt: '2024-01-02T00:00:00Z'
+                },
+                {
+                    id: '3',
+                    firstName: 'Bob',
+                    lastName: 'Wilson',
+                    email: 'bob.wilson@company.com',
+                    username: 'bobwilson',
+                    role: 'developer',
+                    status: 'inactive',
+                    department: 'Engineering',
+                    jobTitle: 'Frontend Developer',
+                    lastActivity: '2024-01-10T16:45:00Z',
+                    twoFactorEnabled: true,
+                    createdAt: '2024-01-03T00:00:00Z'
+                }
+            ];
+            filteredUsers = [...users];
+            renderUsers();
+        }
+
+        // RENDER USERS TABLE
+        function renderUsers() {
+            const tbody = document.getElementById('usersTableBody');
+            const startIndex = (currentPage - 1) * usersPerPage;
+            const endIndex = startIndex + usersPerPage;
+            const pageUsers = filteredUsers.slice(startIndex, endIndex);
+
+            tbody.innerHTML = pageUsers.map(user => `
+                <tr>
+                    <td>
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                ${(user.firstName?.[0] || '') + (user.lastName?.[0] || '')}
+                            </div>
+                            <div class="user-details">
+                                <div class="user-name">${user.firstName} ${user.lastName}</div>
+                                <div class="user-email">${user.email}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="role-badge">${user.role}</div>
+                    </td>
+                    <td>
+                        <div class="status-badge ${user.status}">${user.status}</div>
+                    </td>
+                    <td>
+                        ${formatDate(user.lastActivity)}
+                    </td>
+                    <td>
+                        ${user.twoFactorEnabled ?
+                            '<i class="ph ph-shield-check" style="color: var(--accent-primary);"></i>' :
+                            '<i class="ph ph-shield-slash" style="color: var(--text-muted);"></i>'
+                        }
+                    </td>
+                    <td>
+                        <div class="user-actions">
+                            <button class="action-btn" onclick="editUser('${user.id}')" title="Edit">
+                                <i class="ph ph-pencil"></i>
+                            </button>
+                            <button class="action-btn" onclick="viewUser('${user.id}')" title="View">
+                                <i class="ph ph-eye"></i>
+                            </button>
+                            <button class="action-btn" onclick="resetPassword('${user.id}')" title="Reset Password">
+                                <i class="ph ph-key"></i>
+                            </button>
+                            <button class="action-btn danger" onclick="deleteUser('${user.id}')" title="Delete">
+                                <i class="ph ph-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            updatePaginationInfo();
+        }
+
+        // FILTER USERS
+        function filterUsers() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const status = document.getElementById('statusFilter').value;
+            const role = document.getElementById('roleFilter').value;
+
+            filteredUsers = users.filter(user => {
+                const matchesSearch = !search ||
+                    user.firstName.toLowerCase().includes(search) ||
+                    user.lastName.toLowerCase().includes(search) ||
+                    user.email.toLowerCase().includes(search) ||
+                    user.username.toLowerCase().includes(search);
+
+                const matchesStatus = !status || user.status === status;
+                const matchesRole = !role || user.role === role;
+
+                return matchesSearch && matchesStatus && matchesRole;
+            });
+
+            currentPage = 1;
+            renderUsers();
+        }
+
+        // CLEAR FILTERS
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('roleFilter').value = '';
+            filteredUsers = [...users];
+            currentPage = 1;
+            renderUsers();
+        }
+
+        // PAGINATION
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+            if (direction === -1 && currentPage > 1) {
+                currentPage--;
+                renderUsers();
+            } else if (direction === 1 && currentPage < totalPages) {
+                currentPage++;
+                renderUsers();
+            }
+        }
+
+        function updatePaginationInfo() {
+            const totalUsers = filteredUsers.length;
+            const startIndex = (currentPage - 1) * usersPerPage + 1;
+            const endIndex = Math.min(currentPage * usersPerPage, totalUsers);
+
+            document.getElementById('paginationInfo').textContent =
+                `Showing ${startIndex}-${endIndex} of ${totalUsers} users`;
+        }
+
+        // MODAL FUNCTIONS
+        function showAddUserModal() {
+            editingUserId = null;
+            document.getElementById('modalTitle').textContent = 'Add New User';
+            document.getElementById('userForm').reset();
+            document.getElementById('userModal').classList.add('show');
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.remove('show');
+            editingUserId = null;
+        }
+
+        // USER ACTIONS
+        function editUser(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+
+            editingUserId = userId;
+            document.getElementById('modalTitle').textContent = 'Edit User';
+
+            // Populate form
+            document.getElementById('firstName').value = user.firstName;
+            document.getElementById('lastName').value = user.lastName;
+            document.getElementById('email').value = user.email;
+            document.getElementById('username').value = user.username;
+            document.getElementById('role').value = user.role;
+            document.getElementById('department').value = user.department || '';
+            document.getElementById('jobTitle').value = user.jobTitle || '';
+
+            document.getElementById('userModal').classList.add('show');
+        }
+
+        function viewUser(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+
+            alert(`User Details:\n\nName: ${user.firstName} ${user.lastName}\nEmail: ${user.email}\nRole: ${user.role}\nStatus: ${user.status}\n2FA: ${user.twoFactorEnabled ? 'Enabled' : 'Disabled'}`);
+        }
+
+        function resetPassword(userId) {
+            if (confirm('Are you sure you want to reset this user\'s password? They will receive an email with instructions.')) {
+                console.log('Resetting password for user:', userId);
+                alert('Password reset email sent to user.');
+            }
+        }
+
+        function deleteUser(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+
+            if (confirm(`Are you sure you want to delete ${user.firstName} ${user.lastName}? This action cannot be undone.`)) {
+                users = users.filter(u => u.id !== userId);
+                filteredUsers = filteredUsers.filter(u => u.id !== userId);
+                renderUsers();
+                console.log('User deleted:', userId);
+            }
+        }
+
+        async function saveUser() {
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                username: document.getElementById('username').value,
+                role: document.getElementById('role').value,
+                department: document.getElementById('department').value,
+                jobTitle: document.getElementById('jobTitle').value
+            };
+
+            // Validate
+            if (!formData.firstName || !formData.lastName || !formData.email || !formData.username) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            try {
+                let response;
+                if (editingUserId) {
+                    // Update existing user
+                    response = await fetch(`/api/users/${editingUserId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                } else {
+                    // Create new user
+                    response = await fetch('/api/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                }
+
+                if (response.ok) {
+                    closeUserModal();
+                    loadUsers();
+                    alert(editingUserId ? 'User updated successfully!' : 'User created successfully!');
+                } else {
+                    const error = await response.json();
+                    alert('Error: ' + error.message);
+                }
+            } catch (error) {
+                console.error('Error saving user:', error);
+
+                // Mock save for demonstration
+                if (editingUserId) {
+                    const userIndex = users.findIndex(u => u.id === editingUserId);
+                    if (userIndex !== -1) {
+                        users[userIndex] = { ...users[userIndex], ...formData };
+                    }
+                } else {
+                    const newUser = {
+                        id: Date.now().toString(),
+                        ...formData,
+                        status: 'active',
+                        twoFactorEnabled: false,
+                        lastActivity: new Date().toISOString(),
+                        createdAt: new Date().toISOString()
+                    };
+                    users.push(newUser);
+                }
+
+                filteredUsers = [...users];
+                renderUsers();
+                closeUserModal();
+                alert(editingUserId ? 'User updated successfully!' : 'User created successfully!');
+            }
+        }
+
+        function exportUsers() {
+            const csvContent = "data:text/csv;charset=utf-8," +
+                "Name,Email,Username,Role,Status,Department,Job Title,Last Activity,2FA Enabled\n" +
+                filteredUsers.map(user =>
+                    `"${user.firstName} ${user.lastName}","${user.email}","${user.username}","${user.role}","${user.status}","${user.department || ''}","${user.jobTitle || ''}","${formatDate(user.lastActivity)}","${user.twoFactorEnabled}"`
+                ).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "users_export.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // UTILITY FUNCTIONS
+        function formatDate(dateString) {
+            if (!dateString) return 'Never';
+            return new Date(dateString).toLocaleDateString('tr-TR', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function goBack() {
+            window.location.href = '/';
+        }
+
+        // Handle modal clicks
+        document.getElementById('userModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('userModal')) {
+                closeUserModal();
+            }
+        });
+    </script>
+</body>
+</html>
