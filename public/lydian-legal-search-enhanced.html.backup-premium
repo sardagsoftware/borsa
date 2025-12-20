@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/lydian-legal-search-enhanced" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/lydian-legal-search-enhanced" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/lydian-legal-search-enhanced" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/lydian-legal-search-enhanced" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/lydian-legal-search-enhanced" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/lydian-legal-search-enhanced" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/lydian-legal-search-enhanced" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/lydian-legal-search-enhanced" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/lydian-legal-search-enhanced" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+/* ============================================================
+   🏛️ LYDIAN LEGAL SEARCH - ENHANCED VERSION 2.0
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* LyDian Color System - Consistent with Homepage */
+    --lydian-primary: #00E0AE;
+    --lydian-secondary: #B86BFF;
+    --lydian-tertiary: #6E84FF;
+
+    /* Justice Theme Colors */
+    --justice-gold: #C4A962;
+    --justice-gold-bright: #D4B972;
+    --justice-maroon: #8B1538;
+    --justice-maroon-bright: #A01D48;
+
+    /* Dark Background System */
+    --bg-primary: #0A0A0F;
+    --bg-secondary: #1A1A24;
+    --bg-tertiary: #252530;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-card-hover: rgba(255, 255, 255, 0.06);
+
+    /* Text Colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B4B4C8;
+    --text-tertiary: #8888A0;
+    --text-muted: #666678;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--lydian-primary) 0%, var(--lydian-secondary) 100%);
+    --gradient-justice: linear-gradient(135deg, var(--justice-gold) 0%, var(--justice-maroon) 100%);
+    --gradient-bg: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 224, 174, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 224, 174, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 224, 174, 0.2);
+    --shadow-xl: 0 16px 48px rgba(0, 224, 174, 0.25);
+
+    /* Glass Morphism */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ============================================================
+   HEADER & NAVIGATION
+   ============================================================ */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 2rem;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--lydian-primary);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+
+.main-container {
+    margin-top: 80px;
+    padding: 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================================
+   SEARCH SECTION
+   ============================================================ */
+
+.search-section {
+    margin-bottom: 3rem;
+}
+
+.search-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.search-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-justice);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+.search-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.search-input-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    flex: 1;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--lydian-primary);
+    box-shadow: 0 0 0 4px rgba(0, 224, 174, 0.1);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-btn {
+    background: var(--gradient-justice);
+    border: none;
+    border-radius: 16px;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+.search-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-select {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--lydian-primary);
+}
+
+/* ============================================================
+   DOCUMENT UPLOAD SECTION
+   ============================================================ */
+
+.upload-section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 2px dashed var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+}
+
+.upload-section:hover {
+    border-color: var(--lydian-primary);
+    background: rgba(0, 224, 174, 0.05);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.upload-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.upload-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.upload-btn {
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#fileInput {
+    display: none;
+}
+
+/* ============================================================
+   RESULTS SECTION
+   ============================================================ */
+
+.results-section {
+    display: none;
+}
+
+.results-section.active {
+    display: block;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.results-count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.results-count span {
+    color: var(--lydian-primary);
+}
+
+.results-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    border-color: var(--lydian-primary);
+    background: rgba(0, 224, 174, 0.1);
+}
+
+.results-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.result-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.result-card:hover {
+    border-color: var(--lydian-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.result-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.result-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.meta-tag {
+    background: rgba(0, 224, 174, 0.1);
+    border: 1px solid rgba(0, 224, 174, 0.3);
+    border-radius: 8px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--lydian-primary);
+}
+
+.result-summary {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.result-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.relevance-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.score-bar {
+    width: 100px;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    transition: width 0.5s ease;
+}
+
+/* ============================================================
+   ANALYSIS MODAL
+   ============================================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border: 2px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--glass-border);
+}
+
+.modal-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    border-color: var(--lydian-primary);
+    color: var(--lydian-primary);
+}
+
+.analysis-section {
+    margin-bottom: 2rem;
+}
+
+.analysis-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.risk-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.risk-low { background: rgba(0, 224, 174, 0.2); color: var(--lydian-primary); }
+.risk-medium { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
+.risk-high { background: rgba(255, 87, 34, 0.2); color: #ff5722; }
+.risk-critical { background: rgba(244, 67, 54, 0.2); color: #f44336; }
+
+.clause-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.clause-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--lydian-primary);
+}
+
+.clause-summary {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   LOADING STATES
+   ============================================================ */
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 3rem;
+}
+
+.loading.active {
+    display: block;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--glass-border);
+    border-top-color: var(--lydian-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .search-title {
+        font-size: 2rem;
+    }
+
+    .search-input-wrapper {
+        flex-direction: column;
+    }
+
+    .results-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .modal-content {
+        margin: 1rem;
+    }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.result-card:nth-child(1) { animation-delay: 0.1s; }
+.result-card:nth-child(2) { animation-delay: 0.2s; }
+.result-card:nth-child(3) { animation-delay: 0.3s; }
+.result-card:nth-child(4) { animation-delay: 0.4s; }
+.result-card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+
+  <!-- Visual Rich Results & Images -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
+  "description": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/lydian-legal-search-enhanced.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/lydian-legal-search-enhanced-step1.jpg",
+      "url": "https://www.ailydian.com/lydian-legal-search-enhanced#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/lydian-legal-search-enhanced-step2.jpg",
+      "url": "https://www.ailydian.com/lydian-legal-search-enhanced#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/lydian-legal-search-enhanced-step3.jpg",
+      "url": "https://www.ailydian.com/lydian-legal-search-enhanced#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-legal-search-enhanced.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/lydian-legal-search-enhanced.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/lydian-legal-search-enhanced.png" />
+  <meta name="twitter:image:alt" content="LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-legal-search-enhanced-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-legal-search-enhanced-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-legal-search-enhanced-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/lydian-legal-search-enhanced.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/lydian-legal-search-enhanced.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/lydian-legal-search-enhanced.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/lydian-legal-search-enhanced.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/lydian-legal-search-enhanced.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/lydian-legal-search-enhanced.png" />
+  
+  
+
+  <!-- Visual Rich Results SEO -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "image": [
+    "https://www.ailydian.com/images/products/lydian-legal-search-enhanced/view-1.jpg",
+    "https://www.ailydian.com/images/products/lydian-legal-search-enhanced/view-2.jpg",
+    "https://www.ailydian.com/images/products/lydian-legal-search-enhanced/view-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/og/legal/lydian-legal-search-enhanced-main.jpg",
+    "https://www.ailydian.com/images/og/legal/lydian-legal-search-enhanced-alt.jpg"
+  ],
+  "description": "Hukuki yapay zeka ile avukatlık ve danışmanlık hizmetleri",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/pages/lydian-legal-search-enhanced/hero.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Av. LyDian Hukuk Ekibi",
+    "jobTitle": "Hukuki AI Uzmanları",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/authors/legal-team.jpg",
+      "width": 400,
+      "height": 400
+    },
+    "url": "https://www.ailydian.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-amp.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu - Video Rehber",
+  "description": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu hakkında detaylı video anlatım",
+  "thumbnailUrl": "https://www.ailydian.com/images/videos/lydian-legal-search-enhanced/poster.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT5M30S",
+  "contentUrl": "https://www.ailydian.com/videos/lydian-legal-search-enhanced.mp4",
+  "embedUrl": "https://www.ailydian.com/lydian-legal-search-enhanced#video"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu Nasıl Kullanılır",
+  "image": "https://www.ailydian.com/images/pages/lydian-legal-search-enhanced/hero.jpg",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Hesap Oluşturun",
+      "text": "LyDian AI platformunda ücretsiz hesap oluşturun",
+      "image": "https://www.ailydian.com/images/howto/lydian-legal-search-enhanced/step-1.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Özelliği Seçin",
+      "text": "İhtiyacınıza göre AI özelliğini seçin",
+      "image": "https://www.ailydian.com/images/howto/lydian-legal-search-enhanced/step-2.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Kullanmaya Başlayın",
+      "text": "Yapay zeka asistanınızla çalışmaya başlayın",
+      "image": "https://www.ailydian.com/images/howto/lydian-legal-search-enhanced/step-3.jpg"
+    }
+  ]
+}
+  </script>
+  <meta property="og:image" content="https://www.ailydian.com/images/pages/lydian-legal-search-enhanced/hero.jpg" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/pages/lydian-legal-search-enhanced/hero.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/legal/lydian-legal-search-enhanced.jpg" />
+  <meta name="twitter:image:alt" content="LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/images/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/images/icons/favicon-16x16.png" />
+  <!-- /Visual Rich Results SEO -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                ⚖️ LyDian Hukuk AI
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Ana Sayfa</a>
+                <a href="/lydian-legal-search.html" class="nav-link">Hukuk Asistanı</a>
+                <a href="/api-docs.html" class="nav-link">API Dokümantasyonu</a>
+                <a href="/developers.html" class="nav-link">Geliştiriciler</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-header">
+                <h1 class="search-title">Gelişmiş Hukuki Arama ve Analiz</h1>
+                <p class="search-subtitle">
+                    Türk hukuku kapsamında kanunlar, yönetmelikler, içtihatlar ve hukuki metinlerde AI destekli arama yapın
+                </p>
+            </div>
+
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Örn: iş sözleşmesinin feshi, kıdem tazminatı, tapu iptali davası..."
+                    >
+                    <button class="search-btn" onclick="performSearch()">
+                        🔍 Ara
+                    </button>
+                </div>
+
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Kategori</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="">Tüm Kategoriler</option>
+                            <option value="case_law">İçtihat</option>
+                            <option value="legislation">Kanun</option>
+                            <option value="regulations">Yönetmelik</option>
+                            <option value="legal_opinions">Hukuki Görüş</option>
+                            <option value="contracts">Sözleşme</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Yargı Bölgesi</label>
+                        <select id="jurisdictionFilter" class="filter-select">
+                            <option value="">Tüm Bölgeler</option>
+                            <option value="Turkey">Türkiye</option>
+                            <option value="European Union">Avrupa Birliği</option>
+                            <option value="International">Uluslararası</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Sıralama</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="relevance">İlgililik</option>
+                            <option value="date">Tarih (Yeni→Eski)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document Upload Section -->
+        <section class="upload-section" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📄</div>
+            <h2 class="upload-title">Hukuki Doküman Analizi</h2>
+            <p class="upload-subtitle">
+                Sözleşme, anlaşma veya hukuki metninizi yükleyin, AI ile detaylı analiz edin
+            </p>
+            <button class="upload-btn">Doküman Yükle</button>
+            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt" onchange="analyzeDocument(this.files[0])">
+        </section>
+
+        <!-- Loading State -->
+        <div class="loading" id="loadingState">
+            <div class="spinner"></div>
+            <p class="loading-text">AI ile arama yapılıyor...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <div class="results-header">
+                <div class="results-count">
+                    <span id="resultsCount">0</span> sonuç bulundu
+                </div>
+                <div class="results-actions">
+                    <button class="action-btn" onclick="exportResults()">📥 Dışa Aktar</button>
+                    <button class="action-btn" onclick="shareResults()">📤 Paylaş</button>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be populated here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Analysis Modal -->
+    <div class="modal" id="analysisModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Doküman Analizi</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+
+            <div id="analysisContent">
+                <!-- Analysis results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = window.location.origin;
+
+        // Search functionality
+        async function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+
+            if (!query || query.length < 2) {
+                alert('Lütfen en az 2 karakter giriniz');
+                return;
+            }
+
+            const category = document.getElementById('categoryFilter').value;
+            const jurisdiction = document.getElementById('jurisdictionFilter').value;
+            const sortBy = document.getElementById('sortFilter').value;
+
+            // Show loading
+            document.getElementById('loadingState').classList.add('active');
+            document.getElementById('resultsSection').classList.remove('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/legal/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query,
+                        category: category || undefined,
+                        jurisdiction: jurisdiction || undefined,
+                        sortBy,
+                        page: 1,
+                        limit: 10,
+                        includeSuggestions: true
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Arama başarısız oldu');
+                }
+
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                console.error('Search error:', error);
+                alert('Arama sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+            } finally {
+                document.getElementById('loadingState').classList.remove('active');
+            }
+        }
+
+        // Display search results
+        function displayResults(data) {
+            const resultsGrid = document.getElementById('resultsGrid');
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsCount = document.getElementById('resultsCount');
+
+            resultsGrid.innerHTML = '';
+            resultsCount.textContent = data.results.length;
+
+            data.results.forEach(result => {
+                const card = createResultCard(result);
+                resultsGrid.appendChild(card);
+            });
+
+            resultsSection.classList.add('active');
+        }
+
+        // Create result card
+        function createResultCard(result) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.onclick = () => showResultDetail(result);
+
+            const categoryLabels = {
+                'case_law': 'İçtihat',
+                'legislation': 'Kanun',
+                'regulations': 'Yönetmelik',
+                'legal_opinions': 'Hukuki Görüş',
+                'contracts': 'Sözleşme'
+            };
+
+            card.innerHTML = `
+                <div class="result-header">
+                    <div>
+                        <h3 class="result-title">${result.title}</h3>
+                        <div class="result-meta">
+                            <span class="meta-tag">${categoryLabels[result.category] || result.category}</span>
+                            <span class="meta-tag">${result.jurisdiction}</span>
+                            ${result.lawNumber ? `<span class="meta-tag">Kanun No: ${result.lawNumber}</span>` : ''}
+                            <span class="meta-tag">${new Date(result.date).toLocaleDateString('tr-TR')}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="result-summary">${result.summary}</p>
+                <div class="result-footer">
+                    <div class="relevance-score">
+                        <span>İlgililik</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: ${Math.min(100, result.relevanceScore)}%"></div>
+                        </div>
+                        <span>${Math.round(result.relevanceScore)}%</span>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Show result detail
+        function showResultDetail(result) {
+            const modal = document.getElementById('analysisModal');
+            const content = document.getElementById('analysisContent');
+
+            content.innerHTML = `
+                <div class="analysis-section">
+                    <h3 class="analysis-title">${result.title}</h3>
+                    <div class="result-meta">
+                        <span class="meta-tag">${result.category}</span>
+                        <span class="meta-tag">${result.jurisdiction}</span>
+                        ${result.lawNumber ? `<span class="meta-tag">Kanun No: ${result.lawNumber}</span>` : ''}
+                        ${result.court ? `<span class="meta-tag">${result.court}</span>` : ''}
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h4 class="analysis-title">Özet</h4>
+                    <p class="clause-summary">${result.summary}</p>
+                </div>
+
+                <div class="analysis-section">
+                    <h4 class="analysis-title">İçerik</h4>
+                    <p class="clause-summary">${result.content}</p>
+                </div>
+
+                ${result.relatedDocuments && result.relatedDocuments.length > 0 ? `
+                    <div class="analysis-section">
+                        <h4 class="analysis-title">İlgili Dokümanlar</h4>
+                        ${result.relatedDocuments.map(doc => `
+                            <div class="clause-item">
+                                <div class="clause-title">${doc.title}</div>
+                                <div class="result-meta">
+                                    <span class="meta-tag">${doc.category}</span>
+                                    <span class="meta-tag">${new Date(doc.date).toLocaleDateString('tr-TR')}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Analyze document
+        async function analyzeDocument(file) {
+            if (!file) return;
+
+            document.getElementById('loadingState').classList.add('active');
+            document.querySelector('.loading-text').textContent = 'Doküman analiz ediliyor...';
+
+            try {
+                const text = await file.text();
+
+                const response = await fetch(`${API_BASE}/api/legal/analyze`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text,
+                        analysisType: 'full',
+                        language: 'tr'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Analiz başarısız oldu');
+                }
+
+                const data = await response.json();
+                displayAnalysis(data.analysis);
+            } catch (error) {
+                console.error('Analysis error:', error);
+                alert('Analiz sırasında bir hata oluştu. Lütfen tekrar deneyin.');
+            } finally {
+                document.getElementById('loadingState').classList.remove('active');
+                document.querySelector('.loading-text').textContent = 'AI ile arama yapılıyor...';
+            }
+        }
+
+        // Display analysis results
+        function displayAnalysis(analysis) {
+            const modal = document.getElementById('analysisModal');
+            const content = document.getElementById('analysisContent');
+
+            const riskClass = `risk-${analysis.riskAssessment.overallRisk}`;
+
+            content.innerHTML = `
+                <div class="analysis-section">
+                    <h3 class="analysis-title">
+                        Doküman Türü
+                        <span class="meta-tag">${analysis.classification.display}</span>
+                    </h3>
+                    <p class="clause-summary">${analysis.classification.reasoning}</p>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">
+                        Risk Değerlendirmesi
+                        <span class="risk-badge ${riskClass}">
+                            ${analysis.riskAssessment.overallRisk.toUpperCase()}
+                        </span>
+                    </h3>
+                    <p class="clause-summary">Risk Skoru: ${analysis.riskAssessment.riskScore}/100</p>
+
+                    ${analysis.riskAssessment.risks.length > 0 ? `
+                        <h4 style="margin-top: 1rem; margin-bottom: 0.5rem;">Tespit Edilen Riskler:</h4>
+                        ${analysis.riskAssessment.risks.map(risk => `
+                            <div class="clause-item">
+                                <div class="clause-title">
+                                    ${risk.category}
+                                    <span class="risk-badge risk-${risk.severity}">${risk.severity}</span>
+                                </div>
+                                <p class="clause-summary">${risk.description}</p>
+                                <p class="clause-summary" style="margin-top: 0.5rem; color: var(--lydian-primary);">
+                                    <strong>Öneri:</strong> ${risk.recommendation}
+                                </p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                </div>
+
+                ${analysis.clauses.length > 0 ? `
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Anahtar Maddeler</h3>
+                        ${analysis.clauses.map(clause => `
+                            <div class="clause-item">
+                                <div class="clause-title">
+                                    ${clause.title}
+                                    <span class="meta-tag">${clause.importance}</span>
+                                </div>
+                                <p class="clause-summary">${clause.summary}</p>
+                                ${clause.risks && clause.risks.length > 0 ? `
+                                    <p class="clause-summary" style="margin-top: 0.5rem; color: #ff5722;">
+                                        <strong>Riskler:</strong> ${clause.risks.join(', ')}
+                                    </p>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+                ${analysis.recommendations.recommendations && analysis.recommendations.recommendations.length > 0 ? `
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Öneriler</h3>
+                        ${analysis.recommendations.recommendations.map(rec => `
+                            <div class="clause-item">
+                                <div class="clause-title">
+                                    ${rec.category}
+                                    <span class="meta-tag">${rec.priority}</span>
+                                </div>
+                                <p class="clause-summary">${rec.recommendation}</p>
+                                <p class="clause-summary" style="margin-top: 0.5rem;">
+                                    <strong>Uygulama:</strong> ${rec.implementation}
+                                </p>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Karmaşıklık Analizi</h3>
+                    <div class="clause-item">
+                        <div class="result-meta">
+                            <span class="meta-tag">Seviye: ${analysis.complexity.level.toUpperCase()}</span>
+                            <span class="meta-tag">Skor: ${analysis.complexity.score}/100</span>
+                            <span class="meta-tag">Kelime: ${analysis.complexity.metrics.wordCount}</span>
+                            <span class="meta-tag">Cümle: ${analysis.complexity.metrics.sentenceCount}</span>
+                            <span class="meta-tag">Hukuki Terim Yoğunluğu: ${analysis.complexity.metrics.legalTermDensity}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('analysisModal').classList.remove('active');
+        }
+
+        // Export results
+        function exportResults() {
+            alert('Dışa aktarma özelliği yakında eklenecek!');
+        }
+
+        // Share results
+        function shareResults() {
+            alert('Paylaşım özelliği yakında eklenecek!');
+        }
+
+        // Enter key support
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('analysisModal').addEventListener('click', (e) => {
+            if (e.target.id === 'analysisModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

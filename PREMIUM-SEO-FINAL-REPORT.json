@@ -1,0 +1,983 @@
+{
+  "timestamp": "2025-12-20T15:39:44.848Z",
+  "stats": {
+    "total": 139,
+    "totalSchemas": 556,
+    "totalImages": 2363
+  },
+  "results": [
+    {
+      "file": "/about",
+      "title": "Hakkımızda — LyDian AI Ekosistemi | Yapay Zeka Öncüleri",
+      "description": "LyDian AI, kurumsal yapay zeka çözümlerinde dünya lideri. 40+ dilde hizmet, 8 uz...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-advisor-hub",
+      "title": "AI Advisor Hub — 20 Uzman AI Danışmanı | İş, Finans, Sağlık, Mistik & Yaşam",
+      "description": "İş, finans, sağlık, yaşam koçu, mistik danışmanlık + Hayvan kovucu, frekans tera...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-assistant",
+      "title": "LyDian AI Assistant - Enterprise Virtual Intelligence Agent",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-chat",
+      "title": "AI Chat - LyDian | Advanced Conversational Intelligence",
+      "description": "LyDian AI Sohbet - Gelişmiş yapay zeka modelleriyle doğal konuşmalar yapın...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-cultural-advisor",
+      "title": "Kültürel Uyum Danışmanı | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-decision-matrix",
+      "title": "Karar Matrisi AI | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-governance-dashboard",
+      "title": "AI Yönetişim Kontrol Paneli - AILydian ACE",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-governance-demo",
+      "title": "AI Governance Dashboard - AILydian ACE",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-health-orchestrator",
+      "title": "Bütünsel Sağlık Orkestratörü | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-knowledge-assistant",
+      "title": "Bilgi Tabanı Asistanı | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-learning-path",
+      "title": "Öğrenme Yol Haritası | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-life-coach",
+      "title": "Akıllı Yaşam Koçu | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-meeting-insights",
+      "title": "Toplantı Analizi | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-ops-center",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "AI Training Operations Center - Monitoring, Benchmarks, Costs & Compliance...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-power-panel",
+      "title": "⚡ AI Power Panel - 21 Models Consolidated",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ai-startup-accelerator",
+      "title": "Startup Hızlandırıcı | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/analytics",
+      "title": "Analytics - LyDian | Enterprise AI Performance & Cost Metrics",
+      "description": "Enterprise AI Analytics Dashboard - Real-time metrics, cost analysis, performanc...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/api-docs",
+      "title": "Medical LyDian - API Documentation",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/api-reference",
+      "title": "API Reference - LyDian",
+      "description": "LyDian API Reference - Complete API documentation with examples...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/api",
+      "title": "API Dokümantasyonu — LyDian AI | Geliştiriciler için Güçlü API",
+      "description": "LyDian AI RESTful API ile uygulamalarınıza yapay zeka entegre edin. Kapsamlı dok...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/auth",
+      "title": "Giriş & Kayıt — LyDian AI | Ücretsiz Hesap Oluşturun",
+      "description": "LyDian AI hesabınızı oluşturun ve yapay zekanın gücünü keşfedin. Google, Microso...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/azure-dashboard",
+      "title": "LyDian Ultra Pro - Azure Dashboard",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/billing",
+      "title": "Fiyatlandırma & Faturalama — LyDian AI | Esnek Paketler",
+      "description": "LyDian AI esnek fiyatlandırma paketleri. Ücretsiz başlayın, kullandıkça ödeyin v...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/blog",
+      "title": "Blog - LyDian | AI Insights & Industry Updates",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cache-clear",
+      "title": "Cache Temizle - Lydian IQ",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cache-dashboard",
+      "title": "Önbellek Dashboard - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cancer-diagnosis-dashboard",
+      "title": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/careers",
+      "title": "Careers - LyDian | Join Our AI Innovation Team",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/changelog",
+      "title": "Changelog - LyDian | Platform Updates & Release Notes",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/chat",
+      "title": "AI Chat — Çok Modelli Yapay Zeka | LyDian Ultra AI Platform",
+      "description": "10+ AI modeli tek platformda. LyDian Quantum Reasoning, LyDian Velocity Engine, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-atg",
+      "title": "Otomatik Güven Ağı - LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-intelligence-grid",
+      "title": "Akıllı Şehir Platformu - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-map",
+      "title": "MAP - Model Doğrulama ve Kanıt | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-phn",
+      "title": "HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-rro",
+      "title": "RRO - Risk ve Dayanıklılık İşletim Sistemi | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-svf",
+      "title": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/civic-umo",
+      "title": "KMO - Kentsel Mobilite Orkestratörü | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/connector-demo",
+      "title": "🔌 Connector Integration Demo (Internal Testing Only)",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/connectors",
+      "title": "Global Connector Network | LyDian AI",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/console",
+      "title": "Console - LyDian | Developer Command Center",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/contact",
+      "title": "İletişim — LyDian AI | 7/24 Destek Ekibimizle Görüşün",
+      "description": "LyDian AI ile iletişime geçin. 7/24 canlı destek, kurumsal satış danışmanlığı ve...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cookies",
+      "title": "Cookie Policy - LyDian | Privacy & Data Management",
+      "description": "LyDian Çerez Politikası - Web sitemizde çerezlerin nasıl kullanıldığını öğrenin...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cost-dashboard",
+      "title": "💰 Cost Tracking Dashboard - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cyborg-demo",
+      "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Character",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/cyborg-orbital-full",
+      "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Orbital Hero",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/dashboard-email-yedek",
+      "title": "Dashboard - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/dashboard",
+      "title": "Dashboard — LyDian Ultra Pro | Premium AI Platform",
+      "description": "10+ AI modeli tek platformda. OX5C9E2B, AX9F7E2B 3.5, LyDian Vision Pro, DALL-E ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/developer-search",
+      "title": "LyDian Developer Search - Find APIs, SDKs, Documentation & Code Examples",
+      "description": "Search through LyDian's complete developer ecosystem - APIs, SDKs, documentation...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/developers",
+      "title": "Developers - LyDian | API & Integration Resources",
+      "description": "LyDian Developer Portal - SDK'lar, API araçları ve entegrasyon kılavuzları...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/docs",
+      "title": "Dokümantasyon — LyDian AI | Kapsamlı Kullanım Rehberleri",
+      "description": "LyDian AI platformu için eksiksiz dokümantasyon. Başlangıç rehberleri, API refer...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ecw-ailydian",
+      "title": "Ethics Tracker - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/ecw-demo",
+      "title": "ECW Integration Demo - Ailydian",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/education",
+      "title": "Education - LyDian | AI Learning & Training Hub",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/email-dashboard",
+      "title": "📧 LyDian Email Manager | Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/email-setup-status",
+      "title": "Email Setup Status - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/enterprise-index",
+      "title": "LyDian Enterprise AI Platform - Global Scale AI Solutions | Microsoft Azure, Google, Z.AI Integration",
+      "description": "Enterprise-grade AI platform integrating Microsoft Azure AI, Google Gemini, and ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/enterprise",
+      "title": "Kurumsal Çözümler — LyDian AI | Ölçeklenebilir AI Platformu",
+      "description": "Fortune 500 şirketlerinin tercihi LyDian AI kurumsal çözümleri. Özel entegrasyon...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/epic-fhir-dashboard",
+      "title": "Epic FHIR Dashboard - LyDian Medical AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/files",
+      "title": "Files - LyDian | Document Management & Storage",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/firildak-ai",
+      "title": "Fırıldak AI - Quantum-Powered Legal Intelligence",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/firildak",
+      "title": "fırıldak - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/force-refresh",
+      "title": "🔄 Cache Temizleme - LyDian IQ",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/forgot-password",
+      "title": "Forgot Password - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/google-studio",
+      "title": "AiLydians Studio - Enterprise AI Platform",
+      "description": "AiLydians Studio - Enterprise AI Platform - Azure, Google, LyDian Labs, Enterpri...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/governance-compliance",
+      "title": "Uyumluluk Kontrolleri - LyDian AI Yönetim Merkezi",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/governance-dashboard",
+      "title": "LyDian AI Yönetim Merkezi | AILydian",
+      "description": "LyDian AI Yönetim Merkezi - Model Kayıt, Uyumluluk ve Güven Endeksi...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/governance-leaderboard",
+      "title": "Güven Skoru Liderlik Tablosu - LyDian AI Yönetim Merkezi",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/governance-models",
+      "title": "Model Kayıt | LyDian AI Yönetim Merkezi",
+      "description": "AI Model Registry - Manage and track AI models lifecycle...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/governance-trust-index",
+      "title": "Güven Endeksi - LyDian AI Yönetim Merkezi",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/help",
+      "title": "Yardım Merkezi — LyDian AI | SSS, Rehberler ve Destek",
+      "description": "LyDian AI yardım merkezi. Sık sorulan sorular, video rehberler, kullanım kılavuz...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-3d-lydian",
+      "title": "🌐 LyDian - 3D Experience",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-cinematic-demo",
+      "title": "🎬 LyDian - Cinematic Hero Demo | The AI Revolution",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-particles-lydian",
+      "title": "✨ LyDian - AI Particle Universe",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-video-demo-1-neural",
+      "title": "🧠 Demo 1: Neural Network Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-video-demo-2-particles",
+      "title": "✨ Demo 2: Digital Particles Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-video-demo-3-matrix",
+      "title": "💚 Demo 3: Matrix Data Flow Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-video-demo-4-abstract",
+      "title": "🎨 Demo 4: Abstract AI Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hero-video-demos-index",
+      "title": "🎬 4K Video Hero - Demo Karşılaştırma | LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/hospital-dashboard",
+      "title": "Hospital Integration Dashboard - Lydian Medical",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/humain-home",
+      "title": "LyDian - Enterprise AI Platform",
+      "description": "LyDian enterprise AI platform - Transforming thoughts into actions through advan...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/i18n/MEDICAL-EXPERT-INTEGRATION",
+      "title": "LyDian Medical AI - Healthcare Intelligence Expert",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/image-generation",
+      "title": "Image Generation - LyDian | AI-Powered DALL-E 3 & Imagen 3",
+      "description": "LyDian Görsel Oluşturma - AI ile profesyonel görseller oluşturun...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/index",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu",
+      "description": "Tıbbi AI, Hukuki AI, IQ Testi ve 8 Uzman Danışman. 40+ dilde çok modelli yapay z...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/knowledge-base",
+      "title": "Knowledge Base - LyDian | AI-Powered Information Hub",
+      "description": "65 Milyon Makale • 84 Dil • 67 Uzmanlık Alanı - Tarım, Uzay, Tıp, İklim ve daha ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/legal-expert",
+      "title": "Legal AI — Hukuki Yapay Zeka | 7/24 Hukuk Asistanı",
+      "description": "AI destekli hukuki danışmanlık. Sözleşme analizi, dava araştırma, yasal doküman ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-hukukai-pro",
+      "title": "LyDian Hukuk AI - Küresel Hukuk Yapay Zeka Platformu",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-hukukai-v2",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-hukukai",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-iq-new-ui",
+      "title": "Lydian-IQ v4.1 - Yeni Arayüz ✨",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-iq-unified-demo",
+      "title": "Lydian-IQ Ultra | 72 Connector Platform",
+      "description": "Lydian-IQ Ultra - 72 Premium Connectors with Real-Time Integration...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-iq",
+      "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+      "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kulla...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-legal-chat",
+      "title": "LyDian Hukuk AI - Hukuki Danışmanlık Asistanı",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-legal-search-enhanced",
+      "title": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-legal-search-i18n",
+      "title": "LyDian AI",
+      "description": "Hukuki AI platformu - LyDian AI...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-legal-search",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-legal-universal",
+      "title": "LyDian Legal AI - Universal Legal Research & Analysis Platform",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-offline",
+      "title": "Offline - LyDian IQ",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/lydian-os",
+      "title": "LyDian OS - Global AI Operating System",
+      "description": "LyDian OS: Planet-scale AI operating system with attestation, compliance, and go...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/medical-ai-dashboard",
+      "title": "Medical AI Dashboard - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/medical-ai",
+      "title": "🩺 Medical AI Assistant - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/medical-dashboard",
+      "title": "Medical Dashboard - LyDian Platform",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/medical-expert",
+      "title": "Medical Expert — 7/24 AI Tıbbi Asistan | Sağlık",
+      "description": "AI destekli profesyonel sağlık danışmanlığı. Çok modelli teşhis desteği, tıbbi a...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/models",
+      "title": "AI Modelleri — LyDian AI | 50+ Güçlü Yapay Zeka Modeli",
+      "description": "LyDian AI platformunda 50+ son teknoloji yapay zeka modeli. OX5C9E2B, AX9F7E2B, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/monitoring",
+      "title": "System Monitoring Dashboard - LyDian AI",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/offline",
+      "title": "Offline - AiLydian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/omnireach-ai-creator",
+      "title": "OmniReach AI Creator Engine - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/pages/notifications",
+      "title": "Notifications - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/pages/settings",
+      "title": "Settings - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/pages/users",
+      "title": "User Management - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/performance-dashboard",
+      "title": "Performance Dashboard - AiLydian Ultra Pro",
+      "description": "Real-time performance monitoring and analytics dashboard...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/phase-l-results",
+      "title": "Phase L: Code Splitting Results - LyDian Platform",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/privacy",
+      "title": "Privacy Policy - LyDian | Data Protection & Security",
+      "description": "LyDian Gizlilik Politikası - Kişisel verilerinizin korunması ve güvenliği...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/quantum-test",
+      "title": "Quantum Computing — LyDian AI",
+      "description": "LyDian Quantum Computing Platform - VQE Molecular Simulation with BlueQubit...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/realistic-characters-demo",
+      "title": "🎭 LyDian - Gerçek Karakterler Demo | Realistic Human + AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/research",
+      "title": "Araştırma & Yenilikler — LyDian AI | Yapay Zeka Araştırmaları",
+      "description": "LyDian AI araştırma laboratuvarları. Son AI trendleri, teknik makaleler, case st...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/reset-password",
+      "title": "Reset Password - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/search-meter-demo",
+      "title": "Search Meter Demo - AiLydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/security-analytics",
+      "title": "Security Analytics Dashboard - Ailydian",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/seo-monitoring",
+      "title": "LyDian AI - Master SEO Monitoring Dashboard",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/settings",
+      "title": "Settings - LyDian | Account Configuration & Preferences",
+      "description": "LyDian - Ayarlar ve Hesap Yönetimi...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/sikayet-olustur",
+      "title": "Şikayet Oluştur - LCI | Lydian Complaint Intelligence",
+      "description": "LCI - Şikayetinizi KVKK uyumlu şekilde oluşturun ve çözüm bulun...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/status-dashboard",
+      "title": "Health Dashboard - LyDian",
+      "description": "LyDian Health Monitoring Dashboard - Real-time system status...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/status",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian Platform Status - Real-time system health and performance monitoring...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/system-status",
+      "title": "System Status - LyDian | Enterprise Infrastructure Monitoring",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/terms",
+      "title": "Terms of Service - LyDian | User Agreement & Policies",
+      "description": "LyDian Kullanım Koşulları - Platformumuzun kullanım şartları ve yasal bilgiler...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-auto-translate",
+      "title": "Auto Translation Test",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-backend-connection",
+      "title": "✅ Backend Bağlantı Testi - Lydian-IQ",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-chat-api",
+      "title": "Chat API Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-chat-buttons",
+      "title": "Chat Buttons Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-chat-ecw",
+      "title": "Chat ECW Test - Smoke Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-i18n-demo",
+      "title": "🌍 LyDian i18n System - Live Demo",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-language-system",
+      "title": "LyDian - Language System Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-legal",
+      "title": "LyDian Legal AI - Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test-translation",
+      "title": "Translation Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/test",
+      "title": "Lydian IQ Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/tokens",
+      "title": "Token System - LyDian | Blockchain-Based AI Credits",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/user-dashboard",
+      "title": "User Dashboard - Medical LyDian",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/verifyforzoho",
+      "title": "LyDian AI",
+      "description": "LyDian AI - LyDian AI...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    },
+    {
+      "file": "/video-ai",
+      "title": "Video AI - LyDian | AI Video Generation with Google Veo & Runway",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "schemasAdded": 4,
+      "imagesAdded": 17
+    }
+  ]
+}

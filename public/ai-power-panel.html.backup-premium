@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/ai-power-panel" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/ai-power-panel" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/ai-power-panel" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/ai-power-panel" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/ai-power-panel" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/ai-power-panel" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/ai-power-panel" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/ai-power-panel" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/ai-power-panel" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ AI Power Panel - 21 Models Consolidated</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .last-update {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Power Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .card.blue .card-value { color: #3b82f6; }
+        .card.green .card-value { color: #10b981; }
+        .card.purple .card-value { color: #8b5cf6; }
+        .card.orange .card-value { color: #f59e0b; }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th {
+            background: #f9fafb;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .model-name {
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .badge.dense { background: #dbeafe; color: #1e40af; }
+        .badge.moe { background: #fef3c7; color: #92400e; }
+        .badge.closed { background: #e0e7ff; color: #4338ca; }
+
+        .badge.azure { background: #cffafe; color: #155e75; }
+        .badge.openai { background: #d1fae5; color: #065f46; }
+        .badge.anthropic { background: #fce7f3; color: #9f1239; }
+        .badge.google { background: #fef9c3; color: #713f12; }
+        .badge.groq { background: #e9d5ff; color: #6b21a8; }
+        .badge.local { background: #f3f4f6; color: #374151; }
+
+        .badge.active { background: #d1fae5; color: #065f46; }
+        .badge.degraded { background: #fed7aa; color: #9a3412; }
+
+        .skeleton {
+            height: 2rem;
+            background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s ease-in-out infinite;
+            border-radius: 4px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .title {
+                font-size: 1.75rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
+
+  <!-- Visual Rich Results & Images -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "⚡ AI Power Panel - 21 Models Consolidated",
+  "description": "⚡ AI Power Panel - 21 Models Consolidated nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/ai-power-panel.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/ai-power-panel-step1.jpg",
+      "url": "https://www.ailydian.com/ai-power-panel#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/ai-power-panel-step2.jpg",
+      "url": "https://www.ailydian.com/ai-power-panel#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/ai-power-panel-step3.jpg",
+      "url": "https://www.ailydian.com/ai-power-panel#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-power-panel.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/ai-power-panel.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="⚡ AI Power Panel - 21 Models Consolidated" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/ai-power-panel.png" />
+  <meta name="twitter:image:alt" content="⚡ AI Power Panel - 21 Models Consolidated" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-power-panel-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-power-panel-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-power-panel-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/ai-power-panel.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/ai-power-panel.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/ai-power-panel.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/ai-power-panel.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/ai-power-panel.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/ai-power-panel.png" />
+  
+  
+
+  <!-- Visual Rich Results SEO -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "⚡ AI Power Panel - 21 Models Consolidated",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "image": [
+    "https://www.ailydian.com/images/products/ai-power-panel/view-1.jpg",
+    "https://www.ailydian.com/images/products/ai-power-panel/view-2.jpg",
+    "https://www.ailydian.com/images/products/ai-power-panel/view-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/og/general/ai-power-panel-main.jpg",
+    "https://www.ailydian.com/images/og/general/ai-power-panel-alt.jpg"
+  ],
+  "description": "Çok modelli yapay zeka platformu",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "⚡ AI Power Panel - 21 Models Consolidated",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/pages/ai-power-panel/hero.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "⚡ AI Power Panel - 21 Models Consolidated"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-square.png",
+      "width": 400,
+      "height": 400
+    },
+    "url": "https://www.ailydian.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-amp.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "⚡ AI Power Panel - 21 Models Consolidated - Video Rehber",
+  "description": "⚡ AI Power Panel - 21 Models Consolidated hakkında detaylı video anlatım",
+  "thumbnailUrl": "https://www.ailydian.com/images/videos/ai-power-panel/poster.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT5M30S",
+  "contentUrl": "https://www.ailydian.com/videos/ai-power-panel.mp4",
+  "embedUrl": "https://www.ailydian.com/ai-power-panel#video"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "⚡ AI Power Panel - 21 Models Consolidated Nasıl Kullanılır",
+  "image": "https://www.ailydian.com/images/pages/ai-power-panel/hero.jpg",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Hesap Oluşturun",
+      "text": "LyDian AI platformunda ücretsiz hesap oluşturun",
+      "image": "https://www.ailydian.com/images/howto/ai-power-panel/step-1.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Özelliği Seçin",
+      "text": "İhtiyacınıza göre AI özelliğini seçin",
+      "image": "https://www.ailydian.com/images/howto/ai-power-panel/step-2.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Kullanmaya Başlayın",
+      "text": "Yapay zeka asistanınızla çalışmaya başlayın",
+      "image": "https://www.ailydian.com/images/howto/ai-power-panel/step-3.jpg"
+    }
+  ]
+}
+  </script>
+  <meta property="og:image" content="https://www.ailydian.com/images/pages/ai-power-panel/hero.jpg" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/pages/ai-power-panel/hero.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="⚡ AI Power Panel - 21 Models Consolidated" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/general/ai-power-panel.jpg" />
+  <meta name="twitter:image:alt" content="⚡ AI Power Panel - 21 Models Consolidated" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/images/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/images/icons/favicon-16x16.png" />
+  <!-- /Visual Rich Results SEO -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="title">
+                    <span>⚡</span>
+                    AI Power Panel
+                </h1>
+                <p class="subtitle">21 Models Consolidated | Real-time Metrics | Azure Quotas Integrated</p>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="refreshData()" id="refreshBtn">🔄 Refresh</button>
+                <label style="color: white; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" id="autoRefresh" checked> Auto-refresh (30s)
+                </label>
+            </div>
+        </div>
+
+        <div class="last-update" id="lastUpdate">
+            Loading data...
+        </div>
+
+        <div class="content">
+            <section>
+                <h2 class="section-title">System Overview</h2>
+                <div class="cards-grid" id="cardsGrid">
+                    <!-- Cards will be inserted here -->
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Model Details</h2>
+                <div class="table-container">
+                    <table id="modelsTable">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Type</th>
+                                <th>Params(B)</th>
+                                <th>Active(B)</th>
+                                <th>FLOPs/tkn</th>
+                                <th>TPS</th>
+                                <th>TPM</th>
+                                <th>RPM</th>
+                                <th>p95(ms)</th>
+                                <th>Provider</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <span>✅ White-hat compliant</span>
+                <span>🔒 KVKK/GDPR/PDPL certified</span>
+                <span>🛡️ Zero PII</span>
+                <span>⚡ Real-time telemetry</span>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // 21 Model Registry
+        const MODELS = [
+            {id:'azure-OX7A3F8D',name:'Azure OX5C9E2B Turbo',type:'closed',paramsB:null,provider:'azure',deployment:'OX7A3F8D',status:'active'},
+            {id:'azure-gpt-35-turbo',name:'Azure OX1D4A7F Turbo',type:'closed',paramsB:null,provider:'azure',deployment:'gpt-35-turbo',status:'active'},
+            {id:'azure-dall-e-3',name:'Azure DALL-E 3',type:'closed',paramsB:null,provider:'azure',deployment:'dall-e-3',status:'active'},
+            {id:'GE6D8A4F',name:'LyDian Vision',type:'closed',paramsB:null,provider:'lydian-vision',status:'active'},
+            {id:'GE6D8A4F-vision',name:'LyDian Vision Vision',type:'closed',paramsB:null,provider:'lydian-vision',status:'active'},
+            {id:'text-bison',name:'Text-Bison',type:'closed',paramsB:null,provider:'lydian-vision',status:'active'},
+            {id:'openai-OX7A3F8D',name:'LyDian Labs OX5C9E2B Turbo',type:'closed',paramsB:null,provider:'lydian-labs',status:'active'},
+            {id:'openai-gpt-35-turbo',name:'LyDian Labs OX1D4A7F Turbo',type:'closed',paramsB:null,provider:'lydian-labs',status:'active'},
+            {id:'AX4D8C1A',name:'AX9F7E2B 3 Opus',type:'closed',paramsB:null,provider:'lydian-research',status:'active'},
+            {id:'AX9F7E2B-3-sonnet',name:'AX9F7E2B 3 Sonnet',type:'closed',paramsB:null,provider:'lydian-research',status:'active'},
+            {id:'AX2B6E9F',name:'AX9F7E2B 3 Haiku',type:'closed',paramsB:null,provider:'lydian-research',status:'active'},
+            {id:'groq-GX8E2D9A',name:'LyDian Velocity 70B (LyDian Acceleration)',type:'dense',paramsB:70,provider:'lydian-velocity',status:'active'},
+            {id:'GX4B7F3C',name:'Mixtral 8×7B (LyDian Acceleration)',type:'moe',paramsB:46.7,moe_k:2,moe_n:8,provider:'lydian-velocity',status:'active'},
+            {id:'llama2-70b-4096',name:'LyDian Velocity 2 70B (LyDian Acceleration)',type:'dense',paramsB:70,provider:'lydian-velocity',status:'active'},
+            {id:'llama-3.1-8b',name:'LyDian Velocity 8B',type:'dense',paramsB:8,provider:'local',status:'active'},
+            {id:'GX9A5E1D',name:'LyDian Velocity 70B',type:'dense',paramsB:70,provider:'local',status:'active'},
+            {id:'mistral-7b',name:'Mistral 7B',type:'dense',paramsB:7,provider:'local',status:'active'},
+            {id:'mixtral-8x22b',name:'Mixtral 8×22B',type:'moe',paramsB:176,moe_k:2,moe_n:8,provider:'local',status:'active'},
+            {id:'deepseek-r1',name:'DeepSeek R1',type:'dense',paramsB:671,provider:'local',status:'active'},
+            {id:'qwen-2.5-72b',name:'Qwen 2.5 72B',type:'dense',paramsB:72,provider:'local',status:'active'}
+        ];
+
+        let metricsData = new Map();
+        let autoRefreshInterval = null;
+
+        // Calculate active params
+        function calculateActiveParams(model) {
+            if (model.type === 'closed') return null;
+            if (model.type === 'dense') return model.paramsB;
+            if (model.type === 'moe' && model.moe_k && model.moe_n) {
+                return (model.paramsB / model.moe_n) * model.moe_k;
+            }
+            return null;
+        }
+
+        // Format numbers
+        function formatNumber(num, decimals = 1) {
+            if (num === null || num === undefined) return 'N/A';
+            if (num >= 1e12) return `${(num / 1e12).toFixed(decimals)}T`;
+            if (num >= 1e9) return `${(num / 1e9).toFixed(decimals)}B`;
+            if (num >= 1e6) return `${(num / 1e6).toFixed(decimals)}M`;
+            if (num >= 1e3) return `${(num / 1e3).toFixed(decimals)}K`;
+            return num.toFixed(decimals);
+        }
+
+        // Fetch metrics from API
+        async function fetchMetrics() {
+            try {
+                // Fetch telemetry for all models
+                const telemetryResponse = await fetch('/api/telemetry/models');
+                if (telemetryResponse.ok) {
+                    const data = await telemetryResponse.json();
+                    if (data.metrics) {
+                        data.metrics.forEach(m => {
+                            metricsData.set(m.modelId, { tps: m.tps, p95_ms: m.p95_ms });
+                        });
+                    }
+                }
+
+                // Fetch Azure quotas
+                const azureModels = MODELS.filter(m => m.provider === 'azure' && m.deployment);
+                for (const model of azureModels) {
+                    try {
+                        const response = await fetch(`/api/azure/quotas?deployment=${model.deployment}`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            metricsData.set(model.id, {
+                                TPM: data.TPM,
+                                RPM: data.RPM,
+                                p95_ms: data.p95_ms
+                            });
+                        }
+                    } catch (e) {
+                        console.error(`Failed to fetch Azure quotas for ${model.deployment}:`, e);
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch metrics:', error);
+            }
+        }
+
+        // Calculate summary data
+        function calculateSummary() {
+            let totalActiveParams = 0;
+            let totalTPS = 0;
+            let totalTPM = 0;
+            let totalRPM = 0;
+
+            MODELS.forEach(model => {
+                const activeParams = calculateActiveParams(model);
+                if (activeParams) totalActiveParams += activeParams;
+
+                const metrics = metricsData.get(model.id);
+                if (metrics) {
+                    if (metrics.tps) totalTPS += metrics.tps;
+                    if (metrics.TPM) {
+                        totalTPM += metrics.TPM;
+                        totalTPS += metrics.TPM / 60;
+                    }
+                    if (metrics.RPM) totalRPM += metrics.RPM;
+                }
+            });
+
+            return { totalActiveParams, totalTPS, totalTPM, totalRPM };
+        }
+
+        // Render cards
+        function renderCards() {
+            const summary = calculateSummary();
+            const cards = [
+                { icon: '🧠', title: 'ΣActive Params', value: `${formatNumber(summary.totalActiveParams)}B`, subtitle: 'Open models only', color: 'blue' },
+                { icon: '⚡', title: 'ΣThroughput', value: `${formatNumber(summary.totalTPS)} tps`, subtitle: 'Tokens per second', color: 'green' },
+                { icon: '📊', title: 'ΣTPM', value: formatNumber(summary.totalTPM), subtitle: 'Azure quotas', color: 'purple' },
+                { icon: '🔄', title: 'ΣRPM', value: formatNumber(summary.totalRPM), subtitle: 'Requests per minute', color: 'orange' }
+            ];
+
+            const html = cards.map(card => `
+                <div class="card ${card.color}">
+                    <div class="card-header">
+                        <span class="card-icon">${card.icon}</span>
+                        <div class="card-title">${card.title}</div>
+                    </div>
+                    <div class="card-value">${card.value}</div>
+                    <div class="card-subtitle">${card.subtitle}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('cardsGrid').innerHTML = html;
+        }
+
+        // Render table
+        function renderTable() {
+            const rows = MODELS.map(model => {
+                const activeParams = calculateActiveParams(model);
+                const flops = activeParams ? activeParams * 2 : null;
+                const metrics = metricsData.get(model.id);
+                const tps = metrics?.tps || (metrics?.TPM ? (metrics.TPM / 60).toFixed(1) : null);
+
+                return `
+                    <tr>
+                        <td class="model-name">${model.name}</td>
+                        <td><span class="badge ${model.type}">${model.type}</span></td>
+                        <td>${model.paramsB ? `${model.paramsB.toFixed(1)}B` : 'Proprietary'}</td>
+                        <td>${activeParams ? `${activeParams.toFixed(1)}B` : 'N/A'}</td>
+                        <td>${flops ? formatNumber(flops) + 'B' : 'N/A'}</td>
+                        <td>${tps || 'N/A'}</td>
+                        <td>${metrics?.TPM || 'N/A'}</td>
+                        <td>${metrics?.RPM || 'N/A'}</td>
+                        <td>${metrics?.p95_ms ? `${metrics.p95_ms}ms` : 'N/A'}</td>
+                        <td><span class="badge ${model.provider}">${model.provider}</span></td>
+                        <td><span class="badge ${model.status}">${model.status}</span></td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('tableBody').innerHTML = rows;
+        }
+
+        // Refresh data
+        async function refreshData() {
+            const btn = document.getElementById('refreshBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Loading...';
+
+            await fetchMetrics();
+            renderCards();
+            renderTable();
+
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent =
+                `Last updated: ${now.toLocaleTimeString()} | Active: ${MODELS.length}/${MODELS.length} models`;
+
+            btn.disabled = false;
+            btn.textContent = '🔄 Refresh';
+        }
+
+        // Auto-refresh toggle
+        document.getElementById('autoRefresh').addEventListener('change', (e) => {
+            if (e.target.checked) {
+                autoRefreshInterval = setInterval(refreshData, 30000);
+            } else {
+                clearInterval(autoRefreshInterval);
+            }
+        });
+
+        // Initial load
+        refreshData();
+        autoRefreshInterval = setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>

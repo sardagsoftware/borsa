@@ -1,0 +1,360 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta name="keywords" content="lydian ai, ai platform, quantum ai, velocity engine, enterprise ai, medical ai, legal ai, multilingual ai, hipaa compliant, real-time translation" />
+  <link rel="canonical" href="https://www.ailydian.com/test-auto-translate" />
+  <meta property="og:title" content="LyDian AI — Enterprise AI Platform | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta property="og:url" content="https://www.ailydian.com/test-auto-translate" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-auto-translate" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-auto-translate" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-auto-translate" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-auto-translate" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-auto-translate" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-auto-translate" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-auto-translate" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Translation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #10a37f;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0d8a6b;
+        }
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e3f2fd;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+
+  <!-- Visual Rich Results & Images -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Auto Translation Test",
+  "description": "Auto Translation Test nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/test-auto-translate.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/test-auto-translate-step1.jpg",
+      "url": "https://www.ailydian.com/test-auto-translate#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/test-auto-translate-step2.jpg",
+      "url": "https://www.ailydian.com/test-auto-translate#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/test-auto-translate-step3.jpg",
+      "url": "https://www.ailydian.com/test-auto-translate#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-auto-translate.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/test-auto-translate.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Auto Translation Test" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-auto-translate.png" />
+  <meta name="twitter:image:alt" content="Auto Translation Test" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-auto-translate-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-auto-translate-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-auto-translate-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/test-auto-translate.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/test-auto-translate.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/test-auto-translate.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/test-auto-translate.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/test-auto-translate.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/test-auto-translate.png" />
+  
+  
+
+  <!-- Visual Rich Results SEO -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Auto Translation Test",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "image": [
+    "https://www.ailydian.com/images/products/test-auto-translate/view-1.jpg",
+    "https://www.ailydian.com/images/products/test-auto-translate/view-2.jpg",
+    "https://www.ailydian.com/images/products/test-auto-translate/view-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/og/general/test-auto-translate-main.jpg",
+    "https://www.ailydian.com/images/og/general/test-auto-translate-alt.jpg"
+  ],
+  "description": "Çok modelli yapay zeka platformu",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Auto Translation Test",
+  "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/pages/test-auto-translate/hero.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "Auto Translation Test"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-square.png",
+      "width": 400,
+      "height": 400
+    },
+    "url": "https://www.ailydian.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-amp.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Auto Translation Test - Video Rehber",
+  "description": "Auto Translation Test hakkında detaylı video anlatım",
+  "thumbnailUrl": "https://www.ailydian.com/images/videos/test-auto-translate/poster.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT5M30S",
+  "contentUrl": "https://www.ailydian.com/videos/test-auto-translate.mp4",
+  "embedUrl": "https://www.ailydian.com/test-auto-translate#video"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Auto Translation Test Nasıl Kullanılır",
+  "image": "https://www.ailydian.com/images/pages/test-auto-translate/hero.jpg",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Hesap Oluşturun",
+      "text": "LyDian AI platformunda ücretsiz hesap oluşturun",
+      "image": "https://www.ailydian.com/images/howto/test-auto-translate/step-1.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Özelliği Seçin",
+      "text": "İhtiyacınıza göre AI özelliğini seçin",
+      "image": "https://www.ailydian.com/images/howto/test-auto-translate/step-2.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Kullanmaya Başlayın",
+      "text": "Yapay zeka asistanınızla çalışmaya başlayın",
+      "image": "https://www.ailydian.com/images/howto/test-auto-translate/step-3.jpg"
+    }
+  ]
+}
+  </script>
+  <meta property="og:image" content="https://www.ailydian.com/images/pages/test-auto-translate/hero.jpg" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/pages/test-auto-translate/hero.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Auto Translation Test" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/general/test-auto-translate.jpg" />
+  <meta name="twitter:image:alt" content="Auto Translation Test" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/images/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/images/icons/favicon-16x16.png" />
+  <!-- /Visual Rich Results SEO -->
+</head>
+<body>
+    <div class="controls">
+        <h1>🌍 Auto Translation Test</h1>
+        <div class="lang-buttons">
+            <button onclick="testTranslate('tr')">🇹🇷 Türkçe</button>
+            <button onclick="testTranslate('en')">🇺🇸 English</button>
+            <button onclick="testTranslate('de')">🇩🇪 Deutsch</button>
+            <button onclick="testTranslate('fr')">🇫🇷 Français</button>
+            <button onclick="testTranslate('ru')">🇷🇺 Русский</button>
+            <button onclick="testTranslate('zh')">🇨🇳 中文</button>
+            <button onclick="testTranslate('ja')">🇯🇵 日本語</button>
+            <button onclick="testTranslate('es')">🇪🇸 Español</button>
+            <button onclick="testTranslate('ar')">🇸🇦 العربية</button>
+        </div>
+        <div id="status" class="status"></div>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to LyDian</h1>
+        <h2>Advanced AI Platform</h2>
+        <p>This is a professional AI platform with multi-language support powered by Azure OpenAI.</p>
+        <p>Features include real-time translation, intelligent caching, and seamless user experience.</p>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li>Real-time AI Translation</li>
+            <li>Multi-Provider AI Models</li>
+            <li>Enterprise Security</li>
+            <li>Advanced Analytics</li>
+        </ul>
+
+        <div>
+            <button class="btn">Get Started</button>
+            <button class="btn">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Translation Scripts -->
+    <!-- <script src="/js/i18n-keys.js"></script> DISABLED -->
+    <!-- <script src="/js/translation.js"></script> DISABLED -->
+
+    <script>
+        function showStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = 'status ' + type;
+        }
+
+        async function testTranslate(lang) {
+            console.log('🌍 Starting translation to:', lang);
+            showStatus(`Translating to ${lang.toUpperCase()}...`, 'info');
+
+            try {
+                // Check if translation manager exists
+                if (!console.log("Translation disabled") && false) {
+                    throw new Error('Translation system not loaded');
+                }
+
+                // Translate the page
+                await console.log("Translation disabled") && false.change(lang);
+
+                showStatus(`✅ Successfully translated to ${lang.toUpperCase()}`, 'success');
+                console.log('✅ Translation completed');
+            } catch (error) {
+                showStatus(`❌ Error: ${error.message}`, 'error');
+                console.error('❌ Translation error:', error);
+            }
+        }
+
+        // Show initial status
+        window.addEventListener('DOMContentLoaded', () => {
+            if (console.log("Translation disabled") && false) {
+                showStatus('✅ Translation system ready. Click a language to translate.', 'success');
+                console.log('✅ AILYDIAN_LANG loaded:', console.log("Translation disabled") && false);
+            } else {
+                showStatus('❌ Translation system not loaded', 'error');
+                console.error('❌ AILYDIAN_LANG not found');
+            }
+        });
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

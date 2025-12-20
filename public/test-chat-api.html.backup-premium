@@ -1,0 +1,334 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/test-chat-api" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/test-chat-api" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-chat-api" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-chat-api" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-chat-api" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-chat-api" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-chat-api" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-chat-api" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-chat-api" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #10A37F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0D8F6E;
+        }
+        #result {
+            background: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .success {
+            color: #10A37F;
+        }
+        .error {
+            color: #FF6B4A;
+        }
+    </style>
+
+  <!-- Visual Rich Results & Images -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Chat API Test",
+  "description": "Chat API Test nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/test-chat-api.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/test-chat-api-step1.jpg",
+      "url": "https://www.ailydian.com/test-chat-api#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/test-chat-api-step2.jpg",
+      "url": "https://www.ailydian.com/test-chat-api#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/test-chat-api-step3.jpg",
+      "url": "https://www.ailydian.com/test-chat-api#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-api.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/test-chat-api.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Chat API Test" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-chat-api.png" />
+  <meta name="twitter:image:alt" content="Chat API Test" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-api-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-api-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-api-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/test-chat-api.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/test-chat-api.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/test-chat-api.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/test-chat-api.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/test-chat-api.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/test-chat-api.png" />
+  
+  
+
+  <!-- Visual Rich Results SEO -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Chat API Test",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "image": [
+    "https://www.ailydian.com/images/products/test-chat-api/view-1.jpg",
+    "https://www.ailydian.com/images/products/test-chat-api/view-2.jpg",
+    "https://www.ailydian.com/images/products/test-chat-api/view-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/og/tech/test-chat-api-main.jpg",
+    "https://www.ailydian.com/images/og/tech/test-chat-api-alt.jpg"
+  ],
+  "description": "Gelişmiş API ve geliştirici araçları",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chat API Test",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/pages/test-chat-api/hero.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "Chat API Test"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "LyDian Geliştirici Ekibi",
+    "jobTitle": "Yazılım Mimarı",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/authors/dev-team.jpg",
+      "width": 400,
+      "height": 400
+    },
+    "url": "https://www.ailydian.com/developers"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-amp.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Chat API Test - Video Rehber",
+  "description": "Chat API Test hakkında detaylı video anlatım",
+  "thumbnailUrl": "https://www.ailydian.com/images/videos/test-chat-api/poster.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT5M30S",
+  "contentUrl": "https://www.ailydian.com/videos/test-chat-api.mp4",
+  "embedUrl": "https://www.ailydian.com/test-chat-api#video"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Chat API Test Nasıl Kullanılır",
+  "image": "https://www.ailydian.com/images/pages/test-chat-api/hero.jpg",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Hesap Oluşturun",
+      "text": "LyDian AI platformunda ücretsiz hesap oluşturun",
+      "image": "https://www.ailydian.com/images/howto/test-chat-api/step-1.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Özelliği Seçin",
+      "text": "İhtiyacınıza göre AI özelliğini seçin",
+      "image": "https://www.ailydian.com/images/howto/test-chat-api/step-2.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Kullanmaya Başlayın",
+      "text": "Yapay zeka asistanınızla çalışmaya başlayın",
+      "image": "https://www.ailydian.com/images/howto/test-chat-api/step-3.jpg"
+    }
+  ]
+}
+  </script>
+  <meta property="og:image" content="https://www.ailydian.com/images/pages/test-chat-api/hero.jpg" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/pages/test-chat-api/hero.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Chat API Test" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/tech/test-chat-api.jpg" />
+  <meta name="twitter:image:alt" content="Chat API Test" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/images/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/images/icons/favicon-16x16.png" />
+  <!-- /Visual Rich Results SEO -->
+</head>
+<body>
+    <h1>🧪 Chat API Test</h1>
+
+    <div class="test-section">
+        <h2>Test /api/chat/specialized</h2>
+        <button onclick="testChatAPI()">Test API</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function testChatAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '⏳ Testing API...';
+
+            try {
+                console.log('🔍 Sending request to /api/chat/specialized...');
+
+                const response = await fetch('/api/chat/specialized', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept-Language': 'tr-TR',
+                        'Content-Language': 'tr'
+                    },
+                    body: JSON.stringify({
+                        message: 'Merhaba, test mesajı',
+                        aiType: 'general',
+                        temperature: 0.7,
+                        max_tokens: 2048,
+                        history: [],
+                        language: 'tr',
+                        locale: 'tr-TR'
+                    })
+                });
+
+                console.log('📡 Response status:', response.status);
+                console.log('📡 Response ok:', response.ok);
+                console.log('📡 Response headers:', [...response.headers.entries()]);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Response data:', data);
+
+                resultDiv.innerHTML = `<div class="success">✅ SUCCESS!</div>\n\n` +
+                    `Status: ${response.status}\n` +
+                    `Provider: ${data.provider}\n` +
+                    `AI Type: ${data.aiType}\n\n` +
+                    `Response:\n${data.response}\n\n` +
+                    `Full JSON:\n${JSON.stringify(data, null, 2)}`;
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                resultDiv.innerHTML = `<div class="error">❌ ERROR!</div>\n\n` +
+                    `Message: ${error.message}\n` +
+                    `Stack: ${error.stack}`;
+            }
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/omnireach-ai-creator" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/omnireach-ai-creator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/omnireach-ai-creator" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/omnireach-ai-creator" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/omnireach-ai-creator" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/omnireach-ai-creator" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/omnireach-ai-creator" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/omnireach-ai-creator" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/omnireach-ai-creator" />
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniReach AI Creator Engine - Ailydian</title>
+
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/lydian-favicon.png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg-0: #0A0B0D;
+      --bg-1: #FFFFFF;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-2: rgba(255, 255, 255, 0.05);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --txt-1: #FFFFFF;
+      --txt-2: #B0B0B0;
+      --accent-1: #00E0AE;
+      --accent-2: #6E84FF;
+      --accent-3: #B86BFF;
+      --danger: #FF4757;
+      --warning: #FFA502;
+      --success: #26DE81;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.15), transparent 60%),
+                  radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.12), transparent 65%),
+                  var(--bg-0);
+      color: var(--txt-1);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid var(--stroke);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--txt-1);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand svg {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      color: #FFF;
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes subtle-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(110, 132, 255, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 20px 5px rgba(110, 132, 255, 0.3);
+      }
+    }
+
+    @keyframes gentle-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-guide {
+      position: relative;
+      overflow: hidden;
+      animation: subtle-glow 3s ease-in-out infinite;
+    }
+
+    .btn-guide::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-guide:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-guide svg {
+      animation: gentle-bounce 2s ease-in-out infinite;
+    }
+
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--stroke);
+      color: var(--txt-1);
+    }
+
+    .btn-outline:hover {
+      background: var(--glass);
+      border-color: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      color: #FFF;
+      box-shadow: 0 8px 30px rgba(110, 132, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(110, 132, 255, 0.6);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, rgba(110, 132, 255, 0.1), rgba(184, 107, 255, 0.1));
+      border-radius: 24px;
+      margin-bottom: 3rem;
+      border: 1px solid var(--stroke);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(110, 132, 255, 0.1), transparent 30%);
+      animation: rotate 8s linear infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFF, var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--txt-2);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Dashboard Grid */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--txt-1);
+    }
+
+    .nav-item {
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--txt-2);
+      font-weight: 600;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: var(--glass-2);
+      color: var(--accent-2);
+      border-left: 3px solid var(--accent-2);
+      transform: translateX(5px);
+    }
+
+    .nav-item svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover svg {
+      transform: scale(1.2);
+    }
+
+    /* Main Content */
+    .main-content {
+      display: grid;
+      gap: 2rem;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(110, 132, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(110, 132, 255, 0.3);
+      border-color: var(--accent-2);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--txt-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--txt-1);
+    }
+
+    .stat-change {
+      font-size: 12px;
+      margin-top: 0.5rem;
+    }
+
+    .stat-change.positive {
+      color: var(--success);
+    }
+
+    /* Content Panels */
+    .panel {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 2rem;
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--txt-1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Script Editor */
+    .editor {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 1.5rem;
+      min-height: 300px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      color: var(--txt-1);
+      font-size: 14px;
+      resize: vertical;
+      width: 100%;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .editor:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px rgba(110, 132, 255, 0.2);
+    }
+
+    /* Avatar Preview */
+    .avatar-preview {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px dashed var(--stroke);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .avatar-preview:hover {
+      border-color: var(--accent-2);
+    }
+
+    .avatar-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 20px 60px rgba(110, 132, 255, 0.4);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 20px 60px rgba(110, 132, 255, 0.4); }
+      50% { box-shadow: 0 20px 80px rgba(110, 132, 255, 0.8); }
+    }
+
+    /* Voice Waveform */
+    .waveform {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 120px;
+    }
+
+    .wave-bar {
+      width: 4px;
+      background: var(--accent-2);
+      border-radius: 4px;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { height: 20px; }
+      50% { height: 80px; }
+    }
+
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.5s; }
+
+    /* Render Pipeline */
+    .pipeline {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .pipeline-step {
+      min-width: 200px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .pipeline-step.completed {
+      border-color: var(--success);
+    }
+
+    .pipeline-step.processing {
+      border-color: var(--accent-2);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(110, 132, 255, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(110, 132, 255, 0); }
+    }
+
+    /* Platform Grid */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .platform-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .platform-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-2);
+      box-shadow: 0 8px 30px rgba(110, 132, 255, 0.3);
+    }
+
+    .platform-icon svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .platform-card:hover .platform-icon svg {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .platform-name {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .platform-status {
+      font-size: 12px;
+      color: var(--txt-2);
+    }
+
+    .platform-status.connected {
+      color: var(--success);
+    }
+
+    /* Compliance Badge */
+    .compliance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .compliance-badge.secure {
+      background: rgba(38, 222, 129, 0.2);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    /* Form Groups */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--txt-1);
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--stroke);
+      border-radius: 8px;
+      color: var(--txt-1);
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px rgba(110, 132, 255, 0.2);
+    }
+
+    /* Modal/Popup */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--txt-1);
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--danger);
+      transform: rotate(90deg);
+    }
+
+    .modal h2 {
+      margin-bottom: 1.5rem;
+      color: var(--txt-1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+    }
+
+    .modal-section h3 {
+      color: var(--accent-2);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-section p, .modal-section ul {
+      color: var(--txt-2);
+      line-height: 1.6;
+    }
+
+    .modal-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .modal-section li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: start;
+      gap: 10px;
+    }
+
+    .modal-section li::before {
+      content: '→';
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .modal {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+      }
+    }
+  </style>
+
+  <!-- Visual Rich Results & Images -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "OmniReach AI Creator Engine - Ailydian",
+  "description": "OmniReach AI Creator Engine - Ailydian nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/omnireach-ai-creator.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/omnireach-ai-creator-step1.jpg",
+      "url": "https://www.ailydian.com/omnireach-ai-creator#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/omnireach-ai-creator-step2.jpg",
+      "url": "https://www.ailydian.com/omnireach-ai-creator#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/omnireach-ai-creator-step3.jpg",
+      "url": "https://www.ailydian.com/omnireach-ai-creator#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/omnireach-ai-creator.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/omnireach-ai-creator.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="OmniReach AI Creator Engine - Ailydian" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/omnireach-ai-creator.png" />
+  <meta name="twitter:image:alt" content="OmniReach AI Creator Engine - Ailydian" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/omnireach-ai-creator-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/omnireach-ai-creator-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/omnireach-ai-creator-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/omnireach-ai-creator.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/omnireach-ai-creator.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/omnireach-ai-creator.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/omnireach-ai-creator.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/omnireach-ai-creator.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/omnireach-ai-creator.png" />
+  
+  
+
+  <!-- Visual Rich Results SEO -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "OmniReach AI Creator Engine - Ailydian",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "image": [
+    "https://www.ailydian.com/images/products/omnireach-ai-creator/view-1.jpg",
+    "https://www.ailydian.com/images/products/omnireach-ai-creator/view-2.jpg",
+    "https://www.ailydian.com/images/products/omnireach-ai-creator/view-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/og/general/omnireach-ai-creator-main.jpg",
+    "https://www.ailydian.com/images/og/general/omnireach-ai-creator-alt.jpg"
+  ],
+  "description": "Çok modelli yapay zeka platformu",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OmniReach AI Creator Engine - Ailydian",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/pages/omnireach-ai-creator/hero.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "OmniReach AI Creator Engine - Ailydian"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-square.png",
+      "width": 400,
+      "height": 400
+    },
+    "url": "https://www.ailydian.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/lydian-logo-amp.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "OmniReach AI Creator Engine - Ailydian - Video Rehber",
+  "description": "OmniReach AI Creator Engine - Ailydian hakkında detaylı video anlatım",
+  "thumbnailUrl": "https://www.ailydian.com/images/videos/omnireach-ai-creator/poster.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT5M30S",
+  "contentUrl": "https://www.ailydian.com/videos/omnireach-ai-creator.mp4",
+  "embedUrl": "https://www.ailydian.com/omnireach-ai-creator#video"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "OmniReach AI Creator Engine - Ailydian Nasıl Kullanılır",
+  "image": "https://www.ailydian.com/images/pages/omnireach-ai-creator/hero.jpg",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Hesap Oluşturun",
+      "text": "LyDian AI platformunda ücretsiz hesap oluşturun",
+      "image": "https://www.ailydian.com/images/howto/omnireach-ai-creator/step-1.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Özelliği Seçin",
+      "text": "İhtiyacınıza göre AI özelliğini seçin",
+      "image": "https://www.ailydian.com/images/howto/omnireach-ai-creator/step-2.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Kullanmaya Başlayın",
+      "text": "Yapay zeka asistanınızla çalışmaya başlayın",
+      "image": "https://www.ailydian.com/images/howto/omnireach-ai-creator/step-3.jpg"
+    }
+  ]
+}
+  </script>
+  <meta property="og:image" content="https://www.ailydian.com/images/pages/omnireach-ai-creator/hero.jpg" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/pages/omnireach-ai-creator/hero.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="OmniReach AI Creator Engine - Ailydian" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/general/omnireach-ai-creator.jpg" />
+  <meta name="twitter:image:alt" content="OmniReach AI Creator Engine - Ailydian" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/images/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/images/icons/favicon-16x16.png" />
+  <!-- /Visual Rich Results SEO -->
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/index.html" class="brand">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#grad1)"/>
+          <path d="M16 8L20 12L16 16L12 12L16 8Z" fill="white" opacity="0.9"/>
+          <path d="M16 16L20 20L16 24L12 20L16 16Z" fill="white" opacity="0.7"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#6E84FF"/>
+              <stop offset="100%" stop-color="#B86BFF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        OmniReach AI Creator
+        <span class="badge">PREMIUM</span>
+      </a>
+      <div class="nav-btns">
+        <button class="btn btn-outline btn-guide" onclick="openGuideModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <circle cx="12" cy="17" r="0.5" fill="currentColor"/>
+          </svg>
+          Nasıl Kullanılır
+        </button>
+        <a href="/index.html" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Ana Sayfa
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-content">
+        <h1>AI-Powered Content Creator Engine</h1>
+        <p>Yapay zeka destekli avatar, senaryo, ses sentezi ve çoklu platform yayımlama sistemi. YouTube, Instagram, Facebook, TikTok ve X için etik ve profesyonel içerik üretimi.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+          <button class="btn btn-primary" onclick="switchPanel('creator')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+            Yeni İçerik Oluştur
+          </button>
+          <button class="btn btn-outline" onclick="switchPanel('jobs')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+              <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+            </svg>
+            İşlerim
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Toplam İçerik</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change positive">Başlamaya hazır</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Aktif Projeler</div>
+        <div class="stat-value">0</div>
+        <div class="stat-change positive">İlk içeriğinizi oluşturun</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Platform Bağlantıları</div>
+        <div class="stat-value">0/5</div>
+        <div class="stat-change positive">Platformları bağlayın</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Compliance Skoru</div>
+        <div class="stat-value">100%</div>
+        <div class="stat-change positive">Sistem güvenli</div>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-title">Kontrol Paneli</div>
+        <div class="nav-item active" onclick="switchPanel('creator')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+            <line x1="7" y1="2" x2="7" y2="22"/>
+            <line x1="17" y1="2" x2="17" y2="22"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+          </svg>
+          İçerik Oluşturucu
+        </div>
+        <div class="nav-item" onclick="switchPanel('jobs')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+            <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+          </svg>
+          İşlerim
+        </div>
+        <div class="nav-item" onclick="switchPanel('platforms')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Platform Bağlantıları
+        </div>
+        <div class="nav-item" onclick="switchPanel('settings')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"/>
+          </svg>
+          Ayarlar
+        </div>
+        <div class="nav-item" onclick="switchPanel('compliance')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Compliance
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Content Creator Panel -->
+        <div id="panel-creator" class="panel active">
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+            </svg>
+            Yeni İçerik Oluştur
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Proje Adı</label>
+            <input type="text" class="form-input" placeholder="Örn: AI Teknolojileri Serisi #1">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Script / Senaryo</label>
+            <textarea class="editor" placeholder="İçerik senaryonuzu buraya yazın veya AI ile otomatik oluşturun..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+            <div>
+              <label class="form-label">Avatar Seçimi</label>
+              <div class="avatar-preview">
+                <div class="avatar-placeholder">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <p style="color: var(--txt-2);">Avatar önizlemesi</p>
+                <button class="btn btn-outline" style="margin-top: 1rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  Avatar Seç
+                </button>
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Voice Profile</label>
+              <div class="form-group">
+                <select class="form-select">
+                  <option>Türkçe - Profesyonel Erkek</option>
+                  <option>Türkçe - Profesyonel Kadın</option>
+                  <option>English - Professional Male</option>
+                  <option>English - Professional Female</option>
+                </select>
+              </div>
+              <div class="waveform">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Hedef Platformlar</label>
+            <div class="platform-grid">
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/>
+                  </svg>
+                </div>
+                <div class="platform-name">YouTube</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="url(#instagram-grad)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <defs>
+                      <linearGradient id="instagram-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f09433"/>
+                        <stop offset="25%" stop-color="#e6683c"/>
+                        <stop offset="50%" stop-color="#dc2743"/>
+                        <stop offset="75%" stop-color="#cc2366"/>
+                        <stop offset="100%" stop-color="#bc1888"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="platform-name">Instagram</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="#1877F2">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
+                <div class="platform-name">Facebook</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                </div>
+                <div class="platform-name">TikTok</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+              <label class="platform-card">
+                <input type="checkbox" style="display: none;">
+                <div class="platform-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </div>
+                <div class="platform-name">X (Twitter)</div>
+                <div class="platform-status">Bağlı Değil</div>
+              </label>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+            <button class="btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/>
+                <polyline points="7 3 7 8 15 8"/>
+              </svg>
+              Taslak Kaydet
+            </button>
+            <button class="btn btn-primary" onclick="startRendering()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+              </svg>
+              Render ve Yayınla
+            </button>
+          </div>
+        </div>
+
+        <!-- Jobs Panel -->
+        <div id="panel-jobs" class="panel">
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+              <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+            </svg>
+            İçerik İşleri
+          </div>
+
+          <div class="pipeline">
+            <div class="pipeline-step completed">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Script Hazır</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Tamamlandı</div>
+            </div>
+            <div class="pipeline-step completed">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Voice Render</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Tamamlandı</div>
+            </div>
+            <div class="pipeline-step processing">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6E84FF" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                <line x1="7" y1="2" x2="7" y2="22"/>
+                <line x1="17" y1="2" x2="17" y2="22"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Video Compose</div>
+              <div style="font-size: 12px; color: var(--txt-2);">İşleniyor...</div>
+            </div>
+            <div class="pipeline-step">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Ethics Check</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Bekliyor</div>
+            </div>
+            <div class="pipeline-step">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="16 12 12 8 8 12"/>
+                <line x1="12" y1="16" x2="12" y2="8"/>
+              </svg>
+              <div style="font-weight: 700; margin-top: 0.5rem;">Publishing</div>
+              <div style="font-size: 12px; color: var(--txt-2);">Bekliyor</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <p style="color: var(--txt-2); text-align: center;">İşlem detayları burada görüntülenecek</p>
+          </div>
+        </div>
+
+        <!-- Platforms Panel -->
+        <div id="panel-platforms" class="panel">
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            Platform Bağlantıları
+          </div>
+
+          <div style="display: grid; gap: 1rem;">
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="#FF0000">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">YouTube</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="url(#instagram-grad2)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <defs>
+                      <linearGradient id="instagram-grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f09433"/>
+                        <stop offset="25%" stop-color="#e6683c"/>
+                        <stop offset="50%" stop-color="#dc2743"/>
+                        <stop offset="75%" stop-color="#cc2366"/>
+                        <stop offset="100%" stop-color="#bc1888"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">Instagram</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="#1877F2">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">Facebook</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">TikTok</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  <div>
+                    <div style="font-weight: 700; margin-bottom: 0.5rem;">X (Twitter)</div>
+                    <div style="font-size: 12px; color: var(--txt-2);">Bağlı Değil</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Bağla</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="panel-settings" class="panel">
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"/>
+            </svg>
+            Ayarlar
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Varsayılan Voice Profile</label>
+            <select class="form-select">
+              <option>Türkçe - Profesyonel Erkek</option>
+              <option>Türkçe - Profesyonel Kadın</option>
+              <option>English - Professional Male</option>
+              <option>English - Professional Female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Video Çözünürlük</label>
+            <select class="form-select">
+              <option>1080p (Full HD)</option>
+              <option>720p (HD)</option>
+              <option>4K (Ultra HD)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Otomatik Watermark</label>
+            <select class="form-select">
+              <option selected>Etkin (Önerilen)</option>
+              <option>Devre Dışı</option>
+            </select>
+            <div style="font-size: 12px; color: var(--txt-2); margin-top: 0.5rem;">
+              Etik kullanım için watermark eklenmesi önerilir
+            </div>
+          </div>
+
+          <button class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            Ayarları Kaydet
+          </button>
+        </div>
+
+        <!-- Compliance Panel -->
+        <div id="panel-compliance" class="panel">
+          <div class="panel-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Compliance & Ethics
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <div class="compliance-badge secure">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Sistem Güvenli ve Uyumlu
+            </div>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid var(--stroke); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+            <h3 style="margin-bottom: 1rem;">Etik Kurallar</h3>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Kimlik Taklit Koruması Aktif
+              </li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Otomatik Watermark Ekleme
+              </li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                İçerik Moderasyonu
+              </li>
+              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Platform Politikaları Uyumluluğu
+              </li>
+              <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#26DE81" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Tüm İşlemler Loglanıyor
+              </li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid var(--stroke); border-radius: 12px; padding: 1.5rem;">
+            <h3 style="margin-bottom: 1rem;">Son İşlem Logları</h3>
+            <div style="font-family: monospace; font-size: 12px; color: var(--txt-2); text-align: center; padding: 2rem;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto 1rem; opacity: 0.5;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <div>Henüz işlem kaydı bulunmuyor</div>
+              <div style="font-size: 11px; margin-top: 0.5rem;">İlk içeriğinizi oluşturduğunuzda loglar burada görünecek</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Guide Modal -->
+  <div id="guideModal" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" onclick="closeGuideModal()">×</button>
+
+      <h2>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <circle cx="12" cy="17" r="0.5" fill="currentColor"/>
+        </svg>
+        OmniReach AI Creator Kullanım Kılavuzu
+      </h2>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Genel Bakış
+        </h3>
+        <p>OmniReach AI Creator, yapay zeka destekli faceless (yüzsüz) video içeriği oluşturmanızı ve bu içerikleri YouTube, Instagram, Facebook, TikTok ve X (Twitter) gibi platformlarda otomatik olarak yayımlamanızı sağlayan profesyonel bir sistemdir.</p>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          Hızlı Başlangıç
+        </h3>
+        <ul>
+          <li><strong>Adım 1:</strong> Sol menüden "İçerik Oluşturucu" paneline gidin</li>
+          <li><strong>Adım 2:</strong> Proje adını girin ve içerik senaryonuzu yazın veya AI ile oluşturun</li>
+          <li><strong>Adım 3:</strong> Avatar seçin - AI tarafından oluşturulacak dijital karakter</li>
+          <li><strong>Adım 4:</strong> Voice Profile seçin - Türkçe veya İngilizce profesyonel sesler</li>
+          <li><strong>Adım 5:</strong> Hedef platformları seçin (YouTube, Instagram, vb.)</li>
+          <li><strong>Adım 6:</strong> "Render ve Yayınla" butonuna tıklayın</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M2 12h20"/>
+          </svg>
+          Panel Açıklamaları
+        </h3>
+        <ul>
+          <li><strong>İçerik Oluşturucu:</strong> Yeni video içeriği oluşturma ve render işlemi başlatma paneli</li>
+          <li><strong>İşlerim:</strong> Render sürecindeki ve tamamlanmış içeriklerin durumunu görüntüleme paneli</li>
+          <li><strong>Platform Bağlantıları:</strong> Sosyal medya hesaplarınızı OAuth ile güvenli şekilde bağlama paneli</li>
+          <li><strong>Ayarlar:</strong> Varsayılan ses profili, video kalitesi ve watermark ayarları</li>
+          <li><strong>Compliance:</strong> Etik kurallar ve içerik uyumluluk durumunun kontrol paneli</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Etik ve Uyumluluk
+        </h3>
+        <p>OmniReach AI Creator, WHITE-HAT (beyaz şapkalı) prensiplerine göre çalışır:</p>
+        <ul>
+          <li>Tüm içeriklere otomatik "AI Generated" watermark eklenir</li>
+          <li>Kimlik taklit koruması aktiftir - gerçek kişilerin taklit edilmesi engellenir</li>
+          <li>Platform politikalarına uygunluk otomatik kontrol edilir</li>
+          <li>İçerik moderasyonu ile zararlı içerik üretimi önlenir</li>
+          <li>Tüm işlemler loglama sistemi ile takip edilir</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          İçerik Üretim Süreci
+        </h3>
+        <ul>
+          <li><strong>Script Analizi:</strong> Yazılan senaryo AI tarafından analiz edilir ve optimize edilir</li>
+          <li><strong>Avatar Üretimi:</strong> Azure DALL-E 3 ile photorealistic avatar görsel üretilir</li>
+          <li><strong>Voice Synthesis:</strong> Azure Cognitive Services veya ElevenLabs ile doğal ses sentezlenir</li>
+          <li><strong>Video Composition:</strong> FFmpeg kullanılarak avatar + ses birleştirilip video oluşturulur</li>
+          <li><strong>Ethics Check:</strong> Ethics Guard modülü ile uyumluluk kontrolü yapılır</li>
+          <li><strong>Publishing:</strong> Seçilen platformlara OAuth ile güvenli yayımlama gerçekleştirilir</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Platform Özellikleri
+        </h3>
+        <ul>
+          <li><strong>YouTube:</strong> 1080p video, thumbnail, başlık, açıklama ve tag yönetimi</li>
+          <li><strong>Instagram:</strong> Reels formatı, 90 saniye limit, otomatik feed paylaşımı</li>
+          <li><strong>Facebook:</strong> Video post veya Reel, sayfa yönetimi</li>
+          <li><strong>TikTok:</strong> Vertical video (9:16), 60 saniye optimizasyon</li>
+          <li><strong>X (Twitter):</strong> Video tweet, 2:20 dakika limit</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Önemli Notlar
+        </h3>
+        <ul>
+          <li>İlk kullanımda platform bağlantılarını OAuth ile gerçekleştirmeniz gerekir</li>
+          <li>Video render süresi içerik uzunluğuna göre 2-5 dakika arasında değişir</li>
+          <li>Ethics Guard tarafından reddedilen içerikler yayımlanmaz</li>
+          <li>Tüm içerikler watermark ile işaretlenir (ayarlardan değiştirilemez)</li>
+          <li>Demo modda gerçek render ve yayımlama işlemi yapılmaz</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchPanel(panelName) {
+      // Hide all panels
+      document.querySelectorAll('.panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+
+      // Hide all nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Show selected panel
+      document.getElementById('panel-' + panelName).classList.add('active');
+
+      // Highlight nav item
+      event.currentTarget.classList.add('active');
+    }
+
+    function startRendering() {
+      alert('🎬 Render işlemi başlatıldı!\n\n✅ Script analizi yapılıyor\n✅ Avatar ve voice hazırlanıyor\n✅ Ethics guard kontrolü yapılıyor\n\nDEMO modunda çalışıyor - Gerçek render yakında!');
+
+      // Switch to jobs panel
+      document.getElementById('panel-jobs').classList.add('active');
+      document.getElementById('panel-creator').classList.remove('active');
+    }
+
+    function openGuideModal() {
+      document.getElementById('guideModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGuideModal() {
+      document.getElementById('guideModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('guideModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeGuideModal();
+      }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeGuideModal();
+      }
+    });
+
+    // Platform OAuth Connection Functions
+    const API_BASE = window.location.origin + '/api/omnireach';
+
+    async function connectPlatform(platform) {
+      try {
+        console.log(`🔗 Connecting to ${platform}...`);
+
+        // Get OAuth URL from backend
+        const response = await fetch(`${API_BASE}/platforms/${platform}/auth`);
+        const data = await response.json();
+
+        if (data.success && data.authUrl) {
+          // Store platform info and state in sessionStorage for callback
+          sessionStorage.setItem('omnireach_connecting_platform', platform);
+
+          // Store CSRF state token if provided
+          if (data.state) {
+            sessionStorage.setItem(`omnireach_state_${platform}`, data.state);
+            console.log('🔐 CSRF state token stored');
+          }
+
+          // Open OAuth window
+          const width = 600;
+          const height = 700;
+          const left = (screen.width - width) / 2;
+          const top = (screen.height - height) / 2;
+
+          const authWindow = window.open(
+            data.authUrl,
+            `${platform}_oauth`,
+            `width=${width},height=${height},left=${left},top=${top},toolbar=no,menubar=no`
+          );
+
+          // Check if window was opened
+          if (!authWindow) {
+            alert('Pop-up engellendi! Lütfen pop-up engelleyiciyi devre dışı bırakın.');
+            return;
+          }
+
+          // Show loading state
+          showPlatformLoading(platform, true);
+
+          // Poll for window close
+          const pollTimer = setInterval(() => {
+            if (authWindow.closed) {
+              clearInterval(pollTimer);
+              showPlatformLoading(platform, false);
+
+              // Check if connection was successful
+              checkPlatformConnection(platform);
+            }
+          }, 500);
+
+        } else {
+          throw new Error(data.error || 'OAuth URL alınamadı');
+        }
+
+      } catch (error) {
+        console.error(`❌ ${platform} bağlantı hatası:`, error);
+        alert(`❌ ${platform} bağlantısı başarısız: ${error.message}\n\nLütfen daha sonra tekrar deneyin.`);
+      }
+    }
+
+    function showPlatformLoading(platform, isLoading) {
+      const platformCards = document.querySelectorAll('.platform-card');
+      platformCards.forEach(card => {
+        const name = card.querySelector('.platform-name').textContent.toLowerCase();
+        if (name.includes(platform.toLowerCase())) {
+          const btn = card.querySelector('.btn');
+          if (btn) {
+            if (isLoading) {
+              btn.disabled = true;
+              btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;">
+                  <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                </svg>
+                Bağlanıyor...
+              `;
+            } else {
+              btn.disabled = false;
+              btn.innerHTML = 'Bağla';
+            }
+          }
+        }
+      });
+    }
+
+    async function checkPlatformConnection(platform) {
+      try {
+        // Reload platform status
+        const response = await fetch(`${API_BASE}/platforms/${platform}/status`);
+        const data = await response.json();
+
+        if (data.connected) {
+          // Update UI to show connected state
+          updatePlatformUI(platform, true, data.accountName);
+
+          // Show success message
+          alert(`✅ ${platform} başarıyla bağlandı!\n\nHesap: ${data.accountName || 'Bağlı'}`);
+
+          // Update stats
+          updateConnectionStats();
+        }
+      } catch (error) {
+        console.error(`Error checking ${platform} status:`, error);
+      }
+    }
+
+    function updatePlatformUI(platform, connected, accountName = '') {
+      const platformCards = document.querySelectorAll('.stat-card, .platform-card');
+
+      platformCards.forEach(card => {
+        const nameEl = card.querySelector('.platform-name');
+        if (nameEl && nameEl.textContent.toLowerCase().includes(platform.toLowerCase())) {
+          const statusEl = card.querySelector('.platform-status');
+          const btn = card.querySelector('.btn');
+
+          if (statusEl) {
+            if (connected) {
+              statusEl.textContent = accountName ? `Bağlı - ${accountName}` : 'Bağlı';
+              statusEl.classList.add('connected');
+            } else {
+              statusEl.textContent = 'Bağlı Değil';
+              statusEl.classList.remove('connected');
+            }
+          }
+
+          if (btn) {
+            if (connected) {
+              btn.textContent = 'Yönet';
+              btn.classList.remove('btn-primary');
+              btn.classList.add('btn-outline');
+              btn.onclick = () => managePlatform(platform);
+            } else {
+              btn.textContent = 'Bağla';
+              btn.classList.remove('btn-outline');
+              btn.classList.add('btn-primary');
+              btn.onclick = () => connectPlatform(platform);
+            }
+          }
+        }
+      });
+    }
+
+    function managePlatform(platform) {
+      alert(`⚙️ ${platform} Yönetim Paneli\n\nBu özellik yakında eklenecek:\n\n• Hesap bilgilerini görüntüleme\n• Bağlantıyı kaldırma\n• Yayınlama ayarları\n• İstatistikler`);
+    }
+
+    function updateConnectionStats() {
+      // Count connected platforms
+      const connectedCount = document.querySelectorAll('.platform-status.connected').length;
+
+      // Update stats card
+      const statsCards = document.querySelectorAll('.stat-card');
+      statsCards.forEach(card => {
+        const label = card.querySelector('.stat-label');
+        if (label && label.textContent.includes('Platform')) {
+          const valueEl = card.querySelector('.stat-value');
+          if (valueEl) {
+            valueEl.textContent = `${connectedCount}/5`;
+          }
+          const changeEl = card.querySelector('.stat-change');
+          if (changeEl) {
+            if (connectedCount === 5) {
+              changeEl.textContent = 'Tümü bağlı';
+            } else if (connectedCount > 0) {
+              changeEl.textContent = `${5 - connectedCount} platform kaldı`;
+            } else {
+              changeEl.textContent = 'Platformları bağlayın';
+            }
+          }
+        }
+      });
+    }
+
+    // Add click handlers to all "Bağla" buttons
+    document.addEventListener('DOMContentLoaded', function() {
+      const platformCards = document.querySelectorAll('.platform-card, .stat-card');
+
+      platformCards.forEach(card => {
+        const btn = card.querySelector('.btn-primary');
+        const nameEl = card.querySelector('.platform-name');
+
+        if (btn && nameEl && btn.textContent === 'Bağla') {
+          const platformName = nameEl.textContent.trim().toLowerCase();
+
+          // Map display names to API names
+          const platformMap = {
+            'youtube': 'youtube',
+            'instagram': 'instagram',
+            'facebook': 'facebook',
+            'tiktok': 'tiktok',
+            'x (twitter)': 'x'
+          };
+
+          const apiPlatform = platformMap[platformName] || platformName;
+          btn.onclick = () => connectPlatform(apiPlatform);
+        }
+      });
+
+      // Check for OAuth callback
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('code') && sessionStorage.getItem('omnireach_connecting_platform')) {
+        const platform = sessionStorage.getItem('omnireach_connecting_platform');
+        const code = urlParams.get('code');
+
+        handleOAuthCallback(platform, code);
+      }
+    });
+
+    async function handleOAuthCallback(platform, code) {
+      try {
+        console.log(`🔄 Processing OAuth callback for ${platform}...`);
+
+        // Retrieve and validate state token for CSRF protection
+        const urlParams = new URLSearchParams(window.location.search);
+        const returnedState = urlParams.get('state');
+        const storedState = sessionStorage.getItem(`omnireach_state_${platform}`);
+
+        const requestBody = { code };
+
+        // Include state token if available
+        if (returnedState) {
+          requestBody.state = returnedState;
+          console.log('🔐 Validating CSRF state token...');
+        }
+
+        const response = await fetch(`${API_BASE}/platforms/${platform}/connect`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Cleanup session storage
+          sessionStorage.removeItem('omnireach_connecting_platform');
+          sessionStorage.removeItem(`omnireach_state_${platform}`);
+
+          // Update UI
+          updatePlatformUI(platform, true, data.accountName);
+          updateConnectionStats();
+
+          // Clean URL
+          window.history.replaceState({}, document.title, window.location.pathname);
+
+          // Show success
+          alert(`✅ ${platform} başarıyla bağlandı!`);
+        } else {
+          throw new Error(data.error || 'Bağlantı başarısız');
+        }
+
+      } catch (error) {
+        console.error(`❌ OAuth callback error for ${platform}:`, error);
+        alert(`❌ Platform bağlantısı tamamlanamadı: ${error.message}`);
+
+        // Cleanup on error
+        sessionStorage.removeItem('omnireach_connecting_platform');
+        sessionStorage.removeItem(`omnireach_state_${platform}`);
+      }
+    }
+
+    // Add spinner animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
