@@ -13,15 +13,21 @@
   "categories": ["productivity", "education", "business", "medical", "utilities"],
   "icons": [
     {
-      "src": "/icons/pwa-icon-with-text.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/icons/pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/grape-icon-simple.svg",
-      "sizes": "48x48",
-      "type": "image/svg+xml",
+      "src": "/icons/pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
@@ -42,9 +48,9 @@
       "url": "/medical-expert",
       "icons": [
         {
-          "src": "/icons/pwa-icon-with-text.svg",
-          "sizes": "any",
-          "type": "image/svg+xml"
+          "src": "/icons/pwa-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
         }
       ]
     },
@@ -55,9 +61,9 @@
       "url": "/legal-expert",
       "icons": [
         {
-          "src": "/icons/pwa-icon-with-text.svg",
-          "sizes": "any",
-          "type": "image/svg+xml"
+          "src": "/icons/pwa-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
         }
       ]
     },
@@ -68,9 +74,9 @@
       "url": "/lydian-iq",
       "icons": [
         {
-          "src": "/icons/pwa-icon-with-text.svg",
-          "sizes": "any",
-          "type": "image/svg+xml"
+          "src": "/icons/pwa-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
         }
       ]
     },
@@ -81,9 +87,9 @@
       "url": "/dashboard",
       "icons": [
         {
-          "src": "/icons/pwa-icon-with-text.svg",
-          "sizes": "any",
-          "type": "image/svg+xml"
+          "src": "/icons/pwa-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
         }
       ]
     }
