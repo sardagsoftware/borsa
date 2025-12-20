@@ -1,20 +1,20 @@
 {
-  "timestamp": "2025-12-20T15:10:48.659Z",
+  "timestamp": "2025-12-20T15:17:19.051Z",
   "stats": {
     "total": 139,
     "perfect": 5,
-    "good": 36,
-    "needsWork": 94,
-    "poor": 4,
-    "averageScore": "77.77",
+    "good": 101,
+    "needsWork": 30,
+    "poor": 3,
+    "averageScore": "82.05",
     "totalIssues": 104,
-    "totalWarnings": 412,
+    "totalWarnings": 293,
     "missingTitle": 2,
     "missingDescription": 2,
     "missingKeywords": 2,
     "missingH1": 44,
     "missingCanonical": 2,
-    "missingSchema": 121,
+    "missingSchema": 2,
     "duplicateTitles": 1,
     "duplicateDescriptions": 2
   },
@@ -188,13 +188,12 @@
     {
       "file": "/ai-assistant.html",
       "url": "https://www.ailydian.com/ai-assistant",
-      "score": 77,
+      "score": 82,
       "issues": [],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI Assistant - Enterprise Virtual Intelligence Agent",
@@ -204,7 +203,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -212,12 +211,11 @@
     {
       "file": "/ai-chat.html",
       "url": "https://www.ailydian.com/ai-chat",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "AI Chat - LyDian | Advanced Conversational Intelligence",
@@ -227,7 +225,7 @@
         "keywordCount": 4,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -235,14 +233,13 @@
     {
       "file": "/ai-cultural-advisor.html",
       "url": "https://www.ailydian.com/ai-cultural-advisor",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Kültürel Uyum Danışmanı | LyDian AI",
@@ -252,7 +249,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -260,15 +257,14 @@
     {
       "file": "/ai-decision-matrix.html",
       "url": "https://www.ailydian.com/ai-decision-matrix",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Karar Matrisi AI | LyDian AI",
@@ -278,7 +274,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -286,14 +282,13 @@
     {
       "file": "/ai-governance-dashboard.html",
       "url": "https://www.ailydian.com/ai-governance-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "AI Yönetişim Kontrol Paneli - AILydian ACE",
@@ -303,7 +298,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -311,14 +306,13 @@
     {
       "file": "/ai-governance-demo.html",
       "url": "https://www.ailydian.com/ai-governance-demo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "AI Governance Dashboard - AILydian ACE",
@@ -328,7 +322,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -336,15 +330,14 @@
     {
       "file": "/ai-health-orchestrator.html",
       "url": "https://www.ailydian.com/ai-health-orchestrator",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Bütünsel Sağlık Orkestratörü | LyDian AI",
@@ -354,7 +347,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -362,14 +355,13 @@
     {
       "file": "/ai-knowledge-assistant.html",
       "url": "https://www.ailydian.com/ai-knowledge-assistant",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Bilgi Tabanı Asistanı | LyDian AI",
@@ -379,7 +371,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -387,14 +379,13 @@
     {
       "file": "/ai-learning-path.html",
       "url": "https://www.ailydian.com/ai-learning-path",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Öğrenme Yol Haritası | LyDian AI",
@@ -404,7 +395,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -412,14 +403,13 @@
     {
       "file": "/ai-life-coach.html",
       "url": "https://www.ailydian.com/ai-life-coach",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Akıllı Yaşam Koçu | LyDian AI",
@@ -429,7 +419,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -437,15 +427,14 @@
     {
       "file": "/ai-meeting-insights.html",
       "url": "https://www.ailydian.com/ai-meeting-insights",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Toplantı Analizi | LyDian AI",
@@ -455,7 +444,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -463,12 +452,11 @@
     {
       "file": "/ai-ops-center.html",
       "url": "https://www.ailydian.com/ai-ops-center",
-      "score": 87,
+      "score": 92,
       "issues": [],
       "warnings": [
         "Title çok uzun (72 karakter, max: 60)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
@@ -478,7 +466,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -486,15 +474,14 @@
     {
       "file": "/ai-power-panel.html",
       "url": "https://www.ailydian.com/ai-power-panel",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "⚡ AI Power Panel - 21 Models Consolidated",
@@ -504,7 +491,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -512,15 +499,14 @@
     {
       "file": "/ai-startup-accelerator.html",
       "url": "https://www.ailydian.com/ai-startup-accelerator",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Startup Hızlandırıcı | LyDian AI",
@@ -530,7 +516,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -538,12 +524,11 @@
     {
       "file": "/analytics.html",
       "url": "https://www.ailydian.com/analytics",
-      "score": 87,
+      "score": 92,
       "issues": [],
       "warnings": [
         "Title çok uzun (61 karakter, max: 60)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Analytics - LyDian | Enterprise AI Performance & Cost Metrics",
@@ -553,7 +538,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -561,12 +546,11 @@
     {
       "file": "/api-docs.html",
       "url": "https://www.ailydian.com/api-docs",
-      "score": 87,
+      "score": 92,
       "issues": [],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Medical LyDian - API Documentation",
@@ -576,7 +560,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -584,12 +568,11 @@
     {
       "file": "/api-reference.html",
       "url": "https://www.ailydian.com/api-reference",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "API Reference - LyDian",
@@ -599,7 +582,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -649,14 +632,13 @@
     {
       "file": "/azure-dashboard.html",
       "url": "https://www.ailydian.com/azure-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Ultra Pro - Azure Dashboard",
@@ -666,7 +648,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -693,14 +675,13 @@
     {
       "file": "/blog.html",
       "url": "https://www.ailydian.com/blog",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Blog - LyDian | AI Insights & Industry Updates",
@@ -710,7 +691,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -718,14 +699,13 @@
     {
       "file": "/cache-clear.html",
       "url": "https://www.ailydian.com/cache-clear",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Cache Temizle - Lydian IQ",
@@ -735,7 +715,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -743,14 +723,13 @@
     {
       "file": "/cache-dashboard.html",
       "url": "https://www.ailydian.com/cache-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Önbellek Dashboard - Ailydian",
@@ -760,7 +739,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -768,14 +747,13 @@
     {
       "file": "/cancer-diagnosis-dashboard.html",
       "url": "https://www.ailydian.com/cancer-diagnosis-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI",
@@ -785,7 +763,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -793,14 +771,13 @@
     {
       "file": "/careers.html",
       "url": "https://www.ailydian.com/careers",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Careers - LyDian | Join Our AI Innovation Team",
@@ -810,7 +787,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -818,14 +795,13 @@
     {
       "file": "/changelog.html",
       "url": "https://www.ailydian.com/changelog",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Changelog - LyDian | Platform Updates & Release Notes",
@@ -835,7 +811,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -864,14 +840,13 @@
     {
       "file": "/civic-atg.html",
       "url": "https://www.ailydian.com/civic-atg",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Otomatik Güven Ağı - LyDian AI",
@@ -881,7 +856,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -889,14 +864,13 @@
     {
       "file": "/civic-intelligence-grid.html",
       "url": "https://www.ailydian.com/civic-intelligence-grid",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Akıllı Şehir Platformu - LyDian",
@@ -906,7 +880,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -914,14 +888,13 @@
     {
       "file": "/civic-map.html",
       "url": "https://www.ailydian.com/civic-map",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "MAP - Model Doğrulama ve Kanıt | LyDian CIG",
@@ -931,7 +904,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -939,14 +912,13 @@
     {
       "file": "/civic-phn.html",
       "url": "https://www.ailydian.com/civic-phn",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG",
@@ -956,7 +928,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -964,14 +936,13 @@
     {
       "file": "/civic-rro.html",
       "url": "https://www.ailydian.com/civic-rro",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "RRO - Risk ve Dayanıklılık İşletim Sistemi | LyDian CIG",
@@ -981,7 +952,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -989,14 +960,13 @@
     {
       "file": "/civic-svf.html",
       "url": "https://www.ailydian.com/civic-svf",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
@@ -1006,7 +976,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1014,14 +984,13 @@
     {
       "file": "/civic-umo.html",
       "url": "https://www.ailydian.com/civic-umo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "KMO - Kentsel Mobilite Orkestratörü | LyDian CIG",
@@ -1031,7 +1000,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1039,14 +1008,13 @@
     {
       "file": "/connector-demo.html",
       "url": "https://www.ailydian.com/connector-demo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🔌 Connector Integration Demo (Internal Testing Only)",
@@ -1056,7 +1024,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1064,14 +1032,13 @@
     {
       "file": "/connectors.html",
       "url": "https://www.ailydian.com/connectors",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Global Connector Network | LyDian AI",
@@ -1081,7 +1048,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1089,15 +1056,14 @@
     {
       "file": "/console.html",
       "url": "https://www.ailydian.com/console",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Console - LyDian | Developer Command Center",
@@ -1107,7 +1073,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1136,11 +1102,10 @@
     {
       "file": "/cookies.html",
       "url": "https://www.ailydian.com/cookies",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Cookie Policy - LyDian | Privacy & Data Management",
@@ -1150,7 +1115,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1158,14 +1123,13 @@
     {
       "file": "/cost-dashboard.html",
       "url": "https://www.ailydian.com/cost-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "💰 Cost Tracking Dashboard - LyDian Ultra Pro",
@@ -1175,7 +1139,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1183,14 +1147,13 @@
     {
       "file": "/cyborg-demo.html",
       "url": "https://www.ailydian.com/cyborg-demo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Character",
@@ -1200,7 +1163,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1208,14 +1171,13 @@
     {
       "file": "/cyborg-orbital-full.html",
       "url": "https://www.ailydian.com/cyborg-orbital-full",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Orbital Hero",
@@ -1225,7 +1187,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1233,15 +1195,14 @@
     {
       "file": "/dashboard-email-yedek.html",
       "url": "https://www.ailydian.com/dashboard-email-yedek",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Dashboard - LyDian Ultra Pro",
@@ -1251,7 +1212,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1280,12 +1241,11 @@
     {
       "file": "/developer-search.html",
       "url": "https://www.ailydian.com/developer-search",
-      "score": 87,
+      "score": 92,
       "issues": [],
       "warnings": [
         "Title çok uzun (72 karakter, max: 60)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Developer Search - Find APIs, SDKs, Documentation & Code Examples",
@@ -1295,7 +1255,7 @@
         "keywordCount": 7,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1303,12 +1263,11 @@
     {
       "file": "/developers.html",
       "url": "https://www.ailydian.com/developers",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Developers - LyDian | API & Integration Resources",
@@ -1318,7 +1277,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1347,15 +1306,14 @@
     {
       "file": "/ecw-ailydian.html",
       "url": "https://www.ailydian.com/ecw-ailydian",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Ethics Tracker - Ailydian",
@@ -1365,7 +1323,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1373,14 +1331,13 @@
     {
       "file": "/ecw-demo.html",
       "url": "https://www.ailydian.com/ecw-demo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "ECW Integration Demo - Ailydian",
@@ -1390,7 +1347,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1398,14 +1355,13 @@
     {
       "file": "/education.html",
       "url": "https://www.ailydian.com/education",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Education - LyDian | AI Learning & Training Hub",
@@ -1415,7 +1371,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1423,15 +1379,14 @@
     {
       "file": "/email-dashboard.html",
       "url": "https://www.ailydian.com/email-dashboard",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "📧 LyDian Email Manager | Ultra Pro",
@@ -1441,7 +1396,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1449,14 +1404,13 @@
     {
       "file": "/email-setup-status.html",
       "url": "https://www.ailydian.com/email-setup-status",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Email Setup Status - Ailydian",
@@ -1466,7 +1420,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1515,14 +1469,13 @@
     {
       "file": "/epic-fhir-dashboard.html",
       "url": "https://www.ailydian.com/epic-fhir-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Epic FHIR Dashboard - LyDian Medical AI",
@@ -1532,7 +1485,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1540,15 +1493,14 @@
     {
       "file": "/files.html",
       "url": "https://www.ailydian.com/files",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Files - LyDian | Document Management & Storage",
@@ -1558,7 +1510,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1566,15 +1518,14 @@
     {
       "file": "/firildak-ai.html",
       "url": "https://www.ailydian.com/firildak-ai",
-      "score": 72,
+      "score": 77,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "Birden fazla H1 (2)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Fırıldak AI - Quantum-Powered Legal Intelligence",
@@ -1584,7 +1535,7 @@
         "keywordCount": 10,
         "h1Count": 2,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1592,15 +1543,14 @@
     {
       "file": "/firildak.html",
       "url": "https://www.ailydian.com/firildak",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "fırıldak - LyDian",
@@ -1610,7 +1560,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1618,14 +1568,13 @@
     {
       "file": "/force-refresh.html",
       "url": "https://www.ailydian.com/force-refresh",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🔄 Cache Temizleme - LyDian IQ",
@@ -1635,7 +1584,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1643,14 +1592,13 @@
     {
       "file": "/forgot-password.html",
       "url": "https://www.ailydian.com/forgot-password",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Forgot Password - LyDian Ultra Pro",
@@ -1660,7 +1608,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1668,11 +1616,10 @@
     {
       "file": "/google-studio.html",
       "url": "https://www.ailydian.com/google-studio",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "AiLydians Studio - Enterprise AI Platform",
@@ -1682,7 +1629,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1690,14 +1637,13 @@
     {
       "file": "/governance-compliance.html",
       "url": "https://www.ailydian.com/governance-compliance",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Uyumluluk Kontrolleri - LyDian AI Yönetim Merkezi",
@@ -1707,7 +1653,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1715,11 +1661,10 @@
     {
       "file": "/governance-dashboard.html",
       "url": "https://www.ailydian.com/governance-dashboard",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI Yönetim Merkezi | AILydian",
@@ -1729,7 +1674,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1737,14 +1682,13 @@
     {
       "file": "/governance-leaderboard.html",
       "url": "https://www.ailydian.com/governance-leaderboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Güven Skoru Liderlik Tablosu - LyDian AI Yönetim Merkezi",
@@ -1754,7 +1698,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1762,11 +1706,10 @@
     {
       "file": "/governance-models.html",
       "url": "https://www.ailydian.com/governance-models",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Model Kayıt | LyDian AI Yönetim Merkezi",
@@ -1776,7 +1719,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1784,14 +1727,13 @@
     {
       "file": "/governance-trust-index.html",
       "url": "https://www.ailydian.com/governance-trust-index",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Güven Endeksi - LyDian AI Yönetim Merkezi",
@@ -1801,7 +1743,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1830,15 +1772,14 @@
     {
       "file": "/hero-3d-lydian.html",
       "url": "https://www.ailydian.com/hero-3d-lydian",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🌐 LyDian - 3D Experience",
@@ -1848,7 +1789,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1856,15 +1797,14 @@
     {
       "file": "/hero-cinematic-demo.html",
       "url": "https://www.ailydian.com/hero-cinematic-demo",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🎬 LyDian - Cinematic Hero Demo | The AI Revolution",
@@ -1874,7 +1814,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1882,15 +1822,14 @@
     {
       "file": "/hero-particles-lydian.html",
       "url": "https://www.ailydian.com/hero-particles-lydian",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "✨ LyDian - AI Particle Universe",
@@ -1900,7 +1839,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1908,15 +1847,14 @@
     {
       "file": "/hero-video-demo-1-neural.html",
       "url": "https://www.ailydian.com/hero-video-demo-1-neural",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🧠 Demo 1: Neural Network Hero - LyDian",
@@ -1926,7 +1864,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1934,15 +1872,14 @@
     {
       "file": "/hero-video-demo-2-particles.html",
       "url": "https://www.ailydian.com/hero-video-demo-2-particles",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "✨ Demo 2: Digital Particles Hero - LyDian",
@@ -1952,7 +1889,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1960,15 +1897,14 @@
     {
       "file": "/hero-video-demo-3-matrix.html",
       "url": "https://www.ailydian.com/hero-video-demo-3-matrix",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "💚 Demo 3: Matrix Data Flow Hero - LyDian",
@@ -1978,7 +1914,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -1986,15 +1922,14 @@
     {
       "file": "/hero-video-demo-4-abstract.html",
       "url": "https://www.ailydian.com/hero-video-demo-4-abstract",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🎨 Demo 4: Abstract AI Hero - LyDian",
@@ -2004,7 +1939,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2012,14 +1947,13 @@
     {
       "file": "/hero-video-demos-index.html",
       "url": "https://www.ailydian.com/hero-video-demos-index",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🎬 4K Video Hero - Demo Karşılaştırma | LyDian",
@@ -2029,7 +1963,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2037,14 +1971,13 @@
     {
       "file": "/hospital-dashboard.html",
       "url": "https://www.ailydian.com/hospital-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Hospital Integration Dashboard - Lydian Medical",
@@ -2054,7 +1987,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2062,12 +1995,11 @@
     {
       "file": "/humain-home.html",
       "url": "https://www.ailydian.com/humain-home",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian - Enterprise AI Platform",
@@ -2077,7 +2009,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2085,15 +2017,14 @@
     {
       "file": "/i18n/MEDICAL-EXPERT-INTEGRATION.html",
       "url": "https://www.ailydian.com/i18n/MEDICAL-EXPERT-INTEGRATION",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Medical AI - Healthcare Intelligence Expert",
@@ -2103,7 +2034,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2111,12 +2042,11 @@
     {
       "file": "/image-generation.html",
       "url": "https://www.ailydian.com/image-generation",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Image Generation - LyDian | AI-Powered DALL-E 3 & Imagen 3",
@@ -2126,7 +2056,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2155,12 +2085,11 @@
     {
       "file": "/knowledge-base.html",
       "url": "https://www.ailydian.com/knowledge-base",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Knowledge Base - LyDian | AI-Powered Information Hub",
@@ -2170,7 +2099,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2197,14 +2126,13 @@
     {
       "file": "/lydian-hukukai-pro.html",
       "url": "https://www.ailydian.com/lydian-hukukai-pro",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Hukuk AI - Küresel Hukuk Yapay Zeka Platformu",
@@ -2214,7 +2142,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2222,7 +2150,7 @@
     {
       "file": "/lydian-hukukai-v2.html",
       "url": "https://www.ailydian.com/lydian-hukukai-v2",
-      "score": 62,
+      "score": 67,
       "issues": [
         "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\"",
         "Duplicate description"
@@ -2230,8 +2158,7 @@
       "warnings": [
         "Title çok uzun (72 karakter, max: 60)",
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
@@ -2241,7 +2168,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2249,7 +2176,7 @@
     {
       "file": "/lydian-hukukai.html",
       "url": "https://www.ailydian.com/lydian-hukukai",
-      "score": 52,
+      "score": 57,
       "issues": [
         "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\"",
         "Duplicate description"
@@ -2258,8 +2185,7 @@
         "Title çok uzun (72 karakter, max: 60)",
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
@@ -2269,7 +2195,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2277,14 +2203,13 @@
     {
       "file": "/lydian-iq-new-ui.html",
       "url": "https://www.ailydian.com/lydian-iq-new-ui",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Lydian-IQ v4.1 - Yeni Arayüz ✨",
@@ -2294,7 +2219,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2302,11 +2227,10 @@
     {
       "file": "/lydian-iq-unified-demo.html",
       "url": "https://www.ailydian.com/lydian-iq-unified-demo",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Lydian-IQ Ultra | 72 Connector Platform",
@@ -2316,7 +2240,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2343,14 +2267,13 @@
     {
       "file": "/lydian-legal-chat.html",
       "url": "https://www.ailydian.com/lydian-legal-chat",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Hukuk AI - Hukuki Danışmanlık Asistanı",
@@ -2360,7 +2283,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2368,14 +2291,13 @@
     {
       "file": "/lydian-legal-search-enhanced.html",
       "url": "https://www.ailydian.com/lydian-legal-search-enhanced",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
@@ -2385,7 +2307,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2424,7 +2346,7 @@
     {
       "file": "/lydian-legal-search.html",
       "url": "https://www.ailydian.com/lydian-legal-search",
-      "score": 57,
+      "score": 62,
       "issues": [
         "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\"",
         "Duplicate description"
@@ -2433,8 +2355,7 @@
         "Title çok uzun (72 karakter, max: 60)",
         "Description çok uzun (183 karakter, max: 160)",
         "Birden fazla H1 (2)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
@@ -2444,7 +2365,7 @@
         "keywordCount": 10,
         "h1Count": 2,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2452,15 +2373,14 @@
     {
       "file": "/lydian-legal-universal.html",
       "url": "https://www.ailydian.com/lydian-legal-universal",
-      "score": 72,
+      "score": 77,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Title çok uzun (62 karakter, max: 60)",
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Legal AI - Universal Legal Research & Analysis Platform",
@@ -2470,7 +2390,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2478,14 +2398,13 @@
     {
       "file": "/lydian-offline.html",
       "url": "https://www.ailydian.com/lydian-offline",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Offline - LyDian IQ",
@@ -2495,7 +2414,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2503,11 +2422,10 @@
     {
       "file": "/lydian-os.html",
       "url": "https://www.ailydian.com/lydian-os",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian OS - Global AI Operating System",
@@ -2517,7 +2435,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2525,14 +2443,13 @@
     {
       "file": "/medical-ai-dashboard.html",
       "url": "https://www.ailydian.com/medical-ai-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Medical AI Dashboard - LyDian Ultra Pro",
@@ -2542,7 +2459,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2550,14 +2467,13 @@
     {
       "file": "/medical-ai.html",
       "url": "https://www.ailydian.com/medical-ai",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🩺 Medical AI Assistant - LyDian",
@@ -2567,7 +2483,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2575,14 +2491,13 @@
     {
       "file": "/medical-dashboard.html",
       "url": "https://www.ailydian.com/medical-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Medical Dashboard - LyDian Platform",
@@ -2592,7 +2507,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2643,14 +2558,13 @@
     {
       "file": "/monitoring.html",
       "url": "https://www.ailydian.com/monitoring",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "System Monitoring Dashboard - LyDian AI",
@@ -2660,7 +2574,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2668,14 +2582,13 @@
     {
       "file": "/offline.html",
       "url": "https://www.ailydian.com/offline",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Offline - AiLydian Ultra Pro",
@@ -2685,7 +2598,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2693,14 +2606,13 @@
     {
       "file": "/omnireach-ai-creator.html",
       "url": "https://www.ailydian.com/omnireach-ai-creator",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "OmniReach AI Creator Engine - Ailydian",
@@ -2710,7 +2622,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2718,14 +2630,13 @@
     {
       "file": "/pages/notifications.html",
       "url": "https://www.ailydian.com/pages/notifications",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Notifications - LyDian Ultra Pro",
@@ -2735,7 +2646,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2743,15 +2654,14 @@
     {
       "file": "/pages/settings.html",
       "url": "https://www.ailydian.com/pages/settings",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Settings - LyDian Ultra Pro",
@@ -2761,7 +2671,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2769,15 +2679,14 @@
     {
       "file": "/pages/users.html",
       "url": "https://www.ailydian.com/pages/users",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "User Management - LyDian Ultra Pro",
@@ -2787,7 +2696,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2795,11 +2704,10 @@
     {
       "file": "/performance-dashboard.html",
       "url": "https://www.ailydian.com/performance-dashboard",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Performance Dashboard - AiLydian Ultra Pro",
@@ -2809,7 +2717,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2817,14 +2725,13 @@
     {
       "file": "/phase-l-results.html",
       "url": "https://www.ailydian.com/phase-l-results",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Phase L: Code Splitting Results - LyDian Platform",
@@ -2834,7 +2741,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2842,11 +2749,10 @@
     {
       "file": "/privacy.html",
       "url": "https://www.ailydian.com/privacy",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Privacy Policy - LyDian | Data Protection & Security",
@@ -2856,7 +2762,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2864,12 +2770,11 @@
     {
       "file": "/quantum-test.html",
       "url": "https://www.ailydian.com/quantum-test",
-      "score": 82,
+      "score": 87,
       "issues": [],
       "warnings": [
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Quantum Computing — LyDian AI",
@@ -2879,7 +2784,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2887,15 +2792,14 @@
     {
       "file": "/realistic-characters-demo.html",
       "url": "https://www.ailydian.com/realistic-characters-demo",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🎭 LyDian - Gerçek Karakterler Demo | Realistic Human + AI",
@@ -2905,7 +2809,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2934,14 +2838,13 @@
     {
       "file": "/reset-password.html",
       "url": "https://www.ailydian.com/reset-password",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Reset Password - LyDian Ultra Pro",
@@ -2951,7 +2854,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2959,14 +2862,13 @@
     {
       "file": "/search-meter-demo.html",
       "url": "https://www.ailydian.com/search-meter-demo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Search Meter Demo - AiLydian",
@@ -2976,7 +2878,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -2984,14 +2886,13 @@
     {
       "file": "/security-analytics.html",
       "url": "https://www.ailydian.com/security-analytics",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Security Analytics Dashboard - Ailydian",
@@ -3001,7 +2902,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3009,14 +2910,13 @@
     {
       "file": "/seo-monitoring.html",
       "url": "https://www.ailydian.com/seo-monitoring",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI - Master SEO Monitoring Dashboard",
@@ -3026,7 +2926,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3034,12 +2934,11 @@
     {
       "file": "/settings.html",
       "url": "https://www.ailydian.com/settings",
-      "score": 87,
+      "score": 92,
       "issues": [],
       "warnings": [
         "Description çok kısa (34 karakter, min: 50)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Settings - LyDian | Account Configuration & Preferences",
@@ -3049,7 +2948,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3057,11 +2956,10 @@
     {
       "file": "/sikayet-olustur.html",
       "url": "https://www.ailydian.com/sikayet-olustur",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Şikayet Oluştur - LCI | Lydian Complaint Intelligence",
@@ -3071,7 +2969,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 4,
         "ogComplete": false
       }
@@ -3079,11 +2977,10 @@
     {
       "file": "/status-dashboard.html",
       "url": "https://www.ailydian.com/status-dashboard",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Health Dashboard - LyDian",
@@ -3093,7 +2990,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3101,15 +2998,14 @@
     {
       "file": "/status.html",
       "url": "https://www.ailydian.com/status",
-      "score": 67,
+      "score": 72,
       "issues": [
         "Duplicate title: \"LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine\""
       ],
       "warnings": [
         "Title çok uzun (72 karakter, max: 60)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
@@ -3119,7 +3015,7 @@
         "keywordCount": 4,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3127,7 +3023,7 @@
     {
       "file": "/system-status.html",
       "url": "https://www.ailydian.com/system-status",
-      "score": 62,
+      "score": 67,
       "issues": [
         "Duplicate description"
       ],
@@ -3135,8 +3031,7 @@
         "Title çok uzun (61 karakter, max: 60)",
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "System Status - LyDian | Enterprise Infrastructure Monitoring",
@@ -3146,7 +3041,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3154,11 +3049,10 @@
     {
       "file": "/terms.html",
       "url": "https://www.ailydian.com/terms",
-      "score": 92,
+      "score": 97,
       "issues": [],
       "warnings": [
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Terms of Service - LyDian | User Agreement & Policies",
@@ -3168,7 +3062,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3176,15 +3070,14 @@
     {
       "file": "/test-auto-translate.html",
       "url": "https://www.ailydian.com/test-auto-translate",
-      "score": 72,
+      "score": 77,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
         "Birden fazla H1 (2)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Auto Translation Test",
@@ -3194,7 +3087,7 @@
         "keywordCount": 10,
         "h1Count": 2,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3202,14 +3095,13 @@
     {
       "file": "/test-backend-connection.html",
       "url": "https://www.ailydian.com/test-backend-connection",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "✅ Backend Bağlantı Testi - Lydian-IQ",
@@ -3219,7 +3111,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3227,14 +3119,13 @@
     {
       "file": "/test-chat-api.html",
       "url": "https://www.ailydian.com/test-chat-api",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Chat API Test",
@@ -3244,7 +3135,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3252,14 +3143,13 @@
     {
       "file": "/test-chat-buttons.html",
       "url": "https://www.ailydian.com/test-chat-buttons",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Chat Buttons Test",
@@ -3269,7 +3159,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3277,14 +3167,13 @@
     {
       "file": "/test-chat-ecw.html",
       "url": "https://www.ailydian.com/test-chat-ecw",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Chat ECW Test - Smoke Test",
@@ -3294,7 +3183,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3302,14 +3191,13 @@
     {
       "file": "/test-i18n-demo.html",
       "url": "https://www.ailydian.com/test-i18n-demo",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "🌍 LyDian i18n System - Live Demo",
@@ -3319,7 +3207,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3327,14 +3215,13 @@
     {
       "file": "/test-language-system.html",
       "url": "https://www.ailydian.com/test-language-system",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian - Language System Test",
@@ -3344,7 +3231,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3352,14 +3239,13 @@
     {
       "file": "/test-legal.html",
       "url": "https://www.ailydian.com/test-legal",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "LyDian Legal AI - Test",
@@ -3369,7 +3255,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3377,14 +3263,13 @@
     {
       "file": "/test-translation.html",
       "url": "https://www.ailydian.com/test-translation",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Translation Test",
@@ -3394,7 +3279,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3402,14 +3287,13 @@
     {
       "file": "/test.html",
       "url": "https://www.ailydian.com/test",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Lydian IQ Test",
@@ -3419,7 +3303,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3427,14 +3311,13 @@
     {
       "file": "/tokens.html",
       "url": "https://www.ailydian.com/tokens",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (183 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Token System - LyDian | Blockchain-Based AI Credits",
@@ -3444,7 +3327,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3452,14 +3335,13 @@
     {
       "file": "/user-dashboard.html",
       "url": "https://www.ailydian.com/user-dashboard",
-      "score": 77,
+      "score": 82,
       "issues": [
         "Duplicate description"
       ],
       "warnings": [
         "Description çok uzun (205 karakter, max: 160)",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "User Dashboard - Medical LyDian",
@@ -3469,7 +3351,7 @@
         "keywordCount": 10,
         "h1Count": 1,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }
@@ -3508,7 +3390,7 @@
     {
       "file": "/video-ai.html",
       "url": "https://www.ailydian.com/video-ai",
-      "score": 62,
+      "score": 67,
       "issues": [
         "Duplicate description"
       ],
@@ -3516,8 +3398,7 @@
         "Title çok uzun (64 karakter, max: 60)",
         "Description çok uzun (183 karakter, max: 160)",
         "H1 tag eksik",
-        "OG image eksik",
-        "Schema.org markup eksik"
+        "OG image eksik"
       ],
       "seo": {
         "title": "Video AI - LyDian | AI Video Generation with Google Veo & Runway",
@@ -3527,7 +3408,7 @@
         "keywordCount": 10,
         "h1Count": 0,
         "hasCanonical": true,
-        "hasSchema": false,
+        "hasSchema": true,
         "hreflangCount": 7,
         "ogComplete": false
       }

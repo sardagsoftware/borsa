@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta name="keywords" content="lydian ai, ai platform, quantum ai, velocity engine, enterprise ai, medical ai, legal ai, multilingual ai, hipaa compliant, real-time translation" />
+  <link rel="canonical" href="https://www.ailydian.com/lydian-legal-universal" />
+  <meta property="og:title" content="LyDian AI — Enterprise AI Platform | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta property="og:url" content="https://www.ailydian.com/lydian-legal-universal" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/lydian-legal-universal" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/lydian-legal-universal" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/lydian-legal-universal" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/lydian-legal-universal" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/lydian-legal-universal" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/lydian-legal-universal" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/lydian-legal-universal" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian Legal AI - Universal Legal Research & Analysis Platform</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+/* ============================================================
+   ⚖️ LYDIAN LEGAL AI - UNIVERSAL EDITION
+   Global Legal Research Platform for All Jurisdictions
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Universal Legal Color System */
+    --law-navy: #1a237e;           /* Deep Navy - Authority & Trust */
+    --law-gold: #D4AF37;            /* Classic Gold - Justice & Wisdom */
+    --law-burgundy: #800020;        /* Burgundy - Dignity & Tradition */
+    --law-emerald: #008080;         /* Teal - Balance & Harmony */
+    --law-silver: #C0C0C0;          /* Silver - Neutrality & Fairness */
+    --law-ivory: #FFFFF0;           /* Ivory - Clarity & Purity */
+
+    /* Modern Accent Colors */
+    --accent-blue: #2196F3;         /* International Blue */
+    --accent-green: #4CAF50;        /* Success Green */
+    --accent-amber: #FFC107;        /* Warning Amber */
+    --accent-red: #F44336;          /* Alert Red */
+
+    /* Neutral Palette */
+    --neutral-100: #F8F9FA;
+    --neutral-200: #E9ECEF;
+    --neutral-300: #DEE2E6;
+    --neutral-400: #CED4DA;
+    --neutral-500: #ADB5BD;
+    --neutral-600: #6C757D;
+    --neutral-700: #495057;
+    --neutral-800: #343A40;
+    --neutral-900: #212529;
+
+    /* Dark Theme */
+    --dark-bg-primary: #0D1117;
+    --dark-bg-secondary: #161B22;
+    --dark-bg-tertiary: #21262D;
+    --dark-border: rgba(240, 246, 252, 0.1);
+    --dark-text-primary: #E6EDF3;
+    --dark-text-secondary: #8B949E;
+
+    /* Gradients */
+    --gradient-legal: linear-gradient(135deg, var(--law-navy) 0%, var(--law-burgundy) 100%);
+    --gradient-gold: linear-gradient(135deg, var(--law-gold) 0%, #B8860B 100%);
+    --gradient-trust: linear-gradient(135deg, var(--accent-blue) 0%, var(--law-emerald) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.10);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.04);
+
+    /* Glass Effect */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(20px);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ============================================================
+   LIGHT/DARK THEME VARIABLES
+   ============================================================ */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background var(--transition-base);
+}
+
+body.light-theme {
+    background: var(--neutral-100);
+    color: var(--neutral-900);
+}
+
+/* ============================================================
+   HEADER & NAVIGATION
+   ============================================================ */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--dark-bg-secondary);
+    backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--dark-border);
+    padding: 1rem 2rem;
+    transition: all var(--transition-base);
+}
+
+.light-theme .header {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--neutral-300);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.logo-subtitle {
+    font-size: 0.75rem;
+    color: var(--dark-text-secondary);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.light-theme .logo-subtitle {
+    color: var(--neutral-600);
+}
+
+.nav-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--dark-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: all var(--transition-base);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.light-theme .nav-link {
+    color: var(--neutral-700);
+}
+
+.nav-link:hover {
+    color: var(--law-gold);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-gold);
+    transition: width var(--transition-base);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.theme-toggle {
+    background: var(--dark-bg-tertiary);
+    border: 1px solid var(--dark-border);
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.light-theme .theme-toggle {
+    background: var(--neutral-200);
+    border-color: var(--neutral-300);
+}
+
+.theme-toggle:hover {
+    border-color: var(--law-gold);
+    transform: scale(1.05);
+}
+
+.language-selector {
+    background: var(--dark-bg-tertiary);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    color: var(--dark-text-primary);
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.light-theme .language-selector {
+    background: white;
+    border-color: var(--neutral-300);
+    color: var(--neutral-800);
+}
+
+.language-selector:hover {
+    border-color: var(--law-gold);
+}
+
+.language-selector:focus {
+    outline: none;
+    border-color: var(--law-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero-section {
+    margin-top: 80px;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    background: var(--gradient-legal);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 C300,80 600,80 900,0 L1200,0 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.03)"/></svg>') repeat-x bottom;
+    background-size: 100% 120px;
+    opacity: 0.3;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+}
+
+.hero-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--law-gold);
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* ============================================================
+   SEARCH SECTION
+   ============================================================ */
+
+.search-section {
+    margin-bottom: 3rem;
+}
+
+.search-container {
+    background: var(--dark-bg-secondary);
+    border: 2px solid var(--dark-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+}
+
+.light-theme .search-container {
+    background: white;
+    border-color: var(--neutral-300);
+}
+
+.search-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.search-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-description {
+    color: var(--dark-text-secondary);
+    font-size: 1rem;
+}
+
+.light-theme .search-description {
+    color: var(--neutral-600);
+}
+
+.search-input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    flex: 1;
+    background: var(--dark-bg-tertiary);
+    border: 2px solid var(--dark-border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.125rem;
+    color: var(--dark-text-primary);
+    font-family: inherit;
+    transition: all var(--transition-base);
+}
+
+.light-theme .search-input {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+    color: var(--neutral-900);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--law-gold);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.search-input::placeholder {
+    color: var(--dark-text-secondary);
+}
+
+.light-theme .search-input::placeholder {
+    color: var(--neutral-500);
+}
+
+.search-btn {
+    background: var(--gradient-gold);
+    border: none;
+    border-radius: 16px;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+.search-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    color: var(--dark-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.light-theme .filter-label {
+    color: var(--neutral-700);
+}
+
+.filter-select {
+    background: var(--dark-bg-tertiary);
+    border: 2px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    color: var(--dark-text-primary);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-weight: 500;
+}
+
+.light-theme .filter-select {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+    color: var(--neutral-800);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--law-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* ============================================================
+   DOCUMENT UPLOAD SECTION
+   ============================================================ */
+
+.upload-section {
+    background: var(--dark-bg-secondary);
+    border: 2px dashed var(--dark-border);
+    border-radius: 24px;
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.light-theme .upload-section {
+    background: white;
+    border-color: var(--neutral-300);
+}
+
+.upload-section:hover {
+    border-color: var(--law-gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.upload-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.2));
+}
+
+.upload-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.upload-subtitle {
+    color: var(--dark-text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.light-theme .upload-subtitle {
+    color: var(--neutral-600);
+}
+
+.upload-btn {
+    background: var(--gradient-trust);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.upload-formats {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--dark-text-secondary);
+}
+
+.light-theme .upload-formats {
+    color: var(--neutral-600);
+}
+
+#fileInput {
+    display: none;
+}
+
+/* ============================================================
+   RESULTS SECTION
+   ============================================================ */
+
+.results-section {
+    display: none;
+}
+
+.results-section.active {
+    display: block;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--dark-border);
+}
+
+.light-theme .results-header {
+    border-bottom-color: var(--neutral-300);
+}
+
+.results-count {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-text-secondary);
+}
+
+.light-theme .results-count {
+    color: var(--neutral-700);
+}
+
+.results-count span {
+    color: var(--law-gold);
+}
+
+.results-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: var(--dark-bg-tertiary);
+    border: 2px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    color: var(--dark-text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.light-theme .action-btn {
+    background: white;
+    border-color: var(--neutral-300);
+    color: var(--neutral-800);
+}
+
+.action-btn:hover {
+    border-color: var(--law-gold);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+}
+
+.results-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.result-card {
+    background: var(--dark-bg-secondary);
+    border: 2px solid var(--dark-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.light-theme .result-card {
+    background: white;
+    border-color: var(--neutral-300);
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-gold);
+    transform: scaleY(0);
+    transition: transform var(--transition-base);
+}
+
+.result-card:hover {
+    border-color: var(--law-gold);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.result-card:hover::before {
+    transform: scaleY(1);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.result-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--dark-text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.light-theme .result-title {
+    color: var(--neutral-900);
+}
+
+.result-meta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.meta-tag {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--law-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.result-summary {
+    color: var(--dark-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 0.9375rem;
+}
+
+.light-theme .result-summary {
+    color: var(--neutral-700);
+}
+
+.result-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dark-border);
+}
+
+.light-theme .result-footer {
+    border-top-color: var(--neutral-300);
+}
+
+.relevance-score {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--dark-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.light-theme .relevance-score {
+    color: var(--neutral-600);
+}
+
+.score-bar {
+    width: 120px;
+    height: 8px;
+    background: var(--dark-bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.light-theme .score-bar {
+    background: var(--neutral-200);
+}
+
+.score-fill {
+    height: 100%;
+    background: var(--gradient-gold);
+    transition: width var(--transition-slow);
+}
+
+/* ============================================================
+   ANALYSIS MODAL
+   ============================================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: var(--glass-blur);
+    z-index: 2000;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--dark-bg-secondary);
+    border: 2px solid var(--dark-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    max-width: 1000px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+}
+
+.light-theme .modal-content {
+    background: white;
+    border-color: var(--neutral-300);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--dark-border);
+}
+
+.light-theme .modal-header {
+    border-bottom-color: var(--neutral-300);
+}
+
+.modal-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: var(--dark-bg-tertiary);
+    border: 2px solid var(--dark-border);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--dark-text-secondary);
+    transition: all var(--transition-base);
+}
+
+.light-theme .modal-close {
+    background: var(--neutral-200);
+    border-color: var(--neutral-300);
+    color: var(--neutral-700);
+}
+
+.modal-close:hover {
+    border-color: var(--law-gold);
+    color: var(--law-gold);
+    transform: rotate(90deg);
+}
+
+.analysis-section {
+    margin-bottom: 2rem;
+}
+
+.analysis-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.risk-badge {
+    padding: 0.375rem 0.875rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.risk-low { background: rgba(76, 175, 80, 0.2); color: var(--accent-green); }
+.risk-medium { background: rgba(255, 193, 7, 0.2); color: var(--accent-amber); }
+.risk-high { background: rgba(255, 87, 34, 0.2); color: #ff5722; }
+.risk-critical { background: rgba(244, 67, 54, 0.2); color: var(--accent-red); }
+
+.clause-item {
+    background: var(--dark-bg-tertiary);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all var(--transition-base);
+}
+
+.light-theme .clause-item {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+}
+
+.clause-item:hover {
+    border-color: var(--law-gold);
+}
+
+.clause-title {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--law-gold);
+    font-size: 1.125rem;
+}
+
+.clause-summary {
+    color: var(--dark-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
+.light-theme .clause-summary {
+    color: var(--neutral-700);
+}
+
+/* ============================================================
+   LOADING STATES
+   ============================================================ */
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.loading.active {
+    display: block;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--dark-border);
+    border-top-color: var(--law-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+
+.light-theme .spinner {
+    border-color: var(--neutral-300);
+    border-top-color: var(--law-gold);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--dark-text-secondary);
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.light-theme .loading-text {
+    color: var(--neutral-700);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2.75rem;
+    }
+
+    .search-filters {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-section {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .hero-section {
+        padding: 3rem 1.5rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-stats {
+        gap: 1.5rem;
+    }
+
+    .search-input-group {
+        flex-direction: column;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .search-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .results-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .results-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.result-card:nth-child(1) { animation-delay: 0.1s; }
+.result-card:nth-child(2) { animation-delay: 0.2s; }
+.result-card:nth-child(3) { animation-delay: 0.3s; }
+.result-card:nth-child(4) { animation-delay: 0.4s; }
+.result-card:nth-child(5) { animation-delay: 0.5s; }
+.result-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Scroll reveal animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.clause-item {
+    animation: slideIn 0.4s ease forwards;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">⚖️</div>
+                <div class="logo-text">
+                    <div class="logo-title">LyDian Legal AI</div>
+                    <div class="logo-subtitle" data-i18n="tagline">Universal Legal Intelligence</div>
+                </div>
+            </div>
+
+            <nav class="nav-section">
+                <div class="nav-links">
+                    <a href="/" class="nav-link" data-i18n="nav-home">Home</a>
+                    <a href="/lydian-legal-universal.html" class="nav-link" data-i18n="nav-search">Legal Search</a>
+                    <a href="/api-docs.html" class="nav-link" data-i18n="nav-api">API Docs</a>
+                    <a href="/developers.html" class="nav-link" data-i18n="nav-developers">Developers</a>
+                </div>
+
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText" data-i18n="theme-dark">Dark</span>
+                </button>
+
+                <select class="language-selector" onchange="changeLanguage(this.value)" id="languageSelect">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="zh">🇨🇳 中文</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="pt">🇵🇹 Português</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🌍</span>
+                <span data-i18n="hero-badge">Available in 195+ Jurisdictions</span>
+            </div>
+            <h1 class="hero-title" data-i18n="hero-title">Universal Legal Research Platform</h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">
+                AI-powered legal search and analysis across all major legal systems worldwide
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">195+</span>
+                    <span class="stat-label" data-i18n="stat-countries">Countries</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">50M+</span>
+                    <span class="stat-label" data-i18n="stat-documents">Legal Documents</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">15+</span>
+                    <span class="stat-label" data-i18n="stat-systems">Legal Systems</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">99.8%</span>
+                    <span class="stat-label" data-i18n="stat-accuracy">Accuracy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-header">
+                    <h2 class="search-title" data-i18n="search-title">Advanced Legal Search</h2>
+                    <p class="search-description" data-i18n="search-description">
+                        Search across legislation, case law, treaties, and legal opinions from any jurisdiction
+                    </p>
+                </div>
+
+                <div class="search-input-group">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        data-i18n-placeholder="search-placeholder"
+                        placeholder="e.g., contract termination, intellectual property rights, data protection..."
+                    >
+                    <button class="search-btn" onclick="performSearch()">
+                        <span>🔍</span>
+                        <span data-i18n="search-btn">Search</span>
+                    </button>
+                </div>
+
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <span>📂</span>
+                            <span data-i18n="filter-category">Category</span>
+                        </label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="" data-i18n="filter-all-categories">All Categories</option>
+                            <option value="case_law" data-i18n="filter-case-law">Case Law</option>
+                            <option value="legislation" data-i18n="filter-legislation">Legislation</option>
+                            <option value="regulations" data-i18n="filter-regulations">Regulations</option>
+                            <option value="treaties" data-i18n="filter-treaties">International Treaties</option>
+                            <option value="legal_opinions" data-i18n="filter-opinions">Legal Opinions</option>
+                            <option value="contracts" data-i18n="filter-contracts">Contracts</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <span>🌍</span>
+                            <span data-i18n="filter-jurisdiction">Jurisdiction</span>
+                        </label>
+                        <select id="jurisdictionFilter" class="filter-select">
+                            <option value="" data-i18n="filter-all-jurisdictions">All Jurisdictions</option>
+                            <option value="international">🌐 International</option>
+                            <option value="european_union">🇪🇺 European Union</option>
+                            <option value="united_states">🇺🇸 United States</option>
+                            <option value="united_kingdom">🇬🇧 United Kingdom</option>
+                            <option value="turkey">🇹🇷 Turkey</option>
+                            <option value="germany">🇩🇪 Germany</option>
+                            <option value="france">🇫🇷 France</option>
+                            <option value="spain">🇪🇸 Spain</option>
+                            <option value="china">🇨🇳 China</option>
+                            <option value="japan">🇯🇵 Japan</option>
+                            <option value="brazil">🇧🇷 Brazil</option>
+                            <option value="india">🇮🇳 India</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <span>⚖️</span>
+                            <span data-i18n="filter-legal-system">Legal System</span>
+                        </label>
+                        <select id="legalSystemFilter" class="filter-select">
+                            <option value="" data-i18n="filter-all-systems">All Systems</option>
+                            <option value="common_law" data-i18n="filter-common-law">Common Law</option>
+                            <option value="civil_law" data-i18n="filter-civil-law">Civil Law</option>
+                            <option value="islamic_law" data-i18n="filter-islamic">Islamic Law</option>
+                            <option value="hybrid" data-i18n="filter-hybrid">Hybrid Systems</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <span>🔄</span>
+                            <span data-i18n="filter-sort">Sort By</span>
+                        </label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="relevance" data-i18n="sort-relevance">Relevance</option>
+                            <option value="date" data-i18n="sort-date">Date (Newest)</option>
+                            <option value="citations" data-i18n="sort-citations">Most Cited</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document Upload Section -->
+        <section class="upload-section" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📄</div>
+            <h2 class="upload-title" data-i18n="upload-title">Legal Document Analysis</h2>
+            <p class="upload-subtitle" data-i18n="upload-subtitle">
+                Upload contracts, agreements, or legal documents for AI-powered comprehensive analysis
+            </p>
+            <button class="upload-btn" data-i18n="upload-btn">Upload Document</button>
+            <p class="upload-formats" data-i18n="upload-formats">
+                Supported formats: PDF, DOCX, TXT, RTF (Max 10MB)
+            </p>
+            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.rtf" onchange="analyzeDocument(this.files[0])">
+        </section>
+
+        <!-- Loading State -->
+        <div class="loading" id="loadingState">
+            <div class="spinner"></div>
+            <p class="loading-text" data-i18n="loading-search">AI-powered search in progress...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <div class="results-header">
+                <div class="results-count">
+                    <span id="resultsCount">0</span>
+                    <span data-i18n="results-found">results found</span>
+                </div>
+                <div class="results-actions">
+                    <button class="action-btn" onclick="exportResults()">
+                        <span>📥</span>
+                        <span data-i18n="action-export">Export</span>
+                    </button>
+                    <button class="action-btn" onclick="shareResults()">
+                        <span>📤</span>
+                        <span data-i18n="action-share">Share</span>
+                    </button>
+                    <button class="action-btn" onclick="saveResults()">
+                        <span>💾</span>
+                        <span data-i18n="action-save">Save</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be populated here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Analysis Modal -->
+    <div class="modal" id="analysisModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" data-i18n="modal-title">Document Analysis</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+
+            <div id="analysisContent">
+                <!-- Analysis results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // MULTI-LANGUAGE SUPPORT
+        // ============================================================
+
+        const translations = {
+            en: {
+                'tagline': 'Universal Legal Intelligence',
+                'nav-home': 'Home',
+                'nav-search': 'Legal Search',
+                'nav-api': 'API Docs',
+                'nav-developers': 'Developers',
+                'theme-dark': 'Dark',
+                'theme-light': 'Light',
+                'hero-badge': 'Available in 195+ Jurisdictions',
+                'hero-title': 'Universal Legal Research Platform',
+                'hero-subtitle': 'AI-powered legal search and analysis across all major legal systems worldwide',
+                'stat-countries': 'Countries',
+                'stat-documents': 'Legal Documents',
+                'stat-systems': 'Legal Systems',
+                'stat-accuracy': 'Accuracy',
+                'search-title': 'Advanced Legal Search',
+                'search-description': 'Search across legislation, case law, treaties, and legal opinions from any jurisdiction',
+                'search-placeholder': 'e.g., contract termination, intellectual property rights, data protection...',
+                'search-btn': 'Search',
+                'filter-category': 'Category',
+                'filter-all-categories': 'All Categories',
+                'filter-case-law': 'Case Law',
+                'filter-legislation': 'Legislation',
+                'filter-regulations': 'Regulations',
+                'filter-treaties': 'International Treaties',
+                'filter-opinions': 'Legal Opinions',
+                'filter-contracts': 'Contracts',
+                'filter-jurisdiction': 'Jurisdiction',
+                'filter-all-jurisdictions': 'All Jurisdictions',
+                'filter-legal-system': 'Legal System',
+                'filter-all-systems': 'All Systems',
+                'filter-common-law': 'Common Law',
+                'filter-civil-law': 'Civil Law',
+                'filter-islamic': 'Islamic Law',
+                'filter-hybrid': 'Hybrid Systems',
+                'filter-sort': 'Sort By',
+                'sort-relevance': 'Relevance',
+                'sort-date': 'Date (Newest)',
+                'sort-citations': 'Most Cited',
+                'upload-title': 'Legal Document Analysis',
+                'upload-subtitle': 'Upload contracts, agreements, or legal documents for AI-powered comprehensive analysis',
+                'upload-btn': 'Upload Document',
+                'upload-formats': 'Supported formats: PDF, DOCX, TXT, RTF (Max 10MB)',
+                'loading-search': 'AI-powered search in progress...',
+                'loading-analysis': 'Analyzing document...',
+                'results-found': 'results found',
+                'action-export': 'Export',
+                'action-share': 'Share',
+                'action-save': 'Save',
+                'modal-title': 'Document Analysis',
+                'error-short-query': 'Please enter at least 2 characters',
+                'error-search-failed': 'Search failed. Please try again.',
+                'error-analysis-failed': 'Analysis failed. Please try again.'
+            },
+            tr: {
+                'tagline': 'Evrensel Hukuk Zekası',
+                'nav-home': 'Ana Sayfa',
+                'nav-search': 'Hukuk Arama',
+                'nav-api': 'API Dökümanları',
+                'nav-developers': 'Geliştiriciler',
+                'theme-dark': 'Karanlık',
+                'theme-light': 'Aydınlık',
+                'hero-badge': '195+ Yargı Bölgesinde Kullanılabilir',
+                'hero-title': 'Evrensel Hukuk Araştırma Platformu',
+                'hero-subtitle': 'Tüm dünya hukuk sistemlerinde AI destekli arama ve analiz',
+                'stat-countries': 'Ülke',
+                'stat-documents': 'Hukuki Doküman',
+                'stat-systems': 'Hukuk Sistemi',
+                'stat-accuracy': 'Doğruluk',
+                'search-title': 'Gelişmiş Hukuk Araması',
+                'search-description': 'Herhangi bir yargı bölgesinden kanunlar, içtihatlar, anlaşmalar ve hukuki görüşler arayın',
+                'search-placeholder': 'Örn: sözleşme feshi, fikri mülkiyet hakları, veri koruma...',
+                'search-btn': 'Ara',
+                'filter-category': 'Kategori',
+                'filter-all-categories': 'Tüm Kategoriler',
+                'filter-case-law': 'İçtihat',
+                'filter-legislation': 'Kanun',
+                'filter-regulations': 'Yönetmelik',
+                'filter-treaties': 'Uluslararası Anlaşmalar',
+                'filter-opinions': 'Hukuki Görüşler',
+                'filter-contracts': 'Sözleşmeler',
+                'filter-jurisdiction': 'Yargı Bölgesi',
+                'filter-all-jurisdictions': 'Tüm Bölgeler',
+                'filter-legal-system': 'Hukuk Sistemi',
+                'filter-all-systems': 'Tüm Sistemler',
+                'filter-common-law': 'Anglo-Sakson Hukuku',
+                'filter-civil-law': 'Kıta Avrupası Hukuku',
+                'filter-islamic': 'İslam Hukuku',
+                'filter-hybrid': 'Karma Sistemler',
+                'filter-sort': 'Sıralama',
+                'sort-relevance': 'İlgililik',
+                'sort-date': 'Tarih (Yeni)',
+                'sort-citations': 'En Çok Atıf',
+                'upload-title': 'Hukuki Doküman Analizi',
+                'upload-subtitle': 'Sözleşmeler, anlaşmalar veya hukuki dokümanlar yükleyin, AI ile kapsamlı analiz yapın',
+                'upload-btn': 'Doküman Yükle',
+                'upload-formats': 'Desteklenen formatlar: PDF, DOCX, TXT, RTF (Maks 10MB)',
+                'loading-search': 'AI ile arama yapılıyor...',
+                'loading-analysis': 'Doküman analiz ediliyor...',
+                'results-found': 'sonuç bulundu',
+                'action-export': 'Dışa Aktar',
+                'action-share': 'Paylaş',
+                'action-save': 'Kaydet',
+                'modal-title': 'Doküman Analizi',
+                'error-short-query': 'Lütfen en az 2 karakter giriniz',
+                'error-search-failed': 'Arama başarısız. Lütfen tekrar deneyin.',
+                'error-analysis-failed': 'Analiz başarısız. Lütfen tekrar deneyin.'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+            placeholders.forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // ============================================================
+        // THEME TOGGLE
+        // ============================================================
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            body.classList.toggle('light-theme');
+
+            if (body.classList.contains('light-theme')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = translations[currentLanguage]['theme-light'] || 'Light';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = translations[currentLanguage]['theme-dark'] || 'Dark';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeText').textContent = 'Light';
+            }
+
+            // Detect user's browser language
+            const browserLang = navigator.language.split('-')[0];
+            if (translations[browserLang]) {
+                document.getElementById('languageSelect').value = browserLang;
+                changeLanguage(browserLang);
+            }
+        });
+
+        // ============================================================
+        // API CONFIGURATION
+        // ============================================================
+
+        const API_BASE = window.location.origin;
+
+        // ============================================================
+        // SEARCH FUNCTIONALITY
+        // ============================================================
+
+        async function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+
+            if (!query || query.length < 2) {
+                alert(translations[currentLanguage]['error-short-query'] || 'Please enter at least 2 characters');
+                return;
+            }
+
+            const category = document.getElementById('categoryFilter').value;
+            const jurisdiction = document.getElementById('jurisdictionFilter').value;
+            const legalSystem = document.getElementById('legalSystemFilter').value;
+            const sortBy = document.getElementById('sortFilter').value;
+
+            // Show loading
+            document.getElementById('loadingState').classList.add('active');
+            document.querySelector('.loading-text').textContent = translations[currentLanguage]['loading-search'];
+            document.getElementById('resultsSection').classList.remove('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/legal/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query,
+                        category: category || undefined,
+                        jurisdiction: jurisdiction || undefined,
+                        legalSystem: legalSystem || undefined,
+                        sortBy,
+                        page: 1,
+                        limit: 10,
+                        includeSuggestions: true,
+                        language: currentLanguage
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Search failed');
+                }
+
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                console.error('Search error:', error);
+                alert(translations[currentLanguage]['error-search-failed'] || 'Search failed. Please try again.');
+            } finally {
+                document.getElementById('loadingState').classList.remove('active');
+            }
+        }
+
+        // Display search results
+        function displayResults(data) {
+            const resultsGrid = document.getElementById('resultsGrid');
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsCount = document.getElementById('resultsCount');
+
+            resultsGrid.innerHTML = '';
+            resultsCount.textContent = data.results.length;
+
+            data.results.forEach(result => {
+                const card = createResultCard(result);
+                resultsGrid.appendChild(card);
+            });
+
+            resultsSection.classList.add('active');
+        }
+
+        // Create result card
+        function createResultCard(result) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.onclick = () => showResultDetail(result);
+
+            const categoryLabels = {
+                'case_law': translations[currentLanguage]['filter-case-law'] || 'Case Law',
+                'legislation': translations[currentLanguage]['filter-legislation'] || 'Legislation',
+                'regulations': translations[currentLanguage]['filter-regulations'] || 'Regulations',
+                'treaties': translations[currentLanguage]['filter-treaties'] || 'Treaties',
+                'legal_opinions': translations[currentLanguage]['filter-opinions'] || 'Legal Opinions',
+                'contracts': translations[currentLanguage]['filter-contracts'] || 'Contracts'
+            };
+
+            card.innerHTML = `
+                <div class="result-header">
+                    <div>
+                        <h3 class="result-title">${result.title}</h3>
+                        <div class="result-meta">
+                            <span class="meta-tag">${categoryLabels[result.category] || result.category}</span>
+                            <span class="meta-tag">${result.jurisdiction}</span>
+                            ${result.lawNumber ? `<span class="meta-tag">№ ${result.lawNumber}</span>` : ''}
+                            <span class="meta-tag">${new Date(result.date).toLocaleDateString(currentLanguage === 'tr' ? 'tr-TR' : 'en-US')}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="result-summary">${result.summary}</p>
+                <div class="result-footer">
+                    <div class="relevance-score">
+                        <span>${translations[currentLanguage]['sort-relevance'] || 'Relevance'}</span>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: ${Math.min(100, result.relevanceScore)}%"></div>
+                        </div>
+                        <span>${Math.round(result.relevanceScore)}%</span>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Show result detail
+        function showResultDetail(result) {
+            const modal = document.getElementById('analysisModal');
+            const content = document.getElementById('analysisContent');
+
+            content.innerHTML = `
+                <div class="analysis-section">
+                    <h3 class="analysis-title">${result.title}</h3>
+                    <div class="result-meta">
+                        <span class="meta-tag">${result.category}</span>
+                        <span class="meta-tag">${result.jurisdiction}</span>
+                        ${result.lawNumber ? `<span class="meta-tag">№ ${result.lawNumber}</span>` : ''}
+                        ${result.court ? `<span class="meta-tag">${result.court}</span>` : ''}
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h4 class="analysis-title">Summary</h4>
+                    <p class="clause-summary">${result.summary}</p>
+                </div>
+
+                <div class="analysis-section">
+                    <h4 class="analysis-title">Content</h4>
+                    <p class="clause-summary">${result.content}</p>
+                </div>
+
+                ${result.relatedDocuments && result.relatedDocuments.length > 0 ? `
+                    <div class="analysis-section">
+                        <h4 class="analysis-title">Related Documents</h4>
+                        ${result.relatedDocuments.map(doc => `
+                            <div class="clause-item">
+                                <div class="clause-title">${doc.title}</div>
+                                <div class="result-meta">
+                                    <span class="meta-tag">${doc.category}</span>
+                                    <span class="meta-tag">${new Date(doc.date).toLocaleDateString(currentLanguage === 'tr' ? 'tr-TR' : 'en-US')}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Analyze document
+        async function analyzeDocument(file) {
+            if (!file) return;
+
+            // Check file size (10MB limit)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File size exceeds 10MB limit');
+                return;
+            }
+
+            document.getElementById('loadingState').classList.add('active');
+            document.querySelector('.loading-text').textContent = translations[currentLanguage]['loading-analysis'] || 'Analyzing document...';
+
+            try {
+                const text = await file.text();
+
+                const response = await fetch(`${API_BASE}/api/legal/analyze`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text,
+                        analysisType: 'full',
+                        language: currentLanguage
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Analysis failed');
+                }
+
+                const data = await response.json();
+                displayAnalysis(data.analysis);
+            } catch (error) {
+                console.error('Analysis error:', error);
+                alert(translations[currentLanguage]['error-analysis-failed'] || 'Analysis failed. Please try again.');
+            } finally {
+                document.getElementById('loadingState').classList.remove('active');
+                document.querySelector('.loading-text').textContent = translations[currentLanguage]['loading-search'];
+            }
+        }
+
+        // Display analysis results
+        function displayAnalysis(analysis) {
+            const modal = document.getElementById('analysisModal');
+            const content = document.getElementById('analysisContent');
+
+            const riskClass = `risk-${analysis.riskAssessment.overallRisk}`;
+
+            content.innerHTML = `
+                <div class="analysis-section">
+                    <h3 class="analysis-title">
+                        Document Type
+                        <span class="meta-tag">${analysis.classification.documentType}</span>
+                    </h3>
+                    <p class="clause-summary">${analysis.classification.reasoning}</p>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">
+                        Risk Assessment
+                        <span class="risk-badge ${riskClass}">
+                            ${analysis.riskAssessment.overallRisk.toUpperCase()}
+                        </span>
+                    </h3>
+                    <p class="clause-summary">Risk Score: ${analysis.riskAssessment.riskScore}/100</p>
+
+                    ${analysis.riskAssessment.risks.length > 0 ? `
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem; font-weight: 700;">Identified Risks:</h4>
+                        ${analysis.riskAssessment.risks.map(risk => `
+                            <div class="clause-item">
+                                <div class="clause-title">
+                                    ${risk.category}
+                                    <span class="risk-badge risk-${risk.severity}">${risk.severity}</span>
+                                </div>
+                                <p class="clause-summary">${risk.description}</p>
+                                <p class="clause-summary" style="margin-top: 0.75rem; color: var(--law-gold);">
+                                    <strong>Recommendation:</strong> ${risk.recommendation}
+                                </p>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                </div>
+
+                ${analysis.clauses.length > 0 ? `
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Key Clauses</h3>
+                        ${analysis.clauses.map(clause => `
+                            <div class="clause-item">
+                                <div class="clause-title">
+                                    ${clause.title}
+                                    <span class="meta-tag">${clause.importance}</span>
+                                </div>
+                                <p class="clause-summary">${clause.summary}</p>
+                                ${clause.risks && clause.risks.length > 0 ? `
+                                    <p class="clause-summary" style="margin-top: 0.75rem; color: var(--accent-red);">
+                                        <strong>Risks:</strong> ${clause.risks.join(', ')}
+                                    </p>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+                ${analysis.recommendations.recommendations && analysis.recommendations.recommendations.length > 0 ? `
+                    <div class="analysis-section">
+                        <h3 class="analysis-title">Recommendations</h3>
+                        ${analysis.recommendations.recommendations.map(rec => `
+                            <div class="clause-item">
+                                <div class="clause-title">
+                                    ${rec.category}
+                                    <span class="meta-tag">${rec.priority}</span>
+                                </div>
+                                <p class="clause-summary">${rec.recommendation}</p>
+                                <p class="clause-summary" style="margin-top: 0.75rem;">
+                                    <strong>Implementation:</strong> ${rec.implementation}
+                                </p>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Complexity Analysis</h3>
+                    <div class="clause-item">
+                        <div class="result-meta">
+                            <span class="meta-tag">Level: ${analysis.complexity.level.toUpperCase()}</span>
+                            <span class="meta-tag">Score: ${analysis.complexity.score}/100</span>
+                            <span class="meta-tag">Words: ${analysis.complexity.metrics.wordCount}</span>
+                            <span class="meta-tag">Sentences: ${analysis.complexity.metrics.sentenceCount}</span>
+                            <span class="meta-tag">Legal Term Density: ${analysis.complexity.metrics.legalTermDensity}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('analysisModal').classList.remove('active');
+        }
+
+        // Export results
+        function exportResults() {
+            alert('Export feature coming soon!');
+        }
+
+        // Share results
+        function shareResults() {
+            alert('Share feature coming soon!');
+        }
+
+        // Save results
+        function saveResults() {
+            alert('Save feature coming soon!');
+        }
+
+        // Enter key support
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('analysisModal').addEventListener('click', (e) => {
+            if (e.target.id === 'analysisModal') {
+                closeModal();
+            }
+        });
+
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
