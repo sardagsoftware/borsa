@@ -16,8 +16,7 @@
         }
       ],
       "destination": "https://www.ailydian.com/:path*",
-      "permanent": true,
-      "statusCode": 301
+      "permanent": true
     }
   ],
   "rewrites": [
