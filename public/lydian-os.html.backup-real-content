@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/lydian-os" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/lydian-os" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/lydian-os" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/lydian-os" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/lydian-os" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/lydian-os" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/lydian-os" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/lydian-os" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/lydian-os" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LyDian OS - Global AI Operating System</title>
+    <meta name="description" content="LyDian OS: Planet-scale AI operating system with attestation, compliance, and governance.">
+    <link rel="icon" href="/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0B0F19 0%, #121826 50%, #1a1f2e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(124, 92, 255, 0.2);
+            border: 1px solid rgba(124, 92, 255, 0.4);
+            border-radius: 999px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: bold;
+            background: linear-gradient(90deg, #6366F1, #A855F7, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #6366F1, #A855F7);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 92, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(124, 92, 255, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            color: #A855F7;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "LyDian OS - Global AI Operating System",
+  "description": "LyDian OS: Planet-scale AI operating system with attestation, compliance, and governance.",
+  "url": "https://www.ailydian.com/lydian-os",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Lydian Os",
+        "item": "https://www.ailydian.com/lydian-os"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="LyDian OS - Global AI Operating System" />
+  <meta name="twitter:description" content="LyDian OS: Planet-scale AI operating system with attestation, compliance, and governance." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/lydian-os-tr.png" />
+  <meta name="twitter:image:alt" content="LyDian OS - Global AI Operating System" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.794Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  
+  <!-- Visual Rich Results & Images -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "LyDian OS - Global AI Operating System",
+  "image": [
+    "https://www.ailydian.com/product-images/lydian-os-1.jpg",
+    "https://www.ailydian.com/product-images/lydian-os-2.jpg",
+    "https://www.ailydian.com/product-images/lydian-os-3.jpg"
+  ],
+  "description": "LyDian OS - Global AI Operating System - LyDian AI Platform",
+  "brand": {
+    "@type": "Brand",
+    "name": "LyDian AI"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.ailydian.com/lydian-os",
+    "priceCurrency": "TRY",
+    "price": "0",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "LyDian AI"
+    }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ahmet Yılmaz"
+      },
+      "reviewBody": "Harika bir yapay zeka platformu. Çok işime yarıyor."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ayşe Demir"
+      },
+      "reviewBody": "Kullanımı kolay ve etkili. Tavsiye ederim."
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LyDian OS - Global AI Operating System",
+  "description": "LyDian OS: Planet-scale AI operating system with attestation, compliance, and governance.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/article-images/lydian-os.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "LyDian OS - Global AI Operating System"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "LyDian AI Team",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/author-images/lydian-team.jpg",
+      "width": 200,
+      "height": 200
+    },
+    "url": "https://www.ailydian.com/about/team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/lydian-logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-12-20T00:00:00+03:00",
+  "dateModified": "2025-12-20T15:23:37.768Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.ailydian.com/lydian-os"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "LyDian OS - Global AI Operating System",
+  "description": "LyDian OS - Global AI Operating System nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/lydian-os.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/lydian-os-step1.jpg",
+      "url": "https://www.ailydian.com/lydian-os#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/lydian-os-step2.jpg",
+      "url": "https://www.ailydian.com/lydian-os#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/lydian-os-step3.jpg",
+      "url": "https://www.ailydian.com/lydian-os#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-os.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/lydian-os.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LyDian OS - Global AI Operating System" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/lydian-os.png" />
+  <meta name="twitter:image:alt" content="LyDian OS - Global AI Operating System" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-os-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-os-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-os-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/lydian-os.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/lydian-os.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/lydian-os.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/lydian-os.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/lydian-os.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/lydian-os.png" />
+  </head>
+<body>
+    <a href="/" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Anasayfa
+    </a>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="badge">ATTESTED · COMPLIANT · GLOBAL</span>
+            <h1>LyDian OS</h1>
+            <p class="subtitle">
+                Planet-scale AI operating system with built-in attestation, compliance governance, and global orchestration
+            </p>
+
+            <div class="cta-buttons">
+                <a href="#features" class="btn btn-primary">Explore Features</a>
+                <a href="/api-docs.html" class="btn btn-outline">API Documentation</a>
+                <a href="/status.html" class="btn btn-outline">System Status</a>
+            </div>
+        </div>
+
+        <div class="features" id="features">
+            <div class="feature-card">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <h3 class="feature-title">Compliance Autopilot</h3>
+                <p class="feature-desc">
+                    Automated compliance validation across GDPR, HIPAA, CCPA, and SOC2 frameworks with real-time attestation
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h3 class="feature-title">Regional Intelligence</h3>
+                <p class="feature-desc">
+                    Geographic AI orchestration with data sovereignty, regional compliance, and latency optimization
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                </svg>
+                <h3 class="feature-title">Gov-Grade Security</h3>
+                <p class="feature-desc">
+                    Government-grade policy simulation, constitutional AI alignment, and transparent governance frameworks
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                <h3 class="feature-title">Private Regions</h3>
+                <p class="feature-desc">
+                    Enterprise-grade private AI regions with isolated compute, dedicated infrastructure, and compliance isolation
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <h3 class="feature-title">AI Mesh Network</h3>
+                <p class="feature-desc">
+                    Decentralized AI orchestration with peer-to-peer model collaboration and distributed inference
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <h3 class="feature-title">Real-time Metrics</h3>
+                <p class="feature-desc">
+                    Comprehensive observability with request tracing, performance analytics, and compliance dashboards
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

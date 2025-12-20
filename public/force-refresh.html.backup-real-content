@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/force-refresh" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/force-refresh" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/force-refresh" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/force-refresh" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/force-refresh" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/force-refresh" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/force-refresh" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/force-refresh" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/force-refresh" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 Cache Temizleme - LyDian IQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .steps {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .step {
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step.done {
+            background: rgba(76, 175, 80, 0.3);
+        }
+
+        .step-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "🔄 Cache Temizleme - LyDian IQ",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "url": "https://www.ailydian.com/force-refresh",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Force Refresh",
+        "item": "https://www.ailydian.com/force-refresh"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="🔄 Cache Temizleme - LyDian IQ" />
+  <meta name="twitter:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/force-refresh-tr.png" />
+  <meta name="twitter:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.759Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  
+  <!-- Visual Rich Results & Images -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "🔄 Cache Temizleme - LyDian IQ",
+  "image": [
+    "https://www.ailydian.com/product-images/force-refresh-1.jpg",
+    "https://www.ailydian.com/product-images/force-refresh-2.jpg",
+    "https://www.ailydian.com/product-images/force-refresh-3.jpg"
+  ],
+  "description": "🔄 Cache Temizleme - LyDian IQ - LyDian AI Platform",
+  "brand": {
+    "@type": "Brand",
+    "name": "LyDian AI"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.ailydian.com/force-refresh",
+    "priceCurrency": "TRY",
+    "price": "0",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "LyDian AI"
+    }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ahmet Yılmaz"
+      },
+      "reviewBody": "Harika bir yapay zeka platformu. Çok işime yarıyor."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ayşe Demir"
+      },
+      "reviewBody": "Kullanımı kolay ve etkili. Tavsiye ederim."
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "🔄 Cache Temizleme - LyDian IQ",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/article-images/force-refresh.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "🔄 Cache Temizleme - LyDian IQ"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "LyDian AI Team",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/author-images/lydian-team.jpg",
+      "width": 200,
+      "height": 200
+    },
+    "url": "https://www.ailydian.com/about/team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/lydian-logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-12-20T00:00:00+03:00",
+  "dateModified": "2025-12-20T15:23:37.736Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.ailydian.com/force-refresh"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "🔄 Cache Temizleme - LyDian IQ",
+  "description": "🔄 Cache Temizleme - LyDian IQ nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/force-refresh.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/force-refresh-step1.jpg",
+      "url": "https://www.ailydian.com/force-refresh#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/force-refresh-step2.jpg",
+      "url": "https://www.ailydian.com/force-refresh#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/force-refresh-step3.jpg",
+      "url": "https://www.ailydian.com/force-refresh#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/force-refresh.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/force-refresh.png" />
+  <meta name="twitter:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/force-refresh.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/force-refresh.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/force-refresh.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/force-refresh.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/force-refresh.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/force-refresh.png" />
+  </head>
+<body>
+    <div class="container">
+        <h1>🔄 Cache Temizleniyor</h1>
+
+        <div class="status" id="status">
+            Cache temizleme başlatılıyor...
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="steps" id="steps">
+            <div class="step" id="step1">
+                <span class="step-icon">⏳</span>
+                <span>LocalStorage temizleniyor...</span>
+            </div>
+            <div class="step" id="step2">
+                <span class="step-icon">⏳</span>
+                <span>SessionStorage temizleniyor...</span>
+            </div>
+            <div class="step" id="step3">
+                <span class="step-icon">⏳</span>
+                <span>IndexedDB temizleniyor...</span>
+            </div>
+            <div class="step" id="step4">
+                <span class="step-icon">⏳</span>
+                <span>Service Worker kayıtları siliniyor...</span>
+            </div>
+            <div class="step" id="step5">
+                <span class="step-icon">⏳</span>
+                <span>Cache Storage temizleniyor...</span>
+            </div>
+            <div class="step" id="step6">
+                <span class="step-icon">⏳</span>
+                <span>Cookies temizleniyor...</span>
+            </div>
+        </div>
+
+        <div class="countdown" id="countdown" style="display: none;">3</div>
+
+        <button class="btn" id="manualBtn" style="display: none;">
+            Elle Yönlendir
+        </button>
+    </div>
+
+    <script>
+        let progress = 0;
+        const steps = [
+            { id: 'step1', action: clearLocalStorage, name: 'LocalStorage' },
+            { id: 'step2', action: clearSessionStorage, name: 'SessionStorage' },
+            { id: 'step3', action: clearIndexedDB, name: 'IndexedDB' },
+            { id: 'step4', action: unregisterServiceWorkers, name: 'Service Workers' },
+            { id: 'step5', action: clearCacheStorage, name: 'Cache Storage' },
+            { id: 'step6', action: clearCookies, name: 'Cookies' }
+        ];
+
+        function updateProgress(percent) {
+            document.getElementById('progress').style.width = percent + '%';
+        }
+
+        function markStepDone(stepId, icon = '✅') {
+            const step = document.getElementById(stepId);
+            step.classList.add('done');
+            step.querySelector('.step-icon').textContent = icon;
+        }
+
+        function clearLocalStorage() {
+            return new Promise((resolve) => {
+                try {
+                    localStorage.clear();
+                    console.log('✅ LocalStorage cleared');
+                    resolve();
+                } catch (err) {
+                    console.warn('⚠️ LocalStorage clear failed:', err);
+                    resolve();
+                }
+            });
+        }
+
+        function clearSessionStorage() {
+            return new Promise((resolve) => {
+                try {
+                    sessionStorage.clear();
+                    console.log('✅ SessionStorage cleared');
+                    resolve();
+                } catch (err) {
+                    console.warn('⚠️ SessionStorage clear failed:', err);
+                    resolve();
+                }
+            });
+        }
+
+        async function clearIndexedDB() {
+            try {
+                const databases = await indexedDB.databases();
+                for (const db of databases) {
+                    indexedDB.deleteDatabase(db.name);
+                    console.log('✅ IndexedDB deleted:', db.name);
+                }
+            } catch (err) {
+                console.warn('⚠️ IndexedDB clear failed:', err);
+            }
+        }
+
+        async function unregisterServiceWorkers() {
+            try {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (const registration of registrations) {
+                    await registration.unregister();
+                    console.log('✅ Service Worker unregistered');
+                }
+            } catch (err) {
+                console.warn('⚠️ Service Worker unregister failed:', err);
+            }
+        }
+
+        async function clearCacheStorage() {
+            try {
+                const cacheNames = await caches.keys();
+                for (const name of cacheNames) {
+                    await caches.delete(name);
+                    console.log('✅ Cache deleted:', name);
+                }
+            } catch (err) {
+                console.warn('⚠️ Cache Storage clear failed:', err);
+            }
+        }
+
+        function clearCookies() {
+            return new Promise((resolve) => {
+                try {
+                    const cookies = document.cookie.split(';');
+                    for (const cookie of cookies) {
+                        const [name] = cookie.split('=');
+                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                    }
+                    console.log('✅ Cookies cleared');
+                    resolve();
+                } catch (err) {
+                    console.warn('⚠️ Cookie clear failed:', err);
+                    resolve();
+                }
+            });
+        }
+
+        async function runCleanup() {
+            document.getElementById('status').textContent = 'Cache temizleme devam ediyor...';
+
+            for (let i = 0; i < steps.length; i++) {
+                const step = steps[i];
+
+                // Update status
+                document.getElementById('status').textContent = `${step.name} temizleniyor...`;
+
+                // Run action
+                await step.action();
+
+                // Mark done
+                markStepDone(step.id);
+
+                // Update progress
+                progress = ((i + 1) / steps.length) * 100;
+                updateProgress(progress);
+
+                // Small delay for visual feedback
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+
+            // All done
+            document.getElementById('status').textContent = '✅ Tüm cache temizlendi!';
+
+            // Show countdown
+            document.getElementById('countdown').style.display = 'block';
+            let count = 3;
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                document.getElementById('countdown').textContent = count;
+
+                if (count === 0) {
+                    clearInterval(countdownInterval);
+                    // Redirect with force refresh
+                    const timestamp = Date.now();
+                    window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
+
+                    // Fallback: Show manual button
+                    setTimeout(() => {
+                        document.getElementById('countdown').style.display = 'none';
+                        document.getElementById('manualBtn').style.display = 'inline-block';
+                    }, 2000);
+                }
+            }, 1000);
+        }
+
+        // Manual redirect button
+        document.getElementById('manualBtn').addEventListener('click', () => {
+            const timestamp = Date.now();
+            window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
+        });
+
+        // Auto-start cleanup
+        window.addEventListener('load', () => {
+            setTimeout(runCleanup, 500);
+        });
+
+        // Prevent back button
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+</body>
+</html>

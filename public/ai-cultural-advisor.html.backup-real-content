@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/ai-cultural-advisor" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/ai-cultural-advisor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/ai-cultural-advisor" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/ai-cultural-advisor" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/ai-cultural-advisor" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/ai-cultural-advisor" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/ai-cultural-advisor" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/ai-cultural-advisor" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/ai-cultural-advisor" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kültürel Uyum Danışmanı | LyDian AI</title>
+    <link rel="icon" type="image/png" href="/lydian-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10A37F;
+            --primary-hover: #0D8F6E;
+            --accent: #FF6B4A;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-white); color: var(--gray-900); }
+        .header { background: linear-gradient(135deg, var(--bg-white), var(--bg-gray)); padding: 2rem; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 2rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        .breadcrumb { color: var(--gray-500); font-size: 0.9rem; margin-top: 0.5rem; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .status-badge { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 600; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card { background: var(--bg-white); border-radius: 1rem; padding: 2rem; border: 1px solid var(--gray-200); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; color: var(--gray-700); font-weight: 500; margin-bottom: 0.5rem; }
+        input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; font-family: inherit; }
+        button { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 1rem 2rem; border: none; border-radius: 0.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
+        button:hover { transform: translateY(-2px); }
+        .results { display: none; margin-top: 2rem; }
+        .results.show { display: block; }
+        .section { background: var(--bg-gray); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid var(--primary); }
+        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Kültürel Uyum Danışmanı | LyDian AI",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "url": "https://www.ailydian.com/ai-cultural-advisor",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Ai Cultural Advisor",
+        "item": "https://www.ailydian.com/ai-cultural-advisor"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="Kültürel Uyum Danışmanı | LyDian AI" />
+  <meta name="twitter:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/ai-cultural-advisor-tr.png" />
+  <meta name="twitter:image:alt" content="Kültürel Uyum Danışmanı | LyDian AI" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.707Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  
+  <!-- Visual Rich Results & Images -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Kültürel Uyum Danışmanı | LyDian AI",
+  "image": [
+    "https://www.ailydian.com/product-images/ai-cultural-advisor-1.jpg",
+    "https://www.ailydian.com/product-images/ai-cultural-advisor-2.jpg",
+    "https://www.ailydian.com/product-images/ai-cultural-advisor-3.jpg"
+  ],
+  "description": "Kültürel Uyum Danışmanı | LyDian AI - LyDian AI Platform",
+  "brand": {
+    "@type": "Brand",
+    "name": "LyDian AI"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.ailydian.com/ai-cultural-advisor",
+    "priceCurrency": "TRY",
+    "price": "0",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "LyDian AI"
+    }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ahmet Yılmaz"
+      },
+      "reviewBody": "Harika bir yapay zeka platformu. Çok işime yarıyor."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ayşe Demir"
+      },
+      "reviewBody": "Kullanımı kolay ve etkili. Tavsiye ederim."
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kültürel Uyum Danışmanı | LyDian AI",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/article-images/ai-cultural-advisor.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "Kültürel Uyum Danışmanı | LyDian AI"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "LyDian AI Team",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/author-images/lydian-team.jpg",
+      "width": 200,
+      "height": 200
+    },
+    "url": "https://www.ailydian.com/about/team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/lydian-logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-12-20T00:00:00+03:00",
+  "dateModified": "2025-12-20T15:23:37.674Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.ailydian.com/ai-cultural-advisor"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Kültürel Uyum Danışmanı | LyDian AI",
+  "description": "Kültürel Uyum Danışmanı | LyDian AI nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/ai-cultural-advisor.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/ai-cultural-advisor-step1.jpg",
+      "url": "https://www.ailydian.com/ai-cultural-advisor#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/ai-cultural-advisor-step2.jpg",
+      "url": "https://www.ailydian.com/ai-cultural-advisor#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/ai-cultural-advisor-step3.jpg",
+      "url": "https://www.ailydian.com/ai-cultural-advisor#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-cultural-advisor.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/ai-cultural-advisor.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Kültürel Uyum Danışmanı | LyDian AI" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/ai-cultural-advisor.png" />
+  <meta name="twitter:image:alt" content="Kültürel Uyum Danışmanı | LyDian AI" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-cultural-advisor-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-cultural-advisor-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-cultural-advisor-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/ai-cultural-advisor.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/ai-cultural-advisor.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/ai-cultural-advisor.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/ai-cultural-advisor.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/ai-cultural-advisor.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/ai-cultural-advisor.png" />
+  </head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>🎭 Kültürel Uyum Danışmanı</h1>
+                <div class="breadcrumb"><a href="/ai-advisor-hub.html">AI Advisor Hub</a> / Kültürel Uyum</div>
+            </div>
+            <span class="status-badge">CANLI</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <h2 style="margin-bottom: 1.5rem;">Kültürel Uyum Rehberi</h2>
+                    <form id="culturalForm">
+                        <div class="form-group">
+                            <label>Köken Ülke</label>
+                            <input type="text" id="originCountry" required placeholder="Örn: Türkiye">
+                        </div>
+                        <div class="form-group">
+                            <label>Hedef Ülke</label>
+                            <input type="text" id="destinationCountry" required placeholder="Örn: Amerika Birleşik Devletleri">
+                        </div>
+                        <div class="form-group">
+                            <label>Amaç</label>
+                            <select id="purpose">
+                                <option value="İş">İş</option>
+                                <option value="Eğitim">Eğitim</option>
+                                <option value="Taşınma">Kalıcı Taşınma</option>
+                                <option value="Seyahat">Uzun Süreli Seyahat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Süre</label>
+                            <select id="duration">
+                                <option value="Kısa dönem (1-6 ay)">Kısa dönem (1-6 ay)</option>
+                                <option value="Orta dönem (6-24 ay)">Orta dönem (6-24 ay)</option>
+                                <option value="Uzun dönem">Uzun dönem (2+ yıl)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Sektör (Opsiyonel)</label>
+                            <input type="text" id="industry" placeholder="Örn: Teknoloji, Finans, Sağlık">
+                        </div>
+                        <div class="form-group">
+                            <label>Endişeleriniz (Opsiyonel)</label>
+                            <textarea id="concerns" placeholder="Hangi konularda zorlanacağınızı düşünüyorsunuz?"></textarea>
+                        </div>
+                        <button type="submit" id="analyzeBtn">
+                            <i class="fas fa-globe"></i> AI ile Rehber Oluştur
+                        </button>
+                    </form>
+                </div>
+                <div class="results" id="results"></div>
+            </div>
+            <div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">🌍 Kapsadığımız Konular</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> İş görgü kuralları</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Sosyal normlar</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> İletişim tarzları</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Haftalık yol haritası</li>
+                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Pratik ipuçları</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('culturalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('analyzeBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Analiz ediliyor...';
+            
+            try {
+                const response = await fetch('/api/cultural-advisor/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        originCountry: document.getElementById('originCountry').value,
+                        destinationCountry: document.getElementById('destinationCountry').value,
+                        purpose: document.getElementById('purpose').value,
+                        duration: document.getElementById('duration').value,
+                        industry: document.getElementById('industry').value,
+                        concerns: document.getElementById('concerns').value
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    displayResults(data);
+                } else {
+                    alert('Hata: ' + (data.error || 'Bilinmeyen hata'));
+                }
+            } catch (error) {
+                alert('Hata: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-globe"></i> AI ile Rehber Oluştur';
+            }
+        });
+        
+        function displayResults(data) {
+            const results = document.getElementById('results');
+            let html = '<div class="card"><h2>🌍 Kültürel Uyum Rehberiniz</h2>';
+            
+            if (data.culturalOverview) {
+                html += `<div class="section">
+                    <h3 style="color: var(--primary);">📋 Genel Bakış</h3>
+                    <p><strong>Uyum Zorluğu:</strong> ${data.culturalOverview.adaptationDifficulty}</p>
+                    <p><strong>Tahmini Uyum Süresi:</strong> ${data.culturalOverview.estimatedAdjustmentPeriod}</p>
+                    <p style="margin-top: 1rem;"><strong>Ana Farklar:</strong></p>
+                    <ul>${data.culturalOverview.keyDifferences.map(d => `<li>${d}</li>`).join('')}</ul>
+                </div>`;
+            }
+            
+            if (data.businessEtiquette) {
+                html += `<div class="section">
+                    <h3 style="color: var(--primary);">💼 İş Görgü Kuralları</h3>
+                    <p><strong>İletişim Tarzı:</strong> ${data.businessEtiquette.communicationStyle}</p>
+                    <p style="margin-top: 1rem;"><strong>Toplantı Protokolü:</strong></p>
+                    <ul>${data.businessEtiquette.meetingProtocol.map(p => `<li>${p}</li>`).join('')}</ul>
+                </div>`;
+            }
+            
+            if (data.socialNorms) {
+                html += `<div class="section">
+                    <h3 style="color: var(--primary);">🤝 Sosyal Normlar</h3>
+                    <p><strong>Selamlaşma:</strong> ${data.socialNorms.greetings}</p>
+                    <p><strong>Kişisel Alan:</strong> ${data.socialNorms.personalSpace}</p>
+                    ${data.socialNorms.taboos ? `<p style="margin-top: 1rem;"><strong>Kaçınılması Gerekenler:</strong></p><ul>${data.socialNorms.taboos.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+                </div>`;
+            }
+            
+            html += '</div>';
+            results.innerHTML = html;
+            results.classList.add('show');
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

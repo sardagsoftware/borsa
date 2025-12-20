@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/test-backend-connection" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/test-backend-connection" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-backend-connection" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-backend-connection" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-backend-connection" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-backend-connection" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-backend-connection" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-backend-connection" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-backend-connection" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✅ Backend Bağlantı Testi - Lydian-IQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0A0A0A 50%, #111111 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FBB040 0%, #F7931E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+        }
+
+        .test-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .test-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status.loading {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .status.success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .status.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        button {
+            background: linear-gradient(135deg, #FBB040 0%, #F7931E 100%);
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(251, 176, 64, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(251, 176, 64, 0.5);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #a0a0a0;
+            margin-top: 15px;
+        }
+
+        .highlight {
+            color: #FBB040;
+            font-weight: 600;
+        }
+
+        .success-text {
+            color: #22c55e;
+        }
+
+        .error-text {
+            color: #ef4444;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #FBB040;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "✅ Backend Bağlantı Testi - Lydian-IQ",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "url": "https://www.ailydian.com/test-backend-connection",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Test Backend Connection",
+        "item": "https://www.ailydian.com/test-backend-connection"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="✅ Backend Bağlantı Testi - Lydian-IQ" />
+  <meta name="twitter:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-backend-connection-tr.png" />
+  <meta name="twitter:image:alt" content="✅ Backend Bağlantı Testi - Lydian-IQ" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.825Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  
+  <!-- Visual Rich Results & Images -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "✅ Backend Bağlantı Testi - Lydian-IQ",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/article-images/test-backend-connection.jpg",
+    "width": 1200,
+    "height": 675,
+    "caption": "✅ Backend Bağlantı Testi - Lydian-IQ"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "LyDian AI Team",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/author-images/lydian-team.jpg",
+      "width": 200,
+      "height": 200
+    },
+    "url": "https://www.ailydian.com/about/team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/lydian-logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "datePublished": "2024-12-20T00:00:00+03:00",
+  "dateModified": "2025-12-20T15:23:37.806Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.ailydian.com/test-backend-connection"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "✅ Backend Bağlantı Testi - Lydian-IQ",
+  "description": "✅ Backend Bağlantı Testi - Lydian-IQ nasıl kullanılır - Adım adım rehber",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/howto-images/test-backend-connection.jpg",
+    "height": 406,
+    "width": 305
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TRY",
+    "value": "0"
+  },
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Web Tarayıcı"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "İnternet Bağlantısı"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Adım 1: Hesap Oluşturun",
+      "text": "LyDian AI hesabınızı oluşturun",
+      "image": "https://www.ailydian.com/howto-steps/test-backend-connection-step1.jpg",
+      "url": "https://www.ailydian.com/test-backend-connection#step1"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 2: Giriş Yapın",
+      "text": "Oluşturduğunuz hesapla giriş yapın",
+      "image": "https://www.ailydian.com/howto-steps/test-backend-connection-step2.jpg",
+      "url": "https://www.ailydian.com/test-backend-connection#step2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Adım 3: Kullanmaya Başlayın",
+      "text": "AI özelliklerini kullanmaya başlayın",
+      "image": "https://www.ailydian.com/howto-steps/test-backend-connection-step3.jpg",
+      "url": "https://www.ailydian.com/test-backend-connection#step3"
+    }
+  ]
+}
+</script>
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-backend-connection.png" />
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/test-backend-connection.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="✅ Backend Bağlantı Testi - Lydian-IQ" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-backend-connection.png" />
+  <meta name="twitter:image:alt" content="✅ Backend Bağlantı Testi - Lydian-IQ" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-backend-connection-2.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-backend-connection-3.png" />
+  <meta property="og:image" content="https://www.ailydian.com/og-images/test-backend-connection-4.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.ailydian.com/apple-touch/test-backend-connection.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.ailydian.com/apple-touch-152/test-backend-connection.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.ailydian.com/apple-touch-120/test-backend-connection.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.ailydian.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.ailydian.com/favicon-16x16.png" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/test-backend-connection.png" />
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/test-backend-connection.png" />
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/test-backend-connection.png" />
+  </head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🚀 Lydian-IQ Unified Surface</h1>
+            <p class="subtitle">Backend API Bağlantı Testi</p>
+
+            <!-- Test 1: Test Endpoint -->
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>1. Test Endpoint</h2>
+                    <span class="status loading" id="status1">
+                        <span class="loading-spinner"></span>
+                        Bekleniyor...
+                    </span>
+                </div>
+                <button onclick="testAPI()" id="testBtn">🧪 API'yi Test Et</button>
+                <pre id="response1" style="display:none;"></pre>
+            </div>
+
+            <!-- Test 2: Intent Recognition -->
+            <div class="test-section">
+                <div class="test-header">
+                    <h2>2. Intent Recognition (Frontend)</h2>
+                    <span class="status success">
+                        ✓ Aktif
+                    </span>
+                </div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 15px;">
+                    72 connector ile fuzzy matching çalışıyor
+                </p>
+                <button onclick="testIntent()">🧠 Intent Recognition Test</button>
+                <pre id="response2" style="display:none;"></pre>
+            </div>
+
+            <!-- Features -->
+            <div class="test-section">
+                <h2 style="margin-bottom: 20px;">✨ Aktif Özellikler</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <span class="feature-text">Intent Recognition</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🌍</span>
+                        <span class="feature-text">8 Dil Desteği</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔒</span>
+                        <span class="feature-text">Enterprise Security</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <span class="feature-text">72 Connector</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💬</span>
+                        <span class="feature-text">ChatGPT-style UI</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎨</span>
+                        <span class="feature-text">Glassmorphism</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="test-section" style="display: flex; gap: 15px; margin-top: 30px;">
+                <button onclick="window.location.href='/lydian-iq-unified-demo.html'" style="flex: 1;">
+                    ↗️ Unified Surface'i Aç
+                </button>
+                <button onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); color: #fff;">
+                    🔄 Sayfayı Yenile
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test API
+        async function testAPI() {
+            const status1 = document.getElementById('status1');
+            const response1 = document.getElementById('response1');
+            const testBtn = document.getElementById('testBtn');
+
+            status1.className = 'status loading';
+            status1.innerHTML = '<span class="loading-spinner"></span> Test ediliyor...';
+            testBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/v1/test-unified');
+                const data = await res.json();
+
+                status1.className = 'status success';
+                status1.innerHTML = '✓ Başarılı';
+
+                response1.style.display = 'block';
+                response1.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                status1.className = 'status error';
+                status1.innerHTML = '✗ Hata';
+
+                response1.style.display = 'block';
+                response1.textContent = `Hata: ${error.message}\n\nNot: API endpoint'leri tam çalışır hale gelmek için ek konfigürasyon gerektirebilir.`;
+            }
+
+            testBtn.disabled = false;
+        }
+
+        // Test Intent Recognition
+        function testIntent() {
+            const response2 = document.getElementById('response2');
+
+            // Simulate intent recognition
+            const testQuery = "aras kargo 1234567890 nerede";
+            const result = {
+                query: testQuery,
+                intent: "shipment.track",
+                vendor: "aras",
+                trackingNumber: "1234567890",
+                score: 0.95,
+                fuzzyMatch: true,
+                turkish: true
+            };
+
+            response2.style.display = 'block';
+            response2.textContent = JSON.stringify(result, null, 2);
+        }
+
+        // Auto-run API test
+        window.addEventListener('load', () => {
+            setTimeout(testAPI, 1000);
+        });
+    </script>
+</body>
+</html>
