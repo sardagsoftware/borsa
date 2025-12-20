@@ -1,6 +1,6 @@
 # 🔍 Search Engine Smoke Test Report
 
-**Generated:** 2025-12-20T14:44:47.008Z
+**Generated:** 2025-12-20T14:53:28.725Z
 **Base URL:** https://www.ailydian.com
 
 ## 📊 Summary
@@ -36,7 +36,7 @@
 | Google Verification Tag | ✅ | Google verification tag not found (add when claiming site) |
 | Googlebot Access | ✅ | Googlebot explicitly configured |
 | Google Sitemap Ping URL | ✅ | Sitemap URL ready for Google ping: https://www.google.com/ping?sitemap=https%3A%2F%2Fwww.ailydian.com%2Fsitemap.xml |
-| Core Web Vitals (LCP) | ✅ | Page load time: 67ms (LCP target: <2500ms) |
+| Core Web Vitals (LCP) | ✅ | Page load time: 69ms (LCP target: <2500ms) |
 | Mobile-Friendly Design | ✅ | Viewport configured for mobile |
 | Structured Data (JSON-LD) | ✅ | JSON-LD structured data found |
 | Image Alt Attributes | ✅ | Some images missing alt attributes |
@@ -72,7 +72,7 @@
 | Canonical URLs | ✅ | Canonical URL tag present |
 | Multi-language Support | ✅ | hreflang tags present for multi-language |
 | Mobile Viewport | ✅ | Viewport meta tag configured |
-| Response Time | ✅ | 69ms (target: <3000ms) |
+| Response Time | ✅ | 68ms (target: <3000ms) |
 
 ## 💡 Recommendations
 

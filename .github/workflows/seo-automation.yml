@@ -1,0 +1,78 @@
+name: SEO Automation - Daily Search Engine Updates
+
+on:
+  # Günlük otomatik çalışma (her gün saat 03:00 UTC)
+  schedule:
+    - cron: '0 3 * * *'  # Her gün 03:00 UTC (06:00 İstanbul)
+
+  # Manuel tetikleme
+  workflow_dispatch:
+
+  # Her push'ta çalış (main branch)
+  push:
+    branches:
+      - main
+    paths:
+      - 'public/**/*.html'
+      - 'public/sitemap.xml'
+      - 'seo/**'
+
+jobs:
+  seo-update:
+    name: Update Search Engines
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run SEO Optimization
+        run: |
+          echo "🤖 Running SEO optimization..."
+          node scripts/run-seo-optimization.js || true
+
+      - name: Update Search Consoles
+        run: |
+          echo "🔄 Updating search engines..."
+          node scripts/auto-search-console-update.js
+
+      - name: Run Smoke Tests
+        run: |
+          echo "🔍 Running smoke tests..."
+          node scripts/search-engine-smoke-tests.js || true
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-reports-${{ github.run_number }}
+          path: |
+            SEO-OPTIMIZATION-REPORT.json
+            AUTO-SEARCH-CONSOLE-UPDATE-REPORT.json
+            SEARCH-ENGINE-SMOKE-TEST-REPORT.json
+            SEARCH-ENGINE-SMOKE-TEST-REPORT.md
+          retention-days: 30
+
+      - name: Commit Reports
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config --global user.name 'LyDian SEO Bot'
+          git config --global user.email 'seo-bot@ailydian.com'
+          git add -A
+          git diff --staged --quiet || git commit -m "chore: Update SEO reports - $(date '+%Y-%m-%d %H:%M UTC')"
+          git push || true
+
+      - name: Summary
+        run: |
+          echo "✅ SEO Automation Complete"
+          echo "=================================================="
+          if [ -f AUTO-SEARCH-CONSOLE-UPDATE-REPORT.json ]; then
+            echo "📊 Search Console Update Results:"
+            cat AUTO-SEARCH-CONSOLE-UPDATE-REPORT.json | grep -E '"(totalUrls|bingSuccess|yandexSuccess)"' || true
+          fi
+          echo "=================================================="
