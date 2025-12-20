@@ -1,0 +1,846 @@
+{
+  "timestamp": "2025-12-20T15:23:37.817Z",
+  "stats": {
+    "total": 139,
+    "enhanced": 138,
+    "alreadyComplete": 1,
+    "totalSchemas": 419,
+    "totalTags": 2622
+  },
+  "results": [
+    {
+      "file": "/about",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-advisor-hub",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-assistant",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-chat",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-cultural-advisor",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-decision-matrix",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-governance-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-governance-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-health-orchestrator",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-knowledge-assistant",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-learning-path",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-life-coach",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-meeting-insights",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-ops-center",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-power-panel",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ai-startup-accelerator",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/analytics",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/api-docs",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/api-reference",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/api",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/auth",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/azure-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/billing",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/blog",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cache-clear",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cache-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cancer-diagnosis-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/careers",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/changelog",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/chat",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-atg",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-intelligence-grid",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-map",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-phn",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-rro",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-svf",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/civic-umo",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/connector-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/connectors",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/console",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/contact",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cookies",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cost-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cyborg-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/cyborg-orbital-full",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/dashboard-email-yedek",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/developer-search",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/developers",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/docs",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ecw-ailydian",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/ecw-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/education",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/email-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/email-setup-status",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/enterprise-index",
+      "enhanced": false,
+      "schemasAdded": 0,
+      "tagsAdded": 0
+    },
+    {
+      "file": "/enterprise",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/epic-fhir-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/files",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/firildak-ai",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/firildak",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/force-refresh",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/forgot-password",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/google-studio",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/governance-compliance",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/governance-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/governance-leaderboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/governance-models",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/governance-trust-index",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/help",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-3d-lydian",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-cinematic-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-particles-lydian",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-video-demo-1-neural",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-video-demo-2-particles",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-video-demo-3-matrix",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-video-demo-4-abstract",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hero-video-demos-index",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/hospital-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/humain-home",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/i18n/MEDICAL-EXPERT-INTEGRATION",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/image-generation",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/index",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/knowledge-base",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/legal-expert",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-hukukai-pro",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-hukukai-v2",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-hukukai",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-iq-new-ui",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-iq-unified-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-iq",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-legal-chat",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-legal-search-enhanced",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-legal-search-i18n",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-legal-search",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-legal-universal",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-offline",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/lydian-os",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/medical-ai-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/medical-ai",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/medical-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/medical-expert",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/models",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/monitoring",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/offline",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/omnireach-ai-creator",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/pages/notifications",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/pages/settings",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/pages/users",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/performance-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/phase-l-results",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/privacy",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/quantum-test",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/realistic-characters-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/research",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/reset-password",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/search-meter-demo",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/security-analytics",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/seo-monitoring",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/settings",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/sikayet-olustur",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/status-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/status",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/system-status",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/terms",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-auto-translate",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-backend-connection",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-chat-api",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-chat-buttons",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-chat-ecw",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-i18n-demo",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-language-system",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-legal",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test-translation",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/test",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/tokens",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/user-dashboard",
+      "enhanced": true,
+      "schemasAdded": 3,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/verifyforzoho",
+      "enhanced": true,
+      "schemasAdded": 2,
+      "tagsAdded": 19
+    },
+    {
+      "file": "/video-ai",
+      "enhanced": true,
+      "schemasAdded": 4,
+      "tagsAdded": 19
+    }
+  ]
+}

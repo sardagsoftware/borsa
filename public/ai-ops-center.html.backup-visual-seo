@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/ai-ops-center" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/ai-ops-center" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/ai-ops-center" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/ai-ops-center" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/ai-ops-center" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/ai-ops-center" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/ai-ops-center" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/ai-ops-center" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/ai-ops-center" />
+
+  <title>LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="ops_center.page_title">Ailydian AI Ops Center</title>
+    <meta name="description" content="AI Training Operations Center - Monitoring, Benchmarks, Costs & Compliance">
+    <link rel="icon" type="image/png" href="/lydian-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0A0B0D;
+            min-height: 100vh;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #10A37F;
+        }
+
+        nav svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-dot.info {
+            background: #3b82f6;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #FFFFFF;
+            display: block;
+            backdrop-filter: blur(20px);
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            font-size: 0.9375rem;
+        }
+
+        .feature-card ul {
+            list-style: none;
+        }
+
+        .feature-card li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card li::before {
+            content: '•';
+            color: #10A37F;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* System Status */
+        .system-status {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .system-status h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-item-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-item-left span {
+            font-weight: 600;
+        }
+
+        .status-item-right {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Data Sections */
+        .data-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            scroll-margin-top: 100px;
+            backdrop-filter: blur(20px);
+        }
+
+        .data-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .data-section .section-icon {
+            font-size: 2.5rem;
+        }
+
+        .data-section .section-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: #10A37F;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* Loading States */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            min-height: 300px;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #10A37F;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+            padding: 1.5rem;
+            color: #991b1b;
+            margin: 2rem 0;
+        }
+
+        .error-message h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .error-message p {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        .data-section .description {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 1.0625rem;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .data-table thead {
+            background: #f9fafb;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #1f2937;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .data-table .model-name {
+            font-weight: 600;
+            color: #10A37F;
+        }
+
+        .data-table .score {
+            font-weight: 600;
+            font-family: 'Monaco', monospace;
+        }
+
+        .data-table .score.high {
+            color: #10b981;
+        }
+
+        .data-table .score.medium {
+            color: #f59e0b;
+        }
+
+        .data-table .score.low {
+            color: #ef4444;
+        }
+
+        /* Metric Cards */
+        .metric-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: #10A37F;
+            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.1);
+        }
+
+        .metric-card .label {
+            font-size: 0.8125rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .metric-card .value {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-card .subtext {
+            font-size: 0.8125rem;
+            color: #9ca3af;
+        }
+
+        /* Progress Bars */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10A37F 0%, #0D8F6E 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-item {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .info-item .info-label {
+            font-size: 0.8125rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .info-item .info-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .stats-grid, .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-section {
+                padding: 1.5rem;
+            }
+
+            .data-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .data-table {
+                font-size: 0.875rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .metric-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+  "description": "AI Training Operations Center - Monitoring, Benchmarks, Costs & Compliance",
+  "url": "https://www.ailydian.com/ai-ops-center",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Ai Ops Center",
+        "item": "https://www.ailydian.com/ai-ops-center"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta name="twitter:description" content="AI Training Operations Center - Monitoring, Benchmarks, Costs & Compliance" />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/ai-ops-center-tr.png" />
+  <meta name="twitter:image:alt" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.715Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  </head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo" data-i18n="ops_center.logo">Ailydian Ops</a>
+
+                <nav>
+                    <a href="#metrics" data-i18n="ops_center.nav_live_params">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Canlı Parametreler
+                    </a>
+                    <a href="#benchmarks" data-i18n="ops_center.nav_benchmarks">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Benchmark Duvarı
+                    </a>
+                    <a href="#costs" data-i18n="ops_center.nav_costs">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Maliyetler & Gecikme
+                    </a>
+                    <a href="#trainer" data-i18n="ops_center.nav_trainer">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Otomatik Eğitici
+                    </a>
+                    <a href="#ownership" data-i18n="ops_center.nav_ownership">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        Model Sahipliği
+                    </a>
+                    <a href="#compliance" data-i18n="ops_center.nav_compliance">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Uyumluluk
+                    </a>
+                </nav>
+
+                <button class="mobile-menu-btn">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" style="padding-top: 2rem;">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="container">
+                <h1 data-i18n="ops_center.hero_title">Ailydian AI Ops Center</h1>
+                <p data-i18n="ops_center.hero_subtitle">AI model eğitimi, izleme ve uyumluluk için birleşik operasyon panosu</p>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 data-i18n="ops_center.stat_models_trained">Eğitilen Modeller</h3>
+                <div class="value">12</div>
+                <div class="detail">
+                    <span class="status-dot"></span>
+                    <span data-i18n="ops_center.stat_this_week">+3 bu hafta</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <h3 data-i18n="ops_center.stat_benchmark_score">Benchmark Skoru</h3>
+                <div class="value">0.724</div>
+                <div class="detail">
+                    <span class="status-dot"></span>
+                    <span data-i18n="ops_center.stat_belebele">Belebele-TR</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <h3 data-i18n="ops_center.stat_monthly_cost">Aylık Maliyet</h3>
+                <div class="value">$428</div>
+                <div class="detail">
+                    <span class="status-dot info"></span>
+                    <span data-i18n="ops_center.stat_auto_trainer">Otomatik Eğitici</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="feature-grid">
+            <a href="/monitoring.html" class="feature-card" id="metrics">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 48px; height: 48px; stroke-width: 1.5; stroke: #10A37F;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h3 data-i18n="ops_center.feature_live_params_title">Canlı Parametreler</h3>
+                <p data-i18n="ops_center.feature_live_params_desc">SSE akışı ile gerçek zamanlı eğitim metrikleri</p>
+                <ul>
+                    <li data-i18n="ops_center.feature_live_params_1">Kayıp eğrileri</li>
+                    <li data-i18n="ops_center.feature_live_params_2">GPU kullanımı</li>
+                    <li data-i18n="ops_center.feature_live_params_3">Öğrenme oranı</li>
+                    <li data-i18n="ops_center.feature_live_params_4">Gradyan normları</li>
+                </ul>
+            </a>
+
+            <a href="#benchmarks" class="feature-card">
+                <div class="icon">🏆</div>
+                <h3 data-i18n="ops_center.feature_benchmarks_title">Benchmark Duvarı</h3>
+                <p data-i18n="ops_center.feature_benchmarks_desc">Türkçe NLU benchmark lider tablosu</p>
+                <ul>
+                    <li data-i18n="ops_center.feature_benchmarks_1">MMLU-TR</li>
+                    <li data-i18n="ops_center.feature_benchmarks_2">Belebele-TR</li>
+                    <li data-i18n="ops_center.feature_benchmarks_3">XNLI-TR</li>
+                    <li data-i18n="ops_center.feature_benchmarks_4">Geçmiş takibi</li>
+                </ul>
+            </a>
+
+            <a href="#costs" class="feature-card">
+                <div class="icon">💰</div>
+                <h3 data-i18n="ops_center.feature_costs_title">Maliyetler & Gecikme</h3>
+                <p data-i18n="ops_center.feature_costs_desc">GPU maliyet analizi ve izochronlar</p>
+                <ul>
+                    <li data-i18n="ops_center.feature_costs_1">1M token başına maliyet</li>
+                    <li data-i18n="ops_center.feature_costs_2">Gecikme tahminleri</li>
+                    <li data-i18n="ops_center.feature_costs_3">GPU optimize edici</li>
+                    <li data-i18n="ops_center.feature_costs_4">ROI hesaplayıcı</li>
+                </ul>
+            </a>
+
+            <a href="#trainer" class="feature-card">
+                <div class="icon">🤖</div>
+                <h3 data-i18n="ops_center.feature_trainer_title">Otomatik Eğitici</h3>
+                <p data-i18n="ops_center.feature_trainer_desc">Otomatik haftalık eğitim hattı</p>
+                <ul>
+                    <li data-i18n="ops_center.feature_trainer_1">Öğretmen distilasyonu</li>
+                    <li data-i18n="ops_center.feature_trainer_2">Kalite kontrolleri</li>
+                    <li data-i18n="ops_center.feature_trainer_3">Haftalık birleştirme</li>
+                    <li data-i18n="ops_center.feature_trainer_4">CI/CD otomasyonu</li>
+                </ul>
+            </a>
+
+            <a href="#ownership" class="feature-card">
+                <div class="icon">🔐</div>
+                <h3 data-i18n="ops_center.feature_ownership_title">Model Sahipliği</h3>
+                <p data-i18n="ops_center.feature_ownership_desc">Parametre sahipliği takibi</p>
+                <ul>
+                    <li data-i18n="ops_center.feature_ownership_1">IP takibi</li>
+                    <li data-i18n="ops_center.feature_ownership_2">Lisans uyumluluğu</li>
+                    <li data-i18n="ops_center.feature_ownership_3">Türev analizi</li>
+                    <li data-i18n="ops_center.feature_ownership_4">Denetim kaydı</li>
+                </ul>
+            </a>
+
+            <a href="#compliance" class="feature-card">
+                <div class="icon">📋</div>
+                <h3 data-i18n="ops_center.feature_compliance_title">Uyumluluk</h3>
+                <p data-i18n="ops_center.feature_compliance_desc">Beyaz şapka politikaları ve KVKK/GDPR</p>
+                <ul>
+                    <li data-i18n="ops_center.feature_compliance_1">PII tespiti</li>
+                    <li data-i18n="ops_center.feature_compliance_2">Lisans filtreleme</li>
+                    <li data-i18n="ops_center.feature_compliance_3">Güvenlik kontrolleri</li>
+                    <li data-i18n="ops_center.feature_compliance_4">Uyumluluk raporları</li>
+                </ul>
+            </a>
+        </div>
+
+        <!-- BENCHMARKS SECTION -->
+        <div class="data-section" id="benchmarks">
+            <h2>
+                <span class="section-icon">🏆</span>
+                <span data-i18n="ops_center.benchmarks_title">Benchmark Duvarı</span>
+            </h2>
+            <p class="description" data-i18n="ops_center.benchmarks_desc">
+                Türkçe dil modelleri için kapsamlı benchmark skorları ve performans karşılaştırmaları
+            </p>
+
+            <div class="metric-cards">
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.benchmark_mmlu">MMLU-TR Skoru</div>
+                    <div class="value">0.724</div>
+                    <div class="subtext" data-i18n="ops_center.benchmark_rank">Türkiye #3</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 72.4%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.benchmark_belebele">Belebele-TR</div>
+                    <div class="value">0.689</div>
+                    <div class="subtext" data-i18n="ops_center.benchmark_reading">Okuma anlama</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 68.9%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.benchmark_xnli">XNLI-TR</div>
+                    <div class="value">0.812</div>
+                    <div class="subtext" data-i18n="ops_center.benchmark_nli">Doğal dil çıkarımı</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 81.2%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.benchmark_humaneval">HumanEval-TR</div>
+                    <div class="value">0.654</div>
+                    <div class="subtext" data-i18n="ops_center.benchmark_code">Kod üretimi</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 65.4%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="ops_center.table_model">Model</th>
+                        <th data-i18n="ops_center.table_mmlu">MMLU-TR</th>
+                        <th data-i18n="ops_center.table_belebele">Belebele</th>
+                        <th data-i18n="ops_center.table_xnli">XNLI</th>
+                        <th data-i18n="ops_center.table_humaneval">HumanEval</th>
+                        <th data-i18n="ops_center.table_avg">Ortalama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="model-name">OX5C9E2B Turbo</td>
+                        <td><span class="score high">0.821</span></td>
+                        <td><span class="score high">0.795</span></td>
+                        <td><span class="score high">0.876</span></td>
+                        <td><span class="score high">0.782</span></td>
+                        <td><span class="score high">0.819</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">AX9F7E2B 3.5 Sonnet</td>
+                        <td><span class="score high">0.798</span></td>
+                        <td><span class="score high">0.812</span></td>
+                        <td><span class="score high">0.854</span></td>
+                        <td><span class="score high">0.801</span></td>
+                        <td><span class="score high">0.816</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">LyDian Vision Pro</td>
+                        <td><span class="score high">0.776</span></td>
+                        <td><span class="score high">0.743</span></td>
+                        <td><span class="score high">0.831</span></td>
+                        <td><span class="score high">0.756</span></td>
+                        <td><span class="score high">0.777</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Ailydian-TR-7B (Bizim)</td>
+                        <td><span class="score medium">0.724</span></td>
+                        <td><span class="score medium">0.689</span></td>
+                        <td><span class="score high">0.812</span></td>
+                        <td><span class="score medium">0.654</span></td>
+                        <td><span class="score medium">0.720</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">LyDian Velocity 70B</td>
+                        <td><span class="score medium">0.701</span></td>
+                        <td><span class="score medium">0.678</span></td>
+                        <td><span class="score medium">0.745</span></td>
+                        <td><span class="score medium">0.712</span></td>
+                        <td><span class="score medium">0.709</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Mistral Large 2</td>
+                        <td><span class="score medium">0.689</span></td>
+                        <td><span class="score medium">0.654</span></td>
+                        <td><span class="score medium">0.723</span></td>
+                        <td><span class="score medium">0.698</span></td>
+                        <td><span class="score medium">0.691</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- COSTS & LATENCY SECTION -->
+        <div class="data-section" id="costs">
+            <h2>
+                <span class="section-icon">💰</span>
+                <span data-i18n="ops_center.costs_title">Maliyetler & Gecikme</span>
+            </h2>
+            <p class="description" data-i18n="ops_center.costs_desc">
+                Model maliyetleri, gecikme süreleri ve GPU kullanım analizi
+            </p>
+
+            <div class="metric-cards">
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.cost_monthly">Aylık Toplam Maliyet</div>
+                    <div class="value">$428</div>
+                    <div class="subtext" data-i18n="ops_center.cost_savings">%23 tasarruf</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.cost_per_1m">1M Token Başına</div>
+                    <div class="value">$0.12</div>
+                    <div class="subtext" data-i18n="ops_center.cost_input_output">Giriş+Çıkış</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.latency_p95">P95 Gecikme</div>
+                    <div class="value">187ms</div>
+                    <div class="subtext" data-i18n="ops_center.latency_first_token">İlk token</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.gpu_utilization">GPU Kullanımı</div>
+                    <div class="value">78%</div>
+                    <div class="subtext" data-i18n="ops_center.gpu_azure">Azure NC24</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="ops_center.table_model">Model</th>
+                        <th data-i18n="ops_center.table_input_cost">Giriş (1M)</th>
+                        <th data-i18n="ops_center.table_output_cost">Çıkış (1M)</th>
+                        <th data-i18n="ops_center.table_latency_p50">Gecikme P50</th>
+                        <th data-i18n="ops_center.table_latency_p95">Gecikme P95</th>
+                        <th data-i18n="ops_center.table_status">Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="model-name">Ailydian-TR-7B</td>
+                        <td>$0.08</td>
+                        <td>$0.16</td>
+                        <td>124ms</td>
+                        <td>187ms</td>
+                        <td><span class="badge success" data-i18n="ops_center.status_active">Aktif</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">OX5C9E2B Turbo</td>
+                        <td>$10.00</td>
+                        <td>$30.00</td>
+                        <td>342ms</td>
+                        <td>521ms</td>
+                        <td><span class="badge info" data-i18n="ops_center.status_fallback">Yedek</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">AX9F7E2B 3.5</td>
+                        <td>$3.00</td>
+                        <td>$15.00</td>
+                        <td>278ms</td>
+                        <td>412ms</td>
+                        <td><span class="badge info" data-i18n="ops_center.status_fallback">Yedek</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">LyDian Vision Pro</td>
+                        <td>$1.25</td>
+                        <td>$5.00</td>
+                        <td>198ms</td>
+                        <td>289ms</td>
+                        <td><span class="badge info" data-i18n="ops_center.status_fallback">Yedek</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">LyDian Velocity 70B</td>
+                        <td>$0.60</td>
+                        <td>$0.90</td>
+                        <td>156ms</td>
+                        <td>234ms</td>
+                        <td><span class="badge warning" data-i18n="ops_center.status_testing">Test</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.cost_optimization">Maliyet Optimizasyonu</div>
+                    <div class="info-value" data-i18n="ops_center.cost_auto_scaling">Otomatik ölçeklendirme aktif</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.cache_hit_rate">Önbellek İsabet Oranı</div>
+                    <div class="info-value">87.3%</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.avg_batch_size">Ortalama Batch Boyutu</div>
+                    <div class="info-value">32</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.tokens_per_second">Token/Saniye</div>
+                    <div class="info-value">2,847</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUTO-TRAINER SECTION -->
+        <div class="data-section" id="trainer">
+            <h2>
+                <span class="section-icon">🤖</span>
+                <span data-i18n="ops_center.trainer_title">Otomatik Eğitici</span>
+            </h2>
+            <p class="description" data-i18n="ops_center.trainer_desc">
+                AI model eğitimi için otomatik pipeline yönetimi ve izleme
+            </p>
+
+            <div class="metric-cards">
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.trainer_weekly_runs">Haftalık Eğitim</div>
+                    <div class="value">3</div>
+                    <div class="subtext" data-i18n="ops_center.trainer_last_sunday">Son: Pazar</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.trainer_success_rate">Başarı Oranı</div>
+                    <div class="value">94%</div>
+                    <div class="subtext" data-i18n="ops_center.trainer_30_days">Son 30 gün</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 94%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.trainer_avg_duration">Ortalama Süre</div>
+                    <div class="value">4.2sa</div>
+                    <div class="subtext" data-i18n="ops_center.trainer_per_run">Eğitim başına</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.trainer_next_run">Sonraki Eğitim</div>
+                    <div class="value" data-i18n="ops_center.trainer_tomorrow">Yarın</div>
+                    <div class="subtext">03:00 UTC</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="ops_center.table_run_id">Eğitim ID</th>
+                        <th data-i18n="ops_center.table_date">Tarih</th>
+                        <th data-i18n="ops_center.table_model">Model</th>
+                        <th data-i18n="ops_center.table_dataset">Veri Seti</th>
+                        <th data-i18n="ops_center.table_duration">Süre</th>
+                        <th data-i18n="ops_center.table_loss">Loss</th>
+                        <th data-i18n="ops_center.table_status">Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="model-name">#TR-2025-42</td>
+                        <td>2025-10-16</td>
+                        <td>Ailydian-TR-7B</td>
+                        <td>Turkish-NLU-v3</td>
+                        <td>3.8sa</td>
+                        <td><span class="score high">0.324</span></td>
+                        <td><span class="badge success" data-i18n="ops_center.status_completed">Tamamlandı</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">#TR-2025-41</td>
+                        <td>2025-10-13</td>
+                        <td>Ailydian-TR-7B</td>
+                        <td>Turkish-NLU-v2</td>
+                        <td>4.1sa</td>
+                        <td><span class="score high">0.287</span></td>
+                        <td><span class="badge success" data-i18n="ops_center.status_completed">Tamamlandı</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">#TR-2025-40</td>
+                        <td>2025-10-10</td>
+                        <td>Ailydian-TR-7B</td>
+                        <td>Turkish-Chat-v5</td>
+                        <td>5.3sa</td>
+                        <td><span class="score high">0.412</span></td>
+                        <td><span class="badge success" data-i18n="ops_center.status_completed">Tamamlandı</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">#TR-2025-39</td>
+                        <td>2025-10-07</td>
+                        <td>Ailydian-TR-7B</td>
+                        <td>Turkish-QA-v1</td>
+                        <td>4.7sa</td>
+                        <td><span class="score medium">0.521</span></td>
+                        <td><span class="badge warning" data-i18n="ops_center.status_degraded">Düşük</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.trainer_method">Eğitim Metodu</div>
+                    <div class="info-value">LoRA + Ray Tune</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.trainer_gpu">GPU Tipi</div>
+                    <div class="info-value">Azure NC24 (4x V100)</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.trainer_framework">Framework</div>
+                    <div class="info-value">PyTorch 2.1 + DeepSpeed</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.trainer_scheduler">Zamanlama</div>
+                    <div class="info-value" data-i18n="ops_center.trainer_weekly">Haftalık (Pazar 03:00)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODEL OWNERSHIP SECTION -->
+        <div class="data-section" id="ownership">
+            <h2>
+                <span class="section-icon">🔐</span>
+                <span data-i18n="ops_center.ownership_title">Model Sahipliği</span>
+            </h2>
+            <p class="description" data-i18n="ops_center.ownership_desc">
+                Model parametreleri, fikri mülkiyet takibi ve lisans uyumluluğu
+            </p>
+
+            <div class="metric-cards">
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.ownership_owned_params">Sahip Olunan Parametreler</div>
+                    <div class="value">7.2B</div>
+                    <div class="subtext" data-i18n="ops_center.ownership_percent">%100 sahiplik</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.ownership_training_data">Eğitim Verisi</div>
+                    <div class="value">2.4TB</div>
+                    <div class="subtext" data-i18n="ops_center.ownership_azure_only">Sadece Azure</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.ownership_license">Lisans Tipi</div>
+                    <div class="value" data-i18n="ops_center.ownership_mit">MIT</div>
+                    <div class="subtext" data-i18n="ops_center.ownership_commercial">Ticari kullanım OK</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.ownership_data_leak">Veri Sızıntısı</div>
+                    <div class="value">0</div>
+                    <div class="subtext" data-i18n="ops_center.ownership_incidents">Olay kaydı</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="ops_center.table_component">Bileşen</th>
+                        <th data-i18n="ops_center.table_source">Kaynak</th>
+                        <th data-i18n="ops_center.table_license">Lisans</th>
+                        <th data-i18n="ops_center.table_location">Konum</th>
+                        <th data-i18n="ops_center.table_compliance">Uyumluluk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="model-name">Base Model</td>
+                        <td>LyDian Velocity 7B</td>
+                        <td>LyDian Velocity Community</td>
+                        <td>Azure Türkiye</td>
+                        <td><span class="badge success" data-i18n="ops_center.compliance_pass">Uygun</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Fine-tune Weights</td>
+                        <td>Ailydian (Bizim)</td>
+                        <td>MIT</td>
+                        <td>Azure Türkiye</td>
+                        <td><span class="badge success" data-i18n="ops_center.compliance_pass">Uygun</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Training Data</td>
+                        <td>Turkish Corpus v3</td>
+                        <td>CC BY-SA 4.0</td>
+                        <td>Azure Türkiye</td>
+                        <td><span class="badge success" data-i18n="ops_center.compliance_pass">Uygun</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Tokenizer</td>
+                        <td>Custom Turkish</td>
+                        <td>Apache 2.0</td>
+                        <td>Azure Türkiye</td>
+                        <td><span class="badge success" data-i18n="ops_center.compliance_pass">Uygun</span></td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">Embeddings</td>
+                        <td>Ailydian (Bizim)</td>
+                        <td>MIT</td>
+                        <td>Azure Türkiye</td>
+                        <td><span class="badge success" data-i18n="ops_center.compliance_pass">Uygun</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.ownership_ip_protection">Fikri Mülkiyet Koruma</div>
+                    <div class="info-value" data-i18n="ops_center.ownership_full">Tam koruma</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.ownership_audit_trail">Denetim Kaydı</div>
+                    <div class="info-value" data-i18n="ops_center.ownership_enabled">Aktif</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.ownership_data_residency">Veri Rezidansı</div>
+                    <div class="info-value">%100 Türkiye</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.ownership_backup">Yedekleme</div>
+                    <div class="info-value" data-i18n="ops_center.ownership_daily">Günlük (Azure)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPLIANCE SECTION -->
+        <div class="data-section" id="compliance">
+            <h2>
+                <span class="section-icon">📋</span>
+                <span data-i18n="ops_center.compliance_title">Uyumluluk & Güvenlik</span>
+            </h2>
+            <p class="description" data-i18n="ops_center.compliance_desc">
+                KVKK, GDPR, ISO 27001 ve diğer uyumluluk standartları takibi
+            </p>
+
+            <div class="metric-cards">
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.compliance_score">Uyumluluk Skoru</div>
+                    <div class="value">98%</div>
+                    <div class="subtext" data-i18n="ops_center.compliance_all_checks">Tüm kontroller</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 98%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.compliance_pii_detected">PII Tespiti</div>
+                    <div class="value">0</div>
+                    <div class="subtext" data-i18n="ops_center.compliance_last_30_days">Son 30 gün</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.compliance_security_scans">Güvenlik Taraması</div>
+                    <div class="value">24</div>
+                    <div class="subtext" data-i18n="ops_center.compliance_passed">Geçti</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label" data-i18n="ops_center.compliance_last_audit">Son Denetim</div>
+                    <div class="value">5 gün</div>
+                    <div class="subtext" data-i18n="ops_center.compliance_ago">önce</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="ops_center.table_standard">Standart</th>
+                        <th data-i18n="ops_center.table_requirement">Gereksinim</th>
+                        <th data-i18n="ops_center.table_status">Durum</th>
+                        <th data-i18n="ops_center.table_last_check">Son Kontrol</th>
+                        <th data-i18n="ops_center.table_next_audit">Sonraki Denetim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="model-name">KVKK</td>
+                        <td data-i18n="ops_center.kvkk_data_protection">Kişisel veri koruma</td>
+                        <td><span class="badge success" data-i18n="ops_center.status_compliant">Uyumlu</span></td>
+                        <td>2025-10-12</td>
+                        <td>2025-11-12</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">GDPR</td>
+                        <td data-i18n="ops_center.gdpr_eu_compliance">AB veri koruma</td>
+                        <td><span class="badge success" data-i18n="ops_center.status_compliant">Uyumlu</span></td>
+                        <td>2025-10-12</td>
+                        <td>2025-11-12</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">ISO 27001</td>
+                        <td data-i18n="ops_center.iso_info_security">Bilgi güvenliği</td>
+                        <td><span class="badge success" data-i18n="ops_center.status_certified">Sertifikalı</span></td>
+                        <td>2025-10-10</td>
+                        <td>2025-12-10</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">SOC 2 Type II</td>
+                        <td data-i18n="ops_center.soc2_controls">Güvenlik kontrolleri</td>
+                        <td><span class="badge success" data-i18n="ops_center.status_compliant">Uyumlu</span></td>
+                        <td>2025-10-08</td>
+                        <td>2026-01-08</td>
+                    </tr>
+                    <tr>
+                        <td class="model-name">PCI DSS</td>
+                        <td data-i18n="ops_center.pci_payment_security">Ödeme güvenliği</td>
+                        <td><span class="badge info" data-i18n="ops_center.status_na">Uygulanmaz</span></td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.compliance_encryption">Şifreleme</div>
+                    <div class="info-value">AES-256 + TLS 1.3</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.compliance_access_logs">Erişim Kayıtları</div>
+                    <div class="info-value" data-i18n="ops_center.compliance_retention">90 gün saklama</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.compliance_vulnerability">Güvenlik Açığı</div>
+                    <div class="info-value">0 kritik, 2 düşük</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label" data-i18n="ops_center.compliance_penetration">Penetrasyon Testi</div>
+                    <div class="info-value" data-i18n="ops_center.compliance_quarterly">3 ayda bir</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="system-status">
+            <h2 data-i18n="ops_center.system_status_title">Sistem Durumu</h2>
+            <div>
+                <div class="status-item">
+                    <div class="status-item-left">
+                        <span class="status-dot"></span>
+                        <span data-i18n="ops_center.status_metrics_api">Metrikler API</span>
+                    </div>
+                    <div class="status-item-right" data-i18n="ops_center.status_operational">Operasyonel</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-item-left">
+                        <span class="status-dot"></span>
+                        <span data-i18n="ops_center.status_benchmark_api">Benchmark API</span>
+                    </div>
+                    <div class="status-item-right" data-i18n="ops_center.status_operational">Operasyonel</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-item-left">
+                        <span class="status-dot"></span>
+                        <span data-i18n="ops_center.status_cost_api">Maliyet API</span>
+                    </div>
+                    <div class="status-item-right" data-i18n="ops_center.status_operational">Operasyonel</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-item-left">
+                        <span class="status-dot info"></span>
+                        <span data-i18n="ops_center.status_auto_trainer">Otomatik Eğitici</span>
+                    </div>
+                    <div class="status-item-right" data-i18n="ops_center.status_idle">Boşta</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-i18n="ops_center.footer_text">Ailydian AI Ops Center • Versiyon 1.0.0 • 2025</p>
+            <p>
+                <span class="status-dot" style="animation: none; margin-right: 0.5rem;"></span>
+                <span data-i18n="ops_center.footer_status">Tüm Sistemler Operasyonel</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Premium Icons & API Client -->
+    <script src="/js/premium-icons.js"></script>
+    <script src="/js/ops-center-api.js"></script>
+    <script src="/js/ops-center-data-loader.js"></script>
+
+    <!-- i18n System -->
+    <script src="/js/feature-flags.js"></script>
+    <script src="/js/locale-engine.js"></script>
+    <script src="/js/locale-switcher.js"></script>
+    <script>
+        (async function() {
+            try {
+                // 1. Initialize feature flags
+                const flags = new FeatureFlags();
+                await flags.init();
+
+                // 2. Check if i18n is enabled
+                if (flags.isEnabled('i18n_system_enabled')) {
+                    // 3. Initialize locale engine
+                    const i18n = new LocaleEngine({ defaultLocale: 'tr' });
+                    await i18n.init();
+
+                    // 4. Make available globally
+                    window.i18n = i18n;
+
+                    console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+                }
+            } catch (error) {
+                console.warn('⚠️ i18n initialization failed:', error);
+            }
+        })();
+
+        // Smooth scroll navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menü linklerine tıklanınca smooth scroll
+            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // URL'yi güncelle (sayfa yenilemeden)
+                        history.pushState(null, null, '#' + targetId);
+
+                        console.log('✅ Scrolled to:', targetId);
+                    }
+                });
+            });
+
+            // Sayfa yüklendiğinde hash varsa o bölüme scroll et
+            if (window.location.hash) {
+                setTimeout(() => {
+                    const targetElement = document.getElementById(window.location.hash.substring(1));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 300);
+            }
+
+            // Mobile menü toggle (gelecek için hazırlık)
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+
+            console.log('✅ AI Ops Center initialized');
+
+            // Premium ikonları yükle
+            if (window.PremiumIcons) {
+                // Feature card ikonlarını değiştir
+                setTimeout(() => {
+                    const featureCards = document.querySelectorAll('.feature-card .icon');
+                    if (featureCards[0]) featureCards[0].innerHTML = PremiumIcons.chart;
+                    if (featureCards[1]) featureCards[1].innerHTML = PremiumIcons.trophy;
+                    if (featureCards[2]) featureCards[2].innerHTML = PremiumIcons.currency;
+                    if (featureCards[3]) featureCards[3].innerHTML = PremiumIcons.cog;
+                    if (featureCards[4]) featureCards[4].innerHTML = PremiumIcons.shield;
+                    if (featureCards[5]) featureCards[5].innerHTML = PremiumIcons.clipboard;
+
+                    // Section ikonlarını değiştir
+                    const sectionIcons = document.querySelectorAll('.section-icon');
+                    sectionIcons.forEach(icon => {
+                        const sectionId = icon.closest('.data-section')?.id;
+                        if (sectionId === 'benchmarks') icon.innerHTML = PremiumIcons.trophy;
+                        if (sectionId === 'costs') icon.innerHTML = PremiumIcons.currency;
+                        if (sectionId === 'trainer') icon.innerHTML = PremiumIcons.cog;
+                        if (sectionId === 'ownership') icon.innerHTML = PremiumIcons.shield;
+                        if (sectionId === 'compliance') icon.innerHTML = PremiumIcons.clipboard;
+                    });
+
+                    console.log('✅ Premium icons loaded');
+                }, 100);
+            }
+
+            // Lazy loading için data loader'ı başlat
+            if (window.opsLoader) {
+                // Lazy loading aktif et
+                window.opsLoader.setupLazyLoading();
+                console.log('✅ Lazy loading enabled');
+            }
+        });
+    </script>
+</body>
+</html>

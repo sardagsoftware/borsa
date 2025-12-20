@@ -1,0 +1,702 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/humain-inspired.css">
+    <link rel="stylesheet" href="/css/chat-LyDian.css">
+    <link rel="stylesheet" href="/css/animated-logo.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
+
+    <!-- SEO Meta Tags (TR) -->
+    <title>Legal AI — Hukuki Yapay Zeka | 7/24 Hukuk Asistanı</title>
+    <meta name="description" content="AI destekli hukuki danışmanlık. Sözleşme analizi, dava araştırma, yasal doküman hazırlama. 200K+ başarılı danışma. Hemen ücretsiz deneyin." />
+    <meta name="keywords" content="hukuki ai, ai avukat, hukuk asistanı ai, yasal danışman ai, legal ai, lydian legal" />
+    <link rel="canonical" href="https://www.ailydian.com/tr/legal-expert.html" />
+
+    <!-- hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/legal-expert.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/legal-expert.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/legal-expert.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/legal-expert.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/legal-expert.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/legal-expert.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/en/legal-expert.html" />
+
+    <!-- GEO Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="İstanbul" />
+    <meta name="geo.position" content="41.0082;28.9784" />
+    <meta name="ICBM" content="41.0082;28.9784" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Legal AI — Hukuki Yapay Zeka | 7/24 Hukuk Asistanı" />
+    <meta property="og:description" content="AI destekli hukuki danışmanlık. Sözleşme analizi, dava araştırma, yasal doküman hazırlama. 200K+ başarılı danışma. Hemen ücretsiz deneyin." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/tr/legal-expert.html" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/legal-expert-tr.png" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:site_name" content="LyDian AI" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lydianai" />
+    <meta name="twitter:title" content="Legal AI — Hukuki Yapay Zeka | 7/24 Hukuk Asistanı" />
+    <meta name="twitter:description" content="AI destekli hukuki danışmanlık. Sözleşme analizi, dava araştırma, yasal doküman hazırlama. 200K+ başarılı danışma. Hemen ücretsiz deneyin." />
+    <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/legal-expert-tr.png" />
+
+    <!-- Additional Meta -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="author" content="LyDian AI Ecosystem" />
+    <meta name="language" content="TR" />
+
+    <!-- Schema.org: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LyDian AI Ecosystem",
+      "url": "https://www.ailydian.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.ailydian.com/lydian-logo.png"
+      },
+      "sameAs": [
+        "https://twitter.com/lydianai",
+        "https://linkedin.com/company/lydian-ai",
+        "https://github.com/lydian-ai"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "support@ailydian.com",
+        "availableLanguage": ["tr", "en", "de", "ar", "ru", "zh"]
+      }
+    }
+    </script>
+</head>
+<body class="chat-body" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="LyDian-logo-chat">
+                <span class="letter-a">A</span>i<span class="letter-l">L</span>ydians
+                <span class="LyDian-beta">HUKUK</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="/chat" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Ana Chat'e Dön
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-chat">
+        <!-- Specialized Header -->
+        <div class="specialist-header">
+            <div class="specialist-icon">
+                <i class="fas fa-gavel"></i>
+            </div>
+            <div class="specialist-info">
+                <h1>Hukuk Uzmanı AI</h1>
+                <p>Hukuki danışmanlık, mevzuat analizi ve yasal süreçler konularında uzmanlaşmış AI asistanınız</p>
+            </div>
+        </div>
+
+        <!-- Legal Disclaimer -->
+        <div class="legal-disclaimer">
+            <div class="disclaimer-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="disclaimer-text">
+                <strong>Yasal Uyarı:</strong> Bu AI asistan genel bilgilendirme amaçlı olup, profesyonel hukuki danışmanlık yerine geçmez.
+                Önemli hukuki kararlar için mutlaka lisanslı bir avukatla görüşünüz.
+            </div>
+        </div>
+
+        <!-- Expertise Areas -->
+        <div class="expertise-areas">
+            <h3>Uzmanlık Alanları</h3>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <i class="fas fa-building"></i>
+                    <h4>Ticaret Hukuku</h4>
+                    <p>Şirket kuruluşu, ortaklık sözleşmeleri, ticari anlaşmalar</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-home"></i>
+                    <h4>Emlak Hukuku</h4>
+                    <p>Tapu işlemleri, kira sözleşmeleri, emlak alım-satımı</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Aile Hukuku</h4>
+                    <p>Boşanma, velayet, nafaka, miras hukuku</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h4>İş Hukuku</h4>
+                    <p>İş sözleşmeleri, işçi hakları, iş güvenliği</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Ceza Hukuku</h4>
+                    <p>Suç türleri, cezai sorumluluk, savunma stratejileri</p>
+                </div>
+                <div class="expertise-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h4>Sözleşme Hukuku</h4>
+                    <p>Sözleşme hazırlama, revize, hukuki geçerlilik</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h3>Hızlı İşlemler</h3>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="sendPredefinedMessage('Sözleşme hazırlamak istiyorum. Hangi bilgilere ihtiyacınız var?')">
+                    <i class="fas fa-file-contract"></i>
+                    Sözleşme Hazırla
+                </button>
+                <button class="action-btn" onclick="sendPredefinedMessage('Hukuki bir problemi hakkında danışmanlık alabilir miyim?')">
+                    <i class="fas fa-question-circle"></i>
+                    Hukuki Danışma
+                </button>
+                <button class="action-btn" onclick="sendPredefinedMessage('Mevzuat hakkında bilgi almak istiyorum')">
+                    <i class="fas fa-book"></i>
+                    Mevzuat Sorgusu
+                </button>
+                <button class="action-btn" onclick="sendPredefinedMessage('Yasal süreç hakkında bilgi verebilir misiniz?')">
+                    <i class="fas fa-balance-scale"></i>
+                    Süreç Bilgisi
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Messages will be dynamically added here -->
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <div class="text-input-wrapper">
+                    <textarea
+                        id="messageInput"
+                        placeholder="Hukuki sorunuzu detaylı bir şekilde yazın..."
+                        rows="1"
+                        maxlength="5000"
+                    ></textarea>
+                </div>
+                <button class="send-btn" id="sendBtn" title="Gönder">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="input-info">
+                <span class="char-counter" id="charCounter">0/5000</span>
+                <span class="input-hint">Enter ile gönder, Shift+Enter ile yeni satır</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Specialized legal AI functionality
+        const specialistType = 'legal-expert';
+        const specialistName = 'Hukuk Uzmanı AI';
+
+        function sendPredefinedMessage(message) {
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (!message) return;
+
+            // Add user message to chat
+            addMessageToChat(message, 'user');
+
+            // Clear input
+            messageInput.value = '';
+            updateCharCounter();
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Send to specialized legal AI endpoint
+            fetch('/api/legal-expert/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    specialist: specialistType,
+                    context: 'legal_consultation'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                if (data.success) {
+                    addMessageToChat(data.response, 'assistant', true);
+                } else {
+                    addMessageToChat('Üzgünüm, şu anda bir teknik sorun yaşıyorum. Lütfen tekrar deneyin.', 'assistant');
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                console.error('Error:', error);
+                addMessageToChat('Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.', 'assistant');
+            });
+        }
+
+        function addMessageToChat(message, sender, isLegal = false) {
+            const chatContainer = document.getElementById('chatContainer');
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+
+            if (sender === 'assistant' && isLegal) {
+                messageDiv.innerHTML = `
+                    <div class="message-header">
+                        <div class="specialist-badge">
+                            <i class="fas fa-gavel"></i>
+                            Hukuk Uzmanı AI
+                        </div>
+                        <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                    </div>
+                    <div class="message-content">${message}</div>
+                    <div class="legal-footer">
+                        <small><i class="fas fa-info-circle"></i> Bu yanıt genel bilgilendirme amaçlıdır ve profesyonel hukuki danışmanlık yerine geçmez.</small>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="message-content">${message}</div>
+                    <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'})}</span>
+                `;
+            }
+
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = `
+                <div class="specialist-badge">
+                    <i class="fas fa-gavel"></i>
+                    Hukuk Uzmanı AI
+                </div>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+
+            document.getElementById('chatContainer').appendChild(indicator);
+            document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        function updateCharCounter() {
+            const messageInput = document.getElementById('messageInput');
+            const charCounter = document.getElementById('charCounter');
+            charCounter.textContent = `${messageInput.value.length}/5000`;
+        }
+
+        // Event listeners
+        document.getElementById('messageInput').addEventListener('input', updateCharCounter);
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
+        // Auto-resize textarea
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        // Initial welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                addMessageToChat(
+                    'Merhaba! Ben LyDians Hukuk Uzmanı AI\'ıyım. Hukuki sorularınızda size yardımcı olmaktan memnuniyet duyarım. ' +
+                    'Lütfen sorunu detaylı bir şekilde açıklayın ki size en doğru bilgiyi verebilmem. ' +
+                    'Unutmayın, verdiğim bilgiler genel niteliktedir ve profesyonel hukuki danışmanlık yerine geçmez.',
+                    'assistant',
+                    true
+                );
+            }, 1000);
+        });
+    </script>
+
+    <style>
+        /* ============================================ */
+        /* PREMIUM NEON BLACK THEME - LYDIAN DESIGN    */
+        /* ============================================ */
+        :root {
+            --bg-0: #0A0B0D;
+            --bg-1: #111214;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-2: rgba(255, 255, 255, 0.03);
+            --stroke: rgba(255, 255, 255, 0.08);
+            --txt-1: #FFFFFF;
+            --txt-2: #B0B0B0;
+            --accent-1: #00E0AE;  /* Neon green */
+            --accent-2: #6E84FF;  /* Electric blue */
+            --accent-3: #B86BFF;  /* Purple */
+            --warning: #FDB022;   /* Gold warning */
+        }
+
+        body.chat-body {
+            background: radial-gradient(1400px 900px at 70% 15%, rgba(184,107,255,.10), transparent 60%),
+                        radial-gradient(1200px 700px at 20% 80%, rgba(110,132,255,.10), transparent 65%),
+                        var(--bg-0) !important;
+            color: var(--txt-1);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .specialist-header {
+            background: linear-gradient(135deg, rgba(0,224,174,0.15), rgba(110,132,255,0.15));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--stroke);
+            color: var(--txt-1);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .specialist-icon {
+            font-size: 3rem;
+            color: var(--accent-1);
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(0,224,174,0.5));
+        }
+
+        .specialist-info h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .specialist-info p {
+            margin: 0.5rem 0 0 0;
+            color: var(--txt-2);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .legal-disclaimer {
+            background: linear-gradient(135deg, rgba(253,176,34,0.1), rgba(253,176,34,0.05));
+            border: 1px solid rgba(253,176,34,0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: var(--txt-1);
+            backdrop-filter: blur(10px);
+        }
+
+        .disclaimer-icon {
+            color: var(--warning);
+            font-size: 1.5rem;
+            margin-top: 0.1rem;
+            filter: drop-shadow(0 0 4px rgba(253,176,34,0.5));
+        }
+
+        .disclaimer-text {
+            flex: 1;
+        }
+
+        .disclaimer-text strong {
+            color: var(--warning);
+            font-weight: 700;
+        }
+
+        .expertise-areas {
+            margin: 1rem;
+            padding: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+        }
+
+        .expertise-areas h3 {
+            margin-bottom: 1.5rem;
+            color: var(--txt-1);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .expertise-card {
+            background: var(--glass-2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--stroke);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .expertise-card:hover {
+            background: var(--glass);
+            border-color: var(--accent-1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,224,174,0.15);
+        }
+
+        .expertise-card i {
+            font-size: 2rem;
+            color: var(--accent-1);
+            margin-bottom: 0.75rem;
+            display: block;
+            filter: drop-shadow(0 0 6px rgba(0,224,174,0.4));
+        }
+
+        .expertise-card h4 {
+            margin: 0.75rem 0 0.5rem 0;
+            color: var(--txt-1);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .expertise-card p {
+            margin: 0;
+            color: var(--txt-2);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .quick-actions {
+            margin: 1rem;
+            padding: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+        }
+
+        .quick-actions h3 {
+            margin-bottom: 1.5rem;
+            color: var(--txt-1);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: var(--glass-2);
+            border: 1px solid var(--stroke);
+            color: var(--txt-1);
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: inherit;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-color: var(--accent-1);
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,224,174,0.3);
+        }
+
+        .action-btn i {
+            font-size: 1.2rem;
+        }
+
+        .specialist-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-1);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .specialist-badge i {
+            filter: drop-shadow(0 0 4px rgba(0,224,174,0.5));
+        }
+
+        .legal-footer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--stroke);
+        }
+
+        .legal-footer small {
+            color: var(--warning);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .typing-indicator {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .typing-dots span {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-1);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+            box-shadow: 0 0 8px rgba(0,224,174,0.5);
+        }
+
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Message styling */
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, rgba(110,132,255,0.15), rgba(184,107,255,0.1));
+            border: 1px solid var(--stroke);
+            margin-left: 2rem;
+        }
+
+        .assistant-message {
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            margin-right: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .message-content {
+            color: var(--txt-1);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .timestamp {
+            color: var(--txt-2);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .specialist-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .specialist-icon {
+                font-size: 2.5rem;
+            }
+
+            .user-message,
+            .assistant-message {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+        }
+    </style>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

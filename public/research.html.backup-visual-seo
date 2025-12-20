@@ -1,0 +1,190 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Fonts - Inline critical fonts for instant load -->
+    <style>
+        /* Righteous font for Logo - Inline for instant load */
+        @font-face {
+            font-family: 'Righteous';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --black: #000; --white: #FFF; --gray-50: #F9FAFB; --gray-200: #E5E7EB; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151; --gray-800: #1F2937; --gray-900: #111827; --primary: #10A37F; --accent: #FF6B4A; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-900); line-height: 1.6; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { font-family: 'Inter', sans-serif !important; font-size: 2.25rem; font-weight: 900 !important; color: #FFFFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0,224,174,0.3); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--gray-700); text-decoration: none; }
+        .btn-primary { background: var(--black); color: var(--white); padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; }
+        .hero { min-height: 80vh; display: flex; align-items: center; background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%); padding-top: 72px; }
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem; text-align: center; color: white; }
+        .hero-title { font-size: 4.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .hero-description { font-size: 1.5rem; max-width: 800px; margin: 0 auto 3rem; }
+        .btn-white { background: white; color: black; padding: 1rem 2rem; font-size: 1.1rem; border-radius: 12px; display: inline-block; }
+        .features { padding: 8rem 2rem; }
+        .features-container { max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 5rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .feature-card { padding: 2.5rem; background: white; border: 1px solid var(--gray-200); border-radius: 16px; }
+        .feature-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .feature-description { color: var(--gray-600); line-height: 1.7; }
+        .footer { padding: 4rem 2rem 2rem; background: var(--gray-900); color: var(--gray-500); }
+        .footer-container { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo { font-family: 'Caveat', cursive !important; font-size: 2rem; color: white;  }
+        .footer-column h3 { color: white; font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a { color: var(--gray-500); text-decoration: none; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--gray-800); display: flex; justify-content: space-between; }
+        .footer-legal { display: flex; gap: 2rem; }
+        .footer-legal a { color: var(--gray-500); text-decoration: none; }
+    </style>
+    <link rel="stylesheet" href="/css/global-lydian-branding.css">
+
+    <!-- SEO Meta Tags (TR) -->
+    <title>Araştırma & Yenilikler — LyDian AI | Yapay Zeka Araştırmaları</title>
+    <meta name="description" content="LyDian AI araştırma laboratuvarları. Son AI trendleri, teknik makaleler, case study'ler ve yenilikçi projeler. Yapay zeka geleceğini şekillendiriyoruz." />
+    <meta name="keywords" content="ai araştırma, yapay zeka yenilikler, ai laboratuvarı, makine öğrenmesi araştırma, lydian innovation" />
+    <link rel="canonical" href="https://www.ailydian.com/tr/research.html" />
+
+    <!-- hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/research.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/research.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/research.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/research.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/research.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/research.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/en/research.html" />
+
+    <!-- GEO Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="İstanbul" />
+    <meta name="geo.position" content="41.0082;28.9784" />
+    <meta name="ICBM" content="41.0082;28.9784" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta property="og:title" content="Araştırma & Yenilikler — LyDian AI | Yapay Zeka Araştırmaları" />
+    <meta property="og:description" content="LyDian AI araştırma laboratuvarları. Son AI trendleri, teknik makaleler, case study'ler ve yenilikçi projeler. Yapay zeka geleceğini şekillendiriyoruz." />
+    <meta property="og:url" content="https://www.ailydian.com/tr/research.html" />
+    <meta property="og:image" content="https://www.ailydian.com/lydian-og-image.png" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lydianai" />
+    <meta name="twitter:title" content="Araştırma & Yenilikler — LyDian AI | Yapay Zeka Araştırmaları" />
+    <meta name="twitter:description" content="LyDian AI araştırma laboratuvarları. Son AI trendleri, teknik makaleler, case study'ler ve yenilikçi projeler. Yapay zeka geleceğini şekillendiriyoruz." />
+    <meta name="twitter:image" content="https://www.ailydian.com/lydian-twitter-card.png" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+
+    <!-- Additional Meta -->
+    <meta name="author" content="LyDian AI Ecosystem" />
+    <meta name="language" content="tr" />
+
+    <!-- Schema.org: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LyDian AI Ecosystem",
+      "url": "https://www.ailydian.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.ailydian.com/lydian-logo.png"
+      },
+      "sameAs": [
+        "https://twitter.com/lydianai",
+        "https://linkedin.com/company/lydian-ai",
+        "https://github.com/lydian-ai"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" style="display: flex; align-items: center; gap: 8px;"><img src="/lydian-logo.png" alt="LyDian Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">LyDian</a>
+            <ul class="nav-links"><li><a href="/chat.html">LyDian AI</a></li></ul>
+            <div><a href="/contact.html" class="btn-primary">Araştırma Erişimi</a></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Araştırma için AI</h1>
+            <p class="hero-description">Bilimsel araştırmaları hızlandırın. Literatür taraması, veri analizi ve hipotez oluşturma için gelişmiş AI araçları.</p>
+            <a href="/contact.html" class="btn-white">Araştırma Paketi</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">Araştırma yetenekleri</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">Literatür Analizi</h3>
+                    <p class="feature-description">Binlerce akademik makaleyi analiz edin. Otomatik özetleme, anahtar kelime çıkarma ve ilgili çalışmaları bulma.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Veri Analizi</h3>
+                    <p class="feature-description">Büyük veri setlerini analiz edin. İstatistiksel analiz, görselleştirme ve pattern discovery.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Hipotez Oluşturma</h3>
+                    <p class="feature-description">AI destekli hipotez oluşturma. Mevcut literatürden yeni araştırma sorular türetin.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Makale Yazımı</h3>
+                    <p class="feature-description">Akademik yazım asistanı. Abstract, metodoloji ve sonuç bölümleri için öneri ve düzeltme.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Atıf Yönetimi</h3>
+                    <p class="feature-description">Otomatik referans yönetimi. APA, MLA, Chicago gibi formatlarda citation generation.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Collaboration</h3>
+                    <p class="feature-description">Araştırma ekipleri için işbirliği araçları. Paylaşılan notlar, annotations ve version control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div><div class="footer-logo">LyDian</div></div>
+                <div class="footer-column"><h3>Ürünler</h3><ul class="footer-links"><li><a href="/ai-chat.html">AI Sohbet</a></li><li><a href="/image-generation.html">Görsel Oluşturma</a></li><li><a href="/video-ai.html">Video AI</a></li><li><a href="/api.html">API</a></li></ul></div>
+                <div class="footer-column"><h3>Çözümler</h3><ul class="footer-links"><li><a href="/enterprise.html">Enterprise</a></li><li><a href="/education.html">Eğitim</a></li><li><a href="/research.html">Araştırma</a></li></ul></div>
+                <div class="footer-column"><h3>Şirket</h3><ul class="footer-links"><li><a href="/about.html">Hakkımızda</a></li><li><a href="/careers.html">Kariyer</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/contact.html">İletişim</a></li></ul></div>
+                <div class="footer-column"><h3>Destek</h3><ul class="footer-links"><li><a href="/help.html">Yardım Merkezi</a></li><li><a href="/api-reference.html">API Referansı</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2025 LyDian. Tüm hakları saklıdır.</div>
+                <div class="footer-legal"><a href="/privacy.html">Gizlilik</a><a href="/terms.html">Koşullar</a><a href="/cookies.html">Çerezler</a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

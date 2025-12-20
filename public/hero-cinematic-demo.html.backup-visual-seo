@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/hero-cinematic-demo" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/hero-cinematic-demo" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/hero-cinematic-demo" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/hero-cinematic-demo" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/hero-cinematic-demo" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/hero-cinematic-demo" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/hero-cinematic-demo" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/hero-cinematic-demo" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/hero-cinematic-demo" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 LyDian - Cinematic Hero Demo | The AI Revolution</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Cinematic Hero Styles -->
+    <link rel="stylesheet" href="/css/hero-cinematic-film.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            z-index: 300;
+            max-width: 320px;
+        }
+
+        .info-panel h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #10A37F;
+        }
+
+        .info-panel p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        .info-panel .controls {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-panel .control-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+        }
+
+        .info-panel kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .close-info {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-info:hover {
+            opacity: 1;
+        }
+
+        /* Toggle Info Button */
+        .toggle-info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(16, 163, 127, 0.9);
+            border: none;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 300;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-info:hover {
+            background: rgba(16, 163, 127, 1);
+            transform: scale(1.05);
+        }
+
+        .info-panel.hidden {
+            display: none;
+        }
+
+        .info-panel.hidden ~ .toggle-info {
+            display: block;
+        }
+
+        /* Stats Display */
+        .stats-display {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            z-index: 300;
+            font-size: 0.75rem;
+            font-family: 'Monaco', monospace;
+        }
+
+        .stats-item {
+            margin-bottom: 6px;
+        }
+
+        .stats-value {
+            color: #10A37F;
+            font-weight: 700;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(16, 163, 127, 0.2);
+            border-top-color: #10A37F;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .loading-subtext {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .info-panel {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                max-width: none;
+                font-size: 0.875rem;
+                padding: 16px;
+            }
+
+            .stats-display {
+                bottom: 120px;
+                right: 10px;
+                font-size: 0.7rem;
+                padding: 12px;
+            }
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "🎬 LyDian - Cinematic Hero Demo | The AI Revolution",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "url": "https://www.ailydian.com/hero-cinematic-demo",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Hero Cinematic Demo",
+        "item": "https://www.ailydian.com/hero-cinematic-demo"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="🎬 LyDian - Cinematic Hero Demo | The AI Revolution" />
+  <meta name="twitter:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/hero-cinematic-demo-tr.png" />
+  <meta name="twitter:image:alt" content="🎬 LyDian - Cinematic Hero Demo | The AI Revolution" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.770Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  </head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">LyDian Cinematic Experience</div>
+            <div class="loading-subtext">Hazırlanıyor...</div>
+        </div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="info-panel" id="infoPanel">
+        <button class="close-info" onclick="toggleInfo()">&times;</button>
+
+        <h3>🎬 The AI Revolution</h3>
+
+        <p>
+            LyDian'ın gücünü anlatan sinematik bir deneyim.
+            Gerçek karakterler ve AI yardımcılarının hikayesi.
+        </p>
+
+        <div class="controls">
+            <div class="control-item">
+                <kbd>Space</kbd>
+                <span>Oynat / Duraklat</span>
+            </div>
+            <div class="control-item">
+                <kbd>→</kbd>
+                <span>Sonraki Sahne</span>
+            </div>
+            <div class="control-item">
+                <kbd>←</kbd>
+                <span>Önceki Sahne</span>
+            </div>
+            <div class="control-item">
+                <span style="opacity: 0.6; font-size: 0.75rem;">
+                    Timeline noktalarına tıklayarak sahneler arası geçiş yapabilirsiniz
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toggle Info Button (Hidden by default) -->
+    <button class="toggle-info" onclick="toggleInfo()">
+        ℹ️ Bilgi
+    </button>
+
+    <!-- Stats Display -->
+    <div class="stats-display" id="statsDisplay">
+        <div class="stats-item">
+            FPS: <span class="stats-value" id="fpsValue">60</span>
+        </div>
+        <div class="stats-item">
+            Scene: <span class="stats-value" id="sceneValue">1/6</span>
+        </div>
+        <div class="stats-item">
+            Status: <span class="stats-value" id="statusValue">Playing</span>
+        </div>
+        <div class="stats-item">
+            Performance: <span class="stats-value" id="perfValue">High</span>
+        </div>
+    </div>
+
+    <!-- Hero Cinematic Container -->
+    <section class="hero">
+        <!-- Scenes will be dynamically created by JavaScript -->
+    </section>
+
+    <!-- Cinematic Controller -->
+    <script src="/js/hero-cinematic-controller.js"></script>
+
+    <!-- Demo Page Script -->
+    <script>
+        // Toggle info panel
+        function toggleInfo() {
+            const panel = document.getElementById('infoPanel');
+            panel.classList.toggle('hidden');
+        }
+
+        // Hide loading screen when ready
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loading = document.getElementById('loadingScreen');
+                loading.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Update stats display
+        let lastTime = performance.now();
+        let frames = 0;
+
+        function updateStats() {
+            frames++;
+            const currentTime = performance.now();
+
+            if (currentTime >= lastTime + 1000) {
+                const fps = Math.round((frames * 1000) / (currentTime - lastTime));
+                document.getElementById('fpsValue').textContent = fps;
+
+                frames = 0;
+                lastTime = currentTime;
+
+                // Update performance indicator
+                if (fps >= 55) {
+                    document.getElementById('perfValue').textContent = 'High';
+                } else if (fps >= 30) {
+                    document.getElementById('perfValue').textContent = 'Medium';
+                } else {
+                    document.getElementById('perfValue').textContent = 'Low';
+                }
+            }
+
+            requestAnimationFrame(updateStats);
+        }
+
+        updateStats();
+
+        // Listen for scene changes
+        document.addEventListener('scene-change', (event) => {
+            const sceneIndex = event.detail.sceneIndex + 1;
+            document.getElementById('sceneValue').textContent = `${sceneIndex}/6`;
+
+            console.log(`🎬 ${event.detail.sceneName}`);
+        });
+
+        // Update status on play/pause
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                const statusEl = document.getElementById('statusValue');
+                const currentStatus = statusEl.textContent;
+
+                if (currentStatus === 'Playing') {
+                    statusEl.textContent = 'Paused';
+                } else {
+                    statusEl.textContent = 'Playing';
+                }
+            }
+        });
+
+        // Performance monitoring
+        if (window.ailydianCinematic) {
+            console.log('🎬 Cinematic experience loaded successfully');
+            console.log('   Use Space to play/pause');
+            console.log('   Use Arrow keys to navigate scenes');
+        }
+
+        // Auto-hide info panel after 10 seconds
+        setTimeout(() => {
+            const panel = document.getElementById('infoPanel');
+            if (!panel.classList.contains('hidden')) {
+                panel.classList.add('hidden');
+            }
+        }, 10000);
+    </script>
+
+</body>
+</html>

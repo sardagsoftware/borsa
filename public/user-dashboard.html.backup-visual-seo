@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta name="keywords" content="lydian ai, ai platform, quantum ai, velocity engine, enterprise ai, medical ai, legal ai, multilingual ai, hipaa compliant, real-time translation" />
+  <link rel="canonical" href="https://www.ailydian.com/user-dashboard" />
+  <meta property="og:title" content="LyDian AI — Enterprise AI Platform | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta property="og:url" content="https://www.ailydian.com/user-dashboard" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/user-dashboard" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/user-dashboard" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/user-dashboard" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/user-dashboard" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/user-dashboard" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/user-dashboard" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/user-dashboard" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Medical LyDian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-header h1 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            color: #6b7280;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .files-section, .activity-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .file-item {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .file-item:hover {
+            background: #f9fafb;
+            border-color: #667eea;
+        }
+
+        .file-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .file-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-medical {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-document {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .activity-item {
+            padding: 1rem;
+            border-left: 3px solid #667eea;
+            background: #f9fafb;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-desc {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "User Dashboard - Medical LyDian",
+  "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+  "url": "https://www.ailydian.com/user-dashboard",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "User Dashboard",
+        "item": "https://www.ailydian.com/user-dashboard"
+      }
+    ]
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "User Dashboard - Medical LyDian",
+  "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY"
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="User Dashboard - Medical LyDian" />
+  <meta name="twitter:description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/user-dashboard-tr.png" />
+  <meta name="twitter:image:alt" content="User Dashboard - Medical LyDian" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.833Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  </head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>📊 Your Medical Dashboard</h1>
+            <p>Real-time tracking of your uploads and medical analyses</p>
+        </div>
+
+        <div id="error-container"></div>
+
+        <div class="stats-grid" id="stats-grid">
+            <div class="loading">Loading statistics...</div>
+        </div>
+
+        <div class="content-grid">
+            <div class="files-section">
+                <div class="section-header">
+                    <div class="section-title">📁 Recent Files</div>
+                    <button onclick="window.location.href='/medical-expert.html'" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                        + Upload New File
+                    </button>
+                </div>
+                <div id="files-list">
+                    <div class="loading">Loading files...</div>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="section-header">
+                    <div class="section-title">⚡ Recent Activity</div>
+                </div>
+                <div id="activity-list">
+                    <div class="loading">Loading activity...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get user ID (in production, this would come from auth token)
+        const userId = new URLSearchParams(window.location.search).get('userId') || 'default-user-id';
+
+        // Fetch dashboard data
+        async function loadDashboard() {
+            try {
+                const response = await fetch(`/api/medical/file-manager?action=dashboard&userId=${userId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    renderStats(data.overview);
+                    renderFiles(data.uploadStats);
+                    renderActivity(data.recentActivity);
+                } else {
+                    showError('Failed to load dashboard data');
+                }
+            } catch (error) {
+                console.error('Dashboard load error:', error);
+                showError('Failed to load dashboard: ' + error.message);
+            }
+        }
+
+        function renderStats(overview) {
+            const statsGrid = document.getElementById('stats-grid');
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                            📁
+                        </div>
+                    </div>
+                    <div class="stat-value">${overview.total_files || 0}</div>
+                    <div class="stat-label">Total Files</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white;">
+                            🏥
+                        </div>
+                    </div>
+                    <div class="stat-value">${overview.medical_files || 0}</div>
+                    <div class="stat-label">Medical Files</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669); color: white;">
+                            🤖
+                        </div>
+                    </div>
+                    <div class="stat-value">${overview.total_analyses || 0}</div>
+                    <div class="stat-label">AI Analyses</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white;">
+                            💾
+                        </div>
+                    </div>
+                    <div class="stat-value">${formatBytes(overview.total_storage_bytes || 0)}</div>
+                    <div class="stat-label">Storage Used</div>
+                </div>
+            `;
+        }
+
+        async function renderFiles(uploadStats) {
+            try {
+                const response = await fetch(`/api/medical/file-manager?action=list&userId=${userId}&limit=20`);
+                const data = await response.json();
+
+                const filesList = document.getElementById('files-list');
+
+                if (data.success && data.files.length > 0) {
+                    filesList.innerHTML = data.files.map(file => `
+                        <div class="file-item">
+                            <div class="file-header">
+                                <div class="file-name">${file.original_filename}</div>
+                                <span class="file-badge ${file.is_medical ? 'badge-medical' : 'badge-document'}">
+                                    ${file.is_medical ? '🏥 Medical' : '📄 Document'}
+                                </span>
+                            </div>
+                            <div class="file-meta">
+                                <span>📊 ${formatBytes(file.file_size)}</span>
+                                <span>📅 ${formatDate(file.created_at)}</span>
+                                ${file.medical_type ? `<span>🔬 ${file.medical_type}</span>` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    filesList.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">No files uploaded yet</p>';
+                }
+            } catch (error) {
+                console.error('Files load error:', error);
+                document.getElementById('files-list').innerHTML = '<div class="error">Failed to load files</div>';
+            }
+        }
+
+        function renderActivity(activities) {
+            const activityList = document.getElementById('activity-list');
+
+            if (activities && activities.length > 0) {
+                activityList.innerHTML = activities.map(activity => `
+                    <div class="activity-item">
+                        <div class="activity-title">${activity.title}</div>
+                        <div class="activity-desc">${activity.description || ''}</div>
+                        <div class="activity-time">${formatDate(activity.created_at)}</div>
+                    </div>
+                `).join('');
+            } else {
+                activityList.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">No recent activity</p>';
+            }
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            if (minutes < 1) return 'Just now';
+            if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            if (days < 7) return `${days} day${days > 1 ? 's' : ''} ago`;
+
+            return date.toLocaleDateString();
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `<div class="error">⚠️ ${message}</div>`;
+        }
+
+        // Load dashboard on page load
+        loadDashboard();
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadDashboard, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/test-chat-buttons" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/test-chat-buttons" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-chat-buttons" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-chat-buttons" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-chat-buttons" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-chat-buttons" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-chat-buttons" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-chat-buttons" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-chat-buttons" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Buttons Test</title>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            padding: 40px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 { color: #10A37F; }
+        .status {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #10A37F;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .error {
+            border-left-color: #FF6B4A;
+            background: rgba(255, 107, 74, 0.1);
+        }
+        .success {
+            border-left-color: #13C896;
+            background: rgba(19, 200, 150, 0.1);
+        }
+        button {
+            padding: 12px 24px;
+            background: #10A37F;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #13C896;
+        }
+        #console {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', monospace;
+            font-size: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        .log-entry {
+            padding: 5px;
+            margin: 2px 0;
+        }
+        .log-error { color: #FF6B4A; }
+        .log-warn { color: #FFB74D; }
+        .log-info { color: #13C896; }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Chat Buttons Test",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "url": "https://www.ailydian.com/test-chat-buttons",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Test Chat Buttons",
+        "item": "https://www.ailydian.com/test-chat-buttons"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="Chat Buttons Test" />
+  <meta name="twitter:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-chat-buttons-tr.png" />
+  <meta name="twitter:image:alt" content="Chat Buttons Test" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.826Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  </head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Chat.html Button Test</h1>
+
+        <div class="status" id="status">
+            <strong>Test Durumu:</strong> Başlatılıyor...
+        </div>
+
+        <h2>Manuel Testler</h2>
+        <button onclick="testBasicJS()">1. Basic JavaScript Test</button>
+        <button onclick="testChatPage()">2. Chat Sayfası Fetch Test</button>
+        <button onclick="testScripts()">3. Script Yükleme Test</button>
+        <button onclick="openChat()">4. Chat Sayfasını Aç</button>
+        <button onclick="clearConsole()">Konsolu Temizle</button>
+
+        <h2>📋 Console Output</h2>
+        <div id="console"></div>
+    </div>
+
+    <script>
+        const consoleDiv = document.getElementById('console');
+        const statusDiv = document.getElementById('status');
+
+        function log(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry log-' + type;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleDiv.appendChild(entry);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+
+            console.log(message);
+        }
+
+        function setStatus(message, isError = false) {
+            statusDiv.className = 'status ' + (isError ? 'error' : 'success');
+            statusDiv.innerHTML = '<strong>' + (isError ? '❌ Hata:' : '✅ Başarılı:') + '</strong> ' + message;
+        }
+
+        function clearConsole() {
+            consoleDiv.innerHTML = '';
+            log('Konsol temizlendi', 'info');
+        }
+
+        // Test 1: Basic JavaScript
+        function testBasicJS() {
+            log('=== BASIC JAVASCRIPT TEST ===', 'info');
+
+            try {
+                // Test variables
+                const test = 'Hello';
+                log('✓ Variables work', 'info');
+
+                // Test functions
+                const fn = () => 'OK';
+                log('✓ Arrow functions work: ' + fn(), 'info');
+
+                // Test async
+                (async () => {
+                    log('✓ Async/await works', 'info');
+                })();
+
+                // Test DOM
+                const div = document.createElement('div');
+                log('✓ DOM manipulation works', 'info');
+
+                // Test localStorage
+                localStorage.setItem('test', 'value');
+                const val = localStorage.getItem('test');
+                log('✓ LocalStorage works: ' + val, 'info');
+
+                setStatus('Basic JavaScript ÇALIŞIYORTest başarılı!');
+            } catch (error) {
+                log('✗ Error: ' + error.message, 'error');
+                setStatus(error.message, true);
+            }
+        }
+
+        // Test 2: Chat Page Fetch
+        async function testChatPage() {
+            log('=== CHAT PAGE FETCH TEST ===', 'info');
+
+            try {
+                log('Fetching chat.html...', 'info');
+                const response = await fetch('/chat.html');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const html = await response.text();
+                log('✓ Chat.html loaded: ' + html.length + ' bytes', 'info');
+
+                // Check for critical elements
+                const checks = [
+                    { pattern: 'sendMessage', name: 'sendMessage function' },
+                    { pattern: 'sidebar', name: 'Sidebar element' },
+                    { pattern: 'messageInput', name: 'Message input' },
+                    { pattern: 'sidebarToggle', name: 'Sidebar toggle' },
+                    { pattern: 'document.addEventListener', name: 'Event listeners' }
+                ];
+
+                for (const check of checks) {
+                    if (html.includes(check.pattern)) {
+                        log(`✓ Found: ${check.name}`, 'info');
+                    } else {
+                        log(`✗ Missing: ${check.name}`, 'warn');
+                    }
+                }
+
+                // Check for syntax errors
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const parserError = doc.querySelector('parsererror');
+
+                if (parserError) {
+                    log('✗ HTML Parse Error: ' + parserError.textContent, 'error');
+                    setStatus('HTML syntax error bulundu!', true);
+                } else {
+                    log('✓ HTML syntax valid', 'info');
+                    setStatus('Chat.html başarıyla yüklendi ve parse edildi');
+                }
+
+            } catch (error) {
+                log('✗ Error: ' + error.message, 'error');
+                setStatus(error.message, true);
+            }
+        }
+
+        // Test 3: Scripts
+        async function testScripts() {
+            log('=== SCRIPT LOADING TEST ===', 'info');
+
+            const scripts = [
+                '/js/geo-language.js',
+                '/js/feature-flags.js',
+                '/js/locale-engine.js',
+                '/js/csrf-token.js',
+                '/components/metrics/SpeedBadge.js',
+                '/js/chat-meter-integration.js'
+            ];
+
+            for (const scriptPath of scripts) {
+                try {
+                    const response = await fetch(scriptPath);
+                    if (response.ok) {
+                        log(`✓ ${scriptPath} - OK`, 'info');
+                    } else {
+                        log(`✗ ${scriptPath} - ${response.status}`, 'warn');
+                    }
+                } catch (error) {
+                    log(`✗ ${scriptPath} - ${error.message}`, 'error');
+                }
+            }
+
+            setStatus('Script kontrolleri tamamlandı');
+        }
+
+        // Open chat
+        function openChat() {
+            log('Opening chat.html in new tab...', 'info');
+            window.open('/chat.html', '_blank');
+        }
+
+        // Auto-run basic test
+        window.addEventListener('DOMContentLoaded', () => {
+            log('Test page loaded', 'info');
+            log('Localhost server: http://localhost:3000', 'info');
+            log('Click buttons above to run tests', 'info');
+        });
+
+        // Capture all console errors
+        window.addEventListener('error', (event) => {
+            log('GLOBAL ERROR: ' + event.message, 'error');
+            log('  at ' + event.filename + ':' + event.lineno, 'error');
+        });
+    </script>
+</body>
+</html>

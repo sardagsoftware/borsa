@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/lydian-manifest.json">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg-primary: #000000;
+            --color-bg-secondary: #0a0a0a;
+            --color-surface-1: #0f0f0f;
+            --color-surface-2: #1a1a1a;
+            --color-surface-3: #242424;
+            --color-surface-4: #2e2e2e;
+
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #a8a8a8;
+            --color-text-muted: #6b6b6b;
+            --color-text-disabled: #4a4a4a;
+
+            --color-accent-primary: #ffffff;
+            --color-accent-secondary: #d4d4d4;
+            --color-success: #4ade80;
+            --color-error: #f87171;
+            --color-warning: #fbbf24;
+            --color-info: #60a5fa;
+
+            --color-border: rgba(255, 255, 255, 0.06);
+            --color-border-hover: rgba(255, 255, 255, 0.12);
+            --color-border-focus: rgba(255, 255, 255, 0.2);
+
+            --glass-bg: rgba(15, 15, 15, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.08);
+
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 12px;
+            --space-lg: 16px;
+            --space-xl: 24px;
+            --space-2xl: 32px;
+            --space-3xl: 48px;
+
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --shadow-focus: 0 0 0 3px rgba(255, 255, 255, 0.1);
+
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            min-height: 100vh;
+        }
+
+        .chat-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+            padding: var(--space-lg) 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: var(--color-surface-3);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-text-primary);
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .header-info h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 2px;
+            letter-spacing: -0.02em;
+        }
+
+        .header-info p {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-success);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-success);
+            animation: pulse-dot 2s infinite;
+        }
+
+        .timer-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 500;
+            color: #3b82f6;
+        }
+
+        .timer-badge.warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .timer-badge.danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            animation: pulse-badge 1s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: var(--space-md) 0;
+            padding-bottom: 160px;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2xl);
+            box-shadow: none;
+            scroll-behavior: smooth;
+        }
+
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: var(--color-surface-3);
+            border-radius: var(--radius-full);
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: var(--color-surface-4);
+        }
+
+        .message {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-user {
+            align-items: flex-end;
+        }
+
+        .message-assistant {
+            align-items: flex-start;
+        }
+
+        .message-bubble {
+            width: 100%;
+            max-width: 100%;
+            padding: var(--space-md) 0;
+            border-radius: 0;
+            font-size: 14px;
+            line-height: 1.7;
+            transition: all var(--transition-base);
+        }
+
+        .message-user .message-bubble {
+            background: transparent;
+            border: none;
+            color: var(--color-text-primary);
+        }
+
+        .message-assistant .message-bubble {
+            width: 100%;
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            color: var(--color-text-primary);
+        }
+
+        .composer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-bg-primary);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-md) var(--space-lg);
+            z-index: 100;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+
+        .composer-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-sm);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-md);
+        }
+
+        .composer-wrapper:focus-within {
+            border-color: var(--color-border-focus);
+            box-shadow: var(--shadow-focus);
+        }
+
+        .composer-input {
+            width: 100%;
+            padding: var(--space-md);
+            background: transparent;
+            border: none;
+            color: var(--color-text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            resize: none;
+            min-height: 42px;
+            max-height: 120px;
+            line-height: 1.5;
+            overflow-y: auto;
+        }
+
+        .composer-input:focus {
+            outline: none;
+        }
+
+        .composer-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .composer-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 0 var(--space-md) var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        /* Suggestion chips inside composer - Small, frameless, premium */
+        .composer-actions .suggestion-chip {
+            padding: 4px 10px;
+            font-size: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: 0.01em;
+        }
+
+        /* Send button always on the right - Icon only (no background/border) */
+        #sendButton {
+            margin-left: auto;
+            flex-shrink: 0;
+            background: transparent !important;
+            border: none !important;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+        }
+
+        #sendButton svg {
+            width: 28px !important;
+            height: 28px !important;
+            stroke: var(--color-accent-primary) !important;
+            fill: none;
+            stroke-width: 2.5;
+            transition: all 0.2s ease;
+        }
+
+        #sendButton:hover:not(:disabled) {
+            transform: scale(1.1);
+            background: transparent !important;
+        }
+
+        #sendButton:hover:not(:disabled) svg {
+            stroke: var(--color-accent-secondary) !important;
+            transform: translateX(2px);
+        }
+
+        #sendButton:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        #sendButton:disabled svg {
+            stroke: var(--color-text-muted);
+            opacity: 0.3;
+        }
+
+        .icon-button {
+            width: 36px;
+            height: 36px;
+            background: var(--color-surface-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+        }
+
+        .icon-button:hover:not(:disabled) {
+            background: var(--color-surface-3);
+            border-color: var(--color-border-hover);
+            color: var(--color-text-primary);
+        }
+
+        .icon-button:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .icon-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .icon-button svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .icon-button.primary {
+            background: var(--color-accent-primary);
+            border-color: var(--color-accent-primary);
+            color: white;
+        }
+
+        .icon-button.primary svg {
+            stroke: white;
+        }
+
+        .icon-button.primary:hover:not(:disabled) {
+            background: var(--color-accent-secondary);
+            border-color: var(--color-accent-secondary);
+        }
+
+        .icon-button.recording {
+            background: rgba(248, 113, 113, 0.2);
+            border-color: var(--color-error);
+            color: var(--color-error);
+            animation: record-pulse 1s infinite;
+        }
+
+        @keyframes record-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+
+        .suggestion-chip {
+            padding: 6px 12px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 400;
+            position: relative;
+        }
+
+        .suggestion-chip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--color-surface-2);
+            border-radius: var(--radius-full);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            z-index: -1;
+        }
+
+        .suggestion-chip:hover {
+            color: var(--color-text-primary);
+        }
+
+        .suggestion-chip:hover::before {
+            opacity: 1;
+        }
+
+        .dock-panel {
+            width: 340px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            position: sticky;
+            top: var(--space-xl);
+            height: fit-content;
+            max-height: calc(100vh - 48px);
+            overflow-y: auto;
+            box-shadow: var(--shadow-md);
+        }
+
+        .dock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .dock-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            background: rgba(74, 222, 128, 0.05);
+            border: 1px solid rgba(74, 222, 128, 0.15);
+            border-radius: var(--radius-md);
+        }
+
+        .status-indicator span {
+            font-size: 12px;
+            color: var(--color-success);
+            font-weight: 500;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            background: var(--color-surface-1);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+
+        .metric:hover {
+            background: var(--color-surface-2);
+            border-color: var(--color-border-hover);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .inline-card {
+            width: 100%;
+            max-width: 100%;
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            padding: var(--space-md) 0;
+            margin-top: var(--space-md);
+            margin-bottom: var(--space-md);
+            box-shadow: none;
+            animation: cardEntrance 0.4s ease-out;
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--color-border);
+            width: 100%;
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--color-surface-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--color-text-primary);
+        }
+
+        .card-title h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 2px;
+        }
+
+        .card-title p {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .confidence-badge {
+            padding: 4px 10px;
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+            background: rgba(74, 222, 128, 0.1);
+            color: var(--color-success);
+        }
+
+        .reasoning-chain {
+            width: 100%;
+            margin: var(--space-md) 0;
+            padding: var(--space-lg);
+            background: var(--color-surface-1);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-accent-primary);
+            border-radius: var(--radius-lg);
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .reasoning-header {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .reasoning-step {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-sm);
+            opacity: 0;
+            animation: fadeInStep 0.4s forwards;
+        }
+
+        .reasoning-step:nth-child(2) { animation-delay: 0.1s; }
+        .reasoning-step:nth-child(3) { animation-delay: 0.2s; }
+        .reasoning-step:nth-child(4) { animation-delay: 0.3s; }
+        .reasoning-step:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeInStep {
+            to { opacity: 1; }
+        }
+
+        .reasoning-number {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--color-surface-2);
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+
+        .reasoning-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .solution {
+            width: 100%;
+            padding: var(--space-lg);
+            background: var(--color-surface-1);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            color: var(--color-text-primary);
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .metadata {
+            width: 100%;
+            margin-top: var(--space-md);
+            padding: var(--space-md);
+            background: rgba(74, 222, 128, 0.05);
+            border: 1px solid rgba(74, 222, 128, 0.15);
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            color: var(--color-success);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metadata::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(74, 222, 128, 0.1) 50%,
+                transparent 100%
+            );
+            animation: shimmer 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .metadata-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .metadata-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            flex-shrink: 0; /* Prevent shrinking on mobile */
+        }
+
+        .icon-button {
+            width: 32px;
+            height: 32px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-button svg {
+            width: 18px;
+            height: 18px;
+            stroke: rgba(255, 255, 255, 0.7);
+        }
+
+        .icon-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .icon-button:active {
+            transform: translateY(0);
+        }
+
+        .copy-icon-btn {
+            transition: all var(--transition-base);
+        }
+
+        .copy-icon-btn:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .copy-icon-btn:hover svg {
+            stroke: rgb(59, 130, 246);
+        }
+
+        .share-icon-btn {
+            transition: all var(--transition-base);
+        }
+
+        .share-icon-btn:hover {
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 16px rgba(34, 197, 94, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .share-icon-btn:hover svg {
+            stroke: rgb(34, 197, 94);
+        }
+
+        .clear-icon-btn {
+            transition: all var(--transition-base);
+        }
+
+        .clear-icon-btn:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .clear-icon-btn:hover svg {
+            stroke: rgb(239, 68, 68);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 1px solid var(--color-border);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        .btn-primary {
+            background: var(--color-accent-primary);
+            color: var(--color-bg-primary);
+            border-color: var(--color-accent-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-secondary);
+            border-color: var(--color-accent-secondary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border-color: var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-surface-2);
+            border-color: var(--color-border-hover);
+        }
+
+        .btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: var(--space-md);
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-text-secondary);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        /* 🌊 PREMIUM STREAMING DATA FLOW ANIMATION */
+        @keyframes dataFlow {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .inline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                transparent 100%
+            );
+            animation: shimmer 3s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .inline-card.streaming {
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.01) 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.01) 75%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: dataFlow 4s linear infinite;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: var(--space-xl);
+            right: var(--space-xl);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            pointer-events: none;
+        }
+
+        .toast {
+            min-width: 320px;
+            padding: var(--space-md) var(--space-lg);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            pointer-events: auto;
+            animation: toastIn 0.3s ease-out;
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .toast.removing {
+            animation: toastOut 0.3s ease-out forwards;
+        }
+
+        @keyframes toastOut {
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        .toast-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .toast-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 2px;
+        }
+
+        .toast-message {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .toast-success {
+            border-left: 2px solid var(--color-success);
+        }
+
+        .toast-error {
+            border-left: 2px solid var(--color-error);
+        }
+
+        .toast-info {
+            border-left: 2px solid var(--color-info);
+        }
+
+        .error-message {
+            width: 100%;
+            max-width: 100%;
+            padding: var(--space-lg);
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            border-left: 3px solid var(--color-error);
+            border-radius: var(--radius-lg);
+            color: var(--color-error);
+            margin: var(--space-md) 0;
+        }
+
+        .error-title {
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            font-size: 14px;
+        }
+
+        .error-text {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                padding: var(--space-md);
+            }
+
+            .dock-panel {
+                width: 100%;
+                position: relative;
+                top: 0;
+                max-height: none;
+            }
+
+            .message-bubble {
+                max-width: 90%;
+            }
+
+            .inline-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: var(--space-sm);
+                max-width: 100%;
+            }
+
+            /* 📱 MOBILE PREMIUM: Header optimization */
+            .header {
+                padding: var(--space-lg) var(--space-md);
+                flex-direction: row; /* Keep horizontal on mobile */
+                align-items: center;
+                gap: var(--space-md);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+            }
+
+            .header > div:first-child {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: var(--space-md);
+            }
+
+            .header > div:last-child {
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+            }
+
+            .logo {
+                width: 40px; /* Slightly bigger */
+                height: 40px;
+                flex-shrink: 0;
+            }
+
+            .logo svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .header-info h1 {
+                font-size: 16px; /* Larger, more premium */
+                font-weight: 700;
+                letter-spacing: -0.02em;
+            }
+
+            /* 📱 MOBILE PREMIUM: Status badge */
+            .status-badge {
+                font-size: 11px;
+                padding: 6px 10px;
+                border-radius: var(--radius-full);
+            }
+
+            /* 📱 MOBILE PREMIUM: Timer badge */
+            .timer-badge {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+
+            .timer-badge svg {
+                width: 12px;
+                height: 12px;
+                font-weight: 600;
+            }
+
+            /* 📱 MOBILE PREMIUM: Language selector */
+            #languageSelector {
+                font-size: 12px !important;
+                padding: 8px 10px !important;
+                border-radius: var(--radius-md) !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                font-weight: 500;
+            }
+
+            .messages {
+                padding: var(--space-sm) 0;
+                padding-bottom: 140px;
+            }
+
+            .composer {
+                padding: var(--space-sm);
+            }
+
+            .composer-input {
+                font-size: 14px;
+                min-height: 40px;
+                max-height: 100px;
+                padding: var(--space-sm);
+            }
+
+            .composer-wrapper {
+                padding: 6px;
+            }
+
+            /* 📱 MOBILE PREMIUM: Icon buttons optimized for touch */
+            .icon-button {
+                width: 44px; /* Larger tap target (Apple HIG: 44px minimum) */
+                height: 44px;
+                -webkit-tap-highlight-color: transparent;
+                background: rgba(255, 255, 255, 0.08); /* More visible */
+                border: 1.5px solid rgba(255, 255, 255, 0.15);
+                border-radius: var(--radius-md); /* Slightly rounder */
+            }
+
+            .icon-button svg {
+                width: 22px; /* Bigger icons */
+                height: 22px;
+            }
+
+            /* 📱 MOBILE PREMIUM: Send button - larger icon on mobile */
+            #sendButton {
+                width: 44px;
+                height: 44px;
+            }
+
+            #sendButton svg {
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+            /* 📱 MOBILE PREMIUM: Metadata layout optimization */
+            .metadata {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-md);
+                padding: var(--space-md);
+                background: rgba(255, 255, 255, 0.02);
+                border-radius: var(--radius-md);
+                margin-top: var(--space-md);
+            }
+
+            .metadata-info {
+                width: 100%;
+                justify-content: flex-start;
+                font-size: 12px;
+            }
+
+            .metadata-actions {
+                width: 100%;
+                justify-content: flex-end;
+                gap: var(--space-sm); /* More spacing between buttons */
+            }
+
+            /* 📱 MOBILE PREMIUM: Enhanced button hover effects */
+            .icon-button:active {
+                transform: scale(0.95);
+                background: rgba(255, 255, 255, 0.12);
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 13px;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            /* 📱 MOBILE PREMIUM: Response cards */
+            .inline-card {
+                padding: var(--space-lg);
+                border-radius: var(--radius-lg);
+                margin: var(--space-md) 0;
+            }
+
+            .solution {
+                font-size: 14px; /* Slightly larger for readability */
+                line-height: 1.7; /* Better line spacing */
+                max-height: 500px; /* More content visible */
+                padding: var(--space-lg);
+                border-radius: var(--radius-md);
+            }
+
+            .reasoning-step {
+                padding: var(--space-sm);
+            }
+
+            .suggestion-chip {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+
+            .composer-actions .suggestion-chip {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            .composer-actions {
+                gap: 6px;
+                padding: 0 var(--space-sm) var(--space-sm);
+            }
+
+            /* Mobilde voice ve send butonları her zaman görünür */
+            #voiceButton, #sendButton {
+                flex-shrink: 0;
+            }
+
+            /* Mobilde suggestion chiplerini gizle veya küçült */
+            .composer-actions .suggestion-chip {
+                display: none;
+            }
+
+            /* Alternatif: Suggestion chip'leri alt satıra al */
+            .composer-actions {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            /* 📱 MOBILE PREMIUM: AI Disclaimer */
+            .ai-disclaimer {
+                font-size: 11px;
+                padding: var(--space-xs) var(--space-sm);
+                line-height: 1.5;
+            }
+
+            .ai-disclaimer svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .dock {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .card-actions {
+                flex-direction: column;
+            }
+
+            .card-actions .btn {
+                width: 100%;
+            }
+
+            .clear-button-container {
+                bottom: var(--space-md);
+            }
+
+            .clear-button {
+                padding: var(--space-sm) var(--space-lg);
+                font-size: 13px;
+            }
+
+            .clear-button svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        /* Dynamic Action Buttons Container - DISABLED (using inline icon buttons instead) */
+        .action-buttons-container {
+            display: none !important; /* Hidden - using inline icon buttons in metadata */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Base Button Style - ENLARGED FOR BETTER VISIBILITY */
+        .action-button {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: 18px 36px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid;
+            border-radius: var(--radius-full);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            -webkit-tap-highlight-color: transparent;
+            min-width: 150px;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Clear Button - Red */
+        .clear-button {
+            background: rgba(239, 68, 68, 0.95);
+            border-color: rgba(239, 68, 68, 0.3);
+            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+        }
+
+        .clear-button:hover {
+            background: rgba(220, 38, 38, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(239, 68, 68, 0.5);
+        }
+
+        .clear-button:active {
+            transform: translateY(0);
+        }
+
+        .clear-button svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .clear-button span {
+            font-weight: 600;
+        }
+
+        /* Copy Button - Blue */
+        .copy-button {
+            background: rgba(59, 130, 246, 0.95);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+        }
+
+        .copy-button:hover {
+            background: rgba(37, 99, 235, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        .copy-button svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        /* Share Button - Green */
+        .share-button {
+            background: rgba(34, 197, 94, 0.95);
+            border-color: rgba(34, 197, 94, 0.3);
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+        }
+
+        .share-button:hover {
+            background: rgba(22, 163, 74, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(34, 197, 94, 0.5);
+        }
+
+        .share-button:active {
+            transform: translateY(0);
+        }
+
+        .share-button svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .action-button svg {
+            flex-shrink: 0;
+        }
+
+        .action-button span {
+            font-weight: 600;
+        }
+
+        /* Mobile responsive for action buttons */
+        @media (max-width: 640px) {
+            .action-buttons-container {
+                bottom: 140px;
+                gap: var(--space-sm);
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .action-button {
+                padding: 14px 24px;
+                font-size: 15px;
+                min-width: 160px;
+            }
+
+            .action-button svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* AI Disclaimer */
+        .ai-disclaimer {
+            text-align: center;
+            padding: var(--space-sm) var(--space-md);
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            opacity: 0.7;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ai-disclaimer svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: -2px;
+            margin-right: 4px;
+            opacity: 0.6;
+        }
+
+        @supports (padding: env(safe-area-inset-bottom)) {
+            .composer {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+    </style>
+
+    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <script src="/js/ai-client-unified.js"></script>
+
+    <!-- SEO Meta Tags (TR) -->
+    <title>LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü</title>
+    <meta name="description" content="AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz teste başla." />
+    <meta name="keywords" content="iq testi, online zeka testi, ai iq testi, zeka ölçümü, ücretsiz iq testi, lydian iq" />
+    <link rel="canonical" href="https://www.ailydian.com/tr/lydian-iq.html" />
+
+    <!-- hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/lydian-iq.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/lydian-iq.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/lydian-iq.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/lydian-iq.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/lydian-iq.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/lydian-iq.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/en/lydian-iq.html" />
+
+    <!-- GEO Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="İstanbul" />
+    <meta name="geo.position" content="41.0082;28.9784" />
+    <meta name="ICBM" content="41.0082;28.9784" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü" />
+    <meta property="og:description" content="AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz teste başla." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/tr/lydian-iq.html" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/lydian-iq-tr.png" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:site_name" content="LyDian AI" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lydianai" />
+    <meta name="twitter:title" content="LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü" />
+    <meta name="twitter:description" content="AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kullanıcı, %98 doğruluk. Ücretsiz teste başla." />
+    <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/lydian-iq-tr.png" />
+
+    <!-- Additional Meta -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="author" content="LyDian AI Ecosystem" />
+    <meta name="language" content="TR" />
+
+    <!-- Schema.org: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LyDian AI Ecosystem",
+      "url": "https://www.ailydian.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.ailydian.com/lydian-logo.png"
+      },
+      "sameAs": [
+        "https://twitter.com/lydianai",
+        "https://linkedin.com/company/lydian-ai",
+        "https://github.com/lydian-ai"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "support@ailydian.com",
+        "availableLanguage": ["tr", "en", "de", "ar", "ru", "zh"]
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="container">
+        <div class="chat-container">
+            <div class="header">
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <div class="logo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <div class="header-info">
+                        <h1>LyDian IQ Ultra</h1>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <div class="timer-badge" id="timerBadge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span id="timerText">15:00</span>
+                    </div>
+                    <div class="status-badge">
+                        <div class="status-dot"></div>
+                        <span id="statusText">CANLI</span>
+                    </div>
+                    <select id="languageSelector" style="background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--color-text-primary); padding: 8px 12px; border-radius: var(--radius-md); font-size: 13px; cursor: pointer; outline: none;">
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="zh">🇨🇳 中文</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="messages" id="messages">
+                <div class="message message-assistant">
+                    <div class="message-bubble">
+                        <div id="welcomeMessage">Size nasıl yardımcı olabilirim?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="composer">
+                <div class="composer-wrapper">
+                    <textarea
+                        class="composer-input"
+                        id="composerInput"
+                        placeholder="Sorunuzu yazın... (örn: 2x + 5 = 15 denklemini çöz)"
+                        rows="3"
+                    ></textarea>
+                    <div class="composer-actions">
+                        <button class="icon-button" id="voiceButton" title="Ses girişi">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+                            </svg>
+                        </button>
+                        <div class="suggestion-chip" data-example="Denklemi adım adım çöz: 2x + 5 = 15">
+                            Matematik Problemi
+                        </div>
+                        <div class="suggestion-chip" data-example="Python'da binary search algoritması yaz ve açıkla">
+                            Kodlama Görevi
+                        </div>
+                        <div class="suggestion-chip" data-example="Fotosentezi moleküler seviyede açıkla">
+                            Bilim Sorusu
+                        </div>
+                        <div class="suggestion-chip" data-example="Yeni ürün lansmanı için strateji öner">
+                            Strateji Danışmanlığı
+                        </div>
+                        <button class="icon-button primary" id="sendButton" title="Gönder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Disclaimer -->
+                <div class="ai-disclaimer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    LyDian AI yanıt üretirken hata yapabilir. Kritik kararlar için profesyonel danışmanlık alınız.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const i18n = {
+            tr: {
+                subtitle: 'Kurumsal Yapay Zeka Platformu',
+                status: 'CANLI',
+                welcome: 'LyDian IQ Ultra\'ya Hoş Geldiniz',
+                welcomeMsg: 'Matematik, kodlama, bilim, strateji ve lojistik için gelişmiş AI akıl yürütme motoru. Size bugün nasıl yardımcı olabilirim?',
+                placeholder: 'Sorunuzu yazın... (örn: 2x + 5 = 15 denklemini çöz)',
+                voiceInput: 'Ses girişi',
+                send: 'Gönder',
+                suggestion1: 'Matematik Problemi',
+                suggestion1Example: 'Denklemi adım adım çöz: 2x + 5 = 15',
+                suggestion2: 'Kodlama Görevi',
+                suggestion2Example: 'Python\'da binary search algoritması yaz ve açıkla',
+                suggestion3: 'Bilim Sorusu',
+                suggestion3Example: 'Fotosentezi moleküler seviyede açıkla',
+                suggestion4: 'Strateji Danışmanlığı',
+                suggestion4Example: 'Yeni ürün lansmanı için strateji öner',
+                systemStatus: 'Sistem Durumu',
+                allSystemsOp: 'Tüm Sistemler Çalışıyor',
+                avgResponse: 'Ort. Yanıt',
+                aiProvider: 'AI Sağlayıcı',
+                tokenUsage: 'Token Kullanımı',
+                successRate: 'Başarı Oranı',
+                premiumActive: 'PREMIUM AKTİF',
+                premiumDesc: 'Kurumsal güvenlik ile çoklu-sağlayıcı AI',
+                listening: 'Dinleniyor',
+                speakNow: 'Konuşun...',
+                textRecognized: 'Metin Algılandı',
+                error: 'Hata',
+                voiceRecognitionFailed: 'Ses tanıma başarısız oldu',
+                notSupported: 'Desteklenmiyor',
+                browserNoVoice: 'Tarayıcınız ses girişini desteklemiyor',
+                reasoning: 'Akıl Yürütme Süreci',
+                copy: 'Kopyala',
+                share: 'Paylaş',
+                errorOccurred: 'Hata Oluştu',
+                copied: 'Kopyalandı',
+                responseCopied: 'Yanıt panoya kopyalandı',
+                copyFailed: 'Kopyalama başarısız oldu',
+                welcomeShort: 'Size nasıl yardımcı olabilirim?',
+                cleared: 'Temizlendi',
+                messagesCleared: 'Tüm mesajlar temizlendi',
+                clearChat: 'Yanıt Temizle',
+                ready: 'Hazır'
+            },
+            en: {
+                subtitle: 'Enterprise AI Intelligence Platform',
+                status: 'LIVE',
+                welcome: 'Welcome to LyDian IQ Ultra',
+                welcomeMsg: 'Advanced AI reasoning engine for mathematics, coding, science, strategy, and logistics. How can I assist you today?',
+                placeholder: 'Type your question... (e.g., Solve 2x + 5 = 15)',
+                voiceInput: 'Voice input',
+                send: 'Send',
+                suggestion1: 'Mathematics Problem',
+                suggestion1Example: 'Solve equation step by step: 2x + 5 = 15',
+                suggestion2: 'Coding Task',
+                suggestion2Example: 'Write a binary search algorithm in Python with explanation',
+                suggestion3: 'Science Question',
+                suggestion3Example: 'Explain photosynthesis at molecular level',
+                suggestion4: 'Strategy Consulting',
+                suggestion4Example: 'Suggest strategy for new product launch',
+                systemStatus: 'System Status',
+                allSystemsOp: 'All Systems Operational',
+                avgResponse: 'Avg Response',
+                aiProvider: 'AI Provider',
+                tokenUsage: 'Token Usage',
+                successRate: 'Success Rate',
+                premiumActive: 'PREMIUM ACTIVE',
+                premiumDesc: 'Multi-provider AI with enterprise security',
+                listening: 'Listening',
+                speakNow: 'Speak now...',
+                textRecognized: 'Text Recognized',
+                error: 'Error',
+                voiceRecognitionFailed: 'Voice recognition failed',
+                notSupported: 'Not Supported',
+                browserNoVoice: 'Your browser does not support voice input',
+                reasoning: 'Reasoning Process',
+                copy: 'Copy',
+                share: 'Share',
+                errorOccurred: 'Error occurred',
+                copied: 'Copied',
+                responseCopied: 'Response copied to clipboard',
+                copyFailed: 'Copy failed',
+                welcomeShort: 'How can I help you?',
+                cleared: 'Cleared',
+                messagesCleared: 'All messages cleared',
+                clearChat: 'Clear Chat',
+                ready: 'Ready'
+            },
+            de: {
+                subtitle: 'Unternehmens-KI-Plattform',
+                status: 'LIVE',
+                welcome: 'Willkommen bei LyDian IQ Ultra',
+                welcomeMsg: 'Fortschrittliche KI-Denkmaschine für Mathematik, Programmierung, Wissenschaft, Strategie und Logistik. Wie kann ich Ihnen heute helfen?',
+                placeholder: 'Geben Sie Ihre Frage ein... (z.B.: Löse 2x + 5 = 15)',
+                voiceInput: 'Spracheingabe',
+                send: 'Senden',
+                suggestion1: 'Mathematikproblem',
+                suggestion1Example: 'Gleichung Schritt für Schritt lösen: 2x + 5 = 15',
+                suggestion2: 'Programmieraufgabe',
+                suggestion2Example: 'Binäre Suche in Python schreiben und erklären',
+                suggestion3: 'Wissenschaftliche Frage',
+                suggestion3Example: 'Photosynthese auf molekularer Ebene erklären',
+                suggestion4: 'Strategieberatung',
+                suggestion4Example: 'Strategie für Produkteinführung vorschlagen',
+                systemStatus: 'Systemstatus',
+                allSystemsOp: 'Alle Systeme funktionsfähig',
+                avgResponse: 'Durchschn. Antwort',
+                aiProvider: 'KI-Anbieter',
+                tokenUsage: 'Token-Nutzung',
+                successRate: 'Erfolgsquote',
+                premiumActive: 'PREMIUM AKTIV',
+                premiumDesc: 'Multi-Provider-KI mit Unternehmenssicherheit',
+                listening: 'Hören',
+                speakNow: 'Jetzt sprechen...',
+                textRecognized: 'Text erkannt',
+                error: 'Fehler',
+                voiceRecognitionFailed: 'Spracherkennung fehlgeschlagen',
+                notSupported: 'Nicht unterstützt',
+                browserNoVoice: 'Ihr Browser unterstützt keine Spracheingabe',
+                reasoning: 'Denkprozess',
+                copy: 'Kopieren',
+                share: 'Teilen',
+                errorOccurred: 'Fehler aufgetreten',
+                copied: 'Kopiert',
+                responseCopied: 'Antwort in Zwischenablage kopiert',
+                copyFailed: 'Kopieren fehlgeschlagen',
+                welcomeShort: 'Wie kann ich Ihnen helfen?',
+                cleared: 'Gelöscht',
+                messagesCleared: 'Alle Nachrichten gelöscht',
+                clearChat: 'Chat löschen',
+                ready: 'Bereit'
+            },
+            ar: {
+                subtitle: 'منصة الذكاء الاصطناعي للمؤسسات',
+                status: 'مباشر',
+                welcome: 'مرحباً بك في LyDian IQ Ultra',
+                welcomeMsg: 'محرك الذكاء الاصطناعي المتقدم للرياضيات والبرمجة والعلوم والاستراتيجية واللوجستيات. كيف يمكنني مساعدتك اليوم؟',
+                placeholder: 'اكتب سؤالك... (مثال: حل المعادلة 2x + 5 = 15)',
+                voiceInput: 'إدخال صوتي',
+                send: 'إرسال',
+                suggestion1: 'مسألة رياضية',
+                suggestion1Example: 'حل المعادلة خطوة بخطوة: 2x + 5 = 15',
+                suggestion2: 'مهمة برمجية',
+                suggestion2Example: 'اكتب خوارزمية البحث الثنائي في Python مع الشرح',
+                suggestion3: 'سؤال علمي',
+                suggestion3Example: 'اشرح التمثيل الضوئي على المستوى الجزيئي',
+                suggestion4: 'استشارة استراتيجية',
+                suggestion4Example: 'اقترح استراتيجية لإطلاق منتج جديد',
+                systemStatus: 'حالة النظام',
+                allSystemsOp: 'جميع الأنظمة تعمل',
+                avgResponse: 'متوسط الاستجابة',
+                aiProvider: 'مزود الذكاء الاصطناعي',
+                tokenUsage: 'استخدام الرموز',
+                successRate: 'معدل النجاح',
+                premiumActive: 'بريميوم نشط',
+                premiumDesc: 'ذكاء اصطناعي متعدد المزودين مع أمان المؤسسات',
+                listening: 'الاستماع',
+                speakNow: 'تحدث الآن...',
+                textRecognized: 'تم التعرف على النص',
+                error: 'خطأ',
+                voiceRecognitionFailed: 'فشل التعرف على الصوت',
+                notSupported: 'غير مدعوم',
+                browserNoVoice: 'متصفحك لا يدعم الإدخال الصوتي',
+                reasoning: 'عملية التفكير',
+                copy: 'نسخ',
+                share: 'مشاركة',
+                errorOccurred: 'حدث خطأ',
+                copied: 'تم النسخ',
+                responseCopied: 'تم نسخ الإجابة إلى الحافظة',
+                copyFailed: 'فشل النسخ',
+                welcomeShort: 'كيف يمكنني مساعدتك؟',
+                cleared: 'تم المسح',
+                messagesCleared: 'تم مسح جميع الرسائل',
+                clearChat: 'مسح المحادثة',
+                ready: 'جاهز'
+            },
+            ru: {
+                subtitle: 'Корпоративная платформа ИИ',
+                status: 'В СЕТИ',
+                welcome: 'Добро пожаловать в LyDian IQ Ultra',
+                welcomeMsg: 'Передовой движок рассуждений ИИ для математики, программирования, науки, стратегии и логистики. Как я могу помочь вам сегодня?',
+                placeholder: 'Введите ваш вопрос... (например: Решите 2x + 5 = 15)',
+                voiceInput: 'Голосовой ввод',
+                send: 'Отправить',
+                suggestion1: 'Математическая задача',
+                suggestion1Example: 'Решить уравнение пошагово: 2x + 5 = 15',
+                suggestion2: 'Задача программирования',
+                suggestion2Example: 'Написать алгоритм бинарного поиска на Python с объяснением',
+                suggestion3: 'Научный вопрос',
+                suggestion3Example: 'Объяснить фотосинтез на молекулярном уровне',
+                suggestion4: 'Стратегический консалтинг',
+                suggestion4Example: 'Предложить стратегию запуска нового продукта',
+                systemStatus: 'Статус системы',
+                allSystemsOp: 'Все системы работают',
+                avgResponse: 'Средний ответ',
+                aiProvider: 'Провайдер ИИ',
+                tokenUsage: 'Использование токенов',
+                successRate: 'Уровень успеха',
+                premiumActive: 'ПРЕМИУМ АКТИВЕН',
+                premiumDesc: 'Мультипровайдерный ИИ с корпоративной безопасностью',
+                listening: 'Слушаю',
+                speakNow: 'Говорите сейчас...',
+                textRecognized: 'Текст распознан',
+                error: 'Ошибка',
+                voiceRecognitionFailed: 'Распознавание речи не удалось',
+                notSupported: 'Не поддерживается',
+                browserNoVoice: 'Ваш браузер не поддерживает голосовой ввод',
+                reasoning: 'Процесс рассуждения',
+                copy: 'Копировать',
+                share: 'Поделиться',
+                errorOccurred: 'Произошла ошибка',
+                copied: 'Скопировано',
+                responseCopied: 'Ответ скопирован в буфер обмена',
+                copyFailed: 'Копирование не удалось',
+                welcomeShort: 'Как я могу помочь вам?',
+                cleared: 'Очищено',
+                messagesCleared: 'Все сообщения очищены',
+                clearChat: 'Очистить чат',
+                ready: 'Готов'
+            },
+            zh: {
+                subtitle: '企业人工智能平台',
+                status: '在线',
+                welcome: '欢迎使用 LyDian IQ Ultra',
+                welcomeMsg: '用于数学、编程、科学、策略和物流的先进人工智能推理引擎。今天我能帮您什么？',
+                placeholder: '输入您的问题... (例如：解方程 2x + 5 = 15)',
+                voiceInput: '语音输入',
+                send: '发送',
+                suggestion1: '数学问题',
+                suggestion1Example: '逐步解方程：2x + 5 = 15',
+                suggestion2: '编程任务',
+                suggestion2Example: '用Python编写二分搜索算法并解释',
+                suggestion3: '科学问题',
+                suggestion3Example: '从分子层面解释光合作用',
+                suggestion4: '战略咨询',
+                suggestion4Example: '建议新产品发布策略',
+                systemStatus: '系统状态',
+                allSystemsOp: '所有系统正常运行',
+                avgResponse: '平均响应',
+                aiProvider: 'AI提供商',
+                tokenUsage: 'Token使用量',
+                successRate: '成功率',
+                premiumActive: '高级版激活',
+                premiumDesc: '具有企业安全性的多提供商AI',
+                listening: '正在聆听',
+                speakNow: '现在说话...',
+                textRecognized: '文本已识别',
+                error: '错误',
+                voiceRecognitionFailed: '语音识别失败',
+                notSupported: '不支持',
+                browserNoVoice: '您的浏览器不支持语音输入',
+                reasoning: '推理过程',
+                copy: '复制',
+                share: '分享',
+                errorOccurred: '发生错误',
+                copied: '已复制',
+                responseCopied: '回答已复制到剪贴板',
+                copyFailed: '复制失败',
+                welcomeShort: '我能帮您什么？',
+                cleared: '已清除',
+                messagesCleared: '所有消息已清除',
+                clearChat: '清除聊天',
+                ready: '准备就绪'
+            }
+        };
+
+        const state = {
+            isProcessing: false,
+            totalTokens: 0,
+            totalRequests: 0,
+            totalResponseTime: 0,
+            recognition: null,
+            isRecording: false,
+            currentLang: localStorage.getItem('lang') || 'tr',
+            timerInterval: null,
+            remainingSeconds: 900 // 15 minutes = 900 seconds
+        };
+
+        let elements;
+
+        function showToast(title, message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+
+            const iconMap = {
+                success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+                error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
+                info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>'
+            };
+
+            toast.innerHTML = `
+                <div class="toast-icon">${iconMap[type]}</div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('removing');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        function initVoiceInput() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            state.recognition = new SpeechRecognition();
+            state.recognition.lang = 'tr-TR';
+            state.recognition.continuous = false;
+            state.recognition.interimResults = false;
+
+            state.recognition.onstart = () => {
+                state.isRecording = true;
+                elements.voiceButton.classList.add('recording');
+                showToast('Dinleniyor', 'Konuşun...', 'info');
+            };
+
+            state.recognition.onend = () => {
+                state.isRecording = false;
+                elements.voiceButton.classList.remove('recording');
+            };
+
+            state.recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                elements.composerInput.value = transcript;
+                showToast('Metin Algılandı', transcript, 'success');
+                elements.composerInput.focus();
+            };
+
+            state.recognition.onerror = () => {
+                showToast('Hata', 'Ses tanıma başarısız oldu', 'error');
+            };
+        }
+
+        function toggleVoiceInput() {
+            if (!state.recognition) {
+                showToast('Desteklenmiyor', 'Tarayıcınız ses girişini desteklemiyor', 'error');
+                return;
+            }
+
+            if (state.isRecording) {
+                state.recognition.stop();
+            } else {
+                state.recognition.start();
+            }
+        }
+
+        // ⏱️ TIMER SYSTEM - 15 Minute Free Trial
+        function initTimer() {
+            // Check if user is authenticated
+            const isAuthenticated = checkAuthentication();
+
+            if (isAuthenticated) {
+                // Hide timer for authenticated users
+                const timerBadge = document.getElementById('timerBadge');
+                if (timerBadge) timerBadge.style.display = 'none';
+                return;
+            }
+
+            // Check if timer already started
+            const timerStartTime = localStorage.getItem('lydianIQ_timerStart');
+            const now = Date.now();
+
+            if (timerStartTime) {
+                // Calculate elapsed time
+                const elapsed = Math.floor((now - parseInt(timerStartTime)) / 1000);
+                state.remainingSeconds = Math.max(0, 900 - elapsed);
+            } else {
+                // Start new timer
+                localStorage.setItem('lydianIQ_timerStart', now.toString());
+                state.remainingSeconds = 900;
+            }
+
+            // If time is up, redirect immediately
+            if (state.remainingSeconds <= 0) {
+                redirectToAuth();
+                return;
+            }
+
+            // Update UI and start countdown
+            updateTimerDisplay();
+            state.timerInterval = setInterval(() => {
+                state.remainingSeconds--;
+                updateTimerDisplay();
+
+                if (state.remainingSeconds <= 0) {
+                    clearInterval(state.timerInterval);
+                    redirectToAuth();
+                }
+            }, 1000);
+        }
+
+        async function checkAuthentication() {
+            // 🔐 httpOnly Cookie - check auth via API call
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function updateTimerDisplay() {
+            const timerText = document.getElementById('timerText');
+            const timerBadge = document.getElementById('timerBadge');
+
+            if (!timerText || !timerBadge) return;
+
+            const minutes = Math.floor(state.remainingSeconds / 60);
+            const seconds = state.remainingSeconds % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            timerText.textContent = timeString;
+
+            // Update badge style based on remaining time
+            timerBadge.classList.remove('warning', 'danger');
+
+            if (state.remainingSeconds <= 60) {
+                // Last minute - danger (red)
+                timerBadge.classList.add('danger');
+            } else if (state.remainingSeconds <= 300) {
+                // Last 5 minutes - warning (yellow)
+                timerBadge.classList.add('warning');
+            }
+
+            // Show warning toast at specific intervals
+            if (state.remainingSeconds === 300) {
+                showToast('5 Dakika Kaldı', 'Devam etmek için giriş yapın', 'info');
+            } else if (state.remainingSeconds === 60) {
+                showToast('1 Dakika Kaldı!', 'Lütfen giriş yapın veya kayıt olun', 'error');
+            }
+        }
+
+        function redirectToAuth() {
+            showToast(
+                'Süre Doldu',
+                'Devam etmek için giriş yapın veya kayıt olun. Yönlendiriliyorsunuz...',
+                'error'
+            );
+
+            setTimeout(() => {
+                // Save current page to return after login
+                localStorage.setItem('returnUrl', window.location.pathname);
+                window.location.href = '/auth.html?return=lydian-iq';
+            }, 2000);
+        }
+
+        function resetTimer() {
+            // Called after successful login
+            localStorage.removeItem('lydianIQ_timerStart');
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+            }
+            const timerBadge = document.getElementById('timerBadge');
+            if (timerBadge) timerBadge.style.display = 'none';
+        }
+
+        function addMessage(role, content, isHTML = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${role}`;
+
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'message-bubble';
+
+            if (isHTML) {
+                bubbleDiv.innerHTML = content;
+            } else {
+                bubbleDiv.textContent = content;
+            }
+
+            messageDiv.appendChild(bubbleDiv);
+            elements.messages.appendChild(messageDiv);
+            elements.messages.scrollTop = elements.messages.scrollHeight;
+        }
+
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message message-assistant';
+            typingDiv.id = 'typing-indicator';
+
+            typingDiv.innerHTML = `
+                <div class="message-bubble">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+
+            elements.messages.appendChild(typingDiv);
+            elements.messages.scrollTop = elements.messages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typing = document.getElementById('typing-indicator');
+            if (typing) typing.remove();
+        }
+
+        function showAIResponse(data) {
+            const { solution, reasoningChain, metadata } = data;
+
+            let cardHTML = `
+                <div class="inline-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="card-title">
+                            <h3>LyDian IQ AI</h3>
+                            <p>Premium AI Akıl Yürütme Motoru</p>
+                        </div>
+                        <div class="confidence-badge">
+                            <span>${(metadata.confidence * 100).toFixed(0)}%</span>
+                        </div>
+                    </div>`;
+
+            // Only show reasoning chain if it exists and has actual content (no mock data)
+            if (reasoningChain && reasoningChain.length > 0 && reasoningChain[0].trim().length > 0) {
+                cardHTML += `
+                    <div class="reasoning-chain">
+                        <div class="reasoning-header">Akıl Yürütme Süreci</div>`;
+
+                reasoningChain.slice(0, 4).forEach((step, idx) => {
+                    cardHTML += `
+                        <div class="reasoning-step">
+                            <div class="reasoning-number">${idx + 1}</div>
+                            <div class="reasoning-text">${escapeHtml(step)}</div>
+                        </div>`;
+                });
+
+                cardHTML += `</div>`;
+            }
+
+            cardHTML += `
+                <div class="solution">${escapeHtml(solution).replace(/\n/g, '<br>')}</div>`;
+
+            cardHTML += `
+                <div class="metadata">
+                    <div class="metadata-info">
+                        <span>Yanıt Süresi: ${metadata.responseTime}s</span>
+                        <span>•</span>
+                        <span>Güven: ${(metadata.confidence * 100).toFixed(0)}%</span>
+                    </div>
+                    <div class="metadata-actions">
+                        <button class="icon-button copy-icon-btn" title="Kopyala" onclick="copyToClipboard()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        <button class="icon-button share-icon-btn" title="Paylaş" onclick="shareResponse()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                        </button>
+                        <button class="icon-button clear-icon-btn" title="Yanıt Temizle" onclick="clearMessages()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+
+            addMessage('assistant', cardHTML, true);
+            updateMetrics(metadata);
+
+            // Icon buttons are now inline in metadata - no need for big buttons
+            // showClearButton(); // DISABLED - using inline icon buttons instead
+        }
+
+        function showErrorResponse(error) {
+            const errorHTML = `
+                <div class="error-message">
+                    <div class="error-title">Hata Oluştu</div>
+                    <div class="error-text">${escapeHtml(error)}</div>
+                </div>`;
+
+            addMessage('assistant', errorHTML, true);
+
+            // Icon buttons are inline - no need for big buttons
+            // showClearButton(); // DISABLED - using inline icon buttons instead
+        }
+
+        async function sendMessage() {
+            const text = elements.composerInput.value.trim();
+            if (!text || state.isProcessing) return;
+
+            addMessage('user', text);
+            elements.composerInput.value = '';
+
+            state.isProcessing = true;
+            elements.sendButton.disabled = true;
+
+            addTypingIndicator();
+
+            try {
+                const response = await fetch('/api/lydian-iq/solve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        problem: text,
+                        domain: 'mathematics',
+                        language: 'tr-TR',
+                        options: {
+                            temperature: 0.7,
+                            maxTokens: 2000
+                        }
+                    })
+                });
+
+                removeTypingIndicator();
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAIResponse(data);
+                    showToast('Success', 'Response received', 'success');
+                } else {
+                    showErrorResponse(data.error || 'Unknown error');
+                    showToast('Error', 'Failed to get response', 'error');
+                }
+
+            } catch (error) {
+                removeTypingIndicator();
+                showErrorResponse('Connection error. Please try again.');
+                // Toast removed to avoid duplicate error messages
+            } finally {
+                state.isProcessing = false;
+                elements.sendButton.disabled = false;
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function copyToClipboard() {
+            const lastCard = elements.messages.querySelector('.inline-card:last-of-type');
+            if (!lastCard) return;
+
+            const text = lastCard.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Kopyalandı', 'Yanıt panoya kopyalandı', 'success');
+            }).catch(() => {
+                showToast('Hata', 'Kopyalama başarısız oldu', 'error');
+            });
+        }
+
+        function shareResponse() {
+            const lastCard = elements.messages.querySelector('.inline-card:last-of-type');
+            if (!lastCard) return;
+
+            const text = lastCard.innerText;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'LyDian IQ Yanıtı',
+                    text: text
+                }).catch(() => {});
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        function updateMetrics(metadata) {
+            state.totalTokens += metadata.tokensUsed || 0;
+            state.totalRequests += 1;
+            state.totalResponseTime += parseFloat(metadata.responseTime) || 0;
+
+            const totalTokensEl = document.getElementById('totalTokens');
+            if (totalTokensEl) totalTokensEl.textContent = state.totalTokens.toLocaleString();
+
+            const currentProviderEl = document.getElementById('currentProvider');
+            if (currentProviderEl) currentProviderEl.textContent = metadata.provider || 'Unknown';
+
+            const avgTime = (state.totalResponseTime / state.totalRequests).toFixed(2);
+            const avgResponseTimeEl = document.getElementById('avgResponseTime');
+            if (avgResponseTimeEl) avgResponseTimeEl.textContent = avgTime + 's';
+        }
+
+        // Show action buttons (copy, share, clear) at bottom of messages
+        function showClearButton() {
+            // Remove existing buttons if any
+            const existingContainer = document.getElementById('actionButtonsContainer');
+            if (existingContainer) existingContainer.remove();
+
+            const t = i18n[state.currentLang];
+
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.id = 'actionButtonsContainer';
+            buttonsContainer.className = 'action-buttons-container';
+            buttonsContainer.innerHTML = `
+                <button class="action-button copy-button" id="copyButton" title="Yanıtı Kopyala">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Kopyala</span>
+                </button>
+                <button class="action-button share-button" id="shareButton" title="Yanıtı Paylaş">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    <span>Paylaş</span>
+                </button>
+                <button class="action-button clear-button" id="clearButton" title="${t.clearChat || 'Yanıt Temizle'}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
+                    <span>${t.clearChat || 'Yanıt Temizle'}</span>
+                </button>
+            `;
+
+            document.body.appendChild(buttonsContainer);
+
+            // Add click listeners
+            document.getElementById('copyButton').addEventListener('click', copyToClipboard);
+            document.getElementById('shareButton').addEventListener('click', shareResponse);
+            document.getElementById('clearButton').addEventListener('click', clearMessages);
+        }
+
+        // Hide/remove action buttons
+        function hideClearButton() {
+            const existingContainer = document.getElementById('actionButtonsContainer');
+            if (existingContainer) existingContainer.remove();
+
+            // Also remove old container if it exists
+            const oldContainer = document.getElementById('clearButtonContainer');
+            if (oldContainer) oldContainer.remove();
+        }
+
+        function clearMessages() {
+            if (!elements?.messages) return;
+
+            const t = i18n[state.currentLang];
+
+            // Clear all messages
+            elements.messages.innerHTML = '';
+
+            // Add welcome message back
+            const welcomeDiv = document.createElement('div');
+            welcomeDiv.className = 'message message-assistant';
+            welcomeDiv.innerHTML = `
+                <div class="message-bubble">
+                    <div id="welcomeMessage">${t.welcomeShort || 'Size nasıl yardımcı olabilirim?'}</div>
+                </div>
+            `;
+            elements.messages.appendChild(welcomeDiv);
+
+            // Clear input
+            if (elements.composerInput) {
+                elements.composerInput.value = '';
+                elements.composerInput.style.height = 'auto';
+            }
+
+            // Reset metrics
+            state.totalTokens = 0;
+            state.totalRequests = 0;
+            state.totalResponseTime = 0;
+
+            const totalTokensEl = document.getElementById('totalTokens');
+            if (totalTokensEl) totalTokensEl.textContent = '0';
+
+            const avgResponseTimeEl = document.getElementById('avgResponseTime');
+            if (avgResponseTimeEl) avgResponseTimeEl.textContent = '-';
+
+            showToast(t.cleared || 'Temizlendi', t.messagesCleared || 'Tüm mesajlar temizlendi', 'success');
+        }
+
+        // i18n Language Update Function
+        function updateLanguage(lang) {
+            if (!i18n[lang]) {
+                console.error('Language not supported:', lang);
+                return;
+            }
+
+            state.currentLang = lang;
+            localStorage.setItem('lang', lang);
+
+            const t = i18n[lang];
+
+            // Update page metadata
+            document.title = 'LyDian IQ Ultra | ' + t.subtitle;
+            document.querySelector('meta[name="description"]').setAttribute('content', t.welcomeMsg);
+
+            // Update header elements
+            const statusText = document.getElementById('statusText');
+            if (statusText) statusText.textContent = t.status;
+
+            // Update header subtitle
+            const headerSubtitle = document.querySelector('.header-info p');
+            if (headerSubtitle) headerSubtitle.textContent = t.subtitle;
+
+            // Update welcome message
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            if (welcomeMessage) welcomeMessage.textContent = t.welcomeShort;
+
+            // Update composer placeholder
+            if (elements?.composerInput) {
+                elements.composerInput.placeholder = t.placeholder;
+            } else {
+                const input = document.getElementById('composerInput');
+                if (input) input.placeholder = t.placeholder;
+            }
+
+            // Update button tooltips
+            const voiceBtn = document.getElementById('voiceButton');
+            const sendBtn = document.getElementById('sendButton');
+            const clearBtn = document.getElementById('clearButton');
+            if (voiceBtn) voiceBtn.setAttribute('title', t.voiceInput);
+            if (clearBtn) {
+                clearBtn.setAttribute('title', t.clearChat);
+                const clearBtnText = clearBtn.querySelector('span');
+                if (clearBtnText) clearBtnText.textContent = t.clearChat;
+            }
+            if (sendBtn) sendBtn.setAttribute('title', t.send);
+
+            // Update suggestion chips
+            const chips = document.querySelectorAll('.suggestion-chip');
+            if (chips.length >= 4) {
+                chips[0].textContent = t.suggestion1;
+                chips[0].setAttribute('data-example', t.suggestion1Example);
+                chips[1].textContent = t.suggestion2;
+                chips[1].setAttribute('data-example', t.suggestion2Example);
+                chips[2].textContent = t.suggestion3;
+                chips[2].setAttribute('data-example', t.suggestion3Example);
+                chips[3].textContent = t.suggestion4;
+                chips[3].setAttribute('data-example', t.suggestion4Example);
+            }
+
+            // Update dock panel
+            const dockTitle = document.querySelector('.dock-title');
+            if (dockTitle) dockTitle.textContent = t.systemStatus;
+
+            const statusIndicator = document.querySelector('.status-indicator span');
+            if (statusIndicator) statusIndicator.textContent = t.allSystemsOnline;
+
+            // Update metric labels
+            const metricLabels = document.querySelectorAll('.metric-label');
+            if (metricLabels.length >= 4) {
+                metricLabels[0].textContent = t.avgResponse;
+                metricLabels[1].textContent = t.aiProvider;
+                metricLabels[2].textContent = t.tokenUsage;
+                metricLabels[3].textContent = t.successRate;
+            }
+
+            // Update voice recognition language
+            if (state.recognition) {
+                const langMap = {
+                    'tr': 'tr-TR',
+                    'en': 'en-US',
+                    'de': 'de-DE',
+                    'ar': 'ar-SA',
+                    'ru': 'ru-RU',
+                    'zh': 'zh-CN'
+                };
+                state.recognition.lang = langMap[lang] || 'tr-TR';
+            }
+
+            console.log('Language updated to:', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            elements = {
+                messages: document.getElementById('messages'),
+                composerInput: document.getElementById('composerInput'),
+                sendButton: document.getElementById('sendButton'),
+                voiceButton: document.getElementById('voiceButton')
+            };
+
+            initVoiceInput();
+            initTimer(); // Start 15-minute free trial timer
+
+            elements.sendButton.addEventListener('click', sendMessage);
+            elements.voiceButton.addEventListener('click', toggleVoiceInput);
+
+            elements.composerInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            document.querySelectorAll('.suggestion-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const example = chip.getAttribute('data-example');
+                    console.log('Suggestion clicked:', example);
+                    if (elements.composerInput) {
+                        elements.composerInput.value = example;
+                        elements.composerInput.focus();
+                        // Auto-resize the input
+                        elements.composerInput.style.height = 'auto';
+                        elements.composerInput.style.height = Math.min(elements.composerInput.scrollHeight, 120) + 'px';
+                    } else {
+                        console.error('composerInput element not found');
+                    }
+                });
+            });
+
+            elements.composerInput.addEventListener('input', () => {
+                elements.composerInput.style.height = 'auto';
+                elements.composerInput.style.height = Math.min(elements.composerInput.scrollHeight, 120) + 'px';
+            });
+
+            // Language selector event listener
+            const languageSelector = document.getElementById('languageSelector');
+            if (languageSelector) {
+                // Set initial value from localStorage
+                languageSelector.value = state.currentLang;
+
+                // Listen for language changes
+                languageSelector.addEventListener('change', (e) => {
+                    const newLang = e.target.value;
+                    updateLanguage(newLang);
+                });
+            }
+
+            // Apply saved language on page load
+            updateLanguage(state.currentLang);
+        });
+    </script>
+</body>
+</html>

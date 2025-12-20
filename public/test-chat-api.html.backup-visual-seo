@@ -1,0 +1,242 @@
+<!-- Cache-Buster: 1759577324 -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri" />
+  <link rel="canonical" href="https://www.ailydian.com/test-chat-api" />
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine" />
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta property="og:url" content="https://www.ailydian.com/test-chat-api" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-chat-api" />
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-chat-api" />
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-chat-api" />
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-chat-api" />
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-chat-api" />
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-chat-api" />
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-chat-api" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M8 12l8-6 8 6v12l-8 6-8-6z' fill='none' stroke='%23e2e8f0' stroke-width='1.5'/%3E%3Cpath d='M16 12l-4 3v6l4 3 4-3v-6z' fill='%23e2e8f0' opacity='0.3'/%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #10A37F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0D8F6E;
+        }
+        #result {
+            background: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .success {
+            color: #10A37F;
+        }
+        .error {
+            color: #FF6B4A;
+        }
+    </style>
+
+  <!-- Advanced SEO & Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LyDian AI",
+  "legalName": "LyDian Artificial Intelligence Platform",
+  "url": "https://www.ailydian.com",
+  "logo": "https://www.ailydian.com/lydian-logo.png",
+  "foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "LyDian Team"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "İstanbul",
+    "addressRegion": "TR",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@ailydian.com",
+    "availableLanguage": [
+      "Turkish",
+      "English",
+      "German",
+      "Russian",
+      "Ukrainian",
+      "Chinese",
+      "Italian"
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/lydianai",
+    "https://linkedin.com/company/lydian-ai",
+    "https://github.com/lydian-ai"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LyDian AI Platform",
+  "url": "https://www.ailydian.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ailydian.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Chat API Test",
+  "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.",
+  "url": "https://www.ailydian.com/test-chat-api",
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://www.ailydian.com"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://www.ailydian.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Test Chat Api",
+        "item": "https://www.ailydian.com/test-chat-api"
+      }
+    ]
+  }
+}
+</script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lydianai" />
+  <meta name="twitter:creator" content="@lydianai" />
+  <meta name="twitter:title" content="Chat API Test" />
+  <meta name="twitter:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası." />
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-chat-api-tr.png" />
+  <meta name="twitter:image:alt" content="Chat API Test" />
+  <meta property="og:site_name" content="LyDian AI" />
+  <meta property="og:updated_time" content="2025-12-20T15:17:03.826Z" />
+  <meta property="article:publisher" content="https://www.ailydian.com" />
+  <meta property="article:author" content="LyDian AI Team" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LyDian AI" />
+  <meta name="msapplication-TileColor" content="#00E0AE" />
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile-144x144.png" />
+  <meta name="theme-color" content="#00E0AE" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="/css/critical.css" as="style" />
+  <link rel="preload" href="/js/main.js" as="script" />
+  </head>
+<body>
+    <h1>🧪 Chat API Test</h1>
+
+    <div class="test-section">
+        <h2>Test /api/chat/specialized</h2>
+        <button onclick="testChatAPI()">Test API</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function testChatAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '⏳ Testing API...';
+
+            try {
+                console.log('🔍 Sending request to /api/chat/specialized...');
+
+                const response = await fetch('/api/chat/specialized', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept-Language': 'tr-TR',
+                        'Content-Language': 'tr'
+                    },
+                    body: JSON.stringify({
+                        message: 'Merhaba, test mesajı',
+                        aiType: 'general',
+                        temperature: 0.7,
+                        max_tokens: 2048,
+                        history: [],
+                        language: 'tr',
+                        locale: 'tr-TR'
+                    })
+                });
+
+                console.log('📡 Response status:', response.status);
+                console.log('📡 Response ok:', response.ok);
+                console.log('📡 Response headers:', [...response.headers.entries()]);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Response data:', data);
+
+                resultDiv.innerHTML = `<div class="success">✅ SUCCESS!</div>\n\n` +
+                    `Status: ${response.status}\n` +
+                    `Provider: ${data.provider}\n` +
+                    `AI Type: ${data.aiType}\n\n` +
+                    `Response:\n${data.response}\n\n` +
+                    `Full JSON:\n${JSON.stringify(data, null, 2)}`;
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                resultDiv.innerHTML = `<div class="error">❌ ERROR!</div>\n\n` +
+                    `Message: ${error.message}\n` +
+                    `Stack: ${error.stack}`;
+            }
+        }
+    </script>
+    <script src="/js/mobile-menu-handler.js"></script>
+</body>
+</html>

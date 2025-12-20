@@ -8,6 +8,7 @@ Allow: /
 Sitemap: https://www.ailydian.com/sitemap.xml
 Sitemap: https://www.ailydian.com/sitemap-tr.xml
 Sitemap: https://www.ailydian.com/sitemap-en.xml
+Sitemap: https://www.ailydian.com/sitemap-images.xml
 
 # Crawl-delay for specific bots
 User-agent: Googlebot
