@@ -1,0 +1,45 @@
+<svg width="48" height="48" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Line Art Grape Logo - Exact copy from image -->
+
+  <!-- Outer Circle Frame -->
+  <circle cx="256" cy="256" r="230" stroke="#7C3AED" stroke-width="6" fill="none"/>
+  <circle cx="256" cy="256" r="210" stroke="#7C3AED" stroke-width="4" fill="none"/>
+
+  <!-- Grape Cluster -->
+  <g stroke="#7C3AED" stroke-width="5" fill="none">
+    <!-- Stem curl at top -->
+    <path d="M 256 80 Q 245 100, 250 120" stroke-linecap="round"/>
+
+    <!-- Leaves (outline style) -->
+    <path d="M 230 110 Q 210 105, 195 120 Q 188 135, 200 150 Q 215 160, 232 148 Z"/>
+    <path d="M 275 105 Q 295 100, 310 115 Q 317 130, 305 145 Q 290 155, 273 143 Z"/>
+    <path d="M 253 95 Q 265 90, 275 100 Q 280 110, 272 120 Q 263 125, 255 118 Z"/>
+
+    <!-- Grape berries (circles outline) -->
+    <!-- Row 1 (top) -->
+    <circle cx="256" cy="160" r="24"/>
+
+    <!-- Row 2 -->
+    <circle cx="220" cy="200" r="23"/>
+    <circle cx="256" cy="205" r="23"/>
+    <circle cx="292" cy="200" r="23"/>
+
+    <!-- Row 3 -->
+    <circle cx="190" cy="245" r="22"/>
+    <circle cx="230" cy="250" r="22"/>
+    <circle cx="282" cy="250" r="22"/>
+    <circle cx="322" cy="245" r="22"/>
+
+    <!-- Row 4 -->
+    <circle cx="218" cy="295" r="21"/>
+    <circle cx="256" cy="300" r="21"/>
+    <circle cx="294" cy="295" r="21"/>
+
+    <!-- Row 5 -->
+    <circle cx="235" cy="340" r="20"/>
+    <circle cx="277" cy="340" r="20"/>
+
+    <!-- Row 6 (bottom) -->
+    <circle cx="256" cy="380" r="19"/>
+  </g>
+</svg>
