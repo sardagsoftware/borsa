@@ -102,7 +102,13 @@ loki-data/
 # Backup files
 *.backup
 *.bak
+*.bak-*
+*-backup-*
+*-BACKUP-*
+*-old.*
+*-OLD.*
 *~
+.archive/
 
 # Database
 *.db
