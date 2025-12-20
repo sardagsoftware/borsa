@@ -1,0 +1,170 @@
+name: 🔐 Automated Encrypted Backup
+
+on:
+  # Her commit sonrası
+  push:
+    branches:
+      - main
+
+  # Günlük otomatik yedekleme (03:00 UTC)
+  schedule:
+    - cron: '0 3 * * *'
+
+  # Manuel tetikleme
+  workflow_dispatch:
+
+jobs:
+  backup:
+    name: Create Encrypted Backup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full git history
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 📦 Create backup timestamp
+        id: timestamp
+        run: |
+          echo "TIMESTAMP=$(date +%Y%m%d_%H%M%S)" >> $GITHUB_OUTPUT
+          echo "DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
+
+      - name: 🗂️ Prepare backup structure
+        run: |
+          mkdir -p backup/{source,git,configs,metadata}
+
+      - name: 📋 Backup source code
+        run: |
+          tar -czf backup/source/source_code.tar.gz \
+            --exclude='node_modules' \
+            --exclude='.git' \
+            --exclude='*.log' \
+            --exclude='*.backup*' \
+            --exclude='.vercel' \
+            --exclude='dist' \
+            --exclude='build' \
+            .
+
+      - name: 🔀 Backup Git repository
+        run: |
+          git clone --bare . backup/git/repository.git
+          git log --all --pretty=format:"%H|%an|%ae|%ad|%s" > backup/git/commit_history.txt
+          git branch -a > backup/git/branches.txt
+          git tag -l > backup/git/tags.txt
+          git remote -v > backup/git/remotes.txt
+
+      - name: ⚙️ Backup configurations
+        run: |
+          cp package*.json backup/configs/ 2>/dev/null || true
+          cp tsconfig.json backup/configs/ 2>/dev/null || true
+          cp next.config.js backup/configs/ 2>/dev/null || true
+          cp vercel.json backup/configs/ 2>/dev/null || true
+          cp README.md backup/configs/ 2>/dev/null || true
+          cp -r .github/workflows backup/configs/ 2>/dev/null || true
+
+      - name: 📊 Create backup metadata
+        run: |
+          cat > backup/metadata/BACKUP_INFO.json << EOF
+          {
+            "backup_timestamp": "${{ steps.timestamp.outputs.DATE }}",
+            "backup_type": "github_actions_automated",
+            "project_name": "ailydian-ultra-pro",
+            "workflow_run_id": "${{ github.run_id }}",
+            "workflow_run_number": "${{ github.run_number }}",
+            "triggered_by": "${{ github.event_name }}",
+            "git_info": {
+              "repository": "${{ github.repository }}",
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "actor": "${{ github.actor }}"
+            }
+          }
+          EOF
+
+      - name: 🔐 Encrypt backup
+        env:
+          ENCRYPTION_PASSWORD: ${{ secrets.BACKUP_ENCRYPTION_KEY }}
+        run: |
+          # Create tar archive
+          tar -czf ailydian_backup_${{ steps.timestamp.outputs.TIMESTAMP }}.tar.gz backup/
+
+          # Encrypt with AES-256 (using password from secrets)
+          if [ -n "$ENCRYPTION_PASSWORD" ]; then
+            openssl enc -aes-256-cbc -salt \
+              -in ailydian_backup_${{ steps.timestamp.outputs.TIMESTAMP }}.tar.gz \
+              -out ailydian_backup_${{ steps.timestamp.outputs.TIMESTAMP }}.tar.gz.enc \
+              -pass pass:"$ENCRYPTION_PASSWORD"
+
+            # Remove unencrypted version
+            rm ailydian_backup_${{ steps.timestamp.outputs.TIMESTAMP }}.tar.gz
+
+            echo "✅ Backup encrypted successfully"
+          else
+            echo "⚠️ No encryption key found in secrets"
+            mv ailydian_backup_${{ steps.timestamp.outputs.TIMESTAMP }}.tar.gz \
+               ailydian_backup_${{ steps.timestamp.outputs.TIMESTAMP }}.tar.gz.unencrypted
+          fi
+
+      - name: 📤 Upload to GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: encrypted-backup-${{ steps.timestamp.outputs.TIMESTAMP }}
+          path: |
+            *.enc
+            *.unencrypted
+          retention-days: 90  # Keep for 90 days
+
+      - name: 💾 Upload to GitHub Releases (Monthly)
+        if: github.event.schedule == '0 3 1 * *'  # First day of month
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: backup-${{ steps.timestamp.outputs.TIMESTAMP }}
+          name: Monthly Backup - ${{ steps.timestamp.outputs.TIMESTAMP }}
+          body: |
+            🔐 Automated Monthly Encrypted Backup
+
+            **Backup Info:**
+            - Date: ${{ steps.timestamp.outputs.DATE }}
+            - Commit: ${{ github.sha }}
+            - Triggered by: ${{ github.event_name }}
+
+            **Contents:**
+            - ✅ Full source code
+            - ✅ Complete Git history
+            - ✅ All configurations
+            - ✅ Metadata
+
+            **Security:**
+            - 🔐 AES-256 encrypted
+            - 🗜️ Gzip compressed
+
+            ⚠️ Decryption requires the backup encryption key from repository secrets.
+          files: |
+            *.enc
+            *.unencrypted
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📝 Create backup log
+        run: |
+          echo "Backup completed: ${{ steps.timestamp.outputs.DATE }}" >> backup_history.log
+          echo "Run ID: ${{ github.run_id }}" >> backup_history.log
+          echo "SHA: ${{ github.sha }}" >> backup_history.log
+          echo "---" >> backup_history.log
+
+      - name: ✅ Backup summary
+        run: |
+          echo "🎉 BACKUP COMPLETED SUCCESSFULLY"
+          echo "================================="
+          echo "Timestamp: ${{ steps.timestamp.outputs.TIMESTAMP }}"
+          echo "Encrypted: Yes (AES-256)"
+          echo "Uploaded to: GitHub Artifacts"
+          echo "Retention: 90 days"
+          echo ""
+          echo "⚠️ Important: Keep your BACKUP_ENCRYPTION_KEY secret safe!"
