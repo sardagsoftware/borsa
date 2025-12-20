@@ -1,0 +1,4555 @@
+{
+  "timestamp": "2025-12-20T15:45:05.627Z",
+  "stats": {
+    "total": 139,
+    "passed": 137,
+    "failed": 2,
+    "totalErrors": 16,
+    "totalWarnings": 352,
+    "totalSchemas": 548,
+    "validSchemas": 548,
+    "invalidSchemas": 0
+  },
+  "results": [
+    {
+      "file": "/about",
+      "title": "Hakkımızda — LyDian AI Ekosistemi | Yapay Zeka Öncüleri",
+      "description": "LyDian AI, kurumsal yapay zeka çözümlerinde dünya lideri. 40+ dilde hizmet, 8 uz...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 305, close: 193)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-advisor-hub",
+      "title": "AI Advisor Hub — 20 Uzman AI Danışmanı | İş, Finans, Sağlık, Mistik & Yaşam",
+      "description": "İş, finans, sağlık, yaşam koçu, mistik danışmanlık + Hayvan kovucu, frekans tera...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (75 chars, recommended < 60)",
+        "Description too long (203 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 827, close: 717)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-assistant",
+      "title": "LyDian AI Assistant - Enterprise Virtual Intelligence Agent",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 211, close: 135)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-chat",
+      "title": "AI Chat - LyDian | Advanced Conversational Intelligence",
+      "description": "LyDian AI Sohbet - Gelişmiş yapay zeka modelleriyle doğal konuşmalar yapın...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 264, close: 181)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-cultural-advisor",
+      "title": "Kültürel Uyum Danışmanı | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 158, close: 95)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-decision-matrix",
+      "title": "Karar Matrisi AI | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 155, close: 89)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-governance-dashboard",
+      "title": "AI Yönetişim Kontrol Paneli - AILydian ACE",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 276, close: 169)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-governance-demo",
+      "title": "AI Governance Dashboard - AILydian ACE",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 172, close: 106)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-health-orchestrator",
+      "title": "Bütünsel Sağlık Orkestratörü | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 183, close: 121)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-knowledge-assistant",
+      "title": "Bilgi Tabanı Asistanı | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 146, close: 84)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-learning-path",
+      "title": "Öğrenme Yol Haritası | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 160, close: 96)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-life-coach",
+      "title": "Akıllı Yaşam Koçu | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 168, close: 106)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-meeting-insights",
+      "title": "Toplantı Analizi | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 156, close: 92)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-ops-center",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "AI Training Operations Center - Monitoring, Benchmarks, Costs & Compliance...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (72 chars, recommended < 60)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 675, close: 600)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-power-panel",
+      "title": "⚡ AI Power Panel - 21 Models Consolidated",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 130, close: 69)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ai-startup-accelerator",
+      "title": "Startup Hızlandırıcı | LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 166, close: 100)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/analytics",
+      "title": "Analytics - LyDian | Enterprise AI Performance & Cost Metrics",
+      "description": "Enterprise AI Analytics Dashboard - Real-time metrics, cost analysis, performanc...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (61 chars, recommended < 60)",
+        "Possible unclosed tags (open: 195, close: 121)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/api-docs",
+      "title": "Medical LyDian - API Documentation",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Possible unclosed tags (open: 320, close: 251)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/api-reference",
+      "title": "API Reference - LyDian",
+      "description": "LyDian API Reference - Complete API documentation with examples...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 682, close: 566)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/api",
+      "title": "API Dokümantasyonu — LyDian AI | Geliştiriciler için Güçlü API",
+      "description": "LyDian AI RESTful API ile uygulamalarınıza yapay zeka entegre edin. Kapsamlı dok...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (62 chars, recommended < 60)",
+        "Possible unclosed tags (open: 422, close: 323)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/auth",
+      "title": "Giriş & Kayıt — LyDian AI | Ücretsiz Hesap Oluşturun",
+      "description": "LyDian AI hesabınızı oluşturun ve yapay zekanın gücünü keşfedin. Google, Microso...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 195, close: 77)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/azure-dashboard",
+      "title": "LyDian Ultra Pro - Azure Dashboard",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 305, close: 238)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/billing",
+      "title": "Fiyatlandırma & Faturalama — LyDian AI | Esnek Paketler",
+      "description": "LyDian AI esnek fiyatlandırma paketleri. Ücretsiz başlayın, kullandıkça ödeyin v...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 428, close: 274)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/blog",
+      "title": "Blog - LyDian | AI Insights & Industry Updates",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 201, close: 137)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cache-clear",
+      "title": "Cache Temizle - Lydian IQ",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": false,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Missing viewport meta tag",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 86, close: 27)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cache-dashboard",
+      "title": "Önbellek Dashboard - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 147, close: 85)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cancer-diagnosis-dashboard",
+      "title": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 184, close: 113)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/careers",
+      "title": "Careers - LyDian | Join Our AI Innovation Team",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 194, close: 130)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/changelog",
+      "title": "Changelog - LyDian | Platform Updates & Release Notes",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 268, close: 195)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/chat",
+      "title": "AI Chat — Çok Modelli Yapay Zeka | LyDian Ultra AI Platform",
+      "description": "10+ AI modeli tek platformda. LyDian Quantum Reasoning, LyDian Velocity Engine, ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 556, close: 307)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-atg",
+      "title": "Otomatik Güven Ağı - LyDian AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 259, close: 139)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-intelligence-grid",
+      "title": "Akıllı Şehir Platformu - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 282, close: 187)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-map",
+      "title": "MAP - Model Doğrulama ve Kanıt | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 249, close: 149)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-phn",
+      "title": "HST - Halk Sağlığı Tahmin Sistemi | Lydian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 332, close: 231)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-rro",
+      "title": "RRO - Risk ve Dayanıklılık İşletim Sistemi | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 252, close: 156)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-svf",
+      "title": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 190, close: 104)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/civic-umo",
+      "title": "KMO - Kentsel Mobilite Orkestratörü | LyDian CIG",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 275, close: 169)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/connector-demo",
+      "title": "🔌 Connector Integration Demo (Internal Testing Only)",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 127, close: 55)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/connectors",
+      "title": "Global Connector Network | LyDian AI",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 117, close: 58)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/console",
+      "title": "Console - LyDian | Developer Command Center",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 269, close: 181)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/contact",
+      "title": "İletişim — LyDian AI | 7/24 Destek Ekibimizle Görüşün",
+      "description": "LyDian AI ile iletişime geçin. 7/24 canlı destek, kurumsal satış danışmanlığı ve...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 296, close: 180)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cookies",
+      "title": "Cookie Policy - LyDian | Privacy & Data Management",
+      "description": "LyDian Çerez Politikası - Web sitemizde çerezlerin nasıl kullanıldığını öğrenin...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 337, close: 264)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cost-dashboard",
+      "title": "💰 Cost Tracking Dashboard - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 128, close: 66)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cyborg-demo",
+      "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Character",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 124, close: 53)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/cyborg-orbital-full",
+      "title": "🤖 Dr. Lydia Sentinel - LyDian Cyborg Orbital Hero",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 160, close: 72)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/dashboard-email-yedek",
+      "title": "Dashboard - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 118, close: 51)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/dashboard",
+      "title": "Dashboard — LyDian Ultra Pro | Premium AI Platform",
+      "description": "10+ AI modeli tek platformda. OX5C9E2B, AX9F7E2B 3.5, LyDian Vision Pro, DALL-E ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 556, close: 307)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/developer-search",
+      "title": "LyDian Developer Search - Find APIs, SDKs, Documentation & Code Examples",
+      "description": "Search through LyDian's complete developer ecosystem - APIs, SDKs, documentation...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (72 chars, recommended < 60)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 147, close: 80)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/developers",
+      "title": "Developers - LyDian | API & Integration Resources",
+      "description": "LyDian Developer Portal - SDK'lar, API araçları ve entegrasyon kılavuzları...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 345, close: 249)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/docs",
+      "title": "Dokümantasyon — LyDian AI | Kapsamlı Kullanım Rehberleri",
+      "description": "LyDian AI platformu için eksiksiz dokümantasyon. Başlangıç rehberleri, API refer...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 298, close: 191)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ecw-ailydian",
+      "title": "Ethics Tracker - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 145, close: 81)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/ecw-demo",
+      "title": "ECW Integration Demo - Ailydian",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 128, close: 66)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/education",
+      "title": "Education - LyDian | AI Learning & Training Hub",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 158, close: 95)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/email-dashboard",
+      "title": "📧 LyDian Email Manager | Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 119, close: 51)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/email-setup-status",
+      "title": "Email Setup Status - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 110, close: 49)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/enterprise-index",
+      "title": "LyDian Enterprise AI Platform - Global Scale AI Solutions | Microsoft Azure, Google, Z.AI Integration",
+      "description": "Enterprise-grade AI platform integrating Microsoft Azure AI, Google Gemini, and ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (101 chars, recommended < 60)",
+        "Description too long (217 chars, recommended < 160)",
+        "Possible unclosed tags (open: 177, close: 87)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/enterprise",
+      "title": "Kurumsal Çözümler — LyDian AI | Ölçeklenebilir AI Platformu",
+      "description": "Fortune 500 şirketlerinin tercihi LyDian AI kurumsal çözümleri. Özel entegrasyon...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 241, close: 149)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/epic-fhir-dashboard",
+      "title": "Epic FHIR Dashboard - LyDian Medical AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 232, close: 147)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/files",
+      "title": "Files - LyDian | Document Management & Storage",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 154, close: 89)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/firildak-ai",
+      "title": "Fırıldak AI - Quantum-Powered Legal Intelligence",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 88, close: 28)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/firildak",
+      "title": "fırıldak - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 94, close: 31)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/force-refresh",
+      "title": "🔄 Cache Temizleme - LyDian IQ",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 94, close: 36)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/forgot-password",
+      "title": "Forgot Password - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Possible unclosed tags (open: 87, close: 25)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/google-studio",
+      "title": "AiLydians Studio - Enterprise AI Platform",
+      "description": "AiLydians Studio - Enterprise AI Platform - Azure, Google, LyDian Labs, Enterpri...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 223, close: 139)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/governance-compliance",
+      "title": "Uyumluluk Kontrolleri - LyDian AI Yönetim Merkezi",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 228, close: 137)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/governance-dashboard",
+      "title": "LyDian AI Yönetim Merkezi | AILydian",
+      "description": "LyDian AI Yönetim Merkezi - Model Kayıt, Uyumluluk ve Güven Endeksi...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 250, close: 164)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/governance-leaderboard",
+      "title": "Güven Skoru Liderlik Tablosu - LyDian AI Yönetim Merkezi",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 177, close: 99)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/governance-models",
+      "title": "Model Kayıt | LyDian AI Yönetim Merkezi",
+      "description": "AI Model Registry - Manage and track AI models lifecycle...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 254, close: 163)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/governance-trust-index",
+      "title": "Güven Endeksi - LyDian AI Yönetim Merkezi",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 234, close: 150)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/help",
+      "title": "Yardım Merkezi — LyDian AI | SSS, Rehberler ve Destek",
+      "description": "LyDian AI yardım merkezi. Sık sorulan sorular, video rehberler, kullanım kılavuz...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 321, close: 200)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-3d-lydian",
+      "title": "🌐 LyDian - 3D Experience",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 107, close: 39)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-cinematic-demo",
+      "title": "🎬 LyDian - Cinematic Hero Demo | The AI Revolution",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 114, close: 43)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-particles-lydian",
+      "title": "✨ LyDian - AI Particle Universe",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 103, close: 38)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-video-demo-1-neural",
+      "title": "🧠 Demo 1: Neural Network Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 95, close: 29)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-video-demo-2-particles",
+      "title": "✨ Demo 2: Digital Particles Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 95, close: 29)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-video-demo-3-matrix",
+      "title": "💚 Demo 3: Matrix Data Flow Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 95, close: 29)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-video-demo-4-abstract",
+      "title": "🎨 Demo 4: Abstract AI Hero - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 95, close: 29)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hero-video-demos-index",
+      "title": "🎬 4K Video Hero - Demo Karşılaştırma | LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 180, close: 110)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/hospital-dashboard",
+      "title": "Hospital Integration Dashboard - Lydian Medical",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 201, close: 130)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/humain-home",
+      "title": "LyDian - Enterprise AI Platform",
+      "description": "LyDian enterprise AI platform - Transforming thoughts into actions through advan...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 338, close: 241)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/i18n/MEDICAL-EXPERT-INTEGRATION",
+      "title": "LyDian Medical AI - Healthcare Intelligence Expert",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Possible unclosed tags (open: 250, close: 138)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/image-generation",
+      "title": "Image Generation - LyDian | AI-Powered DALL-E 3 & Imagen 3",
+      "description": "LyDian Görsel Oluşturma - AI ile profesyonel görseller oluşturun...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 267, close: 188)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/index",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu",
+      "description": "Tıbbi AI, Hukuki AI, IQ Testi ve 8 Uzman Danışman. 40+ dilde çok modelli yapay z...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 842, close: 610)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/knowledge-base",
+      "title": "Knowledge Base - LyDian | AI-Powered Information Hub",
+      "description": "65 Milyon Makale • 84 Dil • 67 Uzmanlık Alanı - Tarım, Uzay, Tıp, İklim ve daha ...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 380, close: 285)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/legal-expert",
+      "title": "Legal AI — Hukuki Yapay Zeka | 7/24 Hukuk Asistanı",
+      "description": "AI destekli hukuki danışmanlık. Sözleşme analizi, dava araştırma, yasal doküman ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 199, close: 97)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-hukukai-pro",
+      "title": "LyDian Hukuk AI - Küresel Hukuk Yapay Zeka Platformu",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 234, close: 142)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-hukukai-v2",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (72 chars, recommended < 60)",
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 196, close: 124)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-hukukai",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (72 chars, recommended < 60)",
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 266, close: 183)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-iq-new-ui",
+      "title": "Lydian-IQ v4.1 - Yeni Arayüz ✨",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 208, close: 139)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-iq-unified-demo",
+      "title": "Lydian-IQ Ultra | 72 Connector Platform",
+      "description": "Lydian-IQ Ultra - 72 Premium Connectors with Real-Time Integration...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 316, close: 231)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-iq",
+      "title": "LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü",
+      "description": "AI destekli bilimsel zeka testi. Çok modelli analiz, detaylı raporlar. 1M+ kulla...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 236, close: 139)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-legal-chat",
+      "title": "LyDian Hukuk AI - Hukuki Danışmanlık Asistanı",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 165, close: 83)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-legal-search-enhanced",
+      "title": "LyDian Hukuk AI - Gelişmiş Hukuki Arama ve Analiz Platformu",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 219, close: 145)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-legal-search-i18n",
+      "title": "N/A",
+      "description": "N/A",
+      "errors": 8,
+      "warnings": 10,
+      "schemas": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": false,
+        "description": false,
+        "image": false,
+        "url": false
+      },
+      "twitter": {
+        "card": false,
+        "image": false
+      },
+      "hreflang": 0,
+      "canonical": false,
+      "viewport": false,
+      "errorDetails": [
+        "Missing DOCTYPE declaration",
+        "Missing <html> tag",
+        "Missing <head> tag",
+        "Missing </head> tag",
+        "Missing <body> tag",
+        "Missing charset declaration",
+        "Missing <title> tag",
+        "Missing meta description"
+      ],
+      "warningDetails": [
+        "No Schema.org markup found",
+        "Missing og:title",
+        "Missing og:description",
+        "Missing og:image",
+        "Missing og:url",
+        "Missing twitter:card",
+        "Missing twitter:image",
+        "Missing canonical URL",
+        "Missing viewport meta tag",
+        "Security: Found potentially unsafe pattern: /<script[^>]*>(?![\\s\\S]*application\\/ld\\+json)/gi"
+      ],
+      "infoDetails": [],
+      "status": "FAIL"
+    },
+    {
+      "file": "/lydian-legal-search",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (72 chars, recommended < 60)",
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 466, close: 291)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-legal-universal",
+      "title": "LyDian Legal AI - Universal Legal Research & Analysis Platform",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (62 chars, recommended < 60)",
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 299, close: 223)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-offline",
+      "title": "Offline - LyDian IQ",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 99, close: 41)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/lydian-os",
+      "title": "LyDian OS - Global AI Operating System",
+      "description": "LyDian OS: Planet-scale AI operating system with attestation, compliance, and go...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 110, close: 45)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/medical-ai-dashboard",
+      "title": "Medical AI Dashboard - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 1532, close: 1422)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/medical-ai",
+      "title": "🩺 Medical AI Assistant - LyDian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 147, close: 73)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/medical-dashboard",
+      "title": "Medical Dashboard - LyDian Platform",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 1164, close: 1009)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/medical-expert",
+      "title": "Medical Expert — 7/24 AI Tıbbi Asistan | Sağlık",
+      "description": "AI destekli profesyonel sağlık danışmanlığı. Çok modelli teşhis desteği, tıbbi a...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (170 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 5003, close: 3909)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/models",
+      "title": "AI Modelleri — LyDian AI | 50+ Güçlü Yapay Zeka Modeli",
+      "description": "LyDian AI platformunda 50+ son teknoloji yapay zeka modeli. OX5C9E2B, AX9F7E2B, ...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 906, close: 718)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/monitoring",
+      "title": "System Monitoring Dashboard - LyDian AI",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 220, close: 153)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/offline",
+      "title": "Offline - AiLydian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 111, close: 36)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/omnireach-ai-creator",
+      "title": "OmniReach AI Creator Engine - Ailydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 541, close: 340)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/pages/notifications",
+      "title": "Notifications - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 101, close: 40)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/pages/settings",
+      "title": "Settings - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 347, close: 263)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/pages/users",
+      "title": "User Management - LyDian Ultra Pro",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 202, close: 127)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/performance-dashboard",
+      "title": "Performance Dashboard - AiLydian Ultra Pro",
+      "description": "Real-time performance monitoring and analytics dashboard...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 136, close: 67)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/phase-l-results",
+      "title": "Phase L: Code Splitting Results - LyDian Platform",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 279, close: 212)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/privacy",
+      "title": "Privacy Policy - LyDian | Data Protection & Security",
+      "description": "LyDian Gizlilik Politikası - Kişisel verilerinizin korunması ve güvenliği...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 354, close: 267)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/quantum-test",
+      "title": "Quantum Computing — LyDian AI",
+      "description": "LyDian Quantum Computing Platform - VQE Molecular Simulation with BlueQubit...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 228, close: 130)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/realistic-characters-demo",
+      "title": "🎭 LyDian - Gerçek Karakterler Demo | Realistic Human + AI",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 106, close: 40)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/research",
+      "title": "Araştırma & Yenilikler — LyDian AI | Yapay Zeka Araştırmaları",
+      "description": "LyDian AI araştırma laboratuvarları. Son AI trendleri, teknik makaleler, case st...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (61 chars, recommended < 60)",
+        "Possible unclosed tags (open: 182, close: 95)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/reset-password",
+      "title": "Reset Password - LyDian Ultra Pro",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Possible unclosed tags (open: 95, close: 31)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/search-meter-demo",
+      "title": "Search Meter Demo - AiLydian",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 105, close: 41)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/security-analytics",
+      "title": "Security Analytics Dashboard - Ailydian",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 138, close: 77)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/seo-monitoring",
+      "title": "LyDian AI - Master SEO Monitoring Dashboard",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 255, close: 171)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/settings",
+      "title": "Settings - LyDian | Account Configuration & Preferences",
+      "description": "LyDian - Ayarlar ve Hesap Yönetimi...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too short (34 chars, recommended > 50)",
+        "Possible unclosed tags (open: 355, close: 255)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/sikayet-olustur",
+      "title": "Şikayet Oluştur - LCI | Lydian Complaint Intelligence",
+      "description": "LCI - Şikayetinizi KVKK uyumlu şekilde oluşturun ve çözüm bulun...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 4,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 250, close: 153)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/status-dashboard",
+      "title": "Health Dashboard - LyDian",
+      "description": "LyDian Health Monitoring Dashboard - Real-time system status...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 141, close: 80)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/status",
+      "title": "LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI & Velocity Engine",
+      "description": "LyDian Platform Status - Real-time system health and performance monitoring...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (72 chars, recommended < 60)",
+        "Possible unclosed tags (open: 398, close: 303)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/system-status",
+      "title": "System Status - LyDian | Enterprise Infrastructure Monitoring",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 4,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (61 chars, recommended < 60)",
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 181, close: 102)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/terms",
+      "title": "Terms of Service - LyDian | User Agreement & Policies",
+      "description": "LyDian Kullanım Koşulları - Platformumuzun kullanım şartları ve yasal bilgiler...",
+      "errors": 0,
+      "warnings": 1,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Possible unclosed tags (open: 288, close: 215)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-auto-translate",
+      "title": "Auto Translation Test",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Possible unclosed tags (open: 100, close: 40)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-backend-connection",
+      "title": "✅ Backend Bağlantı Testi - Lydian-IQ",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 114, close: 53)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-chat-api",
+      "title": "Chat API Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 78, close: 18)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-chat-buttons",
+      "title": "Chat Buttons Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 80, close: 23)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-chat-ecw",
+      "title": "Chat ECW Test - Smoke Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 82, close: 23)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-i18n-demo",
+      "title": "🌍 LyDian i18n System - Live Demo",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 111, close: 54)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-language-system",
+      "title": "LyDian - Language System Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 159, close: 72)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-legal",
+      "title": "LyDian Legal AI - Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 87, close: 26)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test-translation",
+      "title": "Translation Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 87, close: 28)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/test",
+      "title": "Lydian IQ Test",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": false,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Missing viewport meta tag",
+        "Possible unclosed tags (open: 68, close: 12)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/tokens",
+      "title": "Token System - LyDian | Blockchain-Based AI Credits",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 2,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 206, close: 134)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/user-dashboard",
+      "title": "User Dashboard - Medical LyDian",
+      "description": "LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, ...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Description too long (205 chars, recommended < 160)",
+        "Security: Found potentially unsafe pattern: /innerHTML\\s*=/gi",
+        "Possible unclosed tags (open: 125, close: 65)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    },
+    {
+      "file": "/verifyforzoho",
+      "title": "N/A",
+      "description": "N/A",
+      "errors": 8,
+      "warnings": 9,
+      "schemas": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": false,
+        "description": false,
+        "image": false,
+        "url": false
+      },
+      "twitter": {
+        "card": false,
+        "image": false
+      },
+      "hreflang": 0,
+      "canonical": false,
+      "viewport": false,
+      "errorDetails": [
+        "Missing DOCTYPE declaration",
+        "Missing <html> tag",
+        "Missing <head> tag",
+        "Missing </head> tag",
+        "Missing <body> tag",
+        "Missing charset declaration",
+        "Missing <title> tag",
+        "Missing meta description"
+      ],
+      "warningDetails": [
+        "No Schema.org markup found",
+        "Missing og:title",
+        "Missing og:description",
+        "Missing og:image",
+        "Missing og:url",
+        "Missing twitter:card",
+        "Missing twitter:image",
+        "Missing canonical URL",
+        "Missing viewport meta tag"
+      ],
+      "infoDetails": [],
+      "status": "FAIL"
+    },
+    {
+      "file": "/video-ai",
+      "title": "Video AI - LyDian | AI Video Generation with Google Veo & Runway",
+      "description": "LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapa...",
+      "errors": 0,
+      "warnings": 3,
+      "schemas": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "openGraph": {
+        "title": true,
+        "description": true,
+        "image": true,
+        "url": true
+      },
+      "twitter": {
+        "card": true,
+        "image": true
+      },
+      "hreflang": 7,
+      "canonical": true,
+      "viewport": true,
+      "errorDetails": [],
+      "warningDetails": [
+        "Title too long (64 chars, recommended < 60)",
+        "Description too long (183 chars, recommended < 160)",
+        "Possible unclosed tags (open: 221, close: 147)"
+      ],
+      "infoDetails": [],
+      "status": "PASS"
+    }
+  ]
+}
