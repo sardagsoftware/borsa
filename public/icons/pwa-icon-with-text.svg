@@ -1,0 +1,64 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PWA Icon - Exact same grape logo from www.ailydian.com header -->
+
+  <!-- Dark Background -->
+  <rect width="512" height="512" fill="#1C2536" rx="64"/>
+
+  <!-- Exact Same White Grape Logo from www.ailydian.com -->
+  <g transform="translate(0, -20)">
+    <!-- Outer Circle Frame -->
+    <circle cx="256" cy="256" r="170" stroke="#FFFFFF" stroke-width="6" fill="none"/>
+    <circle cx="256" cy="256" r="155" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+
+    <!-- Grape Cluster -->
+    <g stroke="#FFFFFF" stroke-width="5" fill="none">
+      <!-- Stem curl at top -->
+      <path d="M 256 106 Q 245 126, 250 146" stroke-linecap="round"/>
+
+      <!-- Leaves (outline style) -->
+      <path d="M 230 136 Q 210 131, 195 146 Q 188 161, 200 176 Q 215 186, 232 174 Z"/>
+      <path d="M 275 131 Q 295 126, 310 141 Q 317 156, 305 171 Q 290 181, 273 169 Z"/>
+      <path d="M 253 121 Q 265 116, 275 126 Q 280 136, 272 146 Q 263 151, 255 144 Z"/>
+
+      <!-- Grape berries (circles outline) -->
+      <!-- Row 1 (top) -->
+      <circle cx="256" cy="186" r="24"/>
+
+      <!-- Row 2 -->
+      <circle cx="220" cy="226" r="23"/>
+      <circle cx="256" cy="231" r="23"/>
+      <circle cx="292" cy="226" r="23"/>
+
+      <!-- Row 3 -->
+      <circle cx="190" cy="271" r="22"/>
+      <circle cx="230" cy="276" r="22"/>
+      <circle cx="282" cy="276" r="22"/>
+      <circle cx="322" cy="271" r="22"/>
+
+      <!-- Row 4 -->
+      <circle cx="218" cy="321" r="21"/>
+      <circle cx="256" cy="326" r="21"/>
+      <circle cx="294" cy="321" r="21"/>
+
+      <!-- Row 5 -->
+      <circle cx="235" cy="366" r="20"/>
+      <circle cx="277" cy="366" r="20"/>
+
+      <!-- Row 6 (bottom) -->
+      <circle cx="256" cy="406" r="19"/>
+    </g>
+  </g>
+
+  <!-- LyDian Text - Bottom -->
+  <text
+    x="256"
+    y="470"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="42"
+    font-weight="300"
+    fill="#FFFFFF"
+    text-anchor="middle"
+    letter-spacing="6">
+    LyDian
+  </text>
+</svg>
