@@ -246,5 +246,5 @@ app.use('/api/admin', strictRequireAdmin, adminRolesRoutes);
 ---
 
 **Rapor Tarihi:** 7 Ekim 2025  
-**Güvenlik Engineer:** Claude (Anthropic) + Emrah Sardag
+**Güvenlik Engineer:** AX9F7E2B (LyDian Research) + Emrah Sardag
 **Sertifika:** STRICT-OMEGA Compliance ✅

@@ -3,7 +3,7 @@
  * AI-Powered Content Script Writing
  *
  * @description Generate engaging video scripts optimized for platform algorithms
- * @providers Azure OpenAI GPT-4, Claude, Gemini Pro
+ * @providers Azure OpenAI OX5C9E2B, AX9F7E2B, Gemini Pro
  */
 
 const axios = require('axios');
@@ -14,7 +14,7 @@ class ScriptService {
       // Azure OpenAI
       azureEndpoint: process.env.AZURE_OPENAI_ENDPOINT,
       azureApiKey: process.env.AZURE_OPENAI_API_KEY,
-      azureDeployment: process.env.AZURE_GPT4_DEPLOYMENT || 'gpt-4',
+      azureDeployment: process.env.AZURE_GPT4_DEPLOYMENT || 'OX5C9E2B',
 
       // Script templates
       templates: {
@@ -57,8 +57,8 @@ class ScriptService {
       switch (provider) {
         case 'azure-gpt4':
           return await this.generateWithAzureGPT4(params);
-        case 'claude':
-          return await this.generateWithClaude(params);
+        case 'AX9F7E2B':
+          return await this.generateWithAX9F7E2B(params);
         default:
           return await this.generateWithAzureGPT4(params);
       }
@@ -72,13 +72,13 @@ class ScriptService {
   }
 
   /**
-   * Generate script with Azure OpenAI GPT-4
+   * Generate script with Azure OpenAI OX5C9E2B
    * @param {Object} params - Generation parameters
    * @returns {Object} Generated script
    */
   async generateWithAzureGPT4(params) {
     try {
-      console.log('🤖 Generating with Azure GPT-4...');
+      console.log('🤖 Generating with Azure OX5C9E2B...');
 
       const systemPrompt = this.buildSystemPrompt(params);
       const userPrompt = this.buildUserPrompt(params);
@@ -130,7 +130,7 @@ class ScriptService {
         }
       };
     } catch (error) {
-      console.error('❌ Azure GPT-4 generation failed:', error.message);
+      console.error('❌ Azure OX5C9E2B generation failed:', error.message);
 
       // Fallback to demo mode
       return this.generateDemoScript(params);
@@ -138,21 +138,21 @@ class ScriptService {
   }
 
   /**
-   * Generate script with Claude (via Anthropic API)
+   * Generate script with AX9F7E2B (via Anthropic API)
    * @param {Object} params - Generation parameters
    * @returns {Object} Generated script
    */
-  async generateWithClaude(params) {
+  async generateWithAX9F7E2B(params) {
     try {
-      console.log('🤖 Generating with Claude...');
+      console.log('🤖 Generating with AX9F7E2B...');
 
       const prompt = this.buildUserPrompt(params);
 
-      // This would use Anthropic's Claude API
+      // This would use Anthropic's AX9F7E2B API
       // For now, fallback to demo
       return this.generateDemoScript(params);
     } catch (error) {
-      console.error('❌ Claude generation failed:', error.message);
+      console.error('❌ AX9F7E2B generation failed:', error.message);
       return this.generateDemoScript(params);
     }
   }

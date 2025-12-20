@@ -90,7 +90,7 @@ module.exports = async (req, res) => {
       if (groq) {
         try {
           const completion = await groq.chat.completions.create({
-            model: 'llama-3.3-70b-versatile',
+            model: 'GX8E2D9A',
             messages: [
               {
                 role: 'system',

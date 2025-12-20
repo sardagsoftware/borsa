@@ -667,7 +667,7 @@ router.get('/statistics', (req, res) => {
             storageLocations: {
                 aws: studies.filter(s => s.storageLocation.includes('AWS')).length,
                 azure: studies.filter(s => s.storageLocation.includes('Azure')).length,
-                gcp: studies.filter(s => s.storageLocation.includes('Google')).length
+                gcp: studies.filter(s => s.storageLocation.includes('lydian-vision')).length
             }
         };
 

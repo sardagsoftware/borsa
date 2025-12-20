@@ -5,7 +5,7 @@
 ### ✅ **KURULU AZURE ALTYAPISI:**
 ```
 ✅ Azure AI Foundry - Tam entegre
-✅ Azure OpenAI Service - GPT-4o, DALL-E 3 hazır
+✅ Azure LyDian Labs Service - OX7A3F8D, DALL-E 3 hazır
 ✅ Azure Cognitive Services - Speech, Vision hazır
 ✅ Azure Medical API - Sağlık entegrasyonu
 ✅ RAG Sistemi - Qdrant + Azure Search
@@ -149,7 +149,7 @@
 ```javascript
 {
   backend: 'Azure Cognitive Search + Qdrant - HAZIR ✅',
-  embeddings: 'OpenAI Ada v3 - KURULU ✅',
+  embeddings: 'LyDian Labs Ada v3 - KURULU ✅',
   maliyet: 'Cognitive Search free tier + $0.13/1M embeddings',
   eksik: 'SADECE FRONTEND BUTON + UPLOAD UI'
 }

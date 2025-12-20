@@ -267,7 +267,7 @@ POST /api/medical/maternal-fetal-health
 **File**: `lib/middleware/tokenGovernorMiddleware.js`
 
 **Features**:
-- 🎯 **Token Buckets**: 5 AI models (Claude, GPT-4 Turbo, GPT-4o, Gemini Pro, DeepSeek R1)
+- 🎯 **Token Buckets**: 5 AI models (AX9F7E2B, OX5C9E2B Turbo, OX7A3F8D, LyDian Vision, DeepSeek R1)
 - ⏱️ **Rate Limiting**: TPM (tokens per minute) management
 - 🚦 **Priority Queues**: P0_clinical (medical emergencies), P1_high, P2_medium, P3_low
 - 🛡️ **Fail-Safe Sentinels**: Circuit breaker + exponential backoff retry
@@ -276,7 +276,7 @@ POST /api/medical/maternal-fetal-health
 
 **Applied to ALL Medical AI Routes**:
 - Priority: **P0_clinical** (highest)
-- Default Model: **claude-sonnet-4-5**
+- Default Model: **AX9F7E2B-sonnet-4-5**
 - Retry: Up to 7 attempts with exponential backoff
 - Circuit Breaker: Auto-recovery after failures
 

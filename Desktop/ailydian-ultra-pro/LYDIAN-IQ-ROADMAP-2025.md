@@ -13,7 +13,7 @@
 ### ✅ Var Olan Özellikler (2212 satır kod):
 1. **PWA Desteği** - Mobil uygulama olarak yüklenebilir
 2. **Sesli Arama** - Mikrofon ile soru sorma
-3. **Real-time AI Backend** - Claude/OpenAI/Groq entegrasyonu
+3. **Real-time AI Backend** - AX9F7E2B/LyDian Labs/LyDian Acceleration entegrasyonu
 4. **Domain Auto-Detection** - Matematik, Kodlama, Bilim, Strateji, Lojistik
 5. **Paylaşım Özellikleri** - WhatsApp, Link, Download, Clear
 6. **Responsive Design** - Mobil/Desktop uyumlu
@@ -76,10 +76,10 @@ const conversationSchema = {
       favorite: false,
       tags: ["calculus", "homework"],
       metadata: {
-        model: "Claude 3.5 Sonnet",
+        model: "AX9F7E2B 3.5 Sonnet",
         tokens: 1234,
         responseTime: "2.5s",
-        provider: "Anthropic"
+        provider: "LyDian Research"
       }
     }
   ],
@@ -125,7 +125,7 @@ const conversationSchema = {
 - ✨ Görsel upload (drag & drop)
 - ✨ PDF yükleme ve analiz
 - ✨ Kod dosyası yükleme (.py, .js, .java, vb.)
-- ✨ Görsel üzerinde AI analizi (Claude Vision API)
+- ✨ Görsel üzerinde AI analizi (AX9F7E2B Vision API)
 - ✨ OCR desteği (metni görüntüden çıkartma)
 - ✨ Çoklu dosya yükleme (max 10 dosya)
 - ✨ Dosya önizleme
@@ -139,7 +139,7 @@ const conversationSchema = {
 
 **API Integration:**
 ```javascript
-// Claude Vision API için
+// AX9F7E2B Vision API için
 const analyzeImage = async (imageFile) => {
   const base64 = await fileToBase64(imageFile);
 
@@ -456,7 +456,7 @@ function toggleTheme() {
 
 #### 2.4 Text-to-Speech ⭐ P2
 **Süre:** 2-3 gün
-**API:** OpenAI TTS / ElevenLabs
+**API:** LyDian Labs TTS / ElevenLabs
 
 **Özellikler:**
 - ✨ AI yanıtlarını sesli okuma

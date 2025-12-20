@@ -122,7 +122,7 @@ async function testTranslation() {
 }
 
 /**
- * Test 3: Medical Chat (Azure OpenAI GPT-4)
+ * Test 3: Medical Chat (Azure OpenAI OX5C9E2B)
  */
 async function testMedicalChat() {
   if (!TESTS.medicalChat) {
@@ -131,7 +131,7 @@ async function testMedicalChat() {
     return;
   }
 
-  console.log('💬 Test 3: Medical Chat (Azure OpenAI GPT-4)');
+  console.log('💬 Test 3: Medical Chat (Azure OpenAI OX5C9E2B)');
   console.log('   Testing cardiology specialization...\n');
 
   try {
@@ -146,7 +146,7 @@ async function testMedicalChat() {
       console.log(`   🏥 Specialization: Cardiology`);
       console.log(`   💬 Question: What are the symptoms of atrial fibrillation?`);
       console.log(`   📝 Response: ${response.data.response?.substring(0, 100)}...`);
-      console.log(`   🤖 Model: ${response.data.metadata?.model || 'Azure GPT-4 Turbo'}`);
+      console.log(`   🤖 Model: ${response.data.metadata?.model || 'Azure OX5C9E2B Turbo'}`);
       console.log(`   ⏱️  Response Time: ${response.data.metadata?.response_time_ms || 0}ms`);
 
       results.passed++;

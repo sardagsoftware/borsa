@@ -2,7 +2,7 @@
 // Multi-Provider with Hidden AI
 
 const { GoogleAuth } = require('google-auth-library');
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // ==========================================
 // AZURE DALL-E 3 CONFIGURATION (PRIMARY)

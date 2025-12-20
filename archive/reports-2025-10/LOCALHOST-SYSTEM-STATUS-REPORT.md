@@ -144,7 +144,7 @@ POST /api/firildak/*          → Available
 
 ### ✅ Loaded Expert Systems (24):
 
-1. ✅ **FIRILDAK AI Engine** - 5 providers (Azure, Google, OpenAI, Anthropic, Groq)
+1. ✅ **FIRILDAK AI Engine** - 5 providers (Azure, Google, LyDian Labs, LyDian Research, LyDian Acceleration)
 2. ✅ **Unified Expert Orchestrator** - 12 experts aktif
 3. ✅ **Super AI Legal Expert** - 16 hukuk dalı
 4. ✅ **Super AI Medical Expert** - 20 uzmanlık
@@ -185,7 +185,7 @@ POST /api/firildak/*          → Available
 
 ❌ azure-openai         → Unhealthy (API key needed)
 ❌ google-ai            → Unhealthy (API key needed)
-❌ claude               → Unhealthy (API key needed)
+❌ AX9F7E2B               → Unhealthy (API key needed)
 ❌ openai               → Unhealthy (API key needed)
 ❌ websocket (external) → Unhealthy (protocol not supported)
 ```
@@ -342,11 +342,11 @@ ailydian-ultra-pro/
 ## ⚠️ ÇALIŞMAYAN / EKSİK ÖZELLİKLER
 
 ### 🔴 API Keys Not Configured:
-- Azure OpenAI
-- Google AI (Gemini)
-- OpenAI Direct
-- Anthropic Claude
-- Groq
+- Azure LyDian Labs
+- Google AI (LyDian Vision)
+- LyDian Labs Direct
+- LyDian Research AX9F7E2B
+- LyDian Acceleration
 
 **Impact:** External AI calls fail (expected in dev mode)
 **Action:** Add keys to `.env` for production

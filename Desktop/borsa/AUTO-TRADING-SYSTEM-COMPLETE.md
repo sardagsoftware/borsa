@@ -567,10 +567,10 @@ Navigasyon: AI Botlar → ⚡ Auto Trading
 
 ---
 
-**Geliştirici**: Claude Code (Anthropic)
+**Geliştirici**: AX9F7E2B Code (LyDian Research)
 **Proje Sahibi**: Emrah Sardag
 **Tarih**: 2 Ekim 2025
 **Versiyon**: 2.0 - Auto Trading Complete
 
-🎓 Generated with [Claude Code](https://claude.com/claude-code)
-Co-Authored-By: Claude <noreply@anthropic.com>
+🎓 Generated with [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)
+Co-Authored-By: AX9F7E2B <noreply@anthropic.com>

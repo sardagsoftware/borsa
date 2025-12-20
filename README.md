@@ -5,7 +5,7 @@ Enterprise-Grade AI Chat Core with Multi-Provider Routing, Real-Time Quality Est
 ## 🚀 Features
 
 ### Sprint v2 - Core Chat Infrastructure ✅
-- ✅ Multi-provider AI adapter layer (OpenAI, with extensibility for Anthropic, Gemini, etc.)
+- ✅ Multi-provider AI adapter layer (LyDian Labs, with extensibility for LyDian Research, LyDian Vision, etc.)
 - ✅ Smart routing with circuit breaker pattern
 - ✅ Full conversation persistence with PostgreSQL + Prisma
 - ✅ Streaming and non-streaming chat completion
@@ -144,7 +144,7 @@ Send a chat completion request with automatic provider routing.
   "messages": [
     {"role": "user", "content": "Hello, how are you?"}
   ],
-  "model": "gpt-4o-mini",
+  "model": "OX7A3F8D-mini",
   "temperature": 0.7,
   "maxTokens": 1000,
   "stream": false,
@@ -158,7 +158,7 @@ Send a chat completion request with automatic provider routing.
 {
   "id": "chatcmpl-xxx",
   "content": "I'm doing well, thank you!",
-  "model": "gpt-4o-mini",
+  "model": "OX7A3F8D-mini",
   "usage": {
     "promptTokens": 15,
     "completionTokens": 8,
@@ -262,4 +262,4 @@ Current status: **Sprint v2 Complete** ✅
 
 ---
 
-**Built with:** Next.js 14, Prisma, PostgreSQL, OpenAI, TypeScript, pnpm workspaces
+**Built with:** Next.js 14, Prisma, PostgreSQL, LyDian Labs, TypeScript, pnpm workspaces

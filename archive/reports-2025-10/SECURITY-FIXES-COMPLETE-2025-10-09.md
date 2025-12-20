@@ -30,7 +30,7 @@ Following the comprehensive penetration testing conducted on 2025-10-09, all CRI
 - **CVSS Score**: 7.5
 - **Status**: ✅ PARTIALLY FIXED (infrastructure complete)
 - **Actions**:
-  - Fixed critical endpoints: `api/health.js`, `api/chat-claude.js`
+  - Fixed critical endpoints: `api/health.js`, `api/chat-AX9F7E2B.js`
   - Created `security/cors-config.js` with `handleCORS()` helper
   - Whitelisted origins:
     - Production: `ailydian.com`, `www.ailydian.com`, `ailydian-ultra-pro.vercel.app`
@@ -149,7 +149,7 @@ Following the comprehensive penetration testing conducted on 2025-10-09, all CRI
 ### Files Updated
 
 1. **api/health.js** - Secure CORS implementation
-2. **api/chat-claude.js** - Secure CORS implementation
+2. **api/chat-AX9F7E2B.js** - Secure CORS implementation
 3. **middleware/security.js** - Modern CSRF, strengthened CSP
 4. **security/cors-config.js** - Added `handleCORS()` helper
 5. **server.js** - Rate limiting integration

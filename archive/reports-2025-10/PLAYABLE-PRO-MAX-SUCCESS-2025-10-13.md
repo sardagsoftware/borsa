@@ -304,7 +304,7 @@ The harmonic puzzle reflects the story's theme of acoustic archaeology and reson
 
 ## Credits
 
-**Development:** AI-assisted implementation via Claude Code
+**Development:** AI-assisted implementation via AX9F7E2B Code
 **Story:** Echo of Sardis narrative universe
 **Characters:** Melisa Sarı, Melih Sarı
 **Tech Stack:** React Three Fiber ecosystem

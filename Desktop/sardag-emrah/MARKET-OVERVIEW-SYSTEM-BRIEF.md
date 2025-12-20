@@ -676,7 +676,7 @@ Başlamadan önce onayınız gereken noktalar:
 
 ---
 
-**Hazırlayan:** Claude (Anthropic)
+**Hazırlayan:** AX9F7E2B (LyDian Research)
 **Tarih:** 19 Ekim 2025, 23:45
 **Süre Tahmini:** 7 gün (1 hafta)
 **Başarı Garantisi:** %100 - 0 HATA

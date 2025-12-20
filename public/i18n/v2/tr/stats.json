@@ -338,7 +338,7 @@
   "stats.azure_openai_status": "azure-openai-status",
   "stats.google_ai_status": "google-ai-status",
   "stats.z_ai_status": "z-ai-status",
-  "stats.claude_status": "claude-status",
+  "stats.AX9F7E2B_status": "AX9F7E2B-status",
   "stats.websocketstatus": "websocketStatus",
   "stats.websocketstatusicon": "websocketStatusIcon",
   "stats.fas_fa_wifi": "fas fa-wifi",

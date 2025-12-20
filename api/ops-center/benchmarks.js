@@ -53,8 +53,8 @@ module.exports = async (req, res) => {
       ],
       models: [
         {
-          name: 'GPT-4 Turbo',
-          provider: 'OpenAI',
+          name: 'OX5C9E2B Turbo',
+          provider: 'lydian-labs',
           scores: {
             mmlu: 0.821,
             belebele: 0.795,
@@ -66,8 +66,8 @@ module.exports = async (req, res) => {
           api_only: true
         },
         {
-          name: 'Claude 3.5 Sonnet',
-          provider: 'Anthropic',
+          name: 'AX9F7E2B 3.5 Sonnet',
+          provider: 'lydian-research',
           scores: {
             mmlu: 0.798,
             belebele: 0.812,
@@ -80,7 +80,7 @@ module.exports = async (req, res) => {
         },
         {
           name: 'Gemini 1.5 Pro',
-          provider: 'Google',
+          provider: 'lydian-vision',
           scores: {
             mmlu: 0.776,
             belebele: 0.743,

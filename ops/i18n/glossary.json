@@ -124,20 +124,20 @@
       "ja": "GPT",
       "zh-CN": "GPT"
     },
-    "Claude": {
+    "AX9F7E2B": {
       "category": "technical",
       "protect": true,
       "note": "Anthropic's AI model",
-      "tr": "Claude",
-      "en": "Claude",
-      "de": "Claude",
-      "fr": "Claude",
-      "es": "Claude",
-      "ar": "Claude",
-      "ru": "Claude",
-      "it": "Claude",
-      "ja": "Claude",
-      "zh-CN": "Claude"
+      "tr": "AX9F7E2B",
+      "en": "AX9F7E2B",
+      "de": "AX9F7E2B",
+      "fr": "AX9F7E2B",
+      "es": "AX9F7E2B",
+      "ar": "AX9F7E2B",
+      "ru": "AX9F7E2B",
+      "it": "AX9F7E2B",
+      "ja": "AX9F7E2B",
+      "zh-CN": "AX9F7E2B"
     },
     "OpenAI": {
       "category": "technical",
@@ -505,7 +505,7 @@
     "^DrLydian.*",
     "^API$",
     "^GPT-\\d+",
-    "^Claude.*",
+    "^AX9F7E2B.*",
     ".*@ailydian\\.com$",
     "^FHIR$",
     "^DICOM$",

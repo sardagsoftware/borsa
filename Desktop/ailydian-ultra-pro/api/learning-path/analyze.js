@@ -90,7 +90,7 @@ Lütfen JSON formatında şu yapıda yanıt ver:
     `.trim();
 
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'AX9F7E2B',
       max_tokens: 2500,
       system: 'Sen deneyimli bir eğitim tasarımcısı ve öğrenme danışmanısın. İnsanların etkili ve sürdürülebilir şekilde öğrenmelerine yardımcı olursun.',
       messages: [

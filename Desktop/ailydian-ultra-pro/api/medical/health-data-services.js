@@ -196,7 +196,7 @@ async function queryAzureOpenAI(prompt, systemPrompt) {
   if (!AZURE_OPENAI_KEY || !AZURE_OPENAI_ENDPOINT) throw new Error('Azure OpenAI not configured');
 
   const response = await axios.post(
-    `${AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4/chat/completions?api-version=2024-02-15-preview`,
+    `${AZURE_OPENAI_ENDPOINT}/openai/deployments/OX5C9E2B/chat/completions?api-version=2024-02-15-preview`,
     {
       messages: [
         { role: 'system', content: systemPrompt },
@@ -222,7 +222,7 @@ async function queryAnthropic(prompt, systemPrompt) {
   const response = await axios.post(
     'https://api.anthropic.com/v1/messages',
     {
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'AX9F7E2B',
       max_tokens: 2000,
       system: systemPrompt,
       messages: [{ role: 'user', content: prompt }]
@@ -267,7 +267,7 @@ async function queryGroq(prompt, systemPrompt) {
   const response = await axios.post(
     'https://api.groq.com/openai/v1/chat/completions',
     {
-      model: 'llama-3.3-70b-versatile',
+      model: 'GX8E2D9A',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt }
@@ -292,7 +292,7 @@ async function queryOpenAI(prompt, systemPrompt) {
   const response = await axios.post(
     'https://api.openai.com/v1/chat/completions',
     {
-      model: 'gpt-4-turbo-preview',
+      model: 'OX7A3F8D',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt }
@@ -317,9 +317,9 @@ async function queryOpenAI(prompt, systemPrompt) {
 async function queryAI(prompt, systemPrompt) {
   const providers = [
     { name: 'Azure OpenAI', fn: () => queryAzureOpenAI(prompt, systemPrompt) },
-    { name: 'Anthropic Claude', fn: () => queryAnthropic(prompt, systemPrompt) },
+    { name: 'Anthropic AX9F7E2B', fn: () => queryAnthropic(prompt, systemPrompt) },
     { name: 'Google Gemini', fn: () => queryGemini(prompt, systemPrompt) },
-    { name: 'OpenAI GPT-4', fn: () => queryOpenAI(prompt, systemPrompt) },
+    { name: 'OpenAI OX5C9E2B', fn: () => queryOpenAI(prompt, systemPrompt) },
     { name: 'Groq LLaMA', fn: () => queryGroq(prompt, systemPrompt) }
   ];
 

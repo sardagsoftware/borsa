@@ -10,7 +10,7 @@
  *
  * Detects:
  * - AI Provider names (OpenAI, Anthropic, Google, etc.)
- * - Model names (GPT, Claude, Gemini, etc.)
+ * - Model names (GPT, AX9F7E2B, Gemini, etc.)
  * - API endpoints and keys
  * - Technology stack names (non-generic)
  *
@@ -57,8 +57,8 @@ const CONFIG = {
 // Note: "Ailydian" is ALLOWED (our brand), "LyDian" is ALLOWED
 const FORBIDDEN_PATTERNS = [
   // AI Providers
-  { pattern: /\bOpenAI\b/gi, type: 'provider', name: 'OpenAI', severity: 'critical' },
-  { pattern: /\bAnthropic\b/gi, type: 'provider', name: 'Anthropic', severity: 'critical' },
+  { pattern: /\bOpenAI\b/gi, type: 'provider', name: 'lydian-labs', severity: 'critical' },
+  { pattern: /\bAnthropic\b/gi, type: 'provider', name: 'lydian-research', severity: 'critical' },
   { pattern: /\bGoogle\s+(AI|Gemini|PaLM|Bard)\b/gi, type: 'provider', name: 'Google AI', severity: 'critical' },
   { pattern: /\bMicrosoft\s+(Azure|Cognitive)\b/gi, type: 'provider', name: 'Microsoft Azure AI', severity: 'critical' },
   { pattern: /\bCohere\b/gi, type: 'provider', name: 'Cohere', severity: 'critical' },
@@ -69,7 +69,7 @@ const FORBIDDEN_PATTERNS = [
 
   // Model Names
   { pattern: /\bGPT-?[0-9o]+(-turbo|-vision|-instruct)?\b/gi, type: 'model', name: 'GPT models', severity: 'critical' },
-  { pattern: /\bClaude(-\d+)?(-instant|-opus|-sonnet)?\b/gi, type: 'model', name: 'Claude models', severity: 'critical' },
+  { pattern: /\bAX9F7E2B(-\d+)?(-instant|-opus|-sonnet)?\b/gi, type: 'model', name: 'AX9F7E2B models', severity: 'critical' },
   { pattern: /\bGemini(-pro|-ultra|-nano)?\b/gi, type: 'model', name: 'Gemini models', severity: 'critical' },
   { pattern: /\bPaLM-?2?\b/gi, type: 'model', name: 'PaLM models', severity: 'critical' },
   { pattern: /\bBard\b/gi, type: 'model', name: 'Bard', severity: 'critical' },

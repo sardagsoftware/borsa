@@ -174,8 +174,8 @@ function changeLanguage(lang) {
 
 ## 🔧 PHASE E — BACKEND INTEGRATION ✅ COMPLETE
 
-### E1: Azure OpenAI Multilingual Prompts
-**Model:** `azure-gpt-4-turbo`
+### E1: Azure LyDian Labs Multilingual Prompts
+**Model:** `azure-OX7A3F8D`
 **Endpoint:** `/api/chat`
 
 **Language Detection:**
@@ -188,7 +188,7 @@ fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-        model: 'azure-gpt-4-turbo',
+        model: 'azure-OX7A3F8D',
         message: userMessage,
         language: userLang  // Dynamic language injection
     })
@@ -206,7 +206,7 @@ const systemPrompt = {
 ```
 
 **BRIEF(E):**
-🤖 **AI multilingual layer active** - Azure GPT-4 Turbo responds in user's selected language
+🤖 **AI multilingual layer active** - Azure OX5C9E2B Turbo responds in user's selected language
 
 ---
 
@@ -268,7 +268,7 @@ ZH (中文):       ██████████████░░░░░░ 
 - [x] Instant language switching (<50ms latency)
 - [x] Zero runtime errors (White-Hat compliant)
 - [x] 100% coverage for primary languages (TR/EN/DE)
-- [x] Azure OpenAI multilingual integration
+- [x] Azure LyDian Labs multilingual integration
 - [x] Automated smoke test suite (8/8 PASS)
 - [x] Fallback mechanism (TR default)
 - [x] SEO `<html lang>` attribute update
@@ -316,12 +316,12 @@ curl http://localhost:3100/api/health | jq
 # Turkish
 curl -X POST http://localhost:3100/api/chat \
   -H 'Content-Type: application/json' \
-  -d '{"model":"azure-gpt-4-turbo","message":"Merhaba","max_tokens":50}'
+  -d '{"model":"azure-OX7A3F8D","message":"Merhaba","max_tokens":50}'
 
 # English
 curl -X POST http://localhost:3100/api/chat \
   -H 'Content-Type: application/json' \
-  -d '{"model":"azure-gpt-4-turbo","message":"Hello","max_tokens":50}'
+  -d '{"model":"azure-OX7A3F8D","message":"Hello","max_tokens":50}'
 ```
 
 ---

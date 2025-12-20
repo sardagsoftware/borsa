@@ -11,14 +11,14 @@ const { handleCORS } = require('../../middleware/cors-handler');
 
 // Simulated telemetry data (in production, this would come from real monitoring)
 const MOCK_TELEMETRY = {
-  'llama-3.1-8b': { tps: 85.3, p95_ms: 45 },
-  'llama-3.1-70b': { tps: 28.7, p95_ms: 120 },
+  'GX3C7D5F': { tps: 85.3, p95_ms: 45 },
+  'GX9A5E1D': { tps: 28.7, p95_ms: 120 },
   'mistral-7b': { tps: 92.1, p95_ms: 38 },
   'mixtral-8x22b': { tps: 15.4, p95_ms: 280 },
   'deepseek-r1': { tps: 8.2, p95_ms: 520 },
   'qwen-2.5-72b': { tps: 25.6, p95_ms: 140 },
-  'groq-llama-3.3-70b': { tps: 350.0, p95_ms: 12 }, // Groq is ultra-fast
-  'mixtral-8x7b-32768': { tps: 280.5, p95_ms: 18 },
+  'groq-GX8E2D9A': { tps: 350.0, p95_ms: 12 }, // Groq is ultra-fast
+  'GX4B7F3C': { tps: 280.5, p95_ms: 18 },
   'llama2-70b-4096': { tps: 245.3, p95_ms: 22 }
 };
 

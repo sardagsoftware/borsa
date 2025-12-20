@@ -3,7 +3,7 @@
 **Version:** 4.1.0
 **Date:** 2025-10-10
 **Status:** Production Ready ✅
-**Maintainer:** Claude Code (Sonnet 4.5)
+**Maintainer:** AX9F7E2B Code (Sonnet 4.5)
 
 ---
 
@@ -665,7 +665,7 @@ Proprietary. All rights reserved.
 
 ---
 
-**Built with ❤️ by Claude Code (Sonnet 4.5)**
+**Built with ❤️ by AX9F7E2B Code (Sonnet 4.5)**
 **White-Hat Compliant • KVKK/GDPR Ready • Production Ready**
 
 ---

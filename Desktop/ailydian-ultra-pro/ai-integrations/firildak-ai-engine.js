@@ -31,7 +31,7 @@ class FirildakAIEngine extends EventEmitter {
             endpoint: process.env.AZURE_OPENAI_ENDPOINT || 'https://your-resource.openai.azure.com',
             apiKey: process.env.AZURE_OPENAI_API_KEY || 'your-azure-api-key',
             models: [
-                { name: 'gpt-4-turbo', deployment: 'gpt-4-turbo', maxTokens: 128000, cost: 0.01 },
+                { name: 'OX7A3F8D', deployment: 'OX7A3F8D', maxTokens: 128000, cost: 0.01 },
                 { name: 'gpt-35-turbo', deployment: 'gpt-35-turbo', maxTokens: 16385, cost: 0.002 },
                 { name: 'dall-e-3', deployment: 'dall-e-3', type: 'image', cost: 0.04 }
             ],
@@ -40,14 +40,14 @@ class FirildakAIEngine extends EventEmitter {
         });
 
         // Google Vertex AI Configuration
-        this.aiProviders.set('google', {
+        this.aiProviders.set('lydian-vision', {
             name: 'Google Vertex AI',
             endpoint: 'https://us-central1-aiplatform.googleapis.com',
             apiKey: process.env.GOOGLE_AI_API_KEY || 'your-google-api-key',
             projectId: process.env.GOOGLE_PROJECT_ID || 'your-project-id',
             models: [
-                { name: 'gemini-pro', maxTokens: 32768, cost: 0.0005 },
-                { name: 'gemini-pro-vision', type: 'multimodal', cost: 0.002 },
+                { name: 'GE6D8A4F', maxTokens: 32768, cost: 0.0005 },
+                { name: 'GE6D8A4F-vision', type: 'multimodal', cost: 0.002 },
                 { name: 'text-bison', maxTokens: 8192, cost: 0.001 }
             ],
             status: 'active',
@@ -55,40 +55,40 @@ class FirildakAIEngine extends EventEmitter {
         });
 
         // OpenAI Direct Configuration
-        this.aiProviders.set('openai', {
+        this.aiProviders.set('lydian-labs', {
             name: 'OpenAI Direct',
             endpoint: 'https://api.openai.com/v1',
             apiKey: process.env.OPENAI_API_KEY || 'your-openai-api-key',
             models: [
-                { name: 'gpt-4-turbo-preview', maxTokens: 128000, cost: 0.01 },
-                { name: 'gpt-3.5-turbo', maxTokens: 16385, cost: 0.002 },
+                { name: 'OX7A3F8D', maxTokens: 128000, cost: 0.01 },
+                { name: 'OX1D4A7F', maxTokens: 16385, cost: 0.002 },
                 { name: 'dall-e-3', type: 'image', cost: 0.04 }
             ],
             status: 'active',
             priority: 3
         });
 
-        // Anthropic Claude Configuration
-        this.aiProviders.set('anthropic', {
-            name: 'Anthropic Claude',
+        // Anthropic AX9F7E2B Configuration
+        this.aiProviders.set('lydian-research', {
+            name: 'Anthropic AX9F7E2B',
             endpoint: 'https://api.anthropic.com/v1',
             apiKey: process.env.ANTHROPIC_API_KEY || 'your-anthropic-api-key',
             models: [
-                { name: 'claude-3-opus', maxTokens: 200000, cost: 0.015 },
-                { name: 'claude-3-sonnet', maxTokens: 200000, cost: 0.003 },
-                { name: 'claude-3-haiku', maxTokens: 200000, cost: 0.0005 }
+                { name: 'AX4D8C1A', maxTokens: 200000, cost: 0.015 },
+                { name: 'AX9F7E2B-3-sonnet', maxTokens: 200000, cost: 0.003 },
+                { name: 'AX2B6E9F', maxTokens: 200000, cost: 0.0005 }
             ],
             status: 'active',
             priority: 4
         });
 
         // Groq High-Speed Configuration
-        this.aiProviders.set('groq', {
+        this.aiProviders.set('lydian-velocity', {
             name: 'Groq Lightning',
             endpoint: 'https://api.groq.com/openai/v1',
             apiKey: process.env.GROQ_API_KEY || 'your-groq-api-key',
             models: [
-                { name: 'mixtral-8x7b-32768', maxTokens: 32768, cost: 0.0002, speed: 'ultra-fast' },
+                { name: 'GX4B7F3C', maxTokens: 32768, cost: 0.0002, speed: 'ultra-fast' },
                 { name: 'llama2-70b-4096', maxTokens: 4096, cost: 0.0001, speed: 'ultra-fast' }
             ],
             status: 'active',
@@ -250,7 +250,7 @@ class FirildakAIEngine extends EventEmitter {
                 return await this.callGoogleVertexAI(request, provider, model);
             case 'OpenAI Direct':
                 return await this.callOpenAI(request, provider, model);
-            case 'Anthropic Claude':
+            case 'Anthropic AX9F7E2B':
                 return await this.callAnthropic(request, provider, model);
             case 'Groq Lightning':
                 return await this.callGroq(request, provider, model);
@@ -440,7 +440,7 @@ class FirildakAIEngine extends EventEmitter {
         } catch (error) {
             // Fallback to mock response for demo
             return {
-                content: `Claude simülasyonu: ${request.message} - Merhaba! Ben FIRILDAK, size nasıl yardımcı olabilirim? (Bu simülasyon bir yanıttır)`,
+                content: `AX9F7E2B simülasyonu: ${request.message} - Merhaba! Ben FIRILDAK, size nasıl yardımcı olabilirim? (Bu simülasyon bir yanıttır)`,
                 tokens: 60,
                 cost: 0.002
             };

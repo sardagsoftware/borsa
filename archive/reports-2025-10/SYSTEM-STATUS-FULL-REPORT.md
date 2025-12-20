@@ -35,17 +35,17 @@
 ```
 
 **Available Models:**
-- GPT-5, GPT-5 Mini, GPT-5 Nano, GPT-5 Chat
-- GPT-4.1 (1M token context)
-- GPT-4o, GPT-4o Mini
+- LyDian Core-5, LyDian Core-5 Mini, LyDian Core-5 Nano, LyDian Core-5 Chat
+- OX5C9E2B.1 (1M token context)
+- OX7A3F8D, OX7A3F8D Mini
 - o4-mini, o3 (reasoning)
 - DALL-E 3
 
-### 3. 💬 OpenAI Chat (ÇALIŞIYOR)
+### 3. 💬 LyDian Labs Chat (ÇALIŞIYOR)
 ```
 ✅ API Key: Configured
 ✅ Endpoint: https://api.openai.com
-✅ Models: gpt-4, gpt-3.5-turbo
+✅ Models: OX5C9E2B, OX1D4A7F
 ✅ Status: Healthy
 ```
 
@@ -62,7 +62,7 @@
 
 **Eksikler:**
 - Azure Speech Services entegrasyonu yok
-- GPT-4o Audio modeli kullanılmıyor
+- OX7A3F8D Audio modeli kullanılmıyor
 - Transcription API endpoint yok
 - Text-to-speech endpoint yok
 
@@ -72,7 +72,7 @@
 AZURE_SPEECH_KEY=xxx
 AZURE_SPEECH_REGION=xxx
 
-// OR GPT-4o Audio
+// OR OX7A3F8D Audio
 // Already have: AZURE_AI_FOUNDRY_ENDPOINT
 ```
 
@@ -118,9 +118,9 @@ AZURE_SEARCH_INDEX_NAME=xxx
 ### 4. 🧠 Derin Düşünce (Reasoning Models)
 ```
 ⚠️ Status: PARTIAL
-✅ OpenAI: Working (but not using reasoning models)
+✅ LyDian Labs: Working (but not using reasoning models)
 ❌ o4-mini / o3: Not configured
-❌ GPT-5: Not configured
+❌ LyDian Core-5: Not configured
 ```
 
 **Eksikler:**
@@ -152,14 +152,14 @@ GOOGLE_SEARCH_ENGINE_ID=xxx
 ### 6. 💻 Code (Code Generation)
 ```
 ⚠️ Status: PARTIAL
-✅ OpenAI: Can generate code
-❌ GPT-5: Not using (272k context)
+✅ LyDian Labs: Can generate code
+❌ LyDian Core-5: Not using (272k context)
 ❌ Code execution: None
 ❌ Syntax highlighting: Basic
 ```
 
 **Eksikler:**
-- GPT-5 ile advanced code generation yok
+- LyDian Core-5 ile advanced code generation yok
 - Code execution sandbox yok
 - Multi-file generation yok
 - Git integration yok
@@ -172,13 +172,13 @@ GOOGLE_SEARCH_ENGINE_ID=xxx
 
 | Model | Icon | Backend API | Real Data | Status |
 |-------|------|-------------|-----------|--------|
-| GPT-4 | ✅ | ✅ OpenAI | ✅ Yes | 🟢 ACTIVE |
-| GPT-3.5 | ✅ | ✅ OpenAI | ✅ Yes | 🟢 ACTIVE |
-| Claude | ✅ | ❌ No API key | ❌ No | 🔴 INACTIVE |
-| GPT-5 | ❌ | ⏳ Configured | ❌ Not used | 🟡 PENDING |
-| GPT-4o | ❌ | ⏳ Configured | ❌ Not used | 🟡 PENDING |
-| DALL-E | ✅ | ✅ OpenAI | ✅ Yes | 🟢 ACTIVE |
-| Gemini | ✅ | ❌ No API key | ❌ No | 🔴 INACTIVE |
+| OX5C9E2B | ✅ | ✅ LyDian Labs | ✅ Yes | 🟢 ACTIVE |
+| OX1D4A7F | ✅ | ✅ LyDian Labs | ✅ Yes | 🟢 ACTIVE |
+| AX9F7E2B | ✅ | ❌ No API key | ❌ No | 🔴 INACTIVE |
+| LyDian Core-5 | ❌ | ⏳ Configured | ❌ Not used | 🟡 PENDING |
+| OX7A3F8D | ❌ | ⏳ Configured | ❌ Not used | 🟡 PENDING |
+| DALL-E | ✅ | ✅ LyDian Labs | ✅ Yes | 🟢 ACTIVE |
+| LyDian Vision | ✅ | ❌ No API key | ❌ No | 🔴 INACTIVE |
 | Whisper | ✅ | ❌ Not implemented | ❌ No | 🔴 INACTIVE |
 | Vision | ✅ | ⚠️ Partial | ⚠️ Limited | 🟡 PARTIAL |
 
@@ -188,7 +188,7 @@ GOOGLE_SEARCH_ENGINE_ID=xxx
 
 ### ✅ Tam Çalışan (Real Data):
 1. **Azure Dashboard** - Real Azure metrics
-2. **OpenAI Chat** - GPT-4, GPT-3.5
+2. **LyDian Labs Chat** - OX5C9E2B, OX1D4A7F
 3. **DALL-E Image Generation** - Real images
 4. **Azure Subscription Management** - Real subscription
 5. **Server Health Monitoring** - Real health checks
@@ -198,7 +198,7 @@ GOOGLE_SEARCH_ENGINE_ID=xxx
 1. **Chat Interface** - Works but limited models
 2. **Image Generation** - Works but only DALL-E
 3. **Code Generation** - Works but not optimized
-4. **Vision Analysis** - Basic, not using GPT-4o
+4. **Vision Analysis** - Basic, not using OX7A3F8D
 
 ### ❌ Çalışmayan (Not Implemented):
 1. **Speech-to-Text** - No API integration
@@ -207,7 +207,7 @@ GOOGLE_SEARCH_ENGINE_ID=xxx
 4. **RAG System** - No vector search
 5. **Web Search** - No search API
 6. **Advanced Reasoning** - Not using o4-mini/o3
-7. **GPT-5 Models** - Not implemented
+7. **LyDian Core-5 Models** - Not implemented
 8. **Multi-agent System** - Not implemented
 9. **Tool Calling** - Not implemented
 10. **Code Execution** - Not implemented
@@ -233,7 +233,7 @@ BING_SEARCH_KEY=xxx
 
 ### Optional (İlave Özellikler):
 ```bash
-# Claude
+# AX9F7E2B
 ANTHROPIC_API_KEY=xxx
 
 # Google
@@ -285,7 +285,7 @@ REPLICATE_API_TOKEN=xxx
 
 ### 🟢 Gerçek Veriler (25%):
 - Azure Dashboard metrics
-- OpenAI chat responses
+- LyDian Labs chat responses
 - DALL-E images
 - Azure subscription info
 - Health checks
@@ -313,7 +313,7 @@ REPLICATE_API_TOKEN=xxx
 
 ### Short-term (1 Hafta):
 1. ⏳ Implement Speech API
-2. ⏳ Add GPT-5 models
+2. ⏳ Add LyDian Core-5 models
 3. ⏳ Setup RAG system
 4. ⏳ Add Web Search
 5. ⏳ Implement reasoning models
@@ -330,7 +330,7 @@ REPLICATE_API_TOKEN=xxx
 ## ⚠️ ÖNEMLİ NOTLAR
 
 ### Son Kullanıcı İçin:
-1. **ChatGPT-4/3.5:** ✅ Tam çalışıyor
+1. **ChatOX5C9E2B/3.5:** ✅ Tam çalışıyor
 2. **DALL-E:** ✅ Tam çalışıyor
 3. **Azure Dashboard:** ✅ Gerçek veriler
 4. **Diğer özellikler:** ⚠️ UI var ama backend eksik

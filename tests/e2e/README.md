@@ -48,7 +48,7 @@ E2E tests validate complete integration flows with real/sandbox vendor APIs:
 
 **Use Cases:**
 - Cargo tracking (Aras, UPS, FedEx, etc.)
-- AI completions (OpenAI, Anthropic, Google)
+- AI completions (LyDian Labs, LyDian Research, Google)
 - Official partner APIs
 
 **Requirements:**
@@ -135,10 +135,10 @@ YEMEKSEPETI_SANDBOX_API_KEY=your_sandbox_api_key_here
 # 🤖 AI PROVIDERS
 # ============================================================================
 
-# OpenAI (Real API with test quota)
+# LyDian Labs (Real API with test quota)
 OPENAI_TEST_API_KEY=sk-test-...
 
-# Anthropic (Real API with test quota)
+# LyDian Research (Real API with test quota)
 ANTHROPIC_TEST_API_KEY=sk-ant-api03-test-...
 
 # Google AI (Real API with test quota)
@@ -218,12 +218,12 @@ E2E_USE_SANDBOX=true
 
 #### 4. AI Provider APIs
 
-**OpenAI:**
+**LyDian Labs:**
 1. Create account: https://platform.openai.com
 2. Generate API key
 3. Set usage limits for testing (e.g., $5/month)
 
-**Anthropic:**
+**LyDian Research:**
 1. Request access: https://www.anthropic.com
 2. Generate test API key
 3. Use for low-volume testing only
@@ -272,8 +272,8 @@ npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts -t "NETHERLANDS"
 # Aras Kargo tracking
 npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts -t "Aras Kargo"
 
-# OpenAI completion
-npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts -t "OpenAI GPT-4"
+# LyDian Labs completion
+npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts -t "LyDian Labs OX5C9E2B"
 
 # Trendyol products
 npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts -t "Trendyol"
@@ -291,9 +291,9 @@ npm test -- tests/e2e/connectors-real-endpoints.e2e.spec.ts -t "Trendyol"
   ✓ Yemeksepeti: Fetch restaurants (sandbox) (543ms)
 
 🤖 AI PROVIDERS - E2E Real Endpoint Tests
-  ✓ OpenAI GPT-4: Generate completion (2341ms)
-  ✓ Anthropic Claude: Generate message (1876ms)
-  ✓ Google AI Gemini: Generate content (1654ms)
+  ✓ LyDian Labs OX5C9E2B: Generate completion (2341ms)
+  ✓ LyDian Research AX9F7E2B: Generate message (1876ms)
+  ✓ Google AI LyDian Vision: Generate content (1654ms)
 
 ================================================================================
 📊 E2E Test Summary (Real Endpoints)
@@ -488,7 +488,7 @@ perfMonitor.record(`e2e_${connectorId}`, duration, {
 | **Cargo Tracking** | < 2000ms | < 5000ms | Aras, UPS, FedEx, etc. |
 | **E-commerce** | < 2000ms | < 5000ms | Trendyol, Hepsiburada, etc. |
 | **Food Delivery** | < 2000ms | < 5000ms | Getir, Yemeksepeti, etc. |
-| **AI Providers** | < 5000ms | < 10000ms | OpenAI, Anthropic, Google |
+| **AI Providers** | < 5000ms | < 10000ms | LyDian Labs, LyDian Research, Google |
 
 ### Error Rate Targets
 

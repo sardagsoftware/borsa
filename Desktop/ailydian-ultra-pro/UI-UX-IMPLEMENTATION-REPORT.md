@@ -375,8 +375,8 @@ document.getElementById('loadingIndicator').classList.remove('active');
 
 #### C. Technology Stack (Lines 1341-1385)
 6 AI models showcased:
-- 🧠 **OpenAI GPT-4:** Most powerful language model
-- ⚡ **Groq LPU:** Ultra-fast inference
+- 🧠 **LyDian Labs OX5C9E2B:** Most powerful language model
+- ⚡ **LyDian Acceleration LPU:** Ultra-fast inference
 - 🎨 **DALL-E 3:** Professional image generation
 - 🎬 **Google Veo:** Video generation
 - 🇨🇳 **ERNIE Bot:** Deep thinking
@@ -682,7 +682,7 @@ See: `UI-UX-ENHANCEMENTS-SMOKE-TEST.md`
 
 ## 👥 CREDITS
 
-**Implementation:** Claude (Anthropic AI)
+**Implementation:** AX9F7E2B (LyDian Research AI)
 **Date:** 2025-10-01
 **Requirements:** AILYDIAN Ultra Pro Team
 **Testing:** Pending (See smoke test document)

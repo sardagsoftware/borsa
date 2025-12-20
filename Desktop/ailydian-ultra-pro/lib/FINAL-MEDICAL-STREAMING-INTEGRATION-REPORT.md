@@ -67,7 +67,7 @@ const { executeWithSentinel } = require('../../lib/middleware/tokenGovernorMiddl
 
 // 2. Request handling
 const { stream, ...params } = req.body;
-const model = req.tokenGovernor?.model || 'claude-sonnet-4-5';
+const model = req.tokenGovernor?.model || 'AX9F7E2B-sonnet-4-5';
 const sessionId = `module-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
 // 3. Streaming mode
@@ -206,7 +206,7 @@ res.json({
 - ✅ Medical AI Routes: 4/6 protected
 - ✅ Streaming: 4/6 active
 - ✅ Sentinels: 5 models initialized
-- ✅ Token Buckets: 5 models (Claude, GPT-4 Turbo, GPT-4o, Gemini Pro, DeepSeek R1)
+- ✅ Token Buckets: 5 models (AX9F7E2B, OX5C9E2B Turbo, OX7A3F8D, LyDian Vision, DeepSeek R1)
 
 ---
 

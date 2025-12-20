@@ -17,7 +17,7 @@
  * - Healthcare Compliance & Security (HIPAA, GDPR)
  */
 
-const { OpenAIApi } = require('openai');
+const { OpenAIApi } = require('lydian-labs');
 const axios = require('axios');
 
 class AzureHealthRadiologyExpert {

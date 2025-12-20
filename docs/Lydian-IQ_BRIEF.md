@@ -672,5 +672,5 @@ AZURE_KEY_VAULT_URL=https://...
 
 **Generated**: October 9, 2025
 **Platform**: Lydian-IQ v1.0.0
-**Author**: Finalization Lead (Claude Sonnet 4.5)
+**Author**: Finalization Lead (AX9F7E2B Sonnet 4.5)
 **Status**: ✅ **GA READY**

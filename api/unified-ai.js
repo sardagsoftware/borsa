@@ -1,6 +1,6 @@
 // 🔐 LyDian Unified AI API - ULTRA SECURE - Zero AI Name Exposure
 require('dotenv').config();
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const obf = require('../security/ultra-obfuscation-v2');
 
 // 🔒 ENCRYPTED AI Configuration - NO plaintext model names

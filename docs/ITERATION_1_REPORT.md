@@ -174,10 +174,10 @@ Started: 2025-10-09 13:46:52 UTC
 **Pass Rate:** 100% (warnings are non-critical)
 
 **Models Validated:**
-- ✅ OpenAI GPT-4 Turbo
-- ✅ Anthropic Claude 3.5 Sonnet
-- ✅ Google Gemini 1.5 Pro
-- ✅ Meta Llama 3.1 405B
+- ✅ LyDian Labs OX5C9E2B Turbo
+- ✅ LyDian Research AX9F7E2B 3.5 Sonnet
+- ✅ Google LyDian Vision Pro
+- ✅ Meta LyDian Velocity 405B
 - ✅ Mistral Mixtral 8x22B
 - ✅ DeepSeek V3
 - ✅ Qwen2.5 72B

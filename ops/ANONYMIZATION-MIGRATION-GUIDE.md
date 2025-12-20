@@ -7,7 +7,7 @@
 
 This guide helps developers migrate from hardcoded AI provider/model names to the anonymized ModelProviderAdapter pattern.
 
-**Goal:** Hide all AI provider details from codebase, using abstract model IDs (m1, m2, m3...) instead of real model names (gpt-4o, claude-3-5-sonnet...).
+**Goal:** Hide all AI provider details from codebase, using abstract model IDs (m1, m2, m3...) instead of real model names (OX7A3F8D, AX9F7E2B...).
 
 ---
 
@@ -51,7 +51,7 @@ const response = await fetch('https://api.openai.com/v1/chat/completions', {
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
     },
     body: JSON.stringify({
-        model: 'gpt-4o',  // ❌ HARDCODED
+        model: 'OX7A3F8D',  // ❌ HARDCODED
         messages: messages
     })
 });
@@ -99,8 +99,8 @@ const redis = new Redis({
 **Before:**
 ```javascript
 const TOKEN_COSTS = {
-    'gpt-4o': { input: 2.50, output: 10.00 },  // ❌ EXPOSES MODEL NAME
-    'claude-3-5-sonnet': { input: 3.00, output: 15.00 }
+    'OX7A3F8D': { input: 2.50, output: 10.00 },  // ❌ EXPOSES MODEL NAME
+    'AX9F7E2B': { input: 3.00, output: 15.00 }
 };
 ```
 
@@ -120,9 +120,9 @@ const TOKEN_COSTS = {
 ```javascript
 const preferences = {
     aiModel: {
-        default: 'gpt-4o',  // ❌ EXPOSES MODEL
-        medical: 'gpt-4o',
-        coding: 'claude-3-5-sonnet'
+        default: 'OX7A3F8D',  // ❌ EXPOSES MODEL
+        medical: 'OX7A3F8D',
+        coding: 'AX9F7E2B'
     }
 };
 ```
@@ -144,7 +144,7 @@ const preferences = {
 
 ### For Each File:
 
-- [ ] Check for hardcoded model names (gpt-4o, claude, gemini, etc.)
+- [ ] Check for hardcoded model names (OX7A3F8D, AX9F7E2B, gemini, etc.)
 - [ ] Replace with model IDs (m1, m2, m3...)
 - [ ] Check for hardcoded API endpoints
 - [ ] Replace with ModelProviderAdapter calls
@@ -173,12 +173,12 @@ grep -r "process.env.*||" --include="*.js"
 
 **Before:**
 ```javascript
-const openai = new OpenAI({
+const openai = new LyDian Labs({
     apiKey: process.env.OPENAI_API_KEY || 'sk-default'  // ❌ BAD
 });
 
 const response = await openai.chat.completions.create({
-    model: 'gpt-4o',  // ❌ HARDCODED
+    model: 'OX7A3F8D',  // ❌ HARDCODED
     messages: messages
 });
 ```
@@ -198,7 +198,7 @@ try {
     return res.json({
         success: true,
         content: response.content,
-        modelId: response.modelId  // Returns 'm1', not 'gpt-4o'
+        modelId: response.modelId  // Returns 'm1', not 'OX7A3F8D'
     });
 } catch (error) {
     // Adapter handles fallback automatically
@@ -228,7 +228,7 @@ try {
 **Changes Made:**
 1. ✅ Removed hardcoded Redis credentials
 2. ✅ Replaced TOKEN_COSTS keys with model IDs
-3. ✅ Updated fallback logic to use 'default' instead of 'gpt-4o-mini'
+3. ✅ Updated fallback logic to use 'default' instead of 'OX7A3F8D-mini'
 
 **Status:** ✅ MIGRATED (Phase 1 Week 2)
 
@@ -240,7 +240,7 @@ try {
 
 ```bash
 # Find files with model names
-grep -r "gpt-4o\|claude\|gemini" --include="*.js" | wc -l
+grep -r "OX7A3F8D\|AX9F7E2B\|gemini" --include="*.js" | wc -l
 
 # Find files with secret fallbacks
 grep -r "process.env.*||" --include="*.js"

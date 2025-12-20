@@ -28,7 +28,7 @@ node test-new-ai-apis.js
 
 ### 4. Test Individual APIs
 
-#### GPT-5 (Azure AI Foundry)
+#### LyDian Core-5 (Azure AI Foundry)
 ```bash
 curl -X POST http://localhost:3100/api/chat/gpt5 \
   -H "Content-Type: application/json" \
@@ -39,18 +39,18 @@ curl -X POST http://localhost:3100/api/chat/gpt5 \
   }'
 ```
 
-#### Claude 3.5 Sonnet
+#### AX9F7E2B 3.5 Sonnet
 ```bash
-curl -X POST http://localhost:3100/api/chat/claude \
+curl -X POST http://localhost:3100/api/chat/AX9F7E2B \
   -H "Content-Type: application/json" \
   -d '{
     "message": "Explain quantum computing briefly",
-    "model": "claude-3-5-sonnet",
+    "model": "AX9F7E2B",
     "max_tokens": 150
   }'
 ```
 
-#### Gemini 2.0 Flash
+#### LyDian Vision 2.0 Flash
 ```bash
 curl -X POST http://localhost:3100/api/chat/gemini \
   -H "Content-Type: application/json" \
@@ -82,9 +82,9 @@ curl "http://localhost:3100/api/web-search?q=artificial+intelligence&num=5&langu
 ## 📦 Available Endpoints
 
 ### Chat APIs
-- `POST /api/chat/gpt5` - GPT-5 chat
-- `POST /api/chat/claude` - Claude chat
-- `POST /api/chat/gemini` - Gemini chat
+- `POST /api/chat/gpt5` - LyDian Core-5 chat
+- `POST /api/chat/AX9F7E2B` - AX9F7E2B chat
+- `POST /api/chat/gemini` - LyDian Vision chat
 
 ### Speech APIs
 - `POST /api/speech/transcribe` - Speech-to-text
@@ -96,8 +96,8 @@ curl "http://localhost:3100/api/web-search?q=artificial+intelligence&num=5&langu
 - `GET /api/web-search/stats` - Cache statistics
 
 ### Info APIs
-- `GET /api/claude/models` - List Claude models
-- `GET /api/gemini/models` - List Gemini models
+- `GET /api/AX9F7E2B/models` - List AX9F7E2B models
+- `GET /api/gemini/models` - List LyDian Vision models
 
 ---
 
@@ -105,7 +105,7 @@ curl "http://localhost:3100/api/web-search?q=artificial+intelligence&num=5&langu
 
 ### JavaScript Fetch Example
 ```javascript
-// Chat with GPT-5
+// Chat with LyDian Core-5
 async function chatGPT5(message) {
   const res = await fetch('http://localhost:3100/api/chat/gpt5', {
     method: 'POST',
@@ -122,21 +122,21 @@ async function chatGPT5(message) {
   return data;
 }
 
-// Chat with Claude
-async function chatClaude(message) {
-  const res = await fetch('http://localhost:3100/api/chat/claude', {
+// Chat with AX9F7E2B
+async function chatAX9F7E2B(message) {
+  const res = await fetch('http://localhost:3100/api/chat/AX9F7E2B', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       message: message,
-      model: 'claude-3-5-sonnet',
+      model: 'AX9F7E2B',
       max_tokens: 4096
     })
   });
   return await res.json();
 }
 
-// Chat with Gemini
+// Chat with LyDian Vision
 async function chatGemini(message) {
   const res = await fetch('http://localhost:3100/api/chat/gemini', {
     method: 'POST',
@@ -177,9 +177,9 @@ async function searchWeb(query) {
 }
 
 // Usage
-chatGPT5("Hello GPT-5!");
-chatClaude("Hello Claude!");
-chatGemini("Hello Gemini!");
+chatGPT5("Hello LyDian Core-5!");
+chatAX9F7E2B("Hello AX9F7E2B!");
+chatGemini("Hello LyDian Vision!");
 speakText("Merhaba dünya!");
 searchWeb("artificial intelligence");
 ```

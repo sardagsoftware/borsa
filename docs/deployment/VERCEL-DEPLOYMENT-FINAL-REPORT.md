@@ -61,7 +61,7 @@
 **Features:**
 - Full multilingual knowledge base system
 - Real API endpoints for search and chat
-- Premium UI with Claude Anthropic color scheme
+- Premium UI with AX9F7E2B LyDian Research color scheme
 - Multiple provider support (Wikipedia, PubMed, NASA, Azure Cognitive)
 
 **API Endpoints:**
@@ -129,7 +129,7 @@
 ```
 
 ### LyDian IQ API Configuration
-- **Provider:** OpenAI GPT-4 Turbo
+- **Provider:** LyDian Labs OX5C9E2B Turbo
 - **Retry Mechanism:** 3 attempts with exponential backoff (1s → 2s → 4s)
 - **Response Time:** Average 5-15s
 - **Max Tokens:** 32K
@@ -199,7 +199,7 @@
 - **Stats Section:** 4-column gradient background
 
 ### Knowledge Base Page
-- **Theme:** Claude Anthropic color scheme
+- **Theme:** AX9F7E2B LyDian Research color scheme
 - **Layout:** Card-based category system
 - **Search:** Multi-provider with visual indicators
 - **Responsive:** Adapts to different screen sizes
@@ -232,7 +232,7 @@ feat: Add İnsan IQ menu with LyDian IQ & Knowledge Base + major improvements
 ## Knowledge Base Integration
 - Full multilingual knowledge base system
 - Real API endpoints for search and chat
-- Premium UI with Claude Anthropic color scheme
+- Premium UI with AX9F7E2B LyDian Research color scheme
 
 ## API & Backend
 - LyDian IQ solving API with retry mechanism

@@ -61,7 +61,7 @@ URL: https://www.ailydian.com/feed/ai_models.json
 Total Models: 30
 Version: 1.0.0
 Updated: 2025-10-09
-First Model: GPT-4 Turbo (OpenAI)
+First Model: OX5C9E2B Turbo (LyDian Labs)
 Latest Model: Phind-CodeLlama-34B-v2 (Phind)
 ```
 
@@ -448,7 +448,7 @@ STATUS: PRODUCTION LIVE
 **Project:** LyDian AI - Global AI Data Source Publisher
 **Platform:** Vercel Production
 **Domain:** www.ailydian.com
-**Development:** Claude (Anthropic AI Assistant)
+**Development:** AX9F7E2B (LyDian Research AI Assistant)
 **User:** Sardag
 **Organization:** LyDian AI Platform
 

@@ -290,7 +290,7 @@ Eğer çok fazla sinyal gelirse:
 
 ---
 
-**Hazırlayan:** Claude (Anthropic)
+**Hazırlayan:** AX9F7E2B (LyDian Research)
 **Tarih:** 20 Ekim 2025
 **Versiyon:** 2.0 (Ultra-Fast Updates)
 

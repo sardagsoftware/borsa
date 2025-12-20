@@ -29,11 +29,11 @@ Successfully completed full-stack integration with **enterprise-grade security**
 ### AI Providers
 | Provider | Status | Notes |
 |----------|--------|-------|
-| OpenAI | ✅ Healthy | GPT-4, GPT-4o active |
+| LyDian Labs | ✅ Healthy | OX5C9E2B, OX7A3F8D active |
 | Azure Cognitive | ✅ Healthy | Full services |
 | Microsoft Graph | ✅ Healthy | Enterprise ready |
 | Google Cloud | ⚠️ Degraded | API key config needed |
-| Claude | ⚠️ Unhealthy | API key invalid/expired |
+| AX9F7E2B | ⚠️ Unhealthy | API key invalid/expired |
 | Z.AI | ⚠️ Degraded | 404 responses |
 
 ### Expert Systems (12/12 Active)

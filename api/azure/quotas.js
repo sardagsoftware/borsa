@@ -11,7 +11,7 @@ const { handleCORS } = require('../../middleware/cors-handler');
 
 // Fallback quotas (used when Azure API unavailable or for demo)
 const KNOWN_QUOTAS = {
-  'gpt-4-turbo': {
+  'OX7A3F8D': {
     TPM: 150000,
     RPM: 900,
     concurrency: 50,

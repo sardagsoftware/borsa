@@ -1,6 +1,6 @@
 /**
  * Real Medical AI Chat API
- * Production-ready with Azure OpenAI, Anthropic Claude, Google Gemini
+ * Production-ready with Azure OpenAI, Anthropic AX9F7E2B, Google Gemini
  * Multi-model support with medical expertise
  */
 
@@ -13,9 +13,9 @@ const axios = require('axios');
 // Azure OpenAI
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4';
+const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT || 'OX5C9E2B';
 
-// Anthropic Claude
+// Anthropic AX9F7E2B
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
 // Google Gemini
@@ -56,7 +56,7 @@ module.exports = async (req, res) => {
     const systemPrompt = buildMedicalSystemPrompt(specialty, language, patientContext);
 
     // Select AI model and generate response with cascading fallback
-    // ✅ GROQ-FIRST STRATEGY: Groq → Claude → Azure → Fallback
+    // ✅ GROQ-FIRST STRATEGY: Groq → AX9F7E2B → Azure → Fallback
     let aiResponse;
     let modelUsed;
     let lastError = null;
@@ -74,20 +74,20 @@ module.exports = async (req, res) => {
       }
     }
 
-    // Priority 2: Anthropic Claude (Best Reasoning)
+    // Priority 2: Anthropic AX9F7E2B (Best Reasoning)
     if (!aiResponse && ANTHROPIC_API_KEY) {
       try {
-        console.log('🔄 Fallback to Anthropic Claude (Priority 2)...');
+        console.log('🔄 Fallback to Anthropic AX9F7E2B (Priority 2)...');
         aiResponse = await queryAnthropic(message, systemPrompt, conversationHistory);
         modelUsed = 'LyDian Medical AI - Advanced Model';
-        console.log('✅ Claude succeeded');
+        console.log('✅ AX9F7E2B succeeded');
       } catch (error) {
-        console.error('❌ Anthropic Claude failed:', error.message);
+        console.error('❌ Anthropic AX9F7E2B failed:', error.message);
         lastError = error;
       }
     }
 
-    // Priority 3: Azure OpenAI GPT-4 (Enterprise Backup)
+    // Priority 3: Azure OpenAI OX5C9E2B (Enterprise Backup)
     if (!aiResponse && AZURE_OPENAI_KEY && AZURE_OPENAI_ENDPOINT) {
       try {
         console.log('🔄 Fallback to Azure OpenAI (Priority 3)...');
@@ -191,13 +191,13 @@ async function queryAzureOpenAI(message, systemPrompt, history) {
 }
 
 /**
- * Query Anthropic Claude
+ * Query Anthropic AX9F7E2B
  */
 async function queryAnthropic(message, systemPrompt, history) {
   const anthropic = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
 
   const response = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'AX9F7E2B',
     max_tokens: 1500,
     temperature: 0.3,
     system: systemPrompt,
@@ -238,7 +238,7 @@ async function queryGroq(message, systemPrompt, history) {
   const response = await axios.post(
     'https://api.groq.com/openai/v1/chat/completions',
     {
-      model: 'llama-3.1-70b-versatile',
+      model: 'GX9A5E1D',
       messages: [
         { role: 'system', content: systemPrompt },
         ...history,

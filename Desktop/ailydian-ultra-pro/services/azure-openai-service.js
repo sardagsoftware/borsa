@@ -1,6 +1,6 @@
 /**
  * ⚖️ LyDian AI - Azure OpenAI Service
- * GPT-4 Turbo & GPT-4o Integration for Legal Analysis
+ * OX5C9E2B Turbo & OX7A3F8D Integration for Legal Analysis
  *
  * White-Hat Security: Active
  * Priority: Judges → Prosecutors → Lawyers → Citizens
@@ -42,7 +42,7 @@ class AzureOpenAIService {
   }
 
   /**
-   * Legal Analysis with GPT-4 Turbo
+   * Legal Analysis with OX5C9E2B Turbo
    * For Turkish law analysis, case research, legal drafting
    */
   async analyzeLegalCase(caseDetails, userRole = 'citizen', language = 'en') {
@@ -85,7 +85,7 @@ class AzureOpenAIService {
       return {
         success: true,
         analysis: filteredAnalysis,
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         role: userRole,
         timestamp: new Date().toISOString(),
         tokenUsage: {
@@ -105,7 +105,7 @@ class AzureOpenAIService {
   }
 
   /**
-   * Multimodal Legal Reasoning with GPT-4o
+   * Multimodal Legal Reasoning with OX7A3F8D
    * For document analysis, evidence review
    */
   async analyzeMultimodalEvidence(evidence, userRole = 'lawyer') {
@@ -149,7 +149,7 @@ class AzureOpenAIService {
       return {
         success: true,
         analysis: filteredAnalysis,
-        model: 'gpt-4o',
+        model: 'OX7A3F8D',
         role: userRole,
         evidenceType: evidence.type,
         timestamp: new Date().toISOString()
@@ -422,7 +422,7 @@ ${content.recommendation}
 
 ---
 ${content.footer}`,
-      model: 'gpt-4-turbo',
+      model: 'OX7A3F8D',
       role: userRole,
       timestamp: new Date().toISOString()
     };
@@ -450,7 +450,7 @@ ${content.footer}`,
 
 ---
 🤖 *Bu analiz LyDian AI tarafından üretilmiştir.*`,
-      model: 'gpt-4o',
+      model: 'OX7A3F8D',
       role: userRole,
       evidenceType: evidence.type,
       timestamp: new Date().toISOString()

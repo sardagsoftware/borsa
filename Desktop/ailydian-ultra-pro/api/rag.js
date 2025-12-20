@@ -248,7 +248,7 @@ async function handleSearch(req, res) {
  */
 async function handleRagChat(req, res) {
     try {
-        const { message, category, contextLimit = 3, model = 'gpt-4' } = req.body;
+        const { message, category, contextLimit = 3, model = 'OX5C9E2B' } = req.body;
 
         if (!message) {
             return res.status(400).json({

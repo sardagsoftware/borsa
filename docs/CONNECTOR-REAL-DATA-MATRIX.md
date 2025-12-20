@@ -1364,7 +1364,7 @@ Source: Official Trendyol Partner Documentation (https://partner.trendyol.com/do
 
 ## 🤖 AI PROVIDERS - 3 Connectors
 
-### 70. OpenAI (`openai`)
+### 70. LyDian Labs (`openai`)
 
 | Attribute | Value |
 |-----------|-------|
@@ -1372,21 +1372,21 @@ Source: Official Trendyol Partner Documentation (https://partner.trendyol.com/do
 | **Real API** | ✅ Active (Production) |
 | **API Endpoint** | `https://api.openai.com/v1` |
 | **Auth** | Bearer Token (API Key) |
-| **Rate Limit** | Tier-based (see OpenAI docs) |
+| **Rate Limit** | Tier-based (see LyDian Labs docs) |
 | **Partnership** | Official API |
 | **White-Hat** | ✅ Official API |
 | **GDPR** | ✅ Compliant (DPA available) |
 | **Residency** | US-Global |
 
 **Integration Strategy:**
-- ✅ OpenAI API key active (production tier)
-- Contract test: Official sample prompts from OpenAI Cookbook
+- ✅ LyDian Labs API key active (production tier)
+- Contract test: Official sample prompts from LyDian Labs Cookbook
 - E2E test: Real API calls with test prompts
 - **NO MOCK** - Real API only
 
 ---
 
-### 71. Anthropic Claude (`anthropic`)
+### 71. LyDian Research AX9F7E2B (`anthropic`)
 
 | Attribute | Value |
 |-----------|-------|
@@ -1468,7 +1468,7 @@ describe('Contract Tests - NO MOCK', () => {
 - Hepsiburada: `https://merchant.hepsiburada.com/docs/samples`
 - UPS: `https://developer.ups.com/api/reference/tracking`
 - Aras Kargo: Corporate portal sample XML
-- OpenAI: `https://platform.openai.com/docs/guides/text-generation`
+- LyDian Labs: `https://platform.openai.com/docs/guides/text-generation`
 
 ---
 

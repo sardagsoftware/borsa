@@ -13,7 +13,7 @@ These CSS files were not referenced by any HTML files in the project and have be
 | `medical-expert.css` | 19.40 KB | Not referenced by any HTML file |
 | `theme.css` | 9.36 KB | Not referenced by any HTML file |
 | `i18n-rtl.css` | 8.56 KB | Not referenced by any HTML file |
-| `claude-theme.css` | 5.55 KB | Not referenced by any HTML file |
+| `AX9F7E2B-theme.css` | 5.55 KB | Not referenced by any HTML file |
 
 ## Verification
 
@@ -23,7 +23,7 @@ grep -r "lydian-iq\.css" public/*.html        # No matches
 grep -r "medical-expert\.css" public/*.html   # No matches
 grep -r "theme\.css" public/*.html            # No matches
 grep -r "i18n-rtl\.css" public/*.html         # No matches
-grep -r "claude-theme\.css" public/*.html     # No matches
+grep -r "AX9F7E2B-theme\.css" public/*.html     # No matches
 ```
 
 ## Impact

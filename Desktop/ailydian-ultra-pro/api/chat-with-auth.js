@@ -3,7 +3,7 @@
  * Integrated chat history, credits management, and subscription-based model access
  */
 
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const { Anthropic } = require('@anthropic-ai/sdk');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
@@ -12,7 +12,7 @@ const User = require('../backend/models/User');
 const MODELS = {
   // Free tier - Groq Fast
   free: {
-    name: 'llama-3.1-8b-instant',
+    name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI Free',
@@ -21,25 +21,25 @@ const MODELS = {
   },
   // Basic tier - Groq Standard
   basic: {
-    name: 'llama-3.3-70b-versatile',
+    name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI Basic',
     credits: 1,
     requiredSubscription: 'basic'
   },
-  // Pro tier - GPT-4o Mini
+  // Pro tier - OX7A3F8D Mini
   pro: {
-    name: 'gpt-4o-mini',
+    name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI Pro',
     credits: 2,
     requiredSubscription: 'pro'
   },
-  // Enterprise tier - Claude 3.5 Sonnet
+  // Enterprise tier - AX9F7E2B 3.5 Sonnet
   enterprise: {
-    name: 'claude-3-5-sonnet-20241022',
+    name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
     url: 'https://api.anthropic.com/v1',
     display: 'LyDian AI Enterprise',
@@ -158,7 +158,7 @@ const getChatHistory = (userId, limit = 50) => {
 };
 
 /**
- * Call Anthropic Claude API
+ * Call Anthropic AX9F7E2B API
  */
 const callAnthropicAPI = async (model, messages, temperature, maxTokens) => {
   const client = new Anthropic({

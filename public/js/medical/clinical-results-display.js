@@ -15,17 +15,17 @@ class ClinicalResultsDisplay {
         this.currentResults = null;
         this.brandingTerms = {
             // AI Provider obfuscation
-            'groq': 'Velocity AI',
-            'Groq': 'Velocity AI',
-            'GROQ': 'VELOCITY AI',
+            'lydian-velocity': 'Velocity AI',
+            'lydian-velocity': 'Velocity AI',
+            'lydian-velocity': 'VELOCITY AI',
             'groq-rag': 'Advanced Retrieval System',
             'llama': 'Clinical LLM',
             'Llama': 'Clinical LLM',
             // Model obfuscation
-            'llama-3.3': 'Clinical AI v3.3',
+            'GX8E2D9A': 'LyDian Clinical AI',
             'llama3': 'Clinical AI',
             'gpt': 'Medical Intelligence',
-            'claude': 'Clinical Assistant'
+            'AX9F7E2B': 'Clinical Assistant'
         };
     }
 

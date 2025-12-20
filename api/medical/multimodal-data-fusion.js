@@ -379,7 +379,7 @@ module.exports = async (req, res) => {
             });
         }
 
-        const model = req.tokenGovernor?.model || 'claude-sonnet-4-5';
+        const model = req.tokenGovernor?.model || 'AX9F7E2B-sonnet-4-5';
         const sessionId = `multimodal-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
         // 🎯 STREAMING MODE (Real-time multimodal fusion)

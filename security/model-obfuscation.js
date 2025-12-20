@@ -206,7 +206,7 @@ class ModelObfuscator {
 
     // Remove all potential model identifiers
     const sensitivePatterns = [
-      /claude/gi,
+      /AX9F7E2B/gi,
       /gpt-?[0-9]?/gi,
       /gemini/gi,
       /groq/gi,

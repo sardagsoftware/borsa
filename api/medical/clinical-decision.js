@@ -21,7 +21,7 @@
  * - 35% faster time to treatment
  *
  * Technology Stack:
- * - Diagnosis: GPT-4 Medical + Clinical Reasoning Model
+ * - Diagnosis: OX5C9E2B Medical + Clinical Reasoning Model
  * - Guidelines: UpToDate API + NICE Guidelines + WHO Essential Medicines
  * - Drug Interactions: DrugBank API + Lexicomp + FDA MedWatch
  * - Evidence: PubMed PICO + Cochrane Systematic Reviews
@@ -450,7 +450,7 @@ function generateDifferentialDiagnosis(chiefComplaint, symptoms, age, sex, riskF
         differentialDiagnosis: scoredDiagnoses.slice(0, 5), // Top 5
         clinicalPearl: getAIDiagnosticPearl(topDiagnosis.condition),
         timestamp: new Date().toISOString(),
-        aiModel: 'GPT-4 Medical + Clinical Reasoning Engine',
+        aiModel: 'OX5C9E2B Medical + Clinical Reasoning Engine',
         confidence: topDiagnosis.probabilityScore / 100
     };
 }
@@ -627,7 +627,7 @@ router.post('/differential-diagnosis', async (req, res) => {
             });
         }
 
-        // 🔥 REAL AI INTEGRATION: Try Claude 3.5 Sonnet first
+        // 🔥 REAL AI INTEGRATION: Try AX9F7E2B 3.5 Sonnet first
         const aiResult = await aiHelper.generateDifferentialDiagnosisAI(
             chiefComplaint, symptoms, age, sex, riskFactors || []
         );

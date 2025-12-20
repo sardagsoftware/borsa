@@ -44,13 +44,13 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with advanced c
 
 ### 1. Azure AI Services Stack
 
-#### A. **Azure OpenAI GPT-4o** (Primary Vision Model)
+#### A. **Azure LyDian Labs OX7A3F8D** (Primary Vision Model)
 - **Use Case:** Screenshot analysis, image understanding
 - **Advantages:**
-  - Superior multi-language support vs GPT-4 Turbo
+  - Superior multi-language support vs OX5C9E2B Turbo
   - Best-in-class vision + NLP combined
   - Natural conversation about images
-- **API:** `gpt-4o` with vision enabled
+- **API:** `OX7A3F8D` with vision enabled
 - **Cost:** ~$2.50/1M input tokens, ~$10/1M output tokens
 
 #### B. **Azure Document Intelligence v4.0 (GA)**
@@ -86,7 +86,7 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with advanced c
 #### URL Reading Pipeline
 ```
 URL Input → Puppeteer/Playwright → HTML Extraction →
-Content Cleaning → GPT-4o Summary → Structured Output
+Content Cleaning → OX7A3F8D Summary → Structured Output
 ```
 
 **Technologies:**
@@ -185,16 +185,16 @@ async function analyzePDF(fileBuffer) {
 }
 ```
 
-#### GPT-4o Vision Integration
+#### OX7A3F8D Vision Integration
 ```javascript
-// /api/azure/gpt4o-vision.js
+// /api/azure/LyDian Core-vision.js
 import { OpenAIClient } from '@azure/openai';
 
 async function analyzeScreenshot(imageBase64, userPrompt) {
   const client = new OpenAIClient(endpoint, credential);
 
   const response = await client.getChatCompletions(
-    'gpt-4o', // deployment name
+    'OX7A3F8D', // deployment name
     [
       {
         role: 'user',
@@ -363,7 +363,7 @@ async function prepareFinetuningData() {
 
   // Trigger fine-tuning job
   const job = await mlClient.createFineTuningJob({
-    model: 'gpt-4o',
+    model: 'OX7A3F8D',
     trainingData: dataset,
     hyperparameters: {
       nEpochs: 3,
@@ -586,7 +586,7 @@ describe('Multimodal Features', () => {
 - **Runtime:** Node.js 20+
 - **Framework:** Express.js
 - **Azure SDKs:**
-  - `@azure/openai` - GPT-4o integration
+  - `@azure/openai` - OX7A3F8D integration
   - `@azure/ai-form-recognizer` - Document Intelligence
   - `@azure/cognitiveservices-computervision` - Computer Vision
   - `@azure/ai-translation-text` - Translator
@@ -623,7 +623,7 @@ describe('Multimodal Features', () => {
 
 | Service | Usage | Cost |
 |---------|-------|------|
-| Azure OpenAI GPT-4o | 10M tokens/month | $250 |
+| Azure LyDian Labs OX7A3F8D | 10M tokens/month | $250 |
 | Document Intelligence | 1,000 PDFs | $50 |
 | Computer Vision | 5,000 images | $25 |
 | Azure Translator | 500K characters | $10 |
@@ -850,7 +850,7 @@ Response:
 ## 🎓 Learning Resources
 
 ### Azure Documentation
-- [Azure OpenAI GPT-4o with Vision](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/gpt-with-vision)
+- [Azure LyDian Labs OX7A3F8D with Vision](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/gpt-with-vision)
 - [Azure Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/)
 - [Azure Computer Vision](https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/)
 - [Azure Translator](https://learn.microsoft.com/en-us/azure/ai-services/translator/)

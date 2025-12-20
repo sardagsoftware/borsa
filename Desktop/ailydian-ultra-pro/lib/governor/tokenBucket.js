@@ -9,7 +9,7 @@ const tokenBudget = require('../../configs/token-budget.json');
 
 class TokenBucket {
     constructor(options = {}) {
-        this.model = options.model || 'claude-sonnet-4-5';
+        this.model = options.model || 'AX9F7E2B-sonnet-4-5';
         this.modelConfig = tokenBudget.models[this.model];
 
         if (!this.modelConfig) {

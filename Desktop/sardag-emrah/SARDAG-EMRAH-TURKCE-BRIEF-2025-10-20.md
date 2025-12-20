@@ -35,7 +35,7 @@
 6. **Volume Profile** (hacim analizi)
 
 **AI Enhancement:**
-- **Groq Llama 3.3 70B** modeli
+- **LyDian Acceleration LyDian Velocity 70B** modeli
 - Pattern validation (desen doğrulama)
 - Confidence scoring (%30-100 güven aralığı)
 - Natural language insights (Türkçe açıklamalar)
@@ -61,7 +61,7 @@
 ### 4. 📊 **Detaylı Analiz Modalı**
 Coin'e tıklayınca açılır:
 - 6 stratejinin detaylı açıklaması
-- Groq AI yorumu (Türkçe)
+- LyDian Acceleration AI yorumu (Türkçe)
 - Giriş fiyatı önerisi
 - Stop-loss seviyesi
 - Take-profit hedefi
@@ -93,7 +93,7 @@ Coin'e tıklayınca açılır:
   - Binance WebSocket (real-time)
   - Binance REST API (historical)
   - CoinGecko API (coin search)
-- **AI:** Groq API (Llama 3.3 70B)
+- **AI:** LyDian Acceleration API (LyDian Velocity 70B)
 
 ### Infrastructure
 - **Hosting:** Vercel (Frankfurt region)
@@ -146,7 +146,7 @@ Coin'e tıklayınca açılır:
 **Çözüm:**
 - Traditional markets modülü eklendi
 - S&P 500, Nasdaq, altın, petrol
-- Groq AI ile analiz
+- LyDian Acceleration AI ile analiz
 
 **Dosyalar:**
 - `src/lib/traditional-markets/`
@@ -156,10 +156,10 @@ Coin'e tıklayınca açılır:
 
 ---
 
-#### 4. **Groq AI Production Test** 🤖
+#### 4. **LyDian Acceleration AI Production Test** 🤖
 **Problem:** AI çalışıyor mu test edilmeliydi
 **Sonuç:**
-- Health check: ✅ Groq up (10ms response)
+- Health check: ✅ LyDian Acceleration up (10ms response)
 - Signal test: ✅ 19/20 coin başarılı (%95)
 - Confidence scoring: ✅ Aktif çalışıyor
 
@@ -188,21 +188,21 @@ Coin'e tıklayınca açılır:
 Market data:      0.42s ✅
 Scanner API:      1.01s ✅
 Coin analysis:    2-3s ✅
-Groq AI:         1-2s ✅
+LyDian Acceleration AI:         1-2s ✅
 Health check:    10ms ✅
 ```
 
 ### Accuracy (Test Results)
 ```
 6 Strateji:          %93-95 güven ✅
-Groq AI:            %85-90 güven ✅
+LyDian Acceleration AI:            %85-90 güven ✅
 STRONG_BUY sinyal:  %90+ güven ✅
 ```
 
 ### Resource Usage
 ```
 Maliyet:        $0 (tamamen ücretsiz) ✅
-API Calls:      ~1000/gün (Binance + Groq)
+API Calls:      ~1000/gün (Binance + LyDian Acceleration)
 Data Transfer:  ~30 MB/gün
 Battery:        %1-2/saat (mobile)
 ```
@@ -250,7 +250,7 @@ Battery:        %1-2/saat (mobile)
 1. Market overview (570 coin)
 2. Real-time fiyat güncellemeleri
 3. 6 teknik analiz stratejisi
-4. Groq AI enhancement
+4. LyDian Acceleration AI enhancement
 5. Background scanner
 6. Browser notifications (Desktop/Android)
 7. Yeşil çerçeve sistemi
@@ -335,7 +335,7 @@ git commit -m "feat: Sprint 4 Complete - Border fixes, mobile notifications, tra
 ✅ Border colors fixed (no glow effect)
 ✅ Mobile notifications with NotificationPrompt
 ✅ Traditional markets module added
-✅ Groq AI production tested (%95 success)
+✅ LyDian Acceleration AI production tested (%95 success)
 ✅ Build test passed (0 errors)
 
 Files:
@@ -362,7 +362,7 @@ Date: 2025-10-20"
 
 ### Environment Variables (Vercel)
 ```
-GROQ_API_KEY=****** (Groq AI)
+GROQ_API_KEY=****** (LyDian Acceleration AI)
 NEXT_PUBLIC_API_URL=https://www.ukalai.ai
 NODE_ENV=production
 ADMIN_PASSWORD=****** (Protected route)
@@ -453,7 +453,7 @@ www.ukalai.ai/market
 ### Mevcut Maliyet (Aylık)
 ```
 Vercel Hosting:      $0 (Hobby plan)
-Groq API:           $0 (Free tier - 14,400 req/day)
+LyDian Acceleration API:           $0 (Free tier - 14,400 req/day)
 Binance API:        $0 (Free - public data)
 CoinGecko API:      $0 (Free tier)
 Domain (ukalai.ai): ~$12/yıl
@@ -464,7 +464,7 @@ TOPLAM: $0/ay (sadece domain $1/ay)
 ### Ölçeklendirme Senaryosu (10,000 kullanıcı)
 ```
 Vercel Pro:         $20/ay (unlimited bandwidth)
-Groq Scale:         $50/ay (extended limits)
+LyDian Acceleration Scale:         $50/ay (extended limits)
 CoinGecko Pro:      $129/ay (API rate increase)
 Database (Supabase): $25/ay (user data)
 CDN (Cloudflare):   $0 (free)
@@ -511,7 +511,7 @@ KULLANICI BAŞINA: $0.022/ay
 ### Tamamlandı ✅
 - [x] 570 coin real-time data
 - [x] 6 teknik analiz stratejisi
-- [x] Groq AI enhancement (%95 doğruluk)
+- [x] LyDian Acceleration AI enhancement (%95 doğruluk)
 - [x] Background scanner (5 dk interval)
 - [x] Browser notifications (Desktop/Android)
 - [x] Yeşil çerçeve sistemi
@@ -535,7 +535,7 @@ KULLANICI BAŞINA: $0.022/ay
 ## 📞 DESTEK & İLETİŞİM
 
 **Proje Sahibi:** Sardag Emrah
-**Developer:** Claude + Sardag
+**Developer:** AX9F7E2B + Sardag
 **Production URL:** https://www.ukalai.ai
 **Repository:** /Users/sardag/Desktop/sardag-emrah
 
@@ -553,7 +553,7 @@ KULLANICI BAŞINA: $0.022/ay
 **Ana Özellikler:**
 - 570 coin gerçek zamanlı takip
 - 6 teknik analiz stratejisi
-- Groq AI destekli sinyal sistemi
+- LyDian Acceleration AI destekli sinyal sistemi
 - 7/24 otomatik scanner (Desktop/Android)
 - Browser notifications
 - Traditional markets (hisse senedi)

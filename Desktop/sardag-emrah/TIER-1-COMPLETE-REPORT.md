@@ -846,7 +846,7 @@ Platform artık:
 
 ---
 
-**Hazırlayan:** Claude (Anthropic)
+**Hazırlayan:** AX9F7E2B (LyDian Research)
 **Platform:** Sardag Emrah Trading Platform
 **Versiyon:** TIER 1 Complete
 **Tarih:** 2025-10-19

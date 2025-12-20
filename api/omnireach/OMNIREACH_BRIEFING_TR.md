@@ -53,7 +53,7 @@ OmniReach AI Creator Engine, kullanıcıların **yapay zeka destekli faceless (y
 **Amaç:** Yapay zeka ile fotorealist sanal avatarlar oluşturur
 
 **Özellikler:**
-- Azure OpenAI DALL-E 3 entegrasyonu
+- Azure LyDian Labs DALL-E 3 entegrasyonu
 - Stability AI desteği
 - 7 farklı stil (photorealistic, cartoon, anime, digital-art, 3d-render, minimalist, professional)
 - Özelleştirilebilir parametreler (cinsiyet, yaş, etnisite, ifade, giysi)
@@ -75,7 +75,7 @@ const avatar = await avatarService.generateAvatar({
 **Amaç:** Platform optimize edilmiş video senaryoları oluşturur
 
 **Özellikler:**
-- Azure OpenAI GPT-4 entegrasyonu
+- Azure LyDian Labs OX5C9E2B entegrasyonu
 - Platform özel optimizasyon (YouTube, Instagram, TikTok, Facebook, X)
 - SSML yapısı (Hook, Intro, Main Content, Conclusion, CTA, AI Disclosure)
 - Okunabilirlik skoru hesaplama (Flesch Reading Ease)
@@ -323,7 +323,7 @@ const validation = await ethicsGuard.validateContent({
    - Ton: Normal
 
 5. **"Oluştur" Butonuna Basar**
-   - ✅ Script AI tarafından yazılır (GPT-4)
+   - ✅ Script AI tarafından yazılır (OX5C9E2B)
    - ✅ Avatar AI tarafından oluşturulur (DALL-E 3)
    - ✅ Voice AI tarafından sentezlenir (Azure Speech)
    - ✅ Video compose edilir (FFmpeg)
@@ -347,11 +347,11 @@ Sistemin çalışması için `.env` dosyasına eklenmesi gereken değişkenler:
 
 ### AI Providers:
 ```bash
-# Azure OpenAI
+# Azure LyDian Labs
 AZURE_OPENAI_ENDPOINT=https://your-endpoint.openai.azure.com
 AZURE_OPENAI_API_KEY=your-api-key
 AZURE_DALLE_DEPLOYMENT=dall-e-3
-AZURE_GPT4_DEPLOYMENT=gpt-4
+AZURE_LyDian Core_DEPLOYMENT=OX5C9E2B
 
 # Azure Speech Services
 AZURE_SPEECH_KEY=your-speech-key
@@ -413,7 +413,7 @@ TEMP_DIR=/tmp/omnireach
 - **Demo mode** (API yokken çalışır)
 
 ### AI Models:
-- **Azure OpenAI**: GPT-4, DALL-E 3
+- **Azure LyDian Labs**: OX5C9E2B, DALL-E 3
 - **Azure Cognitive Services**: Speech (40+ dil, 100+ ses)
 - **ElevenLabs**: Premium voice cloning
 - **Stability AI**: SDXL 1.0
@@ -516,7 +516,7 @@ curl -X POST http://localhost:3500/api/omnireach/create \
 
 ### Desteklenen Özellikler:
 - **Platformlar**: 5 (YouTube, Instagram, Facebook, TikTok, X)
-- **AI Providers**: 4 (Azure OpenAI, Azure Speech, ElevenLabs, Stability AI)
+- **AI Providers**: 4 (Azure LyDian Labs, Azure Speech, ElevenLabs, Stability AI)
 - **Avatar Stilleri**: 7
 - **Script Şablonları**: 7
 - **Ses Profilleri**: 6 (TR) + 40+ (diğer diller)

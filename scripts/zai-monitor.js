@@ -9,7 +9,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
-const { OpenAI } = require('openai');
+const { OpenAI } = require('lydian-labs');
 require('dotenv').config({
   path: [
     path.join(__dirname, '..', '.env.local'),

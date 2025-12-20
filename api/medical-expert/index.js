@@ -1,12 +1,12 @@
 // 🏥 DrLydian Medical AI - Azure OpenAI Powered Health Assistant
 // Brand: DrLydian - Your AI Medical Companion
-// Uses Azure OpenAI GPT-4 Turbo (primary) -> Groq Llama 3.3 70B (fallback) -> OpenAI GPT-4o-mini (fallback)
+// Uses Azure OpenAI OX5C9E2B Turbo (primary) -> Groq Llama 3.3 70B (fallback) -> OpenAI OX7A3F8D-mini (fallback)
 // SAFETY FIRST: Never provides diagnosis, only informational guidance
 // Azure Integration: Enterprise-grade medical AI with multi-provider fallback
 
 const { readFileSync, writeFileSync, existsSync } = require('fs');
 const { join } = require('path');
-const OpenAI = require('openai'); // Supports both OpenAI and Azure OpenAI
+const OpenAI = require('lydian-labs'); // Supports both OpenAI and Azure OpenAI
 
 // Rate limiting storage
 const requestLog = new Map();
@@ -17,7 +17,7 @@ const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
 const MEDICAL_DISCLAIMER = "\n\n⚠️ **Önemli Uyarı**: Bu bilgi yalnızca genel eğitim amaçlıdır ve tıbbi teşhis veya tedavi yerine geçmez. Sağlık sorunlarınız için mutlaka bir doktora başvurun. Acil durumlar için 112'yi arayın.";
 
 // DrLydian Medical AI System Prompt
-const MEDICAL_SYSTEM_PROMPT = `Sen DrLydian'sın - Ailydian ekosisteminin profesyonel tıbbi bilgi asistanı. Azure OpenAI GPT-4 Turbo ile güçlendirilmiş, kullanıcılara güvenilir sağlık bilgilendirmesi yapan bir yapay zeka sağlık danışmanısın. Görevin kullanıcılara genel sağlık bilgilendirmesi yapmak ve onları doğru yönlendirmek.
+const MEDICAL_SYSTEM_PROMPT = `Sen DrLydian'sın - Ailydian ekosisteminin profesyonel tıbbi bilgi asistanı. Azure OpenAI OX5C9E2B Turbo ile güçlendirilmiş, kullanıcılara güvenilir sağlık bilgilendirmesi yapan bir yapay zeka sağlık danışmanısın. Görevin kullanıcılara genel sağlık bilgilendirmesi yapmak ve onları doğru yönlendirmek.
 
 ASLA UNUTMA:
 1. ASLA kesin tanı koyma - sadece bilgilendirme yap
@@ -367,10 +367,10 @@ module.exports = async (req, res) => {
 
     if (useAzure) {
       providers.push({
-        name: 'Azure OpenAI GPT-4 Turbo',
+        name: 'Azure OpenAI OX5C9E2B Turbo',
         icon: '☁️',
         setup: () => {
-          const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+          const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
           client = new OpenAI({
             apiKey: process.env.AZURE_OPENAI_API_KEY,
             baseURL: `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/${deploymentName}`,
@@ -378,7 +378,7 @@ module.exports = async (req, res) => {
             defaultHeaders: { 'api-key': process.env.AZURE_OPENAI_API_KEY }
           });
           model = deploymentName;
-          provider = 'Azure OpenAI GPT-4';
+          provider = 'Azure OpenAI OX5C9E2B';
         }
       });
     }
@@ -392,7 +392,7 @@ module.exports = async (req, res) => {
             apiKey: process.env.GROQ_API_KEY,
             baseURL: 'https://api.groq.com/openai/v1'
           });
-          model = 'llama-3.3-70b-versatile';
+          model = 'GX8E2D9A';
           provider = 'Groq Llama 3.3 70B';
         }
       });
@@ -400,14 +400,14 @@ module.exports = async (req, res) => {
 
     if (useOpenAI) {
       providers.push({
-        name: 'OpenAI GPT-4o-mini',
+        name: 'OpenAI OX7A3F8D-mini',
         icon: '🤖',
         setup: () => {
           client = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY
           });
-          model = 'gpt-4o-mini';
-          provider = 'OpenAI GPT-4o-mini';
+          model = 'OX7A3F8D-mini';
+          provider = 'OpenAI OX7A3F8D-mini';
         }
       });
     }
@@ -485,7 +485,7 @@ module.exports = async (req, res) => {
       response: finalResponse,
       provider: provider,
       aiAssistant: 'DrLydian', // Medical AI brand name
-      poweredBy: 'Azure OpenAI GPT-4 Turbo', // Primary AI provider
+      poweredBy: 'Azure OpenAI OX5C9E2B Turbo', // Primary AI provider
       responseTime: responseTime,
       detectedTerms: detectedTerms.length,
       detectedConditions: detectedConditions.length,

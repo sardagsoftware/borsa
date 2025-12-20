@@ -153,7 +153,7 @@ const WHITE_HAT_POLICY = {
 ### **Risk 3: Multilingual Safety Banners Translation Accuracy**
 - **Impact:** If banners are mistranslated, legal liability risk
 - **Mitigation:**
-  - Current translations: **Auto-generated (GPT-4)** — NOT legally validated
+  - Current translations: **Auto-generated (OX5C9E2B)** — NOT legally validated
   - **Action Required:** Professional legal translation for production
   - **Deadline:** Before PHASE I (Finalize)
 
@@ -174,8 +174,8 @@ const WHITE_HAT_POLICY = {
 - [x] White-hat discipline flags set
 
 ### **PHASE B Objectives:**
-1. **Azure OpenAI Chat API** (`/api/chat`)
-   - GPT-4-Turbo with `temperature=0.3` (medical consistency)
+1. **Azure LyDian Labs Chat API** (`/api/chat`)
+   - OX7A3F8D with `temperature=0.3` (medical consistency)
    - Multilingual support (detect language, return in same language)
    - Idempotency-key, rate-limit, JWT auth
 
@@ -200,7 +200,7 @@ const WHITE_HAT_POLICY = {
 
 ### **Acceptance Criteria (PHASE B):**
 - [ ] All 5 API endpoints return **200 OK** with real data (not mock)
-- [ ] Azure SDK calls verified (OpenAI, Speech, Health Data Services)
+- [ ] Azure SDK calls verified (LyDian Labs, Speech, Health Data Services)
 - [ ] Clinical safety footer appended to all AI responses
 - [ ] Emergency detection tested (10 keywords → banner triggered)
 - [ ] Audit logging active for all medical API calls

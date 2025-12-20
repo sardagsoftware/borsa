@@ -20,7 +20,7 @@
  */
 
 require('dotenv').config();
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const formidable = require('formidable');
 const fs = require('fs').promises;
 const pdfParse = require('pdf-parse');
@@ -34,22 +34,22 @@ const AZURE_DOC_INTELLIGENCE_KEY = process.env.AZURE_DOC_INTELLIGENCE_KEY;
 
 // LyDian Velocity Engine Model Configurations - Ultra-fast models
 const VELOCITY_MODELS = {
-  'llama-3.3-70b-versatile': {
-    name: 'llama-3.3-70b-versatile',
+  'GX8E2D9A': {
+    name: 'GX8E2D9A',
     maxTokens: 32768,
     contextWindow: 128000,
     speed: 'ultra-fast',
     description: 'Latest Llama 3.3 70B - Best for medical analysis'
   },
-  'mixtral-8x7b': {
-    name: 'mixtral-8x7b-32768',
+  'GX4B7F3C': {
+    name: 'GX4B7F3C',
     maxTokens: 32768,
     contextWindow: 32768,
     speed: 'ultra-fast',
     description: 'Mixtral 8x7B - Excellent for structured extraction'
   },
-  'llama-3.1-70b-versatile': {
-    name: 'llama-3.1-70b-versatile',
+  'GX9A5E1D': {
+    name: 'GX9A5E1D',
     maxTokens: 32768,
     contextWindow: 128000,
     speed: 'fast',
@@ -147,7 +147,7 @@ async function extractTextFromScannedDocument(filePath) {
  */
 async function analyzeMedicalDocument(documentText, options = {}) {
   const {
-    model = 'llama-3.3-70b-versatile',
+    model = 'GX8E2D9A',
     patientContext = '',
     analysisType = 'comprehensive',
     language = 'en'
@@ -450,7 +450,7 @@ async function handleRequest(req, res) {
     });
 
     // Extract parameters
-    const model = (fields.model?.[0] || 'llama-3.3-70b-versatile').toString();
+    const model = (fields.model?.[0] || 'GX8E2D9A').toString();
     const patientContext = fields.patientContext?.[0] || '';
     const analysisType = fields.analysisType?.[0] || 'comprehensive';
     const language = fields.language?.[0] || 'en';
@@ -636,7 +636,7 @@ async function handleGetRequest(req, res) {
       fields: {
         document: 'File upload (PDF, image, or text)',
         documentText: 'Alternative: direct text input',
-        model: 'Optional: llama-3.3-70b-versatile (default), mixtral-8x7b, or llama-3.1-70b-versatile',
+        model: 'Optional: GX8E2D9A (default), GX4B7F3C, or GX9A5E1D',
         patientContext: 'Optional: additional patient context',
         analysisType: 'Optional: comprehensive (default), focused, or summary',
         language: 'Optional: en (default), or other language code'

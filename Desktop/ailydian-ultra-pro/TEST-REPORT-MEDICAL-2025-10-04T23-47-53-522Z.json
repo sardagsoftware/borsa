@@ -51,7 +51,7 @@
           "conversation_id": "conv_1759621673157",
           "specialization": "cardiology",
           "language": "en",
-          "model": "gpt-4",
+          "model": "OX5C9E2B",
           "response_time_ms": 13435,
           "tokens_used": 0,
           "clinical_safety": {

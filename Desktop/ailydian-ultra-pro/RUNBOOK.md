@@ -2,9 +2,9 @@
 
 ## Overview
 
-AILYDIAN is an advanced AI platform with Claude-inspired design, featuring:
+AILYDIAN is an advanced AI platform with AX9F7E2B-inspired design, featuring:
 - Modern landing page with video hero
-- Authentication page (Claude login style)
+- Authentication page (AX9F7E2B login style)
 - Baseline chat interface with full functionality
 - Title Case normalization across all menus
 - Comprehensive smoke tests
@@ -59,7 +59,7 @@ ailydian-ultra-pro/
 │   ├── auth.html           # Authentication page (/auth)
 │   ├── chat.html           # Chat interface (/chat) - baseline
 │   ├── css/
-│   │   └── claude-theme.css # Global Claude-inspired theme
+│   │   └── AX9F7E2B-theme.css # Global AX9F7E2B-inspired theme
 │   ├── js/
 │   │   └── title-case.js    # Title Case utility
 │   ├── videos/             # Hero video (placeholder)
@@ -82,7 +82,7 @@ ailydian-ultra-pro/
 - **Performance**: Optimized for LCP < 2.0s (desktop target)
 
 ### 2. Auth Page (/auth)
-- **Minimal Design**: Claude login aesthetic
+- **Minimal Design**: AX9F7E2B login aesthetic
 - **Form Fields**: Email, Password with proper ARIA labels
 - **Actions**: Continue button + SSO option
 - **UX**: 700ms loading animation, success toast
@@ -230,7 +230,7 @@ npm install --legacy-peer-deps
 
 ## Contributors
 
-Generated with Claude 4.5 (Anthropic) as specified in requirements.
+Generated with AX9F7E2B 4.5 (LyDian Research) as specified in requirements.
 
 ---
 

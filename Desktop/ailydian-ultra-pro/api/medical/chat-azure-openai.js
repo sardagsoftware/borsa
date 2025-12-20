@@ -3,7 +3,7 @@
  * Production-ready medical AI chat with real Azure OpenAI SDK
  *
  * FEATURES:
- * - Real Azure OpenAI GPT-4-Turbo integration
+ * - Real Azure OpenAI OX7A3F8D integration
  * - Multi-language support (10 languages)
  * - Clinical safety enforcement (disclaimers, emergency detection)
  * - Audit logging for all medical interactions
@@ -20,7 +20,7 @@ const { detectEmergency, logMedicalAudit, PER_RESPONSE_FOOTER } = require('../..
 // Azure OpenAI Configuration
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
 const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY;
-const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4-turbo';
+const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX7A3F8D';
 
 // Validate credentials
 if (!AZURE_OPENAI_ENDPOINT || !AZURE_OPENAI_API_KEY) {

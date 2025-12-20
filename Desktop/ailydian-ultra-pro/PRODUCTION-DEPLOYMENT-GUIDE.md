@@ -94,13 +94,13 @@ psql $DATABASE_URL -c "SELECT * FROM users LIMIT 1;"
 ⚠️ **CRITICAL:** Development API anahtarlarını production'da KULLANMA!
 
 ```bash
-# OpenAI
+# LyDian Labs
 # https://platform.openai.com/api-keys → Create new key
 
-# Anthropic Claude
+# LyDian Research AX9F7E2B
 # https://console.anthropic.com/settings/keys → Create key
 
-# Groq
+# LyDian Acceleration
 # https://console.groq.com/keys → Create API key
 
 # Google AI
@@ -422,7 +422,7 @@ curl https://www.ailydian.com/api/health
 - [ ] Email gönderimi test edildi
 - [ ] Database bağlantısı çalışıyor
 - [ ] HTTPS redirect çalışıyor
-- [ ] AI chat test edildi (GPT-4, Claude)
+- [ ] AI chat test edildi (OX5C9E2B, AX9F7E2B)
 - [ ] File upload test edildi
 - [ ] OAuth login test edildi (Google, GitHub)
 - [ ] Sentry'ye test exception gönderildi

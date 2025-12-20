@@ -100,8 +100,8 @@ curl https://www.ailydian.com/api/cache-stats
   "metadata": {
     "responseTime": "0.61",
     "tokensUsed": 251,
-    "model": "LLaMA 3.3 70B",
-    "provider": "Groq",
+    "model": "LyDian Velocity 70B",
+    "provider": "LyDian Acceleration",
     "confidence": 0.98,
     "mode": "production",
     "cachedAt": "2025-10-07T14:45:32.817Z",
@@ -149,8 +149,8 @@ curl https://www.ailydian.com/api/cache-stats
        │             │
        ▼             ▼
 ┌─────────────┐ ┌─────────────────────┐
-│ Return      │ │ Call Groq AI        │
-│ cached      │ │ (LLaMA 3.3 70B)     │
+│ Return      │ │ Call LyDian Acceleration AI        │
+│ cached      │ │ (LyDian Velocity 70B)     │
 │ response    │ └──────────┬──────────┘
 │ (~300ms)    │            │
 └─────────────┘            ▼
@@ -493,6 +493,6 @@ try {
 ---
 
 **Generated:** 2025-10-07 14:48
-**Author:** Claude Code (Emrah Sardag request)
+**Author:** AX9F7E2B Code (Emrah Sardag request)
 **Project:** LyDian IQ - AI-Powered Problem Solver
 **Status:** ✅ Production Deployment Successful

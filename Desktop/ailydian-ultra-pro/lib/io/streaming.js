@@ -10,7 +10,7 @@ class StreamingOutputHandler extends EventEmitter {
     constructor(options = {}) {
         super();
 
-        this.model = options.model || 'claude-sonnet-4-5';
+        this.model = options.model || 'AX9F7E2B-sonnet-4-5';
         this.maxOutputTokens = options.maxOutputTokens || 4096;
         this.safeOutputTokens = Math.floor(this.maxOutputTokens * 0.9); // 90% threshold
         this.flushIntervalMs = options.flushIntervalMs || 100;

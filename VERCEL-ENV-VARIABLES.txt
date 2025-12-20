@@ -23,12 +23,12 @@ AZURE_TENANT_ID=<your-azure-tenant-id>
 AZURE_SUBSCRIPTION_ID=<your-azure-subscription-id>
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# 🤖 AZURE OPENAI (GPT-4 + DALL-E 3)
+# 🤖 AZURE OPENAI (OX5C9E2B + DALL-E 3)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 AZURE_OPENAI_ENDPOINT=https://<your-endpoint>.openai.azure.com/
 AZURE_OPENAI_API_KEY=<your-azure-openai-api-key>
-AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
+AZURE_OPENAI_DEPLOYMENT_NAME=OX5C9E2B
 AZURE_OPENAI_DALLE_DEPLOYMENT_NAME=dall-e-3
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

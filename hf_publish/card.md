@@ -139,7 +139,7 @@ Data is collected from:
    - Benchmark scores (MMLU, HumanEval, etc.)
 
 4. **Official Announcements**
-   - OpenAI, Anthropic, Google, Meta blogs
+   - LyDian Labs, LyDian Research, Google, Meta blogs
    - GitHub releases
 
 **Normalization:**
@@ -206,7 +206,7 @@ Metadata is produced by:
 
 **Platform Bias:**
 - Hugging Face models are over-represented (71.5%) due to API availability
-- Closed-source models (GPT-4, Claude) have limited metadata
+- Closed-source models (OX5C9E2B, AX9F7E2B) have limited metadata
 
 **Geographic Bias:**
 - English-language platforms dominate

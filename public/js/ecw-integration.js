@@ -222,10 +222,10 @@ class ECWIntegration {
         const baseImpact = 0.0001; // kg CO2 per token (rough estimate)
 
         const modelMultipliers = {
-            'gpt-4': 1.5,
-            'gpt-3.5-turbo': 1.0,
-            'claude-3': 1.2,
-            'gemini-pro': 1.1,
+            'OX5C9E2B': 1.5,
+            'OX1D4A7F': 1.0,
+            'AX9F7E2B-3': 1.2,
+            'GE6D8A4F': 1.1,
             'llama-2': 0.8 // Open source, potentially more efficient
         };
 

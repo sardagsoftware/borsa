@@ -1,6 +1,6 @@
 /**
  * Real Medical AI Chat API
- * Production-ready with Azure OpenAI, Anthropic Claude, Google Gemini
+ * Production-ready with Azure OpenAI, Anthropic AX9F7E2B, Google Gemini
  * Multi-model support with medical expertise
  */
 
@@ -13,9 +13,9 @@ const axios = require('axios');
 // Azure OpenAI
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4';
+const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT || 'OX5C9E2B';
 
-// Anthropic Claude
+// Anthropic AX9F7E2B
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
 // Google Gemini
@@ -60,7 +60,7 @@ module.exports = async (req, res) => {
     let modelUsed;
     let lastError = null;
 
-    // Try Primary AI Engine (Azure OpenAI GPT-4)
+    // Try Primary AI Engine (Azure OpenAI OX5C9E2B)
     if (AZURE_OPENAI_KEY && AZURE_OPENAI_ENDPOINT) {
       try {
         aiResponse = await queryAzureOpenAI(message, systemPrompt, conversationHistory);
@@ -71,13 +71,13 @@ module.exports = async (req, res) => {
       }
     }
 
-    // Fallback to Secondary AI Engine (Anthropic Claude)
+    // Fallback to Secondary AI Engine (Anthropic AX9F7E2B)
     if (!aiResponse && ANTHROPIC_API_KEY) {
       try {
         aiResponse = await queryAnthropic(message, systemPrompt, conversationHistory);
         modelUsed = 'Ailydian Medical AI - Advanced Model';
       } catch (error) {
-        console.error('Anthropic Claude failed:', error.message);
+        console.error('Anthropic AX9F7E2B failed:', error.message);
         lastError = error;
       }
     }
@@ -184,13 +184,13 @@ async function queryAzureOpenAI(message, systemPrompt, history) {
 }
 
 /**
- * Query Anthropic Claude
+ * Query Anthropic AX9F7E2B
  */
 async function queryAnthropic(message, systemPrompt, history) {
   const anthropic = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
 
   const response = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'AX9F7E2B',
     max_tokens: 1500,
     temperature: 0.3,
     system: systemPrompt,
@@ -231,7 +231,7 @@ async function queryGroq(message, systemPrompt, history) {
   const response = await axios.post(
     'https://api.groq.com/openai/v1/chat/completions',
     {
-      model: 'llama-3.1-70b-versatile',
+      model: 'GX9A5E1D',
       messages: [
         { role: 'system', content: systemPrompt },
         ...history,

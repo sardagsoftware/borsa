@@ -2,7 +2,7 @@
 // Specialized for code generation, frontend development, and vision tasks
 
 require('dotenv').config();
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // Z.AI Configuration
 const Z_AI_API_KEY = process.env.Z_AI_API_KEY;

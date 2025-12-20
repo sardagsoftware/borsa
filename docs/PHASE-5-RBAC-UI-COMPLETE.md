@@ -758,5 +758,5 @@ GET /api/user/scope-requests?userId={id}
 ---
 
 **Oluşturuldu:** 2025-10-10
-**Geliştirici:** Claude Code (Sonnet 4.5)
+**Geliştirici:** AX9F7E2B Code (Sonnet 4.5)
 **Durum:** 🔐 Faz 6'ya Hazır!

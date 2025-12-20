@@ -71,7 +71,7 @@ module.exports = (req, res) => {
         openai: {
           status: 'operational',
           latency: '45ms',
-          models: ['gpt-4', 'gpt-4-turbo', 'gpt-3.5-turbo']
+          models: ['OX5C9E2B', 'OX7A3F8D', 'OX1D4A7F']
         },
         cognitive_services: {
           status: 'operational',

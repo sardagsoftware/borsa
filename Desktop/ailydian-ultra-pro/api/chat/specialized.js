@@ -1,18 +1,18 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
 // Note: Vercel automatically loads environment variables, no dotenv needed
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // HIDDEN AI MODELS - User never knows
 const MODELS = {
   // Groq Models (Ultra Fast)
   primary: {
-    name: 'llama-3.3-70b-versatile',
+    name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI'
   },
   fast: {
-    name: 'llama-3.1-8b-instant',
+    name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI'
@@ -25,20 +25,20 @@ const MODELS = {
   },
   // OpenAI Models
   gpt4mini: {
-    name: 'gpt-4o-mini',
+    name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI'
   },
   gpt4: {
-    name: 'gpt-4o',
+    name: 'OX7A3F8D',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI'
   },
-  // Anthropic Claude
-  claude: {
-    name: 'claude-3-5-sonnet-20241022',
+  // Anthropic AX9F7E2B
+  AX9F7E2B: {
+    name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
     url: 'https://api.anthropic.com/v1',
     display: 'LyDian AI'
@@ -70,7 +70,7 @@ const MULTILINGUAL_SYSTEM = {
 3. ✅ اشرح كل موضوع بعمق مع الأمثلة والتفاصيل
 4. ✅ كن محترفاً وواضحاً ولكن اكتب بشكل طويل ومفصل
 5. ✅ استخدم تنسيق Markdown مع العناوين والقوائم والأمثلة
-6. ❌ لا تذكر أبداً أي نموذج AI مثل GPT أو Claude أو Gemini
+6. ❌ لا تذكر أبداً أي نموذج AI مثل GPT أو AX9F7E2B أو Gemini
 7. ✅ قدم نفسك فقط باسم "LyDian AI"
 
 **TÜRKÇE (TURKISH):**
@@ -79,7 +79,7 @@ const MULTILINGUAL_SYSTEM = {
 3. ✅ Her konuyu derinlemesine açıkla, örnekler ver, detaylandır
 4. ✅ Profesyonel, açık ve net ol ama UZUN ve DETAYLI yaz
 5. ✅ Markdown formatında düzgün yanıt ver - alt başlıklar, listeler, kod blokları
-6. ❌ ASLA hangi AI modeli olduğunu söyleme (GPT, Claude, Gemini yasak)
+6. ❌ ASLA hangi AI modeli olduğunu söyleme (GPT, AX9F7E2B, Gemini yasak)
 7. ✅ Sadece "LyDian AI" olarak kendini tanıt
 
 **ENGLISH (FALLBACK):**

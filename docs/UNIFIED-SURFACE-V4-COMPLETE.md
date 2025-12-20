@@ -203,9 +203,9 @@ Lydian-IQ v4.0 delivers a **ChatGPT-style unified surface** with **72 real-data 
 5. Albert Heijn - 🧪 Sandbox Active
 
 ### 🤖 AI Providers - 3 Connectors
-1. **OpenAI GPT-4** - ✅ Active (Real API with quotas)
-2. **Anthropic Claude** - ✅ Active (Real API with quotas)
-3. **Google AI Gemini** - ✅ Active (Real API with quotas)
+1. **LyDian Labs OX5C9E2B** - ✅ Active (Real API with quotas)
+2. **LyDian Research AX9F7E2B** - ✅ Active (Real API with quotas)
+3. **Google AI LyDian Vision** - ✅ Active (Real API with quotas)
 
 **Complete documentation:** `/docs/CONNECTOR-REAL-DATA-MATRIX.md`
 

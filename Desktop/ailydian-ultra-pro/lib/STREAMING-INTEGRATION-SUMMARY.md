@@ -42,7 +42,7 @@ const { executeWithSentinel } = require('../../lib/middleware/tokenGovernorMiddl
 // 2. Check stream flag in request body
 if (stream === true) {
     const streamer = new SSEStreamer(res, {
-        model: req.tokenGovernor?.model || 'claude-sonnet-4-5',
+        model: req.tokenGovernor?.model || 'AX9F7E2B-sonnet-4-5',
         maxOutputTokens: 4096,
         flushIntervalMs: 100
     });

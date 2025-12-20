@@ -15,11 +15,11 @@ class APIHealthMonitor extends EventEmitter {
         this.websocketStatus = new Map();
         this.apiEndpoints = {
             // Core AI APIs
-            'openai': 'https://api.openai.com/v1/models',
+            'lydian-labs': 'https://api.openai.com/v1/models',
             'azure-openai': process.env.AZURE_OPENAI_ENDPOINT || 'https://ailydian-openai.openai.azure.com/',
             'google-ai': 'https://generativelanguage.googleapis.com/v1/models',
             'z-ai': 'https://api.z.ai/v1/health',
-            'claude': 'https://api.anthropic.com/v1/messages',
+            'AX9F7E2B': 'https://api.anthropic.com/v1/messages',
 
             // Local Services
             'chat-service': 'http://localhost:3100/api/health',
@@ -114,7 +114,7 @@ class APIHealthMonitor extends EventEmitter {
 
             // Special handling for different API types
             switch (name) {
-                case 'openai':
+                case 'lydian-labs':
                     response = await axios.get(endpoint, {
                         headers: {
                             'Authorization': `Bearer ${process.env.OPENAI_API_KEY || 'test-key'}`,
@@ -143,11 +143,11 @@ class APIHealthMonitor extends EventEmitter {
                     });
                     break;
 
-                case 'claude':
-                    // For Claude, we'll just check if the endpoint responds
+                case 'AX9F7E2B':
+                    // For AX9F7E2B, we'll just check if the endpoint responds
                     response = await axios.options(endpoint, {
                         headers: {
-                            'x-api-key': process.env.CLAUDE_API_KEY || 'test-key',
+                            'x-api-key': process.env.AX9F7E2B_API_KEY || 'test-key',
                             'Content-Type': 'application/json'
                         },
                         timeout: this.timeout

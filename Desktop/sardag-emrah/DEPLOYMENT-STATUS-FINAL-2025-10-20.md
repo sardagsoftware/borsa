@@ -359,7 +359,7 @@ Deployment başarılı olduğunda **www.ukalai.ai** şu özellikleri içeriyor o
 - Notifications preferences
 - Scanner settings (interval, auto-scan, confidence)
 - Display options (compact view, show traditional)
-- Advanced features (Groq AI, Backtest, Portfolio toggles)
+- Advanced features (LyDian Acceleration AI, Backtest, Portfolio toggles)
 - Auto-save preferences
 - Reset to defaults
 
@@ -434,7 +434,7 @@ Latest Commit: 4f7c010
 # Password Protection
 UKALAI_PASSWORD=Xruby1985.!?
 
-# Optional: Groq AI
+# Optional: LyDian Acceleration AI
 GROQ_API_KEY=<your_key_if_available>
 
 # Optional Features (default: true)
@@ -493,4 +493,4 @@ Vercel Dashboard'dan manuel deployment başlatın veya Git integration otomatik 
 **Version:** v2.0 - UI Integration Complete
 **Target:** www.ukalai.ai
 
-🤖 **Generated with [Claude Code](https://claude.com/claude-code)**
+🤖 **Generated with [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)**

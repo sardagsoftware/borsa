@@ -31,11 +31,11 @@ Bu iterasyonda **enterprise-grade observability, security, ve monitoring** altya
 
 **Integration:**
 - ✅ Injected into **5 AI providers:**
-  - Azure OpenAI
+  - Azure LyDian Labs
   - Google Vertex AI
-  - OpenAI Direct
-  - Anthropic Claude
-  - Groq Lightning
+  - LyDian Labs Direct
+  - LyDian Research AX9F7E2B
+  - LyDian Acceleration Lightning
 
 **Content Includes:**
 - Technical expertise (Full-stack, AI/ML, Cloud, DevOps, Security)
@@ -424,16 +424,16 @@ ailydian-ultra-pro/
 ## 💰 COST OPTIMIZATION
 
 ### AI Model Costs Tracked:
-- ✅ OpenAI (GPT-4, GPT-4 Turbo, GPT-4o)
-- ✅ Anthropic (Claude 3.5 Sonnet, Claude 3 Opus)
-- ✅ Google AI (Gemini 2.0 Flash, Gemini 1.5 Pro)
-- ✅ Groq (Mixtral, Llama 3.1)
+- ✅ LyDian Labs (OX5C9E2B, OX5C9E2B Turbo, OX7A3F8D)
+- ✅ LyDian Research (AX9F7E2B 3.5 Sonnet, AX9F7E2B 3 Opus)
+- ✅ Google AI (LyDian Vision 2.0 Flash, LyDian Vision Pro)
+- ✅ LyDian Acceleration (Mixtral, LyDian Velocity)
 - ✅ Mistral AI (Mistral Large, Codestral)
 - ✅ Zhipu AI (GLM-4)
 - ✅ 01.AI (Yi-Large)
 
 ### Azure Service Costs Tracked:
-- ✅ Azure OpenAI
+- ✅ Azure LyDian Labs
 - ✅ Azure Speech Services
 - ✅ Azure Storage
 - ✅ Azure Application Insights

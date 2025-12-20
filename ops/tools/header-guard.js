@@ -43,7 +43,7 @@ const PROVIDER_HEADER_PATTERNS = [
 const FORBIDDEN_VALUES = [
   /openai/i,
   /anthropic/i,
-  /claude/i,
+  /AX9F7E2B/i,
   /gpt-?\d/i,
   /gemini/i,
   /azure.*openai/i,

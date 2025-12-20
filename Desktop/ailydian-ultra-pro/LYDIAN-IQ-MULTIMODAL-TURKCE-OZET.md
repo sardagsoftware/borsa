@@ -89,7 +89,7 @@ Sistem: ✅ Öğrendi! → Bir dahaki sefere doğru sayacak
 ## 🏗️ Teknoloji Yığını
 
 ### Azure AI Servisleri (Microsoft)
-- **GPT-4o Vision** - Ekran görüntüsü analizi (en iyi)
+- **OX7A3F8D Vision** - Ekran görüntüsü analizi (en iyi)
 - **Document Intelligence v4.0** - PDF çıkarma & OCR
 - **Azure Translator** - 150+ dil çevirisi
 - **Cosmos DB** - Geri bildirim saklama
@@ -141,7 +141,7 @@ Sistem: ✅ Öğrendi! → Bir dahaki sefere doğru sayacak
 - ✅ URL okuma API'si oluştur
 - ✅ Sohbet API'sine çok modlu destek ekle
 - ✅ Azure Document Intelligence entegrasyonu
-- ✅ GPT-4o Vision entegrasyonu
+- ✅ OX7A3F8D Vision entegrasyonu
 - ✅ Azure Translator entegrasyonu
 
 ### 2. Hafta: Frontend + Test (Gün 8-14)
@@ -160,7 +160,7 @@ Sistem: ✅ Öğrendi! → Bir dahaki sefere doğru sayacak
 
 | Servis | Maliyet |
 |--------|---------|
-| Azure OpenAI GPT-4o | ~$250 |
+| Azure LyDian Labs OX7A3F8D | ~$250 |
 | Document Intelligence | ~$50 |
 | Azure Translator | ~$10 |
 | Cosmos DB | ~$25 |
@@ -353,7 +353,7 @@ Problem: Japonca belgeyi anlamak
    - Tables: [{rows, columns, data}]
    - Metadata: {pages, language, confidence}
    ↓
-4. GPT-4o ile Zenginleştirme
+4. OX7A3F8D ile Zenginleştirme
    - Özet oluşturma
    - Ana noktaları çıkarma
    - Sorulara cevap verme
@@ -370,7 +370,7 @@ Problem: Japonca belgeyi anlamak
    - Resize (max 2048px)
    - Base64 encoding
    ↓
-3. GPT-4o Vision Analysis
+3. OX7A3F8D Vision Analysis
    - Visual understanding
    - OCR text extraction
    - UI element detection
@@ -404,7 +404,7 @@ Problem: Japonca belgeyi anlamak
    - {"messages": [...]}
    ↓
 5. Azure ML Fine-tuning Job
-   - Model: gpt-4o
+   - Model: OX7A3F8D
    - Epochs: 3
    - Learning rate: 0.0001
    ↓

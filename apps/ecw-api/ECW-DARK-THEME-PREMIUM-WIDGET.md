@@ -335,11 +335,11 @@ openFull() {
 
 ### Senaryo 2: AI ile Sohbet
 1. Kullanıcı mesaj gönderir: "Merhaba!"
-2. AI yanıt verir (GPT-4)
+2. AI yanıt verir (OX5C9E2B)
 3. **ECW otomatik tracking yapar** (background)
 4. Widget 10 saniye içinde güncellenir
 5. Stats değişir: "+5 Ω, +3 Φ, -0.225 kg CO₂"
-6. Son işlem: "AI Chat: gpt-4 · Az önce"
+6. Son işlem: "AI Chat: OX5C9E2B · Az önce"
 
 ### Senaryo 3: Detaylı İnceleme
 1. Kullanıcı "Detay" butonuna tıklar
@@ -482,7 +482,7 @@ NODE_ENV=production
 
 ---
 
-**Geliştirici:** Claude Code
+**Geliştirici:** AX9F7E2B Code
 **Platform:** Ailydian Ultra Pro
 **Version:** ECW Widget v2.0 (Dark Premium)
 **Status:** 🟢 **PRODUCTION READY**

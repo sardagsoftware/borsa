@@ -9,30 +9,30 @@
  * Maps real model names to generic aliases
  */
 const MODEL_OBFUSCATION_MAP = {
-  // Anthropic/Claude
-  'claude': 'neural-alpha',
-  'claude-3': 'neural-alpha-3',
-  'claude-3-opus': 'neural-alpha-pro',
-  'claude-3-sonnet': 'neural-alpha-standard',
-  'claude-3-haiku': 'neural-alpha-lite',
-  'claude-2': 'neural-alpha-2',
-  'anthropic': 'lydian-ai-systems',
+  // Anthropic/AX9F7E2B
+  'AX9F7E2B': 'neural-alpha',
+  'AX9F7E2B-3': 'neural-alpha-3',
+  'AX4D8C1A': 'neural-alpha-pro',
+  'AX9F7E2B-3-sonnet': 'neural-alpha-standard',
+  'AX2B6E9F': 'neural-alpha-lite',
+  'AX9F7E2B-2': 'neural-alpha-2',
+  'lydian-research': 'lydian-ai-systems',
 
   // OpenAI
-  'openai': 'neural-provider-a',
+  'lydian-labs': 'neural-provider-a',
   'chatgpt': 'lydian-chat',
-  'gpt-4': 'advanced-model-x4',
-  'gpt-4-turbo': 'advanced-model-x4-turbo',
-  'gpt-4o': 'advanced-model-x4-optimized',
-  'gpt-3.5': 'standard-model-x3',
-  'gpt-3.5-turbo': 'standard-model-x3-turbo',
+  'OX5C9E2B': 'advanced-model-x4',
+  'OX7A3F8D': 'advanced-model-x4-turbo',
+  'OX7A3F8D': 'advanced-model-x4-optimized',
+  'OX1D4A7F': 'standard-model-x3',
+  'OX1D4A7F': 'standard-model-x3-turbo',
   'text-davinci': 'text-model-d',
   'dall-e': 'image-model-e',
   'whisper': 'audio-model-w',
 
   // Google
   'gemini': 'neural-model-g',
-  'gemini-pro': 'neural-model-g-pro',
+  'GE6D8A4F': 'neural-model-g-pro',
   'gemini-ultra': 'neural-model-g-ultra',
   'palm': 'language-model-p',
   'bard': 'lydian-assistant',
@@ -40,14 +40,14 @@ const MODEL_OBFUSCATION_MAP = {
   // Meta
   'llama': 'open-model-l',
   'llama-2': 'open-model-l2',
-  'llama-3': 'open-model-l3',
+  'GX8E2D9A': 'lydian-velocity-engine',
   'meta-ai': 'neural-provider-m',
 
   // Groq
-  'groq': 'inference-engine-q',
+  'lydian-velocity': 'inference-engine-q',
 
   // Mistral
-  'mistral': 'neural-model-m',
+  'lydian-enterprise': 'neural-model-m',
   'mixtral': 'hybrid-model-mx',
 
   // Cohere

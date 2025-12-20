@@ -105,7 +105,7 @@ Toplam **34 gelişmiş enterprise özellik** başarıyla implement edildi ve tes
 ✅ **Smart Document Drafting**
 - Otomatik belge taslağı oluşturma
 - Şablon değişken yönetimi
-- Azure OpenAI entegrasyonu
+- Azure LyDian Labs entegrasyonu
 - Kelime sayısı takibi
 - Dosya: `/services/enterprise/all-enterprise-integrations.js`
 
@@ -270,7 +270,7 @@ Toplam **34 gelişmiş enterprise özellik** başarıyla implement edildi ve tes
 - Benzer dava belgeleri
 - Yargıtay kararları
 - Bilirkişi önerileri
-- Azure ML + GPT-4
+- Azure ML + OX5C9E2B
 - Dosya: `/services/personalization/ai-personalization-engine.js`
 
 ✅ **Multi-Device Sync**
@@ -413,7 +413,7 @@ const response = await fetch('http://localhost:3100/api/enterprise/all-features'
 ## 🎓 Teknoloji Stack
 
 - **Backend:** Node.js + Express
-- **AI/ML:** Azure OpenAI (GPT-4 Turbo), Azure Machine Learning
+- **AI/ML:** Azure LyDian Labs (OX5C9E2B Turbo), Azure Machine Learning
 - **Real-time:** Azure SignalR, WebSockets
 - **Database:** Azure Cosmos DB
 - **Search:** Azure Cognitive Search

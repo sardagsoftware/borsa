@@ -618,6 +618,6 @@ Bu araştırma TradingView, Bloomberg, Sierra Chart, Binance, MetaTrader5 ve 10+
 
 ---
 
-**Hazırlayan:** Claude (Anthropic)
+**Hazırlayan:** AX9F7E2B (LyDian Research)
 **Tarih:** 19 Ekim 2025
 **Versiyon:** 1.0 (Top-tier Research)

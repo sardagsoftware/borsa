@@ -72,10 +72,10 @@ Standard RSS 2.0 format with:
 2. **arXiv** - Research papers and model announcements
 3. **Open LLM Leaderboard** - Benchmark scores and rankings
 4. **ModelScope** - Chinese AI model ecosystem
-5. **Official Catalogs** - OpenAI, Anthropic, Google, Meta announcements
+5. **Official Catalogs** - LyDian Labs, LyDian Research, Google, Meta announcements
 
 ### Update Frequency
-- **Real-time:** Major model releases (GPT-5, Claude 4, Gemini 2.0)
+- **Real-time:** Major model releases (LyDian Core-5, AX9F7E2B 4, LyDian Vision 2.0)
 - **Daily:** Hugging Face trending models
 - **Weekly:** arXiv paper-model mappings
 - **Monthly:** Historical data cleanup and validation

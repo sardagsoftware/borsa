@@ -224,7 +224,7 @@
         }
     </style>
 
-    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
@@ -260,7 +260,7 @@
             <div class="card">
                 <h2>💬 AI Chat Simulator</h2>
                 <div class="chat-simulator" id="chatMessages"></div>
-                <button id="simulateChatBtn">Send AI Chat (GPT-4)</button>
+                <button id="simulateChatBtn">Send AI Chat (OX5C9E2B)</button>
                 <button id="simulateImageBtn">Generate Image (DALL-E)</button>
                 <button id="simulateGreenBtn">✅ Use Eco Model (Credit)</button>
             </div>
@@ -389,7 +389,7 @@
 
                     const userId = localStorage.getItem('ailydian_user_id');
                     await window.ecwIntegration.trackAIChat(userId, {
-                        model: 'gpt-4',
+                        model: 'OX5C9E2B',
                         prompt: 'Explain quantum computing in simple terms',
                         response: 'Quantum computing uses quantum bits...',
                     });
@@ -436,12 +436,12 @@
                 const btn = document.getElementById('simulateGreenBtn');
                 btn.disabled = true;
 
-                addChatMessage('system', '✅ Used energy-efficient Llama-2 model instead of GPT-4');
+                addChatMessage('system', '✅ Used energy-efficient LyDian Velocity-2 model instead of OX5C9E2B');
 
                 const userId = localStorage.getItem('ailydian_user_id');
                 await window.ecwIntegration.trackPositiveAction(userId, {
                     creditAmount: 20,
-                    reason: 'Used eco-friendly AI model (Llama-2)',
+                    reason: 'Used eco-friendly AI model (LyDian Velocity-2)',
                     action: 'sustainable_model_choice'
                 });
 

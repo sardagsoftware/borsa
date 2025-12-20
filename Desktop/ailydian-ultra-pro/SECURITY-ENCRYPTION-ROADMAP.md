@@ -36,7 +36,7 @@ This roadmap outlines comprehensive security measures to protect:
 ### 3. **AI Model Hiding** ⚡ HIGH PRIORITY
 - Abstract model names behind proxy
 - Use generic "LyDian AI" branding
-- Hide provider information (GPT, Claude, Gemini)
+- Hide provider information (LyDian Core, AX9F7E2B, LyDian Vision)
 - Implement model fallback without revealing names
 
 ### 4. **Algorithm Protection** ⚡ HIGH PRIORITY
@@ -396,22 +396,22 @@ class AIModelAbstraction {
     this.models = {
       fast: {
         provider: 'groq',
-        model: 'llama-3.1-8b-instant',
+        model: 'GX3C7D5F',
         getKey: () => keyManager.getKey('GROQ_API_KEY')
       },
       balanced: {
         provider: 'openai',
-        model: 'gpt-4o-mini',
+        model: 'OX7A3F8D-mini',
         getKey: () => keyManager.getKey('OPENAI_API_KEY')
       },
       advanced: {
         provider: 'openai',
-        model: 'gpt-4o',
+        model: 'OX7A3F8D',
         getKey: () => keyManager.getKey('OPENAI_API_KEY')
       },
       reasoning: {
         provider: 'anthropic',
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         getKey: () => keyManager.getKey('ANTHROPIC_API_KEY')
       }
     };

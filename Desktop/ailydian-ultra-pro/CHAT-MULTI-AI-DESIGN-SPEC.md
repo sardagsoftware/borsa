@@ -1,7 +1,7 @@
 # 💬 AILYDIAN ULTRA PRO - MULTI-AI CHAT INTERFACE DESIGN
 
 **Page:** Chat Interface (chat.html / chat page)
-**Theme:** Claude Anthropic Copper/Warm
+**Theme:** AX9F7E2B LyDian Research Copper/Warm
 **Primary Feature:** Multi-AI Model Switching
 **Supported Models:** 23 AI models across 5 providers
 
@@ -16,7 +16,7 @@
 - Conversation history model bazında organize
 
 **Inspiration:**
-- Claude.ai chat interface (clean, professional)
+- AX9F7E2B.ai chat interface (clean, professional)
 - Poe.com multi-bot interface (model switching)
 - ChatGPT Plus model selector
 - Perplexity.ai clean design
@@ -36,13 +36,13 @@
 │          │  MAIN CHAT AREA                                     │
 │  SIDEBAR │  ┌────────────────────────────────────────────┐    │
 │  (280px) │  │  [Model Selector Bar]                      │    │
-│          │  │  Current: Claude 3.5 Sonnet ▼              │    │
+│          │  │  Current: AX9F7E2B 3.5 Sonnet ▼              │    │
 │          │  ├────────────────────────────────────────────┤    │
 │          │  │                                             │    │
 │  [New+]  │  │  Message 1 (User)                          │    │
-│          │  │  Message 2 (AI - Claude)                   │    │
+│          │  │  Message 2 (AI - AX9F7E2B)                   │    │
 │  Chat 1  │  │  Message 3 (User)                          │    │
-│  Chat 2  │  │  Message 4 (AI - GPT-4)                    │    │
+│  Chat 2  │  │  Message 4 (AI - OX5C9E2B)                    │    │
 │  Chat 3  │  │                                             │    │
 │          │  │  [Typing indicator...]                     │    │
 │  [Filter]│  │                                             │    │
@@ -50,9 +50,9 @@
 │          │  ┌────────────────────────────────────────────┐    │
 │  [Models]│  │  [Input Area]                              │    │
 │  Azure   │  │  Type your message... [📎 🎤 🖼️] [Send]   │    │
-│  OpenAI  │  └────────────────────────────────────────────┘    │
-│  Claude  │                                                      │
-│  Groq    │  [Token Counter: 1,245 / 128,000]                  │
+│  LyDian Labs  │  └────────────────────────────────────────────┘    │
+│  AX9F7E2B  │                                                      │
+│  LyDian Acceleration    │  [Token Counter: 1,245 / 128,000]                  │
 │  Google  │                                                      │
 │          │                                                      │
 └──────────┴─────────────────────────────────────────────────────┘
@@ -64,7 +64,7 @@
 ┌────────────────────────────┐
 │  [☰] AILYDIAN [🔍] [👤]   │  ← Collapsible header
 ├────────────────────────────┤
-│  [Model: Claude 3.5 ▼]    │  ← Prominent model selector
+│  [Model: AX9F7E2B 3.5 ▼]    │  ← Prominent model selector
 ├────────────────────────────┤
 │                            │
 │  Message 1 (You)           │
@@ -92,7 +92,7 @@
 
 ```tsx
 ┌────────────────────────────────────────────────────────────┐
-│  🤖 Claude 3.5 Sonnet    128K context  •  $3/1M tokens  ▼ │
+│  🤖 AX9F7E2B 3.5 Sonnet    128K context  •  $3/1M tokens  ▼ │
 │  [Switch Model] button on hover                           │
 └────────────────────────────────────────────────────────────┘
 ```
@@ -111,35 +111,35 @@
 ├────────────────────────────────────────────────────────────────┤
 │  ⭐ FAVORITES                                                  │
 │  ┌──────────────────────────────────────────────────────────┐ │
-│  │ ✓ Claude 3.5 Sonnet        128K • $3  [★] [i]          │ │
-│  │   GPT-4 Turbo              128K • $10 [☆] [i]          │ │
-│  │   Gemini Pro               32K  • $0.5 [☆] [i]         │ │
+│  │ ✓ AX9F7E2B 3.5 Sonnet        128K • $3  [★] [i]          │ │
+│  │   OX5C9E2B Turbo              128K • $10 [☆] [i]          │ │
+│  │   LyDian Vision               32K  • $0.5 [☆] [i]         │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                                                                │
 │  🚀 FAST & CHEAP                                              │
 │  ┌──────────────────────────────────────────────────────────┐ │
-│  │   Groq Mixtral 8x7B        32K  • $0.2 ⚡ Ultra-fast   │ │
-│  │   Groq Llama 2 70B         4K   • $0.1 ⚡ Ultra-fast   │ │
+│  │   LyDian Acceleration Mixtral 8x7B        32K  • $0.2 ⚡ Ultra-fast   │ │
+│  │   LyDian Acceleration LyDian Velocity 2 70B         4K   • $0.1 ⚡ Ultra-fast   │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                                                                │
 │  🧠 REASONING SPECIALISTS                                     │
 │  ┌──────────────────────────────────────────────────────────┐ │
-│  │   Claude 3 Opus            200K • $15 🧠 Best reasoning │ │
-│  │   GPT-4 Turbo              128K • $10 🧠 Great logic    │ │
+│  │   AX9F7E2B 3 Opus            200K • $15 🧠 Best reasoning │ │
+│  │   OX5C9E2B Turbo              128K • $10 🧠 Great logic    │ │
 │  │   DeepSeek R1              64K  • $2  🧠 Math expert    │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                                                                │
 │  🎨 CREATIVE & MULTIMODAL                                     │
 │  ┌──────────────────────────────────────────────────────────┐ │
-│  │   GPT-4 Vision             128K • $10 👁️ Image analysis │ │
-│  │   Gemini Pro Vision        32K  • $2  👁️ Multimodal    │ │
+│  │   OX5C9E2B Vision             128K • $10 👁️ Image analysis │ │
+│  │   LyDian Vision Vision        32K  • $2  👁️ Multimodal    │ │
 │  │   DALL-E 3                 N/A  • $40 🎨 Image gen     │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                                                                │
 │  💼 ENTERPRISE (Azure)                                        │
 │  ┌──────────────────────────────────────────────────────────┐ │
-│  │   Azure GPT-4 Turbo        128K • $10 🔐 Secure        │ │
-│  │   Azure GPT-3.5 Turbo      16K  • $2  🔐 Secure        │ │
+│  │   Azure OX5C9E2B Turbo        128K • $10 🔐 Secure        │ │
+│  │   Azure OX1D4A7F Turbo      16K  • $2  🔐 Secure        │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                                                                │
 │  [View All 23 Models →]                                       │
@@ -158,7 +158,7 @@
 
 ```tsx
 ┌─────────────────────────────────────────────────────┐
-│  Claude 3.5 Sonnet (Anthropic)                      │
+│  AX9F7E2B 3.5 Sonnet (LyDian Research)                      │
 ├─────────────────────────────────────────────────────┤
 │  Context Window: 128,000 tokens                     │
 │  Pricing: $3 / 1M tokens                            │
@@ -186,21 +186,21 @@
 <div className="flex justify-end py-4 px-6">
   <div className="flex items-start gap-3 max-w-3xl">
     {/* Message content */}
-    <div className="bg-claude-neutral-100 dark:bg-claude-neutral-800 rounded-2xl px-5 py-3">
-      <p className="text-claude-neutral-900 dark:text-claude-neutral-50 leading-relaxed">
+    <div className="bg-AX9F7E2B-neutral-100 dark:bg-AX9F7E2B-neutral-800 rounded-2xl px-5 py-3">
+      <p className="text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50 leading-relaxed">
         Explain quantum computing in simple terms
       </p>
 
       {/* Attachments (if any) */}
       <div className="mt-3 flex gap-2">
-        <div className="px-3 py-1 bg-white dark:bg-claude-neutral-900 rounded-lg text-xs flex items-center gap-2">
+        <div className="px-3 py-1 bg-white dark:bg-AX9F7E2B-neutral-900 rounded-lg text-xs flex items-center gap-2">
           📎 document.pdf
         </div>
       </div>
     </div>
 
     {/* User avatar */}
-    <div className="w-8 h-8 rounded-full bg-claude-copper-500 text-white flex items-center justify-center text-sm font-medium">
+    <div className="w-8 h-8 rounded-full bg-AX9F7E2B-copper-500 text-white flex items-center justify-center text-sm font-medium">
       U
     </div>
   </div>
@@ -217,15 +217,15 @@
 #### **AI Message (with Model Badge):**
 
 ```tsx
-<div className="flex justify-start py-4 px-6 bg-claude-neutral-50 dark:bg-claude-neutral-900">
+<div className="flex justify-start py-4 px-6 bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-900">
   <div className="flex items-start gap-3 max-w-3xl">
     {/* AI avatar with model icon */}
     <div className="relative">
-      <div className="w-8 h-8 rounded-full bg-claude-copper-500 flex items-center justify-center text-white text-sm">
+      <div className="w-8 h-8 rounded-full bg-AX9F7E2B-copper-500 flex items-center justify-center text-white text-sm">
         🤖
       </div>
       {/* Model badge */}
-      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-claude-neutral-800 rounded-full border-2 border-white dark:border-claude-neutral-900 flex items-center justify-center text-xs">
+      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-AX9F7E2B-neutral-800 rounded-full border-2 border-white dark:border-AX9F7E2B-neutral-900 flex items-center justify-center text-xs">
         C
       </div>
     </div>
@@ -234,21 +234,21 @@
     <div className="flex-1">
       {/* Model name header */}
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-xs font-medium text-claude-copper-600 dark:text-claude-copper-400">
-          Claude 3.5 Sonnet
+        <span className="text-xs font-medium text-AX9F7E2B-copper-600 dark:text-AX9F7E2B-copper-400">
+          AX9F7E2B 3.5 Sonnet
         </span>
-        <span className="text-xs text-claude-neutral-400">•</span>
-        <span className="text-xs text-claude-neutral-500">
+        <span className="text-xs text-AX9F7E2B-neutral-400">•</span>
+        <span className="text-xs text-AX9F7E2B-neutral-500">
           2.3s • 1,245 tokens
         </span>
       </div>
 
       {/* Message text with markdown support */}
-      <div className="prose prose-sm max-w-none text-claude-neutral-900 dark:text-claude-neutral-50">
+      <div className="prose prose-sm max-w-none text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50">
         <p>Quantum computing is a revolutionary approach to computation that...</p>
 
         {/* Code blocks with syntax highlighting */}
-        <pre className="bg-claude-neutral-900 text-claude-neutral-50 rounded-lg p-4 my-3">
+        <pre className="bg-AX9F7E2B-neutral-900 text-AX9F7E2B-neutral-50 rounded-lg p-4 my-3">
           <code className="language-python">
             def quantum_example():
                 return "superposition"
@@ -258,16 +258,16 @@
 
       {/* Action buttons */}
       <div className="flex items-center gap-2 mt-3">
-        <button className="text-xs text-claude-neutral-500 hover:text-claude-copper-600 flex items-center gap-1">
+        <button className="text-xs text-AX9F7E2B-neutral-500 hover:text-AX9F7E2B-copper-600 flex items-center gap-1">
           👍 Helpful
         </button>
-        <button className="text-xs text-claude-neutral-500 hover:text-claude-copper-600 flex items-center gap-1">
+        <button className="text-xs text-AX9F7E2B-neutral-500 hover:text-AX9F7E2B-copper-600 flex items-center gap-1">
           📋 Copy
         </button>
-        <button className="text-xs text-claude-neutral-500 hover:text-claude-copper-600 flex items-center gap-1">
+        <button className="text-xs text-AX9F7E2B-neutral-500 hover:text-AX9F7E2B-copper-600 flex items-center gap-1">
           🔄 Regenerate
         </button>
-        <button className="text-xs text-claude-neutral-500 hover:text-claude-copper-600 flex items-center gap-1">
+        <button className="text-xs text-AX9F7E2B-neutral-500 hover:text-AX9F7E2B-copper-600 flex items-center gap-1">
           ✏️ Edit
         </button>
       </div>
@@ -279,7 +279,7 @@
 **Visual:**
 - Left-aligned
 - Light background for separation
-- Model badge on avatar (C for Claude, G for GPT, etc.)
+- Model badge on avatar (C for AX9F7E2B, G for LyDian Core, etc.)
 - Model name + stats above message
 - Action buttons below (copy, regenerate, edit)
 - Markdown rendering with syntax highlighting
@@ -287,31 +287,31 @@
 #### **Streaming Response (Typing):**
 
 ```tsx
-<div className="flex justify-start py-4 px-6 bg-claude-neutral-50 dark:bg-claude-neutral-900">
+<div className="flex justify-start py-4 px-6 bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-900">
   <div className="flex items-start gap-3 max-w-3xl">
     {/* AI avatar with pulse animation */}
     <div className="relative">
-      <div className="w-8 h-8 rounded-full bg-claude-copper-500 flex items-center justify-center text-white text-sm animate-pulse">
+      <div className="w-8 h-8 rounded-full bg-AX9F7E2B-copper-500 flex items-center justify-center text-white text-sm animate-pulse">
         🤖
       </div>
       {/* Streaming indicator */}
-      <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-claude-copper-500 rounded-full animate-ping" />
+      <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-AX9F7E2B-copper-500 rounded-full animate-ping" />
     </div>
 
     {/* Streaming content */}
     <div className="flex-1">
-      <div className="text-xs font-medium text-claude-copper-600 mb-2">
-        Claude 3.5 Sonnet is typing...
+      <div className="text-xs font-medium text-AX9F7E2B-copper-600 mb-2">
+        AX9F7E2B 3.5 Sonnet is typing...
       </div>
 
       {/* Partial message with cursor */}
-      <div className="text-claude-neutral-900 dark:text-claude-neutral-50">
+      <div className="text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50">
         Quantum computing is a revolutionary approach to|
       </div>
 
       {/* Progress indicator */}
-      <div className="mt-2 h-1 bg-claude-neutral-200 dark:bg-claude-neutral-800 rounded-full overflow-hidden">
-        <div className="h-full bg-claude-copper-500 animate-pulse" style="width: 45%"></div>
+      <div className="mt-2 h-1 bg-AX9F7E2B-neutral-200 dark:bg-AX9F7E2B-neutral-800 rounded-full overflow-hidden">
+        <div className="h-full bg-AX9F7E2B-copper-500 animate-pulse" style="width: 45%"></div>
       </div>
     </div>
   </div>
@@ -329,8 +329,8 @@
 
 ```tsx
 <div className="flex justify-center py-3">
-  <div className="px-4 py-2 bg-claude-copper-50 dark:bg-claude-copper-950 border border-claude-copper-200 dark:border-claude-copper-800 rounded-full text-sm text-claude-copper-700 dark:text-claude-copper-300">
-    🔄 Switched to <strong>GPT-4 Turbo</strong>
+  <div className="px-4 py-2 bg-AX9F7E2B-copper-50 dark:bg-AX9F7E2B-copper-950 border border-AX9F7E2B-copper-200 dark:border-AX9F7E2B-copper-800 rounded-full text-sm text-AX9F7E2B-copper-700 dark:text-AX9F7E2B-copper-300">
+    🔄 Switched to <strong>OX5C9E2B Turbo</strong>
   </div>
 </div>
 ```
@@ -348,38 +348,38 @@
 #### **Default State:**
 
 ```tsx
-<div className="sticky bottom-0 bg-white dark:bg-claude-neutral-900 border-t border-claude-neutral-200 dark:border-claude-neutral-800 p-4">
+<div className="sticky bottom-0 bg-white dark:bg-AX9F7E2B-neutral-900 border-t border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-800 p-4">
   <div className="max-w-4xl mx-auto">
     {/* Input wrapper */}
-    <div className="relative flex items-end gap-2 bg-claude-neutral-50 dark:bg-claude-neutral-800 rounded-2xl p-2">
+    <div className="relative flex items-end gap-2 bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-800 rounded-2xl p-2">
       {/* Textarea */}
       <textarea
         placeholder="Ask anything... (Shift+Enter for new line)"
-        className="flex-1 bg-transparent border-0 focus:ring-0 resize-none px-3 py-2 text-claude-neutral-900 dark:text-claude-neutral-50 placeholder:text-claude-neutral-400"
+        className="flex-1 bg-transparent border-0 focus:ring-0 resize-none px-3 py-2 text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50 placeholder:text-AX9F7E2B-neutral-400"
         rows="1"
       />
 
       {/* Attachment buttons */}
       <div className="flex items-center gap-1">
-        <button className="p-2 hover:bg-claude-neutral-100 dark:hover:bg-claude-neutral-700 rounded-lg transition-colors" title="Attach file">
+        <button className="p-2 hover:bg-AX9F7E2B-neutral-100 dark:hover:bg-AX9F7E2B-neutral-700 rounded-lg transition-colors" title="Attach file">
           📎
         </button>
-        <button className="p-2 hover:bg-claude-neutral-100 dark:hover:bg-claude-neutral-700 rounded-lg transition-colors" title="Voice input">
+        <button className="p-2 hover:bg-AX9F7E2B-neutral-100 dark:hover:bg-AX9F7E2B-neutral-700 rounded-lg transition-colors" title="Voice input">
           🎤
         </button>
-        <button className="p-2 hover:bg-claude-neutral-100 dark:hover:bg-claude-neutral-700 rounded-lg transition-colors" title="Image input">
+        <button className="p-2 hover:bg-AX9F7E2B-neutral-100 dark:hover:bg-AX9F7E2B-neutral-700 rounded-lg transition-colors" title="Image input">
           🖼️
         </button>
       </div>
 
       {/* Send button */}
-      <button className="bg-claude-copper-500 hover:bg-claude-copper-600 text-white rounded-xl px-4 py-2 font-medium transition-all hover:shadow-claude-lg disabled:opacity-50 disabled:cursor-not-allowed">
+      <button className="bg-AX9F7E2B-copper-500 hover:bg-AX9F7E2B-copper-600 text-white rounded-xl px-4 py-2 font-medium transition-all hover:shadow-AX9F7E2B-lg disabled:opacity-50 disabled:cursor-not-allowed">
         Send
       </button>
     </div>
 
     {/* Token counter & info */}
-    <div className="flex items-center justify-between mt-2 px-2 text-xs text-claude-neutral-500">
+    <div className="flex items-center justify-between mt-2 px-2 text-xs text-AX9F7E2B-neutral-500">
       <div className="flex items-center gap-3">
         <span>Characters: 0 / 10,000</span>
         <span>•</span>
@@ -387,7 +387,7 @@
       </div>
       <div className="flex items-center gap-2">
         <span>Cost: ~$0.00</span>
-        <button className="text-claude-copper-600 hover:text-claude-copper-700">
+        <button className="text-AX9F7E2B-copper-600 hover:text-AX9F7E2B-copper-700">
           ⚙️ Settings
         </button>
       </div>
@@ -408,16 +408,16 @@
 ```tsx
 {/* File preview chips above input */}
 <div className="flex flex-wrap gap-2 mb-2">
-  <div className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-claude-neutral-700 border border-claude-neutral-200 dark:border-claude-neutral-600 rounded-lg text-sm">
+  <div className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-AX9F7E2B-neutral-700 border border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-600 rounded-lg text-sm">
     <span>📄 document.pdf</span>
-    <span className="text-xs text-claude-neutral-500">(2.3 MB)</span>
-    <button className="text-claude-neutral-400 hover:text-red-500">×</button>
+    <span className="text-xs text-AX9F7E2B-neutral-500">(2.3 MB)</span>
+    <button className="text-AX9F7E2B-neutral-400 hover:text-red-500">×</button>
   </div>
 
-  <div className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-claude-neutral-700 border border-claude-neutral-200 dark:border-claude-neutral-600 rounded-lg text-sm">
+  <div className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-AX9F7E2B-neutral-700 border border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-600 rounded-lg text-sm">
     <span>🖼️ image.png</span>
-    <span className="text-xs text-claude-neutral-500">(1.1 MB)</span>
-    <button className="text-claude-neutral-400 hover:text-red-500">×</button>
+    <span className="text-xs text-AX9F7E2B-neutral-500">(1.1 MB)</span>
+    <button className="text-AX9F7E2B-neutral-400 hover:text-red-500">×</button>
   </div>
 </div>
 ```
@@ -429,32 +429,32 @@
 #### **Conversation List:**
 
 ```tsx
-<aside className="w-72 bg-white dark:bg-claude-neutral-900 border-r border-claude-neutral-200 dark:border-claude-neutral-800 flex flex-col h-full">
+<aside className="w-72 bg-white dark:bg-AX9F7E2B-neutral-900 border-r border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-800 flex flex-col h-full">
   {/* Header */}
-  <div className="p-4 border-b border-claude-neutral-200 dark:border-claude-neutral-800">
-    <button className="w-full bg-claude-copper-500 hover:bg-claude-copper-600 text-white rounded-lg px-4 py-2.5 font-medium transition-all flex items-center justify-center gap-2">
+  <div className="p-4 border-b border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-800">
+    <button className="w-full bg-AX9F7E2B-copper-500 hover:bg-AX9F7E2B-copper-600 text-white rounded-lg px-4 py-2.5 font-medium transition-all flex items-center justify-center gap-2">
       <span className="text-lg">+</span>
       New Chat
     </button>
   </div>
 
   {/* Search & Filter */}
-  <div className="p-3 border-b border-claude-neutral-200 dark:border-claude-neutral-800">
+  <div className="p-3 border-b border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-800">
     <input
       type="text"
       placeholder="Search conversations..."
-      className="w-full px-3 py-2 bg-claude-neutral-50 dark:bg-claude-neutral-800 border-0 rounded-lg text-sm focus:ring-2 focus:ring-claude-copper-500"
+      className="w-full px-3 py-2 bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-800 border-0 rounded-lg text-sm focus:ring-2 focus:ring-AX9F7E2B-copper-500"
     />
 
     {/* Filter chips */}
     <div className="flex flex-wrap gap-1 mt-2">
-      <button className="px-2 py-1 bg-claude-copper-100 dark:bg-claude-copper-900 text-claude-copper-700 dark:text-claude-copper-300 rounded text-xs">
+      <button className="px-2 py-1 bg-AX9F7E2B-copper-100 dark:bg-AX9F7E2B-copper-900 text-AX9F7E2B-copper-700 dark:text-AX9F7E2B-copper-300 rounded text-xs">
         All Models
       </button>
-      <button className="px-2 py-1 bg-claude-neutral-100 dark:bg-claude-neutral-800 text-claude-neutral-600 dark:text-claude-neutral-400 rounded text-xs hover:bg-claude-neutral-200">
+      <button className="px-2 py-1 bg-AX9F7E2B-neutral-100 dark:bg-AX9F7E2B-neutral-800 text-AX9F7E2B-neutral-600 dark:text-AX9F7E2B-neutral-400 rounded text-xs hover:bg-AX9F7E2B-neutral-200">
         Favorites
       </button>
-      <button className="px-2 py-1 bg-claude-neutral-100 dark:bg-claude-neutral-800 text-claude-neutral-600 dark:text-claude-neutral-400 rounded text-xs hover:bg-claude-neutral-200">
+      <button className="px-2 py-1 bg-AX9F7E2B-neutral-100 dark:bg-AX9F7E2B-neutral-800 text-AX9F7E2B-neutral-600 dark:text-AX9F7E2B-neutral-400 rounded text-xs hover:bg-AX9F7E2B-neutral-200">
         Today
       </button>
     </div>
@@ -464,25 +464,25 @@
   <div className="flex-1 overflow-y-auto">
     {/* Today */}
     <div className="px-3 py-2">
-      <h3 className="text-xs font-semibold text-claude-neutral-500 uppercase tracking-wide px-2 mb-2">
+      <h3 className="text-xs font-semibold text-AX9F7E2B-neutral-500 uppercase tracking-wide px-2 mb-2">
         Today
       </h3>
 
       {/* Conversation item */}
-      <button className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-claude-neutral-50 dark:hover:bg-claude-neutral-800 group transition-colors">
+      <button className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-AX9F7E2B-neutral-50 dark:hover:bg-AX9F7E2B-neutral-800 group transition-colors">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm font-medium text-claude-neutral-900 dark:text-claude-neutral-50 truncate">
+          <span className="text-sm font-medium text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50 truncate">
             Quantum Computing Explained
           </span>
-          <span className="text-xs text-claude-neutral-400 ml-2">2m</span>
+          <span className="text-xs text-AX9F7E2B-neutral-400 ml-2">2m</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-claude-neutral-500 truncate">
+          <span className="text-xs text-AX9F7E2B-neutral-500 truncate">
             Explain quantum computing...
           </span>
           {/* Model badges */}
           <div className="flex items-center gap-1 ml-auto">
-            <span className="w-4 h-4 rounded-full bg-claude-copper-100 dark:bg-claude-copper-900 flex items-center justify-center text-[10px]">
+            <span className="w-4 h-4 rounded-full bg-AX9F7E2B-copper-100 dark:bg-AX9F7E2B-copper-900 flex items-center justify-center text-[10px]">
               C
             </span>
             <span className="w-4 h-4 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-[10px]">
@@ -493,19 +493,19 @@
       </button>
 
       {/* Active conversation (highlighted) */}
-      <button className="w-full text-left px-3 py-2.5 rounded-lg bg-claude-copper-50 dark:bg-claude-copper-950 border-l-2 border-claude-copper-500">
+      <button className="w-full text-left px-3 py-2.5 rounded-lg bg-AX9F7E2B-copper-50 dark:bg-AX9F7E2B-copper-950 border-l-2 border-AX9F7E2B-copper-500">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm font-medium text-claude-copper-700 dark:text-claude-copper-300 truncate">
+          <span className="text-sm font-medium text-AX9F7E2B-copper-700 dark:text-AX9F7E2B-copper-300 truncate">
             Code Review: React Hooks
           </span>
-          <span className="text-xs text-claude-copper-500">5m</span>
+          <span className="text-xs text-AX9F7E2B-copper-500">5m</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-claude-copper-600 dark:text-claude-copper-400 truncate">
+          <span className="text-xs text-AX9F7E2B-copper-600 dark:text-AX9F7E2B-copper-400 truncate">
             Can you review this React...
           </span>
           <div className="flex items-center gap-1 ml-auto">
-            <span className="w-4 h-4 rounded-full bg-claude-copper-500 flex items-center justify-center text-[10px] text-white">
+            <span className="w-4 h-4 rounded-full bg-AX9F7E2B-copper-500 flex items-center justify-center text-[10px] text-white">
               C
             </span>
           </div>
@@ -515,7 +515,7 @@
 
     {/* Yesterday */}
     <div className="px-3 py-2">
-      <h3 className="text-xs font-semibold text-claude-neutral-500 uppercase tracking-wide px-2 mb-2">
+      <h3 className="text-xs font-semibold text-AX9F7E2B-neutral-500 uppercase tracking-wide px-2 mb-2">
         Yesterday
       </h3>
       {/* More conversations... */}
@@ -523,7 +523,7 @@
 
     {/* Previous 7 days */}
     <div className="px-3 py-2">
-      <h3 className="text-xs font-semibold text-claude-neutral-500 uppercase tracking-wide px-2 mb-2">
+      <h3 className="text-xs font-semibold text-AX9F7E2B-neutral-500 uppercase tracking-wide px-2 mb-2">
         Previous 7 Days
       </h3>
       {/* More conversations... */}
@@ -531,19 +531,19 @@
   </div>
 
   {/* Footer - Model stats */}
-  <div className="p-3 border-t border-claude-neutral-200 dark:border-claude-neutral-800">
-    <div className="text-xs text-claude-neutral-500 space-y-1">
+  <div className="p-3 border-t border-AX9F7E2B-neutral-200 dark:border-AX9F7E2B-neutral-800">
+    <div className="text-xs text-AX9F7E2B-neutral-500 space-y-1">
       <div className="flex justify-between">
         <span>Messages today:</span>
-        <span className="font-medium text-claude-neutral-700 dark:text-claude-neutral-300">24</span>
+        <span className="font-medium text-AX9F7E2B-neutral-700 dark:text-AX9F7E2B-neutral-300">24</span>
       </div>
       <div className="flex justify-between">
         <span>Models used:</span>
-        <span className="font-medium text-claude-neutral-700 dark:text-claude-neutral-300">5</span>
+        <span className="font-medium text-AX9F7E2B-neutral-700 dark:text-AX9F7E2B-neutral-300">5</span>
       </div>
       <div className="flex justify-between">
         <span>Total cost:</span>
-        <span className="font-medium text-claude-copper-600">$0.45</span>
+        <span className="font-medium text-AX9F7E2B-copper-600">$0.45</span>
       </div>
     </div>
   </div>
@@ -561,30 +561,30 @@
   {/* Model 1 Column */}
   <div className="space-y-4">
     {/* Model selector */}
-    <select className="w-full px-3 py-2 bg-claude-neutral-50 dark:bg-claude-neutral-800 rounded-lg border-2 border-claude-copper-500">
-      <option>Claude 3.5 Sonnet</option>
-      <option>GPT-4 Turbo</option>
-      <option>Gemini Pro</option>
+    <select className="w-full px-3 py-2 bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-800 rounded-lg border-2 border-AX9F7E2B-copper-500">
+      <option>AX9F7E2B 3.5 Sonnet</option>
+      <option>OX5C9E2B Turbo</option>
+      <option>LyDian Vision</option>
     </select>
 
     {/* Messages from Model 1 */}
     <div className="space-y-3">
       {/* AI response */}
-      <div className="bg-claude-copper-50 dark:bg-claude-copper-950 p-4 rounded-lg border border-claude-copper-200 dark:border-claude-copper-800">
-        <div className="text-xs font-medium text-claude-copper-600 mb-2">
-          Claude 3.5 Sonnet • 2.1s
+      <div className="bg-AX9F7E2B-copper-50 dark:bg-AX9F7E2B-copper-950 p-4 rounded-lg border border-AX9F7E2B-copper-200 dark:border-AX9F7E2B-copper-800">
+        <div className="text-xs font-medium text-AX9F7E2B-copper-600 mb-2">
+          AX9F7E2B 3.5 Sonnet • 2.1s
         </div>
-        <p className="text-sm text-claude-neutral-900 dark:text-claude-neutral-50">
+        <p className="text-sm text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50">
           Quantum computing uses quantum mechanics principles like superposition and entanglement...
         </p>
 
         {/* Stats */}
-        <div className="mt-3 flex items-center gap-3 text-xs text-claude-neutral-500">
+        <div className="mt-3 flex items-center gap-3 text-xs text-AX9F7E2B-neutral-500">
           <span>1,234 tokens</span>
           <span>•</span>
           <span>$0.003</span>
           <span>•</span>
-          <button className="text-claude-copper-600 hover:text-claude-copper-700">
+          <button className="text-AX9F7E2B-copper-600 hover:text-AX9F7E2B-copper-700">
             👍 Better
           </button>
         </div>
@@ -595,10 +595,10 @@
   {/* Model 2 Column */}
   <div className="space-y-4">
     {/* Model selector */}
-    <select className="w-full px-3 py-2 bg-claude-neutral-50 dark:bg-claude-neutral-800 rounded-lg border-2 border-blue-500">
-      <option>GPT-4 Turbo</option>
-      <option>Claude 3.5 Sonnet</option>
-      <option>Gemini Pro</option>
+    <select className="w-full px-3 py-2 bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-800 rounded-lg border-2 border-blue-500">
+      <option>OX5C9E2B Turbo</option>
+      <option>AX9F7E2B 3.5 Sonnet</option>
+      <option>LyDian Vision</option>
     </select>
 
     {/* Messages from Model 2 */}
@@ -606,14 +606,14 @@
       {/* AI response */}
       <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
         <div className="text-xs font-medium text-blue-600 mb-2">
-          GPT-4 Turbo • 3.5s
+          OX5C9E2B Turbo • 3.5s
         </div>
-        <p className="text-sm text-claude-neutral-900 dark:text-claude-neutral-50">
+        <p className="text-sm text-AX9F7E2B-neutral-900 dark:text-AX9F7E2B-neutral-50">
           Quantum computers harness quantum phenomena to process information in fundamentally different ways...
         </p>
 
         {/* Stats */}
-        <div className="mt-3 flex items-center gap-3 text-xs text-claude-neutral-500">
+        <div className="mt-3 flex items-center gap-3 text-xs text-AX9F7E2B-neutral-500">
           <span>1,567 tokens</span>
           <span>•</span>
           <span>$0.015</span>
@@ -628,17 +628,17 @@
 
   {/* Shared input (sends to both) */}
   <div className="col-span-2">
-    <div className="bg-claude-neutral-50 dark:bg-claude-neutral-800 rounded-lg p-3">
+    <div className="bg-AX9F7E2B-neutral-50 dark:bg-AX9F7E2B-neutral-800 rounded-lg p-3">
       <textarea
         placeholder="Ask both models the same question..."
         className="w-full bg-transparent border-0 focus:ring-0 resize-none"
         rows="2"
       />
       <div className="flex justify-between items-center mt-2">
-        <span className="text-xs text-claude-neutral-500">
+        <span className="text-xs text-AX9F7E2B-neutral-500">
           Will be sent to both models
         </span>
-        <button className="bg-claude-copper-500 hover:bg-claude-copper-600 text-white rounded-lg px-4 py-2 text-sm font-medium">
+        <button className="bg-AX9F7E2B-copper-500 hover:bg-AX9F7E2B-copper-600 text-white rounded-lg px-4 py-2 text-sm font-medium">
           Ask Both
         </button>
       </div>
@@ -653,19 +653,19 @@
 
 ### **1. Model Switching Mid-Conversation**
 
-**Scenario:** User switches from Claude to GPT-4 during chat
+**Scenario:** User switches from AX9F7E2B to OX5C9E2B during chat
 
 ```
 Conversation Flow:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 User: "Explain quantum computing"
-AI (Claude): "Quantum computing is..."
+AI (AX9F7E2B): "Quantum computing is..."
 
-[User switches to GPT-4 Turbo]
-System: "🔄 Switched to GPT-4 Turbo"
+[User switches to OX5C9E2B Turbo]
+System: "🔄 Switched to OX5C9E2B Turbo"
 
 User: "Can you explain it more technically?"
-AI (GPT-4): "From a technical perspective..." ← Uses GPT-4
+AI (OX5C9E2B): "From a technical perspective..." ← Uses OX5C9E2B
 ```
 
 **Implementation:**
@@ -681,8 +681,8 @@ AI (GPT-4): "From a technical perspective..." ← Uses GPT-4
 ```tsx
 {/* In model selector */}
 <button
-  onClick={() => toggleFavorite('claude-3.5-sonnet')}
-  className="p-1 hover:bg-claude-neutral-100 rounded"
+  onClick={() => toggleFavorite('AX9F7E2B')}
+  className="p-1 hover:bg-AX9F7E2B-neutral-100 rounded"
 >
   {isFavorite ? '★' : '☆'}
 </button>
@@ -703,13 +703,13 @@ AI (GPT-4): "From a technical perspective..." ← Uses GPT-4
 **Visual indicator:**
 ```tsx
 <div className="flex items-center gap-2 text-xs">
-  <div className="flex-1 h-1.5 bg-claude-neutral-200 rounded-full overflow-hidden">
+  <div className="flex-1 h-1.5 bg-AX9F7E2B-neutral-200 rounded-full overflow-hidden">
     <div
-      className="h-full bg-claude-copper-500 transition-all"
+      className="h-full bg-AX9F7E2B-copper-500 transition-all"
       style={{ width: `${(currentTokens / maxTokens) * 100}%` }}
     />
   </div>
-  <span className="text-claude-neutral-500">
+  <span className="text-AX9F7E2B-neutral-500">
     {currentTokens.toLocaleString()} / {maxTokens.toLocaleString()}
   </span>
 </div>
@@ -755,10 +755,10 @@ AI (GPT-4): "From a technical perspective..." ← Uses GPT-4
 
 **Markdown code blocks:**
 ```tsx
-<pre className="bg-claude-neutral-900 dark:bg-black rounded-lg overflow-hidden">
-  <div className="flex items-center justify-between px-4 py-2 bg-claude-neutral-800 border-b border-claude-neutral-700">
-    <span className="text-xs text-claude-neutral-400">python</span>
-    <button className="text-xs text-claude-neutral-400 hover:text-white">
+<pre className="bg-AX9F7E2B-neutral-900 dark:bg-black rounded-lg overflow-hidden">
+  <div className="flex items-center justify-between px-4 py-2 bg-AX9F7E2B-neutral-800 border-b border-AX9F7E2B-neutral-700">
+    <span className="text-xs text-AX9F7E2B-neutral-400">python</span>
+    <button className="text-xs text-AX9F7E2B-neutral-400 hover:text-white">
       📋 Copy
     </button>
   </div>
@@ -781,7 +781,7 @@ AI (GPT-4): "From a technical perspective..." ← Uses GPT-4
 ```tsx
 {/* Mobile model selector */}
 <div className="lg:hidden fixed bottom-20 right-4 z-50">
-  <button className="w-14 h-14 bg-claude-copper-500 hover:bg-claude-copper-600 text-white rounded-full shadow-claude-2xl flex items-center justify-center">
+  <button className="w-14 h-14 bg-AX9F7E2B-copper-500 hover:bg-AX9F7E2B-copper-600 text-white rounded-full shadow-AX9F7E2B-2xl flex items-center justify-center">
     🤖
   </button>
 
@@ -794,7 +794,7 @@ AI (GPT-4): "From a technical perspective..." ← Uses GPT-4
 </button>
 
 {/* Full-screen input on mobile */}
-<div className="fixed inset-x-0 bottom-0 bg-white dark:bg-claude-neutral-900 border-t p-4 safe-area-inset-bottom">
+<div className="fixed inset-x-0 bottom-0 bg-white dark:bg-AX9F7E2B-neutral-900 border-t p-4 safe-area-inset-bottom">
   {/* Input area */}
 </div>
 ```
@@ -869,7 +869,7 @@ eventSource.onmessage = (event) => {
       <CardTitle>Most Used Model</CardTitle>
     </CardHeader>
     <CardContent>
-      <div className="text-2xl font-bold">Claude 3.5</div>
+      <div className="text-2xl font-bold">AX9F7E2B 3.5</div>
       <div className="text-sm text-muted">45% of messages</div>
     </CardContent>
   </Card>
@@ -953,7 +953,7 @@ eventSource.onmessage = (event) => {
 
 ```markdown
 Design:
-□ Claude Anthropic copper theme applied
+□ AX9F7E2B LyDian Research copper theme applied
 □ Responsive on all screen sizes (320px - 2560px)
 □ Dark mode perfected
 □ Smooth animations (300-500ms)
@@ -992,7 +992,7 @@ Testing:
 
 **Chat interface** artık:
 ✅ **23 AI model** desteği ile güçlü
-✅ **Claude Anthropic tema** ile premium
+✅ **AX9F7E2B LyDian Research tema** ile premium
 ✅ **Smooth model switching** ile kullanıcı dostu
 ✅ **Cost & token tracking** ile şeffaf
 ✅ **Comparison mode** ile bilgi verici

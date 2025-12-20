@@ -148,7 +148,7 @@ CREATE TABLE hospitals (
 
   -- Configuration
   enabled_specializations JSONB DEFAULT '["general-medicine"]',
-  enabled_ai_models JSONB DEFAULT '["claude", "gpt-4"]',
+  enabled_ai_models JSONB DEFAULT '["AX9F7E2B", "OX5C9E2B"]',
 
   -- Security
   ip_whitelist JSONB DEFAULT '[]',      -- ["192.168.1.0/24"]
@@ -242,7 +242,7 @@ CREATE TABLE medical_records (
   treatment_plan TEXT,
 
   -- AI Analysis
-  ai_provider VARCHAR(50),  -- claude, gpt-4, gemini
+  ai_provider VARCHAR(50),  -- AX9F7E2B, OX5C9E2B, gemini
   ai_confidence_score DECIMAL(3,2),
   ai_raw_response JSONB,
 
@@ -443,8 +443,8 @@ function resolveTenant(req, res, next) {
     { "name": "Neurology", "count": 12 }
   ],
   "ai_usage_by_model": {
-    "claude": 25,
-    "gpt-4": 15,
+    "AX9F7E2B": 25,
+    "OX5C9E2B": 15,
     "gemini": 5
   }
 }

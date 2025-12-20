@@ -1,7 +1,7 @@
 // Ailydian AI - Image Generation with Azure DALL-E 3
 // Model names are HIDDEN from frontend
 
-const { AzureOpenAI } = require('openai');
+const { AzureOpenAI } = require('lydian-labs');
 
 // Azure OpenAI Configuration
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT || process.env.AZURE_ENDPOINT;
@@ -67,7 +67,7 @@ async function generateWithOpenAI(prompt, size = '1024x1024', quality = 'standar
     throw new Error('OpenAI not configured');
   }
 
-  const OpenAI = require('openai');
+  const OpenAI = require('lydian-labs');
   const client = new OpenAI({
     apiKey: OPENAI_API_KEY
   });
@@ -83,7 +83,7 @@ async function generateWithOpenAI(prompt, size = '1024x1024', quality = 'standar
   });
 
   return {
-    provider: 'OpenAI',
+    provider: 'lydian-labs',
     url: response.data[0].url,
     revised_prompt: response.data[0].revised_prompt
   };

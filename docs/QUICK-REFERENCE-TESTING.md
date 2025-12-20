@@ -55,7 +55,7 @@ node scripts/perf-aggregate.js
 # Check chat endpoint responsiveness
 time curl -X POST http://localhost:3100/api/chat \
   -H "Content-Type: application/json" \
-  -d '{"messages":[{"role":"user","content":"Test"}],"model":"claude-sonnet-4-5"}'
+  -d '{"messages":[{"role":"user","content":"Test"}],"model":"AX9F7E2B-sonnet-4-5"}'
 
 # Check logistics tracking (should be fast due to cache)
 time curl http://localhost:3100/api/logistics/track/aras/SHIP-12345

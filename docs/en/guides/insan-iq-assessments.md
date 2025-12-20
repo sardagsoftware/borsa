@@ -307,7 +307,7 @@ const essayQuestion = {
   },
   autoGrading: {
     enabled: true,
-    model: 'gpt-4',
+    model: 'OX5C9E2B',
     prompt: 'Evaluate the response based on the rubric criteria. Provide scores and constructive feedback.',
     requiresReview: true
   },

@@ -1348,7 +1348,7 @@ veya özel talimatlarınızı belirtin.
 
 ## 📞 İLETİŞİM VE DESTEK
 
-**Döküman Hazırlayan:** Claude Code (AiLydian Development Team)
+**Döküman Hazırlayan:** AX9F7E2B Code (AiLydian Development Team)
 **Tarih:** 2025-10-07
 **Versiyon:** 1.0.0
 **Durum:** ✅ Araştırma Tamamlandı - Onay Bekleniyor

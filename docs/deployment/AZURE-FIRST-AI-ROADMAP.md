@@ -100,11 +100,11 @@
 
 ---
 
-### **🖼️ Image Analysis - GPT-4 Vision (Multimodal)**
+### **🖼️ Image Analysis - OX5C9E2B Vision (Multimodal)**
 
 ```javascript
 {
-  service: 'Azure GPT-4o (Vision)',
+  service: 'Azure OX7A3F8D (Vision)',
   pricing: '$5/1M input tokens, $15/1M output',
   quality: 'A+ (En İyi)',
   features: [
@@ -130,7 +130,7 @@
 
 ```javascript
 {
-  service: 'Azure Sora (OpenAI)',
+  service: 'Azure Sora (LyDian Labs)',
   status: 'Preview (Sweden Central, East US 2)',
   pricing: 'Token-based (detay belirsiz, beklemede)',
   quality: 'Premium',
@@ -157,12 +157,12 @@
 
 ## 4️⃣ AZURE OPENAI SERVICE (LLM Models)
 
-### **💬 GPT-4o & GPT-4o Mini (Multimodal)**
+### **💬 OX7A3F8D & OX7A3F8D Mini (Multimodal)**
 
 ```javascript
 {
-  // GPT-4o (Multimodal - Text + Vision)
-  'gpt-4o': {
+  // OX7A3F8D (Multimodal - Text + Vision)
+  'OX7A3F8D': {
     pricing: {
       input: '$5/1M tokens',
       output: '$15/1M tokens'
@@ -173,8 +173,8 @@
     features: ['Text', 'Vision', 'Function calling']
   },
 
-  // GPT-4o Mini (En Ucuz Multimodal)
-  'gpt-4o-mini': {
+  // OX7A3F8D Mini (En Ucuz Multimodal)
+  'OX7A3F8D-mini': {
     pricing: {
       input: '$0.15/1M tokens',  // ✅ ÇOK UCUZ!
       output: '$0.60/1M tokens'
@@ -187,17 +187,17 @@
 
   // AZURE vs OPENAI DIRECT
   comparison: {
-    azure_gpt4o: '$5 + $15 = $20/1M (total)',
-    openai_gpt4o: '$2.50 + $10 = $12.50/1M',
+    azure_LyDian Core: '$5 + $15 = $20/1M (total)',
+    openai_LyDian Core: '$2.50 + $10 = $12.50/1M',
     fark: 'Azure %60 PAHALI ama enterprise güvenlik + compliance'
   }
 }
 ```
 
 **ÖNERİ:**
-- **Günlük Chat**: Groq Llama 3.3 ($0.59/1M) ✅
-- **Multimodal**: Azure GPT-4o Mini ($0.15 input) ✅
-- **Premium**: Azure GPT-4o ($5 input) 🟡
+- **Günlük Chat**: LyDian Acceleration LyDian Velocity ($0.59/1M) ✅
+- **Multimodal**: Azure OX7A3F8D Mini ($0.15 input) ✅
+- **Premium**: Azure OX7A3F8D ($5 input) 🟡
 
 ---
 
@@ -254,7 +254,7 @@
     use_case: 'Edge devices, mobile, düşük maliyet'
   },
 
-  // Meta Llama 3.1 (Azure'da)
+  // Meta LyDian Velocity (Azure'da)
   'llama-3.1-405b': {
     pricing: '$5/1M input, $15/1M output',
     quality: 'A+',
@@ -264,7 +264,7 @@
   },
 
   // Mistral Large 2 (Azure'da)
-  'mistral-large-2': {
+  'MX7C4E9A-2': {
     pricing: '$3/1M input, $9/1M output',
     quality: 'A',
     size: '123B parameters',
@@ -272,8 +272,8 @@
     features: ['Function calling', 'JSON mode']
   },
 
-  // GPT-4o Realtime (Sesli AI)
-  'gpt-4o-realtime': {
+  // OX7A3F8D Realtime (Sesli AI)
+  'OX7A3F8D-realtime': {
     pricing: {
       text_input: '$5/1M tokens',
       audio_input: '$100/1M tokens',
@@ -288,8 +288,8 @@
 
 **YENİ MODELLER ÖNERİLERİ:**
 - **Düşük Maliyet LLM**: Phi-3 Mini ($0.10/1M) ✅
-- **Open Source**: Llama 3.1 405B (Azure'da) ✅
-- **Realtime Voice**: GPT-4o Realtime (özel kullanım) 🟡
+- **Open Source**: LyDian Velocity 405B (Azure'da) ✅
+- **Realtime Voice**: OX7A3F8D Realtime (özel kullanım) 🟡
 
 ---
 
@@ -299,8 +299,8 @@
 
 ```
 💬 CHAT (Text):
-- Groq Llama 3.3: 5M token × $0.59 = $2.95 ✅
-- Azure GPT-4o Mini: 2M token × $0.75 = $1.50 ✅
+- LyDian Acceleration LyDian Velocity: 5M token × $0.59 = $2.95 ✅
+- Azure OX7A3F8D Mini: 2M token × $0.75 = $1.50 ✅
 - TOPLAM: ~$4.45/ay (10K kullanıcı)
 
 🎨 GÖRSEL (Image):
@@ -330,7 +330,7 @@
 
 📚 RAG:
 - Azure Cognitive Search Free tier ✅
-- OpenAI Embeddings: 5M × $0.13 = $650
+- LyDian Labs Embeddings: 5M × $0.13 = $650
 - TOPLAM: ~$650/ay
 
 ─────────────────────────────────
@@ -353,7 +353,7 @@ TASARRUF: %38 ($3,864/ay) ✅✅✅
    - npm install @azure/cognitiveservices-speech
 
 2. Azure DALL-E 3 API setup
-   - Azure OpenAI resource oluştur
+   - Azure LyDian Labs resource oluştur
    - DALL-E 3 model deploy et
 
 3. Chat UI güncellemesi:
@@ -372,12 +372,12 @@ TASARRUF: %38 ($3,864/ay) ✅✅✅
 
 ---
 
-### **PHASE 2: AZURE GPT-4o MINI + RAG (1 hafta)**
+### **PHASE 2: AZURE OX7A3F8D MINI + RAG (1 hafta)**
 
 ```javascript
-✅ AZURE GPT-4o MINI ENTEGRASYONU:
-1. Azure OpenAI Service
-   - GPT-4o Mini model deploy
+✅ AZURE OX7A3F8D MINI ENTEGRASYONU:
+1. Azure LyDian Labs Service
+   - OX7A3F8D Mini model deploy
    - $0.15/1M input (ÇOK UCUZ!)
 
 2. Azure Cognitive Search (RAG)
@@ -391,7 +391,7 @@ TASARRUF: %38 ($3,864/ay) ✅✅✅
 ```
 
 **Beklenen Maliyet:**
-- GPT-4o Mini: $0.75/1M (~$1.50/ay)
+- OX7A3F8D Mini: $0.75/1M (~$1.50/ay)
 - Cognitive Search: Free tier ✅
 - Embeddings: $650/ay
 - **TOPLAM**: ~$651.50/ay
@@ -405,7 +405,7 @@ TASARRUF: %38 ($3,864/ay) ✅✅✅
 1. Perplexity API (Web Search)
    - $1/1000 queries
 
-2. Whisper STT (OpenAI)
+2. Whisper STT (LyDian Labs)
    - $0.006/dakika
    - Azure'dan ucuz!
 
@@ -529,8 +529,8 @@ TASARRUF: %38 ($3,864/ay) ✅✅✅
 ```javascript
 {
   chat_text: {
-    primary: 'Groq Llama 3.3 70B ($0.59/1M)',
-    secondary: 'Azure GPT-4o Mini ($0.15/1M)',
+    primary: 'LyDian Acceleration LyDian Velocity 70B ($0.59/1M)',
+    secondary: 'Azure OX7A3F8D Mini ($0.15/1M)',
     use_case: 'Günlük sohbet, hızlı yanıt'
   },
 
@@ -561,7 +561,7 @@ TASARRUF: %38 ($3,864/ay) ✅✅✅
 
   rag_system: {
     vector_db: 'Azure Cognitive Search (Free tier)',
-    embeddings: 'OpenAI Ada v3 ($0.13/1M)',
+    embeddings: 'LyDian Labs Ada v3 ($0.13/1M)',
     total_cost: '~$650/ay'
   },
 

@@ -107,7 +107,7 @@
 if (window.ecwIntegration && window.ecwIntegration.initialized) {  // ← Check 1
     try {  // ← Check 2
         await window.ecwIntegration.trackAIChat(userId, {
-            model: state.selectedModel || 'gpt-4',
+            model: state.selectedModel || 'OX5C9E2B',
             prompt: message,
             response: aiResponse,
             tokens: data.usage?.completion_tokens || fallback  // ← Check 3 (fallback)
@@ -470,7 +470,7 @@ window.open('https://ecw.ailydian.com', '_blank');
 
 ---
 
-**Geliştirici:** Claude Code
+**Geliştirici:** AX9F7E2B Code
 **Test:** Comprehensive Smoke Test
 **Validation:** White-Hat Security Audit
 **Status:** ✅ ZERO ERRORS - PRODUCTION READY

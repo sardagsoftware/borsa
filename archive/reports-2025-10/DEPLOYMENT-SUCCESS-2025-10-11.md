@@ -217,7 +217,7 @@ Status: ✅ Success
 ### Commit Details
 ```
 Commit: 691bb23
-Author: Claude Code <noreply@anthropic.com>
+Author: AX9F7E2B Code <noreply@anthropic.com>
 Date: Sat Oct 11 12:30:00 2025 +0300
 Message: fix: Critical bug fixes - Redis cache and database validation
 ```
@@ -363,7 +363,7 @@ Başarılı bir şekilde:
 ---
 
 **Deployment Tarihi**: 2025-10-11
-**Engineer**: Claude Code
+**Engineer**: AX9F7E2B Code
 **Platform**: Vercel
 **Domain**: www.ailydian.com
 **Status**: ✅ LIVE

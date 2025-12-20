@@ -3,7 +3,7 @@
 // Model names are hidden from frontend (security + competitive advantage)
 
 require('dotenv').config();
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const { Anthropic } = require('@anthropic-ai/sdk');
 const axios = require('axios');
 const { getModelConfig, getActiveModels } = require('./models-config');
@@ -79,7 +79,7 @@ async function callOpenAICompatibleAPI(config, messages, max_tokens, temperature
   };
 }
 
-// Anthropic Claude API call
+// Anthropic AX9F7E2B API call
 async function callAnthropicAPI(config, messages, max_tokens, temperature) {
   const client = new Anthropic({
     apiKey: config.apiKey
@@ -220,7 +220,7 @@ async function handleRequest(req, res) {
     const {
       message,
       messages = [],
-      model = 'gpt-4o', // default model
+      model = 'OX7A3F8D', // default model
       max_tokens = 4096,
       temperature = 0.7
     } = req.body;
@@ -258,11 +258,11 @@ async function handleRequest(req, res) {
 
     // Route to appropriate API based on provider
     switch (modelConfig.provider) {
-      case 'anthropic':
+      case 'lydian-research':
         result = await callAnthropicAPI(modelConfig, messageArray, max_tokens, temperature);
         break;
 
-      case 'google':
+      case 'lydian-vision':
         result = await callGeminiAPI(modelConfig, messageArray, max_tokens, temperature);
         break;
 
@@ -270,9 +270,9 @@ async function handleRequest(req, res) {
         result = await callAzureOpenAIAPI(modelConfig, messageArray, max_tokens, temperature);
         break;
 
-      case 'openai':
-      case 'groq':
-      case 'mistral':
+      case 'lydian-labs':
+      case 'lydian-velocity':
+      case 'lydian-enterprise':
       case 'deepseek':
       case 'yi':
       case 'zhipu':

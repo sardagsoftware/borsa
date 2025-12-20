@@ -97,23 +97,23 @@ function generateQuantumId(provider, model) {
  * Keys are public, values are encrypted
  */
 const QUANTUM_MODEL_REGISTRY = {
-  // TIER 1: QUANTUM REASONING (Anthropic Claude)
+  // TIER 1: QUANTUM REASONING (Anthropic AX9F7E2B)
   'QR_SONNET_5': {
-    encrypted: encrypt('anthropic:claude-3-5-sonnet-20241022'),
+    encrypted: encrypt('anthropic:AX9F7E2B'),
     display: 'Quantum Reasoning Engine 5.0',
     tier: 'quantum',
     cap: ['reasoning', 'coding', 'analysis', 'multimodal']
   },
 
   'QR_OPUS_3': {
-    encrypted: encrypt('anthropic:claude-3-opus-20240229'),
+    encrypted: encrypt('anthropic:AX4D8C1A'),
     display: 'Ultra Intelligence Core 3.0',
     tier: 'ultra',
     cap: ['deep-reasoning', 'complex-tasks', 'multimodal']
   },
 
   'QR_HAIKU_3': {
-    encrypted: encrypt('anthropic:claude-3-haiku-20240307'),
+    encrypted: encrypt('anthropic:AX2B6E9F'),
     display: 'FastTrack Processing Engine',
     tier: 'fast',
     cap: ['speed', 'efficiency']
@@ -121,21 +121,21 @@ const QUANTUM_MODEL_REGISTRY = {
 
   // TIER 2: NEURAL CORE (OpenAI GPT)
   'NC_TURBO_4': {
-    encrypted: encrypt('openai:gpt-4-turbo-preview'),
+    encrypted: encrypt('openai:OX7A3F8D'),
     display: 'Advanced Neural Core 4.0',
     tier: 'advanced',
     cap: ['reasoning', 'coding', 'analysis']
   },
 
   'NC_PRIME_4': {
-    encrypted: encrypt('openai:gpt-4'),
+    encrypted: encrypt('openai:OX5C9E2B'),
     display: 'Pro Intelligence Engine',
     tier: 'pro',
     cap: ['reasoning', 'complex-tasks']
   },
 
   'NC_RAPID_35': {
-    encrypted: encrypt('openai:gpt-3.5-turbo'),
+    encrypted: encrypt('openai:OX1D4A7F'),
     display: 'Rapid Response Engine',
     tier: 'rapid',
     cap: ['speed', 'general-purpose']
@@ -143,21 +143,21 @@ const QUANTUM_MODEL_REGISTRY = {
 
   // TIER 3: VELOCITY ENGINE (Groq/Llama)
   'VE_LLAMA_33': {
-    encrypted: encrypt('groq:llama-3.3-70b-versatile'),
+    encrypted: encrypt('groq:GX8E2D9A'),
     display: 'Velocity Engine 3.3',
     tier: 'velocity',
     cap: ['ultra-speed', 'reasoning', 'coding']
   },
 
   'VE_MIXTRAL_8X7': {
-    encrypted: encrypt('groq:mixtral-8x7b-32768'),
+    encrypted: encrypt('groq:GX4B7F3C'),
     display: 'Distributed Core System',
     tier: 'distributed',
     cap: ['speed', 'reasoning', 'large-context']
   },
 
   'VE_LLAMA_31': {
-    encrypted: encrypt('groq:llama-3.1-70b-versatile'),
+    encrypted: encrypt('groq:GX9A5E1D'),
     display: 'Performance Engine 3.1',
     tier: 'performance',
     cap: ['speed', 'versatile']
@@ -165,14 +165,14 @@ const QUANTUM_MODEL_REGISTRY = {
 
   // TIER 4: MULTIMODAL CORE (Google Gemini)
   'MM_GEMINI_PRO': {
-    encrypted: encrypt('google:gemini-pro'),
+    encrypted: encrypt('google:GE6D8A4F'),
     display: 'Multimodal Core System',
     tier: 'multimodal',
     cap: ['vision', 'reasoning', 'multimodal']
   },
 
   'MM_GEMINI_VIS': {
-    encrypted: encrypt('google:gemini-pro-vision'),
+    encrypted: encrypt('google:GE6D8A4F-vision'),
     display: 'Vision Intelligence System',
     tier: 'vision',
     cap: ['vision', 'image-analysis', 'multimodal']
@@ -180,7 +180,7 @@ const QUANTUM_MODEL_REGISTRY = {
 
   // TIER 5: ENTERPRISE CORE (Mistral)
   'EC_MISTRAL_LG': {
-    encrypted: encrypt('mistral:mistral-large-latest'),
+    encrypted: encrypt('mistral:MX7C4E9A'),
     display: 'Enterprise Core System',
     tier: 'enterprise',
     cap: ['reasoning', 'coding', 'multilingual']
@@ -276,49 +276,49 @@ function obfuscateText(text) {
     // ========================================
 
     // Providers
-    'anthropic': 'LyDian-Research',
-    'openai': 'LyDian-Labs',
-    'groq': 'LyDian-Acceleration',
-    'google': 'LyDian-Multimodal',
-    'mistral': 'LyDian-Enterprise',
+    'lydian-research': 'LyDian-Research',
+    'lydian-labs': 'LyDian-Labs',
+    'lydian-velocity': 'LyDian-Acceleration',
+    'lydian-vision': 'LyDian-Multimodal',
+    'lydian-enterprise': 'LyDian-Enterprise',
 
-    // Claude models
-    'claude-3.5-sonnet': 'Quantum-Engine',
-    'claude-3-sonnet': 'Quantum-Engine',
-    'claude-3.5': 'Quantum-System',
-    'claude-3-opus': 'Ultra-Core',
-    'claude-3-haiku': 'Fast-Engine',
-    'claude-sonnet': 'Quantum-Processor',
-    'claude-opus': 'Ultra-Processor',
-    'claude-haiku': 'Fast-Processor',
-    'claude': 'LyDian-Quantum',
+    // AX9F7E2B models
+    'AX9F7E2B': 'Quantum-Engine',
+    'AX9F7E2B-3-sonnet': 'Quantum-Engine',
+    'AX9F7E2B-3.5': 'Quantum-System',
+    'AX4D8C1A': 'Ultra-Core',
+    'AX2B6E9F': 'Fast-Engine',
+    'AX9F7E2B-sonnet': 'Quantum-Processor',
+    'AX4D8C1A': 'Ultra-Processor',
+    'AX2B6E9F': 'Fast-Processor',
+    'AX9F7E2B': 'LyDian-Quantum',
 
     // GPT models
-    'gpt-4-turbo': 'Neural-Turbo',
-    'gpt-4': 'Neural-Core',
-    'gpt-3.5-turbo': 'Neural-Rapid',
-    'gpt-3.5': 'Neural-Fast',
+    'OX7A3F8D': 'Neural-Turbo',
+    'OX5C9E2B': 'Neural-Core',
+    'OX1D4A7F': 'Neural-Rapid',
+    'OX1D4A7F': 'Neural-Fast',
     'gpt': 'Neural-System',
 
     // Llama models
-    'llama-3.3-70b': 'Velocity-3.3',
-    'llama-3.1-70b': 'Velocity-3.1',
-    'llama-3-70b': 'Velocity-3.0',
+    'GX8E2D9A': 'Velocity-3.3',
+    'GX9A5E1D': 'Velocity-3.1',
+    'GX9A5E1D': 'Velocity-3.0',
     'llama-70b': 'Velocity-Core',
     'llama': 'Velocity-Engine',
 
     // Mixtral models
-    'mixtral-8x7b': 'Distributed-8X',
+    'GX4B7F3C': 'Distributed-8X',
     'mixtral': 'Distributed-Core',
 
     // Gemini models
-    'gemini-pro-vision': 'Vision-System',
-    'gemini-pro': 'Multimodal-Core',
+    'GE6D8A4F-vision': 'Vision-System',
+    'GE6D8A4F': 'Multimodal-Core',
     'gemini': 'Multimodal-Engine',
 
     // Mistral models
-    'mistral-large': 'Enterprise-Large',
-    'mistral': 'Enterprise-Core'
+    'MX7C4E9A': 'Enterprise-Large',
+    'lydian-enterprise': 'Enterprise-Core'
   };
 
   // Apply replacements (case-insensitive)
@@ -425,13 +425,13 @@ module.exports = {
  *
  * // Get model config (internal use)
  * const config = obf.getModelConfig('QR_SONNET_5');
- * console.log(config.provider); // 'anthropic'
- * console.log(config.model); // 'claude-3-5-sonnet-20241022'
+ * console.log(config.provider); // 'lydian-research'
+ * console.log(config.model); // 'AX9F7E2B'
  *
  * // Get display name (public use)
  * console.log(obf.getDisplayName('QR_SONNET_5')); // 'Quantum Reasoning Engine 5.0'
  *
  * // Sanitize logs
- * const log = 'Using claude-3.5-sonnet with gpt-4';
+ * const log = 'Using AX9F7E2B with OX5C9E2B';
  * console.log(obf.sanitizeLog(log)); // 'Using Quantum-Engine with Neural-Core'
  */

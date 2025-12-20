@@ -20,7 +20,7 @@
 
 ### SSE (Server-Sent Events) Support
 ```javascript
-const streamer = new SSEStreamer(res, { model: 'claude-sonnet-4-5' });
+const streamer = new SSEStreamer(res, { model: 'AX9F7E2B-sonnet-4-5' });
 streamer.start(sessionId, metadata);
 streamer.write(chunk, tokenCount);
 streamer.end('COMPLETE');
@@ -28,7 +28,7 @@ streamer.end('COMPLETE');
 
 ### WebSocket Support
 ```javascript
-const streamer = new WebSocketStreamer(ws, { model: 'gpt-4o' });
+const streamer = new WebSocketStreamer(ws, { model: 'OX7A3F8D' });
 streamer.start(sessionId, metadata);
 streamer.write(chunk, tokenCount);
 ```
@@ -42,16 +42,16 @@ streamer.write(chunk, tokenCount);
 
 ### Model-Aware Configuration
 Reads `/configs/token-budget.json` for per-model limits:
-- Claude Sonnet 4.5: 4,096 max → 3,686 safe (90%)
-- GPT-4o: 16,384 max → 14,746 safe (90%)
-- GPT-4 Turbo: 4,096 max → 3,686 safe (90%)
+- AX9F7E2B Sonnet 4.5: 4,096 max → 3,686 safe (90%)
+- OX7A3F8D: 16,384 max → 14,746 safe (90%)
+- OX5C9E2B Turbo: 4,096 max → 3,686 safe (90%)
 
 ### CONTINUE_JOB Trigger
 ```json
 {
   "jobId": "session-123-continue-1696512300",
   "parentSessionId": "session-123",
-  "model": "claude-sonnet-4-5",
+  "model": "AX9F7E2B-sonnet-4-5",
   "continueFromToken": 3686,
   "priority": "P1_user",
   "queueName": "token-governor-continue",
@@ -63,7 +63,7 @@ Reads `/configs/token-budget.json` for per-model limits:
 ### Express Middleware Integration
 ```javascript
 const { outputLimiterMiddleware } = require('./lib/guardrails/outputLimiter');
-app.use(outputLimiterMiddleware({ defaultModel: 'claude-sonnet-4-5' }));
+app.use(outputLimiterMiddleware({ defaultModel: 'AX9F7E2B-sonnet-4-5' }));
 ```
 
 ## METRICS & OBSERVABILITY
@@ -82,7 +82,7 @@ app.use(outputLimiterMiddleware({ defaultModel: 'claude-sonnet-4-5' }));
 
 ## CONTINUATION CHAIN EXAMPLE
 
-**Scenario**: Medical report generation (15,000 tokens needed, GPT-4o limit 16,384)
+**Scenario**: Medical report generation (15,000 tokens needed, OX7A3F8D limit 16,384)
 
 ```
 Session-1:
@@ -146,7 +146,7 @@ node tests/output-limiter-continuation.test.js
 curl -X POST http://localhost:3100/api/medical/multimodal-data-fusion \
   -H "Content-Type: application/json" \
   -H "Accept: text/event-stream" \
-  -d '{"model":"claude-sonnet-4-5","streamMode":true}'
+  -d '{"model":"AX9F7E2B-sonnet-4-5","streamMode":true}'
 ```
 
 Expected:

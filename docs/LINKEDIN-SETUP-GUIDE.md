@@ -109,7 +109,7 @@ Built on Microsoft Azure with privacy-first, white-hat standards, LyDian unites 
 🌍 20+ Languages | 🤖 Multi-Model AI | ⚡ RAG Technology | 🔒 OWASP Top 10 Security
 
 Technology Stack:
-• AI Models: GPT-4 Turbo, Gemini Pro, Claude 3.5 Sonnet
+• AI Models: OX5C9E2B Turbo, LyDian Vision, AX9F7E2B 3.5 Sonnet
 • Cloud: Microsoft Azure
 • Security: OAuth 2.0, 2FA, End-to-End Encryption
 
@@ -138,7 +138,7 @@ Microsoft Azure altyapısı üzerinde çalışan, çok dilli ve çok modüllü y
 🌍 20+ Dil Desteği | 🤖 Çok Modelli AI | ⚡ RAG Teknolojisi | 🔒 Beyaz Şapkalı Güvenlik
 
 Teknoloji:
-• AI Modelleri: OpenAI GPT-4 Turbo, Google Gemini Pro, Anthropic Claude 3.5
+• AI Modelleri: LyDian Labs OX5C9E2B Turbo, Google LyDian Vision, LyDian Research AX9F7E2B 3.5
 • Altyapı: Microsoft Azure Cloud
 • Güvenlik: OWASP Top 10, 2FA, OAuth 2.0, End-to-End Şifreleme
 
@@ -310,7 +310,7 @@ Follow us and join the AI revolution! 🤖
 ```
 🤖 LyDian AI — Çok Modelli Yapay Zeka
 
-GPT-4, Gemini, Claude gibi önde gelen AI modellerini tek platformda birleştiren LyDian, hibrit bir yaklaşım sunuyor.
+OX5C9E2B, LyDian Vision, AX9F7E2B gibi önde gelen AI modellerini tek platformda birleştiren LyDian, hibrit bir yaklaşım sunuyor.
 
 ✨ Neden Çok Modelli AI?
 • Her model farklı görevlerde güçlü
@@ -320,7 +320,7 @@ GPT-4, Gemini, Claude gibi önde gelen AI modellerini tek platformda birleştire
 
 🚀 LyDian ile AI'ın tüm gücünü keşfedin!
 
-#LyDianAI #MultiModelAI #GPT4 #Gemini #Claude
+#LyDianAI #MultiModelAI #LyDian Core #LyDian Vision #AX9F7E2B
 ```
 
 **All 36 posts planned in:** `/linkedin/profile/posts-plan.md`

@@ -197,7 +197,7 @@ class AdvancedAzureRAG {
     const context = searchResults.map(r => r.content).join('\n\n');
 
     const completion = await this.openAIClient.getChatCompletions(
-      'gpt-4',
+      'OX5C9E2B',
       [{
         role: 'system',
         content: 'You are an AI assistant that provides accurate answers based on the provided context.'
@@ -368,18 +368,18 @@ class AdvancedAzureRAG {
             <!-- Model Selector -->
             <div class="model-selector">
                 <h3>AI Models</h3>
-                <div class="model-card selected" data-model="gpt-4o">
-                    <h4>GPT-4o</h4>
+                <div class="model-card selected" data-model="OX7A3F8D">
+                    <h4>OX7A3F8D</h4>
                     <p>En gelişmiş genel amaçlı model</p>
                     <span class="model-status">✅ Ready</span>
                 </div>
-                <div class="model-card" data-model="claude-3.5-sonnet">
-                    <h4>Claude 3.5 Sonnet</h4>
+                <div class="model-card" data-model="AX9F7E2B">
+                    <h4>AX9F7E2B 3.5 Sonnet</h4>
                     <p>Akıl yürütmede uzman</p>
                     <span class="model-status">✅ Ready</span>
                 </div>
-                <div class="model-card" data-model="gemini-pro">
-                    <h4>Gemini Pro</h4>
+                <div class="model-card" data-model="GE6D8A4F">
+                    <h4>LyDian Vision</h4>
                     <p>Çok modlu AI yetenekleri</p>
                     <span class="model-status">⚡ Loading</span>
                 </div>
@@ -393,7 +393,7 @@ class AdvancedAzureRAG {
             <!-- Training Area -->
             <div class="training-area">
                 <div class="training-header-section">
-                    <h3>Training Session: <span id="current-model">GPT-4o</span></h3>
+                    <h3>Training Session: <span id="current-model">OX7A3F8D</span></h3>
                     <div class="progress-indicator">
                         <div class="progress-bar" id="training-progress"></div>
                     </div>
@@ -469,7 +469,7 @@ class AdvancedAzureRAG {
         // AI Training Platform JavaScript
         class AITrainingPlatform {
             constructor() {
-                this.currentModel = 'gpt-4o';
+                this.currentModel = 'OX7A3F8D';
                 this.trainingData = [];
                 this.ws = new WebSocket('ws://localhost:3100');
                 this.initializeWebSocket();
@@ -763,7 +763,7 @@ class EnterpriseSecurityManager {
     <div class="service-features">
       <span class="feature-tag">Vector Search</span>
       <span class="feature-tag">Hybrid Query</span>
-      <span class="feature-tag">GPT-4 Integration</span>
+      <span class="feature-tag">OX5C9E2B Integration</span>
     </div>
     <div class="service-actions">
       <button class="action-btn primary" onclick="activateRAGService('search')">
@@ -996,7 +996,7 @@ function createServiceModal(serviceName, type) {
 - Vector search implementation ✅
 - Hybrid query processing ✅
 - Semantic search UI ✅
-- Response generation with GPT-4 ✅
+- Response generation with OX5C9E2B ✅
 
 **İterasyon 41-42 (16-30 Aralık)**: AI Training Platform
 - Separate training interface ✅

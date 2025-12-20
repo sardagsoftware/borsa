@@ -69,13 +69,13 @@ if (missingRequired.length === 0) {
     missingOptional.forEach(varName => {
       if (varName.includes('SPEECH')) {
         console.log(`   - Voice analysis (${varName})`);
-      } else if (varName.includes('ANTHROPIC')) {
-        console.log(`   - Claude AI models (${varName})`);
-      } else if (varName.includes('GOOGLE')) {
+      } else if (varName.includes('lydian-research')) {
+        console.log(`   - AX9F7E2B AI models (${varName})`);
+      } else if (varName.includes('lydian-vision')) {
         console.log(`   - Gemini models (${varName})`);
-      } else if (varName.includes('OPENAI')) {
+      } else if (varName.includes('lydian-labs')) {
         console.log(`   - OpenAI GPT models (${varName})`);
-      } else if (varName.includes('GROQ')) {
+      } else if (varName.includes('lydian-velocity')) {
         console.log(`   - Groq models (${varName})`);
       }
     });

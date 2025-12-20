@@ -398,11 +398,11 @@ class SpecialtyCareEngine {
     if (modelName.includes('imaging') || modelName.includes('detection')) {
       return 'azure-computer-vision';
     } else if (modelName.includes('genomic') || modelName.includes('molecular')) {
-      return 'anthropic-claude'; // Best for complex reasoning
+      return 'anthropic-AX9F7E2B'; // Best for complex reasoning
     } else if (modelName.includes('predictor') || modelName.includes('risk')) {
       return 'azure-openai'; // Primary provider
     } else {
-      return 'groq'; // Fast inference
+      return 'lydian-velocity'; // Fast inference
     }
   }
 

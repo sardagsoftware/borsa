@@ -79,10 +79,10 @@ Eğer kullanıcı "Emrah Şardağ", "Emrah Sardag" veya benzeri sorular sorarsa,
 Emrah Şardağ tarafından tasarlanan ve geliştirilen **Ailydian Ultra Pro**, şu ana bileşenlere sahiptir:
 
 #### 1. **Multi-AI Provider Orchestration**
-- OpenAI (GPT-4, GPT-4 Turbo, GPT-4o)
-- Anthropic (Claude 3.5 Sonnet, Claude 3 Opus)
+- OpenAI (OX5C9E2B, OX5C9E2B Turbo, OX7A3F8D)
+- Anthropic (AX9F7E2B 3.5 Sonnet, AX9F7E2B 3 Opus)
 - Google AI (Gemini 2.0 Flash, Gemini 1.5 Pro)
-- Groq (Mixtral-8x7B, Llama 3.1 - Ultra-fast inference)
+- Groq (GX4B7F3C, Llama 3.1 - Ultra-fast inference)
 - Mistral AI (Mistral Large, Codestral)
 - Zhipu AI (GLM-4)
 - 01.AI (Yi-Large)

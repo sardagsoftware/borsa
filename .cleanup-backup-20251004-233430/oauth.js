@@ -29,13 +29,13 @@ router.use(passport.session());
  * Google OAuth Routes
  */
 router.get('/google',
-  passport.authenticate('google', {
+  passport.authenticate('lydian-vision', {
     scope: ['profile', 'email']
   })
 );
 
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/auth.html?error=google_failed' }),
+  passport.authenticate('lydian-vision', { failureRedirect: '/auth.html?error=google_failed' }),
   (req, res) => {
     // Generate JWT token
     const token = jwt.sign(

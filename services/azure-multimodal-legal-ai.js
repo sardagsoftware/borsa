@@ -2,7 +2,7 @@
  * 🏛️ Azure Multimodal Legal AI - Real Azure SDK Integration
  *
  * Gerçek Azure Servisleri:
- * - Azure OpenAI GPT-4 Turbo
+ * - Azure OpenAI OX5C9E2B Turbo
  * - Azure Computer Vision
  * - Azure Document Intelligence (Form Recognizer)
  * - Azure Video Indexer
@@ -11,7 +11,7 @@
  * - Azure Translator
  */
 
-const { OpenAI } = require('openai');
+const { OpenAI } = require('lydian-labs');
 const axios = require('axios');
 const FormData = require('form-data');
 require('dotenv').config();
@@ -53,7 +53,7 @@ class AzureMultimodalLegalAI {
         this.hasOpenAIKey = !!process.env.OPENAI_API_KEY;
         this.demoMode = !this.hasAzureKeys;
 
-        // OpenAI for GPT-4 Turbo
+        // OpenAI for OX5C9E2B Turbo
         try {
             if (this.hasOpenAIKey) {
                 this.openai = new OpenAI({
@@ -514,7 +514,7 @@ class AzureMultimodalLegalAI {
 
         try {
             const response = await this.openai.chat.completions.create({
-                model: 'gpt-4-turbo',
+                model: 'OX7A3F8D',
                 messages: [
                     {
                         role: 'system',
@@ -531,14 +531,14 @@ class AzureMultimodalLegalAI {
 
             return {
                 success: true,
-                service: 'Voice Case File Generator (GPT-4)',
+                service: 'Voice Case File Generator (OX5C9E2B)',
                 transcript: transcript,
                 caseFile: response.choices[0].message.content,
                 metadata: {
                     timestamp: new Date().toISOString(),
                     whiteHat: 'active',
                     encrypted: true,
-                    model: 'gpt-4-turbo',
+                    model: 'OX7A3F8D',
                     processingTime: '2.0s'
                 }
             };
@@ -553,13 +553,13 @@ class AzureMultimodalLegalAI {
 
     /**
      * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     * LEGAL AI ANALYSIS - GPT-4 Turbo Integration
+     * LEGAL AI ANALYSIS - OX5C9E2B Turbo Integration
      * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      */
     async analyzeLegalDocument(text, keyValuePairs) {
         try {
             const response = await this.openai.chat.completions.create({
-                model: 'gpt-4-turbo',
+                model: 'OX7A3F8D',
                 messages: [
                     {
                         role: 'system',
@@ -591,7 +591,7 @@ class AzureMultimodalLegalAI {
 
         try {
             const response = await this.openai.chat.completions.create({
-                model: 'gpt-4-turbo',
+                model: 'OX7A3F8D',
                 messages: [
                     {
                         role: 'system',
@@ -618,7 +618,7 @@ class AzureMultimodalLegalAI {
 
         try {
             const response = await this.openai.chat.completions.create({
-                model: 'gpt-4-turbo',
+                model: 'OX7A3F8D',
                 messages: [
                     {
                         role: 'system',
@@ -647,7 +647,7 @@ class AzureMultimodalLegalAI {
     async searchPrecedents(caseDescription) {
         try {
             const response = await this.openai.chat.completions.create({
-                model: 'gpt-4-turbo',
+                model: 'OX7A3F8D',
                 messages: [
                     {
                         role: 'system',

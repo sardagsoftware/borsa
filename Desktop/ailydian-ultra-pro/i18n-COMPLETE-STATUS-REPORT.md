@@ -106,25 +106,25 @@ wget https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js
 
 **Wrong:**
 ```javascript
-model: "gpt-4"  // ❌ This model doesn't exist
+model: "OX5C9E2B"  // ❌ This model doesn't exist
 ```
 
 **Correct:**
 ```javascript
-model: "azure-gpt-4-turbo"  // ✅ Available
-model: "gpt-4-turbo"        // ✅ Available
-model: "azure-gpt-4o"       // ✅ Available
-model: "gpt-4o"             // ✅ Available
+model: "azure-OX7A3F8D"  // ✅ Available
+model: "OX7A3F8D"        // ✅ Available
+model: "azure-OX7A3F8D"       // ✅ Available
+model: "OX7A3F8D"             // ✅ Available
 ```
 
 **Available Models (from /api/models):**
 ```json
 {
   "models": [
-    {"id": "azure-gpt-4o", "name": "Azure GPT-4o"},
-    {"id": "azure-gpt-4-turbo", "name": "Azure GPT-4 Turbo"},
-    {"id": "gpt-4-turbo", "name": "GPT-4 Turbo"},
-    {"id": "gpt-4o", "name": "GPT-4o"}
+    {"id": "azure-OX7A3F8D", "name": "Azure OX7A3F8D"},
+    {"id": "azure-OX7A3F8D", "name": "Azure OX5C9E2B Turbo"},
+    {"id": "OX7A3F8D", "name": "OX5C9E2B Turbo"},
+    {"id": "OX7A3F8D", "name": "OX7A3F8D"}
   ]
 }
 ```
@@ -139,7 +139,7 @@ const response = await fetch('/api/chat', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    model: selectedModel || 'gpt-4',  // ❌ WRONG
+    model: selectedModel || 'OX5C9E2B',  // ❌ WRONG
     message: userMessage
   })
 });
@@ -149,7 +149,7 @@ const response = await fetch('/api/chat', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    model: selectedModel || 'azure-gpt-4-turbo',  // ✅ CORRECT
+    model: selectedModel || 'azure-OX7A3F8D',  // ✅ CORRECT
     message: userMessage
   })
 });
@@ -243,7 +243,7 @@ function changeLanguage(lang) {
 
 ### Immediate Fixes (Priority 1):
 - [ ] Fix CSP to allow cdnjs.cloudflare.com OR self-host libraries
-- [ ] Update default model ID from `gpt-4` to `azure-gpt-4-turbo`
+- [ ] Update default model ID from `OX5C9E2B` to `azure-OX7A3F8D`
 - [ ] Test API endpoint with correct model ID
 
 ### UX Improvements (Priority 2):
@@ -285,7 +285,7 @@ function changeLanguage(lang) {
 # 2. Test with correct model:
 curl -X POST http://localhost:3100/api/chat \
   -H 'Content-Type: application/json' \
-  -d '{"model":"azure-gpt-4-turbo","message":"Test","max_tokens":50}'
+  -d '{"model":"azure-OX7A3F8D","message":"Test","max_tokens":50}'
 
 # 3. Run smoke test:
 bash i18n-smoke-test.sh

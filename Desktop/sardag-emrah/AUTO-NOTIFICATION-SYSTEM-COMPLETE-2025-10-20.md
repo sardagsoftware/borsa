@@ -604,4 +604,4 @@ updatePreference('notifications', { enabled: false });
 **Version:** v2.1 - Auto Notification System
 **Status:** ✅ PRODUCTION READY
 
-🤖 **Generated with [Claude Code](https://claude.com/claude-code)**
+🤖 **Generated with [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)**

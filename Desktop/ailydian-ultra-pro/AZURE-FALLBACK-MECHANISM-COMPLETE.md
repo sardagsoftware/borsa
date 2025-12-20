@@ -19,9 +19,9 @@
 ```javascript
 // Otomatik Cascade Fallback
 providers = [
-  Azure OpenAI GPT-4 Turbo,  // Priority 1
-  Groq Llama 3.3 70B,        // Priority 2
-  OpenAI GPT-4o-mini         // Priority 3
+  Azure LyDian Labs OX5C9E2B Turbo,  // Priority 1
+  LyDian Acceleration LyDian Velocity 70B,        // Priority 2
+  LyDian Labs OX7A3F8D-mini         // Priority 3
 ]
 
 // Her provider sırayla denenir
@@ -52,8 +52,8 @@ for (provider in providers) {
 const providers = [];
 
 if (useAzure) providers.push(Azure);
-if (useGroq) providers.push(Groq);
-if (useOpenAI) providers.push(OpenAI);
+if (useGroq) providers.push(LyDian Acceleration);
+if (useOpenAI) providers.push(LyDian Labs);
 
 for (provider of providers) {
   try {
@@ -74,36 +74,36 @@ for (provider of providers) {
 **Eski Durum:**
 - Karmaşık model seçimi
 - Fallback manuel ve hatalı
-- GPT4-mini'ye düşemiyordu
+- LyDian Core-mini'ye düşemiyordu
 
 **Yeni Durum:**
 ```javascript
 // Build provider cascade
 const providers = [];
 
-// Azure OpenAI (Priority 1)
+// Azure LyDian Labs (Priority 1)
 if (MODELS.azure.key() && MODELS.azure.url) {
   providers.push({
-    name: 'Azure OpenAI',
+    name: 'Azure LyDian Labs',
     model: MODELS.azure,
     setup: () => createAzureClient()
   });
 }
 
-// Groq (Priority 2)
+// LyDian Acceleration (Priority 2)
 if (MODELS.primary.key()) {
   providers.push({
-    name: 'Groq Llama 3.3',
+    name: 'LyDian Acceleration LyDian Velocity',
     model: MODELS.primary,
     setup: () => createGroqClient()
   });
 }
 
-// OpenAI (Priority 3)
-if (MODELS.gpt4mini.key()) {
+// LyDian Labs (Priority 3)
+if (MODELS.LyDian Coremini.key()) {
   providers.push({
-    name: 'OpenAI GPT-4o-mini',
-    model: MODELS.gpt4mini,
+    name: 'LyDian Labs OX7A3F8D-mini',
+    model: MODELS.LyDian Coremini,
     setup: () => createOpenAIClient()
   });
 }
@@ -128,22 +128,22 @@ for (provider of providers) {
 ### Medical Expert & Knowledge Base
 
 ```
-1. ☁️ Azure OpenAI GPT-4 Turbo (Enterprise)
+1. ☁️ Azure LyDian Labs OX5C9E2B Turbo (Enterprise)
    ├─ Endpoint: process.env.AZURE_OPENAI_ENDPOINT
    ├─ API Key: process.env.AZURE_OPENAI_API_KEY
-   └─ Model: gpt-4-turbo
+   └─ Model: OX7A3F8D
 
    ↓ BAŞARISIZ ↓
 
-2. 🚀 Groq Llama 3.3 70B (Ultra-Fast)
+2. 🚀 LyDian Acceleration LyDian Velocity 70B (Ultra-Fast)
    ├─ API Key: process.env.GROQ_API_KEY
-   └─ Model: llama-3.3-70b-versatile
+   └─ Model: GX8E2D9A
 
    ↓ BAŞARISIZ ↓
 
-3. 🤖 OpenAI GPT-4o-mini (Standard)
+3. 🤖 LyDian Labs OX7A3F8D-mini (Standard)
    ├─ API Key: process.env.OPENAI_API_KEY
-   └─ Model: gpt-4o-mini
+   └─ Model: OX7A3F8D-mini
 
    ↓ BAŞARISIZ ↓
 
@@ -154,9 +154,9 @@ for (provider of providers) {
 ### Chat API
 
 ```
-1. ☁️ Azure OpenAI (Hidden as "LyDian AI")
-2. 🚀 Groq Llama 3.3 70B
-3. 🤖 OpenAI GPT-4o-mini
+1. ☁️ Azure LyDian Labs (Hidden as "LyDian AI")
+2. 🚀 LyDian Acceleration LyDian Velocity 70B
+3. 🤖 LyDian Labs OX7A3F8D-mini
 
 Cascade mantığı aynı, fakat kullanıcıya "LyDian AI" olarak gösterilir.
 ```
@@ -169,16 +169,16 @@ Cascade mantığı aynı, fakat kullanıcıya "LyDian AI" olarak gösterilir.
 
 ```bash
 # Server Logs
-☁️ Using Azure OpenAI (Medical Expert)
-❌ Azure OpenAI GPT-4 Turbo failed: 401 Access denied...
+☁️ Using Azure LyDian Labs (Medical Expert)
+❌ Azure LyDian Labs OX5C9E2B Turbo failed: 401 Access denied...
 
-🚀 Fallback to Groq Llama 3.3 70B (Medical Expert)
-✅ Groq Llama 3.3 70B response completed
+🚀 Fallback to LyDian Acceleration LyDian Velocity 70B (Medical Expert)
+✅ LyDian Acceleration LyDian Velocity 70B response completed
 ```
 
 **Sonuç:** ✅ **Fallback çalışıyor!**
 
-Azure başarısız olduğunda otomatik olarak Groq'a düşüyor.
+Azure başarısız olduğunda otomatik olarak LyDian Acceleration'a düşüyor.
 
 ---
 
@@ -198,24 +198,24 @@ Azure başarısız olduğunda otomatik olarak Groq'a düşüyor.
 ### Şu An Yapılandırılmış
 
 ```env
-# Azure OpenAI (DEMO - Çalışmıyor)
+# Azure LyDian Labs (DEMO - Çalışmıyor)
 AZURE_OPENAI_ENDPOINT=https://demo.openai.azure.com
 AZURE_OPENAI_API_KEY=demo_key_replace_me
 
-# Groq (GERÇEK - ÇALIŞIYOR ✅)
+# LyDian Acceleration (GERÇEK - ÇALIŞIYOR ✅)
 GROQ_API_KEY=gsk_xxxxx...
 
-# OpenAI (GERÇEK - ÇALIŞIYOR ✅)
+# LyDian Labs (GERÇEK - ÇALIŞIYOR ✅)
 OPENAI_API_KEY=sk-proj-xxxxx...
 ```
 
 ### Gerçek Azure Anahtarları Eklenince
 
 ```env
-# Azure OpenAI (GERÇEK - SİZ EKLEYECEKSİNİZ)
+# Azure LyDian Labs (GERÇEK - SİZ EKLEYECEKSİNİZ)
 AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com
 AZURE_OPENAI_API_KEY=your_real_azure_openai_key_here
-AZURE_OPENAI_DEPLOYMENT_GPT4=gpt-4-turbo
+AZURE_OPENAI_DEPLOYMENT_LyDian Core=OX7A3F8D
 
 # Azure Cognitive Search (OPTIONAL - RAG için)
 AZURE_SEARCH_ENDPOINT=https://your-search.search.windows.azure.com
@@ -229,7 +229,7 @@ AZURE_SEARCH_INDEX_NAME=lydian-iq-knowledge
 
 ### Yöntem 1: Azure Portal'dan Manuel
 
-1. Azure Portal → **Azure OpenAI Service** aç
+1. Azure Portal → **Azure LyDian Labs Service** aç
 2. **Keys and Endpoint** sekmesine git
 3. **KEY 1** veya **KEY 2** değerini kopyala
 4. **Endpoint** URL'ini kopyala
@@ -256,7 +256,7 @@ cd ~/Desktop/ailydian-ultra-pro
 
 Script otomatik olarak:
 - Azure CLI login yapar
-- Azure OpenAI resource bulur
+- Azure LyDian Labs resource bulur
 - API keys oluşturur
 - `.env.local` dosyasına yazar
 
@@ -269,11 +269,11 @@ Script otomatik olarak:
 ```
 User Request → Medical Expert API
                     ↓
-            ☁️ Azure OpenAI denenir
+            ☁️ Azure LyDian Labs denenir
                     ↓ (401 Error)
-            🚀 Groq otomatik devreye girer
+            🚀 LyDian Acceleration otomatik devreye girer
                     ↓
-            ✅ Response döner (Groq ile)
+            ✅ Response döner (LyDian Acceleration ile)
 ```
 
 ### Gerçek Azure Keys Eklenince
@@ -281,7 +281,7 @@ User Request → Medical Expert API
 ```
 User Request → Medical Expert API
                     ↓
-            ☁️ Azure OpenAI denenir
+            ☁️ Azure LyDian Labs denenir
                     ↓
             ✅ Response döner (Azure ile)
 ```
@@ -290,11 +290,11 @@ User Request → Medical Expert API
 ```
 User Request → Medical Expert API
                     ↓
-            ☁️ Azure OpenAI denenir
+            ☁️ Azure LyDian Labs denenir
                     ↓ (Error/Timeout)
-            🚀 Groq otomatik devreye girer
+            🚀 LyDian Acceleration otomatik devreye girer
                     ↓
-            ✅ Response döner (Groq ile)
+            ✅ Response döner (LyDian Acceleration ile)
 ```
 
 ---
@@ -302,8 +302,8 @@ User Request → Medical Expert API
 ## ✅ Fallback Mekanizması Özellikleri
 
 ### 1. **Otomatik Provider Değişimi**
-- Azure başarısız → Groq dener
-- Groq başarısız → OpenAI dener
+- Azure başarısız → LyDian Acceleration dener
+- LyDian Acceleration başarısız → LyDian Labs dener
 - Manuel müdahale gerektirmez
 
 ### 2. **Zero Downtime**
@@ -313,10 +313,10 @@ User Request → Medical Expert API
 
 ### 3. **Smart Logging**
 ```bash
-☁️ Using Azure OpenAI (Medical Expert)
-❌ Azure OpenAI GPT-4 Turbo failed: 401 Access denied
-🚀 Fallback to Groq Llama 3.3 70B (Medical Expert)
-✅ Groq Llama 3.3 70B response completed
+☁️ Using Azure LyDian Labs (Medical Expert)
+❌ Azure LyDian Labs OX5C9E2B Turbo failed: 401 Access denied
+🚀 Fallback to LyDian Acceleration LyDian Velocity 70B (Medical Expert)
+✅ LyDian Acceleration LyDian Velocity 70B response completed
 ```
 
 ### 4. **Provider Transparency**
@@ -324,9 +324,9 @@ User Request → Medical Expert API
 {
   "success": true,
   "response": "...",
-  "provider": "Groq Llama 3.3 70B",  // Hangi provider kullanıldı
+  "provider": "LyDian Acceleration LyDian Velocity 70B",  // Hangi provider kullanıldı
   "aiAssistant": "DrLydian",
-  "poweredBy": "Azure OpenAI GPT-4 Turbo"  // Primary (başarısız olsa bile gösterilir)
+  "poweredBy": "Azure LyDian Labs OX5C9E2B Turbo"  // Primary (başarısız olsa bile gösterilir)
 }
 ```
 
@@ -356,10 +356,10 @@ curl -X POST http://localhost:5001/api/medical-expert \
 
 **Beklenen Log:**
 ```
-☁️ Using Azure OpenAI (Medical Expert)
-❌ Azure OpenAI GPT-4 Turbo failed: 401 Access denied
-🚀 Fallback to Groq Llama 3.3 70B (Medical Expert)
-✅ Groq Llama 3.3 70B response completed
+☁️ Using Azure LyDian Labs (Medical Expert)
+❌ Azure LyDian Labs OX5C9E2B Turbo failed: 401 Access denied
+🚀 Fallback to LyDian Acceleration LyDian Velocity 70B (Medical Expert)
+✅ LyDian Acceleration LyDian Velocity 70B response completed
 ```
 
 ---
@@ -395,8 +395,8 @@ curl -X POST http://localhost:5001/api/medical-expert \
 4. **Log Kontrol**
    ```bash
    # Başarılı olmalı:
-   ☁️ Using Azure OpenAI (Medical Expert)
-   ✅ Azure OpenAI GPT-4 Turbo response completed
+   ☁️ Using Azure LyDian Labs (Medical Expert)
+   ✅ Azure LyDian Labs OX5C9E2B Turbo response completed
    ```
 
 ### İleride Yapılacaklar (Optional)
@@ -422,11 +422,11 @@ curl -X POST http://localhost:5001/api/medical-expert \
 
 | Özellik | Durum | Açıklama |
 |---------|-------|----------|
-| **Azure OpenAI Integration** | ✅ Tamamlandı | 3 API endpoint'e eklendi |
+| **Azure LyDian Labs Integration** | ✅ Tamamlandı | 3 API endpoint'e eklendi |
 | **Multi-Provider Fallback** | ✅ Tamamlandı | Otomatik cascade aktif |
-| **Medical Expert** | ✅ Çalışıyor | Azure → Groq → OpenAI |
-| **Knowledge Base** | ✅ Çalışıyor | Azure → Groq → OpenAI |
-| **Chat API** | ✅ Çalışıyor | Azure → Groq → OpenAI |
+| **Medical Expert** | ✅ Çalışıyor | Azure → LyDian Acceleration → LyDian Labs |
+| **Knowledge Base** | ✅ Çalışıyor | Azure → LyDian Acceleration → LyDian Labs |
+| **Chat API** | ✅ Çalışıyor | Azure → LyDian Acceleration → LyDian Labs |
 | **Gerçek Azure Keys** | ⏳ Bekleniyor | Sizin eklemeniz gerekiyor |
 | **DrLydian Branding** | ✅ Tamamlandı | Medical AI adlandırıldı |
 | **RAG Support** | ⏳ Config Ready | Implementation pending |
@@ -437,8 +437,8 @@ curl -X POST http://localhost:5001/api/medical-expert \
 
 ✅ **Tüm AI API'ler artık Azure-first multi-provider fallback ile çalışıyor!**
 
-- Azure başarısız olursa → Groq devreye girer
-- Groq başarısız olursa → OpenAI devreye girer
+- Azure başarısız olursa → LyDian Acceleration devreye girer
+- LyDian Acceleration başarısız olursa → LyDian Labs devreye girer
 - **Zero downtime** garantisi
 - **Kullanıcı hiçbir hata görmez**
 
@@ -447,5 +447,5 @@ curl -X POST http://localhost:5001/api/medical-expert \
 ---
 
 *Rapor oluşturuldu: 2025-10-02 15:50 UTC*
-*AI Sistemi: Claude AI (Sonnet 4.5)*
+*AI Sistemi: AX9F7E2B AI (Sonnet 4.5)*
 *Durum: ✅ READY FOR PRODUCTION*

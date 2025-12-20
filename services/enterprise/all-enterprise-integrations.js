@@ -202,7 +202,7 @@ class EnterpriseIntegrationsSuite {
 
     // ==================== ZOOM/TEAMS RECORDING ANALYSIS ====================
     async analyzeZoomRecording(recordingId) {
-        // GPT-4 ile toplantı kaydı analizi
+        // OX5C9E2B ile toplantı kaydı analizi
         const prompt = `Sen bir hukuk toplantı analiz uzmanısın. Recording ID: ${recordingId} için toplantı analizi yap.
 
 TALEP EDİLEN ANALİZ (JSON formatında):
@@ -226,7 +226,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk bürosu toplantısına özgü profesyonel analiz yap.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -261,9 +261,9 @@ Türk hukuk bürosu toplantısına özgü profesyonel analiz yap.`;
                 participants: analysis.participants || [],
                 keyDecisions: analysis.keyDecisions || [],
                 followUp: analysis.followUp || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment,
-                aiAnalysis: 'Real GPT-4 analysis'
+                aiAnalysis: 'Real OX5C9E2B analysis'
             };
 
         } catch (error) {
@@ -322,7 +322,7 @@ TALEP EDİLEN ANALİZ:
 JSON formatında yanıt ver.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -355,7 +355,7 @@ JSON formatında yanıt ver.`;
                 probability: analysis.probability || { win: 0.33, loss: 0.33, settlement: 0.34 },
                 factors: analysis.factors || [],
                 recommendedStrategy: analysis.strategy || 'Detaylı analiz gerekli',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -393,7 +393,7 @@ TALEP EDİLEN ANALİZ (JSON):
 }`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -424,7 +424,7 @@ TALEP EDİLEN ANALİZ (JSON):
                 riskLevel: analysis.riskLevel || 'medium',
                 factors: analysis.factors || {},
                 recommendation: analysis.recommendation || 'Detaylı değerlendirme gerekli',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -436,7 +436,7 @@ TALEP EDİLEN ANALİZ (JSON):
 
     // ==================== JUDGE BEHAVIOR ANALYSIS ====================
     async analyzeJudgeBehavior(judgeId) {
-        // GPT-4 ile hakim davranış analizi
+        // OX5C9E2B ile hakim davranış analizi
         const prompt = `Sen bir hukuk istatistik ve hakim davranış analizi uzmanısın. Hakim ID: ${judgeId} için detaylı profil analizi yap.
 
 TALEP EDİLEN ANALİZ (JSON formatında):
@@ -462,7 +462,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk sistemi hakimlerine özgü gerçekçi profil oluştur.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -497,7 +497,7 @@ Türk hukuk sistemi hakimlerine özgü gerçekçi profil oluştur.`;
                 tendencies: analysis.tendencies || [],
                 recommendations: analysis.recommendations || [],
                 specialization: analysis.specialization || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -509,7 +509,7 @@ Türk hukuk sistemi hakimlerine özgü gerçekçi profil oluştur.`;
 
     // ==================== OPPOSING COUNSEL INSIGHTS ====================
     async analyzeOpposingCounsel(lawyerId) {
-        // GPT-4 ile karşı avukat analizi
+        // OX5C9E2B ile karşı avukat analizi
         const prompt = `Sen bir hukuk strateji danışmanısın. Karşı avukat ID: ${lawyerId} için detaylı profil ve strateji analizi yap.
 
 TALEP EDİLEN ANALİZ (JSON formatında):
@@ -533,7 +533,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk sistemindeki avukatlara özgü gerçekçi profil oluştur.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -569,7 +569,7 @@ Türk hukuk sistemindeki avukatlara özgü gerçekçi profil oluştur.`;
                 strengths: analysis.strengths || [],
                 weaknesses: analysis.weaknesses || [],
                 counterStrategy: analysis.counterStrategy || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -581,7 +581,7 @@ Türk hukuk sistemindeki avukatlara özgü gerçekçi profil oluştur.`;
 
     // ==================== SETTLEMENT PROBABILITY ====================
     async calculateSettlementProbability(caseData) {
-        // GPT-4 ile uzlaşma olasılığı hesapla
+        // OX5C9E2B ile uzlaşma olasılığı hesapla
         const prompt = `Sen bir hukuk uzlaşma danışmanısın. Aşağıdaki dava için uzlaşma olasılığı analizi yap.
 
 DAVA BİLGİLERİ:
@@ -608,7 +608,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk sistemine özgü gerçekçi analiz yap.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -641,7 +641,7 @@ Türk hukuk sistemine özgü gerçekçi analiz yap.`;
                 recommendedAmount: analysis.recommendedAmount || { min: 0, max: 0, optimal: 0 },
                 factors: analysis.factors || [],
                 rationale: analysis.rationale || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -653,7 +653,7 @@ Türk hukuk sistemine özgü gerçekçi analiz yap.`;
 
     // ==================== COST-BENEFIT CALCULATOR ====================
     async calculateCostBenefit(caseData) {
-        // GPT-4 ile maliyet-fayda analizi
+        // OX5C9E2B ile maliyet-fayda analizi
         const prompt = `Sen bir hukuk finansal analiz uzmanısın. Aşağıdaki dava için detaylı maliyet-fayda analizi yap.
 
 DAVA BİLGİLERİ:
@@ -683,7 +683,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk sistemi mali gerçeklerine uygun analiz yap.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -715,7 +715,7 @@ Türk hukuk sistemi mali gerçeklerine uygun analiz yap.`;
                 settlement: analysis.settlement || {},
                 comparison: analysis.comparison || '',
                 recommendation: analysis.recommendation || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -746,7 +746,7 @@ Türk hukuk sistemine uygun, profesyonel bir ${template} belgesi oluştur. Belge
 Profesyonel ve hukuki dil kullan.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -778,7 +778,7 @@ Profesyonel ve hukuki dil kullan.`;
                 document,
                 wordCount: document.split(' ').length,
                 generatedAt: new Date().toISOString(),
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -814,7 +814,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuku perspektifinden değerlendir.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -846,7 +846,7 @@ Türk hukuku perspektifinden değerlendir.`;
                 missing: review.missing || [],
                 score: review.score || 50,
                 recommendation: review.recommendation || 'Detaylı inceleme gerekli',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -858,7 +858,7 @@ Türk hukuku perspektifinden değerlendir.`;
 
     // ==================== E-DISCOVERY ASSISTANT ====================
     async performEDiscovery(searchCriteria) {
-        // E-Discovery için GPT-4 ile belge analizi
+        // E-Discovery için OX5C9E2B ile belge analizi
         const prompt = `Sen bir hukuk delil toplama asistanısın. Aşağıdaki arama kriterlerine göre belge analizi yap.
 
 ARAMA KRİTERLERİ:
@@ -889,7 +889,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk sistemi perspektifinden değerlendir.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -923,7 +923,7 @@ Türk hukuk sistemi perspektifinden değerlendir.`;
                 keyEvidence: discovery.keyEvidence || [],
                 searchStrategy: discovery.searchStrategy || 'Detaylı strateji gerekli',
                 nextSteps: discovery.nextSteps || [],
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -935,7 +935,7 @@ Türk hukuk sistemi perspektifinden değerlendir.`;
 
     // ==================== DEADLINE MANAGEMENT AI ====================
     async manageDeadlines(caseId) {
-        // GPT-4 ile deadline analizi ve öneri
+        // OX5C9E2B ile deadline analizi ve öneri
         const prompt = `Sen bir hukuk dava süreci yönetim asistanısın. Dava ID: ${caseId} için süre takibi ve deadline yönetimi yap.
 
 TALEP EDİLEN ANALİZ (JSON formatında):
@@ -963,7 +963,7 @@ TALEP EDİLEN ANALİZ (JSON formatında):
 Türk hukuk sistemi süreçlerine göre gerçekçi deadline'lar oluştur.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -995,7 +995,7 @@ Türk hukuk sistemi süreçlerine göre gerçekçi deadline'lar oluştur.`;
                 alerts: deadlines.alerts || [],
                 recommendations: deadlines.recommendations || [],
                 criticalPath: deadlines.criticalPath || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -1007,7 +1007,7 @@ Türk hukuk sistemi süreçlerine göre gerçekçi deadline'lar oluştur.`;
 
     // ==================== CASE MANAGEMENT SYSTEM ====================
     async getCaseOverview(caseId) {
-        // GPT-4 ile dava genel bilgisi oluştur
+        // OX5C9E2B ile dava genel bilgisi oluştur
         const prompt = `Sen bir hukuk dava yönetim sistemi asistanısın. Dava ID: ${caseId} için kapsamlı bir dava özeti oluştur.
 
 TALEP EDİLEN BİLGİLER (JSON formatında):
@@ -1035,7 +1035,7 @@ TALEP EDİLEN BİLGİLER (JSON formatında):
 Türk hukuk sistemine uygun gerçekçi bir dava profili oluştur.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -1069,7 +1069,7 @@ Türk hukuk sistemine uygun gerçekçi bir dava profili oluştur.`;
                 nextHearing: caseOverview.nextHearing || '',
                 summary: caseOverview.summary || '',
                 keyPoints: caseOverview.keyPoints || [],
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 
@@ -1081,7 +1081,7 @@ Türk hukuk sistemine uygun gerçekçi bir dava profili oluştur.`;
 
     // ==================== BILLING AUTOMATION ====================
     async generateInvoice(serviceData) {
-        // GPT-4 ile profesyonel fatura oluştur
+        // OX5C9E2B ile profesyonel fatura oluştur
         const prompt = `Sen bir hukuk bürosu faturalama asistanısın. Aşağıdaki hizmet verilerine göre detaylı fatura oluştur.
 
 HİZMET VERİLERİ:
@@ -1110,7 +1110,7 @@ TALEP EDİLEN FATURA (JSON formatında):
 Türk vergi sistemine uygun profesyonel fatura hazırla.`;
 
         try {
-            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+            const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
             const result = await this.azureOpenAI.getChatCompletions(
                 deployment,
                 [
@@ -1146,7 +1146,7 @@ Türk vergi sistemine uygun profesyonel fatura hazırla.`;
                 dueDate: invoice.dueDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
                 paymentTerms: invoice.paymentTerms || 'Fatura tarihinden itibaren 30 gün içinde ödeme',
                 notes: invoice.notes || '',
-                platform: 'Azure OpenAI (GPT-4 Real API)',
+                platform: 'Azure OpenAI (OX5C9E2B Real API)',
                 model: deployment
             };
 

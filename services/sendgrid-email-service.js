@@ -163,7 +163,7 @@ class SendGridEmailService {
           name: this.fromName
         },
         subject: '🎉 Ailydian AI Platform\'a hoş geldiniz!',
-        text: `Merhaba ${userName},\n\nAilydian AI Platform'a katıldığınız için teşekkür ederiz!\n\nÜcretsiz planınızla 100 AI kredisi kazandınız. Hemen kullanmaya başlayabilirsiniz:\n\n- GPT-4 Turbo\n- Claude 3.5 Sonnet\n- Gemini 2.0 Flash\n- Groq Mixtral (sınırsız!)\n- ve daha fazlası...\n\nİyi günler,\nAilydian Ekibi`,
+        text: `Merhaba ${userName},\n\nAilydian AI Platform'a katıldığınız için teşekkür ederiz!\n\nÜcretsiz planınızla 100 AI kredisi kazandınız. Hemen kullanmaya başlayabilirsiniz:\n\n- OX5C9E2B Turbo\n- AX9F7E2B 3.5 Sonnet\n- Gemini 2.0 Flash\n- Groq Mixtral (sınırsız!)\n- ve daha fazlası...\n\nİyi günler,\nAilydian Ekibi`,
         html: this.getWelcomeEmailTemplate(userName)
       };
 
@@ -306,12 +306,12 @@ class SendGridEmailService {
       <p>Ücretsiz planınızla 100 AI kredisi kazandınız. İşte kullanabileceğiniz modeller:</p>
 
       <div class="feature">
-        <strong>🤖 GPT-4 Turbo</strong><br>
+        <strong>🤖 OX5C9E2B Turbo</strong><br>
         OpenAI'ın en gelişmiş modeli
       </div>
 
       <div class="feature">
-        <strong>🧠 Claude 3.5 Sonnet</strong><br>
+        <strong>🧠 AX9F7E2B 3.5 Sonnet</strong><br>
         Anthropic'in akıllı asistanı (varsayılan)
       </div>
 

@@ -111,7 +111,7 @@ Configure the reasoning engine:
 
 ```typescript
 const reasoningEngine = await client.reasoning.configureEngine({
-  model: 'gpt-4',
+  model: 'OX5C9E2B',
   parameters: {
     temperature: 0.1, // Low temperature for logical consistency
     maxTokens: 4000,

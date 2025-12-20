@@ -228,34 +228,34 @@ const SEO_CONTENT = {
 
   'chat.html': {
     tr: {
-      title: 'AI Chat — Çok Modelli Yapay Zeka | GPT-4, Claude',
-      description: '10+ AI modeli tek platformda. GPT-4, Claude 3.5, Gemini 1.5 Pro, DALL-E 3. Görsel, kod, analiz. Ücretsiz başla ve AI gücünü keşfet.',
-      keywords: 'ai chat, yapay zeka sohbet, gpt-4 türkçe, claude türkçe, gemini ai, çok modelli ai'
+      title: 'AI Chat — Çok Modelli Yapay Zeka | OX5C9E2B, AX9F7E2B',
+      description: '10+ AI modeli tek platformda. OX5C9E2B, AX9F7E2B 3.5, Gemini 1.5 Pro, DALL-E 3. Görsel, kod, analiz. Ücretsiz başla ve AI gücünü keşfet.',
+      keywords: 'ai chat, yapay zeka sohbet, OX5C9E2B türkçe, AX9F7E2B türkçe, gemini ai, çok modelli ai'
     },
     en: {
-      title: 'AI Chat — Multi-Model AI Platform | GPT-4, Claude',
-      description: '10+ AI models in one platform. GPT-4, Claude 3.5, Gemini 1.5 Pro, DALL-E 3. Images, code, analysis. Start free and explore AI power.',
-      keywords: 'ai chat, artificial intelligence chat, gpt-4, claude ai, gemini ai, multi-model ai'
+      title: 'AI Chat — Multi-Model AI Platform | OX5C9E2B, AX9F7E2B',
+      description: '10+ AI models in one platform. OX5C9E2B, AX9F7E2B 3.5, Gemini 1.5 Pro, DALL-E 3. Images, code, analysis. Start free and explore AI power.',
+      keywords: 'ai chat, artificial intelligence chat, OX5C9E2B, AX9F7E2B ai, gemini ai, multi-model ai'
     },
     de: {
-      title: 'AI Chat — Multi-Modell-KI | GPT-4, Claude',
-      description: '10+ KI-Modelle auf einer Plattform. GPT-4, Claude 3.5, Gemini 1.5 Pro, DALL-E 3. Bilder, Code, Analyse. Jetzt kostenlos starten.',
-      keywords: 'ki chat, künstliche intelligenz chat, gpt-4, claude ki, gemini ki'
+      title: 'AI Chat — Multi-Modell-KI | OX5C9E2B, AX9F7E2B',
+      description: '10+ KI-Modelle auf einer Plattform. OX5C9E2B, AX9F7E2B 3.5, Gemini 1.5 Pro, DALL-E 3. Bilder, Code, Analyse. Jetzt kostenlos starten.',
+      keywords: 'ki chat, künstliche intelligenz chat, OX5C9E2B, AX9F7E2B ki, gemini ki'
     },
     ar: {
-      title: 'AI Chat — منصة ذكاء اصطناعي متعددة | GPT-4',
-      description: 'أكثر من 10 نماذج ذكاء اصطناعي في منصة واحدة. GPT-4، Claude 3.5، Gemini 1.5 Pro. الصور والكود والتحليل. ابدأ مجانًا واستكشف قوة الذكاء الاصطناعي.',
-      keywords: 'دردشة ذكاء اصطناعي, gpt-4, claude, gemini, نماذج ذكاء اصطناعي متعددة'
+      title: 'AI Chat — منصة ذكاء اصطناعي متعددة | OX5C9E2B',
+      description: 'أكثر من 10 نماذج ذكاء اصطناعي في منصة واحدة. OX5C9E2B، AX9F7E2B 3.5، Gemini 1.5 Pro. الصور والكود والتحليل. ابدأ مجانًا واستكشف قوة الذكاء الاصطناعي.',
+      keywords: 'دردشة ذكاء اصطناعي, OX5C9E2B, AX9F7E2B, gemini, نماذج ذكاء اصطناعي متعددة'
     },
     ru: {
-      title: 'AI Chat — Мультимодельная ИИ-платформа | GPT-4',
-      description: '10+ моделей ИИ на одной платформе. GPT-4, Claude 3.5, Gemini 1.5 Pro, DALL-E 3. Изображения, код, анализ. Начните бесплатно и откройте силу ИИ.',
-      keywords: 'ии чат, чат с искусственным интеллектом, gpt-4, claude ии, gemini ии'
+      title: 'AI Chat — Мультимодельная ИИ-платформа | OX5C9E2B',
+      description: '10+ моделей ИИ на одной платформе. OX5C9E2B, AX9F7E2B 3.5, Gemini 1.5 Pro, DALL-E 3. Изображения, код, анализ. Начните бесплатно и откройте силу ИИ.',
+      keywords: 'ии чат, чат с искусственным интеллектом, OX5C9E2B, AX9F7E2B ии, gemini ии'
     },
     zh: {
-      title: 'AI Chat — 多模型AI聊天平台 | GPT-4, Claude',
-      description: '一个平台集成10+个顶级AI模型。GPT-4、Claude 3.5、Gemini 1.5 Pro、DALL-E 3。智能图像生成、代码编写、数据分析。立即免费开始，探索人工智能的无限潜力。',
-      keywords: 'ai聊天, 人工智能聊天, gpt-4, claude ai, gemini ai, 多模型ai'
+      title: 'AI Chat — 多模型AI聊天平台 | OX5C9E2B, AX9F7E2B',
+      description: '一个平台集成10+个顶级AI模型。OX5C9E2B、AX9F7E2B 3.5、Gemini 1.5 Pro、DALL-E 3。智能图像生成、代码编写、数据分析。立即免费开始，探索人工智能的无限潜力。',
+      keywords: 'ai聊天, 人工智能聊天, OX5C9E2B, AX9F7E2B ai, gemini ai, 多模型ai'
     }
   },
 

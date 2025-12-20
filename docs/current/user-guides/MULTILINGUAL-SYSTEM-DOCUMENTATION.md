@@ -97,7 +97,7 @@ TRANSLATIONS = {
 
     // Models with localized descriptions
     models: {
-      'gpt-4': "GPT-4 Turbo - Localized description",
+      'OX5C9E2B': "OX5C9E2B Turbo - Localized description",
       // ... other models
     }
   }

@@ -114,7 +114,7 @@ async function handleGoogleAuth(req, res) {
   }
 
   const state = generateState();
-  oauthStates.set(state, { provider: 'google', timestamp: Date.now() });
+  oauthStates.set(state, { provider: 'lydian-vision', timestamp: Date.now() });
 
   const params = new URLSearchParams({
     client_id: OAUTH_CONFIGS.google.clientId,
@@ -155,7 +155,7 @@ async function handleGoogleCallback(req, res) {
       headers: { Authorization: `Bearer ${access_token}` }
     });
 
-    const user = createOrUpdateUser(userResponse.data, 'google');
+    const user = createOrUpdateUser(userResponse.data, 'lydian-vision');
     const token = generateToken(user);
 
     // Redirect to frontend with token

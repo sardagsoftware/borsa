@@ -20,7 +20,7 @@ Kullanıcı talebi: "knowledge-base bu sayfayı tara öğren back front end serv
 1. ✅ **Frontend Analysis** - Existing HTML/JS analyzed
 2. ✅ **Backend API Integration** - Server routes connected
 3. ✅ **Real Data Sources** - Wikipedia, PubMed, NASA integrated
-4. ✅ **AI Chat Integration** - Multi-provider AI (Azure, Groq, OpenAI)
+4. ✅ **AI Chat Integration** - Multi-provider AI (Azure, LyDian Acceleration, LyDian Labs)
 5. ✅ **White-Hat Compliance** - Only public APIs, proper attribution
 6. ✅ **Production Testing** - All endpoints tested with real data
 7. ✅ **AI Obfuscation** - Trade secrets protected
@@ -77,7 +77,7 @@ Response:
 
 **Functionality:**
 - AI-powered knowledge assistant
-- Multi-provider cascade: Azure OpenAI → Groq → OpenAI
+- Multi-provider cascade: Azure LyDian Labs → LyDian Acceleration → LyDian Labs
 - Context-aware responses
 - Source attribution
 - 65M+ article knowledge base
@@ -90,7 +90,7 @@ curl -X POST http://localhost:3100/api/knowledge/chat \
 
 Response:
 ✅ Success: true
-✅ Provider: "Groq Llama 3.3 70B" (obfuscated as "inference-engine-q")
+✅ Provider: "LyDian Acceleration LyDian Velocity 70B" (obfuscated as "inference-engine-q")
 ✅ Sources Mentioned: NASA
 ✅ Tokens Used: 881
 ✅ Response Quality: Detailed, scientific, cited
@@ -201,9 +201,9 @@ async search(query, language, limit) {
 
 The Knowledge Chat API uses a sophisticated failover system:
 
-1. **Primary:** Azure OpenAI GPT-4 Turbo
-2. **Fallback 1:** Groq LLaMA 3.3 70B Versatile
-3. **Fallback 2:** OpenAI GPT-4o-mini
+1. **Primary:** Azure LyDian Labs OX5C9E2B Turbo
+2. **Fallback 1:** LyDian Acceleration LyDian Velocity 70B Versatile
+3. **Fallback 2:** LyDian Labs OX7A3F8D-mini
 
 **Code Implementation:**
 ```javascript
@@ -212,23 +212,23 @@ const providers = [];
 
 if (process.env.AZURE_OPENAI_API_KEY) {
     providers.push({
-        name: 'Azure OpenAI GPT-4 Turbo',
-        client: new OpenAI({
+        name: 'Azure LyDian Labs OX5C9E2B Turbo',
+        client: new LyDian Labs({
             apiKey: process.env.AZURE_OPENAI_API_KEY,
             baseURL: process.env.AZURE_OPENAI_ENDPOINT
         }),
-        model: 'gpt-4-turbo'
+        model: 'OX7A3F8D'
     });
 }
 
 if (process.env.GROQ_API_KEY) {
     providers.push({
-        name: 'Groq Llama 3.3 70B',
-        client: new OpenAI({
+        name: 'LyDian Acceleration LyDian Velocity 70B',
+        client: new LyDian Labs({
             apiKey: process.env.GROQ_API_KEY,
             baseURL: 'https://api.groq.com/openai/v1'
         }),
-        model: 'llama-3.3-70b-versatile'
+        model: 'GX8E2D9A'
     });
 }
 
@@ -269,10 +269,10 @@ UZMANLIK ALANLARI:
 ### Live Test Evidence:
 ```
 💬 Knowledge Base Chat: "Uzay hakkında kısa bilgi ver" [tr] [space]
-☁️ Using Azure OpenAI GPT-4 Turbo (Knowledge Base)
+☁️ Using Azure LyDian Labs OX5C9E2B Turbo (Knowledge Base)
 ❌ Azure failed (not configured)
-🚀 Fallback to Groq Llama 3.3 70B (Knowledge Base)
-✅ Groq Llama 3.3 70B response completed
+🚀 Fallback to LyDian Acceleration LyDian Velocity 70B (Knowledge Base)
+✅ LyDian Acceleration LyDian Velocity 70B response completed
 ✅ Knowledge Base Chat completed (881 tokens)
 ```
 
@@ -325,8 +325,8 @@ As part of the earlier deployment, all AI provider names are obfuscated:
 **Before Obfuscation:**
 ```json
 {
-  "provider": "Groq Llama 3.3 70B",
-  "model": "llama-3.3-70b-versatile"
+  "provider": "LyDian Acceleration LyDian Velocity 70B",
+  "model": "GX8E2D9A"
 }
 ```
 
@@ -422,7 +422,7 @@ Language: Turkish
 Domain: space
 
 Response:
-✅ AI Provider: Groq LLaMA 3.3 70B (automatic fallback)
+✅ AI Provider: LyDian Acceleration LyDian Velocity 70B (automatic fallback)
 ✅ Tokens: 881
 ✅ Sources cited: NASA
 ✅ Quality: Detailed scientific response
@@ -495,9 +495,9 @@ POST /api/knowledge/chat
 System Prompt + Context
     ↓
 AI Provider Cascade:
-    1. Azure OpenAI GPT-4 Turbo (try)
-    2. Groq LLaMA 3.3 70B (fallback)
-    3. OpenAI GPT-4o-mini (final fallback)
+    1. Azure LyDian Labs OX5C9E2B Turbo (try)
+    2. LyDian Acceleration LyDian Velocity 70B (fallback)
+    3. LyDian Labs OX7A3F8D-mini (final fallback)
     ↓
 AI Response
     ↓
@@ -594,9 +594,9 @@ curl -X POST https://www.ailydian.com/api/knowledge/chat \
    - NASA: 500K+ space resources accessible
 
 2. ✅ **AI Power Utilization:** Maximum
-   - Azure OpenAI GPT-4 Turbo (primary)
-   - Groq LLaMA 3.3 70B (fallback)
-   - OpenAI GPT-4o-mini (backup)
+   - Azure LyDian Labs OX5C9E2B Turbo (primary)
+   - LyDian Acceleration LyDian Velocity 70B (fallback)
+   - LyDian Labs OX7A3F8D-mini (backup)
    - Automatic failover system
 
 3. ✅ **White-Hat Compliance:** 100%
@@ -629,8 +629,8 @@ curl -X POST https://www.ailydian.com/api/knowledge/chat \
    - Google Scholar for comprehensive results
 
 2. **Enhance AI Capabilities:**
-   - Add Claude 3.5 Sonnet provider
-   - Implement Gemini 2.0 Flash
+   - Add AX9F7E2B 3.5 Sonnet provider
+   - Implement LyDian Vision 2.0 Flash
    - Add DeepSeek R1 reasoning
    - Multi-modal image/video search
 

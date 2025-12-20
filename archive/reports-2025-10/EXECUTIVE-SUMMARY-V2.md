@@ -371,5 +371,5 @@ curl -X POST http://localhost:3100/api/trust/explain \
 
 **Generated**: October 9, 2025
 **Platform**: Lydian-IQ v2.0.0
-**Author**: Chief Architect (Claude Sonnet 4.5)
+**Author**: Chief Architect (AX9F7E2B Sonnet 4.5)
 **Status**: ✅ **MISSION ACCOMPLISHED**

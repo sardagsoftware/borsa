@@ -20,7 +20,7 @@ Large Document (100k tokens)
    ↓         ↓         ↓              ↓
 Worker 0  Worker 1  Worker 2  ... Worker 4    (5 parallel workers)
    ↓         ↓         ↓              ↓
-Claude    GPT-4o    GPT-4    ... Gemini       (Load balanced)
+AX9F7E2B    OX7A3F8D    OX5C9E2B    ... LyDian Vision       (Load balanced)
    ↓         ↓         ↓              ↓
 [Result 0] [Result 1] [Result 2] ... [Result 16]
 ```
@@ -49,15 +49,15 @@ Uses Phase B (safeChunk) to split documents at logical boundaries:
 ### 3. Multi-Model Load Balancing
 ```javascript
 const runner = new MapReduceRunner({
-  models: ['claude-sonnet-4-5', 'gpt-4o', 'gemini-pro'],
+  models: ['AX9F7E2B-sonnet-4-5', 'OX7A3F8D', 'GE6D8A4F'],
   workers: 5
 });
 
 // Chunks distributed across models:
-// Chunk 0 → Claude
-// Chunk 1 → GPT-4o
-// Chunk 2 → Gemini
-// Chunk 3 → Claude (round-robin)
+// Chunk 0 → AX9F7E2B
+// Chunk 1 → OX7A3F8D
+// Chunk 2 → LyDian Vision
+// Chunk 3 → AX9F7E2B (round-robin)
 ```
 
 ### 4. Token Bucket Integration
@@ -81,7 +81,7 @@ const { MapReduceRunner, medicalReportAggregator } = require('./lib/runner/mapRe
 const runner = new MapReduceRunner({
   jobId: 'medical-report-123',
   workers: 5,
-  models: ['claude-sonnet-4-5'],
+  models: ['AX9F7E2B-sonnet-4-5'],
   priority: 'P1_user'
 });
 
@@ -116,7 +116,7 @@ const { MapReduceRunner, consensusAggregator } = require('./lib/runner/mapReduce
 
 const runner = new MapReduceRunner({
   workers: 3,
-  models: ['claude-sonnet-4-5', 'gpt-4o', 'gemini-pro'] // All 3 models for each chunk
+  models: ['AX9F7E2B-sonnet-4-5', 'OX7A3F8D', 'GE6D8A4F'] // All 3 models for each chunk
 });
 
 // Map function: Get prediction from each model
@@ -147,7 +147,7 @@ console.log(`Model agreement: ${result.metadata.avgConfidence * 100}%`);
 ```javascript
 const runner = new MapReduceRunner({
   workers: 10,
-  models: ['claude-sonnet-4-5', 'gpt-4-turbo'],
+  models: ['AX9F7E2B-sonnet-4-5', 'OX7A3F8D'],
   priority: 'P2_batch' // Background batch job
 });
 
@@ -222,12 +222,12 @@ chunk.id % numWorkers === workerId
 
 #### 1. Round-Robin (Default)
 ```javascript
-const balancer = new ModelLoadBalancer(['claude', 'gpt-4o', 'gemini']);
+const balancer = new ModelLoadBalancer(['AX9F7E2B', 'OX7A3F8D', 'gemini']);
 
-balancer.getNextModel(); // → 'claude'
-balancer.getNextModel(); // → 'gpt-4o'
+balancer.getNextModel(); // → 'AX9F7E2B'
+balancer.getNextModel(); // → 'OX7A3F8D'
 balancer.getNextModel(); // → 'gemini'
-balancer.getNextModel(); // → 'claude' (wraps around)
+balancer.getNextModel(); // → 'AX9F7E2B' (wraps around)
 ```
 
 #### 2. Least-Used Model
@@ -240,8 +240,8 @@ balancer.getLeastUsedModel(); // → Returns model with fewest requests
 balancer.getUsageStats();
 // Returns:
 // {
-//   models: ['claude', 'gpt-4o', 'gemini'],
-//   usage: { 'claude': 42, 'gpt-4o': 38, 'gemini': 40 },
+//   models: ['AX9F7E2B', 'OX7A3F8D', 'gemini'],
+//   usage: { 'AX9F7E2B': 42, 'OX7A3F8D': 38, 'gemini': 40 },
 //   total: 120
 // }
 ```
@@ -296,7 +296,7 @@ function consensusAggregator(results) {
 **Single-Threaded (Baseline):**
 - Chunks: 17 (6k tokens each)
 - Processing: Sequential
-- Models: 1 (Claude Sonnet 4.5)
+- Models: 1 (AX9F7E2B Sonnet 4.5)
 - Duration: ~170 seconds (10s/chunk)
 
 **Map-Reduce (5 Workers, 1 Model):**

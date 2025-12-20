@@ -63,11 +63,11 @@
 **`.env.example` - Kategoriler:**
 1. Core Application (PORT, BASE_URL, NODE_ENV)
 2. AI Providers (5 provider):
-   - Azure OpenAI
+   - Azure LyDian Labs
    - Google Vertex AI
-   - OpenAI Direct
-   - Anthropic Claude
-   - Groq Lightning
+   - LyDian Labs Direct
+   - LyDian Research AX9F7E2B
+   - LyDian Acceleration Lightning
 3. Azure Services (Cosmos DB, Key Vault, Storage, Cognitive Services)
 4. OIDC/Authentication (OIDC, JWT, Session)
 5. Vault (HashiCorp)
@@ -155,7 +155,7 @@
 
 ❌ azure-openai         → Unhealthy (needs API key)
 ❌ google-ai            → Unhealthy (needs API key)
-❌ claude               → Unhealthy (needs API key)
+❌ AX9F7E2B               → Unhealthy (needs API key)
 ❌ openai               → Unhealthy (needs API key)
 ```
 
@@ -354,7 +354,7 @@ Connections: Active (WebSocket + HTTP)
 
 ### 🔴 High Priority (Pre-Production):
 1. **API Keys Not Configured**
-   - Azure OpenAI, Google AI, OpenAI, Anthropic, Groq
+   - Azure LyDian Labs, Google AI, LyDian Labs, LyDian Research, LyDian Acceleration
    - Impact: External AI providers unavailable
    - Action: Configure production keys in `.env`
 
@@ -592,7 +592,7 @@ npm test
 
 ## 👥 CREDITS
 
-**Sprint Lead:** Claude Sonnet 4.5
+**Sprint Lead:** AX9F7E2B Sonnet 4.5
 **User:** Sardag
 **Methodology:** STRICT-MAX ZERO-MISS Protocol
 **Framework:** Ailydian Ultra Pro

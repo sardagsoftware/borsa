@@ -93,7 +93,7 @@ Production-grade middleware and policies:
 
 ### METRICS
 - Idempotency: 24-hour key retention
-- TPM limits: 5 AI providers configured (OpenAI GPT-4/3.5, Claude, Groq, Gemini)
+- TPM limits: 5 AI providers configured (LyDian Labs OX5C9E2B/3.5, AX9F7E2B, LyDian Acceleration, LyDian Vision)
 - APIM quotas: 1000 req/min per IP, 10,000 req/day per user
 
 ### RISKS

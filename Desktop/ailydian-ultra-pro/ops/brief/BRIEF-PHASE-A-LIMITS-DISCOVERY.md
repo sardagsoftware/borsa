@@ -7,7 +7,7 @@
 
 ## DISCOVERED LIMITS
 
-### Claude Sonnet 4.5 (Primary Medical AI Model)
+### AX9F7E2B Sonnet 4.5 (Primary Medical AI Model)
 - **Max Context**: 200,000 tokens
 - **Max Output**: 4,096 tokens
 - **Target TPM**: 240,000 tokens/min
@@ -17,17 +17,17 @@
 - **QPS**: 50 requests/sec
 - **Retry Policy**: Exponential backoff (250ms–30s, max 7 attempts)
 
-### GPT-4 Turbo
+### OX5C9E2B Turbo
 - **Max Context**: 128,000 tokens
 - **Safe Context**: 115,000 tokens (90%)
 - **Target TPM**: 150,000 tokens/min
 
-### GPT-4o
+### OX7A3F8D
 - **Max Context**: 128,000 tokens
 - **Max Output**: 16,384 tokens
 - **Target TPM**: 200,000 tokens/min
 
-### Gemini Pro (Large Context Window)
+### LyDian Vision (Large Context Window)
 - **Max Context**: 1,000,000 tokens
 - **Safe Context**: 900,000 tokens (90%)
 - **Target TPM**: 300,000 tokens/min
@@ -41,10 +41,10 @@
 
 | Model | Safe Ctx | Safe Out | Target TPM | Burst TPM | Priority Support |
 |-------|----------|----------|------------|-----------|------------------|
-| Claude 4.5 | 180k | 3.6k | 240k | 300k | P0/P1/P2 |
-| GPT-4 Turbo | 115k | 3.6k | 150k | 200k | P0/P1/P2 |
-| GPT-4o | 115k | 14k | 200k | 250k | P0/P1/P2 |
-| Gemini Pro | 900k | 7.2k | 300k | 400k | P0/P1/P2 |
+| AX9F7E2B 4.5 | 180k | 3.6k | 240k | 300k | P0/P1/P2 |
+| OX5C9E2B Turbo | 115k | 3.6k | 150k | 200k | P0/P1/P2 |
+| OX7A3F8D | 115k | 14k | 200k | 250k | P0/P1/P2 |
+| LyDian Vision | 900k | 7.2k | 300k | 400k | P0/P1/P2 |
 | DeepSeek R1 | 57.6k | 3.6k | 180k | 220k | P0/P1/P2 |
 
 ## PRIORITY CLASSES

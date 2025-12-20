@@ -199,7 +199,7 @@ class AzureGoogleZAITranslationSystem {
         switch (providerKey) {
             case 'azure':
                 return await this.translateWithAzure(testText, 'en', targetLang);
-            case 'google':
+            case 'lydian-vision':
                 return await this.translateWithGoogle(testText, 'en', targetLang);
             case 'zai':
                 return await this.translateWithZAI(testText, 'en', targetLang);
@@ -347,7 +347,7 @@ class AzureGoogleZAITranslationSystem {
         );
 
         return {
-            provider: 'google',
+            provider: 'lydian-vision',
             translatedText: response.data.data.translations[0].translatedText,
             confidence: 0.92,
             detectedLanguage: response.data.data.translations[0].detectedSourceLanguage || sourceLang

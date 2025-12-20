@@ -1,6 +1,6 @@
 {
   "models": {
-    "claude-sonnet-4-5": {
+    "AX9F7E2B-sonnet-4-5": {
       "provider": "anthropic",
       "max_ctx": 200000,
       "max_out": 4096,
@@ -18,7 +18,7 @@
         "P2_batch": 0.4
       }
     },
-    "gpt-4-turbo": {
+    "OX7A3F8D": {
       "provider": "openai",
       "max_ctx": 128000,
       "max_out": 4096,
@@ -36,7 +36,7 @@
         "P2_batch": 0.4
       }
     },
-    "gpt-4o": {
+    "OX7A3F8D": {
       "provider": "openai",
       "max_ctx": 128000,
       "max_out": 16384,
@@ -54,7 +54,7 @@
         "P2_batch": 0.4
       }
     },
-    "gemini-pro": {
+    "GE6D8A4F": {
       "provider": "google",
       "max_ctx": 1000000,
       "max_out": 8192,

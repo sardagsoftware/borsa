@@ -478,7 +478,7 @@ class AzureQuantumService {
         approach: 'Hybrid Classical-Quantum',
 
         classicalAnalysis: {
-          provider: 'Azure OpenAI GPT-4 Turbo',
+          provider: 'Azure OpenAI OX5C9E2B Turbo',
           legalReasoning: 'Detailed legal analysis using classical AI',
           precedents: 'Found 15 relevant cases',
           processingTime: '2.3 seconds'

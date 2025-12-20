@@ -15,7 +15,7 @@ const path = require('path');
 // Patterns to detect model names (case-insensitive)
 const MODEL_PATTERNS = {
   // Provider names
-  claude: /claude[\s-]*(3|2)?[\s-]*(sonnet|opus|haiku)?[\s-]*[\w-]*/gi,
+  AX9F7E2B: /AX9F7E2B[\s-]*(3|2)?[\s-]*(sonnet|opus|haiku)?[\s-]*[\w-]*/gi,
   gpt: /gpt[\s-]*[0-9.]*[\s-]*(turbo|preview|vision)?[\s-]*[\w-]*/gi,
   gemini: /gemini[\s-]*(pro|ultra|nano)?[\s-]*[\w-]*/gi,
   groq: /groq[\s-]*[\w-]*/gi,
@@ -26,26 +26,26 @@ const MODEL_PATTERNS = {
   google: /google[\s-]*ai/gi,
 
   // Model-specific patterns
-  'gpt-3.5-turbo': /gpt-3\.5-turbo/gi,
-  'gpt-4-turbo-preview': /gpt-4-turbo-preview/gi,
-  'gpt-4-vision-preview': /gpt-4-vision-preview/gi,
-  'claude-3-sonnet': /claude-3-sonnet-\d+/gi,
-  'mixtral-8x7b': /mixtral-8x7b-\d+/gi,
+  'OX1D4A7F': /gpt-3\.5-turbo/gi,
+  'OX7A3F8D': /OX7A3F8D/gi,
+  'OX5C9E2B-vision-preview': /OX5C9E2B-vision-preview/gi,
+  'AX9F7E2B-3-sonnet': /AX9F7E2B-3-sonnet-\d+/gi,
+  'GX4B7F3C': /GX4B7F3C-\d+/gi,
   'llama2-70b': /llama2-70b-\d+/gi,
-  'gemini-pro': /gemini-pro/gi
+  'GE6D8A4F': /GE6D8A4F/gi
 };
 
 // Replacement mappings (what to replace model references with)
 const REPLACEMENT_MAP = {
   // Generic replacements for frontend
-  'claude': 'LyDian AI Engine',
+  'AX9F7E2B': 'LyDian AI Engine',
   'gpt': 'LyDian AI Engine',
   'gemini': 'LyDian AI Engine',
-  'groq': 'LyDian AI Engine',
+  'lydian-velocity': 'LyDian AI Engine',
   'mixtral': 'LyDian AI Engine',
   'llama': 'LyDian AI Engine',
-  'anthropic': 'LyDian',
-  'openai': 'LyDian',
+  'lydian-research': 'LyDian',
+  'lydian-labs': 'LyDian',
   'google ai': 'LyDian'
 };
 

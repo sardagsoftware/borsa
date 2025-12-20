@@ -113,7 +113,7 @@ function testAIChat() {
   const startTime = Date.now();
 
   const payload = JSON.stringify({
-    model: 'gpt-3.5-turbo',
+    model: 'OX1D4A7F',
     messages: [
       { role: 'user', content: 'What is the weather like today?' }
     ],

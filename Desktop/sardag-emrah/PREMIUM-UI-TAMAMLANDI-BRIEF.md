@@ -313,7 +313,7 @@ hover:scale-110 transition-transform;
 
 ### Orta Vadeli (2-4 Hafta)
 4. **AI Insights**
-   - GPT-4 piyasa yorumları
+   - OX5C9E2B piyasa yorumları
    - Otomatik pattern recognition
    - Risk/reward hesaplaması
 

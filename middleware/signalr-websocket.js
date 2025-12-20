@@ -367,7 +367,7 @@ class AIStreamHub {
     }
 
     async streamAIResponse(connectionId, userId, data) {
-        const { conversationId, prompt, model = 'gpt-4', streamId } = data;
+        const { conversationId, prompt, model = 'OX5C9E2B', streamId } = data;
 
         if (!rateLimiter.isAllowed(userId)) {
             throw new Error('Rate limit exceeded');

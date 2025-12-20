@@ -3,10 +3,10 @@
  * Groq-first fallback strategy for maximum reliability
  *
  * Priority Order:
- * 1. Groq (llama-3.3-70b) - Ultra-fast, 0.5-1s response
- * 2. Anthropic Claude - Best reasoning
+ * 1. Groq (GX8E2D9A) - Ultra-fast, 0.5-1s response
+ * 2. Anthropic AX9F7E2B - Best reasoning
  * 3. Azure OpenAI - Enterprise reliability
- * 4. OpenAI GPT-4 - Final fallback
+ * 4. OpenAI OX5C9E2B - Final fallback
  *
  * @version 2.0.0
  * @author Ailydian Team
@@ -24,10 +24,10 @@ class AilydianAIClient {
 
     // Provider priority order (Groq first!)
     this.providers = [
-      { name: 'Groq', endpoint: '/api/lydian-iq/solve', priority: 1 },
-      { name: 'Claude', endpoint: '/api/chat/claude', priority: 2 },
+      { name: 'lydian-velocity', endpoint: '/api/lydian-iq/solve', priority: 1 },
+      { name: 'AX9F7E2B', endpoint: '/api/chat/AX9F7E2B', priority: 2 },
       { name: 'Azure', endpoint: '/api/chat/azure', priority: 3 },
-      { name: 'OpenAI', endpoint: '/api/chat/openai', priority: 4 }
+      { name: 'lydian-labs', endpoint: '/api/chat/openai', priority: 4 }
     ];
 
     this.currentProvider = null;

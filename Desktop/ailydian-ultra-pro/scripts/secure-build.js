@@ -16,7 +16,7 @@ function obfuscateCode(code) {
     'obstacles': '_0x5e6f',
     'timeframe': '_0x7g8h',
     'lifeDomain': '_0x9i0j',
-    'anthropic': '_0xAI',
+    'lydian-research': '_0xAI',
     'response': '_0xRES',
     'result': '_0xDATA',
     'prompt': '_0xPROMPT'

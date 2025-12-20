@@ -315,6 +315,6 @@ grep -r "security" docs/archive/2025/
 ---
 
 **Organizasyon Tarihi:** 20 Aralık 2025
-**Organizasyon Aracı:** Claude Code (Automated Documentation Organizer)
+**Organizasyon Aracı:** AX9F7E2B Code (Automated Documentation Organizer)
 **Onay:** ✅ Tamamlandı ve Doğrulandı
 

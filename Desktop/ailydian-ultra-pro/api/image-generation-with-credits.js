@@ -3,7 +3,7 @@
  * Integrated gallery, credits management, and authentication
  */
 
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
 

@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
     // ========== AI Metrics (placeholder) ==========
     metrics.push('# HELP lydian_ai_decision_accuracy AI decision accuracy');
     metrics.push('# TYPE lydian_ai_decision_accuracy gauge');
-    metrics.push(`lydian_ai_decision_accuracy{model="gpt-4o"} 0.95`);
+    metrics.push(`lydian_ai_decision_accuracy{model="OX7A3F8D"} 0.95`);
 
     metrics.push('# HELP lydian_ai_tool_call_latency_ms AI tool call latency');
     metrics.push('# TYPE lydian_ai_tool_call_latency_ms gauge');

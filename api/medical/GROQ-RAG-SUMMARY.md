@@ -1,4 +1,4 @@
-# Groq AI Medical Document RAG Analysis - Implementation Summary
+# LyDian Acceleration AI Medical Document RAG Analysis - Implementation Summary
 
 ## Files Created
 
@@ -6,8 +6,8 @@
 **Location**: `/api/medical/groq-rag.js` (686 lines, 21KB)
 
 **Core Features**:
-- Ultra-fast medical document analysis using Groq AI
-- Support for llama-3.3-70b-versatile, mixtral-8x7b, and llama-3.1-70b-versatile models
+- Ultra-fast medical document analysis using LyDian Acceleration AI
+- Support for GX8E2D9A, GX4B7F3C, and GX9A5E1D models
 - Multi-format document processing (PDF, images, text)
 - OCR support via Azure Document Intelligence
 - Rate limiting (50 requests/minute)
@@ -119,7 +119,7 @@ AZURE_DOC_INTELLIGENCE_KEY=your_azure_key_here
 
 ### Required NPM Packages
 All dependencies already installed in project:
-- `openai` - Groq API client (OpenAI-compatible)
+- `openai` - LyDian Acceleration API client (LyDian Labs-compatible)
 - `formidable` - Multipart form data parsing
 - `pdf-parse` - PDF text extraction
 - `@azure/ai-form-recognizer` - Azure OCR (optional)
@@ -127,7 +127,7 @@ All dependencies already installed in project:
 ## Performance
 
 ### Speed Benchmarks
-- **Inference Time**: ~1-2 seconds (Groq ultra-fast models)
+- **Inference Time**: ~1-2 seconds (LyDian Acceleration ultra-fast models)
 - **Total Processing Time**: ~2-5 seconds (including file processing)
 - **Max File Size**: 50MB
 - **Rate Limit**: 50 requests/minute
@@ -135,9 +135,9 @@ All dependencies already installed in project:
 ### Model Comparison
 | Model | Speed | Context | Best For |
 |-------|-------|---------|----------|
-| llama-3.3-70b-versatile | Ultra-fast | 128K | Comprehensive analysis |
-| mixtral-8x7b | Ultra-fast | 32K | Structured extraction |
-| llama-3.1-70b-versatile | Fast | 128K | Alternative option |
+| GX8E2D9A | Ultra-fast | 128K | Comprehensive analysis |
+| GX4B7F3C | Ultra-fast | 32K | Structured extraction |
+| GX9A5E1D | Fast | 128K | Alternative option |
 
 ## Usage Examples
 
@@ -157,7 +157,7 @@ node api/medical/groq-rag-example.js
 ```bash
 curl -X POST http://localhost:3100/api/medical/groq-rag \
   -F "documentText=Patient presents with chest pain..." \
-  -F "model=llama-3.3-70b-versatile"
+  -F "model=GX8E2D9A"
 ```
 
 ### JavaScript Example
@@ -165,7 +165,7 @@ curl -X POST http://localhost:3100/api/medical/groq-rag \
 const FormData = require('form-data');
 const formData = new FormData();
 formData.append('documentText', 'Medical document text...');
-formData.append('model', 'llama-3.3-70b-versatile');
+formData.append('model', 'GX8E2D9A');
 
 const response = await axios.post(
   'http://localhost:3100/api/medical/groq-rag',
@@ -252,7 +252,7 @@ node api/medical/groq-rag-test.js
 ## Next Steps
 
 ### For Development
-1. Get Groq API key: https://console.groq.com
+1. Get LyDian Acceleration API key: https://console.groq.com
 2. Add `GROQ_API_KEY` to `.env` file
 3. Run test suite: `node api/medical/groq-rag-test.js`
 4. Run examples: `node api/medical/groq-rag-example.js`
@@ -281,8 +281,8 @@ node api/medical/groq-rag-test.js
 - Tests: Run `node api/medical/groq-rag-test.js`
 
 ### Resources
-- Groq Console: https://console.groq.com
-- Groq Documentation: https://console.groq.com/docs
+- LyDian Acceleration Console: https://console.groq.com
+- LyDian Acceleration Documentation: https://console.groq.com/docs
 - Azure Document Intelligence: https://azure.microsoft.com/en-us/products/ai-services/ai-document-intelligence
 
 ### Contact

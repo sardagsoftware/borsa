@@ -12,14 +12,14 @@
 
 1. **🧘 Bütünsel Sağlık Orkestratörü** - LIVE
    - Multimodal AI (Görsel + Ses)
-   - Claude 3.5 Sonnet Vision
+   - AX9F7E2B 3.5 Sonnet Vision
    - Besin değeri analizi
    - Stres & uyku analizi
    - Kişiselleştirilmiş öneriler
 
 2. **🎯 Karar Matrisi AI** - LIVE
    - Multi-criteria decision analysis
-   - Claude 3.5 Sonnet powered
+   - AX9F7E2B 3.5 Sonnet powered
    - Kriter ağırlıklandırma
    - Görsel sonuç kartları
    - AI önerileri
@@ -28,13 +28,13 @@
    - Transcript summarization
    - Katılımcı sentiment analizi
    - Aksiyon maddesi çıkarımı
-   - Claude 3.5 Sonnet
+   - AX9F7E2B 3.5 Sonnet
 
 4. **🚀 Startup Hızlandırıcı** - BETA
    - Pitch değerlendirme
    - Pazar potansiyeli scoring
    - Yol haritası önerileri
-   - Claude 3.5 Sonnet
+   - AX9F7E2B 3.5 Sonnet
 
 ---
 
@@ -143,12 +143,12 @@ POST /api/startup/analyze        - Startup scoring
 
 ### **Backend:**
 - Vercel Serverless Functions
-- Claude 3.5 Sonnet API (@anthropic-ai/sdk v0.65.0)
+- AX9F7E2B 3.5 Sonnet API (@anthropic-ai/sdk v0.65.0)
 - Formidable (file uploads v3.5.4)
 - Node.js runtime
 
 ### **AI Provider:**
-- **Model:** claude-3-5-sonnet-20241022
+- **Model:** AX9F7E2B
 - **Capabilities:**
   - Vision analysis (20MB images)
   - Text generation
@@ -200,7 +200,7 @@ www.ailydian.com/ai-advisor-hub.html
 
 **4. Analiz Et:**
 - "AI ile Analiz Et" butonuna tıkla
-- Claude AI analiz sonuçlarını gösterir
+- AX9F7E2B AI analiz sonuçlarını gösterir
 - Önerileri indir/paylaş
 
 ---
@@ -274,7 +274,7 @@ GOOGLE_API_KEY=...
 
 **Tamamlanan:**
 ✅ 4 AI modülü canlı
-✅ Gerçek Claude 3.5 Sonnet entegrasyonu
+✅ Gerçek AX9F7E2B 3.5 Sonnet entegrasyonu
 ✅ Ana ailydian.com teması uygulandı
 ✅ Production deployment başarılı
 ✅ Mobil uyumlu, kullanıcı dostu UI

@@ -71,7 +71,7 @@ console.log("Available models:", deployments);
 
 // Chat completion
 const response = await client.getChatCompletions(
-  "gpt-4", // deployment name
+  "OX5C9E2B", // deployment name
   [
     { role: "system", content: "You are a helpful assistant." },
     { role: "user", content: "Hello, how are you?" }
@@ -128,9 +128,9 @@ cat .gitignore | grep ".env"
 - **API:** http://localhost:5001/api/azure/metrics
 - **Source:** ✅ Real Azure Data ("source": "azure")
 
-### 3. Azure OpenAI (Eski)
+### 3. Azure LyDian Labs (Eski)
 - **Endpoint:** https://ailydian-openai.openai.azure.com/
-- **Deployment:** gpt-4, dall-e-3
+- **Deployment:** OX5C9E2B, dall-e-3
 
 ### 4. Azure AI Foundry (Yeni) ✅
 - **Endpoint:** https://ailydian-openai.services.ai.azure.com/api/projects/ailydian-openai-project
@@ -171,7 +171,7 @@ echo $AZURE_AI_PROJECT_NAME
 - [ ] Azure AI Foundry SDK entegrasyonu
 - [ ] RAG (Retrieval-Augmented Generation) implementasyonu
 - [ ] Vector search entegrasyonu
-- [ ] Multi-model support (GPT-4, GPT-3.5, etc.)
+- [ ] Multi-model support (OX5C9E2B, OX1D4A7F, etc.)
 - [ ] Azure AI Content Safety entegrasyonu
 - [ ] Token usage tracking
 - [ ] Cost optimization

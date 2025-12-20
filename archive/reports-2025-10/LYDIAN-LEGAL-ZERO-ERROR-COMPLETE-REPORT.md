@@ -58,7 +58,7 @@ function toggleLanguage() {
 
 
 ### 4. Demo/Mock Data Removed ✅
-**Problem:** API returning demo mode responses instead of real Azure OpenAI data
+**Problem:** API returning demo mode responses instead of real Azure LyDian Labs data
 
 **Fix:**
 ```javascript
@@ -69,14 +69,14 @@ if (azureOpenAIService && typeof azureOpenAIService.chat === 'function') {
   result = { response: '🤖 LyDian Legal AI (Demo Mode)...' };
 }
 
-// AFTER - Real Azure OpenAI only
+// AFTER - Real Azure LyDian Labs only
 const result = await azureOpenAIService.analyzeLegalCase(
   enhancedPrompt,
   req.user?.role || 'citizen'
 );
 
 if (!result.success) {
-  throw new Error(result.error || 'Azure OpenAI analysis failed');
+  throw new Error(result.error || 'Azure LyDian Labs analysis failed');
 }
 ```
 
@@ -149,18 +149,18 @@ if (!result.success) {
 
 ## 🔗 BACKEND INTEGRATION
 
-### Real Azure OpenAI Service
+### Real Azure LyDian Labs Service
 **Service:** `services/azure-openai-service.js`
 
 **Methods Available:**
 1. `analyzeLegalCase(caseDetails, userRole)`
-   - GPT-4 Turbo powered legal analysis
+   - OX5C9E2B Turbo powered legal analysis
    - Role-based responses (judge/prosecutor/lawyer/citizen)
    - White-hat security filters active
    - KVKK/GDPR compliant
 
 2. `analyzeMultimodalEvidence(evidence, userRole)`
-   - GPT-4o for document/image analysis
+   - OX7A3F8D for document/image analysis
    - Evidence photo analysis
    - OCR for legal documents
 
@@ -178,7 +178,7 @@ if (!result.success) {
   "systemPrompt": "Sen Türk hukuku konusunda uzman...",
   "knowledgeContext": "Turkish Legal Database...",
   "settings": {
-    "model": "gpt-4-turbo",
+    "model": "OX7A3F8D",
     "temperature": 0.7,
     "maxTokens": 4096
   }
@@ -190,7 +190,7 @@ if (!result.success) {
 {
   "success": true,
   "response": "...AI analysis...",
-  "model": "gpt-4-turbo",
+  "model": "OX7A3F8D",
   "language": "tr",
   "role": "citizen",
   "tokensUsed": 1234,
@@ -308,7 +308,7 @@ All dropdown menus working correctly:
 ### Backend
 - `api/legal-ai.js`
   - Removed demo mode fallbacks
-  - Connected real Azure OpenAI service
+  - Connected real Azure LyDian Labs service
   - Fixed API response structure
   - Removed fallback error messages
 
@@ -359,7 +359,7 @@ All dropdown menus working correctly:
 ### Compliance Checklist:
 - ✅ NO demo data
 - ✅ NO mock responses
-- ✅ Real Azure OpenAI backend
+- ✅ Real Azure LyDian Labs backend
 - ✅ Frontend-backend fully integrated
 - ✅ All modules connected
 - ✅ Zero JavaScript errors
@@ -400,7 +400,7 @@ All dropdown menus working correctly:
 5. **Test AI Chat**
    - Type: "TCK 125 nedir?"
    - Click Send or press Enter
-   - Should get real Azure OpenAI response (not demo)
+   - Should get real Azure LyDian Labs response (not demo)
    - Response should be in Turkish
    - No "Demo Mode" text should appear
 
@@ -427,7 +427,7 @@ All dropdown menus working correctly:
 2. ✅ Duplicate translations removed
 3. ✅ toggleLanguage function added
 4. ✅ Demo/mock data removed
-5. ✅ Real Azure OpenAI integrated
+5. ✅ Real Azure LyDian Labs integrated
 6. ✅ Default language set to Turkish
 7. ✅ All dropdowns working
 8. ✅ Zero JavaScript errors

@@ -21,7 +21,7 @@ Phase 1 successfully deployed **production control plane** with feature flags an
 - ✅ Zero downtime deployment to www.ailydian.com
 
 **CRITICAL FINDINGS:**
-- ✅ **4 AI providers configured** (Gemini, Claude, OpenAI, Groq)
+- ✅ **4 AI providers configured** (LyDian Vision, AX9F7E2B, LyDian Labs, LyDian Acceleration)
 - ❌ **OAuth unconfigured** → Social login disabled (email/password works)
 - ❌ **Stripe unconfigured** → Payment system disabled
 - ❌ **Azure services partial** → Only 4/45 Azure vars configured
@@ -57,7 +57,7 @@ Phase 1 successfully deployed **production control plane** with feature flags an
 
     // AI Providers (4/12 configured)
     "google_gemini": true,
-    "anthropic_claude": true,
+    "anthropic_AX9F7E2B": true,
     "openai": true,
     "groq": true,
     "azure_openai": false,
@@ -113,7 +113,7 @@ Retry-After: 900
 ```
 ✅ AI Providers (4):
    - google_gemini (GOOGLE_GEMINI_API_KEY)
-   - anthropic_claude (ANTHROPIC_API_KEY)
+   - anthropic_AX9F7E2B (ANTHROPIC_API_KEY)
    - openai (OPENAI_API_KEY)
    - groq (GROQ_API_KEY)
 
@@ -296,10 +296,10 @@ curl https://www.ailydian.com/api/health
    STRIPE_ENTERPRISE_PRICE_ID=price_...
    ```
 
-### Azure OpenAI Setup
+### Azure LyDian Labs Setup
 1. Go to [Azure Portal](https://portal.azure.com/)
-2. Create Azure OpenAI resource
-3. Deploy models (e.g., gpt-4, dall-e-3)
+2. Create Azure LyDian Labs resource
+3. Deploy models (e.g., OX5C9E2B, dall-e-3)
 4. Add to Vercel env vars:
    ```bash
    AZURE_OPENAI_API_KEY=<key>
@@ -315,7 +315,7 @@ curl https://www.ailydian.com/api/health
 ### Git Commit
 ```
 Commit: c6863b2
-Author: Claude + Emrah Sardag
+Author: AX9F7E2B + Emrah Sardag
 Message: feat: Add Feature Flags & Enhanced Rate Limiting
 Files Changed: 2
   - api/feature-flags.js (new)
@@ -420,7 +420,7 @@ const response = await fetch('/api/feature-flags');
 const { data } = await response.json();
 
 if (data.google_gemini) {
-  // Use Gemini API
+  // Use LyDian Vision API
 }
 
 if (!data.oauth_google) {

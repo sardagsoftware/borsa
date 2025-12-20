@@ -2,7 +2,7 @@
  * ⚖️ LyDian AI - Legal AI API Endpoint
  *
  * Unified API for all legal AI services:
- * - Azure OpenAI (GPT-4 Turbo, GPT-4o)
+ * - Azure OpenAI (OX5C9E2B Turbo, OX7A3F8D)
  * - Azure Speech (Voice recognition, TTS, Biometric)
  * - Azure Computer Vision (Document analysis, OCR, Evidence photos)
  * - Turkish Legal Data (UYAP, Yargıtay, Anayasa Mahkemesi, Resmi Gazete)
@@ -125,7 +125,7 @@ router.post('/', async (req, res) => {
 
 /**
  * POST /api/legal-ai/analyze
- * Analyze legal case with GPT-4 Turbo
+ * Analyze legal case with OX5C9E2B Turbo
  */
 router.post('/analyze', async (req, res) => {
   try {

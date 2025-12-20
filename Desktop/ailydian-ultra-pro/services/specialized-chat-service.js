@@ -1,9 +1,9 @@
 /**
  * Specialized Chat Service
- * Wrapper for OpenAI GPT-4 Turbo for legal analysis
+ * Wrapper for OpenAI OX5C9E2B Turbo for legal analysis
  */
 
-const { OpenAI } = require('openai');
+const { OpenAI } = require('lydian-labs');
 require('dotenv').config();
 
 class SpecializedChatService {
@@ -15,7 +15,7 @@ class SpecializedChatService {
             this.openai = new OpenAI({
                 apiKey: process.env.OPENAI_API_KEY
             });
-            console.log('✅ Specialized Chat Service initialized (GPT-4 Turbo)');
+            console.log('✅ Specialized Chat Service initialized (OX5C9E2B Turbo)');
         } else {
             console.log('⚠️ OpenAI API key not found - Chat service in DEMO mode');
         }
@@ -28,8 +28,8 @@ class SpecializedChatService {
             // DEMO MODE - Return mock response
             const userMessage = messages[messages.length - 1]?.content || '';
             return {
-                content: `DEMO MOD: Gerçek AI analizi için OpenAI API anahtarı ekleyin.\n\nSorunuz: "${userMessage}"\n\nBu bir demo yanıttır. Gerçek GPT-4 Turbo analizi için .env dosyasına OPENAI_API_KEY ekleyin.\n\n🛡️ Beyaz Şapka Kuralları Aktif\n🔒 Şifreli ve Güvenli`,
-                model: model || 'gpt-4-turbo (DEMO)',
+                content: `DEMO MOD: Gerçek AI analizi için OpenAI API anahtarı ekleyin.\n\nSorunuz: "${userMessage}"\n\nBu bir demo yanıttır. Gerçek OX5C9E2B Turbo analizi için .env dosyasına OPENAI_API_KEY ekleyin.\n\n🛡️ Beyaz Şapka Kuralları Aktif\n🔒 Şifreli ve Güvenli`,
+                model: model || 'OX7A3F8D (DEMO)',
                 usage: {
                     prompt_tokens: 0,
                     completion_tokens: 0,
@@ -41,7 +41,7 @@ class SpecializedChatService {
 
         try {
             const response = await this.openai.chat.completions.create({
-                model: model || 'gpt-4-turbo',
+                model: model || 'OX7A3F8D',
                 messages: messages,
                 temperature: temperature || 0.7,
                 max_tokens: max_tokens || 2048
@@ -63,7 +63,7 @@ class SpecializedChatService {
             initialized: true,
             hasOpenAI: this.hasOpenAI,
             demoMode: this.demoMode,
-            model: 'gpt-4-turbo'
+            model: 'OX7A3F8D'
         };
     }
 }

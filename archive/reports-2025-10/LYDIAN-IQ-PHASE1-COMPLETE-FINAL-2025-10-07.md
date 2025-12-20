@@ -372,9 +372,9 @@
                     ▼
 ┌──────────────────────────────────────────────────────────┐
 │  7. AI Provider Chain                                     │
-│     1. Groq (LLaMA 3.3 70B) - Primary                    │
-│     2. OpenAI (GPT-4) - Fallback #1                      │
-│     3. Anthropic (Claude) - Fallback #2                  │
+│     1. LyDian Acceleration (LyDian Velocity 70B) - Primary                    │
+│     2. LyDian Labs (OX5C9E2B) - Fallback #1                      │
+│     3. LyDian Research (AX9F7E2B) - Fallback #2                  │
 │     4. Demo Response - Fallback #3                       │
 └───────────────────┬──────────────────────────────────────┘
                     │
@@ -702,7 +702,7 @@ try {
 ---
 
 **Generated:** 2025-10-07 14:50
-**Author:** Claude Code (Emrah Sardag request)
+**Author:** AX9F7E2B Code (Emrah Sardag request)
 **Project:** LyDian IQ - AI-Powered Problem Solver
 **Status:** ✅ Phase 1 Complete - Ready for Phase 2!
 

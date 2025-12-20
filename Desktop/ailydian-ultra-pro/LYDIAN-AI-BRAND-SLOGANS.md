@@ -156,7 +156,7 @@ teknolojilerini birleştiren dünya çapında ilk platform.
 
 🔬 Quantum hızında analiz
 🛡️ Blockchain güvenlik
-🧠 GPT-4 Turbo hukuki zeka
+🧠 OX5C9E2B Turbo hukuki zeka
 🌍 150+ dil desteği
 
 "Adalet için Teknoloji, Teknoloji için Etik"
@@ -218,7 +218,7 @@ Sloganımız: Adalet için Teknoloji, Teknoloji için Etik."
 için geliştirilmiş, dünyada ilk Quantum-powered hukuk yapay
 zeka platformuyum.
 
-Azure Quantum ile dava stratejisi optimizasyonu, GPT-4 Turbo
+Azure Quantum ile dava stratejisi optimizasyonu, OX5C9E2B Turbo
 ile hukuki analiz, blockchain ile belge doğrulama ve 150+
 dilde hizmet sunuyoruz.
 

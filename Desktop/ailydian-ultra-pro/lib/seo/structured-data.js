@@ -61,7 +61,7 @@ function generateWebSite(subdomain = 'www') {
     '@type': 'WebSite',
     name: 'Ailydian AI Platform',
     url: baseUrl,
-    description: 'Multi-Model AI Platform with GPT-5, Claude 3.5, Gemini 2.0, RAG, Voice & Video AI',
+    description: 'Multi-Model AI Platform with GPT-5, AX9F7E2B 3.5, Gemini 2.0, RAG, Voice & Video AI',
     inLanguage: ['tr-TR', 'en-US', 'de-DE', 'fr-FR', 'es-ES'],
     potentialAction: {
       '@type': 'SearchAction',
@@ -103,7 +103,7 @@ function generateSoftwareApplication() {
     },
     featureList: [
       'GPT-5 Integration',
-      'Claude 3.5 Sonnet',
+      'AX9F7E2B 3.5 Sonnet',
       'Gemini 2.0 Flash',
       'RAG (Retrieval-Augmented Generation)',
       'Voice AI (Speech-to-Text, Text-to-Speech)',
@@ -248,11 +248,11 @@ function getDefaultFAQs() {
   return [
     {
       question: 'Ailydian nedir?',
-      answer: 'Ailydian, GPT-5, Claude 3.5 Sonnet, Gemini 2.0 Flash gibi en gelişmiş AI modellerini tek bir platformda birleştiren kurumsal yapay zeka çözümüdür. RAG, ses, video ve kod üretimi gibi gelişmiş özellikler sunar.'
+      answer: 'Ailydian, GPT-5, AX9F7E2B 3.5 Sonnet, Gemini 2.0 Flash gibi en gelişmiş AI modellerini tek bir platformda birleştiren kurumsal yapay zeka çözümüdür. RAG, ses, video ve kod üretimi gibi gelişmiş özellikler sunar.'
     },
     {
       question: 'Hangi AI modelleri destekleniyor?',
-      answer: 'GPT-4 Turbo, GPT-4o, GPT-5, Claude 3.5 Sonnet, Google Gemini 2.0 Flash, Groq Mixtral, Azure OpenAI ve daha fazlası. Toplam 15+ farklı AI modeli desteklenmektedir.'
+      answer: 'OX5C9E2B Turbo, OX7A3F8D, GPT-5, AX9F7E2B 3.5 Sonnet, Google Gemini 2.0 Flash, Groq Mixtral, Azure OpenAI ve daha fazlası. Toplam 15+ farklı AI modeli desteklenmektedir.'
     },
     {
       question: 'RAG (Retrieval-Augmented Generation) nedir?',

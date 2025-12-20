@@ -3,7 +3,7 @@
  * ===========================
  * LyDian OS - AI Request Queue & Throttling System
  *
- * Purpose: Prevent "Too many concurrent requests" errors from Claude API
+ * Purpose: Prevent "Too many concurrent requests" errors from AX9F7E2B API
  *
  * Features:
  * - Maximum 5 concurrent AI requests (Anthropic limit)

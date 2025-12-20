@@ -57,7 +57,7 @@ const assistant = await client.assistants.create({
   instructions: `You are a helpful customer support agent for TechCo.
   Be professional, empathetic, and solution-oriented.
   Always verify customer identity before discussing account details.`,
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: []
 });
 
@@ -74,7 +74,7 @@ assistant = client.assistants.create(
     instructions='''You are a helpful customer support agent for TechCo.
     Be professional, empathetic, and solution-oriented.
     Always verify customer identity before discussing account details.''',
-    model='gpt-4-turbo',
+    model='OX7A3F8D',
     tools=[]
 )
 
@@ -95,7 +95,7 @@ const financialAdvisor = await client.assistants.create({
 
   Always provide disclaimers that you are not providing legal advice.
   Encourage users to consult with licensed professionals for specific situations.`,
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [
     { type: 'code_interpreter' }
   ],
@@ -125,7 +125,7 @@ func main() {
         - Investment portfolio optimization
         - Tax-efficient strategies
         - Risk assessment and management`,
-        Model: "gpt-4-turbo",
+        Model: "OX7A3F8D",
         Tools: []insaniq.Tool{
             {Type: "code_interpreter"},
         },
@@ -146,7 +146,7 @@ func main() {
 const creativeWriter = await client.assistants.create({
   name: 'Creative Writing Coach',
   instructions: 'Help users craft compelling narratives and creative content.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   temperature: 0.9, // More creative and varied
   top_p: 0.95
 });
@@ -155,7 +155,7 @@ const creativeWriter = await client.assistants.create({
 const technicalWriter = await client.assistants.create({
   name: 'Technical Documentation Writer',
   instructions: 'Generate precise, accurate technical documentation.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   temperature: 0.2, // More deterministic and focused
   top_p: 0.85
 });
@@ -168,7 +168,7 @@ const technicalWriter = await client.assistants.create({
 const dataExtractor = await client.assistants.create({
   name: 'Data Extraction Assistant',
   instructions: 'Extract structured data from unstructured text.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   response_format: { type: 'json_object' }
 });
 
@@ -195,7 +195,7 @@ const run = await client.runs.create(thread.id, {
 const weatherAssistant = await client.assistants.create({
   name: 'Weather Assistant',
   instructions: 'Provide weather information and forecasts.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [
     {
       type: 'function',
@@ -249,7 +249,7 @@ const weatherAssistant = await client.assistants.create({
 const ecommerceAssistant = await client.assistants.create({
   name: 'E-Commerce Shopping Assistant',
   instructions: 'Help customers find products, check inventory, and place orders.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [
     {
       type: 'function',
@@ -480,7 +480,7 @@ const dataAnalyst = await client.assistants.create({
   instructions: `You are a data scientist assistant.
   Analyze data, create visualizations, and provide insights.
   Use pandas, matplotlib, and numpy for analysis.`,
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [{ type: 'code_interpreter' }]
 });
 
@@ -525,7 +525,7 @@ data_scientist = client.assistants.create(
     instructions='''You are a scientific computing expert.
     Use scipy, numpy, and matplotlib for numerical analysis.
     Explain your methodology and results clearly.''',
-    model='gpt-4-turbo',
+    model='OX7A3F8D',
     tools=[{'type': 'code_interpreter'}]
 )
 
@@ -566,7 +566,7 @@ run = client.runs.create_and_wait(
 const researchAssistant = await client.assistants.create({
   name: 'Research Document Assistant',
   instructions: 'Help users find information in uploaded research papers.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [{ type: 'retrieval' }]
 });
 
@@ -614,7 +614,7 @@ const legalAssistant = await client.assistants.create({
   instructions: `You are a legal research assistant.
   Search contract documents and provide accurate citations.
   Always include document name and page number in references.`,
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [{ type: 'retrieval' }]
 });
 
@@ -686,7 +686,7 @@ with client.runs.create_and_stream(
 const multitoolAssistant = await client.assistants.create({
   name: 'Multi-Tool Assistant',
   instructions: 'Execute multiple tools concurrently when possible.',
-  model: 'gpt-4-turbo',
+  model: 'OX7A3F8D',
   tools: [
     { type: 'function', function: { name: 'get_weather', /* ... */ } },
     { type: 'function', function: { name: 'get_stock_price', /* ... */ } },
@@ -813,7 +813,7 @@ console.log('Token usage:', {
 const simpleAssistant = await client.assistants.create({
   name: 'FAQ Bot',
   instructions: 'Answer frequently asked questions',
-  model: 'gpt-3.5-turbo', // Cheaper model for simple tasks
+  model: 'OX1D4A7F', // Cheaper model for simple tasks
   tools: []
 });
 ```

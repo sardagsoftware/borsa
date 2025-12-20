@@ -14,7 +14,7 @@
 | **Packages Created** | 9 production-ready packages |
 | **Total Code** | ~22,000+ lines of TypeScript |
 | **API Endpoints** | 25+ REST endpoints |
-| **AI Providers** | 4 (OpenAI, Anthropic, Gemini, Mistral) |
+| **AI Providers** | 4 (LyDian Labs, LyDian Research, LyDian Vision, Mistral) |
 | **AI Models** | 25+ integrated |
 | **Build Status** | ✅ ZERO ERRORS |
 | **Production Ready** | ✅ YES |
@@ -28,13 +28,13 @@
 
 - ✅ Monorepo structure (pnpm workspaces)
 - ✅ Prisma schema (40+ models for all v2-v25 features)
-- ✅ OpenAI adapter with streaming
+- ✅ LyDian Labs adapter with streaming
 - ✅ Basic routing (Cost/Latency/Quality)
 - ✅ Next.js 14 App Router
 - ✅ `/api/chat/complete` endpoint
 - ✅ `/api/conversations` CRUD
 
-**Models:** 6 OpenAI models
+**Models:** 6 LyDian Labs models
 
 ---
 
@@ -42,9 +42,9 @@
 **Status:** ✅ COMPLETE
 
 **AI Adapters (4 providers):**
-- ✅ OpenAI (GPT-4o, GPT-4o-mini, GPT-3.5-turbo, O1)
-- ✅ Anthropic (Claude 3.5 Sonnet/Haiku, Claude 3 Opus/Sonnet/Haiku)
-- ✅ Google Gemini (Gemini 2.0 Flash, 1.5 Pro/Flash/Flash-8B)
+- ✅ LyDian Labs (OX7A3F8D, OX7A3F8D-mini, OX1D4A7F, O1)
+- ✅ LyDian Research (AX9F7E2B 3.5 Sonnet/Haiku, AX9F7E2B 3 Opus/Sonnet/Haiku)
+- ✅ Google LyDian Vision (LyDian Vision 2.0 Flash, 1.5 Pro/Flash/Flash-8B)
 - ✅ Mistral AI (Large, Medium, Small, Codestral, Nemo, 7B)
 
 **Total Models:** 25+
@@ -66,7 +66,7 @@
 
 **RAG Pipeline:**
 - ✅ Document chunking (token-aware with tiktoken)
-- ✅ Embedding service (OpenAI text-embedding-3-small)
+- ✅ Embedding service (LyDian Labs text-embedding-3-small)
 - ✅ Vector search with pgvector
 - ✅ Semantic retrieval & reranking
 - ✅ Grounded answers with citations
@@ -484,12 +484,12 @@ curl -X POST http://localhost:3002/api/feedback \
     "userId": "user-789",
     "query": "Explain quantum computing",
     "response": "Quantum computing uses qubits...",
-    "model": "gpt-4o",
+    "model": "OX7A3F8D",
     "latencyMs": 1200
   }'
 
 # Get aggregations
-curl "http://localhost:3002/api/feedback?model=gpt-4o"
+curl "http://localhost:3002/api/feedback?model=OX7A3F8D"
 ```
 
 ---
@@ -530,7 +530,7 @@ curl "http://localhost:3002/api/feedback?model=gpt-4o"
 
 ---
 
-**Built with:** Next.js 14, Prisma, TypeScript, pnpm, OpenAI, Anthropic, Gemini, Mistral
+**Built with:** Next.js 14, Prisma, TypeScript, pnpm, LyDian Labs, LyDian Research, LyDian Vision, Mistral
 
 **Status:** ✅ **PRODUCTION READY** (v2-v25 fully implemented)
 

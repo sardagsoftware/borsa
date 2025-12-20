@@ -52,7 +52,7 @@
    - Accessibility considerations
 
 2. **Modern Design Principles**
-   - ChatGPT/OpenAI inspired typography
+   - ChatGPT/LyDian Labs inspired typography
    - Asana color psychology (green = trust, growth)
    - Material Design iconography
    - Smooth animations & transitions
@@ -462,7 +462,7 @@
     Full AI ecosystem integration
   </p>
   <div class="humain-capability-tags">
-    <span class="humain-tag">GPT-4</span>
+    <span class="humain-tag">OX5C9E2B</span>
     <span class="humain-tag">Document AI</span>
   </div>
 </div>
@@ -546,7 +546,7 @@ http://localhost:3100/analytics.html
 **CSS Framework:** ✅ **READY FOR PRODUCTION**
 **Migration Plan:** ✅ **DOCUMENTED**
 
-**Onaylayan:** Claude Sonnet 4.5
+**Onaylayan:** AX9F7E2B Sonnet 4.5
 **Tarih:** 2025-09-30
 **Status:** **READY TO DEPLOY** 🚀
 

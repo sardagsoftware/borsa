@@ -33,7 +33,7 @@
   "result": {
     "outputTokens": 1234,
     "processingTimeMs": 567,
-    "model": "claude-sonnet-4-5"
+    "model": "AX9F7E2B-sonnet-4-5"
   },
   "processedAt": "2025-10-05T18:30:00Z"
 }
@@ -49,7 +49,7 @@
   "failedChunks": 2,
   "createdAt": "2025-10-05T18:00:00Z",
   "updatedAt": "2025-10-05T18:30:00Z",
-  "model": "claude-sonnet-4-5",
+  "model": "AX9F7E2B-sonnet-4-5",
   "priority": "P1_user",
   "resumable": true
 }
@@ -212,7 +212,7 @@ for (const chunk of chunks) {
 const { SSEStreamer } = require('./lib/io/streaming');
 const { ResumeEngine } = require('./lib/checkpoints/resumeEngine');
 
-const streamer = new SSEStreamer(res, { model: 'gpt-4o' });
+const streamer = new SSEStreamer(res, { model: 'OX7A3F8D' });
 const engine = await resumeEngineManager.getEngine(jobId);
 
 streamer.handler.on('stream:end', async (summary) => {

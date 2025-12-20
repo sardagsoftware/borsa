@@ -13,7 +13,7 @@
 
 ### What Was Delivered
 1. ✅ **Fixed dropdown menus** - Account menu & language toggle working perfectly
-2. ✅ **Backend API integration** - Real legal AI with Azure OpenAI
+2. ✅ **Backend API integration** - Real legal AI with Azure LyDian Labs
 3. ✅ **Language-specific queries** - Multi-language legal database support
 4. ✅ **White-hat security** - Rate limiting & role-based access control active
 5. ✅ **Comprehensive smoke tests** - 28/28 tests passed
@@ -71,11 +71,11 @@ User Query: ${message}
 
 ${knowledgeContext || ''}`;
 
-    // Call Azure OpenAI with language-specific model
+    // Call Azure LyDian Labs with language-specific model
     const result = await azureOpenAIService.chat({
       message: enhancedPrompt,
       language: language,
-      model: settings.model || 'gpt-4-turbo',
+      model: settings.model || 'OX7A3F8D',
       temperature: settings.temperature || 0.7,
       maxTokens: settings.maxTokens || 4096
     });
@@ -97,7 +97,7 @@ ${knowledgeContext || ''}`;
 ```
 
 **Features:**
-- ✅ Azure OpenAI GPT-4 Turbo
+- ✅ Azure LyDian Labs OX5C9E2B Turbo
 - ✅ Language-specific prompts
 - ✅ Knowledge graph integration
 - ✅ Error handling with fallback
@@ -282,7 +282,7 @@ menuLogout: "Logout"
 ## 🎯 FEATURES IMPLEMENTED
 
 ### Core Functionality
-- [x] Real-time AI chat with Azure OpenAI GPT-4 Turbo
+- [x] Real-time AI chat with Azure LyDian Labs OX5C9E2B Turbo
 - [x] Multi-language support (TR/EN + 8 more legal systems)
 - [x] Knowledge graph integration (Neo4j)
 - [x] Legal precedent matching
@@ -311,7 +311,7 @@ menuLogout: "Logout"
 ### Backend Integration
 - [x] Legal AI API (`/api/legal-ai`)
 - [x] Knowledge Graph API (`/api/knowledge-graph`)
-- [x] Azure OpenAI service
+- [x] Azure LyDian Labs service
 - [x] Azure Speech service
 - [x] Azure Computer Vision service
 - [x] Turkish legal data service
@@ -361,7 +361,7 @@ menuLogout: "Logout"
 
 ### Backend
 - Node.js + Express.js
-- Azure OpenAI (GPT-4 Turbo)
+- Azure LyDian Labs (OX5C9E2B Turbo)
 - Azure Speech Services
 - Azure Computer Vision
 - Neo4j (Knowledge Graph)
@@ -387,7 +387,7 @@ menuLogout: "Logout"
 
 2. **api/legal-ai.js** (450 lines)
    - Added chat endpoint (`POST /`)
-   - Integrated Azure OpenAI
+   - Integrated Azure LyDian Labs
    - Added language parameter support
    - Implemented knowledge context
 
@@ -544,7 +544,7 @@ Open browser console (F12) to see:
 ✅ User account dropdown
 ✅ Language toggle (EN ↔ TR)
 ✅ Export dropdown
-✅ Backend legal AI (Azure OpenAI)
+✅ Backend legal AI (Azure LyDian Labs)
 ✅ Multi-language legal queries
 ✅ Knowledge graph integration
 ✅ Security rate limiting

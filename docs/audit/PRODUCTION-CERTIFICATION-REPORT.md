@@ -425,7 +425,7 @@ Lydian-IQ v2.0 has successfully evolved from an integration platform to an intel
 
 **Generated**: October 9, 2025
 **Platform**: Lydian-IQ v2.0.0
-**Auditor**: Global QA & Compliance Auditor (Claude Sonnet 4.5)
+**Auditor**: Global QA & Compliance Auditor (AX9F7E2B Sonnet 4.5)
 **Certification**: ✅ **PRODUCTION CERTIFIED**
 
 ---

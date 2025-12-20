@@ -92,7 +92,7 @@ AZURE_CLIENT_SECRET=YOUR_CLIENT_SECRET_FROM_SCRIPT
 AZURE_TENANT_ID=YOUR_TENANT_ID_FROM_SCRIPT
 AZURE_SUBSCRIPTION_ID=YOUR_SUBSCRIPTION_ID_FROM_SCRIPT
 
-# Azure OpenAI (varsa)
+# Azure LyDian Labs (varsa)
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
 AZURE_OPENAI_API_KEY=your_azure_openai_key
 ```
@@ -111,7 +111,7 @@ PORT=5001 node server.js
 
 ## 🏢 Yöntem 2: Enterprise Bootstrap
 
-**Kurumsal kullanım için. Borsa entegrasyonu, Service Principal, Azure OpenAI dahil.**
+**Kurumsal kullanım için. Borsa entegrasyonu, Service Principal, Azure LyDian Labs dahil.**
 
 ### Adım 1: Script Çalıştır
 
@@ -127,7 +127,7 @@ cd ~/Desktop/ailydian-ultra-pro
 3. ✅ App Registration + Service Principal oluşturur
 4. ✅ Client Secret (2 yıl)
 5. ✅ Graph API permissions (User.Read)
-6. ✅ Azure OpenAI varsa endpoint/key çeker
+6. ✅ Azure LyDian Labs varsa endpoint/key çeker
 7. ✅ Borsa microservice endpoints ekler
 
 ### Adım 3: Oluşturulan Dosyalar
@@ -295,16 +295,16 @@ https://aka.ms/installazurecliwindows  # Windows
 2. API permissions → Grant admin consent
 3. Global Admin'e forward et
 
-### 4. Azure OpenAI bulunamadı
+### 4. Azure LyDian Labs bulunamadı
 
-**Sebep:** Azure OpenAI resource yok
+**Sebep:** Azure LyDian Labs resource yok
 
 **Çözüm:**
 ```bash
 # Azure Portal'dan oluştur:
 1. Portal → Create a resource
-2. "Azure OpenAI" ara
-3. Create → Resource name: Ailydian-OpenAI
+2. "Azure LyDian Labs" ara
+3. Create → Resource name: Ailydian-LyDian Labs
 4. Region: West Europe
 5. Pricing tier: Standard S0
 6. Create
@@ -360,7 +360,7 @@ AZURE_OPENAI_API_KEY=...
 PORT=5001 node server.js
 
 # Loglarda şunu ara:
-# ✅ Azure OpenAI GPT-4 Turbo response completed
+# ✅ Azure LyDian Labs OX5C9E2B Turbo response completed
 ```
 
 ### Test 3: API Test
@@ -376,7 +376,7 @@ Başarılı ise:
 {
   "success": true,
   "response": "...",
-  "provider": "Azure OpenAI GPT-4 Turbo",
+  "provider": "Azure LyDian Labs OX5C9E2B Turbo",
   "aiAssistant": "DrLydian"
 }
 ```
@@ -391,7 +391,7 @@ https://learn.microsoft.com/en-us/cli/azure/
 ### App Registration Guide
 https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app
 
-### Azure OpenAI
+### Azure LyDian Labs
 https://learn.microsoft.com/en-us/azure/ai-services/openai/
 
 ---
@@ -409,4 +409,4 @@ https://learn.microsoft.com/en-us/azure/ai-services/openai/
 ---
 
 *Kılavuz hazırlandı: 2025-10-02*
-*Claude AI (Sonnet 4.5)*
+*AX9F7E2B AI (Sonnet 4.5)*

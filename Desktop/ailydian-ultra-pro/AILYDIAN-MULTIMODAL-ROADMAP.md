@@ -7,24 +7,24 @@
 #### 💰 **MALİYET KATEGORİLERİ:**
 
 **🟢 DÜŞÜK MALİYET (Günlük Kullanım)**
-- **Groq Llama 3.3 70B** - $0.59/1M token (ultra hızlı, düşük gecikme)
-- **GPT-4o Mini** - $0.15/1M input, $0.60/1M output
-- **Claude 3 Haiku** - $0.25/1M input, $1.25/1M output
-- **Gemini 1.5 Flash** - $0.075/1M input, $0.30/1M output
+- **LyDian Acceleration LyDian Velocity 70B** - $0.59/1M token (ultra hızlı, düşük gecikme)
+- **OX7A3F8D Mini** - $0.15/1M input, $0.60/1M output
+- **AX9F7E2B 3 Haiku** - $0.25/1M input, $1.25/1M output
+- **LyDian Vision Flash** - $0.075/1M input, $0.30/1M output
 - **DeepSeek Chat** - $0.14/1M input, $0.28/1M output
 
 **🟡 ORTA MALİYET (Özel Görevler)**
-- **GPT-4o** - $2.50/1M input, $10/1M output
-- **Claude 3.5 Sonnet** - $3/1M input, $15/1M output
-- **Gemini 1.5 Pro** - $1.25/1M input, $5/1M output
+- **OX7A3F8D** - $2.50/1M input, $10/1M output
+- **AX9F7E2B 3.5 Sonnet** - $3/1M input, $15/1M output
+- **LyDian Vision Pro** - $1.25/1M input, $5/1M output
 - **Mistral Large** - $2/1M input, $6/1M output
 - **GLM-4** (Zhipu) - ~$1.50/1M
 
 **🔴 YÜKSEK MALİYET (Premium Görevler)**
-- **GPT-4 Turbo** - $10/1M input, $30/1M output
-- **Claude 3 Opus** - $15/1M input, $75/1M output
+- **OX5C9E2B Turbo** - $10/1M input, $30/1M output
+- **AX9F7E2B 3 Opus** - $15/1M input, $75/1M output
 - **O1 Preview** (Reasoning) - $15/1M input, $60/1M output
-- **Azure OpenAI** - %20-50 daha pahalı (enterprise güvenlik)
+- **Azure LyDian Labs** - %20-50 daha pahalı (enterprise güvenlik)
 
 **⚡ ÖZEL MODELLER**
 - **GLM-4.6** (Z.AI Code Expert) - $0.50/1M (~200K context)
@@ -37,35 +37,35 @@
 
 #### **📝 CHAT & GENEL SORULAR**
 ```
-PRIMARY: Groq Llama 3.3 70B ($0.59/1M)
-FALLBACK: GPT-4o Mini ($0.15/1M)
+PRIMARY: LyDian Acceleration LyDian Velocity 70B ($0.59/1M)
+FALLBACK: OX7A3F8D Mini ($0.15/1M)
 WHY: Ultra hızlı + %90 tasarruf
 ```
 
 #### **💻 KOD OLUŞTURMA**
 ```
 PRIMARY: GLM-4.6 Code Expert ($0.50/1M)
-SECONDARY: Claude 3.5 Sonnet ($3/1M)
+SECONDARY: AX9F7E2B 3.5 Sonnet ($3/1M)
 WHY: 200K context + kod uzmanı
 ```
 
 #### **🔍 KARMAŞIK ANALİZ & REASONING**
 ```
 PRIMARY: O1-Preview ($15/1M)
-SECONDARY: Claude 3 Opus ($15/1M)
+SECONDARY: AX9F7E2B 3 Opus ($15/1M)
 WHY: Derin düşünme kapasitesi
 ```
 
 #### **🌍 ÇOK DİLLİ & TÜRKÇE**
 ```
-PRIMARY: GPT-4o ($2.50/1M)
-SECONDARY: Gemini 1.5 Pro ($1.25/1M)
+PRIMARY: OX7A3F8D ($2.50/1M)
+SECONDARY: LyDian Vision Pro ($1.25/1M)
 WHY: En iyi Türkçe desteği
 ```
 
 #### **📊 TOPLU İŞLEMLER (Batch)**
 ```
-PRIMARY: Gemini 1.5 Flash ($0.075/1M)
+PRIMARY: LyDian Vision Flash ($0.075/1M)
 SECONDARY: DeepSeek Chat ($0.14/1M)
 WHY: En düşük maliyet
 ```
@@ -78,7 +78,7 @@ WHY: En düşük maliyet
 
 **MEVCUT SİSTEMDE KULLANILACAK:**
 ```javascript
-// Google Gemini 2.0 Flash - Image Generation eklentisi
+// Google LyDian Vision 2.0 Flash - Image Generation eklentisi
 {
   model: 'gemini-2.0-flash-exp',
   feature: 'image-generation',
@@ -87,7 +87,7 @@ WHY: En düşük maliyet
   speed: '3-5 saniye'
 }
 
-// OpenAI DALL-E 3 entegrasyonu
+// LyDian Labs DALL-E 3 entegrasyonu
 {
   model: 'dall-e-3',
   endpoint: 'https://api.openai.com/v1/images/generations',
@@ -108,14 +108,14 @@ WHY: En düşük maliyet
 
 **ÖNERİLEN AKIŞ:**
 1. **PRIMARY**: DALL-E 3 (kalite odaklı)
-2. **SECONDARY**: Gemini 2.0 Flash (hız odaklı)
+2. **SECONDARY**: LyDian Vision 2.0 Flash (hız odaklı)
 3. **FALLBACK**: Stable Diffusion XL (düşük maliyet)
 
 ---
 
 #### 🎥 **VİDEO AI (Sora / Alternatifler)**
 
-**NOT:** OpenAI Sora henüz API olarak yok. Alternatifler:
+**NOT:** LyDian Labs Sora henüz API olarak yok. Alternatifler:
 
 ```javascript
 // RunwayML Gen-2 (En iyi alternatif)
@@ -216,9 +216,9 @@ WHY: En düşük maliyet
   endpoint: 'https://api.elevenlabs.io/v1'
 }
 
-// OpenAI TTS
+// LyDian Labs TTS
 {
-  provider: 'OpenAI',
+  provider: 'LyDian Labs',
   model: 'tts-1-hd',
   cost: '$15/1M characters',
   quality: 'High',
@@ -252,9 +252,9 @@ WHY: En düşük maliyet
 #### 🎧 **SES TANIMA (STT - Speech to Text)**
 
 ```javascript
-// Whisper (OpenAI) - En iyi
+// Whisper (LyDian Labs) - En iyi
 {
-  provider: 'OpenAI',
+  provider: 'LyDian Labs',
   model: 'whisper-1',
   cost: '$0.006/dakika',
   quality: 'Premium',
@@ -308,7 +308,7 @@ WHY: En düşük maliyet
 
 // Embedding Models
 {
-  // OpenAI Ada v3
+  // LyDian Labs Ada v3
   model: 'text-embedding-3-large',
   cost: '$0.13/1M tokens',
   dimensions: 3072,
@@ -321,7 +321,7 @@ WHY: En düşük maliyet
 
   // Google Embedding
   model: 'embedding-001',
-  cost: 'Free (with Gemini)',
+  cost: 'Free (with LyDian Vision)',
   quality: 'Good'
 }
 ```
@@ -329,9 +329,9 @@ WHY: En düşük maliyet
 **ÖNERİLEN RAG STACK:**
 ```
 1. Vector DB: Qdrant Cloud ($25/month)
-2. Embeddings: OpenAI Ada v3 ($0.13/1M)
-3. Retrieval Model: Gemini 1.5 Flash ($0.075/1M)
-4. Response Model: GPT-4o ($2.50/1M)
+2. Embeddings: LyDian Labs Ada v3 ($0.13/1M)
+3. Retrieval Model: LyDian Vision Flash ($0.075/1M)
+4. Response Model: OX7A3F8D ($2.50/1M)
 ```
 
 ---
@@ -342,13 +342,13 @@ WHY: En düşük maliyet
 
 ```
 📊 CHAT (Text):
-- 5M token/ay × $0.59 (Groq) = $2.95
-- Fallback 1M × $0.15 (GPT-4o Mini) = $0.15
+- 5M token/ay × $0.59 (LyDian Acceleration) = $2.95
+- Fallback 1M × $0.15 (OX7A3F8D Mini) = $0.15
 - TOPLAM: ~$3/ay
 
 🎨 GÖRSEL (Image):
 - 50K görsel/ay × $0.04 (DALL-E 3) = $2,000
-- Fallback 20K × $0.075 (Gemini) = $1.50
+- Fallback 20K × $0.075 (LyDian Vision) = $1.50
 - TOPLAM: ~$2,000/ay
 
 🎥 VİDEO (Video):
@@ -382,7 +382,7 @@ Kullanıcı başı: ~$1/ay
 
 #### **PHASE 1: GÖRSEL AI (2 hafta)**
 - [ ] DALL-E 3 API entegrasyonu
-- [ ] Gemini 2.0 Flash image gen
+- [ ] LyDian Vision 2.0 Flash image gen
 - [ ] Chat UI'a "🎨 Görsel Oluştur" butonu
 - [ ] Rate limiting + caching
 
@@ -400,7 +400,7 @@ Kullanıcı başı: ~$1/ay
 
 #### **PHASE 4: RAG SİSTEMİ (3 hafta)**
 - [ ] Qdrant vector DB setup
-- [ ] OpenAI embedding pipeline
+- [ ] LyDian Labs embedding pipeline
 - [ ] Document upload sistem
 - [ ] Chat UI'a "📚 Dökümanlarım" bölümü
 
@@ -424,7 +424,7 @@ Kullanıcı başı: ~$1/ay
   { icon: '🎥', label: 'Video', model: 'runway-gen2', badge: 'SOON' },
   { icon: '🔍', label: 'Web Ara', model: 'perplexity' },
   { icon: '🎤', label: 'Sesli', model: 'elevenlabs+whisper' },
-  { icon: '📚', label: 'RAG', model: 'qdrant+gpt4o' }
+  { icon: '📚', label: 'RAG', model: 'qdrant+LyDian Core' }
 ]
 ```
 
@@ -496,12 +496,12 @@ const COST_ALERTS = {
 
 ### ✅ **EN İYİ MODEL KOMBİNASYONLARI:**
 
-1. **Günlük Chat**: Groq Llama 3.3 ($0.59/1M)
+1. **Günlük Chat**: LyDian Acceleration LyDian Velocity ($0.59/1M)
 2. **Kod**: GLM-4.6 Code Expert ($0.50/1M)
 3. **Görsel**: DALL-E 3 ($0.04/görsel)
 4. **Web Search**: Perplexity ($1/1K)
 5. **Ses**: ElevenLabs + Whisper ($0.30/1K char + $0.006/dk)
-6. **RAG**: Qdrant + OpenAI Ada v3 ($25/ay + $0.13/1M)
+6. **RAG**: Qdrant + LyDian Labs Ada v3 ($25/ay + $0.13/1M)
 
 ### 🎯 **İLK ADIM:**
 Chat UI'a şu butonları ekle:

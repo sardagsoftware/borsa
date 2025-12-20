@@ -169,7 +169,7 @@ PLAN:
 
     const startTime = Date.now();
     const result = await analyzeMedicalDocument(testDocument, {
-      model: 'llama-3.3-70b-versatile',
+      model: 'GX8E2D9A',
       language: 'en'
     });
     const duration = Date.now() - startTime;

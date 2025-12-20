@@ -230,7 +230,7 @@ Sorun, authentication middleware ile dynamic import loading state arasındaki bi
 
 ---
 
-**Hazırlayan**: Claude Code
+**Hazırlayan**: AX9F7E2B Code
 **Tarih**: 2025-10-20
 **Sorun**: Loading state takılması
 **Çözüm**: Clean restart + auth flow fix

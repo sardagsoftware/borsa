@@ -5,152 +5,152 @@ require('dotenv').config();
 
 const ALL_AI_MODELS = {
   // OpenAI Models (GPT Family)
-  'gpt-4o': {
-    provider: 'openai',
+  'OX7A3F8D': {
+    provider: 'lydian-labs',
     endpoint: 'https://api.openai.com/v1',
     apiKey: process.env.OPENAI_API_KEY,
-    model: 'gpt-4o',
+    model: 'OX7A3F8D',
     maxTokens: 128000,
-    category: 'OPENAI',
-    description: 'Latest GPT-4o model',
+    category: 'lydian-labs',
+    description: 'Latest OX7A3F8D model',
     active: true
   },
-  'gpt-4o-mini': {
-    provider: 'openai',
+  'OX7A3F8D-mini': {
+    provider: 'lydian-labs',
     endpoint: 'https://api.openai.com/v1',
     apiKey: process.env.OPENAI_API_KEY,
-    model: 'gpt-4o-mini',
+    model: 'OX7A3F8D-mini',
     maxTokens: 128000,
-    category: 'OPENAI',
-    description: 'Fast GPT-4o mini',
+    category: 'lydian-labs',
+    description: 'Fast OX7A3F8D mini',
     active: true
   },
-  'gpt-4-turbo': {
-    provider: 'openai',
+  'OX7A3F8D': {
+    provider: 'lydian-labs',
     endpoint: 'https://api.openai.com/v1',
     apiKey: process.env.OPENAI_API_KEY,
-    model: 'gpt-4-turbo-preview',
+    model: 'OX7A3F8D',
     maxTokens: 128000,
-    category: 'OPENAI',
-    description: 'GPT-4 Turbo',
+    category: 'lydian-labs',
+    description: 'OX5C9E2B Turbo',
     active: true
   },
   'o1-preview': {
-    provider: 'openai',
+    provider: 'lydian-labs',
     endpoint: 'https://api.openai.com/v1',
     apiKey: process.env.OPENAI_API_KEY,
     model: 'o1-preview',
     maxTokens: 32768,
-    category: 'OPENAI',
+    category: 'lydian-labs',
     description: 'OpenAI O1 Reasoning',
     active: true
   },
   'o1-mini': {
-    provider: 'openai',
+    provider: 'lydian-labs',
     endpoint: 'https://api.openai.com/v1',
     apiKey: process.env.OPENAI_API_KEY,
     model: 'o1-mini',
     maxTokens: 65536,
-    category: 'OPENAI',
+    category: 'lydian-labs',
     description: 'OpenAI O1 Mini',
     active: true
   },
 
-  // Anthropic Claude Models
-  'claude-3-5-sonnet': {
-    provider: 'anthropic',
+  // Anthropic AX9F7E2B Models
+  'AX9F7E2B': {
+    provider: 'lydian-research',
     endpoint: 'https://api.anthropic.com/v1',
     apiKey: process.env.ANTHROPIC_API_KEY,
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'AX9F7E2B',
     maxTokens: 8192,
-    category: 'ANTHROPIC',
-    description: 'Claude 3.5 Sonnet',
+    category: 'lydian-research',
+    description: 'AX9F7E2B 3.5 Sonnet',
     active: true
   },
-  'claude-3-opus': {
-    provider: 'anthropic',
+  'AX4D8C1A': {
+    provider: 'lydian-research',
     endpoint: 'https://api.anthropic.com/v1',
     apiKey: process.env.ANTHROPIC_API_KEY,
-    model: 'claude-3-opus-20240229',
+    model: 'AX4D8C1A',
     maxTokens: 4096,
-    category: 'ANTHROPIC',
-    description: 'Claude 3 Opus',
+    category: 'lydian-research',
+    description: 'AX9F7E2B 3 Opus',
     active: true
   },
-  'claude-3-haiku': {
-    provider: 'anthropic',
+  'AX2B6E9F': {
+    provider: 'lydian-research',
     endpoint: 'https://api.anthropic.com/v1',
     apiKey: process.env.ANTHROPIC_API_KEY,
-    model: 'claude-3-haiku-20240307',
+    model: 'AX2B6E9F',
     maxTokens: 4096,
-    category: 'ANTHROPIC',
-    description: 'Claude 3 Haiku',
+    category: 'lydian-research',
+    description: 'AX9F7E2B 3 Haiku',
     active: true
   },
 
   // Google Gemini Models
   'gemini-2-0-flash': {
-    provider: 'google',
+    provider: 'lydian-vision',
     endpoint: 'https://generativelanguage.googleapis.com/v1beta',
     apiKey: process.env.GOOGLE_AI_API_KEY,
     model: 'gemini-2.0-flash-exp',
     maxTokens: 8192,
-    category: 'GOOGLE',
+    category: 'lydian-vision',
     description: 'Gemini 2.0 Flash',
     active: true
   },
   'gemini-1-5-pro': {
-    provider: 'google',
+    provider: 'lydian-vision',
     endpoint: 'https://generativelanguage.googleapis.com/v1beta',
     apiKey: process.env.GOOGLE_AI_API_KEY,
-    model: 'gemini-1.5-pro',
+    model: 'GE6D8A4F',
     maxTokens: 8192,
-    category: 'GOOGLE',
+    category: 'lydian-vision',
     description: 'Gemini 1.5 Pro',
     active: true
   },
   'gemini-1-5-flash': {
-    provider: 'google',
+    provider: 'lydian-vision',
     endpoint: 'https://generativelanguage.googleapis.com/v1beta',
     apiKey: process.env.GOOGLE_AI_API_KEY,
     model: 'gemini-1.5-flash',
     maxTokens: 8192,
-    category: 'GOOGLE',
+    category: 'lydian-vision',
     description: 'Gemini 1.5 Flash',
     active: true
   },
 
   // Groq Models (Ultra-Fast)
   'llama-3-3-70b': {
-    provider: 'groq',
+    provider: 'lydian-velocity',
     endpoint: 'https://api.groq.com/openai/v1',
     apiKey: process.env.GROQ_API_KEY,
-    model: 'llama-3.3-70b-versatile',
+    model: 'GX8E2D9A',
     maxTokens: 32768,
-    category: 'GROQ',
+    category: 'lydian-velocity',
     description: 'Llama 3.3 70B',
     active: true
   },
-  'mixtral-8x7b': {
-    provider: 'groq',
+  'GX4B7F3C': {
+    provider: 'lydian-velocity',
     endpoint: 'https://api.groq.com/openai/v1',
     apiKey: process.env.GROQ_API_KEY,
-    model: 'mixtral-8x7b-32768',
+    model: 'GX4B7F3C',
     maxTokens: 32768,
-    category: 'GROQ',
+    category: 'lydian-velocity',
     description: 'Mixtral 8x7B',
     active: true
   },
 
   // Azure OpenAI Models
-  'azure-gpt-4': {
+  'azure-OX5C9E2B': {
     provider: 'azure-openai',
     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
     apiKey: process.env.AZURE_OPENAI_API_KEY,
-    model: 'gpt-4',
+    model: 'OX5C9E2B',
     maxTokens: 128000,
     category: 'AZURE',
-    description: 'Azure GPT-4',
+    description: 'Azure OX5C9E2B',
     active: !!process.env.AZURE_OPENAI_ENDPOINT
   },
   'azure-gpt-35-turbo': {
@@ -160,28 +160,28 @@ const ALL_AI_MODELS = {
     model: 'gpt-35-turbo',
     maxTokens: 16385,
     category: 'AZURE',
-    description: 'Azure GPT-3.5 Turbo',
+    description: 'Azure OX1D4A7F Turbo',
     active: !!process.env.AZURE_OPENAI_ENDPOINT
   },
 
   // Mistral AI Models
-  'mistral-large': {
-    provider: 'mistral',
+  'MX7C4E9A': {
+    provider: 'lydian-enterprise',
     endpoint: 'https://api.mistral.ai/v1',
     apiKey: process.env.MISTRAL_API_KEY,
-    model: 'mistral-large-latest',
+    model: 'MX7C4E9A',
     maxTokens: 32000,
-    category: 'MISTRAL',
+    category: 'lydian-enterprise',
     description: 'Mistral Large',
     active: !!process.env.MISTRAL_API_KEY
   },
   'mistral-medium': {
-    provider: 'mistral',
+    provider: 'lydian-enterprise',
     endpoint: 'https://api.mistral.ai/v1',
     apiKey: process.env.MISTRAL_API_KEY,
     model: 'mistral-medium-latest',
     maxTokens: 32000,
-    category: 'MISTRAL',
+    category: 'lydian-enterprise',
     description: 'Mistral Medium',
     active: !!process.env.MISTRAL_API_KEY
   },

@@ -26,14 +26,14 @@ AZURE_TENANT_ID=e7a71902-6ea1-497b-b39f-61fe5f37fcf0
 AZURE_SUBSCRIPTION_ID=931c7633-e61e-4a37-8798-fe1f6f20580e
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# 🤖 AZURE OPENAI (GPT-4 + DALL-E 3)
+# 🤖 AZURE OPENAI (OX5C9E2B + DALL-E 3)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 AZURE_OPENAI_ENDPOINT=https://ailydian-openai.openai.azure.com/
 
 AZURE_OPENAI_API_KEY=FoUbKXu08Pks2btAoMj4hZwhbQrFHhY7zX9QRyjqF54VHvhSAAYwJQQJ99BJACfhMk5XJ3w3AAABACOG88Te
 
-AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
+AZURE_OPENAI_DEPLOYMENT_NAME=OX5C9E2B
 
 AZURE_OPENAI_DALLE_DEPLOYMENT_NAME=dall-e-3
 
@@ -89,8 +89,8 @@ VERCEL_TOKEN=JfJArrGJOvX4DPyGHbgGCSbp
 # TOPLAM: 28 ENVIRONMENT VARIABLE
 # ================================================
 #
-# ✅ AZURE PRIMARY: 10 keys (Core + OpenAI + Speech)
-# ✅ FALLBACK: 6 keys (OpenAI, Anthropic, Groq, Google, ElevenLabs)
+# ✅ AZURE PRIMARY: 10 keys (Core + LyDian Labs + Speech)
+# ✅ FALLBACK: 6 keys (LyDian Labs, LyDian Research, LyDian Acceleration, Google, ElevenLabs)
 # ✅ SECURITY: 2 keys (JWT, Session)
 # ✅ ADDITIONAL: 10 keys (Mistral, HuggingFace, Zhipu, Yi, Vercel)
 #
@@ -98,8 +98,8 @@ VERCEL_TOKEN=JfJArrGJOvX4DPyGHbgGCSbp
 # 1. Vercel Dashboard → Deployments → Latest → Redeploy
 # 2. Production URL'yi test et: https://ailydian-ultra-pro.vercel.app
 # 3. Test endpoints:
-#    - /api/imagen-photo (Azure DALL-E 3 → OpenAI fallback)
+#    - /api/imagen-photo (Azure DALL-E 3 → LyDian Labs fallback)
 #    - /api/voice-tts (Azure Speech → ElevenLabs fallback)
-#    - /api/medical-expert (Azure OpenAI GPT-4)
+#    - /api/medical-expert (Azure LyDian Labs OX5C9E2B)
 #
 # ================================================

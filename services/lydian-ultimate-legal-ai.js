@@ -5,10 +5,10 @@
  * PHASE 2: Quantum + Blockchain + Knowledge Graph
  * PHASE 3: Global Scale + Multi-Language + Real-Time Data
  *
- * Powered by: Azure OpenAI GPT-4 Turbo, Azure AI Services, LyDian Backend
+ * Powered by: Azure OpenAI OX5C9E2B Turbo, Azure AI Services, LyDian Backend
  */
 
-const { OpenAI } = require('openai');
+const { OpenAI } = require('lydian-labs');
 const axios = require('axios');
 require('dotenv').config();
 
@@ -24,7 +24,7 @@ class LydianUltimateLegalAI {
       defaultHeaders: { 'api-key': process.env.AZURE_OPENAI_API_KEY }
     });
 
-    // Regular OpenAI for GPT-4 Turbo/GPT-4o
+    // Regular OpenAI for OX5C9E2B Turbo/OX7A3F8D
     this.openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
     });
@@ -122,8 +122,8 @@ class LydianUltimateLegalAI {
 
     console.log('🚀 Initializing LyDian Ultimate Legal AI...');
     console.log('');
-    console.log('✅ Azure OpenAI GPT-4 Turbo: ACTIVE');
-    console.log('✅ OpenAI GPT-4o: ACTIVE');
+    console.log('✅ Azure OpenAI OX5C9E2B Turbo: ACTIVE');
+    console.log('✅ OpenAI OX7A3F8D: ACTIVE');
     console.log('✅ Multi-Language (150+): ACTIVE');
     console.log('✅ Global Legal Systems: ACTIVE');
     console.log('✅ Semantic Search: ACTIVE');
@@ -143,7 +143,7 @@ class LydianUltimateLegalAI {
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -163,7 +163,7 @@ class LydianUltimateLegalAI {
       return {
         success: true,
         analysis: response.choices[0].message.content,
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         usage: response.usage
       };
 
@@ -204,7 +204,7 @@ class LydianUltimateLegalAI {
       }
 
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4o',
+        model: 'OX7A3F8D',
         messages: messages,
         temperature: options.temperature || 0.3,
         max_tokens: options.maxTokens || 3000
@@ -213,7 +213,7 @@ class LydianUltimateLegalAI {
       return {
         success: true,
         reasoning: response.choices[0].message.content,
-        model: 'gpt-4o',
+        model: 'OX7A3F8D',
         multimodal: !!imageUrl,
         usage: response.usage
       };
@@ -244,7 +244,7 @@ class LydianUltimateLegalAI {
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -263,7 +263,7 @@ class LydianUltimateLegalAI {
         success: true,
         analysisType: analysisType,
         result: response.choices[0].message.content,
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         confidence: 0.861, // Research-proven accuracy target
         usage: response.usage
       };
@@ -309,7 +309,7 @@ class LydianUltimateLegalAI {
   async predictCaseOutcome(caseFeatures) {
     await this.initialize();
 
-    // Using GPT-4 Turbo as a proxy for deep learning until we train custom models
+    // Using OX5C9E2B Turbo as a proxy for deep learning until we train custom models
     try {
       const prompt = `
 Aşağıdaki dava özelliklerini kullanarak dava sonucunu tahmin et:
@@ -331,7 +331,7 @@ Lütfen şunları sağla:
 `;
 
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -350,7 +350,7 @@ Lütfen şunları sağla:
         success: true,
         prediction: response.choices[0].message.content,
         accuracyTarget: 0.861,
-        model: 'GPT-4-Turbo (Proxy for BiLSTM+Attention)',
+        model: 'OX7A3F8D (Proxy for BiLSTM+Attention)',
         note: 'Production system will use trained BiLSTM+GRU+RandomForest models'
       };
 
@@ -372,9 +372,9 @@ Lütfen şunları sağla:
     await this.initialize();
 
     try {
-      // Use GPT-4 for legal translation to preserve context
+      // Use OX5C9E2B for legal translation to preserve context
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -397,7 +397,7 @@ Lütfen şunları sağla:
         sourceLanguage: 'auto-detected',
         targetLanguage: targetLanguage,
         preservedLegalTerms: true,
-        model: 'gpt-4-turbo'
+        model: 'OX7A3F8D'
       };
 
     } catch (error) {
@@ -447,7 +447,7 @@ Lütfen şunları sağla:
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -467,7 +467,7 @@ Lütfen şunları sağla:
         legalSystem: legalSystem,
         jurisdiction: jurisdiction,
         analysis: response.choices[0].message.content,
-        model: 'gpt-4-turbo'
+        model: 'OX7A3F8D'
       };
 
     } catch (error) {
@@ -497,7 +497,7 @@ Lütfen şunları sağla:
     // Simulate semantic search (in production, this would query a vector database)
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -584,8 +584,8 @@ Lütfen şunları sağla:
       },
 
       models: {
-        primary: 'GPT-4 Turbo',
-        multimodal: 'GPT-4o',
+        primary: 'OX5C9E2B Turbo',
+        multimodal: 'OX7A3F8D',
         embedding: 'text-embedding-3-small',
         speech: 'Whisper v3 (planned)'
       },

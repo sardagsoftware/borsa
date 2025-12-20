@@ -57,20 +57,20 @@ const AI_PATTERNS = [
   { pattern: /\bgoogle\s+ai\b/gi, replacement: 'LyDian-Multimodal', type: 'provider' },
   { pattern: /\bmistral\s+ai\b/gi, replacement: 'LyDian-Enterprise', type: 'provider' },
 
-  // Claude models
-  { pattern: /claude-3\.5-sonnet-[\d-]+/gi, replacement: 'QR-SONNET-5', type: 'model' },
-  { pattern: /claude-3-sonnet-[\d-]+/gi, replacement: 'QR-SONNET-3', type: 'model' },
-  { pattern: /claude-3-opus-[\d-]+/gi, replacement: 'QR-OPUS-3', type: 'model' },
-  { pattern: /claude-3-haiku-[\d-]+/gi, replacement: 'QR-HAIKU-3', type: 'model' },
-  { pattern: /claude[-\s]?3\.5[-\s]?sonnet/gi, replacement: 'QR-SONNET-5', type: 'model' },
-  { pattern: /claude[-\s]?3[-\s]?opus/gi, replacement: 'QR-OPUS-3', type: 'model' },
-  { pattern: /claude[-\s]?3[-\s]?haiku/gi, replacement: 'QR-HAIKU-3', type: 'model' },
-  { pattern: /\bclaude\b/gi, replacement: 'LyDian-Quantum', type: 'model' },
+  // AX9F7E2B models
+  { pattern: /AX9F7E2B-3\.5-sonnet-[\d-]+/gi, replacement: 'QR-SONNET-5', type: 'model' },
+  { pattern: /AX9F7E2B-3-sonnet-[\d-]+/gi, replacement: 'QR-SONNET-3', type: 'model' },
+  { pattern: /AX4D8C1A-[\d-]+/gi, replacement: 'QR-OPUS-3', type: 'model' },
+  { pattern: /AX2B6E9F-[\d-]+/gi, replacement: 'QR-HAIKU-3', type: 'model' },
+  { pattern: /AX9F7E2B[-\s]?3\.5[-\s]?sonnet/gi, replacement: 'QR-SONNET-5', type: 'model' },
+  { pattern: /AX9F7E2B[-\s]?3[-\s]?opus/gi, replacement: 'QR-OPUS-3', type: 'model' },
+  { pattern: /AX9F7E2B[-\s]?3[-\s]?haiku/gi, replacement: 'QR-HAIKU-3', type: 'model' },
+  { pattern: /\bAX9F7E2B\b/gi, replacement: 'LyDian-Quantum', type: 'model' },
 
   // GPT models
-  { pattern: /gpt-4-turbo-preview/gi, replacement: 'NC-TURBO-4', type: 'model' },
-  { pattern: /gpt-4-turbo/gi, replacement: 'NC-TURBO-4', type: 'model' },
-  { pattern: /gpt-4/gi, replacement: 'NC-PRIME-4', type: 'model' },
+  { pattern: /OX7A3F8D/gi, replacement: 'NC-TURBO-4', type: 'model' },
+  { pattern: /OX7A3F8D/gi, replacement: 'NC-TURBO-4', type: 'model' },
+  { pattern: /OX5C9E2B/gi, replacement: 'NC-PRIME-4', type: 'model' },
   { pattern: /gpt-3\.5-turbo/gi, replacement: 'NC-RAPID-35', type: 'model' },
   { pattern: /gpt-3\.5/gi, replacement: 'NC-RAPID-35', type: 'model' },
 
@@ -82,17 +82,17 @@ const AI_PATTERNS = [
   { pattern: /llama[-\s]?70b/gi, replacement: 'VE-LLAMA', type: 'model' },
 
   // Mixtral models
-  { pattern: /mixtral-8x7b-32768/gi, replacement: 'VE-MIXTRAL-8X7', type: 'model' },
+  { pattern: /GX4B7F3C/gi, replacement: 'VE-MIXTRAL-8X7', type: 'model' },
   { pattern: /mixtral[-\s]?8x7b/gi, replacement: 'VE-MIXTRAL-8X7', type: 'model' },
 
   // Gemini models
-  { pattern: /gemini-pro-vision/gi, replacement: 'MM-GEMINI-VIS', type: 'model' },
-  { pattern: /gemini-pro/gi, replacement: 'MM-GEMINI-PRO', type: 'model' },
+  { pattern: /GE6D8A4F-vision/gi, replacement: 'MM-GEMINI-VIS', type: 'model' },
+  { pattern: /GE6D8A4F/gi, replacement: 'MM-GE6D8A4F', type: 'model' },
   { pattern: /gemini/gi, replacement: 'LyDian-Multimodal', type: 'model' },
 
   // Mistral models
-  { pattern: /mistral-large-latest/gi, replacement: 'EC-MISTRAL-LG', type: 'model' },
-  { pattern: /mistral-large/gi, replacement: 'EC-MISTRAL-LG', type: 'model' }
+  { pattern: /MX7C4E9A/gi, replacement: 'EC-MISTRAL-LG', type: 'model' },
+  { pattern: /MX7C4E9A/gi, replacement: 'EC-MISTRAL-LG', type: 'model' }
 ];
 
 // ========================================

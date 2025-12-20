@@ -46,7 +46,7 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
 
       // Summary Generation
       const summaryResponse = await anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         max_tokens: 300,
         system: 'Sen bir toplantı analiz uzmanısın. Toplantı transkriptlerini özetleyip önemli noktaları çıkarırsın.',
         messages: [
@@ -61,7 +61,7 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
 
       // Participant Analysis
       const participantResponse = await anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         max_tokens: 500,
         system: 'Toplantı katılımcılarını analiz et ve her biri için JSON formatında bilgi ver.',
         messages: [
@@ -85,7 +85,7 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
 
       // Action Items Extraction
       const actionResponse = await anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         max_tokens: 500,
         system: 'Toplantıdan aksiyon maddelerini çıkar.',
         messages: [

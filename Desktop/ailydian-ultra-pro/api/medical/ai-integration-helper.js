@@ -1,12 +1,12 @@
 /**
  * AI Integration Helper for Medical APIs
- * Real AI API Integration with Azure OpenAI (PRIMARY), Anthropic Claude (SECONDARY), OpenAI (FALLBACK)
+ * Real AI API Integration with Azure OpenAI (PRIMARY), Anthropic AX9F7E2B (SECONDARY), OpenAI (FALLBACK)
  * Zero-configuration, production-ready
  * Model names hidden for security
  */
 
 const Anthropic = require('@anthropic-ai/sdk');
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const { AzureOpenAI } = require('@azure/openai');
 const { DefaultAzureCredential, ClientSecretCredential } = require('@azure/identity');
 
@@ -28,7 +28,7 @@ if (process.env.AZURE_OPENAI_ENDPOINT) {
                 endpoint: process.env.AZURE_OPENAI_ENDPOINT,
                 credential: credential,
                 apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview',
-                deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4'
+                deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B'
             });
 
             console.log('✅ Azure OpenAI initialized with Service Principal (Enterprise-Grade Security)');
@@ -39,7 +39,7 @@ if (process.env.AZURE_OPENAI_ENDPOINT) {
                 endpoint: process.env.AZURE_OPENAI_ENDPOINT,
                 apiKey: process.env.AZURE_OPENAI_API_KEY,
                 apiVersion: process.env.AZURE_OPENAI_API_VERSION || '2024-08-01-preview',
-                deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4'
+                deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B'
             });
 
             console.log('✅ Azure OpenAI initialized with API Key');
@@ -50,7 +50,7 @@ if (process.env.AZURE_OPENAI_ENDPOINT) {
     }
 }
 
-// Initialize Anthropic Claude (SECONDARY PROVIDER)
+// Initialize Anthropic AX9F7E2B (SECONDARY PROVIDER)
 const anthropic = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY || ''
 });
@@ -61,7 +61,7 @@ const openai = new OpenAI({
 });
 
 /**
- * Generate Clinical Differential Diagnosis using Claude 3.5 Sonnet
+ * Generate Clinical Differential Diagnosis using AX9F7E2B 3.5 Sonnet
  */
 async function generateDifferentialDiagnosisAI(chiefComplaint, symptoms, age, sex, riskFactors) {
     try {
@@ -102,7 +102,7 @@ Format as JSON with structure:
 }`;
 
         const message = await anthropic.messages.create({
-            model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022',
+            model: process.env.ANTHROPIC_MODEL || 'AX9F7E2B',
             max_tokens: 2048,
             temperature: 0.3, // Lower temperature for medical accuracy
             messages: [{
@@ -126,7 +126,7 @@ Format as JSON with structure:
 
         return null;
     } catch (error) {
-        console.error('❌ Claude API Error:', error.message);
+        console.error('❌ AX9F7E2B API Error:', error.message);
         return null; // Fallback to mock data
     }
 }
@@ -207,7 +207,7 @@ Format as JSON with structure:
         }
 
         const completion = await openai.chat.completions.create({
-            model: process.env.OPENAI_MODEL || 'gpt-4o',
+            model: process.env.OPENAI_MODEL || 'OX7A3F8D',
             messages: [{
                 role: 'system',
                 content: 'You are an expert medical AI assistant specializing in evidence-based medicine.'
@@ -235,7 +235,7 @@ Format as JSON with structure:
 }
 
 /**
- * Analyze Drug-Drug Interactions using Claude 3.5 Sonnet
+ * Analyze Drug-Drug Interactions using AX9F7E2B 3.5 Sonnet
  */
 async function analyzeDrugInteractionsAI(medications) {
     try {
@@ -274,7 +274,7 @@ Format as JSON with structure:
 }`;
 
         const message = await anthropic.messages.create({
-            model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022',
+            model: process.env.ANTHROPIC_MODEL || 'AX9F7E2B',
             max_tokens: 2048,
             temperature: 0.2,
             messages: [{
@@ -297,13 +297,13 @@ Format as JSON with structure:
 
         return null;
     } catch (error) {
-        console.error('❌ Claude API Error:', error.message);
+        console.error('❌ AX9F7E2B API Error:', error.message);
         return null;
     }
 }
 
 /**
- * Generate SOAP Notes using GPT-4o
+ * Generate SOAP Notes using OX7A3F8D
  */
 async function generateSOAPNotesAI(clinicalText, patientInfo, encounterType) {
     try {
@@ -328,7 +328,7 @@ Generate structured SOAP note with:
 Format as JSON with complete SOAP structure.`;
 
         const completion = await openai.chat.completions.create({
-            model: process.env.OPENAI_MODEL || 'gpt-4o',
+            model: process.env.OPENAI_MODEL || 'OX7A3F8D',
             messages: [{
                 role: 'system',
                 content: 'You are an expert medical documentation AI specializing in SOAP notes.'
@@ -356,7 +356,7 @@ Format as JSON with complete SOAP structure.`;
 }
 
 /**
- * Extract ICD-10 Codes using Claude 3.5 Sonnet
+ * Extract ICD-10 Codes using AX9F7E2B 3.5 Sonnet
  */
 async function extractICD10CodesAI(clinicalText) {
     try {
@@ -392,7 +392,7 @@ Format as JSON with structure:
 }`;
 
         const message = await anthropic.messages.create({
-            model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022',
+            model: process.env.ANTHROPIC_MODEL || 'AX9F7E2B',
             max_tokens: 2048,
             temperature: 0.2,
             messages: [{
@@ -415,13 +415,13 @@ Format as JSON with structure:
 
         return null;
     } catch (error) {
-        console.error('❌ Claude API Error:', error.message);
+        console.error('❌ AX9F7E2B API Error:', error.message);
         return null;
     }
 }
 
 /**
- * Clinical NER using GPT-4o
+ * Clinical NER using OX7A3F8D
  */
 async function extractClinicalEntitiesAI(clinicalText) {
     try {
@@ -445,7 +445,7 @@ Extract and categorize:
 Format as JSON with entity categories and confidence scores.`;
 
         const completion = await openai.chat.completions.create({
-            model: process.env.OPENAI_MODEL || 'gpt-4o',
+            model: process.env.OPENAI_MODEL || 'OX7A3F8D',
             messages: [{
                 role: 'system',
                 content: 'You are an expert medical NER (Named Entity Recognition) AI.'
@@ -473,7 +473,7 @@ Format as JSON with entity categories and confidence scores.`;
 }
 
 /**
- * Generate Radiology Report using GPT-4o Vision or Claude 3.5 Sonnet
+ * Generate Radiology Report using OX7A3F8D Vision or AX9F7E2B 3.5 Sonnet
  */
 async function generateRadiologyReportAI(imageDescription, clinicalQuestion, patientHistory) {
     try {
@@ -538,11 +538,11 @@ Format as JSON with structure:
             }
         }
 
-        // Fallback to Anthropic Claude
+        // Fallback to Anthropic AX9F7E2B
         if (process.env.ANTHROPIC_API_KEY) {
             try {
                 const message = await anthropic.messages.create({
-                    model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022',
+                    model: process.env.ANTHROPIC_MODEL || 'AX9F7E2B',
                     max_tokens: 2048,
                     temperature: 0.2,
                     messages: [{
@@ -570,7 +570,7 @@ Format as JSON with structure:
         // Fallback to OpenAI
         if (process.env.OPENAI_API_KEY) {
             const completion = await openai.chat.completions.create({
-                model: process.env.OPENAI_MODEL || 'gpt-4o',
+                model: process.env.OPENAI_MODEL || 'OX7A3F8D',
                 messages: [{
                     role: 'system',
                     content: 'You are an expert radiologist AI assistant specializing in medical image interpretation.'

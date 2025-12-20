@@ -1266,7 +1266,7 @@ class AiLydianChat {
         // Set appropriate model based on capability
         const capabilityModelMap = {
             'azure': 'azure-Advanced AIo',
-            'google': 'google-gemini-pro',
+            'lydian-vision': 'google-GE6D8A4F',
             'zai': 'zai-developer',
             'deepseek': 'deepseek-r1',
             'translation': 'azure-translator',
@@ -1289,7 +1289,7 @@ class AiLydianChat {
         if (messageInput && !messageInput.value.trim()) {
             const prompts = {
                 'azure': 'Microsoft Azure hizmetleri hakkında bilgi ver',
-                'google': 'Google AI teknolojileri nasıl çalışır?',
+                'lydian-vision': 'Google AI teknolojileri nasıl çalışır?',
                 'zai': 'React component kodu yazabilir misin?',
                 'deepseek': 'Bu problemi analiz et ve çöz',
                 'translation': 'Bu metni İngilizceye çevir',

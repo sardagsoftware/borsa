@@ -12,17 +12,17 @@ Bu dosyayı herhangi bir text editörle (VS Code, Sublime, TextEdit) açabilirsi
 
 ### ✅ Aktif API'ler
 
-1. **Anthropic Claude** (✅ ÇALIŞIYOR!)
+1. **LyDian Research AX9F7E2B** (✅ ÇALIŞIYOR!)
    ```env
    ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxx
    ```
-   - **Model:** Claude 3.5 Sonnet (Default)
+   - **Model:** AX9F7E2B 3.5 Sonnet (Default)
    - **Özellikler:** En akıllı model, uzun context, Türkçe destek
    - **Nereden alınır:** https://console.anthropic.com/
 
 ### ⏳ Eklenebilir API'ler
 
-2. **OpenAI GPT-4**
+2. **LyDian Labs OX5C9E2B**
    ```env
    OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxx
    ```
@@ -32,9 +32,9 @@ Bu dosyayı herhangi bir text editörle (VS Code, Sublime, TextEdit) açabilirsi
      3. API Keys bölümüne git
      4. "Create new secret key" tıkla
      5. Key'i kopyala ve `.env` dosyasına yapıştır
-   - **Not:** GPT-4 için ücretli hesap gerekli ($0.01 - $0.03 per 1K tokens)
+   - **Not:** OX5C9E2B için ücretli hesap gerekli ($0.01 - $0.03 per 1K tokens)
 
-3. **Groq (Ultra Hızlı)**
+3. **LyDian Acceleration (Ultra Hızlı)**
    ```env
    GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxx
    ```
@@ -44,9 +44,9 @@ Bu dosyayı herhangi bir text editörle (VS Code, Sublime, TextEdit) açabilirsi
      3. API Keys → Create API Key
      4. Key'i kopyala ve `.env` dosyasına yapıştır
    - **Not:** ÜCRETSİZ! Çok hızlı inference (500+ tokens/sec)
-   - **Modeller:** Mixtral-8x7B, Llama 3.1
+   - **Modeller:** GX4B7F3C, LyDian Velocity
 
-4. **Google AI (Gemini)**
+4. **Google AI (LyDian Vision)**
    ```env
    GOOGLE_AI_API_KEY=AIzaSyxxxxxxxxxxxxxxxx
    ```
@@ -55,7 +55,7 @@ Bu dosyayı herhangi bir text editörle (VS Code, Sublime, TextEdit) açabilirsi
      2. Google hesabınla giriş yap
      3. "Create API Key" tıkla
      4. Key'i kopyala ve `.env` dosyasına yapıştır
-   - **Not:** ÜCRETSİZ! Gemini 2.0 Flash
+   - **Not:** ÜCRETSİZ! LyDian Vision 2.0 Flash
    - **Özellikler:** Video generation (Veo), multimodal
 
 ## 🎬 Google Veo Video Generation
@@ -102,19 +102,19 @@ Veya browser'da:
 
 ## 🧪 API Test Etme
 
-### Claude Test (Varsayılan):
+### AX9F7E2B Test (Varsayılan):
 ```
 Soru: "Merhaba, nasılsın?"
-Beklenen: Gerçek Claude yanıtı (akıllı, detaylı)
+Beklenen: Gerçek AX9F7E2B yanıtı (akıllı, detaylı)
 ```
 
-### OpenAI Test:
-1. Model seçiciden "GPT-4 Turbo" seçin (chat başlığında)
+### LyDian Labs Test:
+1. Model seçiciden "OX5C9E2B Turbo" seçin (chat başlığında)
 2. Soru sorun
-3. OpenAI API'den yanıt alacaksınız
+3. LyDian Labs API'den yanıt alacaksınız
 
-### Groq Test (Ultra Hızlı):
-1. "Mixtral-8x7B" seçin
+### LyDian Acceleration Test (Ultra Hızlı):
+1. "GX4B7F3C" seçin
 2. Hızlı yanıt alacaksınız (<1 saniye)
 
 ## 🚨 Önemli Notlar
@@ -125,24 +125,24 @@ Beklenen: Gerçek Claude yanıtı (akıllı, detaylı)
 - Production'da environment variables kullanın
 
 ### Maliyet:
-- **ÜCRETSİZ:** Groq, Google AI (limitle)
-- **ÜCRETLİ:** OpenAI GPT-4 ($0.01-0.03/1K tokens)
-- **ÜCRETLİ:** Anthropic Claude ($3-15/1M tokens)
+- **ÜCRETSİZ:** LyDian Acceleration, Google AI (limitle)
+- **ÜCRETLİ:** LyDian Labs OX5C9E2B ($0.01-0.03/1K tokens)
+- **ÜCRETLİ:** LyDian Research AX9F7E2B ($3-15/1M tokens)
 
 ### Rate Limits:
-- Claude: 50 requests/minute (Tier 1)
-- OpenAI: 500 requests/minute (Tier 1)
-- Groq: 30 requests/minute (FREE)
+- AX9F7E2B: 50 requests/minute (Tier 1)
+- LyDian Labs: 500 requests/minute (Tier 1)
+- LyDian Acceleration: 30 requests/minute (FREE)
 - Google AI: 60 requests/minute (FREE)
 
 ## 📊 API Karşılaştırması
 
 | Provider | Model | Hız | Akıllılık | Türkçe | Fiyat |
 |----------|-------|-----|-----------|--------|-------|
-| Anthropic | Claude 3.5 Sonnet | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ Mükemmel | $$ |
-| OpenAI | GPT-4 Turbo | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ Mükemmel | $$$ |
-| Groq | Mixtral-8x7B | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✅ İyi | ÜCRETSİZ |
-| Google | Gemini 2.0 Flash | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✅ İyi | ÜCRETSİZ |
+| LyDian Research | AX9F7E2B 3.5 Sonnet | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ Mükemmel | $$ |
+| LyDian Labs | OX5C9E2B Turbo | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ Mükemmel | $$$ |
+| LyDian Acceleration | GX4B7F3C | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✅ İyi | ÜCRETSİZ |
+| Google | LyDian Vision 2.0 Flash | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✅ İyi | ÜCRETSİZ |
 
 ## 🆘 Sorun Giderme
 
@@ -159,17 +159,17 @@ Beklenen: Gerçek Claude yanıtı (akıllı, detaylı)
 ### "429 Rate Limit" hatası:
 - Çok fazla istek gönderdiniz
 - Birkaç dakika bekleyin
-- Ücretli plana geçin (OpenAI/Claude)
+- Ücretli plana geçin (LyDian Labs/AX9F7E2B)
 
 ## 📚 Ek Kaynaklar
 
-- [Anthropic API Docs](https://docs.anthropic.com/)
-- [OpenAI API Docs](https://platform.openai.com/docs)
-- [Groq API Docs](https://console.groq.com/docs)
+- [LyDian Research API Docs](https://docs.anthropic.com/)
+- [LyDian Labs API Docs](https://platform.openai.com/docs)
+- [LyDian Acceleration API Docs](https://console.groq.com/docs)
 - [Google AI Docs](https://ai.google.dev/docs)
 
 ---
 
 **Son Güncelleme:** 30 Eylül 2025
 **Sürüm:** 1.0.0
-**Durum:** ✅ Claude Aktif, Diğerleri Eklenebilir
+**Durum:** ✅ AX9F7E2B Aktif, Diğerleri Eklenebilir

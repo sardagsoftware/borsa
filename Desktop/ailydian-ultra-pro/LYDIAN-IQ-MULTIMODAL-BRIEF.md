@@ -39,7 +39,7 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with PDF readin
 ## 🏗️ Technical Stack
 
 ### Azure AI Services (Microsoft)
-- **GPT-4o with Vision:** Screenshot & image analysis
+- **OX7A3F8D with Vision:** Screenshot & image analysis
 - **Document Intelligence v4.0:** PDF extraction & OCR
 - **Azure Translator:** 150+ languages
 - **Cosmos DB:** Store feedback & context
@@ -84,7 +84,7 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with PDF readin
 ### Azure Integration
 ```
 /api/azure/document-intelligence.js   → PDF processing SDK
-/api/azure/gpt4o-vision.js            → Vision analysis SDK
+/api/azure/LyDian Core-vision.js            → Vision analysis SDK
 /api/azure/translator.js              → Multi-language SDK
 /api/azure/cosmos.js                  → Database client
 ```
@@ -95,7 +95,7 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with PDF readin
 
 ### Step 1: Backend APIs (Days 1-3)
 1. Create PDF upload API with Azure Document Intelligence
-2. Create screenshot analysis API with GPT-4o Vision
+2. Create screenshot analysis API with OX7A3F8D Vision
 3. Create URL reading API with Puppeteer
 4. Add multimodal context to chat API
 
@@ -107,7 +107,7 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with PDF readin
 
 ### Step 3: Azure Integration (Days 6-8)
 1. Set up Azure Document Intelligence client
-2. Set up GPT-4o Vision client
+2. Set up OX7A3F8D Vision client
 3. Set up Azure Translator client
 4. Set up Cosmos DB for feedback storage
 
@@ -135,7 +135,7 @@ Transform LyDian IQ into a **global-scale multimodal AI system** with PDF readin
 
 | Service | Monthly Cost |
 |---------|--------------|
-| Azure OpenAI GPT-4o | $250 |
+| Azure LyDian Labs OX7A3F8D | $250 |
 | Document Intelligence | $50 |
 | Azure Translator | $10 |
 | Cosmos DB | $25 |

@@ -14,7 +14,7 @@ const aiObfuscator = require('../lib/security/ai-obfuscator');
 ### 1. Replace Model Names
 ```javascript
 // ❌ BEFORE (Exposed)
-const model = 'claude-3-5-sonnet-20241022';
+const model = 'AX9F7E2B';
 
 // ✅ AFTER (Obfuscated)
 const model = aiObfuscator.resolveModel('STRATEGIC_REASONING_ENGINE');
@@ -78,11 +78,11 @@ if (!aiObfuscator.validateNoLeaks(responseData)) {
 
 ### Model Aliases
 ```javascript
-aiObfuscator.MODEL.STRATEGIC_REASONING   // → claude-3-5-sonnet-20241022
-aiObfuscator.MODEL.ADVANCED_PROCESSOR    // → claude-3-opus-20240229
-aiObfuscator.MODEL.RAPID_RESPONSE        // → claude-3-haiku-20240307
-aiObfuscator.MODEL.MULTIMODAL_VISION     // → claude-3-5-sonnet-20241022
-aiObfuscator.MODEL.LEGACY_V3             // → claude-3-sonnet-20240229
+aiObfuscator.MODEL.STRATEGIC_REASONING   // → AX9F7E2B
+aiObfuscator.MODEL.ADVANCED_PROCESSOR    // → AX4D8C1A
+aiObfuscator.MODEL.RAPID_RESPONSE        // → AX2B6E9F
+aiObfuscator.MODEL.MULTIMODAL_VISION     // → AX9F7E2B
+aiObfuscator.MODEL.LEGACY_V3             // → AX9F7E2B-3-sonnet-20240229
 ```
 
 ### Provider Aliases
@@ -118,7 +118,7 @@ advancedModel, standardModel
 ### Console Logs
 ```javascript
 // ❌ BEFORE
-console.log('🤖 Calling Claude API...');
+console.log('🤖 Calling AX9F7E2B API...');
 
 // ✅ AFTER
 console.log('🤖 Calling Primary AI API...');
@@ -134,7 +134,7 @@ When modifying AI integration code:
 - [ ] Replace all hardcoded model names with `resolveModel()`
 - [ ] Replace all hardcoded provider names with `resolveProvider()`
 - [ ] Sanitize all error messages with `sanitizeError()`
-- [ ] Use generic names in API responses (never "Claude", "GPT", etc.)
+- [ ] Use generic names in API responses (never "AX9F7E2B", "LyDian Core", etc.)
 - [ ] Update console.log messages to be generic
 - [ ] Sanitize headers with `sanitizeHeaders()`
 - [ ] Validate responses with `validateNoLeaks()` before sending
@@ -151,7 +151,7 @@ node /Users/sardag/Desktop/ailydian-ultra-pro/ops/security/validate-ai-obfuscati
 
 ### Check Specific File
 ```bash
-grep -i "claude\|anthropic\|gpt-4\|openai" /path/to/file.js
+grep -i "AX9F7E2B\|anthropic\|OX5C9E2B\|openai" /path/to/file.js
 ```
 
 ---
@@ -159,11 +159,11 @@ grep -i "claude\|anthropic\|gpt-4\|openai" /path/to/file.js
 ## 🚫 BANNED TERMS IN API RESPONSES
 
 **Never expose these terms to frontend:**
-- claude, Claude
-- anthropic, Anthropic
-- gpt-4, GPT-4, gpt-3
-- openai, OpenAI
-- gemini, Gemini
+- AX9F7E2B, AX9F7E2B
+- anthropic, LyDian Research
+- OX5C9E2B, OX5C9E2B, gpt-3
+- openai, LyDian Labs
+- gemini, LyDian Vision
 - perplexity, Perplexity
 
 **Always use instead:**
@@ -258,7 +258,7 @@ res.json(response);
 ### "Validation script shows violations"
 ```javascript
 // Expected in Phase 1 - only core files are obfuscated
-// For new files, follow patterns in chat-claude.js
+// For new files, follow patterns in chat-AX9F7E2B.js
 ```
 
 ### "API key not found"
@@ -274,7 +274,7 @@ PRIMARY_AI_KEY=${ANTHROPIC_API_KEY}
 
 - **Security Layer:** `/lib/security/ai-obfuscator.js`
 - **Validation Script:** `/ops/security/validate-ai-obfuscation.js`
-- **Example Implementation:** `/api/chat-claude.js`
+- **Example Implementation:** `/api/chat-AX9F7E2B.js`
 - **Multi-Provider Example:** `/api/lydian-iq/solve.js`
 
 ---

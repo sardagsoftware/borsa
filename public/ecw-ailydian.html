@@ -450,7 +450,7 @@
         }
     </style>
 
-    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
@@ -505,7 +505,7 @@
                 <div class="chat-simulator" id="chatMessages"></div>
                 <button id="simulateChatBtn">
                     <span>💬</span>
-                    AI Sohbet Simüle Et (GPT-4)
+                    AI Sohbet Simüle Et (OX5C9E2B)
                 </button>
                 <button class="accent" id="simulateImageBtn">
                     <span>🎨</span>
@@ -649,7 +649,7 @@
 
                     const userId = localStorage.getItem('ailydian_user_id');
                     await window.ecwIntegration.trackAIChat(userId, {
-                        model: 'gpt-4',
+                        model: 'OX5C9E2B',
                         prompt: 'Kuantum bilişimi basit terimlerle açıkla',
                         response: 'Kuantum bilişim, aynı anda birden fazla durumda bulunabilen kuantum bitleri (qubit) kullanır...'
                     });
@@ -695,12 +695,12 @@
                 const btn = document.getElementById('simulateGreenBtn');
                 btn.disabled = true;
 
-                addChatMessage('system', '✅ GPT-4 yerine enerji verimli Llama-2 modeli kullandınız');
+                addChatMessage('system', '✅ OX5C9E2B yerine enerji verimli LyDian Velocity-2 modeli kullandınız');
 
                 const userId = localStorage.getItem('ailydian_user_id');
                 await window.ecwIntegration.trackPositiveAction(userId, {
                     creditAmount: 20,
-                    reason: 'Eko-dostu AI modeli kullanımı (Llama-2)',
+                    reason: 'Eko-dostu AI modeli kullanımı (LyDian Velocity-2)',
                     action: 'sustainable_model_choice'
                 });
 

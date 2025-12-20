@@ -29,7 +29,7 @@ class PremiumNestedMenu {
       return;
     }
 
-    // Modern compact menu structure
+    // Modern compact menu structure - ENGLISH MENUS
     const menuHTML = `
       <!-- 🏥 Medical Specialties -->
       <div class="menu-section">
@@ -83,6 +83,13 @@ class PremiumNestedMenu {
             <div class="menu-item" data-page="imaging">
               <span class="item-icon">📸</span>
               <span>Medical Imaging</span>
+            </div>
+            <div class="menu-item" data-page="rag-radiology">
+              <span class="item-icon">🔍</span>
+              <div class="item-content">
+                <span class="item-title">RAG Radiology Analysis</span>
+                <span class="item-badge">NEW</span>
+              </div>
             </div>
             <div class="menu-item" data-page="drug-interaction">
               <span class="item-icon">💊</span>
@@ -197,6 +204,12 @@ class PremiumNestedMenu {
     // Handle USA Diagnosis page
     if (page === 'usa-diagnosis') {
       this.loadUSADiagnosis();
+      return;
+    }
+
+    // Handle RAG Radiology page
+    if (page === 'rag-radiology') {
+      this.loadRAGRadiology();
       return;
     }
 
@@ -433,6 +446,380 @@ class PremiumNestedMenu {
     if (navigator.geolocation) {
       // Could use geolocation API to auto-select state
     }
+  }
+
+  loadRAGRadiology() {
+    const mainContent = document.querySelector('.main-content') ||
+                       document.querySelector('#mainContent');
+
+    if (!mainContent) return;
+
+    mainContent.innerHTML = `
+      <div class="rag-radiology-panel">
+        <div class="panel-header">
+          <h1>🔍 RAG-Powered Radiology Analysis</h1>
+          <p class="panel-subtitle">Advanced AI medical imaging analysis - Catches details that might be missed</p>
+        </div>
+
+        <div class="upload-section">
+          <div class="upload-card">
+            <div class="upload-icon">📸</div>
+            <h3>Upload Radiology Image</h3>
+            <p class="upload-instructions">Upload X-Ray, CT, MRI or other medical images</p>
+
+            <div class="file-upload-area" id="radiologyUploadArea">
+              <input type="file" id="radiologyImageInput" accept="image/*" style="display: none;">
+              <div class="upload-placeholder">
+                <span class="upload-icon-large">📂</span>
+                <p>Drag and drop image or click to select</p>
+                <p class="upload-note">Supported formats: JPG, PNG, DICOM</p>
+              </div>
+              <div class="image-preview" id="imagePreview" style="display: none;">
+                <img id="previewImage" src="" alt="Preview">
+              </div>
+            </div>
+
+            <div class="clinical-context">
+              <h4>Clinical Context</h4>
+
+              <div class="form-group">
+                <label>Image Type</label>
+                <select class="form-input" id="imageType">
+                  <option value="chest-xray">Chest X-Ray</option>
+                  <option value="ct-scan">CT Scan</option>
+                  <option value="mri">MRI</option>
+                  <option value="mammography">Mammography</option>
+                  <option value="ultrasound">Ultrasound</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Body Part</label>
+                <input type="text" class="form-input" id="bodyPart" placeholder="e.g., Lung, Brain, Abdomen">
+              </div>
+
+              <div class="form-group">
+                <label>View</label>
+                <input type="text" class="form-input" id="imageView" placeholder="e.g., AP, Lateral, Axial">
+              </div>
+
+              <div class="form-group">
+                <label>Patient Age</label>
+                <input type="number" class="form-input" id="patientAge" placeholder="Age">
+              </div>
+
+              <div class="form-group">
+                <label>Clinical History</label>
+                <textarea class="form-input" id="clinicalHistory" rows="3" placeholder="Patient complaints, symptoms and previous medical history"></textarea>
+              </div>
+            </div>
+
+            <button class="analyze-btn-primary" id="analyzeBtn" onclick="window.premiumMenu.analyzeRadiologyImage()">
+              <span class="btn-icon">🔬</span>
+              Start RAG Analysis
+            </button>
+          </div>
+        </div>
+
+        <div class="results-container" id="radiologyResults" style="display: none;">
+          <!-- Analysis results will be displayed here -->
+        </div>
+      </div>
+    `;
+
+    // Setup file upload handlers
+    this.setupRadiologyUpload();
+  }
+
+  setupRadiologyUpload() {
+    const uploadArea = document.getElementById('radiologyUploadArea');
+    const fileInput = document.getElementById('radiologyImageInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImage = document.getElementById('previewImage');
+    const placeholder = uploadArea.querySelector('.upload-placeholder');
+
+    // Click to upload
+    uploadArea.addEventListener('click', (e) => {
+      if (!e.target.closest('.image-preview')) {
+        fileInput.click();
+      }
+    });
+
+    // File selection
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        this.handleRadiologyFile(file, previewImage, imagePreview, placeholder);
+      }
+    });
+
+    // Drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('drag-over');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('drag-over');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        this.handleRadiologyFile(file, previewImage, imagePreview, placeholder);
+      }
+    });
+  }
+
+  handleRadiologyFile(file, previewImage, imagePreview, placeholder) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      previewImage.src = e.target.result;
+      imagePreview.style.display = 'block';
+      placeholder.style.display = 'none';
+
+      // Store for analysis
+      window.radiologyImageData = {
+        base64: e.target.result.split(',')[1],
+        mediaType: file.type,
+        filename: file.name
+      };
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  async analyzeRadiologyImage() {
+    if (!window.radiologyImageData) {
+      alert('Please upload an image first');
+      return;
+    }
+
+    const imageType = document.getElementById('imageType').value;
+    const bodyPart = document.getElementById('bodyPart').value;
+    const view = document.getElementById('imageView').value;
+    const age = document.getElementById('patientAge').value;
+    const history = document.getElementById('clinicalHistory').value;
+
+    const resultsContainer = document.getElementById('radiologyResults');
+    resultsContainer.style.display = 'block';
+    resultsContainer.innerHTML = `
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Performing RAG-powered analysis...</p>
+        <p class="loading-detail">Scanning medical literature, detecting early findings...</p>
+      </div>
+    `;
+
+    try {
+      const response = await fetch('/api/medical/rag-radiology-analysis', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: 'ANALYZE_IMAGE',
+          imageData: window.radiologyImageData,
+          clinicalContext: {
+            imageType,
+            bodyPart,
+            view,
+            age: parseInt(age) || null,
+            history,
+            imageId: `img-${Date.now()}`,
+            doctorId: 'demo-doctor'
+          }
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        this.displayRadiologyResults(data);
+      } else {
+        throw new Error(data.error || 'Analysis failed');
+      }
+    } catch (error) {
+      console.error('RAG Radiology Analysis Error:', error);
+      resultsContainer.innerHTML = `
+        <div class="error-state">
+          <h3>❌ Analysis Error</h3>
+          <p>${error.message}</p>
+          <p class="error-detail">Please try again or contact support.</p>
+        </div>
+      `;
+    }
+  }
+
+  displayRadiologyResults(data) {
+    const resultsContainer = document.getElementById('radiologyResults');
+
+    resultsContainer.innerHTML = `
+      <div class="rag-results">
+        <div class="results-header">
+          <h2>🔬 RAG Radiology Analysis Report</h2>
+          <div class="analysis-meta">
+            <span class="meta-item"><strong>Analysis ID:</strong> ${data.analysisId}</span>
+            <span class="meta-item"><strong>Time:</strong> ${new Date(data.timestamp).toLocaleString('en-US')}</span>
+            <span class="meta-item"><strong>AI Model:</strong> ${data.aiModel}</span>
+          </div>
+        </div>
+
+        <!-- Urgency Badge -->
+        <div class="urgency-section">
+          <div class="urgency-badge urgency-${data.urgency.toLowerCase()}">
+            <span class="urgency-icon">⚡</span>
+            <span class="urgency-text">${data.urgency}</span>
+            <span class="confidence-badge">${data.confidence}% Confidence</span>
+          </div>
+        </div>
+
+        <!-- Primary Findings -->
+        <div class="result-card">
+          <h3>📋 Primary Findings</h3>
+          <div class="findings-content">
+            <pre>${data.primaryFindings}</pre>
+          </div>
+        </div>
+
+        <!-- Enhanced Findings (RAG) -->
+        <div class="result-card enhanced-card">
+          <h3>🔍 RAG-Enhanced Findings</h3>
+          <div class="findings-content">
+            <pre>${data.enhancedFindings.findings}</pre>
+          </div>
+          <div class="rag-sources">
+            <strong>Medical Literature Sources:</strong> ${data.enhancedFindings.ragSources.join(', ')}
+          </div>
+        </div>
+
+        <!-- Missed Details -->
+        ${data.missedDetails.length > 0 ? `
+          <div class="result-card warning-card">
+            <h3>⚠️ Potentially Missed Details</h3>
+            <div class="missed-details-list">
+              ${data.missedDetails.map(detail => `
+                <div class="missed-detail-item">
+                  <div class="detail-header">
+                    <span class="detail-icon">🎯</span>
+                    <strong>${detail.finding}</strong>
+                  </div>
+                  <div class="detail-body">
+                    <p><strong>Disease:</strong> ${detail.disease}</p>
+                    <p><strong>Significance:</strong> ${detail.significance}</p>
+                    <p><strong>Action:</strong> ${detail.action}</p>
+                    <p class="evidence"><strong>Evidence:</strong> ${detail.evidence}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Diagnostic Roadmap -->
+        <div class="result-card roadmap-card">
+          <h3>🗺️ Diagnostic Roadmap</h3>
+
+          ${data.diagnosticRoadmap.immediate.length > 0 ? `
+            <div class="roadmap-section immediate">
+              <h4>🚨 Immediate Actions (Urgent)</h4>
+              <ol>
+                ${data.diagnosticRoadmap.immediate.map(step => `
+                  <li>
+                    <strong>${step.step}</strong>
+                    <span class="timeframe">(${step.timeframe})</span>
+                    ${step.reason ? `<p class="reason">${step.reason}</p>` : ''}
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          ` : ''}
+
+          ${data.diagnosticRoadmap.shortTerm.length > 0 ? `
+            <div class="roadmap-section short-term">
+              <h4>📅 Short-Term Actions</h4>
+              <ol>
+                ${data.diagnosticRoadmap.shortTerm.map(step => `
+                  <li>
+                    <strong>${step.step}</strong>
+                    <span class="timeframe">(${step.timeframe})</span>
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          ` : ''}
+
+          ${data.diagnosticRoadmap.preventive.length > 0 ? `
+            <div class="roadmap-section preventive">
+              <h4>🛡️ Preventive Measures</h4>
+              <ul>
+                ${data.diagnosticRoadmap.preventive.map(step => `
+                  <li>
+                    ${step.step}
+                    <span class="reason">${step.reason}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Recommendations -->
+        <div class="result-card">
+          <h3>💡 Recommendations</h3>
+
+          ${data.recommendations.imaging.length > 0 ? `
+            <div class="rec-section">
+              <h4>📸 Advanced Imaging</h4>
+              <ul>
+                ${data.recommendations.imaging.map(rec => `
+                  <li>
+                    <span class="rec-priority priority-${rec.priority.toLowerCase()}">${rec.priority}</span>
+                    ${rec.test}
+                    <span class="indication">(${rec.indication})</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
+          ${data.recommendations.laboratory.length > 0 ? `
+            <div class="rec-section">
+              <h4>🔬 Laboratory Tests</h4>
+              <ul>
+                ${data.recommendations.laboratory.map(rec => `
+                  <li>${rec.test} <span class="indication">(${rec.indication})</span></li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
+          ${data.recommendations.referrals.length > 0 ? `
+            <div class="rec-section">
+              <h4>👨‍⚕️ Specialist Consultations</h4>
+              <ul>
+                ${data.recommendations.referrals.map(rec => `
+                  <li>
+                    <span class="rec-urgency urgency-${rec.urgency.toLowerCase()}">${rec.urgency}</span>
+                    ${rec.specialty}
+                    <span class="indication">(${rec.indication})</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer">⚠️ ${data.disclaimer}</p>
+          <p class="disclaimer">This report is generated by AI and must be reviewed by a qualified radiologist.</p>
+        </div>
+      </div>
+    `;
   }
 
   loadPage(page) {

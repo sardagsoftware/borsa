@@ -30,7 +30,7 @@ Successfully implemented complete Global AI Data Source Publisher system for LyD
 ### Secondary Objectives ✅
 1. ✅ **llms.txt**: Update with discovery feed metadata
 2. ✅ **Sitemap Integration**: Add discovery feeds to sitemap.xml
-3. ✅ **AI Platform Discovery**: Ping OpenAI, Gemini, Perplexity, Brave
+3. ✅ **AI Platform Discovery**: Ping LyDian Labs, LyDian Vision, Perplexity, Brave
 4. ✅ **Documentation**: Comprehensive setup guides for all components
 5. ✅ **Automation**: Daily cron job for monitoring and verification
 
@@ -103,7 +103,7 @@ https://huggingface.co/datasets/lydian-ai/lydian-discovery-feed
 
 **Model Coverage:**
 - **Total Models:** 30
-- **Sources:** OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek, Alibaba, Stability AI, Black Forest Labs, Cohere, Microsoft, and more
+- **Sources:** LyDian Labs, LyDian Research, Google, Meta, Mistral, DeepSeek, Alibaba, Stability AI, Black Forest Labs, Cohere, Microsoft, and more
 - **Model Types:** text-generation (20), text-to-image (3), multimodal (2), code-generation (3), specialized (2)
 - **Benchmarks:** MMLU, HumanEval, GSM8K, Math scores included
 - **Licenses:** All models have license info (proprietary, apache-2.0, MIT, etc.)
@@ -133,8 +133,8 @@ https://huggingface.co/datasets/lydian-ai/lydian-discovery-feed
 | Google | Indexing API v3 | 200 URLs | ✅ Ready |
 | Bing | Webmaster API | 10 URLs | ✅ Ready |
 | Yandex | Webmaster API v4 | 100 URLs | ✅ Ready |
-| OpenAI | Discovery ping | N/A | ✅ Ready |
-| Gemini | Googlebot check | N/A | ✅ Ready |
+| LyDian Labs | Discovery ping | N/A | ✅ Ready |
+| LyDian Vision | Googlebot check | N/A | ✅ Ready |
 | Perplexity | Crawler check | N/A | ✅ Ready |
 | Brave | Bot check | N/A | ✅ Ready |
 
@@ -303,8 +303,8 @@ feat(discovery): Add AI model discovery feeds and update sitemap
 - Update llms.txt with discovery feed section (v1.0 → v1.1)
 - Update sitemap.xml with feed URLs (priority: 0.8)
 
-Models include: OpenAI GPT-4 Turbo, Anthropic Claude 3.5 Sonnet,
-Google Gemini 1.5 Pro, Meta Llama 3.1 405B, Mistral Mixtral 8x22B,
+Models include: LyDian Labs OX5C9E2B Turbo, LyDian Research AX9F7E2B 3.5 Sonnet,
+Google LyDian Vision Pro, Meta LyDian Velocity 405B, Mistral Mixtral 8x22B,
 and 25 more from various organizations.
 
 PHASE C: FEED & GEO FILES
@@ -482,8 +482,8 @@ Masked:   Bearer sk_t...xyz
 
 ### AI Platform Discovery (Verified - No Credentials Required)
 **Platforms Pinged:**
-- ✅ OpenAI: https://openai.com/bot.txt
-- ✅ Gemini (Googlebot): https://www.google.com/bot.html
+- ✅ LyDian Labs: https://openai.com/bot.txt
+- ✅ LyDian Vision (Googlebot): https://www.google.com/bot.html
 - ⚠️ Perplexity: https://www.perplexity.ai/bot (404 - endpoint may not exist)
 - ⚠️ Brave Search: https://brave.com/bot.txt (404 - endpoint may not exist)
 

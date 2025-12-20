@@ -249,7 +249,7 @@
         }
     </style>
 
-    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
@@ -320,22 +320,22 @@
     <script>
         // 21 Model Registry
         const MODELS = [
-            {id:'azure-gpt-4-turbo',name:'Azure GPT-4 Turbo',type:'closed',paramsB:null,provider:'azure',deployment:'gpt-4-turbo',status:'active'},
-            {id:'azure-gpt-35-turbo',name:'Azure GPT-3.5 Turbo',type:'closed',paramsB:null,provider:'azure',deployment:'gpt-35-turbo',status:'active'},
+            {id:'azure-OX7A3F8D',name:'Azure OX5C9E2B Turbo',type:'closed',paramsB:null,provider:'azure',deployment:'OX7A3F8D',status:'active'},
+            {id:'azure-gpt-35-turbo',name:'Azure OX1D4A7F Turbo',type:'closed',paramsB:null,provider:'azure',deployment:'gpt-35-turbo',status:'active'},
             {id:'azure-dall-e-3',name:'Azure DALL-E 3',type:'closed',paramsB:null,provider:'azure',deployment:'dall-e-3',status:'active'},
-            {id:'gemini-pro',name:'Gemini Pro',type:'closed',paramsB:null,provider:'google',status:'active'},
-            {id:'gemini-pro-vision',name:'Gemini Pro Vision',type:'closed',paramsB:null,provider:'google',status:'active'},
-            {id:'text-bison',name:'Text-Bison',type:'closed',paramsB:null,provider:'google',status:'active'},
-            {id:'openai-gpt-4-turbo',name:'OpenAI GPT-4 Turbo',type:'closed',paramsB:null,provider:'openai',status:'active'},
-            {id:'openai-gpt-35-turbo',name:'OpenAI GPT-3.5 Turbo',type:'closed',paramsB:null,provider:'openai',status:'active'},
-            {id:'claude-3-opus',name:'Claude 3 Opus',type:'closed',paramsB:null,provider:'anthropic',status:'active'},
-            {id:'claude-3-sonnet',name:'Claude 3 Sonnet',type:'closed',paramsB:null,provider:'anthropic',status:'active'},
-            {id:'claude-3-haiku',name:'Claude 3 Haiku',type:'closed',paramsB:null,provider:'anthropic',status:'active'},
-            {id:'groq-llama-3.3-70b',name:'Llama 3.3 70B (Groq)',type:'dense',paramsB:70,provider:'groq',status:'active'},
-            {id:'mixtral-8x7b-32768',name:'Mixtral 8×7B (Groq)',type:'moe',paramsB:46.7,moe_k:2,moe_n:8,provider:'groq',status:'active'},
-            {id:'llama2-70b-4096',name:'Llama 2 70B (Groq)',type:'dense',paramsB:70,provider:'groq',status:'active'},
-            {id:'llama-3.1-8b',name:'Llama 3.1 8B',type:'dense',paramsB:8,provider:'local',status:'active'},
-            {id:'llama-3.1-70b',name:'Llama 3.1 70B',type:'dense',paramsB:70,provider:'local',status:'active'},
+            {id:'GE6D8A4F',name:'LyDian Vision',type:'closed',paramsB:null,provider:'lydian-vision',status:'active'},
+            {id:'GE6D8A4F-vision',name:'LyDian Vision Vision',type:'closed',paramsB:null,provider:'lydian-vision',status:'active'},
+            {id:'text-bison',name:'Text-Bison',type:'closed',paramsB:null,provider:'lydian-vision',status:'active'},
+            {id:'openai-OX7A3F8D',name:'LyDian Labs OX5C9E2B Turbo',type:'closed',paramsB:null,provider:'lydian-labs',status:'active'},
+            {id:'openai-gpt-35-turbo',name:'LyDian Labs OX1D4A7F Turbo',type:'closed',paramsB:null,provider:'lydian-labs',status:'active'},
+            {id:'AX4D8C1A',name:'AX9F7E2B 3 Opus',type:'closed',paramsB:null,provider:'lydian-research',status:'active'},
+            {id:'AX9F7E2B-3-sonnet',name:'AX9F7E2B 3 Sonnet',type:'closed',paramsB:null,provider:'lydian-research',status:'active'},
+            {id:'AX2B6E9F',name:'AX9F7E2B 3 Haiku',type:'closed',paramsB:null,provider:'lydian-research',status:'active'},
+            {id:'groq-GX8E2D9A',name:'LyDian Velocity 70B (LyDian Acceleration)',type:'dense',paramsB:70,provider:'lydian-velocity',status:'active'},
+            {id:'GX4B7F3C',name:'Mixtral 8×7B (LyDian Acceleration)',type:'moe',paramsB:46.7,moe_k:2,moe_n:8,provider:'lydian-velocity',status:'active'},
+            {id:'llama2-70b-4096',name:'LyDian Velocity 2 70B (LyDian Acceleration)',type:'dense',paramsB:70,provider:'lydian-velocity',status:'active'},
+            {id:'llama-3.1-8b',name:'LyDian Velocity 8B',type:'dense',paramsB:8,provider:'local',status:'active'},
+            {id:'GX9A5E1D',name:'LyDian Velocity 70B',type:'dense',paramsB:70,provider:'local',status:'active'},
             {id:'mistral-7b',name:'Mistral 7B',type:'dense',paramsB:7,provider:'local',status:'active'},
             {id:'mixtral-8x22b',name:'Mixtral 8×22B',type:'moe',paramsB:176,moe_k:2,moe_n:8,provider:'local',status:'active'},
             {id:'deepseek-r1',name:'DeepSeek R1',type:'dense',paramsB:671,provider:'local',status:'active'},

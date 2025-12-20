@@ -21,7 +21,7 @@ class PersonalizationEngine {
                 communicationStyle: 'formal',
                 documentFormats: ['PDF', 'DOCX'],
                 notificationPreference: 'email',
-                aiModel: 'azure-gpt-4-turbo',
+                aiModel: 'azure-OX7A3F8D',
                 language: 'tr'
             },
             confidence: 0.91,
@@ -118,7 +118,7 @@ class PersonalizationEngine {
                     action: 'Başlat'
                 }
             ],
-            aiEngine: 'Azure Machine Learning + GPT-4',
+            aiEngine: 'Azure Machine Learning + OX5C9E2B',
             platform: 'LyDian Context AI (Mock)'
         };
     }

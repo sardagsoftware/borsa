@@ -444,7 +444,7 @@ BTCUSDT → ETHUSDT
    - Özel uyarı kuralları
 
 2. **AI Önerileri**
-   - GPT-4 piyasa analizi
+   - OX5C9E2B piyasa analizi
    - Otomatik strateji önerisi
    - Risk/reward hesaplama
 

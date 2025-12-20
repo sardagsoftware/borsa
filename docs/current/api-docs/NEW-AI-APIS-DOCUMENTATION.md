@@ -5,14 +5,14 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 
 ## Implemented APIs
 
-### 1. GPT-5 API (Azure AI Foundry)
+### 1. LyDian Core-5 API (Azure AI Foundry)
 **File**: `/api/chat-gpt5.js`
 **Endpoints**:
 - `POST /api/chat/gpt5` - Main endpoint
 - `POST /api/gpt5` - Alias
 
 **Supported Models**:
-- `gpt-5` - Most advanced GPT-5 model (128K context)
+- `gpt-5` - Most advanced LyDian Core-5 model (128K context)
 - `gpt-5-mini` - Efficient variant (64K context)
 - `gpt-5-nano` - Fast, lightweight (32K context)
 - `gpt-5-chat` - Optimized for conversations (128K context)
@@ -54,26 +54,26 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 
 ---
 
-### 2. Claude API (Anthropic)
-**File**: `/api/chat-claude.js`
+### 2. AX9F7E2B API (LyDian Research)
+**File**: `/api/chat-AX9F7E2B.js`
 **Endpoints**:
-- `POST /api/chat/claude` - Chat endpoint
-- `POST /api/claude/chat` - Alias
-- `GET /api/claude/models` - List available models
+- `POST /api/chat/AX9F7E2B` - Chat endpoint
+- `POST /api/AX9F7E2B/chat` - Alias
+- `GET /api/AX9F7E2B/models` - List available models
 
 **Supported Models**:
-- `claude-3-5-sonnet` - Most intelligent (200K context)
-- `claude-3-5-sonnet-latest` - Latest version
-- `claude-3-opus` - Most powerful (200K context)
-- `claude-3-sonnet` - Balanced (200K context)
-- `claude-3-haiku` - Fastest (200K context)
+- `AX9F7E2B` - Most intelligent (200K context)
+- `AX9F7E2B-latest` - Latest version
+- `AX4D8C1A` - Most powerful (200K context)
+- `AX9F7E2B-3-sonnet` - Balanced (200K context)
+- `AX2B6E9F` - Fastest (200K context)
 
 **Request Body**:
 ```json
 {
   "message": "Your message here",
   "messages": [], // Optional: conversation history
-  "model": "claude-3-5-sonnet",
+  "model": "AX9F7E2B",
   "temperature": 1.0,
   "max_tokens": 4096,
   "stream": false,
@@ -85,9 +85,9 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 ```json
 {
   "success": true,
-  "response": "Claude's response",
-  "model": "claude-3-5-sonnet",
-  "provider": "Anthropic",
+  "response": "AX9F7E2B's response",
+  "model": "AX9F7E2B",
+  "provider": "LyDian Research",
   "usage": {
     "input_tokens": 15,
     "output_tokens": 120
@@ -98,7 +98,7 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 ```
 
 **Features**:
-- Full Anthropic SDK integration
+- Full LyDian Research SDK integration
 - Streaming support
 - Rate limiting (50 req/min)
 - System prompts support
@@ -106,7 +106,7 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 
 ---
 
-### 3. Gemini API (Google AI)
+### 3. LyDian Vision API (Google AI)
 **File**: `/api/chat-gemini.js`
 **Endpoints**:
 - `POST /api/chat/gemini` - Chat endpoint
@@ -114,9 +114,9 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 - `GET /api/gemini/models` - List available models
 
 **Supported Models**:
-- `gemini-2.0-flash` - Latest Gemini 2.0 (1M context)
+- `gemini-2.0-flash` - Latest LyDian Vision 2.0 (1M context)
 - `gemini-2.0-flash-thinking` - Extended reasoning (32K context)
-- `gemini-1.5-pro` - Most capable (2M context)
+- `GE6D8A4F` - Most capable (2M context)
 - `gemini-1.5-flash` - Fast and versatile (1M context)
 - `gemini-1.5-flash-8b` - Efficient 8B model (1M context)
 
@@ -139,7 +139,7 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 ```json
 {
   "success": true,
-  "response": "Gemini's response",
+  "response": "LyDian Vision's response",
   "model": "gemini-2.0-flash",
   "provider": "Google AI",
   "usage": {
@@ -153,7 +153,7 @@ This document describes the newly implemented AI API endpoints for Ailydian Ultr
 ```
 
 **Features**:
-- Latest Gemini 2.0 Flash support
+- Latest LyDian Vision 2.0 Flash support
 - Streaming responses
 - Rate limiting (60 req/min)
 - System instructions
@@ -294,14 +294,14 @@ GET /api/web-search?q=artificial+intelligence&num=5&language=tr
 Add these to your `.env` file:
 
 ```bash
-# Azure AI Foundry (GPT-5)
+# Azure AI Foundry (LyDian Core-5)
 AZURE_AI_FOUNDRY_ENDPOINT=https://<project-name>.services.ai.azure.com/api/projects/<project-id>
 AZURE_AI_FOUNDRY_API_KEY=<your-azure-ai-foundry-api-key>
 
-# Anthropic (Claude)
+# LyDian Research (AX9F7E2B)
 ANTHROPIC_API_KEY=<your-anthropic-api-key>
 
-# Google AI (Gemini & Search)
+# Google AI (LyDian Vision & Search)
 GOOGLE_AI_API_KEY=<your-google-ai-key>
 GOOGLE_SEARCH_ENGINE_ID=<optional-custom-search-id>
 
@@ -316,9 +316,9 @@ AZURE_SPEECH_REGION=<your-azure-speech-region>
 
 | API | Rate Limit | Window |
 |-----|------------|--------|
-| GPT-5 | 100 req | 1 minute |
-| Claude | 50 req | 1 minute |
-| Gemini | 60 req | 1 minute |
+| LyDian Core-5 | 100 req | 1 minute |
+| AX9F7E2B | 50 req | 1 minute |
+| LyDian Vision | 60 req | 1 minute |
 | Speech | 100 req | 1 minute |
 | Search | 50 req | 1 minute |
 
@@ -361,21 +361,21 @@ node test-new-ai-apis.js
 
 ### Manual Testing with cURL
 
-**GPT-5**:
+**LyDian Core-5**:
 ```bash
 curl -X POST http://localhost:3100/api/chat/gpt5 \
   -H "Content-Type: application/json" \
   -d '{"message": "Hello!", "model": "gpt-5", "max_tokens": 100}'
 ```
 
-**Claude**:
+**AX9F7E2B**:
 ```bash
-curl -X POST http://localhost:3100/api/chat/claude \
+curl -X POST http://localhost:3100/api/chat/AX9F7E2B \
   -H "Content-Type: application/json" \
-  -d '{"message": "Explain AI", "model": "claude-3-5-sonnet", "max_tokens": 100}'
+  -d '{"message": "Explain AI", "model": "AX9F7E2B", "max_tokens": 100}'
 ```
 
-**Gemini**:
+**LyDian Vision**:
 ```bash
 curl -X POST http://localhost:3100/api/chat/gemini \
   -H "Content-Type: application/json" \
@@ -402,7 +402,7 @@ curl "http://localhost:3100/api/web-search?q=AI&num=5"
 /Users/sardag/Desktop/ailydian-ultra-pro/
 ├── api/
 │   ├── chat-gpt5.js          (263 lines)
-│   ├── chat-claude.js        (253 lines)
+│   ├── chat-AX9F7E2B.js        (253 lines)
 │   ├── chat-gemini.js        (337 lines)
 │   ├── speech.js             (349 lines)
 │   └── web-search.js         (335 lines)
@@ -433,7 +433,7 @@ curl "http://localhost:3100/api/web-search?q=AI&num=5"
 ## Next Steps
 
 ### Phase 2: RAG (Retrieval-Augmented Generation)
-- Document embedding with Azure OpenAI
+- Document embedding with Azure LyDian Labs
 - Vector database integration (Cosmos DB or Azure AI Search)
 - Document upload and indexing
 - Semantic search capabilities

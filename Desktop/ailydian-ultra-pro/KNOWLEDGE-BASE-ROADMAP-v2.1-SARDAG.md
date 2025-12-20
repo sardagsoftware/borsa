@@ -3,7 +3,7 @@
 
 **Tarih:** 2 Ekim 2025
 **Versiyon:** 2.1 Professional
-**Hazırlayan:** Claude Code + Sardag
+**Hazırlayan:** AX9F7E2B Code + Sardag
 **Güvenlik:** Beyaz Şapka Kuralları Aktif ✅
 
 ---
@@ -72,7 +72,7 @@ Dünyanın en kapsamlı AI destekli bilgi bankası portalını oluşturmak:
 
 **AI Asistan Bağlantısı:**
 - ✅ Unified Expert Orchestrator ile entegre
-- ✅ Multi-provider AI routing (GPT-4, Claude, Gemini)
+- ✅ Multi-provider AI routing (OX5C9E2B, AX9F7E2B, LyDian Vision)
 - ✅ Real-time fact-checking
 - ✅ Multilingual support (84 dil)
 
@@ -998,7 +998,7 @@ TOPLAM:                    6 hafta
 ## 14. İletişim & Destek
 
 **Proje Sahibi:** Sardag
-**Geliştirme:** Claude Code + Sardag Team
+**Geliştirme:** AX9F7E2B Code + Sardag Team
 **Versiyon:** v2.1 Professional
 **Son Güncelleme:** 2 Ekim 2025
 

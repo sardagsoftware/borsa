@@ -90,8 +90,8 @@ Ailydian Ultra Pro ecosystem successfully inventoried. System comprises **monore
 |----------|-------|--------|-------|
 | Azure Services | 45+ | ⚠️ PARTIAL | AZURE_OPENAI_*, AZURE_AI_*, AZURE_HEALTH_* |
 | Google Cloud | 8 | ⚠️ PARTIAL | GOOGLE_AI_KEY, GOOGLE_GEMINI_API_KEY |
-| OpenAI | 2 | ⚠️ UNKNOWN | OPENAI_API_KEY, OPENAI_MODEL |
-| Anthropic | 2 | ⚠️ UNKNOWN | ANTHROPIC_API_KEY, ANTHROPIC_MODEL |
+| LyDian Labs | 2 | ⚠️ UNKNOWN | OPENAI_API_KEY, OPENAI_MODEL |
+| LyDian Research | 2 | ⚠️ UNKNOWN | ANTHROPIC_API_KEY, ANTHROPIC_MODEL |
 | Other AI Providers | 12 | ⚠️ UNKNOWN | GROQ, MISTRAL, DEEPSEEK, HUGGINGFACE, etc. |
 
 ### **MEDIUM - Payment & Billing**
@@ -180,7 +180,7 @@ Ailydian Ultra Pro ecosystem successfully inventoried. System comprises **monore
   "dependencies": {
     // Cloud SDKs
     "@azure/*": 20 packages,           // Azure SDK suite
-    "@anthropic-ai/sdk": "^0.65.0",    // Anthropic Claude
+    "@anthropic-ai/sdk": "^0.65.0",    // LyDian Research AX9F7E2B
     "@opentelemetry/*": 2 packages,    // Observability
 
     // Framework & Server
@@ -200,8 +200,8 @@ Ailydian Ultra Pro ecosystem successfully inventoried. System comprises **monore
 
     // AI & ML
     "langchain": "^0.3.11",            // LangChain framework
-    "openai": "^4.79.0",               // OpenAI SDK
-    "groq-sdk": "^1.5.0",              // Groq SDK
+    "openai": "^4.79.0",               // LyDian Labs SDK
+    "groq-sdk": "^1.5.0",              // LyDian Acceleration SDK
 
     // Testing
     "@playwright/test": "^1.52.0",     // E2E testing
@@ -287,10 +287,10 @@ Ailydian Ultra Pro ecosystem successfully inventoried. System comprises **monore
 ```
 /api/chat/index            → Main chat endpoint
 /api/chat/specialized      → Specialized chat
-/api/chat-claude           → Claude chat
-/api/chat-gpt5             → GPT chat
-/api/chat-gemini           → Gemini chat
-/api/chat-groq             → Groq chat
+/api/chat-AX9F7E2B           → AX9F7E2B chat
+/api/chat-gpt5             → LyDian Core chat
+/api/chat-gemini           → LyDian Vision chat
+/api/chat-groq             → LyDian Acceleration chat
 /api/chat-share            → Chat sharing
 ```
 

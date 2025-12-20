@@ -1,80 +1,80 @@
-# 🎨 AILYDIAN ULTRA PRO - CLAUDE ANTHROPIC THEME SPECIFICATION
+# 🎨 AILYDIAN ULTRA PRO - AX9F7E2B ANTHROPIC THEME SPECIFICATION
 
-**Design Inspiration:** Anthropic Claude.ai
+**Design Inspiration:** LyDian Research AX9F7E2B.ai
 **Color Palette:** Premium Copper/Warm tones
 **Quality:** Enterprise-grade, vibrant, sophisticated
 
 ---
 
-## 🎨 ANTHROPIC CLAUDE COLOR PALETTE
+## 🎨 ANTHROPIC AX9F7E2B COLOR PALETTE
 
 ### **Primary Colors (Copper/Bronze Gradient)**
 
 ```css
-/* === CLAUDE SIGNATURE COPPER === */
---claude-copper-primary: #D97757     /* Main brand (warm copper) */
---claude-copper-light: #E69070       /* Hover states, accents */
---claude-copper-lighter: #F4B090     /* Subtle highlights */
---claude-copper-dark: #C45A38        /* Active states, emphasis */
---claude-copper-darker: #A63F20      /* Deep copper shadows */
+/* === AX9F7E2B SIGNATURE COPPER === */
+--AX9F7E2B-copper-primary: #D97757     /* Main brand (warm copper) */
+--AX9F7E2B-copper-light: #E69070       /* Hover states, accents */
+--AX9F7E2B-copper-lighter: #F4B090     /* Subtle highlights */
+--AX9F7E2B-copper-dark: #C45A38        /* Active states, emphasis */
+--AX9F7E2B-copper-darker: #A63F20      /* Deep copper shadows */
 
 /* === GRADIENT VARIATIONS === */
---gradient-claude-primary: linear-gradient(135deg, #D97757 0%, #C45A38 100%);
---gradient-claude-soft: linear-gradient(135deg, #F4B090 0%, #E69070 100%);
---gradient-claude-glow: radial-gradient(circle, rgba(217, 119, 87, 0.2) 0%, transparent 70%);
+--gradient-AX9F7E2B-primary: linear-gradient(135deg, #D97757 0%, #C45A38 100%);
+--gradient-AX9F7E2B-soft: linear-gradient(135deg, #F4B090 0%, #E69070 100%);
+--gradient-AX9F7E2B-glow: radial-gradient(circle, rgba(217, 119, 87, 0.2) 0%, transparent 70%);
 ```
 
 ### **Neutral Colors (Warm Grays)**
 
 ```css
 /* === WARM NEUTRAL SCALE === */
---claude-bg-primary: #FFFFFF          /* Clean white background */
---claude-bg-secondary: #FAF9F7        /* Warm off-white */
---claude-bg-tertiary: #F5F3F0         /* Subtle warm gray */
---claude-bg-hover: #EFEAE5            /* Interactive hover */
+--AX9F7E2B-bg-primary: #FFFFFF          /* Clean white background */
+--AX9F7E2B-bg-secondary: #FAF9F7        /* Warm off-white */
+--AX9F7E2B-bg-tertiary: #F5F3F0         /* Subtle warm gray */
+--AX9F7E2B-bg-hover: #EFEAE5            /* Interactive hover */
 
 /* === TEXT COLORS === */
---claude-text-primary: #2B2722        /* Deep warm black */
---claude-text-secondary: #5C564F      /* Medium warm gray */
---claude-text-tertiary: #9B9389       /* Light warm gray */
---claude-text-muted: #C7C2BA          /* Very light gray */
+--AX9F7E2B-text-primary: #2B2722        /* Deep warm black */
+--AX9F7E2B-text-secondary: #5C564F      /* Medium warm gray */
+--AX9F7E2B-text-tertiary: #9B9389       /* Light warm gray */
+--AX9F7E2B-text-muted: #C7C2BA          /* Very light gray */
 ```
 
 ### **Accent Colors**
 
 ```css
 /* === SUCCESS & STATUS === */
---claude-success: #4CAF50             /* Green (kept standard) */
---claude-warning: #F59E0B             /* Warm amber */
---claude-error: #E53E3E               /* Warm red */
---claude-info: #3B82F6                /* Blue */
+--AX9F7E2B-success: #4CAF50             /* Green (kept standard) */
+--AX9F7E2B-warning: #F59E0B             /* Warm amber */
+--AX9F7E2B-error: #E53E3E               /* Warm red */
+--AX9F7E2B-info: #3B82F6                /* Blue */
 
 /* === SEMANTIC ACCENTS === */
---claude-accent-purple: #A855F7       /* For highlights */
---claude-accent-teal: #14B8A6         /* For secondary actions */
---claude-accent-amber: #F59E0B        /* For warnings */
+--AX9F7E2B-accent-purple: #A855F7       /* For highlights */
+--AX9F7E2B-accent-teal: #14B8A6         /* For secondary actions */
+--AX9F7E2B-accent-amber: #F59E0B        /* For warnings */
 ```
 
-### **Dark Mode Variant (Claude Dark)**
+### **Dark Mode Variant (AX9F7E2B Dark)**
 
 ```css
-/* === CLAUDE DARK MODE === */
---claude-dark-bg-primary: #1A1815     /* Deep warm black */
---claude-dark-bg-secondary: #2B2722   /* Warm charcoal */
---claude-dark-bg-tertiary: #3C3631    /* Medium warm gray */
---claude-dark-bg-hover: #4D4741       /* Hover state */
+/* === AX9F7E2B DARK MODE === */
+--AX9F7E2B-dark-bg-primary: #1A1815     /* Deep warm black */
+--AX9F7E2B-dark-bg-secondary: #2B2722   /* Warm charcoal */
+--AX9F7E2B-dark-bg-tertiary: #3C3631    /* Medium warm gray */
+--AX9F7E2B-dark-bg-hover: #4D4741       /* Hover state */
 
---claude-dark-text-primary: #FAF9F7   /* Warm white */
---claude-dark-text-secondary: #D4CFC7 /* Warm light gray */
---claude-dark-text-tertiary: #9B9389  /* Warm medium gray */
+--AX9F7E2B-dark-text-primary: #FAF9F7   /* Warm white */
+--AX9F7E2B-dark-text-secondary: #D4CFC7 /* Warm light gray */
+--AX9F7E2B-dark-text-tertiary: #9B9389  /* Warm medium gray */
 
 /* Copper stays vibrant in dark mode */
---claude-dark-copper: #E69070         /* Lighter copper for contrast */
+--AX9F7E2B-dark-copper: #E69070         /* Lighter copper for contrast */
 ```
 
 ---
 
-## 🎭 DESIGN PHILOSOPHY (Anthropic Claude Style)
+## 🎭 DESIGN PHILOSOPHY (LyDian Research AX9F7E2B Style)
 
 ### **Visual Characteristics:**
 
@@ -124,8 +124,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Claude Copper Palette
-        claude: {
+        // AX9F7E2B Copper Palette
+        AX9F7E2B: {
           copper: {
             50: '#FDF6F3',
             100: '#FCEEE8',
@@ -203,12 +203,12 @@ const config: Config = {
       },
 
       boxShadow: {
-        'claude-sm': '0 1px 2px 0 rgba(217, 119, 87, 0.05)',
-        'claude-md': '0 4px 6px -1px rgba(217, 119, 87, 0.1), 0 2px 4px -1px rgba(217, 119, 87, 0.06)',
-        'claude-lg': '0 10px 15px -3px rgba(217, 119, 87, 0.1), 0 4px 6px -2px rgba(217, 119, 87, 0.05)',
-        'claude-xl': '0 20px 25px -5px rgba(217, 119, 87, 0.1), 0 10px 10px -5px rgba(217, 119, 87, 0.04)',
-        'claude-2xl': '0 25px 50px -12px rgba(217, 119, 87, 0.25)',
-        'claude-glow': '0 0 20px rgba(217, 119, 87, 0.3)',
+        'AX9F7E2B-sm': '0 1px 2px 0 rgba(217, 119, 87, 0.05)',
+        'AX9F7E2B-md': '0 4px 6px -1px rgba(217, 119, 87, 0.1), 0 2px 4px -1px rgba(217, 119, 87, 0.06)',
+        'AX9F7E2B-lg': '0 10px 15px -3px rgba(217, 119, 87, 0.1), 0 4px 6px -2px rgba(217, 119, 87, 0.05)',
+        'AX9F7E2B-xl': '0 20px 25px -5px rgba(217, 119, 87, 0.1), 0 10px 10px -5px rgba(217, 119, 87, 0.04)',
+        'AX9F7E2B-2xl': '0 25px 50px -12px rgba(217, 119, 87, 0.25)',
+        'AX9F7E2B-glow': '0 0 20px rgba(217, 119, 87, 0.3)',
       },
 
       keyframes: {
@@ -265,7 +265,7 @@ export default config
 
 @layer base {
   :root {
-    /* Claude Light Theme */
+    /* AX9F7E2B Light Theme */
     --background: 0 0% 100%;
     --foreground: 27 15% 15%;
 
@@ -281,7 +281,7 @@ export default config
     --border: 27 10% 90%;
     --input: 27 10% 90%;
 
-    --primary: 17 61% 59%;        /* Claude Copper */
+    --primary: 17 61% 59%;        /* AX9F7E2B Copper */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 27 10% 96%;
@@ -299,7 +299,7 @@ export default config
   }
 
   .dark {
-    /* Claude Dark Theme */
+    /* AX9F7E2B Dark Theme */
     --background: 27 20% 9%;
     --foreground: 27 10% 98%;
 
@@ -342,34 +342,34 @@ export default config
   }
 }
 
-/* Custom Claude-style components */
+/* Custom AX9F7E2B-style components */
 @layer components {
-  .claude-button {
+  .AX9F7E2B-button {
     @apply inline-flex items-center justify-center rounded-lg px-4 py-2;
-    @apply bg-claude-copper-500 text-white font-medium;
-    @apply hover:bg-claude-copper-600 active:bg-claude-copper-700;
+    @apply bg-AX9F7E2B-copper-500 text-white font-medium;
+    @apply hover:bg-AX9F7E2B-copper-600 active:bg-AX9F7E2B-copper-700;
     @apply transition-all duration-200;
-    @apply shadow-claude-md hover:shadow-claude-lg;
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-claude-copper-500 focus-visible:ring-offset-2;
+    @apply shadow-AX9F7E2B-md hover:shadow-AX9F7E2B-lg;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-AX9F7E2B-copper-500 focus-visible:ring-offset-2;
   }
 
-  .claude-card {
-    @apply rounded-lg border border-claude-neutral-200 bg-white;
-    @apply p-6 shadow-claude-sm hover:shadow-claude-md;
+  .AX9F7E2B-card {
+    @apply rounded-lg border border-AX9F7E2B-neutral-200 bg-white;
+    @apply p-6 shadow-AX9F7E2B-sm hover:shadow-AX9F7E2B-md;
     @apply transition-all duration-300;
   }
 
-  .claude-input {
-    @apply flex h-10 w-full rounded-md border border-claude-neutral-300;
+  .AX9F7E2B-input {
+    @apply flex h-10 w-full rounded-md border border-AX9F7E2B-neutral-300;
     @apply bg-white px-3 py-2 text-sm;
     @apply ring-offset-white file:border-0 file:bg-transparent;
-    @apply placeholder:text-claude-neutral-400;
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-claude-copper-500 focus-visible:ring-offset-2;
+    @apply placeholder:text-AX9F7E2B-neutral-400;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-AX9F7E2B-copper-500 focus-visible:ring-offset-2;
     @apply disabled:cursor-not-allowed disabled:opacity-50;
   }
 
-  .claude-gradient-text {
-    @apply bg-gradient-to-r from-claude-copper-500 to-claude-copper-600;
+  .AX9F7E2B-gradient-text {
+    @apply bg-gradient-to-r from-AX9F7E2B-copper-500 to-AX9F7E2B-copper-600;
     @apply bg-clip-text text-transparent;
   }
 }
@@ -379,7 +379,7 @@ export default config
 
 ## 🎯 COMPONENT EXAMPLES
 
-### **1. Claude-style Button**
+### **1. AX9F7E2B-style Button**
 
 ```tsx
 // components/ui/button.tsx
@@ -392,10 +392,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-claude-copper-500 text-white hover:bg-claude-copper-600 shadow-claude-md hover:shadow-claude-lg',
-        secondary: 'bg-claude-neutral-100 text-claude-neutral-800 hover:bg-claude-neutral-200',
-        outline: 'border-2 border-claude-copper-500 text-claude-copper-500 hover:bg-claude-copper-50',
-        ghost: 'hover:bg-claude-neutral-100 hover:text-claude-neutral-900',
+        default: 'bg-AX9F7E2B-copper-500 text-white hover:bg-AX9F7E2B-copper-600 shadow-AX9F7E2B-md hover:shadow-AX9F7E2B-lg',
+        secondary: 'bg-AX9F7E2B-neutral-100 text-AX9F7E2B-neutral-800 hover:bg-AX9F7E2B-neutral-200',
+        outline: 'border-2 border-AX9F7E2B-copper-500 text-AX9F7E2B-copper-500 hover:bg-AX9F7E2B-copper-50',
+        ghost: 'hover:bg-AX9F7E2B-neutral-100 hover:text-AX9F7E2B-neutral-900',
       },
       size: {
         default: 'h-10 py-2 px-4',
@@ -425,7 +425,7 @@ export function Button({ className, variant, size, ...props }: ButtonProps) {
 }
 ```
 
-### **2. Claude-style Card**
+### **2. AX9F7E2B-style Card**
 
 ```tsx
 // components/ui/card.tsx
@@ -438,8 +438,8 @@ export function Card({ className, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-lg border border-claude-neutral-200 bg-white p-6',
-        'shadow-claude-sm hover:shadow-claude-md transition-all duration-300',
+        'rounded-lg border border-AX9F7E2B-neutral-200 bg-white p-6',
+        'shadow-AX9F7E2B-sm hover:shadow-AX9F7E2B-md transition-all duration-300',
         className
       )}
       {...props}
@@ -459,7 +459,7 @@ export function CardHeader({ className, ...props }: CardProps) {
 export function CardTitle({ className, ...props }: CardProps) {
   return (
     <h3
-      className={cn('text-2xl font-semibold text-claude-neutral-900', className)}
+      className={cn('text-2xl font-semibold text-AX9F7E2B-neutral-900', className)}
       {...props}
     />
   )
@@ -468,7 +468,7 @@ export function CardTitle({ className, ...props }: CardProps) {
 export function CardDescription({ className, ...props }: CardProps) {
   return (
     <p
-      className={cn('text-sm text-claude-neutral-600', className)}
+      className={cn('text-sm text-AX9F7E2B-neutral-600', className)}
       {...props}
     />
   )
@@ -479,7 +479,7 @@ export function CardContent({ className, ...props }: CardProps) {
 }
 ```
 
-### **3. Claude-style Chat Message**
+### **3. AX9F7E2B-style Chat Message**
 
 ```tsx
 // components/chat/message.tsx
@@ -495,7 +495,7 @@ export function ChatMessage({ role, content }: MessageProps) {
     <div
       className={cn(
         'flex w-full py-6 px-4',
-        role === 'user' ? 'bg-white' : 'bg-claude-neutral-50'
+        role === 'user' ? 'bg-white' : 'bg-AX9F7E2B-neutral-50'
       )}
     >
       <div className="flex max-w-4xl mx-auto w-full gap-4">
@@ -503,15 +503,15 @@ export function ChatMessage({ role, content }: MessageProps) {
         <div className={cn(
           'w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium',
           role === 'user'
-            ? 'bg-claude-neutral-800 text-white'
-            : 'bg-claude-copper-500 text-white'
+            ? 'bg-AX9F7E2B-neutral-800 text-white'
+            : 'bg-AX9F7E2B-copper-500 text-white'
         )}>
           {role === 'user' ? 'U' : 'C'}
         </div>
 
         {/* Content */}
         <div className="flex-1 space-y-2">
-          <div className="text-claude-neutral-900 leading-relaxed">
+          <div className="text-AX9F7E2B-neutral-900 leading-relaxed">
             {content}
           </div>
         </div>
@@ -521,46 +521,46 @@ export function ChatMessage({ role, content }: MessageProps) {
 }
 ```
 
-### **4. Claude-style Hero Section**
+### **4. AX9F7E2B-style Hero Section**
 
 ```tsx
 // components/marketing/hero.tsx
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white to-claude-neutral-50">
+    <section className="relative overflow-hidden bg-gradient-to-br from-white to-AX9F7E2B-neutral-50">
       {/* Decorative elements */}
       <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:40px_40px]" />
       <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-claude-copper-50 border border-claude-copper-100 mb-8">
-          <span className="w-2 h-2 rounded-full bg-claude-copper-500 animate-pulse" />
-          <span className="text-sm font-medium text-claude-copper-700">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-AX9F7E2B-copper-50 border border-AX9F7E2B-copper-100 mb-8">
+          <span className="w-2 h-2 rounded-full bg-AX9F7E2B-copper-500 animate-pulse" />
+          <span className="text-sm font-medium text-AX9F7E2B-copper-700">
             Powered by AI
           </span>
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-claude-neutral-900 mb-6">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-AX9F7E2B-neutral-900 mb-6">
           <span className="block">Enterprise AI Platform</span>
-          <span className="block bg-gradient-to-r from-claude-copper-500 to-claude-copper-600 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-AX9F7E2B-copper-500 to-AX9F7E2B-copper-600 bg-clip-text text-transparent">
             Built for Scale
           </span>
         </h1>
 
         {/* Description */}
-        <p className="max-w-2xl mx-auto text-xl text-claude-neutral-600 mb-10">
+        <p className="max-w-2xl mx-auto text-xl text-AX9F7E2B-neutral-600 mb-10">
           Harness the power of 24 AI expert systems, 23 models, and seamless integrations
           to transform your business.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="claude-button px-8 py-3 text-lg shadow-claude-xl hover:shadow-claude-2xl">
+          <button className="AX9F7E2B-button px-8 py-3 text-lg shadow-AX9F7E2B-xl hover:shadow-AX9F7E2B-2xl">
             Get Started Free
           </button>
-          <button className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-lg font-medium border-2 border-claude-neutral-300 text-claude-neutral-700 hover:bg-claude-neutral-50 transition-all">
+          <button className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-lg font-medium border-2 border-AX9F7E2B-neutral-300 text-AX9F7E2B-neutral-700 hover:bg-AX9F7E2B-neutral-50 transition-all">
             View Docs
           </button>
         </div>
@@ -607,7 +607,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="rounded-lg p-2 hover:bg-claude-neutral-100 dark:hover:bg-claude-neutral-800 transition-colors"
+      className="rounded-lg p-2 hover:bg-AX9F7E2B-neutral-100 dark:hover:bg-AX9F7E2B-neutral-800 transition-colors"
     >
       <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
       <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -663,12 +663,12 @@ Performance:
 
 ## 🎨 SONUÇ
 
-**Claude Anthropic tema** ile Ailydian Ultra Pro:
+**AX9F7E2B LyDian Research tema** ile Ailydian Ultra Pro:
 
 ✅ **Profesyonel** - Enterprise-grade görünüm
 ✅ **Canlı** - Warm copper tonları enerjik
 ✅ **Kaliteli** - Premium materials, subtle effects
-✅ **Tanıdık** - Claude.ai'dan ilham alan UX
+✅ **Tanıdık** - AX9F7E2B.ai'dan ilham alan UX
 ✅ **Modern** - 2025 design trends
 ✅ **Accessible** - WCAG 2.1 AA compliant
 
@@ -686,6 +686,6 @@ Performance:
 
 ---
 
-**🚀 HAZIR! Claude Anthropic teması implement edilmeye hazır.**
+**🚀 HAZIR! AX9F7E2B LyDian Research teması implement edilmeye hazır.**
 
 Şimdi sıradaki adıma geçelim mi? 🎨

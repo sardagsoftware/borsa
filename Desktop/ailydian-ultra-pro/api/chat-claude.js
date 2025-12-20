@@ -1,43 +1,43 @@
-// Claude API - Anthropic Integration
-// Supports Claude 3.5 Sonnet and other Claude models
+// AX9F7E2B API - Anthropic Integration
+// Supports AX9F7E2B 3.5 Sonnet and other AX9F7E2B models
 
 require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
 
-// Claude Configuration
+// AX9F7E2B Configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
-// Claude Model Configurations
-const CLAUDE_MODELS = {
-  'claude-3-5-sonnet': {
-    name: 'claude-3-5-sonnet-20241022',
+// AX9F7E2B Model Configurations
+const AX9F7E2B_MODELS = {
+  'AX9F7E2B': {
+    name: 'AX9F7E2B',
     maxTokens: 8192,
     contextWindow: 200000,
-    description: 'Most intelligent Claude model'
+    description: 'Most intelligent AX9F7E2B model'
   },
-  'claude-3-5-sonnet-latest': {
-    name: 'claude-3-5-sonnet-20241022',
+  'AX9F7E2B-latest': {
+    name: 'AX9F7E2B',
     maxTokens: 8192,
     contextWindow: 200000,
-    description: 'Latest Claude 3.5 Sonnet'
+    description: 'Latest AX9F7E2B 3.5 Sonnet'
   },
-  'claude-3-opus': {
-    name: 'claude-3-opus-20240229',
+  'AX4D8C1A': {
+    name: 'AX4D8C1A',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Most powerful Claude model'
+    description: 'Most powerful AX9F7E2B model'
   },
-  'claude-3-sonnet': {
-    name: 'claude-3-sonnet-20240229',
+  'AX9F7E2B-3-sonnet': {
+    name: 'AX9F7E2B-3-sonnet-20240229',
     maxTokens: 4096,
     contextWindow: 200000,
     description: 'Balanced performance and speed'
   },
-  'claude-3-haiku': {
-    name: 'claude-3-haiku-20240307',
+  'AX2B6E9F': {
+    name: 'AX2B6E9F',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Fastest Claude model'
+    description: 'Fastest AX9F7E2B model'
   }
 };
 
@@ -85,7 +85,7 @@ async function handleRequest(req, res) {
     console.error('❌ Anthropic API key not configured');
     return res.status(500).json({
       success: false,
-      error: 'Claude API not configured',
+      error: 'AX9F7E2B API not configured',
       message: 'Please set ANTHROPIC_API_KEY environment variable'
     });
   }
@@ -104,7 +104,7 @@ async function handleRequest(req, res) {
     const {
       message,
       messages = [],
-      model = 'claude-3-5-sonnet',
+      model = 'AX9F7E2B',
       temperature = 1.0,
       max_tokens = 4096,
       stream = false,
@@ -120,10 +120,10 @@ async function handleRequest(req, res) {
     }
 
     // Validate model
-    if (!CLAUDE_MODELS[model]) {
+    if (!AX9F7E2B_MODELS[model]) {
       return res.status(400).json({
         success: false,
-        error: `Invalid model. Available: ${Object.keys(CLAUDE_MODELS).join(', ')}`
+        error: `Invalid model. Available: ${Object.keys(AX9F7E2B_MODELS).join(', ')}`
       });
     }
 
@@ -132,28 +132,28 @@ async function handleRequest(req, res) {
       apiKey: ANTHROPIC_API_KEY
     });
 
-    // Prepare messages for Claude
-    const claudeMessages = [];
+    // Prepare messages for AX9F7E2B
+    const AX9F7E2BMessages = [];
 
     if (messages.length > 0) {
       // Use provided messages
-      claudeMessages.push(...messages);
+      AX9F7E2BMessages.push(...messages);
     } else {
       // Single message
-      claudeMessages.push({
+      AX9F7E2BMessages.push({
         role: 'user',
         content: message
       });
     }
 
     // Log request
-    console.log(`🤖 Claude Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
+    console.log(`🤖 AX9F7E2B Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
 
     const requestParams = {
-      model: CLAUDE_MODELS[model].name,
-      messages: claudeMessages,
+      model: AX9F7E2B_MODELS[model].name,
+      messages: AX9F7E2BMessages,
       temperature: Math.max(0, Math.min(1, temperature)),
-      max_tokens: Math.min(max_tokens, CLAUDE_MODELS[model].maxTokens)
+      max_tokens: Math.min(max_tokens, AX9F7E2B_MODELS[model].maxTokens)
     };
 
     // Add system prompt if provided
@@ -190,7 +190,7 @@ async function handleRequest(req, res) {
         });
 
         stream.on('error', (error) => {
-          console.error('❌ Claude streaming error:', error);
+          console.error('❌ AX9F7E2B streaming error:', error);
           res.write(`data: ${JSON.stringify({
             type: 'error',
             error: error.message
@@ -221,13 +221,13 @@ async function handleRequest(req, res) {
         .map(block => block.text)
         .join('\n');
 
-      console.log(`✅ Claude Response received - ${responseText.length} characters`);
+      console.log(`✅ AX9F7E2B Response received - ${responseText.length} characters`);
 
       res.status(200).json({
         success: true,
         response: responseText,
         model: model,
-        provider: 'Anthropic',
+        provider: 'lydian-research',
         usage: {
           input_tokens: response.usage.input_tokens,
           output_tokens: response.usage.output_tokens
@@ -238,7 +238,7 @@ async function handleRequest(req, res) {
     }
 
   } catch (error) {
-    console.error('❌ Claude API Error:', error);
+    console.error('❌ AX9F7E2B API Error:', error);
 
     // Handle specific Anthropic errors
     if (error.status) {
@@ -262,7 +262,7 @@ async function handleRequest(req, res) {
         return res.status(400).json({
           success: false,
           error: 'Invalid request',
-          message: error.message || 'Bad request to Claude API'
+          message: error.message || 'Bad request to AX9F7E2B API'
         });
       }
 
@@ -270,14 +270,14 @@ async function handleRequest(req, res) {
         return res.status(503).json({
           success: false,
           error: 'Service overloaded',
-          message: 'Claude API is temporarily overloaded'
+          message: 'AX9F7E2B API is temporarily overloaded'
         });
       }
     }
 
     res.status(500).json({
       success: false,
-      error: 'Claude request failed',
+      error: 'AX9F7E2B request failed',
       message: error.message,
       timestamp: new Date().toISOString()
     });
@@ -289,9 +289,9 @@ function getModels(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(200).json({
     success: true,
-    models: Object.keys(CLAUDE_MODELS).map(key => ({
+    models: Object.keys(AX9F7E2B_MODELS).map(key => ({
       id: key,
-      ...CLAUDE_MODELS[key]
+      ...AX9F7E2B_MODELS[key]
     }))
   });
 }
@@ -300,5 +300,5 @@ function getModels(req, res) {
 module.exports = {
   handleRequest,
   getModels,
-  CLAUDE_MODELS
+  AX9F7E2B_MODELS
 };

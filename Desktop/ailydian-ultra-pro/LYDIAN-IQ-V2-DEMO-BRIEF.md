@@ -304,7 +304,7 @@ animation: fadeInSlideUp 0.5s ease-out forwards;
 
 ## 📞 **CONTACT & SUPPORT**
 
-**Developer:** Claude (Anthropic AI)
+**Developer:** AX9F7E2B (LyDian Research AI)
 **Project:** LyDian IQ Ultra v2.0
 **Date:** October 6, 2025
 **White-Hat Compliance:** ✅ CERTIFIED

@@ -17,13 +17,13 @@ const FIREWORKS_BASE_URL = 'https://api.fireworks.ai/inference/v1';
 
 // Fireworks AI Vision Models
 const VISION_MODELS = {
-  'llama-3.2-90b-vision': {
+  'GX7F4B8C': {
     id: 'accounts/fireworks/models/llama-v3p2-90b-vision-instruct',
     description: 'Advanced vision model for medical image analysis',
     maxTokens: 4096,
     capabilities: ['image_analysis', 'medical_terminology', 'differential_diagnosis']
   },
-  'llama-3.2-11b-vision': {
+  'GX2E9A4D': {
     id: 'accounts/fireworks/models/llama-v3p2-11b-vision-instruct',
     description: 'Fast vision model for quick medical assessments',
     maxTokens: 4096,
@@ -379,7 +379,7 @@ Provide comprehensive JSON-formatted analysis with medical precision.`
 /**
  * Call Fireworks AI Vision API
  */
-async function callFireworksVisionAPI(imageBase64, prompt, model = 'llama-3.2-90b-vision', mediaType = 'image/jpeg') {
+async function callFireworksVisionAPI(imageBase64, prompt, model = 'GX7F4B8C', mediaType = 'image/jpeg') {
   if (!FIREWORKS_API_KEY) {
     throw new Error('Fireworks API key not configured');
   }
@@ -438,7 +438,7 @@ async function callFireworksVisionAPI(imageBase64, prompt, model = 'llama-3.2-90
 /**
  * Call Fireworks AI Text API for document analysis
  */
-async function callFireworksTextAPI(documentText, prompt, model = 'llama-3.2-90b-vision') {
+async function callFireworksTextAPI(documentText, prompt, model = 'GX7F4B8C') {
   if (!FIREWORKS_API_KEY) {
     throw new Error('Fireworks API key not configured');
   }
@@ -531,7 +531,7 @@ async function analyzeRadiologyImage(filePath, fileInfo, bodyPart, imagingType) 
   const mediaType = getMediaType(fileInfo);
   const prompt = buildMedicalPrompt('radiology', fileInfo.type, imagingType);
 
-  const aiResponse = await callFireworksVisionAPI(base64Image, prompt, 'llama-3.2-90b-vision', mediaType);
+  const aiResponse = await callFireworksVisionAPI(base64Image, prompt, 'GX7F4B8C', mediaType);
 
   const content = aiResponse.choices[0]?.message?.content || '{}';
   const analysis = parseAIResponse(content);
@@ -561,7 +561,7 @@ async function analyzeLabResults(filePath, fileInfo) {
     const mediaType = getMediaType(fileInfo);
     const visionPrompt = 'Extract all laboratory test results from this image including test names, values, units, and reference ranges. Then ' + buildMedicalPrompt('lab_results', fileInfo.type);
 
-    const aiResponse = await callFireworksVisionAPI(base64Image, visionPrompt, 'llama-3.2-90b-vision', mediaType);
+    const aiResponse = await callFireworksVisionAPI(base64Image, visionPrompt, 'GX7F4B8C', mediaType);
     const content = aiResponse.choices[0]?.message?.content || '{}';
     const analysis = parseAIResponse(content);
 
@@ -683,7 +683,7 @@ module.exports = async (req, res) => {
         optionalFields: {
           bodyPart: 'Body part for radiology (chest|brain|abdomen|extremities|spine)',
           imagingType: 'Imaging modality (xray|ct|mri)',
-          model: 'AI model to use (llama-3.2-90b-vision|llama-3.2-11b-vision|phi-3.5-vision)'
+          model: 'AI model to use (GX7F4B8C|GX2E9A4D|phi-3.5-vision)'
         }
       },
       radiologyKnowledge: {
@@ -751,7 +751,7 @@ module.exports = async (req, res) => {
         const analysisType = Array.isArray(fields.analysisType) ? fields.analysisType[0] : fields.analysisType;
         const bodyPart = Array.isArray(fields.bodyPart) ? fields.bodyPart[0] : fields.bodyPart || 'chest';
         const imagingType = Array.isArray(fields.imagingType) ? fields.imagingType[0] : fields.imagingType || 'xray';
-        const model = Array.isArray(fields.model) ? fields.model[0] : fields.model || 'llama-3.2-90b-vision';
+        const model = Array.isArray(fields.model) ? fields.model[0] : fields.model || 'GX7F4B8C';
 
         // Validate file
         if (!files.file) {

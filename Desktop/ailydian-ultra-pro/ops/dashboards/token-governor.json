@@ -276,13 +276,13 @@
         "label": "AI Model",
         "type": "multi-select",
         "options": [
-          "claude-sonnet-4-5",
-          "gpt-4-turbo",
-          "gpt-4o",
-          "gemini-pro",
+          "AX9F7E2B-sonnet-4-5",
+          "OX7A3F8D",
+          "OX7A3F8D",
+          "GE6D8A4F",
           "deepseek-r1"
         ],
-        "default": ["claude-sonnet-4-5"]
+        "default": ["AX9F7E2B-sonnet-4-5"]
       },
       {
         "name": "priority",

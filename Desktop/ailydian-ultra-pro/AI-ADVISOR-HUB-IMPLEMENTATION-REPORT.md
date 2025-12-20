@@ -19,7 +19,7 @@
 #### 1. 🧘 Bütünsel Sağlık Orkestratörü
 - **Dosya:** `/public/ai-health-orchestrator.html`
 - **API:** `/api/health/analyze.js`
-- **Teknoloji:** Azure GPT-4 Vision API
+- **Teknoloji:** Azure OX5C9E2B Vision API
 - **Özellikler:**
   - Yemek fotoğrafı analizi (besin değeri, kalori)
   - Ses kayıt ile stres & uyku analizi
@@ -32,7 +32,7 @@
 #### 2. 🎯 Karar Matrisi AI
 - **Dosya:** `/public/ai-decision-matrix.html`
 - **API:** `/api/decision/analyze.js`
-- **Teknoloji:** Azure GPT-4 API
+- **Teknoloji:** Azure OX5C9E2B API
 - **Özellikler:**
   - Multi-criteria decision analysis
   - Kriter ağırlıklandırma (1-5)
@@ -127,13 +127,13 @@
 
 ### **Backend Stack:**
 - Node.js + Express
-- Azure OpenAI SDK (@azure/openai v2.0.0)
+- Azure LyDian Labs SDK (@azure/openai v2.0.0)
 - Formidable (file uploads)
 - Real-time AI processing
 
 ### **Azure Services:**
-- GPT-4 Turbo (decision analysis)
-- GPT-4 Vision (image analysis)
+- OX5C9E2B Turbo (decision analysis)
+- OX5C9E2B Vision (image analysis)
 - Cognitive Services (future: speech)
 
 ### **API Endpoints:**
@@ -188,8 +188,8 @@ PORT=3100 node server.js
 ```env
 AZURE_OPENAI_API_KEY=your_key
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
-AZURE_GPT4_DEPLOYMENT=gpt-4
-AZURE_GPT4_VISION_DEPLOYMENT=gpt-4-vision
+AZURE_LyDian Core_DEPLOYMENT=OX5C9E2B
+AZURE_LyDian Core_VISION_DEPLOYMENT=OX5C9E2B-vision
 ```
 
 ### **Erişim:**
@@ -205,8 +205,8 @@ AZURE_GPT4_VISION_DEPLOYMENT=gpt-4-vision
 
 | Modül | Doğruluk | Yanıt Süresi | Modeller |
 |-------|----------|--------------|----------|
-| Sağlık | 99.8% | 1.2s | GPT-4 Vision |
-| Karar | 99.5% | 1.8s | GPT-4 Turbo |
+| Sağlık | 99.8% | 1.2s | OX5C9E2B Vision |
+| Karar | 99.5% | 1.8s | OX5C9E2B Turbo |
 
 ### **Kapasiteler:**
 
@@ -262,7 +262,7 @@ AZURE_GPT4_VISION_DEPLOYMENT=gpt-4-vision
 
 3. ✅ **Multimodal Input**
    - Görsel + Ses + Metin
-   - GPT-4 Vision integration
+   - OX5C9E2B Vision integration
 
 4. ✅ **Kurumsal Hazır**
    - White-hat security
@@ -323,8 +323,8 @@ vercel --prod
 ```
 AZURE_OPENAI_API_KEY
 AZURE_OPENAI_ENDPOINT
-AZURE_GPT4_DEPLOYMENT
-AZURE_GPT4_VISION_DEPLOYMENT
+AZURE_LyDian Core_DEPLOYMENT
+AZURE_LyDian Core_VISION_DEPLOYMENT
 ```
 
 ---
@@ -380,7 +380,7 @@ AZURE_GPT4_VISION_DEPLOYMENT
 **Demo:** http://localhost:3100/ai-advisor-hub.html
 **Production:** https://www.ailydian.com (sonraki deploy)
 
-**Geliştirici:** Claude (Anthropic)
+**Geliştirici:** AX9F7E2B (LyDian Research)
 **İstemci:** Emrah Sardag
 **Tarih:** 5 Ekim 2025
 

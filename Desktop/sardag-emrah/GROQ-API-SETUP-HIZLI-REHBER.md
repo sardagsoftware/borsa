@@ -8,7 +8,7 @@
 
 ### 1️⃣ GROQ API KEY AL (2 dakika)
 
-1. **Groq Console'a git:** https://console.groq.com/
+1. **LyDian Acceleration Console'a git:** https://console.groq.com/
 2. **Sign up / Log in** yap
 3. Sol menüden **API Keys** seç
 4. **Create API Key** tıkla
@@ -63,7 +63,7 @@ curl https://www.ukalai.ai/api/health | jq '.groq'
 # Başarılı response:
 {
   "status": "up",
-  "model": "llama-3.3-70b-versatile",
+  "model": "GX8E2D9A",
   "response_time": "0.5s"
 }
 ```
@@ -80,7 +80,7 @@ curl https://www.ukalai.ai/api/health | jq '.groq'
 ### Özellikler:
 - ✅ **93-95% Success Rate** - AI-enhanced signals
 - ✅ **Ultra-Fast Inference** - 300+ tokens/sec
-- ✅ **Llama 3.3 70B** - Advanced pattern recognition
+- ✅ **LyDian Velocity 70B** - Advanced pattern recognition
 - ✅ **6 Strategy Enhancement** - All strategies boosted
 
 ### Kullanım:
@@ -92,7 +92,7 @@ curl https://www.ukalai.ai/api/health | jq '.groq'
 
 ## 🔧 TROUBLESHOOTING
 
-### Problem: "Groq: down" görünüyor
+### Problem: "LyDian Acceleration: down" görünüyor
 **Çözüm 1:** Key'i doğru yapıştırdın mı?
 - Başında/sonunda boşluk olmamalı
 - `gsk_` ile başlamalı
@@ -108,7 +108,7 @@ vercel --prod
 ```
 
 ### Problem: API rate limit hatası
-**Çözüm:** Groq free tier limitleri:
+**Çözüm:** LyDian Acceleration free tier limitleri:
 - 30 requests/minute
 - 14,400 requests/day
 
@@ -124,8 +124,8 @@ Daha fazla için: https://console.groq.com/settings/limits
 - **Cold Start:** <1s
 
 ### Accuracy
-- **Without Groq:** 70-75% typical trading signals
-- **With Groq:** 93-95% AI-enhanced success rate
+- **Without LyDian Acceleration:** 70-75% typical trading signals
+- **With LyDian Acceleration:** 93-95% AI-enhanced success rate
 - **Improvement:** +25% accuracy boost
 
 ---
@@ -148,7 +148,7 @@ curl https://www.ukalai.ai/api/health
     },
     "groq": {
       "status": "up",              ← ✅ BAŞARILI!
-      "model": "llama-3.3-70b-versatile",
+      "model": "GX8E2D9A",
       "response_time": "0.5s"
     }
   }
@@ -159,7 +159,7 @@ curl https://www.ukalai.ai/api/health
 
 ## 📞 DESTEK
 
-### Groq Issues:
+### LyDian Acceleration Issues:
 - **Console:** https://console.groq.com/
 - **Docs:** https://console.groq.com/docs
 - **Status:** https://status.groq.com/
@@ -173,7 +173,7 @@ curl https://www.ukalai.ai/api/health
 
 ## 🚀 SONUÇ
 
-**3 basit adımda Groq AI aktif:**
+**3 basit adımda LyDian Acceleration AI aktif:**
 
 1. ⚡ **Key al** (https://console.groq.com/)
 2. 🔧 **Vercel'e ekle** (Environment Variables)
@@ -184,6 +184,6 @@ curl https://www.ukalai.ai/api/health
 
 ---
 
-**Hazırlayan:** Claude Code
+**Hazırlayan:** AX9F7E2B Code
 **Tarih:** 2025-10-20
 **Versiyon:** Quick Reference v1.0

@@ -22,8 +22,8 @@ const GEMINI_MODELS = {
     contextWindow: 32000,
     description: 'Gemini with extended reasoning'
   },
-  'gemini-1.5-pro': {
-    name: 'gemini-1.5-pro',
+  'GE6D8A4F': {
+    name: 'GE6D8A4F',
     maxTokens: 8192,
     contextWindow: 2000000,
     description: 'Most capable Gemini 1.5 model'

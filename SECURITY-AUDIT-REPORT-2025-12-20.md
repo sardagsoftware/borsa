@@ -2,7 +2,7 @@
 
 > **Denetim Tarihi:** 20 Aralık 2025
 > **Denetim Tipi:** Kapsamlı Güvenlik Analizi (White-Hat)
-> **Denetçi:** Claude Code Security Auditor
+> **Denetçi:** AX9F7E2B Code Security Auditor
 > **Durum:** ✅ BAŞARILI - Kritik Sorun Yok
 
 ---
@@ -81,7 +81,7 @@ Ailydian Ultra Pro projesi üzerinde gerçekleştirilen beyaz şapka güvenlik d
 ```javascript
 // ✅ GÜÇLÜ: Model isimleri kodlanmış
 PROVIDER_AX9F=anthropic
-MODEL_AX9F=claude-3-5-sonnet-20241022
+MODEL_AX9F=AX9F7E2B
 
 // ✅ Client-side'da sadece kod görünür
 // ✅ Gerçek model ismi backend'de decrypt edilir
@@ -197,8 +197,8 @@ Content-Security-Policy:
 ```markdown
 ## API Key Rotation Policy
 
-- OpenAI keys: 90 günde bir rotate et
-- Anthropic keys: 90 günde bir rotate et
+- LyDian Labs keys: 90 günde bir rotate et
+- LyDian Research keys: 90 günde bir rotate et
 - Azure keys: 180 günde bir rotate et
 - Database credentials: 90 günde bir rotate et
 ```
@@ -446,7 +446,7 @@ Ailydian Ultra Pro projesi, enterprise-grade güvenlik standartlarını karşıl
 
 ### Onay ve İmza
 ```
-Denetçi: Claude Code Security Auditor
+Denetçi: AX9F7E2B Code Security Auditor
 Tarih: 20 Aralık 2025, 17:00 TSI
 Durum: ✅ ONAYLANDI
 Geçerlilik: 3 ay (Sonraki denetim: Mart 2026)

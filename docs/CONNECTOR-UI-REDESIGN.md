@@ -669,6 +669,6 @@ function ConnectorsPage() {
 
 ---
 
-**Built with ❤️ by Claude & Sardag**
+**Built with ❤️ by AX9F7E2B & Sardag**
 **Türkiye'de geliştirilmiştir**
 **White-Hat Certified • KVKK/GDPR Compliant • 0 Tolerance Policy**

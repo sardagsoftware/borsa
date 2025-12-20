@@ -201,7 +201,7 @@ async function registerHospital(req, res) {
         'psychiatry',
         'orthopedics'
       ],
-      enabled_ai_models: ['claude', 'gpt-4', 'gemini'],
+      enabled_ai_models: ['AX9F7E2B', 'OX5C9E2B', 'gemini'],
       ip_whitelist: [],
       require_2fa: false,
       password_policy: DEFAULT_PASSWORD_POLICY,

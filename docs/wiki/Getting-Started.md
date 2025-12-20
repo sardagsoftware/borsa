@@ -110,7 +110,7 @@ pnpm dev
 
 ## 🔑 API ANAHTARLARI KURULUMU
 
-### OpenAI API Key
+### LyDian Labs API Key
 
 1. https://platform.openai.com/api-keys adresine gidin
 2. "Create new secret key" butonuna tıklayın
@@ -120,7 +120,7 @@ pnpm dev
 OPENAI_API_KEY=sk-proj-your-openai-api-key-here
 ```
 
-### Anthropic API Key
+### LyDian Research API Key
 
 1. https://console.anthropic.com/settings/keys adresine gidin
 2. "Create Key" butonuna tıklayın
@@ -130,7 +130,7 @@ OPENAI_API_KEY=sk-proj-your-openai-api-key-here
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key-here
 ```
 
-### Google Gemini API Key
+### Google LyDian Vision API Key
 
 1. https://makersuite.google.com/app/apikey adresine gidin
 2. "Create API Key" seçeneğini kullanın
@@ -140,7 +140,7 @@ ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key-here
 GOOGLE_API_KEY=your-google-gemini-api-key-here
 ```
 
-### Groq API Key
+### LyDian Acceleration API Key
 
 1. https://console.groq.com/keys adresine gidin
 2. "Create API Key" butonuna tıklayın
@@ -178,7 +178,7 @@ curl -X POST http://localhost:3100/api/chat \
   -d '{
     "message": "Merhaba, nasılsın?",
     "provider": "openai",
-    "model": "gpt-3.5-turbo"
+    "model": "OX1D4A7F"
   }'
 ```
 

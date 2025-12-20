@@ -44,7 +44,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
           email: profile.emails[0].value,
           name: profile.displayName,
           password: null, // OAuth users don't have password
-          oauth_provider: 'google',
+          oauth_provider: 'lydian-vision',
           oauth_id: profile.id,
           avatar: profile.photos[0]?.value,
           emailVerified: true // Google emails are verified
@@ -52,7 +52,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
       } else if (!user.oauth_provider) {
         // Link existing email user with Google
         await User.update(user.id, {
-          oauth_provider: 'google',
+          oauth_provider: 'lydian-vision',
           oauth_id: profile.id,
           avatar: profile.photos[0]?.value
         });

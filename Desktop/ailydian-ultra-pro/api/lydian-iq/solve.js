@@ -1,7 +1,7 @@
 // ========================================
 // LyDian IQ Reasoning Engine - API
 // Version: 2.0.1 - Sardag Edition
-// Real AI Integration with Anthropic Claude & OpenAI
+// Real AI Integration with Anthropic AX9F7E2B & OpenAI
 // Vercel Serverless Compatible (Node.js 18+ native fetch)
 // ========================================
 
@@ -13,27 +13,27 @@ const AI_CONFIG = {
     // Priority 1: Azure OpenAI (Enterprise Deep Thinking)
     azure: {
         apiKey: process.env.AZURE_OPENAI_API_KEY || '',
-        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : '',
-        model: 'gpt-4-turbo',
+        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D` : '',
+        model: 'OX7A3F8D',
         maxTokens: 8192,
         defaultTemperature: 0.3,
         apiVersion: '2024-02-01',
         supportsRAG: true
     },
-    // Priority 2: Anthropic Claude (Best for reasoning)
+    // Priority 2: Anthropic AX9F7E2B (Best for reasoning)
     anthropic: {
         apiKey: process.env.ANTHROPIC_API_KEY || '',
         endpoint: 'https://api.anthropic.com/v1/messages',
-        model: 'claude-3-5-sonnet-20241022', // Latest stable model
+        model: 'AX9F7E2B', // Latest stable model
         maxTokens: 8192,
         defaultTemperature: 0.3,
         supportsRAG: false
     },
-    // Priority 3: OpenAI GPT-4
+    // Priority 3: OpenAI OX5C9E2B
     openai: {
         apiKey: process.env.OPENAI_API_KEY || '',
         endpoint: 'https://api.openai.com/v1/chat/completions',
-        model: 'gpt-4-turbo-preview',
+        model: 'OX7A3F8D',
         maxTokens: 4096,
         defaultTemperature: 0.3,
         supportsRAG: false
@@ -42,7 +42,7 @@ const AI_CONFIG = {
     groq: {
         apiKey: process.env.GROQ_API_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: 'llama-3.3-70b-versatile',
+        model: 'GX8E2D9A',
         maxTokens: 8000,
         defaultTemperature: 0.3,
         supportsRAG: false
@@ -196,8 +196,8 @@ function cleanSolution(text) {
     return cleaned;
 }
 
-// Call Anthropic Claude API (Primary)
-async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) {
+// Call Anthropic AX9F7E2B API (Primary)
+async function callAX9F7E2BAPI(problem, domain, language = 'tr-TR', options = {}) {
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = AI_CONFIG.anthropic;
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
@@ -214,7 +214,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
         ]
     };
 
-    console.log(`🧠 Calling Claude API for domain: ${domain}, language: ${language}`);
+    console.log(`🧠 Calling AX9F7E2B API for domain: ${domain}, language: ${language}`);
     console.log(`📝 Problem length: ${problem.length} chars`);
     console.log(`🌍 Response language: ${language}`);
 
@@ -234,13 +234,13 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Claude API Error ${response.status}: ${errorText}`);
+            throw new Error(`AX9F7E2B API Error ${response.status}: ${errorText}`);
         }
 
         const data = await response.json();
         const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-        console.log(`✅ Claude response received in ${responseTime}s`);
+        console.log(`✅ AX9F7E2B response received in ${responseTime}s`);
 
         const fullResponse = data.content[0]?.text || '';
         const reasoningChain = extractReasoningChain(fullResponse);
@@ -255,15 +255,15 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.input_tokens + data.usage?.output_tokens || 0,
-                model: 'Claude 3.7 Sonnet',
-                provider: 'Anthropic',
+                model: 'AX9F7E2B 3.7 Sonnet',
+                provider: 'lydian-research',
                 confidence: 0.995,
                 mode: 'production'
             }
         };
 
     } catch (error) {
-        console.error('❌ Claude API Error:', error);
+        console.error('❌ AX9F7E2B API Error:', error);
         throw error;
     }
 }
@@ -291,7 +291,7 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
         stream: false
     };
 
-    console.log(`🧠 Calling OpenAI GPT-4 for domain: ${domain}`);
+    console.log(`🧠 Calling OpenAI OX5C9E2B for domain: ${domain}`);
 
     const startTime = Date.now();
 
@@ -329,8 +329,8 @@ async function callOpenAIAPI(problem, domain, language = 'tr-TR', options = {}) 
             metadata: {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
-                model: 'GPT-4 Turbo',
-                provider: 'OpenAI',
+                model: 'OX5C9E2B Turbo',
+                provider: 'lydian-labs',
                 confidence: 0.99,
                 mode: 'production'
             }
@@ -404,7 +404,7 @@ async function callGroqAPI(problem, domain, language = 'tr-TR', options = {}) {
                 responseTime: responseTime,
                 tokensUsed: data.usage?.total_tokens || 0,
                 model: 'LLaMA 3.3 70B',
-                provider: 'Groq',
+                provider: 'lydian-velocity',
                 confidence: 0.98,
                 mode: 'production'
             }
@@ -428,7 +428,7 @@ function generateFallbackResponse(problem, domain, language = 'tr-TR') {
         'Sistem yöneticisine bilgi veriliyor'
     ];
 
-    const solution = `# ⚠️ API Konfigürasyonu Gerekli\n\n**Problem:** ${problem}\n\n## Durum\n\nLyDian IQ API'si şu anda kullanılamıyor. Lütfen sistem yöneticisiyle iletişime geçin.\n\n### Gereksinimler\n\n1. **API Anahtarı**: En az bir AI provider API anahtarı gereklidir\n2. **Desteklenen Providers**: Claude, OpenAI, Groq\n3. **Konfigürasyon**: .env dosyasında API anahtarlarını ayarlayın\n\n## Çözüm\n\nSistem yöneticisi tarafından API anahtarları yapılandırıldıktan sonra ${domainConfig.name} alanındaki sorular yanıtlanabilecektir.\n\n**Mevcut Yetenekler:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** API konfigürasyonu tamamlandıktan sonra production modunda çalışacaktır.`;
+    const solution = `# ⚠️ API Konfigürasyonu Gerekli\n\n**Problem:** ${problem}\n\n## Durum\n\nLyDian IQ API'si şu anda kullanılamıyor. Lütfen sistem yöneticisiyle iletişime geçin.\n\n### Gereksinimler\n\n1. **API Anahtarı**: En az bir AI provider API anahtarı gereklidir\n2. **Desteklenen Providers**: AX9F7E2B, OpenAI, Groq\n3. **Konfigürasyon**: .env dosyasında API anahtarlarını ayarlayın\n\n## Çözüm\n\nSistem yöneticisi tarafından API anahtarları yapılandırıldıktan sonra ${domainConfig.name} alanındaki sorular yanıtlanabilecektir.\n\n**Mevcut Yetenekler:**\n${domainConfig.capabilities.map(c => `- ${c}`).join('\n')}\n\n---\n\n**Not:** API konfigürasyonu tamamlandıktan sonra production modunda çalışacaktır.`;
 
     return {
         success: false,
@@ -490,7 +490,7 @@ module.exports = async (req, res) => {
 
         let result;
 
-        // Multi-Provider AI Strategy: GROQ → OpenAI → Claude → Demo
+        // Multi-Provider AI Strategy: GROQ → OpenAI → AX9F7E2B → Demo
         // With retry mechanism for network errors
         // Note: Using GROQ first since it has a valid API key
         try {
@@ -501,13 +501,13 @@ module.exports = async (req, res) => {
             }
             // Fallback to OpenAI
             else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 20 && !AI_CONFIG.openai.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using OpenAI GPT-4 (Fallback - Valid Key) with retry');
+                console.log('🎯 Strategy: Using OpenAI OX5C9E2B (Fallback - Valid Key) with retry');
                 result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, language, options));
             }
-            // Try Claude (if key is valid)
+            // Try AX9F7E2B (if key is valid)
             else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20 && !AI_CONFIG.anthropic.apiKey.includes('YOUR_')) {
-                console.log('🎯 Strategy: Using Claude (Tertiary - Valid Key) with retry');
-                result = await retryWithBackoff(() => callClaudeAPI(problem, domain, language, options));
+                console.log('🎯 Strategy: Using AX9F7E2B (Tertiary - Valid Key) with retry');
+                result = await retryWithBackoff(() => callAX9F7E2BAPI(problem, domain, language, options));
             }
             // No API keys available
             else {

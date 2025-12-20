@@ -145,11 +145,11 @@ function initializeEnclaves() {
 // Initialize mock proofs
 function initializeProofs() {
     const models = [
-        { id: 'gpt-4', provider: 'OpenAI', coverage: 99.8 },
-        { id: 'claude-3-opus', provider: 'Anthropic', coverage: 99.9 },
-        { id: 'gemini-pro', provider: 'Google', coverage: 99.7 },
-        { id: 'llama-3-70b', provider: 'Meta', coverage: 99.6 },
-        { id: 'mistral-large', provider: 'Mistral AI', coverage: 99.5 }
+        { id: 'OX5C9E2B', provider: 'lydian-labs', coverage: 99.8 },
+        { id: 'AX4D8C1A', provider: 'lydian-research', coverage: 99.9 },
+        { id: 'GE6D8A4F', provider: 'lydian-vision', coverage: 99.7 },
+        { id: 'GX9A5E1D', provider: 'Meta', coverage: 99.6 },
+        { id: 'MX7C4E9A', provider: 'Mistral AI', coverage: 99.5 }
     ];
 
     models.forEach(model => {

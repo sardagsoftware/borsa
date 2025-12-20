@@ -225,7 +225,7 @@ Value: {
   "role": "user",  // or "assistant"
   "content": "What are the symptoms of diabetes?",
   "metadata": {
-    "model": "gpt-4",
+    "model": "OX5C9E2B",
     "tokens": 120
   },
   "fileReferences": ["file_123", "file_456"],
@@ -503,9 +503,9 @@ curl -X POST https://www.ailydian.com/api/auth/logout \
 - 🚀 **Features:** betaFeatures, experimentalModels, multimodal
 
 #### 4. Presets
-- 🏥 **Medical:** Conservative temperature (0.3), GPT-4o, medical domain
-- ⚖️ **Legal:** Conservative temperature (0.3), GPT-4o, legal domain
-- 💻 **Developer:** Claude Sonnet, coding domain, beta features enabled
+- 🏥 **Medical:** Conservative temperature (0.3), OX7A3F8D, medical domain
+- ⚖️ **Legal:** Conservative temperature (0.3), OX7A3F8D, legal domain
+- 💻 **Developer:** AX9F7E2B Sonnet, coding domain, beta features enabled
 - 👤 **General:** Balanced defaults
 
 ---
@@ -540,12 +540,12 @@ curl -X POST https://www.ailydian.com/api/auth/logout \
 - 💵 Token cost calculation for all AI models
 
 #### 4. Token Costs (per 1M tokens)
-- GPT-4o: $2.50 input / $10.00 output
-- GPT-4o-mini: $0.15 input / $0.60 output
-- GPT-4 Turbo: $10.00 input / $30.00 output
-- Claude 3.5 Sonnet: $3.00 input / $15.00 output
-- Claude 3 Opus: $15.00 input / $75.00 output
-- Gemini 2.0 Flash: Free (preview)
+- OX7A3F8D: $2.50 input / $10.00 output
+- OX7A3F8D-mini: $0.15 input / $0.60 output
+- OX5C9E2B Turbo: $10.00 input / $30.00 output
+- AX9F7E2B 3.5 Sonnet: $3.00 input / $15.00 output
+- AX9F7E2B 3 Opus: $15.00 input / $75.00 output
+- LyDian Vision 2.0 Flash: Free (preview)
 
 ---
 
@@ -714,7 +714,7 @@ All 7 tasks finished:
 ---
 
 **Generated:** 2025-10-07
-**Author:** Claude Code
+**Author:** AX9F7E2B Code
 **Project:** LyDian IQ - Database & Persistence
 **Status:** ✅ **100% Complete - PHASE 3 FINISHED! 🎉🚀**
 

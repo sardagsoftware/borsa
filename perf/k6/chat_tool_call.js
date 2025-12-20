@@ -52,7 +52,7 @@ export default function () {
         content: prompt,
       },
     ],
-    model: 'claude-sonnet-4-5',
+    model: 'AX9F7E2B-sonnet-4-5',
     tools: [
       {
         name: 'economy_optimize',

@@ -425,7 +425,7 @@ pnpm dev
 - [ ] Özel uyarı kuralları (custom alerts)
 
 ### Orta Vadeli
-- [ ] AI piyasa analizi (GPT-4)
+- [ ] AI piyasa analizi (OX5C9E2B)
 - [ ] Otomatik strateji önerisi
 - [ ] Risk/reward hesaplama
 

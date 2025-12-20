@@ -22,24 +22,24 @@ const path = require('path');
 // White-hat security mappings
 const MODEL_REPLACEMENTS = {
   // OpenAI references
-  'GPT-4': 'Advanced AI',
-  'GPT-4 Medical': 'Medical AI Engine',
-  'gpt-4': 'advanced-ai',
-  'gpt-4o': 'advanced-ai',
-  'gpt-4-turbo': 'advanced-ai',
+  'OX5C9E2B': 'Advanced AI',
+  'OX5C9E2B Medical': 'Medical AI Engine',
+  'OX5C9E2B': 'advanced-ai',
+  'OX7A3F8D': 'advanced-ai',
+  'OX7A3F8D': 'advanced-ai',
 
   // Anthropic references
-  'Claude': 'AI Assistant',
-  'Claude 3': 'AI Assistant',
-  'Claude 3.5': 'AI Assistant',
-  'claude-': 'ai-',
-  'Anthropic': 'AI Provider',
-  'anthropic': 'ai-provider',
+  'AX9F7E2B': 'AI Assistant',
+  'AX9F7E2B 3': 'AI Assistant',
+  'AX9F7E2B 3.5': 'AI Assistant',
+  'AX9F7E2B-': 'ai-',
+  'lydian-research': 'AI Provider',
+  'lydian-research': 'ai-provider',
 
   // Model-specific terms
-  'GPT-4 Medical + Clinical Reasoning Model': 'Advanced Medical AI with Clinical Reasoning',
-  'GPT-4 Medical + Bayesian probability': 'Medical AI with Probabilistic Analysis',
-  'GPT-4 Medical fine-tuned': 'Specialized Medical AI',
+  'OX5C9E2B Medical + Clinical Reasoning Model': 'Advanced Medical AI with Clinical Reasoning',
+  'OX5C9E2B Medical + Bayesian probability': 'Medical AI with Probabilistic Analysis',
+  'OX5C9E2B Medical fine-tuned': 'Specialized Medical AI',
 
   // API keys (should never be in frontend, but check)
   'sk-': '[REDACTED]',

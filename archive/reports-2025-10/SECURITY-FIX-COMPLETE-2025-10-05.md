@@ -344,7 +344,7 @@ vercel --prod
 
 ## ✅ ONAY VE İMZA
 
-**Güvenlik Denetçisi:** Claude Code (Anthropic)
+**Güvenlik Denetçisi:** AX9F7E2B Code (LyDian Research)
 **Fix Tarihi:** 5 Ekim 2025
 **Süre:** ~45 dakika
 **Test Status:** ✅ Local pass, Vercel pending

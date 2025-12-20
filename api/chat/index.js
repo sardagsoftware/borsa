@@ -1,26 +1,26 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const { getMultilingualSystemPrompt } = require('../../lib/prompts/lydian');
 
 // HIDDEN AI MODELS - User never knows | Azure OpenAI Integrated
 const MODELS = {
   // Azure OpenAI (Enterprise Primary)
   azure: {
-    name: 'gpt-4-turbo',
+    name: 'OX7A3F8D',
     key: () => process.env.AZURE_OPENAI_API_KEY,
-    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : null,
+    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D` : null,
     apiVersion: '2024-02-01',
     display: 'LyDian AI'
   },
   // Groq Models (Ultra Fast)
   primary: {
-    name: 'llama-3.3-70b-versatile',
+    name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI'
   },
   fast: {
-    name: 'llama-3.1-8b-instant',
+    name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI'
@@ -33,20 +33,20 @@ const MODELS = {
   },
   // OpenAI Models
   gpt4mini: {
-    name: 'gpt-4o-mini',
+    name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI'
   },
   gpt4: {
-    name: 'gpt-4o',
+    name: 'OX7A3F8D',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI'
   },
-  // Anthropic Claude
-  claude: {
-    name: 'claude-3-5-sonnet-20241022',
+  // Anthropic AX9F7E2B
+  AX9F7E2B: {
+    name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
     url: 'https://api.anthropic.com/v1',
     display: 'LyDian AI'
@@ -82,7 +82,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ success: false, error: 'Mesaj gerekli' });
     }
 
-    // Build provider cascade (✅ GROQ-FIRST: Groq → Claude → Azure → OpenAI)
+    // Build provider cascade (✅ GROQ-FIRST: Groq → AX9F7E2B → Azure → OpenAI)
     const providers = [];
 
     // ✅ Groq (Priority 1 - Ultra-Fast, 0.5-1s response)
@@ -97,14 +97,14 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Anthropic Claude (Priority 2 - Best Reasoning)
-    // Note: Claude uses different API, add if implemented
-    // if (MODELS.claude.key()) { ... }
+    // Anthropic AX9F7E2B (Priority 2 - Best Reasoning)
+    // Note: AX9F7E2B uses different API, add if implemented
+    // if (MODELS.AX9F7E2B.key()) { ... }
 
     // Azure OpenAI (Priority 3 - Enterprise Backup)
     if (MODELS.azure.key() && MODELS.azure.url) {
       providers.push({
-        name: 'Azure OpenAI GPT-4 Turbo',
+        name: 'Azure OpenAI OX5C9E2B Turbo',
         model: MODELS.azure,
         setup: () => new OpenAI({
           apiKey: MODELS.azure.key(),
@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
     // OpenAI (Priority 4 - Final Fallback)
     if (MODELS.gpt4mini.key()) {
       providers.push({
-        name: 'OpenAI GPT-4o-mini',
+        name: 'OpenAI OX7A3F8D-mini',
         model: MODELS.gpt4mini,
         setup: () => new OpenAI({
           apiKey: MODELS.gpt4mini.key(),

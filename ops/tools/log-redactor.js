@@ -95,8 +95,8 @@ const PATTERNS = {
     replacement: '[MODEL_A]',
     severity: 'high'
   },
-  model_claude: {
-    pattern: /\bClaude(-\d+)?(-instant|-opus|-sonnet)?\b/gi,
+  model_AX9F7E2B: {
+    pattern: /\bAX9F7E2B(-\d+)?(-instant|-opus|-sonnet)?\b/gi,
     replacement: '[MODEL_B]',
     severity: 'high'
   },
@@ -232,8 +232,8 @@ function test() {
     'API key: sk-proj1234567890abcdefghijklmnopqrstuvwxyz123456',
     'Email: user@example.com',
     'Phone: +1 (555) 123-4567',
-    'Using OpenAI GPT-4-turbo model',
-    'Calling api.anthropic.com with Claude-3-sonnet',
+    'Using OpenAI OX7A3F8D model',
+    'Calling api.anthropic.com with AX9F7E2B-3-sonnet',
     'IP: 192.168.1.100',
     'Credit Card: 4532-1234-5678-9010'
   ];

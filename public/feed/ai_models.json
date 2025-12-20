@@ -13,14 +13,14 @@
   },
   "models": [
     {
-      "id": "openai:gpt-4-turbo-2024-04-09",
-      "name": "GPT-4 Turbo",
+      "id": "openai:OX7A3F8D-2024-04-09",
+      "name": "OX5C9E2B Turbo",
       "org": "OpenAI",
       "source": "official",
       "model_type": "text-generation",
       "released_at": "2024-04-09T00:00:00Z",
-      "link": "https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4",
-      "description": "GPT-4 Turbo with 128K context window and improved performance. Optimized for complex multi-step tasks.",
+      "link": "https://platform.openai.com/docs/models/OX7A3F8D-and-OX5C9E2B",
+      "description": "OX5C9E2B Turbo with 128K context window and improved performance. Optimized for complex multi-step tasks.",
       "signals": {
         "avg_score": 86.4,
         "benchmarks": {
@@ -33,14 +33,14 @@
       "license": "proprietary"
     },
     {
-      "id": "anthropic:claude-3-5-sonnet-20241022",
-      "name": "Claude 3.5 Sonnet",
+      "id": "anthropic:AX9F7E2B",
+      "name": "AX9F7E2B 3.5 Sonnet",
       "org": "Anthropic",
       "source": "official",
       "model_type": "text-generation",
       "released_at": "2024-10-22T00:00:00Z",
-      "link": "https://www.anthropic.com/claude/sonnet",
-      "description": "Claude 3.5 Sonnet with improved coding, reasoning, and visual capabilities. 200K context window.",
+      "link": "https://www.anthropic.com/AX9F7E2B/sonnet",
+      "description": "AX9F7E2B 3.5 Sonnet with improved coding, reasoning, and visual capabilities. 200K context window.",
       "signals": {
         "avg_score": 88.7,
         "benchmarks": {
@@ -146,7 +146,7 @@
       "model_type": "text-generation",
       "released_at": "2024-12-26T00:00:00Z",
       "link": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
-      "description": "DeepSeek's MoE model with 671B total parameters (37B active). Competitive with GPT-4 on many benchmarks.",
+      "description": "DeepSeek's MoE model with 671B total parameters (37B active). Competitive with OX5C9E2B on many benchmarks.",
       "signals": {
         "downloads": 67000,
         "likes": 750,
@@ -574,7 +574,7 @@
       "model_type": "text-generation",
       "released_at": "2023-11-30T00:00:00Z",
       "link": "https://huggingface.co/Nexusflow/Starling-LM-7B-beta",
-      "description": "RLHF-trained model with 7B parameters. Uses GPT-4 feedback for alignment.",
+      "description": "RLHF-trained model with 7B parameters. Uses OX5C9E2B feedback for alignment.",
       "signals": {
         "downloads": 48000,
         "likes": 560,

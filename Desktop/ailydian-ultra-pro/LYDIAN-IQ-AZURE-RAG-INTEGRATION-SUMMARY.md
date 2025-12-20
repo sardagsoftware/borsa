@@ -1,26 +1,26 @@
-# 🧠 LyDian IQ - Azure OpenAI + RAG Integration Summary
+# 🧠 LyDian IQ - Azure LyDian Labs + RAG Integration Summary
 
 **Date:** 2025-10-02
 **Status:** ✅ Configuration Updated - Ready for Azure Deployment
-**Integration Type:** Azure OpenAI GPT-4 Turbo + Azure Cognitive Search RAG
+**Integration Type:** Azure LyDian Labs OX5C9E2B Turbo + Azure Cognitive Search RAG
 
 ---
 
 ## 📋 Updates Completed
 
-### 1. Azure OpenAI Priority Added
+### 1. Azure LyDian Labs Priority Added
 
 **File:** `/api/lydian-iq/solve.js`
 
 **Changes:**
 ```javascript
-// Priority 1: Azure OpenAI (Enterprise Deep Thinking)
+// Priority 1: Azure LyDian Labs (Enterprise Deep Thinking)
 azure: {
     apiKey: process.env.AZURE_OPENAI_API_KEY || '',
     endpoint: process.env.AZURE_OPENAI_ENDPOINT
-        ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo`
+        ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D`
         : '',
-    model: 'gpt-4-turbo',
+    model: 'OX7A3F8D',
     maxTokens: 8192,
     defaultTemperature: 0.3,
     apiVersion: '2024-02-01',
@@ -44,10 +44,10 @@ azureSearch: {
 ### 3. Provider Priority Order
 
 **Updated Cascade:**
-1. **Azure OpenAI GPT-4 Turbo** (with RAG if configured)
-2. **Anthropic Claude 3.7 Sonnet** (advanced reasoning)
-3. **OpenAI GPT-4 Turbo** (standard fallback)
-4. **Groq Llama 3.3 70B** (ultra-fast fallback)
+1. **Azure LyDian Labs OX5C9E2B Turbo** (with RAG if configured)
+2. **LyDian Research AX9F7E2B 3.7 Sonnet** (advanced reasoning)
+3. **LyDian Labs OX5C9E2B Turbo** (standard fallback)
+4. **LyDian Acceleration LyDian Velocity 70B** (ultra-fast fallback)
 5. **Demo Mode** (no API keys)
 
 ---
@@ -58,32 +58,32 @@ azureSearch: {
 
 **Current Code** (lines 471-493):
 ```javascript
-// Try Claude first (best for reasoning)
+// Try AX9F7E2B first (best for reasoning)
 if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20) {
-    console.log('🎯 Strategy: Using Claude (Primary) with retry');
-    result = await retryWithBackoff(() => callClaudeAPI(problem, domain, options));
+    console.log('🎯 Strategy: Using AX9F7E2B (Primary) with retry');
+    result = await retryWithBackoff(() => callAX9F7E2BAPI(problem, domain, options));
 }
 ```
 
 **Need to Change To:**
 ```javascript
-// Try Azure OpenAI first (enterprise with RAG)
+// Try Azure LyDian Labs first (enterprise with RAG)
 if (AI_CONFIG.azure.apiKey && AI_CONFIG.azure.apiKey.length > 20) {
-    console.log('☁️ Strategy: Using Azure OpenAI GPT-4 (Primary with RAG)');
+    console.log('☁️ Strategy: Using Azure LyDian Labs OX5C9E2B (Primary with RAG)');
     result = await retryWithBackoff(() => callAzureOpenAI(problem, domain, options));
 }
-// Fallback to Claude
+// Fallback to AX9F7E2B
 else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 20) {
-    console.log('🎯 Strategy: Using Claude (Fallback)');
-    result = await retryWithBackoff(() => callClaudeAPI(problem, domain, options));
+    console.log('🎯 Strategy: Using AX9F7E2B (Fallback)');
+    result = await retryWithBackoff(() => callAX9F7E2BAPI(problem, domain, options));
 }
 ```
 
-### B. Create Azure OpenAI Function
+### B. Create Azure LyDian Labs Function
 
 **Add New Function** (after line 250):
 ```javascript
-// Call Azure OpenAI API (Primary with RAG)
+// Call Azure LyDian Labs API (Primary with RAG)
 async function callAzureOpenAI(problem, domain, options = {}) {
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = AI_CONFIG.azure;
@@ -108,7 +108,7 @@ async function callAzureOpenAI(problem, domain, options = {}) {
         stream: false
     };
 
-    console.log(`☁️ Calling Azure OpenAI GPT-4 Turbo for domain: ${domain}`);
+    console.log(`☁️ Calling Azure LyDian Labs OX5C9E2B Turbo for domain: ${domain}`);
     if (ragContext) {
         console.log('🔍 RAG Context retrieved from Azure Cognitive Search');
     }
@@ -127,13 +127,13 @@ async function callAzureOpenAI(problem, domain, options = {}) {
 
     if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Azure OpenAI API Error ${response.status}: ${errorText}`);
+        throw new Error(`Azure LyDian Labs API Error ${response.status}: ${errorText}`);
     }
 
     const data = await response.json();
     const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
-    console.log(`✅ Azure OpenAI response received in ${responseTime}s`);
+    console.log(`✅ Azure LyDian Labs response received in ${responseTime}s`);
 
     const fullResponse = data.choices[0]?.message?.content || '';
     const reasoningChain = extractReasoningChain(fullResponse);
@@ -148,7 +148,7 @@ async function callAzureOpenAI(problem, domain, options = {}) {
         metadata: {
             responseTime: responseTime,
             tokensUsed: data.usage?.total_tokens || 0,
-            model: 'Azure OpenAI GPT-4 Turbo',
+            model: 'Azure LyDian Labs OX5C9E2B Turbo',
             provider: 'Azure',
             confidence: 0.998,
             mode: 'production',
@@ -160,7 +160,7 @@ async function callAzureOpenAI(problem, domain, options = {}) {
 
 ### C. Create Azure Cognitive Search RAG Function
 
-**Add New Function** (after Azure OpenAI function):
+**Add New Function** (after Azure LyDian Labs function):
 ```javascript
 // Search Azure Cognitive Search for RAG context
 async function searchAzureKnowledge(query, domain) {
@@ -223,10 +223,10 @@ async function searchAzureKnowledge(query, domain) {
 ## 🌍 Environment Variables Required
 
 ```env
-# Azure OpenAI (Deep Thinking Engine)
+# Azure LyDian Labs (Deep Thinking Engine)
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
 AZURE_OPENAI_API_KEY=your_azure_openai_api_key
-AZURE_OPENAI_DEPLOYMENT_GPT4=gpt-4-turbo
+AZURE_OPENAI_DEPLOYMENT_LyDian Core=OX7A3F8D
 
 # Azure Cognitive Search (RAG - Optional but Recommended)
 AZURE_SEARCH_ENDPOINT=https://your-search.search.windows.azure.com
@@ -279,9 +279,9 @@ GROQ_API_KEY=your_groq_key
 
 ## 🎯 Integration Benefits
 
-### With Azure OpenAI
+### With Azure LyDian Labs
 
-✅ **Enterprise-Grade Reasoning** - GPT-4 Turbo advanced capabilities
+✅ **Enterprise-Grade Reasoning** - OX5C9E2B Turbo advanced capabilities
 ✅ **8K Token Context** - Larger context window for complex problems
 ✅ **Low Latency** - Azure global infrastructure
 ✅ **99.9% Uptime** - Enterprise SLA
@@ -302,14 +302,14 @@ GROQ_API_KEY=your_groq_key
 ### Local Test (Without Azure)
 
 Current system will fall back to:
-- Anthropic Claude (if configured)
-- OpenAI GPT-4 (if configured)
-- Groq Llama 3.3 70B (if configured)
+- LyDian Research AX9F7E2B (if configured)
+- LyDian Labs OX5C9E2B (if configured)
+- LyDian Acceleration LyDian Velocity 70B (if configured)
 
 ### Production Test (With Azure)
 
 ```bash
-# Test LyDian IQ with Azure OpenAI
+# Test LyDian IQ with Azure LyDian Labs
 curl -X POST http://localhost:5001/api/lydian-iq/solve \
   -H "Content-Type: application/json" \
   -d '{
@@ -329,7 +329,7 @@ curl -X POST http://localhost:5001/api/lydian-iq/solve \
   "metadata": {
     "responseTime": "2.34",
     "tokensUsed": 456,
-    "model": "Azure OpenAI GPT-4 Turbo",
+    "model": "Azure LyDian Labs OX5C9E2B Turbo",
     "provider": "Azure",
     "confidence": 0.998,
     "mode": "production",
@@ -344,7 +344,7 @@ curl -X POST http://localhost:5001/api/lydian-iq/solve \
 
 ### Pre-Deployment
 
-- [x] Azure OpenAI configuration added to AI_CONFIG
+- [x] Azure LyDian Labs configuration added to AI_CONFIG
 - [x] Azure Cognitive Search RAG configuration added
 - [ ] callAzureOpenAI() function implementation
 - [ ] searchAzureKnowledge() RAG function implementation
@@ -361,7 +361,7 @@ curl -X POST http://localhost:5001/api/lydian-iq/solve \
 
 ### Post-Deployment
 
-- [ ] Test with real Azure OpenAI keys
+- [ ] Test with real Azure LyDian Labs keys
 - [ ] Verify RAG context retrieval
 - [ ] Monitor response times
 - [ ] Track Azure vs fallback usage
@@ -373,7 +373,7 @@ curl -X POST http://localhost:5001/api/lydian-iq/solve \
 **Status:** ⚠️ PARTIAL - Configuration Ready, Implementation Pending
 
 **Completed:**
-1. ✅ Azure OpenAI configuration added
+1. ✅ Azure LyDian Labs configuration added
 2. ✅ Azure Cognitive Search RAG config added
 3. ✅ Provider priority order documented
 
@@ -392,6 +392,6 @@ The configuration is ready. To complete the integration:
 
 ---
 
-*Configuration Update by: Claude AI (Sonnet 4.5)*
+*Configuration Update by: AX9F7E2B AI (Sonnet 4.5)*
 *Date: October 2, 2025*
 *Status: READY FOR IMPLEMENTATION*

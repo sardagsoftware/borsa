@@ -13,7 +13,7 @@
  * Security: Rate-limited, authenticated, GDPR-compliant
  */
 
-import { OpenAI } from 'openai';
+import { OpenAI } from 'lydian-labs';
 const obfuscation = require('../../security/ultra-obfuscation-map');
 
 // Initialize AI services with obfuscated model names

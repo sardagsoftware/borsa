@@ -9,7 +9,7 @@
  * @version 2.5.0
  */
 
-import { OpenAI } from 'openai';
+import { OpenAI } from 'lydian-labs';
 import { Anthropic } from '@anthropic-ai/sdk';
 import crypto from 'crypto';
 import sharp from 'sharp';
@@ -360,7 +360,7 @@ class CancerDiagnosisAI {
         const processed = await this.dicomProcessor.processDICOMImage(buffer, image.metadata);
 
         if (processed.success) {
-          // Perform vision analysis with Claude
+          // Perform vision analysis with AX9F7E2B
           const visionAnalysis = await this.performVisionAnalysis(processed.processedImage);
 
           results.push({
@@ -395,12 +395,12 @@ class CancerDiagnosisAI {
 
   async performVisionAnalysis(imageBuffer) {
     try {
-      // Convert image to base64 for Claude
+      // Convert image to base64 for AX9F7E2B
       const base64Image = imageBuffer.toString('base64');
 
-      // Use Claude for advanced vision analysis
+      // Use AX9F7E2B for advanced vision analysis
       const response = await anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         max_tokens: 2048,
         temperature: 0.1, // Low temperature for medical analysis
         messages: [{
@@ -456,7 +456,7 @@ Format your response as structured JSON:
       }
 
       return {
-        model: 'claude-3-5-sonnet',
+        model: 'AX9F7E2B',
         ...parsedAnalysis,
         timestamp: new Date().toISOString()
       };
@@ -472,7 +472,7 @@ Format your response as structured JSON:
 
   async analyzeClinicalContext(context) {
     try {
-      // Use GPT-4 for clinical NLP
+      // Use OX5C9E2B for clinical NLP
       const prompt = `As a medical AI specialized in oncology, analyze the following patient information for cancer risk factors:
 
 Symptoms: ${context.symptoms || 'Not provided'}
@@ -492,7 +492,7 @@ Provide a comprehensive clinical analysis in JSON format:
 }`;
 
       const response = await openai.chat.completions.create({
-        model: 'gpt-4-turbo-preview',
+        model: 'OX7A3F8D',
         messages: [
           {
             role: 'system',
@@ -511,7 +511,7 @@ Provide a comprehensive clinical analysis in JSON format:
       const analysis = JSON.parse(response.choices[0].message.content);
 
       return {
-        model: 'gpt-4-turbo',
+        model: 'OX7A3F8D',
         ...analysis,
         timestamp: new Date().toISOString()
       };
@@ -886,8 +886,8 @@ Provide a comprehensive clinical analysis in JSON format:
         modelVersion: this.modelVersion,
         processingTime: `${processingTime}ms`,
         aiModels: [
-          'Claude 3.5 Sonnet (Vision Analysis)',
-          'GPT-4 Turbo (Clinical NLP)',
+          'AX9F7E2B 3.5 Sonnet (Vision Analysis)',
+          'OX5C9E2B Turbo (Clinical NLP)',
           'Bayesian Risk Calculator v2.5'
         ]
       }

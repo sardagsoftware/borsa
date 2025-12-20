@@ -68,7 +68,7 @@ Lütfen JSON formatında şu yapıda yanıt ver:
     `.trim();
 
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'AX9F7E2B',
       max_tokens: 2000,
       system: 'Sen detaylı, doğru ve yapılandırılmış bilgi sağlayan bir bilgi asistanısın. Karmaşık konuları anlaşılır şekilde açıklarsın.',
       messages: [

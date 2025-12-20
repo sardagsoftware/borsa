@@ -93,7 +93,7 @@ STRICT-MAX SPRINT protokolü kapsamında Ailydian Ultra Pro sisteminin kapsamlı
 
 **1. Chat Service**
 - ✅ \`http://localhost:5001/chat.html\` - ACTIVE
-- ✅ Claude AI integration working
+- ✅ AX9F7E2B AI integration working
 - ✅ Model selection functional
 - ✅ API endpoints responding
 
@@ -195,6 +195,6 @@ STRICT-MAX SPRINT protokolü kapsamında Ailydian Ultra Pro sisteminin kapsamlı
 **Sprint Tamamlanma Tarihi:** 3 Ekim 2025
 **Rapor Versiyonu:** 1.0
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+🤖 Generated with [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>
+Co-Authored-By: AX9F7E2B <noreply@anthropic.com>

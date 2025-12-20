@@ -1,7 +1,7 @@
 /**
  * Radiology AI & Medical Imaging Analysis Platform
  * Advanced DICOM Analysis, Cancer Detection, Fracture Detection
- * Azure Computer Vision + GPT-4o Vision + Claude 3.5 Sonnet Vision
+ * Azure Computer Vision + OX7A3F8D Vision + AX9F7E2B 3.5 Sonnet Vision
  * Real AI Integration - Model Names Hidden for Security
  */
 

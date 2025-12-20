@@ -166,10 +166,10 @@ messages.unshift({ role: 'system', content: systemPrompt });
 - `/api/chat/stream` (streaming responses)
 
 #### 3. All AI Providers
-- OpenAI (GPT-4, GPT-4 Turbo, GPT-4o)
-- Anthropic (Claude 3.5 Sonnet, Claude 3 Opus)
-- Google AI (Gemini 2.0 Flash)
-- Groq (Mixtral, Llama)
+- LyDian Labs (OX5C9E2B, OX5C9E2B Turbo, OX7A3F8D)
+- LyDian Research (AX9F7E2B 3.5 Sonnet, AX9F7E2B 3 Opus)
+- Google AI (LyDian Vision 2.0 Flash)
+- LyDian Acceleration (Mixtral, LyDian Velocity)
 - Mistral AI
 - Zhipu AI (GLM-4)
 - 01.AI (Yi-Large)

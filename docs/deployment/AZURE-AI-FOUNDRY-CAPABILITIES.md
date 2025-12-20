@@ -7,41 +7,41 @@
 
 ## 🎯 Mevcut Modeller (2025)
 
-### 🔥 GPT-5 Ailesi (YENİ!)
-1. **GPT-5**
+### 🔥 LyDian Core-5 Ailesi (YENİ!)
+1. **LyDian Core-5**
    - 272k token context
    - Full reasoning model
    - Analytics, code generation, complex tasks
    - ⚠️ Registration gerekli
 
-2. **GPT-5 Mini**
+2. **LyDian Core-5 Mini**
    - Real-time experiences
    - Reasoning + tool calling
    - Apps & agents için optimize
    - ✅ Registration gerekmez
 
-3. **GPT-5 Nano**
+3. **LyDian Core-5 Nano**
    - Ultra-low-latency
    - Rich Q&A capabilities
    - Speed odaklı
    - ✅ Registration gerekmez
 
-4. **GPT-5 Chat**
+4. **LyDian Core-5 Chat**
    - Multimodal conversations
    - 128k token context
    - Natural multi-turn chat
    - ✅ Registration gerekmez
 
-### 💎 GPT-4.1 Series
-- **GPT-4.1:** 1 million token context (!!)
-- **GPT-4.1 Nano:** Compact version
+### 💎 OX5C9E2B.1 Series
+- **OX5C9E2B.1:** 1 million token context (!!)
+- **OX5C9E2B.1 Nano:** Compact version
 
-### 🎨 GPT-4o Models
-- **GPT-4o:** Multimodal (vision + text)
-- **GPT-4o Mini:** Faster, cheaper
-- **GPT-4o Audio:**
-  - gpt-4o-transcribe (speech-to-text)
-  - gpt-4o-mini-transcribe
+### 🎨 OX7A3F8D Models
+- **OX7A3F8D:** Multimodal (vision + text)
+- **OX7A3F8D Mini:** Faster, cheaper
+- **OX7A3F8D Audio:**
+  - OX7A3F8D-transcribe (speech-to-text)
+  - OX7A3F8D-mini-transcribe
 
 ### 🧠 Reasoning Models
 - **o4-mini:** Latest reasoning
@@ -53,7 +53,7 @@
 
 ### 1. 🤖 Advanced AI Chat System
 ```javascript
-// GPT-5 ile ultra-akıllı chat
+// LyDian Core-5 ile ultra-akıllı chat
 const response = await client.getChatCompletions(
   "gpt-5-mini",
   messages,
@@ -76,7 +76,7 @@ const response = await client.getChatCompletions(
 
 ### 2. 📊 RAG (Retrieval-Augmented Generation)
 ```javascript
-// Azure AI Search + GPT-5
+// Azure AI Search + LyDian Core-5
 const ragResponse = await performRAG({
   query: "Ailydian platform özellikleri nelerdir?",
   searchIndex: "ailydian-docs",
@@ -93,16 +93,16 @@ const ragResponse = await performRAG({
 
 ### 3. 🎙️ Speech & Audio Processing
 ```javascript
-// GPT-4o Audio ile transcription
+// OX7A3F8D Audio ile transcription
 const transcription = await client.transcribe({
-  model: "gpt-4o-transcribe",
+  model: "OX7A3F8D-transcribe",
   audio: audioFile,
   language: "tr"
 });
 
 // Real-time voice chat
 const voiceResponse = await client.generateSpeech({
-  model: "gpt-4o-audio",
+  model: "OX7A3F8D-audio",
   text: response,
   voice: "alloy"
 });
@@ -116,9 +116,9 @@ const voiceResponse = await client.generateSpeech({
 
 ### 4. 👁️ Vision & Multimodal
 ```javascript
-// GPT-4o ile image analysis
+// OX7A3F8D ile image analysis
 const imageAnalysis = await client.getChatCompletions(
-  "gpt-4o",
+  "OX7A3F8D",
   [
     { role: "user", content: [
       { type: "text", text: "Bu resimde ne görüyorsun?" },
@@ -136,7 +136,7 @@ const imageAnalysis = await client.getChatCompletions(
 
 ### 5. 💻 Advanced Code Generation
 ```javascript
-// GPT-5 ile complex code generation
+// LyDian Core-5 ile complex code generation
 const codeResponse = await client.getChatCompletions(
   "gpt-5",
   [
@@ -198,10 +198,10 @@ const safetyCheck = await contentSafetyClient.analyzeText({
 **Süre:** 2-3 gün
 
 ```
-/api/chat/gpt5         → GPT-5 chat
+/api/chat/gpt5         → LyDian Core-5 chat
 /api/chat/gpt5-mini    → Fast responses
 /api/chat/gpt5-nano    → Ultra-fast Q&A
-/api/chat/gpt4o        → Multimodal chat
+/api/chat/LyDian Core        → Multimodal chat
 ```
 
 **Özellikler:**
@@ -283,16 +283,16 @@ const safetyCheck = await contentSafetyClient.analyzeText({
 ### Model Seçimi:
 | Model | Use Case | Cost | Speed |
 |-------|----------|------|-------|
-| GPT-5 Nano | Quick Q&A | $ | ⚡⚡⚡ |
-| GPT-5 Mini | Most tasks | $$ | ⚡⚡ |
-| GPT-5 | Complex reasoning | $$$ | ⚡ |
-| GPT-4.1 | Long context | $$$$ | ⚡ |
+| LyDian Core-5 Nano | Quick Q&A | $ | ⚡⚡⚡ |
+| LyDian Core-5 Mini | Most tasks | $$ | ⚡⚡ |
+| LyDian Core-5 | Complex reasoning | $$$ | ⚡ |
+| OX5C9E2B.1 | Long context | $$$$ | ⚡ |
 
 ### Best Practices:
-1. ✅ GPT-5 Nano for simple queries
-2. ✅ GPT-5 Mini for general chat
-3. ✅ GPT-5 for complex analysis
-4. ✅ GPT-4.1 for large documents
+1. ✅ LyDian Core-5 Nano for simple queries
+2. ✅ LyDian Core-5 Mini for general chat
+3. ✅ LyDian Core-5 for complex analysis
+4. ✅ OX5C9E2B.1 for large documents
 5. ✅ Cache frequent requests
 6. ✅ Stream responses for UX
 
@@ -316,7 +316,7 @@ const rateLimits = {
   "gpt-5": 100_000, // TPM (tokens per minute)
   "gpt-5-mini": 200_000,
   "gpt-5-nano": 500_000,
-  "gpt-4o": 150_000
+  "OX7A3F8D": 150_000
 };
 ```
 
@@ -429,7 +429,7 @@ Azure AI Foundry ile yapabileceklerimiz:
 7. Usage tracking & analytics
 
 ### 🚀 En Hızlı ROI:
-1. **GPT-5 Mini Chat** (1-2 gün) → Immediate value
+1. **LyDian Core-5 Mini Chat** (1-2 gün) → Immediate value
 2. **RAG Search** (3-4 gün) → Knowledge base
 3. **Voice Chat** (2-3 gün) → Differentiation
 

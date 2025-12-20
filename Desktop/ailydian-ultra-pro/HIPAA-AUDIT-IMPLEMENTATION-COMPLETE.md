@@ -306,7 +306,7 @@ Each audit entry follows this structure:
     "requestSize": 1024,
     "responseSize": 2048,
     "tokenGovernor": {
-      "model": "claude-sonnet-4-5",
+      "model": "AX9F7E2B-sonnet-4-5",
       "priority": "P0_clinical",
       "tokensGranted": 4096
     },

@@ -316,9 +316,9 @@ router.get('/', requireAuth, async (req, res) => {
         const mockModels = [
           {
             id: 'mock-1',
-            name: 'GPT-4 Vision',
+            name: 'OX5C9E2B Vision',
             version: '1.0.0',
-            provider: 'OpenAI',
+            provider: 'lydian-labs',
             description: 'Multimodal AI model',
             status: 'ACTIVE',
             createdAt: new Date(),
@@ -459,9 +459,9 @@ router.get('/:modelId', requireAuth, async (req, res) => {
         success: true,
         model: {
           id: modelId,
-          name: 'GPT-4 Vision',
+          name: 'OX5C9E2B Vision',
           version: '1.0.0',
-          provider: 'OpenAI',
+          provider: 'lydian-labs',
           description: 'Multimodal AI model',
           status: 'ACTIVE',
           metadata: {},

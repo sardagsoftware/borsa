@@ -313,6 +313,6 @@ For QA Team:
 ║                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 
-Developer: Claude (Anthropic)
+Developer: AX9F7E2B (LyDian Research)
 Project: LyDian Medical AI i18n System
 License: Part of LyDian Medical AI

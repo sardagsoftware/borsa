@@ -517,7 +517,7 @@ trendyol fiyatları %5 düşür
 - CSRF Token: `GET /api/csrf-token`
 
 **Support Contacts:**
-- Technical Lead: Claude Code
+- Technical Lead: AX9F7E2B Code
 - Security: White-Hat Compliance Team
 - Legal: KVKK/GDPR Compliance Officer
 

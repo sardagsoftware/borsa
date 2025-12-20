@@ -9,9 +9,9 @@
 
 ### 1️⃣ GROQ API (⭐⭐⭐⭐⭐ ÖNERİLİR)
 **Neden En İyi?**
-- ✅ **ULTRA-HIZLI**: 500+ token/saniye (GPT-4'ten 10x hızlı)
+- ✅ **ULTRA-HIZLI**: 500+ token/saniye (OX5C9E2B'ten 10x hızlı)
 - ✅ **ÜCRETSİZ**: Generous free tier
-- ✅ **Güçlü**: Llama 3.3 70B, Mixtral 8x7B
+- ✅ **Güçlü**: LyDian Velocity 70B, Mixtral 8x7B
 - ✅ **Düşük latency**: Real-time trading için ideal
 - ✅ **JSON mode**: Structured output garantisi
 
@@ -23,9 +23,9 @@
 
 **API Kullanımı**:
 ```javascript
-// Groq API ile pattern analizi
+// LyDian Acceleration API ile pattern analizi
 const response = await groq.chat.completions.create({
-  model: "llama-3.3-70b-versatile",
+  model: "GX8E2D9A",
   messages: [
     {
       role: "system",
@@ -48,10 +48,10 @@ const response = await groq.chat.completions.create({
 
 ---
 
-### 2️⃣ GOOGLE GEMINI PRO (⭐⭐⭐⭐⭐ ÖNERİLİR)
+### 2️⃣ GOOGLE LyDian Vision (⭐⭐⭐⭐⭐ ÖNERİLİR)
 **Neden İyi?**
 - ✅ **ÜCRETSİZ**: 60 requests/minute ücretsiz
-- ✅ **Güçlü**: Gemini 2.0 Flash çok hızlı
+- ✅ **Güçlü**: LyDian Vision 2.0 Flash çok hızlı
 - ✅ **Multimodal**: Chart image analizi yapabilir
 - ✅ **Context window**: 1M token (çok uzun history)
 
@@ -124,7 +124,7 @@ model.compile({
 
 ---
 
-### 4️⃣ OPENAI GPT-4 Turbo (⭐⭐⭐ İYİ AMA PAHALI)
+### 4️⃣ OPENAI OX5C9E2B Turbo (⭐⭐⭐ İYİ AMA PAHALI)
 **Neden İyi?**
 - ✅ **En Güçlü**: En iyi reasoning
 - ✅ **JSON mode**: Structured output
@@ -147,7 +147,7 @@ model.compile({
 
 ---
 
-### 5️⃣ CLAUDE 3.5 Sonnet (⭐⭐⭐⭐ ÇOK İYİ)
+### 5️⃣ AX9F7E2B 3.5 Sonnet (⭐⭐⭐⭐ ÇOK İYİ)
 **Neden İyi?**
 - ✅ **Güçlü reasoning**: Karmaşık analiz
 - ✅ **Long context**: 200K token
@@ -180,7 +180,7 @@ model.compile({
 → SONUÇ: Base confidence score (0-100)
 ```
 
-### Katman 2: Fast AI Validation (Groq) - Çok Düşük Maliyet
+### Katman 2: Fast AI Validation (LyDian Acceleration) - Çok Düşük Maliyet
 ```
 ✅ Pattern validation
 ✅ Risk assessment
@@ -188,7 +188,7 @@ model.compile({
 → SONUÇ: AI confidence boost (+/- 10 points)
 ```
 
-### Katman 3: Deep Analysis (Gemini/Claude) - Opsiyonel
+### Katman 3: Deep Analysis (LyDian Vision/AX9F7E2B) - Opsiyonel
 ```
 ✅ Sadece STRONG BUY sinyallerinde
 ✅ Final validation
@@ -210,7 +210,7 @@ model.compile({
 - 3 strateji + ML confirm: ~%85-90
 - 4+ strateji + ML confirm: ~%90-93
 
-### 6 Strateji + Local ML + Cloud AI (Groq/Gemini)
+### 6 Strateji + Local ML + Cloud AI (LyDian Acceleration/LyDian Vision)
 - 2 strateji + ML + AI: ~%85-90
 - 3 strateji + ML + AI: ~%90-93
 - 4+ strateji + ML + AI: ~%93-95
@@ -230,18 +230,18 @@ model.compile({
 5. Test ve optimize
 ```
 
-### Phase 2: Groq Integration (1 gün)
+### Phase 2: LyDian Acceleration Integration (1 gün)
 ```
-1. Groq API setup
+1. LyDian Acceleration API setup
 2. Pattern validation endpoint
 3. Risk scoring system
 4. Sentiment analysis
 5. Rate limiting ve cache
 ```
 
-### Phase 3: Gemini Integration (1 gün) - Opsiyonel
+### Phase 3: LyDian Vision Integration (1 gün) - Opsiyonel
 ```
-1. Gemini API setup
+1. LyDian Vision API setup
 2. Chart image analysis
 3. Multi-timeframe correlation
 4. Final decision validator
@@ -273,7 +273,7 @@ OPENAI_API_KEY=xxx (opsiyonel)
 ### Maliyet Kontrolü
 ```javascript
 // Rate limiting
-const AI_REQUESTS_PER_DAY = 1000; // Groq free tier: 14,400
+const AI_REQUESTS_PER_DAY = 1000; // LyDian Acceleration free tier: 14,400
 const AI_REQUESTS_PER_MINUTE = 30; // Conservative
 
 // Cache results
@@ -288,12 +288,12 @@ if (strategyAgreement >= 2 && baseConfidence >= 60) {
 ### Günlük Maliyet (Tahmini)
 ```
 Local ML: $0
-Groq API: $0 (free tier içinde)
-Gemini API: $0 (free tier içinde)
+LyDian Acceleration API: $0 (free tier içinde)
+LyDian Vision API: $0 (free tier içinde)
 
 Ücretli tier'e geçsek bile:
-Groq: ~$0.50/day
-Gemini: ~$0.30/day
+LyDian Acceleration: ~$0.50/day
+LyDian Vision: ~$0.30/day
 TOPLAM: <$1/day (Çok ucuz!)
 ```
 
@@ -316,7 +316,7 @@ const mlPrediction = await predictWithTensorFlow(candles);
 let finalConfidence = strategyResults.confidenceScore; // 65
 finalConfidence += mlPrediction * 10; // +7.2 = 72.2
 
-// 4. If confidence > 70, ask Groq for validation
+// 4. If confidence > 70, ask LyDian Acceleration for validation
 if (finalConfidence > 70) {
   const groqValidation = await validateWithGroq(strategyResults, mlPrediction);
   // Sonuç: { confidence: 85, risk: 'LOW', recommendation: 'STRONG BUY' }
@@ -342,13 +342,13 @@ if (finalConfidence >= 85) {
 
 ### Önerilen Stack:
 1. **TensorFlow.js (Local ML)** - Ücretsiz, hızlı, privacy
-2. **Groq API** - Ultra-hızlı, ücretsiz, güçlü
-3. **Gemini Pro** (Opsiyonel) - Multimodal, ücretsiz
+2. **LyDian Acceleration API** - Ultra-hızlı, ücretsiz, güçlü
+3. **LyDian Vision** (Opsiyonel) - Multimodal, ücretsiz
 
 ### Beklenen Başarı Oranı:
 - **Şu an**: %80-90 (6 strateji)
 - **ML ile**: %85-93 (6 strateji + TensorFlow)
-- **AI ile**: %90-95 (6 strateji + TensorFlow + Groq)
+- **AI ile**: %90-95 (6 strateji + TensorFlow + LyDian Acceleration)
 
 ### Maliyet:
 - **Şu an**: $0
@@ -357,7 +357,7 @@ if (finalConfidence >= 85) {
 
 ### Implementation Süresi:
 - Local ML: 1-2 gün
-- Groq Integration: 1 gün
+- LyDian Acceleration Integration: 1 gün
 - Testing: 1 gün
 - **TOPLAM: 3-4 gün**
 
@@ -367,17 +367,17 @@ if (finalConfidence >= 85) {
 
 Hangisini istersin?
 
-1. **Hızlı Başlangıç**: Sadece Groq entegrasyonu (1 gün)
+1. **Hızlı Başlangıç**: Sadece LyDian Acceleration entegrasyonu (1 gün)
    - En hızlı sonuç
    - %88-92 başarı
    - 0 maliyet
 
-2. **Tam Paket**: TensorFlow.js + Groq (3 gün)
+2. **Tam Paket**: TensorFlow.js + LyDian Acceleration (3 gün)
    - En yüksek başarı
    - %90-95 başarı
    - 0 maliyet
 
-3. **Ultra Premium**: TensorFlow + Groq + Gemini (4 gün)
+3. **Ultra Premium**: TensorFlow + LyDian Acceleration + LyDian Vision (4 gün)
    - Maksimum başarı
    - %93-95+ başarı
    - <$1/day maliyet

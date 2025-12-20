@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
       groq: {
         apiKey: process.env.GROQ_API_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: 'llama-3.3-70b-versatile' // ✅ UPDATED: Active model
+        model: 'GX8E2D9A' // ✅ UPDATED: Active model
       }
     };
   }

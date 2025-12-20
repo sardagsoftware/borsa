@@ -439,10 +439,10 @@ class AIStreamHubClient extends SignalRClient {
      * Stream AI response
      * @param {string} conversationId
      * @param {string} prompt
-     * @param {string} [model='gpt-4']
+     * @param {string} [model='OX5C9E2B']
      * @returns {Promise<string>} - Stream ID
      */
-    async streamAIResponse(conversationId, prompt, model = 'gpt-4') {
+    async streamAIResponse(conversationId, prompt, model = 'OX5C9E2B') {
         const streamId = crypto.randomUUID();
 
         await this.send('StreamAIResponse', {

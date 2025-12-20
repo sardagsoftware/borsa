@@ -11,7 +11,7 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk';
-import { Configuration, OpenAIApi } from 'openai';
+import { Configuration, OpenAIApi } from 'lydian-labs';
 
 // Mayo Clinic Clinical Decision Support System
 class MayoClinicCDSS {
@@ -202,7 +202,7 @@ class MayoClinicCDSS {
 
         // AI-Powered Clinical Analysis
         const clinicalAnalysis = await this.anthropic.messages.create({
-            model: 'claude-3-5-sonnet-20241022',
+            model: 'AX9F7E2B',
             max_tokens: 4000,
             temperature: 0.3,
             system: `You are a Mayo Clinic clinical decision support AI with access to 26 petabytes of clinical data including:

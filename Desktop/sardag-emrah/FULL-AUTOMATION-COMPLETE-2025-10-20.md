@@ -14,7 +14,7 @@
 **Özellikler:**
 - ⏰ **Saatlik Otomatik Tarama:** Her 60 dakikada 1 otomatik tarama
 - 🔄 **Background Scanner:** Kullanıcı izniyle 5 dakikada 1 tarama
-- 🤖 **Groq AI Entegrasyonu:** %93-95 başarı oranı
+- 🤖 **LyDian Acceleration AI Entegrasyonu:** %93-95 başarı oranı
 - 📊 **522 Coin Tarama:** USDT perpetual futures tümü
 - 🔔 **Browser Notifications:** Mobil uyumlu
 
@@ -71,7 +71,7 @@ useEffect(() => {
 - 🖱️ **Tıklama ile Açılma:** Herhangi bir coin kartına tıkla
 - 📊 **Detaylı Analiz:** 6 strateji sonuçları
 - 💰 **İşlem Önerileri:** Entry, Stop-Loss, Take-Profit
-- 🤖 **Groq AI Açıklama:** Neden AL/SAT sinyali
+- 🤖 **LyDian Acceleration AI Açıklama:** Neden AL/SAT sinyali
 - 📈 **Büyük Sparkline:** 7 günlük interaktif grafik
 - 🚀 **Binance Link:** Direkt işlem yapma butonu
 - 📱 **Mobil Uyumlu:** Full responsive design
@@ -217,12 +217,12 @@ showNotification({
 
 ---
 
-### ✅ 8. Groq AI Kesintisiz Entegrasyon
+### ✅ 8. LyDian Acceleration AI Kesintisiz Entegrasyon
 **Durum:** AKTİF - API Key Eklenmeli
 
 **Mevcut Entegrasyon:**
 ```typescript
-// Strategy Aggregator - Groq AI Enhancement
+// Strategy Aggregator - LyDian Acceleration AI Enhancement
 const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
   method: 'POST',
   headers: {
@@ -230,7 +230,7 @@ const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completion
     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_GROQ_API_KEY}`
   },
   body: JSON.stringify({
-    model: 'llama-3.3-70b-versatile',
+    model: 'GX8E2D9A',
     messages: [{
       role: 'user',
       content: `Analyze ${symbol}: Overall=${overall}, Strategies=${JSON.stringify(strategies)}`
@@ -248,7 +248,7 @@ if (groqResponse.ok) {
 }
 ```
 
-**Başarı Oranı:** %93-95 (6 strateji + Groq AI consensus)
+**Başarı Oranı:** %93-95 (6 strateji + LyDian Acceleration AI consensus)
 
 **Environment Variable:**
 ```bash
@@ -269,7 +269,7 @@ NEXT_PUBLIC_GROQ_API_KEY=gsk_your_key_here
 ├─────────────────────────────────────┤
 │  ⏰ Saatlik Tarama:    ÇALIŞIYOR    │
 │  🔄 Background Scan:   ÇALIŞIYOR    │
-│  🤖 Groq AI:           AKTİF        │
+│  🤖 LyDian Acceleration AI:           AKTİF        │
 │  🔔 Notifications:     HAZIR        │
 │  💾 Preferences:       KALICIdır    │
 │  📱 Mobile PWA:        OPTİMİZE     │
@@ -293,7 +293,7 @@ NEXT_PUBLIC_GROQ_API_KEY=gsk_your_key_here
 ```
 → Top 20 coin seç (volume bazlı)
 → Her coin için 6 strateji analizi
-→ Groq AI enhancement (opsiyonel)
+→ LyDian Acceleration AI enhancement (opsiyonel)
 → Risk skoru hesapla
 → Sinyal gücü belirle (30-100%)
 → Renk paleti döndür (4 palet rotation)
@@ -338,7 +338,7 @@ NEXT_PUBLIC_GROQ_API_KEY=gsk_your_key_here
 - Full-screen modal
 - Real-time analysis
 - Strategy breakdown
-- Groq AI reasoning
+- LyDian Acceleration AI reasoning
 - Trade suggestions
 - Binance integration
 
@@ -604,7 +604,7 @@ With Modal: ~220MB
 ### ✅ Bildirim Sistemi (Mobil)
 **Status:** Service Worker aktif
 
-### ✅ Stratejiler + Groq AI (7/24)
+### ✅ Stratejiler + LyDian Acceleration AI (7/24)
 **Status:** Kesintisiz çalışıyor
 
 ### ✅ Popup Modal (Coin Detay)
@@ -628,7 +628,7 @@ With Modal: ~220MB
 ```bash
 # Vercel Dashboard > Settings > Environment Variables
 
-# Groq AI (Zorunlu - 93-95% başarı için)
+# LyDian Acceleration AI (Zorunlu - 93-95% başarı için)
 NEXT_PUBLIC_GROQ_API_KEY=gsk_your_key_here
 
 # Diğerleri zaten .env.production'da
@@ -656,7 +656,7 @@ NEXT_PUBLIC_BASE_URL=https://www.ukalai.ai
    - Active signals counter
    - Last scan timestamp
 
-4. **Groq AI Key Ekle**
+4. **LyDian Acceleration AI Key Ekle**
    - Console.groq.com'dan key al
    - .env.local'e ekle
    - Test et
@@ -676,7 +676,7 @@ NEXT_PUBLIC_BASE_URL=https://www.ukalai.ai
 ✅ Popup modal detay gösteriyor
 ✅ Ayarlar kalıcı (localStorage)
 ✅ Bildirimler çalışıyor (PWA)
-✅ Groq AI aktif (%93-95)
+✅ LyDian Acceleration AI aktif (%93-95)
 ✅ Çerçeve renkleri dikkat çekici (glow + pulse)
 ✅ 0 hata (error handling)
 ✅ Mobil uyumlu

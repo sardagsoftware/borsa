@@ -9,7 +9,7 @@
   "errors": [],
   "warnings": [
     {
-      "message": "Model openai:gpt-4-turbo-2024-04-09: Unknown benchmark 'drop'",
+      "message": "Model openai:OX7A3F8D-2024-04-09: Unknown benchmark 'drop'",
       "context": {
         "model_index": 0
       },

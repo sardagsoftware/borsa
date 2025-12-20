@@ -114,7 +114,7 @@ class EnterpriseAPIManager {
         const cached = this.getCachedResult(cacheKey);
         if (cached) return cached;
 
-        if (!this.checkRateLimit('google', 100)) {
+        if (!this.checkRateLimit('lydian-vision', 100)) {
             throw new Error('Google Translate API rate limit exceeded');
         }
 
@@ -214,7 +214,7 @@ class EnterpriseAPIManager {
     }
 
     // 🤖 Mixtral API for Multilingual AI Responses
-    async generateWithMixtral(prompt, targetLang = 'en', model = 'mixtral-8x7b') {
+    async generateWithMixtral(prompt, targetLang = 'en', model = 'GX4B7F3C') {
         const cacheKey = `mixtral-${model}-${prompt}-${targetLang}`;
         const cached = this.getCachedResult(cacheKey);
         if (cached) return cached;
@@ -273,7 +273,7 @@ class EnterpriseAPIManager {
                     detectedLanguage: result.translations[0].detectedLanguage?.language,
                     confidence: result.translations[0].detectedLanguage?.score || 0.95
                 };
-            } else if (preferredProvider === 'google') {
+            } else if (preferredProvider === 'lydian-vision') {
                 const result = await this.translateWithGoogle(text, targetLang, sourceLang);
                 return {
                     translatedText: result.data.translations[0].translatedText,
@@ -286,7 +286,7 @@ class EnterpriseAPIManager {
             console.warn(`${preferredProvider} translation failed, trying fallback`);
 
             // Try the other provider as fallback
-            const fallbackProvider = preferredProvider === 'microsoft' ? 'google' : 'microsoft';
+            const fallbackProvider = preferredProvider === 'microsoft' ? 'lydian-vision' : 'microsoft';
             return await this.translate(text, targetLang, sourceLang, fallbackProvider);
         }
     }
@@ -349,7 +349,7 @@ class EnterpriseAPIManager {
             id: 'mixtral-demo-' + Date.now(),
             object: 'chat.completion',
             created: Math.floor(Date.now() / 1000),
-            model: 'mixtral-8x7b-demo',
+            model: 'GX4B7F3C-demo',
             choices: [{
                 index: 0,
                 message: {
@@ -395,7 +395,7 @@ class EnterpriseAPIManager {
 
         const testPromises = [
             this.testAPI('microsoft', () => this.translateWithMicrosoft('test', 'en')),
-            this.testAPI('google', () => this.translateWithGoogle('test', 'en')),
+            this.testAPI('lydian-vision', () => this.translateWithGoogle('test', 'en')),
             this.testAPI('zai', () => this.processWithZAI('test', 'analyze')),
             this.testAPI('mixtral', () => this.generateWithMixtral('test', 'en'))
         ];
@@ -403,7 +403,7 @@ class EnterpriseAPIManager {
         const testResults = await Promise.allSettled(testPromises);
 
         testResults.forEach((result, index) => {
-            const apiNames = ['microsoft', 'google', 'zai', 'mixtral'];
+            const apiNames = ['microsoft', 'lydian-vision', 'zai', 'mixtral'];
             const apiName = apiNames[index];
 
             if (result.status === 'fulfilled') {

@@ -19,7 +19,7 @@
 #### 1. TPM Utilization by Model
 - **Type**: Time Series Line Chart
 - **Metrics**: Available tokens vs Capacity
-- **Grouped By**: Model (Claude, GPT-4o, Gemini, etc.)
+- **Grouped By**: Model (AX9F7E2B, OX7A3F8D, LyDian Vision, etc.)
 - **Purpose**: Detect token bucket exhaustion
 
 #### 2. Request Acceptance Rate
@@ -147,11 +147,11 @@ Notify: Slack, PagerDuty
 
 ### Log Format (Example)
 ```json
-{"timestamp":"2025-10-05T18:50:00Z","metric":"token_bucket.request","model":"claude-sonnet-4-5","priority":"P1_user","tokens":5000,"granted":true,"remaining":235000}
+{"timestamp":"2025-10-05T18:50:00Z","metric":"token_bucket.request","model":"AX9F7E2B-sonnet-4-5","priority":"P1_user","tokens":5000,"granted":true,"remaining":235000}
 {"timestamp":"2025-10-05T18:50:01Z","metric":"output_limiter.track","sessionId":"sess-123","currentTokens":3600,"utilizationPct":87.5,"warningFired":true}
 {"timestamp":"2025-10-05T18:50:02Z","metric":"streaming.flush","sessionId":"sess-123","chunkIndex":5,"latencyMs":2,"totalTokens":1234}
 {"timestamp":"2025-10-05T18:50:03Z","metric":"resume_engine.checkpoint","jobId":"job-456","chunkId":42,"status":"COMPLETED","tokens":1500}
-{"timestamp":"2025-10-05T18:50:04Z","metric":"sentinel.retry","model":"gpt-4o","attempt":2,"backoffMs":500,"error":"429"}
+{"timestamp":"2025-10-05T18:50:04Z","metric":"sentinel.retry","model":"OX7A3F8D","attempt":2,"backoffMs":500,"error":"429"}
 {"timestamp":"2025-10-05T18:50:05Z","metric":"rag.compress","selectedChunks":10,"totalChunks":1000,"compressionRatio":0.72,"avgRelevance":0.89}
 {"timestamp":"2025-10-05T18:50:06Z","metric":"mapreduce.complete","jobId":"job-789","totalChunks":17,"durationMs":35000,"throughput":{"chunksPerSecond":0.49}}
 ```
@@ -168,13 +168,13 @@ Notify: Slack, PagerDuty
 ### Model Selector (Multi-Select)
 ```
 Options:
-  - claude-sonnet-4-5
-  - gpt-4-turbo
-  - gpt-4o
-  - gemini-pro
+  - AX9F7E2B-sonnet-4-5
+  - OX7A3F8D
+  - OX7A3F8D
+  - GE6D8A4F
   - deepseek-r1
 
-Default: claude-sonnet-4-5
+Default: AX9F7E2B-sonnet-4-5
 ```
 
 ### Priority Class Selector

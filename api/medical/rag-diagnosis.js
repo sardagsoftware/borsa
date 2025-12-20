@@ -10,7 +10,7 @@ const axios = require('axios');
 // Azure OpenAI credentials
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4';
+const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT || 'OX5C9E2B';
 
 // Medical databases
 const PUBMED_API = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';

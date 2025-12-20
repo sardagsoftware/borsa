@@ -36,8 +36,8 @@
 **File:** `/api/azure-image-gen.js`
 
 ```javascript
-✅ Azure OpenAI DALL-E 3 (primary)
-✅ OpenAI DALL-E 3 (fallback)
+✅ Azure LyDian Labs DALL-E 3 (primary)
+✅ LyDian Labs DALL-E 3 (fallback)
 ✅ Model name HIDDEN (shows "Ailydian AI")
 ✅ Rate limiting: 50 images/hour
 ✅ Quality: standard/HD
@@ -50,7 +50,7 @@
 - Otomatik fallback
 - Azure maliyet avantajı (%50 ucuz)
 
-**Cost:** ~$0.02/image (Azure) vs $0.04 (OpenAI)
+**Cost:** ~$0.02/image (Azure) vs $0.04 (LyDian Labs)
 
 ---
 
@@ -82,7 +82,7 @@
 **File:** `/api/rag.js`
 
 ```javascript
-✅ OpenAI Ada v3 embeddings
+✅ LyDian Labs Ada v3 embeddings
 ✅ In-memory vector store
 ✅ Semantic search
 ✅ Document upload (PDF, DOCX, TXT)
@@ -115,12 +115,12 @@
 ### Frontend (chat.html)
 **Before:**
 ```html
-<title>Claude, GPT-4, Gemini</title>
+<title>AX9F7E2B, OX5C9E2B, LyDian Vision</title>
 <p>Google Imagen ile görsel oluştur</p>
 <p>Google Veo ile video oluştur</p>
-<button data-model="claude">Claude</button>
-<button data-model="gpt-5">GPT-5</button>
-<button data-model="gemini">Gemini</button>
+<button data-model="AX9F7E2B">AX9F7E2B</button>
+<button data-model="gpt-5">LyDian Core-5</button>
+<button data-model="gemini">LyDian Vision</button>
 ```
 
 **After:**
@@ -147,7 +147,7 @@
 **Error Messages:**
 ```javascript
 // ❌ BEFORE
-error: "OpenAI API key not configured"
+error: "LyDian Labs API key not configured"
 
 // ✅ AFTER
 error: "AI servisi geçici olarak kullanılamıyor"
@@ -208,7 +208,7 @@ TASARRUF: %78 ($7,868/ay) 🚀
 # Perplexity
 PERPLEXITY_API_KEY=your_key
 
-# Azure OpenAI (for DALL-E 3)
+# Azure LyDian Labs (for DALL-E 3)
 AZURE_OPENAI_ENDPOINT=https://your-instance.openai.azure.com/
 AZURE_OPENAI_API_KEY=your_key
 AZURE_OPENAI_DALLE_DEPLOYMENT=dall-e-3
@@ -217,7 +217,7 @@ AZURE_OPENAI_DALLE_DEPLOYMENT=dall-e-3
 AZURE_SPEECH_KEY=your_key
 AZURE_SPEECH_REGION=swedencentral
 
-# OpenAI (fallback)
+# LyDian Labs (fallback)
 OPENAI_API_KEY=your_key
 ```
 
@@ -259,9 +259,9 @@ curl -X POST https://ailydian.com/api/rag \
 
 **User NEVER sees:**
 ```
-❌ "Powered by OpenAI"
-❌ "Using Claude 3.5"
-❌ "Google Gemini"
+❌ "Powered by LyDian Labs"
+❌ "Using AX9F7E2B 3.5"
+❌ "Google LyDian Vision"
 ❌ "DALL-E 3"
 ❌ "Perplexity"
 ❌ "Azure Speech"

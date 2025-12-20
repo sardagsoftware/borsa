@@ -30,9 +30,9 @@ LyDian AI, Türkiye Cumhuriyeti Adalet Sistemi için geliştirilmiş, dünyada i
 
 ```javascript
 Entegre Servisler:
-├─ Azure OpenAI Service
-│  ├─ GPT-4 Turbo (Legal Analysis)
-│  ├─ GPT-4o (Multimodal Reasoning)
+├─ Azure LyDian Labs Service
+│  ├─ OX5C9E2B Turbo (Legal Analysis)
+│  ├─ OX7A3F8D (Multimodal Reasoning)
 │  ├─ text-embedding-3-large (RAG)
 │  └─ text-embedding-ada-002 (Fast embedding)
 │
@@ -90,7 +90,7 @@ Entegre Servisler:
 ---
 
 #### ✅ azure-openai-service.js
-**GPT-4 Turbo & GPT-4o Hukuki Analiz Servisi**
+**OX5C9E2B Turbo & OX7A3F8D Hukuki Analiz Servisi**
 
 **Özellikler:**
 ```javascript
@@ -105,7 +105,7 @@ Entegre Servisler:
    - Görsel + Metin kombine analiz
    - Delil fotoğrafları değerlendirme
    - Belge içerik çıkarma
-   - GPT-4o vision capabilities
+   - OX7A3F8D vision capabilities
 
 3. generateEmbeddings(texts, modelSize)
    - RAG için semantic search
@@ -360,15 +360,15 @@ searchResmiGazete(keyword, options)
 
 **Endpoints Overview:**
 
-##### Azure OpenAI Endpoints
+##### Azure LyDian Labs Endpoints
 ```bash
 POST /api/legal-ai/analyze
   Body: { caseDetails, userRole }
-  Returns: GPT-4 Turbo legal analysis
+  Returns: OX5C9E2B Turbo legal analysis
 
 POST /api/legal-ai/multimodal
   Body: { evidence: {description, images}, userRole }
-  Returns: GPT-4o multimodal analysis
+  Returns: OX7A3F8D multimodal analysis
 
 POST /api/legal-ai/embeddings
   Body: { texts: [], modelSize: 'large'|'small' }
@@ -505,7 +505,7 @@ Content Safety:
 ### Teknik KPI'lar (Hedefler)
 ```yaml
 Accuracy:
-  - Legal Analysis: >85% (GPT-4 Turbo)
+  - Legal Analysis: >85% (OX5C9E2B Turbo)
   - Case Prediction: >86.1% (BiLSTM research-proven)
   - Voice Recognition: >95% (Azure Speech)
   - OCR Accuracy: >98% (Turkish documents)
@@ -549,7 +549,7 @@ POST /api/legal-ai/analyze
 {
   "success": true,
   "analysis": "Sayın Hakimim,\n\n**HUKUK ANALİZİ**\n\n**İlgili Mevzuat:**\n- TBK m. 299: Kiracının kira bedelini ödeme yükümlülüğü\n- TBK m. 315: Kira sözleşmesinin feshi\n- HMK m. 297: İcra takibine itiraz\n\n**Emsal Yargıtay Kararları:**\n- Y.HGK. 2022/1234: 6 ay kira borcu fesih sebebidir\n- Y.3.HD. 2023/5678: Kiracının mali durumu mazeret teşkil etmez\n\n**Hukuki Değerlendirme:**\n1. Kira borcunun 6 aylık olması TBK m. 315 kapsamında fesih sebebidir\n2. Davacının alacak hakkı açık ve net\n3. Tahliye ve alacak talebinin birlikte değerlendirilmesi gerekir\n\n**KARAR ÖNERİSİ:**\nDavanın KABULÜ yönünde karar verilmesi hukuka uygundur...",
-  "model": "gpt-4-turbo",
+  "model": "OX7A3F8D",
   "role": "judge",
   "timestamp": "2024-03-15T10:30:00Z"
 }
@@ -601,7 +601,7 @@ POST /api/legal-ai/analyze
 {
   "success": true,
   "analysis": "Değerli Kullanıcı,\n\n**HUKUK ANALİZİ (Vatandaş Modu)**\n\nKomşunuzun bahçenize tecavüz etmesi durumunda şunları yapabilirsiniz:\n\n1. **Önce Barışçıl Çözüm:**\n   - Komşunuzla konuşun\n   - Muhtar veya apartman yönetimi aracılığıyla çözüm arayın\n\n2. **Hukuki Yol:**\n   - Tapu müdürlüğünden parsel planını alın\n   - Fotoğraf ve belge toplayın\n   - Bir avukata danışın (ÜCRETSİZ: Baro avukatlık hizmeti)\n\n3. **Açabileceğiniz Davalar:**\n   - Müdahalenin men'i davası\n   - Tapu iptal ve tescil davası\n\n**ÖNEMLİ:**\n- Bu bilgilendirme hukuki tavsiye değildir\n- Mutlaka bir avukatla görüşün\n- İlgili kanunlar: TMK m. 683, TMK m. 1007\n\n**Nereye Başvurmalısınız:**\n1. Baro Avukatlık Bürosu (ücretli)\n2. Adli Yardım Bürosu (gelir testi sonrası ücretsiz)\n3. İl/İlçe Barolar Birliği (danışma)\n\n---\n🤖 Bu cevap LyDian AI tarafından üretilmiştir. Hukuki tavsiye değildir.",
-  "model": "gpt-4-turbo",
+  "model": "OX7A3F8D",
   "role": "citizen"
 }
 ```
@@ -727,7 +727,7 @@ Ticari kullanım için lisans gereklidir.
 ✅ **Türkiye İlk:** Comprehensive legal AI platform
 ✅ **UYAP Entegrasyonu:** Ulusal Yargı Ağı bağlantısı
 ✅ **Gerçek Zamanlı Veri:** Yargıtay, Anayasa Mahkemesi, Resmi Gazete
-✅ **Multimodal AI:** GPT-4o vision + audio + text
+✅ **Multimodal AI:** OX7A3F8D vision + audio + text
 ✅ **Voice Biometric:** %99 liveness, %95 deepfake detection
 ✅ **Role-Based:** Judge/Prosecutor/Lawyer/Citizen ayrımı
 ✅ **White-Hat Security:** Etik AI kuralları aktif

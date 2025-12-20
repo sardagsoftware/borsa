@@ -285,10 +285,10 @@ async function updateModules(req, res) {
 
     // Available AI models
     const AVAILABLE_AI_MODELS = [
-      'claude',
-      'gpt-4',
+      'AX9F7E2B',
+      'OX5C9E2B',
       'gemini',
-      'groq',
+      'lydian-velocity',
       'azure-openai'
     ];
 

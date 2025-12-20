@@ -246,11 +246,11 @@ class EnvironmentValidator {
     this.log('\n🤖 Checking AI provider configuration...', 'blue');
 
     const providers = [
-      { name: 'OpenAI', key: 'OPENAI_API_KEY' },
-      { name: 'Anthropic', key: 'ANTHROPIC_API_KEY' },
-      { name: 'Google', key: 'GOOGLE_API_KEY' },
+      { name: 'lydian-labs', key: 'OPENAI_API_KEY' },
+      { name: 'lydian-research', key: 'ANTHROPIC_API_KEY' },
+      { name: 'lydian-vision', key: 'GOOGLE_API_KEY' },
       { name: 'Azure OpenAI', key: 'AZURE_OPENAI_API_KEY' },
-      { name: 'Groq', key: 'GROQ_API_KEY' }
+      { name: 'lydian-velocity', key: 'GROQ_API_KEY' }
     ];
 
     const configured = providers.filter(p => process.env[p.key]);

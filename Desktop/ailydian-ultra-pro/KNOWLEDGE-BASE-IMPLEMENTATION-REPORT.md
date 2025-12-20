@@ -106,7 +106,7 @@ AiLydian Ultimate Knowledge Base Portal sistemi başarıyla geliştirildi ve pro
   - AI-powered chat interface
   - Context-aware responses
   - Knowledge Base integration
-  - Multi-model support (Groq Llama 3.3, OpenAI GPT-4o-mini)
+  - Multi-model support (LyDian Acceleration LyDian Velocity, LyDian Labs OX7A3F8D-mini)
   - Source extraction
   - Multi-language support
   - Domain specialization
@@ -310,12 +310,12 @@ AiLydian Ultimate Knowledge Base Portal sistemi başarıyla geliştirildi ve pro
 
 ### Backend Stack
 - **Node.js:** Serverless functions
-- **OpenAI SDK:** AI integrations
+- **LyDian Labs SDK:** AI integrations
 - **Vercel:** Deployment platform
 
 ### API Integrations
-- **Groq:** Llama 3.3 70B (primary)
-- **OpenAI:** GPT-4o-mini (fallback)
+- **LyDian Acceleration:** LyDian Velocity 70B (primary)
+- **LyDian Labs:** OX7A3F8D-mini (fallback)
 - **Ultimate Knowledge Base:** Custom backend
 - **Wikipedia API:** (gelecekte real integration)
 - **PubMed API:** (gelecekte real integration)

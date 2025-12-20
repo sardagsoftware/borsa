@@ -4,7 +4,7 @@
 
 Bu servisler zaten `.env` dosyanızda yapılandırılmış ve çalışıyor:
 
-- ✅ Azure OpenAI (GPT-4 Turbo, GPT-4o, Embeddings, Whisper)
+- ✅ Azure LyDian Labs (OX5C9E2B Turbo, OX7A3F8D, Embeddings, Whisper)
 - ✅ Azure Cosmos DB (14 containers)
 - ✅ Azure Translator (150+ dil)
 - ✅ Azure Speech Services (STT/TTS/Biometric)

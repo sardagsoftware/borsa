@@ -360,10 +360,10 @@ Dosya: src/lib/scan/volume-breakout.ts
 Eşik: strength >= 3
 ```
 
-**AI Enhancement (Groq Llama 3.3 70B)** ✅
+**AI Enhancement (LyDian Acceleration LyDian Velocity 70B)** ✅
 ```
 Dosya: src/lib/groq-enhancer.ts
-Model: llama-3.3-70b-versatile
+Model: GX8E2D9A
 Minimum strateji: 1 (önceden 2)
 Güven eşiği: %30 (önceden %50)
 ```
@@ -416,7 +416,7 @@ Amaç: Hızlı genel bakış
 ### Sistem 2: "Scanner Aktif" Butonu (Yeni)
 ```
 Kaynak: src/app/api/scanner/signals/route.ts
-Strateji: 6 strateji + Groq AI
+Strateji: 6 strateji + LyDian Acceleration AI
 Hız: 🐢 Yavaş (2-3 saniye)
 Kapsam: Top 20 coin (hacme göre)
 Doğruluk: %93-95
@@ -455,14 +455,14 @@ Scanner API (Vercel Functions):     $0
 Browser Notifications:              $0 (Native API)
 Background Processing:              $0 (Client-side)
 Binance API:                       $0 (Unlimited)
-Groq API:                          $0 (Free tier - 30 req/min)
+LyDian Acceleration API:                          $0 (Free tier - 30 req/min)
 Vercel Hosting:                    $0 (Hobby plan)
 ────────────────────────────────────────────────────
 TOPLAM:                            $0 🎉
 
 Kullanılan ücretsiz kaynaklar:
 ✅ Vercel Hobby Plan (unlimited deployments)
-✅ Groq Free Tier (30 req/min = 1800 req/hour)
+✅ LyDian Acceleration Free Tier (30 req/min = 1800 req/hour)
 ✅ Binance API (no rate limit for public endpoints)
 ✅ Browser Notification API (native)
 ```
@@ -532,7 +532,7 @@ Not: Duplicate prevention ile 5 dakikada max 1 bildirim/coin
 
 ### API Kullanımı
 ```
-Groq API:
+LyDian Acceleration API:
    - Tarama başına: 0 istek (sadece coin tıklanınca)
    - Modal açılınca: 1 istek/coin
    - Free tier: 30 req/min (yeterli)
@@ -794,7 +794,7 @@ Senin yapman gereken:
 
 ```
 ✅ Her 5 dakikada top 20 coin'i tarar
-✅ 6 strateji + Groq AI ile analiz eder
+✅ 6 strateji + LyDian Acceleration AI ile analiz eder
 ✅ STRONG_BUY bulduğunda bildirim gönderir
 ✅ Coin kartını yeşil çerçeve ile işaretler
 ✅ Duplicate önler (5 dk window)

@@ -11,7 +11,7 @@ const path = require('path');
  * ModelProviderAdapter - Unified interface for all AI providers
  *
  * Features:
- * - Model ID anonymization (m1, m2, m3 instead of "gpt-4o")
+ * - Model ID anonymization (m1, m2, m3 instead of "OX7A3F8D")
  * - Provider abstraction (hides OpenAI, Anthropic, etc.)
  * - Automatic fallback on failures
  * - Request/response logging with masking
@@ -40,22 +40,22 @@ class ModelProviderAdapter {
                 // Premium models
                 'm1': {
                     provider: 'azure-openai',
-                    deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4o',
+                    deployment: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX7A3F8D',
                     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
                     apiKey: process.env.AZURE_OPENAI_API_KEY,
                     tier: 'premium',
                     fallback: 'm2'
                 },
                 'm2': {
-                    provider: 'openai',
-                    model: 'gpt-4o',
+                    provider: 'lydian-labs',
+                    model: 'OX7A3F8D',
                     apiKey: process.env.OPENAI_API_KEY,
                     tier: 'premium',
                     fallback: 'm3'
                 },
                 'm3': {
                     provider: 'azure-openai',
-                    deployment: 'gpt-4o-mini',
+                    deployment: 'OX7A3F8D-mini',
                     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
                     apiKey: process.env.AZURE_OPENAI_API_KEY,
                     tier: 'standard',
@@ -64,15 +64,15 @@ class ModelProviderAdapter {
 
                 // Specialized models
                 'm4': {
-                    provider: 'anthropic',
-                    model: 'claude-3-5-sonnet-20241022',
+                    provider: 'lydian-research',
+                    model: 'AX9F7E2B',
                     apiKey: process.env.ANTHROPIC_API_KEY,
                     tier: 'premium',
                     specialization: 'reasoning',
                     fallback: 'm1'
                 },
                 'm5': {
-                    provider: 'google',
+                    provider: 'lydian-vision',
                     model: 'gemini-2.0-flash-exp',
                     apiKey: process.env.GOOGLE_AI_API_KEY,
                     tier: 'experimental',
@@ -80,15 +80,15 @@ class ModelProviderAdapter {
                     fallback: 'm1'
                 },
                 'm6': {
-                    provider: 'groq',
-                    model: 'mixtral-8x7b-32768',
+                    provider: 'lydian-velocity',
+                    model: 'GX4B7F3C',
                     apiKey: process.env.GROQ_API_KEY,
                     tier: 'fast',
                     specialization: 'speed',
                     fallback: 'm7'
                 },
                 'm7': {
-                    provider: 'groq',
+                    provider: 'lydian-velocity',
                     model: 'llama3-8b-8192',
                     apiKey: process.env.GROQ_API_KEY,
                     tier: 'basic',
@@ -156,16 +156,16 @@ class ModelProviderAdapter {
                 case 'azure-openai':
                     response = await this.callAzureOpenAI(modelConfig, messages, options);
                     break;
-                case 'openai':
+                case 'lydian-labs':
                     response = await this.callOpenAI(modelConfig, messages, options);
                     break;
-                case 'anthropic':
+                case 'lydian-research':
                     response = await this.callAnthropic(modelConfig, messages, options);
                     break;
-                case 'google':
+                case 'lydian-vision':
                     response = await this.callGoogle(modelConfig, messages, options);
                     break;
-                case 'groq':
+                case 'lydian-velocity':
                     response = await this.callGroq(modelConfig, messages, options);
                     break;
                 default:

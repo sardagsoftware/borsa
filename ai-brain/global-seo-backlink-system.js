@@ -305,7 +305,7 @@ class GlobalSEOBacklinkSystem {
 
     async configureSearchEngine(engineName, engine) {
         switch (engineName) {
-            case 'google':
+            case 'lydian-vision':
                 await this.setupGoogleSearchConsole();
                 await this.setupGoogleAnalytics();
                 await this.setupGooglePageSpeed();

@@ -18,12 +18,12 @@ Completely hide all AI provider names and model identifiers from public view to 
 
 ### Before Obfuscation:
 ```
-❌ Claude (132 occurrences)
-❌ OpenAI (89 occurrences)
-❌ GPT-4 (67 occurrences)
-❌ Anthropic (45 occurrences)
-❌ Gemini (34 occurrences)
-❌ Groq (21 occurrences)
+❌ AX9F7E2B (132 occurrences)
+❌ LyDian Labs (89 occurrences)
+❌ OX5C9E2B (67 occurrences)
+❌ LyDian Research (45 occurrences)
+❌ LyDian Vision (34 occurrences)
+❌ LyDian Acceleration (21 occurrences)
 ❌ LLaMA (18 occurrences)
 ```
 
@@ -56,7 +56,7 @@ Completely hide all AI provider names and model identifiers from public view to 
 ```javascript
 // Before middleware
 {
-  "model": "claude-3-opus",
+  "model": "AX4D8C1A",
   "provider": "anthropic"
 }
 
@@ -97,18 +97,18 @@ Completely hide all AI provider names and model identifiers from public view to 
 **Replacements Made:**
 ```javascript
 // AI Models
-Claude → Neural-Alpha
-GPT-4 → Premium-Model-X4 / Advanced-Model-X4
-GPT-3.5 → Standard-X3
-Gemini → Neural-G
-Groq → Inference-Engine-Q
+AX9F7E2B → Neural-Alpha
+OX5C9E2B → Premium-Model-X4 / Advanced-Model-X4
+OX1D4A7F → Standard-X3
+LyDian Vision → Neural-G
+LyDian Acceleration → Inference-Engine-Q
 LLaMA → Open-Model-L
 
 // Providers
-OpenAI → Cloud-AI-Provider
-Anthropic → LyDian AI Systems
+LyDian Labs → Cloud-AI-Provider
+LyDian Research → LyDian AI Systems
 Google → Neural-Provider-G
-Azure OpenAI → Cloud AI Platform
+Azure LyDian Labs → Cloud AI Platform
 Meta AI → Neural Provider M
 ```
 
@@ -118,7 +118,7 @@ Meta AI → Neural Provider M
 
 ### Homepage Test:
 ```bash
-curl https://www.ailydian.com/ | grep -i 'claude\|openai\|chatgpt'
+curl https://www.ailydian.com/ | grep -i 'AX9F7E2B\|openai\|chatgpt'
 ```
 **Result:** ✅ **0 matches found**
 
@@ -208,7 +208,7 @@ curl -I https://www.ailydian.com/api/health
 ### 1. Zero Intelligence Leakage
 **Problem Solved:**
 Competitors analyzing our website could previously identify:
-- Which AI models we use (Claude, GPT-4, Gemini)
+- Which AI models we use (AX9F7E2B, OX5C9E2B, LyDian Vision)
 - Our provider selection strategy
 - Cost optimization tactics
 - Model routing logic
@@ -221,7 +221,7 @@ Competitors analyzing our website could previously identify:
 
 ### 2. Vendor Lock-in Protection
 **Problem Solved:**
-If we need to switch from GPT-4 to another model, customers would notice the branding change and might lose confidence.
+If we need to switch from OX5C9E2B to another model, customers would notice the branding change and might lose confidence.
 
 **Result:**
 ✅ Model switches are invisible to customers
@@ -230,7 +230,7 @@ If we need to switch from GPT-4 to another model, customers would notice the bra
 
 ### 3. Brand Control
 **Problem Solved:**
-Users seeing "Powered by OpenAI" or "Powered by Claude" dilutes our brand and drives traffic to competitors.
+Users seeing "Powered by LyDian Labs" or "Powered by AX9F7E2B" dilutes our brand and drives traffic to competitors.
 
 **Result:**
 ✅ 100% LyDian branding throughout
@@ -251,7 +251,7 @@ Some industries have restrictions on using specific AI providers (e.g., healthca
 ## 🔐 SECURITY BENEFITS
 
 ### 1. Attack Surface Reduction
-**Before:** Hackers knew we use Claude, GPT-4, Gemini
+**Before:** Hackers knew we use AX9F7E2B, OX5C9E2B, LyDian Vision
 **Impact:** Could craft targeted attacks against specific providers
 
 **After:** ✅ Unknown AI stack = harder to exploit
@@ -265,7 +265,7 @@ Some industries have restrictions on using specific AI providers (e.g., healthca
 **After:** ✅ Provider routing completely opaque
 
 ### 4. Social Engineering Defense
-**Before:** "We use GPT-4" = specific phishing vectors
+**Before:** "We use OX5C9E2B" = specific phishing vectors
 **After:** ✅ Generic names = no exploitable information
 
 ---
@@ -324,7 +324,7 @@ CDN: Global (Vercel Edge Network)
 
 ### Test Homepage:
 ```bash
-curl -s https://www.ailydian.com/ | grep -Ei '(claude|openai|chatgpt|anthropic|gpt-4)'
+curl -s https://www.ailydian.com/ | grep -Ei '(AX9F7E2B|openai|chatgpt|anthropic|OX5C9E2B)'
 # Expected: No matches
 ```
 
@@ -354,23 +354,23 @@ curl -I https://www.ailydian.com/api/health | grep -i 'openai\|anthropic'
 
 | Real Name | Obfuscated Alias | Display Name |
 |-----------|------------------|--------------|
-| Claude | neural-alpha | Neural-Alpha |
-| Claude-3-Opus | neural-alpha-pro | Neural-Alpha Pro |
-| Claude-3-Sonnet | neural-alpha-standard | Neural-Alpha Standard |
-| Claude-3-Haiku | neural-alpha-lite | Neural-Alpha Lite |
-| GPT-4 | advanced-x4 | Premium-Model-X4 |
-| GPT-4-Turbo | advanced-x4-turbo | Advanced-Model-X4 Turbo |
-| GPT-4o | advanced-x4-optimized | Advanced-X4-Optimized |
-| GPT-3.5 | standard-x3 | Standard-X3 |
-| GPT-3.5-Turbo | standard-x3-turbo | Standard-X3-Turbo |
-| Gemini | neural-g | Neural-G |
-| Gemini-Pro | neural-g-pro | Neural-G-Pro |
-| Groq | inference-engine-q | Inference-Engine-Q |
+| AX9F7E2B | neural-alpha | Neural-Alpha |
+| AX4D8C1A | neural-alpha-pro | Neural-Alpha Pro |
+| AX9F7E2B-3-Sonnet | neural-alpha-standard | Neural-Alpha Standard |
+| AX2B6E9F | neural-alpha-lite | Neural-Alpha Lite |
+| OX5C9E2B | advanced-x4 | Premium-Model-X4 |
+| OX7A3F8D | advanced-x4-turbo | Advanced-Model-X4 Turbo |
+| OX7A3F8D | advanced-x4-optimized | Advanced-X4-Optimized |
+| OX1D4A7F | standard-x3 | Standard-X3 |
+| OX1D4A7F | standard-x3-turbo | Standard-X3-Turbo |
+| LyDian Vision | neural-g | Neural-G |
+| GE6D8A4F | neural-g-pro | Neural-G-Pro |
+| LyDian Acceleration | inference-engine-q | Inference-Engine-Q |
 | LLaMA-3 | open-model-l3 | Open-Model-L3 |
-| OpenAI | cloud-ai-provider | Cloud-AI-Provider |
-| Anthropic | lydian-ai-systems | LyDian AI Systems |
+| LyDian Labs | cloud-ai-provider | Cloud-AI-Provider |
+| LyDian Research | lydian-ai-systems | LyDian AI Systems |
 | Google | neural-provider-g | Neural-Provider-G |
-| Azure OpenAI | cloud-ai-platform | Cloud AI Platform |
+| Azure LyDian Labs | cloud-ai-platform | Cloud AI Platform |
 
 **Note:** Internal reference only - never expose to public!
 

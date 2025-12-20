@@ -40,7 +40,7 @@ async function test1_LegalAnalysis() {
 
     try {
         const response = await axios.post(`${BASE_URL}/api/chat`, {
-            model: 'gpt-4-turbo',
+            model: 'OX7A3F8D',
             message: 'Türk Borçlar Kanunu\'nda satış sözleşmelerinin unsurları nelerdir?',
             temperature: 0.7,
             max_tokens: 2048,
@@ -55,7 +55,7 @@ async function test1_LegalAnalysis() {
         if (response.data.success && response.data.response) {
             logSuccess('Hukuki Analiz', 'ÇALIŞIYOR ✓');
             logInfo(`Response length: ${response.data.response.length} chars`);
-            logInfo(`Model: ${response.data.model || 'gpt-4-turbo'}`);
+            logInfo(`Model: ${response.data.model || 'OX7A3F8D'}`);
             return { service: 'Hukuki Analiz', status: '✅ WORKING', details: response.data };
         } else {
             logError('Hukuki Analiz', 'No response received');
@@ -138,7 +138,7 @@ async function test4_PrecedentSearch() {
 
     try {
         const response = await axios.post(`${BASE_URL}/api/chat`, {
-            model: 'gpt-4-turbo',
+            model: 'OX7A3F8D',
             message: 'İşçinin iş kazasından dolayı işverenden tazminat talep etmesi - benzer Yargıtay kararları nelerdir?',
             temperature: 0.7,
             max_tokens: 2048,

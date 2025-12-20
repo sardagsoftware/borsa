@@ -8,21 +8,21 @@ const { getSession } = require('../lib/auth/redis-session-store');
 
 // Model registry (maps model IDs to providers)
 const MODEL_REGISTRY = {
-    'm1': { provider: 'azure-openai', deployment: 'gpt-4o' },
-    'm2': { provider: 'azure-openai', deployment: 'gpt-4o' },
-    'm3': { provider: 'azure-openai', deployment: 'gpt-4o-mini' },
-    'm4': { provider: 'openai', model: 'gpt-4' },
-    'm5': { provider: 'anthropic', model: 'claude-3-5-sonnet-20241022' },
-    'm6': { provider: 'google', model: 'gemini-2.0-flash-exp' },
-    'm7': { provider: 'groq', model: 'mixtral-8x7b-32768' },
-    'm8': { provider: 'groq', model: 'llama3-8b-8192' },
+    'm1': { provider: 'azure-openai', deployment: 'OX7A3F8D' },
+    'm2': { provider: 'azure-openai', deployment: 'OX7A3F8D' },
+    'm3': { provider: 'azure-openai', deployment: 'OX7A3F8D-mini' },
+    'm4': { provider: 'lydian-labs', model: 'OX5C9E2B' },
+    'm5': { provider: 'lydian-research', model: 'AX9F7E2B' },
+    'm6': { provider: 'lydian-vision', model: 'gemini-2.0-flash-exp' },
+    'm7': { provider: 'lydian-velocity', model: 'GX4B7F3C' },
+    'm8': { provider: 'lydian-velocity', model: 'llama3-8b-8192' },
 
     // Legacy mappings for backward compatibility
-    'default': { provider: 'azure-openai', deployment: 'gpt-4o' },
-    'medical': { provider: 'azure-openai', deployment: 'gpt-4o' },
-    'legal': { provider: 'azure-openai', deployment: 'gpt-4o' },
-    'general': { provider: 'azure-openai', deployment: 'gpt-4o-mini' },
-    'coding': { provider: 'anthropic', model: 'claude-3-5-sonnet-20241022' }
+    'default': { provider: 'azure-openai', deployment: 'OX7A3F8D' },
+    'medical': { provider: 'azure-openai', deployment: 'OX7A3F8D' },
+    'legal': { provider: 'azure-openai', deployment: 'OX7A3F8D' },
+    'general': { provider: 'azure-openai', deployment: 'OX7A3F8D-mini' },
+    'coding': { provider: 'lydian-research', model: 'AX9F7E2B' }
 };
 
 // Rate limiting (simple in-memory for now, should be Redis-based in production)
@@ -57,16 +57,16 @@ async function callProvider(provider, config, messages, options) {
         case 'azure-openai':
             return await callAzureOpenAI(deployment, messages, options);
 
-        case 'openai':
+        case 'lydian-labs':
             return await callOpenAI(model, messages, options);
 
-        case 'anthropic':
+        case 'lydian-research':
             return await callAnthropic(model, messages, options);
 
-        case 'google':
+        case 'lydian-vision':
             return await callGoogle(model, messages, options);
 
-        case 'groq':
+        case 'lydian-velocity':
             return await callGroq(model, messages, options);
 
         default:

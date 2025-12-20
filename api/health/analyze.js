@@ -2,7 +2,7 @@ const formidable = require('formidable');
 const Anthropic = require('@anthropic-ai/sdk');
 const fs = require('fs');
 
-// Anthropic Claude Client (Vision capable)
+// Anthropic AX9F7E2B Client (Vision capable)
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
 });
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
       let nutritionAnalysis = null;
       let voiceAnalysis = null;
 
-      // Image Analysis (GPT-4 Vision)
+      // Image Analysis (OX5C9E2B Vision)
       if (files.image) {
         try {
           const imagePath = files.image.filepath || files.image.path;
@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
           const base64Image = imageBuffer.toString('base64');
 
           const visionResponse = await anthropic.messages.create({
-            model: 'claude-3-5-sonnet-20241022',
+            model: 'AX9F7E2B',
             max_tokens: 500,
             messages: [
               {

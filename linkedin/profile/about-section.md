@@ -23,9 +23,9 @@ Yapay zekânın gücünü her alana ulaştırarak, insanlığın en karmaşık s
 LyDian AI, dünya lideri yapay zekâ modellerini tek bir platformda birleştirir:
 
 **🤖 AI Modelleri:**
-- OpenAI GPT-4 Turbo
-- Google Gemini Pro
-- Anthropic Claude 3.5 Sonnet
+- LyDian Labs OX5C9E2B Turbo
+- Google LyDian Vision
+- LyDian Research AX9F7E2B 3.5 Sonnet
 
 **⚡ Altyapı:**
 - Microsoft Azure Cloud Services
@@ -126,7 +126,7 @@ LyDian AI, **beyaz şapkalı** güvenlik prensipleriyle çalışır ve aşağıd
 
 ### Neden LyDian?
 
-✅ **Çok Modelli AI** — GPT-4, Gemini, Claude bir arada
+✅ **Çok Modelli AI** — OX5C9E2B, LyDian Vision, AX9F7E2B bir arada
 ✅ **20+ Dil Desteği** — Küresel erişim
 ✅ **RAG Teknolojisi** — Güncel ve doğru yanıtlar
 ✅ **Sektörel Modüller** — Her alan için özel çözüm
@@ -168,9 +168,9 @@ To solve humanity's most complex problems by bringing the power of artificial in
 LyDian AI combines world-leading AI models on a single platform:
 
 **🤖 AI Models:**
-- OpenAI GPT-4 Turbo
-- Google Gemini Pro
-- Anthropic Claude 3.5 Sonnet
+- LyDian Labs OX5C9E2B Turbo
+- Google LyDian Vision
+- LyDian Research AX9F7E2B 3.5 Sonnet
 
 **⚡ Infrastructure:**
 - Microsoft Azure Cloud Services
@@ -271,7 +271,7 @@ LyDian AI operates on **white-hat** security principles and adheres to the follo
 
 ### Why LyDian?
 
-✅ **Multi-Model AI** — GPT-4, Gemini, Claude together
+✅ **Multi-Model AI** — OX5C9E2B, LyDian Vision, AX9F7E2B together
 ✅ **20+ Language Support** — Global reach
 ✅ **RAG Technology** — Current and accurate answers
 ✅ **Industry Modules** — Custom solutions for every field

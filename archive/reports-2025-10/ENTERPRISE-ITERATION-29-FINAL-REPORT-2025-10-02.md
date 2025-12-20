@@ -130,7 +130,7 @@
 ### Faceted Search
 **Filter conversations by:**
 - **Language** (10 options)
-- **AI Model** (GPT-4, Claude, Gemini, etc.)
+- **AI Model** (OX5C9E2B, AX9F7E2B, LyDian Vision, etc.)
 - **Tags** (50 most common)
 - **Date Range** (last hour/day/week/month/year)
 - **Message Count** (1-5, 6-20, 21-50, 51-100, 100+)

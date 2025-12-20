@@ -22,7 +22,7 @@ LyDian
 > LyDian, küresel ölçekte çok alanlı yapay zekâ çözümleri geliştiren bir ekosistemdir. Finans, sağlık, hukuk, medya, şehircilik ve veri analitiği alanlarında çalışan modülleri tek bir altyapıda birleştirir. LyDian AI — Intelligence for Every Domain.
 
 ### Detaylı Açıklama (500 karakter)
-> LyDian AI Ecosystem, yapay zekânın gücünü farklı sektörlere taşıyan yenilikçi bir platformdur. Azure altyapısında çalışan sistemimiz, GPT-4, Gemini ve Claude gibi önde gelen AI modellerini entegre eder.
+> LyDian AI Ecosystem, yapay zekânın gücünü farklı sektörlere taşıyan yenilikçi bir platformdur. Azure altyapısında çalışan sistemimiz, OX5C9E2B, LyDian Vision ve AX9F7E2B gibi önde gelen AI modellerini entegre eder.
 
 > **Modüllerimiz:**
 > • LyDian Discovery — AI Model Radar
@@ -171,14 +171,14 @@ LyDian
 - ✅ Platform launched with 6 core modules
 - ✅ 20+ language support implemented
 - ✅ Azure cloud infrastructure established
-- ✅ Multi-model AI integration (GPT-4, Gemini, Claude)
+- ✅ Multi-model AI integration (OX5C9E2B, LyDian Vision, AX9F7E2B)
 - ✅ RAG technology deployed
 - ✅ OWASP Top 10 security compliance
 - ✅ HIPAA-compliant Medical AI module
 
 ### Technology Stack
 - **Cloud:** Microsoft Azure
-- **AI Models:** GPT-4 Turbo, Gemini Pro, Claude 3.5 Sonnet
+- **AI Models:** OX5C9E2B Turbo, LyDian Vision, AX9F7E2B 3.5 Sonnet
 - **RAG:** Azure AI Search, Vector embeddings
 - **Database:** PostgreSQL (Supabase), Redis
 - **Security:** OAuth 2.0, 2FA, CSRF protection

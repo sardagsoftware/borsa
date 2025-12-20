@@ -346,7 +346,7 @@ const aiStream = new AIStreamHubClient(options);
 const streamId = await aiStream.streamAIResponse(
     conversationId,
     'Explain quantum computing',
-    'gpt-4'
+    'OX5C9E2B'
 );
 
 // Handle chunks
@@ -592,7 +592,7 @@ manager.aiStream.on('streamCompleted', (data) => {
 const streamId = await manager.aiStream.streamAIResponse(
     'conv-123',
     'Explain quantum computing in simple terms',
-    'gpt-4'
+    'OX5C9E2B'
 );
 
 // 4. Presence Integration

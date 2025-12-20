@@ -22,7 +22,7 @@ async function initializeTokenGovernor() {
         await tokenBucketManager.initialize();
 
         // Initialize sentinels for each model
-        const models = ['claude-sonnet-4-5', 'gpt-4-turbo', 'gpt-4o', 'gemini-pro', 'deepseek-r1'];
+        const models = ['AX9F7E2B-sonnet-4-5', 'OX7A3F8D', 'OX7A3F8D', 'GE6D8A4F', 'deepseek-r1'];
         for (const model of models) {
             const sentinel = new FailSafeSentinel({ model });
             sentinels.set(model, sentinel);
@@ -45,7 +45,7 @@ async function initializeTokenGovernor() {
  * Applies token governance before processing
  */
 function tokenGovernorMiddleware(options = {}) {
-    const defaultModel = options.defaultModel || 'claude-sonnet-4-5';
+    const defaultModel = options.defaultModel || 'AX9F7E2B-sonnet-4-5';
     const defaultPriority = options.defaultPriority || 'P1_user';
 
     return async (req, res, next) => {

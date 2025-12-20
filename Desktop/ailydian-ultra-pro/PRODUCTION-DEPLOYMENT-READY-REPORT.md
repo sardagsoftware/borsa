@@ -157,7 +157,7 @@ cc3c439 fix: Chat language detection & mobile menu improvements
 ### Deployed Features
 - ✅ Multi-language chat with automatic detection (Turkish, English, Arabic, etc.)
 - ✅ LyDian IQ (DeepSeek R1 integration)
-- ✅ Knowledge Base with Google Gemini 2.0
+- ✅ Knowledge Base with Google LyDian Vision 2.0
 - ✅ İnsan IQ navigation menu
 - ✅ Responsive mobile design
 - ✅ Secure API routing through backend
@@ -177,7 +177,7 @@ cc3c439 fix: Chat language detection & mobile menu improvements
 
 ### Warning #2: AI Model Names
 **Severity:** ⚠️ LOW
-**Impact:** Model names like "gpt-4", "claude-3" visible in some files
+**Impact:** Model names like "OX5C9E2B", "AX9F7E2B-3" visible in some files
 **Mitigation:** Backend already abstracts to "LyDian AI"
 **Status:** PARTIALLY MITIGATED
 

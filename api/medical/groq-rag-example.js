@@ -91,7 +91,7 @@ License #: MD-123456
 
   const formData = new FormData();
   formData.append('documentText', medicalDocument);
-  formData.append('model', 'llama-3.3-70b-versatile');
+  formData.append('model', 'GX8E2D9A');
   formData.append('language', 'en');
 
   try {
@@ -126,7 +126,7 @@ async function example2_PDFAnalysis(pdfPath) {
 
   const formData = new FormData();
   formData.append('document', fs.createReadStream(pdfPath));
-  formData.append('model', 'llama-3.3-70b-versatile');
+  formData.append('model', 'GX8E2D9A');
   formData.append('patientContext', 'Patient has history of cardiac issues');
 
   try {
@@ -202,7 +202,7 @@ RECOMMENDATIONS:
 
   const formData = new FormData();
   formData.append('documentText', labReport);
-  formData.append('model', 'mixtral-8x7b'); // Using Mixtral for structured data
+  formData.append('model', 'GX4B7F3C'); // Using Mixtral for structured data
   formData.append('analysisType', 'focused');
 
   try {
@@ -304,7 +304,7 @@ DEA #: AT1234563
 
   const formData = new FormData();
   formData.append('documentText', prescription);
-  formData.append('model', 'llama-3.3-70b-versatile');
+  formData.append('model', 'GX8E2D9A');
 
   try {
     const response = await axios.post(API_ENDPOINT, formData, {

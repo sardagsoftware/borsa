@@ -10,8 +10,8 @@ const AZURE_OPENAI_CONFIG = {
     endpoint: process.env.AZURE_OPENAI_ENDPOINT || 'https://ailydian-openai.openai.azure.com/',
     apiKey: process.env.AZURE_OPENAI_API_KEY,
     apiVersion: '2024-08-01-preview',
-    deploymentName: process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4o',
-    visionDeployment: process.env.AZURE_OPENAI_VISION_DEPLOYMENT || 'gpt-4o-vision'
+    deploymentName: process.env.AZURE_OPENAI_DEPLOYMENT || 'OX7A3F8D',
+    visionDeployment: process.env.AZURE_OPENAI_VISION_DEPLOYMENT || 'OX7A3F8D-vision'
 };
 
 // Azure Health Data Services Configuration

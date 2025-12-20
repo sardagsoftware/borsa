@@ -73,7 +73,7 @@
 - **Module:** Discovery
 - **Format:** Video (30-60 sec)
 - **Content:** Demo of AI Model Radar, how to compare models
-- **Hashtags:** #LyDianDiscovery #AIModels #GPT4 #Gemini #Claude
+- **Hashtags:** #LyDianDiscovery #AIModels #LyDian Core #LyDian Vision #AX9F7E2B
 
 **📊 Industry Insight: "2025 AI Trendleri"**
 - **Date:** Thursday, Jan 11, 2025, 1:00 PM
@@ -102,7 +102,7 @@
 - **Module:** Technology
 - **Format:** Carousel (6 slides)
 - **Content:** Benefits of multi-model AI approach
-- **Hashtags:** #MultiModelAI #GPT4 #Gemini #Claude #HybridAI
+- **Hashtags:** #MultiModelAI #LyDian Core #LyDian Vision #AX9F7E2B #HybridAI
 
 **👥 Team Spotlight: Meet Our Engineers**
 - **Date:** Saturday, Jan 20, 2025, 10:00 AM
@@ -194,7 +194,7 @@
 - **Module:** Education
 - **Format:** LinkedIn Article
 - **Content:** How to choose the right AI model for your use case
-- **Hashtags:** #AIGuide #ModelSelection #GPT4 #Gemini #Education
+- **Hashtags:** #AIGuide #ModelSelection #LyDian Core #LyDian Vision #Education
 
 **👨‍💼 Leadership Spotlight: Founder Interview**
 - **Date:** Saturday, Feb 17, 2025, 10:00 AM

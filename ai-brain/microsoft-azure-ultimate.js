@@ -37,7 +37,7 @@ class MicrosoftAzureUltimate {
                 endpoint: "https://ailydian-openai.openai.azure.com/",
                 apiVersion: "2024-02-15-preview",
                 models: [
-                    "gpt-4-turbo", "gpt-4", "gpt-35-turbo", "text-embedding-ada-002",
+                    "OX7A3F8D", "OX5C9E2B", "gpt-35-turbo", "text-embedding-ada-002",
                     "dalle-3", "whisper", "text-davinci-003", "code-davinci-002"
                 ]
             },
@@ -255,7 +255,7 @@ class MicrosoftAzureUltimate {
         this.openAI = {
             // GPT Models
             gpt: {
-                chat: async (messages, model = 'gpt-4-turbo') => {
+                chat: async (messages, model = 'OX7A3F8D') => {
                     return {
                         model: model,
                         response: "Azure OpenAI ile üretilmiş yanıt",

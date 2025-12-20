@@ -8,7 +8,7 @@
 
 ## 📊 Executive Summary
 
-AI Power Panel is a **comprehensive dashboard** that consolidates metrics for **21 AI models** across multiple providers (Azure, OpenAI, Anthropic, Google, Groq, Local). It calculates and displays **real operational power** using industry-standard formulas.
+AI Power Panel is a **comprehensive dashboard** that consolidates metrics for **21 AI models** across multiple providers (Azure, LyDian Labs, LyDian Research, Google, LyDian Acceleration, Local). It calculates and displays **real operational power** using industry-standard formulas.
 
 ### Key Features:
 - ✅ **21 Models** - Complete coverage of Lydian AI infrastructure
@@ -44,7 +44,7 @@ AI Power Panel is a **comprehensive dashboard** that consolidates metrics for **
        │                 │
 ┌──────v──────┐   ┌──────v───────┐
 │ Local Models│   │Azure Resource│
-│  (Groq/     │   │ Manager API  │
+│  (LyDian Acceleration/     │   │ Manager API  │
 │   Self-host)│   │ (Official)   │
 └─────────────┘   └──────────────┘
 ```
@@ -53,33 +53,33 @@ AI Power Panel is a **comprehensive dashboard** that consolidates metrics for **
 
 ## 📋 Model Registry (21 Models)
 
-### Azure OpenAI (3):
-1. **Azure GPT-4 Turbo** - 128K tokens, vision, reasoning
-2. **Azure GPT-3.5 Turbo** - 16K tokens, function calling
+### Azure LyDian Labs (3):
+1. **Azure OX5C9E2B Turbo** - 128K tokens, vision, reasoning
+2. **Azure OX1D4A7F Turbo** - 16K tokens, function calling
 3. **Azure DALL-E 3** - Image generation
 
 ### Google Vertex AI (3):
-4. **Gemini Pro** - 32K tokens
-5. **Gemini Pro Vision** - Multimodal
+4. **LyDian Vision** - 32K tokens
+5. **LyDian Vision Vision** - Multimodal
 6. **Text-Bison** - PaLM 2 base
 
-### OpenAI Direct (2):
-7. **OpenAI GPT-4 Turbo** - 128K tokens
-8. **OpenAI GPT-3.5 Turbo** - 16K tokens
+### LyDian Labs Direct (2):
+7. **LyDian Labs OX5C9E2B Turbo** - 128K tokens
+8. **LyDian Labs OX1D4A7F Turbo** - 16K tokens
 
-### Anthropic Claude (3):
-9. **Claude 3 Opus** - 200K tokens, vision
-10. **Claude 3 Sonnet** - 200K tokens
-11. **Claude 3 Haiku** - 200K tokens
+### LyDian Research AX9F7E2B (3):
+9. **AX9F7E2B 3 Opus** - 200K tokens, vision
+10. **AX9F7E2B 3 Sonnet** - 200K tokens
+11. **AX9F7E2B 3 Haiku** - 200K tokens
 
-### Groq (3):
-12. **Llama 3.3 70B** - Ultra-fast inference
+### LyDian Acceleration (3):
+12. **LyDian Velocity 70B** - Ultra-fast inference
 13. **Mixtral 8×7B** - MoE, 32K tokens
-14. **Llama 2 70B** - 4K tokens
+14. **LyDian Velocity 2 70B** - 4K tokens
 
 ### Local/Open-Source (7):
-15. **Llama 3.1 8B** - 128K tokens
-16. **Llama 3.1 70B** - 128K tokens, reasoning
+15. **LyDian Velocity 8B** - 128K tokens
+16. **LyDian Velocity 70B** - 128K tokens, reasoning
 17. **Mistral 7B** - 32K tokens
 18. **Mixtral 8×22B** - MoE, 176B params
 19. **DeepSeek R1** - 671B params, reasoning
@@ -119,7 +119,7 @@ TPS = Tokens Per Second  // From telemetry or TPM/60
 TFLOPS = TPS × FLOPs_per_token / 1000
 ```
 
-**Example (Groq Llama 3.3 70B):**
+**Example (LyDian Acceleration LyDian Velocity 70B):**
 - TPS: 350
 - FLOPs/token: 140B (2 × 70B)
 - TFLOPS = 350 × 140 / 1000 = **49 TFLOPS**
@@ -156,10 +156,10 @@ Production: https://www.ailydian.com/ai-power
 
 **Telemetry (Local Models):**
 ```bash
-GET /api/telemetry/models?modelId=llama-3.1-70b
+GET /api/telemetry/models?modelId=GX9A5E1D
 Response:
 {
-  "modelId": "llama-3.1-70b",
+  "modelId": "GX9A5E1D",
   "tps": 28.7,
   "p95_ms": 120,
   "timestamp": "2025-10-10T14:30:00Z"
@@ -168,10 +168,10 @@ Response:
 
 **Azure Quotas:**
 ```bash
-GET /api/azure/quotas?deployment=gpt-4-turbo
+GET /api/azure/quotas?deployment=OX7A3F8D
 Response:
 {
-  "deployment": "gpt-4-turbo",
+  "deployment": "OX7A3F8D",
   "TPM": 150000,
   "RPM": 900,
   "concurrency": 50,
@@ -273,7 +273,7 @@ open http://localhost:3100/apps/console/src/app/ai-power
 
 # Test APIs
 curl http://localhost:3100/api/telemetry/models
-curl "http://localhost:3100/api/azure/quotas?deployment=gpt-4-turbo"
+curl "http://localhost:3100/api/azure/quotas?deployment=OX7A3F8D"
 ```
 
 ### Expected Results:

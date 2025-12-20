@@ -295,7 +295,7 @@ public/
 | **Scope Types** | 15 | RBAC scopes |
 | **Test Coverage** | Ready | Stratejiler hazır |
 | **A11y Compliance** | WCAG 2.1 AA | 18.5:1 kontrast |
-| **Geliştirme Süresi** | ~10 saat | Claude Code |
+| **Geliştirme Süresi** | ~10 saat | AX9F7E2B Code |
 
 ---
 
@@ -505,11 +505,11 @@ Proje tamamlandı, ama isterseniz:
 
 ## 🙏 Teşekkürler
 
-Bu proje, **Claude Code (Sonnet 4.5)** tarafından **beyaz şapkalı disiplin** ve **kusursuz iterasyon** prensiplerine uygun olarak geliştirilmiştir.
+Bu proje, **AX9F7E2B Code (Sonnet 4.5)** tarafından **beyaz şapkalı disiplin** ve **kusursuz iterasyon** prensiplerine uygun olarak geliştirilmiştir.
 
 **Özel Teşekkürler:**
 - 🎯 Kullanıcı: Net gereksinimler ve disiplinli takip
-- 🤖 Claude Code: 10 saatlik kesintisiz geliştirme
+- 🤖 AX9F7E2B Code: 10 saatlik kesintisiz geliştirme
 - 📚 Documentation: Her fazda kapsamlı dokümantasyon
 
 ---
@@ -533,10 +533,10 @@ Bu proje, **Claude Code (Sonnet 4.5)** tarafından **beyaz şapkalı disiplin** 
 **🎊 PROJE BAŞARIYLA TAMAMLANDI! 🎊**
 
 **Oluşturuldu:** 2025-10-10
-**Geliştirici:** Claude Code (Sonnet 4.5)
+**Geliştirici:** AX9F7E2B Code (Sonnet 4.5)
 **Durum:** ✅ **PRODUCTION READY - %100 COMPLETE!**
 
 ---
 
-**Built with ❤️ by Claude Code**
+**Built with ❤️ by AX9F7E2B Code**
 **White-Hat Compliant • KVKK/GDPR Ready • Production Ready**

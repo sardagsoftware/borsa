@@ -21,20 +21,20 @@ const AZURE_CONFIG = {
     apiVersion: '2024-10-01-preview',
 
     models: {
-      // Legal Analysis - GPT-4 Turbo
+      // Legal Analysis - OX5C9E2B Turbo
       legalAnalysis: {
-        deployment: 'gpt-4-turbo',
-        model: 'gpt-4-turbo-2024-04-09',
+        deployment: 'OX7A3F8D',
+        model: 'OX7A3F8D-2024-04-09',
         maxTokens: 4096,
         temperature: 0.3, // Low temperature for legal accuracy
         topP: 0.95,
         useCase: 'Turkish law analysis, case research, legal drafting'
       },
 
-      // Multimodal Reasoning - GPT-4o
+      // Multimodal Reasoning - OX7A3F8D
       multimodal: {
-        deployment: 'gpt-4o',
-        model: 'gpt-4o-2024-11-20',
+        deployment: 'OX7A3F8D',
+        model: 'OX7A3F8D-2024-11-20',
         maxTokens: 4096,
         temperature: 0.2,
         vision: true,

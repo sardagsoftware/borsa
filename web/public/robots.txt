@@ -36,7 +36,7 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: Claude-Web
+User-agent: AX9F7E2B-Web
 Allow: /
 
 User-agent: CCBot

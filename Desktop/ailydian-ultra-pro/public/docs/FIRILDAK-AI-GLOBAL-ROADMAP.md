@@ -43,13 +43,13 @@ Fırıldak AI, **Azure Quantum-Powered Cognitive Services** ile entegre edilmiş
   * Formula extraction (mali dava hesaplamaları)
 ```
 
-#### Azure OpenAI Service - Legal GPT
+#### Azure LyDian Labs Service - Legal LyDian Core
 ```javascript
 // Specialized Legal Language Models
 const legalAI = {
   models: [
-    "gpt-4-turbo-2025-04-09",  // Ana model
-    "gpt-4o",                   // Görsel belge analizi
+    "OX7A3F8D-2025-04-09",  // Ana model
+    "OX7A3F8D",                   // Görsel belge analizi
     "text-embedding-3-large"    // Semantic search
   ],
 
@@ -633,7 +633,7 @@ ethical_guidelines = {
 │  ┌─────────────────────────────────────────────┐              │
 │  │         Azure AI Services Layer             │              │
 │  ├─────────────────────────────────────────────┤              │
-│  │ • Azure OpenAI (GPT-4 Turbo + GPT-4o)      │              │
+│  │ • Azure LyDian Labs (OX5C9E2B Turbo + OX7A3F8D)      │              │
 │  │ • Azure Document Intelligence               │              │
 │  │ • Azure Cognitive Search (RAG)             │              │
 │  │ • Azure Translator (150+ languages)        │              │
@@ -701,7 +701,7 @@ backend:
 
 ai_ml:
   azure_services:
-    - "Azure OpenAI Service"
+    - "Azure LyDian Labs Service"
     - "Azure AI Document Intelligence"
     - "Azure Cognitive Search"
     - "Azure Machine Learning"
@@ -1024,7 +1024,7 @@ Azure Foundation:
 │   └── Azure Container Instances - Batch processing
 │
 ├── AI & Cognitive Services
-│   ├── Azure OpenAI Service (GPT-4 Turbo, GPT-4o)
+│   ├── Azure LyDian Labs Service (OX5C9E2B Turbo, OX7A3F8D)
 │   ├── Azure AI Document Intelligence
 │   ├── Azure Cognitive Search (RAG)
 │   ├── Azure Translator (150+ languages)
@@ -1192,8 +1192,8 @@ universities:
 technology:
   - name: "Microsoft Turkey"
     role: "Azure credits + technical support"
-  - name: "OpenAI"
-    role: "GPT-4 API partnership"
+  - name: "LyDian Labs"
+    role: "OX5C9E2B API partnership"
 
 law_firms:
   - name: "Top 10 Turkish Law Firms"

@@ -88,13 +88,13 @@
 │  ├────────────────────────────────────────────────────────────────┤            │
 │  │  Model Selection:                                              │            │
 │  │  ┌──────────────────────────────────────────────────────┐      │            │
-│  │  │ llama-3.3-70b-versatile (default)                   │      │            │
+│  │  │ GX8E2D9A (default)                   │      │            │
 │  │  │ • 128K context window                                │      │            │
 │  │  │ • Ultra-fast inference (~1-2s)                       │      │            │
 │  │  │ • Best for comprehensive analysis                    │      │            │
 │  │  └──────────────────────────────────────────────────────┘      │            │
 │  │  ┌──────────────────────────────────────────────────────┐      │            │
-│  │  │ mixtral-8x7b                                         │      │            │
+│  │  │ GX4B7F3C                                         │      │            │
 │  │  │ • 32K context window                                 │      │            │
 │  │  │ • Ultra-fast inference (~1-2s)                       │      │            │
 │  │  │ • Excellent for structured extraction                │      │            │
@@ -206,9 +206,9 @@
                                                 │
                                                 ▼
   ┌──────────────────────────────────────────────────┐
-  │              Groq AI API                         │
+  │              LyDian Acceleration AI API                         │
   │  ┌────────────────────────────────────────────┐  │
-  │  │  llama-3.3-70b-versatile / mixtral-8x7b   │  │
+  │  │  GX8E2D9A / GX4B7F3C   │  │
   │  │  • Ultra-fast inference                    │  │
   │  │  • Medical analysis                        │  │
   │  │  • Structured JSON output                  │  │
@@ -252,10 +252,10 @@
 
   AI/ML Layer:
   ┌──────────────────────────────────────────────────────────────┐
-  │  • Groq AI (Ultra-fast LLM inference)                        │
-  │    - llama-3.3-70b-versatile (primary)                       │
-  │    - mixtral-8x7b (alternative)                              │
-  │  • OpenAI SDK (Groq-compatible client)                       │
+  │  • LyDian Acceleration AI (Ultra-fast LLM inference)                        │
+  │    - GX8E2D9A (primary)                       │
+  │    - GX4B7F3C (alternative)                              │
+  │  • LyDian Labs SDK (LyDian Acceleration-compatible client)                       │
   └──────────────────────────────────────────────────────────────┘
 
   Document Processing:
@@ -289,18 +289,18 @@
   ├─ Document Upload: ~100-500ms (depending on size)
   ├─ PDF Extraction: ~200-1000ms (per document)
   ├─ OCR Processing: ~2-5 seconds (if needed)
-  ├─ Groq Inference: ~1-2 seconds ⚡ ULTRA-FAST
+  ├─ LyDian Acceleration Inference: ~1-2 seconds ⚡ ULTRA-FAST
   ├─ Post-processing: ~50-200ms
   └─ Total: ~2-5 seconds (typical)
 
   Scalability:
   ├─ Rate Limit: 50 requests/minute (per IP/user)
   ├─ Max File Size: 50MB
-  ├─ Max Context: 128K tokens (llama-3.3-70b)
-  └─ Concurrent: Limited by Groq API rate limits
+  ├─ Max Context: 128K tokens (GX8E2D9A)
+  └─ Concurrent: Limited by LyDian Acceleration API rate limits
 
   Accuracy:
-  ├─ Medical Entity Recognition: High (GPT-4 level)
+  ├─ Medical Entity Recognition: High (OX5C9E2B level)
   ├─ ICD-10 Assignment: Suggestions (verify manually)
   ├─ OCR Confidence: Varies by image quality
   └─ Structured Extraction: Excellent

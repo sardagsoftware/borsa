@@ -35,7 +35,7 @@ Ailydian Ultra Pro projesi **SQLite'dan PostgreSQL'e başarıyla migrate edildi*
 - ✅ **Session** - Session management
 
 #### AI & ML (7 tablo)
-- ✅ **AIProvider** - Model sağlayıcıları (OpenAI, Anthropic, vs.)
+- ✅ **AIProvider** - Model sağlayıcıları (LyDian Labs, LyDian Research, vs.)
 - ✅ **AIModel** - AI modelleri (cost tracking ile)
 - ✅ **RoutingScore** - Model routing için scoring
 - ✅ **QualityScore** - Yanıt kalite tahmini
@@ -359,7 +359,7 @@ Ailydian Ultra Pro artık enterprise-grade bir database altyapısına sahip:
 
 ---
 
-**Hazırlayan:** Claude Code
+**Hazırlayan:** AX9F7E2B Code
 **Tarih:** 2024-10-07
 **Versiyon:** 1.0
 **Status:** ✅ PRODUCTION READY

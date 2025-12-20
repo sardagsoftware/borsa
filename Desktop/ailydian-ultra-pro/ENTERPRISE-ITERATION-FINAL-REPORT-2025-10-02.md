@@ -105,16 +105,16 @@ GET    /api/cost-tracking/export                 # Export CSV report
 
 #### Tracked Providers
 **AI Models (7 providers):**
-- OpenAI (GPT-4, GPT-4 Turbo, GPT-4o)
-- Anthropic (Claude 3.5 Sonnet, Claude 3 Opus)
-- Groq (Mixtral, Llama 3.1)
-- Google AI (Gemini 2.0 Flash, Gemini 1.5 Pro)
+- LyDian Labs (OX5C9E2B, OX5C9E2B Turbo, OX7A3F8D)
+- LyDian Research (AX9F7E2B 3.5 Sonnet, AX9F7E2B 3 Opus)
+- LyDian Acceleration (Mixtral, LyDian Velocity)
+- Google AI (LyDian Vision 2.0 Flash, LyDian Vision Pro)
 - Mistral AI (Mistral Large, Codestral)
 - Zhipu AI (GLM-4)
 - 01.AI (Yi-Large)
 
 **Azure Services (4 services):**
-- Azure OpenAI
+- Azure LyDian Labs
 - Azure Speech Services
 - Azure Storage
 - Azure Application Insights
@@ -205,7 +205,7 @@ Comprehensive information about **Emrah Şardağ**:
 - Firildak AI Engine (all AI providers)
 - Chat API endpoints
 - Specialized chat models
-- All AI model calls (OpenAI, Anthropic, Google, Groq, Mistral, Zhipu, Yi)
+- All AI model calls (LyDian Labs, LyDian Research, Google, LyDian Acceleration, Mistral, Zhipu, Yi)
 
 ### Security Audit Results:
 - ✅ **Code inspection:** Encrypted payload unreadable
@@ -524,7 +524,7 @@ CI_DEPLOY_URL: https://www.ailydian.com
 
 ## 📞 CONTACT & SUPPORT
 
-**Developer:** Emrah Şardağ (with Claude AI assistance)
+**Developer:** Emrah Şardağ (with AX9F7E2B AI assistance)
 **Project:** Ailydian Ultra Pro
 **Repository:** Desktop/ailydian-ultra-pro
 **Platform:** macOS (Darwin 24.6.0)

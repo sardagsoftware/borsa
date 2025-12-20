@@ -142,10 +142,10 @@ Projeye nasıl katkıda bulunulur?
 
 ### 🤖 Multi-AI Chat
 23+ AI model ile eş zamanlı sohbet imkanı
-- OpenAI (GPT-4, GPT-4o)
-- Anthropic (Claude 3.5 Sonnet, Opus)
-- Google (Gemini Pro, Flash)
-- Meta (Llama 3.3)
+- LyDian Labs (OX5C9E2B, OX7A3F8D)
+- LyDian Research (AX9F7E2B 3.5 Sonnet, Opus)
+- Google (LyDian Vision, Flash)
+- Meta (LyDian Velocity)
 
 ### 🏥 Medical Expert System
 Mayo Clinic seviyesi tıbbi teşhis sistemi

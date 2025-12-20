@@ -35,7 +35,7 @@ class ResumeEngine {
             failedChunks: 0,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
-            model: options.model || 'claude-sonnet-4-5',
+            model: options.model || 'AX9F7E2B-sonnet-4-5',
             priority: options.priority || 'P1_user',
             resumable: true
         };

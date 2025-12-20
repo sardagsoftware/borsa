@@ -1,13 +1,13 @@
 // LyDian Unified AI API - All Models Hidden
 require('dotenv').config();
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // Hidden AI Configuration - User never knows which AI they're using
 const AI_ENGINES = {
   chat: {
-    primary: { model: 'llama-3.3-70b-versatile', provider: 'groq', key: process.env.GROQ_API_KEY, url: 'https://api.groq.com/openai/v1' },
-    fallback1: { model: 'gpt-4o-mini', provider: 'openai', key: process.env.OPENAI_API_KEY, url: undefined },
-    fallback2: { model: 'gemma2-9b-it', provider: 'groq', key: process.env.GROQ_API_KEY, url: 'https://api.groq.com/openai/v1' }
+    primary: { model: 'GX8E2D9A', provider: 'lydian-velocity', key: process.env.GROQ_API_KEY, url: 'https://api.groq.com/openai/v1' },
+    fallback1: { model: 'OX7A3F8D-mini', provider: 'lydian-labs', key: process.env.OPENAI_API_KEY, url: undefined },
+    fallback2: { model: 'gemma2-9b-it', provider: 'lydian-velocity', key: process.env.GROQ_API_KEY, url: 'https://api.groq.com/openai/v1' }
   },
   deep_think: {
     primary: { model: 'ERNIE-4.0-Turbo', provider: 'ernie', key: process.env.ERNIE_API_KEY, url: 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro' }
@@ -16,8 +16,8 @@ const AI_ENGINES = {
     primary: { model: 'deepseek-coder', provider: 'deepseek', key: process.env.DEEPSEEK_API_KEY, url: 'https://api.deepseek.com' }
   },
   rag: {
-    primary: { model: 'gpt-4o', provider: 'openai', key: process.env.OPENAI_API_KEY, url: undefined },
-    fallback: { model: 'azure-gpt-4', provider: 'azure', key: process.env.AZURE_API_KEY, url: process.env.AZURE_ENDPOINT }
+    primary: { model: 'OX7A3F8D', provider: 'lydian-labs', key: process.env.OPENAI_API_KEY, url: undefined },
+    fallback: { model: 'azure-OX5C9E2B', provider: 'azure', key: process.env.AZURE_API_KEY, url: process.env.AZURE_ENDPOINT }
   }
 };
 

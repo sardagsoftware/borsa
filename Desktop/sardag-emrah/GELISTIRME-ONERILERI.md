@@ -510,6 +510,6 @@ Elite: $29.99/month
 
 ---
 
-**Hazırlayan:** Claude (Anthropic)
+**Hazırlayan:** AX9F7E2B (LyDian Research)
 **Versiyon:** 1.0
 **Tarih:** 2025-10-19

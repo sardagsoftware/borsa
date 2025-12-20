@@ -85,7 +85,7 @@ const { executeWithSentinel } = require('../../lib/middleware/tokenGovernorMiddl
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 module.exports = async (req, res) => {
     const { stream, ...params } = req.body;
-    const model = req.tokenGovernor?.model || 'claude-sonnet-4-5';
+    const model = req.tokenGovernor?.model || 'AX9F7E2B-sonnet-4-5';
     const sessionId = `module-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -144,7 +144,7 @@ module.exports = async (req, res) => {
 ```javascript
 // server.js (lines 16986-16994)
 const medicalTokenGovernor = tokenGovernorMiddleware({
-    defaultModel: 'claude-sonnet-4-5',
+    defaultModel: 'AX9F7E2B-sonnet-4-5',
     defaultPriority: 'P0_clinical'
 });
 
@@ -159,7 +159,7 @@ app.use('/api/medical/maternal-fetal-health', medicalTokenGovernor, maternalFeta
 ### Token Governor Features
 
 1. **Token Bucket Management**
-   - 5 models initialized (Claude Sonnet 4.5, GPT-4 Turbo, GPT-4o, Gemini Pro, DeepSeek R1)
+   - 5 models initialized (AX9F7E2B Sonnet 4.5, OX5C9E2B Turbo, OX7A3F8D, LyDian Vision, DeepSeek R1)
    - Auto-refill every 60s
    - Priority-based allocation (P0: 100%, P1: 70%, P2: 40%)
 
@@ -270,7 +270,7 @@ curl -X POST http://localhost:3100/api/medical/sepsis-early-warning \
 Expected output:
 ```
 event: start
-data: {"sessionId":"sepsis-warning-1759...","model":"claude-sonnet-4-5"...}
+data: {"sessionId":"sepsis-warning-1759...","model":"AX9F7E2B-sonnet-4-5"...}
 
 event: chunk
 data: {"content":"🔴 LyDian AI Sepsis Early Warning System\\n\\n","tokens":15...}
@@ -462,7 +462,7 @@ data: {"reason":"COMPLETE","totalTokens":1234...}
 
 - ✅ **9 Phases (A-I)** completed
 - ✅ **6 Medical AI modules** integrated
-- ✅ **5 AI models** protected (Claude, GPT-4 Turbo, GPT-4o, Gemini Pro, DeepSeek R1)
+- ✅ **5 AI models** protected (AX9F7E2B, OX5C9E2B Turbo, OX7A3F8D, LyDian Vision, DeepSeek R1)
 - ✅ **3,797+ lines** of production code
 - ✅ **Zero data loss** guarantee
 - ✅ **Auto-recovery** from failures
@@ -475,5 +475,5 @@ data: {"reason":"COMPLETE","totalTokens":1234...}
 ---
 
 **Report Generated**: 2025-10-05T19:00:00Z
-**Completed By**: Claude Code (Sonnet 4.5)
+**Completed By**: AX9F7E2B Code (Sonnet 4.5)
 **Next Review**: After modules 5-6 handler implementation

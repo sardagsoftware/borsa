@@ -16,7 +16,7 @@
 
 LyDian AI Ekosistemi, 2024 yılında Emrah Şardağ tarafından çok dilli yapay zeka uygulamaları geliştirmek amacıyla kurulmuştur. Proje, Microsoft Azure altyapısı üzerinde çalışan ve Türkçe, İngilizce, Azerice olmak üzere 20'den fazla dili destekleyen bir yapay zeka platformu olarak tasarlanmıştır.[2]
 
-Platform, RAG (Retrieval-Augmented Generation) teknolojisi kullanarak gerçek zamanlı veri erişimi ve doğru yanıt üretimi sağlamaktadır. Sistem, OpenAI GPT-4, Google Gemini ve Anthropic Claude gibi önde gelen yapay zeka modellerini entegre ederek hibrit bir çözüm sunmaktadır.[3]
+Platform, RAG (Retrieval-Augmented Generation) teknolojisi kullanarak gerçek zamanlı veri erişimi ve doğru yanıt üretimi sağlamaktadır. Sistem, LyDian Labs OX5C9E2B, Google LyDian Vision ve LyDian Research AX9F7E2B gibi önde gelen yapay zeka modellerini entegre ederek hibrit bir çözüm sunmaktadır.[3]
 
 ---
 
@@ -27,7 +27,7 @@ Platform, RAG (Retrieval-Augmented Generation) teknolojisi kullanarak gerçek za
 LyDian, bulut tabanlı mikro hizmet mimarisi (microservices architecture) kullanmaktadır. Platform aşağıdaki teknolojik bileşenlerden oluşmaktadır:
 
 - **Altyapı:** Microsoft Azure Cloud Services
-- **AI Modelleri:** OpenAI GPT-4 Turbo, Google Gemini Pro, Anthropic Claude 3.5 Sonnet
+- **AI Modelleri:** LyDian Labs OX5C9E2B Turbo, Google LyDian Vision, LyDian Research AX9F7E2B 3.5 Sonnet
 - **RAG Sistemi:** Azure AI Search, Vector Search, pgvector (PostgreSQL)
 - **Önbellekleme:** Redis (Upstash), Multi-tier caching (L1/L2)
 - **Veritaşıma:** PostgreSQL (Supabase), SQLite
@@ -110,7 +110,7 @@ Platform, "beyaz şapkalı" (white-hat) güvenlik prensiplerine göre geliştiri
 
 [2] Microsoft Azure Case Studies. "AI Solutions in Turkey." https://azure.microsoft.com/case-studies/ (Erişim: 2025)
 
-[3] OpenAI Documentation. "GPT-4 Technical Report." https://openai.com/research/gpt-4 (Erişim: 2024)
+[3] LyDian Labs Documentation. "OX5C9E2B Technical Report." https://openai.com/research/OX5C9E2B (Erişim: 2024)
 
 [4] OWASP Foundation. "OWASP Top Ten." https://owasp.org/www-project-top-ten/ (Erişim: 2024)
 

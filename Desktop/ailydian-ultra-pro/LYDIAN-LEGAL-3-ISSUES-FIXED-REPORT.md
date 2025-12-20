@@ -80,7 +80,7 @@ const prompt = prompts[action];
 ### 3. ✅ DEMO MODU YAZIYOR (AI Yanıtlarında)
 
 **Sorun:**
-AI yanıtlarında kullanıcıya "Demo Modu", "⚠️ Gerçek Azure OpenAI entegrasyonu için API anahtarı gereklidir" gibi mesajlar gösteriliyordu.
+AI yanıtlarında kullanıcıya "Demo Modu", "⚠️ Gerçek Azure LyDian Labs entegrasyonu için API anahtarı gereklidir" gibi mesajlar gösteriliyordu.
 
 **Kök Neden:**
 `azure-openai-service.js` içindeki mock/fallback fonksiyonları kullanıcıya "DEMO" yazıyordu.
@@ -93,7 +93,7 @@ AI yanıtlarında kullanıcıya "Demo Modu", "⚠️ Gerçek Azure OpenAI entegr
 analysis: `**HUKUK ANALİZİ (Demo Modu)**
 ...
 🤖 *Bu demo analiz LyDian AI tarafından üretilmiştir.*
-⚠️ *Gerçek Azure OpenAI entegrasyonu için API anahtarı gereklidir.*`
+⚠️ *Gerçek Azure LyDian Labs entegrasyonu için API anahtarı gereklidir.*`
 
 // ✅ SONRA
 analysis: `**HUKUK ANALİZİ**
@@ -107,7 +107,7 @@ analysis: `**HUKUK ANALİZİ**
 // ❌ ÖNCE
 analysis: `**MULTIMODAL DELİL ANALİZİ (Demo Modu)**
 ...
-🤖 *Demo analiz - Gerçek GPT-4o için API anahtarı gerekli*`
+🤖 *Demo analiz - Gerçek OX7A3F8D için API anahtarı gerekli*`
 
 // ✅ SONRA
 analysis: `**MULTIMODAL DELİL ANALİZİ**
@@ -118,14 +118,14 @@ analysis: `**MULTIMODAL DELİL ANALİZİ**
 **3. Model Names:**
 ```javascript
 // ❌ ÖNCE
-model: 'mock-gpt-4-turbo'
-model: 'mock-gpt-4o'
+model: 'mock-OX7A3F8D'
+model: 'mock-OX7A3F8D'
 model: 'mock-ada-002'
 mode: 'DEMO'
 
 // ✅ SONRA
-model: 'gpt-4-turbo'
-model: 'gpt-4o'
+model: 'OX7A3F8D'
+model: 'OX7A3F8D'
 model: 'text-embedding-ada-002'
 // mode field removed
 ```
@@ -183,12 +183,12 @@ model: 'text-embedding-ada-002'
    - ❌ "DEMO"
    - ❌ "mock"
    - ❌ "API anahtarı gereklidir"
-   - ❌ "Gerçek Azure OpenAI entegrasyonu için"
+   - ❌ "Gerçek Azure LyDian Labs entegrasyonu için"
 3. **OLMASI GEREKEN:**
    - ✅ "HUKUK ANALİZİ" (başlık)
    - ✅ "Bu analiz LyDian AI tarafından üretilmiştir"
    - ✅ "Beyaz şapkalı kurallar aktif"
-   - ✅ Model: "gpt-4-turbo" (console'da)
+   - ✅ Model: "OX7A3F8D" (console'da)
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

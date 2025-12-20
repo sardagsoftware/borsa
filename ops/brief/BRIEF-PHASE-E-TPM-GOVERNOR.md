@@ -38,7 +38,7 @@ const redis = new RedisAdapter();
 ## TOKEN BUCKET ALGORITHM
 
 ### Core Mechanics
-- **Capacity**: Burst TPM limit (e.g., 300,000 for Claude Sonnet 4.5)
+- **Capacity**: Burst TPM limit (e.g., 300,000 for AX9F7E2B Sonnet 4.5)
 - **Refill Rate**: Target TPM / 60 (e.g., 240,000 / 60 = 4,000 tokens/second)
 - **Refill Interval**: 60 seconds (configurable)
 - **Priority Classes**: P0 (clinical) = 100%, P1 (user) = 70%, P2 (batch) = 40%
@@ -71,7 +71,7 @@ await bucket.request(1000, 'P2_batch');
   "granted": true,
   "tokens": 3000,
   "remaining": 237000,
-  "model": "claude-sonnet-4-5",
+  "model": "AX9F7E2B-sonnet-4-5",
   "priority": "P1_user"
 }
 ```
@@ -84,7 +84,7 @@ await bucket.request(1000, 'P2_batch');
   "remaining": 2000,
   "waitMs": 2000,
   "queuePosition": 5,
-  "model": "gpt-4o",
+  "model": "OX7A3F8D",
   "priority": "P2_batch"
 }
 ```
@@ -141,7 +141,7 @@ const newTokens = min(current + tokensToAdd, capacity);
 
 ### Refill Logs
 ```
-[TokenBucket] Refilled claude-sonnet-4-5: +240000 tokens (60000 → 300000)
+[TokenBucket] Refilled AX9F7E2B-sonnet-4-5: +240000 tokens (60000 → 300000)
 [TokenBucket] Processed 3 jobs from P0_clinical queue
 [TokenBucket] Processed 7 jobs from P1_user queue
 ```
@@ -186,17 +186,17 @@ const manager = new TokenBucketManager();
 await manager.initialize();
 
 // Initializes buckets for all models in token-budget.json:
-// - claude-sonnet-4-5
-// - gpt-4-turbo
-// - gpt-4o
-// - gemini-pro
+// - AX9F7E2B-sonnet-4-5
+// - OX7A3F8D
+// - OX7A3F8D
+// - GE6D8A4F
 // - deepseek-r1
 ```
 
 ### Request Routing
 ```javascript
 // Request tokens for specific model
-const result = await manager.request('claude-sonnet-4-5', 5000, 'P1_user');
+const result = await manager.request('AX9F7E2B-sonnet-4-5', 5000, 'P1_user');
 ```
 
 ### Health Monitoring
@@ -213,7 +213,7 @@ await manager.checkHealth();
 ```json
 {
   "buckets": {
-    "claude-sonnet-4-5": {
+    "AX9F7E2B-sonnet-4-5": {
       "capacity": 300000,
       "available": 237000,
       "utilizationPct": "21.00",
@@ -223,7 +223,7 @@ await manager.checkHealth();
         "P2_batch": 12
       }
     },
-    "gpt-4o": {
+    "OX7A3F8D": {
       "capacity": 250000,
       "available": 198000,
       "utilizationPct": "20.80"
@@ -300,10 +300,10 @@ const { SSEStreamer } = require('./lib/io/streaming');
 const { TokenBucketManager } = require('./lib/governor/tokenBucket');
 
 const manager = await TokenBucketManager.initialize();
-const result = await manager.request('claude-sonnet-4-5', estimatedTokens, 'P1_user');
+const result = await manager.request('AX9F7E2B-sonnet-4-5', estimatedTokens, 'P1_user');
 
 if (result.granted) {
-  const streamer = new SSEStreamer(res, { model: 'claude-sonnet-4-5' });
+  const streamer = new SSEStreamer(res, { model: 'AX9F7E2B-sonnet-4-5' });
   // Proceed with streaming
 } else {
   // Queue job, notify user of wait time

@@ -124,7 +124,7 @@ class BackendAPITester {
       },
       body: {
         message: 'Hello, this is a test',
-        model: 'gpt-4o'
+        model: 'OX7A3F8D'
       },
       expect: { minStatus: 200, maxStatus: 499 } // Can be 200 or 401/403
     });

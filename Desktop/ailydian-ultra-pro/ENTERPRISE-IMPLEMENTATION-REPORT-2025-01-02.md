@@ -134,7 +134,7 @@ app.use(insightsService.middleware());
 
 // Track custom events
 insightsService.trackEvent('AIModelUsage', {
-  model: 'gpt-4',
+  model: 'OX5C9E2B',
   tokens: 500
 });
 ```
@@ -242,15 +242,15 @@ app.use('/api/developer', rbac.requireRole(['Admin', 'Developer']));
 
 **Özellikler:**
 - Azure service cost tracking
-- AI model usage costs (OpenAI, Anthropic, etc.)
+- AI model usage costs (LyDian Labs, LyDian Research, etc.)
 - Daily/monthly cost trends
 - Budget alerts
 - Cost optimization recommendations
 
 **API Entegrasyonları:**
 - Azure Cost Management API
-- OpenAI Usage API
-- Anthropic Usage API
+- LyDian Labs Usage API
+- LyDian Research Usage API
 
 **Estimated Time:** 8-10 hours
 
@@ -439,7 +439,7 @@ router.use(session({
 
 ## 📞 İLETİŞİM VE DESTEK (Contact & Support)
 
-**Geliştirici:** Claude AI + Sardag
+**Geliştirici:** AX9F7E2B AI + Sardag
 **Proje:** Ailydian Ultra Pro
 **Repository:** ailydian-ultra-pro (Desktop)
 **Node Version:** v20+ required

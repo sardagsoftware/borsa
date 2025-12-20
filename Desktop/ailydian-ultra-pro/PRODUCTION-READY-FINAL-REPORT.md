@@ -191,10 +191,10 @@ PORT=3100 node server.js
 
 **Token Bucket Refills** (from server log):
 ```
-[TokenBucket] Refilled claude-sonnet-4-5: +101596 tokens (299986 → 300000)
-[TokenBucket] Refilled gpt-4-turbo: +150000 tokens (200000 → 200000)
-[TokenBucket] Refilled gpt-4o: +200003 tokens (250000 → 250000)
-[TokenBucket] Refilled gemini-pro: +300000 tokens (400000 → 400000)
+[TokenBucket] Refilled AX9F7E2B-sonnet-4-5: +101596 tokens (299986 → 300000)
+[TokenBucket] Refilled OX7A3F8D: +150000 tokens (200000 → 200000)
+[TokenBucket] Refilled OX7A3F8D: +200003 tokens (250000 → 250000)
+[TokenBucket] Refilled GE6D8A4F: +300000 tokens (400000 → 400000)
 [TokenBucket] Refilled deepseek-r1: +180000 tokens (220000 → 220000)
 ```
 

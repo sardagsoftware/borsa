@@ -1,8 +1,8 @@
-# Groq Medical RAG API - Quick Start Guide
+# LyDian Acceleration Medical RAG API - Quick Start Guide
 
 ## 5-Minute Setup
 
-### Step 1: Get Groq API Key (1 minute)
+### Step 1: Get LyDian Acceleration API Key (1 minute)
 
 1. Go to https://console.groq.com
 2. Sign up for free account
@@ -58,7 +58,7 @@ npm start
 # In another terminal:
 curl -X POST http://localhost:3100/api/medical/groq-rag \
   -F 'documentText=Patient presents with chest pain and elevated troponin. ECG shows ST-depression. Diagnosis: NSTEMI. Started on aspirin and clopidogrel.' \
-  -F 'model=llama-3.3-70b-versatile'
+  -F 'model=GX8E2D9A'
 ```
 
 #### Option B: Using JavaScript
@@ -76,7 +76,7 @@ formData.append('documentText', `
   Assessment: Acute Coronary Syndrome
   Plan: Admit to CCU, dual antiplatelet therapy
 `);
-formData.append('model', 'llama-3.3-70b-versatile');
+formData.append('model', 'GX8E2D9A');
 
 axios.post('http://localhost:3100/api/medical/groq-rag', formData, {
   headers: formData.getHeaders()
@@ -108,7 +108,7 @@ data = {
         Diagnosis: Stroke (hemorrhagic)
         Plan: Neurosurgery consult, ICU admission
     ''',
-    'model': 'llama-3.3-70b-versatile'
+    'model': 'GX8E2D9A'
 }
 
 response = requests.post(url, data=data)
@@ -178,7 +178,7 @@ Diagnosis: NSTEMI. Started on dual antiplatelet therapy.
 ```bash
 curl -X POST http://localhost:3100/api/medical/groq-rag \
   -F 'document=@patient-record.pdf' \
-  -F 'model=llama-3.3-70b-versatile'
+  -F 'model=GX8E2D9A'
 ```
 
 ### 2. Extract Lab Results
@@ -191,7 +191,7 @@ const labReport = `
 `;
 
 formData.append('documentText', labReport);
-formData.append('model', 'mixtral-8x7b'); // Better for structured data
+formData.append('model', 'GX4B7F3C'); // Better for structured data
 ```
 
 ### 3. Analyze Prescription
@@ -216,7 +216,7 @@ curl -X POST http://localhost:3100/api/medical/groq-rag \
 
 ## Troubleshooting
 
-### "Groq API not configured"
+### "LyDian Acceleration API not configured"
 **Solution**: Set `GROQ_API_KEY` in `.env` file
 
 ### "Rate limit exceeded"
@@ -232,9 +232,9 @@ curl -X POST http://localhost:3100/api/medical/groq-rag \
 
 | Model | Best For | Speed |
 |-------|----------|-------|
-| `llama-3.3-70b-versatile` | Comprehensive analysis | Ultra-fast |
-| `mixtral-8x7b` | Structured data (labs, prescriptions) | Ultra-fast |
-| `llama-3.1-70b-versatile` | Alternative option | Fast |
+| `GX8E2D9A` | Comprehensive analysis | Ultra-fast |
+| `GX4B7F3C` | Structured data (labs, prescriptions) | Ultra-fast |
+| `GX9A5E1D` | Alternative option | Fast |
 
 ## Next Steps
 
@@ -264,8 +264,8 @@ See `api/medical/groq-rag-README.md` for complete examples.
 ## Support
 
 ### Resources
-- Groq Console: https://console.groq.com
-- Groq Docs: https://console.groq.com/docs
+- LyDian Acceleration Console: https://console.groq.com
+- LyDian Acceleration Docs: https://console.groq.com/docs
 - API Reference: `api/medical/groq-rag-README.md`
 
 ### Testing

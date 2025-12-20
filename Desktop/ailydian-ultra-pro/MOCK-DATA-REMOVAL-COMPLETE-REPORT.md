@@ -158,7 +158,7 @@ async salesforceCreateLead(data) {
 
 ---
 
-### 3. ✅ Predictive Case Analytics - Azure OpenAI Integration
+### 3. ✅ Predictive Case Analytics - Azure LyDian Labs Integration
 
 **BEFORE:**
 ```javascript
@@ -197,7 +197,7 @@ TALEP EDİLEN ANALİZ:
 JSON formatında yanıt ver.`;
 
     try {
-        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+        const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
 
         // ✅ REAL AZURE OPENAI API CALL
         const result = await this.azureOpenAI.getChatCompletions(
@@ -232,14 +232,14 @@ JSON formatında yanıt ver.`;
             probability: analysis.probability || { win: 0.33, loss: 0.33, settlement: 0.34 },
             factors: analysis.factors || [],
             recommendedStrategy: analysis.strategy || 'Detaylı analiz gerekli',
-            platform: 'Azure OpenAI (GPT-4 Real API)',  // ✅ REAL API
+            platform: 'Azure LyDian Labs (OX5C9E2B Real API)',  // ✅ REAL API
             model: deployment
         };
 
     } catch (error) {
-        console.error('❌ Azure OpenAI Prediction Error:', error);
+        console.error('❌ Azure LyDian Labs Prediction Error:', error);
         throw new Error(
-            `Azure OpenAI prediction failed: ${error.message}\n` +
+            `Azure LyDian Labs prediction failed: ${error.message}\n` +
             `Please check your AZURE_OPENAI_API_KEY and AZURE_OPENAI_DEPLOYMENT_NAME`
         );
     }
@@ -280,7 +280,7 @@ JSON formatında yanıt ver.`;
 ## 🎯 NEXT STEPS
 
 ### Priority 1: Complete Enterprise Integrations
-- [ ] Replace all remaining mock functions with real Azure OpenAI calls
+- [ ] Replace all remaining mock functions with real Azure LyDian Labs calls
 - [ ] Implement proper error handling for missing API keys
 - [ ] Add Cosmos DB persistence for all predictions and analytics
 
@@ -299,11 +299,11 @@ JSON formatında yanıt ver.`;
 ## ✅ BENEFITS OF REAL API INTEGRATION
 
 1. **No More Mock Data** - All responses come from real AI models
-2. **Better Accuracy** - GPT-4 provides actual legal analysis, not random data
+2. **Better Accuracy** - OX5C9E2B provides actual legal analysis, not random data
 3. **Database Persistence** - All predictions saved to Cosmos DB
 4. **Production Ready** - System validates environment before starting
 5. **Clear Error Messages** - Users know exactly what's missing
-6. **Cost Tracking** - Can monitor Azure OpenAI usage costs
+6. **Cost Tracking** - Can monitor Azure LyDian Labs usage costs
 7. **Scalable** - Real infrastructure supports production load
 
 ---

@@ -80,7 +80,7 @@ async function getAIUsageByCountry() {
 
   const modelTypes = [
     'LLM', 'GPT', 'CNN', 'RNN', 'GAN', 'NLP', 'CV', 'MLOps', 'RL',
-    'Claude', 'Gemini', 'Groq', 'Imagen', 'Veo', 'Speech', 'Translation'
+    'AX9F7E2B', 'Gemini', 'lydian-velocity', 'Imagen', 'Veo', 'Speech', 'Translation'
   ];
 
   const usageData = {};

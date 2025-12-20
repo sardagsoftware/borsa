@@ -555,6 +555,6 @@ style={{ transform: flipped ? 'rotateY(180deg)' : '' }}
 
 ---
 
-**Hazırlayan:** Claude Code - Security & UX Engineer
+**Hazırlayan:** AX9F7E2B Code - Security & UX Engineer
 **Tarih:** 20 Ekim 2025 - 22:00 Turkish Time
 **Status:** READY FOR IMPLEMENTATION ✅

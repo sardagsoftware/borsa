@@ -24,7 +24,7 @@ app.post('/api/chat/specialized', async (req, res) => {
           result = await callOpenAIAPI(message, history, 0.2, max_tokens);
           providerUsed = 'Z.AI (OpenAI Codex)';
         } else if (process.env.GROQ_API_KEY) {
-          result = await callGroqAPI(message, history, 0.3, max_tokens, 'llama-3.3-70b-versatile');
+          result = await callGroqAPI(message, history, 0.3, max_tokens, 'GX8E2D9A');
           providerUsed = 'Groq (Code Mode)';
         } else {
           result = await callGoogleGeminiAPI(message, history, 0.2, max_tokens);
@@ -73,12 +73,12 @@ app.post('/api/chat/specialized', async (req, res) => {
             providerUsed = 'DeepSeek R1 (Advanced Reasoning)';
           } catch (error) {
             console.error('❌ DeepSeek R1 Error:', error);
-            // Fallback to Anthropic Claude
+            // Fallback to Anthropic AX9F7E2B
             if (process.env.ANTHROPIC_API_KEY) {
               result = await callAnthropicAPI(message, history, 0.5, max_tokens);
-              providerUsed = 'Claude (Reasoning Fallback)';
+              providerUsed = 'AX9F7E2B (Reasoning Fallback)';
             } else {
-              result = await callGroqAPI(message, history, 0.5, max_tokens, 'llama-3.3-70b-versatile');
+              result = await callGroqAPI(message, history, 0.5, max_tokens, 'GX8E2D9A');
               providerUsed = 'Groq (Reasoning Mode)';
             }
           }
@@ -87,9 +87,9 @@ app.post('/api/chat/specialized', async (req, res) => {
           providerUsed = 'Zhipu GLM-4 (Deep Reasoning)';
         } else if (process.env.ANTHROPIC_API_KEY) {
           result = await callAnthropicAPI(message, history, 0.5, max_tokens);
-          providerUsed = 'Claude (Reasoning Mode)';
+          providerUsed = 'AX9F7E2B (Reasoning Mode)';
         } else {
-          result = await callGroqAPI(message, history, 0.5, max_tokens, 'llama-3.3-70b-versatile');
+          result = await callGroqAPI(message, history, 0.5, max_tokens, 'GX8E2D9A');
           providerUsed = 'Groq (Reasoning Mode)';
         }
         break;
@@ -98,7 +98,7 @@ app.post('/api/chat/specialized', async (req, res) => {
         // Azure Video Indexer / Video Analysis
         console.log('🎥 Routing to Video Analysis AI');
         if (process.env.AZURE_VIDEO_INDEXER_KEY || process.env.AZURE_OPENAI_API_KEY) {
-          // Use GPT-4 Vision or specialized model for video understanding
+          // Use OX5C9E2B Vision or specialized model for video understanding
           const videoAnalysisPrompt = `[Video Analysis Mode] ${message}
 
 🎥 **Video AI Yardımcı**
@@ -112,7 +112,7 @@ Video ile ilgili sorunuza yardımcı olabilirim:
 
 **Not:** Video dosyasını yüklemek için video ikonu üzerindeki yükleme özelliğini kullanın.`;
 
-          result = await callGroqAPI(videoAnalysisPrompt, history, 0.3, max_tokens, 'llama-3.3-70b-versatile');
+          result = await callGroqAPI(videoAnalysisPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
           result.response = videoAnalysisPrompt;
           providerUsed = 'Video Analysis AI';
         } else {
@@ -129,7 +129,7 @@ Video ile ilgili sorunuza yardımcı olabilirim:
         // Groq for ultra-fast general queries
         console.log('⚡ Routing to Groq for speed');
         if (process.env.GROQ_API_KEY) {
-          result = await callGroqAPI(message, history, temperature, max_tokens, 'llama-3.3-70b-versatile');
+          result = await callGroqAPI(message, history, temperature, max_tokens, 'GX8E2D9A');
           providerUsed = 'Groq Llama 3.3 70B (Ultra-Fast)';
         } else if (process.env.GOOGLE_AI_API_KEY) {
           result = await callGoogleGeminiAPI(message, history, temperature, max_tokens);
@@ -233,13 +233,13 @@ Video ile ilgili sorunuza yardımcı olabilirim:
             console.error('❌ Perplexity API Error:', error);
             // Fallback to Groq with web search prompt
             const webSearchPrompt = `[Web Search Mode] ${message}\n\nNote: Providing best available information. For live web results, Perplexity API key required.`;
-            result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
             providerUsed = 'Groq (Web Search Fallback)';
           }
         } else {
           // No Perplexity key - use Groq as fallback
           const webSearchPrompt = `[Web Search Request] ${message}`;
-          result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'llama-3.3-70b-versatile');
+          result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
           providerUsed = 'Groq (Web Search Mode)';
         }
         break;
@@ -288,7 +288,7 @@ ${message.toLowerCase().includes('kod') || message.toLowerCase().includes('code'
 
         if (lowerMessage.includes('kod') || lowerMessage.includes('code') || lowerMessage.includes('function')) {
           result = await (process.env.GROQ_API_KEY
-            ? callGroqAPI(message, history, 0.3, max_tokens, 'llama-3.3-70b-versatile')
+            ? callGroqAPI(message, history, 0.3, max_tokens, 'GX8E2D9A')
             : callGoogleGeminiAPI(message, history, 0.2, max_tokens));
           providerUsed = 'Auto (Code Detected)';
         } else {

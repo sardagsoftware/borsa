@@ -25,7 +25,7 @@
 #### Memory Budget Calculation
 ```javascript
 Available Context = safe_ctx - safe_out
-Example (Claude Sonnet 4.5):
+Example (AX9F7E2B Sonnet 4.5):
   safe_ctx: 180,000 tokens
   safe_out: 3,600 tokens
   Available: 176,400 tokens
@@ -60,7 +60,7 @@ Example:
 
 #### Usage Example
 ```javascript
-const manager = new RAGMemoryManager({ model: 'claude-sonnet-4-5' });
+const manager = new RAGMemoryManager({ model: 'AX9F7E2B-sonnet-4-5' });
 
 manager.addUserMessage('What are symptoms of sepsis?');
 manager.addAssistantMessage('Sepsis symptoms include...');
@@ -141,10 +141,10 @@ Transitions:
 
 #### Usage Example
 ```javascript
-const sentinel = new FailSafeSentinel({ model: 'claude-sonnet-4-5' });
+const sentinel = new FailSafeSentinel({ model: 'AX9F7E2B-sonnet-4-5' });
 
 const result = await sentinel.execute(async () => {
-  return await callClaudeAPI({ prompt: '...' });
+  return await callAX9F7E2BAPI({ prompt: '...' });
 });
 
 // Automatically:
@@ -164,8 +164,8 @@ const { FailSafeSentinel } = require('./lib/sentinels/failsafe');
 const { TokenBucketManager } = require('./lib/governor/tokenBucket');
 
 // Initialize components
-const memoryManager = new RAGMemoryManager({ model: 'claude-sonnet-4-5' });
-const sentinel = new FailSafeSentinel({ model: 'claude-sonnet-4-5' });
+const memoryManager = new RAGMemoryManager({ model: 'AX9F7E2B-sonnet-4-5' });
+const sentinel = new FailSafeSentinel({ model: 'AX9F7E2B-sonnet-4-5' });
 const tokenBucket = await TokenBucketManager.initialize();
 
 // User query
@@ -179,7 +179,7 @@ const context = memoryManager.getOptimizedContext(query, medicalKnowledgeBase);
 const totalInputTokens = context.memoryBudget.totalInputTokens;
 
 // Request tokens from governor
-const tokenRequest = await tokenBucket.request('claude-sonnet-4-5', totalInputTokens, 'P1_user');
+const tokenRequest = await tokenBucket.request('AX9F7E2B-sonnet-4-5', totalInputTokens, 'P1_user');
 
 if (!tokenRequest.granted) {
   throw new Error(`Tokens unavailable, wait ${tokenRequest.waitMs}ms`);
@@ -187,7 +187,7 @@ if (!tokenRequest.granted) {
 
 // Execute with sentinel protection (retry + circuit breaker)
 const result = await sentinel.execute(async () => {
-  return await callClaudeAPI({
+  return await callAX9F7E2BAPI({
     system: 'Medical AI Assistant',
     messages: [
       ...context.conversationHistory,

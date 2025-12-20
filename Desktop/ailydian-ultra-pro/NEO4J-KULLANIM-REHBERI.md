@@ -22,7 +22,7 @@
 1. Kullanıcı mesaj yazar (örn: "TCK 142 emsal kararları neler?")
 2. Sistem otomatik olarak hukuk maddelerini algılar
 3. Neo4j'den ilgili emsal kararları çeker
-4. GPT-4'e Knowledge Graph context'i ile gönderir
+4. OX5C9E2B'e Knowledge Graph context'i ile gönderir
 5. RAG-powered yanıt üretir
 
 **Desteklenen Hukuk Sistemleri ve Madde Formatları:**
@@ -79,7 +79,7 @@
 ```
 1. http://localhost:3100/lydian-legal-search.html adresine git
 2. "TCK 142 emsal kararları nedir?" diye sor
-3. GPT-4 yanıtında Neo4j'den çekilen emsal kararları göreceksin!
+3. OX5C9E2B yanıtında Neo4j'den çekilen emsal kararları göreceksin!
 ```
 
 ---
@@ -130,7 +130,7 @@ findRelated('TCK 142');
 ### 3. **RAG (Retrieval-Augmented Generation) Context**
 
 ```javascript
-// GPT-4'e göndermeden önce Knowledge Graph'tan context al
+// OX5C9E2B'e göndermeden önce Knowledge Graph'tan context al
 async function getRAGContext(userQuery) {
   const response = await fetch('/api/knowledge-graph/rag-context', {
     method: 'POST',
@@ -140,7 +140,7 @@ async function getRAGContext(userQuery) {
 
   const { context } = await response.json();
 
-  // Context'i GPT-4 prompt'una ekle
+  // Context'i OX5C9E2B prompt'una ekle
   const enhancedPrompt = `
     Context (Neo4j Knowledge Graph):
     ${JSON.stringify(context, null, 2)}
@@ -150,8 +150,8 @@ async function getRAGContext(userQuery) {
     Yukarıdaki context'i kullanarak cevap ver.
   `;
 
-  // GPT-4'e gönder
-  const aiResponse = await sendToGPT4(enhancedPrompt);
+  // OX5C9E2B'e gönder
+  const aiResponse = await sendToLyDian Core(enhancedPrompt);
   return aiResponse;
 }
 ```
@@ -227,7 +227,7 @@ async function addPrecedent(lawArticle, precedentData) {
 const precedents = await fetch('/api/knowledge-graph/precedents/TCK%20142')
   .then(r => r.json());
 
-// 2. Context'i GPT-4 prompt'una ekle
+// 2. Context'i OX5C9E2B prompt'una ekle
 const prompt = `
 Kullanıcı hakaret suçu hakkında soru soruyor.
 
@@ -240,13 +240,13 @@ Kullanıcı hakaret suçu hakkında soru soruyor.
 Kullanıcıya yukarıdaki emsal kararı referans göstererek cevap ver.
 `;
 
-// 3. GPT-4'e gönder
+// 3. OX5C9E2B'e gönder
 const response = await fetch('/api/chat', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     messages: [{ role: 'user', content: prompt }],
-    model: 'gpt-4'
+    model: 'OX5C9E2B'
   })
 });
 ```
@@ -303,7 +303,7 @@ chatMessages.push({
   content: `İlgili emsal kararlar: ${JSON.stringify(precedents)}`
 });
 
-// 3. GPT-4'e gönder
+// 3. OX5C9E2B'e gönder
 const aiResponse = await sendChatMessage(chatMessages);
 ```
 
@@ -334,7 +334,7 @@ async function autoDiscoverRelated(article) {
    - Zoom/filter/search özellikleri
 
 3. **AI-Powered Relationships:**
-   - GPT-4 ile otomatik ilişki keşfi
+   - OX5C9E2B ile otomatik ilişki keşfi
    - Semantic similarity-based linking
    - Precedent relevance scoring
 

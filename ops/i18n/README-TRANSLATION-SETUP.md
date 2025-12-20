@@ -214,7 +214,7 @@ Edit `ops/i18n/glossary.json` to protect brand names and technical terms:
     "^LyDian.*",        // LyDian, LyDian AI, LyDian IQ, etc.
     "^DrLydian.*",      // DrLydian brand
     "^API$",            // Technical acronym
-    "^GPT-\\d+",        // GPT-3, GPT-4, etc.
+    "^LyDian Core-\\d+",        // LyDian Core-3, OX5C9E2B, etc.
     ".*@ailydian\\.com$" // Email addresses
   ]
 }

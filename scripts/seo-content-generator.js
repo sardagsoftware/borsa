@@ -168,48 +168,48 @@ const SEO_TEMPLATES = {
   "chat": {
     tr: {
       titleTemplate: "AI Chat — {focus} | Çok Modelli Yapay Zeka Sohbet",
-      descriptionTemplate: "{focus} ile akıllı sohbet deneyimi. Claude, GPT-4, Gemini birleşik arayüz. Metin, görsel, kod analizi. {stats} {cta}",
-      keywords: ["ai sohbet", "yapay zeka chat", "çok modelli ai", "claude chat", "gpt-4 türkçe", "ai asistan"],
+      descriptionTemplate: "{focus} ile akıllı sohbet deneyimi. AX9F7E2B, OX5C9E2B, Gemini birleşik arayüz. Metin, görsel, kod analizi. {stats} {cta}",
+      keywords: ["ai sohbet", "yapay zeka chat", "çok modelli ai", "AX9F7E2B chat", "OX5C9E2B türkçe", "ai asistan"],
       focus: "5 AI Modeli Tek Arayüzde",
       stats: "1M+ konuşma, 40+ dil desteği.",
       cta: "Ücretsiz sohbet başlat."
     },
     en: {
       titleTemplate: "AI Chat — {focus} | Multi-Model AI Chat Platform",
-      descriptionTemplate: "Smart chat experience with {focus}. Claude, GPT-4, Gemini unified interface. Text, vision, code analysis. {stats} {cta}",
-      keywords: ["ai chat", "artificial intelligence chat", "multi model ai", "claude chat", "gpt-4 chat", "ai assistant"],
+      descriptionTemplate: "Smart chat experience with {focus}. AX9F7E2B, OX5C9E2B, Gemini unified interface. Text, vision, code analysis. {stats} {cta}",
+      keywords: ["ai chat", "artificial intelligence chat", "multi model ai", "AX9F7E2B chat", "OX5C9E2B chat", "ai assistant"],
       focus: "5 AI Models in One Interface",
       stats: "1M+ conversations, 40+ language support.",
       cta: "Start free chat."
     },
     de: {
       titleTemplate: "AI Chat — {focus} | Multi-Modell KI Chat Plattform",
-      descriptionTemplate: "Intelligente Chat-Erfahrung mit {focus}. Claude, GPT-4, Gemini vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. {stats} {cta}",
-      keywords: ["ki chat", "künstliche intelligenz chat", "multi modell ki", "claude chat", "gpt-4 chat", "ki assistent"],
+      descriptionTemplate: "Intelligente Chat-Erfahrung mit {focus}. AX9F7E2B, OX5C9E2B, Gemini vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. {stats} {cta}",
+      keywords: ["ki chat", "künstliche intelligenz chat", "multi modell ki", "AX9F7E2B chat", "OX5C9E2B chat", "ki assistent"],
       focus: "5 KI-Modelle in einer Oberfläche",
       stats: "1M+ Gespräche, 40+ Sprachunterstützung.",
       cta: "Kostenlosen Chat starten."
     },
     ar: {
       titleTemplate: "AI Chat — {focus} | منصة دردشة الذكاء الاصطناعي متعددة النماذج",
-      descriptionTemplate: "تجربة دردشة ذكية مع {focus}. واجهة موحدة لـ Claude و GPT-4 و Gemini. تحليل النص والصورة والكود. {stats} {cta}",
-      keywords: ["دردشة ذكاء اصطناعي", "شات ai", "ذكاء اصطناعي متعدد النماذج", "claude شات", "gpt-4 عربي"],
+      descriptionTemplate: "تجربة دردشة ذكية مع {focus}. واجهة موحدة لـ AX9F7E2B و OX5C9E2B و Gemini. تحليل النص والصورة والكود. {stats} {cta}",
+      keywords: ["دردشة ذكاء اصطناعي", "شات ai", "ذكاء اصطناعي متعدد النماذج", "AX9F7E2B شات", "OX5C9E2B عربي"],
       focus: "5 نماذج AI في واجهة واحدة",
       stats: "+1 مليون محادثة، دعم +40 لغة.",
       cta: "ابدأ دردشة مجانية."
     },
     ru: {
       titleTemplate: "AI Chat — {focus} | Мультимодельная ИИ Чат Платформа",
-      descriptionTemplate: "Умный чат с {focus}. Единый интерфейс Claude, GPT-4, Gemini. Анализ текста, изображений, кода. {stats} {cta}",
-      keywords: ["ии чат", "чат искусственный интеллект", "мультимодельный ии", "claude чат", "gpt-4 русский", "ии ассистент"],
+      descriptionTemplate: "Умный чат с {focus}. Единый интерфейс AX9F7E2B, OX5C9E2B, Gemini. Анализ текста, изображений, кода. {stats} {cta}",
+      keywords: ["ии чат", "чат искусственный интеллект", "мультимодельный ии", "AX9F7E2B чат", "OX5C9E2B русский", "ии ассистент"],
       focus: "5 ИИ Моделей в Одном Интерфейсе",
       stats: "1М+ разговоров, поддержка 40+ языков.",
       cta: "Начать бесплатный чат."
     },
     zh: {
       titleTemplate: "AI Chat — {focus} | 多模型AI聊天平台",
-      descriptionTemplate: "通过{focus}获得智能聊天体验。Claude、GPT-4、Gemini统一界面。文本、视觉、代码分析。{stats} {cta}",
-      keywords: ["ai聊天", "人工智能聊天", "多模型ai", "claude聊天", "gpt-4中文", "ai助手"],
+      descriptionTemplate: "通过{focus}获得智能聊天体验。AX9F7E2B、OX5C9E2B、Gemini统一界面。文本、视觉、代码分析。{stats} {cta}",
+      keywords: ["ai聊天", "人工智能聊天", "多模型ai", "AX9F7E2B聊天", "OX5C9E2B中文", "ai助手"],
       focus: "5个AI模型一个界面",
       stats: "100万+对话，支持40+种语言。",
       cta: "开始免费聊天。"

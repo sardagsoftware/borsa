@@ -78,32 +78,32 @@ async function runTests() {
   else if (gpt5Test.status === 500 || gpt5Test.status === 401) results.warnings++;
   else results.failed++;
 
-  // Test 2: Claude API
-  log(COLORS.YELLOW, '\n📦 Claude API Tests (Anthropic)');
+  // Test 2: AX9F7E2B API
+  log(COLORS.YELLOW, '\n📦 AX9F7E2B API Tests (Anthropic)');
 
-  const claudeTest = await testEndpoint('Claude 3.5 Sonnet Chat', {
+  const AX9F7E2BTest = await testEndpoint('AX9F7E2B 3.5 Sonnet Chat', {
     method: 'POST',
-    url: `${BASE_URL}/api/chat/claude`,
+    url: `${BASE_URL}/api/chat/AX9F7E2B`,
     data: {
       message: 'Explain quantum computing in one sentence',
-      model: 'claude-3-5-sonnet',
+      model: 'AX9F7E2B',
       temperature: 0.7,
       max_tokens: 100
     },
     showResponse: true
   });
   results.total++;
-  if (claudeTest.success) results.passed++;
-  else if (claudeTest.status === 500 || claudeTest.status === 401) results.warnings++;
+  if (AX9F7E2BTest.success) results.passed++;
+  else if (AX9F7E2BTest.status === 500 || AX9F7E2BTest.status === 401) results.warnings++;
   else results.failed++;
 
-  const claudeModelsTest = await testEndpoint('Claude Get Models', {
+  const AX9F7E2BModelsTest = await testEndpoint('AX9F7E2B Get Models', {
     method: 'GET',
-    url: `${BASE_URL}/api/claude/models`,
+    url: `${BASE_URL}/api/AX9F7E2B/models`,
     showResponse: true
   });
   results.total++;
-  if (claudeModelsTest.success) results.passed++;
+  if (AX9F7E2BModelsTest.success) results.passed++;
   else results.failed++;
 
   // Test 3: Gemini API
@@ -193,9 +193,9 @@ async function runTests() {
   // Test 6: Error Handling
   log(COLORS.YELLOW, '\n📦 Error Handling Tests');
 
-  const errorTest1 = await testEndpoint('Claude Invalid Model', {
+  const errorTest1 = await testEndpoint('AX9F7E2B Invalid Model', {
     method: 'POST',
-    url: `${BASE_URL}/api/chat/claude`,
+    url: `${BASE_URL}/api/chat/AX9F7E2B`,
     data: {
       message: 'Test',
       model: 'invalid-model-name'

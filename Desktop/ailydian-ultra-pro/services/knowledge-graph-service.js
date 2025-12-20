@@ -404,7 +404,7 @@ class KnowledgeGraphService {
       // Step 4: Synthesis - combine all agent insights
       const synthesis = this._synthesizeMultiGraphResults(recursiveResults);
 
-      // Step 5: Generate final answer with GPT-4 Turbo
+      // Step 5: Generate final answer with OX5C9E2B Turbo
       const finalAnswer = await this._generateRAGAnswer(question, synthesis, userRole);
 
       return {
@@ -771,9 +771,9 @@ class KnowledgeGraphService {
   }
 
   async _generateRAGAnswer(question, synthesis, userRole) {
-    // Generate answer using GPT-4 Turbo with RAG context
+    // Generate answer using OX5C9E2B Turbo with RAG context
     return {
-      answer: `Based on comprehensive multi-graph analysis across ${synthesis.findings.length} legal sources, here is the expert answer for ${userRole}:\n\n[GPT-4 Turbo generated answer with ${synthesis.crossReferences} cross-references]`,
+      answer: `Based on comprehensive multi-graph analysis across ${synthesis.findings.length} legal sources, here is the expert answer for ${userRole}:\n\n[OX5C9E2B Turbo generated answer with ${synthesis.crossReferences} cross-references]`,
       confidence: synthesis.confidence,
       sources: synthesis.findings.length
     };

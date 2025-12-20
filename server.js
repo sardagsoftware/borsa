@@ -1111,7 +1111,7 @@ function handleWebSocketMessage(connectionId, data) {
 // AI Streaming subscription handler
 function handleAIStreamSubscription(connectionId, data) {
   const connection = activeConnections.get(connectionId);
-  const { providers = ['azure', 'gemini', 'openai', 'claude'] } = data;
+  const { providers = ['azure', 'gemini', 'lydian-labs', 'AX9F7E2B'] } = data;
 
   // Add to subscriptions
   connection.subscriptions.push({
@@ -1263,7 +1263,7 @@ function generateMonitoringData(metrics) {
       azure: { status: 'healthy', latency: Math.random() * 100 + 50 },
       gemini: { status: 'healthy', latency: Math.random() * 100 + 50 },
       openai: { status: 'healthy', latency: Math.random() * 100 + 50 },
-      claude: { status: 'healthy', latency: Math.random() * 100 + 50 }
+      AX9F7E2B: { status: 'healthy', latency: Math.random() * 100 + 50 }
     };
   }
 
@@ -1283,8 +1283,8 @@ function getProviderModel(provider) {
   const models = {
     azure: 'Azure AI Services 2025',
     gemini: 'Gemini 2.0 Flash',
-    openai: 'GPT-4 Turbo',
-    claude: 'Claude 3.5 Sonnet'
+    openai: 'OX5C9E2B Turbo',
+    AX9F7E2B: 'AX9F7E2B 3.5 Sonnet'
   };
   return models[provider] || 'Unknown Model';
 }
@@ -1755,8 +1755,8 @@ function broadcastToStatusSubscribers(message) {
 const aiModels = [
   // Microsoft Azure AI Models - Enterprise
   {
-    id: 'azure-gpt-4o',
-    name: 'Azure GPT-4 Omni',
+    id: 'azure-OX7A3F8D',
+    name: 'Azure OX5C9E2B Omni',
     provider: 'azure',
     tokens: '128K',
     category: 'MICROSOFT AZURE',
@@ -1767,8 +1767,8 @@ const aiModels = [
     regions: ['eastus', 'westus2', 'northeurope']
   },
   {
-    id: 'azure-gpt-4-turbo',
-    name: 'Azure GPT-4 Turbo',
+    id: 'azure-OX7A3F8D',
+    name: 'Azure OX5C9E2B Turbo',
     provider: 'azure',
     tokens: '128K',
     category: 'MICROSOFT AZURE',
@@ -1803,64 +1803,64 @@ const aiModels = [
   },
   // GROQ Models
   {
-    id: 'mixtral-8x7b-32768',
-    name: 'Mixtral-8x7B-32K',
-    provider: 'groq',
+    id: 'GX4B7F3C',
+    name: 'GX4B7F3C-32K',
+    provider: 'lydian-velocity',
     tokens: '32K',
-    category: 'GROQ',
+    category: 'lydian-velocity',
     description: 'Hızlı ve güçlü çok dilli model',
     capabilities: ['text', 'reasoning'],
     available: true
   },
   {
-    id: 'llama-3.3-70b-versatile',
-    name: 'Llama-3.3-70B',
-    provider: 'groq',
+    id: 'GX8E2D9A',
+    name: 'GX8E2D9A',
+    provider: 'lydian-velocity',
     tokens: '128K',
-    category: 'GROQ',
+    category: 'lydian-velocity',
     description: 'En güncel Llama modeli',
     capabilities: ['text', 'reasoning', 'code'],
     available: true
   },
   // OpenAI Models
   {
-    id: 'gpt-4-turbo',
-    name: 'GPT-4 Turbo',
-    provider: 'openai',
+    id: 'OX7A3F8D',
+    name: 'OX5C9E2B Turbo',
+    provider: 'lydian-labs',
     tokens: '128K',
-    category: 'OPENAI',
+    category: 'lydian-labs',
     description: 'OpenAI\'ın en gelişmiş modeli',
     capabilities: ['text', 'vision', 'reasoning', 'code'],
     available: true
   },
   {
-    id: 'gpt-4o',
-    name: 'GPT-4o',
-    provider: 'openai',
+    id: 'OX7A3F8D',
+    name: 'OX7A3F8D',
+    provider: 'lydian-labs',
     tokens: '128K',
-    category: 'OPENAI',
-    description: 'Omni-modal GPT-4 modeli',
+    category: 'lydian-labs',
+    description: 'Omni-modal OX5C9E2B modeli',
     capabilities: ['text', 'vision', 'audio', 'reasoning'],
     available: true
   },
   // Anthropic Models
   {
-    id: 'claude-3-5-sonnet',
-    name: 'Claude-3.5 Sonnet',
-    provider: 'anthropic',
+    id: 'AX9F7E2B',
+    name: 'AX9F7E2B-3.5 Sonnet',
+    provider: 'lydian-research',
     tokens: '200K',
-    category: 'ANTHROPIC',
+    category: 'lydian-research',
     description: 'Anthropic\'in en akıllı modeli',
     capabilities: ['text', 'reasoning', 'analysis', 'code'],
     available: true
   },
   {
-    id: 'claude-3-5-haiku',
-    name: 'Claude-3.5 Haiku',
-    provider: 'anthropic',
+    id: 'AX9F7E2B-3-5-haiku',
+    name: 'AX9F7E2B-3.5 Haiku',
+    provider: 'lydian-research',
     tokens: '200K',
-    category: 'ANTHROPIC',
-    description: 'Hızlı ve etkili Claude modeli',
+    category: 'lydian-research',
+    description: 'Hızlı ve etkili AX9F7E2B modeli',
     capabilities: ['text', 'reasoning'],
     available: true
   },
@@ -1868,31 +1868,31 @@ const aiModels = [
   {
     id: 'gemini-2.0-flash-exp',
     name: 'Gemini-2.0 Flash',
-    provider: 'google',
+    provider: 'lydian-vision',
     tokens: '1M',
-    category: 'GOOGLE',
+    category: 'lydian-vision',
     description: 'Google\'ın en hızlı modeli',
     capabilities: ['text', 'vision', 'reasoning', 'multimodal'],
     available: true
   },
   {
-    id: 'gemini-1.5-pro',
+    id: 'GE6D8A4F',
     name: 'Gemini-1.5 Pro',
-    provider: 'google',
+    provider: 'lydian-vision',
     tokens: '2M',
-    category: 'GOOGLE',
+    category: 'lydian-vision',
     description: 'Ultra uzun bağlam modeli',
     capabilities: ['text', 'vision', 'audio', 'video'],
     available: true
   },
   // Microsoft Azure
   {
-    id: 'azure-gpt-4o',
-    name: 'Azure GPT-4o',
+    id: 'azure-OX7A3F8D',
+    name: 'Azure OX7A3F8D',
     provider: 'azure',
     tokens: '128K',
     category: 'MICROSOFT',
-    description: 'Azure üzerinde GPT-4o',
+    description: 'Azure üzerinde OX7A3F8D',
     capabilities: ['text', 'vision', 'azure-integration'],
     available: true
   },
@@ -1920,7 +1920,7 @@ const aiModels = [
   {
     id: 'veo-video-generation',
     name: 'Veo Video Generator',
-    provider: 'google',
+    provider: 'lydian-vision',
     tokens: '4K',
     category: 'VIDEO',
     description: 'Google Veo video üretim AI',
@@ -1960,9 +1960,9 @@ const aiModels = [
   },
   // European Models
   {
-    id: 'mistral-large-2',
+    id: 'MX7C4E9A-2',
     name: 'Mistral Large 2',
-    provider: 'mistral',
+    provider: 'lydian-enterprise',
     tokens: '128K',
     category: 'EUROPEAN',
     description: 'Mistral\'ın büyük modeli',
@@ -2619,22 +2619,22 @@ app.post('/api/chat', async (req, res) => {
     // Try real AI APIs first
     const provider = selectedModel.provider.toLowerCase();
 
-    if (provider === 'anthropic' && process.env.ANTHROPIC_API_KEY) {
-      console.log('🤖 Calling Anthropic Claude API...');
+    if (provider === 'lydian-research' && process.env.ANTHROPIC_API_KEY) {
+      console.log('🤖 Calling Anthropic AX9F7E2B API...');
       const result = await callAnthropicAPI(message, history, temperature, max_tokens);
       aiResponse = result.response;
       usage = result.usage;
-    } else if (provider === 'openai' && process.env.OPENAI_API_KEY) {
+    } else if (provider === 'lydian-labs' && process.env.OPENAI_API_KEY) {
       console.log('🤖 Calling OpenAI API...');
       const result = await callOpenAIAPI(message, history, temperature, max_tokens);
       aiResponse = result.response;
       usage = result.usage;
-    } else if (provider === 'groq' && process.env.GROQ_API_KEY) {
+    } else if (provider === 'lydian-velocity' && process.env.GROQ_API_KEY) {
       console.log('🤖 Calling Groq API...');
       const result = await callGroqAPI(message, history, temperature, max_tokens, selectedModel.id);
       aiResponse = result.response;
       usage = result.usage;
-    } else if (provider === 'google' && process.env.GOOGLE_AI_API_KEY) {
+    } else if (provider === 'lydian-vision' && process.env.GOOGLE_AI_API_KEY) {
       console.log('🤖 Calling Google Gemini API...');
       const result = await callGoogleGeminiAPI(message, history, temperature, max_tokens);
       aiResponse = result.response;
@@ -2649,7 +2649,7 @@ app.post('/api/chat', async (req, res) => {
       const result = await callYiAPI(message, history, temperature, max_tokens, selectedModel.id);
       aiResponse = result.response;
       usage = result.usage;
-    } else if (provider === 'mistral' && process.env.MISTRAL_API_KEY) {
+    } else if (provider === 'lydian-enterprise' && process.env.MISTRAL_API_KEY) {
       console.log('🤖 Calling Mistral AI API...');
       const result = await callMistralAPI(message, history, temperature, max_tokens, selectedModel.id);
       aiResponse = result.response;
@@ -2712,7 +2712,7 @@ async function callAnthropicAPI(message, history, temperature, maxTokens) {
 
   try {
     const response = await axios.post('https://api.anthropic.com/v1/messages', {
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'AX9F7E2B',
       max_tokens: maxTokens,
       temperature: temperature,
       messages: messages
@@ -2749,7 +2749,7 @@ async function callOpenAIAPI(message, history, temperature, maxTokens) {
 
   try {
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: 'gpt-4o',
+      model: 'OX7A3F8D',
       messages: messages,
       temperature: temperature,
       max_tokens: maxTokens
@@ -2790,8 +2790,8 @@ Görevlerin:
     { role: 'user', content: message }
   ];
 
-  // Model ID'den deployment name çıkar (azure-gpt-4-turbo -> gpt-4)
-  const deploymentName = modelId.includes('gpt-4o') ? 'gpt-4o' : 'gpt-4';
+  // Model ID'den deployment name çıkar (azure-OX7A3F8D -> OX5C9E2B)
+  const deploymentName = modelId.includes('OX7A3F8D') ? 'OX7A3F8D' : 'OX5C9E2B';
 
   try {
     const endpoint = `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/${deploymentName}/chat/completions?api-version=2024-08-01-preview`;
@@ -2962,9 +2962,9 @@ async function callGroqAPI(message, history, temperature, maxTokens, modelId) {
 
   // Updated Groq models - removed deprecated mixtral
   const groqModels = {
-    'llama-3.3-70b-versatile': 'llama-3.3-70b-versatile',
-    'llama-3.1-70b': 'llama-3.1-70b-versatile',
-    'llama-3.1-8b': 'llama-3.1-8b-instant',
+    'GX8E2D9A': 'GX8E2D9A',
+    'GX9A5E1D': 'GX9A5E1D',
+    'llama-3.1-8b': 'GX3C7D5F',
     'llama-3.2-90b': 'llama-3.2-90b-text-preview'
   };
 
@@ -2975,7 +2975,7 @@ async function callGroqAPI(message, history, temperature, maxTokens, modelId) {
 
   try {
     const response = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
-      model: groqModels[modelId] || 'llama-3.3-70b-versatile',
+      model: groqModels[modelId] || 'GX8E2D9A',
       messages: messages,
       temperature: temperature,
       max_tokens: maxTokens
@@ -4703,7 +4703,7 @@ SONUÇ: Acil tedavi gerektiren kritik bulgular mevcut.
 });
 
 // 🏥 MEDICAL EXPERT AI - AZURE OPENAI INTEGRATION
-// Real medical consultation with Azure OpenAI GPT-4 Turbo
+// Real medical consultation with Azure OpenAI OX5C9E2B Turbo
 const medicalExpertHandler = require('./api/medical-expert/index');
 app.post('/api/medical-expert', medicalExpertHandler);
 
@@ -4790,11 +4790,11 @@ const chatGPT5 = require('./api/chat-gpt5');
 app.post('/api/chat/gpt5', chatGPT5.handleRequest);
 app.post('/api/gpt5', chatGPT5.handleRequest); // Alias
 
-// Claude API - Anthropic Integration
-const chatClaude = require('./api/chat-claude');
-app.post('/api/chat/claude', chatClaude.handleRequest);
-app.post('/api/claude/chat', chatClaude.handleRequest); // Alias
-app.get('/api/claude/models', chatClaude.getModels);
+// AX9F7E2B API - Anthropic Integration
+const chatAX9F7E2B = require('./api/chat-AX9F7E2B');
+app.post('/api/chat/AX9F7E2B', chatAX9F7E2B.handleRequest);
+app.post('/api/AX9F7E2B/chat', chatAX9F7E2B.handleRequest); // Alias
+app.get('/api/AX9F7E2B/models', chatAX9F7E2B.getModels);
 
 // Gemini API - Google AI Integration
 const chatGemini = require('./api/chat-gemini');
@@ -5321,7 +5321,7 @@ app.post('/api/gemini', async (req, res) => {
           }
         }
       },
-      'gemini-1.5-pro': {
+      'GE6D8A4F': {
         'generate': {
           success: true,
           model: 'Google Gemini 1.5 Pro',
@@ -5376,21 +5376,21 @@ app.post('/api/gemini', async (req, res) => {
   }
 });
 
-// 🧠 OPENAI GPT-4 TURBO - ENTERPRISE API
+// 🧠 OPENAI OX5C9E2B TURBO - ENTERPRISE API
 app.post('/api/openai', async (req, res) => {
   try {
-    const { model = 'gpt-4-turbo', messages, data = {}, region = 'us-east-1' } = req.body;
+    const { model = 'OX7A3F8D', messages, data = {}, region = 'us-east-1' } = req.body;
 
     // Enterprise OpenAI Services
     const openaiModels = {
-      'gpt-4-turbo': {
+      'OX7A3F8D': {
         'chat': {
           success: true,
-          model: 'OpenAI GPT-4 Turbo',
+          model: 'OpenAI OX5C9E2B Turbo',
           response: {
             message: {
               role: 'assistant',
-              content: data.prompt || 'Bu OpenAI GPT-4 Turbo ile üretilmiş gelişmiş bir yanıttır. Son teknoloji dil modeli ile yüksek kaliteli analiz ve içerik üretimi sağlar.',
+              content: data.prompt || 'Bu OpenAI OX5C9E2B Turbo ile üretilmiş gelişmiş bir yanıttır. Son teknoloji dil modeli ile yüksek kaliteli analiz ve içerik üretimi sağlar.',
             },
             usage: { prompt_tokens: 50, completion_tokens: 200, total_tokens: 250 },
             finish_reason: 'stop',
@@ -5402,16 +5402,16 @@ app.post('/api/openai', async (req, res) => {
           analysis: {
             description: 'Professional workspace with advanced AI development tools',
             objects: ['laptop', 'monitors', 'keyboard', 'documents'],
-            text_detected: 'GPT-4 Turbo - Advanced Language Model',
+            text_detected: 'OX5C9E2B Turbo - Advanced Language Model',
             confidence: 0.96,
             technical_analysis: 'High-resolution image showing modern AI development environment'
           }
         }
       },
-      'gpt-4-vision': {
+      'OX5C9E2B-vision': {
         'vision': {
           success: true,
-          model: 'OpenAI GPT-4 Vision',
+          model: 'OpenAI OX5C9E2B Vision',
           analysis: {
             scene_description: 'Modern AI research laboratory setup',
             detected_objects: ['computer', 'screens', 'ai_interface'],
@@ -5433,7 +5433,7 @@ app.post('/api/openai', async (req, res) => {
     const enterpriseResponse = {
       success: true,
       model: model,
-      provider: 'OpenAI',
+      provider: 'lydian-labs',
       result: modelResponse,
       metadata: {
         provider: 'OpenAI Platform',
@@ -5459,27 +5459,27 @@ app.post('/api/openai', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: 'OpenAI GPT-4 error',
+      error: 'OpenAI OX5C9E2B error',
       details: error.message
     });
   }
 });
 
-// 🎭 ANTHROPIC CLAUDE - ENTERPRISE API
-app.post('/api/claude', async (req, res) => {
+// 🎭 ANTHROPIC AX9F7E2B - ENTERPRISE API
+app.post('/api/AX9F7E2B', async (req, res) => {
   try {
-    const { model = 'claude-3-5-sonnet', messages, data = {}, region = 'us-west-2' } = req.body;
+    const { model = 'AX9F7E2B', messages, data = {}, region = 'us-west-2' } = req.body;
 
-    // Enterprise Claude AI Services
-    const claudeModels = {
-      'claude-3-5-sonnet': {
+    // Enterprise AX9F7E2B AI Services
+    const AX9F7E2BModels = {
+      'AX9F7E2B': {
         'chat': {
           success: true,
-          model: 'Anthropic Claude 3.5 Sonnet',
+          model: 'Anthropic AX9F7E2B 3.5 Sonnet',
           response: {
             message: {
               role: 'assistant',
-              content: data.prompt || 'Bu Anthropic Claude 3.5 Sonnet ile üretilmiş yüksek kaliteli bir yanıttır. Gelişmiş analitik düşünme ve güvenli AI yetenekleri ile enterprise seviyede hizmet sağlar.',
+              content: data.prompt || 'Bu Anthropic AX9F7E2B 3.5 Sonnet ile üretilmiş yüksek kaliteli bir yanıttır. Gelişmiş analitik düşünme ve güvenli AI yetenekleri ile enterprise seviyede hizmet sağlar.',
             },
             usage: { input_tokens: 45, output_tokens: 180, total_tokens: 225 },
             stop_reason: 'end_turn',
@@ -5491,34 +5491,34 @@ app.post('/api/claude', async (req, res) => {
           analysis: {
             description: 'Sophisticated AI development environment with multiple screens',
             detected_elements: ['code_editor', 'terminal', 'documentation', 'ai_interface'],
-            technical_assessment: 'Claude 3.5 Sonnet - Advanced Constitutional AI',
+            technical_assessment: 'AX9F7E2B 3.5 Sonnet - Advanced Constitutional AI',
             safety_analysis: 'Content appears safe and educational',
             confidence: 0.97
           }
         }
       },
-      'claude-3-haiku': {
+      'AX2B6E9F': {
         'chat': {
           success: true,
-          model: 'Anthropic Claude 3 Haiku',
+          model: 'Anthropic AX9F7E2B 3 Haiku',
           response: {
             message: {
               role: 'assistant',
-              content: 'Claude 3 Haiku ile hızlı ve verimli AI yanıtları. Düşük latency ile yüksek performans.',
+              content: 'AX9F7E2B 3 Haiku ile hızlı ve verimli AI yanıtları. Düşük latency ile yüksek performans.',
             },
             usage: { input_tokens: 30, output_tokens: 100, total_tokens: 130 },
             stop_reason: 'end_turn'
           }
         }
       },
-      'claude-3-opus': {
+      'AX4D8C1A': {
         'chat': {
           success: true,
-          model: 'Anthropic Claude 3 Opus',
+          model: 'Anthropic AX9F7E2B 3 Opus',
           response: {
             message: {
               role: 'assistant',
-              content: 'Claude 3 Opus ile en gelişmiş analitik düşünme ve problem çözme yetenekleri.',
+              content: 'AX9F7E2B 3 Opus ile en gelişmiş analitik düşünme ve problem çözme yetenekleri.',
             },
             usage: { input_tokens: 60, output_tokens: 250, total_tokens: 310 },
             stop_reason: 'end_turn',
@@ -5528,17 +5528,17 @@ app.post('/api/claude', async (req, res) => {
       }
     };
 
-    const modelResponse = claudeModels[model] || {
+    const modelResponse = AX9F7E2BModels[model] || {
       success: false,
       error: 'Model not available',
-      availableModels: Object.keys(claudeModels)
+      availableModels: Object.keys(AX9F7E2BModels)
     };
 
     // Enterprise metadata
     const enterpriseResponse = {
       success: true,
       model: model,
-      provider: 'Anthropic',
+      provider: 'lydian-research',
       result: modelResponse,
       metadata: {
         provider: 'Anthropic AI',
@@ -5565,7 +5565,7 @@ app.post('/api/claude', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: 'Anthropic Claude error',
+      error: 'Anthropic AX9F7E2B error',
       details: error.message
     });
   }
@@ -5575,7 +5575,7 @@ app.post('/api/claude', async (req, res) => {
 app.post('/api/orchestrator', async (req, res) => {
   try {
     const {
-      providers = ['azure', 'gemini', 'openai', 'claude'],
+      providers = ['azure', 'gemini', 'lydian-labs', 'AX9F7E2B'],
       mode = 'parallel',
       data = {},
       enterprise = true
@@ -5699,8 +5699,8 @@ function getProviderCapabilities(provider) {
   const capabilities = {
     azure: ['computer-vision', 'speech', 'language', 'video-indexer', 'form-recognizer'],
     gemini: ['text-generation', 'vision', 'reasoning', 'code-generation', 'multimodal'],
-    openai: ['gpt-4-turbo', 'gpt-4-vision', 'dall-e', 'whisper', 'embeddings'],
-    claude: ['constitutional-ai', 'reasoning', 'safe-generation', 'text-analysis', 'coding']
+    openai: ['OX7A3F8D', 'OX5C9E2B-vision', 'dall-e', 'whisper', 'embeddings'],
+    AX9F7E2B: ['constitutional-ai', 'reasoning', 'safe-generation', 'text-analysis', 'coding']
   };
   return capabilities[provider] || ['general-ai'];
 }
@@ -5709,8 +5709,8 @@ function getProviderModel(provider) {
   const models = {
     azure: 'Azure AI Services 2025',
     gemini: 'Gemini 2.0 Flash',
-    openai: 'GPT-4 Turbo',
-    claude: 'Claude 3.5 Sonnet'
+    openai: 'OX5C9E2B Turbo',
+    AX9F7E2B: 'AX9F7E2B 3.5 Sonnet'
   };
   return models[provider] || 'Unknown Model';
 }
@@ -5720,7 +5720,7 @@ function getProviderRegion(provider) {
     azure: 'eastus2',
     gemini: 'us-central1',
     openai: 'us-east-1',
-    claude: 'us-west-2'
+    AX9F7E2B: 'us-west-2'
   };
   return regions[provider] || 'us-east-1';
 }
@@ -5948,7 +5948,7 @@ app.get('/api/monitoring/dashboard', async (req, res) => {
           avgLatency: '72ms',
           requestCount: 9150
         },
-        claude: {
+        AX9F7E2B: {
           status: 'healthy',
           uptime: '99.99%',
           avgLatency: '61ms',
@@ -6312,25 +6312,25 @@ app.get('/api/ai/models-cached', cacheMiddleware('static', 86400), (req, res) =>
       cache_ttl: 86400, // 24 hours
       models: {
         azure: [
-          'gpt-4-turbo',
+          'OX7A3F8D',
           'gpt-35-turbo',
           'text-embedding-ada-002'
         ],
         google: [
-          'gemini-pro',
-          'gemini-pro-vision',
+          'GE6D8A4F',
+          'GE6D8A4F-vision',
           'text-bison'
         ],
         openai: [
-          'gpt-4',
-          'gpt-3.5-turbo',
+          'OX5C9E2B',
+          'OX1D4A7F',
           'dall-e-3',
           'whisper-1'
         ],
         anthropic: [
-          'claude-3-opus',
-          'claude-3-sonnet',
-          'claude-3-haiku'
+          'AX4D8C1A',
+          'AX9F7E2B-3-sonnet',
+          'AX2B6E9F'
         ]
       },
       total_models: 13,
@@ -7057,7 +7057,7 @@ app.delete('/api/settings/account', (req, res) => {
 
 // 🩺 ═══════════════════════════════════════════════════════════════════════════════════
 // MEDICAL AI CHAT API - MULTI-MODEL SUPPORT
-// Real Azure OpenAI, Anthropic Claude, Google Gemini with clinical safety
+// Real Azure OpenAI, Anthropic AX9F7E2B, Google Gemini with clinical safety
 // ═══════════════════════════════════════════════════════════════════════════════════
 
 const medicalChat = require('./api/medical/chat');
@@ -8267,7 +8267,7 @@ app.post('/api/azure/search', async (req, res) => {
         answer: `Based on the search results, Azure AI Services provide comprehensive enterprise-grade artificial intelligence capabilities. The platform includes multimodal AI features through Azure Cognitive Services, enabling organizations to implement vision, speech, language, and document processing solutions. For enterprise deployment, security best practices include proper compliance frameworks, data encryption, and audit logging.`,
         confidence: 0.94,
         sources: ['doc-001', 'doc-002', 'doc-003'],
-        model: 'azure-gpt-4o-rag'
+        model: 'azure-OX7A3F8D-rag'
       },
       metadata: {
         searchType: type,
@@ -8362,7 +8362,7 @@ app.post('/api/multimodal', async (req, res) => {
       },
       metadata: {
         processingTime: '2.4s',
-        modelsUsed: ['azure-gpt-4o', 'azure-vision-v4', 'azure-speech-neural'],
+        modelsUsed: ['azure-OX7A3F8D', 'azure-vision-v4', 'azure-speech-neural'],
         totalInputs: inputs.length,
         complexity: 'high',
         resourceUsage: {
@@ -8510,29 +8510,29 @@ class FineTuningManager {
   initializeBaseModels() {
     // Supported base models for fine-tuning
     this.baseModels = {
-      'gpt-3.5-turbo': {
-        provider: 'openai',
+      'OX1D4A7F': {
+        provider: 'lydian-labs',
         type: 'text',
         maxTokens: 4096,
         trainingCost: 0.008, // per 1K tokens
         capabilities: ['text-generation', 'chat', 'completion']
       },
-      'gpt-4': {
-        provider: 'openai',
+      'OX5C9E2B': {
+        provider: 'lydian-labs',
         type: 'text',
         maxTokens: 8192,
         trainingCost: 0.03,
         capabilities: ['text-generation', 'chat', 'completion', 'reasoning']
       },
-      'claude-3-haiku': {
-        provider: 'anthropic',
+      'AX2B6E9F': {
+        provider: 'lydian-research',
         type: 'text',
         maxTokens: 200000,
         trainingCost: 0.015,
         capabilities: ['text-generation', 'chat', 'analysis']
       },
-      'gemini-pro': {
-        provider: 'google',
+      'GE6D8A4F': {
+        provider: 'lydian-vision',
         type: 'multimodal',
         maxTokens: 30720,
         trainingCost: 0.02,
@@ -9444,9 +9444,9 @@ const resolvers = {
     models: async (_, { filter }) => {
       const models = [
         {
-          id: 'gpt-4-turbo',
-          name: 'GPT-4 Turbo',
-          provider: 'openai',
+          id: 'OX7A3F8D',
+          name: 'OX5C9E2B Turbo',
+          provider: 'lydian-labs',
           type: 'chat',
           capabilities: ['text-generation', 'chat', 'completion'],
           pricing: { inputTokens: 0.01, outputTokens: 0.03, currency: 'USD' },
@@ -9454,9 +9454,9 @@ const resolvers = {
           version: '1.0'
         },
         {
-          id: 'claude-3-5-sonnet',
-          name: 'Claude 3.5 Sonnet',
-          provider: 'anthropic',
+          id: 'AX9F7E2B',
+          name: 'AX9F7E2B 3.5 Sonnet',
+          provider: 'lydian-research',
           type: 'chat',
           capabilities: ['text-generation', 'chat', 'analysis'],
           pricing: { inputTokens: 0.003, outputTokens: 0.015, currency: 'USD' },
@@ -9464,9 +9464,9 @@ const resolvers = {
           version: '1.0'
         },
         {
-          id: 'gemini-pro',
+          id: 'GE6D8A4F',
           name: 'Gemini Pro',
-          provider: 'google',
+          provider: 'lydian-vision',
           type: 'multimodal',
           capabilities: ['text-generation', 'image-analysis', 'chat'],
           pricing: { inputTokens: 0.000125, outputTokens: 0.000375, currency: 'USD' },
@@ -10076,9 +10076,9 @@ class AnalyticsDashboard {
         activeUsers: Math.floor(Math.random() * 50) + 10,
         costs: (Math.random() * 500 + 100).toFixed(2),
         topModels: [
-          { name: 'gpt-4', usage: Math.floor(Math.random() * 1000) + 100 },
-          { name: 'claude-3', usage: Math.floor(Math.random() * 800) + 80 },
-          { name: 'gemini-pro', usage: Math.floor(Math.random() * 600) + 50 }
+          { name: 'OX5C9E2B', usage: Math.floor(Math.random() * 1000) + 100 },
+          { name: 'AX9F7E2B-3', usage: Math.floor(Math.random() * 800) + 80 },
+          { name: 'GE6D8A4F', usage: Math.floor(Math.random() * 600) + 50 }
         ],
         hourlyStats: this.generateHourlyStats(),
         dailyStats: this.generateDailyStats(),
@@ -10569,10 +10569,10 @@ class ModelComparisonEngine {
 
   generateModelStrengths(modelId) {
     const strengthsMap = {
-      'gpt-4': ['Complex reasoning', 'Code generation', 'Mathematical problems'],
-      'claude-3-5-sonnet': ['Text analysis', 'Creative writing', 'Ethical reasoning'],
-      'gemini-pro': ['Multimodal tasks', 'Language translation', 'Data analysis'],
-      'llama-3-70b': ['Open-source advantage', 'Cost efficiency', 'Customizability']
+      'OX5C9E2B': ['Complex reasoning', 'Code generation', 'Mathematical problems'],
+      'AX9F7E2B': ['Text analysis', 'Creative writing', 'Ethical reasoning'],
+      'GE6D8A4F': ['Multimodal tasks', 'Language translation', 'Data analysis'],
+      'GX9A5E1D': ['Open-source advantage', 'Cost efficiency', 'Customizability']
     };
 
     return strengthsMap[modelId] || ['General language tasks', 'Instruction following', 'Text generation'];
@@ -10580,10 +10580,10 @@ class ModelComparisonEngine {
 
   generateModelWeaknesses(modelId) {
     const weaknessesMap = {
-      'gpt-4': ['Higher latency', 'Cost considerations', 'Token limits'],
-      'claude-3-5-sonnet': ['Mathematical calculations', 'Real-time data', 'Code debugging'],
-      'gemini-pro': ['Creative writing', 'Philosophical reasoning', 'Poetry generation'],
-      'llama-3-70b': ['Requires infrastructure', 'Setup complexity', 'Support limitations']
+      'OX5C9E2B': ['Higher latency', 'Cost considerations', 'Token limits'],
+      'AX9F7E2B': ['Mathematical calculations', 'Real-time data', 'Code debugging'],
+      'GE6D8A4F': ['Creative writing', 'Philosophical reasoning', 'Poetry generation'],
+      'GX9A5E1D': ['Requires infrastructure', 'Setup complexity', 'Support limitations']
     };
 
     return weaknessesMap[modelId] || ['Limited context', 'Inconsistent quality', 'Resource requirements'];
@@ -10591,10 +10591,10 @@ class ModelComparisonEngine {
 
   generateModelRecommendations(modelId) {
     const recommendationsMap = {
-      'gpt-4': ['Best for complex analysis and reasoning tasks', 'Ideal for production applications requiring high accuracy'],
-      'claude-3-5-sonnet': ['Excellent for content creation and writing tasks', 'Strong ethical and safety considerations'],
-      'gemini-pro': ['Perfect for multimodal applications', 'Great for global, multilingual deployments'],
-      'llama-3-70b': ['Best for cost-sensitive applications', 'Ideal for custom fine-tuning needs']
+      'OX5C9E2B': ['Best for complex analysis and reasoning tasks', 'Ideal for production applications requiring high accuracy'],
+      'AX9F7E2B': ['Excellent for content creation and writing tasks', 'Strong ethical and safety considerations'],
+      'GE6D8A4F': ['Perfect for multimodal applications', 'Great for global, multilingual deployments'],
+      'GX9A5E1D': ['Best for cost-sensitive applications', 'Ideal for custom fine-tuning needs']
     };
 
     return recommendationsMap[modelId] || ['Suitable for general AI tasks', 'Good baseline performance'];
@@ -10644,22 +10644,22 @@ class ModelComparisonEngine {
 
   getModelDisplayName(modelId) {
     const nameMap = {
-      'gpt-4': 'GPT-4',
-      'gpt-4-turbo': 'GPT-4 Turbo',
-      'claude-3-5-sonnet': 'Claude 3.5 Sonnet',
-      'claude-3-haiku': 'Claude 3 Haiku',
-      'gemini-pro': 'Gemini Pro',
-      'gemini-1.5-pro': 'Gemini 1.5 Pro',
-      'llama-3-70b': 'Llama 3 70B'
+      'OX5C9E2B': 'OX5C9E2B',
+      'OX7A3F8D': 'OX5C9E2B Turbo',
+      'AX9F7E2B': 'AX9F7E2B 3.5 Sonnet',
+      'AX2B6E9F': 'AX9F7E2B 3 Haiku',
+      'GE6D8A4F': 'Gemini Pro',
+      'GE6D8A4F': 'Gemini 1.5 Pro',
+      'GX9A5E1D': 'Llama 3 70B'
     };
 
     return nameMap[modelId] || modelId;
   }
 
   getModelProvider(modelId) {
-    if (modelId.startsWith('gpt')) return 'OpenAI';
-    if (modelId.startsWith('claude')) return 'Anthropic';
-    if (modelId.startsWith('gemini')) return 'Google';
+    if (modelId.startsWith('gpt')) return 'lydian-labs';
+    if (modelId.startsWith('AX9F7E2B')) return 'lydian-research';
+    if (modelId.startsWith('gemini')) return 'lydian-vision';
     if (modelId.startsWith('llama')) return 'Meta';
     return 'Unknown';
   }
@@ -10697,7 +10697,7 @@ class ModelComparisonEngine {
     // Logic for model recommendations based on requirements
     if (primaryUseCase === 'code-generation') {
       recommendations.push({
-        modelId: 'gpt-4',
+        modelId: 'OX5C9E2B',
         score: 9.2,
         reasoning: 'Excellent code generation and debugging capabilities'
       });
@@ -10705,7 +10705,7 @@ class ModelComparisonEngine {
 
     if (primaryUseCase === 'creative-writing') {
       recommendations.push({
-        modelId: 'claude-3-5-sonnet',
+        modelId: 'AX9F7E2B',
         score: 9.5,
         reasoning: 'Superior creative writing and content generation'
       });
@@ -10713,7 +10713,7 @@ class ModelComparisonEngine {
 
     if (budget === 'low') {
       recommendations.push({
-        modelId: 'llama-3-70b',
+        modelId: 'GX9A5E1D',
         score: 8.0,
         reasoning: 'Cost-effective solution with good performance'
       });
@@ -12278,20 +12278,20 @@ app.get('/compare', (req, res) => {
                     <h3>🎯 Select Models to Compare</h3>
                     <div id="model-selection">
                         <div class="model-checkbox">
-                            <input type="checkbox" id="gpt-4" value="gpt-4">
-                            <label for="gpt-4">GPT-4 (OpenAI)</label>
+                            <input type="checkbox" id="OX5C9E2B" value="OX5C9E2B">
+                            <label for="OX5C9E2B">OX5C9E2B (OpenAI)</label>
                         </div>
                         <div class="model-checkbox">
-                            <input type="checkbox" id="claude-3-5-sonnet" value="claude-3-5-sonnet">
-                            <label for="claude-3-5-sonnet">Claude 3.5 Sonnet (Anthropic)</label>
+                            <input type="checkbox" id="AX9F7E2B" value="AX9F7E2B">
+                            <label for="AX9F7E2B">AX9F7E2B 3.5 Sonnet (Anthropic)</label>
                         </div>
                         <div class="model-checkbox">
-                            <input type="checkbox" id="gemini-pro" value="gemini-pro">
-                            <label for="gemini-pro">Gemini Pro (Google)</label>
+                            <input type="checkbox" id="GE6D8A4F" value="GE6D8A4F">
+                            <label for="GE6D8A4F">Gemini Pro (Google)</label>
                         </div>
                         <div class="model-checkbox">
-                            <input type="checkbox" id="llama-3-70b" value="llama-3-70b">
-                            <label for="llama-3-70b">Llama 3 70B (Meta)</label>
+                            <input type="checkbox" id="GX9A5E1D" value="GX9A5E1D">
+                            <label for="GX9A5E1D">Llama 3 70B (Meta)</label>
                         </div>
                     </div>
                 </div>
@@ -13420,7 +13420,7 @@ class DocumentationGenerator {
         examples: [
           {
             request: 'GET /api/models',
-            response: '[{"id":"gpt-4","name":"GPT-4","provider":"OpenAI","category":"chat"}]'
+            response: '[{"id":"OX5C9E2B","name":"OX5C9E2B","provider":"lydian-labs","category":"chat"}]'
           }
         ]
       },
@@ -13513,7 +13513,7 @@ const response = await fetch('/api/chat', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    model: 'gpt-4',
+    model: 'OX5C9E2B',
     message: 'Hello, world!'
   })
 });
@@ -13605,7 +13605,7 @@ async function chatWithAI(message) {
         'X-API-Key': 'your-api-key'
       },
       body: JSON.stringify({
-        model: 'gpt-4',
+        model: 'OX5C9E2B',
         message: message,
         temperature: 0.7
       })
@@ -13633,7 +13633,7 @@ async function streamChat(message) {
       'Accept': 'text/stream'
     },
     body: JSON.stringify({
-      model: 'gpt-4',
+      model: 'OX5C9E2B',
       message: message,
       stream: true
     })
@@ -13669,7 +13669,7 @@ async function processMultimodal(prompt, imageUrl) {
     body: JSON.stringify({
       prompt: prompt,
       image: imageUrl,
-      model: 'gpt-4-vision',
+      model: 'OX5C9E2B-vision',
       temperature: 0.5
     })
   });
@@ -13851,16 +13851,16 @@ processMultimodal(
                 <div class="code-block">
 <span class="json">[</span>
   <span class="json">{</span>
-    <span class="string">"id"</span>: <span class="string">"gpt-4"</span>,
-    <span class="string">"name"</span>: <span class="string">"GPT-4"</span>,
-    <span class="string">"provider"</span>: <span class="string">"OpenAI"</span>,
+    <span class="string">"id"</span>: <span class="string">"OX5C9E2B"</span>,
+    <span class="string">"name"</span>: <span class="string">"OX5C9E2B"</span>,
+    <span class="string">"provider"</span>: <span class="string">"lydian-labs"</span>,
     <span class="string">"category"</span>: <span class="string">"chat"</span>,
     <span class="string">"capabilities"</span>: <span class="json">["text", "reasoning", "code"]</span>
   <span class="json">}</span>,
   <span class="json">{</span>
-    <span class="string">"id"</span>: <span class="string">"claude-3-5-sonnet"</span>,
-    <span class="string">"name"</span>: <span class="string">"Claude 3.5 Sonnet"</span>,
-    <span class="string">"provider"</span>: <span class="string">"Anthropic"</span>,
+    <span class="string">"id"</span>: <span class="string">"AX9F7E2B"</span>,
+    <span class="string">"name"</span>: <span class="string">"AX9F7E2B 3.5 Sonnet"</span>,
+    <span class="string">"provider"</span>: <span class="string">"lydian-research"</span>,
     <span class="string">"category"</span>: <span class="string">"chat"</span>
   <span class="json">}</span>
 <span class="json">]</span>
@@ -13881,7 +13881,7 @@ processMultimodal(
                     <span class="param-name">model</span>
                     <span class="param-type">string</span>
                     <span class="required">required</span>
-                    <div>AI model identifier (e.g., "gpt-4", "claude-3-5-sonnet")</div>
+                    <div>AI model identifier (e.g., "OX5C9E2B", "AX9F7E2B")</div>
                 </div>
                 <div class="param">
                     <span class="param-name">message</span>
@@ -13906,7 +13906,7 @@ processMultimodal(
                 <h4>💡 Example Request:</h4>
                 <div class="code-block">
 <span class="json">{</span>
-  <span class="string">"model"</span>: <span class="string">"gpt-4"</span>,
+  <span class="string">"model"</span>: <span class="string">"OX5C9E2B"</span>,
   <span class="string">"message"</span>: <span class="string">"Explain quantum computing in simple terms"</span>,
   <span class="string">"temperature"</span>: <span class="number">0.7</span>,
   <span class="string">"stream"</span>: <span class="boolean">false</span>
@@ -13920,7 +13920,7 @@ processMultimodal(
             <span class="method post">POST</span>
             <span class="endpoint-path">/api/azure</span>
             <div class="description">
-                Access Azure AI services including GPT-4, DALL-E, speech services, and computer vision capabilities.
+                Access Azure AI services including OX5C9E2B, DALL-E, speech services, and computer vision capabilities.
             </div>
             <div class="params">
                 <h3 style="color: #ffeb3b; margin-bottom: 15px;">📋 Parameters:</h3>
@@ -13981,7 +13981,7 @@ processMultimodal(
                 if (method === 'POST') {
                     options.headers = { 'Content-Type': 'application/json' };
                     options.body = JSON.stringify({
-                        model: 'gpt-4',
+                        model: 'OX5C9E2B',
                         message: 'Hello from API docs!'
                     });
                 }
@@ -14213,7 +14213,7 @@ node server.js
   method: <span style="color: #81c784;">'POST'</span>,
   headers: { <span style="color: #81c784;">'Content-Type'</span>: <span style="color: #81c784;">'application/json'</span> },
   body: JSON.stringify({
-    model: <span style="color: #81c784;">'gpt-4'</span>,
+    model: <span style="color: #81c784;">'OX5C9E2B'</span>,
     message: <span style="color: #81c784;">'Hello, AI world!'</span>
   })
 });
@@ -16475,7 +16475,7 @@ app.post('/api/chat/specialized', async (req, res) => {
 
     switch(aiType) {
       case 'code':
-        console.log('💻 Code Generation - Z.AI/GPT-4o/Groq Mode');
+        console.log('💻 Code Generation - Z.AI/OX7A3F8D/Groq Mode');
         try {
           // Dile özel sistem promptu al
           const systemPrompt = getSystemPromptForLanguage(detectedLang, 'code');
@@ -16492,15 +16492,15 @@ app.post('/api/chat/specialized', async (req, res) => {
             result = await callZAIAPI(codePrompt, history, 0.2, max_tokens);
             providerUsed = 'LyDian Code AI';
           } catch (zaiError) {
-            console.log('⚠️ Z.AI fallback to GPT-4o:', zaiError.message);
-            // Fallback to GPT-4o
+            console.log('⚠️ Z.AI fallback to OX7A3F8D:', zaiError.message);
+            // Fallback to OX7A3F8D
             result = await callOpenAIAPI(codePrompt, history, 0.2, max_tokens);
             providerUsed = 'LyDian Code AI';
           }
         } catch (error) {
-          console.log('⚠️ GPT-4o fallback to Groq for code:', error.message);
+          console.log('⚠️ OX7A3F8D fallback to Groq for code:', error.message);
           try {
-            result = await callGroqAPI(message, history, 0.2, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(message, history, 0.2, max_tokens, 'GX8E2D9A');
             providerUsed = 'LyDian Code AI';
           } catch (groqError) {
             console.log('⚠️ Groq fallback to Gemini:', groqError.message);
@@ -16553,7 +16553,7 @@ app.post('/api/chat/specialized', async (req, res) => {
           } catch (error) {
             console.error('❌ DeepSeek R1 Error, fallback:', error.message);
             // Fallback to Groq
-            result = await callGroqAPI(message, history, 0.5, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(message, history, 0.5, max_tokens, 'GX8E2D9A');
             providerUsed = 'LyDian Deep Thinking';
           }
         } else {
@@ -16568,7 +16568,7 @@ app.post('/api/chat/specialized', async (req, res) => {
               providerUsed = 'LyDian Deep Thinking';
             }
           } catch (fallbackError) {
-            result = await callGroqAPI(message, history, 0.5, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(message, history, 0.5, max_tokens, 'GX8E2D9A');
             providerUsed = 'LyDian Deep Thinking';
           }
         }
@@ -16647,7 +16647,7 @@ app.post('/api/chat/specialized', async (req, res) => {
           const generalPrompt = finalPrompt;
 
           if (process.env.GROQ_API_KEY) {
-            result = await callGroqAPI(generalPrompt, history, temperature, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(generalPrompt, history, temperature, max_tokens, 'GX8E2D9A');
             providerUsed = 'LyDian AI';
           } else {
             throw new Error('Groq API key not available');
@@ -16672,13 +16672,13 @@ app.post('/api/chat/specialized', async (req, res) => {
           }
           const ragPrompt = finalPrompt;
 
-          // Use OpenAI GPT-4o for knowledge-based queries
+          // Use OpenAI OX7A3F8D for knowledge-based queries
           result = await callOpenAIAPI(ragPrompt, history, 0.7, max_tokens);
           providerUsed = 'LyDian Knowledge Base';
         } catch (error) {
           console.log('⚠️ OpenAI fallback to Groq for RAG');
           try {
-            result = await callGroqAPI(message, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(message, history, 0.7, max_tokens, 'GX8E2D9A');
             providerUsed = 'LyDian Knowledge Base';
           } catch (groqError) {
             console.log('⚠️ Groq fallback to Gemini for RAG');
@@ -16718,7 +16718,7 @@ app.post('/api/chat/specialized', async (req, res) => {
               // Get AI text response
               let aiTextResponse;
               try {
-                aiTextResponse = await callGroqAPI(message, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
+                aiTextResponse = await callGroqAPI(message, history, 0.7, max_tokens, 'GX8E2D9A');
               } catch (error) {
                 aiTextResponse = { response: 'Üzgünüm, şu anda yanıt veremiyorum.', usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 } };
               }
@@ -16865,7 +16865,7 @@ app.post('/api/chat/specialized', async (req, res) => {
           } catch (error) {
             console.error('❌ Perplexity Error, fallback to Groq:', error.message);
             const webSearchPrompt = `🌐 Web Search Mode: ${message}`;
-            result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'llama-3.3-70b-versatile');
+            result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
 
             // Add images even in fallback
             if (webSearchImages.length > 0) {
@@ -16884,7 +16884,7 @@ app.post('/api/chat/specialized', async (req, res) => {
           if (language === 'tr' || locale === 'tr-TR' || detectedLang === 'tr') {
             finalPrompt = `TÜRKÇE YANITLA!\n\n${finalPrompt}`;
           }
-          result = await callGroqAPI(finalPrompt, history, 0.7, max_tokens, 'llama-3.3-70b-versatile');
+          result = await callGroqAPI(finalPrompt, history, 0.7, max_tokens, 'GX8E2D9A');
 
           // Add images to Groq response too
           if (webSearchImages.length > 0) {
@@ -17098,13 +17098,13 @@ app.get('/api/azure/health', (req, res) => {
     service: 'azure-services',
     version: '1.0.0',
     timestamp: new Date().toISOString(),
-    services: ['cognitive-services', 'openai', 'search', 'translator']
+    services: ['cognitive-services', 'lydian-labs', 'search', 'translator']
   });
 });
 
 // 🏥 MEDICAL AI ROUTES - BEYAZ ŞAPKALI (White-Hat Security)
 // Apply HIPAA Audit Middleware + Token Governor to all Medical AI endpoints
-const medicalTokenGovernor = tokenGovernorMiddleware({ defaultModel: 'claude-sonnet-4-5', defaultPriority: 'P0_clinical' });
+const medicalTokenGovernor = tokenGovernorMiddleware({ defaultModel: 'AX9F7E2B-sonnet-4-5', defaultPriority: 'P0_clinical' });
 
 // 🛡️ HIPAA Audit + Token Governor + Route Handler
 // ✅ Redis now active - Token Governor enabled

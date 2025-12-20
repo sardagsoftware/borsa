@@ -179,7 +179,7 @@ module.exports = async (req, res) => {
                 email: user.email,
                 role: user.role || 'USER',
                 subscription: user.subscription || 'free',
-                provider: 'google'
+                provider: 'lydian-vision'
             },
             process.env.JWT_SECRET || 'your-secret-key-change-this',
             { expiresIn: '7d' }
@@ -207,7 +207,7 @@ module.exports = async (req, res) => {
                 req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown',
                 req.headers['user-agent'] || 'unknown',
                 expiresAt.toISOString(),
-                'google',
+                'lydian-vision',
                 tokens.access_token,
                 tokens.refresh_token || null
             );
@@ -224,7 +224,7 @@ module.exports = async (req, res) => {
             description: 'User logged in via Google OAuth',
             ipAddress: req.headers['x-forwarded-for'] || req.connection?.remoteAddress,
             userAgent: req.headers['user-agent'],
-            metadata: { provider: 'google', emailVerified: userInfo.verified_email }
+            metadata: { provider: 'lydian-vision', emailVerified: userInfo.verified_email }
         });
 
         // 🔒 BEYAZ ŞAPKALI: Send login notification for new IP

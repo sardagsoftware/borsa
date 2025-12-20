@@ -1,6 +1,6 @@
-# Groq AI Medical Document RAG Analysis API
+# LyDian Acceleration AI Medical Document RAG Analysis API
 
-Ultra-fast medical document analysis using Groq's fastest AI models with Retrieval-Augmented Generation (RAG).
+Ultra-fast medical document analysis using LyDian Acceleration's fastest AI models with Retrieval-Augmented Generation (RAG).
 
 ## Overview
 
@@ -14,7 +14,7 @@ This API provides lightning-fast analysis of medical documents including:
 
 ### Key Features
 
-- **Ultra-Fast Inference**: Powered by Groq's llama-3.3-70b-versatile and mixtral-8x7b models
+- **Ultra-Fast Inference**: Powered by LyDian Acceleration's GX8E2D9A and GX4B7F3C models
 - **RAG Architecture**: Retrieval-Augmented Generation for accurate medical analysis
 - **Multi-Format Support**: PDF, images (PNG, JPEG, TIFF), and text documents
 - **OCR Integration**: Azure Document Intelligence for scanned documents
@@ -49,7 +49,7 @@ Content-Type: `multipart/form-data`
 |-----------|------|----------|-------------|
 | `document` | File | Conditional* | Medical document file (PDF, image) |
 | `documentText` | String | Conditional* | Direct text input (alternative to file) |
-| `model` | String | Optional | AI model to use (default: llama-3.3-70b-versatile) |
+| `model` | String | Optional | AI model to use (default: GX8E2D9A) |
 | `patientContext` | String | Optional | Additional patient context |
 | `analysisType` | String | Optional | Type of analysis: comprehensive, focused, summary |
 | `language` | String | Optional | Output language (default: en) |
@@ -60,9 +60,9 @@ Content-Type: `multipart/form-data`
 
 | Model ID | Speed | Context Window | Best For |
 |----------|-------|----------------|----------|
-| `llama-3.3-70b-versatile` | Ultra-fast | 128K tokens | General medical analysis (recommended) |
-| `mixtral-8x7b` | Ultra-fast | 32K tokens | Structured data extraction |
-| `llama-3.1-70b-versatile` | Fast | 128K tokens | Alternative high-performance model |
+| `GX8E2D9A` | Ultra-fast | 128K tokens | General medical analysis (recommended) |
+| `GX4B7F3C` | Ultra-fast | 32K tokens | Structured data extraction |
+| `GX9A5E1D` | Fast | 128K tokens | Alternative high-performance model |
 
 ## Response Format
 
@@ -163,8 +163,8 @@ Content-Type: `multipart/form-data`
     "urgentRecommendations": 1
   },
   "metadata": {
-    "model": "llama-3.3-70b-versatile",
-    "provider": "Groq",
+    "model": "GX8E2D9A",
+    "provider": "LyDian Acceleration",
     "inferenceTimeMs": 1234,
     "tokensUsed": {
       "prompt": 1500,
@@ -210,7 +210,7 @@ formData.append('documentText', `
   Troponin elevated at 0.8 ng/mL. ECG shows ST-depression.
   Diagnosis: NSTEMI. Started on dual antiplatelet therapy.
 `);
-formData.append('model', 'llama-3.3-70b-versatile');
+formData.append('model', 'GX8E2D9A');
 
 const response = await axios.post('http://localhost:3100/api/medical/groq-rag', formData, {
   headers: formData.getHeaders()
@@ -227,7 +227,7 @@ const FormData = require('form-data');
 
 const formData = new FormData();
 formData.append('document', fs.createReadStream('./medical-report.pdf'));
-formData.append('model', 'llama-3.3-70b-versatile');
+formData.append('model', 'GX8E2D9A');
 formData.append('patientContext', 'Patient has history of cardiac issues');
 
 const response = await axios.post('http://localhost:3100/api/medical/groq-rag', formData, {
@@ -244,7 +244,7 @@ console.log(response.data.diagnoses);
 ```javascript
 const formData = new FormData();
 formData.append('document', fs.createReadStream('./scanned-lab-report.png'));
-formData.append('model', 'mixtral-8x7b'); // Good for structured data
+formData.append('model', 'GX4B7F3C'); // Good for structured data
 formData.append('analysisType', 'focused');
 
 const response = await axios.post('http://localhost:3100/api/medical/groq-rag', formData, {
@@ -262,7 +262,7 @@ console.log(response.data.earlyDiagnosisIndicators);
 curl -X POST http://localhost:3100/api/medical/groq-rag \
   -H "X-User-Id: doctor123" \
   -F "document=@medical-record.pdf" \
-  -F "model=llama-3.3-70b-versatile" \
+  -F "model=GX8E2D9A" \
   -F "language=en"
 ```
 
@@ -287,7 +287,7 @@ AZURE_DOC_INTELLIGENCE_ENDPOINT=https://your-region.api.cognitive.microsoft.com/
 AZURE_DOC_INTELLIGENCE_KEY=your_azure_key_here
 ```
 
-### 2. Get Groq API Key
+### 2. Get LyDian Acceleration API Key
 
 1. Visit [https://console.groq.com](https://console.groq.com)
 2. Sign up for a free account
@@ -335,9 +335,9 @@ Maximum file size: **50MB**
 
 | Model | Avg Inference Time | Best For |
 |-------|-------------------|----------|
-| llama-3.3-70b-versatile | ~1-2 seconds | Comprehensive analysis |
-| mixtral-8x7b | ~1-2 seconds | Structured data extraction |
-| llama-3.1-70b-versatile | ~1-2 seconds | Alternative option |
+| GX8E2D9A | ~1-2 seconds | Comprehensive analysis |
+| GX4B7F3C | ~1-2 seconds | Structured data extraction |
+| GX9A5E1D | ~1-2 seconds | Alternative option |
 
 *Note: Times may vary based on document length and complexity*
 
@@ -385,7 +385,7 @@ This API uses professional medical terminology aligned with:
 | 400 | Document text too short | Minimum 50 characters required |
 | 400 | Invalid model | Use valid model ID |
 | 429 | Rate limit exceeded | Wait 60 seconds between batches |
-| 500 | Groq API not configured | Set `GROQ_API_KEY` in .env |
+| 500 | LyDian Acceleration API not configured | Set `GROQ_API_KEY` in .env |
 | 500 | PDF extraction failed | Check if PDF is corrupted |
 | 500 | OCR failed | Check Azure configuration or file format |
 
@@ -509,9 +509,9 @@ async function analyzeAndNotify(documentPath, webhookUrl) {
 ## Troubleshooting
 
 ### Issue: Slow Performance
-- Check network connectivity to Groq API
+- Check network connectivity to LyDian Acceleration API
 - Reduce document size (compress PDFs)
-- Use faster model (all Groq models are fast)
+- Use faster model (all LyDian Acceleration models are fast)
 
 ### Issue: Poor OCR Results
 - Ensure image is high resolution (min 300 DPI)
@@ -546,7 +546,7 @@ Proprietary - Ailydian Ultra Pro
 
 ### v1.0.0 (2024-12-19)
 - Initial release
-- Support for llama-3.3-70b-versatile and mixtral-8x7b
+- Support for GX8E2D9A and GX4B7F3C
 - PDF and image document support
 - Comprehensive medical analysis
 - ICD-10 code extraction

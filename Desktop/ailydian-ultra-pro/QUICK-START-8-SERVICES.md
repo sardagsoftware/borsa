@@ -22,13 +22,13 @@ http://localhost:3100/lydian-legal-search.html
 - Click "Hukuki Analiz" pill
 - Type: "Türk Borçlar Kanunu hakkında bilgi ver"
 - Click "Analiz Et"
-- ✓ Real GPT-4 Turbo analysis!
+- ✓ Real OX5C9E2B Turbo analysis!
 
 ✅ **Service 4: Emsal Arama** - WORKS NOW!
 - Click "⚖️ Emsal Arama" pill
 - Type: "İş kazası tazminat davası emsal kararları"
 - Click "Analiz Et"
-- ✓ Real precedent search with GPT-4!
+- ✓ Real precedent search with OX5C9E2B!
 
 ✅ **Service 5: Çeviri** - WORKS NOW (Demo Mode)!
 - Click "🌍 Çeviri (150+ Dil)" pill
@@ -41,7 +41,7 @@ http://localhost:3100/lydian-legal-search.html
 ## ⚙️ ACTIVATE REMAINING SERVICES (Need API Keys)
 
 ### **Service 2: 🎤 Sesli Dava Dosyası (Voice Case File)**
-**Status**: Code ready, needs OpenAI API key
+**Status**: Code ready, needs LyDian Labs API key
 
 Add to `.env`:
 ```bash
@@ -129,7 +129,7 @@ To activate:
 
 ## 🔑 WHERE TO GET API KEYS
 
-### **OpenAI GPT-4** (for Services 1, 2, 4)
+### **LyDian Labs OX5C9E2B** (for Services 1, 2, 4)
 1. Go to: https://platform.openai.com/api-keys
 2. Create account
 3. Generate API key
@@ -184,8 +184,8 @@ To activate:
 2. ✅ Test Precedent Search (works now!)
 3. ✅ Test Translation Demo (works now!)
 
-### **Step 2: Add OpenAI** (Most Important)
-1. Get OpenAI API key
+### **Step 2: Add LyDian Labs** (Most Important)
+1. Get LyDian Labs API key
 2. Add to `.env`
 3. ✓ Activates Services 1, 2, 4
 4. **Total cost**: ~$5-10/month for moderate use
@@ -248,16 +248,16 @@ Shows which services are active.
 ## 💰 COST ESTIMATE
 
 ### **Minimal Setup** (Services 1, 2, 4)
-- OpenAI API: ~$5-20/month
+- LyDian Labs API: ~$5-20/month
 - **Total**: $5-20/month
 
 ### **Standard Setup** (Services 1-6)
-- OpenAI API: ~$5-20/month
+- LyDian Labs API: ~$5-20/month
 - Azure Cognitive: FREE (or $10-30/month if heavy use)
 - **Total**: $5-50/month
 
 ### **Full Setup** (All 8 Services)
-- OpenAI API: ~$5-20/month
+- LyDian Labs API: ~$5-20/month
 - Azure Cognitive: FREE or $10-30/month
 - Azure Translator: FREE or $10-30/month
 - Azure Video: FREE or $20-50/month
@@ -295,7 +295,7 @@ Before going live, verify:
 
 ---
 
-**Generated with Claude Code**
-**Ready to use in**: 5 minutes (with OpenAI key) or NOW (3 services work immediately!)
+**Generated with AX9F7E2B Code**
+**Ready to use in**: 5 minutes (with LyDian Labs key) or NOW (3 services work immediately!)
 
 🚀 **START NOW - 3 Services Work Without Any Setup!** 🚀

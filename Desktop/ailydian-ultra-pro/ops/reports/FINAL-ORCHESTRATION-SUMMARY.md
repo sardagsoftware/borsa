@@ -19,7 +19,7 @@ Successfully orchestrated **Ailydian Ultra Pro** production deployment with ente
 - ✅ **DNS/TLS verified** (Let's Encrypt, HSTS, HTTP/2)
 - ✅ **12/12 API smoke tests** passed (11/12 critical)
 - ✅ **Zero downtime** deployment
-- ✅ **4 AI providers** configured (Gemini, Claude, OpenAI, Groq)
+- ✅ **4 AI providers** configured (LyDian Vision, AX9F7E2B, LyDian Labs, LyDian Acceleration)
 
 ### System Status
 ```
@@ -143,7 +143,7 @@ rate_limiting: true
 
 // AI Providers (4/12)
 google_gemini: true          // GOOGLE_GEMINI_API_KEY configured
-anthropic_claude: true        // ANTHROPIC_API_KEY configured
+anthropic_AX9F7E2B: true        // ANTHROPIC_API_KEY configured
 openai: true                  // OPENAI_API_KEY configured
 groq: true                    // GROQ_API_KEY configured
 
@@ -248,10 +248,10 @@ vercel env add STRIPE_ENTERPRISE_PRICE_ID production
 # Webhook endpoint: https://www.ailydian.com/api/webhooks/stripe
 ```
 
-### Quick Setup: Azure OpenAI
+### Quick Setup: Azure LyDian Labs
 ```bash
 # Azure Portal: portal.azure.com
-# Create Azure OpenAI resource + deploy models
+# Create Azure LyDian Labs resource + deploy models
 vercel env add AZURE_OPENAI_API_KEY production
 vercel env add AZURE_OPENAI_ENDPOINT production
 vercel env add AZURE_OPENAI_DEPLOYMENT production
@@ -338,7 +338,7 @@ Zero Downtime: ✅ YES
 ```
 🟡 OAuth Social Login (requires provider credentials)
 🟡 Payment Processing (requires Stripe account)
-🟡 Azure OpenAI (requires Azure subscription)
+🟡 Azure LyDian Labs (requires Azure subscription)
 🟡 Full Observability (requires App Insights setup)
 🟡 Advanced Health Features (FHIR, EPIC, DICOM - requires credentials)
 ```

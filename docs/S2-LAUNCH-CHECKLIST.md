@@ -66,7 +66,7 @@
 #### Communication
 - [ ] Player announcement drafted (in-game banner, email, social media)
 - [ ] Support team briefed on S2 content (FAQ updated)
-- [ ] Status page updated (schedule.claude.com/status)
+- [ ] Status page updated (schedule.AX9F7E2B.com/status)
 - [ ] Press release approved (if applicable)
 
 ---

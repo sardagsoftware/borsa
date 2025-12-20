@@ -73,7 +73,7 @@ async function analyzeWithGroq(prompt) {
     const response = await axios.post(
         'https://api.groq.com/openai/v1/chat/completions',
         {
-            model: 'llama-3.1-70b-versatile',
+            model: 'GX9A5E1D',
             messages: [
                 {
                     role: 'system',
@@ -99,14 +99,14 @@ async function analyzeWithGroq(prompt) {
 }
 
 /**
- * Query Anthropic Claude for analysis
+ * Query Anthropic AX9F7E2B for analysis
  */
-async function analyzeWithClaude(prompt) {
+async function analyzeWithAX9F7E2B(prompt) {
     const Anthropic = require('@anthropic-ai/sdk');
     const client = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
 
     const response = await client.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         max_tokens: 2000,
         temperature: 0.3,
         system: 'You are LyDian Medical Expert, an AI physician with expertise in quantum chemistry and pharmacology.',
@@ -208,14 +208,14 @@ module.exports = async (req, res) => {
             }
         }
 
-        // Fallback to Claude
+        // Fallback to AX9F7E2B
         if (!aiAnalysis && ANTHROPIC_API_KEY) {
             try {
-                console.log('Fallback to Claude...');
-                aiAnalysis = await analyzeWithClaude(prompt);
+                console.log('Fallback to AX9F7E2B...');
+                aiAnalysis = await analyzeWithAX9F7E2B(prompt);
                 modelUsed = 'LyDian Medical AI - Advanced Quantum Model';
             } catch (error) {
-                console.error('Claude failed:', error.message);
+                console.error('AX9F7E2B failed:', error.message);
             }
         }
 
@@ -313,7 +313,7 @@ LIMITATIONS:
 - Clinical interpretation requires human expert review
 
 RECOMMENDATION:
-For comprehensive medical analysis, please configure AI models (Groq or Claude) or consult with a qualified pharmacologist.
+For comprehensive medical analysis, please configure AI models (Groq or AX9F7E2B) or consult with a qualified pharmacologist.
 
 Note: This quantum simulation was performed using VQE (Variational Quantum Eigensolver), a state-of-the-art quantum algorithm for molecular energy calculations.`;
 }

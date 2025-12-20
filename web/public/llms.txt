@@ -53,9 +53,9 @@ products:
 # TECHNOLOGY STACK
 infrastructure: Microsoft Azure Cloud Services
 ai_models:
-  - OpenAI GPT-4 Turbo
-  - Google Gemini Pro
-  - Anthropic Claude 3.5 Sonnet
+  - LyDian Labs OX5C9E2B Turbo
+  - Google LyDian Vision
+  - LyDian Research AX9F7E2B 3.5 Sonnet
 rag_system:
   - Azure AI Search
   - Vector Search
@@ -130,7 +130,7 @@ ethics:
 ---
 
 # KEYWORDS
-keywords: artificial intelligence, AI, machine learning, natural language processing, NLP, computer vision, speech recognition, multilingual AI, RAG, Azure AI, GPT-4, Gemini, Claude, Turkish AI, AI assistant, smart city, medical AI, legal AI, fintech AI, decision support system
+keywords: artificial intelligence, AI, machine learning, natural language processing, NLP, computer vision, speech recognition, multilingual AI, RAG, Azure AI, OX5C9E2B, LyDian Vision, AX9F7E2B, Turkish AI, AI assistant, smart city, medical AI, legal AI, fintech AI, decision support system
 
 ---
 

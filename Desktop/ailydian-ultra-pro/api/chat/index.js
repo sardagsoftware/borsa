@@ -1,25 +1,25 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // HIDDEN AI MODELS - User never knows | Azure OpenAI Integrated
 const MODELS = {
   // Azure OpenAI (Enterprise Primary)
   azure: {
-    name: 'gpt-4-turbo',
+    name: 'OX7A3F8D',
     key: () => process.env.AZURE_OPENAI_API_KEY,
-    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : null,
+    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D` : null,
     apiVersion: '2024-02-01',
     display: 'LyDian AI'
   },
   // Groq Models (Ultra Fast)
   primary: {
-    name: 'llama-3.3-70b-versatile',
+    name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI'
   },
   fast: {
-    name: 'llama-3.1-8b-instant',
+    name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian AI'
@@ -32,20 +32,20 @@ const MODELS = {
   },
   // OpenAI Models
   gpt4mini: {
-    name: 'gpt-4o-mini',
+    name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI'
   },
   gpt4: {
-    name: 'gpt-4o',
+    name: 'OX7A3F8D',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian AI'
   },
-  // Anthropic Claude
-  claude: {
-    name: 'claude-3-5-sonnet-20241022',
+  // Anthropic AX9F7E2B
+  AX9F7E2B: {
+    name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
     url: 'https://api.anthropic.com/v1',
     display: 'LyDian AI'
@@ -94,7 +94,7 @@ ALWAYS detect the user's question language and respond in THE SAME LANGUAGE.
 - Farklı kelime ve ifadeler kullan, tekrar etme
 - Örneklerle zenginleştir, spesifik ol
 - Markdown formatında düzgün yapı
-- ASLA model adı söyleme (GPT, Claude, Gemini yasak)
+- ASLA model adı söyleme (GPT, AX9F7E2B, Gemini yasak)
 - Sadece "LyDian AI" olarak tanıt
 
 **ENGLISH:**
@@ -122,7 +122,7 @@ ALWAYS detect the user's question language and respond in THE SAME LANGUAGE.
 4. Use varied vocabulary - avoid repetitive words
 5. Include specific examples, data, or analogies
 6. Use proper Markdown formatting with headers, lists, and emphasis
-7. Never mention GPT, Claude, Gemini, or any AI model name
+7. Never mention GPT, AX9F7E2B, Gemini, or any AI model name
 8. Always identify only as "LyDian AI"
 
 YOU ARE: LyDian AI - Universal Multilingual Assistant`
@@ -183,7 +183,7 @@ module.exports = async (req, res) => {
     // OpenAI (Priority 3 - Fallback)
     if (MODELS.gpt4mini.key()) {
       providers.push({
-        name: 'OpenAI GPT-4o-mini',
+        name: 'OpenAI OX7A3F8D-mini',
         model: MODELS.gpt4mini,
         setup: () => new OpenAI({
           apiKey: MODELS.gpt4mini.key(),

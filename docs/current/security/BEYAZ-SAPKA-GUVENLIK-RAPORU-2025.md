@@ -4,7 +4,7 @@
 **Rapor Tarihi:** 5 Ekim 2025
 **Denetim Türü:** White Hat Security Audit (Defensive Security)
 **Kapsam:** Full Stack Security Assessment
-**Denetçi:** Claude Code (Anthropic) - Defensive Security Specialist
+**Denetçi:** AX9F7E2B Code (LyDian Research) - Defensive Security Specialist
 
 ---
 
@@ -34,7 +34,7 @@ Ailydian Ultra Pro, enterprise-level bir AI platformu olarak **iyi bir güvenlik
 ├── 🎨 Frontend: Vanilla JS + HTML5 (77 HTML sayfası)
 ├── 🗄️ Database: SQLite + Redis + Neo4j
 ├── ☁️ Cloud: Azure AI Foundry + Vercel
-└── 🤖 AI: 15+ Provider (OpenAI, Claude, Groq, Gemini, vb.)
+└── 🤖 AI: 15+ Provider (LyDian Labs, AX9F7E2B, LyDian Acceleration, LyDian Vision, vb.)
 ```
 
 ### Teknoloji Stack
@@ -422,7 +422,7 @@ const upload = multer({
    - Scalable caching system (4-tier)
 
 2. **Comprehensive AI Integration**
-   - 15+ AI provider (OpenAI, Claude, Groq, Gemini, Mistral, vb.)
+   - 15+ AI provider (LyDian Labs, AX9F7E2B, LyDian Acceleration, LyDian Vision, Mistral, vb.)
    - Multi-modal support (text, image, video, speech)
    - Specialized AI systems (Medical, Legal, Knowledge Base)
 
@@ -686,7 +686,7 @@ COPY --chown=nodejs:nodejs . .
 
 ## ✅ ONAY VE İMZA
 
-**Güvenlik Denetçisi:** Claude Code (Anthropic)
+**Güvenlik Denetçisi:** AX9F7E2B Code (LyDian Research)
 **Denetim Tarihi:** 5 Ekim 2025
 **Denetim Süresi:** 2 saat (comprehensive analysis)
 **Kapsam:** Full-stack security assessment

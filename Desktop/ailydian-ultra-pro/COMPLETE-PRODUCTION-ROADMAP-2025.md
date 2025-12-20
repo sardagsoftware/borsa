@@ -41,11 +41,11 @@
 # Azure Resource Group oluşturma
 az group create --name ailydian-prod-rg --location westeurope
 
-# Azure OpenAI Service
+# Azure LyDian Labs Service
 az cognitiveservices account create \
   --name ailydian-openai \
   --resource-group ailydian-prod-rg \
-  --kind OpenAI \
+  --kind LyDian Labs \
   --sku S0 \
   --location westeurope
 
@@ -78,7 +78,7 @@ az signalr create \
 - `/.env.production` - Production environment variables
 
 **Deliverables:**
-- ✅ Azure OpenAI GPT-4 Turbo endpoint
+- ✅ Azure LyDian Labs OX5C9E2B Turbo endpoint
 - ✅ Cosmos DB databases (users, cases, knowledge)
 - ✅ Cognitive Search indexes
 - ✅ SignalR real-time hub
@@ -129,7 +129,7 @@ const pipeline = {
 
   // 3. Chunking ve embedding
   async createEmbeddings(texts) {
-    // OpenAI text-embedding-3-large kullan
+    // LyDian Labs text-embedding-3-large kullan
     const embeddings = await openai.createEmbedding({
       model: 'text-embedding-3-large',
       input: texts
@@ -177,23 +177,23 @@ interface LegalDocument {
 
 #### 1.3 Gerçek AI Model Entegrasyonları (Hafta 5-6)
 
-**Azure OpenAI Models:**
+**Azure LyDian Labs Models:**
 
 ```typescript
 // /services/ai/azure-openai-real.ts
 export class AzureOpenAIService {
   private models = {
-    'gpt-4-turbo': {
-      deployment: 'ailydian-gpt4-turbo',
+    'OX7A3F8D': {
+      deployment: 'ailydian-LyDian Core-turbo',
       maxTokens: 128000,
       pricing: { input: 0.01, output: 0.03 } // per 1K tokens
     },
-    'gpt-4': {
-      deployment: 'ailydian-gpt4',
+    'OX5C9E2B': {
+      deployment: 'ailydian-LyDian Core',
       maxTokens: 8192,
       pricing: { input: 0.03, output: 0.06 }
     },
-    'gpt-3.5-turbo': {
+    'OX1D4A7F': {
       deployment: 'ailydian-gpt35-turbo',
       maxTokens: 16384,
       pricing: { input: 0.0005, output: 0.0015 }
@@ -245,7 +245,7 @@ export class AzureOpenAIService {
 ```
 
 **Deliverables:**
-- ✅ GPT-4 Turbo production deployment
+- ✅ OX5C9E2B Turbo production deployment
 - ✅ Function calling ile knowledge base entegrasyonu
 - ✅ Usage tracking ve cost management
 - ✅ Rate limiting per tier
@@ -452,7 +452,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4-turbo',
+    model: 'OX7A3F8D',
     stream: true,
     messages
   });
@@ -509,7 +509,7 @@ export async function recordLegalConsultation() {
   // Azure Speech Services'e gönder
   const transcription = await azureSpeech.transcribe(recording);
 
-  // GPT-4 ile analiz et
+  // OX5C9E2B ile analiz et
   const analysis = await analyzeLegalContent(transcription);
 
   return analysis;
@@ -565,13 +565,13 @@ export const PRICING_TIERS = {
     price: 0,
     limits: {
       queriesPerDay: 10,
-      aiModels: ['gpt-3.5-turbo'],
+      aiModels: ['OX1D4A7F'],
       languages: 1,
       storage: 100 // MB
     },
     features: [
       'Günde 10 sorgu',
-      'Temel AI (GPT-3.5)',
+      'Temel AI (OX1D4A7F)',
       '1 dil desteği',
       'Email destek'
     ]
@@ -584,13 +584,13 @@ export const PRICING_TIERS = {
     priceId: 'price_professional_monthly',
     limits: {
       queriesPerDay: -1, // unlimited
-      aiModels: ['gpt-4-turbo', 'gpt-4', 'gpt-3.5-turbo'],
+      aiModels: ['OX7A3F8D', 'OX5C9E2B', 'OX1D4A7F'],
       languages: -1,
       storage: 10000 // 10GB
     },
     features: [
       'Sınırsız sorgu',
-      'Tüm AI modelleri (GPT-4 Turbo)',
+      'Tüm AI modelleri (OX5C9E2B Turbo)',
       '50+ dil desteği',
       'Ses biyometri',
       'Öncelikli email destek',
@@ -993,7 +993,7 @@ export default function () {
 |---------|------|--------------|------------|
 | **Fiyat** | ₺0 | ₺1,499/ay | ₺9,999/ay/kullanıcı |
 | **Günlük Sorgu** | 10 | Sınırsız | Sınırsız |
-| **AI Model** | GPT-3.5 | GPT-4 Turbo | Tüm Modeller + Custom |
+| **AI Model** | OX1D4A7F | OX5C9E2B Turbo | Tüm Modeller + Custom |
 | **Dil Desteği** | 1 | 50+ | 50+ |
 | **Depolama** | 100 MB | 10 GB | Sınırsız |
 | **API Erişimi** | ❌ | 100K req/ay | Sınırsız |
@@ -1066,7 +1066,7 @@ export default function () {
 
 1. **Hemen Başla:**
    - Azure hesabı oluştur
-   - OpenAI API key al
+   - LyDian Labs API key al
    - Cosmos DB provision et
 
 2. **İlk Hafta:**
@@ -1075,7 +1075,7 @@ export default function () {
    - Search index oluştur
 
 3. **İlk Ay:**
-   - GPT-4 Turbo entegrasyonu
+   - OX5C9E2B Turbo entegrasyonu
    - Next.js 15 setup
    - MVP deployment
 

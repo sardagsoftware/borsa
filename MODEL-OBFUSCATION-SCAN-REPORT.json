@@ -2,7 +2,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/security-headers-20251019-121131/server.js",
     "detections": {
-      "claude": 69,
+      "AX9F7E2B": 69,
       "gpt": 83,
       "gemini": 85,
       "groq": 43,
@@ -11,9 +11,9 @@
       "anthropic": 35,
       "openai": 75,
       "google": 4,
-      "gpt-3.5-turbo": 2,
-      "mixtral-8x7b": 2,
-      "gemini-pro": 12
+      "OX1D4A7F": 2,
+      "GX4B7F3C": 2,
+      "GE6D8A4F": 12
     },
     "totalMatches": 448,
     "hasDetections": true
@@ -21,7 +21,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/server.js",
     "detections": {
-      "claude": 69,
+      "AX9F7E2B": 69,
       "gpt": 83,
       "gemini": 85,
       "groq": 43,
@@ -30,9 +30,9 @@
       "anthropic": 35,
       "openai": 75,
       "google": 4,
-      "gpt-3.5-turbo": 2,
-      "mixtral-8x7b": 2,
-      "gemini-pro": 12
+      "OX1D4A7F": 2,
+      "GX4B7F3C": 2,
+      "GE6D8A4F": 12
     },
     "totalMatches": 448,
     "hasDetections": true
@@ -40,7 +40,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/server.js",
     "detections": {
-      "claude": 69,
+      "AX9F7E2B": 69,
       "gpt": 82,
       "gemini": 85,
       "groq": 43,
@@ -49,9 +49,9 @@
       "anthropic": 35,
       "openai": 74,
       "google": 4,
-      "gpt-3.5-turbo": 2,
-      "mixtral-8x7b": 2,
-      "gemini-pro": 12
+      "OX1D4A7F": 2,
+      "GX4B7F3C": 2,
+      "GE6D8A4F": 12
     },
     "totalMatches": 446,
     "hasDetections": true
@@ -59,15 +59,15 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat-old.html",
     "detections": {
-      "claude": 91,
+      "AX9F7E2B": 91,
       "gpt": 20,
       "gemini": 7,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 4,
       "openai": 3,
-      "gpt-3.5-turbo": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 143,
     "hasDetections": true
@@ -75,15 +75,15 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat-old.html",
     "detections": {
-      "claude": 91,
+      "AX9F7E2B": 91,
       "gpt": 20,
       "gemini": 7,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 4,
       "openai": 3,
-      "gpt-3.5-turbo": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 143,
     "hasDetections": true
@@ -91,15 +91,15 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat-backup-turkish-20250930-185225.html",
     "detections": {
-      "claude": 90,
+      "AX9F7E2B": 90,
       "gpt": 20,
       "gemini": 7,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 4,
       "openai": 3,
-      "gpt-3.5-turbo": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 142,
     "hasDetections": true
@@ -107,15 +107,15 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat-backup-turkish-20250930-185225.html",
     "detections": {
-      "claude": 90,
+      "AX9F7E2B": 90,
       "gpt": 20,
       "gemini": 7,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 4,
       "openai": 3,
-      "gpt-3.5-turbo": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 142,
     "hasDetections": true
@@ -123,7 +123,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/solve.js",
     "detections": {
-      "claude": 18,
+      "AX9F7E2B": 18,
       "gpt": 4,
       "groq": 34,
       "mixtral": 4,
@@ -137,7 +137,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/ai-integration-helper.js",
     "detections": {
-      "claude": 14,
+      "AX9F7E2B": 14,
       "gpt": 9,
       "anthropic": 30,
       "openai": 65
@@ -148,7 +148,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/ai-integration-helper.js",
     "detections": {
-      "claude": 14,
+      "AX9F7E2B": 14,
       "gpt": 9,
       "anthropic": 30,
       "openai": 64
@@ -159,7 +159,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/ai-integration-helper.js.html",
     "detections": {
-      "claude": 14,
+      "AX9F7E2B": 14,
       "gpt": 9,
       "anthropic": 30,
       "openai": 64
@@ -170,7 +170,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/ai-integration-helper.js.html",
     "detections": {
-      "claude": 14,
+      "AX9F7E2B": 14,
       "gpt": 9,
       "anthropic": 30,
       "openai": 64
@@ -181,7 +181,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/models-config.js",
     "detections": {
-      "claude": 10,
+      "AX9F7E2B": 10,
       "gpt": 16,
       "gemini": 10,
       "groq": 9,
@@ -189,8 +189,8 @@
       "llama": 3,
       "anthropic": 13,
       "openai": 34,
-      "gpt-4-turbo-preview": 1,
-      "mixtral-8x7b": 1
+      "OX7A3F8D": 1,
+      "GX4B7F3C": 1
     },
     "totalMatches": 103,
     "hasDetections": true
@@ -207,7 +207,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/models-config.js",
     "detections": {
-      "claude": 10,
+      "AX9F7E2B": 10,
       "gpt": 16,
       "gemini": 10,
       "groq": 9,
@@ -215,8 +215,8 @@
       "llama": 3,
       "anthropic": 13,
       "openai": 34,
-      "gpt-4-turbo-preview": 1,
-      "mixtral-8x7b": 1
+      "OX7A3F8D": 1,
+      "GX4B7F3C": 1
     },
     "totalMatches": 100,
     "hasDetections": true
@@ -224,7 +224,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/models-config.js.html",
     "detections": {
-      "claude": 10,
+      "AX9F7E2B": 10,
       "gpt": 16,
       "gemini": 10,
       "groq": 9,
@@ -232,8 +232,8 @@
       "llama": 3,
       "anthropic": 13,
       "openai": 34,
-      "gpt-4-turbo-preview": 1,
-      "mixtral-8x7b": 1
+      "OX7A3F8D": 1,
+      "GX4B7F3C": 1
     },
     "totalMatches": 100,
     "hasDetections": true
@@ -241,7 +241,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/models-config.js.html",
     "detections": {
-      "claude": 10,
+      "AX9F7E2B": 10,
       "gpt": 16,
       "gemini": 10,
       "groq": 9,
@@ -249,8 +249,8 @@
       "llama": 3,
       "anthropic": 13,
       "openai": 34,
-      "gpt-4-turbo-preview": 1,
-      "mixtral-8x7b": 1
+      "OX7A3F8D": 1,
+      "GX4B7F3C": 1
     },
     "totalMatches": 100,
     "hasDetections": true
@@ -258,13 +258,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/lydian-iq/solve.js",
     "detections": {
-      "claude": 15,
+      "AX9F7E2B": 15,
       "gpt": 7,
       "groq": 23,
       "llama": 4,
       "anthropic": 11,
       "openai": 30,
-      "gpt-4-turbo-preview": 1
+      "OX7A3F8D": 1
     },
     "totalMatches": 91,
     "hasDetections": true
@@ -272,13 +272,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/.cleanup-backup-20251004-233430/solve.js",
     "detections": {
-      "claude": 14,
+      "AX9F7E2B": 14,
       "gpt": 7,
       "groq": 22,
       "llama": 4,
       "anthropic": 11,
       "openai": 29,
-      "gpt-4-turbo-preview": 1
+      "OX7A3F8D": 1
     },
     "totalMatches": 88,
     "hasDetections": true
@@ -286,11 +286,11 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/translations.js",
     "detections": {
-      "claude": 15,
+      "AX9F7E2B": 15,
       "gpt": 32,
       "gemini": 15,
       "google": 3,
-      "gemini-pro": 8
+      "GE6D8A4F": 8
     },
     "totalMatches": 73,
     "hasDetections": true
@@ -298,7 +298,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-integrations/firildak-ai-engine.js",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 6,
       "gemini": 2,
       "groq": 12,
@@ -307,11 +307,11 @@
       "anthropic": 11,
       "openai": 23,
       "google": 2,
-      "gpt-3.5-turbo": 1,
-      "gpt-4-turbo-preview": 1,
-      "mixtral-8x7b": 1,
+      "OX1D4A7F": 1,
+      "OX7A3F8D": 1,
+      "GX4B7F3C": 1,
       "llama2-70b": 1,
-      "gemini-pro": 2
+      "GE6D8A4F": 2
     },
     "totalMatches": 71,
     "hasDetections": true
@@ -319,7 +319,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/chat.js",
     "detections": {
-      "claude": 6,
+      "AX9F7E2B": 6,
       "gpt": 2,
       "gemini": 6,
       "groq": 11,
@@ -333,7 +333,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/chat.js",
     "detections": {
-      "claude": 6,
+      "AX9F7E2B": 6,
       "gpt": 2,
       "gemini": 6,
       "groq": 11,
@@ -347,7 +347,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/chat.js.html",
     "detections": {
-      "claude": 6,
+      "AX9F7E2B": 6,
       "gpt": 2,
       "gemini": 6,
       "groq": 11,
@@ -361,7 +361,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/chat.js.html",
     "detections": {
-      "claude": 6,
+      "AX9F7E2B": 6,
       "gpt": 2,
       "gemini": 6,
       "groq": 11,
@@ -373,11 +373,11 @@
     "hasDetections": true
   },
   {
-    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-claude.js",
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-AX9F7E2B.js",
     "detections": {
-      "claude": 41,
+      "AX9F7E2B": 41,
       "anthropic": 18,
-      "claude-3-sonnet": 1
+      "AX9F7E2B-3-sonnet": 1
     },
     "totalMatches": 60,
     "hasDetections": true
@@ -385,7 +385,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/models.html",
     "detections": {
-      "claude": 18,
+      "AX9F7E2B": 18,
       "gpt": 18,
       "gemini": 18,
       "anthropic": 3,
@@ -397,7 +397,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ai-proxy.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 8,
       "gemini": 1,
       "groq": 8,
@@ -406,7 +406,7 @@
       "anthropic": 11,
       "openai": 26,
       "google": 1,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 60,
     "hasDetections": true
@@ -414,7 +414,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/lib/models/registry.ts",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 10,
       "gemini": 4,
       "groq": 9,
@@ -422,9 +422,9 @@
       "llama": 8,
       "anthropic": 5,
       "openai": 9,
-      "mixtral-8x7b": 1,
+      "GX4B7F3C": 1,
       "llama2-70b": 1,
-      "gemini-pro": 2
+      "GE6D8A4F": 2
     },
     "totalMatches": 60,
     "hasDetections": true
@@ -432,7 +432,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/models.html",
     "detections": {
-      "claude": 18,
+      "AX9F7E2B": 18,
       "gpt": 18,
       "gemini": 18,
       "anthropic": 3,
@@ -444,7 +444,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/ai-proxy.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 8,
       "gemini": 1,
       "groq": 8,
@@ -453,7 +453,7 @@
       "anthropic": 11,
       "openai": 26,
       "google": 1,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 60,
     "hasDetections": true
@@ -461,7 +461,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/ai-proxy.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 8,
       "gemini": 1,
       "groq": 8,
@@ -470,7 +470,7 @@
       "anthropic": 11,
       "openai": 26,
       "google": 1,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 60,
     "hasDetections": true
@@ -478,7 +478,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat/index.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 13,
       "gemini": 4,
       "groq": 10,
@@ -492,7 +492,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat/index.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 13,
       "gemini": 4,
       "groq": 10,
@@ -506,7 +506,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat/index.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 13,
       "gemini": 4,
       "groq": 10,
@@ -520,7 +520,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat/index.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 13,
       "gemini": 4,
       "groq": 10,
@@ -534,7 +534,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/specialized-chat-route.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 1,
       "gemini": 6,
       "groq": 21,
@@ -548,7 +548,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/health-data-services.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 3,
       "gemini": 4,
       "groq": 9,
@@ -556,7 +556,7 @@
       "anthropic": 10,
       "openai": 23,
       "google": 1,
-      "gpt-4-turbo-preview": 1
+      "OX7A3F8D": 1
     },
     "totalMatches": 55,
     "hasDetections": true
@@ -564,7 +564,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/health-data-services.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 3,
       "gemini": 4,
       "groq": 9,
@@ -572,7 +572,7 @@
       "anthropic": 10,
       "openai": 23,
       "google": 1,
-      "gpt-4-turbo-preview": 1
+      "OX7A3F8D": 1
     },
     "totalMatches": 55,
     "hasDetections": true
@@ -580,7 +580,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/health-data-services.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 3,
       "gemini": 4,
       "groq": 9,
@@ -588,7 +588,7 @@
       "anthropic": 10,
       "openai": 23,
       "google": 1,
-      "gpt-4-turbo-preview": 1
+      "OX7A3F8D": 1
     },
     "totalMatches": 55,
     "hasDetections": true
@@ -596,7 +596,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-power-panel.html",
     "detections": {
-      "claude": 6,
+      "AX9F7E2B": 6,
       "gpt": 10,
       "gemini": 4,
       "groq": 8,
@@ -604,9 +604,9 @@
       "llama": 8,
       "anthropic": 4,
       "openai": 7,
-      "mixtral-8x7b": 1,
+      "GX4B7F3C": 1,
       "llama2-70b": 1,
-      "gemini-pro": 2
+      "GE6D8A4F": 2
     },
     "totalMatches": 55,
     "hasDetections": true
@@ -667,7 +667,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/core/ai/ModelProviderAdapter.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 4,
       "gemini": 1,
       "groq": 9,
@@ -675,7 +675,7 @@
       "llama": 1,
       "anthropic": 10,
       "openai": 23,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 51,
     "hasDetections": true
@@ -701,15 +701,15 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/chat-backup-turkish-20250930-185225.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 20,
       "gemini": 7,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 1,
       "openai": 3,
-      "gpt-3.5-turbo": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 50,
     "hasDetections": true
@@ -717,15 +717,15 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/chat-old.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 20,
       "gemini": 7,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 1,
       "openai": 3,
-      "gpt-3.5-turbo": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 50,
     "hasDetections": true
@@ -751,7 +751,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/lydian-iq/solve.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 1,
       "groq": 14,
       "anthropic": 8,
@@ -763,7 +763,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/lydian-iq/solve.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 1,
       "groq": 14,
       "anthropic": 8,
@@ -775,7 +775,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/scripts/refactor-model-obfuscation.js",
     "detections": {
-      "claude": 5,
+      "AX9F7E2B": 5,
       "gpt": 9,
       "gemini": 5,
       "groq": 3,
@@ -784,10 +784,10 @@
       "anthropic": 3,
       "openai": 3,
       "google": 1,
-      "gpt-3.5-turbo": 1,
-      "gpt-4-turbo-preview": 2,
-      "gpt-4-vision-preview": 2,
-      "gemini-pro": 2
+      "OX1D4A7F": 1,
+      "OX7A3F8D": 2,
+      "OX5C9E2B-vision-preview": 2,
+      "GE6D8A4F": 2
     },
     "totalMatches": 46,
     "hasDetections": true
@@ -804,7 +804,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index-backup.html",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 13,
       "gemini": 7,
       "mixtral": 2,
@@ -818,7 +818,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index-backup.html",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 13,
       "gemini": 7,
       "mixtral": 2,
@@ -832,7 +832,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/test-new-ai-apis.js",
     "detections": {
-      "claude": 15,
+      "AX9F7E2B": 15,
       "gpt": 9,
       "gemini": 16,
       "anthropic": 1,
@@ -898,7 +898,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat/specialized.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 8,
       "gemini": 5,
       "groq": 7,
@@ -912,7 +912,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat/specialized.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 8,
       "gemini": 5,
       "groq": 7,
@@ -926,7 +926,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat/specialized.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 8,
       "gemini": 5,
       "groq": 7,
@@ -944,7 +944,7 @@
       "mixtral": 4,
       "llama": 8,
       "openai": 4,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 39,
     "hasDetections": true
@@ -952,7 +952,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat/specialized.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 8,
       "gemini": 5,
       "groq": 7,
@@ -970,7 +970,7 @@
       "mixtral": 4,
       "llama": 8,
       "openai": 4,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 39,
     "hasDetections": true
@@ -992,7 +992,7 @@
       "mixtral": 4,
       "llama": 8,
       "openai": 4,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 37,
     "hasDetections": true
@@ -1004,7 +1004,7 @@
       "mixtral": 4,
       "llama": 8,
       "openai": 4,
-      "mixtral-8x7b": 1
+      "GX4B7F3C": 1
     },
     "totalMatches": 37,
     "hasDetections": true
@@ -1022,7 +1022,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/tests/e2e/connectors-real-endpoints.e2e.spec.ts",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 3,
       "gemini": 3,
       "anthropic": 11,
@@ -1051,11 +1051,11 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/lydian-iq/vision.js",
     "detections": {
-      "claude": 9,
+      "AX9F7E2B": 9,
       "gpt": 12,
       "anthropic": 6,
       "openai": 6,
-      "gpt-4-vision-preview": 1
+      "OX5C9E2B-vision-preview": 1
     },
     "totalMatches": 34,
     "hasDetections": true
@@ -1071,11 +1071,11 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/lydian-iq/vision.js.html",
     "detections": {
-      "claude": 9,
+      "AX9F7E2B": 9,
       "gpt": 12,
       "anthropic": 6,
       "openai": 6,
-      "gpt-4-vision-preview": 1
+      "OX5C9E2B-vision-preview": 1
     },
     "totalMatches": 34,
     "hasDetections": true
@@ -1091,11 +1091,11 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/lydian-iq/vision.js.html",
     "detections": {
-      "claude": 9,
+      "AX9F7E2B": 9,
       "gpt": 12,
       "anthropic": 6,
       "openai": 6,
-      "gpt-4-vision-preview": 1
+      "OX5C9E2B-vision-preview": 1
     },
     "totalMatches": 34,
     "hasDetections": true
@@ -1103,16 +1103,16 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/security/ai-obfuscator.js.html",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 5,
       "gemini": 4,
       "llama": 1,
       "anthropic": 6,
       "openai": 5,
-      "gpt-3.5-turbo": 1,
-      "gpt-4-turbo-preview": 1,
-      "claude-3-sonnet": 1,
-      "gemini-pro": 2
+      "OX1D4A7F": 1,
+      "OX7A3F8D": 1,
+      "AX9F7E2B-3-sonnet": 1,
+      "GE6D8A4F": 2
     },
     "totalMatches": 33,
     "hasDetections": true
@@ -1120,16 +1120,16 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/security/ai-obfuscator.js.html",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 5,
       "gemini": 4,
       "llama": 1,
       "anthropic": 6,
       "openai": 5,
-      "gpt-3.5-turbo": 1,
-      "gpt-4-turbo-preview": 1,
-      "claude-3-sonnet": 1,
-      "gemini-pro": 2
+      "OX1D4A7F": 1,
+      "OX7A3F8D": 1,
+      "AX9F7E2B-3-sonnet": 1,
+      "GE6D8A4F": 2
     },
     "totalMatches": 33,
     "hasDetections": true
@@ -1137,16 +1137,16 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/security/ai-obfuscator.js",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 5,
       "gemini": 4,
       "llama": 1,
       "anthropic": 6,
       "openai": 5,
-      "gpt-3.5-turbo": 1,
-      "gpt-4-turbo-preview": 1,
-      "claude-3-sonnet": 1,
-      "gemini-pro": 2
+      "OX1D4A7F": 1,
+      "OX7A3F8D": 1,
+      "AX9F7E2B-3-sonnet": 1,
+      "GE6D8A4F": 2
     },
     "totalMatches": 33,
     "hasDetections": true
@@ -1154,7 +1154,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-with-auth.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 2,
       "groq": 6,
       "llama": 2,
@@ -1167,7 +1167,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 2,
       "groq": 6,
       "llama": 2,
@@ -1180,7 +1180,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-with-auth.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 2,
       "groq": 6,
       "llama": 2,
@@ -1204,7 +1204,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-with-auth.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 2,
       "groq": 6,
       "llama": 2,
@@ -1217,7 +1217,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-with-auth.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 2,
       "groq": 6,
       "llama": 2,
@@ -1230,7 +1230,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/middleware/ai-model-obfuscator.js.html",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 6,
       "gemini": 3,
       "groq": 3,
@@ -1238,8 +1238,8 @@
       "llama": 3,
       "anthropic": 3,
       "openai": 4,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 32,
     "hasDetections": true
@@ -1247,7 +1247,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/middleware/ai-model-obfuscator.js.html",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 6,
       "gemini": 3,
       "groq": 3,
@@ -1255,8 +1255,8 @@
       "llama": 3,
       "anthropic": 3,
       "openai": 4,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 32,
     "hasDetections": true
@@ -1264,7 +1264,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/middleware/ai-model-obfuscator.js",
     "detections": {
-      "claude": 7,
+      "AX9F7E2B": 7,
       "gpt": 6,
       "gemini": 3,
       "groq": 3,
@@ -1272,8 +1272,8 @@
       "llama": 3,
       "anthropic": 3,
       "openai": 4,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 32,
     "hasDetections": true
@@ -1351,7 +1351,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/string-guard.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 3,
       "gemini": 4,
       "llama": 4,
@@ -1409,7 +1409,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/chat-unified-all-models.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 4,
       "groq": 2,
@@ -1422,7 +1422,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/google-studio.html",
     "detections": {
-      "claude": 11,
+      "AX9F7E2B": 11,
       "gpt": 3,
       "gemini": 4,
       "anthropic": 4,
@@ -1443,7 +1443,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-unified-all-models.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 4,
       "groq": 2,
@@ -1456,7 +1456,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/google-studio.html",
     "detections": {
-      "claude": 11,
+      "AX9F7E2B": 11,
       "gpt": 3,
       "gemini": 4,
       "anthropic": 4,
@@ -1469,7 +1469,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-unified-all-models.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 4,
       "groq": 2,
@@ -1482,7 +1482,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-unified-all-models.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 4,
       "groq": 2,
@@ -1495,7 +1495,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/humain-home.html",
     "detections": {
-      "claude": 12,
+      "AX9F7E2B": 12,
       "gpt": 5,
       "gemini": 5,
       "anthropic": 3,
@@ -1508,7 +1508,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/humain-home.html",
     "detections": {
-      "claude": 12,
+      "AX9F7E2B": 12,
       "gpt": 5,
       "gemini": 5,
       "anthropic": 3,
@@ -1521,14 +1521,14 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/chat-backup-turkish-20250930-185225.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 3,
       "gemini": 3,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 1,
       "openai": 3,
-      "gemini-pro": 2
+      "GE6D8A4F": 2
     },
     "totalMatches": 27,
     "hasDetections": true
@@ -1536,14 +1536,14 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/chat-old.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 3,
       "gemini": 3,
       "groq": 9,
       "mixtral": 5,
       "anthropic": 1,
       "openai": 3,
-      "gemini-pro": 2
+      "GE6D8A4F": 2
     },
     "totalMatches": 27,
     "hasDetections": true
@@ -1551,9 +1551,9 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-adapters/src/anthropic-adapter.ts",
     "detections": {
-      "claude": 18,
+      "AX9F7E2B": 18,
       "anthropic": 6,
-      "claude-3-sonnet": 2
+      "AX9F7E2B-3-sonnet": 2
     },
     "totalMatches": 26,
     "hasDetections": true
@@ -1585,7 +1585,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "groq": 4,
       "anthropic": 9,
       "openai": 9
@@ -1596,7 +1596,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "groq": 4,
       "anthropic": 9,
       "openai": 9
@@ -1607,7 +1607,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "groq": 4,
       "anthropic": 9,
       "openai": 9
@@ -1620,7 +1620,7 @@
     "detections": {
       "gpt": 15,
       "openai": 6,
-      "gpt-3.5-turbo": 2
+      "OX1D4A7F": 2
     },
     "totalMatches": 23,
     "hasDetections": true
@@ -1630,7 +1630,7 @@
     "detections": {
       "gpt": 6,
       "openai": 15,
-      "gpt-3.5-turbo": 2
+      "OX1D4A7F": 2
     },
     "totalMatches": 23,
     "hasDetections": true
@@ -1702,7 +1702,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/middleware/tpm-governor.ts",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 6,
       "gemini": 3,
       "groq": 3,
@@ -1723,7 +1723,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/log-redactor.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 3,
       "gemini": 3,
       "anthropic": 6,
@@ -1752,7 +1752,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/cost-tracking/dashboard.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 4,
       "gemini": 2,
       "groq": 1,
@@ -1760,7 +1760,7 @@
       "llama": 1,
       "anthropic": 1,
       "openai": 6,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 20,
     "hasDetections": true
@@ -1796,7 +1796,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/cost-tracking/dashboard.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 4,
       "gemini": 2,
       "groq": 1,
@@ -1804,7 +1804,7 @@
       "llama": 1,
       "anthropic": 1,
       "openai": 6,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 20,
     "hasDetections": true
@@ -1831,7 +1831,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/cost-tracking/dashboard.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 4,
       "gemini": 2,
       "groq": 1,
@@ -1839,7 +1839,7 @@
       "llama": 1,
       "anthropic": 1,
       "openai": 6,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 20,
     "hasDetections": true
@@ -1866,7 +1866,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/cost-tracking/dashboard.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 4,
       "gemini": 2,
       "groq": 1,
@@ -1874,7 +1874,7 @@
       "llama": 1,
       "anthropic": 1,
       "openai": 6,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 20,
     "hasDetections": true
@@ -2009,7 +2009,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/monitoring/api-health-monitor.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "anthropic": 1,
       "openai": 11,
       "google": 2
@@ -2020,7 +2020,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/security-obfuscation.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 8,
       "anthropic": 4,
       "openai": 2
@@ -2039,7 +2039,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/lib/seo/structured-data.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 6,
       "gemini": 4,
       "groq": 1,
@@ -2052,7 +2052,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/seo/structured-data.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 6,
       "gemini": 4,
       "groq": 1,
@@ -2065,7 +2065,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/storage/redis-preferences-store.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 12,
       "gemini": 1
     },
@@ -2075,7 +2075,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/seo/structured-data.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 6,
       "gemini": 4,
       "groq": 1,
@@ -2088,7 +2088,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/storage/redis-preferences-store.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 12,
       "gemini": 1
     },
@@ -2098,7 +2098,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/seo/structured-data.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 6,
       "gemini": 4,
       "groq": 1,
@@ -2111,7 +2111,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/storage/redis-preferences-store.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 12,
       "gemini": 1
     },
@@ -2121,7 +2121,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/tools/header-guard.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "anthropic": 5,
@@ -2154,7 +2154,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-integrations/emrah-sardag-system-prompt.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 3,
       "gemini": 2,
       "groq": 1,
@@ -2170,12 +2170,12 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/security/validate-ai-obfuscation.js",
     "detections": {
-      "claude": 6,
+      "AX9F7E2B": 6,
       "gpt": 3,
       "gemini": 1,
       "anthropic": 2,
       "openai": 2,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 15,
     "hasDetections": true
@@ -2183,7 +2183,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/verify-env.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 3,
       "gemini": 1,
       "groq": 3,
@@ -2204,7 +2204,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/intent/dictionaries.ts",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "gemini": 2,
       "anthropic": 3,
@@ -2233,7 +2233,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/docs.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 4,
       "gemini": 3,
       "anthropic": 2,
@@ -2245,7 +2245,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/docs.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 4,
       "gemini": 3,
       "anthropic": 2,
@@ -2257,13 +2257,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/usage/tokens.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 3,
       "gemini": 2,
       "anthropic": 1,
       "openai": 1,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 13,
     "hasDetections": true
@@ -2271,13 +2271,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/usage/tokens.js.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 3,
       "gemini": 2,
       "anthropic": 1,
       "openai": 1,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 13,
     "hasDetections": true
@@ -2285,13 +2285,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/usage/tokens.js",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 3,
       "gemini": 2,
       "anthropic": 1,
       "openai": 1,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 13,
     "hasDetections": true
@@ -2310,7 +2310,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/seo-monitoring.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 1,
       "gemini": 3,
       "groq": 3,
@@ -2322,7 +2322,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/index.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 3,
       "gemini": 3,
       "groq": 3
@@ -2333,7 +2333,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/index.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 3,
       "gemini": 3,
       "groq": 3
@@ -2344,7 +2344,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-leaderboard.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 4,
       "gemini": 2,
       "llama": 2,
@@ -2366,7 +2366,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/services/sendgrid-email-service.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 2,
       "groq": 2,
@@ -2389,7 +2389,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/continuous-learning.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 3,
       "gemini": 2,
       "mixtral": 1,
@@ -2401,7 +2401,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/feature-flags.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gemini": 2,
       "groq": 2,
       "anthropic": 2,
@@ -2413,7 +2413,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/meeting/analyze.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "anthropic": 8
     },
     "totalMatches": 11,
@@ -2434,7 +2434,7 @@
       "groq": 3,
       "mixtral": 2,
       "llama": 4,
-      "mixtral-8x7b": 1,
+      "GX4B7F3C": 1,
       "llama2-70b": 1
     },
     "totalMatches": 11,
@@ -2443,7 +2443,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/feature-flags.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gemini": 2,
       "groq": 2,
       "anthropic": 2,
@@ -2455,7 +2455,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/meeting/analyze.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "anthropic": 8
     },
     "totalMatches": 11,
@@ -2476,7 +2476,7 @@
       "groq": 3,
       "mixtral": 2,
       "llama": 4,
-      "mixtral-8x7b": 1,
+      "GX4B7F3C": 1,
       "llama2-70b": 1
     },
     "totalMatches": 11,
@@ -2485,7 +2485,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/feature-flags.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gemini": 2,
       "groq": 2,
       "anthropic": 2,
@@ -2497,7 +2497,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/meeting/analyze.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "anthropic": 8
     },
     "totalMatches": 11,
@@ -2518,7 +2518,7 @@
       "groq": 3,
       "mixtral": 2,
       "llama": 4,
-      "mixtral-8x7b": 1,
+      "GX4B7F3C": 1,
       "llama2-70b": 1
     },
     "totalMatches": 11,
@@ -2527,7 +2527,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/pytorch/hybrid-ai-router.js",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "anthropic": 6,
       "openai": 2
     },
@@ -2545,7 +2545,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/decision/analyze.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "anthropic": 7,
       "openai": 1
     },
@@ -2555,7 +2555,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/health/analyze.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 1,
       "anthropic": 7
     },
@@ -2573,7 +2573,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/mental-health-triage.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 9
     },
     "totalMatches": 10,
@@ -2582,7 +2582,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/rare-disease-assistant.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 9
     },
     "totalMatches": 10,
@@ -2591,7 +2591,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/analytics.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "gemini": 1,
       "llama": 1,
@@ -2610,9 +2610,9 @@
     "hasDetections": true
   },
   {
-    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-claude.js.html",
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/chat-AX9F7E2B.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "anthropic": 7
     },
     "totalMatches": 10,
@@ -2621,7 +2621,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/decision/analyze.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "anthropic": 7,
       "openai": 1
     },
@@ -2631,7 +2631,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/health/analyze.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 1,
       "anthropic": 7
     },
@@ -2649,7 +2649,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/mental-health-triage.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 9
     },
     "totalMatches": 10,
@@ -2658,16 +2658,16 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/rare-disease-assistant.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 9
     },
     "totalMatches": 10,
     "hasDetections": true
   },
   {
-    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-claude.js.html",
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/chat-AX9F7E2B.js.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "anthropic": 7
     },
     "totalMatches": 10,
@@ -2676,7 +2676,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/decision/analyze.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "anthropic": 7,
       "openai": 1
     },
@@ -2686,7 +2686,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/health/analyze.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 1,
       "anthropic": 7
     },
@@ -2704,7 +2704,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/mental-health-triage.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 9
     },
     "totalMatches": 10,
@@ -2713,7 +2713,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/rare-disease-assistant.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 9
     },
     "totalMatches": 10,
@@ -2730,7 +2730,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/help.html",
     "detections": {
-      "claude": 3,
+      "AX9F7E2B": 3,
       "gpt": 3,
       "gemini": 3,
       "llama": 1
@@ -2741,7 +2741,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-ops-center.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 2,
       "llama": 4
@@ -2778,7 +2778,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/api.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 5,
       "anthropic": 1,
       "openai": 1
@@ -2789,7 +2789,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index-backup-old.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 2,
       "gemini": 2,
       "llama": 1
@@ -2825,7 +2825,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/ai-assistant.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 3,
       "gemini": 2,
       "openai": 2
@@ -2836,7 +2836,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/api.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 5,
       "anthropic": 1,
       "openai": 1
@@ -2847,7 +2847,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index-backup-old.html",
     "detections": {
-      "claude": 4,
+      "AX9F7E2B": 4,
       "gpt": 2,
       "gemini": 2,
       "llama": 1
@@ -2902,7 +2902,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/tests/contract/connectors.contract.spec.ts",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 3,
       "openai": 3,
       "google": 2
@@ -2913,7 +2913,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/pages/settings.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 4,
       "gemini": 2
     },
@@ -2929,9 +2929,9 @@
     "hasDetections": true
   },
   {
-    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-claude.js",
+    "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/chat-AX9F7E2B.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 7
     },
     "totalMatches": 8,
@@ -2978,7 +2978,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-compliance.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 2,
       "anthropic": 1,
@@ -2990,7 +2990,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-trust-index.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 2,
       "anthropic": 1,
@@ -3010,7 +3010,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/security/model-obfuscation.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "groq": 1,
@@ -3025,13 +3025,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/cig-map.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
       "anthropic": 1,
       "openai": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 7,
     "hasDetections": true
@@ -3039,7 +3039,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/about.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 2,
       "llama": 1
@@ -3060,7 +3060,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/js/status-indicators.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "openai": 3,
       "google": 2
     },
@@ -3070,13 +3070,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/cig-map.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
       "anthropic": 1,
       "openai": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 7,
     "hasDetections": true
@@ -3084,7 +3084,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/cultural-advisor/analyze.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3093,7 +3093,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/knowledge-assistant/analyze.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3102,7 +3102,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/learning-path/analyze.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3111,7 +3111,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/startup/analyze.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3120,7 +3120,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/about.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 2,
       "llama": 1
@@ -3131,11 +3131,11 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/civic-map.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 3,
       "gemini": 1,
       "llama": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 7,
     "hasDetections": true
@@ -3143,13 +3143,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/cig-map.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
       "anthropic": 1,
       "openai": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 7,
     "hasDetections": true
@@ -3157,7 +3157,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/cultural-advisor/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3166,7 +3166,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/knowledge-assistant/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3175,7 +3175,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/learning-path/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3184,7 +3184,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/startup/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3193,13 +3193,13 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/cig-map.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
       "anthropic": 1,
       "openai": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 7,
     "hasDetections": true
@@ -3207,7 +3207,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/cultural-advisor/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3216,7 +3216,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/knowledge-assistant/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3225,7 +3225,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/learning-path/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3234,7 +3234,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/startup/analyze.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 6
     },
     "totalMatches": 7,
@@ -3243,12 +3243,12 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/ecw-integration.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "gemini": 1,
       "llama": 1,
-      "gpt-3.5-turbo": 1,
-      "gemini-pro": 1
+      "OX1D4A7F": 1,
+      "GE6D8A4F": 1
     },
     "totalMatches": 7,
     "hasDetections": true
@@ -3266,7 +3266,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/chat.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "groq": 3,
       "llama": 2
     },
@@ -3279,7 +3279,7 @@
       "gpt": 3,
       "gemini": 1,
       "llama": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 6,
     "hasDetections": true
@@ -3287,7 +3287,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/privacy.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
@@ -3319,7 +3319,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ops-center/benchmarks.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
@@ -3332,7 +3332,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/ops-center/costs.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
@@ -3355,7 +3355,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/chat.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "groq": 3,
       "llama": 2
     },
@@ -3365,7 +3365,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/privacy.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1,
@@ -3407,10 +3407,10 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/middleware/tokenGovernorMiddleware.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 6,
     "hasDetections": true
@@ -3418,10 +3418,10 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/middleware/tokenGovernorMiddleware.js.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 6,
     "hasDetections": true
@@ -3429,10 +3429,10 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/middleware/tokenGovernorMiddleware.js",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gpt": 2,
       "gemini": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 6,
     "hasDetections": true
@@ -3452,7 +3452,7 @@
       "gpt": 3,
       "gemini": 1,
       "llama": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 6,
     "hasDetections": true
@@ -3460,7 +3460,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ops/backups/pre-obfuscation-20251010-160602/public/js/status-indicators.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "openai": 3,
       "google": 2
     },
@@ -3516,7 +3516,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/radiology-ai.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "anthropic": 1,
       "openai": 2
@@ -3538,7 +3538,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/super-ai-legal-expert.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1,
       "openai": 1
@@ -3549,7 +3549,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/super-ai-medical-expert.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1,
       "openai": 1
@@ -3562,7 +3562,7 @@
     "detections": {
       "gpt": 3,
       "openai": 1,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 5,
     "hasDetections": true
@@ -3579,7 +3579,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/hospital/config.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "groq": 1,
@@ -3607,7 +3607,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/radiology-ai.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "anthropic": 1,
       "openai": 2
@@ -3631,7 +3631,7 @@
     "detections": {
       "gpt": 3,
       "openai": 1,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 5,
     "hasDetections": true
@@ -3639,7 +3639,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/hospital/config.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "groq": 1,
@@ -3667,7 +3667,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/radiology-ai.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "anthropic": 1,
       "openai": 2
@@ -3680,7 +3680,7 @@
     "detections": {
       "gpt": 3,
       "openai": 1,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 5,
     "hasDetections": true
@@ -3688,7 +3688,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/hospital/config.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "groq": 1,
@@ -3716,7 +3716,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/radiology-ai.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "anthropic": 1,
       "openai": 2
@@ -3877,7 +3877,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/index-new.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1
@@ -3901,7 +3901,7 @@
       "gpt": 1,
       "gemini": 1,
       "google": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 4,
     "hasDetections": true
@@ -3909,7 +3909,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251005-235806.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1
     },
@@ -3919,7 +3919,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251006.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1
     },
@@ -3929,7 +3929,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1
     },
@@ -3939,7 +3939,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/medical-ai-dashboard.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 1,
       "openai": 2
     },
@@ -3949,7 +3949,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/autonomous-developer.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "gemini": 1
     },
@@ -3987,7 +3987,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/index-new.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1,
       "llama": 1
@@ -4008,7 +4008,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search-BACKUP-20251005-235806.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1
     },
@@ -4018,7 +4018,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search-BACKUP-20251006.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1
     },
@@ -4028,7 +4028,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/lydian-legal-search.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2,
       "anthropic": 1
     },
@@ -4038,7 +4038,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/medical-ai-dashboard.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "anthropic": 1,
       "openai": 2
     },
@@ -4135,7 +4135,7 @@
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/packages/ai-rag/src/chunker.ts",
     "detections": {
       "gpt": 3,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 4,
     "hasDetections": true
@@ -4153,7 +4153,7 @@
     "detections": {
       "gemini": 1,
       "google": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 3,
     "hasDetections": true
@@ -4169,7 +4169,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/api/medical/clinical-decision.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2
     },
     "totalMatches": 3,
@@ -4250,7 +4250,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/hospital/admin-auth.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1
     },
@@ -4260,7 +4260,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/clinical-decision.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2
     },
     "totalMatches": 3,
@@ -4348,7 +4348,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/hospital/admin-auth.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1
     },
@@ -4358,7 +4358,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/clinical-decision.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2
     },
     "totalMatches": 3,
@@ -4391,7 +4391,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/hospital/admin-auth.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1,
       "gemini": 1
     },
@@ -4401,7 +4401,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/clinical-decision.js.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 2
     },
     "totalMatches": 3,
@@ -4507,7 +4507,7 @@
     "detections": {
       "gemini": 1,
       "google": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 3,
     "hasDetections": true
@@ -4582,7 +4582,7 @@
     "detections": {
       "gemini": 1,
       "llama": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 3,
     "hasDetections": true
@@ -4592,7 +4592,7 @@
     "detections": {
       "gemini": 1,
       "google": 1,
-      "gemini-pro": 1
+      "GE6D8A4F": 1
     },
     "totalMatches": 3,
     "hasDetections": true
@@ -4600,7 +4600,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/js/status-indicators.js",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "google": 2
     },
     "totalMatches": 3,
@@ -4609,7 +4609,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/pages/settings.html",
     "detections": {
-      "claude": 2,
+      "AX9F7E2B": 2,
       "gemini": 1
     },
     "totalMatches": 3,
@@ -4725,7 +4725,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/backups/model-obfuscation-20251007-001518/tokens.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1
     },
     "totalMatches": 2,
@@ -4774,7 +4774,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/guardrails/outputLimiter.js.html",
     "detections": {
-      "claude": 2
+      "AX9F7E2B": 2
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4782,7 +4782,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/rag/contextCompressor.js.html",
     "detections": {
-      "claude": 2
+      "AX9F7E2B": 2
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4790,7 +4790,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/guardrails/outputLimiter.js.html",
     "detections": {
-      "claude": 2
+      "AX9F7E2B": 2
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4798,7 +4798,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/rag/contextCompressor.js.html",
     "detections": {
-      "claude": 2
+      "AX9F7E2B": 2
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4807,7 +4807,7 @@
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/infra/load-testing/k6-load-test.js",
     "detections": {
       "gpt": 1,
-      "gpt-3.5-turbo": 1
+      "OX1D4A7F": 1
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4815,7 +4815,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/guardrails/outputLimiter.js",
     "detections": {
-      "claude": 2
+      "AX9F7E2B": 2
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4823,7 +4823,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/rag/contextCompressor.js",
     "detections": {
-      "claude": 2
+      "AX9F7E2B": 2
     },
     "totalMatches": 2,
     "hasDetections": true
@@ -4914,7 +4914,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/governance-dashboard.html",
     "detections": {
-      "claude": 1,
+      "AX9F7E2B": 1,
       "gpt": 1
     },
     "totalMatches": 2,
@@ -5144,7 +5144,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/Desktop/ailydian-ultra-pro/public/pages/notifications.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5192,7 +5192,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/azure-google-zai-translation-system.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5200,7 +5200,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/persistent-development.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5208,7 +5208,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/ai-brain/system-scanner-bot.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5264,7 +5264,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/emergency-triage.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5272,7 +5272,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/maternal-fetal-health.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5280,7 +5280,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/multimodal-data-fusion.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5288,7 +5288,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/sepsis-early-warning.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5384,7 +5384,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api/src/main.ts",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5512,7 +5512,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/emergency-triage.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5520,7 +5520,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/maternal-fetal-health.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5528,7 +5528,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/multimodal-data-fusion.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5536,7 +5536,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/api/medical/sepsis-early-warning.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5584,7 +5584,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/emergency-triage.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5592,7 +5592,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/maternal-fetal-health.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5600,7 +5600,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/multimodal-data-fusion.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5608,7 +5608,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/api/medical/sepsis-early-warning.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5624,7 +5624,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/checkpoints/resumeEngine.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5632,7 +5632,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/governor/tokenBucket.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5640,7 +5640,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/io/streaming.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5648,7 +5648,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/runner/mapReduce.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5656,7 +5656,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lcov-report/lib/sentinels/failsafe.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5664,7 +5664,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/checkpoints/resumeEngine.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5672,7 +5672,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/governor/tokenBucket.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5680,7 +5680,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/io/streaming.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5688,7 +5688,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/runner/mapReduce.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5696,7 +5696,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/coverage/lib/sentinels/failsafe.js.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5704,7 +5704,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/checkpoints/resumeEngine.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5712,7 +5712,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/governor/tokenBucket.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5720,7 +5720,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/io/streaming.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5728,7 +5728,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/runner/mapReduce.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5736,7 +5736,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/lib/sentinels/failsafe.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5864,7 +5864,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/perf/k6/chat_tool_call.js",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -5952,7 +5952,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq-new-ui.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true
@@ -6000,7 +6000,7 @@
   {
     "file": "/Users/sardag/Desktop/ailydian-ultra-pro/public/pages/notifications.html",
     "detections": {
-      "claude": 1
+      "AX9F7E2B": 1
     },
     "totalMatches": 1,
     "hasDetections": true

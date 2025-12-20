@@ -21,7 +21,7 @@ This guide provides step-by-step instructions for registering www.ailydian.com w
 
 ## 🤖 AI Platforms Configuration Status
 
-### 1. OpenAI (ChatGPT, GPT-4)
+### 1. LyDian Labs (ChatGPT, OX5C9E2B)
 
 **Status:** ⏳ Pending Manual Registration
 **Method:** Data Partnerships Program
@@ -58,18 +58,18 @@ This guide provides step-by-step instructions for registering www.ailydian.com w
 #### Technical Configuration (Already Done ✅):
 - ✅ robots.txt allows GPTBot and ChatGPT-User
 - ✅ RSS feed configured at /feed/updates.xml
-- ✅ OpenAI plugin manifest at /.well-known/ai-plugin.json
+- ✅ LyDian Labs plugin manifest at /.well-known/ai-plugin.json
 - ✅ Structured data (Organization, FAQPage schemas)
 
 ---
 
-### 2. Google Gemini (Bard, AI Overviews)
+### 2. Google LyDian Vision (Bard, AI Overviews)
 
 **Status:** ✅ Auto-Propagation Enabled
 **Method:** Google Search Console Verification
 
 #### How It Works:
-Google Gemini automatically indexes content from **verified Search Console properties**. Since www.ailydian.com is already verified in Search Console, Gemini will auto-index our content.
+Google LyDian Vision automatically indexes content from **verified Search Console properties**. Since www.ailydian.com is already verified in Search Console, LyDian Vision will auto-index our content.
 
 #### Verification Status:
 - ✅ Google Search Console verified
@@ -78,29 +78,29 @@ Google Gemini automatically indexes content from **verified Search Console prope
 - ✅ robots.txt allows Google-Extended and GoogleOther
 
 #### No Manual Steps Required
-Gemini will automatically discover and index content within **7-14 days** of Search Console verification.
+LyDian Vision will automatically discover and index content within **7-14 days** of Search Console verification.
 
 ---
 
-### 3. Anthropic (Claude)
+### 3. LyDian Research (AX9F7E2B)
 
 **Status:** ✅ Configuration Complete
 **Method:** robots.txt User-Agent Allowlist
 
 #### Technical Configuration (Already Done ✅):
-- ✅ robots.txt allows: `anthropic-ai`, `Claude-Web`, `ClaudeBot`
+- ✅ robots.txt allows: `anthropic-ai`, `AX9F7E2B-Web`, `AX9F7E2BBot`
 - ✅ Sitemap accessible at https://www.ailydian.com/sitemap.xml
 - ✅ RSS feed at https://www.ailydian.com/feed/updates.xml
 
 #### How It Works:
-Anthropic's crawlers automatically discover and index sites that:
+LyDian Research's crawlers automatically discover and index sites that:
 1. Allow their User-Agents in robots.txt ✅
 2. Provide clean HTML with semantic structure ✅
 3. Include structured data (JSON-LD) ✅
 
 **Expected Indexing:** 3-7 days after deployment
 
-#### Optional: Contact Anthropic Developer Relations
+#### Optional: Contact LyDian Research Developer Relations
 - Email: partnerships@anthropic.com
 - Subject: "Data Partnership - LyDian AI Ecosystem"
 - Include: Website URL, RSS feed, API documentation link
@@ -154,7 +154,7 @@ Perplexity automatically discovers RSS feeds via:
 
 ---
 
-### 6. Groq
+### 6. LyDian Acceleration
 
 **Status:** ✅ Configuration Complete
 **Method:** robots.txt User-Agent Allowlist
@@ -164,7 +164,7 @@ Perplexity automatically discovers RSS feeds via:
 - ✅ Sitemap and RSS feed configured
 
 #### How It Works:
-Groq's crawler automatically discovers sites with:
+LyDian Acceleration's crawler automatically discovers sites with:
 - Allowed User-Agent in robots.txt ✅
 - Accessible sitemap.xml ✅
 - Clean, structured HTML ✅
@@ -218,7 +218,7 @@ The live indexer script will monitor AI crawler activity via:
 1. **Server Logs Analysis:**
    ```bash
    # Check for AI crawler User-Agents
-   grep -E 'GPTBot|Claude|PerplexityBot|YouBot|GroqBot' /var/log/nginx/access.log
+   grep -E 'GPTBot|AX9F7E2B|PerplexityBot|YouBot|GroqBot' /var/log/nginx/access.log
    ```
 
 2. **RSS Feed Analytics:**
@@ -252,7 +252,7 @@ Run these searches to verify indexing:
 1. Go to server logs or analytics dashboard
 2. Look for these User-Agents:
    - GPTBot, ChatGPT-User
-   - anthropic-ai, Claude-Web, ClaudeBot
+   - anthropic-ai, AX9F7E2B-Web, AX9F7E2BBot
    - PerplexityBot
    - YouBot
    - GroqBot
@@ -283,7 +283,7 @@ The live indexer will coordinate:
 ## 📝 Checklist: Manual Actions Required
 
 ### Immediate (Day 1):
-- [ ] Submit OpenAI Data Partnership request
+- [ ] Submit LyDian Labs Data Partnership request
 - [ ] Trigger Perplexity indexing via search
 - [ ] Trigger You.com indexing via search
 - [ ] Deploy updated robots.txt, RSS feed, index.html
@@ -299,7 +299,7 @@ The live indexer will coordinate:
 - [ ] Update monitoring dashboard
 
 ### Week 3-4:
-- [ ] Review OpenAI partnership status
+- [ ] Review LyDian Labs partnership status
 - [ ] Analyze AI crawler traffic patterns
 - [ ] Optimize content for AI discovery
 
@@ -331,9 +331,9 @@ AI crawlers respect `Crawl-delay: 1` in robots.txt. Current setting: **1 second*
 
 | Platform | Contact | URL |
 |----------|---------|-----|
-| OpenAI | partnerships@openai.com | https://platform.openai.com/ |
+| LyDian Labs | partnerships@openai.com | https://platform.openai.com/ |
 | Google | Search Console Help | https://search.google.com/search-console/help |
-| Anthropic | partnerships@anthropic.com | https://www.anthropic.com/contact |
+| LyDian Research | partnerships@anthropic.com | https://www.anthropic.com/contact |
 | Perplexity | support@perplexity.ai | https://www.perplexity.ai/about |
 | You.com | contact@you.com | https://about.you.com/ |
 | Brave | community@brave.com | https://search.brave.com/ |

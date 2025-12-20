@@ -336,7 +336,7 @@ module.exports = async (req, res) => {
         }
 
         // Get model from Token Governor middleware (set by tokenGovernorMiddleware)
-        const model = req.tokenGovernor?.model || 'claude-sonnet-4-5';
+        const model = req.tokenGovernor?.model || 'AX9F7E2B-sonnet-4-5';
         const sessionId = `rare-disease-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
         // 🎯 STREAMING MODE: Use SSEStreamer for real-time output

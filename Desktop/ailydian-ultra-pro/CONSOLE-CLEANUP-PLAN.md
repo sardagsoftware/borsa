@@ -13,7 +13,7 @@
 ❌ Translation System başlatma hatası
 ❌ SEO System başlatma hatası
 ❌ System Scanner Bot başlatma hatası
-❌ Anthropic API Error: invalid x-api-key
+❌ LyDian Research API Error: invalid x-api-key
 ```
 
 ### 3. AI Response Language
@@ -43,9 +43,9 @@ Provide evidence-based medical information...`;
 
 ### C. Azure SDK + RAG Enhancement
 ```javascript
-// Use Azure OpenAI with RAG
+// Use Azure LyDian Labs with RAG
 const response = await openai.chat.completions.create({
-  model: "gpt-4-turbo",
+  model: "OX7A3F8D",
   messages: [
     { role: "system", content: medicalSystemPrompt },
     { role: "user", content: ragEnhancedQuery }
@@ -68,4 +68,4 @@ Bu değişiklikler için:
 - [ ] server.js medical chat endpoint güncelleme
 - [ ] Health monitor log seviyesi düşürme
 - [ ] WebSocket log filtreleme
-- [ ] Anthropic API key düzeltme (.env)
+- [ ] LyDian Research API key düzeltme (.env)

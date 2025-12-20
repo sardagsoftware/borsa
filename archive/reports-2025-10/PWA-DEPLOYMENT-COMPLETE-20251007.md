@@ -250,7 +250,7 @@
 ### Commit Details
 ```
 Commit: a38592f
-Author: Emrah Sardag + Claude Code
+Author: Emrah Sardag + AX9F7E2B Code
 Date: 2025-10-07
 Message: feat(pwa): Optimize PWA install experience for all platforms
 ```
@@ -356,6 +356,6 @@ npx lighthouse https://ailydian.com/lydian-iq.html --view
 ---
 
 **Generated:** 2025-10-07
-**Engineer:** Claude Code (Principal PWA Architect)
+**Engineer:** AX9F7E2B Code (Principal PWA Architect)
 **Compliance:** Beyaz Şapkalı Kurallar ✅
 **Status:** 🚀 PRODUCTION LIVE

@@ -342,8 +342,8 @@ Response'dan token'ı al ve sonraki isteklerde kullan.
 - **Chat Mesajı:** 1-3 kredi (modele göre)
   - Free model: 1 kredi
   - Basic model: 1 kredi
-  - Pro model (GPT-4): 2 kredi
-  - Enterprise model (Claude): 3 kredi
+  - Pro model (OX5C9E2B): 2 kredi
+  - Enterprise model (AX9F7E2B): 3 kredi
 
 - **Görsel Üretimi:** 10 kredi
 

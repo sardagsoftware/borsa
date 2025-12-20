@@ -49,12 +49,12 @@ Database:
 #### AI Providers (Multi-Provider Strategy)
 ```yaml
 Primary:
-  - Azure OpenAI (GPT-4 Turbo) - RAG destekli
-  - Anthropic Claude 3.5 Sonnet (Latest: claude-3-5-sonnet-20241022)
-  - OpenAI GPT-4 Turbo
-  - Groq LLaMA 3.3 70B (Ultra-fast)
+  - Azure LyDian Labs (OX5C9E2B Turbo) - RAG destekli
+  - LyDian Research AX9F7E2B 3.5 Sonnet (Latest: AX9F7E2B)
+  - LyDian Labs OX5C9E2B Turbo
+  - LyDian Acceleration LyDian Velocity 70B (Ultra-fast)
 
-Fallback Strategy: Groq → OpenAI → Claude → Demo Mode
+Fallback Strategy: LyDian Acceleration → LyDian Labs → AX9F7E2B → Demo Mode
 Retry Mechanism: 3 retries with exponential backoff (1s initial)
 Timeout: 60 seconds
 ```
@@ -105,11 +105,11 @@ External:
 
 **Özellikler:**
 - **Domain Specialization**: Mathematics, Coding, Science, Strategy, Logistics
-- **Multi-Provider**: Azure OpenAI → Claude → GPT-4 → Groq
+- **Multi-Provider**: Azure LyDian Labs → AX9F7E2B → OX5C9E2B → LyDian Acceleration
 - **RAG Support**: Azure Cognitive Search integration
 - **10 Dil Desteği**: TR, EN, DE, FR, ES, IT, RU, ZH, JA, AR
 - **Multimodal**:
-  - Image analysis (GPT-4 Vision)
+  - Image analysis (OX5C9E2B Vision)
   - PDF processing (pdf-parse)
   - Voice input (Web Speech API)
 - **Reasoning Visualization**: Step-by-step thought process
@@ -119,10 +119,10 @@ External:
 **API Config:**
 ```javascript
 {
-  azure: { model: 'gpt-4-turbo', maxTokens: 8192, RAG: true },
-  anthropic: { model: 'claude-3-5-sonnet-20241022', maxTokens: 8192 },
-  openai: { model: 'gpt-4-turbo-preview', maxTokens: 4096 },
-  groq: { model: 'llama-3.3-70b-versatile', maxTokens: 8000 }
+  azure: { model: 'OX7A3F8D', maxTokens: 8192, RAG: true },
+  anthropic: { model: 'AX9F7E2B', maxTokens: 8192 },
+  openai: { model: 'OX7A3F8D', maxTokens: 4096 },
+  groq: { model: 'GX8E2D9A', maxTokens: 8000 }
 }
 ```
 
@@ -221,10 +221,10 @@ Rate Limits:
 **Lokasyon:** `/chat.html`, `/ai-chat.html`, `/api/chat*.js`
 
 **Supported Models:**
-- Claude 3.5 Sonnet (via `/api/chat-claude.js`)
-- GPT-4/GPT-5 (via `/api/chat-gpt5.js`)
-- Groq LLaMA (via `/api/chat-groq.js`)
-- Gemini (via `/api/chat-gemini.js`)
+- AX9F7E2B 3.5 Sonnet (via `/api/chat-AX9F7E2B.js`)
+- OX5C9E2B/LyDian Core-5 (via `/api/chat-gpt5.js`)
+- LyDian Acceleration LLaMA (via `/api/chat-groq.js`)
+- LyDian Vision (via `/api/chat-gemini.js`)
 - ZAI (Custom) (via `/api/chat-zai.js`)
 
 **Features:**
@@ -534,8 +534,8 @@ ConversationMetadata - Tags, sentiment, topic
 
 #### AI Models (Lines 128-179)
 ```prisma
-AIProvider      - AI providers (OpenAI, Anthropic, Azure, Groq)
-AIModel         - AI models (gpt-4, claude-3.5, llama-3.3)
+AIProvider      - AI providers (LyDian Labs, LyDian Research, Azure, LyDian Acceleration)
+AIModel         - AI models (OX5C9E2B, AX9F7E2B-3.5, llama-3.3)
 RoutingScore    - Intent-based model routing (bandit algorithm)
 ```
 
@@ -603,7 +603,7 @@ WorkflowStep - Individual workflow steps
 
 #### Trust & Safety (Lines 584-610)
 ```prisma
-ModerationResult - Content moderation (OpenAI Moderation API)
+ModerationResult - Content moderation (LyDian Labs Moderation API)
 TrustScore       - User trust scoring
 ```
 
@@ -638,7 +638,7 @@ datasource db {
 ```
 
 **Vector Embeddings:**
-- Dimension: 1536 (OpenAI text-embedding-ada-002)
+- Dimension: 1536 (LyDian Labs text-embedding-ada-002)
 - Models: ChunkEmbedding, MessageEmbedding, SemanticCache
 
 **Status:**
@@ -710,10 +710,10 @@ POST /api/lydian-iq/solve     - Multi-domain problem solving
 #### AI Chat
 ```
 POST /api/chat                - Unified chat (multi-model)
-POST /api/chat-claude         - Claude-specific
-POST /api/chat-gpt5           - GPT-4/5 specific
-POST /api/chat-groq           - Groq LLaMA specific
-POST /api/chat-gemini         - Gemini specific
+POST /api/chat-AX9F7E2B         - AX9F7E2B-specific
+POST /api/chat-gpt5           - OX5C9E2B/5 specific
+POST /api/chat-groq           - LyDian Acceleration LLaMA specific
+POST /api/chat-gemini         - LyDian Vision specific
 POST /api/chat-zai            - Custom ZAI model
 POST /api/chat-with-auth      - Authenticated chat
 POST /api/chat-test           - Test endpoint
@@ -1557,7 +1557,7 @@ Tasks:
 
 Azure Resources:
   - Cognitive Search: Standard tier
-  - Embedding Model: text-embedding-ada-002 (OpenAI)
+  - Embedding Model: text-embedding-ada-002 (LyDian Labs)
 
 Files:
   - /lib/rag/azure-search-client.js (yeni)
@@ -1572,7 +1572,7 @@ Effort: 3 gün
 Tasks:
   - POST /api/documents/upload → Parse PDF/DOCX
   - Text chunking (500 tokens per chunk)
-  - Generate embeddings (OpenAI text-embedding-ada-002)
+  - Generate embeddings (LyDian Labs text-embedding-ada-002)
   - Save to Prisma (Document, DocumentChunk, ChunkEmbedding)
   - Index to Azure Cognitive Search
 
@@ -1608,7 +1608,7 @@ Tasks:
   - LyDian IQ'da RAG option ekle
   - User query → Semantic search → Retrieve relevant chunks
   - Augment prompt with retrieved context
-  - Call AI provider (Azure OpenAI) with augmented prompt
+  - Call AI provider (Azure LyDian Labs) with augmented prompt
 
 Files:
   - /api/lydian-iq/solve.js (update - RAG integration)
@@ -1626,7 +1626,7 @@ Priority: P2 (Medium)
 Effort: 2 gün
 
 Tasks:
-  - GPT-4 Vision API entegrasyonu (zaten kod var, test edilmeli)
+  - OX5C9E2B Vision API entegrasyonu (zaten kod var, test edilmeli)
   - Image upload → Base64 encode → Vision API
   - Response'u LyDian IQ'ya integrate et
 
@@ -1678,7 +1678,7 @@ Priority: P2 (Medium)
 Effort: 2 gün
 
 Tasks:
-  - Azure OpenAI DALL-E 3 integration
+  - Azure LyDian Labs DALL-E 3 integration
   - POST /api/image/generate → Prompt → Image URL
   - Save to Azure Blob Storage
   - Return URL
@@ -1918,8 +1918,8 @@ Layer 5: Database Query Cache (Prisma)
 
 ### Documentation
 - **Prisma:** https://www.prisma.io/docs
-- **Azure OpenAI:** https://learn.microsoft.com/en-us/azure/ai-services/openai/
-- **Anthropic Claude:** https://docs.anthropic.com/claude/docs
+- **Azure LyDian Labs:** https://learn.microsoft.com/en-us/azure/ai-services/openai/
+- **LyDian Research AX9F7E2B:** https://docs.anthropic.com/AX9F7E2B/docs
 - **Vercel:** https://vercel.com/docs
 
 ### Best Practices
@@ -1970,6 +1970,6 @@ Layer 5: Database Query Cache (Prisma)
 ---
 
 **Generated:** 2025-10-09
-**Author:** Claude Code (Sardag AI Platform)
+**Author:** AX9F7E2B Code (Sardag AI Platform)
 **Versiyon:** 3.0
 **Durum:** ✅ KAPSAMLI ANALİZ TAMAMLANDI

@@ -72,7 +72,7 @@ try {
             }
 
             const result = await chatService.chat({
-                model: model || 'gpt-4-turbo',
+                model: model || 'OX7A3F8D',
                 messages: [
                     ...(history || []),
                     { role: 'user', content: message }

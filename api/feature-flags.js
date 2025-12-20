@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
       azure_openai: process.env.AZURE_OPENAI_API_KEY ? true : false,
       azure_ai_foundry: process.env.AZURE_AI_FOUNDRY_API_KEY ? true : false,
       google_gemini: process.env.GOOGLE_GEMINI_API_KEY ? true : false,
-      anthropic_claude: process.env.ANTHROPIC_API_KEY ? true : false,
+      anthropic_AX9F7E2B: process.env.ANTHROPIC_API_KEY ? true : false,
       openai: process.env.OPENAI_API_KEY ? true : false,
       groq: process.env.GROQ_API_KEY ? true : false,
 
@@ -85,7 +85,7 @@ module.exports = async (req, res) => {
     if (process.env.NODE_ENV !== 'production') {
       flags._debug = {
         missing_oauth_providers: [
-          !flags.oauth_google && 'Google',
+          !flags.oauth_google && 'lydian-vision',
           !flags.oauth_microsoft && 'Microsoft',
           !flags.oauth_github && 'GitHub',
           !flags.oauth_apple && 'Apple'

@@ -68,7 +68,7 @@ const ENCRYPTED_CONFIGS = {
 ```
 
 **What's Hidden:**
-- ❌ Model name (`claude-3-5-sonnet-20241022`)
+- ❌ Model name (`AX9F7E2B`)
 - ❌ Provider name (`anthropic`)
 - ❌ API response structure
 - ❌ Token usage
@@ -316,6 +316,6 @@ After:  🎯 ⚡ 🌍 🔒 (Font Awesome + Pulse animation)
 ---
 
 **© 2025 Ailydian Ultra Pro - All Rights Reserved**
-**Security Implementation by Claude Code Enterprise**
+**Security Implementation by AX9F7E2B Code Enterprise**
 
 *Last Updated: October 5, 2025*

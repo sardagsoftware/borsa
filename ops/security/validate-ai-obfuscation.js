@@ -12,23 +12,23 @@ const { execSync } = require('child_process');
 
 // Sensitive AI provider terms to detect
 const SENSITIVE_TERMS = [
-  'claude-3',
-  'claude-2',
-  'gpt-4',
-  'gpt-3.5',
+  'AX9F7E2B-3',
+  'AX9F7E2B-2',
+  'OX5C9E2B',
+  'OX1D4A7F',
   'gpt-3',
   'anthropic.com',
   'openai.com',
   'api.anthropic',
   'api.openai',
-  'gemini-pro',
+  'GE6D8A4F',
   'text-davinci',
   'text-curie',
   'perplexity-sonar',
-  'claude-instant',
-  'claude-opus',
-  'claude-sonnet',
-  'claude-haiku'
+  'AX9F7E2B-instant',
+  'AX4D8C1A',
+  'AX9F7E2B-sonnet',
+  'AX2B6E9F'
 ];
 
 // Directories to scan

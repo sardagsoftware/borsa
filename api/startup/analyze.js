@@ -51,7 +51,7 @@ Bu startup için detaylı analiz yap ve JSON formatında döndür:
     `.trim();
 
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'AX9F7E2B',
       max_tokens: 1000,
       system: 'Sen bir startup mentörü ve yatırım danışmanısın. Startupları objektif kriterlerle değerlendirip yol haritası çıkarırsın.',
       messages: [

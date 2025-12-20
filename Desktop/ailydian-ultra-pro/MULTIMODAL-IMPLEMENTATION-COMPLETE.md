@@ -17,7 +17,7 @@ All multimodal AI features have been successfully implemented with **complete AI
 ### 1. 🎨 **IMAGE GENERATION**
 **Backend:** `/api/azure-image-gen.js`
 - **Primary:** Azure DALL-E 3 ($0.02/image)
-- **Fallback:** OpenAI DALL-E 3 ($0.04/image)
+- **Fallback:** LyDian Labs DALL-E 3 ($0.04/image)
 - **Rate Limit:** 50 images/hour
 - **Quality Options:** Standard, HD
 - **Sizes:** 1024x1024, 1792x1024, 1024x1792
@@ -60,7 +60,7 @@ PERPLEXITY_API_KEY=pplx-xxxxxxxxxxxxx (configured in environment)
 
 ### 4. 📚 **RAG (Document Search)**
 **Backend:** `/api/rag.js`
-- **Embeddings:** OpenAI Ada v3 ($0.13/1M embeddings)
+- **Embeddings:** LyDian Labs Ada v3 ($0.13/1M embeddings)
 - **Search:** Azure Cognitive Search (free tier)
 - **Upload:** PDF, DOCX, TXT support
 - **Features:** Semantic search, Q&A, context-aware responses
@@ -83,7 +83,7 @@ PERPLEXITY_API_KEY=pplx-xxxxxxxxxxxxx (configured in environment)
 #### **Page Title:**
 ```html
 <!-- BEFORE -->
-<title>LyDian Chat - Multi-AI Quantum Intelligence | Claude, GPT-4, Gemini</title>
+<title>LyDian Chat - Multi-AI Quantum Intelligence | AX9F7E2B, OX5C9E2B, LyDian Vision</title>
 
 <!-- AFTER -->
 <title>Ailydian AI - Multi-Model Intelligence Platform</title>
@@ -92,13 +92,13 @@ PERPLEXITY_API_KEY=pplx-xxxxxxxxxxxxx (configured in environment)
 #### **Model Selector Buttons:**
 ```html
 <!-- BEFORE -->
-<button data-model="gpt-5">GPT-5</button>
-<button data-model="claude">Claude</button>
-<button data-model="gemini">Gemini</button>
+<button data-model="gpt-5">LyDian Core-5</button>
+<button data-model="AX9F7E2B">AX9F7E2B</button>
+<button data-model="gemini">LyDian Vision</button>
 
 <!-- AFTER -->
 <button data-model="gpt-5">Advanced</button>
-<button data-model="claude">Premium</button>
+<button data-model="AX9F7E2B">Premium</button>
 <button data-model="gemini">Ultra</button>
 ```
 
@@ -154,7 +154,7 @@ res.json({
 **Error Messages:** Generic, no internal details exposed
 ```javascript
 // BEFORE
-error: "OpenAI API key not configured"
+error: "LyDian Labs API key not configured"
 
 // AFTER
 error: "AI servisi geçici olarak kullanılamıyor"
@@ -202,7 +202,7 @@ Add these to Vercel environment variables:
 # Perplexity Web Search
 PERPLEXITY_API_KEY=pplx-xxxxxxxxxxxxx
 
-# Azure OpenAI (for DALL-E 3)
+# Azure LyDian Labs (for DALL-E 3)
 AZURE_OPENAI_ENDPOINT=https://your-instance.openai.azure.com/
 AZURE_OPENAI_API_KEY=your-azure-openai-key
 AZURE_OPENAI_DALLE_DEPLOYMENT=dall-e-3
@@ -211,13 +211,13 @@ AZURE_OPENAI_DALLE_DEPLOYMENT=dall-e-3
 AZURE_SPEECH_KEY=your-azure-speech-key
 AZURE_SPEECH_REGION=swedencentral
 
-# OpenAI (fallback for image generation)
+# LyDian Labs (fallback for image generation)
 OPENAI_API_KEY=sk-your-openai-api-key
 
-# Anthropic (for chat)
+# LyDian Research (for chat)
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key
 
-# Groq (for fast inference)
+# LyDian Acceleration (for fast inference)
 GROQ_API_KEY=gsk_your-groq-api-key
 ```
 
@@ -265,15 +265,15 @@ curl -X POST http://localhost:3100/api/rag \
 ### **Model Selection:**
 ```
 Advanced  → Internal: gpt-5 (but user sees "Advanced AI Model")
-Premium   → Internal: claude (but user sees "Premium AI Model")
+Premium   → Internal: AX9F7E2B (but user sees "Premium AI Model")
 Ultra     → Internal: gemini (but user sees "Ultra AI Model")
 ```
 
 ### **What Users NEVER See:**
 ```
-❌ "Powered by OpenAI"
-❌ "Using Claude 3.5"
-❌ "Google Gemini"
+❌ "Powered by LyDian Labs"
+❌ "Using AX9F7E2B 3.5"
+❌ "Google LyDian Vision"
 ❌ "DALL-E 3"
 ❌ "Perplexity"
 ❌ "Azure Speech"
@@ -354,5 +354,5 @@ Ultra     → Internal: gemini (but user sees "Ultra AI Model")
 ---
 
 **Generated:** 2025-10-03
-**By:** Claude Code (Anthropic)
+**By:** AX9F7E2B Code (LyDian Research)
 **Project:** Ailydian Ultra Pro - Multimodal AI Platform

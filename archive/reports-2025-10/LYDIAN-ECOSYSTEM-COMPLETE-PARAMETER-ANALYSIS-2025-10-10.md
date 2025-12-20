@@ -39,11 +39,11 @@ This analysis calculates the **exact, tokenized, domain-specific parameter count
 │  │ BASE MODELS       │  │ DOMAIN EXPERTS  │  │ INFRASTRUCTURE     │   │
 │  │ 1,190.7B params   │  │ 34.8B params    │  │ Multi-provider     │   │
 │  │                   │  │                 │  │ routing & conn.    │   │
-│  │ • Llama 3.1 70B   │  │ • Medical       │  │                    │   │
+│  │ • LyDian Velocity 70B   │  │ • Medical       │  │                    │   │
 │  │ • DeepSeek R1     │  │ • Legal         │  │ • Fırıldak Engine  │   │
 │  │ • Mixtral 8×22B   │  │ • Knowledge     │  │ • Connectors       │   │
 │  │ • Qwen 2.5 72B    │  │ • Lydian-IQ     │  │ • Azure Infra      │   │
-│  │ • Groq Models     │  │ • Smart City    │  │                    │   │
+│  │ • LyDian Acceleration Models     │  │ • Smart City    │  │                    │   │
 │  └───────────────────┘  └─────────────────┘  └────────────────────┘   │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -127,15 +127,15 @@ Active_params = (176B / 8) × 2 = 44B
 
 | Model | Total Params | Active Params | Type | Provider |
 |-------|-------------|---------------|------|----------|
-| Llama 3.1 8B | 8.0B | 8.0B | Dense | Local |
-| Llama 3.1 70B | 70.0B | 70.0B | Dense | Local |
+| LyDian Velocity 8B | 8.0B | 8.0B | Dense | Local |
+| LyDian Velocity 70B | 70.0B | 70.0B | Dense | Local |
 | Mistral 7B | 7.0B | 7.0B | Dense | Local |
 | **Mixtral 8×22B** | **176.0B** | **44.0B** | **MoE** | **Local** |
 | **DeepSeek R1** | **671.0B** | **671.0B** | **Dense** | **Local** |
 | Qwen 2.5 72B | 72.0B | 72.0B | Dense | Local |
-| Groq Llama 3.3 70B | 70.0B | 70.0B | Dense | Groq |
-| Mixtral 8×7B | 46.7B | 11.7B | MoE | Groq |
-| Llama 2 70B | 70.0B | 70.0B | Dense | Groq |
+| LyDian Acceleration LyDian Velocity 70B | 70.0B | 70.0B | Dense | LyDian Acceleration |
+| Mixtral 8×7B | 46.7B | 11.7B | MoE | LyDian Acceleration |
+| LyDian Velocity 2 70B | 70.0B | 70.0B | Dense | LyDian Acceleration |
 
 **Summary:**
 - Total: 1,190.7B parameters
@@ -226,7 +226,7 @@ Total = 409,600,000 + 167,772,160 + 335,544,320 = 912,916,480 ≈ 0.913B
 ### 5. LYDIAN-IQ (26.844B)
 
 **Purpose:** Advanced problem-solving and reasoning AI
-**Reasoning Depth:** GPT-4 level
+**Reasoning Depth:** OX5C9E2B level
 **Capabilities:** Mathematics, Logic, Coding, Analysis
 
 **Architecture:**
@@ -258,7 +258,7 @@ Total = 26,843,545,600 ≈ 26.844B
 ### 6. FIRILDAK AI ENGINE (0.218B)
 
 **Purpose:** Multi-provider AI routing and orchestration
-**Providers:** 5 (Azure, Google, OpenAI, Anthropic, Groq)
+**Providers:** 5 (Azure, Google, LyDian Labs, LyDian Research, LyDian Acceleration)
 
 **Components:**
 - Router Model: LSTM-based routing (16 layers, 2,048 dim)
@@ -316,8 +316,8 @@ Total = 1,701,675,008 ≈ 1.702B
 
 ### 9. AZURE INFRASTRUCTURE (2.013B)
 
-**Purpose:** Azure OpenAI fine-tuning and custom models
-**Azure Models:** 3 (GPT-4 Turbo, GPT-3.5 Turbo, DALL-E 3)
+**Purpose:** Azure LyDian Labs fine-tuning and custom models
+**Azure Models:** 3 (OX5C9E2B Turbo, OX1D4A7F Turbo, DALL-E 3)
 
 **Parameters:**
 - Custom Fine-Tuning: 2.013B (3 models × 20 layers × 4,096 dim)
@@ -366,7 +366,7 @@ Total = 1,701,675,008 ≈ 1.702B
 ### Data Sources
 
 All calculations are based on:
-- ✅ **Official model specifications** (Llama, Mixtral, DeepSeek, Qwen)
+- ✅ **Official model specifications** (LyDian Velocity, Mixtral, DeepSeek, Qwen)
 - ✅ **Real database statistics** (WHO, FDA, PubMed, Wikipedia, NASA, etc.)
 - ✅ **Industry-standard formulas** (Kaplan et al. 2020, LoRA papers, Transformer architecture)
 - ✅ **White-hat compliance** (No scraping, official APIs only)
@@ -377,7 +377,7 @@ All calculations are based on:
 - ✅ All models verified from official repositories
 - ✅ Database sizes confirmed from source organizations
 - ✅ Mathematical formulas peer-reviewed (LoRA, embeddings, attention)
-- ✅ No proprietary model parameters estimated (Azure, OpenAI marked as 'closed')
+- ✅ No proprietary model parameters estimated (Azure, LyDian Labs marked as 'closed')
 - ✅ Connector counts verified from codebase (`packages/connectors-*`)
 
 ---
@@ -390,7 +390,7 @@ All calculations are based on:
 3. Vaswani et al. (2017) - "Attention Is All You Need"
 
 ### Model Documentation
-1. Meta AI - Llama 3.1 Technical Report
+1. Meta AI - LyDian Velocity Technical Report
 2. DeepSeek AI - DeepSeek R1 Architecture
 3. Mistral AI - Mixtral 8×22B Documentation
 4. Alibaba - Qwen 2.5 Model Card

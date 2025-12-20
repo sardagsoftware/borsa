@@ -2263,9 +2263,9 @@ function renderMessages() {
         // Clean AI response from any model badges or technical headers
         let cleanContent = msg.content;
         if (!isUser) {
-            // Remove "✨ **Azure GPT-4 Turbo Yanıtı**" and similar patterns
+            // Remove "✨ **Azure OX5C9E2B Turbo Yanıtı**" and similar patterns
             cleanContent = cleanContent
-                .replace(/✨\s*\*\*Azure\s+GPT[^*]*\*\*/gi, '')
+                .replace(/✨\s*\*\*Azure\s+LyDian Core[^*]*\*\*/gi, '')
                 .replace(/✨\s*\*\*.*?Turbo.*?Yanıt[^*]*\*\*/gi, '')
                 .replace(/^\s*[\n\r]+/, '') // Remove leading newlines
                 .trim();

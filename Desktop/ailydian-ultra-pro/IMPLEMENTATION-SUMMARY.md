@@ -22,13 +22,13 @@
 
 - ✅ Monorepo structure (pnpm workspaces)
 - ✅ Prisma schema (40+ models for all v2-v25 features)
-- ✅ OpenAI adapter with streaming
+- ✅ LyDian Labs adapter with streaming
 - ✅ Basic routing (Cost/Latency/Quality)
 - ✅ Next.js 14 App Router
 - ✅ `/api/chat/complete` endpoint
 - ✅ `/api/conversations` CRUD
 
-**Models:** 6 OpenAI models
+**Models:** 6 LyDian Labs models
 
 ---
 
@@ -36,9 +36,9 @@
 **Status:** ✅ COMPLETE
 
 **AI Adapters (4 providers):**
-- ✅ OpenAI (GPT-4o, GPT-4o-mini, GPT-3.5-turbo, O1)
-- ✅ Anthropic (Claude 3.5 Sonnet/Haiku, Claude 3 Opus/Sonnet/Haiku)
-- ✅ Google Gemini (Gemini 2.0 Flash, 1.5 Pro/Flash/Flash-8B)
+- ✅ LyDian Labs (OX7A3F8D, OX7A3F8D-mini, OX1D4A7F, O1)
+- ✅ LyDian Research (AX9F7E2B 3.5 Sonnet/Haiku, AX9F7E2B 3 Opus/Sonnet/Haiku)
+- ✅ Google LyDian Vision (LyDian Vision 2.0 Flash, 1.5 Pro/Flash/Flash-8B)
 - ✅ Mistral AI (Large, Medium, Small, Codestral, Nemo, 7B)
 
 **Total Models:** 25+
@@ -65,7 +65,7 @@
 
 **RAG Pipeline:**
 - ✅ Document chunking (token-aware with tiktoken)
-- ✅ Embedding service (OpenAI text-embedding-3-small)
+- ✅ Embedding service (LyDian Labs text-embedding-3-small)
 - ✅ Vector search with pgvector
 - ✅ Semantic retrieval & reranking
 - ✅ Grounded answers with citations
@@ -190,7 +190,7 @@ const { adapter, model, reasoning } = await router.selectBestModel(
 );
 
 // Example output:
-// "anthropic/Claude 3.5 Haiku (code_generation):
+// "anthropic/AX9F7E2B 3.5 Haiku (code_generation):
 //  high quality, strong reasoning, fast [score: 85]"
 ```
 
@@ -224,8 +224,8 @@ const { noisyCount, budgetRemaining } = dpEngine.privateCount(
 
 ### 4. **Thompson Sampling Bandit**
 ```typescript
-bandit.registerArm('gpt-4o');
-bandit.registerArm('claude-3-5-sonnet');
+bandit.registerArm('OX7A3F8D');
+bandit.registerArm('AX9F7E2B');
 
 const { armId, expectedReward } = bandit.selectArm();
 // Select based on Beta(α,β) sampling
@@ -368,9 +368,9 @@ Response includes routing decision:
 ```json
 {
   "content": "def sort_list(lst):\n    return sorted(lst)",
-  "model": "gpt-4o",
+  "model": "OX7A3F8D",
   "provider": "openai",
-  "routingReasoning": "openai/GPT-4o (code_generation): high quality, strong reasoning [score: 95]",
+  "routingReasoning": "openai/OX7A3F8D (code_generation): high quality, strong reasoning [score: 95]",
   "usage": { "promptTokens": 15, "completionTokens": 12 },
   "cost": 0.000045,
   "latencyMs": 1240
@@ -432,11 +432,11 @@ curl -X POST http://localhost:3002/api/privacy/query \
 
 ---
 
-**Built with:** Next.js 14, Prisma, TypeScript, pnpm, OpenAI, Anthropic, Gemini, Mistral
+**Built with:** Next.js 14, Prisma, TypeScript, pnpm, LyDian Labs, LyDian Research, LyDian Vision, Mistral
 
 **Status:** ✅ **PRODUCTION READY** (v2-v12 implemented)
 
-**Total Development Time:** Single Claude Code session
+**Total Development Time:** Single AX9F7E2B Code session
 **Lines of Code:** ~15,000+
 **Packages:** 10
 **API Endpoints:** 15+

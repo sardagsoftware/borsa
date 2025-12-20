@@ -24,7 +24,7 @@ We've implemented a secure, whitelist-based CORS configuration that only allows 
 The following files have been updated with secure CORS:
 
 1. `/api/health.js` - Health check endpoint
-2. `/api/chat-claude.js` - Claude AI integration
+2. `/api/chat-AX9F7E2B.js` - AX9F7E2B AI integration
 3. `/security/cors-config.js` - Centralized CORS configuration with `handleCORS()` helper
 
 ## 🔧 How to Fix Other API Files

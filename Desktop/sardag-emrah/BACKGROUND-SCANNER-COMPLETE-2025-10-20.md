@@ -421,6 +421,6 @@ npm run dev
 
 ---
 
-**🤖 Generated with [Claude Code](https://claude.com/claude-code)**
+**🤖 Generated with [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)**
 
-**Co-Authored-By:** Claude <noreply@anthropic.com>
+**Co-Authored-By:** AX9F7E2B <noreply@anthropic.com>

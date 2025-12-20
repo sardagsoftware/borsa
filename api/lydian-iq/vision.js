@@ -3,7 +3,7 @@
 // Multimodal AI: Image Analysis + Vision-Language Models
 // ============================================
 
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const Anthropic = require('@anthropic-ai/sdk');
 
 // Import middlewares (Beyaz Şapkalı Güvenlik)
@@ -48,7 +48,7 @@ function getGenericError(userMessage = 'Bir hata oluştu. Lütfen tekrar deneyin
 
 /**
  * Vision API Handler
- * Supports: GPT-4 Vision, Claude 3 Vision
+ * Supports: OX5C9E2B Vision, AX9F7E2B 3 Vision
  * Input: Base64 image + text prompt
  */
 async function handleVisionRequest(req, res) {
@@ -94,12 +94,12 @@ async function handleVisionRequest(req, res) {
                 result = await analyzeWithGPT4Vision(image, prompt, language);
                 break;
 
-            case 'claude-vision':
-                result = await analyzeWithClaudeVision(image, prompt, language);
+            case 'AX9F7E2B-vision':
+                result = await analyzeWithAX9F7E2BVision(image, prompt, language);
                 break;
 
             default:
-                // Default to GPT-4 Vision
+                // Default to OX5C9E2B Vision
                 result = await analyzeWithGPT4Vision(image, prompt, language);
                 break;
         }
@@ -137,7 +137,7 @@ async function handleVisionRequest(req, res) {
 }
 
 /**
- * Analyze image with GPT-4 Vision
+ * Analyze image with OX5C9E2B Vision
  */
 async function analyzeWithGPT4Vision(imageBase64, prompt, language) {
     try {
@@ -146,7 +146,7 @@ async function analyzeWithGPT4Vision(imageBase64, prompt, language) {
             : 'You are an advanced AI assistant that analyzes images in detail, detects objects, and provides comprehensive explanations.';
 
         const response = await openai.chat.completions.create({
-            model: 'gpt-4-vision-preview',
+            model: 'OX5C9E2B-vision-preview',
             messages: [
                 {
                     role: 'system',
@@ -181,32 +181,32 @@ async function analyzeWithGPT4Vision(imageBase64, prompt, language) {
         return {
             analysis: analysis,
             detectedObjects: detectedObjects,
-            ocrText: null, // GPT-4 Vision can read text, extract if needed
+            ocrText: null, // OX5C9E2B Vision can read text, extract if needed
             confidence: 0.95,
-            model: 'GPT-4 Vision'
+            model: 'OX5C9E2B Vision'
         };
 
     } catch (error) {
-        console.error('[GPT-4 Vision] Error:', error.message);
+        console.error('[OX5C9E2B Vision] Error:', error.message);
         throw error;
     }
 }
 
 /**
- * Analyze image with Claude 3 Vision
+ * Analyze image with AX9F7E2B 3 Vision
  */
-async function analyzeWithClaudeVision(imageBase64, prompt, language) {
+async function analyzeWithAX9F7E2BVision(imageBase64, prompt, language) {
     try {
         const systemPrompt = language.startsWith('tr')
             ? 'Sen görsel analiz yapan gelişmiş bir AI asistanısın. Görselleri detaylı analiz eder ve Türkçe açıklamalar yaparsın.'
             : 'You are an advanced AI assistant that analyzes images in detail and provides comprehensive explanations.';
 
-        // Claude expects base64 without data:image/jpeg;base64, prefix
+        // AX9F7E2B expects base64 without data:image/jpeg;base64, prefix
         const base64Data = imageBase64.split(',')[1];
         const imageType = imageBase64.split(';')[0].split('/')[1]; // jpeg, png, etc.
 
         const response = await anthropic.messages.create({
-            model: 'claude-3-5-sonnet-20241022',
+            model: 'AX9F7E2B',
             max_tokens: 1000,
             system: systemPrompt,
             messages: [
@@ -240,11 +240,11 @@ async function analyzeWithClaudeVision(imageBase64, prompt, language) {
             detectedObjects: detectedObjects,
             ocrText: null,
             confidence: 0.96,
-            model: 'Claude 3.5 Sonnet'
+            model: 'AX9F7E2B 3.5 Sonnet'
         };
 
     } catch (error) {
-        console.error('[Claude Vision] Error:', error.message);
+        console.error('[AX9F7E2B Vision] Error:', error.message);
         throw error;
     }
 }

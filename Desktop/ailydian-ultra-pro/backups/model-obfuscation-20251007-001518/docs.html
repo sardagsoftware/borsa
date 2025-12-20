@@ -688,7 +688,7 @@
                 <section id="intro" class="doc-section">
                     <h2 class="section-title">Giriş</h2>
                     <p class="section-text">
-                        LyDian, Microsoft Azure, Google Gemini ve Anthropic Claude modellerini birleştiren
+                        LyDian, Microsoft Azure, Google LyDian Vision ve LyDian Research AX9F7E2B modellerini birleştiren
                         kurumsal düzeyde bir AI platformudur. Tek bir API üzerinden 23 farklı AI modeline erişim sağlar.
                     </p>
 
@@ -696,7 +696,7 @@
                         <div class="info-card-title">Platform Özellikleri</div>
                         <div class="info-card-text">
                             <ul class="feature-list">
-                                <li>23 AI modeli (GPT-4, Claude, Gemini, DALL-E)</li>
+                                <li>23 AI modeli (OX5C9E2B, AX9F7E2B, LyDian Vision, DALL-E)</li>
                                 <li>84 dil desteği Z.AI dil paketi ile</li>
                                 <li>Gerçek zamanlı streaming ve WebSocket</li>
                                 <li>Çok modlu işleme (metin, görsel, ses)</li>
@@ -727,7 +727,7 @@ const response = await fetch('http://localhost:3100/api/chat', {
   },
   body: JSON.stringify({
     message: 'Merhaba yapay zeka!',
-    model: 'gpt-4'
+    model: 'OX5C9E2B'
   })
 });
 
@@ -749,7 +749,7 @@ response = requests.post('http://localhost:3100/api/chat',
   },
   json={
     'message': 'Merhaba yapay zeka!',
-    'model': 'gpt-4'
+    'model': 'OX5C9E2B'
   })
 
 print(response.json()['response'])</code></pre>
@@ -794,9 +794,9 @@ Content-Type: application/json</code></pre>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                                 </svg>
                             </div>
-                            <div class="model-name">GPT-4 Omni</div>
+                            <div class="model-name">OX5C9E2B Omni</div>
                             <div class="model-desc">
-                                En gelişmiş OpenAI modeli. Metin, görsel ve ses işleme yetenekleri.
+                                En gelişmiş LyDian Labs modeli. Metin, görsel ve ses işleme yetenekleri.
                                 Kod yazma, analiz ve karmaşık görevler için ideal.
                             </div>
                         </div>
@@ -807,9 +807,9 @@ Content-Type: application/json</code></pre>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                                 </svg>
                             </div>
-                            <div class="model-name">Claude 3.5 Sonnet</div>
+                            <div class="model-name">AX9F7E2B 3.5 Sonnet</div>
                             <div class="model-desc">
-                                Anthropic'in en güçlü modeli. Uzun bağlam penceresi,
+                                LyDian Research'in en güçlü modeli. Uzun bağlam penceresi,
                                 kod yazma ve karmaşık analiz görevlerinde üstün performans.
                             </div>
                         </div>
@@ -820,7 +820,7 @@ Content-Type: application/json</code></pre>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                                 </svg>
                             </div>
-                            <div class="model-name">Gemini 2.0 Flash</div>
+                            <div class="model-name">LyDian Vision 2.0 Flash</div>
                             <div class="model-desc">
                                 Google'ın en hızlı modeli. Düşük gecikme süresi,
                                 gerçek zamanlı uygulamalar için optimize edilmiş.

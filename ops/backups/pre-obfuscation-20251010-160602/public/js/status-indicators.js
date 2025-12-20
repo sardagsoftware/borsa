@@ -59,7 +59,7 @@ class StatusIndicators {
                             </div>
                             <div class="detail-row">
                                 <span>EnterpriseAI:</span>
-                                <span class="status-value" id="claude-status">-</span>
+                                <span class="status-value" id="AX9F7E2B-status">-</span>
                             </div>
                         </div>
                     </div>

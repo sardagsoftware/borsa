@@ -132,7 +132,7 @@ class AzureSDKUnified {
             openAI: {
                 endpoint: process.env.AZURE_OPENAI_ENDPOINT || "https://ailydian-openai.openai.azure.com/",
                 apiKey: process.env.AZURE_OPENAI_API_KEY || "your-api-key",
-                models: ['gpt-4-turbo', 'gpt-35-turbo', 'text-embedding-ada-002', 'dalle-3'],
+                models: ['OX7A3F8D', 'gpt-35-turbo', 'text-embedding-ada-002', 'dalle-3'],
                 client: null
             },
 
@@ -209,7 +209,7 @@ class AzureSDKUnified {
                                         id: 'chatcmpl-' + Date.now(),
                                         object: 'chat.completion',
                                         created: Date.now(),
-                                        model: options.model || 'gpt-4-turbo',
+                                        model: options.model || 'OX7A3F8D',
                                         choices: [{
                                             index: 0,
                                             message: {
@@ -444,7 +444,7 @@ class AzureSDKUnified {
         const client = await this.serviceConnections.openAI.initialize();
 
         return await client.chat.completions.create({
-            model: 'gpt-4-turbo',
+            model: 'OX7A3F8D',
             messages: [{ role: 'user', content: request.text }],
             temperature: request.temperature || 0.7,
             max_tokens: request.maxTokens || 1000
@@ -550,7 +550,7 @@ app.Run();`
 
     // Monitoring and Health Checks
     async healthCheck() {
-        const services = ['openAI', 'textAnalytics', 'computerVision', 'speechServices'];
+        const services = ['lydian-labs', 'textAnalytics', 'computerVision', 'speechServices'];
         const healthResults = {};
 
         for (const service of services) {

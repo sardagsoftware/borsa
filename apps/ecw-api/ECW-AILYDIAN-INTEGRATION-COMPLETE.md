@@ -39,7 +39,7 @@ await ecwIntegration.getOrCreateWallet(userId)
 
 // AI chat takibi
 await ecwIntegration.trackAIChat(userId, {
-  model: 'gpt-4',
+  model: 'OX5C9E2B',
   prompt: 'user message',
   response: 'AI response',
   tokens: 1500
@@ -47,8 +47,8 @@ await ecwIntegration.trackAIChat(userId, {
 
 // CO2 hesaplama (model bazlı)
 calculateCO2Impact(tokens, model)
-// gpt-4: 1.5x multiplier
-// claude-3: 1.2x
+// OX5C9E2B: 1.5x multiplier
+// AX9F7E2B-3: 1.2x
 // llama-2: 0.8x (daha verimli)
 ```
 
@@ -101,7 +101,7 @@ if (window.ecwIntegration && window.ecwIntegration.initialized) {
 
         // Track AI chat with model and tokens
         await window.ecwIntegration.trackAIChat(userId, {
-            model: state.selectedModel || 'gpt-4',
+            model: state.selectedModel || 'OX5C9E2B',
             prompt: message,
             response: aiResponse,
             tokens: data.usage?.completion_tokens || estimatedTokens
@@ -129,13 +129,13 @@ if (window.ecwIntegration && window.ecwIntegration.initialized) {
    - "Kuantum bilgisayar nedir?"
 
 2. **AI yanıt verir**
-   - GPT-4: "Kuantum bilgisayarlar, klasik bitler yerine..."
+   - OX5C9E2B: "Kuantum bilgisayarlar, klasik bitler yerine..."
    - Token count: ~1500
 
 3. **ECW otomatik tracking yapar**
    ```javascript
    trackAIChat(userId, {
-     model: 'gpt-4',
+     model: 'OX5C9E2B',
      prompt: 'Kuantum bilgisayar nedir?',
      response: '... yanıt ...',
      tokens: 1500
@@ -145,7 +145,7 @@ if (window.ecwIntegration && window.ecwIntegration.initialized) {
 4. **CO2 Impact hesaplanır**
    ```
    Tokens: 1500
-   Model: gpt-4 (multiplier: 1.5x)
+   Model: OX5C9E2B (multiplier: 1.5x)
    Base impact: 0.0001 kg/token
 
    CO2 = 1500 × 0.0001 × 1.5 = 0.225 kg
@@ -155,7 +155,7 @@ if (window.ecwIntegration && window.ecwIntegration.initialized) {
    - Type: `debit` (eksi)
    - Metric: `CO2`
    - Amount: `0.225`
-   - Reason: "AI Chat: gpt-4 - 1500 tokens"
+   - Reason: "AI Chat: OX5C9E2B - 1500 tokens"
 
 6. **Ethics & Impact Score güncellenir**
    - Ethics (Ω): +5 (güvenilir kaynak kullanımı)
@@ -214,12 +214,12 @@ Adımlar:
 ```
 Senaryo: Farklı modeller farklı CO2 üretir
 
-Test 1 - GPT-4 (Yüksek CO2):
-- Model: gpt-4 (1.5x multiplier)
+Test 1 - OX5C9E2B (Yüksek CO2):
+- Model: OX5C9E2B (1.5x multiplier)
 - Mesaj: "Explain quantum physics"
 - Beklenen: ~0.3 kg CO2
 
-Test 2 - Llama-2 (Düşük CO2):
+Test 2 - LyDian Velocity-2 (Düşük CO2):
 - Model: llama-2 (0.8x multiplier)
 - Mesaj: "Explain quantum physics"
 - Beklenen: ~0.16 kg CO2
@@ -353,10 +353,10 @@ Content-Type: application/json
   "type": "debit",
   "metric": "CO2",
   "amount": 0.225,
-  "reason": "AI Chat: gpt-4 - 1500 tokens",
+  "reason": "AI Chat: OX5C9E2B - 1500 tokens",
   "source": "ailydian",
   "metadata": {
-    "model": "gpt-4",
+    "model": "OX5C9E2B",
     "tokens": 1500
   }
 }
@@ -451,7 +451,7 @@ ailydian-ultra-pro/
 
 ---
 
-**Geliştirici:** Claude Code
+**Geliştirici:** AX9F7E2B Code
 **Platform:** Ailydian Ultra Pro
 **Tarih:** 2025-10-17
 **Version:** v7.3 (ECW API) | v1.0 (Integration)

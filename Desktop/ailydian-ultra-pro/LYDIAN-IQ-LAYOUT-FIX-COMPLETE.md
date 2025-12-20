@@ -56,7 +56,7 @@ clearResponse() {
 ```
 
 ### 6. **API Reliability** ✅
-**Problem:** OpenAI socket hang up errors causing demo mode
+**Problem:** LyDian Labs socket hang up errors causing demo mode
 **Solution:** Exponential backoff retry (1s, 2s, 4s delays)
 ```javascript
 async function retryWithBackoff(fn, maxRetries = 3, initialDelay = 1000) {
@@ -102,7 +102,7 @@ async function retryWithBackoff(fn, maxRetries = 3, initialDelay = 1000) {
 ✅ flex-shrink: 0 property exists
 ✅ Grid layout configured: 440px (question) + 1fr (answer)
 ✅ clearResponseIcon exists
-✅ API working (GPT-4 Turbo, 5.65s response)
+✅ API working (OX5C9E2B Turbo, 5.65s response)
 ```
 
 ---
@@ -132,7 +132,7 @@ async function retryWithBackoff(fn, maxRetries = 3, initialDelay = 1000) {
 ### 4. `/api/lydian-iq/solve.js`
 **Key Changes:**
 - Lines 72-96: Retry mechanism with exponential backoff
-- Lines 456-462: Retry wrapper for Claude API
+- Lines 456-462: Retry wrapper for AX9F7E2B API
 
 ---
 
@@ -159,7 +159,7 @@ async function retryWithBackoff(fn, maxRetries = 3, initialDelay = 1000) {
 ## 📊 Performance Metrics
 
 ### API Performance
-- Provider: OpenAI GPT-4 Turbo
+- Provider: LyDian Labs OX5C9E2B Turbo
 - Average response: 5.65s
 - Retry mechanism: 3 attempts max
 - Backoff delays: 1s → 2s → 4s

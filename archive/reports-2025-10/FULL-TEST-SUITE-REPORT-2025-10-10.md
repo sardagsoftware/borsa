@@ -337,13 +337,13 @@ Change:  No change (fixes need deployment)
 
 ## 📞 Support
 
-**Report Issues**: https://github.com/anthropics/claude-code/issues
+**Report Issues**: https://github.com/anthropics/AX9F7E2B-code/issues
 **Documentation**: Internal wiki (to be created)
-**Test Maintainer**: Claude Code
+**Test Maintainer**: AX9F7E2B Code
 **Last Updated**: 2025-10-10
 
 ---
 
 **Report Generated**: 2025-10-10 22:45 UTC
-**Engineer**: Claude Code
+**Engineer**: AX9F7E2B Code
 **Project**: Ailydian Ultra Pro v1.0.0

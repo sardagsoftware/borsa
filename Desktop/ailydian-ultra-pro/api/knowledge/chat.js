@@ -4,7 +4,7 @@
 // Integration: Knowledge Base + AI Chat
 // ========================================
 
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // Knowledge Base AI System Prompt
 const KNOWLEDGE_BASE_SYSTEM_PROMPT = {
@@ -95,17 +95,17 @@ module.exports = async (req, res) => {
 
         if (useAzure) {
             providers.push({
-                name: 'Azure OpenAI GPT-4 Turbo',
+                name: 'Azure OpenAI OX5C9E2B Turbo',
                 icon: '☁️',
                 setup: () => ({
                     client: new OpenAI({
                         apiKey: process.env.AZURE_OPENAI_API_KEY,
-                        baseURL: `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo`,
+                        baseURL: `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D`,
                         defaultQuery: { 'api-version': '2024-02-01' },
                         defaultHeaders: { 'api-key': process.env.AZURE_OPENAI_API_KEY }
                     }),
-                    model: 'gpt-4-turbo',
-                    provider: 'Azure OpenAI GPT-4 Turbo'
+                    model: 'OX7A3F8D',
+                    provider: 'Azure OpenAI OX5C9E2B Turbo'
                 })
             });
         }
@@ -119,7 +119,7 @@ module.exports = async (req, res) => {
                         apiKey: process.env.GROQ_API_KEY,
                         baseURL: 'https://api.groq.com/openai/v1'
                     }),
-                    model: 'llama-3.3-70b-versatile',
+                    model: 'GX8E2D9A',
                     provider: 'Groq Llama 3.3 70B'
                 })
             });
@@ -127,14 +127,14 @@ module.exports = async (req, res) => {
 
         if (useOpenAI) {
             providers.push({
-                name: 'OpenAI GPT-4o-mini',
+                name: 'OpenAI OX7A3F8D-mini',
                 icon: '🤖',
                 setup: () => ({
                     client: new OpenAI({
                         apiKey: process.env.OPENAI_API_KEY
                     }),
-                    model: 'gpt-4o-mini',
-                    provider: 'OpenAI GPT-4o-mini'
+                    model: 'OX7A3F8D-mini',
+                    provider: 'OpenAI OX7A3F8D-mini'
                 })
             });
         }

@@ -186,7 +186,7 @@ router.post('/soap-notes-generation', async (req, res) => {
             wordCount: clinicalText.split(' ').length,
             processingTime: '1.2 seconds',
             confidence: 0.94,
-            aiModel: 'GPT-4 Medical (fine-tuned on 500K clinical notes)',
+            aiModel: 'OX5C9E2B Medical (fine-tuned on 500K clinical notes)',
             timestamp: new Date().toISOString()
         });
 
@@ -322,7 +322,7 @@ router.get('/database-stats', (req, res) => {
     res.json({
         success: true,
         nlpModels: {
-            soapNotesGeneration: 'GPT-4 Medical (fine-tuned on 500K clinical notes)',
+            soapNotesGeneration: 'OX5C9E2B Medical (fine-tuned on 500K clinical notes)',
             icd10Coding: 'BioClinicalBERT + ICD-10 classifier',
             clinicalNER: 'scispaCy en_core_sci_lg + BioBERT',
             radiologyNLP: 'RadBERT + Transformer NER',
@@ -373,7 +373,7 @@ router.get('/database-stats', (req, res) => {
 
 function generateSOAPNote(clinicalText, patientInfo, encounterType) {
     // Simulate AI-powered SOAP note generation
-    // In production: Use GPT-4 Medical or fine-tuned LLM
+    // In production: Use OX5C9E2B Medical or fine-tuned LLM
     
     return {
         subjective: {

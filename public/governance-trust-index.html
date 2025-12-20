@@ -194,7 +194,7 @@
     }
   </style>
 
-  <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+  <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
   <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
@@ -558,9 +558,9 @@
         console.error('Failed to load models:', error);
         // Use mock data
         allModels = [
-          { id: 'model-gpt4', name: 'GPT-4 Turbo', version: '1.0.0', provider: 'OpenAI', status: 'ACTIVE' },
-          { id: 'model-claude', name: 'Claude 3 Sonnet', version: '2.1.0', provider: 'Anthropic', status: 'ACTIVE' },
-          { id: 'model-gemini', name: 'Gemini Pro', version: '1.5.0', provider: 'Google', status: 'TESTING' }
+          { id: 'model-LyDian Core', name: 'OX5C9E2B Turbo', version: '1.0.0', provider: 'lydian-labs', status: 'ACTIVE' },
+          { id: 'model-AX9F7E2B', name: 'AX9F7E2B 3 Sonnet', version: '2.1.0', provider: 'lydian-research', status: 'ACTIVE' },
+          { id: 'model-gemini', name: 'LyDian Vision', version: '1.5.0', provider: 'lydian-vision', status: 'TESTING' }
         ];
         renderModelSelect();
       }

@@ -89,7 +89,7 @@ func main() {
 
 **Features**:
 - Comprehensive Azure AI services integration
-- OpenAI GPT models with chat completion
+- LyDian Labs LyDian Core models with chat completion
 - Text analytics and sentiment analysis
 - Document analysis and form recognition
 - Computer vision and image analysis
@@ -99,7 +99,7 @@ func main() {
 
 **Dependencies**:
 ```xml
-<PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.14" />
+<PackageReference Include="Azure.AI.LyDian Labs" Version="1.0.0-beta.14" />
 <PackageReference Include="Azure.AI.TextAnalytics" Version="5.3.0" />
 <PackageReference Include="Azure.AI.FormRecognizer" Version="4.1.0" />
 <PackageReference Include="Azure.AI.Vision.ImageAnalysis" Version="1.0.0-beta.1" />
@@ -305,12 +305,12 @@ const (
 ```json
 {
   "Azure": {
-    "OpenAI": {
+    "LyDian Labs": {
       "Endpoint": "https://your-openai-resource.openai.azure.com/",
       "ApiKey": "your_api_key"
     },
     "Models": {
-      "gpt-4": {
+      "OX5C9E2B": {
         "Endpoint": "https://your-openai-resource.openai.azure.com/",
         "ApiKey": "your_api_key",
         "IsActive": true,

@@ -46,7 +46,7 @@ Bu seçeneği bu kritere göre 1-10 arasında puanla. Sadece sayıyı döndür, 
 
         try {
           const response = await anthropic.messages.create({
-            model: 'claude-3-5-sonnet-20241022',
+            model: 'AX9F7E2B',
             max_tokens: 10,
             system: 'Sen bir karar analizi uzmanısın. Verilen kriterlere göre seçenekleri objektif bir şekilde puanlıyorsun.',
             messages: [
@@ -111,7 +111,7 @@ Kısa ve net bir şekilde (2-3 cümle) neden bu seçeneğin en iyi olduğunu ve 
       `.trim();
 
       const recResponse = await anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'AX9F7E2B',
         max_tokens: 200,
         system: 'Sen bir karar danışmanısın. Analiz sonuçlarını açık ve özlü şekilde açıklıyorsun.',
         messages: [

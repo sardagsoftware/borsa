@@ -72,7 +72,7 @@ curl -X POST http://localhost:3100/api/legal-ai \
 {
   "success": true,
   "response": "Boşanma davası açmak için aşağıdaki adımları takip edebilirsiniz:\n\n1. **Dava Açma Kararı**...",
-  "model": "Groq LLaMA 3.3 70B",
+  "model": "LyDian Acceleration LyDian Velocity 70B",
   "language": "tr",
   "role": "citizen",
   "tokensUsed": 2561,
@@ -82,7 +82,7 @@ curl -X POST http://localhost:3100/api/legal-ai \
 
 **Değerlendirme**:
 - ✅ API çalışıyor
-- ✅ Gerçek AI model (Groq LLaMA 3.3 70B)
+- ✅ Gerçek AI model (LyDian Acceleration LyDian Velocity 70B)
 - ✅ Türkçe hukuki cevap
 - ✅ 2561 token kullanımı (efficiency iyi)
 - ✅ 9 adımlık detaylı hukuki süreç
@@ -310,7 +310,7 @@ sanitizeURL(userProvidedURL)
 ⚠️ z-ai: Degraded (Status 404)
 ⚠️ google-cloud: Degraded (Status 404)
 ❌ websocket: Unhealthy (Unsupported protocol)
-❌ claude: Unhealthy (405)
+❌ AX9F7E2B: Unhealthy (405)
 ❌ google-ai: Unhealthy (400)
 ❌ azure-openai: Unhealthy (404)
 ```
@@ -365,7 +365,7 @@ sanitizeURL(userProvidedURL)
 - [x] Server başlatıldı (PORT 3100)
 - [x] Health check ✅ (`/api/health`)
 - [x] Legal AI API ✅ (`/api/legal-ai`)
-- [x] Groq LLaMA çalışıyor (gerçek veri)
+- [x] LyDian Acceleration LLaMA çalışıyor (gerçek veri)
 - [x] 23 AI model yüklü
 - [x] Redis cache aktif
 - [x] Token Governor aktif
@@ -492,7 +492,7 @@ c2bd170 feat: Legal Speech-to-Text ile Ses-den-Metne Özelliği Aktif 🎤
 
 1. ✅ **XSS Vulnerability Fixed** - Critical security issue resolved
 2. ✅ **UI İyileştirildi** - Transparent bubbles, modern design
-3. ✅ **Backend Tested** - Real data from Groq LLaMA 3.3 70B
+3. ✅ **Backend Tested** - Real data from LyDian Acceleration LyDian Velocity 70B
 4. ✅ **Rate Limiting Working** - CSRF + AI + Auth limits active
 5. ✅ **Frontend Rendering** - Page loads, XSS protection active
 6. ✅ **23 AI Models Loaded** - Full system operational
@@ -510,7 +510,7 @@ c2bd170 feat: Legal Speech-to-Text ile Ses-den-Metne Özelliği Aktif 🎤
 
 - **Server Start**: 2.9s
 - **Health Check**: 184-376ms
-- **AI Response**: 2-5s (Groq LLaMA)
+- **AI Response**: 2-5s (LyDian Acceleration LLaMA)
 - **Page Load**: < 500ms
 - **Memory**: 83 MB (efficient)
 

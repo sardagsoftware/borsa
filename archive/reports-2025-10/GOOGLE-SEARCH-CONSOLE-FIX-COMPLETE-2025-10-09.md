@@ -375,8 +375,8 @@ git secrets --scan
 **Status:** ✅ Çözüldü — Düzeltme Talebi Bekliyor
 
 **Güvenlik Ekibi:**
-🤖 [Claude Code](https://claude.com/claude-code)
-Co-Authored-By: Claude <noreply@anthropic.com>
+🤖 [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)
+Co-Authored-By: AX9F7E2B <noreply@anthropic.com>
 
 ---
 

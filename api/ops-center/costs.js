@@ -46,8 +46,8 @@ module.exports = async (req, res) => {
           usage_percentage: 87
         },
         {
-          name: 'GPT-4 Turbo',
-          provider: 'OpenAI',
+          name: 'OX5C9E2B Turbo',
+          provider: 'lydian-labs',
           costs: {
             input_per_1m: 10.00,
             output_per_1m: 30.00,
@@ -62,8 +62,8 @@ module.exports = async (req, res) => {
           usage_percentage: 8
         },
         {
-          name: 'Claude 3.5',
-          provider: 'Anthropic',
+          name: 'AX9F7E2B 3.5',
+          provider: 'lydian-research',
           costs: {
             input_per_1m: 3.00,
             output_per_1m: 15.00,
@@ -79,7 +79,7 @@ module.exports = async (req, res) => {
         },
         {
           name: 'Gemini 1.5 Pro',
-          provider: 'Google',
+          provider: 'lydian-vision',
           costs: {
             input_per_1m: 1.25,
             output_per_1m: 5.00,

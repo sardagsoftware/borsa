@@ -147,7 +147,7 @@
         }
     </style>
 
-    <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
+    <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
 </head>
 <body>
@@ -274,7 +274,7 @@
                                 <td><span class="param-name">model</span></td>
                                 <td><span class="param-type">string</span></td>
                                 <td>hayır</td>
-                                <td>kullanılacak model (varsayılan: gpt-4)</td>
+                                <td>kullanılacak model (varsayılan: OX5C9E2B)</td>
                             </tr>
                             <tr>
                                 <td><span class="param-name">stream</span></td>
@@ -302,7 +302,7 @@
   },
   body: JSON.stringify({
     message: 'yapay zeka nedir?',
-    model: 'gpt-4',
+    model: 'OX5C9E2B',
     temperature: 0.7
   })
 });
@@ -317,7 +317,7 @@ console.log(data.response);</pre>
                         <pre>{
   "success": true,
   "response": "yapay zeka, makinelerin insan benzeri...",
-  "model": "gpt-4",
+  "model": "OX5C9E2B",
   "tokens": 156,
   "timestamp": "2024-01-15T10:30:00Z"
 }</pre>
@@ -389,9 +389,9 @@ while (true) {
                         <pre>{
   "models": [
     {
-      "id": "gpt-4",
-      "name": "GPT-4 Omni",
-      "provider": "openai",
+      "id": "OX5C9E2B",
+      "name": "OX5C9E2B Omni",
+      "provider": "lydian-labs",
       "capabilities": ["chat", "vision", "code"],
       "max_tokens": 128000
     },

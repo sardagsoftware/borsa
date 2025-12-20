@@ -5,7 +5,7 @@
 Şu an çalışan sistemler:
 
 ```
-✅ Azure OpenAI GPT-4 Turbo (15 enterprise functions)
+✅ Azure LyDian Labs OX5C9E2B Turbo (15 enterprise functions)
 ✅ Azure Cosmos DB (14 containers)
 ✅ Azure Translator (150+ dil)
 ✅ Azure Speech Services
@@ -250,7 +250,7 @@ curl http://localhost:3100/api/legal-ai/health
 ## 📚 DOKÜMANTASYON LİNKLERİ
 
 ### Core Services
-- Azure OpenAI: https://docs.microsoft.com/azure/ai-services/openai/
+- Azure LyDian Labs: https://docs.microsoft.com/azure/ai-services/openai/
 - Azure Cosmos DB: https://docs.microsoft.com/azure/cosmos-db/
 - Azure Translator: https://docs.microsoft.com/azure/ai-services/translator/
 

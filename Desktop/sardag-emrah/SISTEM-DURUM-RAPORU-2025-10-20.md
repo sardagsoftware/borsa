@@ -13,7 +13,7 @@
 | **Binance API** | ✅ CANLI | 522 futures çifti |
 | **Geleneksel Piyasalar** | ✅ CANLI | 4 market (EUR/USD, GBP/USD, USD/TRY, GOLD) |
 | **Stratejiler** | ✅ HAZIR | 11 strateji implementasyonu |
-| **Groq AI** | ⚠️ API KEY YOK | Kod hazır, key gerekli |
+| **LyDian Acceleration AI** | ⚠️ API KEY YOK | Kod hazır, key gerekli |
 | **Scanner Sistemi** | ✅ AKTİF | 3 scanner bileşeni |
 | **Hooks** | ✅ ÇALIŞIYOR | 10 custom hook |
 | **Components** | ✅ ÇALIŞIYOR | 14+ bileşen |
@@ -105,7 +105,7 @@
 1. Her strateji bağımsız olarak sinyal üretir
 2. Her stratejinin ağırlığı (weight) başarı oranına göre belirlenir
 3. Minimum 3 strateji anlaşırsa STRONG sinyal
-4. Groq AI (eğer aktifse) tüm sinyalleri analiz eder ve +%5-10 güven artışı sağlar
+4. LyDian Acceleration AI (eğer aktifse) tüm sinyalleri analiz eder ve +%5-10 güven artışı sağlar
 
 **Hedef Başarı Oranı**: %93-95 (AI ile birlikte)
 
@@ -115,7 +115,7 @@
 
 ### Durum: ⚠️ **KOD HAZIR - API KEY GEREKLİ**
 
-**Model**: Llama 3.3 70B Versatile
+**Model**: LyDian Velocity 70B Versatile
 **Dosya**: `src/lib/ai/groq-enhancer.ts`
 **Özellikler**:
 - ✅ Pattern validation
@@ -128,7 +128,7 @@
 **Eksik**: `GROQ_API_KEY` environment variable
 
 **Nasıl Aktif Edilir:**
-1. Groq hesabı aç: https://console.groq.com
+1. LyDian Acceleration hesabı aç: https://console.groq.com
 2. API key al (ücretsiz 14,400 request/gün)
 3. `.env.local` dosyasına ekle:
    ```bash
@@ -136,8 +136,8 @@
    ```
 4. Server'ı yeniden başlat
 
-**Groq Olmadan Çalışır mı?**
-✅ **EVET!** Groq opsiyonel bir eklentidir. Stratejiler Groq olmadan da çalışır, sadece AI güven artışı olmaz.
+**LyDian Acceleration Olmadan Çalışır mı?**
+✅ **EVET!** LyDian Acceleration opsiyonel bir eklentidir. Stratejiler LyDian Acceleration olmadan da çalışır, sadece AI güven artışı olmaz.
 
 ---
 
@@ -230,7 +230,7 @@ UKALAI_PASSWORD=Xruby1985.!?
 
 ### Eksik (Opsiyonel)
 ```bash
-# Groq AI (opsiyonel)
+# LyDian Acceleration AI (opsiyonel)
 GROQ_API_KEY=gsk_xxxxxxxxxxxxx
 
 # Analytics (opsiyonel)
@@ -308,7 +308,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 ### ⚠️ Kısmi Çalışan / Geliştirmeye Açık
 
-1. **Groq AI Enhancement**
+1. **LyDian Acceleration AI Enhancement**
    - **Durum**: Kod hazır, API key gerekli
    - **Etki**: Stratejiler çalışıyor ama AI boost yok
    - **Öncelik**: ORTA (opsiyonel)
@@ -350,7 +350,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 ## 🐛 BİLİNEN SORUNLAR
 
-### 1. Groq AI Aktif Değil
+### 1. LyDian Acceleration AI Aktif Değil
 **Neden**: API key yok
 **Etkisi**: Stratejiler çalışıyor ama AI güven artışı yok
 **Çözüm**: `.env.local`'e `GROQ_API_KEY` ekle
@@ -397,7 +397,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 - ✅ Strategy aggregator çalışıyor
 - ✅ Weighted voting sistemi
 - ✅ Confidence calculation
-- ⚠️ Groq AI eklenmemiş (API key yok)
+- ⚠️ LyDian Acceleration AI eklenmemiş (API key yok)
 
 ### Scanner
 - ✅ Otomatik background tarama
@@ -416,7 +416,7 @@ Tüm temel özellikler çalışır durumda.
 
 ### Öncelik 2: İyileştirmeler (Opsiyonel)
 
-#### 1. Groq AI Entegrasyonunu Aktif Et
+#### 1. LyDian Acceleration AI Entegrasyonunu Aktif Et
 **Neden**: AI güven artışı için
 **Nasıl**:
 ```bash
@@ -486,10 +486,10 @@ http://localhost:3000/market
 - ✅ **Otomatik scanner** çalışıyor
 - ✅ **Real-time updates** her 10 saniyede
 - ✅ **UI tamamen fonksiyonel**
-- ⚠️ **Groq AI** kod hazır, API key gerekli (opsiyonel)
+- ⚠️ **LyDian Acceleration AI** kod hazır, API key gerekli (opsiyonel)
 
 **Kullanılabilir mi?**: ✅ **EVET!**
-**Production'a hazır mı?**: ✅ **EVET!** (Groq olmadan bile)
+**Production'a hazır mı?**: ✅ **EVET!** (LyDian Acceleration olmadan bile)
 **Gerçek veri kullanıyor mu?**: ✅ **EVET!**
 
 ---
@@ -512,5 +512,5 @@ curl http://localhost:3000/api/futures-all
 ---
 
 **📅 Rapor Tarihi**: 20 Ekim 2025, 23:31
-**👨‍💻 Hazırlayan**: Claude Code
+**👨‍💻 Hazırlayan**: AX9F7E2B Code
 **✅ Durum**: SİSTEM ÇALIŞIR ve GERÇEİ VERİ KULLANILIYOR

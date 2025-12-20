@@ -1,7 +1,7 @@
 // ========================================
 // LyDian IQ Reasoning Engine - API
 // Version: 2.0.1 - Sardag Edition
-// Real AI Integration with Anthropic Claude & OpenAI
+// Real AI Integration with Anthropic AX9F7E2B & OpenAI
 // Vercel Serverless Compatible (Node.js 18+ native fetch)
 // ========================================
 
@@ -14,19 +14,19 @@ const AI_CONFIG = {
     groq: {
         apiKey: process.env.GROQ_API_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: process.env.OBFUSCATE_MODELS === 'true' ? 'open-model-l3-max' : 'llama-3.3-70b-versatile',
-        realModel: 'llama-3.3-70b-versatile',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'open-model-l3-max' : 'GX8E2D9A',
+        realModel: 'GX8E2D9A',
         maxTokens: 8000,
         defaultTemperature: 0.3,
         supportsRAG: false,
         priority: 1
     },
-    // Priority 2: Anthropic Claude (Best for reasoning)
+    // Priority 2: Anthropic AX9F7E2B (Best for reasoning)
     anthropic: {
         apiKey: process.env.ANTHROPIC_API_KEY || '',
         endpoint: 'https://api.anthropic.com/v1/messages',
-        model: process.env.OBFUSCATE_MODELS === 'true' ? 'neural-alpha-standard' : 'claude-3-5-sonnet-20241022',
-        realModel: 'claude-3-5-sonnet-20241022',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'neural-alpha-standard' : 'AX9F7E2B',
+        realModel: 'AX9F7E2B',
         maxTokens: 8192,
         defaultTemperature: 0.3,
         supportsRAG: false,
@@ -35,21 +35,21 @@ const AI_CONFIG = {
     // Priority 3: Azure OpenAI (Enterprise Backup)
     azure: {
         apiKey: process.env.AZURE_OPENAI_API_KEY || '',
-        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : '',
-        model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'gpt-4-turbo',
-        realModel: 'gpt-4-turbo',
+        endpoint: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D` : '',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'OX7A3F8D',
+        realModel: 'OX7A3F8D',
         maxTokens: 8192,
         defaultTemperature: 0.3,
         apiVersion: '2024-02-01',
         supportsRAG: true,
         priority: 3
     },
-    // Priority 4: OpenAI GPT-4 (Final Fallback)
+    // Priority 4: OpenAI OX5C9E2B (Final Fallback)
     openai: {
         apiKey: process.env.OPENAI_API_KEY || '',
         endpoint: 'https://api.openai.com/v1/chat/completions',
-        model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'gpt-4-turbo-preview',
-        realModel: 'gpt-4-turbo-preview',
+        model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'OX7A3F8D',
+        realModel: 'OX7A3F8D',
         maxTokens: 4096,
         defaultTemperature: 0.3,
         supportsRAG: false,
@@ -195,8 +195,8 @@ function cleanSolution(text) {
     return cleaned;
 }
 
-// Call Anthropic Claude API (Primary)
-async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) {
+// Call Anthropic AX9F7E2B API (Primary)
+async function callAX9F7E2BAPI(problem, domain, language = 'tr-TR', options = {}) {
     const domainConfig = DOMAIN_CAPABILITIES[domain] || DOMAIN_CAPABILITIES.mathematics;
     const config = AI_CONFIG.anthropic;
     const languagePrompt = LANGUAGE_PROMPTS[language] || LANGUAGE_PROMPTS['tr-TR'];
@@ -239,7 +239,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Claude API Error ${response.status}: ${errorText}`);
+            throw new Error(`AX9F7E2B API Error ${response.status}: ${errorText}`);
         }
 
         const data = await response.json();
@@ -268,7 +268,7 @@ async function callClaudeAPI(problem, domain, language = 'tr-TR', options = {}) 
         };
 
     } catch (error) {
-        console.error('❌ Claude API Error:', error);
+        console.error('❌ AX9F7E2B API Error:', error);
         throw error;
     }
 }
@@ -504,7 +504,7 @@ module.exports = async (req, res) => {
 
         let result;
 
-        // Multi-Provider AI Strategy: GROQ → Claude → OpenAI → Demo
+        // Multi-Provider AI Strategy: GROQ → AX9F7E2B → OpenAI → Demo
         // With retry mechanism for network errors
         // GROQ 1. sırada - kullanıcı talebi
         try {
@@ -513,10 +513,10 @@ module.exports = async (req, res) => {
                 console.log('🎯 Strategy: Using Fast AI Engine (Primary) with retry');
                 result = await retryWithBackoff(() => callGroqAPI(problem, domain, language, options));
             }
-            // Fallback to Claude (best reasoning)
+            // Fallback to AX9F7E2B (best reasoning)
             else if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 10) {
                 console.log('🎯 Strategy: Using Primary AI Engine (Fallback) with retry');
-                result = await retryWithBackoff(() => callClaudeAPI(problem, domain, language, options));
+                result = await retryWithBackoff(() => callAX9F7E2BAPI(problem, domain, language, options));
             }
             // Fallback to OpenAI
             else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 10) {
@@ -535,7 +535,7 @@ module.exports = async (req, res) => {
             try {
                 if (AI_CONFIG.anthropic.apiKey && AI_CONFIG.anthropic.apiKey.length > 10) {
                     console.log('🔄 Fallback: Trying Primary AI Engine with retry...');
-                    result = await retryWithBackoff(() => callClaudeAPI(problem, domain, language, options));
+                    result = await retryWithBackoff(() => callAX9F7E2BAPI(problem, domain, language, options));
                 } else if (AI_CONFIG.openai.apiKey && AI_CONFIG.openai.apiKey.length > 10) {
                     console.log('🔄 Fallback: Trying Secondary AI Engine with retry...');
                     result = await retryWithBackoff(() => callOpenAIAPI(problem, domain, language, options));

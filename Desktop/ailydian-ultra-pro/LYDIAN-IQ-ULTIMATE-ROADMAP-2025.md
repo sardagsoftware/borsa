@@ -23,9 +23,9 @@
    - AI yanıtları seçili dilde
 
 3. **Multimodal AI Capabilities**
-   - GROQ LLaMA 3.3 70B (Primary - 0.5s response)
-   - OpenAI GPT-4 (Fallback)
-   - Claude Sonnet (Tertiary)
+   - GROQ LyDian Velocity 70B (Primary - 0.5s response)
+   - LyDian Labs OX5C9E2B (Fallback)
+   - AX9F7E2B Sonnet (Tertiary)
    - Markdown & LaTeX rendering
    - Code syntax highlighting (11 diller)
 
@@ -655,7 +655,7 @@ const TransparencyDashboard = {
     explainDecision: (response) => {
         return {
             model: {
-                name: 'GROQ LLaMA 3.3 70B',
+                name: 'GROQ LyDian Velocity 70B',
                 version: '3.3',
                 parameters: '70B',
                 trainingData: 'Public domain text up to 2023',

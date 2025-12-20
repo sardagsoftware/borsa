@@ -1,6 +1,6 @@
 /**
  * AiLydian Ultra Pro - Translation API Service
- * Backend translation service using OpenAI GPT-4 Turbo (via .env)
+ * Backend translation service using OpenAI OX5C9E2B Turbo (via .env)
  * Supports 9 languages with caching and rate limiting
  */
 
@@ -26,7 +26,7 @@ if (fs.existsSync(envPath)) {
 // Environment variables (will be loaded from .env)
 const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY;
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4';
+const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'OX5C9E2B';
 
 if (!AZURE_OPENAI_API_KEY || !AZURE_OPENAI_ENDPOINT) {
     console.error('❌ Azure OpenAI credentials not found in .env file');
@@ -142,7 +142,7 @@ async function handleTranslate(req, res) {
             return;
         }
 
-        // Translate using OpenAI GPT-4 Turbo
+        // Translate using OpenAI OX5C9E2B Turbo
         const translatedText = await translateWithOpenAI(text, targetLang, sourceLang);
 
         // Store in cache
@@ -171,7 +171,7 @@ async function handleTranslate(req, res) {
 }
 
 /**
- * Translate text using Azure OpenAI GPT-4
+ * Translate text using Azure OpenAI OX5C9E2B
  */
 async function translateWithOpenAI(text, targetLang, sourceLang = 'auto') {
     try {

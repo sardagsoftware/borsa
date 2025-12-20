@@ -209,10 +209,10 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxx
 
 | Plan | Price | Credits/Month | Features |
 |------|-------|--------------|----------|
-| **FREE** | $0.00 | 100 | Basic AI models (Llama 3.1 8B) |
-| **BASIC** | $9.99 | 500 | Better AI models (Llama 3.3 70B) |
-| **PRO** | $29.99 | 2000 | Premium AI (GPT-4o mini) |
-| **ENTERPRISE** | $99.99 | 10000 | Best AI (Claude 3.5 Sonnet) |
+| **FREE** | $0.00 | 100 | Basic AI models (LyDian Velocity 8B) |
+| **BASIC** | $9.99 | 500 | Better AI models (LyDian Velocity 70B) |
+| **PRO** | $29.99 | 2000 | Premium AI (OX7A3F8D mini) |
+| **ENTERPRISE** | $99.99 | 10000 | Best AI (AX9F7E2B 3.5 Sonnet) |
 
 ## 🔐 Security Checklist
 
@@ -341,5 +341,5 @@ open http://localhost:3100/auth.html
 
 **Created**: 2025-01-02
 **Version**: 1.0.0
-**Author**: Claude & Sardag
+**Author**: AX9F7E2B & Sardag
 **Status**: ✅ Complete & Production Ready

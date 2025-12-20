@@ -31,18 +31,18 @@ const costStore = {
 
 // AI Model Cost Rates (per 1K tokens)
 const AI_COSTS = {
-  'gpt-4': { input: 0.03, output: 0.06 },
-  'gpt-4-turbo': { input: 0.01, output: 0.03 },
-  'gpt-4o': { input: 0.005, output: 0.015 },
-  'gpt-3.5-turbo': { input: 0.0015, output: 0.002 },
-  'claude-3.5-sonnet': { input: 0.003, output: 0.015 },
-  'claude-3-opus': { input: 0.015, output: 0.075 },
-  'claude-3-sonnet': { input: 0.003, output: 0.015 },
+  'OX5C9E2B': { input: 0.03, output: 0.06 },
+  'OX7A3F8D': { input: 0.01, output: 0.03 },
+  'OX7A3F8D': { input: 0.005, output: 0.015 },
+  'OX1D4A7F': { input: 0.0015, output: 0.002 },
+  'AX9F7E2B': { input: 0.003, output: 0.015 },
+  'AX4D8C1A': { input: 0.015, output: 0.075 },
+  'AX9F7E2B-3-sonnet': { input: 0.003, output: 0.015 },
   'gemini-2.0-flash': { input: 0.00002, output: 0.00008 },
-  'gemini-1.5-pro': { input: 0.0035, output: 0.01 },
-  'mixtral-8x7b': { input: 0.0007, output: 0.0007 },
-  'mistral-large': { input: 0.004, output: 0.012 },
-  'llama-3.1-70b': { input: 0.0005, output: 0.0008 },
+  'GE6D8A4F': { input: 0.0035, output: 0.01 },
+  'GX4B7F3C': { input: 0.0007, output: 0.0007 },
+  'MX7C4E9A': { input: 0.004, output: 0.012 },
+  'GX9A5E1D': { input: 0.0005, output: 0.0008 },
   'yi-large': { input: 0.003, output: 0.003 },
   'glm-4': { input: 0.0015, output: 0.002 }
 };
@@ -236,7 +236,7 @@ router.post('/azure-usage', (req, res) => {
 
     // Calculate cost based on service
     switch (service) {
-      case 'openai':
+      case 'lydian-labs':
         cost = usage.requests * AZURE_COSTS.openai.requestCost;
         costStore.azure.openai.requests += usage.requests;
         break;

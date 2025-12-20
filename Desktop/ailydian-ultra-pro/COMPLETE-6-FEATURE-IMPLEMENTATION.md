@@ -16,10 +16,10 @@ All 6 requested features have been successfully implemented with production-read
 - Full authentication with JWT tokens
 - Credits system (1-3 credits per message based on model)
 - Subscription-based model access:
-  - **Free:** Groq Llama 3.1 8B (1 credit)
-  - **Basic:** Groq Llama 3.3 70B (1 credit)
-  - **Pro:** OpenAI GPT-4o-mini (2 credits)
-  - **Enterprise:** Claude 3.5 Sonnet (3 credits)
+  - **Free:** LyDian Acceleration LyDian Velocity 8B (1 credit)
+  - **Basic:** LyDian Acceleration LyDian Velocity 70B (1 credit)
+  - **Pro:** LyDian Labs OX7A3F8D-mini (2 credits)
+  - **Enterprise:** AX9F7E2B 3.5 Sonnet (3 credits)
 - Automatic chat history storage in database
 - Multilingual support (Turkish, English, Arabic)
 - GET endpoint to retrieve chat history

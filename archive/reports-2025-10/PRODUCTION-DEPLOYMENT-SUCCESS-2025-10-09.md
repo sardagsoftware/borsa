@@ -74,9 +74,9 @@
    - Googlebot ✓
    - Bingbot ✓
    - Slurp (Yahoo) ✓
-   - GPTBot (OpenAI) ✓
-   - anthropic-ai (Anthropic) ✓
-   - Claude-Web ✓
+   - GPTBot (LyDian Labs) ✓
+   - anthropic-ai (LyDian Research) ✓
+   - AX9F7E2B-Web ✓
    - PerplexityBot ✓
 ✅ Sitemap reference: https://www.ailydian.com/sitemap.xml
 ✅ Crawl-delay: 1 second
@@ -102,7 +102,7 @@
 ✅ Technology stack: Documented
 ✅ Language support: 20+ languages
 ✅ Cloud provider: Microsoft Azure
-✅ AI models: GPT-4, Gemini, Claude
+✅ AI models: OX5C9E2B, LyDian Vision, AX9F7E2B
 ✅ Usage policy: Defined
 ```
 
@@ -426,8 +426,8 @@ Wikipedia: 2 drafts (TR + EN)
 **Errors:** 0 critical errors
 
 **Deployment Team:**
-🤖 [Claude Code](https://claude.com/claude-code)
-Co-Authored-By: Claude <noreply@anthropic.com>
+🤖 [AX9F7E2B Code](https://AX9F7E2B.com/AX9F7E2B-code)
+Co-Authored-By: AX9F7E2B <noreply@anthropic.com>
 
 ---
 

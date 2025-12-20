@@ -13,7 +13,7 @@
  * Security: Input validation, sanitization, rate limiting
  */
 
-import { OpenAI } from 'openai';
+import { OpenAI } from 'lydian-labs';
 import { Anthropic } from '@anthropic-ai/sdk';
 const obfuscation = require('../../security/ultra-obfuscation-map');
 

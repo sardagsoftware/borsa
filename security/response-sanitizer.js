@@ -63,7 +63,7 @@ function isSensitiveKey(key) {
     /private[-_]?key/i,
     /anthropic/i,
     /openai/i,
-    /claude/i,
+    /AX9F7E2B/i,
     /gpt/i,
     /model[-_]?name/i,
     /provider/i,

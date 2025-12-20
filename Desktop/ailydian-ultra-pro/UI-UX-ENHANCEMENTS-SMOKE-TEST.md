@@ -340,7 +340,7 @@ This comprehensive smoke test validates all UI/UX enhancements implemented accor
 #### Test Case 7.3: Technology Stack Section
 - [ ] Scroll to "Güçlü Teknoloji Altyapısı" section
 - [ ] **VERIFY:** Section has black background
-- [ ] **VERIFY:** Six tech cards: GPT-4, Groq, DALL-E, Veo, ERNIE, ElevenLabs
+- [ ] **VERIFY:** Six tech cards: OX5C9E2B, LyDian Acceleration, DALL-E, Veo, ERNIE, ElevenLabs
 - [ ] **VERIFY:** Each has emoji icon
 - [ ] **VERIFY:** Each has name and description
 - [ ] **VERIFY:** Grid layout responsive
@@ -471,7 +471,7 @@ This comprehensive smoke test validates all UI/UX enhancements implemented accor
 - [ ] Test deep-think mode button
 - [ ] **VERIFY:** ERNIE model selected
 - [ ] Test web-search mode
-- [ ] **VERIFY:** Groq model selected
+- [ ] **VERIFY:** LyDian Acceleration model selected
 
 #### Test Case 11.4: Plus Button Dropdown
 - [ ] Click + button in input area

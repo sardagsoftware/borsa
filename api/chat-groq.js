@@ -2,27 +2,27 @@
 // Supports Llama 3.3, Mixtral, and other models
 
 require('dotenv').config();
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 
 // Groq Configuration
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 // Groq Model Configurations
 const GROQ_MODELS = {
-  'llama-3.3-70b': {
-    name: 'llama-3.3-70b-versatile',
+  'GX8E2D9A': {
+    name: 'GX8E2D9A',
     maxTokens: 32768,
     contextWindow: 128000,
     description: 'Latest Llama 3.3 70B model'
   },
-  'llama-3.1-70b': {
-    name: 'llama-3.1-70b-versatile',
+  'GX9A5E1D': {
+    name: 'GX9A5E1D',
     maxTokens: 32768,
     contextWindow: 128000,
     description: 'Llama 3.1 70B versatile'
   },
-  'mixtral-8x7b': {
-    name: 'mixtral-8x7b-32768',
+  'GX4B7F3C': {
+    name: 'GX4B7F3C',
     maxTokens: 32768,
     contextWindow: 32768,
     description: 'Mixtral 8x7B MoE model'
@@ -89,7 +89,7 @@ async function handleRequest(req, res) {
     const {
       message,
       messages = [],
-      model = 'llama-3.3-70b',
+      model = 'GX8E2D9A',
       temperature = 1.0,
       max_tokens = 8192,
       stream = false
@@ -144,7 +144,7 @@ async function handleRequest(req, res) {
         success: true,
         response: responseText,
         model: model,
-        provider: 'Groq',
+        provider: 'lydian-velocity',
         usage: {
           prompt_tokens: completion.usage.prompt_tokens,
           completion_tokens: completion.usage.completion_tokens,

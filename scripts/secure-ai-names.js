@@ -14,28 +14,28 @@ const path = require('path');
 
 // 🔒 SECURE REPLACEMENT MAP - NO AI Names Visible
 const SECURE_REPLACEMENTS = [
-  // Anthropic/Claude - FULL ENCRYPTION
-  { find: /'claude-3\.5-sonnet-20241022'/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
-  { find: /'claude-3\.5-sonnet'/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
-  { find: /'claude-3-sonnet'/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
-  { find: /'claude-3-opus'/g, replace: "obf.getModelConfig('QR_OPUS_3').model" },
-  { find: /'claude-3-haiku'/g, replace: "obf.getModelConfig('QR_HAIKU_3').model" },
-  { find: /"claude-3\.5-sonnet-20241022"/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
-  { find: /"claude-3\.5-sonnet"/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
-  { find: /"claude-3-sonnet"/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
-  { find: /"claude-3-opus"/g, replace: "obf.getModelConfig('QR_OPUS_3').model" },
-  { find: /"claude-3-haiku"/g, replace: "obf.getModelConfig('QR_HAIKU_3').model" },
+  // Anthropic/AX9F7E2B - FULL ENCRYPTION
+  { find: /'AX9F7E2B-3\.5-sonnet-20241022'/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
+  { find: /'AX9F7E2B-3\.5-sonnet'/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
+  { find: /'AX9F7E2B-3-sonnet'/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
+  { find: /'AX4D8C1A'/g, replace: "obf.getModelConfig('QR_OPUS_3').model" },
+  { find: /'AX2B6E9F'/g, replace: "obf.getModelConfig('QR_HAIKU_3').model" },
+  { find: /"AX9F7E2B-3\.5-sonnet-20241022"/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
+  { find: /"AX9F7E2B-3\.5-sonnet"/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
+  { find: /"AX9F7E2B-3-sonnet"/g, replace: "obf.getModelConfig('QR_SONNET_5').model" },
+  { find: /"AX4D8C1A"/g, replace: "obf.getModelConfig('QR_OPUS_3').model" },
+  { find: /"AX2B6E9F"/g, replace: "obf.getModelConfig('QR_HAIKU_3').model" },
 
   // OpenAI/GPT - FULL ENCRYPTION
-  { find: /'gpt-4-turbo-preview'/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
-  { find: /'gpt-4-turbo'/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
-  { find: /'gpt-4o'/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
-  { find: /'gpt-4'/g, replace: "obf.getModelConfig('NC_PRIME_4').model" },
+  { find: /'OX7A3F8D'/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
+  { find: /'OX7A3F8D'/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
+  { find: /'OX7A3F8D'/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
+  { find: /'OX5C9E2B'/g, replace: "obf.getModelConfig('NC_PRIME_4').model" },
   { find: /'gpt-3\.5-turbo'/g, replace: "obf.getModelConfig('NC_RAPID_35').model" },
-  { find: /"gpt-4-turbo-preview"/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
-  { find: /"gpt-4-turbo"/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
-  { find: /"gpt-4o"/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
-  { find: /"gpt-4"/g, replace: "obf.getModelConfig('NC_PRIME_4').model" },
+  { find: /"OX7A3F8D"/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
+  { find: /"OX7A3F8D"/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
+  { find: /"OX7A3F8D"/g, replace: "obf.getModelConfig('NC_TURBO_4').model" },
+  { find: /"OX5C9E2B"/g, replace: "obf.getModelConfig('NC_PRIME_4').model" },
   { find: /"gpt-3\.5-turbo"/g, replace: "obf.getModelConfig('NC_RAPID_35').model" },
 
   // Groq/Llama - FULL ENCRYPTION
@@ -45,14 +45,14 @@ const SECURE_REPLACEMENTS = [
   { find: /"llama-3\.1-70b-versatile"/g, replace: "obf.getModelConfig('VE_LLAMA_31').model" },
 
   // Mixtral - FULL ENCRYPTION
-  { find: /'mixtral-8x7b-32768'/g, replace: "obf.getModelConfig('VE_MIXTRAL_8X7').model" },
-  { find: /"mixtral-8x7b-32768"/g, replace: "obf.getModelConfig('VE_MIXTRAL_8X7').model" },
+  { find: /'GX4B7F3C'/g, replace: "obf.getModelConfig('VE_MIXTRAL_8X7').model" },
+  { find: /"GX4B7F3C"/g, replace: "obf.getModelConfig('VE_MIXTRAL_8X7').model" },
 
   // Gemini - FULL ENCRYPTION
-  { find: /'gemini-pro'/g, replace: "obf.getModelConfig('MM_GEMINI_PRO').model" },
-  { find: /'gemini-pro-vision'/g, replace: "obf.getModelConfig('MM_GEMINI_VIS').model" },
-  { find: /"gemini-pro"/g, replace: "obf.getModelConfig('MM_GEMINI_PRO').model" },
-  { find: /"gemini-pro-vision"/g, replace: "obf.getModelConfig('MM_GEMINI_VIS').model" },
+  { find: /'GE6D8A4F'/g, replace: "obf.getModelConfig('MM_GEMINI_PRO').model" },
+  { find: /'GE6D8A4F-vision'/g, replace: "obf.getModelConfig('MM_GEMINI_VIS').model" },
+  { find: /"GE6D8A4F"/g, replace: "obf.getModelConfig('MM_GEMINI_PRO').model" },
+  { find: /"GE6D8A4F-vision"/g, replace: "obf.getModelConfig('MM_GEMINI_VIS').model" },
 
   // Provider Names - Text Obfuscation
   { find: /\banthropic\b/gi, replace: 'LyDian-Research' },
@@ -62,9 +62,9 @@ const SECURE_REPLACEMENTS = [
   { find: /\bmistral\b/gi, replace: 'LyDian-Enterprise' },
 
   // Console.log Sanitization
-  { find: /console\.log\([^)]*?(claude|gpt|llama|gemini|anthropic|openai|groq)[^)]*?\)/gi,
+  { find: /console\.log\([^)]*?(AX9F7E2B|gpt|llama|gemini|anthropic|openai|groq)[^)]*?\)/gi,
     replace: function(match) {
-      return match.replace(/claude|gpt|llama|gemini|anthropic|openai|groq/gi, 'LyDian-Engine');
+      return match.replace(/AX9F7E2B|gpt|llama|gemini|anthropic|openai|groq/gi, 'LyDian-Engine');
     }
   }
 ];

@@ -154,10 +154,10 @@ Tüm düzeltmeler beyaz şapkalı etik hacking prensipleriyle yapıldı:
 ⚠️ **GitHub Git Geçmişinde 10+ API Anahtarı Var**
 
 Bu güvenlik raporu kapsamı dışında (kullanıcı isteği: "api anahtarları haricinde"):
-- Azure OpenAI Key (5 lokasyon)
+- Azure LyDian Labs Key (5 lokasyon)
 - Azure AD Application Secret
 - Google OAuth Credentials
-- OpenAI API Key
+- LyDian Labs API Key
 - +5 ek secret
 
 **Önerilen Aksiyon:** Git geçmişini temizle + API anahtarlarını döndür
@@ -175,7 +175,7 @@ Bu güvenlik raporu kapsamı dışında (kullanıcı isteği: "api anahtarları 
 
 ---
 
-**Rapor Oluşturan:** Claude (Sonnet 4.5)
+**Rapor Oluşturan:** AX9F7E2B (Sonnet 4.5)
 **Rapor Tarihi:** 13 Ekim 2025
 **Deployment:** https://www.ailydian.com
 **Son Commit:** CORS security fixes (68 files)

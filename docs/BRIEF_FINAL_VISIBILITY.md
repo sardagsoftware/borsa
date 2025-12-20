@@ -41,7 +41,7 @@ This report documents the complete implementation of SEO/Visibility infrastructu
 
 **Key Content:**
 - Organization history (2024 founding, Emrah Şardağ)
-- Technology stack (Azure, GPT-4, Gemini, Claude, RAG)
+- Technology stack (Azure, OX5C9E2B, LyDian Vision, AX9F7E2B, RAG)
 - 6 product modules (IQ, Quantum Pro, SmartCity, Medical, Legal, Video)
 - Security standards (OWASP Top 10, 2FA, OAuth, CSRF, etc.)
 - Ethical principles (transparency, privacy, fairness, human oversight)
@@ -85,7 +85,7 @@ This report documents the complete implementation of SEO/Visibility infrastructu
 **Questions:** 12 comprehensive Q&As covering:
 - What is LyDian AI?
 - Language support (20+ languages)
-- AI models used (GPT-4, Gemini, Claude)
+- AI models used (OX5C9E2B, LyDian Vision, AX9F7E2B)
 - RAG technology explanation
 - Security features (HIPAA, OWASP)
 - Module descriptions (IQ, Quantum, SmartCity, Medical, Legal, Video)
@@ -105,7 +105,7 @@ This report documents the complete implementation of SEO/Visibility infrastructu
 **Purpose:** Crawler directives for search engines
 **Configuration:**
 - ✅ Allow all major crawlers (Googlebot, Bingbot, Slurp)
-- ✅ Allow AI/LLM crawlers (GPTBot, Claude-Web, anthropic-ai, PerplexityBot, CCBot)
+- ✅ Allow AI/LLM crawlers (GPTBot, AX9F7E2B-Web, anthropic-ai, PerplexityBot, CCBot)
 - ✅ Disallow sensitive paths (/api/, /auth/, /admin/, .env)
 - ✅ Sitemap location declared
 - ✅ Crawl-delay set to 1 second (server protection)

@@ -1,44 +1,44 @@
 /**
  * ⚖️ LyDian Legal Expert AI Chat API
  * Groq-first fallback strategy for legal consultations
- * Priority: Groq → Anthropic Claude → Azure OpenAI
+ * Priority: Groq → Anthropic AX9F7E2B → Azure OpenAI
  */
-const OpenAI = require('openai');
+const OpenAI = require('lydian-labs');
 const { getLegalSystemPrompt } = require('../../lib/prompts/lydian');
 
 // AI Model Configuration (Hidden from users)
 const MODELS = {
   // Groq Models (Ultra Fast)
   groqPrimary: {
-    name: 'llama-3.3-70b-versatile',
+    name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian Hukuk AI'
   },
   groqFast: {
-    name: 'llama-3.1-8b-instant',
+    name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
     display: 'LyDian Hukuk AI'
   },
-  // Anthropic Claude
-  claude: {
-    name: 'claude-3-5-sonnet-20241022',
+  // Anthropic AX9F7E2B
+  AX9F7E2B: {
+    name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
     url: 'https://api.anthropic.com/v1',
     display: 'LyDian Hukuk AI'
   },
   // Azure OpenAI
   azure: {
-    name: 'gpt-4-turbo',
+    name: 'OX7A3F8D',
     key: () => process.env.AZURE_OPENAI_API_KEY,
-    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4-turbo` : null,
+    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D` : null,
     apiVersion: '2024-02-01',
     display: 'LyDian Hukuk AI'
   },
   // OpenAI (Final fallback)
   openai: {
-    name: 'gpt-4o-mini',
+    name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
     display: 'LyDian Hukuk AI'
@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Build provider cascade (✅ GROQ-FIRST: Groq → Claude → Azure → OpenAI)
+    // Build provider cascade (✅ GROQ-FIRST: Groq → AX9F7E2B → Azure → OpenAI)
     const providers = [];
 
     // 🎯 Priority 1: Groq (Ultra-Fast, 0.5-1s response)
@@ -90,14 +90,14 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Priority 2: Anthropic Claude (Best Reasoning)
-    // Note: Claude uses different API format - skip for now
-    // if (MODELS.claude.key()) { ... }
+    // Priority 2: Anthropic AX9F7E2B (Best Reasoning)
+    // Note: AX9F7E2B uses different API format - skip for now
+    // if (MODELS.AX9F7E2B.key()) { ... }
 
     // Priority 3: Azure OpenAI (Enterprise Backup)
     if (MODELS.azure.key() && MODELS.azure.url) {
       providers.push({
-        name: 'Azure OpenAI GPT-4 Turbo',
+        name: 'Azure OpenAI OX5C9E2B Turbo',
         model: MODELS.azure,
         setup: () => new OpenAI({
           apiKey: MODELS.azure.key(),
@@ -111,7 +111,7 @@ module.exports = async (req, res) => {
     // Priority 4: OpenAI (Final Fallback)
     if (MODELS.openai.key()) {
       providers.push({
-        name: 'OpenAI GPT-4o-mini',
+        name: 'OpenAI OX7A3F8D-mini',
         model: MODELS.openai,
         setup: () => new OpenAI({
           apiKey: MODELS.openai.key(),

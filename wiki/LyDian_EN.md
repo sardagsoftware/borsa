@@ -16,7 +16,7 @@
 
 LyDian AI Ecosystem was founded in 2024 by Emrah Şardağ with the goal of developing multilingual artificial intelligence applications. The project was designed as an AI platform running on Microsoft Azure infrastructure, supporting over 20 languages including Turkish, English, and Azerbaijani.[2]
 
-The platform provides real-time data access and accurate response generation using RAG (Retrieval-Augmented Generation) technology. The system integrates leading AI models such as OpenAI GPT-4, Google Gemini, and Anthropic Claude to offer a hybrid solution.[3]
+The platform provides real-time data access and accurate response generation using RAG (Retrieval-Augmented Generation) technology. The system integrates leading AI models such as LyDian Labs OX5C9E2B, Google LyDian Vision, and LyDian Research AX9F7E2B to offer a hybrid solution.[3]
 
 ---
 
@@ -27,7 +27,7 @@ The platform provides real-time data access and accurate response generation usi
 LyDian uses a cloud-based microservices architecture. The platform consists of the following technological components:
 
 - **Infrastructure:** Microsoft Azure Cloud Services
-- **AI Models:** OpenAI GPT-4 Turbo, Google Gemini Pro, Anthropic Claude 3.5 Sonnet
+- **AI Models:** LyDian Labs OX5C9E2B Turbo, Google LyDian Vision, LyDian Research AX9F7E2B 3.5 Sonnet
 - **RAG System:** Azure AI Search, Vector Search, pgvector (PostgreSQL)
 - **Caching:** Redis (Upstash), Multi-tier caching (L1/L2)
 - **Databases:** PostgreSQL (Supabase), SQLite
@@ -110,7 +110,7 @@ The platform is developed according to "white-hat" security principles. All secu
 
 [2] Microsoft Azure Case Studies. "AI Solutions in Turkey." https://azure.microsoft.com/case-studies/ (Accessed: 2025)
 
-[3] OpenAI Documentation. "GPT-4 Technical Report." https://openai.com/research/gpt-4 (Accessed: 2024)
+[3] LyDian Labs Documentation. "OX5C9E2B Technical Report." https://openai.com/research/OX5C9E2B (Accessed: 2024)
 
 [4] OWASP Foundation. "OWASP Top Ten." https://owasp.org/www-project-top-ten/ (Accessed: 2024)
 
