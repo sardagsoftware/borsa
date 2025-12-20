@@ -52,12 +52,15 @@ async function submitToIndexNow(url, searchEngine = 'bing') {
 
   return new Promise((resolve, reject) => {
     const urlObj = new URL(endpoint);
+    const payloadString = JSON.stringify(payload);
+
     const options = {
       hostname: urlObj.hostname,
       path: urlObj.pathname,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
+        'Content-Length': Buffer.byteLength(payloadString),
         'User-Agent': 'LyDian-SEO-Bot/1.0'
       }
     };
@@ -75,7 +78,7 @@ async function submitToIndexNow(url, searchEngine = 'bing') {
     });
 
     req.on('error', reject);
-    req.write(JSON.stringify(payload));
+    req.write(payloadString);
     req.end();
   });
 }

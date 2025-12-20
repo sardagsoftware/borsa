@@ -1,0 +1,295 @@
+{
+  "timestamp": "2025-12-20T14:44:47.008Z",
+  "baseUrl": "https://www.ailydian.com",
+  "tests": {
+    "bing": [
+      {
+        "name": "IndexNow Key File Local",
+        "passed": true,
+        "message": "IndexNow key valid (64 chars)",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:48.564Z"
+      },
+      {
+        "name": "IndexNow Payload Format",
+        "passed": [
+          "https://www.ailydian.com/"
+        ],
+        "message": "IndexNow payload properly formatted",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:48.564Z"
+      },
+      {
+        "name": "Bing Verification Tag",
+        "passed": true,
+        "message": "Bing verification tag not found (add when claiming site)",
+        "severity": "warning",
+        "timestamp": "2025-12-20T14:44:48.631Z"
+      },
+      {
+        "name": "BingBot Access",
+        "passed": true,
+        "message": "BingBot explicitly configured",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:48.692Z"
+      },
+      {
+        "name": "Sitemap URL Count",
+        "passed": true,
+        "message": "139 URLs in sitemap",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.760Z"
+      },
+      {
+        "name": "Structured Data (Schema.org)",
+        "passed": true,
+        "message": "Schema.org markup detected",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.828Z"
+      },
+      {
+        "name": "Clean URL Structure",
+        "passed": true,
+        "message": "URLs are clean without query parameters",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.897Z"
+      },
+      {
+        "name": "Page Size Optimization",
+        "passed": true,
+        "message": "Page size: 136.53 KB (target: <500KB)",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.967Z"
+      },
+      {
+        "name": "HTTPS Redirect",
+        "passed": false,
+        "message": "HTTP does not redirect to HTTPS",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.100Z"
+      }
+    ],
+    "google": [
+      {
+        "name": "Google Verification Tag",
+        "passed": true,
+        "message": "Google verification tag not found (add when claiming site)",
+        "severity": "warning",
+        "timestamp": "2025-12-20T14:44:49.167Z"
+      },
+      {
+        "name": "Googlebot Access",
+        "passed": true,
+        "message": "Googlebot explicitly configured",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.229Z"
+      },
+      {
+        "name": "Google Sitemap Ping URL",
+        "passed": true,
+        "message": "Sitemap URL ready for Google ping: https://www.google.com/ping?sitemap=https%3A%2F%2Fwww.ailydian.com%2Fsitemap.xml",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:49.229Z"
+      },
+      {
+        "name": "Core Web Vitals (LCP)",
+        "passed": true,
+        "message": "Page load time: 67ms (LCP target: <2500ms)",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:49.296Z"
+      },
+      {
+        "name": "Mobile-Friendly Design",
+        "passed": true,
+        "message": "Viewport configured for mobile",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.365Z"
+      },
+      {
+        "name": "Structured Data (JSON-LD)",
+        "passed": true,
+        "message": "JSON-LD structured data found",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:49.432Z"
+      },
+      {
+        "name": "Image Alt Attributes",
+        "passed": true,
+        "message": "Some images missing alt attributes",
+        "severity": "warning",
+        "timestamp": "2025-12-20T14:44:49.503Z"
+      },
+      {
+        "name": "HTTPS Everywhere",
+        "passed": false,
+        "message": "Possible mixed content detected",
+        "severity": "warning",
+        "timestamp": "2025-12-20T14:44:49.573Z"
+      },
+      {
+        "name": "Title Tag Optimization",
+        "passed": true,
+        "message": "Title length: 41 chars (optimal: 10-60)",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.640Z"
+      },
+      {
+        "name": "Meta Description Optimization",
+        "passed": true,
+        "message": "Description length: 140 chars (optimal: 50-160)",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.719Z"
+      }
+    ],
+    "yandex": [
+      {
+        "name": "Yandex Verification Tag",
+        "passed": true,
+        "message": "Yandex verification tag not found (add when claiming site)",
+        "severity": "warning",
+        "timestamp": "2025-12-20T14:44:49.794Z"
+      },
+      {
+        "name": "YandexBot Access",
+        "passed": true,
+        "message": "YandexBot explicitly configured",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.863Z"
+      },
+      {
+        "name": "UTF-8 Character Encoding",
+        "passed": true,
+        "message": "UTF-8 encoding configured for multi-language support",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:49.929Z"
+      },
+      {
+        "name": "Yandex Turbo Pages",
+        "passed": true,
+        "message": "No Yandex Turbo pages (optional feature)",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:49.993Z"
+      },
+      {
+        "name": "Sitemap XML Format",
+        "passed": true,
+        "message": "Sitemap follows XML standard (Yandex compatible)",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:50.061Z"
+      },
+      {
+        "name": "Yandex Metrica Integration",
+        "passed": true,
+        "message": "No Yandex Metrica (recommended for Russian market)",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:50.133Z"
+      },
+      {
+        "name": "Geolocation Meta Tags",
+        "passed": true,
+        "message": "Geolocation meta tags found",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:50.198Z"
+      },
+      {
+        "name": "Content Volume",
+        "passed": true,
+        "message": "Page content size: 135.37 KB",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:50.265Z"
+      },
+      {
+        "name": "IndexNow Support",
+        "passed": true,
+        "message": "IndexNow key configured (Yandex supports IndexNow)",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:50.327Z"
+      },
+      {
+        "name": "Language Specification",
+        "passed": true,
+        "message": "Language tags configured",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:50.404Z"
+      }
+    ],
+    "general": [
+      {
+        "name": "Homepage Accessible",
+        "passed": true,
+        "message": "Homepage loads successfully",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:47.467Z"
+      },
+      {
+        "name": "SSL/TLS Configured",
+        "passed": true,
+        "message": "HTTPS protocol active",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:47.547Z"
+      },
+      {
+        "name": "Robots.txt Valid",
+        "passed": true,
+        "message": "robots.txt properly configured",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:47.740Z"
+      },
+      {
+        "name": "Sitemap.xml Valid",
+        "passed": true,
+        "message": "sitemap.xml properly formatted with URLs",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:48.005Z"
+      },
+      {
+        "name": "Meta Tags Present",
+        "passed": true,
+        "message": "Title: true, Description: true, Keywords: true, OG: true",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.073Z"
+      },
+      {
+        "name": "IndexNow Key File",
+        "passed": true,
+        "message": "IndexNow key file exists and valid (64 chars)",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:48.289Z"
+      },
+      {
+        "name": "Canonical URLs",
+        "passed": true,
+        "message": "Canonical URL tag present",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.360Z"
+      },
+      {
+        "name": "Multi-language Support",
+        "passed": true,
+        "message": "hreflang tags present for multi-language",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.427Z"
+      },
+      {
+        "name": "Mobile Viewport",
+        "passed": true,
+        "message": "Viewport meta tag configured",
+        "severity": "error",
+        "timestamp": "2025-12-20T14:44:48.494Z"
+      },
+      {
+        "name": "Response Time",
+        "passed": true,
+        "message": "69ms (target: <3000ms)",
+        "severity": "info",
+        "timestamp": "2025-12-20T14:44:48.563Z"
+      }
+    ]
+  },
+  "summary": {
+    "total": 39,
+    "passed": 37,
+    "failed": 1,
+    "warnings": 1
+  }
+}
