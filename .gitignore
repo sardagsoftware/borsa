@@ -129,3 +129,4 @@ htmlcov/
 gitleaks.json
 trufflehog.json
 .vercel
+security/ai-obfuscation-map.json

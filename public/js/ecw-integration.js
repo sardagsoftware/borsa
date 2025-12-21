@@ -226,7 +226,7 @@ class ECWIntegration {
             'OX1D4A7F': 1.0,
             'AX9F7E2B-3': 1.2,
             'GE6D8A4F': 1.1,
-            'llama-2': 0.8 // Open source, potentially more efficient
+            'LX_CORE-2': 0.8 // Open source, potentially more efficient
         };
 
         const multiplier = modelMultipliers[model] || 1.0;

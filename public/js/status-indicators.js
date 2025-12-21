@@ -42,12 +42,12 @@ class StatusIndicators {
                         <span class="status-text">API</span>
                         <div class="status-details" id="apiDetails">
                             <div class="detail-row">
-                                <span>OpenAI:</span>
-                                <span class="status-value" id="openai-status">-</span>
+                                <span>OMEGA_SYS:</span>
+                                <span class="status-value" id="OMEGA_SYS-status">-</span>
                             </div>
                             <div class="detail-row">
                                 <span>Azure:</span>
-                                <span class="status-value" id="azure-openai-status">-</span>
+                                <span class="status-value" id="azure-OMEGA_SYS-status">-</span>
                             </div>
                             <div class="detail-row">
                                 <span>Google AI:</span>

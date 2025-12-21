@@ -4,9 +4,9 @@
  *
  * Priority Order:
  * 1. Groq (GX8E2D9A) - Ultra-fast, 0.5-1s response
- * 2. Anthropic AX9F7E2B - Best reasoning
- * 3. Azure OpenAI - Enterprise reliability
- * 4. OpenAI OX5C9E2B - Final fallback
+ * 2. APEX_SYS AX9F7E2B - Best reasoning
+ * 3. Azure OMEGA_SYS - Enterprise reliability
+ * 4. OMEGA_SYS OX5C9E2B - Final fallback
  *
  * @version 2.0.0
  * @author Ailydian Team
@@ -27,7 +27,7 @@ class AilydianAIClient {
       { name: 'lydian-velocity', endpoint: '/api/lydian-iq/solve', priority: 1 },
       { name: 'AX9F7E2B', endpoint: '/api/chat/AX9F7E2B', priority: 2 },
       { name: 'Azure', endpoint: '/api/chat/azure', priority: 3 },
-      { name: 'lydian-labs', endpoint: '/api/chat/openai', priority: 4 }
+      { name: 'lydian-labs', endpoint: '/api/chat/OMEGA_SYS', priority: 4 }
     ];
 
     this.currentProvider = null;

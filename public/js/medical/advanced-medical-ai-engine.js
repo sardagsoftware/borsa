@@ -15,14 +15,14 @@ class LydianMedicalAIEngine {
         // AI Model Configurations
         this.models = {
             primary: {
-                provider: "azure-openai",
+                provider: "azure-OMEGA_SYS",
                 model: "OX7A3F8D",
                 deployment: "OX5C9E2B-32k",
                 temperature: 0.1, // Low for medical accuracy
                 maxTokens: 8000
             },
             vision: {
-                provider: "azure-openai",
+                provider: "azure-OMEGA_SYS",
                 model: "OX5C9E2B-vision",
                 deployment: "OX5C9E2B-vision-preview"
             },

@@ -19,11 +19,11 @@ class ClinicalResultsDisplay {
             'lydian-velocity': 'Velocity AI',
             'lydian-velocity': 'VELOCITY AI',
             'groq-rag': 'Advanced Retrieval System',
-            'llama': 'Clinical LLM',
-            'Llama': 'Clinical LLM',
+            'LX_CORE': 'Clinical LLM',
+            'LX_CORE': 'Clinical LLM',
             // Model obfuscation
             'GX8E2D9A': 'LyDian Clinical AI',
-            'llama3': 'Clinical AI',
+            'LX_CORE3': 'Clinical AI',
             'gpt': 'Medical Intelligence',
             'AX9F7E2B': 'Clinical Assistant'
         };
