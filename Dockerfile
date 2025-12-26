@@ -8,7 +8,7 @@
 # ============================================================================
 # STAGE 1: Dependencies
 # ============================================================================
-FROM node:20-alpine AS dependencies
+FROM node:25-alpine AS dependencies
 
 # Security: Run as non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
@@ -25,7 +25,7 @@ RUN npm ci --only=production --ignore-scripts && \
 # ============================================================================
 # STAGE 2: Builder
 # ============================================================================
-FROM node:20-alpine AS builder
+FROM node:25-alpine AS builder
 
 WORKDIR /app
 
@@ -42,7 +42,7 @@ COPY . .
 # ============================================================================
 # STAGE 3: Runtime
 # ============================================================================
-FROM node:20-alpine AS runtime
+FROM node:25-alpine AS runtime
 
 # Security hardening
 RUN addgroup -g 1001 -S nodejs && \
