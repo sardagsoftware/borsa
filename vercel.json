@@ -1,8 +1,7 @@
 {
   "version": 2,
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "echo 'API Functions Ready'",
-  "outputDirectory": "public",
+  "buildCommand": "echo 'Express API + Static Files Ready'",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
@@ -20,6 +19,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index"
+    },
     {
       "source": "/api/rro/:path*",
       "destination": "/api/civic?module=rro&path=:path*"
