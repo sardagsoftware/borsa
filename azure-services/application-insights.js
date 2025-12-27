@@ -38,18 +38,28 @@ class ApplicationInsightsService {
         appInsights.setup(this.instrumentationKey);
       }
 
-      // Configure auto-collection
+      // Configure auto-collection (v3 API compatible - only chainable methods)
       appInsights
         .setAutoCollectRequests(true)       // HTTP requests
         .setAutoCollectPerformance(true)    // Performance counters
         .setAutoCollectExceptions(true)     // Exceptions
         .setAutoCollectDependencies(true)   // Dependencies (DB, APIs)
-        .setAutoCollectConsole(true)        // Console logs
-        .setAutoCollectHeartbeat(true)      // Health heartbeat
-        .setUseDiskRetryCaching(true)       // Retry failed sends
-        .setSendLiveMetrics(true)           // Live metrics stream
-        .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
         .start();
+
+      // Get client for post-initialization config
+      const client = appInsights.defaultClient;
+
+      // Post-initialization config (v3 API - non-chainable methods via client.config)
+      if (client && client.config) {
+        // Console logging
+        client.config.enableAutoCollectConsole = true;
+        // Heartbeat
+        client.config.enableAutoCollectHeartbeat = true;
+        // Live metrics
+        client.config.enableSendLiveMetrics = (process.env.NODE_ENV === 'production');
+        // Disk retry caching
+        client.config.enableUseDiskRetryCaching = true;
+      }
 
       this.client = appInsights.defaultClient;
 

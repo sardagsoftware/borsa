@@ -21,20 +21,20 @@
     "start": "node scripts/validate-environment.js && PORT=3100 node server.js",
     "validate:env": "node scripts/validate-environment.js",
     "prestart": "node scripts/validate-environment.js",
-    "claude:setup": "node scripts/setup-claude-agents.js",
-    "claude:verify": "ls -la .claude/agents/ && cat .clauderc",
-    "claude:info": "echo 'Claude Code Agent System: 35 specialized agents ready. See CLAUDE.EKIP.AGENT.md for details.'"
+    "agent:setup": "node scripts/setup-agent-system.js",
+    "agent:verify": "ls -la .agent/modules/ && cat .agentrc",
+    "agent:info": "echo 'AI Agent System: 35 specialized modules ready. See AGENT.SYSTEM.md for details.'"
   },
   "keywords": [
     "ai",
-    "claude-code",
+    "intelligent-system",
     "agents",
     "enterprise",
     "production-ready"
   ],
   "author": "AILYDIAN Team",
   "license": "ISC",
-  "description": "Enterprise-grade AI orchestration platform with 35+ Claude Code specialized agents",
+  "description": "Enterprise-grade AI orchestration platform with 35+ specialized intelligent agents",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.65.0",
     "@apollo/server": "^5.0.0",
