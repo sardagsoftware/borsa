@@ -7,18 +7,39 @@
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
+    "test:api": "jest tests/api --coverage --verbose",
+    "test:api:core": "jest tests/api/integration/core-apis.test.js",
+    "test:api:medical": "jest tests/api/integration/medical-apis.test.js",
+    "test:api:auth": "jest tests/api/integration/auth-apis.test.js",
+    "test:integration": "jest tests/integration --coverage",
+    "test:unit": "jest tests/unit --coverage",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:api && npm run test",
+    "test:coverage": "jest --coverage --coverageReporters=text --coverageReporters=html --coverageReporters=lcov",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
     "dev": "PORT=3100 node server.js",
     "start": "node scripts/validate-environment.js && PORT=3100 node server.js",
     "validate:env": "node scripts/validate-environment.js",
-    "prestart": "node scripts/validate-environment.js"
+    "prestart": "node scripts/validate-environment.js",
+    "claude:setup": "node scripts/setup-claude-agents.js",
+    "claude:verify": "ls -la .claude/agents/ && cat .clauderc",
+    "claude:info": "echo 'Claude Code Agent System: 35 specialized agents ready. See CLAUDE.EKIP.AGENT.md for details.'"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ai",
+    "claude-code",
+    "agents",
+    "enterprise",
+    "production-ready"
+  ],
+  "author": "AILYDIAN Team",
   "license": "ISC",
-  "description": "",
+  "description": "Enterprise-grade AI orchestration platform with 35+ Claude Code specialized agents",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.65.0",
     "@apollo/server": "^5.0.0",
+    "@sentry/node": "^7.100.0",
+    "@sentry/profiling-node": "^7.100.0",
     "@azure/ai-form-recognizer": "^5.1.0",
     "@azure/arm-containerservice": "^22.3.0",
     "@azure/arm-frontdoor": "^5.3.0",
@@ -38,6 +59,8 @@
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/sdk-trace-node": "^2.1.0",
     "@sendgrid/mail": "^8.1.4",
+    "@sentry/node": "^10.32.1",
+    "@sentry/profiling-node": "^10.32.1",
     "apollo-server-express": "^3.13.0",
     "applicationinsights": "^3.12.0",
     "axios": "^1.12.2",
@@ -94,6 +117,39 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.1"
+    "@jest/globals": "^29.7.0",
+    "@playwright/test": "^1.55.1",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "server.js",
+      "lib/**/*.js",
+      "!lib/**/*.test.js",
+      "!lib/**/*.spec.js",
+      "!node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    },
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/tests/**/*.spec.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/.*\\.spec\\.ts$"
+    ],
+    "verbose": true,
+    "testTimeout": 30000
   }
 }
