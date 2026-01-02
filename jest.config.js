@@ -18,6 +18,7 @@ module.exports = {
     'middleware/**/*.js',
     'api/**/*.js',
     'lib/**/*.js',
+    'services/**/*.js',
     '!**/node_modules/**',
     '!**/tests/**',
   ],

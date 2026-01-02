@@ -1,0 +1,634 @@
+<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan...">
+  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
+  <link rel="canonical" href="https://www.ailydian.com/hero-video-demo-1-neural">
+  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
+  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
+  <meta property="og:url" content="https://www.ailydian.com/hero-video-demo-1-neural">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/hero-video-demo-1-neural">
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/hero-video-demo-1-neural">
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/hero-video-demo-1-neural">
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/hero-video-demo-1-neural">
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/hero-video-demo-1-neural">
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/hero-video-demo-1-neural">
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/hero-video-demo-1-neural">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Demo 1: Neural Network Hero - LyDian</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Righteous&amp;family=Caveat:wght@700&amp;family=Inter:wght@400;600;700;900&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Righteous&amp;family=Caveat:wght@700&amp;family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet" crossorigin="anonymous">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ========== VIDEO HERO FULLSCREEN ========== */
+        .hero-video-fullscreen {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Video Background */
+        .hero-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.5) saturate(1.2);
+            animation: video-zoom 30s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes video-zoom {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.08); }
+        }
+
+        /* Gradient Overlay */
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 14, 39, 0.85) 0%,
+                rgba(26, 31, 58, 0.7) 50%,
+                rgba(64, 156, 255, 0.3) 100%
+            );
+            z-index: 2;
+        }
+
+        /* Content Container */
+        .hero-video-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            width: 90%;
+            padding: 20px;
+        }
+
+        /* Glassmorphic Container */
+        .hero-glass-container {
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 32px;
+            padding: 60px;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(100, 252, 255, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: glass-float 6s ease-in-out infinite;
+        }
+
+        @keyframes glass-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Badge */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(100, 252, 255, 0.15);
+            border: 1px solid rgba(100, 252, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #64fcff;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: badge-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badge-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(100, 252, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(100, 252, 255, 0.7), 0 0 60px rgba(100, 252, 255, 0.4);
+            }
+        }
+
+        .badge-dot {
+            width: 10px;
+            height: 10px;
+            background: #64fcff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(100, 252, 255, 0.8);
+            animation: dot-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dot-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.6; }
+        }
+
+        /* Hero Title with Typewriter */
+        .hero-title {
+            font-family: 'Caveat', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+            text-shadow:
+                0 0 30px rgba(100, 252, 255, 0.8),
+                0 0 60px rgba(64, 156, 255, 0.6),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            min-height: 120px;
+        }
+
+        .typewriter-text {
+            display: inline-block;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 5px;
+            height: 1.2em;
+            background: #FFFFFF;
+            margin-left: 8px;
+            animation: cursor-blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes cursor-blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Description */
+        .hero-description {
+            font-size: 1.375rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 48px;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-description strong {
+            color: #64fcff;
+            font-weight: 700;
+        }
+
+        /* CTA Buttons */
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-transform: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10A37F 0%, #0D8F6E 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 163, 127, 0.4);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 163, 127, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Demo Label */
+        .demo-label {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.85);
+            color: #64fcff;
+            padding: 16px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(100, 252, 255, 0.4);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-label span {
+            color: white;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-glass-container {
+                padding: 40px 30px;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                min-height: 90px;
+            }
+
+            .hero-description {
+                font-size: 1.125rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .demo-label {
+                top: 20px;
+                left: 20px;
+                font-size: 0.875rem;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-glass-container {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Loading Fallback */
+        .video-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(100, 252, 255, 0.2);
+            border-top-color: #64fcff;
+            border-radius: 50%;
+            animation: spinner 1s linear infinite;
+        }
+
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+  <!-- Visual Rich Results & Images -->
+  
+  <meta property="og:image" content="https://www.ailydian.com/og-images/hero-video-demo-1-neural.png">
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/hero-video-demo-1-neural.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/hero-video-demo-1-neural.png">
+  <meta name="twitter:image:alt" content="🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta property="og:image" content="https://www.ailydian.com/og-images/hero-video-demo-1-neural-2.png">
+  <meta property="og:image" content="https://www.ailydian.com/og-images/hero-video-demo-1-neural-3.png">
+  <meta property="og:image" content="https://www.ailydian.com/og-images/hero-video-demo-1-neural-4.png">
+  
+  
+  
+  
+  
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/hero-video-demo-1-neural.png">
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/hero-video-demo-1-neural.png">
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/hero-video-demo-1-neural.png">
+  
+  
+
+  
+
+  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "🧠 Demo 1: Neural Network Hero - LyDian",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser, iOS, Android",
+  "description": "LyDian AI - 🧠 Demo 1: Neural Network Hero - LyDian",
+  "image": [
+    "https://www.ailydian.com/images/gallery/hero-video-demo-1-neural-1.jpg",
+    "https://www.ailydian.com/images/gallery/hero-video-demo-1-neural-2.jpg",
+    "https://www.ailydian.com/images/gallery/hero-video-demo-1-neural-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/gallery/hero-video-demo-1-neural-1.jpg",
+    "https://www.ailydian.com/images/gallery/hero-video-demo-1-neural-2.jpg",
+    "https://www.ailydian.com/images/gallery/hero-video-demo-1-neural-3.jpg"
+  ],
+  "url": "https://www.ailydian.com/hero-video-demo-1-neural",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1542",
+    "bestRating": "5"
+  },
+  "inLanguage": [
+    "tr",
+    "en",
+    "de",
+    "ru",
+    "uk",
+    "zh",
+    "it"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "🧠 Demo 1: Neural Network Hero - LyDian",
+  "description": "LyDian AI - 🧠 Demo 1: Neural Network Hero - LyDian",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/hero/hero-video-demo-1-neural.jpg",
+    "width": 1200,
+    "height": 630,
+    "caption": "🧠 Demo 1: Neural Network Hero - LyDian"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20",
+  "inLanguage": "tr-TR"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "🧠 Demo 1: Neural Network Hero - LyDian - Video Rehber",
+  "description": "LyDian AI - 🧠 Demo 1: Neural Network Hero - LyDian",
+  "thumbnailUrl": "https://www.ailydian.com/images/video/hero-video-demo-1-neural-preview.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT8M",
+  "contentUrl": "https://www.ailydian.com/videos/hero-video-demo-1-neural.mp4",
+  "embedUrl": "https://www.ailydian.com/hero-video-demo-1-neural#video",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://www.ailydian.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hero Video Demo 1 Neural",
+      "item": "https://www.ailydian.com/hero-video-demo-1-neural"
+    }
+  ]
+}
+  </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta property="og:description" content="LyDian AI - 🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta property="og:url" content="https://www.ailydian.com/hero-video-demo-1-neural">
+  <meta property="og:image" content="https://www.ailydian.com/images/og/hero-video-demo-1-neural.jpg">
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/hero-video-demo-1-neural.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta property="og:site_name" content="LyDian AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta name="twitter:description" content="LyDian AI - 🧠 Demo 1: Neural Network Hero - LyDian">
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/hero-video-demo-1-neural.jpg">
+  <meta name="twitter:image:alt" content="🧠 Demo 1: Neural Network Hero - LyDian">
+  
+  
+  <!-- /Premium SEO -->
+<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
+<body>
+
+    <!-- Demo Label -->
+    <div class="demo-label">
+        🧠 DEMO 1 <span>Neural Network</span>
+    </div>
+
+    <!-- Hero Video Fullscreen Section -->
+    <section class="hero-video-fullscreen">
+
+        <!-- Loading Fallback -->
+        <div class="video-loading" id="videoLoading">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Video Background -->
+        <video class="hero-video-bg" id="heroVideo" autoplay="" muted="" loop="" playsinline="" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect fill='%230a0e27' width='1920' height='1080'/%3E%3C/svg%3E" preload="metadata">
+            <!-- Pexels: Neural Network Brain Connections -->
+            <source src="https://player.vimeo.com/external/373169285.hd.mp4?s=1e0f92c5c1e4cbc01e0f92c5c1e4cbc0&amp;profile_id=175" type="video/mp4">
+        </video>
+
+        <!-- Gradient Overlay -->
+        <div class="hero-video-overlay"></div>
+
+        <!-- Content Container -->
+        <div class="hero-video-content">
+            <div class="hero-glass-container">
+
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Neural Network AI Platform
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="typewriter-text" id="typewriter-text"></span>
+                    <span class="typewriter-cursor"></span>
+                </h1>
+
+                <p class="hero-description">
+                    Gelişmiş yapay zeka modelleriyle desteklenen <strong>LyDian</strong>,
+                    iş süreçlerinizi optimize eder ve yaratıcılığınızı sınırsız hale getirir.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="#" class="btn btn-primary">
+                        🚀 Hemen Başla
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        📖 Daha Fazla Bilgi
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        // Typewriter Effect
+        const texts = [
+            "LyDian AI Platform",
+            "Yapay Zeka Gücü",
+            "52 AI Model, Tek Platform",
+            "Geleceği Şekillendirin"
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById('typewriter-text');
+        const typeSpeed = 100;
+        const deleteSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+
+            if (isDeleting) {
+                typewriterEl.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterEl.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? deleteSpeed : typeSpeed;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                speed = pauseTime;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                speed = 500;
+            }
+
+            setTimeout(typeWriter, speed);
+        }
+
+        // Start typewriter when page loads
+        window.addEventListener('load', () => {
+            typeWriter();
+
+            // Hide loading spinner when video starts playing
+            const video = document.getElementById('heroVideo');
+            const loading = document.getElementById('videoLoading');
+
+            video.addEventListener('loadeddata', () => {
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            });
+        });
+
+        // Video error handling
+        document.getElementById('heroVideo').addEventListener('error', (e) => {
+            console.warn('Video loading failed, using gradient background');
+            document.querySelector('.hero-video-fullscreen').style.background =
+                'linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2c3e50 100%)';
+            document.getElementById('videoLoading').style.display = 'none';
+        });
+    </script>
+
+
+
+</body></html>

@@ -5,6 +5,15 @@ require('dotenv').config();
 // Replaces console.log with production-safe Winston logger
 const logger = require('./lib/logger/production-logger');
 
+// 🚨 ERROR MONITORING - Sentry Integration (2025-12-27)
+const {
+  initializeSentry,
+  sentryRequestHandler,
+  sentryTracingHandler,
+  sentryErrorHandler,
+  captureExceptionWithContext
+} = require('./lib/monitoring/sentry-integration');
+
 // Log startup
 logger.info('🚀 AILYDIAN Ultra Pro Server Starting...', {
   nodeVersion: process.version,
@@ -107,157 +116,12 @@ const upload = multer({
 const app = express();
 const server = http.createServer(app);
 
-// 🚀 ADVANCED CACHING SYSTEM - ENTERPRISE GRADE
-const NodeCache = require('node-cache');
+// 🚨 SENTRY INITIALIZATION - Must be initialized BEFORE other middleware
+const sentry = initializeSentry(app);
 
-// Cache instances with different TTL strategies
-const memoryCache = new NodeCache({
-  stdTTL: 600, // 10 minutes default
-  checkperiod: 120, // Check expired keys every 2 minutes
-  maxKeys: 10000 // Maximum cache entries
-});
-
-const sessionCache = new NodeCache({
-  stdTTL: 1800, // 30 minutes for sessions
-  checkperiod: 300 // Check expired keys every 5 minutes
-});
-
-const aiResponseCache = new NodeCache({
-  stdTTL: 3600, // 1 hour for AI responses
-  checkperiod: 600, // Check expired keys every 10 minutes
-  maxKeys: 5000
-});
-
-const staticCache = new NodeCache({
-  stdTTL: 86400, // 24 hours for static content
-  checkperiod: 3600 // Check expired keys every hour
-});
-
-// Advanced cache management
-class CacheManager {
-  constructor() {
-    this.hitCounts = {
-      memory: 0,
-      session: 0,
-      aiResponse: 0,
-      static: 0
-    };
-    this.missCounts = {
-      memory: 0,
-      session: 0,
-      aiResponse: 0,
-      static: 0
-    };
-    this.totalRequests = 0;
-    this.initializeMetrics();
-  }
-
-  initializeMetrics() {
-    // Track cache performance
-    setInterval(() => {
-      console.log('📊 Cache Performance Report:');
-      console.log(`Memory Cache: ${this.hitCounts.memory}/${this.hitCounts.memory + this.missCounts.memory} hits (${this.getHitRate('memory')}%)`);
-      console.log(`AI Response Cache: ${this.hitCounts.aiResponse}/${this.hitCounts.aiResponse + this.missCounts.aiResponse} hits (${this.getHitRate('aiResponse')}%)`);
-      console.log(`Session Cache: ${this.hitCounts.session}/${this.hitCounts.session + this.missCounts.session} hits (${this.getHitRate('session')}%)`);
-      console.log(`Static Cache: ${this.hitCounts.static}/${this.hitCounts.static + this.missCounts.static} hits (${this.getHitRate('static')}%)`);
-    }, 300000); // Report every 5 minutes
-  }
-
-  getHitRate(cacheType) {
-    const hits = this.hitCounts[cacheType];
-    const total = hits + this.missCounts[cacheType];
-    return total > 0 ? Math.round((hits / total) * 100) : 0;
-  }
-
-  get(cacheType, key) {
-    let cache;
-    switch(cacheType) {
-      case 'memory': cache = memoryCache; break;
-      case 'session': cache = sessionCache; break;
-      case 'aiResponse': cache = aiResponseCache; break;
-      case 'static': cache = staticCache; break;
-      default: return null;
-    }
-
-    const value = cache.get(key);
-    if (value !== undefined) {
-      this.hitCounts[cacheType]++;
-      return value;
-    } else {
-      this.missCounts[cacheType]++;
-      return null;
-    }
-  }
-
-  set(cacheType, key, value, ttl = null) {
-    let cache;
-    switch(cacheType) {
-      case 'memory': cache = memoryCache; break;
-      case 'session': cache = sessionCache; break;
-      case 'aiResponse': cache = aiResponseCache; break;
-      case 'static': cache = staticCache; break;
-      default: return false;
-    }
-
-    if (ttl) {
-      return cache.set(key, value, ttl);
-    } else {
-      return cache.set(key, value);
-    }
-  }
-
-  delete(cacheType, key) {
-    let cache;
-    switch(cacheType) {
-      case 'memory': cache = memoryCache; break;
-      case 'session': cache = sessionCache; break;
-      case 'aiResponse': cache = aiResponseCache; break;
-      case 'static': cache = staticCache; break;
-      default: return false;
-    }
-    return cache.del(key);
-  }
-
-  flush(cacheType = 'all') {
-    if (cacheType === 'all') {
-      memoryCache.flushAll();
-      sessionCache.flushAll();
-      aiResponseCache.flushAll();
-      staticCache.flushAll();
-      return true;
-    }
-
-    let cache;
-    switch(cacheType) {
-      case 'memory': cache = memoryCache; break;
-      case 'session': cache = sessionCache; break;
-      case 'aiResponse': cache = aiResponseCache; break;
-      case 'static': cache = staticCache; break;
-      default: return false;
-    }
-    cache.flushAll();
-    return true;
-  }
-
-  getStats() {
-    return {
-      memory: memoryCache.getStats(),
-      session: sessionCache.getStats(),
-      aiResponse: aiResponseCache.getStats(),
-      static: staticCache.getStats(),
-      hitRates: {
-        memory: this.getHitRate('memory'),
-        session: this.getHitRate('session'),
-        aiResponse: this.getHitRate('aiResponse'),
-        static: this.getHitRate('static')
-      },
-      hitCounts: {...this.hitCounts},
-      missCounts: {...this.missCounts}
-    };
-  }
-}
-
-const cacheManager = new CacheManager();
+// 🚀 ADVANCED CACHING SYSTEM - ENTERPRISE GRADE (Redis-based)
+// Redis cache manager with automatic fallback to memory cache
+const cacheManager = require('./lib/cache/redis-cache-manager');
 
 // ⚖️ LOAD BALANCING & CLUSTERING - ENTERPRISE GRADE SCALING
 const cluster = require('cluster');
@@ -484,10 +348,20 @@ app.use(auditMiddleware({
 }));
 
 // 4. Middleware
+// 🚨 Sentry Request Handler (MUST be FIRST middleware)
+app.use(sentryRequestHandler());
+
+// 🚨 Sentry Tracing Handler (MUST be AFTER request handler)
+app.use(sentryTracingHandler());
+
 // CORS is now handled by setupFullSecurity() with strict whitelist
 // app.use(cors()); // REMOVED - Using strict CORS from security-integration
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+
+// 4.5 Request Logging (Production-grade Winston logger)
+const { requestLogger, errorLogger } = require('./lib/middleware/request-logger');
+app.use(requestLogger);
 
 // 5. Authentication & Authorization (After body parsing)
 app.use(authenticate);
@@ -503,6 +377,10 @@ app.use(complianceHeaders);
 
 // 9. PII Masking in Logs
 app.use(maskPIIInLogs);
+
+// 🏥 MEDICAL EXPERT REDIRECT - Redirect to medical.ailydian.com subdomain
+const { medicalRedirectMiddleware } = require('./middleware/medical-redirect');
+app.use(medicalRedirectMiddleware);
 
 // 10. Static file serving
 app.use(express.static('public'));
@@ -17207,6 +17085,12 @@ app.use('/api/phn', cigPhnAPI);      // Halk Sağlığı Nowcasting
 
 // 🏙️ Unified Civic Intelligence API - Real-time Smart City Data
 app.use('/api/civic', civicAPI);
+
+// 🔴 Error Logger Middleware - Log all errors with full context
+app.use(errorLogger);
+
+// 🚨 Sentry Error Handler (MUST be AFTER all routes and errorLogger)
+app.use(sentryErrorHandler());
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {

@@ -1,0 +1,919 @@
+<!DOCTYPE html><html lang="en"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 suppor...">
+  <meta name="keywords" content="lydian ai, ai platform, quantum ai, velocity engine, enterprise ai, medical ai, legal ai, multilingual ai, hipaa compliant, real-time translation">
+  <link rel="canonical" href="https://www.ailydian.com/cancer-diagnosis-dashboard">
+  <meta property="og:title" content="LyDian AI — Enterprise AI Platform | Quantum AI &amp; Velocity Engine">
+  <meta property="og:description" content="LyDian AI: Enterprise artificial intelligence solutions with Quantum Reasoning, Velocity Engine and Multimodal AI. HIPAA compliant, multilingual, 24/7 support. Medical diagnosis, legal consulting and more.">
+  <meta property="og:url" content="https://www.ailydian.com/cancer-diagnosis-dashboard">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/cancer-diagnosis-dashboard">
+  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/cancer-diagnosis-dashboard">
+  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/cancer-diagnosis-dashboard">
+  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/cancer-diagnosis-dashboard">
+  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/cancer-diagnosis-dashboard">
+  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/cancer-diagnosis-dashboard">
+  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/cancer-diagnosis-dashboard">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Cancer Diagnosis Dashboard | Medical LyDian AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #0A4D8C 0%, #1E88E5 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .dashboard-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .upload-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px dashed #667eea;
+        }
+
+        .upload-section h2 {
+            color: #0A4D8C;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
+            background: white;
+            border: 2px dashed #1E88E5;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: #f0f9ff;
+            border-color: #0A4D8C;
+        }
+
+        .upload-area svg {
+            width: 64px;
+            height: 64px;
+            color: #1E88E5;
+            margin-bottom: 1rem;
+        }
+
+        .clinical-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .info-card label {
+            display: block;
+            font-weight: 600;
+            color: #0A4D8C;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card input,
+        .info-card textarea,
+        .info-card select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .info-card textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .analyze-button {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #0A4D8C 0%, #1E88E5 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .analyze-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(10, 77, 140, 0.4);
+        }
+
+        .analyze-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .risk-assessment {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #f59e0b;
+        }
+
+        .risk-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .risk-badge {
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+        }
+
+        .risk-badge.low {
+            background: #10b981;
+            color: white;
+        }
+
+        .risk-badge.moderate {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .risk-badge.high {
+            background: #ef4444;
+            color: white;
+        }
+
+        .risk-badge.critical {
+            background: #7f1d1d;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .risk-probability {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0A4D8C;
+        }
+
+        .confidence-interval {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .finding-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .finding-card h3 {
+            color: #0A4D8C;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .finding-item {
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid #1E88E5;
+        }
+
+        .explanation-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .explanation-section h2 {
+            color: #0A4D8C;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        .explanation-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+
+        .recommendations-section {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .recommendation-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #10b981;
+        }
+
+        .recommendation-item h4 {
+            color: #0A4D8C;
+            margin-bottom: 0.5rem;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .priority-high {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .priority-stat {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .priority-routine {
+            background: #dbeafe;
+            color: #1e3a8a;
+        }
+
+        .disclaimer {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .disclaimer h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer p {
+            color: #7f1d1d;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #1E88E5;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #0A4D8C, #1E88E5);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+    </style>
+
+  <!-- Visual Rich Results & Images -->
+  
+  <meta property="og:image" content="https://www.ailydian.com/og-images/cancer-diagnosis-dashboard.png">
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/cancer-diagnosis-dashboard.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Advanced Cancer Diagnosis Dashboard | Medical LyDian AI">
+  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/cancer-diagnosis-dashboard.png">
+  <meta name="twitter:image:alt" content="Advanced Cancer Diagnosis Dashboard | Medical LyDian AI">
+  <meta property="og:image" content="https://www.ailydian.com/og-images/cancer-diagnosis-dashboard-2.png">
+  <meta property="og:image" content="https://www.ailydian.com/og-images/cancer-diagnosis-dashboard-3.png">
+  <meta property="og:image" content="https://www.ailydian.com/og-images/cancer-diagnosis-dashboard-4.png">
+  
+  
+  
+  
+  
+  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/cancer-diagnosis-dashboard.png">
+  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/cancer-diagnosis-dashboard.png">
+  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/cancer-diagnosis-dashboard.png">
+  
+  
+
+  
+
+  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser, iOS, Android",
+  "description": "Kanser tanı AI sistemi - Erken teşhis ve tedavi planlaması",
+  "image": [
+    "https://www.ailydian.com/images/gallery/cancer-diagnosis-dashboard-1.jpg",
+    "https://www.ailydian.com/images/gallery/cancer-diagnosis-dashboard-2.jpg",
+    "https://www.ailydian.com/images/gallery/cancer-diagnosis-dashboard-3.jpg"
+  ],
+  "screenshot": [
+    "https://www.ailydian.com/images/gallery/cancer-diagnosis-dashboard-1.jpg",
+    "https://www.ailydian.com/images/gallery/cancer-diagnosis-dashboard-2.jpg",
+    "https://www.ailydian.com/images/gallery/cancer-diagnosis-dashboard-3.jpg"
+  ],
+  "url": "https://www.ailydian.com/cancer-diagnosis-dashboard",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1542",
+    "bestRating": "5"
+  },
+  "inLanguage": [
+    "tr",
+    "en",
+    "de",
+    "ru",
+    "uk",
+    "zh",
+    "it"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI",
+  "description": "Kanser tanı AI sistemi - Erken teşhis ve tedavi planlaması",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.ailydian.com/images/hero/cancer-diagnosis-dashboard.jpg",
+    "width": 1200,
+    "height": 630,
+    "caption": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2025-12-20",
+  "inLanguage": "tr-TR"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Advanced Cancer Diagnosis Dashboard | Medical LyDian AI - Video Rehber",
+  "description": "Kanser tanı AI sistemi - Erken teşhis ve tedavi planlaması",
+  "thumbnailUrl": "https://www.ailydian.com/images/video/cancer-diagnosis-dashboard-preview.jpg",
+  "uploadDate": "2024-01-15",
+  "duration": "PT8M",
+  "contentUrl": "https://www.ailydian.com/videos/cancer-diagnosis-dashboard.mp4",
+  "embedUrl": "https://www.ailydian.com/cancer-diagnosis-dashboard#video",
+  "publisher": {
+    "@type": "Organization",
+    "name": "LyDian AI"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://www.ailydian.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cancer Diagnosis Dashboard",
+      "item": "https://www.ailydian.com/cancer-diagnosis-dashboard"
+    }
+  ]
+}
+  </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Advanced Cancer Diagnosis Dashboard | Medical LyDian AI">
+  <meta property="og:description" content="Kanser tanı AI sistemi - Erken teşhis ve tedavi planlaması">
+  <meta property="og:url" content="https://www.ailydian.com/cancer-diagnosis-dashboard">
+  <meta property="og:image" content="https://www.ailydian.com/images/og/cancer-diagnosis-dashboard.jpg">
+  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/cancer-diagnosis-dashboard.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Advanced Cancer Diagnosis Dashboard | Medical LyDian AI">
+  <meta property="og:site_name" content="LyDian AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Advanced Cancer Diagnosis Dashboard | Medical LyDian AI">
+  <meta name="twitter:description" content="Kanser tanı AI sistemi - Erken teşhis ve tedavi planlaması">
+  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/cancer-diagnosis-dashboard.jpg">
+  <meta name="twitter:image:alt" content="Advanced Cancer Diagnosis Dashboard | Medical LyDian AI">
+  
+  
+  <!-- /Premium SEO -->
+<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>🔬 Advanced Cancer Diagnosis Dashboard</h1>
+            <p>AI-Powered Multi-Modal Cancer Risk Assessment | FDA 510(k) Compliant</p>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h2>📋 Medical Image Upload</h2>
+                <div class="upload-area" id="uploadArea">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <h3>Drop DICOM images here or click to browse</h3>
+                    <p>Supported: CT, MRI, PET, X-Ray (DICOM format)</p>
+                    <input type="file" id="fileInput" accept="image/*,.dcm" multiple="" style="display: none;">
+                </div>
+                <div id="uploadedFiles" style="margin-top: 1rem;"></div>
+            </div>
+
+            <!-- Clinical Information -->
+            <div class="clinical-info">
+                <div class="info-card">
+                    <label>Patient Age</label>
+                    <input type="number" id="patientAge" placeholder="Enter age" min="1" max="120">
+                </div>
+                <div class="info-card">
+                    <label>Patient Sex</label>
+                    <select id="patientSex">
+                        <option value="">Select...</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">Other</option>
+                    </select>
+                </div>
+                <div class="info-card">
+                    <label>Primary Symptoms</label>
+                    <textarea id="symptoms" placeholder="Describe symptoms (e.g., persistent cough, chest pain, weight loss)"></textarea>
+                </div>
+                <div class="info-card">
+                    <label>Medical History</label>
+                    <textarea id="medicalHistory" placeholder="Previous diagnoses, treatments, medications"></textarea>
+                </div>
+                <div class="info-card">
+                    <label>Family History</label>
+                    <textarea id="familyHistory" placeholder="Family history of cancer or other relevant conditions"></textarea>
+                </div>
+                <div class="info-card">
+                    <label>Patient Consent</label>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                        <input type="checkbox" id="consent" style="width: auto;">
+                        <label for="consent" style="font-weight: normal; margin: 0;">I consent to AI analysis of medical data</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analyze Button -->
+            <button class="analyze-button" id="analyzeButton" onclick="performAnalysis()">
+                🧬 Perform Advanced Cancer Analysis
+            </button>
+
+            <!-- Loading State -->
+            <div class="loading" id="loadingState" style="display: none;">
+                <div class="loading-spinner"></div>
+                <h3>Analyzing with Multi-Modal AI...</h3>
+                <p>Processing medical images and clinical data</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+                <!-- Risk Assessment -->
+                <div class="risk-assessment">
+                    <h2>📊 Cancer Risk Assessment</h2>
+                    <div class="risk-level">
+                        <span class="risk-badge" id="riskBadge">MODERATE</span>
+                        <div>
+                            <div class="risk-probability" id="riskProbability">45.3%</div>
+                            <div class="confidence-interval" id="confidenceInterval">95% CI: [38.7%, 51.9%]</div>
+                        </div>
+                    </div>
+                    <p id="riskDescription" style="font-size: 1.1rem; color: #374151;">
+                        Based on comprehensive multi-modal AI analysis combining medical imaging and clinical data.
+                    </p>
+                </div>
+
+                <!-- Explanation Section -->
+                <div class="explanation-section">
+                    <h2>💡 AI Explanation &amp; Key Findings</h2>
+                    <div class="explanation-text" id="explanation">
+                        Analysis combines advanced vision AI (AX9F7E2B 3.5 Sonnet) for image interpretation,
+                        clinical NLP (OX5C9E2B) for symptom analysis, and Bayesian neural networks for probabilistic risk calculation.
+                    </div>
+                </div>
+
+                <!-- Findings Grid -->
+                <div class="findings-grid">
+                    <div class="finding-card">
+                        <h3>🔍 Visual Evidence</h3>
+                        <div id="visualEvidence">
+                            <div class="finding-item">No images uploaded for analysis</div>
+                        </div>
+                    </div>
+                    <div class="finding-card">
+                        <h3>🩺 Clinical Findings</h3>
+                        <div id="clinicalEvidence">
+                            <div class="finding-item">No clinical data provided</div>
+                        </div>
+                    </div>
+                    <div class="finding-card">
+                        <h3>⚠️ Risk Factors</h3>
+                        <div id="riskFactors">
+                            <div class="finding-item">No significant risk factors identified</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations-section">
+                    <h2>📋 Clinical Recommendations</h2>
+                    <div id="recommendations">
+                        <div class="recommendation-item">
+                            <h4>Immediate Action<span class="priority-badge priority-high">HIGH PRIORITY</span></h4>
+                            <p>Schedule specialist consultation within 1-2 weeks</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Diagnostic Testing<span class="priority-badge priority-routine">ROUTINE</span></h4>
+                            <p>Recommend confirmatory imaging (CT/MRI/PET scan)</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Follow-Up Schedule<span class="priority-badge priority-routine">ROUTINE</span></h4>
+                            <p>Follow-up imaging in 6 months to monitor progression</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FDA Disclaimer -->
+                <div class="disclaimer">
+                    <h3>⚠️ Important Medical Disclaimer</h3>
+                    <p>
+                        This AI-enabled medical device (Class II, FDA 510(k)) provides clinical decision support
+                        and does not replace professional medical judgment. All findings and recommendations must be
+                        reviewed and validated by a licensed healthcare provider before clinical application.
+                        This system is intended as an adjunct tool for healthcare professionals only.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <strong>For medical emergencies, call 911 (US) or your local emergency number immediately.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        let uploadedFiles = [];
+
+        uploadArea.onclick = () => fileInput.click();
+
+        uploadArea.ondragover = (e) => {
+            e.preventDefault();
+            uploadArea.style.background = '#f0f9ff';
+        };
+
+        uploadArea.ondragleave = () => {
+            uploadArea.style.background = 'white';
+        };
+
+        uploadArea.ondrop = (e) => {
+            e.preventDefault();
+            uploadArea.style.background = 'white';
+            handleFiles(e.dataTransfer.files);
+        };
+
+        fileInput.onchange = (e) => {
+            handleFiles(e.target.files);
+        };
+
+        function handleFiles(files) {
+            uploadedFiles = Array.from(files);
+            const container = document.getElementById('uploadedFiles');
+            container.innerHTML = '';
+
+            uploadedFiles.forEach((file, index) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'padding: 0.75rem; background: #f0f9ff; border-radius: 8px; margin-top: 0.5rem; display: flex; justify-content: space-between; align-items: center;';
+                div.innerHTML = `
+                    <span>📁 ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                    <button onclick="removeFile(${index})" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer;">Remove</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            handleFiles(uploadedFiles);
+        }
+
+        // Perform analysis
+        async function performAnalysis() {
+            // Validate inputs
+            const consent = document.getElementById('consent').checked;
+            if (!consent) {
+                alert('Patient consent is required for AI analysis (HIPAA & State compliance)');
+                return;
+            }
+
+            const age = document.getElementById('patientAge').value;
+            const sex = document.getElementById('patientSex').value;
+            const symptoms = document.getElementById('symptoms').value;
+
+            if (!age || !sex) {
+                alert('Please provide patient age and sex');
+                return;
+            }
+
+            if (!symptoms && uploadedFiles.length === 0) {
+                alert('Please provide either symptoms or upload medical images');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('resultsSection').classList.remove('active');
+            document.getElementById('analyzeButton').disabled = true;
+
+            // Prepare request data
+            const formData = {
+                patientAge: parseInt(age),
+                patientSex: sex,
+                symptoms: symptoms,
+                medicalHistory: document.getElementById('medicalHistory').value,
+                familyHistory: document.getElementById('familyHistory').value,
+                images: [],
+                consent: {
+                    aiAnalysisAgreed: true,
+                    timestamp: new Date().toISOString()
+                }
+            };
+
+            // Convert images to base64
+            if (uploadedFiles.length > 0) {
+                for (const file of uploadedFiles) {
+                    const base64 = await fileToBase64(file);
+                    formData.images.push({
+                        id: crypto.randomUUID(),
+                        data: base64,
+                        metadata: {
+                            filename: file.name,
+                            size: file.size,
+                            type: file.type
+                        }
+                    });
+                }
+            }
+
+            try {
+                // Call API
+                const response = await fetch('/api/medical/cancer-diagnosis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    displayResults(result.report);
+                } else {
+                    throw new Error(result.error || 'Analysis failed');
+                }
+
+            } catch (error) {
+                console.error('Analysis error:', error);
+                alert('Error performing analysis: ' + error.message);
+            } finally {
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('analyzeButton').disabled = false;
+            }
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function displayResults(report) {
+            const resultsSection = document.getElementById('resultsSection');
+            resultsSection.classList.add('active');
+
+            // Risk assessment
+            const { summary, findings, riskAssessment, recommendations } = report;
+
+            const riskBadge = document.getElementById('riskBadge');
+            const riskProb = document.getElementById('riskProbability');
+            const confInterval = document.getElementById('confidenceInterval');
+            const riskDesc = document.getElementById('riskDescription');
+
+            riskBadge.textContent = summary.riskLevel;
+            riskBadge.className = 'risk-badge ' + summary.riskLevel.toLowerCase();
+            riskProb.textContent = (summary.riskProbability * 100).toFixed(1) + '%';
+            confInterval.textContent = `95% CI: [${(summary.confidenceInterval.lower * 100).toFixed(1)}%, ${(summary.confidenceInterval.upper * 100).toFixed(1)}%]`;
+            riskDesc.textContent = summary.urgency;
+
+            // Explanation
+            document.getElementById('explanation').textContent = findings.narrative;
+
+            // Visual evidence
+            const visualDiv = document.getElementById('visualEvidence');
+            visualDiv.innerHTML = findings.visualEvidence.length > 0
+                ? findings.visualEvidence.map(v => `<div class="finding-item">${v.finding} (Confidence: ${(v.confidence * 100).toFixed(1)}%)</div>`).join('')
+                : '<div class="finding-item">No visual evidence analyzed</div>';
+
+            // Clinical evidence
+            const clinicalDiv = document.getElementById('clinicalEvidence');
+            clinicalDiv.innerHTML = findings.clinicalEvidence.length > 0
+                ? findings.clinicalEvidence.map(c => `<div class="finding-item">${c.description}</div>`).join('')
+                : '<div class="finding-item">No clinical evidence provided</div>';
+
+            // Risk factors
+            const riskDiv = document.getElementById('riskFactors');
+            riskDiv.innerHTML = findings.riskFactors.length > 0
+                ? findings.riskFactors.map(r => `<div class="finding-item">${r}</div>`).join('')
+                : '<div class="finding-item">No significant risk factors identified</div>';
+
+            // Recommendations
+            const recDiv = document.getElementById('recommendations');
+            recDiv.innerHTML = '';
+
+            if (recommendations.immediate.length > 0) {
+                recommendations.immediate.forEach(rec => {
+                    recDiv.innerHTML += `
+                        <div class="recommendation-item">
+                            <h4>${rec.action} <span class="priority-badge priority-${rec.priority.toLowerCase()}">${rec.priority}</span></h4>
+                            <p>Timeframe: ${rec.timeframe}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            if (recommendations.diagnostic.length > 0) {
+                recommendations.diagnostic.forEach(rec => {
+                    recDiv.innerHTML += `
+                        <div class="recommendation-item">
+                            <h4>${rec.test} <span class="priority-badge priority-routine">DIAGNOSTIC</span></h4>
+                            <p>${rec.rationale}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            // Scroll to results
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+
+
+</body></html>
