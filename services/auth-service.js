@@ -214,6 +214,7 @@ class AuthService {
 
     this.app.post('/api/auth/check-email', this.handleCheckEmail.bind(this));
     this.app.post('/api/auth/generate-api-key', this.handleGenerateApiKey.bind(this));
+    this.app.get('/api/csrf-token', this.handleGetCsrfToken.bind(this));
 
     // Service info endpoint
     this.app.get('/', (req, res) => {
@@ -835,21 +836,46 @@ class AuthService {
   // ========================================
 
   async handleCheckEmail(req, res) {
-    const { email } = req.body;
+    try {
+      const { email } = req.body;
 
-    if (!email) {
-      return res.status(400).json({
-        success: false,
-        error: 'Email required',
+      if (!email) {
+        return res.status(400).json({
+          success: false,
+          error: 'Email required',
+        });
+      }
+
+      // Use production database instead of in-memory
+      const { DatabaseHelper } = require('../lib/auth-handler');
+      const user = await DatabaseHelper.findUserByEmail(email);
+
+      res.json({
+        success: true,
+        exists: !!user,
+        provider: user?.provider || null,
+      });
+    } catch (error) {
+      // Fallback to in-memory for backwards compatibility
+      const { email } = req.body;
+      const existingUser = Array.from(this.users.values()).find(u => u.email === email);
+
+      res.json({
+        success: true,
+        exists: !!existingUser,
+        provider: existingUser?.provider,
       });
     }
+  }
 
-    const existingUser = Array.from(this.users.values()).find(u => u.email === email);
+  async handleGetCsrfToken(req, res) {
+    // Generate CSRF token
+    const csrfToken = crypto.randomBytes(32).toString('hex');
 
+    // Store in session or send back
     res.json({
       success: true,
-      exists: !!existingUser,
-      provider: existingUser?.provider,
+      csrfToken,
     });
   }
 
