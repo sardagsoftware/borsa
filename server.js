@@ -5583,16 +5583,6 @@ function getProviderCapabilities(provider) {
   return capabilities[provider] || ['general-ai'];
 }
 
-function getProviderModel(provider) {
-  const models = {
-    azure: 'Azure AI Services 2025',
-    gemini: 'Gemini 2.0 Flash',
-    openai: 'OX5C9E2B Turbo',
-    AX9F7E2B: 'AX9F7E2B 3.5 Sonnet'
-  };
-  return models[provider] || 'Unknown Model';
-}
-
 function getProviderRegion(provider) {
   const regions = {
     azure: 'eastus2',
@@ -7083,6 +7073,31 @@ app.post('/api/medical/oncology/tumor-markers', oncologyTools.handleTumorMarker)
 // app.post('/api/medical/emergency/wells-pe', emergencyTools.handleWellsPE);
 // app.post('/api/medical/emergency/perc', emergencyTools.handlePERC);
 // app.post('/api/medical/emergency/qsofa', emergencyTools.handleqSOFA);
+
+// ═══════════════════════════════════════════════════════════════════════════════════
+// 🏗️ MICROSERVICES INTEGRATION - PHASE 4
+// Integrated mode: All 6 microservices mounted on main server
+// - Monitoring Service (3101) → /api/monitoring
+// - Auth Service (3102) → /api/auth
+// - Azure AI Service (3103) → /api/azure-ai
+// - AI Chat Service (3104) → /api/ai-chat
+// - File Storage Service (3105) → /api/files
+// - Payment Service (3106) → /api/payments
+// ═══════════════════════════════════════════════════════════════════════════════════
+
+const { setupMicroservices } = require('./middleware/microservices-integration');
+
+// Setup all microservices in integrated mode
+setupMicroservices(app, { standalone: false })
+  .then(services => {
+    logger.info('✅ Microservices integration complete', {
+      servicesCount: 6,
+      mode: 'integrated'
+    });
+  })
+  .catch(error => {
+    logger.error('❌ Microservices integration failed', { error: error.message });
+  });
 
 const PORT = process.env.PORT || 3100;
 
