@@ -1,0 +1,12 @@
+# Lint staged files
+npx lint-staged
+
+# Check for secrets (basic regex patterns) - excluding this file
+echo "🔍 Checking for secrets..."
+if git diff --cached --name-only | grep -v "pre-commit" | xargs grep -l -E "(API_KEY|SECRET|PASSWORD|TOKEN).*=.*['\"][a-zA-Z0-9]{20,}" 2>/dev/null; then
+  echo "❌ ERROR: Potential secret found in staged files!"
+  echo "   Please use environment variables instead of hardcoded secrets."
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"

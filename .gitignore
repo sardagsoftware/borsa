@@ -130,3 +130,11 @@ gitleaks.json
 trufflehog.json
 .vercel
 security/ai-obfuscation-map.json
+
+# AI Privacy Protocol - Local config only
+.claude/
+.clauderc
+.cursor/
+.copilot/
+.aider/
+.continue/
