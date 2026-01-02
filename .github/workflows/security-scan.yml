@@ -2,9 +2,12 @@ name: Security Scan
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
+  schedule:
+    # Run weekly (every Monday at 9 AM UTC)
+    - cron: '0 9 * * 1'
   workflow_dispatch:
 
 jobs:
@@ -92,7 +95,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run npm audit
         run: |
@@ -117,21 +124,187 @@ jobs:
             echo "✅ PASS: No critical vulnerabilities"
           fi
 
+  # ===========================================================================
+  # Phase 5.4: Automated Security Audit
+  # ===========================================================================
+  security-audit:
+    name: Comprehensive Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security audit script
+        id: security-audit
+        run: |
+          echo "🔒 Running comprehensive security audit..."
+          node scripts/security-audit.js --json > security-audit-report.json || echo "AUDIT_FAILED=true" >> $GITHUB_ENV
+        continue-on-error: true
+
+      - name: Check audit results
+        run: |
+          if [ "$AUDIT_FAILED" == "true" ]; then
+            echo "❌ Security audit detected issues!"
+            cat security-audit-report.json
+            exit 1
+          else
+            echo "✅ Security audit passed"
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-audit-report
+          path: security-audit-report.json
+          retention-days: 90
+
+  # ===========================================================================
+  # Phase 5.4: Security Headers Validation
+  # ===========================================================================
+  security-headers:
+    name: Security Headers Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate security headers
+        run: |
+          echo "🔍 Validating security headers configuration..."
+
+          # Check if security-headers middleware exists
+          if [ ! -f "middleware/security-headers.js" ]; then
+            echo "❌ Security headers middleware not found!"
+            exit 1
+          fi
+
+          # Check for required headers
+          HEADERS=(
+            "X-Frame-Options"
+            "X-Content-Type-Options"
+            "Strict-Transport-Security"
+            "Content-Security-Policy"
+            "Permissions-Policy"
+          )
+
+          for header in "${HEADERS[@]}"; do
+            if grep -q "$header" middleware/security-headers.js; then
+              echo "✅ $header configured"
+            else
+              echo "❌ $header missing!"
+              exit 1
+            fi
+          done
+
+          # Check for unsafe CSP directives
+          if grep -q "unsafe-eval" middleware/security*.js; then
+            echo "⚠️  WARNING: 'unsafe-eval' found in CSP (review if necessary)"
+          fi
+
+  # ===========================================================================
+  # Phase 5.4: OWASP Compliance Check
+  # ===========================================================================
+  owasp-compliance:
+    name: OWASP Compliance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check OWASP Top 10 compliance
+        run: |
+          echo "🔍 Checking OWASP Top 10 compliance..."
+
+          # A01: Broken Access Control
+          if [ -f "middleware/rbac.js" ] || [ -f "middleware/auth-governance.js" ]; then
+            echo "✅ A01: Access control middleware detected"
+          else
+            echo "⚠️  A01: Missing access control middleware"
+          fi
+
+          # A02: Cryptographic Failures
+          if [ -f "middleware/encryption.js" ] || [ -f "middleware/enforce-https.js" ]; then
+            echo "✅ A02: Encryption middleware detected"
+          else
+            echo "⚠️  A02: Missing encryption middleware"
+          fi
+
+          # A03: Injection
+          if [ -f "middleware/input-validation.js" ]; then
+            echo "✅ A03: Input validation middleware detected"
+          else
+            echo "❌ A03: Missing input validation middleware"
+            exit 1
+          fi
+
+          # A05: Security Misconfiguration
+          if [ -f "middleware/security-headers.js" ]; then
+            echo "✅ A05: Security headers middleware detected"
+          else
+            echo "❌ A05: Missing security headers middleware"
+            exit 1
+          fi
+
+          # A09: Security Logging Failures
+          if [ -f "middleware/audit-logger.js" ] || [ -f "services/monitoring-telemetry-service.js" ]; then
+            echo "✅ A09: Logging and monitoring detected"
+          else
+            echo "⚠️  A09: Missing logging and monitoring"
+          fi
+
   security-summary:
     name: Security Summary
     runs-on: ubuntu-latest
-    needs: [string-guard, secret-scan, dependency-check]
+    needs:
+      [
+        string-guard,
+        secret-scan,
+        dependency-check,
+        security-audit,
+        security-headers,
+        owasp-compliance,
+      ]
     if: always()
 
     steps:
       - name: Generate summary
         run: |
-          echo "## Security Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "## 🛡️ Security Scan Summary - Phase 5.4" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
           echo "| String Guard | ${{ needs.string-guard.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Secret Scan | ${{ needs.secret-scan.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Dependency Check | ${{ needs.dependency-check.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Security Audit (Phase 5.4)** | ${{ needs.security-audit.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Security Headers (Phase 5.4)** | ${{ needs.security-headers.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **OWASP Compliance (Phase 5.4)** | ${{ needs.owasp-compliance.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Phase 1 Week 2** - Anonymization in progress" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.security-audit.result }}" == "failure" ] || \
+             [ "${{ needs.dependency-check.result }}" == "failure" ] || \
+             [ "${{ needs.security-headers.result }}" == "failure" ] || \
+             [ "${{ needs.owasp-compliance.result }}" == "failure" ]; then
+            echo "❌ **CRITICAL SECURITY ISSUES DETECTED**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Review failed jobs above for details." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ **All security checks passed!**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Phase 5.4 Complete** - Production-grade security hardening active" >> $GITHUB_STEP_SUMMARY
+          fi
