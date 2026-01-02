@@ -68,6 +68,22 @@
       "destination": "/public/ailydian-indexnow-2025.txt"
     },
     {
+      "source": "/auth",
+      "destination": "/public/auth.html"
+    },
+    {
+      "source": "/verify-email",
+      "destination": "/public/verify-email.html"
+    },
+    {
+      "source": "/forgot-password",
+      "destination": "/public/forgot-password.html"
+    },
+    {
+      "source": "/reset-password",
+      "destination": "/public/reset-password.html"
+    },
+    {
       "source": "/dashboard",
       "destination": "/public/dashboard.html"
     },
