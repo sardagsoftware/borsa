@@ -38,6 +38,8 @@
  *   POST /api/auth/generate-api-key - Generate API key
  */
 
+/* global URLSearchParams */
+
 const express = require('express');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
@@ -49,9 +51,10 @@ const {
   generateToken: jwtGenerateToken,
   verifyToken: jwtVerifyToken,
   generateApiKey,
-  ROLES,
-  RATE_LIMITS
 } = require('../middleware/api-auth');
+
+// Import production-ready auth handler
+const { AuthHandler } = require('../lib/auth-handler');
 
 class AuthService {
   constructor(config = {}) {
@@ -60,7 +63,7 @@ class AuthService {
       jwtSecret: config.jwtSecret || process.env.JWT_SECRET,
       jwtExpiry: config.jwtExpiry || process.env.JWT_EXPIRY || '24h',
       enableOAuth: config.enableOAuth !== false,
-      ...config
+      ...config,
     };
 
     // Validate JWT secret
@@ -76,41 +79,45 @@ class AuthService {
       google: {
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        redirectUri: process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3102/api/auth/google/callback',
+        redirectUri:
+          process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3102/api/auth/google/callback',
         authUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
         tokenUrl: 'https://oauth2.googleapis.com/token',
         userInfoUrl: 'https://www.googleapis.com/oauth2/v2/userinfo',
-        scope: 'openid email profile'
+        scope: 'openid email profile',
       },
       microsoft: {
         clientId: process.env.MICROSOFT_CLIENT_ID,
         clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
-        redirectUri: process.env.MICROSOFT_REDIRECT_URI || 'http://localhost:3102/api/auth/microsoft/callback',
+        redirectUri:
+          process.env.MICROSOFT_REDIRECT_URI || 'http://localhost:3102/api/auth/microsoft/callback',
         authUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
         tokenUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
         userInfoUrl: 'https://graph.microsoft.com/v1.0/me',
-        scope: 'openid email profile User.Read'
+        scope: 'openid email profile User.Read',
       },
       github: {
         clientId: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        redirectUri: process.env.GITHUB_REDIRECT_URI || 'http://localhost:3102/api/auth/github/callback',
+        redirectUri:
+          process.env.GITHUB_REDIRECT_URI || 'http://localhost:3102/api/auth/github/callback',
         authUrl: 'https://github.com/login/oauth/authorize',
         tokenUrl: 'https://github.com/login/oauth/access_token',
         userInfoUrl: 'https://api.github.com/user',
         emailUrl: 'https://api.github.com/user/emails',
-        scope: 'read:user user:email'
+        scope: 'read:user user:email',
       },
       apple: {
         clientId: process.env.APPLE_CLIENT_ID,
         teamId: process.env.APPLE_TEAM_ID,
         keyId: process.env.APPLE_KEY_ID,
         privateKey: process.env.APPLE_PRIVATE_KEY,
-        redirectUri: process.env.APPLE_REDIRECT_URI || 'http://localhost:3102/api/auth/apple/callback',
+        redirectUri:
+          process.env.APPLE_REDIRECT_URI || 'http://localhost:3102/api/auth/apple/callback',
         authUrl: 'https://appleid.apple.com/auth/authorize',
         tokenUrl: 'https://appleid.apple.com/auth/token',
-        scope: 'name email'
-      }
+        scope: 'name email',
+      },
     };
 
     this.app = express();
@@ -194,6 +201,13 @@ class AuthService {
     this.app.post('/api/auth/logout', this.handleLogout.bind(this));
     this.app.get('/api/auth/verify', this.handleVerify.bind(this));
 
+    // Email verification
+    this.app.post('/api/auth/verify-email', this.handleVerifyEmail.bind(this));
+
+    // Password reset
+    this.app.post('/api/auth/request-reset', this.handleRequestPasswordReset.bind(this));
+    this.app.post('/api/auth/reset-password', this.handleResetPassword.bind(this));
+
     // ========================================
     // Utility Routes
     // ========================================
@@ -208,26 +222,28 @@ class AuthService {
         version: '1.0.0',
         description: 'Authentication and authorization service',
         endpoints: {
-          oauth: this.config.enableOAuth ? {
-            google: 'GET /api/auth/google',
-            microsoft: 'GET /api/auth/microsoft',
-            github: 'GET /api/auth/github',
-            apple: 'GET /api/auth/apple'
-          } : 'disabled',
+          oauth: this.config.enableOAuth
+            ? {
+                google: 'GET /api/auth/google',
+                microsoft: 'GET /api/auth/microsoft',
+                github: 'GET /api/auth/github',
+                apple: 'GET /api/auth/apple',
+              }
+            : 'disabled',
           jwt: {
             login: 'POST /api/auth/login',
             register: 'POST /api/auth/register',
             refresh: 'POST /api/auth/refresh',
             logout: 'POST /api/auth/logout',
-            verify: 'GET /api/auth/verify'
+            verify: 'GET /api/auth/verify',
           },
           utilities: {
             checkEmail: 'POST /api/auth/check-email',
-            generateApiKey: 'POST /api/auth/generate-api-key'
-          }
+            generateApiKey: 'POST /api/auth/generate-api-key',
+          },
         },
         uptime: process.uptime(),
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     });
   }
@@ -256,7 +272,7 @@ class AuthService {
         tenantId: 'default',
         permissions: [],
         createdAt: new Date(),
-        lastLogin: new Date()
+        lastLogin: new Date(),
       };
       this.users.set(userId, user);
       logger.info('New user created', { userId, email: profile.email, provider });
@@ -274,7 +290,7 @@ class AuthService {
     if (!this.oauthConfigs.google.clientId) {
       return res.status(503).json({
         success: false,
-        error: 'Google OAuth not configured'
+        error: 'Google OAuth not configured',
       });
     }
 
@@ -288,7 +304,7 @@ class AuthService {
       scope: this.oauthConfigs.google.scope,
       state: state,
       access_type: 'offline',
-      prompt: 'consent'
+      prompt: 'consent',
     });
 
     res.redirect(`${this.oauthConfigs.google.authUrl}?${params.toString()}`);
@@ -304,26 +320,48 @@ class AuthService {
     this.oauthStates.delete(state);
 
     try {
+      // Exchange code for token
       const tokenResponse = await axios.post(this.oauthConfigs.google.tokenUrl, {
         code,
         client_id: this.oauthConfigs.google.clientId,
         client_secret: this.oauthConfigs.google.clientSecret,
         redirect_uri: this.oauthConfigs.google.redirectUri,
-        grant_type: 'authorization_code'
+        grant_type: 'authorization_code',
       });
 
-      const { access_token } = tokenResponse.data;
+      const { access_token, refresh_token } = tokenResponse.data;
 
+      // Get user profile
       const userResponse = await axios.get(this.oauthConfigs.google.userInfoUrl, {
-        headers: { Authorization: `Bearer ${access_token}` }
+        headers: { Authorization: `Bearer ${access_token}` },
       });
 
-      const user = this.createOrUpdateUser(userResponse.data, 'google');
-      const token = jwtGenerateToken(user);
+      const profile = userResponse.data;
 
-      res.redirect(`/dashboard.html?token=${token}&name=${encodeURIComponent(user.name)}`);
+      // Get client info
+      const ipAddress = req.ip || req.connection.remoteAddress;
+      const userAgent = req.headers['user-agent'];
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.handleOAuthLogin({
+        provider: 'google',
+        profile: {
+          id: profile.id,
+          email: profile.email,
+          name: profile.name,
+          picture: profile.picture,
+        },
+        accessToken: access_token,
+        refreshToken: refresh_token,
+        ipAddress,
+        userAgent,
+      });
+
+      res.redirect(
+        `/dashboard.html?token=${result.accessToken}&name=${encodeURIComponent(result.user.name)}`
+      );
     } catch (error) {
-      logger.error('Google OAuth error', { error });
+      logger.error('Google OAuth error', { error: error.message });
       res.redirect('/auth.html?error=google_auth_failed');
     }
   }
@@ -332,7 +370,7 @@ class AuthService {
     if (!this.oauthConfigs.microsoft.clientId) {
       return res.status(503).json({
         success: false,
-        error: 'Microsoft OAuth not configured'
+        error: 'Microsoft OAuth not configured',
       });
     }
 
@@ -345,7 +383,7 @@ class AuthService {
       response_type: 'code',
       scope: this.oauthConfigs.microsoft.scope,
       state: state,
-      response_mode: 'query'
+      response_mode: 'query',
     });
 
     res.redirect(`${this.oauthConfigs.microsoft.authUrl}?${params.toString()}`);
@@ -368,7 +406,7 @@ class AuthService {
           client_id: this.oauthConfigs.microsoft.clientId,
           client_secret: this.oauthConfigs.microsoft.clientSecret,
           redirect_uri: this.oauthConfigs.microsoft.redirectUri,
-          grant_type: 'authorization_code'
+          grant_type: 'authorization_code',
         }),
         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
       );
@@ -376,14 +414,14 @@ class AuthService {
       const { access_token } = tokenResponse.data;
 
       const userResponse = await axios.get(this.oauthConfigs.microsoft.userInfoUrl, {
-        headers: { Authorization: `Bearer ${access_token}` }
+        headers: { Authorization: `Bearer ${access_token}` },
       });
 
       const profile = {
         id: userResponse.data.id,
         email: userResponse.data.mail || userResponse.data.userPrincipalName,
         name: userResponse.data.displayName,
-        picture: null
+        picture: null,
       };
 
       const user = this.createOrUpdateUser(profile, 'microsoft');
@@ -400,7 +438,7 @@ class AuthService {
     if (!this.oauthConfigs.github.clientId) {
       return res.status(503).json({
         success: false,
-        error: 'GitHub OAuth not configured'
+        error: 'GitHub OAuth not configured',
       });
     }
 
@@ -412,7 +450,7 @@ class AuthService {
       redirect_uri: this.oauthConfigs.github.redirectUri,
       scope: this.oauthConfigs.github.scope,
       state: state,
-      allow_signup: 'true'
+      allow_signup: 'true',
     });
 
     res.redirect(`${this.oauthConfigs.github.authUrl}?${params.toString()}`);
@@ -434,7 +472,7 @@ class AuthService {
           code,
           client_id: this.oauthConfigs.github.clientId,
           client_secret: this.oauthConfigs.github.clientSecret,
-          redirect_uri: this.oauthConfigs.github.redirectUri
+          redirect_uri: this.oauthConfigs.github.redirectUri,
         },
         { headers: { Accept: 'application/json' } }
       );
@@ -444,8 +482,8 @@ class AuthService {
       const userResponse = await axios.get(this.oauthConfigs.github.userInfoUrl, {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       });
 
       let email = userResponse.data.email;
@@ -453,8 +491,8 @@ class AuthService {
         const emailResponse = await axios.get(this.oauthConfigs.github.emailUrl, {
           headers: {
             Authorization: `Bearer ${access_token}`,
-            Accept: 'application/json'
-          }
+            Accept: 'application/json',
+          },
         });
         const primaryEmail = emailResponse.data.find(e => e.primary);
         email = primaryEmail ? primaryEmail.email : emailResponse.data[0]?.email;
@@ -465,7 +503,7 @@ class AuthService {
         email: email,
         name: userResponse.data.name || userResponse.data.login,
         login: userResponse.data.login,
-        avatar_url: userResponse.data.avatar_url
+        avatar_url: userResponse.data.avatar_url,
       };
 
       const user = this.createOrUpdateUser(profile, 'github');
@@ -482,7 +520,7 @@ class AuthService {
     if (!this.oauthConfigs.apple.clientId) {
       return res.status(503).json({
         success: false,
-        error: 'Apple OAuth not configured'
+        error: 'Apple OAuth not configured',
       });
     }
 
@@ -495,14 +533,14 @@ class AuthService {
       response_type: 'code id_token',
       response_mode: 'form_post',
       scope: this.oauthConfigs.apple.scope,
-      state: state
+      state: state,
     });
 
     res.redirect(`${this.oauthConfigs.apple.authUrl}?${params.toString()}`);
   }
 
   async handleAppleCallback(req, res) {
-    const { code, state, id_token, user } = req.body;
+    const { state, id_token, user } = req.body;
 
     if (!state || !this.oauthStates.has(state)) {
       return res.status(400).json({ success: false, message: 'Invalid state parameter' });
@@ -516,7 +554,7 @@ class AuthService {
       let profile = {
         id: decodedToken.sub,
         email: decodedToken.email,
-        name: decodedToken.email
+        name: decodedToken.email,
       };
 
       if (user) {
@@ -539,133 +577,115 @@ class AuthService {
   // ========================================
 
   async handleLogin(req, res) {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({
-        success: false,
-        error: 'Email and password required'
-      });
-    }
-
-    // TODO: Implement actual password verification with database
-    // This is a placeholder implementation
-    const user = Array.from(this.users.values()).find(u => u.email === email);
-
-    if (!user) {
-      return res.status(401).json({
-        success: false,
-        error: 'Invalid credentials'
-      });
-    }
-
-    const token = jwtGenerateToken(user);
-    const refreshToken = jwtGenerateToken(user, { expiresIn: '7d' });
-
-    logger.info('User logged in', { userId: user.id, email: user.email });
-
-    res.json({
-      success: true,
-      accessToken: token,
-      refreshToken: refreshToken,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role
-      }
-    });
-  }
-
-  async handleRegister(req, res) {
-    const { email, password, name } = req.body;
-
-    if (!email || !password || !name) {
-      return res.status(400).json({
-        success: false,
-        error: 'Email, password, and name required'
-      });
-    }
-
-    // Check if user already exists
-    const existingUser = Array.from(this.users.values()).find(u => u.email === email);
-
-    if (existingUser) {
-      return res.status(409).json({
-        success: false,
-        error: 'User already exists'
-      });
-    }
-
-    // TODO: Hash password with bcrypt before storing
-    const userId = `local_${crypto.randomUUID()}`;
-    const user = {
-      id: userId,
-      email,
-      name,
-      provider: 'local',
-      role: 'USER',
-      tenantId: 'default',
-      permissions: [],
-      createdAt: new Date(),
-      lastLogin: new Date()
-    };
-
-    this.users.set(userId, user);
-
-    const token = jwtGenerateToken(user);
-    const refreshToken = jwtGenerateToken(user, { expiresIn: '7d' });
-
-    logger.info('New user registered', { userId, email });
-
-    res.status(201).json({
-      success: true,
-      accessToken: token,
-      refreshToken: refreshToken,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role
-      }
-    });
-  }
-
-  async handleRefresh(req, res) {
-    const { refreshToken } = req.body;
-
-    if (!refreshToken) {
-      return res.status(400).json({
-        success: false,
-        error: 'Refresh token required'
-      });
-    }
-
     try {
-      const decoded = jwtVerifyToken(refreshToken);
-      const user = this.users.get(decoded.userId);
+      const { email, password } = req.body;
 
-      if (!user) {
-        return res.status(404).json({
+      if (!email || !password) {
+        return res.status(400).json({
           success: false,
-          error: 'User not found'
+          error: 'Email and password required',
         });
       }
 
-      const newToken = jwtGenerateToken(user, { expiresIn: '1h' });
+      // Get client IP and user agent
+      const ipAddress = req.ip || req.connection.remoteAddress;
+      const userAgent = req.headers['user-agent'];
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.login({
+        email,
+        password,
+        ipAddress,
+        userAgent,
+      });
 
       res.json({
         success: true,
-        accessToken: newToken,
-        expiresIn: 3600,
-        tokenType: 'Bearer'
+        accessToken: result.accessToken,
+        refreshToken: result.refreshToken,
+        user: result.user,
+      });
+    } catch (error) {
+      logger.error('Login failed', { error: error.message });
+
+      // Determine appropriate status code
+      const statusCode = error.message.includes('Too many') ? 429 : 401;
+
+      res.status(statusCode).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async handleRegister(req, res) {
+    try {
+      const { email, password, name } = req.body;
+
+      if (!email || !password || !name) {
+        return res.status(400).json({
+          success: false,
+          error: 'Email, password, and name required',
+        });
+      }
+
+      // Get client IP and user agent
+      const ipAddress = req.ip || req.connection.remoteAddress;
+      const userAgent = req.headers['user-agent'];
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.register({
+        email,
+        password,
+        name,
+        ipAddress,
+        userAgent,
+      });
+
+      res.status(201).json({
+        success: true,
+        user: result.user,
+        verificationToken: result.verificationToken,
+        message: 'Registration successful. Please verify your email address.',
+      });
+    } catch (error) {
+      logger.error('Registration failed', { error: error.message });
+
+      // Determine appropriate status code
+      const statusCode = error.message.includes('already exists') ? 409 : 400;
+
+      res.status(statusCode).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async handleRefresh(req, res) {
+    try {
+      const { refreshToken } = req.body;
+
+      if (!refreshToken) {
+        return res.status(400).json({
+          success: false,
+          error: 'Refresh token required',
+        });
+      }
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.refreshToken(refreshToken);
+
+      res.json({
+        success: true,
+        accessToken: result.accessToken,
+        expiresIn: result.expiresIn,
+        tokenType: 'Bearer',
       });
     } catch (error) {
       logger.warn('Token refresh failed', { error: error.message });
       res.status(401).json({
         success: false,
-        error: 'Token refresh failed',
-        message: error.message
+        error: error.message,
       });
     }
   }
@@ -680,49 +700,132 @@ class AuthService {
 
     res.json({
       success: true,
-      message: 'Logged out successfully'
+      message: 'Logged out successfully',
     });
   }
 
   async handleVerify(req, res) {
-    const token = req.headers.authorization?.replace('Bearer ', '');
-
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        error: 'No token provided'
-      });
-    }
-
     try {
-      const decoded = jwtVerifyToken(token);
-      const user = this.users.get(decoded.userId);
+      const token = req.headers.authorization?.replace('Bearer ', '');
 
-      if (!user) {
-        return res.status(404).json({
+      if (!token) {
+        return res.status(401).json({
           success: false,
-          error: 'User not found'
+          error: 'No token provided',
         });
       }
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.verifyAccessToken(token);
 
       res.json({
         success: true,
         data: {
-          user: {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            avatar: user.avatar,
-            role: user.role,
-            provider: user.provider
-          }
-        }
+          user: result.user,
+        },
       });
     } catch (error) {
       logger.warn('Token verification failed', { error: error.message });
       res.status(401).json({
         success: false,
-        error: 'Invalid token'
+        error: error.message,
+      });
+    }
+  }
+
+  // ========================================
+  // Email Verification & Password Reset Handlers
+  // ========================================
+
+  async handleVerifyEmail(req, res) {
+    try {
+      const { token } = req.body;
+
+      if (!token) {
+        return res.status(400).json({
+          success: false,
+          error: 'Verification token required',
+        });
+      }
+
+      const ipAddress = req.ip || req.connection.remoteAddress;
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.verifyEmail(token, ipAddress);
+
+      res.json({
+        success: true,
+        message: 'Email verified successfully',
+        user: result.user,
+      });
+    } catch (error) {
+      logger.error('Email verification failed', { error: error.message });
+      res.status(400).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async handleRequestPasswordReset(req, res) {
+    try {
+      const { email } = req.body;
+
+      if (!email) {
+        return res.status(400).json({
+          success: false,
+          error: 'Email required',
+        });
+      }
+
+      const ipAddress = req.ip || req.connection.remoteAddress;
+
+      // Use production-ready auth handler
+      const result = await AuthHandler.requestPasswordReset(email, ipAddress);
+
+      res.json({
+        success: true,
+        message: 'If the email exists, a password reset link has been sent',
+        resetToken: result.resetToken, // In production, send via email instead
+      });
+    } catch (error) {
+      logger.error('Password reset request failed', { error: error.message });
+      res.status(400).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async handleResetPassword(req, res) {
+    try {
+      const { token, newPassword } = req.body;
+
+      if (!token || !newPassword) {
+        return res.status(400).json({
+          success: false,
+          error: 'Token and new password required',
+        });
+      }
+
+      const ipAddress = req.ip || req.connection.remoteAddress;
+
+      // Use production-ready auth handler
+      await AuthHandler.resetPassword({
+        token,
+        newPassword,
+        ipAddress,
+      });
+
+      res.json({
+        success: true,
+        message: 'Password reset successfully',
+      });
+    } catch (error) {
+      logger.error('Password reset failed', { error: error.message });
+      res.status(400).json({
+        success: false,
+        error: error.message,
       });
     }
   }
@@ -737,7 +840,7 @@ class AuthService {
     if (!email) {
       return res.status(400).json({
         success: false,
-        error: 'Email required'
+        error: 'Email required',
       });
     }
 
@@ -746,7 +849,7 @@ class AuthService {
     res.json({
       success: true,
       exists: !!existingUser,
-      provider: existingUser?.provider
+      provider: existingUser?.provider,
     });
   }
 
@@ -756,7 +859,7 @@ class AuthService {
     if (!token) {
       return res.status(401).json({
         success: false,
-        error: 'Authentication required'
+        error: 'Authentication required',
       });
     }
 
@@ -767,7 +870,7 @@ class AuthService {
       if (!user) {
         return res.status(404).json({
           success: false,
-          error: 'User not found'
+          error: 'User not found',
         });
       }
 
@@ -778,13 +881,13 @@ class AuthService {
       res.json({
         success: true,
         apiKey: apiKey,
-        message: 'API key generated successfully. Store it securely - it will not be shown again.'
+        message: 'API key generated successfully. Store it securely - it will not be shown again.',
       });
     } catch (error) {
       logger.error('API key generation failed', { error });
       res.status(401).json({
         success: false,
-        error: 'Authentication failed'
+        error: 'Authentication failed',
       });
     }
   }
@@ -796,30 +899,30 @@ class AuthService {
         success: false,
         error: 'Endpoint not found',
         path: req.path,
-        service: 'auth-service'
+        service: 'auth-service',
       });
     });
 
     // General error handler
-    // eslint-disable-next-line no-unused-vars
+
     this.app.use((err, req, res, _next) => {
       logger.error('Unhandled error in auth service', {
         error: {
           name: err.name,
           message: err.message,
-          stack: err.stack
+          stack: err.stack,
         },
         request: {
           method: req.method,
           path: req.path,
-          query: req.query
-        }
+          query: req.query,
+        },
       });
 
       res.status(err.status || 500).json({
         success: false,
         error: process.env.NODE_ENV === 'production' ? 'Internal server error' : err.message,
-        service: 'auth-service'
+        service: 'auth-service',
       });
     });
   }
@@ -834,11 +937,10 @@ class AuthService {
           resolve(this.server);
         });
 
-        this.server.on('error', (error) => {
+        this.server.on('error', error => {
           logger.error('Failed to start auth service', { error });
           reject(error);
         });
-
       } catch (error) {
         logger.error('Error starting auth service', { error });
         reject(error);
@@ -850,7 +952,7 @@ class AuthService {
     logger.info('🛑 Stopping auth service...');
 
     if (this.server) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         this.server.close(() => {
           logger.info('✅ Auth service stopped');
           resolve();
@@ -876,7 +978,7 @@ module.exports = AuthService;
 // Standalone mode - start service if run directly
 if (require.main === module) {
   const service = new AuthService();
-  service.start().catch((error) => {
+  service.start().catch(error => {
     logger.error('Failed to start auth service', { error });
     process.exit(1);
   });
