@@ -18,6 +18,7 @@ For the complete service extraction roadmap, see [SERVICE-EXTRACTION-PLAN.md](..
 #### Description
 
 Enterprise-grade monitoring and health check service that provides:
+
 - System health monitoring
 - API endpoint health checks
 - WebSocket connection monitoring
@@ -27,16 +28,16 @@ Enterprise-grade monitoring and health check service that provides:
 
 #### Endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/health` | Basic health check |
-| GET | `/api/status` | Detailed server status |
-| GET | `/api/health-status` | API health monitor status |
-| GET | `/api/health-monitor` | Comprehensive monitoring data |
-| GET | `/api/database/health` | Database health check |
-| GET | `/api/cache/health` | Cache health check |
-| GET | `/api/storage/health` | Storage health check |
-| POST | `/api/alerts/webhook` | Alert processing webhook |
+| Method | Path                   | Description                   |
+| ------ | ---------------------- | ----------------------------- |
+| GET    | `/api/health`          | Basic health check            |
+| GET    | `/api/status`          | Detailed server status        |
+| GET    | `/api/health-status`   | API health monitor status     |
+| GET    | `/api/health-monitor`  | Comprehensive monitoring data |
+| GET    | `/api/database/health` | Database health check         |
+| GET    | `/api/cache/health`    | Cache health check            |
+| GET    | `/api/storage/health`  | Storage health check          |
+| POST   | `/api/alerts/webhook`  | Alert processing webhook      |
 
 #### Running Standalone
 
@@ -59,7 +60,7 @@ const MonitoringService = require('./services/monitoring-service');
 const monitoringService = new MonitoringService({
   port: 3101,
   enableSentry: true,
-  enableHealthMonitor: true
+  enableHealthMonitor: true,
 });
 
 // Start the service
@@ -102,22 +103,24 @@ curl -X POST http://localhost:3101/api/alerts/webhook \
 
 #### Environment Variables
 
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `MONITORING_PORT` | No | 3101 | Service port |
-| `SENTRY_DSN` | No | - | Sentry error tracking DSN |
-| `SENTRY_ENABLED` | No | false | Enable Sentry in non-production |
-| `NODE_ENV` | No | development | Runtime environment |
-| `LOG_LEVEL` | No | info | Logging level |
+| Variable          | Required | Default     | Description                     |
+| ----------------- | -------- | ----------- | ------------------------------- |
+| `MONITORING_PORT` | No       | 3101        | Service port                    |
+| `SENTRY_DSN`      | No       | -           | Sentry error tracking DSN       |
+| `SENTRY_ENABLED`  | No       | false       | Enable Sentry in non-production |
+| `NODE_ENV`        | No       | development | Runtime environment             |
+| `LOG_LEVEL`       | No       | info        | Logging level                   |
 
 #### Health Check Examples
 
 **Basic Health Check**
+
 ```bash
 curl http://localhost:3101/api/health
 ```
 
 Response:
+
 ```json
 {
   "status": "OK",
@@ -129,11 +132,13 @@ Response:
 ```
 
 **Server Status**
+
 ```bash
 curl http://localhost:3101/api/status
 ```
 
 Response:
+
 ```json
 {
   "service": "monitoring-service",
@@ -157,6 +162,7 @@ Response:
 #### Alert Webhook
 
 **Send Alert**
+
 ```bash
 curl -X POST http://localhost:3101/api/alerts/webhook \
   -H "Content-Type: application/json" \
@@ -172,6 +178,7 @@ curl -X POST http://localhost:3101/api/alerts/webhook \
 ```
 
 Response:
+
 ```json
 {
   "success": true,
@@ -212,15 +219,17 @@ Response:
 To integrate the monitoring service with the main server:
 
 1. **Import the service:**
+
 ```javascript
 const MonitoringService = require('./services/monitoring-service');
 ```
 
 2. **Create and initialize:**
+
 ```javascript
 const monitoringService = new MonitoringService({
   enableSentry: true,
-  enableHealthMonitor: true
+  enableHealthMonitor: true,
 });
 
 // Mount the service routes
@@ -231,11 +240,12 @@ const healthMonitor = monitoringService.getHealthMonitor();
 ```
 
 3. **Use in WebSocket broadcasts:**
+
 ```javascript
-healthMonitor.on('healthUpdate', (healthData) => {
+healthMonitor.on('healthUpdate', healthData => {
   broadcastToStatusSubscribers({
     type: 'status-update',
-    data: healthMonitor.getStatusForAPI()
+    data: healthMonitor.getStatusForAPI(),
   });
 });
 ```
@@ -243,6 +253,7 @@ healthMonitor.on('healthUpdate', (healthData) => {
 #### Production Deployment
 
 **Docker**
+
 ```dockerfile
 FROM node:20-alpine
 WORKDIR /app
@@ -254,13 +265,14 @@ CMD ["node", "services/monitoring-service.js"]
 ```
 
 **Docker Compose**
+
 ```yaml
 version: '3.8'
 services:
   monitoring:
     build: .
     ports:
-      - "3101:3101"
+      - '3101:3101'
     environment:
       - NODE_ENV=production
       - MONITORING_PORT=3101
@@ -269,6 +281,7 @@ services:
 ```
 
 **Kubernetes**
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -279,30 +292,31 @@ spec:
   template:
     spec:
       containers:
-      - name: monitoring
-        image: ailydian/monitoring-service:latest
-        ports:
-        - containerPort: 3101
-        env:
-        - name: NODE_ENV
-          value: "production"
-        livenessProbe:
-          httpGet:
-            path: /api/health
-            port: 3101
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /api/health
-            port: 3101
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: monitoring
+          image: ailydian/monitoring-service:latest
+          ports:
+            - containerPort: 3101
+          env:
+            - name: NODE_ENV
+              value: 'production'
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3101
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3101
+            initialDelaySeconds: 5
+            periodSeconds: 5
 ```
 
 #### Monitoring Metrics
 
 The monitoring service tracks:
+
 - **API Health**: Response times, uptime, error rates
 - **WebSocket Connections**: Connection status, latency
 - **System Metrics**: Memory usage, CPU, uptime
@@ -331,6 +345,7 @@ The monitoring service tracks:
 #### Description
 
 Enterprise-grade authentication and authorization service that provides:
+
 - JWT authentication and token management
 - OAuth 2.0 integration (Google, Microsoft, GitHub, Apple)
 - Session management
@@ -342,33 +357,33 @@ Enterprise-grade authentication and authorization service that provides:
 
 **OAuth Authentication:**
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/auth/google` | Google OAuth login |
-| GET | `/api/auth/google/callback` | Google callback |
-| GET | `/api/auth/microsoft` | Microsoft OAuth login |
-| GET | `/api/auth/microsoft/callback` | Microsoft callback |
-| GET | `/api/auth/github` | GitHub OAuth login |
-| GET | `/api/auth/github/callback` | GitHub callback |
-| GET | `/api/auth/apple` | Apple OAuth login |
-| POST | `/api/auth/apple/callback` | Apple callback |
+| Method | Path                           | Description           |
+| ------ | ------------------------------ | --------------------- |
+| GET    | `/api/auth/google`             | Google OAuth login    |
+| GET    | `/api/auth/google/callback`    | Google callback       |
+| GET    | `/api/auth/microsoft`          | Microsoft OAuth login |
+| GET    | `/api/auth/microsoft/callback` | Microsoft callback    |
+| GET    | `/api/auth/github`             | GitHub OAuth login    |
+| GET    | `/api/auth/github/callback`    | GitHub callback       |
+| GET    | `/api/auth/apple`              | Apple OAuth login     |
+| POST   | `/api/auth/apple/callback`     | Apple callback        |
 
 **JWT Authentication:**
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/auth/login` | Login with credentials |
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/refresh` | Refresh access token |
-| POST | `/api/auth/logout` | Logout user |
-| GET | `/api/auth/verify` | Verify JWT token |
+| Method | Path                 | Description            |
+| ------ | -------------------- | ---------------------- |
+| POST   | `/api/auth/login`    | Login with credentials |
+| POST   | `/api/auth/register` | Register new user      |
+| POST   | `/api/auth/refresh`  | Refresh access token   |
+| POST   | `/api/auth/logout`   | Logout user            |
+| GET    | `/api/auth/verify`   | Verify JWT token       |
 
 **Utilities:**
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/auth/check-email` | Check if email exists |
-| POST | `/api/auth/generate-api-key` | Generate API key |
+| Method | Path                         | Description           |
+| ------ | ---------------------------- | --------------------- |
+| POST   | `/api/auth/check-email`      | Check if email exists |
+| POST   | `/api/auth/generate-api-key` | Generate API key      |
 
 #### Running Standalone
 
@@ -395,7 +410,7 @@ const authService = new AuthService({
   port: 3102,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiry: '24h',
-  enableOAuth: true
+  enableOAuth: true,
 });
 
 // Start the service
@@ -447,25 +462,26 @@ curl http://localhost:3102/api/auth/verify \
 
 #### Environment Variables
 
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `AUTH_PORT` | No | 3102 | Service port |
-| `JWT_SECRET` | Yes (Prod) | - | JWT secret key (min 32 chars) |
-| `JWT_EXPIRY` | No | 24h | Token expiration time |
-| `GOOGLE_CLIENT_ID` | No | - | Google OAuth client ID |
-| `GOOGLE_CLIENT_SECRET` | No | - | Google OAuth client secret |
-| `MICROSOFT_CLIENT_ID` | No | - | Microsoft OAuth client ID |
-| `MICROSOFT_CLIENT_SECRET` | No | - | Microsoft OAuth client secret |
-| `GITHUB_CLIENT_ID` | No | - | GitHub OAuth client ID |
-| `GITHUB_CLIENT_SECRET` | No | - | GitHub OAuth client secret |
-| `APPLE_CLIENT_ID` | No | - | Apple OAuth client ID |
-| `APPLE_TEAM_ID` | No | - | Apple team ID |
-| `APPLE_KEY_ID` | No | - | Apple key ID |
-| `APPLE_PRIVATE_KEY` | No | - | Apple private key |
+| Variable                  | Required   | Default | Description                   |
+| ------------------------- | ---------- | ------- | ----------------------------- |
+| `AUTH_PORT`               | No         | 3102    | Service port                  |
+| `JWT_SECRET`              | Yes (Prod) | -       | JWT secret key (min 32 chars) |
+| `JWT_EXPIRY`              | No         | 24h     | Token expiration time         |
+| `GOOGLE_CLIENT_ID`        | No         | -       | Google OAuth client ID        |
+| `GOOGLE_CLIENT_SECRET`    | No         | -       | Google OAuth client secret    |
+| `MICROSOFT_CLIENT_ID`     | No         | -       | Microsoft OAuth client ID     |
+| `MICROSOFT_CLIENT_SECRET` | No         | -       | Microsoft OAuth client secret |
+| `GITHUB_CLIENT_ID`        | No         | -       | GitHub OAuth client ID        |
+| `GITHUB_CLIENT_SECRET`    | No         | -       | GitHub OAuth client secret    |
+| `APPLE_CLIENT_ID`         | No         | -       | Apple OAuth client ID         |
+| `APPLE_TEAM_ID`           | No         | -       | Apple team ID                 |
+| `APPLE_KEY_ID`            | No         | -       | Apple key ID                  |
+| `APPLE_PRIVATE_KEY`       | No         | -       | Apple private key             |
 
 #### Authentication Examples
 
 **Register User**
+
 ```bash
 curl -X POST http://localhost:3102/api/auth/register \
   -H "Content-Type: application/json" \
@@ -477,6 +493,7 @@ curl -X POST http://localhost:3102/api/auth/register \
 ```
 
 Response:
+
 ```json
 {
   "success": true,
@@ -492,6 +509,7 @@ Response:
 ```
 
 **Login**
+
 ```bash
 curl -X POST http://localhost:3102/api/auth/login \
   -H "Content-Type: application/json" \
@@ -502,6 +520,7 @@ curl -X POST http://localhost:3102/api/auth/login \
 ```
 
 **Refresh Token**
+
 ```bash
 curl -X POST http://localhost:3102/api/auth/refresh \
   -H "Content-Type: application/json" \
@@ -511,6 +530,7 @@ curl -X POST http://localhost:3102/api/auth/refresh \
 ```
 
 Response:
+
 ```json
 {
   "success": true,
@@ -521,12 +541,14 @@ Response:
 ```
 
 **Generate API Key**
+
 ```bash
 curl -X POST http://localhost:3102/api/auth/generate-api-key \
   -H "Authorization: Bearer eyJhbGci..."
 ```
 
 Response:
+
 ```json
 {
   "success": true,
@@ -558,18 +580,19 @@ Response:
 
 #### Roles and Permissions
 
-| Role | Level | Rate Limit | Description |
-|------|-------|------------|-------------|
-| GUEST | 0 | 100/hour | Unauthenticated users |
-| USER | 10 | 1,000/hour | Standard authenticated users |
-| DEVELOPER | 20 | 5,000/hour | Developer accounts |
-| PREMIUM | 30 | 50,000/hour | Premium subscribers |
-| ENTERPRISE | 40 | 500,000/hour | Enterprise customers |
-| ADMIN | 100 | 1,000,000/hour | System administrators |
+| Role       | Level | Rate Limit     | Description                  |
+| ---------- | ----- | -------------- | ---------------------------- |
+| GUEST      | 0     | 100/hour       | Unauthenticated users        |
+| USER       | 10    | 1,000/hour     | Standard authenticated users |
+| DEVELOPER  | 20    | 5,000/hour     | Developer accounts           |
+| PREMIUM    | 30    | 50,000/hour    | Premium subscribers          |
+| ENTERPRISE | 40    | 500,000/hour   | Enterprise customers         |
+| ADMIN      | 100   | 1,000,000/hour | System administrators        |
 
 #### Production Deployment
 
 **Docker**
+
 ```dockerfile
 FROM node:20-alpine
 WORKDIR /app
@@ -582,6 +605,7 @@ CMD ["node", "services/auth-service.js"]
 ```
 
 **Kubernetes**
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -592,30 +616,30 @@ spec:
   template:
     spec:
       containers:
-      - name: auth
-        image: ailydian/auth-service:latest
-        ports:
-        - containerPort: 3102
-        env:
-        - name: NODE_ENV
-          value: "production"
-        - name: JWT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: auth-secrets
-              key: jwt-secret
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3102
-          initialDelaySeconds: 15
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 3102
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: auth
+          image: ailydian/auth-service:latest
+          ports:
+            - containerPort: 3102
+          env:
+            - name: NODE_ENV
+              value: 'production'
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secrets
+                  key: jwt-secret
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3102
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3102
+            initialDelaySeconds: 5
+            periodSeconds: 5
 ```
 
 #### Best Practices
@@ -631,15 +655,462 @@ spec:
 
 ---
 
+### 3. Azure AI Service (`azure-ai-service.js`)
+
+**Status**: ✅ Complete
+**Priority**: P0 (Critical - Core AI Provider)
+**Lines**: ~700
+**Dependencies**: @azure/openai, @azure/identity, @azure/arm-\*, Winston
+
+#### Description
+
+Enterprise Azure AI integration service providing access to Azure's comprehensive AI and cloud services:
+
+- Azure OpenAI multimodal AI services
+- Azure Cognitive Services (Vision, Speech, Translation)
+- Azure Health Insights (Medical AI)
+- Azure AI Search with RAG pipeline
+- Azure Quantum Computing simulation
+- Azure infrastructure metrics and monitoring
+
+#### Endpoints
+
+| Method | Path                     | Description                                               |
+| ------ | ------------------------ | --------------------------------------------------------- |
+| POST   | `/api/azure`             | Azure AI multimodal services (chat, vision, speech, etc.) |
+| POST   | `/api/azure-test`        | Service operational status test                           |
+| POST   | `/api/azure/speech/live` | Azure Speech Services live transcription                  |
+| POST   | `/api/azure/search`      | Azure AI Search + RAG pipeline                            |
+| POST   | `/api/azure/quantum`     | Azure Quantum Computing simulation                        |
+| GET    | `/api/azure/metrics`     | Azure infrastructure metrics                              |
+| GET    | `/api/azure/health`      | Azure service health status                               |
+
+#### Azure OpenAI Services
+
+The multimodal `/api/azure` endpoint supports multiple AI services:
+
+**1. Chat Completion**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "chat",
+    "query": "Explain quantum computing",
+    "options": {
+      "model": "OX5C9E2B",
+      "temperature": 0.7,
+      "maxTokens": 2048
+    }
+  }'
+```
+
+**2. Computer Vision**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "vision",
+    "input": "base64_encoded_image_data"
+  }'
+```
+
+**3. Speech Services**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "speech",
+    "input": "audio_data",
+    "options": {
+      "action": "transcribe",
+      "language": "tr-TR"
+    }
+  }'
+```
+
+**4. Translation**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "translation",
+    "input": "Merhaba dünya",
+    "options": {
+      "targetLanguage": "en",
+      "sourceLanguage": "auto"
+    }
+  }'
+```
+
+**5. Health Insights (Medical AI)**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "health",
+    "input": "radiology_report_text",
+    "options": {
+      "action": "analyze",
+      "inferenceTypes": ["finding", "followup"]
+    }
+  }'
+```
+
+**6. Quantum Simulation**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "quantum",
+    "input": "quantum_circuit_definition",
+    "options": {
+      "qubits": 4,
+      "algorithm": "grover",
+      "iterations": 100
+    }
+  }'
+```
+
+**7. Azure AI Search**
+
+```bash
+curl -X POST http://localhost:3103/api/azure \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "search",
+    "query": "Azure AI documentation",
+    "options": {
+      "top": 10,
+      "semanticConfig": "default"
+    }
+  }'
+```
+
+#### Azure Cognitive Services
+
+**Live Speech Transcription**
+
+```bash
+curl -X POST http://localhost:3103/api/azure/speech/live \
+  -H "Content-Type: application/json" \
+  -d '{
+    "language": "tr-TR",
+    "action": "transcribe",
+    "input": "audio_stream_data"
+  }'
+```
+
+**AI Search + RAG Pipeline**
+
+```bash
+curl -X POST http://localhost:3103/api/azure/search \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "enterprise AI solutions",
+    "top": 10,
+    "semanticConfig": "default",
+    "filter": "category eq '\''technical'\''"
+  }'
+```
+
+**Quantum Computing**
+
+```bash
+curl -X POST http://localhost:3103/api/azure/quantum \
+  -H "Content-Type: application/json" \
+  -d '{
+    "algorithm": "grover",
+    "qubits": 4,
+    "iterations": 100
+  }'
+```
+
+#### Azure Infrastructure Monitoring
+
+**Get Infrastructure Metrics**
+
+```bash
+curl http://localhost:3103/api/azure/metrics
+```
+
+Returns comprehensive metrics for:
+
+- Azure Kubernetes Service (AKS)
+- Azure SQL Database
+- Azure Redis Cache
+- Azure Front Door
+- Azure SignalR Service
+- Azure AI Search
+- Regional health and SLA data
+
+**Health Check**
+
+```bash
+curl http://localhost:3103/api/azure/health
+```
+
+#### Configuration
+
+**Environment Variables**
+
+```bash
+# Azure OpenAI Configuration
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
+AZURE_OPENAI_API_KEY=your-api-key
+AZURE_OPENAI_DEPLOYMENT=your-deployment-name
+
+# Azure Subscription (for metrics)
+AZURE_SUBSCRIPTION_ID=your-subscription-id
+
+# Service Configuration
+AZURE_AI_PORT=3103
+NODE_ENV=production
+
+# Feature Flags
+ENABLE_AZURE_OPENAI=true
+ENABLE_AZURE_COGNITIVE=true
+ENABLE_AZURE_METRICS=true
+```
+
+**Configuration Object**
+
+```javascript
+const AzureAIService = require('./services/azure-ai-service');
+
+const service = new AzureAIService({
+  port: 3103,
+  azureOpenAIEndpoint: process.env.AZURE_OPENAI_ENDPOINT,
+  azureOpenAIApiKey: process.env.AZURE_OPENAI_API_KEY,
+  azureSubscriptionId: process.env.AZURE_SUBSCRIPTION_ID,
+  enableOpenAI: true,
+  enableCognitiveServices: true,
+  enableMetrics: true,
+});
+
+await service.start();
+```
+
+#### Integration with Main Server
+
+```javascript
+const express = require('express');
+const AzureAIService = require('./services/azure-ai-service');
+
+const app = express();
+const azureService = new AzureAIService({
+  enableOpenAI: true,
+  enableCognitiveServices: true,
+});
+
+// Mount Azure AI service routes
+app.use('/', azureService.getApp());
+
+app.listen(3000, () => {
+  console.log('Server with Azure AI integration running on port 3000');
+});
+```
+
+#### Docker Deployment
+
+**Dockerfile**
+
+```dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY services/azure-ai-service.js ./services/
+COPY lib/ ./lib/
+COPY api/azure-metrics.js ./api/
+
+ENV AZURE_AI_PORT=3103
+ENV NODE_ENV=production
+
+EXPOSE 3103
+
+CMD ["node", "services/azure-ai-service.js"]
+```
+
+**docker-compose.yml**
+
+```yaml
+version: '3.8'
+
+services:
+  azure-ai-service:
+    build: .
+    ports:
+      - '3103:3103'
+    environment:
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}
+      - ENABLE_AZURE_OPENAI=true
+      - ENABLE_AZURE_COGNITIVE=true
+      - ENABLE_AZURE_METRICS=true
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3103/api/azure/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+```
+
+#### Kubernetes Deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-ai-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: azure-ai-service
+  template:
+    metadata:
+      labels:
+        app: azure-ai-service
+    spec:
+      containers:
+        - name: azure-ai-service
+          image: your-registry/azure-ai-service:latest
+          ports:
+            - containerPort: 3103
+          env:
+            - name: AZURE_OPENAI_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secrets
+                  key: openai-endpoint
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secrets
+                  key: openai-api-key
+            - name: AZURE_SUBSCRIPTION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: azure-secrets
+                  key: subscription-id
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '500m'
+            limits:
+              memory: '1Gi'
+              cpu: '1000m'
+          livenessProbe:
+            httpGet:
+              path: /api/azure/health
+              port: 3103
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/azure/health
+              port: 3103
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-ai-service
+spec:
+  selector:
+    app: azure-ai-service
+  ports:
+    - port: 3103
+      targetPort: 3103
+  type: ClusterIP
+```
+
+#### Testing
+
+The service includes comprehensive test coverage (28 tests):
+
+```bash
+# Run tests
+npm test -- tests/services/azure-ai-service.test.js
+
+# Run with coverage
+npm test -- --coverage tests/services/azure-ai-service.test.js
+```
+
+**Test Coverage**:
+
+- Service initialization and configuration
+- All multimodal AI services (chat, vision, speech, translation, health, quantum, search)
+- Live speech transcription
+- Azure AI Search + RAG
+- Quantum computing simulation
+- Infrastructure metrics
+- Health checks
+- Error handling
+- Service management (start/stop)
+- Feature flags (enabled/disabled services)
+
+#### Security Considerations
+
+1. **API Key Protection**: Never commit Azure API keys to version control
+2. **Environment Variables**: Use secure secret management (Azure Key Vault, Kubernetes Secrets)
+3. **Network Security**: Use private endpoints for Azure services
+4. **Rate Limiting**: Implement rate limiting to prevent API quota exhaustion
+5. **Input Validation**: Validate all input data before sending to Azure services
+6. **Error Handling**: Never expose sensitive Azure error details to clients
+7. **Monitoring**: Monitor API usage and costs via Azure Cost Management
+
+#### Performance & Scalability
+
+1. **Horizontal Scaling**: Deploy multiple instances behind load balancer
+2. **Caching**: Cache AI responses for frequently asked queries
+3. **Request Timeout**: Implement appropriate timeouts for long-running operations
+4. **Async Processing**: Use message queues for batch AI operations
+5. **Connection Pooling**: Reuse HTTP connections to Azure services
+6. **Regional Deployment**: Deploy close to Azure regions for lower latency
+
+#### Cost Optimization
+
+1. **Model Selection**: Use appropriate models (GPT-3.5 vs GPT-4) based on use case
+2. **Token Management**: Implement token counting and limits
+3. **Batch Processing**: Batch multiple requests when possible
+4. **Caching**: Cache responses to reduce API calls
+5. **Usage Monitoring**: Track costs per feature/user via Azure Cost Management
+
+#### Best Practices
+
+1. **Configuration**: Use feature flags to enable/disable services
+2. **Graceful Degradation**: Implement fallbacks when Azure services are unavailable
+3. **Logging**: Log all Azure API calls with request IDs for debugging
+4. **Monitoring**: Set up alerts for API errors and quota limits
+5. **Documentation**: Keep Azure service versions documented
+6. **Testing**: Use mocked responses in tests to avoid Azure API costs
+7. **Versioning**: Version your Azure API integrations
+
+---
+
 ## Future Services
 
 ### Phase 1 (P0 - Critical)
+
 - ✅ monitoring-service.js (Complete)
 - ✅ auth-service.js (Complete)
-- ⏳ azure-ai-service.js (In Progress)
+- ✅ azure-ai-service.js (Complete)
 - ⏳ ai-chat-service.js (Planned)
 
 ### Phase 2-5
+
 See [SERVICE-EXTRACTION-PLAN.md](../docs/architecture/SERVICE-EXTRACTION-PLAN.md) for the complete roadmap.
 
 ## Contributing
