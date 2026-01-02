@@ -1,14 +1,26 @@
 # ============================================================================
-# AILYDIAN ULTRA PRO - MAIN API DOCKERFILE
+# AILYDIAN ULTRA PRO - PRODUCTION DOCKERFILE
 # ============================================================================
 # Multi-stage build for optimal image size and security
 # Base: Node.js 20 Alpine (minimal attack surface)
+# Supports: 6 Microservices + Main Server (Phase 4 Integration)
 # ============================================================================
 
 # ============================================================================
 # STAGE 1: Dependencies
 # ============================================================================
 FROM node:20-alpine AS dependencies
+
+# Install build dependencies for native modules (sharp, canvas, etc.)
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev \
+    pixman-dev
 
 # Security: Run as non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
@@ -19,7 +31,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm ci --only=production --ignore-scripts && \
+RUN npm ci --only=production --legacy-peer-deps && \
     npm cache clean --force
 
 # ============================================================================
@@ -27,11 +39,17 @@ RUN npm ci --only=production --ignore-scripts && \
 # ============================================================================
 FROM node:20-alpine AS builder
 
+# Install build dependencies
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++
+
 WORKDIR /app
 
 # Copy package files and install ALL dependencies (including dev)
 COPY package*.json ./
-RUN npm ci --ignore-scripts
+RUN npm ci --legacy-peer-deps
 
 # Copy source code
 COPY . .
@@ -44,10 +62,18 @@ COPY . .
 # ============================================================================
 FROM node:20-alpine AS runtime
 
+# Install runtime dependencies for native modules
+RUN apk add --no-cache \
+    cairo \
+    jpeg \
+    pango \
+    giflib \
+    pixman \
+    dumb-init
+
 # Security hardening
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001 && \
-    apk add --no-cache dumb-init
+    adduser -S nodejs -u 1001
 
 WORKDIR /app
 
@@ -57,17 +83,28 @@ COPY --from=dependencies --chown=nodejs:nodejs /app/node_modules ./node_modules
 # Copy application code
 COPY --chown=nodejs:nodejs . .
 
+# Create necessary directories with correct permissions
+RUN mkdir -p \
+    logs \
+    uploads \
+    temp \
+    .cache && \
+    chown -R nodejs:nodejs /app
+
 # Environment variables
 ENV NODE_ENV=production \
     PORT=3100 \
-    NODE_OPTIONS="--max-old-space-size=2048"
+    NODE_OPTIONS="--max-old-space-size=4096"
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-    CMD node -e "require('http').get('http://localhost:3100/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+# Health check (using new global health endpoint)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:3100/api/services/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
-# Expose port
+# Expose ports
+# Main server
 EXPOSE 3100
+# Microservices (if running in standalone mode)
+EXPOSE 3101 3102 3103 3104 3105 3106
 
 # Switch to non-root user
 USER nodejs
