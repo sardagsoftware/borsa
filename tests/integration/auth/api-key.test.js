@@ -3,10 +3,10 @@
  * White-Hat Policy: Real test scenarios, no mock data
  */
 
-import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
-import request from 'supertest';
-import { createClient } from '@supabase/supabase-js';
-import crypto from 'crypto';
+const { describe, it, expect, beforeAll, afterAll } = require('@jest/globals');
+const request = require('supertest');
+const { createClient } = require('@supabase/supabase-js');
+const crypto = require('crypto');
 
 const supabase = createClient(
   process.env.SUPABASE_URL || '',
@@ -113,9 +113,7 @@ describe('API Key Authentication Integration Tests', () => {
     });
 
     it('should log API key usage', async () => {
-      await request(API_BASE_URL)
-        .get('/api/v1/smart-cities/cities')
-        .set('X-API-Key', testApiKey);
+      await request(API_BASE_URL).get('/api/v1/smart-cities/cities').set('X-API-Key', testApiKey);
 
       // Check usage log
       const { data: usageLogs } = await supabase

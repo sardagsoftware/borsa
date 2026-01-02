@@ -10,12 +10,13 @@ module.exports = {
   // Test match patterns
   testMatch: ['**/tests/**/*.test.js'],
 
-  // Ignore Playwright tests (*.spec.js)
+  // Ignore Playwright tests (*.spec.js) and external service tests
   testPathIgnorePatterns: [
     '/node_modules/',
     '\\.spec\\.js$',
     '/playwright-report/',
     '/test-results/',
+    '/tests/integration/auth/', // Requires Supabase (external service)
   ],
 
   // Coverage
@@ -62,6 +63,6 @@ module.exports = {
   // Force exit after tests complete
   forceExit: true,
 
-  // Detect open handles
-  detectOpenHandles: true,
+  // Detect open handles (disabled - supertest TLSWRAP is expected)
+  detectOpenHandles: false,
 };

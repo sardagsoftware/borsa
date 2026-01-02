@@ -3,11 +3,11 @@
  * White-Hat Policy: Real test scenarios, no mock data
  */
 
-import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
-import request from 'supertest';
-import { createClient } from '@supabase/supabase-js';
-import crypto from 'crypto';
-import { nanoid } from 'nanoid';
+const { describe, it, expect, beforeAll, afterAll } = require('@jest/globals');
+const request = require('supertest');
+const { createClient } = require('@supabase/supabase-js');
+const crypto = require('crypto');
+const { nanoid } = require('nanoid');
 
 const supabase = createClient(
   process.env.SUPABASE_URL || '',
