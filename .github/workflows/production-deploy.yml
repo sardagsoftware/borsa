@@ -141,13 +141,19 @@ jobs:
           echo "✅ Express server ready for deployment"
 
   # ==========================================
-  # Job 3: Deploy to Vercel
+  # Job 3: Deploy to Vercel (MANUAL APPROVAL REQUIRED)
   # ==========================================
   deploy-vercel:
     name: Deploy to Vercel
     runs-on: ubuntu-latest
     needs: [build-production]
     timeout-minutes: 20
+
+    # ⚠️ CRITICAL: Manual approval required for production
+    # This protects the live site at www.ailydian.com
+    environment:
+      name: production
+      url: https://www.ailydian.com
 
     steps:
       - name: Checkout code
@@ -215,9 +221,15 @@ jobs:
         run: |
           echo "🔍 Checking API endpoints..."
 
+          # Phase 4: Check global microservices health endpoint
+          echo "Checking Phase 4 microservices health..."
+          SERVICES_HEALTH=$(curl -s "https://www.ailydian.com/api/services/health" || echo '{"overall":"ERROR"}')
+          echo "Services Health: $SERVICES_HEALTH"
+
           # Check a few critical API endpoints
           ENDPOINTS=(
             "https://www.ailydian.com"
+            "https://www.ailydian.com/api/services"
           )
 
           for endpoint in "${ENDPOINTS[@]}"; do
