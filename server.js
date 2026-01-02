@@ -5,14 +5,17 @@ require('dotenv').config();
 // Replaces console.log with production-safe Winston logger
 const logger = require('./lib/logger/production-logger');
 
-// 🚨 ERROR MONITORING - Sentry Integration (2025-12-27)
+// 📊 MONITORING & TELEMETRY - Phase 5.3 (2026-01-02)
+// Application Insights + Sentry + Performance Tracking
 const {
-  initializeSentry,
-  sentryRequestHandler,
-  sentryTracingHandler,
-  sentryErrorHandler,
-  captureExceptionWithContext
-} = require('./lib/monitoring/sentry-integration');
+  monitoringService,
+  getRequestHandler,
+  getTracingHandler,
+  getSentryErrorHandler,
+} = require('./services/monitoring-telemetry-service');
+
+// Initialize monitoring
+monitoringService.initialize();
 
 // Log startup
 logger.info('🚀 AILYDIAN Ultra Pro Server Starting...', {
@@ -115,9 +118,6 @@ const upload = multer({
 
 const app = express();
 const server = http.createServer(app);
-
-// 🚨 SENTRY INITIALIZATION - Must be initialized BEFORE other middleware
-const sentry = initializeSentry(app);
 
 // 🚀 ADVANCED CACHING SYSTEM - ENTERPRISE GRADE (Redis-based)
 // Redis cache manager with automatic fallback to memory cache
@@ -348,11 +348,11 @@ app.use(auditMiddleware({
 }));
 
 // 4. Middleware
-// 🚨 Sentry Request Handler (MUST be FIRST middleware)
-app.use(sentryRequestHandler());
+// 📊 Monitoring Request Handler (MUST be FIRST middleware) - Phase 5.3
+app.use(getRequestHandler());
 
-// 🚨 Sentry Tracing Handler (MUST be AFTER request handler)
-app.use(sentryTracingHandler());
+// 📊 Monitoring Tracing Handler (MUST be AFTER request handler) - Phase 5.3
+app.use(getTracingHandler());
 
 // CORS is now handled by setupFullSecurity() with strict whitelist
 // app.use(cors()); // REMOVED - Using strict CORS from security-integration
@@ -17104,8 +17104,8 @@ app.use('/api/civic', civicAPI);
 // 🔴 Error Logger Middleware - Log all errors with full context
 app.use(errorLogger);
 
-// 🚨 Sentry Error Handler (MUST be AFTER all routes and errorLogger)
-app.use(sentryErrorHandler());
+// 📊 Monitoring Error Handler (MUST be AFTER all routes and errorLogger) - Phase 5.3
+app.use(getSentryErrorHandler());
 
 // 🚫 404 Handler - MOVED TO END AFTER ALL ROUTES
 app.use((req, res) => {
