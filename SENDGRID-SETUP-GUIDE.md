@@ -222,7 +222,7 @@ dig _dmarc.www.ailydian.com TXT +short
 
 ```
 Name:  SENDGRID_API_KEY
-Value: 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
+Value: YOUR_SENDGRID_API_KEY_HERE
 Scope: Production, Preview, Development
 
 Name:  SENDGRID_FROM_EMAIL
@@ -244,7 +244,7 @@ Scope: Production, Preview, Development
 cd /path/to/your/vercel/project
 
 # Add environment variables
-echo "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" | \
+echo "YOUR_SENDGRID_API_KEY_HERE" | \
   vercel env add SENDGRID_API_KEY production preview development
 
 echo "noreply@www.ailydian.com" | \
@@ -270,7 +270,7 @@ The API key is already set in `.env.local`:
 cat .env.local
 
 # Should show:
-# SENDGRID_API_KEY=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
+# SENDGRID_API_KEY=YOUR_SENDGRID_API_KEY_HERE
 # SENDGRID_FROM_EMAIL=noreply@www.ailydian.com
 # SENDGRID_FROM_NAME=AILYDIAN
 ```

@@ -53,7 +53,7 @@ add_env_var() {
 }
 
 # SendGrid API Key
-SENDGRID_API_KEY="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"
+SENDGRID_API_KEY="YOUR_SENDGRID_API_KEY_HERE"
 
 echo "1️⃣ Adding SENDGRID_API_KEY..."
 # Add to all environments (production, preview, development)
