@@ -8,9 +8,14 @@ module.exports = {
   testEnvironment: 'node',
 
   // Test match patterns
-  testMatch: [
-    '**/tests/**/*.test.js',
-    '**/tests/**/*.spec.js',
+  testMatch: ['**/tests/**/*.test.js'],
+
+  // Ignore Playwright tests (*.spec.js)
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '\\.spec\\.js$',
+    '/playwright-report/',
+    '/test-results/',
   ],
 
   // Coverage
@@ -42,7 +47,7 @@ module.exports = {
 
   // Globals
   globals: {
-    'NODE_ENV': 'test',
+    NODE_ENV: 'test',
   },
 
   // Module paths
