@@ -1,725 +1,1035 @@
-<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
-  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan...">
-  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
-  <link rel="canonical" href="https://www.ailydian.com/civic-svf">
-  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
-  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
-  <meta property="og:url" content="https://www.ailydian.com/civic-svf">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="tr_TR">
-  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/civic-svf">
-  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/civic-svf">
-  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/civic-svf">
-  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/civic-svf">
-  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/civic-svf">
-  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/civic-svf">
-  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/civic-svf">
+<!doctype html>
+<html lang="tr">
+  <head>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta
+      name="description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan..."
+    />
+    <meta
+      name="keywords"
+      content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri"
+    />
+    <link rel="canonical" href="https://www.ailydian.com/civic-svf" />
+    <meta
+      property="og:title"
+      content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine"
+    />
+    <meta
+      property="og:description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/civic-svf" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/civic-svf" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/civic-svf" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/civic-svf" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/civic-svf" />
+    <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/civic-svf" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/civic-svf" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/civic-svf" />
 
-    
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SVF - Sentetik Veri Fabrikası | LyDian CIG</title>
     <style>
-        @font-face {
-            font-family: 'Righteous';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2) format('woff2');
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+      @font-face {
+        font-family: 'Righteous';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url(https://fonts.gstatic.com/s/righteous/v14/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2)
+          format('woff2');
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-        :root {
-            --lydian-accent: #10A37F;
-            --lydian-accent-light: #0D8F6E;
-            --lydian-bg-primary: #FFFFFF;
-            --lydian-bg-secondary: #FFFFFF;
-            --lydian-bg-tertiary: #F9FAFB;
-            --lydian-text-primary: #000000;
-            --lydian-text-secondary: #4B5563;
-            --lydian-border: rgba(0, 0, 0, 0.08);
-            --svf-blue: #10A37F;
-        }
+      :root {
+        --lydian-accent: #10a37f;
+        --lydian-accent-light: #0d8f6e;
+        --lydian-bg-primary: #ffffff;
+        --lydian-bg-secondary: #ffffff;
+        --lydian-bg-tertiary: #f9fafb;
+        --lydian-text-primary: #000000;
+        --lydian-text-secondary: #4b5563;
+        --lydian-border: rgba(0, 0, 0, 0.08);
+        --svf-blue: #10a37f;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--lydian-bg-primary);
-            color: var(--lydian-text-primary);
-            line-height: 1.6;
-        }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--lydian-bg-primary);
+        color: var(--lydian-text-primary);
+        line-height: 1.6;
+      }
 
-        .header {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            max-width: 1400px;
-            width: calc(100% - 80px);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      .header {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        max-width: 1400px;
+        width: calc(100% - 80px);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-        .header-content {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 72px;
-        }
+      .header-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 72px;
+      }
 
-        .logo {
-            font-family: 'Righteous', cursive;
-            font-size: 1.5rem;
-            color: #000000;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      .logo {
+        font-family: 'Righteous', cursive;
+        font-size: 1.5rem;
+        color: #000000;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
 
-        .nav-link {
-            color: var(--lydian-text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+      .nav-link {
+        color: var(--lydian-text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
 
-        .nav-link:hover {
-            color: var(--lydian-accent);
-        }
+      .nav-link:hover {
+        color: var(--lydian-accent);
+      }
 
-        .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
-        }
+      .hero {
+        padding: 8rem 2rem 4rem;
+        text-align: center;
+        background: linear-gradient(135deg, rgba(16, 163, 127, 0.05), rgba(255, 107, 74, 0.05));
+      }
 
-        .hero-icon {
-            margin: 0 auto 1.5rem;
-            width: 80px;
-            height: 80px;
-            color: var(--svf-blue);
-        }
+      .hero-icon {
+        margin: 0 auto 1.5rem;
+        width: 80px;
+        height: 80px;
+        color: var(--svf-blue);
+      }
 
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #10A37F, #FF6B4A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+      .hero-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #10a37f, #ff6b4a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--lydian-text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
+      .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--lydian-text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: -3rem auto 3rem;
-            padding: 0 2rem;
-        }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: -3rem auto 3rem;
+        padding: 0 2rem;
+      }
 
-        .stat-card {
-            background: var(--lydian-bg-primary);
-            border: 1px solid var(--lydian-border);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease;
-        }
+      .stat-card {
+        background: var(--lydian-bg-primary);
+        border: 1px solid var(--lydian-border);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s ease;
+      }
 
-        .stat-card:hover {
-            box-shadow: 0 8px 24px rgba(16, 163, 127, 0.12);
-            transform: translateY(-2px);
-        }
+      .stat-card:hover {
+        box-shadow: 0 8px 24px rgba(16, 163, 127, 0.12);
+        transform: translateY(-2px);
+      }
 
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--svf-blue);
-            margin-bottom: 0.5rem;
-        }
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--svf-blue);
+        margin-bottom: 0.5rem;
+      }
 
-        .stat-label {
-            color: var(--lydian-text-secondary);
-            font-size: 0.95rem;
-        }
+      .stat-label {
+        color: var(--lydian-text-secondary);
+        font-size: 0.95rem;
+      }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .form-card {
+        background: var(--lydian-bg-primary);
+        border: 1px solid var(--lydian-border);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--lydian-text-primary);
+      }
+
+      .form-input,
+      .form-select {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--lydian-bg-tertiary);
+        border: 1px solid var(--lydian-border);
+        border-radius: 8px;
+        color: var(--lydian-text-primary);
+        font-family: inherit;
+      }
+
+      .form-input:focus,
+      .form-select:focus {
+        outline: none;
+        border-color: #10a37f;
+        box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
+      }
+
+      .btn {
+        padding: 0.75rem 2rem;
+        background: #10a37f;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn:hover {
+        background: #0d8f6e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+      }
+
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .jobs-list {
+        background: var(--lydian-bg-primary);
+        border: 1px solid var(--lydian-border);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .job-item {
+        background: var(--lydian-bg-tertiary);
+        border: 1px solid var(--lydian-border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .job-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateX(4px);
+      }
+
+      .job-info h4 {
+        margin-bottom: 0.5rem;
+        color: var(--svf-blue);
+      }
+
+      .job-meta {
+        color: var(--lydian-text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .job-status {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .status-queued {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+      }
+
+      .status-validating,
+      .status-synthesizing,
+      .status-finalizing {
+        background: rgba(59, 130, 246, 0.2);
+        color: var(--svf-blue);
+      }
+
+      .status-succeeded {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+      }
+
+      .status-failed {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 0.5rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: #10a37f;
+        transition: width 0.3s;
+      }
+
+      .code-block {
+        background: var(--lydian-bg-tertiary);
+        border: 1px solid var(--lydian-border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        white-space: pre;
+        color: var(--lydian-text-secondary);
+      }
+
+      @media (max-width: 768px) {
         .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
+          grid-template-columns: 1fr;
         }
-
-        .form-card {
-            background: var(--lydian-bg-primary);
-            border: 1px solid var(--lydian-border);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--lydian-text-primary);
-        }
-
-        .form-input, .form-select {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--lydian-bg-tertiary);
-            border: 1px solid var(--lydian-border);
-            border-radius: 8px;
-            color: var(--lydian-text-primary);
-            font-family: inherit;
-        }
-
-        .form-input:focus, .form-select:focus {
-            outline: none;
-            border-color: #10A37F;
-            box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            background: #10A37F;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: #0D8F6E;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .jobs-list {
-            background: var(--lydian-bg-primary);
-            border: 1px solid var(--lydian-border);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .job-item {
-            background: var(--lydian-bg-tertiary);
-            border: 1px solid var(--lydian-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .job-item:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transform: translateX(4px);
-        }
-
-        .job-info h4 {
-            margin-bottom: 0.5rem;
-            color: var(--svf-blue);
-        }
-
-        .job-meta {
-            color: var(--lydian-text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .job-status {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .status-queued {
-            background: rgba(245, 158, 11, 0.2);
-            color: #F59E0B;
-        }
-
-        .status-validating, .status-synthesizing, .status-finalizing {
-            background: rgba(59, 130, 246, 0.2);
-            color: var(--svf-blue);
-        }
-
-        .status-succeeded {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10B981;
-        }
-
-        .status-failed {
-            background: rgba(239, 68, 68, 0.2);
-            color: #EF4444;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #E5E7EB;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #10A37F;
-            transition: width 0.3s;
-        }
-
-        .code-block {
-            background: var(--lydian-bg-tertiary);
-            border: 1px solid var(--lydian-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            white-space: pre;
-            color: var(--lydian-text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
 
-  <!-- Visual Rich Results & Images -->
-  
-  <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf.png">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/civic-svf.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/civic-svf.png">
-  <meta name="twitter:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf-2.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf-3.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf-4.png">
-  
-  
-  
-  
-  
-  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/civic-svf.png">
-  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/civic-svf.png">
-  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/civic-svf.png">
-  
-  
+    <!-- Visual Rich Results & Images -->
 
-  
+    <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/og-images/civic-svf.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG" />
+    <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/civic-svf.png" />
+    <meta name="twitter:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf-2.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf-3.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/civic-svf-4.png" />
 
-  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser, iOS, Android",
-  "description": "LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG",
-  "image": [
-    "https://www.ailydian.com/images/gallery/civic-svf-1.jpg",
-    "https://www.ailydian.com/images/gallery/civic-svf-2.jpg",
-    "https://www.ailydian.com/images/gallery/civic-svf-3.jpg"
-  ],
-  "screenshot": [
-    "https://www.ailydian.com/images/gallery/civic-svf-1.jpg",
-    "https://www.ailydian.com/images/gallery/civic-svf-2.jpg",
-    "https://www.ailydian.com/images/gallery/civic-svf-3.jpg"
-  ],
-  "url": "https://www.ailydian.com/civic-svf",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1542",
-    "bestRating": "5"
-  },
-  "inLanguage": [
-    "tr",
-    "en",
-    "de",
-    "ru",
-    "uk",
-    "zh",
-    "it"
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
-  "description": "LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.ailydian.com/images/hero/civic-svf.jpg",
-    "width": 1200,
-    "height": 630,
-    "caption": "SVF - Sentetik Veri Fabrikası | LyDian CIG"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2025-12-20",
-  "inLanguage": "tr-TR"
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "SVF - Sentetik Veri Fabrikası | LyDian CIG - Video Rehber",
-  "description": "LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG",
-  "thumbnailUrl": "https://www.ailydian.com/images/video/civic-svf-preview.jpg",
-  "uploadDate": "2024-01-15",
-  "duration": "PT8M",
-  "contentUrl": "https://www.ailydian.com/videos/civic-svf.mp4",
-  "embedUrl": "https://www.ailydian.com/civic-svf#video",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI"
-  }
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://www.ailydian.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Civic Svf",
-      "item": "https://www.ailydian.com/civic-svf"
-    }
-  ]
-}
-  </script>
+    <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/civic-svf.png" />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://www.ailydian.com/mstile-70/civic-svf.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://www.ailydian.com/mstile-150/civic-svf.png"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta property="og:description" content="LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta property="og:url" content="https://www.ailydian.com/civic-svf">
-  <meta property="og:image" content="https://www.ailydian.com/images/og/civic-svf.jpg">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/civic-svf.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta property="og:site_name" content="LyDian AI">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta name="twitter:description" content="LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/civic-svf.jpg">
-  <meta name="twitter:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG">
-  
-  
-  <!-- /Premium SEO -->
-<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
-<body>
+    <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "description": "LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG",
+        "image": [
+          "https://www.ailydian.com/images/gallery/civic-svf-1.jpg",
+          "https://www.ailydian.com/images/gallery/civic-svf-2.jpg",
+          "https://www.ailydian.com/images/gallery/civic-svf-3.jpg"
+        ],
+        "screenshot": [
+          "https://www.ailydian.com/images/gallery/civic-svf-1.jpg",
+          "https://www.ailydian.com/images/gallery/civic-svf-2.jpg",
+          "https://www.ailydian.com/images/gallery/civic-svf-3.jpg"
+        ],
+        "url": "https://www.ailydian.com/civic-svf",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1542",
+          "bestRating": "5"
+        },
+        "inLanguage": ["tr", "en", "de", "ru", "uk", "zh", "it"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "SVF - Sentetik Veri Fabrikası | LyDian CIG",
+        "description": "LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.ailydian.com/images/hero/civic-svf.jpg",
+          "width": 1200,
+          "height": 630,
+          "caption": "SVF - Sentetik Veri Fabrikası | LyDian CIG"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2025-12-20",
+        "inLanguage": "tr-TR"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "SVF - Sentetik Veri Fabrikası | LyDian CIG - Video Rehber",
+        "description": "LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG",
+        "thumbnailUrl": "https://www.ailydian.com/images/video/civic-svf-preview.jpg",
+        "uploadDate": "2024-01-15",
+        "duration": "PT8M",
+        "contentUrl": "https://www.ailydian.com/videos/civic-svf.mp4",
+        "embedUrl": "https://www.ailydian.com/civic-svf#video",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://www.ailydian.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Civic Svf",
+            "item": "https://www.ailydian.com/civic-svf"
+          }
+        ]
+      }
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SVF - Sentetik Veri Fabrikası | LyDian CIG" />
+    <meta
+      property="og:description"
+      content="LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG"
+    />
+    <meta property="og:url" content="https://www.ailydian.com/civic-svf" />
+    <meta property="og:image" content="https://www.ailydian.com/images/og/civic-svf.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/images/og/civic-svf.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SVF - Sentetik Veri Fabrikası | LyDian CIG" />
+    <meta
+      name="twitter:description"
+      content="LyDian AI - SVF - Sentetik Veri Fabrikası | LyDian CIG"
+    />
+    <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/civic-svf.jpg" />
+    <meta name="twitter:image:alt" content="SVF - Sentetik Veri Fabrikası | LyDian CIG" />
+
+    <!-- /Premium SEO -->
+    <link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C4A962" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aiLyDian AI" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- Apple Splash Screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-xr.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-12.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad.png"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-11.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-12.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="aiLyDian AI" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#C4A962" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <!-- Favicon (all sizes) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+    <!-- ================================ -->
+    <!-- AILYDIAN SEO META TAGS (TR) -->
+    <!-- Auto-generated for multi-language SEO -->
+    <!-- ================================ -->
+
+    <!-- Primary Meta Tags -->
+    <title>civic svf - AILYDIAN</title>
+    <meta name="title" content="civic svf - AILYDIAN" />
+    <meta name="description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="author" content="AILYDIAN" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="language" content="tr" />
+    <link rel="canonical" href="https://www.ailydian.com/civic-svf.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/civic-svf.html" />
+    <meta property="og:title" content="civic svf - AILYDIAN" />
+    <meta property="og:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta property="og:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta property="og:site_name" content="AILYDIAN" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.ailydian.com/civic-svf.html" />
+    <meta name="twitter:title" content="civic svf - AILYDIAN" />
+    <meta name="twitter:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta name="twitter:site" content="@ailydian" />
+    <meta name="twitter:creator" content="@ailydian" />
+
+    <!-- AI Search Optimization -->
+    <meta name="ai:context" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="ai:keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="ai:language" content="tr" />
+
+    <!-- ChatGPT/Claude/Perplexity Optimization -->
+    <meta name="description:ai" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="summary" content="AILYDIAN - Advanced AI Assistant Platform" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Istanbul" />
+
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AILYDIAN" />
+
+    <!-- Hreflang Tags for International SEO -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/civic-svf.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/civic-svf.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/civic-svf.html" />
+    <link rel="alternate" hreflang="es" href="https://www.ailydian.com/es/civic-svf.html" />
+    <link rel="alternate" hreflang="fr" href="https://www.ailydian.com/fr/civic-svf.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/civic-svf.html" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/civic-svf.html" />
+    <link rel="alternate" hreflang="pt" href="https://www.ailydian.com/pt/civic-svf.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/civic-svf.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/civic-svf.html" />
+    <link rel="alternate" hreflang="ja" href="https://www.ailydian.com/ja/civic-svf.html" />
+    <link rel="alternate" hreflang="ko" href="https://www.ailydian.com/ko/civic-svf.html" />
+    <link rel="alternate" hreflang="hi" href="https://www.ailydian.com/hi/civic-svf.html" />
+    <link rel="alternate" hreflang="id" href="https://www.ailydian.com/id/civic-svf.html" />
+    <link rel="alternate" hreflang="nl" href="https://www.ailydian.com/nl/civic-svf.html" />
+    <link rel="alternate" hreflang="pl" href="https://www.ailydian.com/pl/civic-svf.html" />
+    <link rel="alternate" hreflang="sv" href="https://www.ailydian.com/sv/civic-svf.html" />
+    <link rel="alternate" hreflang="no" href="https://www.ailydian.com/no/civic-svf.html" />
+    <link rel="alternate" hreflang="da" href="https://www.ailydian.com/da/civic-svf.html" />
+    <link rel="alternate" hreflang="fi" href="https://www.ailydian.com/fi/civic-svf.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/civic-svf.html" />
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechnologyCompany",
+        "name": "AILYDIAN",
+        "url": "https://www.ailydian.com",
+        "logo": "https://www.ailydian.com/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/ailydian",
+          "https://linkedin.com/company/ailydian",
+          "https://github.com/ailydian"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@ailydian.com",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    <!-- ================================ -->
+    <!-- END AILYDIAN SEO META TAGS -->
+    <!-- ================================ -->
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <a href="/" class="logo" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                LyDian
-            </a>
-            <nav class="nav-links">
-                <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
-                <a href="/civic-svf.html" class="nav-link" style="color: #10A37F; font-weight: 700;">SVF</a>
-                <a href="/" class="nav-link">Ana Sayfa</a>
-            </nav>
-        </div>
+      <div class="header-content">
+        <a
+          href="/"
+          class="logo"
+          style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          LyDian
+        </a>
+        <nav class="nav-links">
+          <a href="/civic-intelligence-grid.html" class="nav-link">Dashboard</a>
+          <a href="/civic-svf.html" class="nav-link" style="color: #10a37f; font-weight: 700"
+            >SVF</a
+          >
+          <a href="/" class="nav-link">Ana Sayfa</a>
+        </nav>
+      </div>
     </header>
 
     <!-- Hero -->
     <section class="hero">
-        <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-        </svg>
-        <h1 class="hero-title">Sentetik Veri Fabrikası</h1>
-        <p class="hero-subtitle">
-            Gizlilik Öncelikli Sentetik Veri Üretimi • Diferansiyel Gizlilik • Fayda Doğrulaması • Kişisel Veri Koruması
-        </p>
+      <svg class="hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+        ></path>
+      </svg>
+      <h1 class="hero-title">Sentetik Veri Fabrikası</h1>
+      <p class="hero-subtitle">
+        Gizlilik Öncelikli Sentetik Veri Üretimi • Diferansiyel Gizlilik • Fayda Doğrulaması •
+        Kişisel Veri Koruması
+      </p>
     </section>
 
     <!-- Live Stats -->
     <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-value" id="total-jobs">0</div>
-            <div class="stat-label">Oluşturulan Toplam İş</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="active-jobs">0</div>
-            <div class="stat-label">Aktif İşler</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="success-rate">99.4%</div>
-            <div class="stat-label">Başarı Oranı</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value" id="total-rows">0</div>
-            <div class="stat-label">Üretilen Satır</div>
-        </div>
+      <div class="stat-card">
+        <div class="stat-value" id="total-jobs">0</div>
+        <div class="stat-label">Oluşturulan Toplam İş</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="active-jobs">0</div>
+        <div class="stat-label">Aktif İşler</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="success-rate">99.4%</div>
+        <div class="stat-label">Başarı Oranı</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="total-rows">0</div>
+        <div class="stat-label">Üretilen Satır</div>
+      </div>
     </div>
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Data Generation Charts -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; margin: 2rem 0;">
-            <!-- Data Volume by Domain -->
-            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                    <svg style="width: 24px; height: 24px; color: var(--lydian-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Veri Hacmi (Alan Bazında)</h3>
-                </div>
-                <div style="height: 300px; position: relative;">
-                    <canvas id="dataVolumeChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Privacy Distribution -->
-            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem;">
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                    <svg style="width: 24px; height: 24px; color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                    </svg>
-                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Gizlilik Seviyesi Dağılımı</h3>
-                </div>
-                <div style="height: 300px; position: relative;">
-                    <canvas id="privacyDistChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Generation Timeline -->
-            <div style="background: #FFFFFF; border: 1px solid var(--lydian-border); border-radius: 16px; padding: 1.5rem; grid-column: span 2;">
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                    <svg style="width: 24px; height: 24px; color: #3B82F6;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
-                    </svg>
-                    <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0;">Üretim Zaman Çizelgesi</h3>
-                </div>
-                <div style="height: 300px; position: relative;">
-                    <canvas id="generationTimelineChart"></canvas>
-                </div>
-            </div>
+      <!-- Data Generation Charts -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+          gap: 2rem;
+          margin: 2rem 0;
+        "
+      >
+        <!-- Data Volume by Domain -->
+        <div
+          style="
+            background: #ffffff;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem">
+            <svg
+              style="width: 24px; height: 24px; color: var(--lydian-accent)"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              ></path>
+            </svg>
+            <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0">
+              Veri Hacmi (Alan Bazında)
+            </h3>
+          </div>
+          <div style="height: 300px; position: relative">
+            <canvas id="dataVolumeChart"></canvas>
+          </div>
         </div>
 
-        <!-- Create Job Section -->
-        <div class="form-grid">
-            <!-- Job Creation Form -->
-            <div class="form-card">
-                <h2 class="section-title">
-                    <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Sentetik Veri İşi Oluştur
-                </h2>
-
-                <form id="create-job-form">
-                    <div class="form-group">
-                        <label class="form-label">Veri Alanı</label>
-                        <select class="form-select" id="domain" required="">
-                            <option value="">Alan seçiniz...</option>
-                            <option value="finance">Finans</option>
-                            <option value="health">Sağlık</option>
-                            <option value="travel">Seyahat</option>
-                            <option value="media">Medya</option>
-                            <option value="energy">Enerji</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Hacim (satır)</label>
-                        <input type="number" class="form-input" id="volume" min="100" max="10000000" value="10000" required="">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Gizlilik: Epsilon (DP)</label>
-                        <input type="number" class="form-input" id="epsilon" min="1.0" max="10.0" step="0.1" value="2.5" required="">
-                        <small style="color: var(--lydian-text-secondary);">Yüksek = Daha az gizli, Daha fazla fayda</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Gizlilik: k-Anonimlik</label>
-                        <input type="number" class="form-input" id="kAnon" min="5" max="100" value="15" required="">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Çıktı Formatı</label>
-                        <select class="form-select" id="format">
-                            <option value="parquet">Parquet</option>
-                            <option value="csv">CSV</option>
-                            <option value="json">JSON</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn" id="create-btn">İş Oluştur</button>
-                </form>
-            </div>
-
-            <!-- API Example -->
-            <div class="form-card">
-                <h2 class="section-title">
-                    <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                    API Örneği
-                </h2>
-
-                <div class="code-block" id="api-example">POST /api/svf/v1/jobs
-Content-Type: application/json
-
-{
-  "domain": "finance",
-  "volume": 10000,
-  "privacy": {
-    "mode": "dp",
-    "epsilon": 2.5,
-    "kAnon": 15
-  },
-  "output": {
-    "format": "parquet"
-  }
-}</div>
-            </div>
+        <!-- Privacy Distribution -->
+        <div
+          style="
+            background: #ffffff;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem">
+            <svg
+              style="width: 24px; height: 24px; color: #10b981"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              ></path>
+            </svg>
+            <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0">
+              Gizlilik Seviyesi Dağılımı
+            </h3>
+          </div>
+          <div style="height: 300px; position: relative">
+            <canvas id="privacyDistChart"></canvas>
+          </div>
         </div>
 
-        <!-- Active Jobs -->
-        <div class="jobs-list">
-            <h2 class="section-title">
-                <svg style="width: 32px; height: 32px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                </svg>
-                Aktif İşler
-            </h2>
-            <div id="jobs-container">
-                <p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem;">
-                    Henüz iş yok. Yukarıdan ilk sentetik veri işinizi oluşturun.
-                </p>
-            </div>
+        <!-- Generation Timeline -->
+        <div
+          style="
+            background: #ffffff;
+            border: 1px solid var(--lydian-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            grid-column: span 2;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem">
+            <svg
+              style="width: 24px; height: 24px; color: #3b82f6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+              ></path>
+            </svg>
+            <h3 style="font-size: 1.125rem; font-weight: 600; margin: 0">Üretim Zaman Çizelgesi</h3>
+          </div>
+          <div style="height: 300px; position: relative">
+            <canvas id="generationTimelineChart"></canvas>
+          </div>
         </div>
+      </div>
+
+      <!-- Create Job Section -->
+      <div class="form-grid">
+        <!-- Job Creation Form -->
+        <div class="form-card">
+          <h2 class="section-title">
+            <svg
+              style="width: 32px; height: 32px"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"
+              ></path>
+            </svg>
+            Sentetik Veri İşi Oluştur
+          </h2>
+
+          <form id="create-job-form">
+            <div class="form-group">
+              <label class="form-label">Veri Alanı</label>
+              <select class="form-select" id="domain" required="">
+                <option value="">Alan seçiniz...</option>
+                <option value="finance">Finans</option>
+                <option value="health">Sağlık</option>
+                <option value="travel">Seyahat</option>
+                <option value="media">Medya</option>
+                <option value="energy">Enerji</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Hacim (satır)</label>
+              <input
+                type="number"
+                class="form-input"
+                id="volume"
+                min="100"
+                max="10000000"
+                value="10000"
+                required=""
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gizlilik: Epsilon (DP)</label>
+              <input
+                type="number"
+                class="form-input"
+                id="epsilon"
+                min="1.0"
+                max="10.0"
+                step="0.1"
+                value="2.5"
+                required=""
+              />
+              <small style="color: var(--lydian-text-secondary)"
+                >Yüksek = Daha az gizli, Daha fazla fayda</small
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gizlilik: k-Anonimlik</label>
+              <input
+                type="number"
+                class="form-input"
+                id="kAnon"
+                min="5"
+                max="100"
+                value="15"
+                required=""
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Çıktı Formatı</label>
+              <select class="form-select" id="format">
+                <option value="parquet">Parquet</option>
+                <option value="csv">CSV</option>
+                <option value="json">JSON</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn" id="create-btn">İş Oluştur</button>
+          </form>
+        </div>
+
+        <!-- API Example -->
+        <div class="form-card">
+          <h2 class="section-title">
+            <svg
+              style="width: 32px; height: 32px"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              ></path>
+            </svg>
+            API Örneği
+          </h2>
+
+          <div class="code-block" id="api-example">
+            POST /api/svf/v1/jobs Content-Type: application/json { "domain": "finance", "volume":
+            10000, "privacy": { "mode": "dp", "epsilon": 2.5, "kAnon": 15 }, "output": { "format":
+            "parquet" } }
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Jobs -->
+      <div class="jobs-list">
+        <h2 class="section-title">
+          <svg
+            style="width: 32px; height: 32px"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            ></path>
+          </svg>
+          Aktif İşler
+        </h2>
+        <div id="jobs-container">
+          <p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem">
+            Henüz iş yok. Yukarıdan ilk sentetik veri işinizi oluşturun.
+          </p>
+        </div>
+      </div>
     </div>
 
     <script>
-        // State
-        let jobs = [];
-        let totalJobs = 0;
-        let totalRows = 0;
+      // State
+      let jobs = [];
+      let totalJobs = 0;
+      let totalRows = 0;
 
-        // Update API example based on form
-        const form = document.getElementById('create-job-form');
-        form.addEventListener('input', updateApiExample);
+      // Update API example based on form
+      const form = document.getElementById('create-job-form');
+      form.addEventListener('input', updateApiExample);
 
-        function updateApiExample() {
-            const domain = document.getElementById('domain').value || 'finance';
-            const volume = document.getElementById('volume').value || 10000;
-            const epsilon = document.getElementById('epsilon').value || 2.5;
-            const kAnon = document.getElementById('kAnon').value || 15;
-            const format = document.getElementById('format').value || 'parquet';
+      function updateApiExample() {
+        const domain = document.getElementById('domain').value || 'finance';
+        const volume = document.getElementById('volume').value || 10000;
+        const epsilon = document.getElementById('epsilon').value || 2.5;
+        const kAnon = document.getElementById('kAnon').value || 15;
+        const format = document.getElementById('format').value || 'parquet';
 
-            document.getElementById('api-example').textContent = `POST /api/svf/v1/jobs
+        document.getElementById('api-example').textContent = `POST /api/svf/v1/jobs
 Content-Type: application/json
 
 {
@@ -734,94 +1044,97 @@ Content-Type: application/json
     "format": "${format}"
   }
 }`;
+      }
+
+      // Create Job
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const btn = document.getElementById('create-btn');
+        btn.disabled = true;
+        btn.textContent = 'Oluşturuluyor...';
+
+        try {
+          const response = await fetch('/api/svf/v1/jobs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              domain: document.getElementById('domain').value,
+              volume: parseInt(document.getElementById('volume').value),
+              privacy: {
+                mode: 'dp',
+                epsilon: parseFloat(document.getElementById('epsilon').value),
+                kAnon: parseInt(document.getElementById('kAnon').value),
+              },
+              output: {
+                format: document.getElementById('format').value,
+              },
+            }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            totalJobs++;
+            document.getElementById('total-jobs').textContent = totalJobs;
+
+            // Start polling for job status
+            pollJobStatus(data.job.id);
+
+            form.reset();
+          }
+        } catch (error) {
+          console.error('İş oluşturma hatası:', error);
+          alert('İş oluşturulamadı. Lütfen tekrar deneyin.');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'İş Oluştur';
+        }
+      });
+
+      // Poll Job Status
+      async function pollJobStatus(jobId) {
+        const interval = setInterval(async () => {
+          try {
+            const response = await fetch(`/api/svf/v1/jobs/${jobId}`);
+            const data = await response.json();
+
+            if (data.success) {
+              updateJobsList(data.job);
+
+              if (data.job.status === 'SUCCEEDED' || data.job.status === 'FAILED') {
+                clearInterval(interval);
+
+                if (data.job.status === 'SUCCEEDED') {
+                  totalRows += data.job.volume;
+                  document.getElementById('total-rows').textContent =
+                    (totalRows / 1000).toFixed(1) + 'K';
+                }
+              }
+            }
+          } catch (error) {
+            console.error('İş sorgulama hatası:', error);
+            clearInterval(interval);
+          }
+        }, 2000);
+      }
+
+      // Update Jobs List
+      function updateJobsList(job) {
+        jobs = jobs.filter(j => j.id !== job.id);
+        jobs.unshift(job);
+
+        const container = document.getElementById('jobs-container');
+
+        if (jobs.length === 0) {
+          container.innerHTML =
+            '<p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem;">Henüz iş yok.</p>';
+          return;
         }
 
-        // Create Job
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const btn = document.getElementById('create-btn');
-            btn.disabled = true;
-            btn.textContent = 'Oluşturuluyor...';
-
-            try {
-                const response = await fetch('/api/svf/v1/jobs', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        domain: document.getElementById('domain').value,
-                        volume: parseInt(document.getElementById('volume').value),
-                        privacy: {
-                            mode: 'dp',
-                            epsilon: parseFloat(document.getElementById('epsilon').value),
-                            kAnon: parseInt(document.getElementById('kAnon').value)
-                        },
-                        output: {
-                            format: document.getElementById('format').value
-                        }
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    totalJobs++;
-                    document.getElementById('total-jobs').textContent = totalJobs;
-
-                    // Start polling for job status
-                    pollJobStatus(data.job.id);
-
-                    form.reset();
-                }
-            } catch (error) {
-                console.error('İş oluşturma hatası:', error);
-                alert('İş oluşturulamadı. Lütfen tekrar deneyin.');
-            } finally {
-                btn.disabled = false;
-                btn.textContent = 'İş Oluştur';
-            }
-        });
-
-        // Poll Job Status
-        async function pollJobStatus(jobId) {
-            const interval = setInterval(async () => {
-                try {
-                    const response = await fetch(`/api/svf/v1/jobs/${jobId}`);
-                    const data = await response.json();
-
-                    if (data.success) {
-                        updateJobsList(data.job);
-
-                        if (data.job.status === 'SUCCEEDED' || data.job.status === 'FAILED') {
-                            clearInterval(interval);
-
-                            if (data.job.status === 'SUCCEEDED') {
-                                totalRows += data.job.volume;
-                                document.getElementById('total-rows').textContent =
-                                    (totalRows / 1000).toFixed(1) + 'K';
-                            }
-                        }
-                    }
-                } catch (error) {
-                    console.error('İş sorgulama hatası:', error);
-                    clearInterval(interval);
-                }
-            }, 2000);
-        }
-
-        // Update Jobs List
-        function updateJobsList(job) {
-            jobs = jobs.filter(j => j.id !== job.id);
-            jobs.unshift(job);
-
-            const container = document.getElementById('jobs-container');
-
-            if (jobs.length === 0) {
-                container.innerHTML = '<p style="color: var(--lydian-text-secondary); text-align: center; padding: 2rem;">Henüz iş yok.</p>';
-                return;
-            }
-
-            container.innerHTML = jobs.map(j => `
+        container.innerHTML = jobs
+          .map(
+            j => `
                 <div class="job-item">
                     <div class="job-info">
                         <h4>${j.id}</h4>
@@ -829,126 +1142,130 @@ Content-Type: application/json
                             Alan: ${j.domain} • Hacim: ${j.volume.toLocaleString()} satır •
                             ε=${j.privacy.epsilon} k=${j.privacy.kAnon}
                         </div>
-                        ${j.progress > 0 ? `
+                        ${
+                          j.progress > 0
+                            ? `
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: ${j.progress}%"></div>
                             </div>
-                        ` : ''}
+                        `
+                            : ''
+                        }
                     </div>
                     <div class="job-status status-${j.status.toLowerCase()}">
                         ${j.status}
                     </div>
                 </div>
-            `).join('');
+            `
+          )
+          .join('');
 
-            // Update active jobs counter
-            const activeJobs = jobs.filter(j =>
-                j.status !== 'SUCCEEDED' && j.status !== 'FAILED'
-            ).length;
-            document.getElementById('active-jobs').textContent = activeJobs;
-        }
+        // Update active jobs counter
+        const activeJobs = jobs.filter(
+          j => j.status !== 'SUCCEEDED' && j.status !== 'FAILED'
+        ).length;
+        document.getElementById('active-jobs').textContent = activeJobs;
+      }
 
-        // Initialize
-        updateApiExample();
+      // Initialize
+      updateApiExample();
     </script>
 
     <!-- Chart.js for Data Generation Visualization -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer="" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"
+      defer=""
+      crossorigin="anonymous"
+    ></script>
     <!-- Civic Charts Library -->
     <script src="/js/civic-charts-lib.js"></script>
 
     <!-- Synthetic Data Charts Initialization -->
     <script>
-        async function initSyntheticDataCharts() {
-            // Wait for CivicCharts library to load
-            if (typeof window.CivicCharts === 'undefined') {
-                console.warn('CivicCharts not loaded yet, retrying...');
-                setTimeout(initSyntheticDataCharts, 500);
-                return;
-            }
-
-            try {
-                // Fetch synthetic data generation statistics
-                const dataStats = await window.CivicCharts.fetchData('/synthetic/stats');
-
-                if (dataStats) {
-                    // Data Volume by Domain (Bar Chart)
-                    if (dataStats.volumeByDomain) {
-                        window.CivicCharts.createBarChart('dataVolumeChart', {
-                            data: {
-                                labels: Object.keys(dataStats.volumeByDomain),
-                                datasets: [{
-                                    label: 'Üretilen Veri (Satır)',
-                                    data: Object.values(dataStats.volumeByDomain),
-                                    backgroundColor: [
-                                        '#10A37F',
-                                        '#3B82F6',
-                                        '#F59E0B',
-                                        '#EC4899',
-                                        '#8B5CF6'
-                                    ]
-                                }]
-                            },
-                            showLegend: false
-                        });
-                    }
-
-                    // Privacy Levels Distribution (Doughnut)
-                    if (dataStats.privacyDistribution) {
-                        window.CivicCharts.createDoughnutChart('privacyDistChart', {
-                            data: {
-                                labels: Object.keys(dataStats.privacyDistribution),
-                                datasets: [{
-                                    data: Object.values(dataStats.privacyDistribution),
-                                    backgroundColor: [
-                                        '#10B981',
-                                        '#F59E0B',
-                                        '#EF4444'
-                                    ]
-                                }]
-                            },
-                            legendPosition: 'bottom'
-                        });
-                    }
-
-                    // Generation Timeline (Line Chart)
-                    if (dataStats.timeline) {
-                        window.CivicCharts.createLineChart('generationTimelineChart', {
-                            data: {
-                                labels: dataStats.timeline.map(t => t.timestamp),
-                                datasets: [{
-                                    label: 'Günlük Üretim (Satır)',
-                                    data: dataStats.timeline.map(t => t.volume),
-                                    borderColor: '#10A37F',
-                                    backgroundColor: 'rgba(16, 163, 127, 0.1)',
-                                    tension: 0.4,
-                                    fill: true
-                                }]
-                            },
-                            showLegend: true
-                        });
-                    }
-
-                    console.log('✅ Synthetic data charts initialized');
-                }
-
-                // Set up real-time updates (every 60 seconds)
-                window.CivicCharts.startRealTimeUpdates('dataVolumeChart', '/synthetic/stats', 60000);
-
-            } catch (error) {
-                console.error('Synthetic data charts initialization error:', error);
-            }
+      async function initSyntheticDataCharts() {
+        // Wait for CivicCharts library to load
+        if (typeof window.CivicCharts === 'undefined') {
+          console.warn('CivicCharts not loaded yet, retrying...');
+          setTimeout(initSyntheticDataCharts, 500);
+          return;
         }
 
-        // Initialize charts when page loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initSyntheticDataCharts);
-        } else {
-            initSyntheticDataCharts();
+        try {
+          // Fetch synthetic data generation statistics
+          const dataStats = await window.CivicCharts.fetchData('/synthetic/stats');
+
+          if (dataStats) {
+            // Data Volume by Domain (Bar Chart)
+            if (dataStats.volumeByDomain) {
+              window.CivicCharts.createBarChart('dataVolumeChart', {
+                data: {
+                  labels: Object.keys(dataStats.volumeByDomain),
+                  datasets: [
+                    {
+                      label: 'Üretilen Veri (Satır)',
+                      data: Object.values(dataStats.volumeByDomain),
+                      backgroundColor: ['#10A37F', '#3B82F6', '#F59E0B', '#EC4899', '#8B5CF6'],
+                    },
+                  ],
+                },
+                showLegend: false,
+              });
+            }
+
+            // Privacy Levels Distribution (Doughnut)
+            if (dataStats.privacyDistribution) {
+              window.CivicCharts.createDoughnutChart('privacyDistChart', {
+                data: {
+                  labels: Object.keys(dataStats.privacyDistribution),
+                  datasets: [
+                    {
+                      data: Object.values(dataStats.privacyDistribution),
+                      backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    },
+                  ],
+                },
+                legendPosition: 'bottom',
+              });
+            }
+
+            // Generation Timeline (Line Chart)
+            if (dataStats.timeline) {
+              window.CivicCharts.createLineChart('generationTimelineChart', {
+                data: {
+                  labels: dataStats.timeline.map(t => t.timestamp),
+                  datasets: [
+                    {
+                      label: 'Günlük Üretim (Satır)',
+                      data: dataStats.timeline.map(t => t.volume),
+                      borderColor: '#10A37F',
+                      backgroundColor: 'rgba(16, 163, 127, 0.1)',
+                      tension: 0.4,
+                      fill: true,
+                    },
+                  ],
+                },
+                showLegend: true,
+              });
+            }
+
+            console.log('✅ Synthetic data charts initialized');
+          }
+
+          // Set up real-time updates (every 60 seconds)
+          window.CivicCharts.startRealTimeUpdates('dataVolumeChart', '/synthetic/stats', 60000);
+        } catch (error) {
+          console.error('Synthetic data charts initialization error:', error);
         }
+      }
+
+      // Initialize charts when page loads
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSyntheticDataCharts);
+      } else {
+        initSyntheticDataCharts();
+      }
     </script>
 
     <script src="/js/mobile-menu-handler.js"></script>
-
-
-</body></html>
+  </body>
+</html>

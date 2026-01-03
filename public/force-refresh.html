@@ -1,501 +1,679 @@
-<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
-  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan...">
-  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
-  <link rel="canonical" href="https://www.ailydian.com/force-refresh">
-  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
-  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
-  <meta property="og:url" content="https://www.ailydian.com/force-refresh">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="tr_TR">
-  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/force-refresh">
-  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/force-refresh">
-  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/force-refresh">
-  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/force-refresh">
-  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/force-refresh">
-  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/force-refresh">
-  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/force-refresh">
+<!doctype html>
+<html lang="tr">
+  <head>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta
+      name="description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan..."
+    />
+    <meta
+      name="keywords"
+      content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri"
+    />
+    <link rel="canonical" href="https://www.ailydian.com/force-refresh" />
+    <meta
+      property="og:title"
+      content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine"
+    />
+    <meta
+      property="og:description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/force-refresh" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/force-refresh" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/force-refresh" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/force-refresh" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/force-refresh" />
+    <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/force-refresh" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/force-refresh" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/force-refresh" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🔄 Cache Temizleme - LyDian IQ</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
 
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
+      .container {
+        text-align: center;
+        max-width: 600px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
 
-        .status {
-            font-size: 1.2rem;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
+      .status {
+        font-size: 1.2rem;
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+      }
 
-        .progress {
-            width: 100%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
+      .progress {
+        width: 100%;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
 
-        .progress-bar {
-            height: 100%;
-            background: white;
-            width: 0%;
-            transition: width 0.3s;
-        }
+      .progress-bar {
+        height: 100%;
+        background: white;
+        width: 0%;
+        transition: width 0.3s;
+      }
 
-        .steps {
-            text-align: left;
-            margin: 30px 0;
-        }
+      .steps {
+        text-align: left;
+        margin: 30px 0;
+      }
 
-        .step {
-            padding: 10px;
-            margin: 10px 0;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-        }
+      .step {
+        padding: 10px;
+        margin: 10px 0;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+      }
 
-        .step.done {
-            background: rgba(76, 175, 80, 0.3);
-        }
+      .step.done {
+        background: rgba(76, 175, 80, 0.3);
+      }
 
-        .step-icon {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
+      .step-icon {
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
 
-        .btn {
-            background: white;
-            color: #667eea;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: transform 0.2s;
-        }
+      .btn {
+        background: white;
+        color: #667eea;
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: transform 0.2s;
+      }
 
-        .btn:hover {
-            transform: scale(1.05);
-        }
+      .btn:hover {
+        transform: scale(1.05);
+      }
 
-        .countdown {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 20px 0;
-        }
+      .countdown {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 20px 0;
+      }
     </style>
 
-  <!-- Visual Rich Results & Images -->
-  
-  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh.png">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/force-refresh.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="🔄 Cache Temizleme - LyDian IQ">
-  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/force-refresh.png">
-  <meta name="twitter:image:alt" content="🔄 Cache Temizleme - LyDian IQ">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-2.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-3.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-4.png">
-  
-  
-  
-  
-  
-  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/force-refresh.png">
-  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/force-refresh.png">
-  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/force-refresh.png">
-  
-  
+    <!-- Visual Rich Results & Images -->
 
-  
+    <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/og-images/force-refresh.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+    <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/force-refresh.png" />
+    <meta name="twitter:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-2.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-3.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/force-refresh-4.png" />
 
-  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "🔄 Cache Temizleme - LyDian IQ",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser, iOS, Android",
-  "description": "LyDian AI - 🔄 Cache Temizleme - LyDian IQ",
-  "image": [
-    "https://www.ailydian.com/images/gallery/force-refresh-1.jpg",
-    "https://www.ailydian.com/images/gallery/force-refresh-2.jpg",
-    "https://www.ailydian.com/images/gallery/force-refresh-3.jpg"
-  ],
-  "screenshot": [
-    "https://www.ailydian.com/images/gallery/force-refresh-1.jpg",
-    "https://www.ailydian.com/images/gallery/force-refresh-2.jpg",
-    "https://www.ailydian.com/images/gallery/force-refresh-3.jpg"
-  ],
-  "url": "https://www.ailydian.com/force-refresh",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1542",
-    "bestRating": "5"
-  },
-  "inLanguage": [
-    "tr",
-    "en",
-    "de",
-    "ru",
-    "uk",
-    "zh",
-    "it"
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "🔄 Cache Temizleme - LyDian IQ",
-  "description": "LyDian AI - 🔄 Cache Temizleme - LyDian IQ",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.ailydian.com/images/hero/force-refresh.jpg",
-    "width": 1200,
-    "height": 630,
-    "caption": "🔄 Cache Temizleme - LyDian IQ"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2025-12-20",
-  "inLanguage": "tr-TR"
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "🔄 Cache Temizleme - LyDian IQ - Video Rehber",
-  "description": "LyDian AI - 🔄 Cache Temizleme - LyDian IQ",
-  "thumbnailUrl": "https://www.ailydian.com/images/video/force-refresh-preview.jpg",
-  "uploadDate": "2024-01-15",
-  "duration": "PT8M",
-  "contentUrl": "https://www.ailydian.com/videos/force-refresh.mp4",
-  "embedUrl": "https://www.ailydian.com/force-refresh#video",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI"
-  }
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://www.ailydian.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Force Refresh",
-      "item": "https://www.ailydian.com/force-refresh"
-    }
-  ]
-}
-  </script>
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.ailydian.com/mstile/force-refresh.png"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://www.ailydian.com/mstile-70/force-refresh.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://www.ailydian.com/mstile-150/force-refresh.png"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="🔄 Cache Temizleme - LyDian IQ">
-  <meta property="og:description" content="LyDian AI - 🔄 Cache Temizleme - LyDian IQ">
-  <meta property="og:url" content="https://www.ailydian.com/force-refresh">
-  <meta property="og:image" content="https://www.ailydian.com/images/og/force-refresh.jpg">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/force-refresh.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="🔄 Cache Temizleme - LyDian IQ">
-  <meta property="og:site_name" content="LyDian AI">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="🔄 Cache Temizleme - LyDian IQ">
-  <meta name="twitter:description" content="LyDian AI - 🔄 Cache Temizleme - LyDian IQ">
-  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/force-refresh.jpg">
-  <meta name="twitter:image:alt" content="🔄 Cache Temizleme - LyDian IQ">
-  
-  
-  <!-- /Premium SEO -->
-<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
-<body>
+    <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "🔄 Cache Temizleme - LyDian IQ",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "description": "LyDian AI - 🔄 Cache Temizleme - LyDian IQ",
+        "image": [
+          "https://www.ailydian.com/images/gallery/force-refresh-1.jpg",
+          "https://www.ailydian.com/images/gallery/force-refresh-2.jpg",
+          "https://www.ailydian.com/images/gallery/force-refresh-3.jpg"
+        ],
+        "screenshot": [
+          "https://www.ailydian.com/images/gallery/force-refresh-1.jpg",
+          "https://www.ailydian.com/images/gallery/force-refresh-2.jpg",
+          "https://www.ailydian.com/images/gallery/force-refresh-3.jpg"
+        ],
+        "url": "https://www.ailydian.com/force-refresh",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1542",
+          "bestRating": "5"
+        },
+        "inLanguage": ["tr", "en", "de", "ru", "uk", "zh", "it"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "🔄 Cache Temizleme - LyDian IQ",
+        "description": "LyDian AI - 🔄 Cache Temizleme - LyDian IQ",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.ailydian.com/images/hero/force-refresh.jpg",
+          "width": 1200,
+          "height": 630,
+          "caption": "🔄 Cache Temizleme - LyDian IQ"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2025-12-20",
+        "inLanguage": "tr-TR"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "🔄 Cache Temizleme - LyDian IQ - Video Rehber",
+        "description": "LyDian AI - 🔄 Cache Temizleme - LyDian IQ",
+        "thumbnailUrl": "https://www.ailydian.com/images/video/force-refresh-preview.jpg",
+        "uploadDate": "2024-01-15",
+        "duration": "PT8M",
+        "contentUrl": "https://www.ailydian.com/videos/force-refresh.mp4",
+        "embedUrl": "https://www.ailydian.com/force-refresh#video",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://www.ailydian.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Force Refresh",
+            "item": "https://www.ailydian.com/force-refresh"
+          }
+        ]
+      }
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="🔄 Cache Temizleme - LyDian IQ" />
+    <meta property="og:description" content="LyDian AI - 🔄 Cache Temizleme - LyDian IQ" />
+    <meta property="og:url" content="https://www.ailydian.com/force-refresh" />
+    <meta property="og:image" content="https://www.ailydian.com/images/og/force-refresh.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/images/og/force-refresh.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🔄 Cache Temizleme - LyDian IQ" />
+    <meta name="twitter:description" content="LyDian AI - 🔄 Cache Temizleme - LyDian IQ" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/images/twitter/force-refresh.jpg"
+    />
+    <meta name="twitter:image:alt" content="🔄 Cache Temizleme - LyDian IQ" />
+
+    <!-- /Premium SEO -->
+    <link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C4A962" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aiLyDian AI" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- Apple Splash Screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-xr.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-12.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad.png"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-11.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-12.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="aiLyDian AI" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#C4A962" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <!-- Favicon (all sizes) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+    <!-- ================================ -->
+    <!-- AILYDIAN SEO META TAGS (TR) -->
+    <!-- Auto-generated for multi-language SEO -->
+    <!-- ================================ -->
+
+    <!-- Primary Meta Tags -->
+    <title>force refresh - AILYDIAN</title>
+    <meta name="title" content="force refresh - AILYDIAN" />
+    <meta name="description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="author" content="AILYDIAN" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="language" content="tr" />
+    <link rel="canonical" href="https://www.ailydian.com/force-refresh.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/force-refresh.html" />
+    <meta property="og:title" content="force refresh - AILYDIAN" />
+    <meta property="og:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta property="og:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta property="og:site_name" content="AILYDIAN" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.ailydian.com/force-refresh.html" />
+    <meta name="twitter:title" content="force refresh - AILYDIAN" />
+    <meta name="twitter:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta name="twitter:site" content="@ailydian" />
+    <meta name="twitter:creator" content="@ailydian" />
+
+    <!-- AI Search Optimization -->
+    <meta name="ai:context" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="ai:keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="ai:language" content="tr" />
+
+    <!-- ChatGPT/Claude/Perplexity Optimization -->
+    <meta name="description:ai" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="summary" content="AILYDIAN - Advanced AI Assistant Platform" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Istanbul" />
+
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AILYDIAN" />
+
+    <!-- Hreflang Tags for International SEO -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/force-refresh.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/force-refresh.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/force-refresh.html" />
+    <link rel="alternate" hreflang="es" href="https://www.ailydian.com/es/force-refresh.html" />
+    <link rel="alternate" hreflang="fr" href="https://www.ailydian.com/fr/force-refresh.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/force-refresh.html" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/force-refresh.html" />
+    <link rel="alternate" hreflang="pt" href="https://www.ailydian.com/pt/force-refresh.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/force-refresh.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/force-refresh.html" />
+    <link rel="alternate" hreflang="ja" href="https://www.ailydian.com/ja/force-refresh.html" />
+    <link rel="alternate" hreflang="ko" href="https://www.ailydian.com/ko/force-refresh.html" />
+    <link rel="alternate" hreflang="hi" href="https://www.ailydian.com/hi/force-refresh.html" />
+    <link rel="alternate" hreflang="id" href="https://www.ailydian.com/id/force-refresh.html" />
+    <link rel="alternate" hreflang="nl" href="https://www.ailydian.com/nl/force-refresh.html" />
+    <link rel="alternate" hreflang="pl" href="https://www.ailydian.com/pl/force-refresh.html" />
+    <link rel="alternate" hreflang="sv" href="https://www.ailydian.com/sv/force-refresh.html" />
+    <link rel="alternate" hreflang="no" href="https://www.ailydian.com/no/force-refresh.html" />
+    <link rel="alternate" hreflang="da" href="https://www.ailydian.com/da/force-refresh.html" />
+    <link rel="alternate" hreflang="fi" href="https://www.ailydian.com/fi/force-refresh.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/force-refresh.html" />
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechnologyCompany",
+        "name": "AILYDIAN",
+        "url": "https://www.ailydian.com",
+        "logo": "https://www.ailydian.com/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/ailydian",
+          "https://linkedin.com/company/ailydian",
+          "https://github.com/ailydian"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@ailydian.com",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    <!-- ================================ -->
+    <!-- END AILYDIAN SEO META TAGS -->
+    <!-- ================================ -->
+  </head>
+  <body>
     <div class="container">
-        <h1>🔄 Cache Temizleniyor</h1>
+      <h1>🔄 Cache Temizleniyor</h1>
 
-        <div class="status" id="status">
-            Cache temizleme başlatılıyor...
+      <div class="status" id="status">Cache temizleme başlatılıyor...</div>
+
+      <div class="progress">
+        <div class="progress-bar" id="progress"></div>
+      </div>
+
+      <div class="steps" id="steps">
+        <div class="step" id="step1">
+          <span class="step-icon">⏳</span>
+          <span>LocalStorage temizleniyor...</span>
         </div>
-
-        <div class="progress">
-            <div class="progress-bar" id="progress"></div>
+        <div class="step" id="step2">
+          <span class="step-icon">⏳</span>
+          <span>SessionStorage temizleniyor...</span>
         </div>
-
-        <div class="steps" id="steps">
-            <div class="step" id="step1">
-                <span class="step-icon">⏳</span>
-                <span>LocalStorage temizleniyor...</span>
-            </div>
-            <div class="step" id="step2">
-                <span class="step-icon">⏳</span>
-                <span>SessionStorage temizleniyor...</span>
-            </div>
-            <div class="step" id="step3">
-                <span class="step-icon">⏳</span>
-                <span>IndexedDB temizleniyor...</span>
-            </div>
-            <div class="step" id="step4">
-                <span class="step-icon">⏳</span>
-                <span>Service Worker kayıtları siliniyor...</span>
-            </div>
-            <div class="step" id="step5">
-                <span class="step-icon">⏳</span>
-                <span>Cache Storage temizleniyor...</span>
-            </div>
-            <div class="step" id="step6">
-                <span class="step-icon">⏳</span>
-                <span>Cookies temizleniyor...</span>
-            </div>
+        <div class="step" id="step3">
+          <span class="step-icon">⏳</span>
+          <span>IndexedDB temizleniyor...</span>
         </div>
+        <div class="step" id="step4">
+          <span class="step-icon">⏳</span>
+          <span>Service Worker kayıtları siliniyor...</span>
+        </div>
+        <div class="step" id="step5">
+          <span class="step-icon">⏳</span>
+          <span>Cache Storage temizleniyor...</span>
+        </div>
+        <div class="step" id="step6">
+          <span class="step-icon">⏳</span>
+          <span>Cookies temizleniyor...</span>
+        </div>
+      </div>
 
-        <div class="countdown" id="countdown" style="display: none;">3</div>
+      <div class="countdown" id="countdown" style="display: none">3</div>
 
-        <button class="btn" id="manualBtn" style="display: none;">
-            Elle Yönlendir
-        </button>
+      <button class="btn" id="manualBtn" style="display: none">Elle Yönlendir</button>
     </div>
 
     <script>
-        let progress = 0;
-        const steps = [
-            { id: 'step1', action: clearLocalStorage, name: 'LocalStorage' },
-            { id: 'step2', action: clearSessionStorage, name: 'SessionStorage' },
-            { id: 'step3', action: clearIndexedDB, name: 'IndexedDB' },
-            { id: 'step4', action: unregisterServiceWorkers, name: 'Service Workers' },
-            { id: 'step5', action: clearCacheStorage, name: 'Cache Storage' },
-            { id: 'step6', action: clearCookies, name: 'Cookies' }
-        ];
+      let progress = 0;
+      const steps = [
+        { id: 'step1', action: clearLocalStorage, name: 'LocalStorage' },
+        { id: 'step2', action: clearSessionStorage, name: 'SessionStorage' },
+        { id: 'step3', action: clearIndexedDB, name: 'IndexedDB' },
+        { id: 'step4', action: unregisterServiceWorkers, name: 'Service Workers' },
+        { id: 'step5', action: clearCacheStorage, name: 'Cache Storage' },
+        { id: 'step6', action: clearCookies, name: 'Cookies' },
+      ];
 
-        function updateProgress(percent) {
-            document.getElementById('progress').style.width = percent + '%';
+      function updateProgress(percent) {
+        document.getElementById('progress').style.width = percent + '%';
+      }
+
+      function markStepDone(stepId, icon = '✅') {
+        const step = document.getElementById(stepId);
+        step.classList.add('done');
+        step.querySelector('.step-icon').textContent = icon;
+      }
+
+      function clearLocalStorage() {
+        return new Promise(resolve => {
+          try {
+            localStorage.clear();
+            console.log('✅ LocalStorage cleared');
+            resolve();
+          } catch (err) {
+            console.warn('⚠️ LocalStorage clear failed:', err);
+            resolve();
+          }
+        });
+      }
+
+      function clearSessionStorage() {
+        return new Promise(resolve => {
+          try {
+            sessionStorage.clear();
+            console.log('✅ SessionStorage cleared');
+            resolve();
+          } catch (err) {
+            console.warn('⚠️ SessionStorage clear failed:', err);
+            resolve();
+          }
+        });
+      }
+
+      async function clearIndexedDB() {
+        try {
+          const databases = await indexedDB.databases();
+          for (const db of databases) {
+            indexedDB.deleteDatabase(db.name);
+            console.log('✅ IndexedDB deleted:', db.name);
+          }
+        } catch (err) {
+          console.warn('⚠️ IndexedDB clear failed:', err);
         }
+      }
 
-        function markStepDone(stepId, icon = '✅') {
-            const step = document.getElementById(stepId);
-            step.classList.add('done');
-            step.querySelector('.step-icon').textContent = icon;
+      async function unregisterServiceWorkers() {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (const registration of registrations) {
+            await registration.unregister();
+            console.log('✅ Service Worker unregistered');
+          }
+        } catch (err) {
+          console.warn('⚠️ Service Worker unregister failed:', err);
         }
+      }
 
-        function clearLocalStorage() {
-            return new Promise((resolve) => {
-                try {
-                    localStorage.clear();
-                    console.log('✅ LocalStorage cleared');
-                    resolve();
-                } catch (err) {
-                    console.warn('⚠️ LocalStorage clear failed:', err);
-                    resolve();
-                }
-            });
+      async function clearCacheStorage() {
+        try {
+          const cacheNames = await caches.keys();
+          for (const name of cacheNames) {
+            await caches.delete(name);
+            console.log('✅ Cache deleted:', name);
+          }
+        } catch (err) {
+          console.warn('⚠️ Cache Storage clear failed:', err);
         }
+      }
 
-        function clearSessionStorage() {
-            return new Promise((resolve) => {
-                try {
-                    sessionStorage.clear();
-                    console.log('✅ SessionStorage cleared');
-                    resolve();
-                } catch (err) {
-                    console.warn('⚠️ SessionStorage clear failed:', err);
-                    resolve();
-                }
-            });
-        }
-
-        async function clearIndexedDB() {
-            try {
-                const databases = await indexedDB.databases();
-                for (const db of databases) {
-                    indexedDB.deleteDatabase(db.name);
-                    console.log('✅ IndexedDB deleted:', db.name);
-                }
-            } catch (err) {
-                console.warn('⚠️ IndexedDB clear failed:', err);
+      function clearCookies() {
+        return new Promise(resolve => {
+          try {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+              const [name] = cookie.split('=');
+              document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
             }
+            console.log('✅ Cookies cleared');
+            resolve();
+          } catch (err) {
+            console.warn('⚠️ Cookie clear failed:', err);
+            resolve();
+          }
+        });
+      }
+
+      async function runCleanup() {
+        document.getElementById('status').textContent = 'Cache temizleme devam ediyor...';
+
+        for (let i = 0; i < steps.length; i++) {
+          const step = steps[i];
+
+          // Update status
+          document.getElementById('status').textContent = `${step.name} temizleniyor...`;
+
+          // Run action
+          await step.action();
+
+          // Mark done
+          markStepDone(step.id);
+
+          // Update progress
+          progress = ((i + 1) / steps.length) * 100;
+          updateProgress(progress);
+
+          // Small delay for visual feedback
+          await new Promise(resolve => setTimeout(resolve, 300));
         }
 
-        async function unregisterServiceWorkers() {
-            try {
-                const registrations = await navigator.serviceWorker.getRegistrations();
-                for (const registration of registrations) {
-                    await registration.unregister();
-                    console.log('✅ Service Worker unregistered');
-                }
-            } catch (err) {
-                console.warn('⚠️ Service Worker unregister failed:', err);
-            }
-        }
+        // All done
+        document.getElementById('status').textContent = '✅ Tüm cache temizlendi!';
 
-        async function clearCacheStorage() {
-            try {
-                const cacheNames = await caches.keys();
-                for (const name of cacheNames) {
-                    await caches.delete(name);
-                    console.log('✅ Cache deleted:', name);
-                }
-            } catch (err) {
-                console.warn('⚠️ Cache Storage clear failed:', err);
-            }
-        }
+        // Show countdown
+        document.getElementById('countdown').style.display = 'block';
+        let count = 3;
 
-        function clearCookies() {
-            return new Promise((resolve) => {
-                try {
-                    const cookies = document.cookie.split(';');
-                    for (const cookie of cookies) {
-                        const [name] = cookie.split('=');
-                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                    }
-                    console.log('✅ Cookies cleared');
-                    resolve();
-                } catch (err) {
-                    console.warn('⚠️ Cookie clear failed:', err);
-                    resolve();
-                }
-            });
-        }
+        const countdownInterval = setInterval(() => {
+          count--;
+          document.getElementById('countdown').textContent = count;
 
-        async function runCleanup() {
-            document.getElementById('status').textContent = 'Cache temizleme devam ediyor...';
-
-            for (let i = 0; i < steps.length; i++) {
-                const step = steps[i];
-
-                // Update status
-                document.getElementById('status').textContent = `${step.name} temizleniyor...`;
-
-                // Run action
-                await step.action();
-
-                // Mark done
-                markStepDone(step.id);
-
-                // Update progress
-                progress = ((i + 1) / steps.length) * 100;
-                updateProgress(progress);
-
-                // Small delay for visual feedback
-                await new Promise(resolve => setTimeout(resolve, 300));
-            }
-
-            // All done
-            document.getElementById('status').textContent = '✅ Tüm cache temizlendi!';
-
-            // Show countdown
-            document.getElementById('countdown').style.display = 'block';
-            let count = 3;
-
-            const countdownInterval = setInterval(() => {
-                count--;
-                document.getElementById('countdown').textContent = count;
-
-                if (count === 0) {
-                    clearInterval(countdownInterval);
-                    // Redirect with force refresh
-                    const timestamp = Date.now();
-                    window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
-
-                    // Fallback: Show manual button
-                    setTimeout(() => {
-                        document.getElementById('countdown').style.display = 'none';
-                        document.getElementById('manualBtn').style.display = 'inline-block';
-                    }, 2000);
-                }
-            }, 1000);
-        }
-
-        // Manual redirect button
-        document.getElementById('manualBtn').addEventListener('click', () => {
+          if (count === 0) {
+            clearInterval(countdownInterval);
+            // Redirect with force refresh
             const timestamp = Date.now();
             window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
-        });
 
-        // Auto-start cleanup
-        window.addEventListener('load', () => {
-            setTimeout(runCleanup, 500);
-        });
+            // Fallback: Show manual button
+            setTimeout(() => {
+              document.getElementById('countdown').style.display = 'none';
+              document.getElementById('manualBtn').style.display = 'inline-block';
+            }, 2000);
+          }
+        }, 1000);
+      }
 
-        // Prevent back button
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            history.go(1);
-        };
+      // Manual redirect button
+      document.getElementById('manualBtn').addEventListener('click', () => {
+        const timestamp = Date.now();
+        window.location.href = `/lydian-iq.html?v=${timestamp}&force=1`;
+      });
+
+      // Auto-start cleanup
+      window.addEventListener('load', () => {
+        setTimeout(runCleanup, 500);
+      });
+
+      // Prevent back button
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+        history.go(1);
+      };
     </script>
-
-
-</body></html>
+  </body>
+</html>

@@ -1,232 +1,410 @@
-<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
-  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan...">
-  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
-  <link rel="canonical" href="https://www.ailydian.com/test-chat-ecw">
-  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
-  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
-  <meta property="og:url" content="https://www.ailydian.com/test-chat-ecw">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="tr_TR">
-  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-chat-ecw">
-  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-chat-ecw">
-  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-chat-ecw">
-  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-chat-ecw">
-  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-chat-ecw">
-  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-chat-ecw">
-  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-chat-ecw">
+<!doctype html>
+<html lang="tr">
+  <head>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta
+      name="description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan..."
+    />
+    <meta
+      name="keywords"
+      content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri"
+    />
+    <link rel="canonical" href="https://www.ailydian.com/test-chat-ecw" />
+    <meta
+      property="og:title"
+      content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine"
+    />
+    <meta
+      property="og:description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/test-chat-ecw" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/test-chat-ecw" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-chat-ecw" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-chat-ecw" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-chat-ecw" />
+    <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/test-chat-ecw" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-chat-ecw" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-chat-ecw" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat ECW Test - Smoke Test - LyDian AI test chat ecw</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            padding: 20px;
-            background: #1a1a1a;
-            color: white;
-        }
-        .test-result {
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border-left: 4px solid #10A37F;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .test-result.error {
-            border-left-color: #FF6B4A;
-        }
-        .test-result.success {
-            border-left-color: #13C896;
-        }
-        button {
-            padding: 10px 20px;
-            background: #10A37F;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        button:hover {
-            background: #13C896;
-        }
-        #console-log {
-            background: #000;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 12px;
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 20px;
-        }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        padding: 20px;
+        background: #1a1a1a;
+        color: white;
+      }
+      .test-result {
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border-left: 4px solid #10a37f;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .test-result.error {
+        border-left-color: #ff6b4a;
+      }
+      .test-result.success {
+        border-left-color: #13c896;
+      }
+      button {
+        padding: 10px 20px;
+        background: #10a37f;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #13c896;
+      }
+      #console-log {
+        background: #000;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 12px;
+        max-height: 400px;
+        overflow-y: auto;
+        margin-top: 20px;
+      }
     </style>
 
-  <!-- Visual Rich Results & Images -->
-  
-  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw.png">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/test-chat-ecw.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Chat ECW Test - Smoke Test">
-  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-chat-ecw.png">
-  <meta name="twitter:image:alt" content="Chat ECW Test - Smoke Test">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw-2.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw-3.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw-4.png">
-  
-  
-  
-  
-  
-  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/test-chat-ecw.png">
-  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/test-chat-ecw.png">
-  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/test-chat-ecw.png">
-  
-  
+    <!-- Visual Rich Results & Images -->
 
-  
+    <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/og-images/test-chat-ecw.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Chat ECW Test - Smoke Test" />
+    <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/test-chat-ecw.png" />
+    <meta name="twitter:image:alt" content="Chat ECW Test - Smoke Test" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw-2.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw-3.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/test-chat-ecw-4.png" />
 
-  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Chat ECW Test - Smoke Test",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser, iOS, Android",
-  "description": "LyDian AI - Chat ECW Test - Smoke Test",
-  "image": [
-    "https://www.ailydian.com/images/gallery/test-chat-ecw-1.jpg",
-    "https://www.ailydian.com/images/gallery/test-chat-ecw-2.jpg",
-    "https://www.ailydian.com/images/gallery/test-chat-ecw-3.jpg"
-  ],
-  "screenshot": [
-    "https://www.ailydian.com/images/gallery/test-chat-ecw-1.jpg",
-    "https://www.ailydian.com/images/gallery/test-chat-ecw-2.jpg",
-    "https://www.ailydian.com/images/gallery/test-chat-ecw-3.jpg"
-  ],
-  "url": "https://www.ailydian.com/test-chat-ecw",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1542",
-    "bestRating": "5"
-  },
-  "inLanguage": [
-    "tr",
-    "en",
-    "de",
-    "ru",
-    "uk",
-    "zh",
-    "it"
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Chat ECW Test - Smoke Test",
-  "description": "LyDian AI - Chat ECW Test - Smoke Test",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.ailydian.com/images/hero/test-chat-ecw.jpg",
-    "width": 1200,
-    "height": 630,
-    "caption": "Chat ECW Test - Smoke Test"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2025-12-20",
-  "inLanguage": "tr-TR"
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "Chat ECW Test - Smoke Test - Video Rehber",
-  "description": "LyDian AI - Chat ECW Test - Smoke Test",
-  "thumbnailUrl": "https://www.ailydian.com/images/video/test-chat-ecw-preview.jpg",
-  "uploadDate": "2024-01-15",
-  "duration": "PT8M",
-  "contentUrl": "https://www.ailydian.com/videos/test-chat-ecw.mp4",
-  "embedUrl": "https://www.ailydian.com/test-chat-ecw#video",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI"
-  }
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://www.ailydian.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Test Chat Ecw",
-      "item": "https://www.ailydian.com/test-chat-ecw"
-    }
-  ]
-}
-  </script>
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.ailydian.com/mstile/test-chat-ecw.png"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://www.ailydian.com/mstile-70/test-chat-ecw.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://www.ailydian.com/mstile-150/test-chat-ecw.png"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Chat ECW Test - Smoke Test">
-  <meta property="og:description" content="LyDian AI - Chat ECW Test - Smoke Test">
-  <meta property="og:url" content="https://www.ailydian.com/test-chat-ecw">
-  <meta property="og:image" content="https://www.ailydian.com/images/og/test-chat-ecw.jpg">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/test-chat-ecw.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Chat ECW Test - Smoke Test">
-  <meta property="og:site_name" content="LyDian AI">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chat ECW Test - Smoke Test">
-  <meta name="twitter:description" content="LyDian AI - Chat ECW Test - Smoke Test">
-  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/test-chat-ecw.jpg">
-  <meta name="twitter:image:alt" content="Chat ECW Test - Smoke Test">
-  
-  
-  <!-- /Premium SEO -->
-<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
-<body>
+    <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Chat ECW Test - Smoke Test",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "description": "LyDian AI - Chat ECW Test - Smoke Test",
+        "image": [
+          "https://www.ailydian.com/images/gallery/test-chat-ecw-1.jpg",
+          "https://www.ailydian.com/images/gallery/test-chat-ecw-2.jpg",
+          "https://www.ailydian.com/images/gallery/test-chat-ecw-3.jpg"
+        ],
+        "screenshot": [
+          "https://www.ailydian.com/images/gallery/test-chat-ecw-1.jpg",
+          "https://www.ailydian.com/images/gallery/test-chat-ecw-2.jpg",
+          "https://www.ailydian.com/images/gallery/test-chat-ecw-3.jpg"
+        ],
+        "url": "https://www.ailydian.com/test-chat-ecw",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1542",
+          "bestRating": "5"
+        },
+        "inLanguage": ["tr", "en", "de", "ru", "uk", "zh", "it"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Chat ECW Test - Smoke Test",
+        "description": "LyDian AI - Chat ECW Test - Smoke Test",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.ailydian.com/images/hero/test-chat-ecw.jpg",
+          "width": 1200,
+          "height": 630,
+          "caption": "Chat ECW Test - Smoke Test"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2025-12-20",
+        "inLanguage": "tr-TR"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Chat ECW Test - Smoke Test - Video Rehber",
+        "description": "LyDian AI - Chat ECW Test - Smoke Test",
+        "thumbnailUrl": "https://www.ailydian.com/images/video/test-chat-ecw-preview.jpg",
+        "uploadDate": "2024-01-15",
+        "duration": "PT8M",
+        "contentUrl": "https://www.ailydian.com/videos/test-chat-ecw.mp4",
+        "embedUrl": "https://www.ailydian.com/test-chat-ecw#video",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://www.ailydian.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Test Chat Ecw",
+            "item": "https://www.ailydian.com/test-chat-ecw"
+          }
+        ]
+      }
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chat ECW Test - Smoke Test" />
+    <meta property="og:description" content="LyDian AI - Chat ECW Test - Smoke Test" />
+    <meta property="og:url" content="https://www.ailydian.com/test-chat-ecw" />
+    <meta property="og:image" content="https://www.ailydian.com/images/og/test-chat-ecw.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/images/og/test-chat-ecw.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Chat ECW Test - Smoke Test" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chat ECW Test - Smoke Test" />
+    <meta name="twitter:description" content="LyDian AI - Chat ECW Test - Smoke Test" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/images/twitter/test-chat-ecw.jpg"
+    />
+    <meta name="twitter:image:alt" content="Chat ECW Test - Smoke Test" />
+
+    <!-- /Premium SEO -->
+    <link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C4A962" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aiLyDian AI" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- Apple Splash Screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-xr.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-12.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad.png"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-11.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-12.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="aiLyDian AI" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#C4A962" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <!-- Favicon (all sizes) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+    <!-- ================================ -->
+    <!-- AILYDIAN SEO META TAGS (TR) -->
+    <!-- Auto-generated for multi-language SEO -->
+    <!-- ================================ -->
+
+    <!-- Primary Meta Tags -->
+    <title>test chat ecw - AILYDIAN</title>
+    <meta name="title" content="test chat ecw - AILYDIAN" />
+    <meta name="description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="author" content="AILYDIAN" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="language" content="tr" />
+    <link rel="canonical" href="https://www.ailydian.com/test-chat-ecw.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/test-chat-ecw.html" />
+    <meta property="og:title" content="test chat ecw - AILYDIAN" />
+    <meta property="og:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta property="og:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta property="og:site_name" content="AILYDIAN" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.ailydian.com/test-chat-ecw.html" />
+    <meta name="twitter:title" content="test chat ecw - AILYDIAN" />
+    <meta name="twitter:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta name="twitter:site" content="@ailydian" />
+    <meta name="twitter:creator" content="@ailydian" />
+
+    <!-- AI Search Optimization -->
+    <meta name="ai:context" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="ai:keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="ai:language" content="tr" />
+
+    <!-- ChatGPT/Claude/Perplexity Optimization -->
+    <meta name="description:ai" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="summary" content="AILYDIAN - Advanced AI Assistant Platform" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Istanbul" />
+
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AILYDIAN" />
+
+    <!-- Hreflang Tags for International SEO -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="es" href="https://www.ailydian.com/es/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="fr" href="https://www.ailydian.com/fr/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="pt" href="https://www.ailydian.com/pt/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="ja" href="https://www.ailydian.com/ja/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="ko" href="https://www.ailydian.com/ko/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="hi" href="https://www.ailydian.com/hi/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="id" href="https://www.ailydian.com/id/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="nl" href="https://www.ailydian.com/nl/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="pl" href="https://www.ailydian.com/pl/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="sv" href="https://www.ailydian.com/sv/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="no" href="https://www.ailydian.com/no/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="da" href="https://www.ailydian.com/da/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="fi" href="https://www.ailydian.com/fi/test-chat-ecw.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/test-chat-ecw.html" />
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechnologyCompany",
+        "name": "AILYDIAN",
+        "url": "https://www.ailydian.com",
+        "logo": "https://www.ailydian.com/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/ailydian",
+          "https://linkedin.com/company/ailydian",
+          "https://github.com/ailydian"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@ailydian.com",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    <!-- ================================ -->
+    <!-- END AILYDIAN SEO META TAGS -->
+    <!-- ================================ -->
+  </head>
+  <body>
     <h1>🧪 Chat.html ECW Integration - Smoke Test</h1>
     <p>Bu sayfa chat.html'deki ECW entegrasyonunu test eder.</p>
 
@@ -246,166 +424,177 @@
     <script src="/js/ecw-widget.js"></script>
 
     <script>
-        const results = document.getElementById('test-results');
-        const consoleLog = document.getElementById('console-log');
+      const results = document.getElementById('test-results');
+      const consoleLog = document.getElementById('console-log');
 
-        // Override console to capture logs
-        const originalConsole = {
-            log: console.log,
-            warn: console.warn,
-            error: console.error
-        };
+      // Override console to capture logs
+      const originalConsole = {
+        log: console.log,
+        warn: console.warn,
+        error: console.error,
+      };
 
-        function logToPage(type, ...args) {
-            const logEntry = document.createElement('div');
-            logEntry.style.color = type === 'error' ? '#FF6B4A' : type === 'warn' ? '#FFB74D' : '#13C896';
-            logEntry.textContent = `[${type.toUpperCase()}] ${args.join(' ')}`;
-            consoleLog.appendChild(logEntry);
-            consoleLog.scrollTop = consoleLog.scrollHeight;
-        }
+      function logToPage(type, ...args) {
+        const logEntry = document.createElement('div');
+        logEntry.style.color =
+          type === 'error' ? '#FF6B4A' : type === 'warn' ? '#FFB74D' : '#13C896';
+        logEntry.textContent = `[${type.toUpperCase()}] ${args.join(' ')}`;
+        consoleLog.appendChild(logEntry);
+        consoleLog.scrollTop = consoleLog.scrollHeight;
+      }
 
-        console.log = function(...args) {
-            originalConsole.log.apply(console, args);
-            logToPage('log', ...args);
-        };
+      console.log = function (...args) {
+        originalConsole.log.apply(console, args);
+        logToPage('log', ...args);
+      };
 
-        console.warn = function(...args) {
-            originalConsole.warn.apply(console, args);
-            logToPage('warn', ...args);
-        };
+      console.warn = function (...args) {
+        originalConsole.warn.apply(console, args);
+        logToPage('warn', ...args);
+      };
 
-        console.error = function(...args) {
-            originalConsole.error.apply(console, args);
-            logToPage('error', ...args);
-        };
+      console.error = function (...args) {
+        originalConsole.error.apply(console, args);
+        logToPage('error', ...args);
+      };
 
-        function addResult(name, success, message) {
-            const div = document.createElement('div');
-            div.className = 'test-result ' + (success ? 'success' : 'error');
-            div.innerHTML = `
+      function addResult(name, success, message) {
+        const div = document.createElement('div');
+        div.className = 'test-result ' + (success ? 'success' : 'error');
+        div.innerHTML = `
                 <strong>${success ? '✅' : '❌'} ${name}</strong><br>
                 ${message}
             `;
-            results.appendChild(div);
+        results.appendChild(div);
+      }
+
+      // Test 1: ECW Integration
+      async function testECWIntegration() {
+        console.log('Starting ECW Integration Test...');
+
+        try {
+          if (typeof window.ecwIntegration === 'undefined') {
+            addResult(
+              'ECW Integration',
+              false,
+              'window.ecwIntegration undefined. Script yüklenmedi.'
+            );
+            return;
+          }
+
+          addResult('ECW Integration', true, 'ECW Integration class yüklendi.');
+
+          // Initialize
+          const userId = 'test-user-' + Date.now();
+          await window.ecwIntegration.initialize(userId);
+
+          if (window.ecwIntegration.initialized) {
+            addResult('ECW Initialize', true, `User ID: ${userId}`);
+          } else {
+            addResult('ECW Initialize', false, 'Initialize edilemedi.');
+          }
+        } catch (error) {
+          addResult('ECW Integration', false, error.message);
+          console.error('ECW Integration Error:', error);
         }
+      }
 
-        // Test 1: ECW Integration
-        async function testECWIntegration() {
-            console.log('Starting ECW Integration Test...');
+      // Test 2: ECW Widget
+      async function testECWWidget() {
+        console.log('Starting ECW Widget Test...');
 
-            try {
-                if (typeof window.ecwIntegration === 'undefined') {
-                    addResult('ECW Integration', false, 'window.ecwIntegration undefined. Script yüklenmedi.');
-                    return;
-                }
+        try {
+          if (typeof window.ecwWidget === 'undefined') {
+            addResult('ECW Widget', false, 'window.ecwWidget undefined. Script yüklenmedi.');
+            return;
+          }
 
-                addResult('ECW Integration', true, 'ECW Integration class yüklendi.');
+          addResult('ECW Widget', true, 'ECW Widget class yüklendi.');
 
-                // Initialize
-                const userId = 'test-user-' + Date.now();
-                await window.ecwIntegration.initialize(userId);
-
-                if (window.ecwIntegration.initialized) {
-                    addResult('ECW Initialize', true, `User ID: ${userId}`);
-                } else {
-                    addResult('ECW Initialize', false, 'Initialize edilemedi.');
-                }
-
-            } catch (error) {
-                addResult('ECW Integration', false, error.message);
-                console.error('ECW Integration Error:', error);
-            }
+          // Check if widget is initialized
+          if (window.ecwWidget.widget) {
+            addResult('ECW Widget DOM', true, 'Widget DOM element oluşturuldu.');
+          } else {
+            addResult('ECW Widget DOM', false, 'Widget DOM element yok. Init edilmedi.');
+          }
+        } catch (error) {
+          addResult('ECW Widget', false, error.message);
+          console.error('ECW Widget Error:', error);
         }
+      }
 
-        // Test 2: ECW Widget
-        async function testECWWidget() {
-            console.log('Starting ECW Widget Test...');
+      // Test 3: Chat.html Yüklenme
+      async function testChatHTML() {
+        console.log('Starting Chat.html Load Test...');
 
-            try {
-                if (typeof window.ecwWidget === 'undefined') {
-                    addResult('ECW Widget', false, 'window.ecwWidget undefined. Script yüklenmedi.');
-                    return;
-                }
+        try {
+          const response = await fetch('/chat.html');
 
-                addResult('ECW Widget', true, 'ECW Widget class yüklendi.');
+          if (!response.ok) {
+            addResult('Chat.html HTTP', false, `HTTP ${response.status}: ${response.statusText}`);
+            return;
+          }
 
-                // Check if widget is initialized
-                if (window.ecwWidget.widget) {
-                    addResult('ECW Widget DOM', true, 'Widget DOM element oluşturuldu.');
-                } else {
-                    addResult('ECW Widget DOM', false, 'Widget DOM element yok. Init edilmedi.');
-                }
+          addResult(
+            'Chat.html HTTP',
+            true,
+            `HTTP 200 OK (${response.headers.get('content-type')})`
+          );
 
-            } catch (error) {
-                addResult('ECW Widget', false, error.message);
-                console.error('ECW Widget Error:', error);
-            }
+          const html = await response.text();
+
+          // Check ECW script tags
+          const hasECWIntegration = html.includes('ecw-integration.js');
+          const hasECWWidget = html.includes('ecw-widget.js');
+
+          addResult(
+            'ECW Script Tags',
+            hasECWIntegration && hasECWWidget,
+            `ECW Integration: ${hasECWIntegration ? '✓' : '✗'}, ECW Widget: ${hasECWWidget ? '✓' : '✗'}`
+          );
+
+          // Check for syntax errors in HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const parserError = doc.querySelector('parsererror');
+
+          if (parserError) {
+            addResult(
+              'HTML Syntax',
+              false,
+              'HTML parse hatası bulundu: ' + parserError.textContent
+            );
+          } else {
+            addResult('HTML Syntax', true, 'HTML geçerli, parse edildi.');
+          }
+
+          // Check sendMessage function
+          const hasSendMessage = html.includes('async function sendMessage');
+          const hasECWTracking = html.includes('🌍 ECW TRACKING');
+
+          addResult(
+            'sendMessage Function',
+            hasSendMessage && hasECWTracking,
+            `sendMessage: ${hasSendMessage ? '✓' : '✗'}, ECW Tracking: ${hasECWTracking ? '✓' : '✗'}`
+          );
+        } catch (error) {
+          addResult('Chat.html Test', false, error.message);
+          console.error('Chat.html Test Error:', error);
         }
+      }
 
-        // Test 3: Chat.html Yüklenme
-        async function testChatHTML() {
-            console.log('Starting Chat.html Load Test...');
+      // Auto-run on load
+      window.addEventListener('DOMContentLoaded', async () => {
+        console.log('✓ Test page loaded');
+        console.log('Waiting for ECW scripts...');
 
-            try {
-                const response = await fetch('/chat.html');
-
-                if (!response.ok) {
-                    addResult('Chat.html HTTP', false, `HTTP ${response.status}: ${response.statusText}`);
-                    return;
-                }
-
-                addResult('Chat.html HTTP', true, `HTTP 200 OK (${response.headers.get('content-type')})`);
-
-                const html = await response.text();
-
-                // Check ECW script tags
-                const hasECWIntegration = html.includes('ecw-integration.js');
-                const hasECWWidget = html.includes('ecw-widget.js');
-
-                addResult('ECW Script Tags',
-                    hasECWIntegration && hasECWWidget,
-                    `ECW Integration: ${hasECWIntegration ? '✓' : '✗'}, ECW Widget: ${hasECWWidget ? '✓' : '✗'}`
-                );
-
-                // Check for syntax errors in HTML
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const parserError = doc.querySelector('parsererror');
-
-                if (parserError) {
-                    addResult('HTML Syntax', false, 'HTML parse hatası bulundu: ' + parserError.textContent);
-                } else {
-                    addResult('HTML Syntax', true, 'HTML geçerli, parse edildi.');
-                }
-
-                // Check sendMessage function
-                const hasSendMessage = html.includes('async function sendMessage');
-                const hasECWTracking = html.includes('🌍 ECW TRACKING');
-
-                addResult('sendMessage Function',
-                    hasSendMessage && hasECWTracking,
-                    `sendMessage: ${hasSendMessage ? '✓' : '✗'}, ECW Tracking: ${hasECWTracking ? '✓' : '✗'}`
-                );
-
-            } catch (error) {
-                addResult('Chat.html Test', false, error.message);
-                console.error('Chat.html Test Error:', error);
-            }
-        }
-
-        // Auto-run on load
-        window.addEventListener('DOMContentLoaded', async () => {
-            console.log('✓ Test page loaded');
-            console.log('Waiting for ECW scripts...');
-
-            // Wait a bit for scripts to load
-            setTimeout(async () => {
-                await testECWIntegration();
-                await testECWWidget();
-                await testChatHTML();
-            }, 1000);
-        });
+        // Wait a bit for scripts to load
+        setTimeout(async () => {
+          await testECWIntegration();
+          await testECWWidget();
+          await testChatHTML();
+        }, 1000);
+      });
     </script>
-
-
-</body></html>
+  </body>
+</html>

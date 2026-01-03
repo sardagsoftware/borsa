@@ -1,373 +1,802 @@
-<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
-  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan...">
-  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
-  <link rel="canonical" href="https://www.ailydian.com/ai-knowledge-assistant">
-  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
-  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
-  <meta property="og:url" content="https://www.ailydian.com/ai-knowledge-assistant">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="tr_TR">
-  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/ai-knowledge-assistant">
-  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/ai-knowledge-assistant">
-  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/ai-knowledge-assistant">
-  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/ai-knowledge-assistant">
-  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/ai-knowledge-assistant">
-  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/ai-knowledge-assistant">
-  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/ai-knowledge-assistant">
+<!doctype html>
+<html lang="tr">
+  <head>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta
+      name="description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan..."
+    />
+    <meta
+      name="keywords"
+      content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri"
+    />
+    <link rel="canonical" href="https://www.ailydian.com/ai-knowledge-assistant" />
+    <meta
+      property="og:title"
+      content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine"
+    />
+    <meta
+      property="og:description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/ai-knowledge-assistant" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/ai-knowledge-assistant" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/ai-knowledge-assistant" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/ai-knowledge-assistant" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/ai-knowledge-assistant" />
+    <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/ai-knowledge-assistant" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/ai-knowledge-assistant" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/ai-knowledge-assistant" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bilgi Tabanı Asistanı | LyDian AI</title>
-    
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
     <style>
-        :root {
-            --primary: #10A37F;
-            --primary-hover: #0D8F6E;
-            --accent: #FF6B4A;
-            --bg-white: #FFFFFF;
-            --bg-gray: #F9FAFB;
-            --gray-200: #E5E7EB;
-            --gray-300: #D1D5DB;
-            --gray-500: #6B7280;
-            --gray-700: #374151;
-            --gray-900: #111827;
+      :root {
+        --primary: #10a37f;
+        --primary-hover: #0d8f6e;
+        --accent: #ff6b4a;
+        --bg-white: #ffffff;
+        --bg-gray: #f9fafb;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-500: #6b7280;
+        --gray-700: #374151;
+        --gray-900: #111827;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-white);
+        color: var(--gray-900);
+      }
+      .header {
+        background: linear-gradient(135deg, var(--bg-white), var(--bg-gray));
+        padding: 2rem;
+        border-bottom: 1px solid var(--gray-200);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header h1 {
+        font-size: 2rem;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+      }
+      .breadcrumb {
+        color: var(--gray-500);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+      .breadcrumb a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .status-badge {
+        background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-weight: 600;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+      .card {
+        background: var(--bg-white);
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid var(--gray-200);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      label {
+        display: block;
+        color: var(--gray-700);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--gray-300);
+        border-radius: 0.5rem;
+        font-family: inherit;
+      }
+      textarea {
+        min-height: 120px;
+      }
+      button {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover {
+        transform: translateY(-2px);
+      }
+      .results {
+        display: none;
+        margin-top: 2rem;
+      }
+      .results.show {
+        display: block;
+      }
+      .summary-box {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .section {
+        background: var(--bg-gray);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .confidence {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin: 1rem 0;
+      }
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-white); color: var(--gray-900); }
-        .header { background: linear-gradient(135deg, var(--bg-white), var(--bg-gray)); padding: 2rem; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
-        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .header h1 { font-size: 2rem; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-        .breadcrumb { color: var(--gray-500); font-size: 0.9rem; margin-top: 0.5rem; }
-        .breadcrumb a { color: var(--primary); text-decoration: none; }
-        .status-badge { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 600; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-        .card { background: var(--bg-white); border-radius: 1rem; padding: 2rem; border: 1px solid var(--gray-200); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; color: var(--gray-700); font-weight: 500; margin-bottom: 0.5rem; }
-        input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; font-family: inherit; }
-        textarea { min-height: 120px; }
-        button { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 1rem 2rem; border: none; border-radius: 0.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; }
-        button:hover { transform: translateY(-2px); }
-        .results { display: none; margin-top: 2rem; }
-        .results.show { display: block; }
-        .summary-box { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem; }
-        .section { background: var(--bg-gray); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; }
-        .confidence { text-align: center; font-size: 2rem; font-weight: 800; color: var(--primary); margin: 1rem 0; }
-        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+      }
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
 
-  <!-- Visual Rich Results & Images -->
-  
-  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-knowledge-assistant.png">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/ai-knowledge-assistant.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI">
-  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/ai-knowledge-assistant.png">
-  <meta name="twitter:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-knowledge-assistant-2.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-knowledge-assistant-3.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/ai-knowledge-assistant-4.png">
-  
-  
-  
-  
-  
-  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/ai-knowledge-assistant.png">
-  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/ai-knowledge-assistant.png">
-  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/ai-knowledge-assistant.png">
-  
-  
+    <!-- Visual Rich Results & Images -->
 
-  
+    <meta
+      property="og:image"
+      content="https://www.ailydian.com/og-images/ai-knowledge-assistant.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/og-images/ai-knowledge-assistant.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/twitter-cards/ai-knowledge-assistant.png"
+    />
+    <meta name="twitter:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI" />
+    <meta
+      property="og:image"
+      content="https://www.ailydian.com/og-images/ai-knowledge-assistant-2.png"
+    />
+    <meta
+      property="og:image"
+      content="https://www.ailydian.com/og-images/ai-knowledge-assistant-3.png"
+    />
+    <meta
+      property="og:image"
+      content="https://www.ailydian.com/og-images/ai-knowledge-assistant-4.png"
+    />
 
-  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Bilgi Tabanı Asistanı | LyDian AI",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser, iOS, Android",
-  "description": "Bilgi asistanı - Akıllı bilgi yönetimi",
-  "image": [
-    "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-1.jpg",
-    "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-2.jpg",
-    "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-3.jpg"
-  ],
-  "screenshot": [
-    "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-1.jpg",
-    "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-2.jpg",
-    "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-3.jpg"
-  ],
-  "url": "https://www.ailydian.com/ai-knowledge-assistant",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1542",
-    "bestRating": "5"
-  },
-  "inLanguage": [
-    "tr",
-    "en",
-    "de",
-    "ru",
-    "uk",
-    "zh",
-    "it"
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Bilgi Tabanı Asistanı | LyDian AI",
-  "description": "Bilgi asistanı - Akıllı bilgi yönetimi",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.ailydian.com/images/hero/ai-knowledge-assistant.jpg",
-    "width": 1200,
-    "height": 630,
-    "caption": "Bilgi Tabanı Asistanı | LyDian AI"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2025-12-20",
-  "inLanguage": "tr-TR"
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "Bilgi Tabanı Asistanı | LyDian AI - Video Rehber",
-  "description": "Bilgi asistanı - Akıllı bilgi yönetimi",
-  "thumbnailUrl": "https://www.ailydian.com/images/video/ai-knowledge-assistant-preview.jpg",
-  "uploadDate": "2024-01-15",
-  "duration": "PT8M",
-  "contentUrl": "https://www.ailydian.com/videos/ai-knowledge-assistant.mp4",
-  "embedUrl": "https://www.ailydian.com/ai-knowledge-assistant#video",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI"
-  }
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://www.ailydian.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Ai Knowledge Assistant",
-      "item": "https://www.ailydian.com/ai-knowledge-assistant"
-    }
-  ]
-}
-  </script>
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.ailydian.com/mstile/ai-knowledge-assistant.png"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://www.ailydian.com/mstile-70/ai-knowledge-assistant.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://www.ailydian.com/mstile-150/ai-knowledge-assistant.png"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Bilgi Tabanı Asistanı | LyDian AI">
-  <meta property="og:description" content="Bilgi asistanı - Akıllı bilgi yönetimi">
-  <meta property="og:url" content="https://www.ailydian.com/ai-knowledge-assistant">
-  <meta property="og:image" content="https://www.ailydian.com/images/og/ai-knowledge-assistant.jpg">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/ai-knowledge-assistant.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI">
-  <meta property="og:site_name" content="LyDian AI">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bilgi Tabanı Asistanı | LyDian AI">
-  <meta name="twitter:description" content="Bilgi asistanı - Akıllı bilgi yönetimi">
-  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/ai-knowledge-assistant.jpg">
-  <meta name="twitter:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI">
-  
-  
-  <!-- /Premium SEO -->
-<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
-<body>
+    <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Bilgi Tabanı Asistanı | LyDian AI",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "description": "Bilgi asistanı - Akıllı bilgi yönetimi",
+        "image": [
+          "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-1.jpg",
+          "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-2.jpg",
+          "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-3.jpg"
+        ],
+        "screenshot": [
+          "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-1.jpg",
+          "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-2.jpg",
+          "https://www.ailydian.com/images/gallery/ai-knowledge-assistant-3.jpg"
+        ],
+        "url": "https://www.ailydian.com/ai-knowledge-assistant",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1542",
+          "bestRating": "5"
+        },
+        "inLanguage": ["tr", "en", "de", "ru", "uk", "zh", "it"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Bilgi Tabanı Asistanı | LyDian AI",
+        "description": "Bilgi asistanı - Akıllı bilgi yönetimi",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.ailydian.com/images/hero/ai-knowledge-assistant.jpg",
+          "width": 1200,
+          "height": 630,
+          "caption": "Bilgi Tabanı Asistanı | LyDian AI"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2025-12-20",
+        "inLanguage": "tr-TR"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Bilgi Tabanı Asistanı | LyDian AI - Video Rehber",
+        "description": "Bilgi asistanı - Akıllı bilgi yönetimi",
+        "thumbnailUrl": "https://www.ailydian.com/images/video/ai-knowledge-assistant-preview.jpg",
+        "uploadDate": "2024-01-15",
+        "duration": "PT8M",
+        "contentUrl": "https://www.ailydian.com/videos/ai-knowledge-assistant.mp4",
+        "embedUrl": "https://www.ailydian.com/ai-knowledge-assistant#video",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://www.ailydian.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Ai Knowledge Assistant",
+            "item": "https://www.ailydian.com/ai-knowledge-assistant"
+          }
+        ]
+      }
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bilgi Tabanı Asistanı | LyDian AI" />
+    <meta property="og:description" content="Bilgi asistanı - Akıllı bilgi yönetimi" />
+    <meta property="og:url" content="https://www.ailydian.com/ai-knowledge-assistant" />
+    <meta
+      property="og:image"
+      content="https://www.ailydian.com/images/og/ai-knowledge-assistant.jpg"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/images/og/ai-knowledge-assistant.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bilgi Tabanı Asistanı | LyDian AI" />
+    <meta name="twitter:description" content="Bilgi asistanı - Akıllı bilgi yönetimi" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/images/twitter/ai-knowledge-assistant.jpg"
+    />
+    <meta name="twitter:image:alt" content="Bilgi Tabanı Asistanı | LyDian AI" />
+
+    <!-- /Premium SEO -->
+    <link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C4A962" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aiLyDian AI" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- Apple Splash Screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-xr.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-12.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad.png"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-11.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-12.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="aiLyDian AI" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#C4A962" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <!-- Favicon (all sizes) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+    <!-- ================================ -->
+    <!-- AILYDIAN SEO META TAGS (TR) -->
+    <!-- Auto-generated for multi-language SEO -->
+    <!-- ================================ -->
+
+    <!-- Primary Meta Tags -->
+    <title>ai knowledge assistant - AILYDIAN</title>
+    <meta name="title" content="ai knowledge assistant - AILYDIAN" />
+    <meta name="description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="author" content="AILYDIAN" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="language" content="tr" />
+    <link rel="canonical" href="https://www.ailydian.com/ai-knowledge-assistant.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/ai-knowledge-assistant.html" />
+    <meta property="og:title" content="ai knowledge assistant - AILYDIAN" />
+    <meta property="og:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta property="og:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta property="og:site_name" content="AILYDIAN" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.ailydian.com/ai-knowledge-assistant.html" />
+    <meta name="twitter:title" content="ai knowledge assistant - AILYDIAN" />
+    <meta name="twitter:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta name="twitter:site" content="@ailydian" />
+    <meta name="twitter:creator" content="@ailydian" />
+
+    <!-- AI Search Optimization -->
+    <meta name="ai:context" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="ai:keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="ai:language" content="tr" />
+
+    <!-- ChatGPT/Claude/Perplexity Optimization -->
+    <meta name="description:ai" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="summary" content="AILYDIAN - Advanced AI Assistant Platform" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Istanbul" />
+
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AILYDIAN" />
+
+    <!-- Hreflang Tags for International SEO -->
+    <link
+      rel="alternate"
+      hreflang="tr"
+      href="https://www.ailydian.com/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://www.ailydian.com/en/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ar"
+      href="https://www.ailydian.com/ar/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://www.ailydian.com/es/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="https://www.ailydian.com/fr/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://www.ailydian.com/de/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="it"
+      href="https://www.ailydian.com/it/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="pt"
+      href="https://www.ailydian.com/pt/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://www.ailydian.com/ru/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="zh"
+      href="https://www.ailydian.com/zh/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ja"
+      href="https://www.ailydian.com/ja/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ko"
+      href="https://www.ailydian.com/ko/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="hi"
+      href="https://www.ailydian.com/hi/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="id"
+      href="https://www.ailydian.com/id/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="nl"
+      href="https://www.ailydian.com/nl/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href="https://www.ailydian.com/pl/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="sv"
+      href="https://www.ailydian.com/sv/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="no"
+      href="https://www.ailydian.com/no/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="da"
+      href="https://www.ailydian.com/da/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="fi"
+      href="https://www.ailydian.com/fi/ai-knowledge-assistant.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://www.ailydian.com/ai-knowledge-assistant.html"
+    />
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechnologyCompany",
+        "name": "AILYDIAN",
+        "url": "https://www.ailydian.com",
+        "logo": "https://www.ailydian.com/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/ailydian",
+          "https://linkedin.com/company/ailydian",
+          "https://github.com/ailydian"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@ailydian.com",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    <!-- ================================ -->
+    <!-- END AILYDIAN SEO META TAGS -->
+    <!-- ================================ -->
+  </head>
+  <body>
     <div class="header">
-        <div class="header-content">
-            <div>
-                <h1>🧠 Bilgi Tabanı Asistanı</h1>
-                <div class="breadcrumb"><a href="/ai-advisor-hub.html">AI Advisor Hub</a> / Bilgi Asistanı</div>
-            </div>
-            <span class="status-badge">CANLI</span>
+      <div class="header-content">
+        <div>
+          <h1>🧠 Bilgi Tabanı Asistanı</h1>
+          <div class="breadcrumb">
+            <a href="/ai-advisor-hub.html">AI Advisor Hub</a> / Bilgi Asistanı
+          </div>
         </div>
+        <span class="status-badge">CANLI</span>
+      </div>
     </div>
 
     <div class="container">
-        <div class="grid">
-            <div>
-                <div class="card">
-                    <h2 style="margin-bottom: 1.5rem;">Detaylı Bilgi ve Analiz</h2>
-                    <form id="knowledgeForm">
-                        <div class="form-group">
-                            <label>Sorunuz</label>
-                            <textarea id="query" required="" placeholder="Ne öğrenmek istiyorsunuz? Hangi konuda detaylı bilgi almak istersiniz?"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Bağlam (Opsiyonel)</label>
-                            <input type="text" id="context" placeholder="Örn: İş, Eğitim, Kişisel gelişim">
-                        </div>
-                        <div class="form-group">
-                            <label>Derinlik Seviyesi</label>
-                            <select id="depth">
-                                <option value="Temel">Temel - Hızlı özet</option>
-                                <option value="Orta" selected="">Orta - Dengeli açıklama</option>
-                                <option value="Derin">Derin - Kapsamlı analiz</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" id="includeReferences" checked="">
-                                Kaynak ve referanslar dahil edilsin
-                            </label>
-                        </div>
-                        <button type="submit" id="analyzeBtn">
-                            <i class="fas fa-brain"></i> AI ile Analiz Et
-                        </button>
-                    </form>
-                </div>
-                <div class="results" id="results"></div>
-            </div>
-            <div>
-                <div class="card">
-                    <h3 style="margin-bottom: 1rem;">🎯 Ne Sunuyoruz?</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Detaylı açıklamalar</li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Pratik örnekler</li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Uygulama adımları</li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Kaynak önerileri</li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--primary);"></i> Takip soruları</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="grid">
+        <div>
+          <div class="card">
+            <h2 style="margin-bottom: 1.5rem">Detaylı Bilgi ve Analiz</h2>
+            <form id="knowledgeForm">
+              <div class="form-group">
+                <label>Sorunuz</label>
+                <textarea
+                  id="query"
+                  required=""
+                  placeholder="Ne öğrenmek istiyorsunuz? Hangi konuda detaylı bilgi almak istersiniz?"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Bağlam (Opsiyonel)</label>
+                <input type="text" id="context" placeholder="Örn: İş, Eğitim, Kişisel gelişim" />
+              </div>
+              <div class="form-group">
+                <label>Derinlik Seviyesi</label>
+                <select id="depth">
+                  <option value="Temel">Temel - Hızlı özet</option>
+                  <option value="Orta" selected="">Orta - Dengeli açıklama</option>
+                  <option value="Derin">Derin - Kapsamlı analiz</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="includeReferences" checked="" />
+                  Kaynak ve referanslar dahil edilsin
+                </label>
+              </div>
+              <button type="submit" id="analyzeBtn">
+                <i class="fas fa-brain"></i> AI ile Analiz Et
+              </button>
+            </form>
+          </div>
+          <div class="results" id="results"></div>
         </div>
+        <div>
+          <div class="card">
+            <h3 style="margin-bottom: 1rem">🎯 Ne Sunuyoruz?</h3>
+            <ul style="list-style: none; padding: 0">
+              <li style="padding: 0.5rem 0">
+                <i class="fas fa-check" style="color: var(--primary)"></i> Detaylı açıklamalar
+              </li>
+              <li style="padding: 0.5rem 0">
+                <i class="fas fa-check" style="color: var(--primary)"></i> Pratik örnekler
+              </li>
+              <li style="padding: 0.5rem 0">
+                <i class="fas fa-check" style="color: var(--primary)"></i> Uygulama adımları
+              </li>
+              <li style="padding: 0.5rem 0">
+                <i class="fas fa-check" style="color: var(--primary)"></i> Kaynak önerileri
+              </li>
+              <li style="padding: 0.5rem 0">
+                <i class="fas fa-check" style="color: var(--primary)"></i> Takip soruları
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        document.getElementById('knowledgeForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('analyzeBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<span class="loading"></span> Analiz ediliyor...';
-            
-            try {
-                const response = await fetch('/api/knowledge-assistant/analyze', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        query: document.getElementById('query').value,
-                        context: document.getElementById('context').value,
-                        depth: document.getElementById('depth').value,
-                        includeReferences: document.getElementById('includeReferences').checked
-                    })
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    displayResults(data);
-                } else {
-                    alert('Hata: ' + (data.error || 'Bilinmeyen hata'));
-                }
-            } catch (error) {
-                alert('Hata: ' + error.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-brain"></i> AI ile Analiz Et';
-            }
-        });
-        
-        function displayResults(data) {
-            const results = document.getElementById('results');
-            let html = '<div class="card">';
-            
-            if (data.summary) {
-                html += `<div class="summary-box">
+      document.getElementById('knowledgeForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('analyzeBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="loading"></span> Analiz ediliyor...';
+
+        try {
+          const response = await fetch('/api/knowledge-assistant/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              query: document.getElementById('query').value,
+              context: document.getElementById('context').value,
+              depth: document.getElementById('depth').value,
+              includeReferences: document.getElementById('includeReferences').checked,
+            }),
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            displayResults(data);
+          } else {
+            alert('Hata: ' + (data.error || 'Bilinmeyen hata'));
+          }
+        } catch (error) {
+          alert('Hata: ' + error.message);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-brain"></i> AI ile Analiz Et';
+        }
+      });
+
+      function displayResults(data) {
+        const results = document.getElementById('results');
+        let html = '<div class="card">';
+
+        if (data.summary) {
+          html += `<div class="summary-box">
                     <h3 style="margin-bottom: 1rem;">📌 Özet</h3>
                     <p>${data.summary}</p>
                 </div>`;
-            }
-            
-            if (data.confidence) {
-                html += `<div class="confidence">Güven: ${data.confidence}%</div>`;
-            }
-            
-            if (data.detailedAnswer && data.detailedAnswer.mainPoints) {
-                html += '<div class="section"><h3>📚 Detaylı Açıklama</h3>';
-                data.detailedAnswer.mainPoints.forEach(point => {
-                    html += `<div style="margin-bottom: 1rem;">
+        }
+
+        if (data.confidence) {
+          html += `<div class="confidence">Güven: ${data.confidence}%</div>`;
+        }
+
+        if (data.detailedAnswer && data.detailedAnswer.mainPoints) {
+          html += '<div class="section"><h3>📚 Detaylı Açıklama</h3>';
+          data.detailedAnswer.mainPoints.forEach(point => {
+            html += `<div style="margin-bottom: 1rem;">
                         <h4 style="color: var(--primary);">${point.point}</h4>
                         <p>${point.explanation}</p>
                         ${point.examples ? `<p style="margin-top: 0.5rem;"><strong>Örnekler:</strong></p><ul>${point.examples.map(e => `<li>${e}</li>`).join('')}</ul>` : ''}
                     </div>`;
-                });
-                html += '</div>';
-            }
-            
-            if (data.practicalApplication) {
-                html += `<div class="section">
+          });
+          html += '</div>';
+        }
+
+        if (data.practicalApplication) {
+          html += `<div class="section">
                     <h3>⚡ Pratik Uygulama</h3>
                     ${data.practicalApplication.useCases ? `<p><strong>Kullanım Senaryoları:</strong></p><ul>${data.practicalApplication.useCases.map(u => `<li>${u}</li>`).join('')}</ul>` : ''}
                     ${data.practicalApplication.implementation ? `<p style="margin-top: 1rem;"><strong>Uygulama Adımları:</strong></p><ol>${data.practicalApplication.implementation.map(i => `<li>${i}</li>`).join('')}</ol>` : ''}
                 </div>`;
-            }
-            
-            if (data.followUpQuestions && data.followUpQuestions.length > 0) {
-                html += `<div class="section">
+        }
+
+        if (data.followUpQuestions && data.followUpQuestions.length > 0) {
+          html += `<div class="section">
                     <h3>❓ Takip Soruları</h3>
                     <ul>${data.followUpQuestions.map(q => `<li>${q}</li>`).join('')}</ul>
                 </div>`;
-            }
-            
-            html += '</div>';
-            results.innerHTML = html;
-            results.classList.add('show');
-            results.scrollIntoView({ behavior: 'smooth' });
         }
+
+        html += '</div>';
+        results.innerHTML = html;
+        results.classList.add('show');
+        results.scrollIntoView({ behavior: 'smooth' });
+      }
     </script>
     <script src="/js/mobile-menu-handler.js"></script>
-
-
-</body></html>
+  </body>
+</html>

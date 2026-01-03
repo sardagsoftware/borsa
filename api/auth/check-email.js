@@ -1,10 +1,12 @@
 /**
  * Check if email exists in database
  * Vercel Serverless Function
+ *
+ * TEMPORARY IMPLEMENTATION: Returns mock data
+ * TODO: Integrate with Vercel Postgres or external database
  */
 
-const User = require('../../backend/models/User');
-const { handleCORS } = require('../../middleware/cors-handler');
+const { handleCORS } = require('../_lib/cors-simple');
 
 module.exports = async (req, res) => {
   // Apply secure CORS
@@ -21,7 +23,7 @@ module.exports = async (req, res) => {
     if (!email) {
       return res.status(400).json({
         success: false,
-        message: 'Email is required'
+        message: 'Email is required',
       });
     }
 
@@ -30,22 +32,24 @@ module.exports = async (req, res) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: 'Invalid email format'
+        message: 'Invalid email format',
       });
     }
 
-    const user = await User.findByEmail(email.toLowerCase().trim());
+    // TEMPORARY: Mock response for testing
+    // In production, this should query Vercel Postgres or external DB
+    // For now, all emails return as "not exists" to allow new registrations
 
     return res.status(200).json({
       success: true,
-      exists: !!user
+      exists: false,
+      message: 'Email check successful (mock mode)',
     });
-
   } catch (error) {
     console.error('Email check error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: 'Internal server error',
     });
   }
 };

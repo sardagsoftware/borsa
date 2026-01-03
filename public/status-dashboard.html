@@ -1,582 +1,795 @@
-<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
-  <link rel="canonical" href="https://www.ailydian.com/status-dashboard">
-  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
-  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
-  <meta property="og:url" content="https://www.ailydian.com/status-dashboard">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="tr_TR">
-  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/status-dashboard">
-  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/status-dashboard">
-  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/status-dashboard">
-  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/status-dashboard">
-  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/status-dashboard">
-  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/status-dashboard">
-  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/status-dashboard">
+<!doctype html>
+<html lang="tr">
+  <head>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <meta
+      name="keywords"
+      content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri"
+    />
+    <link rel="canonical" href="https://www.ailydian.com/status-dashboard" />
+    <meta
+      property="og:title"
+      content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine"
+    />
+    <meta
+      property="og:description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/status-dashboard" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/status-dashboard" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/status-dashboard" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/status-dashboard" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/status-dashboard" />
+    <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/status-dashboard" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/status-dashboard" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/status-dashboard" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LyDian Health Monitoring Dashboard - Real-time system status | Yapay zeka, AI çözümleri, LyDian ekosistemi">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LyDian Health Monitoring Dashboard - Real-time system status | Yapay zeka, AI çözümleri, LyDian ekosistemi"
+    />
     <title>Health Dashboard - LyDian - LyDian AI status dashboard</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #12182b;
-            --bg-card: #1a2035;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --border-color: #2d3548;
-            --accent-purple: #8b5cf6;
-            --accent-cyan: #06b6d4;
-            --status-up: #00c47f;
-            --status-warn: #f9b233;
-            --status-down: #e63946;
-        }
+      :root {
+        --bg-primary: #0a0e1a;
+        --bg-secondary: #12182b;
+        --bg-card: #1a2035;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --border-color: #2d3548;
+        --accent-purple: #8b5cf6;
+        --accent-cyan: #06b6d4;
+        --status-up: #00c47f;
+        --status-warn: #f9b233;
+        --status-down: #e63946;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
 
-        /* Aurora Background */
-        .aurora-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #0a0e1a 0%, #12182b 100%);
-        }
+      /* Aurora Background */
+      .aurora-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(135deg, #0a0e1a 0%, #12182b 100%);
+      }
 
-        .aurora-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
-            animation: aurora-drift 20s ease-in-out infinite;
-        }
+      .aurora-bg::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background:
+          radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+        animation: aurora-drift 20s ease-in-out infinite;
+      }
 
-        @keyframes aurora-drift {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(10%, -10%) rotate(120deg); }
-            66% { transform: translate(-10%, 10%) rotate(240deg); }
+      @keyframes aurora-drift {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
         }
-
-        /* Header */
-        .header {
-            padding: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-            background: rgba(26, 32, 53, 0.7);
+        33% {
+          transform: translate(10%, -10%) rotate(120deg);
         }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        66% {
+          transform: translate(-10%, 10%) rotate(240deg);
         }
+      }
 
-        h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+      /* Header */
+      .header {
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(26, 32, 53, 0.7);
+      }
+
+      .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .refresh-info {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--status-up);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
         }
-
-        .refresh-info {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2);
         }
+      }
 
-        .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--status-up);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+      /* Main Content */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Overall Status Card */
+      .overall-status {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .overall-status h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .overall-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Services Grid */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .service-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent-purple);
+      }
+
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .service-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      .service-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .service-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .metric {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .metric-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--status-up);
+      }
+
+      .metric-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .service-chart {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .chart-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Ring Buffer Stats */
+      .buffer-stats {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .buffer-stats h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .buffer-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      /* Loading State */
+      .loading {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+      }
+
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid var(--border-color);
+        border-top-color: var(--accent-purple);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
+      }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
+      /* Error State */
+      .error {
+        background: rgba(230, 57, 70, 0.1);
+        border: 1px solid var(--status-down);
+        border-radius: 8px;
+        padding: 1rem;
+        color: var(--status-down);
+        margin-bottom: 1rem;
+      }
 
-        /* Main Content */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Overall Status Card */
-        .overall-status {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .overall-status h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+      /* Responsive */
+      @media (max-width: 768px) {
+        .services-grid {
+          grid-template-columns: 1fr;
         }
 
         .overall-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        .stat {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        h1 {
+          font-size: 1.5rem;
         }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-purple);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .service-name {
-            font-size: 1.125rem;
-            font-weight: 600;
-        }
-
-        .service-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .service-metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .metric {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .metric-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--status-up);
-        }
-
-        .metric-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .service-chart {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .chart-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Ring Buffer Stats */
-        .buffer-stats {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .buffer-stats h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .buffer-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-        }
-
-        .spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid var(--border-color);
-            border-top-color: var(--accent-purple);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Error State */
-        .error {
-            background: rgba(230, 57, 70, 0.1);
-            border: 1px solid var(--status-down);
-            border-radius: 8px;
-            padding: 1rem;
-            color: var(--status-down);
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .overall-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
+      }
     </style>
 
-  <!-- Visual Rich Results & Images -->
-  
-  <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard.png">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/status-dashboard.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Health Dashboard - LyDian">
-  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/status-dashboard.png">
-  <meta name="twitter:image:alt" content="Health Dashboard - LyDian">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard-2.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard-3.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard-4.png">
-  
-  
-  
-  
-  
-  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/status-dashboard.png">
-  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/status-dashboard.png">
-  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/status-dashboard.png">
-  
-  
+    <!-- Visual Rich Results & Images -->
 
-  
+    <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/og-images/status-dashboard.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Health Dashboard - LyDian" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/twitter-cards/status-dashboard.png"
+    />
+    <meta name="twitter:image:alt" content="Health Dashboard - LyDian" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard-2.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard-3.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/status-dashboard-4.png" />
 
-  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Health Dashboard - LyDian",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser, iOS, Android",
-  "description": "AI analitik ve yönetim - Health Dashboard - LyDian",
-  "image": [
-    "https://www.ailydian.com/images/gallery/status-dashboard-1.jpg",
-    "https://www.ailydian.com/images/gallery/status-dashboard-2.jpg",
-    "https://www.ailydian.com/images/gallery/status-dashboard-3.jpg"
-  ],
-  "screenshot": [
-    "https://www.ailydian.com/images/gallery/status-dashboard-1.jpg",
-    "https://www.ailydian.com/images/gallery/status-dashboard-2.jpg",
-    "https://www.ailydian.com/images/gallery/status-dashboard-3.jpg"
-  ],
-  "url": "https://www.ailydian.com/status-dashboard",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1542",
-    "bestRating": "5"
-  },
-  "inLanguage": [
-    "tr",
-    "en",
-    "de",
-    "ru",
-    "uk",
-    "zh",
-    "it"
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Health Dashboard - LyDian",
-  "description": "AI analitik ve yönetim - Health Dashboard - LyDian",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.ailydian.com/images/hero/status-dashboard.jpg",
-    "width": 1200,
-    "height": 630,
-    "caption": "Health Dashboard - LyDian"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2025-12-20",
-  "inLanguage": "tr-TR"
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "Health Dashboard - LyDian - Video Rehber",
-  "description": "AI analitik ve yönetim - Health Dashboard - LyDian",
-  "thumbnailUrl": "https://www.ailydian.com/images/video/status-dashboard-preview.jpg",
-  "uploadDate": "2024-01-15",
-  "duration": "PT8M",
-  "contentUrl": "https://www.ailydian.com/videos/status-dashboard.mp4",
-  "embedUrl": "https://www.ailydian.com/status-dashboard#video",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI"
-  }
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://www.ailydian.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Status Dashboard",
-      "item": "https://www.ailydian.com/status-dashboard"
-    }
-  ]
-}
-  </script>
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.ailydian.com/mstile/status-dashboard.png"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://www.ailydian.com/mstile-70/status-dashboard.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://www.ailydian.com/mstile-150/status-dashboard.png"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Health Dashboard - LyDian">
-  <meta property="og:description" content="AI analitik ve yönetim - Health Dashboard - LyDian">
-  <meta property="og:url" content="https://www.ailydian.com/status-dashboard">
-  <meta property="og:image" content="https://www.ailydian.com/images/og/status-dashboard.jpg">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/status-dashboard.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Health Dashboard - LyDian">
-  <meta property="og:site_name" content="LyDian AI">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Health Dashboard - LyDian">
-  <meta name="twitter:description" content="AI analitik ve yönetim - Health Dashboard - LyDian">
-  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/status-dashboard.jpg">
-  <meta name="twitter:image:alt" content="Health Dashboard - LyDian">
-  
-  
-  <!-- /Premium SEO -->
-<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
-<body>
+    <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Health Dashboard - LyDian",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "description": "AI analitik ve yönetim - Health Dashboard - LyDian",
+        "image": [
+          "https://www.ailydian.com/images/gallery/status-dashboard-1.jpg",
+          "https://www.ailydian.com/images/gallery/status-dashboard-2.jpg",
+          "https://www.ailydian.com/images/gallery/status-dashboard-3.jpg"
+        ],
+        "screenshot": [
+          "https://www.ailydian.com/images/gallery/status-dashboard-1.jpg",
+          "https://www.ailydian.com/images/gallery/status-dashboard-2.jpg",
+          "https://www.ailydian.com/images/gallery/status-dashboard-3.jpg"
+        ],
+        "url": "https://www.ailydian.com/status-dashboard",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1542",
+          "bestRating": "5"
+        },
+        "inLanguage": ["tr", "en", "de", "ru", "uk", "zh", "it"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Health Dashboard - LyDian",
+        "description": "AI analitik ve yönetim - Health Dashboard - LyDian",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.ailydian.com/images/hero/status-dashboard.jpg",
+          "width": 1200,
+          "height": 630,
+          "caption": "Health Dashboard - LyDian"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2025-12-20",
+        "inLanguage": "tr-TR"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Health Dashboard - LyDian - Video Rehber",
+        "description": "AI analitik ve yönetim - Health Dashboard - LyDian",
+        "thumbnailUrl": "https://www.ailydian.com/images/video/status-dashboard-preview.jpg",
+        "uploadDate": "2024-01-15",
+        "duration": "PT8M",
+        "contentUrl": "https://www.ailydian.com/videos/status-dashboard.mp4",
+        "embedUrl": "https://www.ailydian.com/status-dashboard#video",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://www.ailydian.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Status Dashboard",
+            "item": "https://www.ailydian.com/status-dashboard"
+          }
+        ]
+      }
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Health Dashboard - LyDian" />
+    <meta property="og:description" content="AI analitik ve yönetim - Health Dashboard - LyDian" />
+    <meta property="og:url" content="https://www.ailydian.com/status-dashboard" />
+    <meta property="og:image" content="https://www.ailydian.com/images/og/status-dashboard.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/images/og/status-dashboard.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Health Dashboard - LyDian" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Health Dashboard - LyDian" />
+    <meta name="twitter:description" content="AI analitik ve yönetim - Health Dashboard - LyDian" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/images/twitter/status-dashboard.jpg"
+    />
+    <meta name="twitter:image:alt" content="Health Dashboard - LyDian" />
+
+    <!-- /Premium SEO -->
+    <link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C4A962" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aiLyDian AI" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- Apple Splash Screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-xr.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-12.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad.png"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-11.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-12.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="aiLyDian AI" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#C4A962" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <!-- Favicon (all sizes) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+    <!-- ================================ -->
+    <!-- AILYDIAN SEO META TAGS (TR) -->
+    <!-- Auto-generated for multi-language SEO -->
+    <!-- ================================ -->
+
+    <!-- Primary Meta Tags -->
+    <title>status dashboard - AILYDIAN</title>
+    <meta name="title" content="status dashboard - AILYDIAN" />
+    <meta name="description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="author" content="AILYDIAN" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="language" content="tr" />
+    <link rel="canonical" href="https://www.ailydian.com/status-dashboard.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.ailydian.com/status-dashboard.html" />
+    <meta property="og:title" content="status dashboard - AILYDIAN" />
+    <meta property="og:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta property="og:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta property="og:site_name" content="AILYDIAN" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.ailydian.com/status-dashboard.html" />
+    <meta name="twitter:title" content="status dashboard - AILYDIAN" />
+    <meta name="twitter:description" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
+    <meta name="twitter:site" content="@ailydian" />
+    <meta name="twitter:creator" content="@ailydian" />
+
+    <!-- AI Search Optimization -->
+    <meta name="ai:context" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="ai:keywords" content="ai, artificial intelligence, chatgpt, claude, gemini" />
+    <meta name="ai:language" content="tr" />
+
+    <!-- ChatGPT/Claude/Perplexity Optimization -->
+    <meta name="description:ai" content="AILYDIAN - Advanced AI Assistant Platform" />
+    <meta name="summary" content="AILYDIAN - Advanced AI Assistant Platform" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Istanbul" />
+
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="AILYDIAN" />
+
+    <!-- Hreflang Tags for International SEO -->
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/status-dashboard.html" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/status-dashboard.html" />
+    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/status-dashboard.html" />
+    <link rel="alternate" hreflang="es" href="https://www.ailydian.com/es/status-dashboard.html" />
+    <link rel="alternate" hreflang="fr" href="https://www.ailydian.com/fr/status-dashboard.html" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/status-dashboard.html" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/status-dashboard.html" />
+    <link rel="alternate" hreflang="pt" href="https://www.ailydian.com/pt/status-dashboard.html" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/status-dashboard.html" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/status-dashboard.html" />
+    <link rel="alternate" hreflang="ja" href="https://www.ailydian.com/ja/status-dashboard.html" />
+    <link rel="alternate" hreflang="ko" href="https://www.ailydian.com/ko/status-dashboard.html" />
+    <link rel="alternate" hreflang="hi" href="https://www.ailydian.com/hi/status-dashboard.html" />
+    <link rel="alternate" hreflang="id" href="https://www.ailydian.com/id/status-dashboard.html" />
+    <link rel="alternate" hreflang="nl" href="https://www.ailydian.com/nl/status-dashboard.html" />
+    <link rel="alternate" hreflang="pl" href="https://www.ailydian.com/pl/status-dashboard.html" />
+    <link rel="alternate" hreflang="sv" href="https://www.ailydian.com/sv/status-dashboard.html" />
+    <link rel="alternate" hreflang="no" href="https://www.ailydian.com/no/status-dashboard.html" />
+    <link rel="alternate" hreflang="da" href="https://www.ailydian.com/da/status-dashboard.html" />
+    <link rel="alternate" hreflang="fi" href="https://www.ailydian.com/fi/status-dashboard.html" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://www.ailydian.com/status-dashboard.html"
+    />
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechnologyCompany",
+        "name": "AILYDIAN",
+        "url": "https://www.ailydian.com",
+        "logo": "https://www.ailydian.com/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/ailydian",
+          "https://linkedin.com/company/ailydian",
+          "https://github.com/ailydian"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@ailydian.com",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    <!-- ================================ -->
+    <!-- END AILYDIAN SEO META TAGS -->
+    <!-- ================================ -->
+  </head>
+  <body>
     <div class="aurora-bg"></div>
 
     <header class="header">
-        <div class="header-content">
-            <h1>🏥 Health Dashboard</h1>
-            <div class="refresh-info">
-                <span class="pulse"></span>
-                <span>Auto-refresh: <span id="countdown">60</span>s</span>
-            </div>
+      <div class="header-content">
+        <h1>🏥 Health Dashboard</h1>
+        <div class="refresh-info">
+          <span class="pulse"></span>
+          <span>Auto-refresh: <span id="countdown">60</span>s</span>
         </div>
+      </div>
     </header>
 
     <main class="container">
-        <div id="errorContainer"></div>
+      <div id="errorContainer"></div>
 
-        <div class="overall-status">
-            <h2 id="overallStatusText">Loading System Status...</h2>
-            <div class="overall-stats">
-                <div class="stat">
-                    <div class="stat-value" id="totalServices">-</div>
-                    <div class="stat-label">Total Services</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="servicesUp">-</div>
-                    <div class="stat-label">Services Up</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="overallUptime">-</div>
-                    <div class="stat-label">Overall Uptime</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="avgLatency">-</div>
-                    <div class="stat-label">Avg Latency</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="p95Latency">-</div>
-                    <div class="stat-label">P95 Latency</div>
-                </div>
-            </div>
+      <div class="overall-status">
+        <h2 id="overallStatusText">Loading System Status...</h2>
+        <div class="overall-stats">
+          <div class="stat">
+            <div class="stat-value" id="totalServices">-</div>
+            <div class="stat-label">Total Services</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="servicesUp">-</div>
+            <div class="stat-label">Services Up</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="overallUptime">-</div>
+            <div class="stat-label">Overall Uptime</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="avgLatency">-</div>
+            <div class="stat-label">Avg Latency</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="p95Latency">-</div>
+            <div class="stat-label">P95 Latency</div>
+          </div>
         </div>
+      </div>
 
-        <div id="servicesContainer" class="services-grid">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>Loading health data...</p>
-            </div>
+      <div id="servicesContainer" class="services-grid">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Loading health data...</p>
         </div>
+      </div>
 
-        <div class="buffer-stats">
-            <h3>📊 Ring Buffer Statistics</h3>
-            <div class="buffer-info" id="bufferInfo">
-                <div class="stat">
-                    <div class="stat-value" id="bufferCount">-</div>
-                    <div class="stat-label">Snapshots Stored</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="bufferSize">-</div>
-                    <div class="stat-label">Storage Size</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="bufferOldest">-</div>
-                    <div class="stat-label">Oldest Data</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="bufferNewest">-</div>
-                    <div class="stat-label">Newest Data</div>
-                </div>
-            </div>
+      <div class="buffer-stats">
+        <h3>📊 Ring Buffer Statistics</h3>
+        <div class="buffer-info" id="bufferInfo">
+          <div class="stat">
+            <div class="stat-value" id="bufferCount">-</div>
+            <div class="stat-label">Snapshots Stored</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="bufferSize">-</div>
+            <div class="stat-label">Storage Size</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="bufferOldest">-</div>
+            <div class="stat-label">Oldest Data</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="bufferNewest">-</div>
+            <div class="stat-label">Newest Data</div>
+          </div>
         </div>
+      </div>
     </main>
 
     <!-- Load our health monitoring components -->
@@ -585,112 +798,112 @@
     <script src="/js/spark-chart.js"></script>
 
     <script>
-        // Health Dashboard Controller
-        class HealthDashboard {
-            constructor() {
-                this.refreshInterval = 60000; // 60 seconds
-                this.countdownInterval = null;
-                this.countdown = 60;
-                this.apiEndpoint = '/api/healthmap';
+      // Health Dashboard Controller
+      class HealthDashboard {
+        constructor() {
+          this.refreshInterval = 60000; // 60 seconds
+          this.countdownInterval = null;
+          this.countdown = 60;
+          this.apiEndpoint = '/api/healthmap';
+        }
+
+        async init() {
+          console.log('🚀 Initializing Health Dashboard...');
+          await this.fetchAndRender();
+          this.startAutoRefresh();
+          this.renderBufferStats();
+        }
+
+        async fetchAndRender() {
+          try {
+            const response = await fetch(this.apiEndpoint);
+
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
 
-            async init() {
-                console.log('🚀 Initializing Health Dashboard...');
-                await this.fetchAndRender();
-                this.startAutoRefresh();
-                this.renderBufferStats();
+            const data = await response.json();
+
+            if (!data.success || !data.items) {
+              throw new Error('Invalid response format');
             }
 
-            async fetchAndRender() {
-                try {
-                    const response = await fetch(this.apiEndpoint);
+            // Save to ring buffer
+            const snapshot = {
+              timestamp: data.generatedAt || Date.now(),
+              items: data.items,
+            };
+            addSnapshot(snapshot);
 
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                    }
+            // Render UI
+            this.renderOverallStatus(data.items);
+            this.renderServices(data.items);
+            this.renderBufferStats();
+            this.clearError();
+          } catch (error) {
+            console.error('❌ Health check failed:', error);
+            this.showError(error.message);
+          }
+        }
 
-                    const data = await response.json();
+        renderOverallStatus(items) {
+          const upCount = items.filter(item => item.status === 'up').length;
+          const totalCount = items.length;
+          const uptimePercent = Math.round((upCount / totalCount) * 1000) / 10;
 
-                    if (!data.success || !data.items) {
-                        throw new Error('Invalid response format');
-                    }
+          // Calculate latencies from successful responses
+          const successfulItems = items.filter(item => item.status === 'up' && item.ms);
+          const latencies = successfulItems.map(item => item.ms);
 
-                    // Save to ring buffer
-                    const snapshot = {
-                        timestamp: data.generatedAt || Date.now(),
-                        items: data.items
-                    };
-                    addSnapshot(snapshot);
+          const avgLatency =
+            latencies.length > 0
+              ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length)
+              : 0;
 
-                    // Render UI
-                    this.renderOverallStatus(data.items);
-                    this.renderServices(data.items);
-                    this.renderBufferStats();
-                    this.clearError();
+          const sortedLatencies = [...latencies].sort((a, b) => a - b);
+          const p95Index = Math.floor(sortedLatencies.length * 0.95);
+          const p95 = sortedLatencies[p95Index] || 0;
 
-                } catch (error) {
-                    console.error('❌ Health check failed:', error);
-                    this.showError(error.message);
-                }
-            }
+          // Update UI
+          document.getElementById('overallStatusText').textContent =
+            uptimePercent === 100 ? '✅ All Systems Operational' : '⚠️ Some Issues Detected';
+          document.getElementById('totalServices').textContent = totalCount;
+          document.getElementById('servicesUp').textContent = upCount;
+          document.getElementById('overallUptime').textContent = `${uptimePercent}%`;
+          document.getElementById('avgLatency').textContent = `${avgLatency}ms`;
+          document.getElementById('p95Latency').textContent = `${Math.round(p95)}ms`;
+        }
 
-            renderOverallStatus(items) {
-                const upCount = items.filter(item => item.status === 'up').length;
-                const totalCount = items.length;
-                const uptimePercent = Math.round((upCount / totalCount) * 1000) / 10;
+        renderServices(items) {
+          const container = document.getElementById('servicesContainer');
+          container.innerHTML = '';
 
-                // Calculate latencies from successful responses
-                const successfulItems = items.filter(item => item.status === 'up' && item.ms);
-                const latencies = successfulItems.map(item => item.ms);
+          items.forEach(item => {
+            const card = this.createServiceCard(item);
+            container.appendChild(card);
+          });
+        }
 
-                const avgLatency = latencies.length > 0
-                    ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length)
-                    : 0;
+        createServiceCard(item) {
+          const card = document.createElement('div');
+          card.className = 'service-card';
 
-                const sortedLatencies = [...latencies].sort((a, b) => a - b);
-                const p95Index = Math.floor(sortedLatencies.length * 0.95);
-                const p95 = sortedLatencies[p95Index] || 0;
+          // Status dot
+          const dot = createStatusDot(item.status);
 
-                // Update UI
-                document.getElementById('overallStatusText').textContent =
-                    uptimePercent === 100 ? '✅ All Systems Operational' : '⚠️ Some Issues Detected';
-                document.getElementById('totalServices').textContent = totalCount;
-                document.getElementById('servicesUp').textContent = upCount;
-                document.getElementById('overallUptime').textContent = `${uptimePercent}%`;
-                document.getElementById('avgLatency').textContent = `${avgLatency}ms`;
-                document.getElementById('p95Latency').textContent = `${Math.round(p95)}ms`;
-            }
+          // Spark chart data from ring buffer
+          const sparkData = getSparkData(item.name, 30);
+          const sparkChart = createCompactSparkChart(sparkData, item.status);
 
-            renderServices(items) {
-                const container = document.getElementById('servicesContainer');
-                container.innerHTML = '';
+          // Metrics
+          const latency = item.ms || 0;
+          const code = item.code || 0;
 
-                items.forEach(item => {
-                    const card = this.createServiceCard(item);
-                    container.appendChild(card);
-                });
-            }
+          // Calculate uptime from recent history
+          const recentSnapshots = getRecentSnapshots(60);
+          const uptime = calculateUptime(recentSnapshots, item.name);
 
-            createServiceCard(item) {
-                const card = document.createElement('div');
-                card.className = 'service-card';
-
-                // Status dot
-                const dot = createStatusDot(item.status);
-
-                // Spark chart data from ring buffer
-                const sparkData = getSparkData(item.name, 30);
-                const sparkChart = createCompactSparkChart(sparkData, item.status);
-
-                // Metrics
-                const latency = item.ms || 0;
-                const code = item.code || 0;
-
-                // Calculate uptime from recent history
-                const recentSnapshots = getRecentSnapshots(60);
-                const uptime = calculateUptime(recentSnapshots, item.name);
-
-                card.innerHTML = `
+          card.innerHTML = `
                     <div class="service-header">
                         <div class="service-name">${item.name}</div>
                         <div class="service-status" id="status-${item.name}"></div>
@@ -723,80 +936,76 @@
                     </div>
                 `;
 
-                // Append status dot
-                const statusContainer = card.querySelector(`#status-${item.name}`);
-                statusContainer.appendChild(dot);
+          // Append status dot
+          const statusContainer = card.querySelector(`#status-${item.name}`);
+          statusContainer.appendChild(dot);
 
-                const statusText = document.createElement('span');
-                statusText.textContent = item.status.toUpperCase();
-                statusContainer.appendChild(statusText);
+          const statusText = document.createElement('span');
+          statusText.textContent = item.status.toUpperCase();
+          statusContainer.appendChild(statusText);
 
-                // Append spark chart
-                const chartContainer = card.querySelector(`#chart-${item.name}`);
-                chartContainer.appendChild(sparkChart);
+          // Append spark chart
+          const chartContainer = card.querySelector(`#chart-${item.name}`);
+          chartContainer.appendChild(sparkChart);
 
-                return card;
+          return card;
+        }
+
+        renderBufferStats() {
+          const stats = getRingBufferStats();
+
+          document.getElementById('bufferCount').textContent = `${stats.count} / ${stats.maxSize}`;
+
+          document.getElementById('bufferSize').textContent =
+            `${(stats.sizeBytes / 1024).toFixed(1)} KB`;
+
+          if (stats.oldestTimestamp) {
+            const oldestDate = new Date(stats.oldestTimestamp);
+            document.getElementById('bufferOldest').textContent = oldestDate.toLocaleTimeString();
+          } else {
+            document.getElementById('bufferOldest').textContent = 'N/A';
+          }
+
+          if (stats.newestTimestamp) {
+            const newestDate = new Date(stats.newestTimestamp);
+            document.getElementById('bufferNewest').textContent = newestDate.toLocaleTimeString();
+          } else {
+            document.getElementById('bufferNewest').textContent = 'N/A';
+          }
+        }
+
+        startAutoRefresh() {
+          // Start countdown
+          this.countdownInterval = setInterval(() => {
+            this.countdown--;
+            document.getElementById('countdown').textContent = this.countdown;
+
+            if (this.countdown <= 0) {
+              this.countdown = 60;
+              this.fetchAndRender();
             }
+          }, 1000);
+        }
 
-            renderBufferStats() {
-                const stats = getRingBufferStats();
-
-                document.getElementById('bufferCount').textContent =
-                    `${stats.count} / ${stats.maxSize}`;
-
-                document.getElementById('bufferSize').textContent =
-                    `${(stats.sizeBytes / 1024).toFixed(1)} KB`;
-
-                if (stats.oldestTimestamp) {
-                    const oldestDate = new Date(stats.oldestTimestamp);
-                    document.getElementById('bufferOldest').textContent =
-                        oldestDate.toLocaleTimeString();
-                } else {
-                    document.getElementById('bufferOldest').textContent = 'N/A';
-                }
-
-                if (stats.newestTimestamp) {
-                    const newestDate = new Date(stats.newestTimestamp);
-                    document.getElementById('bufferNewest').textContent =
-                        newestDate.toLocaleTimeString();
-                } else {
-                    document.getElementById('bufferNewest').textContent = 'N/A';
-                }
-            }
-
-            startAutoRefresh() {
-                // Start countdown
-                this.countdownInterval = setInterval(() => {
-                    this.countdown--;
-                    document.getElementById('countdown').textContent = this.countdown;
-
-                    if (this.countdown <= 0) {
-                        this.countdown = 60;
-                        this.fetchAndRender();
-                    }
-                }, 1000);
-            }
-
-            showError(message) {
-                const container = document.getElementById('errorContainer');
-                container.innerHTML = `
+        showError(message) {
+          const container = document.getElementById('errorContainer');
+          container.innerHTML = `
                     <div class="error">
                         ❌ Error: ${message}
                     </div>
                 `;
-            }
-
-            clearError() {
-                document.getElementById('errorContainer').innerHTML = '';
-            }
         }
 
-        // Initialize dashboard on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const dashboard = new HealthDashboard();
-            dashboard.init();
-        });
+        clearError() {
+          document.getElementById('errorContainer').innerHTML = '';
+        }
+      }
+
+      // Initialize dashboard on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        const dashboard = new HealthDashboard();
+        dashboard.init();
+      });
     </script>
-
-
-</body></html>
+  </body>
+</html>
