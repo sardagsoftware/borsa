@@ -125,6 +125,18 @@ class MonitoringTelemetryService {
     }
 
     try {
+      // Build integrations array (profiling optional for compatibility)
+      const integrations = [];
+
+      // Add profiling only if available (graceful degradation)
+      try {
+        if (ProfilingIntegration && typeof ProfilingIntegration === 'function') {
+          integrations.push(new ProfilingIntegration());
+        }
+      } catch (profilingError) {
+        console.log('⚠️  Sentry profiling not available (skipping)');
+      }
+
       Sentry.init({
         dsn: config.sentry.dsn,
         environment: config.sentry.environment,
@@ -134,11 +146,8 @@ class MonitoringTelemetryService {
         tracesSampleRate: config.sentry.tracesSampleRate,
         profilesSampleRate: config.sentry.profilesSampleRate,
 
-        // Integrations
-        integrations: [
-          // Profiling
-          new ProfilingIntegration(),
-        ],
+        // Integrations (optional profiling)
+        integrations,
 
         // Error filtering
         beforeSend(event, hint) {
@@ -191,9 +200,9 @@ class MonitoringTelemetryService {
 
     // Sentry
     if (this.sentryInitialized) {
-      Sentry.withScope((scope) => {
+      Sentry.withScope(scope => {
         // Add context
-        Object.keys(context).forEach((key) => {
+        Object.keys(context).forEach(key => {
           scope.setContext(key, context[key]);
         });
 
@@ -442,7 +451,7 @@ class MonitoringTelemetryService {
     // Flush Application Insights
     if (this.appInsightsClient) {
       promises.push(
-        new Promise((resolve) => {
+        new Promise(resolve => {
           this.appInsightsClient.flush({
             callback: () => {
               console.log('✅ Application Insights flushed');
