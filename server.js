@@ -2870,7 +2870,17 @@ async function callGroqAPI(message, history, temperature, maxTokens, modelId) {
     };
   } catch (error) {
     console.error('Groq API Error:', error.response?.data || error.message);
-    throw new Error('Groq API çağrısı başarısız');
+
+    // Provide detailed error messages for common issues
+    if (error.response?.status === 401) {
+      throw new Error('Groq API anahtarı geçersiz. Lütfen GROQ_API_KEY ortam değişkenini kontrol edin.');
+    } else if (error.response?.status === 429) {
+      throw new Error('Groq API rate limit aşıldı. Lütfen biraz bekleyip tekrar deneyin.');
+    } else if (error.code === 'ECONNREFUSED' || error.code === 'ETIMEDOUT') {
+      throw new Error('Groq API bağlantısı kurulamadı. Lütfen internet bağlantınızı kontrol edin.');
+    } else {
+      throw new Error(`Groq API hatası: ${error.response?.data?.error?.message || error.message}`);
+    }
   }
 }
 
