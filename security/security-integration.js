@@ -7,13 +7,40 @@
 const cors = require('cors');
 
 // Import all security modules
-const { requireRole, requireAdmin, preventRoleEscalation, verifyResourceOwnership, ROLES } = require('./rbac-middleware');
-const { apiLimiter, authLimiter, paymentLimiter, aiLimiter, adminLimiter } = require('./rate-limiter');
-const { validateStripeWebhook, validatePaymentPrice, verifyUSDTTransaction, preventReplayAttack, PRICING_PLANS } = require('./payment-validator');
+const {
+  requireRole,
+  requireAdmin,
+  preventRoleEscalation,
+  verifyResourceOwnership,
+  ROLES,
+} = require('./rbac-middleware');
+const {
+  apiLimiter,
+  authLimiter,
+  paymentLimiter,
+  aiLimiter,
+  adminLimiter,
+} = require('./rate-limiter');
+const {
+  validateStripeWebhook,
+  validatePaymentPrice,
+  verifyUSDTTransaction,
+  preventReplayAttack,
+  PRICING_PLANS,
+} = require('./payment-validator');
 const { csrfProtection, injectCSRFToken } = require('./csrf-protection');
-const { validateLanguageParam, validateChatRequest, validateUserRegistration, preventNoSQLInjection } = require('./input-validator');
+const {
+  validateLanguageParam,
+  validateChatRequest,
+  validateUserRegistration,
+  preventNoSQLInjection,
+} = require('./input-validator');
 const { corsOptions, strictCorsOptions, setSecurityHeaders, setCSP } = require('./cors-config');
-const { validateSecurityConfig, sanitizeErrorMiddleware, preventEnvExposure } = require('./env-validator');
+const {
+  validateSecurityConfig,
+  sanitizeErrorMiddleware,
+  preventEnvExposure,
+} = require('./env-validator');
 
 /**
  * Initialize all security middleware
@@ -50,8 +77,13 @@ function initializeSecurity(app) {
   console.log('✅ Input validation enabled');
 
   // 6. Apply rate limiting to all API routes
-  app.use('/api/', apiLimiter);
-  console.log('✅ General API rate limiting applied');
+  // TEMPORARY FIX: apiLimiter disabled in development mode to debug server startup
+  if (process.env.NODE_ENV === 'production') {
+    app.use('/api/', apiLimiter);
+    console.log('✅ General API rate limiting applied');
+  } else {
+    console.log('⏭️  General API rate limiting skipped (development mode)');
+  }
 
   // 7. Inject CSRF tokens (for GET requests)
   app.use(injectCSRFToken);
@@ -180,8 +212,8 @@ function addSecurityHealthCheck(app) {
         cors: 'whitelist',
         inputValidation: 'enabled',
         paymentValidation: 'enabled',
-        envProtection: 'enabled'
-      }
+        envProtection: 'enabled',
+      },
     });
   });
 
@@ -242,5 +274,5 @@ module.exports = {
 
   // Constants
   ROLES,
-  PRICING_PLANS
+  PRICING_PLANS,
 };
