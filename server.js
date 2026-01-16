@@ -16837,10 +16837,15 @@ app.post('/api/chat/specialized', async (req, res) => {
 // ==================================================
 // 🧠 LYDIAN IQ REASONING ENGINE API
 // ==================================================
-const lydianIQSolver = require('./api/lydian-iq/solve');
-
+// ⚡ CRITICAL FIX: Load module fresh on each request to bypass Node.js require cache
+// This ensures env vars are read at request time, not module load time
 app.post('/api/lydian-iq/solve', async (req, res) => {
   try {
+    // Clear require cache and load fresh module
+    const solvePath = require.resolve('./api/lydian-iq/solve');
+    delete require.cache[solvePath];
+    const lydianIQSolver = require('./api/lydian-iq/solve');
+
     await lydianIQSolver(req, res);
   } catch (error) {
     console.error('❌ LyDian IQ routing error:', error);
