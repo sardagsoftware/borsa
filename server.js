@@ -1679,87 +1679,87 @@ const aiModels = [
     available: true,
     enterprise: true
   },
-  // GROQ Models
+  // GROQ Models (ULTRA-OBFUSCATED)
   {
     id: 'GX4B7F3C',
-    name: 'GX4B7F3C-32K',
+    name: 'LyDian Distributed Core',
     provider: 'lydian-velocity',
     tokens: '32K',
     category: 'lydian-velocity',
-    description: 'Hızlı ve güçlü çok dilli model',
+    description: 'Hızlı ve güçlü çok dilli akıl yürütme motoru',
     capabilities: ['text', 'reasoning'],
     available: true
   },
   {
     id: 'GX8E2D9A',
-    name: 'GX8E2D9A',
+    name: 'LyDian Velocity Engine',
     provider: 'lydian-velocity',
     tokens: '128K',
     category: 'lydian-velocity',
-    description: 'En güncel Llama modeli',
+    description: 'Ultra hızlı ileri seviye dil işleme motoru',
     capabilities: ['text', 'reasoning', 'code'],
     available: true
   },
-  // OpenAI Models
+  // OpenAI Models (ULTRA-OBFUSCATED)
   {
     id: 'OX7A3F8D',
-    name: 'OX5C9E2B Turbo',
+    name: 'LyDian Advanced Neural Core',
     provider: 'lydian-labs',
     tokens: '128K',
     category: 'lydian-labs',
-    description: 'OpenAI\'ın en gelişmiş modeli',
+    description: 'İleri seviye çok modlu yapay zeka çekirdeği',
     capabilities: ['text', 'vision', 'reasoning', 'code'],
     available: true
   },
   {
     id: 'OX7A3F8D',
-    name: 'OX7A3F8D',
+    name: 'LyDian Omni-Modal Engine',
     provider: 'lydian-labs',
     tokens: '128K',
     category: 'lydian-labs',
-    description: 'Omni-modal OX5C9E2B modeli',
+    description: 'Omni-modal işleme yetenekli ileri AI motoru',
     capabilities: ['text', 'vision', 'audio', 'reasoning'],
     available: true
   },
-  // Anthropic Models
+  // Anthropic Models (ULTRA-OBFUSCATED)
   {
     id: 'AX9F7E2B',
-    name: 'AX9F7E2B-3.5 Sonnet',
+    name: 'LyDian Quantum Reasoning Engine',
     provider: 'lydian-research',
     tokens: '200K',
     category: 'lydian-research',
-    description: 'Anthropic\'in en akıllı modeli',
+    description: 'Kuantum seviye akıl yürütme ve analiz motoru',
     capabilities: ['text', 'reasoning', 'analysis', 'code'],
     available: true
   },
   {
     id: 'AX9F7E2B-3-5-haiku',
-    name: 'AX9F7E2B-3.5 Haiku',
+    name: 'LyDian FastTrack Engine',
     provider: 'lydian-research',
     tokens: '200K',
     category: 'lydian-research',
-    description: 'Hızlı ve etkili AX9F7E2B modeli',
+    description: 'Hızlı ve etkili akıl yürütme motoru',
     capabilities: ['text', 'reasoning'],
     available: true
   },
-  // Google Models
+  // Google Models (ULTRA-OBFUSCATED)
   {
     id: 'gemini-2.0-flash-exp',
-    name: 'Gemini-2.0 Flash',
+    name: 'LyDian Flash Multimodal',
     provider: 'lydian-vision',
     tokens: '1M',
     category: 'lydian-vision',
-    description: 'Google\'ın en hızlı modeli',
+    description: 'Ultra hızlı çok modlu görsel işleme motoru',
     capabilities: ['text', 'vision', 'reasoning', 'multimodal'],
     available: true
   },
   {
     id: 'GE6D8A4F',
-    name: 'Gemini-1.5 Pro',
+    name: 'LyDian Multimodal Core',
     provider: 'lydian-vision',
     tokens: '2M',
     category: 'lydian-vision',
-    description: 'Ultra uzun bağlam modeli',
+    description: 'Ultra uzun bağlam işleme yetenekli çok modlu motor',
     capabilities: ['text', 'vision', 'audio', 'video'],
     available: true
   },
