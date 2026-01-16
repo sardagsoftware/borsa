@@ -65,6 +65,14 @@ const AI_CONFIG = {
     timeout: 60000 // 60 seconds
 };
 
+// 🔍 DEBUG: Log API key availability (sanitized)
+console.log('🔍 [Lydian-IQ] API Keys Check:', {
+    GROQ: AI_CONFIG.groq.apiKey ? `SET (${AI_CONFIG.groq.apiKey.length} chars)` : 'NOT SET',
+    ANTHROPIC: AI_CONFIG.anthropic.apiKey ? `SET (${AI_CONFIG.anthropic.apiKey.length} chars)` : 'NOT SET',
+    OPENAI: AI_CONFIG.openai.apiKey ? `SET (${AI_CONFIG.openai.apiKey.length} chars)` : 'NOT SET',
+    ENV_GROQ_RAW: process.env.GROQ_API_KEY ? `${process.env.GROQ_API_KEY.substring(0,10)}... (${process.env.GROQ_API_KEY.length} chars)` : 'undefined'
+});
+
 // Language response mapping - CRITICAL: AI must respond in selected language
 const LANGUAGE_PROMPTS = {
     'tr-TR': 'ZORUNLU: TÜM CEVAPLARI TÜRKÇE VER. You MUST respond ONLY in Turkish language. Tüm açıklamalar, akıl yürütmeler ve çözümler Türkçe olmalıdır.',
