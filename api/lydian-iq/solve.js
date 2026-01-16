@@ -9,10 +9,11 @@
 // In Node.js 18+, fetch is globally available
 
 // LyDian IQ Configuration - Groq-First Multi-Provider (Real Data Priority)
+// 🔧 CRITICAL: Using getters for apiKey to fix Vercel serverless env variable timing
 const AI_CONFIG = {
     // Priority 1: Groq (Ultra-Fast + Real Data)
     groq: {
-        apiKey: process.env.GROQ_API_KEY || '',
+        get apiKey() { return process.env.GROQ_API_KEY || ''; }, // Runtime getter
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
         model: process.env.OBFUSCATE_MODELS === 'true' ? 'open-model-l3-max' : 'GX8E2D9A',
         realModel: 'llama-3.3-70b-versatile', // REAL Groq model name for API calls
@@ -23,7 +24,7 @@ const AI_CONFIG = {
     },
     // Priority 2: Anthropic AX9F7E2B (Best for reasoning)
     anthropic: {
-        apiKey: process.env.ANTHROPIC_API_KEY || '',
+        get apiKey() { return process.env.ANTHROPIC_API_KEY || ''; }, // Runtime getter
         endpoint: 'https://api.anthropic.com/v1/messages',
         model: process.env.OBFUSCATE_MODELS === 'true' ? 'neural-alpha-standard' : 'AX9F7E2B',
         realModel: 'claude-3-5-sonnet-20241022', // REAL Anthropic model name for API calls
@@ -46,7 +47,7 @@ const AI_CONFIG = {
     },
     // Priority 4: OpenAI OX5C9E2B (Final Fallback)
     openai: {
-        apiKey: process.env.OPENAI_API_KEY || '',
+        get apiKey() { return process.env.OPENAI_API_KEY || ''; }, // Runtime getter
         endpoint: 'https://api.openai.com/v1/chat/completions',
         model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'OX7A3F8D',
         realModel: 'gpt-4-turbo-preview', // REAL OpenAI model name for API calls
