@@ -516,8 +516,12 @@ module.exports = async (req, res) => {
         // With retry mechanism for network errors
         // GROQ 1. sırada - kullanıcı talebi
         try {
+            // 🔍 RUNTIME CHECK: Get API key dynamically (fixes Vercel serverless caching issue)
+            const runtimeGroqKey = process.env.GROQ_API_KEY || '';
+            console.log(`🔍 Runtime GROQ_API_KEY check: ${runtimeGroqKey ? `SET (${runtimeGroqKey.length} chars)` : 'NOT SET'}`);
+
             // Try Groq first (ultra-fast - user request)
-            if (AI_CONFIG.groq.apiKey && AI_CONFIG.groq.apiKey.length > 10) {
+            if (runtimeGroqKey && runtimeGroqKey.length > 10) {
                 console.log('🎯 Strategy: Using Fast AI Engine (Primary) with retry');
                 result = await retryWithBackoff(() => callGroqAPI(problem, domain, language, options));
             }
