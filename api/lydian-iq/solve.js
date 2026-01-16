@@ -15,7 +15,7 @@ const AI_CONFIG = {
         apiKey: process.env.GROQ_API_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
         model: process.env.OBFUSCATE_MODELS === 'true' ? 'open-model-l3-max' : 'GX8E2D9A',
-        realModel: 'GX8E2D9A',
+        realModel: 'llama-3.3-70b-versatile', // REAL Groq model name for API calls
         maxTokens: 8000,
         defaultTemperature: 0.3,
         supportsRAG: false,
@@ -26,7 +26,7 @@ const AI_CONFIG = {
         apiKey: process.env.ANTHROPIC_API_KEY || '',
         endpoint: 'https://api.anthropic.com/v1/messages',
         model: process.env.OBFUSCATE_MODELS === 'true' ? 'neural-alpha-standard' : 'AX9F7E2B',
-        realModel: 'AX9F7E2B',
+        realModel: 'claude-3-5-sonnet-20241022', // REAL Anthropic model name for API calls
         maxTokens: 8192,
         defaultTemperature: 0.3,
         supportsRAG: false,
@@ -49,7 +49,7 @@ const AI_CONFIG = {
         apiKey: process.env.OPENAI_API_KEY || '',
         endpoint: 'https://api.openai.com/v1/chat/completions',
         model: process.env.OBFUSCATE_MODELS === 'true' ? 'advanced-model-x4-turbo' : 'OX7A3F8D',
-        realModel: 'OX7A3F8D',
+        realModel: 'gpt-4-turbo-preview', // REAL OpenAI model name for API calls
         maxTokens: 4096,
         defaultTemperature: 0.3,
         supportsRAG: false,
