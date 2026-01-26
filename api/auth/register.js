@@ -1,10 +1,13 @@
 /**
  * User registration endpoint
  * Vercel Serverless Function
+ *
+ * @version 2.0.0 - Added reCAPTCHA v3 protection
  */
 
 const User = require('../../backend/models/User');
 const { handleCORS } = require('../../middleware/cors-handler');
+const { requireRecaptcha } = require('../_lib/recaptcha-verify');
 
 module.exports = async (req, res) => {
   // Apply secure CORS
@@ -18,11 +21,21 @@ module.exports = async (req, res) => {
   try {
     const { email, password, name } = req.body;
 
+    // 🔒 SECURITY: Verify reCAPTCHA token
+    const recaptchaResult = await requireRecaptcha(req);
+    if (!recaptchaResult.success) {
+      return res.status(400).json({
+        success: false,
+        message: recaptchaResult.error || 'reCAPTCHA verification failed',
+        code: recaptchaResult.code || 'RECAPTCHA_ERROR',
+      });
+    }
+
     // 🔒 SECURITY: Validation
     if (!email || !password || !name) {
       return res.status(400).json({
         success: false,
-        message: 'Email, password, and name are required'
+        message: 'Email, password, and name are required',
       });
     }
 
@@ -31,7 +44,7 @@ module.exports = async (req, res) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: 'Invalid email format'
+        message: 'Invalid email format',
       });
     }
 
@@ -41,7 +54,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: 'Password validation failed',
-        errors: passwordValidation.errors
+        errors: passwordValidation.errors,
       });
     }
 
@@ -49,7 +62,7 @@ module.exports = async (req, res) => {
     if (name.trim().length < 2) {
       return res.status(400).json({
         success: false,
-        message: 'Name must be at least 2 characters'
+        message: 'Name must be at least 2 characters',
       });
     }
 
@@ -58,7 +71,7 @@ module.exports = async (req, res) => {
     if (existingUser) {
       return res.status(409).json({
         success: false,
-        message: 'Email already registered'
+        message: 'Email already registered',
       });
     }
 
@@ -66,7 +79,7 @@ module.exports = async (req, res) => {
     const user = await User.createUser({
       email: email.toLowerCase().trim(),
       password,
-      name: name.trim()
+      name: name.trim(),
     });
 
     // 🔒 SECURITY: Don't auto-login, require email verification
@@ -77,16 +90,15 @@ module.exports = async (req, res) => {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name
-        }
-      }
+          name: user.name,
+        },
+      },
     });
-
   } catch (error) {
     console.error('Registration error:', error);
     return res.status(500).json({
       success: false,
-      message: error.message || 'Registration failed'
+      message: error.message || 'Registration failed',
     });
   }
 };
