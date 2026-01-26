@@ -7,10 +7,7 @@
  */
 
 import crypto from 'crypto';
-import {
-  Explanation,
-  FeatureImportance,
-} from './types';
+import { Explanation, FeatureImportance } from './types';
 
 /**
  * Explainability configuration
@@ -71,7 +68,7 @@ export class ExplainabilityEngine {
     // Convert to feature importances
     const allImportances: FeatureImportance[] = Object.entries(shapValues)
       .map(([feature_name, importance]) => {
-        const feature_value = params.features[feature_name];
+        const feature_value = params.features[feature_name] ?? '';
         const contribution_direction: 'positive' | 'negative' | 'neutral' =
           importance > 0.01 ? 'positive' : importance < -0.01 ? 'negative' : 'neutral';
 
@@ -86,7 +83,7 @@ export class ExplainabilityEngine {
 
     // Filter by threshold and top-k
     const feature_importances = allImportances
-      .filter((f) => Math.abs(f.importance) >= this.config.min_importance_threshold)
+      .filter(f => Math.abs(f.importance) >= this.config.min_importance_threshold)
       .slice(0, this.config.top_k_features);
 
     // Generate natural language summary
@@ -121,7 +118,7 @@ export class ExplainabilityEngine {
 
     // Mock implementation: assign random importance values
     // Production: use shap-js or call Python SHAP service
-    for (const [key, value] of Object.entries(features)) {
+    for (const [key, _value] of Object.entries(features)) {
       // Simulate different importance levels
       if (key.includes('price') || key.includes('demand')) {
         shapValues[key] = (Math.random() - 0.5) * 0.6; // High importance
@@ -278,7 +275,7 @@ export class ExplainabilityEngine {
       features: Record<string, string | number | boolean>;
     }>
   ): Promise<Explanation[]> {
-    return decisions.map((decision) =>
+    return decisions.map(decision =>
       this.explain({
         decisionType: decision.decisionType as any,
         modelName: decision.modelName,
@@ -300,10 +297,7 @@ export class ExplainabilityEngine {
     min_importance: number;
     frequency: number;
   }> {
-    const stats = new Map<
-      string,
-      { sum: number; max: number; min: number; count: number }
-    >();
+    const stats = new Map<string, { sum: number; max: number; min: number; count: number }>();
 
     for (const explanation of explanations) {
       for (const feature of explanation.feature_importances) {

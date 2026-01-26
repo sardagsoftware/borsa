@@ -29,7 +29,7 @@ export class MerkleTreeBuilder {
     }
 
     // Create leaf nodes
-    let nodes: MerkleNode[] = data.map((item) => ({
+    let nodes: MerkleNode[] = data.map(item => ({
       hash: this.hashData(item),
       data: item,
     }));
@@ -43,7 +43,7 @@ export class MerkleTreeBuilder {
         const right = i + 1 < nodes.length ? nodes[i + 1] : left; // Duplicate last if odd
 
         const parent: MerkleNode = {
-          hash: this.hashData(left.hash + right.hash),
+          hash: this.hashData((left?.hash || '') + (right?.hash || '')),
           left,
           right: right !== left ? right : undefined,
         };
@@ -54,7 +54,7 @@ export class MerkleTreeBuilder {
       nodes = parentNodes;
     }
 
-    return nodes[0]; // Root
+    return nodes[0] || { hash: '', left: undefined, right: undefined }; // Root
   }
 
   /**
@@ -66,7 +66,7 @@ export class MerkleTreeBuilder {
     }
 
     const tree = this.buildTree(data);
-    const leaf_hash = this.hashData(data[leafIndex]);
+    const leaf_hash = this.hashData(data[leafIndex] || '');
     const proof_path: Array<{ hash: string; position: 'left' | 'right' }> = [];
 
     // Traverse tree to collect proof path
@@ -168,10 +168,8 @@ export class EvidencePackGenerator {
     // Build Merkle proof if attestation logs provided
     let merkle_proof: MerkleProof | undefined;
     if (params.attestation_logs && params.attestation_logs.length > 0) {
-      const logData = params.attestation_logs.map((log) => JSON.stringify(log));
-      const targetIndex = logData.findIndex((log) =>
-        log.includes(params.decision_id)
-      );
+      const logData = params.attestation_logs.map(log => JSON.stringify(log));
+      const targetIndex = logData.findIndex(log => log.includes(params.decision_id));
 
       if (targetIndex >= 0) {
         merkle_proof = this.merkleBuilder.generateProof(logData, targetIndex);
@@ -269,7 +267,9 @@ export class EvidencePackGenerator {
 
     if (pack.includes.explanation) {
       lines.push('--- EXPLANATION ---');
-      lines.push(`Model: ${pack.includes.explanation.model_name} v${pack.includes.explanation.model_version}`);
+      lines.push(
+        `Model: ${pack.includes.explanation.model_name} v${pack.includes.explanation.model_version}`
+      );
       lines.push(`Prediction: ${pack.includes.explanation.prediction}`);
       lines.push(`Confidence: ${(pack.includes.explanation.confidence * 100).toFixed(1)}%`);
       lines.push(`Summary: ${pack.includes.explanation.natural_language_summary}`);
@@ -329,27 +329,27 @@ export class AttestationLogManager {
    * Get logs for specific actor
    */
   async getByActor(actor: string): Promise<AttestationLogEntry[]> {
-    return this.logs.filter((log) => log.actor === actor);
+    return this.logs.filter(log => log.actor === actor);
   }
 
   /**
    * Get logs containing action hash
    */
   async getByActionHash(action_hash: string): Promise<AttestationLogEntry[]> {
-    return this.logs.filter((log) => log.action_hash === action_hash);
+    return this.logs.filter(log => log.action_hash === action_hash);
   }
 
   /**
    * Generate Merkle proof for log entry
    */
   async generateProofForLog(action_hash: string): Promise<MerkleProof | null> {
-    const index = this.logs.findIndex((log) => log.action_hash === action_hash);
+    const index = this.logs.findIndex(log => log.action_hash === action_hash);
     if (index === -1) {
       return null;
     }
 
     const builder = new MerkleTreeBuilder();
-    const logData = this.logs.map((log) => JSON.stringify(log));
+    const logData = this.logs.map(log => JSON.stringify(log));
 
     return builder.generateProof(logData, index);
   }
