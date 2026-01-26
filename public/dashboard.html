@@ -4373,7 +4373,7 @@
     <script>
       // ========== AUTHENTICATION CHECK ==========
       (function checkAuth() {
-        const accessToken = localStorage.getItem('accessToken');
+        const accessToken = // MIGRATED: localStorage.getItem('accessToken');
         const userData = localStorage.getItem('lydian_user');
 
         // Redirect to login if not authenticated
@@ -4393,8 +4393,8 @@
 
             if (Date.now() >= expiryTime) {
               console.warn('🔒 Token expired - redirecting to login');
-              localStorage.removeItem('accessToken');
-              localStorage.removeItem('refreshToken');
+              // MIGRATED: localStorage.removeItem('accessToken');
+              // MIGRATED: localStorage.removeItem('refreshToken');
               localStorage.removeItem('lydian_user');
               window.location.href = '/auth.html?expired=true';
               return;
@@ -5736,8 +5736,8 @@
             e.preventDefault();
 
             // Clear authentication data
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
+            // MIGRATED: localStorage.removeItem('accessToken');
+            // MIGRATED: localStorage.removeItem('refreshToken');
             localStorage.removeItem('lydian_user');
 
             // DEBUG: console.log('🔓 User logged out');
@@ -6003,5 +6003,6 @@
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
     <script src="/js/mobile-menu-handler.js"></script>
+    <script src="/js/auth-secure.js"></script>
   </body>
 </html>

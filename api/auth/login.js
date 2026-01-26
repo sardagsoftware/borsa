@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const { Client } = require('pg');
 const { generateAccessToken, generateRefreshToken } = require('./jwt-middleware');
 const { requireRecaptcha } = require('../_lib/recaptcha-verify');
+const { setAuthTokens } = require('../_lib/cookie-utils');
 
 /**
  * Database client singleton
@@ -144,17 +145,14 @@ export default async function handler(req, res) {
     // Attempt login
     const loginResult = await loginUser(email, password);
 
-    // Set refresh token as HTTP-only cookie for security
-    res.setHeader(
-      'Set-Cookie',
-      `refresh_token=${loginResult.refreshToken}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=604800`
-    );
+    // 🔒 SECURITY: Set BOTH tokens as httpOnly cookies (not accessible to JavaScript)
+    setAuthTokens(res, loginResult.accessToken, loginResult.refreshToken);
 
+    // Return user data only (NO TOKENS in response body)
     return res.status(200).json({
       success: true,
       data: {
         user: loginResult.user,
-        accessToken: loginResult.accessToken,
         expiresIn: loginResult.expiresIn,
       },
       message: 'Login successful',

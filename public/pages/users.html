@@ -807,7 +807,7 @@
         try {
           const response = await fetch('/api/users', {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+              Authorization: `Bearer ${// MIGRATED: localStorage.getItem('accessToken')}`,
             },
           });
 
@@ -1088,7 +1088,7 @@
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                Authorization: `Bearer ${// MIGRATED: localStorage.getItem('accessToken')}`,
               },
               body: JSON.stringify(formData),
             });
@@ -1098,7 +1098,7 @@
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                Authorization: `Bearer ${// MIGRATED: localStorage.getItem('accessToken')}`,
               },
               body: JSON.stringify(formData),
             });
@@ -1183,5 +1183,6 @@
         }
       });
     </script>
+    <script src="/js/auth-secure.js"></script>
   </body>
 </html>
