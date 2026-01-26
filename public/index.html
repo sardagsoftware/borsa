@@ -241,6 +241,7 @@
         transform: translateX(-50%);
         width: min(1100px, 94vw);
         max-width: 1100px;
+        max-height: calc(100vh - 100px);
         margin-top: 0.75rem;
         padding: 14px;
         border-radius: 18px;
@@ -254,13 +255,39 @@
         transition:
           opacity 0.25s ease,
           visibility 0.25s ease;
-        overflow-x: auto;
-        overflow-y: visible;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .mega.active {
         opacity: 1;
         visibility: visible;
+      }
+
+      /* Custom Scrollbar for Mega Menu */
+      .mega::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .mega::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+      }
+
+      .mega::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        transition: background 0.2s ease;
+      }
+
+      .mega::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Firefox Scrollbar */
+      .mega {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
       }
 
       .mega-grid {
@@ -611,6 +638,7 @@
       @media (max-width: 1024px) {
         .mega {
           width: 92vw;
+          max-height: calc(100vh - 90px);
           padding: 10px;
         }
         .mega-grid {
@@ -808,6 +836,7 @@
         /* Mega menus */
         .mega {
           width: 96vw;
+          max-height: calc(100vh - 80px);
           padding: 8px;
           left: 2vw;
           transform: translateX(0);
