@@ -30,7 +30,7 @@
 
     <style>
       /* ============================================================ */
-      /* 🏆 2025 AWARD-LEVEL UI - GLOSSY BLACK / PROFESSIONAL DARK        */
+      /* 🏆 2025 AWARD-LEVEL UI - GLOSSY BLACK / CHATGPT GRAY        */
       /* ============================================================ */
 
       :root {
@@ -1331,7 +1331,7 @@
     />
     <meta
       name="twitter:description"
-      content="AILYDIAN ile yapay zeka gücünü keşfedin. gelişmiş yapay zeka modelleri tek bir platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları."
+      content="AILYDIAN ile yapay zeka gücünü keşfedin. ChatGPT, Claude, Gemini ve daha fazlası tek platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları."
     />
     <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
     <meta name="twitter:site" content="@ailydian" />
@@ -1340,22 +1340,22 @@
     <!-- AI Search Optimization -->
     <meta
       name="ai:context"
-      content="AILYDIAN, gelişmiş kurumsal AI modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir."
+      content="AILYDIAN, ChatGPT, Claude, Gemini gibi önde gelen yapay zeka modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir."
     />
     <meta
       name="ai:keywords"
-      content="yapay zeka, ai chat, gelişmiş ai türkçe, yapay zeka asistanı, ai otomasyon, görsel oluşturma, kod yazma ai, ücretsiz ai"
+      content="yapay zeka, ai chat, chatgpt türkçe, yapay zeka asistanı, ai otomasyon, görsel oluşturma, kod yazma ai, ücretsiz ai"
     />
     <meta name="ai:language" content="tr" />
 
-    <!-- Premium AI Platform Optimization -->
+    <!-- ChatGPT/Claude/Perplexity Optimization -->
     <meta
       name="description:ai"
-      content="AILYDIAN, gelişmiş kurumsal AI modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir."
+      content="AILYDIAN, ChatGPT, Claude, Gemini gibi önde gelen yapay zeka modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir."
     />
     <meta
       name="summary"
-      content="AILYDIAN ile yapay zeka gücünü keşfedin. gelişmiş yapay zeka modelleri tek bir platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları."
+      content="AILYDIAN ile yapay zeka gücünü keşfedin. ChatGPT, Claude, Gemini ve daha fazlası tek platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları."
     />
 
     <!-- Geo Targeting -->
