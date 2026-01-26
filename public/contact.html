@@ -1242,7 +1242,7 @@
               </div>
               <div class="method-content">
                 <h3>E-posta</h3>
-                <p>info@lydian.ai</p>
+                <p>info@ailydian.com</p>
                 <small>24 saat içinde yanıt</small>
               </div>
             </div>
@@ -1524,13 +1524,31 @@
         answer.classList.toggle('active');
       }
 
-      // Form submission
+      // Form submission - Real email via mailto
       document.getElementById('contactForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Simple form validation and submission
-        alert('Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.');
-        this.reset();
+        // Get form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        // Construct mailto link
+        const mailtoLink = `mailto:info@ailydian.com?subject=${encodeURIComponent('İletişim Formu: ' + subject)}&body=${encodeURIComponent(
+          `İsim: ${name}\nE-posta: ${email}\nKonu: ${subject}\n\nMesaj:\n${message}`
+        )}`;
+
+        // Open mailto link
+        window.location.href = mailtoLink;
+
+        // Show success message
+        alert('Mail istemciniz açılıyor. Lütfen mailinizi gönderin.');
+
+        // Reset form after 2 seconds
+        setTimeout(() => {
+          this.reset();
+        }, 2000);
       });
 
       // Intersection Observer for fade-in animations
