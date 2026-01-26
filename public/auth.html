@@ -238,10 +238,19 @@
         width: 100%;
       }
 
+      .form-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        text-align: left;
+      }
+
       .submit-btn {
         padding: 0.875rem 1rem;
-        background: rgba(0, 224, 174, 0.8);
-        color: white;
+        background: #00e0ae;
+        color: #000000;
         border: none;
         border-radius: 8px;
         font-size: 0.9375rem;
@@ -252,8 +261,9 @@
       }
 
       .submit-btn:hover:not(:disabled) {
-        background: rgba(0, 224, 174, 1);
-        box-shadow: 0 0 15px rgba(0, 224, 174, 0.3);
+        background: #00ffbe;
+        box-shadow: 0 0 20px rgba(0, 224, 174, 0.5);
+        transform: translateY(-1px);
       }
 
       .submit-btn:disabled {
@@ -631,11 +641,12 @@
           <p class="subtitle" id="user-email-display"></p>
 
           <form class="email-form" onsubmit="handlePasswordSubmit(event)">
+            <label for="password-input" class="form-label">Şifre</label>
             <input
               type="password"
               class="form-input"
               id="password-input"
-              placeholder="Şifre"
+              placeholder="Şifrenizi girin"
               autocomplete="current-password"
               required
             />
@@ -661,20 +672,22 @@
           <p class="subtitle" id="register-email-display"></p>
 
           <form class="email-form" onsubmit="handleRegisterSubmit(event)">
+            <label for="register-name" class="form-label">Ad Soyad</label>
             <input
               type="text"
               class="form-input"
               id="register-name"
-              placeholder="Ad Soyad"
+              placeholder="Ad ve soyadınızı girin"
               autocomplete="name"
               minlength="2"
               required
             />
+            <label for="register-password" class="form-label">Şifre</label>
             <input
               type="password"
               class="form-input"
               id="register-password"
-              placeholder="Şifre (en az 8 karakter)"
+              placeholder="En az 8 karakter"
               autocomplete="new-password"
               minlength="8"
               required
