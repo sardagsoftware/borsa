@@ -2,9 +2,8 @@
 <html lang="tr">
   <head>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -12,6 +11,20 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+
+    <!-- Critical Fonts (Preloaded for Performance) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      />
+    </noscript>
 
     <!-- Favicon -->
 
@@ -44,8 +57,6 @@
         color-scheme: dark;
         scroll-behavior: smooth;
       }
-
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
       body {
         font-family:
@@ -228,7 +239,8 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: min(1100px, 92vw);
+        width: min(1100px, 94vw);
+        max-width: 1100px;
         margin-top: 0.75rem;
         padding: 14px;
         border-radius: 18px;
@@ -242,6 +254,8 @@
         transition:
           opacity 0.25s ease,
           visibility 0.25s ease;
+        overflow-x: auto;
+        overflow-y: visible;
       }
 
       .mega.active {
@@ -251,8 +265,9 @@
 
       .mega-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 14px;
+        min-width: 0;
       }
 
       .mega-col {
@@ -260,6 +275,8 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 14px;
         padding: 14px;
+        min-width: 0;
+        overflow: hidden;
       }
 
       .mega-kicker {
@@ -303,6 +320,8 @@
         font-weight: 700;
         font-size: 14px;
         letter-spacing: -0.01em;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
 
       .mega-item-desc {
@@ -310,6 +329,9 @@
         font-weight: 500;
         opacity: 0.8;
         margin-top: 2px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.4;
       }
 
       /* ============================================================ */
@@ -575,9 +597,28 @@
       /* 📱 RESPONSIVE (MOBILE)                                      */
       /* ============================================================ */
 
-      @media (max-width: 1024px) {
+      @media (max-width: 1200px) {
+        .mega {
+          width: min(980px, 94vw);
+          padding: 12px;
+        }
         .mega-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 12px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .mega {
+          width: 92vw;
+          padding: 10px;
+        }
+        .mega-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 10px;
+        }
+        .mega-col {
+          padding: 12px;
         }
       }
 
@@ -765,8 +806,27 @@
         }
 
         /* Mega menus */
+        .mega {
+          width: 96vw;
+          padding: 8px;
+          left: 2vw;
+          transform: translateX(0);
+        }
         .mega-grid {
           grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .mega-col {
+          padding: 10px;
+        }
+        .mega-item {
+          padding: 8px;
+        }
+        .mega-item-title {
+          font-size: 13px;
+        }
+        .mega-item-desc {
+          font-size: 12px;
         }
 
         /* Sidebar - make it bottom bar on mobile */
@@ -2769,10 +2829,14 @@
                     stroke-width="2"
                     style="display: inline-block; vertical-align: middle; margin-right: 6px"
                   >
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg
-                  >ADE Diş Klinik 🇹🇷
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline></svg
+                  >ADE Devlet Danışmanı 🇹🇷
                 </div>
-                <div class="mega-item-desc">Dijital Diş Hekimliği Yönetim Sistemi</div>
+                <div class="mega-item-desc">Yapay Zeka Destekli Devlet Danışmanlık Sistemi</div>
               </div>
             </a>
             <a
@@ -3224,689 +3288,711 @@
     <!-- 🌌 SOLAR SYSTEM UNIVERSE BACKGROUND (AWARD-LEVEL)          -->
     <!-- ============================================================ -->
     <script type="module">
-      import * as THREE from 'https://unpkg.com/three@0.160.1/build/three.module.js';
-
-      // ========== Canvas Setup (Mobile Optimized) ==========
+      // ========== Lazy Loading Three.js with IntersectionObserver ==========
       const canvas = document.getElementById('orbit-stage');
-      const isMobile = window.innerWidth <= 768;
 
-      const renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias: !isMobile, // Disable antialiasing on mobile for better performance
-        powerPreference: isMobile ? 'default' : 'high-performance',
-        alpha: true,
-      });
-
-      // HIGH-DPI/Retina: Use high pixel ratio for crisp rendering on mobile
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        isMobile ? 70 : 60, // Wider FOV on mobile for better view
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
+      // Only load Three.js when canvas is near viewport
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              observer.disconnect();
+              loadThreeJS();
+            }
+          });
+        },
+        {
+          rootMargin: '50px', // Start loading 50px before entering viewport
+        }
       );
-      camera.position.set(0, 5, 20);
-      camera.lookAt(0, 0, 0);
 
-      // ========== Window Resize Handler (Mobile Responsive) ==========
-      function handleResize() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const isMobileNow = width <= 768;
+      observer.observe(canvas);
 
-        camera.aspect = width / height;
-        camera.fov = isMobileNow ? 70 : 60;
-        camera.updateProjectionMatrix();
+      async function loadThreeJS() {
+        const module = await import('https://unpkg.com/three@0.160.1/build/three.module.js');
+        const THREE = module;
 
-        renderer.setSize(width, height);
+        // ========== Canvas Setup (Mobile Optimized) ==========
+        const isMobile = window.innerWidth <= 768;
+
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          antialias: !isMobile, // Disable antialiasing on mobile for better performance
+          powerPreference: isMobile ? 'default' : 'high-performance',
+          alpha: true,
+        });
+
+        // HIGH-DPI/Retina: Use high pixel ratio for crisp rendering on mobile
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
-      }
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-      window.addEventListener('resize', handleResize);
-      window.addEventListener('orientationchange', function () {
-        setTimeout(handleResize, 100);
-      });
-
-      // ========== Advanced Texture Creator ==========
-      function createPlanetTexture(color, pattern = 'solid', size = 512) {
-        const canvas = document.createElement('canvas');
-        canvas.width = size;
-        canvas.height = size;
-        const ctx = canvas.getContext('2d');
-        const center = size / 2;
-
-        // Base gradient
-        const gradient = ctx.createRadialGradient(
-          center * 0.7,
-          center * 0.7,
-          0,
-          center,
-          center,
-          center
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+          isMobile ? 70 : 60, // Wider FOV on mobile for better view
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
         );
-        gradient.addColorStop(0, color);
-        gradient.addColorStop(0.7, color);
-        gradient.addColorStop(1, `${color}33`);
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, size, size);
+        camera.position.set(0, 5, 20);
+        camera.lookAt(0, 0, 0);
 
-        // Detailed patterns
-        if (pattern === 'sun') {
-          // Solar flares and granulation
-          ctx.globalCompositeOperation = 'lighter';
-          for (let i = 0; i < 100; i++) {
-            const x = Math.random() * size;
-            const y = Math.random() * size;
-            const radius = Math.random() * 20 + 5;
-            const flareGrad = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            flareGrad.addColorStop(0, '#FFF4E6');
-            flareGrad.addColorStop(1, 'transparent');
-            ctx.fillStyle = flareGrad;
+        // ========== Window Resize Handler (Mobile Responsive) ==========
+        function handleResize() {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          const isMobileNow = width <= 768;
+
+          camera.aspect = width / height;
+          camera.fov = isMobileNow ? 70 : 60;
+          camera.updateProjectionMatrix();
+
+          renderer.setSize(width, height);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 3));
+        }
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', function () {
+          setTimeout(handleResize, 100);
+        });
+
+        // ========== Advanced Texture Creator ==========
+        function createPlanetTexture(color, pattern = 'solid', size = 512) {
+          const canvas = document.createElement('canvas');
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          const center = size / 2;
+
+          // Base gradient
+          const gradient = ctx.createRadialGradient(
+            center * 0.7,
+            center * 0.7,
+            0,
+            center,
+            center,
+            center
+          );
+          gradient.addColorStop(0, color);
+          gradient.addColorStop(0.7, color);
+          gradient.addColorStop(1, `${color}33`);
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, size, size);
+
+          // Detailed patterns
+          if (pattern === 'sun') {
+            // Solar flares and granulation
+            ctx.globalCompositeOperation = 'lighter';
+            for (let i = 0; i < 100; i++) {
+              const x = Math.random() * size;
+              const y = Math.random() * size;
+              const radius = Math.random() * 20 + 5;
+              const flareGrad = ctx.createRadialGradient(x, y, 0, x, y, radius);
+              flareGrad.addColorStop(0, '#FFF4E6');
+              flareGrad.addColorStop(1, 'transparent');
+              ctx.fillStyle = flareGrad;
+              ctx.beginPath();
+              ctx.arc(x, y, radius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          } else if (pattern === 'mercury') {
+            // Craters
+            ctx.fillStyle = 'rgba(100, 90, 70, 0.4)';
+            for (let i = 0; i < 50; i++) {
+              const x = Math.random() * size;
+              const y = Math.random() * size;
+              const radius = Math.random() * 15 + 5;
+              ctx.beginPath();
+              ctx.arc(x, y, radius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          } else if (pattern === 'venus') {
+            // Thick atmosphere clouds
+            ctx.fillStyle = 'rgba(255, 220, 100, 0.3)';
+            for (let i = 0; i < 30; i++) {
+              ctx.beginPath();
+              ctx.ellipse(
+                Math.random() * size,
+                Math.random() * size,
+                Math.random() * 80 + 40,
+                Math.random() * 30 + 10,
+                Math.random() * Math.PI,
+                0,
+                Math.PI * 2
+              );
+              ctx.fill();
+            }
+          } else if (pattern === 'earth') {
+            // Continents (green/brown)
+            ctx.fillStyle = '#2E7D32';
+            for (let i = 0; i < 35; i++) {
+              ctx.beginPath();
+              const x = Math.random() * size;
+              const y = Math.random() * size;
+              const width = Math.random() * 80 + 40;
+              const height = Math.random() * 60 + 30;
+              ctx.ellipse(x, y, width, height, Math.random() * Math.PI, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            // Clouds
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            for (let i = 0; i < 25; i++) {
+              ctx.beginPath();
+              ctx.arc(
+                Math.random() * size,
+                Math.random() * size,
+                Math.random() * 30 + 10,
+                0,
+                Math.PI * 2
+              );
+              ctx.fill();
+            }
+          } else if (pattern === 'mars') {
+            // Red desert and polar caps
+            ctx.fillStyle = 'rgba(139, 69, 19, 0.4)';
+            for (let i = 0; i < 40; i++) {
+              ctx.fillRect(
+                Math.random() * size,
+                Math.random() * size,
+                Math.random() * 60,
+                Math.random() * 40
+              );
+            }
+            // Polar ice
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.arc(center, 20, 40, 0, Math.PI * 2);
             ctx.fill();
-          }
-        } else if (pattern === 'mercury') {
-          // Craters
-          ctx.fillStyle = 'rgba(100, 90, 70, 0.4)';
-          for (let i = 0; i < 50; i++) {
-            const x = Math.random() * size;
-            const y = Math.random() * size;
-            const radius = Math.random() * 15 + 5;
+          } else if (pattern === 'jupiter') {
+            // Atmospheric bands
+            const bands = 25;
+            for (let i = 0; i < bands; i++) {
+              const y = (i / bands) * size;
+              const alpha = Math.random() * 0.3 + 0.2;
+              ctx.fillStyle =
+                i % 2 === 0 ? `rgba(200, 140, 60, ${alpha})` : `rgba(180, 120, 40, ${alpha})`;
+              const wave = Math.sin(i * 0.5) * 10;
+              ctx.fillRect(0, y + wave, size, size / bands + 2);
+            }
+            // Great Red Spot
+            ctx.fillStyle = 'rgba(220, 80, 60, 0.8)';
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.ellipse(center * 1.3, center * 1.1, 60, 40, 0.3, 0, Math.PI * 2);
             ctx.fill();
+          } else if (pattern === 'saturn') {
+            // Subtle bands
+            const bands = 20;
+            for (let i = 0; i < bands; i++) {
+              const y = (i / bands) * size;
+              ctx.fillStyle = i % 2 === 0 ? 'rgba(244, 208, 63, 0.3)' : 'rgba(230, 190, 50, 0.3)';
+              ctx.fillRect(0, y, size, size / bands);
+            }
+          } else if (pattern === 'uranus') {
+            // Smooth cyan atmosphere
+            ctx.fillStyle = 'rgba(100, 200, 220, 0.2)';
+            for (let i = 0; i < 20; i++) {
+              ctx.beginPath();
+              ctx.arc(
+                Math.random() * size,
+                Math.random() * size,
+                Math.random() * 50 + 20,
+                0,
+                Math.PI * 2
+              );
+              ctx.fill();
+            }
+          } else if (pattern === 'neptune') {
+            // Deep blue with storms
+            ctx.fillStyle = 'rgba(30, 70, 150, 0.4)';
+            for (let i = 0; i < 15; i++) {
+              ctx.beginPath();
+              ctx.arc(
+                Math.random() * size,
+                Math.random() * size,
+                Math.random() * 40 + 15,
+                0,
+                Math.PI * 2
+              );
+              ctx.fill();
+            }
           }
-        } else if (pattern === 'venus') {
-          // Thick atmosphere clouds
-          ctx.fillStyle = 'rgba(255, 220, 100, 0.3)';
-          for (let i = 0; i < 30; i++) {
-            ctx.beginPath();
-            ctx.ellipse(
-              Math.random() * size,
-              Math.random() * size,
-              Math.random() * 80 + 40,
-              Math.random() * 30 + 10,
-              Math.random() * Math.PI,
-              0,
-              Math.PI * 2
-            );
-            ctx.fill();
-          }
-        } else if (pattern === 'earth') {
-          // Continents (green/brown)
-          ctx.fillStyle = '#2E7D32';
-          for (let i = 0; i < 35; i++) {
-            ctx.beginPath();
-            const x = Math.random() * size;
-            const y = Math.random() * size;
-            const width = Math.random() * 80 + 40;
-            const height = Math.random() * 60 + 30;
-            ctx.ellipse(x, y, width, height, Math.random() * Math.PI, 0, Math.PI * 2);
-            ctx.fill();
-          }
-          // Clouds
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-          for (let i = 0; i < 25; i++) {
-            ctx.beginPath();
-            ctx.arc(
-              Math.random() * size,
-              Math.random() * size,
-              Math.random() * 30 + 10,
-              0,
-              Math.PI * 2
-            );
-            ctx.fill();
-          }
-        } else if (pattern === 'mars') {
-          // Red desert and polar caps
-          ctx.fillStyle = 'rgba(139, 69, 19, 0.4)';
-          for (let i = 0; i < 40; i++) {
-            ctx.fillRect(
-              Math.random() * size,
-              Math.random() * size,
-              Math.random() * 60,
-              Math.random() * 40
-            );
-          }
-          // Polar ice
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-          ctx.beginPath();
-          ctx.arc(center, 20, 40, 0, Math.PI * 2);
-          ctx.fill();
-        } else if (pattern === 'jupiter') {
-          // Atmospheric bands
-          const bands = 25;
-          for (let i = 0; i < bands; i++) {
-            const y = (i / bands) * size;
-            const alpha = Math.random() * 0.3 + 0.2;
-            ctx.fillStyle =
-              i % 2 === 0 ? `rgba(200, 140, 60, ${alpha})` : `rgba(180, 120, 40, ${alpha})`;
-            const wave = Math.sin(i * 0.5) * 10;
-            ctx.fillRect(0, y + wave, size, size / bands + 2);
-          }
-          // Great Red Spot
-          ctx.fillStyle = 'rgba(220, 80, 60, 0.8)';
-          ctx.beginPath();
-          ctx.ellipse(center * 1.3, center * 1.1, 60, 40, 0.3, 0, Math.PI * 2);
-          ctx.fill();
-        } else if (pattern === 'saturn') {
-          // Subtle bands
-          const bands = 20;
-          for (let i = 0; i < bands; i++) {
-            const y = (i / bands) * size;
-            ctx.fillStyle = i % 2 === 0 ? 'rgba(244, 208, 63, 0.3)' : 'rgba(230, 190, 50, 0.3)';
-            ctx.fillRect(0, y, size, size / bands);
-          }
-        } else if (pattern === 'uranus') {
-          // Smooth cyan atmosphere
-          ctx.fillStyle = 'rgba(100, 200, 220, 0.2)';
-          for (let i = 0; i < 20; i++) {
-            ctx.beginPath();
-            ctx.arc(
-              Math.random() * size,
-              Math.random() * size,
-              Math.random() * 50 + 20,
-              0,
-              Math.PI * 2
-            );
-            ctx.fill();
-          }
-        } else if (pattern === 'neptune') {
-          // Deep blue with storms
-          ctx.fillStyle = 'rgba(30, 70, 150, 0.4)';
-          for (let i = 0; i < 15; i++) {
-            ctx.beginPath();
-            ctx.arc(
-              Math.random() * size,
-              Math.random() * size,
-              Math.random() * 40 + 15,
-              0,
-              Math.PI * 2
-            );
-            ctx.fill();
+
+          const texture = new THREE.CanvasTexture(canvas);
+          texture.needsUpdate = true;
+          return texture;
+        }
+
+        // ========== AI DATA FLOW LOCATIONS (MAJOR AI HUBS) - Neon Colors (White, Pink, Orange) ==========
+        const aiHubs = [
+          { name: 'San Francisco', lat: 37.7749, lon: -122.4194, color: 0xffffff, intensity: 1.0 }, // Bright white
+          { name: 'New York', lat: 40.7128, lon: -74.006, color: 0xff006e, intensity: 0.9 }, // Hot pink
+          { name: 'London', lat: 51.5074, lon: -0.1278, color: 0xff8800, intensity: 0.95 }, // Orange
+          { name: 'Tokyo', lat: 35.6762, lon: 139.6503, color: 0xffffff, intensity: 0.85 }, // White
+          { name: 'Singapore', lat: 1.3521, lon: 103.8198, color: 0xff006e, intensity: 0.8 }, // Pink
+          { name: 'Bangalore', lat: 12.9716, lon: 77.5946, color: 0xff8800, intensity: 0.75 }, // Orange
+          { name: 'Berlin', lat: 52.52, lon: 13.405, color: 0xffffff, intensity: 0.7 }, // White
+          { name: 'Toronto', lat: 43.6532, lon: -79.3832, color: 0xff006e, intensity: 0.65 }, // Pink
+          { name: 'Sydney', lat: -33.8688, lon: 151.2093, color: 0xff8800, intensity: 0.7 }, // Orange
+          { name: 'São Paulo', lat: -23.5505, lon: -46.6333, color: 0xffffff, intensity: 0.6 }, // White
+          { name: 'Dubai', lat: 25.2048, lon: 55.2708, color: 0xff006e, intensity: 0.65 }, // Pink
+          { name: 'Seoul', lat: 37.5665, lon: 126.978, color: 0xff8800, intensity: 0.8 }, // Orange
+          { name: 'Stockholm', lat: 59.3293, lon: 18.0686, color: 0xffffff, intensity: 0.6 }, // White
+          { name: 'Tel Aviv', lat: 32.0853, lon: 34.7818, color: 0xff006e, intensity: 0.7 }, // Pink
+          { name: 'Shanghai', lat: 31.2304, lon: 121.4737, color: 0xff8800, intensity: 0.85 }, // Orange
+          { name: 'Paris', lat: 48.8566, lon: 2.3522, color: 0xffffff, intensity: 0.75 }, // White
+          { name: 'Amsterdam', lat: 52.3676, lon: 4.9041, color: 0xff006e, intensity: 0.7 }, // Pink
+          { name: 'Austin', lat: 30.2672, lon: -97.7431, color: 0xff8800, intensity: 0.65 }, // Orange
+          { name: 'Beijing', lat: 39.9042, lon: 116.4074, color: 0xffffff, intensity: 0.8 }, // White
+          { name: 'Istanbul', lat: 41.0082, lon: 28.9784, color: 0xff006e, intensity: 0.6 }, // Pink
+        ];
+
+        // ========== COUNTRY DATABASE (Major Countries with Center Coordinates) ==========
+        const countries = [
+          // Americas
+          { name: 'United States', lat: 37.0902, lon: -95.7129, region: 'North America' },
+          { name: 'Canada', lat: 56.1304, lon: -106.3468, region: 'North America' },
+          { name: 'Mexico', lat: 23.6345, lon: -102.5528, region: 'North America' },
+          { name: 'Brazil', lat: -14.235, lon: -51.9253, region: 'South America' },
+          { name: 'Argentina', lat: -38.4161, lon: -63.6167, region: 'South America' },
+          { name: 'Colombia', lat: 4.5709, lon: -74.2973, region: 'South America' },
+          { name: 'Chile', lat: -35.6751, lon: -71.543, region: 'South America' },
+
+          // Europe
+          { name: 'United Kingdom', lat: 55.3781, lon: -3.436, region: 'Europe' },
+          { name: 'France', lat: 46.2276, lon: 2.2137, region: 'Europe' },
+          { name: 'Germany', lat: 51.1657, lon: 10.4515, region: 'Europe' },
+          { name: 'Italy', lat: 41.8719, lon: 12.5674, region: 'Europe' },
+          { name: 'Spain', lat: 40.4637, lon: -3.7492, region: 'Europe' },
+          { name: 'Turkey', lat: 38.9637, lon: 35.2433, region: 'Europe/Asia' },
+          { name: 'Russia', lat: 61.524, lon: 105.3188, region: 'Europe/Asia' },
+          { name: 'Poland', lat: 51.9194, lon: 19.1451, region: 'Europe' },
+          { name: 'Netherlands', lat: 52.1326, lon: 5.2913, region: 'Europe' },
+          { name: 'Sweden', lat: 60.1282, lon: 18.6435, region: 'Europe' },
+          { name: 'Norway', lat: 60.472, lon: 8.4689, region: 'Europe' },
+          { name: 'Finland', lat: 61.9241, lon: 25.7482, region: 'Europe' },
+          { name: 'Ukraine', lat: 48.3794, lon: 31.1656, region: 'Europe' },
+          { name: 'Greece', lat: 39.0742, lon: 21.8243, region: 'Europe' },
+
+          // Asia
+          { name: 'China', lat: 35.8617, lon: 104.1954, region: 'Asia' },
+          { name: 'Japan', lat: 36.2048, lon: 138.2529, region: 'Asia' },
+          { name: 'India', lat: 20.5937, lon: 78.9629, region: 'Asia' },
+          { name: 'South Korea', lat: 35.9078, lon: 127.7669, region: 'Asia' },
+          { name: 'Indonesia', lat: -0.7893, lon: 113.9213, region: 'Asia' },
+          { name: 'Thailand', lat: 15.87, lon: 100.9925, region: 'Asia' },
+          { name: 'Vietnam', lat: 14.0583, lon: 108.2772, region: 'Asia' },
+          { name: 'Philippines', lat: 12.8797, lon: 121.774, region: 'Asia' },
+          { name: 'Malaysia', lat: 4.2105, lon: 101.9758, region: 'Asia' },
+          { name: 'Singapore', lat: 1.3521, lon: 103.8198, region: 'Asia' },
+          { name: 'Pakistan', lat: 30.3753, lon: 69.3451, region: 'Asia' },
+          { name: 'Bangladesh', lat: 23.685, lon: 90.3563, region: 'Asia' },
+          { name: 'Saudi Arabia', lat: 23.8859, lon: 45.0792, region: 'Middle East' },
+          { name: 'UAE', lat: 23.4241, lon: 53.8478, region: 'Middle East' },
+          { name: 'Israel', lat: 31.0461, lon: 34.8516, region: 'Middle East' },
+          { name: 'Iran', lat: 32.4279, lon: 53.688, region: 'Middle East' },
+
+          // Africa
+          { name: 'Egypt', lat: 26.8206, lon: 30.8025, region: 'Africa' },
+          { name: 'South Africa', lat: -30.5595, lon: 22.9375, region: 'Africa' },
+          { name: 'Nigeria', lat: 9.082, lon: 8.6753, region: 'Africa' },
+          { name: 'Kenya', lat: -0.0236, lon: 37.9062, region: 'Africa' },
+          { name: 'Morocco', lat: 31.7917, lon: -7.0926, region: 'Africa' },
+
+          // Oceania
+          { name: 'Australia', lat: -25.2744, lon: 133.7751, region: 'Oceania' },
+          { name: 'New Zealand', lat: -40.9006, lon: 174.886, region: 'Oceania' },
+        ];
+
+        // ========== Create CYBER THREAT MAP EARTH (Night View with City Lights) ==========
+        const earthRadius = 8;
+        const earthGeometry = new THREE.SphereGeometry(earthRadius, 256, 256);
+
+        // NIGHT EARTH - Koyu gri ton, gece atmosferinden bakış (kara parçaları belirgin)
+        const textureLoader = new THREE.TextureLoader();
+        const earthNightTexture = textureLoader.load(
+          'https://unpkg.com/three-globe@2.24.6/example/img/earth-night.jpg'
+        );
+
+        const earthMaterial = new THREE.MeshBasicMaterial({
+          map: earthNightTexture,
+          color: 0x404040, // Koyu gri ton - mavi tonlarını bastırır, kara parçaları belirginleştirir
+          transparent: false,
+          fog: false,
+        });
+
+        const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+        earth.position.set(0, 0, 0);
+        earth.rotation.y = Math.PI;
+        scene.add(earth);
+
+        // Very subtle ambient light (minimal lighting for dark cosmic atmosphere)
+        const ambientLight = new THREE.AmbientLight(0x0a0a15, 0.8);
+        scene.add(ambientLight);
+
+        // ========== Convert Lat/Lon to 3D Position ==========
+        function latLonToVector3(lat, lon, radius) {
+          const phi = (90 - lat) * (Math.PI / 180);
+          const theta = (lon + 180) * (Math.PI / 180);
+
+          const x = -(radius * Math.sin(phi) * Math.cos(theta));
+          const z = radius * Math.sin(phi) * Math.sin(theta);
+          const y = radius * Math.cos(phi);
+
+          return new THREE.Vector3(x, y, z);
+        }
+
+        // ========== Create AI Hub Markers (Kaspersky Style - Bright and Prominent) ==========
+        const hubMarkers = [];
+        aiHubs.forEach(hub => {
+          const markerGeometry = new THREE.SphereGeometry(0.12, 16, 16); // Optimized for mobile
+          const markerMaterial = new THREE.MeshBasicMaterial({
+            color: hub.color,
+            transparent: true,
+            opacity: 1.0, // Full brightness
+          });
+          const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+
+          const pos = latLonToVector3(hub.lat, hub.lon, earthRadius + 0.1);
+          marker.position.copy(pos);
+          earth.add(marker);
+
+          // Bright pulsing glow (Kaspersky style)
+          const glowGeometry = new THREE.SphereGeometry(0.2, 16, 16); // Mobile-optimized glow
+          const glowMaterial = new THREE.MeshBasicMaterial({
+            color: hub.color,
+            transparent: true,
+            opacity: 0.6, // Brighter glow
+            side: THREE.BackSide,
+          });
+          const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+          marker.add(glow);
+
+          hubMarkers.push({ marker, glow, hub, baseScale: 1 });
+        });
+
+        // ========== Create Country Amber Glow (Real AI Usage Data) ==========
+        const countryGlows = [];
+        let realTimeData = {}; // Gerçek zamanlı AI kullanım verileri
+
+        // Backend'den gerçek AI model kullanım verilerini çek
+        async function fetchRealAIData() {
+          try {
+            const response = await fetch('/api/ai-usage-by-country');
+            const data = await response.json();
+            realTimeData = data;
+            updateCountryGlows();
+          } catch (error) {
+            console.log('AI usage data endpoint not ready, using simulated data');
+            // Gerçek backend hazır olana kadar simülasyon
+            simulateAIUsageData();
           }
         }
 
-        const texture = new THREE.CanvasTexture(canvas);
-        texture.needsUpdate = true;
-        return texture;
-      }
-
-      // ========== AI DATA FLOW LOCATIONS (MAJOR AI HUBS) - Neon Colors (White, Pink, Orange) ==========
-      const aiHubs = [
-        { name: 'San Francisco', lat: 37.7749, lon: -122.4194, color: 0xffffff, intensity: 1.0 }, // Bright white
-        { name: 'New York', lat: 40.7128, lon: -74.006, color: 0xff006e, intensity: 0.9 }, // Hot pink
-        { name: 'London', lat: 51.5074, lon: -0.1278, color: 0xff8800, intensity: 0.95 }, // Orange
-        { name: 'Tokyo', lat: 35.6762, lon: 139.6503, color: 0xffffff, intensity: 0.85 }, // White
-        { name: 'Singapore', lat: 1.3521, lon: 103.8198, color: 0xff006e, intensity: 0.8 }, // Pink
-        { name: 'Bangalore', lat: 12.9716, lon: 77.5946, color: 0xff8800, intensity: 0.75 }, // Orange
-        { name: 'Berlin', lat: 52.52, lon: 13.405, color: 0xffffff, intensity: 0.7 }, // White
-        { name: 'Toronto', lat: 43.6532, lon: -79.3832, color: 0xff006e, intensity: 0.65 }, // Pink
-        { name: 'Sydney', lat: -33.8688, lon: 151.2093, color: 0xff8800, intensity: 0.7 }, // Orange
-        { name: 'São Paulo', lat: -23.5505, lon: -46.6333, color: 0xffffff, intensity: 0.6 }, // White
-        { name: 'Dubai', lat: 25.2048, lon: 55.2708, color: 0xff006e, intensity: 0.65 }, // Pink
-        { name: 'Seoul', lat: 37.5665, lon: 126.978, color: 0xff8800, intensity: 0.8 }, // Orange
-        { name: 'Stockholm', lat: 59.3293, lon: 18.0686, color: 0xffffff, intensity: 0.6 }, // White
-        { name: 'Tel Aviv', lat: 32.0853, lon: 34.7818, color: 0xff006e, intensity: 0.7 }, // Pink
-        { name: 'Shanghai', lat: 31.2304, lon: 121.4737, color: 0xff8800, intensity: 0.85 }, // Orange
-        { name: 'Paris', lat: 48.8566, lon: 2.3522, color: 0xffffff, intensity: 0.75 }, // White
-        { name: 'Amsterdam', lat: 52.3676, lon: 4.9041, color: 0xff006e, intensity: 0.7 }, // Pink
-        { name: 'Austin', lat: 30.2672, lon: -97.7431, color: 0xff8800, intensity: 0.65 }, // Orange
-        { name: 'Beijing', lat: 39.9042, lon: 116.4074, color: 0xffffff, intensity: 0.8 }, // White
-        { name: 'Istanbul', lat: 41.0082, lon: 28.9784, color: 0xff006e, intensity: 0.6 }, // Pink
-      ];
-
-      // ========== COUNTRY DATABASE (Major Countries with Center Coordinates) ==========
-      const countries = [
-        // Americas
-        { name: 'United States', lat: 37.0902, lon: -95.7129, region: 'North America' },
-        { name: 'Canada', lat: 56.1304, lon: -106.3468, region: 'North America' },
-        { name: 'Mexico', lat: 23.6345, lon: -102.5528, region: 'North America' },
-        { name: 'Brazil', lat: -14.235, lon: -51.9253, region: 'South America' },
-        { name: 'Argentina', lat: -38.4161, lon: -63.6167, region: 'South America' },
-        { name: 'Colombia', lat: 4.5709, lon: -74.2973, region: 'South America' },
-        { name: 'Chile', lat: -35.6751, lon: -71.543, region: 'South America' },
-
-        // Europe
-        { name: 'United Kingdom', lat: 55.3781, lon: -3.436, region: 'Europe' },
-        { name: 'France', lat: 46.2276, lon: 2.2137, region: 'Europe' },
-        { name: 'Germany', lat: 51.1657, lon: 10.4515, region: 'Europe' },
-        { name: 'Italy', lat: 41.8719, lon: 12.5674, region: 'Europe' },
-        { name: 'Spain', lat: 40.4637, lon: -3.7492, region: 'Europe' },
-        { name: 'Turkey', lat: 38.9637, lon: 35.2433, region: 'Europe/Asia' },
-        { name: 'Russia', lat: 61.524, lon: 105.3188, region: 'Europe/Asia' },
-        { name: 'Poland', lat: 51.9194, lon: 19.1451, region: 'Europe' },
-        { name: 'Netherlands', lat: 52.1326, lon: 5.2913, region: 'Europe' },
-        { name: 'Sweden', lat: 60.1282, lon: 18.6435, region: 'Europe' },
-        { name: 'Norway', lat: 60.472, lon: 8.4689, region: 'Europe' },
-        { name: 'Finland', lat: 61.9241, lon: 25.7482, region: 'Europe' },
-        { name: 'Ukraine', lat: 48.3794, lon: 31.1656, region: 'Europe' },
-        { name: 'Greece', lat: 39.0742, lon: 21.8243, region: 'Europe' },
-
-        // Asia
-        { name: 'China', lat: 35.8617, lon: 104.1954, region: 'Asia' },
-        { name: 'Japan', lat: 36.2048, lon: 138.2529, region: 'Asia' },
-        { name: 'India', lat: 20.5937, lon: 78.9629, region: 'Asia' },
-        { name: 'South Korea', lat: 35.9078, lon: 127.7669, region: 'Asia' },
-        { name: 'Indonesia', lat: -0.7893, lon: 113.9213, region: 'Asia' },
-        { name: 'Thailand', lat: 15.87, lon: 100.9925, region: 'Asia' },
-        { name: 'Vietnam', lat: 14.0583, lon: 108.2772, region: 'Asia' },
-        { name: 'Philippines', lat: 12.8797, lon: 121.774, region: 'Asia' },
-        { name: 'Malaysia', lat: 4.2105, lon: 101.9758, region: 'Asia' },
-        { name: 'Singapore', lat: 1.3521, lon: 103.8198, region: 'Asia' },
-        { name: 'Pakistan', lat: 30.3753, lon: 69.3451, region: 'Asia' },
-        { name: 'Bangladesh', lat: 23.685, lon: 90.3563, region: 'Asia' },
-        { name: 'Saudi Arabia', lat: 23.8859, lon: 45.0792, region: 'Middle East' },
-        { name: 'UAE', lat: 23.4241, lon: 53.8478, region: 'Middle East' },
-        { name: 'Israel', lat: 31.0461, lon: 34.8516, region: 'Middle East' },
-        { name: 'Iran', lat: 32.4279, lon: 53.688, region: 'Middle East' },
-
-        // Africa
-        { name: 'Egypt', lat: 26.8206, lon: 30.8025, region: 'Africa' },
-        { name: 'South Africa', lat: -30.5595, lon: 22.9375, region: 'Africa' },
-        { name: 'Nigeria', lat: 9.082, lon: 8.6753, region: 'Africa' },
-        { name: 'Kenya', lat: -0.0236, lon: 37.9062, region: 'Africa' },
-        { name: 'Morocco', lat: 31.7917, lon: -7.0926, region: 'Africa' },
-
-        // Oceania
-        { name: 'Australia', lat: -25.2744, lon: 133.7751, region: 'Oceania' },
-        { name: 'New Zealand', lat: -40.9006, lon: 174.886, region: 'Oceania' },
-      ];
-
-      // ========== Create CYBER THREAT MAP EARTH (Night View with City Lights) ==========
-      const earthRadius = 8;
-      const earthGeometry = new THREE.SphereGeometry(earthRadius, 256, 256);
-
-      // NIGHT EARTH - Koyu gri ton, gece atmosferinden bakış (kara parçaları belirgin)
-      const textureLoader = new THREE.TextureLoader();
-      const earthNightTexture = textureLoader.load(
-        'https://unpkg.com/three-globe@2.24.6/example/img/earth-night.jpg'
-      );
-
-      const earthMaterial = new THREE.MeshBasicMaterial({
-        map: earthNightTexture,
-        color: 0x404040, // Koyu gri ton - mavi tonlarını bastırır, kara parçaları belirginleştirir
-        transparent: false,
-        fog: false,
-      });
-
-      const earth = new THREE.Mesh(earthGeometry, earthMaterial);
-      earth.position.set(0, 0, 0);
-      earth.rotation.y = Math.PI;
-      scene.add(earth);
-
-      // Very subtle ambient light (minimal lighting for dark cosmic atmosphere)
-      const ambientLight = new THREE.AmbientLight(0x0a0a15, 0.8);
-      scene.add(ambientLight);
-
-      // ========== Convert Lat/Lon to 3D Position ==========
-      function latLonToVector3(lat, lon, radius) {
-        const phi = (90 - lat) * (Math.PI / 180);
-        const theta = (lon + 180) * (Math.PI / 180);
-
-        const x = -(radius * Math.sin(phi) * Math.cos(theta));
-        const z = radius * Math.sin(phi) * Math.sin(theta);
-        const y = radius * Math.cos(phi);
-
-        return new THREE.Vector3(x, y, z);
-      }
-
-      // ========== Create AI Hub Markers (Kaspersky Style - Bright and Prominent) ==========
-      const hubMarkers = [];
-      aiHubs.forEach(hub => {
-        const markerGeometry = new THREE.SphereGeometry(0.12, 16, 16); // Optimized for mobile
-        const markerMaterial = new THREE.MeshBasicMaterial({
-          color: hub.color,
-          transparent: true,
-          opacity: 1.0, // Full brightness
-        });
-        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
-
-        const pos = latLonToVector3(hub.lat, hub.lon, earthRadius + 0.1);
-        marker.position.copy(pos);
-        earth.add(marker);
-
-        // Bright pulsing glow (Kaspersky style)
-        const glowGeometry = new THREE.SphereGeometry(0.2, 16, 16); // Mobile-optimized glow
-        const glowMaterial = new THREE.MeshBasicMaterial({
-          color: hub.color,
-          transparent: true,
-          opacity: 0.6, // Brighter glow
-          side: THREE.BackSide,
-        });
-        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-        marker.add(glow);
-
-        hubMarkers.push({ marker, glow, hub, baseScale: 1 });
-      });
-
-      // ========== Create Country Amber Glow (Real AI Usage Data) ==========
-      const countryGlows = [];
-      let realTimeData = {}; // Gerçek zamanlı AI kullanım verileri
-
-      // Backend'den gerçek AI model kullanım verilerini çek
-      async function fetchRealAIData() {
-        try {
-          const response = await fetch('/api/ai-usage-by-country');
-          const data = await response.json();
-          realTimeData = data;
+        // Simüle edilmiş gerçek AI kullanım verileri (backend hazır olana kadar)
+        function simulateAIUsageData() {
+          countries.forEach(country => {
+            // Gerçekçi AI kullanım yoğunluğu simülasyonu
+            const baseIntensity = 0.3 + Math.random() * 0.7;
+            realTimeData[country.name] = {
+              totalRequests: Math.floor(Math.random() * 1000000),
+              activeModels: Math.floor(Math.random() * 23) + 1,
+              intensity: baseIntensity,
+            };
+          });
           updateCountryGlows();
-        } catch (error) {
-          console.log('AI usage data endpoint not ready, using simulated data');
-          // Gerçek backend hazır olana kadar simülasyon
-          simulateAIUsageData();
         }
-      }
 
-      // Simüle edilmiş gerçek AI kullanım verileri (backend hazır olana kadar)
-      function simulateAIUsageData() {
+        // Ülke bazında amber glow güncelle (çok minimal değişim)
+        function updateCountryGlows() {
+          countryGlows.forEach(({ glow, country }) => {
+            const data = realTimeData[country.name];
+            if (data) {
+              glow.material.opacity = 0.08 + data.intensity * 0.07; // Çok minimal parlaklık (0.08-0.15)
+            }
+          });
+        }
+
+        // Her ülkeye minimal amber glow ekle (çok az belirgin, arka yansıma yok)
         countries.forEach(country => {
-          // Gerçekçi AI kullanım yoğunluğu simülasyonu
-          const baseIntensity = 0.3 + Math.random() * 0.7;
-          realTimeData[country.name] = {
-            totalRequests: Math.floor(Math.random() * 1000000),
-            activeModels: Math.floor(Math.random() * 23) + 1,
-            intensity: baseIntensity,
-          };
-        });
-        updateCountryGlows();
-      }
+          // Sadece çok yumuşak amber glow (marker yok, sadece hafif ışıma)
+          const glowGeometry = new THREE.SphereGeometry(0.15, 12, 12); // Minimal mobile glow
+          const glowMaterial = new THREE.MeshBasicMaterial({
+            color: 0xffbf00, // Amber
+            transparent: true,
+            opacity: 0.12, // Çok soluk ışıma
+            side: THREE.BackSide,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending, // Yumuşak karışım, arka yansıma yok
+          });
+          const glow = new THREE.Mesh(glowGeometry, glowMaterial);
 
-      // Ülke bazında amber glow güncelle (çok minimal değişim)
-      function updateCountryGlows() {
-        countryGlows.forEach(({ glow, country }) => {
-          const data = realTimeData[country.name];
-          if (data) {
-            glow.material.opacity = 0.08 + data.intensity * 0.07; // Çok minimal parlaklık (0.08-0.15)
-          }
-        });
-      }
+          const pos = latLonToVector3(country.lat, country.lon, earthRadius + 0.02);
+          glow.position.copy(pos);
+          earth.add(glow);
 
-      // Her ülkeye minimal amber glow ekle (çok az belirgin, arka yansıma yok)
-      countries.forEach(country => {
-        // Sadece çok yumuşak amber glow (marker yok, sadece hafif ışıma)
-        const glowGeometry = new THREE.SphereGeometry(0.15, 12, 12); // Minimal mobile glow
-        const glowMaterial = new THREE.MeshBasicMaterial({
-          color: 0xffbf00, // Amber
-          transparent: true,
-          opacity: 0.12, // Çok soluk ışıma
-          side: THREE.BackSide,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending, // Yumuşak karışım, arka yansıma yok
-        });
-        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-
-        const pos = latLonToVector3(country.lat, country.lon, earthRadius + 0.02);
-        glow.position.copy(pos);
-        earth.add(glow);
-
-        countryGlows.push({ marker: null, glow, country });
-      });
-
-      // İlk veri yüklemesi
-      fetchRealAIData();
-
-      // Her 10 saniyede bir gerçek verileri güncelle
-      setInterval(fetchRealAIData, 10000);
-
-      // ========== Create AI Data Flow Lines ==========
-      const dataFlows = [];
-      const flowCount = 100; // Number of active data flows (increased for Kaspersky effect)
-
-      function createDataFlow() {
-        const fromHub = aiHubs[Math.floor(Math.random() * aiHubs.length)];
-        const toHub = aiHubs[Math.floor(Math.random() * aiHubs.length)];
-
-        if (fromHub === toHub) return;
-
-        const fromPos = latLonToVector3(fromHub.lat, fromHub.lon, earthRadius + 0.15);
-        const toPos = latLonToVector3(toHub.lat, toHub.lon, earthRadius + 0.15);
-
-        // Create curved line (Bezier curve)
-        const curve = new THREE.QuadraticBezierCurve3(
-          fromPos,
-          fromPos
-            .clone()
-            .add(toPos)
-            .multiplyScalar(0.5)
-            .normalize()
-            .multiplyScalar(earthRadius * 1.5),
-          toPos
-        );
-
-        const points = curve.getPoints(50);
-        const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-        // Neon data flow colors - bright white, pink, orange (NO CYAN/GREEN)
-        const color = Math.random() < 0.33 ? 0xffffff : Math.random() < 0.66 ? 0xff006e : 0xff8800;
-        const material = new THREE.LineBasicMaterial({
-          color: color,
-          transparent: true,
-          opacity: 0.9, // Neon brightness
-          linewidth: 3, // Thicker lines for better visibility
+          countryGlows.push({ marker: null, glow, country });
         });
 
-        const line = new THREE.Line(geometry, material);
-        earth.add(line);
+        // İlk veri yüklemesi
+        fetchRealAIData();
 
-        // Create animated particle (Neon style - bright and glowing)
-        const particleGeometry = new THREE.SphereGeometry(0.08, 16, 16); // Mobile-sized particles
-        const particleMaterial = new THREE.MeshBasicMaterial({
-          color: color,
-          transparent: true,
-          opacity: 1.0, // Full neon brightness
-        });
-        const particle = new THREE.Mesh(particleGeometry, particleMaterial);
-        earth.add(particle);
+        // Her 10 saniyede bir gerçek verileri güncelle
+        setInterval(fetchRealAIData, 10000);
 
-        // Neon glow effect (bright outer glow WITHOUT background reflection)
-        const particleGlow = new THREE.SphereGeometry(0.16, 16, 16); // Mobile neon glow
-        const particleGlowMat = new THREE.MeshBasicMaterial({
-          color: color,
-          transparent: true,
-          opacity: 0.5, // Neon glow effect
-          side: THREE.BackSide,
-          depthWrite: false, // Prevents background artifacts
-        });
-        const glow = new THREE.Mesh(particleGlow, particleGlowMat);
-        particle.add(glow);
+        // ========== Create AI Data Flow Lines ==========
+        const dataFlows = [];
+        const flowCount = 100; // Number of active data flows (increased for Kaspersky effect)
 
-        dataFlows.push({
-          line,
-          particle,
-          curve,
-          progress: Math.random(),
-          speed: 0.002 + Math.random() * 0.003,
-          life: 1.0,
-        });
-      }
+        function createDataFlow() {
+          const fromHub = aiHubs[Math.floor(Math.random() * aiHubs.length)];
+          const toHub = aiHubs[Math.floor(Math.random() * aiHubs.length)];
 
-      // Create initial data flows
-      for (let i = 0; i < flowCount; i++) {
-        createDataFlow();
-      }
+          if (fromHub === toHub) return;
 
-      // Regenerate flows periodically (faster for more activity)
-      setInterval(() => {
-        if (dataFlows.length < flowCount * 2) {
+          const fromPos = latLonToVector3(fromHub.lat, fromHub.lon, earthRadius + 0.15);
+          const toPos = latLonToVector3(toHub.lat, toHub.lon, earthRadius + 0.15);
+
+          // Create curved line (Bezier curve)
+          const curve = new THREE.QuadraticBezierCurve3(
+            fromPos,
+            fromPos
+              .clone()
+              .add(toPos)
+              .multiplyScalar(0.5)
+              .normalize()
+              .multiplyScalar(earthRadius * 1.5),
+            toPos
+          );
+
+          const points = curve.getPoints(50);
+          const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+          // Neon data flow colors - bright white, pink, orange (NO CYAN/GREEN)
+          const color =
+            Math.random() < 0.33 ? 0xffffff : Math.random() < 0.66 ? 0xff006e : 0xff8800;
+          const material = new THREE.LineBasicMaterial({
+            color: color,
+            transparent: true,
+            opacity: 0.9, // Neon brightness
+            linewidth: 3, // Thicker lines for better visibility
+          });
+
+          const line = new THREE.Line(geometry, material);
+          earth.add(line);
+
+          // Create animated particle (Neon style - bright and glowing)
+          const particleGeometry = new THREE.SphereGeometry(0.08, 16, 16); // Mobile-sized particles
+          const particleMaterial = new THREE.MeshBasicMaterial({
+            color: color,
+            transparent: true,
+            opacity: 1.0, // Full neon brightness
+          });
+          const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+          earth.add(particle);
+
+          // Neon glow effect (bright outer glow WITHOUT background reflection)
+          const particleGlow = new THREE.SphereGeometry(0.16, 16, 16); // Mobile neon glow
+          const particleGlowMat = new THREE.MeshBasicMaterial({
+            color: color,
+            transparent: true,
+            opacity: 0.5, // Neon glow effect
+            side: THREE.BackSide,
+            depthWrite: false, // Prevents background artifacts
+          });
+          const glow = new THREE.Mesh(particleGlow, particleGlowMat);
+          particle.add(glow);
+
+          dataFlows.push({
+            line,
+            particle,
+            curve,
+            progress: Math.random(),
+            speed: 0.002 + Math.random() * 0.003,
+            life: 1.0,
+          });
+        }
+
+        // Create initial data flows
+        for (let i = 0; i < flowCount; i++) {
           createDataFlow();
         }
-      }, 500); // Create new flows every 500ms for intense activity
 
-      // ========== Starfield Background ==========
-      const starsGeo = new THREE.BufferGeometry();
-      const starsCount = 3000;
-      const starsPos = new Float32Array(starsCount * 3);
-      const starsColors = new Float32Array(starsCount * 3);
+        // Regenerate flows periodically (faster for more activity)
+        setInterval(() => {
+          if (dataFlows.length < flowCount * 2) {
+            createDataFlow();
+          }
+        }, 500); // Create new flows every 500ms for intense activity
 
-      for (let i = 0; i < starsCount; i++) {
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        const r = 50 + Math.random() * 100;
+        // ========== Starfield Background ==========
+        const starsGeo = new THREE.BufferGeometry();
+        const starsCount = 3000;
+        const starsPos = new Float32Array(starsCount * 3);
+        const starsColors = new Float32Array(starsCount * 3);
 
-        starsPos[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta);
-        starsPos[i * 3 + 1] = r * Math.cos(phi);
-        starsPos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+        for (let i = 0; i < starsCount; i++) {
+          const theta = Math.random() * Math.PI * 2;
+          const phi = Math.acos(2 * Math.random() - 1);
+          const r = 50 + Math.random() * 100;
 
-        // Star colors (white, blue, yellow, red)
-        const colorChoice = Math.random();
-        if (colorChoice < 0.6) {
-          starsColors[i * 3 + 0] = 1;
-          starsColors[i * 3 + 1] = 1;
-          starsColors[i * 3 + 2] = 1;
-        } else if (colorChoice < 0.8) {
-          starsColors[i * 3 + 0] = 0.5;
-          starsColors[i * 3 + 1] = 0.7;
-          starsColors[i * 3 + 2] = 1;
-        } else if (colorChoice < 0.95) {
-          starsColors[i * 3 + 0] = 1;
-          starsColors[i * 3 + 1] = 1;
-          starsColors[i * 3 + 2] = 0.5;
-        } else {
-          starsColors[i * 3 + 0] = 1;
-          starsColors[i * 3 + 1] = 0.5;
-          starsColors[i * 3 + 2] = 0.5;
+          starsPos[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta);
+          starsPos[i * 3 + 1] = r * Math.cos(phi);
+          starsPos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+
+          // Star colors (white, blue, yellow, red)
+          const colorChoice = Math.random();
+          if (colorChoice < 0.6) {
+            starsColors[i * 3 + 0] = 1;
+            starsColors[i * 3 + 1] = 1;
+            starsColors[i * 3 + 2] = 1;
+          } else if (colorChoice < 0.8) {
+            starsColors[i * 3 + 0] = 0.5;
+            starsColors[i * 3 + 1] = 0.7;
+            starsColors[i * 3 + 2] = 1;
+          } else if (colorChoice < 0.95) {
+            starsColors[i * 3 + 0] = 1;
+            starsColors[i * 3 + 1] = 1;
+            starsColors[i * 3 + 2] = 0.5;
+          } else {
+            starsColors[i * 3 + 0] = 1;
+            starsColors[i * 3 + 1] = 0.5;
+            starsColors[i * 3 + 2] = 0.5;
+          }
         }
-      }
 
-      starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPos, 3));
-      starsGeo.setAttribute('color', new THREE.BufferAttribute(starsColors, 3));
+        starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPos, 3));
+        starsGeo.setAttribute('color', new THREE.BufferAttribute(starsColors, 3));
 
-      const starsMaterial = new THREE.PointsMaterial({
-        size: 0.15,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.8,
-        sizeAttenuation: true,
-      });
-
-      const stars = new THREE.Points(starsGeo, starsMaterial);
-      scene.add(stars);
-
-      // ========== Shooting Stars ==========
-      const shootingStars = [];
-      function createShootingStar() {
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(6);
-        positions[0] = Math.random() * 100 - 50;
-        positions[1] = Math.random() * 50 + 10;
-        positions[2] = -60;
-        positions[3] = positions[0] + Math.random() * 5 - 2.5;
-        positions[4] = positions[1] - Math.random() * 5;
-        positions[5] = positions[2] + Math.random() * 10;
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const material = new THREE.LineBasicMaterial({
-          color: 0xffffff,
+        const starsMaterial = new THREE.PointsMaterial({
+          size: 0.15,
+          vertexColors: true,
           transparent: true,
           opacity: 0.8,
-        });
-        const line = new THREE.Line(geometry, material);
-        scene.add(line);
-
-        shootingStars.push({
-          line,
-          speed: 0.3 + Math.random() * 0.5,
-          life: 1.0,
-        });
-      }
-
-      // Create shooting star every 3-7 seconds
-      setInterval(() => {
-        if (Math.random() < 0.5) createShootingStar();
-      }, 4000);
-
-      // ========== Convert 3D Position to Lat/Lon ==========
-      function vector3ToLatLon(position, earthRotationY) {
-        // Normalize position
-        const normalized = position.clone().normalize();
-
-        // Calculate latitude
-        const lat = 90 - (Math.acos(normalized.y) * 180) / Math.PI;
-
-        // Calculate longitude (accounting for Earth's rotation)
-        let lon =
-          ((Math.atan2(normalized.z, -normalized.x) * 180) / Math.PI -
-            (earthRotationY * 180) / Math.PI) %
-          360;
-        if (lon > 180) lon -= 360;
-        if (lon < -180) lon += 360;
-
-        return { lat, lon };
-      }
-
-      // ========== Find Nearest Country ==========
-      function findNearestCountry(lat, lon) {
-        let nearest = null;
-        let minDistance = Infinity;
-
-        countries.forEach(country => {
-          // Calculate great circle distance
-          const dLat = ((country.lat - lat) * Math.PI) / 180;
-          const dLon = ((country.lon - lon) * Math.PI) / 180;
-          const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos((lat * Math.PI) / 180) *
-              Math.cos((country.lat * Math.PI) / 180) *
-              Math.sin(dLon / 2) *
-              Math.sin(dLon / 2);
-          const distance = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-          if (distance < minDistance) {
-            minDistance = distance;
-            nearest = country;
-          }
+          sizeAttenuation: true,
         });
 
-        return nearest;
-      }
+        const stars = new THREE.Points(starsGeo, starsMaterial);
+        scene.add(stars);
 
-      // ========== Earth & Country Hover Detection ==========
-      const tooltip = document.getElementById('planet-tooltip');
-      const raycaster = new THREE.Raycaster();
-      const mouse = new THREE.Vector2();
-      let hoveredCountry = null;
+        // ========== Shooting Stars ==========
+        const shootingStars = [];
+        function createShootingStar() {
+          const geometry = new THREE.BufferGeometry();
+          const positions = new Float32Array(6);
+          positions[0] = Math.random() * 100 - 50;
+          positions[1] = Math.random() * 50 + 10;
+          positions[2] = -60;
+          positions[3] = positions[0] + Math.random() * 5 - 2.5;
+          positions[4] = positions[1] - Math.random() * 5;
+          positions[5] = positions[2] + Math.random() * 10;
 
-      function onMouseMove(event) {
-        // Calculate mouse position in normalized device coordinates
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+          geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+          const material = new THREE.LineBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8,
+          });
+          const line = new THREE.Line(geometry, material);
+          scene.add(line);
 
-        // Update raycaster
-        raycaster.setFromCamera(mouse, camera);
+          shootingStars.push({
+            line,
+            speed: 0.3 + Math.random() * 0.5,
+            life: 1.0,
+          });
+        }
 
-        // Check intersections with Earth
-        const intersects = raycaster.intersectObjects([earth], false);
+        // Create shooting star every 3-7 seconds
+        setInterval(() => {
+          if (Math.random() < 0.5) createShootingStar();
+        }, 4000);
 
-        if (intersects.length > 0) {
-          const intersectionPoint = intersects[0].point;
+        // ========== Convert 3D Position to Lat/Lon ==========
+        function vector3ToLatLon(position, earthRotationY) {
+          // Normalize position
+          const normalized = position.clone().normalize();
 
-          // Convert to lat/lon
-          const { lat, lon } = vector3ToLatLon(intersectionPoint, earth.rotation.y);
+          // Calculate latitude
+          const lat = 90 - (Math.acos(normalized.y) * 180) / Math.PI;
 
-          // Find nearest country
-          const country = findNearestCountry(lat, lon);
+          // Calculate longitude (accounting for Earth's rotation)
+          let lon =
+            ((Math.atan2(normalized.z, -normalized.x) * 180) / Math.PI -
+              (earthRotationY * 180) / Math.PI) %
+            360;
+          if (lon > 180) lon -= 360;
+          if (lon < -180) lon += 360;
 
-          if (country) {
-            const countryInfo = `🌍 ${country.name}`;
-            const regionInfo = `${country.region} • ${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
-            const currentCountryName = country.name;
+          return { lat, lon };
+        }
 
-            if (hoveredCountry !== currentCountryName) {
-              hoveredCountry = currentCountryName;
+        // ========== Find Nearest Country ==========
+        function findNearestCountry(lat, lon) {
+          let nearest = null;
+          let minDistance = Infinity;
 
-              // Update sidebar country name
-              const selectedCountryEl = document.getElementById('selected-country');
-              if (selectedCountryEl) {
-                selectedCountryEl.textContent = country.name.toUpperCase();
-              }
+          countries.forEach(country => {
+            // Calculate great circle distance
+            const dLat = ((country.lat - lat) * Math.PI) / 180;
+            const dLon = ((country.lon - lon) * Math.PI) / 180;
+            const a =
+              Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos((lat * Math.PI) / 180) *
+                Math.cos((country.lat * Math.PI) / 180) *
+                Math.sin(dLon / 2) *
+                Math.sin(dLon / 2);
+            const distance = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-              tooltip.innerHTML = `
+            if (distance < minDistance) {
+              minDistance = distance;
+              nearest = country;
+            }
+          });
+
+          return nearest;
+        }
+
+        // ========== Earth & Country Hover Detection ==========
+        const tooltip = document.getElementById('planet-tooltip');
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let hoveredCountry = null;
+
+        function onMouseMove(event) {
+          // Calculate mouse position in normalized device coordinates
+          mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+          mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+          // Update raycaster
+          raycaster.setFromCamera(mouse, camera);
+
+          // Check intersections with Earth
+          const intersects = raycaster.intersectObjects([earth], false);
+
+          if (intersects.length > 0) {
+            const intersectionPoint = intersects[0].point;
+
+            // Convert to lat/lon
+            const { lat, lon } = vector3ToLatLon(intersectionPoint, earth.rotation.y);
+
+            // Find nearest country
+            const country = findNearestCountry(lat, lon);
+
+            if (country) {
+              const countryInfo = `🌍 ${country.name}`;
+              const regionInfo = `${country.region} • ${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
+              const currentCountryName = country.name;
+
+              if (hoveredCountry !== currentCountryName) {
+                hoveredCountry = currentCountryName;
+
+                // Update sidebar country name
+                const selectedCountryEl = document.getElementById('selected-country');
+                if (selectedCountryEl) {
+                  selectedCountryEl.textContent = country.name.toUpperCase();
+                }
+
+                tooltip.innerHTML = `
               <div style="font-size: 18px; margin-bottom: 6px; font-weight: 900; letter-spacing: -0.02em;">
                 ${countryInfo}
               </div>
@@ -3914,137 +4000,138 @@
                 ${regionInfo}
               </div>
             `;
-              tooltip.style.display = 'block';
-              tooltip.style.left = event.clientX + 20 + 'px';
-              tooltip.style.top = event.clientY + 20 + 'px';
+                tooltip.style.display = 'block';
+                tooltip.style.left = event.clientX + 20 + 'px';
+                tooltip.style.top = event.clientY + 20 + 'px';
+                setTimeout(() => {
+                  tooltip.style.opacity = '1';
+                }, 10);
+              } else {
+                tooltip.style.left = event.clientX + 20 + 'px';
+                tooltip.style.top = event.clientY + 20 + 'px';
+              }
+            }
+          } else {
+            if (hoveredCountry) {
+              hoveredCountry = null;
+              tooltip.style.opacity = '0';
               setTimeout(() => {
-                tooltip.style.opacity = '1';
-              }, 10);
-            } else {
-              tooltip.style.left = event.clientX + 20 + 'px';
-              tooltip.style.top = event.clientY + 20 + 'px';
+                tooltip.style.display = 'none';
+              }, 300);
             }
           }
-        } else {
-          if (hoveredCountry) {
-            hoveredCountry = null;
-            tooltip.style.opacity = '0';
-            setTimeout(() => {
-              tooltip.style.display = 'none';
-            }, 300);
-          }
         }
-      }
 
-      window.addEventListener('mousemove', onMouseMove, false);
+        window.addEventListener('mousemove', onMouseMove, false);
 
-      // ========== Responsive Resize ==========
-      const onResize = () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-      };
-      window.addEventListener('resize', onResize);
+        // ========== Responsive Resize ==========
+        const onResize = () => {
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+        };
+        window.addEventListener('resize', onResize);
 
-      // ========== Animation Loop ==========
-      const clock = new THREE.Clock();
-      let rafId;
-      const animate = () => {
-        const t = clock.getElapsedTime();
+        // ========== Animation Loop ==========
+        const clock = new THREE.Clock();
+        let rafId;
+        const animate = () => {
+          const t = clock.getElapsedTime();
 
-        // Rotate Earth slowly (cinematic Kaspersky style)
-        earth.rotation.y += 0.0005;
+          // Rotate Earth slowly (cinematic Kaspersky style)
+          earth.rotation.y += 0.0005;
 
-        // Animate Hub Markers (pulsing)
-        hubMarkers.forEach(({ marker, glow, hub }, index) => {
-          const pulse = Math.sin(t * 2 + index * 0.5) * 0.3 + 1;
-          glow.scale.set(pulse, pulse, pulse);
-          glow.material.opacity = (Math.sin(t * 2 + index * 0.5) * 0.2 + 0.3) * hub.intensity;
+          // Animate Hub Markers (pulsing)
+          hubMarkers.forEach(({ marker, glow, hub }, index) => {
+            const pulse = Math.sin(t * 2 + index * 0.5) * 0.3 + 1;
+            glow.scale.set(pulse, pulse, pulse);
+            glow.material.opacity = (Math.sin(t * 2 + index * 0.5) * 0.2 + 0.3) * hub.intensity;
+          });
+
+          // Animate Data Flows
+          dataFlows.forEach((flow, index) => {
+            flow.progress += flow.speed;
+
+            if (flow.progress >= 1) {
+              flow.progress = 0;
+              flow.life -= 0.5;
+            }
+
+            // Update particle position along curve
+            const pos = flow.curve.getPoint(flow.progress);
+            flow.particle.position.copy(pos);
+
+            // Fade out old flows
+            if (flow.life <= 0) {
+              earth.remove(flow.line);
+              earth.remove(flow.particle);
+              dataFlows.splice(index, 1);
+            }
+
+            // Pulse particle
+            const particlePulse = Math.sin(t * 5 + index) * 0.3 + 1;
+            flow.particle.scale.set(particlePulse, particlePulse, particlePulse);
+          });
+
+          // Animate shooting stars
+          shootingStars.forEach((star, index) => {
+            star.line.position.z += star.speed;
+            star.life -= 0.01;
+            star.line.material.opacity = star.life;
+
+            if (star.life <= 0 || star.line.position.z > 20) {
+              scene.remove(star.line);
+              shootingStars.splice(index, 1);
+            }
+          });
+
+          // Smooth orbital camera
+          camera.position.x = Math.sin(t * 0.05) * 22;
+          camera.position.y = 5 + Math.cos(t * 0.07) * 3;
+          camera.position.z = Math.cos(t * 0.05) * 22;
+          camera.lookAt(0, 0, 0);
+
+          // Rotate starfield slowly
+          stars.rotation.y += 0.0002;
+
+          renderer.render(scene, camera);
+          rafId = requestAnimationFrame(animate);
+        };
+        animate();
+
+        // ========== Cleanup ==========
+        window.addEventListener('beforeunload', () => {
+          cancelAnimationFrame(rafId);
+          renderer.dispose();
+          window.removeEventListener('resize', onResize);
         });
 
-        // Animate Data Flows
-        dataFlows.forEach((flow, index) => {
-          flow.progress += flow.speed;
-
-          if (flow.progress >= 1) {
-            flow.progress = 0;
-            flow.life -= 0.5;
-          }
-
-          // Update particle position along curve
-          const pos = flow.curve.getPoint(flow.progress);
-          flow.particle.position.copy(pos);
-
-          // Fade out old flows
-          if (flow.life <= 0) {
-            earth.remove(flow.line);
-            earth.remove(flow.particle);
-            dataFlows.splice(index, 1);
-          }
-
-          // Pulse particle
-          const particlePulse = Math.sin(t * 5 + index) * 0.3 + 1;
-          flow.particle.scale.set(particlePulse, particlePulse, particlePulse);
-        });
-
-        // Animate shooting stars
-        shootingStars.forEach((star, index) => {
-          star.line.position.z += star.speed;
-          star.life -= 0.01;
-          star.line.material.opacity = star.life;
-
-          if (star.life <= 0 || star.line.position.z > 20) {
-            scene.remove(star.line);
-            shootingStars.splice(index, 1);
-          }
-        });
-
-        // Smooth orbital camera
-        camera.position.x = Math.sin(t * 0.05) * 22;
-        camera.position.y = 5 + Math.cos(t * 0.07) * 3;
-        camera.position.z = Math.cos(t * 0.05) * 22;
-        camera.lookAt(0, 0, 0);
-
-        // Rotate starfield slowly
-        stars.rotation.y += 0.0002;
-
-        renderer.render(scene, camera);
-        rafId = requestAnimationFrame(animate);
-      };
-      animate();
-
-      // ========== Cleanup ==========
-      window.addEventListener('beforeunload', () => {
-        cancelAnimationFrame(rafId);
-        renderer.dispose();
-        window.removeEventListener('resize', onResize);
-      });
-
-      console.log('');
-      console.log('🌍═══════════════════════════════════════════════════════════');
-      console.log('  REALISTIC EARTH MAP WITH COUNTRY DETECTION');
-      console.log('═════════════════════════════════════════════════════════════');
-      console.log('');
-      console.log('✅ Features Loaded:');
-      console.log(`  📡 ${aiHubs.length} AI Communication Hubs`);
-      console.log(`  🌐 ${countries.length} Countries in Database`);
-      console.log(`  ⚡ ${flowCount} Concurrent Data Flows`);
-      console.log(`  ✨ 3000 Background Stars`);
-      console.log('');
-      console.log('🎨 Realistic Rendering:');
-      console.log('  • Real NASA Earth Textures (Day/Night)');
-      console.log('  • Normal Mapping for Terrain Depth');
-      console.log('  • Specular Mapping for Ocean Reflections');
-      console.log('  • Dynamic Cloud Layer Animation');
-      console.log('  • Atmospheric Glow Shader');
-      console.log('  • Directional Sun Lighting');
-      console.log('');
-      console.log('🖱️  Hover Detection:');
-      console.log('  • Real-time Country Detection');
-      console.log('  • Lat/Lon Coordinate Display');
-      console.log('  • Region Information');
-      console.log('');
-      console.log('═════════════════════════════════════════════════════════════');
+        console.log('');
+        console.log('🌍═══════════════════════════════════════════════════════════');
+        console.log('  REALISTIC EARTH MAP WITH COUNTRY DETECTION');
+        console.log('═════════════════════════════════════════════════════════════');
+        console.log('');
+        console.log('✅ Features Loaded:');
+        console.log(`  📡 ${aiHubs.length} AI Communication Hubs`);
+        console.log(`  🌐 ${countries.length} Countries in Database`);
+        console.log(`  ⚡ ${flowCount} Concurrent Data Flows`);
+        console.log(`  ✨ 3000 Background Stars`);
+        console.log('');
+        console.log('🎨 Realistic Rendering:');
+        console.log('  • Real NASA Earth Textures (Day/Night)');
+        console.log('  • Normal Mapping for Terrain Depth');
+        console.log('  • Specular Mapping for Ocean Reflections');
+        console.log('  • Dynamic Cloud Layer Animation');
+        console.log('  • Atmospheric Glow Shader');
+        console.log('  • Directional Sun Lighting');
+        console.log('');
+        console.log('🖱️  Hover Detection:');
+        console.log('  • Real-time Country Detection');
+        console.log('  • Lat/Lon Coordinate Display');
+        console.log('  • Region Information');
+        console.log('');
+        console.log('═════════════════════════════════════════════════════════════');
+      } // End of loadThreeJS()
     </script>
 
     <!-- ============================================================ -->
