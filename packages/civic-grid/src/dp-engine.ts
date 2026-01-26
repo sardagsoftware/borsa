@@ -6,7 +6,7 @@
  * Compliance: Privacy loss accounting, epsilon budget tracking
  */
 
-import crypto from 'crypto';
+// crypto import removed - not used
 import { DPParameters } from './types';
 
 export class DifferentialPrivacyEngine {
@@ -42,13 +42,8 @@ export class DifferentialPrivacyEngine {
    *
    * Gaussian distribution: σ² = 2 * ln(1.25/δ) * sensitivity² / ε²
    */
-  addGaussianNoise(
-    value: number,
-    epsilon: number,
-    delta: number,
-    sensitivity: number
-  ): number {
-    const sigma = Math.sqrt((2 * Math.log(1.25 / delta)) * Math.pow(sensitivity, 2)) / epsilon;
+  addGaussianNoise(value: number, epsilon: number, delta: number, sensitivity: number): number {
+    const sigma = Math.sqrt(2 * Math.log(1.25 / delta) * Math.pow(sensitivity, 2)) / epsilon;
 
     // Box-Muller transform for Gaussian noise
     const u1 = Math.random();

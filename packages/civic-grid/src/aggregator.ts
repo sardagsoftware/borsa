@@ -48,11 +48,7 @@ interface FeatureStore {
     end: string;
   }): Promise<{ returns: number; total_orders: number }>;
 
-  queryLogisticsBottlenecks(params: {
-    region: string;
-    start: string;
-    end: string;
-  }): Promise<
+  queryLogisticsBottlenecks(params: { region: string; start: string; end: string }): Promise<
     Array<{
       area: string;
       avg_delay_hours: number;
@@ -70,12 +66,17 @@ class MockFeatureStore implements FeatureStore {
     const days = Math.ceil(
       (new Date(params.end).getTime() - new Date(params.start).getTime()) / (1000 * 60 * 60 * 24)
     );
-    const dataPoints = Math.ceil(days / (params.granularity === 'daily' ? 1 : params.granularity === 'weekly' ? 7 : 30));
+    const dataPoints = Math.ceil(
+      days / (params.granularity === 'daily' ? 1 : params.granularity === 'weekly' ? 7 : 30)
+    );
 
     const result = [];
     for (let i = 0; i < dataPoints; i++) {
       const date = new Date(params.start);
-      date.setDate(date.getDate() + i * (params.granularity === 'daily' ? 1 : params.granularity === 'weekly' ? 7 : 30));
+      date.setDate(
+        date.getDate() +
+          i * (params.granularity === 'daily' ? 1 : params.granularity === 'weekly' ? 7 : 30)
+      );
 
       result.push({
         date: date.toISOString(),
@@ -86,18 +87,28 @@ class MockFeatureStore implements FeatureStore {
     return result;
   }
 
-  async queryReturnRate(params: any) {
+  async queryReturnRate(_params: any) {
     return {
       returns: 45,
       total_orders: 500,
     };
   }
 
-  async queryLogisticsBottlenecks(params: any) {
+  async queryLogisticsBottlenecks(_params: any) {
     return [
-      { area: 'Kadıköy-Üsküdar', avg_delay_hours: 4.2, affected_shipments: 120, total_shipments: 800 },
+      {
+        area: 'Kadıköy-Üsküdar',
+        avg_delay_hours: 4.2,
+        affected_shipments: 120,
+        total_shipments: 800,
+      },
       { area: 'Beyoğlu-Şişli', avg_delay_hours: 2.8, affected_shipments: 80, total_shipments: 600 },
-      { area: 'Ankara-Çankaya', avg_delay_hours: 1.5, affected_shipments: 30, total_shipments: 400 },
+      {
+        area: 'Ankara-Çankaya',
+        avg_delay_hours: 1.5,
+        affected_shipments: 30,
+        total_shipments: 400,
+      },
     ];
   }
 }
@@ -141,7 +152,7 @@ export class CivicAggregator {
 
     // Apply k-anonymity filtering
     const kThreshold = this.kAnonymityConfig.k;
-    const filteredData = rawData.filter((point) => point.count >= kThreshold);
+    const filteredData = rawData.filter(point => point.count >= kThreshold);
 
     // Determine data quality based on k-anonymity
     const avgCount = filteredData.reduce((sum, p) => sum + p.count, 0) / filteredData.length;
@@ -161,8 +172,9 @@ export class CivicAggregator {
 
       // Calculate price change
       const price_change_percent =
-        idx > 0
-          ? ((noisy_price - filteredData[idx - 1].avg_price) / filteredData[idx - 1].avg_price) * 100
+        idx > 0 && filteredData[idx - 1]?.avg_price
+          ? ((noisy_price - filteredData[idx - 1].avg_price) / filteredData[idx - 1].avg_price) *
+            100
           : 0;
 
       return {
@@ -287,8 +299,8 @@ export class CivicAggregator {
 
     // Apply DP noise to bottleneck metrics
     const bottlenecks = rawData
-      .filter((area) => area.total_shipments >= this.kAnonymityConfig.k)
-      .map((area) => {
+      .filter(area => area.total_shipments >= this.kAnonymityConfig.k)
+      .map(area => {
         const noisy_delay = this.dpEngine.applyDP(area.avg_delay_hours, dpParams);
         const affected_percent = (area.affected_shipments / area.total_shipments) * 100;
 

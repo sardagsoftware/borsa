@@ -157,10 +157,7 @@ export class EpsilonBudgetTracker {
 
     budget.epsilon_consumed += epsilon;
     budget.queries_count += 1;
-    budget.remaining_epsilon = Math.max(
-      0,
-      budget.remaining_epsilon - epsilon
-    );
+    budget.remaining_epsilon = Math.max(0, budget.remaining_epsilon - epsilon);
 
     return budget;
   }
@@ -271,7 +268,7 @@ export class CivicInsightsAPI {
     await this.budgetTracker.checkBudget(institutionKey, request.dp_epsilon || 1.0, today);
 
     // 4. Increment rate limit
-    await this.rateLimiter.incrementCount(institutionKey.key_id, today);
+    await this.rateLimiter.incrementCount(institutionKey.key_id || '', today);
 
     // 5. Execute query based on metric type
     let data: PriceTrendInsight | ReturnRateInsight | LogisticsBottleneckInsight;
@@ -299,7 +296,7 @@ export class CivicInsightsAPI {
 
     // 6. Consume epsilon budget
     const budget_status = await this.budgetTracker.consumeBudget(
-      institutionKey.key_id,
+      institutionKey.key_id || '',
       request.dp_epsilon || 1.0,
       today
     );
@@ -315,7 +312,7 @@ export class CivicInsightsAPI {
    */
   getBudgetStatus(apiKeyId: string): DPBudgetTracker {
     const today = new Date().toISOString().split('T')[0];
-    return this.budgetTracker.getBudgetStatus(apiKeyId, today);
+    return this.budgetTracker.getBudgetStatus(apiKeyId || '', today);
   }
 }
 
