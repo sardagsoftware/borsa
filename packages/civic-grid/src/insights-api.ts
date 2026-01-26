@@ -127,7 +127,7 @@ export class EpsilonBudgetTracker {
     requestedEpsilon: number,
     date: string
   ): Promise<void> {
-    const budget = this.getBudget(institutionKey.key_id, date);
+    const budget = this.getBudget(institutionKey.key_id || '', date);
 
     // Set initial remaining budget if first query
     if (budget.queries_count === 0) {
@@ -180,7 +180,7 @@ export class InstitutionRateLimiter {
    * Check rate limit for institution
    */
   async checkRateLimit(institutionKey: InstitutionApiKey, date: string): Promise<void> {
-    const key = `${institutionKey.key_id}:${date}`;
+    const key = `${institutionKey.key_id || ''}:${date}`;
     let record = this.counts.get(key);
 
     const now = new Date();
