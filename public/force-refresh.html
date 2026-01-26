@@ -540,7 +540,7 @@
         return new Promise(resolve => {
           try {
             localStorage.clear();
-            console.log('✅ LocalStorage cleared');
+            // DEBUG: console.log('✅ LocalStorage cleared');
             resolve();
           } catch (err) {
             console.warn('⚠️ LocalStorage clear failed:', err);
@@ -553,7 +553,7 @@
         return new Promise(resolve => {
           try {
             sessionStorage.clear();
-            console.log('✅ SessionStorage cleared');
+            // DEBUG: console.log('✅ SessionStorage cleared');
             resolve();
           } catch (err) {
             console.warn('⚠️ SessionStorage clear failed:', err);
@@ -567,7 +567,7 @@
           const databases = await indexedDB.databases();
           for (const db of databases) {
             indexedDB.deleteDatabase(db.name);
-            console.log('✅ IndexedDB deleted:', db.name);
+            // DEBUG: console.log('✅ IndexedDB deleted:', db.name);
           }
         } catch (err) {
           console.warn('⚠️ IndexedDB clear failed:', err);
@@ -579,7 +579,7 @@
           const registrations = await navigator.serviceWorker.getRegistrations();
           for (const registration of registrations) {
             await registration.unregister();
-            console.log('✅ Service Worker unregistered');
+            // DEBUG: console.log('✅ Service Worker unregistered');
           }
         } catch (err) {
           console.warn('⚠️ Service Worker unregister failed:', err);
@@ -591,7 +591,7 @@
           const cacheNames = await caches.keys();
           for (const name of cacheNames) {
             await caches.delete(name);
-            console.log('✅ Cache deleted:', name);
+            // DEBUG: console.log('✅ Cache deleted:', name);
           }
         } catch (err) {
           console.warn('⚠️ Cache Storage clear failed:', err);
@@ -606,7 +606,7 @@
               const [name] = cookie.split('=');
               document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
             }
-            console.log('✅ Cookies cleared');
+            // DEBUG: console.log('✅ Cookies cleared');
             resolve();
           } catch (err) {
             console.warn('⚠️ Cookie clear failed:', err);

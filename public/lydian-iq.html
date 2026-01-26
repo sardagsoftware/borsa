@@ -3043,7 +3043,7 @@
           state.recognition.lang = langMap[lang] || 'tr-TR';
         }
 
-        console.log('Language updated to:', lang);
+        // DEBUG: // DEBUG: console.log('Language updated to:', lang);
       }
 
       document.addEventListener('DOMContentLoaded', () => {
@@ -3070,7 +3070,7 @@
         document.querySelectorAll('.suggestion-chip').forEach(chip => {
           chip.addEventListener('click', () => {
             const example = chip.getAttribute('data-example');
-            console.log('Suggestion clicked:', example);
+            // DEBUG: // DEBUG: console.log('Suggestion clicked:', example);
             if (elements.composerInput) {
               elements.composerInput.value = example;
               elements.composerInput.focus();

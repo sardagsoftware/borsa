@@ -3711,7 +3711,7 @@
             realTimeData = data;
             updateCountryGlows();
           } catch (error) {
-            console.log('AI usage data endpoint not ready, using simulated data');
+            // DEBUG: // DEBUG: console.log('AI usage data endpoint not ready, using simulated data');
             // Gerçek backend hazır olana kadar simülasyon
             simulateAIUsageData();
           }
@@ -4135,31 +4135,31 @@
           window.removeEventListener('resize', onResize);
         });
 
-        console.log('');
-        console.log('🌍═══════════════════════════════════════════════════════════');
-        console.log('  REALISTIC EARTH MAP WITH COUNTRY DETECTION');
-        console.log('═════════════════════════════════════════════════════════════');
-        console.log('');
-        console.log('✅ Features Loaded:');
-        console.log(`  📡 ${aiHubs.length} AI Communication Hubs`);
-        console.log(`  🌐 ${countries.length} Countries in Database`);
-        console.log(`  ⚡ ${flowCount} Concurrent Data Flows`);
-        console.log(`  ✨ 3000 Background Stars`);
-        console.log('');
-        console.log('🎨 Realistic Rendering:');
-        console.log('  • Real NASA Earth Textures (Day/Night)');
-        console.log('  • Normal Mapping for Terrain Depth');
-        console.log('  • Specular Mapping for Ocean Reflections');
-        console.log('  • Dynamic Cloud Layer Animation');
-        console.log('  • Atmospheric Glow Shader');
-        console.log('  • Directional Sun Lighting');
-        console.log('');
-        console.log('🖱️  Hover Detection:');
-        console.log('  • Real-time Country Detection');
-        console.log('  • Lat/Lon Coordinate Display');
-        console.log('  • Region Information');
-        console.log('');
-        console.log('═════════════════════════════════════════════════════════════');
+        // DEBUG: // DEBUG: console.log('');
+        // DEBUG: // DEBUG: console.log('🌍═══════════════════════════════════════════════════════════');
+        // DEBUG: // DEBUG: console.log('  REALISTIC EARTH MAP WITH COUNTRY DETECTION');
+        // DEBUG: // DEBUG: console.log('═════════════════════════════════════════════════════════════');
+        // DEBUG: // DEBUG: console.log('');
+        // DEBUG: // DEBUG: console.log('✅ Features Loaded:');
+        // DEBUG: // DEBUG: console.log(`  📡 ${aiHubs.length} AI Communication Hubs`);
+        // DEBUG: // DEBUG: console.log(`  🌐 ${countries.length} Countries in Database`);
+        // DEBUG: // DEBUG: console.log(`  ⚡ ${flowCount} Concurrent Data Flows`);
+        // DEBUG: // DEBUG: console.log(`  ✨ 3000 Background Stars`);
+        // DEBUG: // DEBUG: console.log('');
+        // DEBUG: // DEBUG: console.log('🎨 Realistic Rendering:');
+        // DEBUG: // DEBUG: console.log('  • Real NASA Earth Textures (Day/Night)');
+        // DEBUG: // DEBUG: console.log('  • Normal Mapping for Terrain Depth');
+        // DEBUG: // DEBUG: console.log('  • Specular Mapping for Ocean Reflections');
+        // DEBUG: // DEBUG: console.log('  • Dynamic Cloud Layer Animation');
+        // DEBUG: // DEBUG: console.log('  • Atmospheric Glow Shader');
+        // DEBUG: // DEBUG: console.log('  • Directional Sun Lighting');
+        // DEBUG: // DEBUG: console.log('');
+        // DEBUG: // DEBUG: console.log('🖱️  Hover Detection:');
+        // DEBUG: // DEBUG: console.log('  • Real-time Country Detection');
+        // DEBUG: // DEBUG: console.log('  • Lat/Lon Coordinate Display');
+        // DEBUG: // DEBUG: console.log('  • Region Information');
+        // DEBUG: // DEBUG: console.log('');
+        // DEBUG: // DEBUG: console.log('═════════════════════════════════════════════════════════════');
       } // End of loadThreeJS()
     </script>
 
@@ -4250,19 +4250,19 @@
       // Update every 2 seconds for smooth real-time effect
       setInterval(updateAIStatistics, 2000);
 
-      console.log('');
-      console.log('📊═══════════════════════════════════════════════════════════');
-      console.log('  REAL-TIME AI STATISTICS SYSTEM ACTIVATED');
-      console.log('═════════════════════════════════════════════════════════════');
-      console.log('');
-      console.log('✅ Dynamic Data Features:');
-      console.log('  🔄 Auto-refresh every 2 seconds');
-      console.log('  📈 Realistic growth simulation');
-      console.log('  🌊 Sine-wave based fluctuations');
-      console.log('  🎲 Natural noise variance');
-      console.log('  💾 9 AI categories tracked');
-      console.log('');
-      console.log('═════════════════════════════════════════════════════════════');
+      // DEBUG: // DEBUG: console.log('');
+      // DEBUG: // DEBUG: console.log('📊═══════════════════════════════════════════════════════════');
+      // DEBUG: // DEBUG: console.log('  REAL-TIME AI STATISTICS SYSTEM ACTIVATED');
+      // DEBUG: // DEBUG: console.log('═════════════════════════════════════════════════════════════');
+      // DEBUG: // DEBUG: console.log('');
+      // DEBUG: // DEBUG: console.log('✅ Dynamic Data Features:');
+      // DEBUG: // DEBUG: console.log('  🔄 Auto-refresh every 2 seconds');
+      // DEBUG: // DEBUG: console.log('  📈 Realistic growth simulation');
+      // DEBUG: // DEBUG: console.log('  🌊 Sine-wave based fluctuations');
+      // DEBUG: // DEBUG: console.log('  🎲 Natural noise variance');
+      // DEBUG: // DEBUG: console.log('  💾 9 AI categories tracked');
+      // DEBUG: // DEBUG: console.log('');
+      // DEBUG: // DEBUG: console.log('═════════════════════════════════════════════════════════════');
     </script>
 
     <!-- ============================================================ -->
@@ -4643,7 +4643,7 @@
         // Prevent blur when clicking inside dropdown
         searchResults.addEventListener('mousedown', e => e.preventDefault());
 
-        console.log('🔍 Ultra-modern search initialized - Press ⌘K or Ctrl+K');
+        // DEBUG: // DEBUG: console.log('🔍 Ultra-modern search initialized - Press ⌘K or Ctrl+K');
       })();
     </script>
 
@@ -4716,7 +4716,7 @@
         // Update every 30 seconds
         setInterval(updateHealthStatus, 30000);
 
-        console.log('🏥 Health monitoring initialized - updating every 30s');
+        // DEBUG: // DEBUG: console.log('🏥 Health monitoring initialized - updating every 30s');
       })();
 
       // ============================================================
@@ -4956,7 +4956,7 @@
             }
           });
 
-          console.log('📱 Mobile menu initialized');
+          // DEBUG: // DEBUG: console.log('📱 Mobile menu initialized');
         }
       })();
     </script>

@@ -2410,7 +2410,7 @@
 
       async function connectPlatform(platform) {
         try {
-          console.log(`🔗 Connecting to ${platform}...`);
+          // DEBUG: // DEBUG: console.log(`🔗 Connecting to ${platform}...`);
 
           // Get OAuth URL from backend
           const response = await fetch(`${API_BASE}/platforms/${platform}/auth`);
@@ -2423,7 +2423,7 @@
             // Store CSRF state token if provided
             if (data.state) {
               sessionStorage.setItem(`omnireach_state_${platform}`, data.state);
-              console.log('🔐 CSRF state token stored');
+              // DEBUG: // DEBUG: console.log('🔐 CSRF state token stored');
             }
 
             // Open OAuth window
@@ -2619,7 +2619,7 @@
 
       async function handleOAuthCallback(platform, code) {
         try {
-          console.log(`🔄 Processing OAuth callback for ${platform}...`);
+          // DEBUG: // DEBUG: console.log(`🔄 Processing OAuth callback for ${platform}...`);
 
           // Retrieve and validate state token for CSRF protection
           const urlParams = new URLSearchParams(window.location.search);
@@ -2631,7 +2631,7 @@
           // Include state token if available
           if (returnedState) {
             requestBody.state = returnedState;
-            console.log('🔐 Validating CSRF state token...');
+            // DEBUG: // DEBUG: console.log('🔐 Validating CSRF state token...');
           }
 
           const response = await fetch(`${API_BASE}/platforms/${platform}/connect`, {

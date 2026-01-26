@@ -1,1219 +1,1426 @@
-<!DOCTYPE html><html lang="tr"><head><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.googleapis.com">
-  <meta name="description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan...">
-  <meta name="keywords" content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri">
-  <link rel="canonical" href="https://www.ailydian.com/pages/settings">
-  <meta property="og:title" content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine">
-  <meta property="og:description" content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası.">
-  <meta property="og:url" content="https://www.ailydian.com/pages/settings">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="tr_TR">
-  <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/pages/settings">
-  <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/pages/settings">
-  <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/pages/settings">
-  <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/pages/settings">
-  <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/pages/settings">
-  <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/pages/settings">
-  <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/pages/settings">
+<!doctype html>
+<html lang="tr">
+  <head>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta
+      name="description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk dan..."
+    />
+    <meta
+      name="keywords"
+      content="lydian ai, yapay zeka platformu, quantum ai, velocity engine, kurumsal ai, tıbbi yapay zeka, hukuk ai, çok dilli ai, hipaa uyumlu, gerçek zamanlı çeviri"
+    />
+    <link rel="canonical" href="https://www.ailydian.com/pages/settings" />
+    <meta
+      property="og:title"
+      content="LyDian AI — Kurumsal Yapay Zeka Platformu | Quantum AI &amp; Velocity Engine"
+    />
+    <meta
+      property="og:description"
+      content="LyDian AI: Quantum Reasoning, Velocity Engine ve Multimodal AI ile kurumsal yapay zeka çözümleri. HIPAA uyumlu, çok dilli, 7/24 destek. Tıbbi tanı, hukuk danışmanlığı ve daha fazlası."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/pages/settings" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/tr/pages/settings" />
+    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/pages/settings" />
+    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/pages/settings" />
+    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/pages/settings" />
+    <link rel="alternate" hreflang="uk" href="https://www.ailydian.com/uk/pages/settings" />
+    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/pages/settings" />
+    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/pages/settings" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Settings - LyDian Ultra Pro - LyDian AI settings</title>
-    
+
     <script src="https://unpkg.com/@phosphor-icons/web" defer="" crossorigin="anonymous"></script>
-    <link rel="preload" href="/styles/common.css"><link href="/styles/common.css" rel="stylesheet">
+    <link rel="preload" href="/styles/common.css" />
+    <link href="/styles/common.css" rel="stylesheet" />
 
     <style>
-        /* SETTINGS SPECIFIC STYLES */
-        .settings-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            height: calc(100vh - 80px);
-        }
+      /* SETTINGS SPECIFIC STYLES */
+      .settings-container {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2rem;
+        height: calc(100vh - 80px);
+      }
 
-        .settings-sidebar {
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            height: fit-content;
-        }
+      .settings-sidebar {
+        background: var(--bg-secondary);
+        border-radius: var(--radius);
+        border: 1px solid var(--border-color);
+        padding: 1.5rem;
+        height: fit-content;
+      }
 
-        .settings-nav {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+      .settings-nav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
 
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
+      .nav-item {
+        margin-bottom: 0.5rem;
+      }
 
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius);
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-        }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius);
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        cursor: pointer;
+      }
 
-        .nav-link:hover,
-        .nav-link.active {
-            background: var(--hover-bg);
-            color: var(--text-primary);
-        }
+      .nav-link:hover,
+      .nav-link.active {
+        background: var(--hover-bg);
+        color: var(--text-primary);
+      }
 
-        .nav-link.active {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-        }
+      .nav-link.active {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
 
-        .settings-content {
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            overflow-y: auto;
-        }
+      .settings-content {
+        background: var(--bg-secondary);
+        border-radius: var(--radius);
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        overflow-y: auto;
+      }
 
-        .settings-section {
-            display: none;
-        }
+      .settings-section {
+        display: none;
+      }
 
-        .settings-section.active {
-            display: block;
-        }
+      .settings-section.active {
+        display: block;
+      }
 
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
 
-        .section-description {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
+      .section-description {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
 
-        .setting-group {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
+      .setting-group {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border-color);
+      }
 
-        .setting-group:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
+      .setting-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
 
-        .setting-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
+      .setting-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
 
-        .setting-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
+      .setting-description {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
 
-        .setting-control {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+      .setting-control {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
-            flex: 1;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
+      .form-input,
+      .form-select,
+      .form-textarea {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: 0.875rem;
+      }
 
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-        }
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+      }
 
-        .toggle-switch {
-            position: relative;
-            width: 48px;
-            height: 24px;
-            background: var(--border-color);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+      .toggle-switch {
+        position: relative;
+        width: 48px;
+        height: 24px;
+        background: var(--border-color);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
 
-        .toggle-switch.active {
-            background: var(--accent-primary);
-        }
+      .toggle-switch.active {
+        background: var(--accent-primary);
+      }
 
-        .toggle-slider {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
+      .toggle-slider {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+        transition: var(--transition);
+      }
 
-        .toggle-switch.active .toggle-slider {
-            transform: translateX(24px);
-        }
+      .toggle-switch.active .toggle-slider {
+        transform: translateX(24px);
+      }
 
-        .btn-group {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
+      .btn-group {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
 
-        .btn {
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-        }
+      .btn {
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+      }
 
-        .btn:hover {
-            background: var(--hover-bg);
-            border-color: var(--accent-primary);
-        }
+      .btn:hover {
+        background: var(--hover-bg);
+        border-color: var(--accent-primary);
+      }
 
-        .btn.primary {
-            background: var(--accent-primary);
-            border-color: var(--accent-primary);
-            color: var(--bg-primary);
-        }
+      .btn.primary {
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        color: var(--bg-primary);
+      }
 
-        .btn.primary:hover {
-            background: var(--accent-secondary);
-        }
+      .btn.primary:hover {
+        background: var(--accent-secondary);
+      }
 
-        .btn.danger {
-            background: #ef4444;
-            border-color: #ef4444;
-            color: white;
-        }
+      .btn.danger {
+        background: #ef4444;
+        border-color: #ef4444;
+        color: white;
+      }
 
-        .btn.danger:hover {
-            background: #dc2626;
-        }
+      .btn.danger:hover {
+        background: #dc2626;
+      }
 
-        /* 2FA SPECIFIC STYLES */
-        .qr-code-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 2rem;
-            background: var(--bg-primary);
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            margin: 1rem 0;
-        }
+      /* 2FA SPECIFIC STYLES */
+      .qr-code-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        background: var(--bg-primary);
+        border-radius: var(--radius);
+        border: 1px solid var(--border-color);
+        margin: 1rem 0;
+      }
 
-        .qr-code {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-size: 0.875rem;
-        }
+      .qr-code {
+        width: 200px;
+        height: 200px;
+        background: white;
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 0.875rem;
+      }
 
-        .manual-key {
-            background: var(--bg-primary);
-            padding: 1rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            font-family: monospace;
-            word-break: break-all;
-            margin: 1rem 0;
-        }
+      .manual-key {
+        background: var(--bg-primary);
+        padding: 1rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--border-color);
+        font-family: monospace;
+        word-break: break-all;
+        margin: 1rem 0;
+      }
 
-        .backup-codes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
+      .backup-codes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
 
-        .backup-code {
-            padding: 0.5rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            font-family: monospace;
-            text-align: center;
-        }
+      .backup-code {
+        padding: 0.5rem;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        font-family: monospace;
+        text-align: center;
+      }
 
-        /* PROFILE PICTURE */
-        .profile-picture-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+      /* PROFILE PICTURE */
+      .profile-picture-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
-        .profile-picture {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-primary);
-            font-size: 2rem;
-            font-weight: 600;
-        }
+      .profile-picture {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bg-primary);
+        font-size: 2rem;
+        font-weight: 600;
+      }
 
-        .upload-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius);
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 0.875rem;
-        }
+      .upload-btn {
+        background: none;
+        border: 1px solid var(--border-color);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 0.875rem;
+      }
 
-        .upload-btn:hover {
-            background: var(--hover-bg);
-        }
+      .upload-btn:hover {
+        background: var(--hover-bg);
+      }
 
-        /* API KEYS SECTION */
-        .api-key-item {
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-        }
+      /* API KEYS SECTION */
+      .api-key-item {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        padding: 1rem;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        margin-bottom: 1rem;
+      }
 
-        .api-key-info {
-            flex: 1;
-        }
+      .api-key-info {
+        flex: 1;
+      }
 
-        .api-key-name {
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
+      .api-key-name {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
 
-        .api-key-value {
-            font-family: monospace;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
+      .api-key-value {
+        font-family: monospace;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
 
-        .api-key-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
+      .api-key-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-        /* DANGER ZONE */
-        .danger-zone {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
+      /* DANGER ZONE */
+      .danger-zone {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
 
-        .danger-zone-title {
-            color: #ef4444;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
+      .danger-zone-title {
+        color: #ef4444;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
 
-        .danger-zone-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-        }
+      .danger-zone-description {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+      }
     </style>
 
-  <!-- Visual Rich Results & Images -->
-  
-  <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings.png">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/pages/settings.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Settings - LyDian Ultra Pro">
-  <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/pages/settings.png">
-  <meta name="twitter:image:alt" content="Settings - LyDian Ultra Pro">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings-2.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings-3.png">
-  <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings-4.png">
-  
-  
-  
-  
-  
-  <meta name="msapplication-TileImage" content="https://www.ailydian.com/mstile/pages/settings.png">
-  <meta name="msapplication-square70x70logo" content="https://www.ailydian.com/mstile-70/pages/settings.png">
-  <meta name="msapplication-square150x150logo" content="https://www.ailydian.com/mstile-150/pages/settings.png">
-  
-  
+    <!-- Visual Rich Results & Images -->
 
-  
+    <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/og-images/pages/settings.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Settings - LyDian Ultra Pro" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/twitter-cards/pages/settings.png"
+    />
+    <meta name="twitter:image:alt" content="Settings - LyDian Ultra Pro" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings-2.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings-3.png" />
+    <meta property="og:image" content="https://www.ailydian.com/og-images/pages/settings-4.png" />
 
-  <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Settings - LyDian Ultra Pro",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser, iOS, Android",
-  "description": "LyDian AI - Settings - LyDian Ultra Pro",
-  "image": [
-    "https://www.ailydian.com/images/gallery/pages-settings-1.jpg",
-    "https://www.ailydian.com/images/gallery/pages-settings-2.jpg",
-    "https://www.ailydian.com/images/gallery/pages-settings-3.jpg"
-  ],
-  "screenshot": [
-    "https://www.ailydian.com/images/gallery/pages-settings-1.jpg",
-    "https://www.ailydian.com/images/gallery/pages-settings-2.jpg",
-    "https://www.ailydian.com/images/gallery/pages-settings-3.jpg"
-  ],
-  "url": "https://www.ailydian.com/pages/settings",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1542",
-    "bestRating": "5"
-  },
-  "inLanguage": [
-    "tr",
-    "en",
-    "de",
-    "ru",
-    "uk",
-    "zh",
-    "it"
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Settings - LyDian Ultra Pro",
-  "description": "LyDian AI - Settings - LyDian Ultra Pro",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.ailydian.com/images/hero/pages-settings.jpg",
-    "width": 1200,
-    "height": 630,
-    "caption": "Settings - LyDian Ultra Pro"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
-      "width": 512,
-      "height": 512
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2025-12-20",
-  "inLanguage": "tr-TR"
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "Settings - LyDian Ultra Pro - Video Rehber",
-  "description": "LyDian AI - Settings - LyDian Ultra Pro",
-  "thumbnailUrl": "https://www.ailydian.com/images/video/pages-settings-preview.jpg",
-  "uploadDate": "2024-01-15",
-  "duration": "PT8M",
-  "contentUrl": "https://www.ailydian.com/videos/pages/settings.mp4",
-  "embedUrl": "https://www.ailydian.com/pages/settings#video",
-  "publisher": {
-    "@type": "Organization",
-    "name": "LyDian AI"
-  }
-}
-  </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://www.ailydian.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Pages",
-      "item": "https://www.ailydian.com/pages"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Settings",
-      "item": "https://www.ailydian.com/pages/settings"
-    }
-  ]
-}
-  </script>
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.ailydian.com/mstile/pages/settings.png"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="https://www.ailydian.com/mstile-70/pages/settings.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="https://www.ailydian.com/mstile-150/pages/settings.png"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Settings - LyDian Ultra Pro">
-  <meta property="og:description" content="LyDian AI - Settings - LyDian Ultra Pro">
-  <meta property="og:url" content="https://www.ailydian.com/pages/settings">
-  <meta property="og:image" content="https://www.ailydian.com/images/og/pages-settings.jpg">
-  <meta property="og:image:secure_url" content="https://www.ailydian.com/images/og/pages-settings.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Settings - LyDian Ultra Pro">
-  <meta property="og:site_name" content="LyDian AI">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Settings - LyDian Ultra Pro">
-  <meta name="twitter:description" content="LyDian AI - Settings - LyDian Ultra Pro">
-  <meta name="twitter:image" content="https://www.ailydian.com/images/twitter/pages-settings.jpg">
-  <meta name="twitter:image:alt" content="Settings - LyDian Ultra Pro">
-  
-  
-  <!-- /Premium SEO -->
-<link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous"><!-- PWA Manifest --><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#C4A962"><!-- iOS Safari --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="aiLyDian AI"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png"><link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png"><!-- Apple Splash Screens --><link rel="apple-touch-startup-image" href="/icons/splash/iphone-x.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-xr.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/iphone-12.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad.png" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-11.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"><link rel="apple-touch-startup-image" href="/icons/splash/ipad-pro-12.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"><!-- Android/Chrome --><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="aiLyDian AI"><!-- Microsoft --><meta name="msapplication-TileColor" content="#C4A962"><meta name="msapplication-TileImage" content="/icons/ms-icon-144.png"><meta name="msapplication-config" content="/browserconfig.xml"><!-- Favicon (all sizes) --><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="shortcut icon" href="/icons/favicon.ico"></head>
+    <!-- 🏆 Premium SEO - LyDian AI Ecosystem -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Settings - LyDian Ultra Pro",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "description": "LyDian AI - Settings - LyDian Ultra Pro",
+        "image": [
+          "https://www.ailydian.com/images/gallery/pages-settings-1.jpg",
+          "https://www.ailydian.com/images/gallery/pages-settings-2.jpg",
+          "https://www.ailydian.com/images/gallery/pages-settings-3.jpg"
+        ],
+        "screenshot": [
+          "https://www.ailydian.com/images/gallery/pages-settings-1.jpg",
+          "https://www.ailydian.com/images/gallery/pages-settings-2.jpg",
+          "https://www.ailydian.com/images/gallery/pages-settings-3.jpg"
+        ],
+        "url": "https://www.ailydian.com/pages/settings",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1542",
+          "bestRating": "5"
+        },
+        "inLanguage": ["tr", "en", "de", "ru", "uk", "zh", "it"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Settings - LyDian Ultra Pro",
+        "description": "LyDian AI - Settings - LyDian Ultra Pro",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.ailydian.com/images/hero/pages-settings.jpg",
+          "width": 1200,
+          "height": 630,
+          "caption": "Settings - LyDian Ultra Pro"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/images/logo/lydian-ai.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        "datePublished": "2024-01-15",
+        "dateModified": "2025-12-20",
+        "inLanguage": "tr-TR"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Settings - LyDian Ultra Pro - Video Rehber",
+        "description": "LyDian AI - Settings - LyDian Ultra Pro",
+        "thumbnailUrl": "https://www.ailydian.com/images/video/pages-settings-preview.jpg",
+        "uploadDate": "2024-01-15",
+        "duration": "PT8M",
+        "contentUrl": "https://www.ailydian.com/videos/pages/settings.mp4",
+        "embedUrl": "https://www.ailydian.com/pages/settings#video",
+        "publisher": {
+          "@type": "Organization",
+          "name": "LyDian AI"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://www.ailydian.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Pages",
+            "item": "https://www.ailydian.com/pages"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Settings",
+            "item": "https://www.ailydian.com/pages/settings"
+          }
+        ]
+      }
+    </script>
 
-<body>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Settings - LyDian Ultra Pro" />
+    <meta property="og:description" content="LyDian AI - Settings - LyDian Ultra Pro" />
+    <meta property="og:url" content="https://www.ailydian.com/pages/settings" />
+    <meta property="og:image" content="https://www.ailydian.com/images/og/pages-settings.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://www.ailydian.com/images/og/pages-settings.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Settings - LyDian Ultra Pro" />
+    <meta property="og:site_name" content="LyDian AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Settings - LyDian Ultra Pro" />
+    <meta name="twitter:description" content="LyDian AI - Settings - LyDian Ultra Pro" />
+    <meta
+      name="twitter:image"
+      content="https://www.ailydian.com/images/twitter/pages-settings.jpg"
+    />
+    <meta name="twitter:image:alt" content="Settings - LyDian Ultra Pro" />
+
+    <!-- /Premium SEO -->
+    <link rel="preload" type="font/woff2" href="/fonts/main.woff2" crossorigin="anonymous" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C4A962" />
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aiLyDian AI" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png" />
+    <!-- Apple Splash Screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-x.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-xr.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/iphone-12.png"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad.png"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-11.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/icons/splash/ipad-pro-12.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <!-- Android/Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="aiLyDian AI" />
+    <!-- Microsoft -->
+    <meta name="msapplication-TileColor" content="#C4A962" />
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <!-- Favicon (all sizes) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
+
+  <body>
     <div class="main-content">
-        <!-- HEADER -->
-        <div class="header">
-            <button class="sidebar-toggle" onclick="goBack()">
-                <i class="ph ph-arrow-left"></i>
-            </button>
-            <div class="header-title">Settings</div>
-            <div class="system-status">
-                <div class="status-indicator"></div>
-                <div class="status-text">System operational</div>
-            </div>
+      <!-- HEADER -->
+      <div class="header">
+        <button class="sidebar-toggle" onclick="goBack()">
+          <i class="ph ph-arrow-left"></i>
+        </button>
+        <div class="header-title">Settings</div>
+        <div class="system-status">
+          <div class="status-indicator"></div>
+          <div class="status-text">System operational</div>
+        </div>
+      </div>
+
+      <!-- SETTINGS CONTAINER -->
+      <div class="settings-container" style="padding: 2rem">
+        <!-- SIDEBAR -->
+        <div class="settings-sidebar">
+          <ul class="settings-nav">
+            <li class="nav-item">
+              <a class="nav-link active" onclick="showSection('profile')">
+                <i class="ph ph-user"></i>
+                Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('security')">
+                <i class="ph ph-shield-check"></i>
+                Security
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('notifications')">
+                <i class="ph ph-bell"></i>
+                Notifications
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('ai-models')">
+                <i class="ph ph-brain"></i>
+                AI Models
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('api-keys')">
+                <i class="ph ph-key"></i>
+                API Keys
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('preferences')">
+                <i class="ph ph-gear"></i>
+                Preferences
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('billing')">
+                <i class="ph ph-credit-card"></i>
+                Billing
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="showSection('advanced')">
+                <i class="ph ph-wrench"></i>
+                Advanced
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <!-- SETTINGS CONTAINER -->
-        <div class="settings-container" style="padding: 2rem;">
-            <!-- SIDEBAR -->
-            <div class="settings-sidebar">
-                <ul class="settings-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" onclick="showSection('profile')">
-                            <i class="ph ph-user"></i>
-                            Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('security')">
-                            <i class="ph ph-shield-check"></i>
-                            Security
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('notifications')">
-                            <i class="ph ph-bell"></i>
-                            Notifications
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('ai-models')">
-                            <i class="ph ph-brain"></i>
-                            AI Models
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('api-keys')">
-                            <i class="ph ph-key"></i>
-                            API Keys
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('preferences')">
-                            <i class="ph ph-gear"></i>
-                            Preferences
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('billing')">
-                            <i class="ph ph-credit-card"></i>
-                            Billing
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="showSection('advanced')">
-                            <i class="ph ph-wrench"></i>
-                            Advanced
-                        </a>
-                    </li>
-                </ul>
+        <!-- CONTENT -->
+        <div class="settings-content">
+          <!-- PROFILE SECTION -->
+          <div class="settings-section active" id="profile">
+            <div class="section-title">Profile Settings</div>
+            <div class="section-description">
+              Manage your personal information and profile preferences.
             </div>
 
-            <!-- CONTENT -->
-            <div class="settings-content">
-                <!-- PROFILE SECTION -->
-                <div class="settings-section active" id="profile">
-                    <div class="section-title">Profile Settings</div>
-                    <div class="section-description">
-                        Manage your personal information and profile preferences.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Profile Picture</div>
-                        <div class="setting-description">Upload a profile picture to personalize your account.</div>
-                        <div class="profile-picture-container">
-                            <div class="profile-picture" id="profilePicture">JD</div>
-                            <div>
-                                <button class="upload-btn" onclick="uploadProfilePicture()">
-                                    <i class="ph ph-upload"></i>
-                                    Upload Photo
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Personal Information</div>
-                        <div class="setting-description">Update your personal details.</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                            <input type="text" class="form-input" placeholder="First Name" id="firstName" value="John">
-                            <input type="text" class="form-input" placeholder="Last Name" id="lastName" value="Doe">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <input type="email" class="form-input" placeholder="Email" id="email" value="john.doe@company.com">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <input type="text" class="form-input" placeholder="Username" id="username" value="johndoe">
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn primary" onclick="saveProfile()">Save Changes</button>
-                            <button class="btn" onclick="resetProfile()">Reset</button>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Organization</div>
-                        <div class="setting-description">Your organization and role information.</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <input type="text" class="form-input" placeholder="Department" id="department" value="Engineering">
-                            <input type="text" class="form-input" placeholder="Job Title" id="jobTitle" value="Senior Developer">
-                        </div>
-                    </div>
+            <div class="setting-group">
+              <div class="setting-title">Profile Picture</div>
+              <div class="setting-description">
+                Upload a profile picture to personalize your account.
+              </div>
+              <div class="profile-picture-container">
+                <div class="profile-picture" id="profilePicture">JD</div>
+                <div>
+                  <button class="upload-btn" onclick="uploadProfilePicture()">
+                    <i class="ph ph-upload"></i>
+                    Upload Photo
+                  </button>
                 </div>
-
-                <!-- SECURITY SECTION -->
-                <div class="settings-section" id="security">
-                    <div class="section-title">Security Settings</div>
-                    <div class="section-description">
-                        Protect your account with strong security measures.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Change Password</div>
-                        <div class="setting-description">Update your password to keep your account secure.</div>
-                        <div style="margin-bottom: 1rem;">
-                            <input type="password" class="form-input" placeholder="Current Password" id="currentPassword">
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                            <input type="password" class="form-input" placeholder="New Password" id="newPassword">
-                            <input type="password" class="form-input" placeholder="Confirm Password" id="confirmPassword">
-                        </div>
-                        <button class="btn primary" onclick="changePassword()">Update Password</button>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Two-Factor Authentication</div>
-                        <div class="setting-description">Add an extra layer of security to your account.</div>
-                        <div class="setting-control">
-                            <div>
-                                <strong>2FA Status:</strong>
-                                <span id="twoFactorStatus" style="color: #ef4444;">Disabled</span>
-                            </div>
-                            <button class="btn primary" id="twoFactorBtn" onclick="setup2FA()">Enable 2FA</button>
-                        </div>
-
-                        <!-- 2FA Setup (hidden by default) -->
-                        <div id="twoFactorSetup" style="display: none;">
-                            <div class="qr-code-container">
-                                <div class="qr-code" id="qrCode">
-                                    QR Code will appear here
-                                </div>
-                                <p>Scan this QR code with your authenticator app</p>
-                            </div>
-
-                            <div class="setting-title">Manual Entry Key</div>
-                            <div class="manual-key" id="manualKey">
-                                ABCD EFGH IJKL MNOP QRST UVWX YZ12 3456
-                            </div>
-
-                            <div style="margin: 1rem 0;">
-                                <input type="text" class="form-input" placeholder="Enter 6-digit code from your app" id="verificationCode">
-                            </div>
-
-                            <div class="btn-group">
-                                <button class="btn primary" onclick="verify2FA()">Verify &amp; Enable</button>
-                                <button class="btn" onclick="cancel2FA()">Cancel</button>
-                            </div>
-                        </div>
-
-                        <!-- Backup Codes (shown after 2FA is enabled) -->
-                        <div id="backupCodes" style="display: none;">
-                            <div class="setting-title">Backup Codes</div>
-                            <div class="setting-description">Save these backup codes in a safe place. You can use them to access your account if you lose your authenticator device.</div>
-                            <div class="backup-codes">
-                                <div class="backup-code">12345678</div>
-                                <div class="backup-code">87654321</div>
-                                <div class="backup-code">11111111</div>
-                                <div class="backup-code">22222222</div>
-                                <div class="backup-code">33333333</div>
-                                <div class="backup-code">44444444</div>
-                                <div class="backup-code">55555555</div>
-                                <div class="backup-code">66666666</div>
-                                <div class="backup-code">77777777</div>
-                                <div class="backup-code">88888888</div>
-                            </div>
-                            <button class="btn" onclick="downloadBackupCodes()">Download Codes</button>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Session Management</div>
-                        <div class="setting-description">Manage your active sessions and devices.</div>
-                        <div id="activeSessions">
-                            <!-- Sessions will be populated here -->
-                        </div>
-                        <button class="btn danger" onclick="terminateAllSessions()">Terminate All Other Sessions</button>
-                    </div>
-                </div>
-
-                <!-- NOTIFICATIONS SECTION -->
-                <div class="settings-section" id="notifications">
-                    <div class="section-title">Notification Settings</div>
-                    <div class="section-description">
-                        Configure how and when you receive notifications.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Email Notifications</div>
-                        <div class="setting-control">
-                            <span>System updates and security alerts</span>
-                            <div class="toggle-switch active" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Push Notifications</div>
-                        <div class="setting-control">
-                            <span>Real-time notifications in browser</span>
-                            <div class="toggle-switch" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">AI Model Alerts</div>
-                        <div class="setting-control">
-                            <span>Notifications when AI models are updated</span>
-                            <div class="toggle-switch active" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI MODELS SECTION -->
-                <div class="settings-section" id="ai-models">
-                    <div class="section-title">AI Model Preferences</div>
-                    <div class="section-description">
-                        Configure your preferred AI models and settings.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Default Model</div>
-                        <div class="setting-control">
-                            <select class="form-select" id="defaultModel">
-                                <option value="azure-OX7A3F8D">Azure OX5C9E2B Omni</option>
-                                <option value="AX9F7E2B" selected="">AX9F7E2B-3.5 Sonnet</option>
-                                <option value="OX7A3F8D">OX5C9E2B Turbo</option>
-                                <option value="GX_CORE-2.0-flash">LyDian Vision-2.0 Flash</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Response Style</div>
-                        <div class="setting-control">
-                            <select class="form-select" id="responseStyle">
-                                <option value="balanced">Balanced</option>
-                                <option value="creative">Creative</option>
-                                <option value="precise">Precise</option>
-                                <option value="detailed">Detailed</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Auto-save Conversations</div>
-                        <div class="setting-control">
-                            <span>Automatically save all conversations</span>
-                            <div class="toggle-switch active" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- API KEYS SECTION -->
-                <div class="settings-section" id="api-keys">
-                    <div class="section-title">API Keys</div>
-                    <div class="section-description">
-                        Manage your API keys for external integrations.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Your API Keys</div>
-                        <div id="apiKeysList">
-                            <div class="api-key-item">
-                                <div class="api-key-info">
-                                    <div class="api-key-name">Production API Key</div>
-                                    <div class="api-key-value">ak_live_********************************</div>
-                                </div>
-                                <div class="api-key-actions">
-                                    <button class="btn" onclick="copyApiKey('ak_live_********************************')">
-                                        <i class="ph ph-copy"></i>
-                                    </button>
-                                    <button class="btn danger" onclick="revokeApiKey('ak_live_prod')">
-                                        <i class="ph ph-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn primary" onclick="generateApiKey()">Generate New API Key</button>
-                    </div>
-                </div>
-
-                <!-- PREFERENCES SECTION -->
-                <div class="settings-section" id="preferences">
-                    <div class="section-title">Preferences</div>
-                    <div class="section-description">
-                        Customize your experience with LyDian Ultra Pro.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Theme</div>
-                        <div class="setting-control">
-                            <select class="form-select" id="theme">
-                                <option value="dark" selected="">Dark</option>
-                                <option value="light">Light</option>
-                                <option value="auto">Auto</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Language</div>
-                        <div class="setting-control">
-                            <select class="form-select" id="language">
-                                <option value="tr" selected="">Türkçe</option>
-                                <option value="en">English</option>
-                                <option value="es">Español</option>
-                                <option value="fr">Français</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Sidebar Default State</div>
-                        <div class="setting-control">
-                            <span>Open sidebar by default</span>
-                            <div class="toggle-switch" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BILLING SECTION -->
-                <div class="settings-section" id="billing">
-                    <div class="section-title">Billing &amp; Usage</div>
-                    <div class="section-description">
-                        View your subscription and usage information.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Current Plan</div>
-                        <div style="padding: 1rem; background: var(--bg-primary); border-radius: var(--radius); border: 1px solid var(--border-color);">
-                            <div style="font-weight: 600; color: var(--accent-primary);">Enterprise Plan</div>
-                            <div style="color: var(--text-secondary); font-size: 0.875rem;">Unlimited AI models and advanced features</div>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Usage This Month</div>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                            <div style="padding: 1rem; background: var(--bg-primary); border-radius: var(--radius); border: 1px solid var(--border-color);">
-                                <div style="font-weight: 600;">API Calls</div>
-                                <div style="font-size: 1.5rem; color: var(--accent-primary);">12,847</div>
-                            </div>
-                            <div style="padding: 1rem; background: var(--bg-primary); border-radius: var(--radius); border: 1px solid var(--border-color);">
-                                <div style="font-weight: 600;">Tokens Used</div>
-                                <div style="font-size: 1.5rem; color: var(--accent-primary);">2.4M</div>
-                            </div>
-                            <div style="padding: 1rem; background: var(--bg-primary); border-radius: var(--radius); border: 1px solid var(--border-color);">
-                                <div style="font-weight: 600;">Storage</div>
-                                <div style="font-size: 1.5rem; color: var(--accent-primary);">847 MB</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ADVANCED SECTION -->
-                <div class="settings-section" id="advanced">
-                    <div class="section-title">Advanced Settings</div>
-                    <div class="section-description">
-                        Advanced configuration options for power users.
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Developer Mode</div>
-                        <div class="setting-control">
-                            <span>Enable advanced developer features</span>
-                            <div class="toggle-switch" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Debug Logging</div>
-                        <div class="setting-control">
-                            <span>Enable detailed debug logs</span>
-                            <div class="toggle-switch" onclick="toggleSetting(this)">
-                                <div class="toggle-slider"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <div class="setting-title">Export Data</div>
-                        <div class="setting-description">Export all your data including conversations, settings, and usage history.</div>
-                        <button class="btn" onclick="exportData()">
-                            <i class="ph ph-download"></i>
-                            Export All Data
-                        </button>
-                    </div>
-
-                    <div class="danger-zone">
-                        <div class="danger-zone-title">Danger Zone</div>
-                        <div class="danger-zone-description">
-                            These actions cannot be undone. Please proceed with caution.
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn danger" onclick="deleteAllData()">Delete All Data</button>
-                            <button class="btn danger" onclick="deleteAccount()">Delete Account</button>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Personal Information</div>
+              <div class="setting-description">Update your personal details.</div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="First Name"
+                  id="firstName"
+                  value="John"
+                />
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Last Name"
+                  id="lastName"
+                  value="Doe"
+                />
+              </div>
+              <div style="margin-bottom: 1rem">
+                <input
+                  type="email"
+                  class="form-input"
+                  placeholder="Email"
+                  id="email"
+                  value="john.doe@company.com"
+                />
+              </div>
+              <div style="margin-bottom: 1rem">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Username"
+                  id="username"
+                  value="johndoe"
+                />
+              </div>
+              <div class="btn-group">
+                <button class="btn primary" onclick="saveProfile()">Save Changes</button>
+                <button class="btn" onclick="resetProfile()">Reset</button>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Organization</div>
+              <div class="setting-description">Your organization and role information.</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Department"
+                  id="department"
+                  value="Engineering"
+                />
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Job Title"
+                  id="jobTitle"
+                  value="Senior Developer"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- SECURITY SECTION -->
+          <div class="settings-section" id="security">
+            <div class="section-title">Security Settings</div>
+            <div class="section-description">
+              Protect your account with strong security measures.
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Change Password</div>
+              <div class="setting-description">
+                Update your password to keep your account secure.
+              </div>
+              <div style="margin-bottom: 1rem">
+                <input
+                  type="password"
+                  class="form-input"
+                  placeholder="Current Password"
+                  id="currentPassword"
+                />
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 1rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <input
+                  type="password"
+                  class="form-input"
+                  placeholder="New Password"
+                  id="newPassword"
+                />
+                <input
+                  type="password"
+                  class="form-input"
+                  placeholder="Confirm Password"
+                  id="confirmPassword"
+                />
+              </div>
+              <button class="btn primary" onclick="changePassword()">Update Password</button>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Two-Factor Authentication</div>
+              <div class="setting-description">Add an extra layer of security to your account.</div>
+              <div class="setting-control">
+                <div>
+                  <strong>2FA Status:</strong>
+                  <span id="twoFactorStatus" style="color: #ef4444">Disabled</span>
+                </div>
+                <button class="btn primary" id="twoFactorBtn" onclick="setup2FA()">
+                  Enable 2FA
+                </button>
+              </div>
+
+              <!-- 2FA Setup (hidden by default) -->
+              <div id="twoFactorSetup" style="display: none">
+                <div class="qr-code-container">
+                  <div class="qr-code" id="qrCode">QR Code will appear here</div>
+                  <p>Scan this QR code with your authenticator app</p>
+                </div>
+
+                <div class="setting-title">Manual Entry Key</div>
+                <div class="manual-key" id="manualKey">ABCD EFGH IJKL MNOP QRST UVWX YZ12 3456</div>
+
+                <div style="margin: 1rem 0">
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Enter 6-digit code from your app"
+                    id="verificationCode"
+                  />
+                </div>
+
+                <div class="btn-group">
+                  <button class="btn primary" onclick="verify2FA()">Verify &amp; Enable</button>
+                  <button class="btn" onclick="cancel2FA()">Cancel</button>
+                </div>
+              </div>
+
+              <!-- Backup Codes (shown after 2FA is enabled) -->
+              <div id="backupCodes" style="display: none">
+                <div class="setting-title">Backup Codes</div>
+                <div class="setting-description">
+                  Save these backup codes in a safe place. You can use them to access your account
+                  if you lose your authenticator device.
+                </div>
+                <div class="backup-codes">
+                  <div class="backup-code">12345678</div>
+                  <div class="backup-code">87654321</div>
+                  <div class="backup-code">11111111</div>
+                  <div class="backup-code">22222222</div>
+                  <div class="backup-code">33333333</div>
+                  <div class="backup-code">44444444</div>
+                  <div class="backup-code">55555555</div>
+                  <div class="backup-code">66666666</div>
+                  <div class="backup-code">77777777</div>
+                  <div class="backup-code">88888888</div>
+                </div>
+                <button class="btn" onclick="downloadBackupCodes()">Download Codes</button>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Session Management</div>
+              <div class="setting-description">Manage your active sessions and devices.</div>
+              <div id="activeSessions">
+                <!-- Sessions will be populated here -->
+              </div>
+              <button class="btn danger" onclick="terminateAllSessions()">
+                Terminate All Other Sessions
+              </button>
+            </div>
+          </div>
+
+          <!-- NOTIFICATIONS SECTION -->
+          <div class="settings-section" id="notifications">
+            <div class="section-title">Notification Settings</div>
+            <div class="section-description">Configure how and when you receive notifications.</div>
+
+            <div class="setting-group">
+              <div class="setting-title">Email Notifications</div>
+              <div class="setting-control">
+                <span>System updates and security alerts</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Push Notifications</div>
+              <div class="setting-control">
+                <span>Real-time notifications in browser</span>
+                <div class="toggle-switch" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">AI Model Alerts</div>
+              <div class="setting-control">
+                <span>Notifications when AI models are updated</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI MODELS SECTION -->
+          <div class="settings-section" id="ai-models">
+            <div class="section-title">AI Model Preferences</div>
+            <div class="section-description">Configure your preferred AI models and settings.</div>
+
+            <div class="setting-group">
+              <div class="setting-title">Default Model</div>
+              <div class="setting-control">
+                <select class="form-select" id="defaultModel">
+                  <option value="azure-OX7A3F8D">Azure OX5C9E2B Omni</option>
+                  <option value="AX9F7E2B" selected="">AX9F7E2B-3.5 Sonnet</option>
+                  <option value="OX7A3F8D">OX5C9E2B Turbo</option>
+                  <option value="GX_CORE-2.0-flash">LyDian Vision-2.0 Flash</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Response Style</div>
+              <div class="setting-control">
+                <select class="form-select" id="responseStyle">
+                  <option value="balanced">Balanced</option>
+                  <option value="creative">Creative</option>
+                  <option value="precise">Precise</option>
+                  <option value="detailed">Detailed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Auto-save Conversations</div>
+              <div class="setting-control">
+                <span>Automatically save all conversations</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- API KEYS SECTION -->
+          <div class="settings-section" id="api-keys">
+            <div class="section-title">API Keys</div>
+            <div class="section-description">Manage your API keys for external integrations.</div>
+
+            <div class="setting-group">
+              <div class="setting-title">Your API Keys</div>
+              <div id="apiKeysList">
+                <div class="api-key-item">
+                  <div class="api-key-info">
+                    <div class="api-key-name">Production API Key</div>
+                    <div class="api-key-value">ak_live_********************************</div>
+                  </div>
+                  <div class="api-key-actions">
+                    <button
+                      class="btn"
+                      onclick="copyApiKey('ak_live_********************************')"
+                    >
+                      <i class="ph ph-copy"></i>
+                    </button>
+                    <button class="btn danger" onclick="revokeApiKey('ak_live_prod')">
+                      <i class="ph ph-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button class="btn primary" onclick="generateApiKey()">Generate New API Key</button>
+            </div>
+          </div>
+
+          <!-- PREFERENCES SECTION -->
+          <div class="settings-section" id="preferences">
+            <div class="section-title">Preferences</div>
+            <div class="section-description">Customize your experience with LyDian Ultra Pro.</div>
+
+            <div class="setting-group">
+              <div class="setting-title">Theme</div>
+              <div class="setting-control">
+                <select class="form-select" id="theme">
+                  <option value="dark" selected="">Dark</option>
+                  <option value="light">Light</option>
+                  <option value="auto">Auto</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Language</div>
+              <div class="setting-control">
+                <select class="form-select" id="language">
+                  <option value="tr" selected="">Türkçe</option>
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                  <option value="fr">Français</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Sidebar Default State</div>
+              <div class="setting-control">
+                <span>Open sidebar by default</span>
+                <div class="toggle-switch" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BILLING SECTION -->
+          <div class="settings-section" id="billing">
+            <div class="section-title">Billing &amp; Usage</div>
+            <div class="section-description">View your subscription and usage information.</div>
+
+            <div class="setting-group">
+              <div class="setting-title">Current Plan</div>
+              <div
+                style="
+                  padding: 1rem;
+                  background: var(--bg-primary);
+                  border-radius: var(--radius);
+                  border: 1px solid var(--border-color);
+                "
+              >
+                <div style="font-weight: 600; color: var(--accent-primary)">Enterprise Plan</div>
+                <div style="color: var(--text-secondary); font-size: 0.875rem">
+                  Unlimited AI models and advanced features
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Usage This Month</div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  gap: 1rem;
+                "
+              >
+                <div
+                  style="
+                    padding: 1rem;
+                    background: var(--bg-primary);
+                    border-radius: var(--radius);
+                    border: 1px solid var(--border-color);
+                  "
+                >
+                  <div style="font-weight: 600">API Calls</div>
+                  <div style="font-size: 1.5rem; color: var(--accent-primary)">12,847</div>
+                </div>
+                <div
+                  style="
+                    padding: 1rem;
+                    background: var(--bg-primary);
+                    border-radius: var(--radius);
+                    border: 1px solid var(--border-color);
+                  "
+                >
+                  <div style="font-weight: 600">Tokens Used</div>
+                  <div style="font-size: 1.5rem; color: var(--accent-primary)">2.4M</div>
+                </div>
+                <div
+                  style="
+                    padding: 1rem;
+                    background: var(--bg-primary);
+                    border-radius: var(--radius);
+                    border: 1px solid var(--border-color);
+                  "
+                >
+                  <div style="font-weight: 600">Storage</div>
+                  <div style="font-size: 1.5rem; color: var(--accent-primary)">847 MB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADVANCED SECTION -->
+          <div class="settings-section" id="advanced">
+            <div class="section-title">Advanced Settings</div>
+            <div class="section-description">Advanced configuration options for power users.</div>
+
+            <div class="setting-group">
+              <div class="setting-title">Developer Mode</div>
+              <div class="setting-control">
+                <span>Enable advanced developer features</span>
+                <div class="toggle-switch" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Debug Logging</div>
+              <div class="setting-control">
+                <span>Enable detailed debug logs</span>
+                <div class="toggle-switch" onclick="toggleSetting(this)">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-group">
+              <div class="setting-title">Export Data</div>
+              <div class="setting-description">
+                Export all your data including conversations, settings, and usage history.
+              </div>
+              <button class="btn" onclick="exportData()">
+                <i class="ph ph-download"></i>
+                Export All Data
+              </button>
+            </div>
+
+            <div class="danger-zone">
+              <div class="danger-zone-title">Danger Zone</div>
+              <div class="danger-zone-description">
+                These actions cannot be undone. Please proceed with caution.
+              </div>
+              <div class="btn-group">
+                <button class="btn danger" onclick="deleteAllData()">Delete All Data</button>
+                <button class="btn danger" onclick="deleteAccount()">Delete Account</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        // GLOBAL STATE
-        let currentSection = 'profile';
-        let twoFactorEnabled = false;
+      // GLOBAL STATE
+      let currentSection = 'profile';
+      let twoFactorEnabled = false;
 
-        // INITIALIZATION
-        document.addEventListener('DOMContentLoaded', () => {
-            loadUserSettings();
-            loadActiveSessions();
+      // INITIALIZATION
+      document.addEventListener('DOMContentLoaded', () => {
+        loadUserSettings();
+        loadActiveSessions();
+      });
+
+      // NAVIGATION
+      function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.settings-section').forEach(section => {
+          section.classList.remove('active');
         });
 
-        // NAVIGATION
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.settings-section').forEach(section => {
-                section.classList.remove('active');
-            });
+        // Remove active class from all nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
 
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
+        // Show selected section
+        document.getElementById(sectionId).classList.add('active');
 
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
+        // Add active class to selected nav link
+        event.target.classList.add('active');
 
-            // Add active class to selected nav link
-            event.target.classList.add('active');
+        currentSection = sectionId;
+      }
 
-            currentSection = sectionId;
+      // PROFILE FUNCTIONS
+      function uploadProfilePicture() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            // DEBUG: console.log('Uploading profile picture:', file.name);
+            alert('Profile picture uploaded successfully!');
+          }
+        };
+        input.click();
+      }
+
+      function saveProfile() {
+        const profileData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          username: document.getElementById('username').value,
+          department: document.getElementById('department').value,
+          jobTitle: document.getElementById('jobTitle').value,
+        };
+
+        // DEBUG: console.log('Saving profile:', profileData);
+        alert('Profile saved successfully!');
+      }
+
+      function resetProfile() {
+        if (confirm('Are you sure you want to reset your profile changes?')) {
+          loadUserSettings();
+        }
+      }
+
+      // SECURITY FUNCTIONS
+      function changePassword() {
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (!currentPassword || !newPassword || !confirmPassword) {
+          alert('Please fill in all password fields.');
+          return;
         }
 
-        // PROFILE FUNCTIONS
-        function uploadProfilePicture() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    console.log('Uploading profile picture:', file.name);
-                    alert('Profile picture uploaded successfully!');
-                }
-            };
-            input.click();
+        if (newPassword !== confirmPassword) {
+          alert('New passwords do not match.');
+          return;
         }
 
-        function saveProfile() {
-            const profileData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                username: document.getElementById('username').value,
-                department: document.getElementById('department').value,
-                jobTitle: document.getElementById('jobTitle').value
-            };
-
-            console.log('Saving profile:', profileData);
-            alert('Profile saved successfully!');
+        if (newPassword.length < 8) {
+          alert('Password must be at least 8 characters long.');
+          return;
         }
 
-        function resetProfile() {
-            if (confirm('Are you sure you want to reset your profile changes?')) {
-                loadUserSettings();
-            }
+        // DEBUG: console.log('Changing password...');
+        alert('Password changed successfully!');
+
+        // Clear form
+        document.getElementById('currentPassword').value = '';
+        document.getElementById('newPassword').value = '';
+        document.getElementById('confirmPassword').value = '';
+      }
+
+      function setup2FA() {
+        if (twoFactorEnabled) {
+          if (
+            confirm(
+              'Are you sure you want to disable 2FA? This will make your account less secure.'
+            )
+          ) {
+            disable2FA();
+          }
+          return;
         }
 
-        // SECURITY FUNCTIONS
-        function changePassword() {
-            const currentPassword = document.getElementById('currentPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
+        document.getElementById('twoFactorSetup').style.display = 'block';
+        document.getElementById('twoFactorBtn').textContent = 'Cancel Setup';
+        document.getElementById('twoFactorBtn').onclick = cancel2FA;
 
-            if (!currentPassword || !newPassword || !confirmPassword) {
-                alert('Please fill in all password fields.');
-                return;
-            }
+        // Simulate QR code generation
+        document.getElementById('qrCode').innerHTML =
+          '<i class="ph ph-qr-code" style="font-size: 4rem;"></i>';
+      }
 
-            if (newPassword !== confirmPassword) {
-                alert('New passwords do not match.');
-                return;
-            }
+      function verify2FA() {
+        const code = document.getElementById('verificationCode').value;
 
-            if (newPassword.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
-            }
-
-            console.log('Changing password...');
-            alert('Password changed successfully!');
-
-            // Clear form
-            document.getElementById('currentPassword').value = '';
-            document.getElementById('newPassword').value = '';
-            document.getElementById('confirmPassword').value = '';
+        if (!code || code.length !== 6) {
+          alert('Please enter a valid 6-digit code.');
+          return;
         }
 
-        function setup2FA() {
-            if (twoFactorEnabled) {
-                if (confirm('Are you sure you want to disable 2FA? This will make your account less secure.')) {
-                    disable2FA();
-                }
-                return;
-            }
+        // Simulate verification
+        // DEBUG: console.log('Verifying 2FA code:', code);
 
-            document.getElementById('twoFactorSetup').style.display = 'block';
-            document.getElementById('twoFactorBtn').textContent = 'Cancel Setup';
-            document.getElementById('twoFactorBtn').onclick = cancel2FA;
+        twoFactorEnabled = true;
+        document.getElementById('twoFactorStatus').textContent = 'Enabled';
+        document.getElementById('twoFactorStatus').style.color = 'var(--accent-primary)';
+        document.getElementById('twoFactorBtn').textContent = 'Disable 2FA';
+        document.getElementById('twoFactorBtn').onclick = setup2FA;
 
-            // Simulate QR code generation
-            document.getElementById('qrCode').innerHTML = '<i class="ph ph-qr-code" style="font-size: 4rem;"></i>';
+        document.getElementById('twoFactorSetup').style.display = 'none';
+        document.getElementById('backupCodes').style.display = 'block';
+
+        alert('2FA enabled successfully! Please save your backup codes.');
+      }
+
+      function cancel2FA() {
+        document.getElementById('twoFactorSetup').style.display = 'none';
+        document.getElementById('twoFactorBtn').textContent = 'Enable 2FA';
+        document.getElementById('twoFactorBtn').onclick = setup2FA;
+        document.getElementById('verificationCode').value = '';
+      }
+
+      function disable2FA() {
+        twoFactorEnabled = false;
+        document.getElementById('twoFactorStatus').textContent = 'Disabled';
+        document.getElementById('twoFactorStatus').style.color = '#ef4444';
+        document.getElementById('twoFactorBtn').textContent = 'Enable 2FA';
+        document.getElementById('twoFactorBtn').onclick = setup2FA;
+        document.getElementById('backupCodes').style.display = 'none';
+
+        alert('2FA disabled successfully.');
+      }
+
+      function downloadBackupCodes() {
+        const codes = Array.from(document.querySelectorAll('.backup-code')).map(
+          el => el.textContent
+        );
+        const content = 'LyDian Ultra Pro - Backup Codes\n\n' + codes.join('\n');
+
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'LyDian-backup-codes.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function terminateAllSessions() {
+        if (
+          confirm(
+            'Are you sure you want to terminate all other sessions? You will need to log in again on other devices.'
+          )
+        ) {
+          // DEBUG: console.log('Terminating all sessions...');
+          alert('All other sessions terminated successfully.');
+          loadActiveSessions();
         }
+      }
 
-        function verify2FA() {
-            const code = document.getElementById('verificationCode').value;
+      // UTILITY FUNCTIONS
+      function toggleSetting(element) {
+        element.classList.toggle('active');
+      }
 
-            if (!code || code.length !== 6) {
-                alert('Please enter a valid 6-digit code.');
-                return;
-            }
-
-            // Simulate verification
-            console.log('Verifying 2FA code:', code);
-
-            twoFactorEnabled = true;
-            document.getElementById('twoFactorStatus').textContent = 'Enabled';
-            document.getElementById('twoFactorStatus').style.color = 'var(--accent-primary)';
-            document.getElementById('twoFactorBtn').textContent = 'Disable 2FA';
-            document.getElementById('twoFactorBtn').onclick = setup2FA;
-
-            document.getElementById('twoFactorSetup').style.display = 'none';
-            document.getElementById('backupCodes').style.display = 'block';
-
-            alert('2FA enabled successfully! Please save your backup codes.');
+      function generateApiKey() {
+        const keyName = prompt('Enter a name for this API key:');
+        if (keyName) {
+          const newKey = 'ak_live_' + Math.random().toString(36).substr(2, 32);
+          // DEBUG: console.log('Generated new API key:', newKey);
+          alert(
+            `New API key generated: ${newKey}\n\nMake sure to copy it now - you won't be able to see it again!`
+          );
+          loadApiKeys();
         }
+      }
 
-        function cancel2FA() {
-            document.getElementById('twoFactorSetup').style.display = 'none';
-            document.getElementById('twoFactorBtn').textContent = 'Enable 2FA';
-            document.getElementById('twoFactorBtn').onclick = setup2FA;
-            document.getElementById('verificationCode').value = '';
+      function copyApiKey(key) {
+        navigator.clipboard.writeText(key).then(() => {
+          alert('API key copied to clipboard!');
+        });
+      }
+
+      function revokeApiKey(keyId) {
+        if (
+          confirm(
+            'Are you sure you want to revoke this API key? Applications using this key will stop working.'
+          )
+        ) {
+          // DEBUG: console.log('Revoking API key:', keyId);
+          alert('API key revoked successfully.');
+          loadApiKeys();
         }
+      }
 
-        function disable2FA() {
-            twoFactorEnabled = false;
-            document.getElementById('twoFactorStatus').textContent = 'Disabled';
-            document.getElementById('twoFactorStatus').style.color = '#ef4444';
-            document.getElementById('twoFactorBtn').textContent = 'Enable 2FA';
-            document.getElementById('twoFactorBtn').onclick = setup2FA;
-            document.getElementById('backupCodes').style.display = 'none';
-
-            alert('2FA disabled successfully.');
+      function exportData() {
+        if (
+          confirm(
+            'This will export all your data including conversations, settings, and usage history. Continue?'
+          )
+        ) {
+          // DEBUG: console.log('Exporting user data...');
+          alert("Data export started. You will receive an email when it's ready for download.");
         }
+      }
 
-        function downloadBackupCodes() {
-            const codes = Array.from(document.querySelectorAll('.backup-code')).map(el => el.textContent);
-            const content = 'LyDian Ultra Pro - Backup Codes\n\n' + codes.join('\n');
-
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'LyDian-backup-codes.txt';
-            a.click();
-            URL.revokeObjectURL(url);
+      function deleteAllData() {
+        const confirmation = prompt('Type "DELETE ALL DATA" to confirm this action:');
+        if (confirmation === 'DELETE ALL DATA') {
+          // DEBUG: console.log('Deleting all user data...');
+          alert('All data deletion initiated. This process cannot be undone.');
         }
+      }
 
-        function terminateAllSessions() {
-            if (confirm('Are you sure you want to terminate all other sessions? You will need to log in again on other devices.')) {
-                console.log('Terminating all sessions...');
-                alert('All other sessions terminated successfully.');
-                loadActiveSessions();
-            }
+      function deleteAccount() {
+        const confirmation = prompt('Type "DELETE MY ACCOUNT" to confirm this action:');
+        if (confirmation === 'DELETE MY ACCOUNT') {
+          // DEBUG: console.log('Deleting user account...');
+          alert('Account deletion initiated. You will receive a confirmation email.');
         }
+      }
 
-        // UTILITY FUNCTIONS
-        function toggleSetting(element) {
-            element.classList.toggle('active');
-        }
+      function loadUserSettings() {
+        // Load user settings from API or localStorage
+        // DEBUG: console.log('Loading user settings...');
+      }
 
-        function generateApiKey() {
-            const keyName = prompt('Enter a name for this API key:');
-            if (keyName) {
-                const newKey = 'ak_live_' + Math.random().toString(36).substr(2, 32);
-                console.log('Generated new API key:', newKey);
-                alert(`New API key generated: ${newKey}\n\nMake sure to copy it now - you won't be able to see it again!`);
-                loadApiKeys();
-            }
-        }
-
-        function copyApiKey(key) {
-            navigator.clipboard.writeText(key).then(() => {
-                alert('API key copied to clipboard!');
-            });
-        }
-
-        function revokeApiKey(keyId) {
-            if (confirm('Are you sure you want to revoke this API key? Applications using this key will stop working.')) {
-                console.log('Revoking API key:', keyId);
-                alert('API key revoked successfully.');
-                loadApiKeys();
-            }
-        }
-
-        function exportData() {
-            if (confirm('This will export all your data including conversations, settings, and usage history. Continue?')) {
-                console.log('Exporting user data...');
-                alert('Data export started. You will receive an email when it\'s ready for download.');
-            }
-        }
-
-        function deleteAllData() {
-            const confirmation = prompt('Type "DELETE ALL DATA" to confirm this action:');
-            if (confirmation === 'DELETE ALL DATA') {
-                console.log('Deleting all user data...');
-                alert('All data deletion initiated. This process cannot be undone.');
-            }
-        }
-
-        function deleteAccount() {
-            const confirmation = prompt('Type "DELETE MY ACCOUNT" to confirm this action:');
-            if (confirmation === 'DELETE MY ACCOUNT') {
-                console.log('Deleting user account...');
-                alert('Account deletion initiated. You will receive a confirmation email.');
-            }
-        }
-
-        function loadUserSettings() {
-            // Load user settings from API or localStorage
-            console.log('Loading user settings...');
-        }
-
-        function loadActiveSessions() {
-            const sessionsContainer = document.getElementById('activeSessions');
-            sessionsContainer.innerHTML = `
+      function loadActiveSessions() {
+        const sessionsContainer = document.getElementById('activeSessions');
+        sessionsContainer.innerHTML = `
                 <div style="padding: 1rem; background: var(--bg-primary); border-radius: var(--radius); border: 1px solid var(--border-color); margin-bottom: 0.5rem;">
                     <div style="display: flex; justify-content: between; align-items: center;">
                         <div>
@@ -1233,16 +1440,16 @@
                     </div>
                 </div>
             `;
-        }
+      }
 
-        function loadApiKeys() {
-            // Refresh API keys list
-            console.log('Refreshing API keys list...');
-        }
+      function loadApiKeys() {
+        // Refresh API keys list
+        // DEBUG: console.log('Refreshing API keys list...');
+      }
 
-        function goBack() {
-            window.location.href = '/';
-        }
+      function goBack() {
+        window.location.href = '/';
+      }
     </script>
-
-</body></html>
+  </body>
+</html>

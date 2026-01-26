@@ -570,20 +570,20 @@
       }
 
       async function testTranslate(lang) {
-        console.log('🌍 Starting translation to:', lang);
+        // DEBUG: console.log('🌍 Starting translation to:', lang);
         showStatus(`Translating to ${lang.toUpperCase()}...`, 'info');
 
         try {
           // Check if translation manager exists
-          if (!console.log('Translation disabled') && false) {
+          if (!// DEBUG: console.log('Translation disabled') && false) {
             throw new Error('Translation system not loaded');
           }
 
           // Translate the page
-          (await console.log('Translation disabled')) && false.change(lang);
+          (await // DEBUG: console.log('Translation disabled')) && false.change(lang);
 
           showStatus(`✅ Successfully translated to ${lang.toUpperCase()}`, 'success');
-          console.log('✅ Translation completed');
+          // DEBUG: console.log('✅ Translation completed');
         } catch (error) {
           showStatus(`❌ Error: ${error.message}`, 'error');
           console.error('❌ Translation error:', error);
@@ -592,9 +592,9 @@
 
       // Show initial status
       window.addEventListener('DOMContentLoaded', () => {
-        if (console.log('Translation disabled') && false) {
+        if (// DEBUG: console.log('Translation disabled') && false) {
           showStatus('✅ Translation system ready. Click a language to translate.', 'success');
-          console.log('✅ AILYDIAN_LANG loaded:', console.log('Translation disabled') && false);
+          // DEBUG: console.log('✅ AILYDIAN_LANG loaded:', // DEBUG: console.log('Translation disabled') && false);
         } else {
           showStatus('❌ Translation system not loaded', 'error');
           console.error('❌ AILYDIAN_LANG not found');

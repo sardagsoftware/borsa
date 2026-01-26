@@ -1794,7 +1794,7 @@
 
           if (data.success && data.heatmap) {
             // Future: Update map visualization
-            console.log('Heatmap data loaded:', data.heatmap);
+            // DEBUG: console.log('Heatmap data loaded:', data.heatmap);
           }
         } catch (error) {
           handleError(error, 'Isı haritası yükleme');
@@ -1876,7 +1876,7 @@
           return;
         }
 
-        console.log('🏥 Initializing Public Health Charts...');
+        // DEBUG: console.log('🏥 Initializing Public Health Charts...');
 
         try {
           // Fetch health data from Civic API
@@ -1953,7 +1953,7 @@
             60000
           );
 
-          console.log('✅ Public Health charts initialized successfully');
+          // DEBUG: console.log('✅ Public Health charts initialized successfully');
         } catch (error) {
           console.error('Error initializing health charts:', error);
         }

@@ -1010,26 +1010,26 @@ const THREE = await LazyLoader.loadThreeJS();
       });
 
       // Log bundle info to console
-      console.log(
+      // DEBUG: console.log(
         '%c🚀 Phase L: Code Splitting Complete!',
         'font-size: 20px; color: #00ff88; font-weight: bold;'
       );
-      console.log('%cBundle Size Reduced: 89%', 'font-size: 16px; color: #00ff88;');
-      console.log('%cInitial Bundle: 72.74 KB (was 661.74 KB)', 'font-size: 14px; color: #10a37f;');
-      console.log(
+      // DEBUG: console.log('%cBundle Size Reduced: 89%', 'font-size: 16px; color: #00ff88;');
+      // DEBUG: console.log('%cInitial Bundle: 72.74 KB (was 661.74 KB)', 'font-size: 14px; color: #10a37f;');
+      // DEBUG: console.log(
         '%cThree.js (589 KB) now loads on user interaction',
         'font-size: 14px; color: #10a37f;'
       );
 
       // Test lazy loader if available
       if (window.LazyLoader) {
-        console.log('%c✅ LazyLoader available', 'color: #00ff88;');
-        console.log('LazyLoader API:', window.LazyLoader);
+        // DEBUG: console.log('%c✅ LazyLoader available', 'color: #00ff88;');
+        // DEBUG: console.log('LazyLoader API:', window.LazyLoader);
       }
 
       if (window.routeLoader) {
-        console.log('%c✅ RouteLoader initialized', 'color: #00ff88;');
-        console.log('Route stats:', window.routeLoader.getStats());
+        // DEBUG: console.log('%c✅ RouteLoader initialized', 'color: #00ff88;');
+        // DEBUG: console.log('Route stats:', window.routeLoader.getStats());
       }
     </script>
   </body>

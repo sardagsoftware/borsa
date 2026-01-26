@@ -425,7 +425,7 @@
         resultDiv.innerHTML = '⏳ Testing API...';
 
         try {
-          console.log('🔍 Sending request to /api/chat/specialized...');
+          // DEBUG: console.log('🔍 Sending request to /api/chat/specialized...');
 
           const response = await fetch('/api/chat/specialized', {
             method: 'POST',
@@ -445,16 +445,16 @@
             }),
           });
 
-          console.log('📡 Response status:', response.status);
-          console.log('📡 Response ok:', response.ok);
-          console.log('📡 Response headers:', [...response.headers.entries()]);
+          // DEBUG: console.log('📡 Response status:', response.status);
+          // DEBUG: console.log('📡 Response ok:', response.ok);
+          // DEBUG: console.log('📡 Response headers:', [...response.headers.entries()]);
 
           if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
           }
 
           const data = await response.json();
-          console.log('✅ Response data:', data);
+          // DEBUG: console.log('✅ Response data:', data);
 
           resultDiv.innerHTML =
             `<div class="success">✅ SUCCESS!</div>\n\n` +

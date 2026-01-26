@@ -11428,7 +11428,7 @@ function loadConversations() {
 
       // Open User Profile
       function openProfile() {
-        console.log('Opening user profile...');
+        // DEBUG: console.log('Opening user profile...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11523,7 +11523,7 @@ function loadConversations() {
 
       // Open My Patients List
       function openMyPatients() {
-        console.log('Opening my patients list...');
+        // DEBUG: console.log('Opening my patients list...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11617,7 +11617,7 @@ function loadConversations() {
 
       // Open Appointments Calendar
       function openAppointments() {
-        console.log('Opening appointments...');
+        // DEBUG: console.log('Opening appointments...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11675,7 +11675,7 @@ function loadConversations() {
 
       // Open Medical Records
       function openMedicalRecords() {
-        console.log('Opening medical records...');
+        // DEBUG: console.log('Opening medical records...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11751,7 +11751,7 @@ function loadConversations() {
 
       // Open Work Schedule
       function openSchedule() {
-        console.log('Opening work schedule...');
+        // DEBUG: console.log('Opening work schedule...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11824,7 +11824,7 @@ function loadConversations() {
 
       // Open Performance Dashboard
       function openPerformance() {
-        console.log('Opening performance dashboard...');
+        // DEBUG: console.log('Opening performance dashboard...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11893,7 +11893,7 @@ function loadConversations() {
 
       // Open Messages/Inbox
       function openMessages() {
-        console.log('Opening messages...');
+        // DEBUG: console.log('Opening messages...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -11958,7 +11958,7 @@ function loadConversations() {
 
       // Open Settings
       function openSettings() {
-        console.log('Opening settings...');
+        // DEBUG: console.log('Opening settings...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -12043,7 +12043,7 @@ function loadConversations() {
 
       // Open Help & Support
       function openHelp() {
-        console.log('Opening help & support...');
+        // DEBUG: console.log('Opening help & support...');
 
         // Close dropdown
         const dropdown = document.getElementById('userDropdown');
@@ -12113,7 +12113,7 @@ function loadConversations() {
 
       // Logout User
       function logout() {
-        console.log('Logging out user...');
+        // DEBUG: console.log('Logging out user...');
         const confirmed = confirm(
           'Oturumu sonlandırmak istediğinizden emin misiniz?\n\nTüm kaydedilmemiş değişiklikler kaybolacak.'
         );
@@ -13085,7 +13085,7 @@ function loadConversations() {
           document.getElementById('clinicianDashboard').style.display = 'block';
 
           // Update clinician info (if available in UI)
-          console.log('Clinician authenticated:', data.clinician);
+          // DEBUG: console.log('Clinician authenticated:', data.clinician);
 
           button.innerHTML = '✓ Authenticated';
           button.style.background = 'linear-gradient(135deg, #059669, #047857)';
@@ -22540,23 +22540,23 @@ Warfarin 5mg, Ibuprofen 600mg, Lisinopril 10mg, Spironolactone 25mg</textarea
     <script>
       // Initialize Advanced Medical AI Systems
       document.addEventListener('DOMContentLoaded', async function () {
-        console.log('🏥 Initializing Advanced Medical AI Systems...');
+        // DEBUG: console.log('🏥 Initializing Advanced Medical AI Systems...');
 
         try {
           // Initialize Main AI Engine
           if (window.LydianMedicalAI) {
             await window.LydianMedicalAI.initialize();
-            console.log('✅ Lydian Medical AI Engine ready');
+            // DEBUG: console.log('✅ Lydian Medical AI Engine ready');
           }
 
           // Initialize Predictive Analytics
           if (window.PredictiveAnalytics) {
-            console.log('✅ Predictive Analytics Engine ready');
+            // DEBUG: console.log('✅ Predictive Analytics Engine ready');
           }
 
           // Initialize Medical Imaging AI
           if (window.MedicalImagingAI) {
-            console.log('✅ Medical Imaging AI ready');
+            // DEBUG: console.log('✅ Medical Imaging AI ready');
           }
 
           // Display system status
@@ -22568,37 +22568,37 @@ Warfarin 5mg, Ibuprofen 600mg, Lisinopril 10mg, Spironolactone 25mg</textarea
 
       // Display AI System Status
       function displaySystemStatus() {
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log('🏥 LYDIAN MEDICAL AI - SYSTEM STATUS');
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log('✅ Main AI Engine: ONLINE');
-        console.log('✅ Diagnostic Engine: ACTIVE');
-        console.log('✅ Quantum Processor: READY');
-        console.log('✅ Knowledge Graph: 350,000+ concepts');
-        console.log('✅ Monitoring System: REAL-TIME');
-        console.log('✅ Clinical Decision Support: ACTIVE');
-        console.log('✅ Drug Interaction Checker: 20,000+ drugs');
-        console.log('✅ Genomics Engine: READY');
-        console.log('✅ Triage System: ESI Level 1-5');
-        console.log('✅ Predictive Analytics: ACTIVE');
-        console.log('   • Deterioration Prediction: 94% accuracy');
-        console.log('   • Readmission Risk: 91% accuracy');
-        console.log('   • Mortality Prediction: 88% accuracy');
-        console.log('   • Sepsis Prediction: 93% accuracy');
-        console.log('   • AKI Prediction: 89% accuracy');
-        console.log('✅ Medical Imaging AI: ACTIVE');
-        console.log('   • X-Ray Analysis: 97% accuracy');
-        console.log('   • CT Hemorrhage Detection: 95% accuracy');
-        console.log('   • MRI Tumor Detection: 93% accuracy');
-        console.log('   • Pathology Cancer Detection: 96% accuracy');
-        console.log('   • ECG MI Detection: 94% accuracy');
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        console.log('🎯 TARGET ACCURACY: 95%+');
-        console.log('🔬 MODALITIES: X-Ray, CT, MRI, US, Pathology, ECG');
-        console.log('KNOWLEDGE BASE: PubMed (35M), Clinical Trials (400K)');
-        console.log('GENOMICS: Pharmacogenomics, Disease Risk');
-        console.log('⚡ PROCESSING: Real-time multi-modal analysis');
-        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        // DEBUG: console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        // DEBUG: console.log('🏥 LYDIAN MEDICAL AI - SYSTEM STATUS');
+        // DEBUG: console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        // DEBUG: console.log('✅ Main AI Engine: ONLINE');
+        // DEBUG: console.log('✅ Diagnostic Engine: ACTIVE');
+        // DEBUG: console.log('✅ Quantum Processor: READY');
+        // DEBUG: console.log('✅ Knowledge Graph: 350,000+ concepts');
+        // DEBUG: console.log('✅ Monitoring System: REAL-TIME');
+        // DEBUG: console.log('✅ Clinical Decision Support: ACTIVE');
+        // DEBUG: console.log('✅ Drug Interaction Checker: 20,000+ drugs');
+        // DEBUG: console.log('✅ Genomics Engine: READY');
+        // DEBUG: console.log('✅ Triage System: ESI Level 1-5');
+        // DEBUG: console.log('✅ Predictive Analytics: ACTIVE');
+        // DEBUG: console.log('   • Deterioration Prediction: 94% accuracy');
+        // DEBUG: console.log('   • Readmission Risk: 91% accuracy');
+        // DEBUG: console.log('   • Mortality Prediction: 88% accuracy');
+        // DEBUG: console.log('   • Sepsis Prediction: 93% accuracy');
+        // DEBUG: console.log('   • AKI Prediction: 89% accuracy');
+        // DEBUG: console.log('✅ Medical Imaging AI: ACTIVE');
+        // DEBUG: console.log('   • X-Ray Analysis: 97% accuracy');
+        // DEBUG: console.log('   • CT Hemorrhage Detection: 95% accuracy');
+        // DEBUG: console.log('   • MRI Tumor Detection: 93% accuracy');
+        // DEBUG: console.log('   • Pathology Cancer Detection: 96% accuracy');
+        // DEBUG: console.log('   • ECG MI Detection: 94% accuracy');
+        // DEBUG: console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        // DEBUG: console.log('🎯 TARGET ACCURACY: 95%+');
+        // DEBUG: console.log('🔬 MODALITIES: X-Ray, CT, MRI, US, Pathology, ECG');
+        // DEBUG: console.log('KNOWLEDGE BASE: PubMed (35M), Clinical Trials (400K)');
+        // DEBUG: console.log('GENOMICS: Pharmacogenomics, Disease Risk');
+        // DEBUG: console.log('⚡ PROCESSING: Real-time multi-modal analysis');
+        // DEBUG: console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       }
     </script>
 

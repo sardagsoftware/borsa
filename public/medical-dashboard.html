@@ -3931,7 +3931,7 @@
       }
 
       async function loadSectionData(section) {
-        console.log('Loading section:', section);
+        // DEBUG: console.log('Loading section:', section);
 
         switch (section) {
           case 'dashboard':
@@ -3965,7 +3965,7 @@
             loadSettingsData();
             break;
           default:
-            console.log('Section:', section);
+          // DEBUG: console.log('Section:', section);
         }
       }
 
@@ -4654,7 +4654,7 @@
 
       function loadSettingsData() {
         // Settings are loaded from the form inputs
-        console.log('Settings section loaded');
+        // DEBUG: console.log('Settings section loaded');
       }
 
       // Utility functions for buttons
@@ -4805,7 +4805,7 @@
             // Listen for storage changes from Medical Expert
             window.addEventListener('storage', this.handleStorageChange.bind(this));
 
-            console.log('Dashboard Sync Service initialized');
+            // DEBUG: console.log('Dashboard Sync Service initialized');
           } catch (error) {
             console.error('Sync service initialization error:', error);
           }
@@ -4825,7 +4825,7 @@
 
             if (response.ok) {
               const result = await response.json();
-              console.log('System status updated:', result.status);
+              // DEBUG: console.log('System status updated:', result.status);
             }
           } catch (error) {
             console.error('Error updating system status:', error);
@@ -4846,7 +4846,7 @@
 
             if (response.ok) {
               const result = await response.json();
-              console.log('Consultation synced:', result.consultation);
+              // DEBUG: console.log('Consultation synced:', result.consultation);
 
               // Store in localStorage for cross-page access
               this.saveToLocalStorage('lastConsultation', result.consultation);
@@ -4899,7 +4899,7 @@
 
             if (response.ok) {
               const result = await response.json();
-              console.log('Session synced:', result.session);
+              // DEBUG: console.log('Session synced:', result.session);
             }
           } catch (error) {
             console.error('Error syncing session:', error);
@@ -4982,7 +4982,7 @@
 
           // Update recent activities
           if (syncData.activities && syncData.activities.length > 0) {
-            console.log('Recent activities:', syncData.activities.length);
+            // DEBUG: console.log('Recent activities:', syncData.activities.length);
           }
 
           // Store sync timestamp
@@ -4992,7 +4992,7 @@
         // Handle localStorage changes from Medical Expert
         handleStorageChange(event) {
           if (event.key === 'medicalExpertConsultation') {
-            console.log('New consultation from Medical Expert:', event.newValue);
+            // DEBUG: console.log('New consultation from Medical Expert:', event.newValue);
 
             try {
               const consultationData = JSON.parse(event.newValue);
@@ -5003,7 +5003,7 @@
           }
 
           if (event.key === 'medicalExpertActivity') {
-            console.log('New activity from Medical Expert:', event.newValue);
+            // DEBUG: console.log('New activity from Medical Expert:', event.newValue);
 
             try {
               const activityData = JSON.parse(event.newValue);
@@ -5085,7 +5085,7 @@
             this.ws = new WebSocket(wsUrl);
 
             this.ws.onopen = () => {
-              console.log('WebSocket connected');
+              // DEBUG: console.log('WebSocket connected');
               this.isConnecting = false;
               this.updateStatus('connected', 'Connected');
               this.subscribe();
@@ -5106,7 +5106,7 @@
             };
 
             this.ws.onclose = () => {
-              console.log('WebSocket disconnected');
+              // DEBUG: console.log('WebSocket disconnected');
               this.isConnecting = false;
               this.updateStatus('disconnected', 'Disconnected');
 
@@ -5138,7 +5138,7 @@
             room: 'consultations',
           });
 
-          console.log('Subscribed to WebSocket rooms');
+          // DEBUG: console.log('Subscribed to WebSocket rooms');
         }
 
         send(data) {
@@ -5148,7 +5148,7 @@
         }
 
         handleMessage(message) {
-          console.log('WebSocket message received:', message);
+          // DEBUG: console.log('WebSocket message received:', message);
 
           switch (message.type) {
             case 'dashboard_update':
@@ -5164,12 +5164,12 @@
               this.handleUserActivity(message.data);
               break;
             default:
-              console.log('Unknown message type:', message.type);
+            // DEBUG: console.log('Unknown message type:', message.type);
           }
         }
 
         handleDashboardUpdate(data) {
-          console.log('Dashboard update:', data);
+          // DEBUG: console.log('Dashboard update:', data);
 
           // Update dashboard stats in real-time
           if (data.stats) {
@@ -5185,7 +5185,7 @@
         }
 
         handleConsultationUpdate(data) {
-          console.log('Consultation update:', data);
+          // DEBUG: console.log('Consultation update:', data);
 
           // Reload consultations section if visible
           const consultationsSection = document.getElementById('consultations-section');
@@ -5197,7 +5197,7 @@
         }
 
         handleSystemAlert(data) {
-          console.log('System alert:', data);
+          // DEBUG: console.log('System alert:', data);
 
           // Show critical alerts as toast notifications
           const severity = data.severity || 'warning';
@@ -5214,7 +5214,7 @@
         }
 
         handleUserActivity(data) {
-          console.log('User activity:', data);
+          // DEBUG: console.log('User activity:', data);
           // Update activity feed if on dashboard
         }
 
@@ -5271,7 +5271,7 @@
 
           if (response.ok) {
             const result = await response.json();
-            console.log('Email notification sent:', result);
+            // DEBUG: console.log('Email notification sent:', result);
             showToast('Email notification sent successfully', 'success');
             return result;
           } else {
@@ -5707,7 +5707,7 @@
 
       function changeSpecialty(specialty) {
         medicalExpertState.currentSpecialty = specialty;
-        console.log('Specialty changed to:', specialty);
+        // DEBUG: console.log('Specialty changed to:', specialty);
       }
 
       async function sendChatMessage() {

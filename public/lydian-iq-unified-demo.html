@@ -1354,7 +1354,7 @@
 
         // Recognize intent locally to determine domain
         const localIntent = recognizeIntent(text);
-        console.log('🧠 Local Intent Recognition:', localIntent);
+        // DEBUG: console.log('🧠 Local Intent Recognition:', localIntent);
 
         // Map intent to Lydian-IQ domain
         let domain = 'strategy'; // Default
@@ -1389,7 +1389,7 @@
           }
 
           const data = await response.json();
-          console.log('✅ Lydian-IQ Response:', data);
+          // DEBUG: console.log('✅ Lydian-IQ Response:', data);
 
           // Remove loading
           const lastMessage = messages.lastElementChild;

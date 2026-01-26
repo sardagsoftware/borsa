@@ -902,7 +902,7 @@
                   const data = await response.json();
                   this.updateMetrics(data);
               } catch (error) {
-                  console.log('Analytics data loading failed:', error);
+                  // DEBUG: console.log('Analytics data loading failed:', error);
                   this.loadMockData();
               }
           }

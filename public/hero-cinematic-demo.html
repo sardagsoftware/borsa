@@ -808,7 +808,7 @@
         const sceneIndex = event.detail.sceneIndex + 1;
         document.getElementById('sceneValue').textContent = `${sceneIndex}/6`;
 
-        console.log(`🎬 ${event.detail.sceneName}`);
+        // DEBUG: // DEBUG: console.log(`🎬 ${event.detail.sceneName}`);
       });
 
       // Update status on play/pause
@@ -827,9 +827,9 @@
 
       // Performance monitoring
       if (window.ailydianCinematic) {
-        console.log('🎬 Cinematic experience loaded successfully');
-        console.log('   Use Space to play/pause');
-        console.log('   Use Arrow keys to navigate scenes');
+        // DEBUG: // DEBUG: console.log('🎬 Cinematic experience loaded successfully');
+        // DEBUG: // DEBUG: console.log('   Use Space to play/pause');
+        // DEBUG: // DEBUG: console.log('   Use Arrow keys to navigate scenes');
       }
 
       // Auto-hide info panel after 10 seconds

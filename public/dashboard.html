@@ -4402,10 +4402,10 @@
           }
         } catch (e) {
           // If token parsing fails, continue anyway (might not be JWT)
-          console.log('Token validation skipped (not JWT format)');
+          // DEBUG: console.log('Token validation skipped (not JWT format)');
         }
 
-        console.log('✅ User authenticated');
+        // DEBUG: console.log('✅ User authenticated');
       })();
 
       // ========== STATE ==========
@@ -4464,10 +4464,10 @@
       // Sidebar toggle
       if (elements.sidebarToggle && elements.sidebar) {
         elements.sidebarToggle.addEventListener('click', () => {
-          console.log('🔘 Sidebar toggle clicked');
+          // DEBUG: console.log('🔘 Sidebar toggle clicked');
           elements.sidebar.classList.toggle('collapsed');
         });
-        console.log('✅ Sidebar toggle listener added');
+        // DEBUG: console.log('✅ Sidebar toggle listener added');
       } else {
         console.error('❌ Sidebar toggle elements not found:', {
           sidebarToggle: !!elements.sidebarToggle,
@@ -4477,19 +4477,19 @@
 
       if (elements.sidebarOpenBtn && elements.sidebar) {
         elements.sidebarOpenBtn.addEventListener('click', () => {
-          console.log('📂 Sidebar open clicked');
+          // DEBUG: console.log('📂 Sidebar open clicked');
           elements.sidebar.classList.remove('collapsed');
         });
-        console.log('✅ Sidebar open listener added');
+        // DEBUG: console.log('✅ Sidebar open listener added');
       }
 
       // New chat
       if (elements.newChatBtn) {
         elements.newChatBtn.addEventListener('click', () => {
-          console.log('🆕 New chat button clicked');
+          // DEBUG: console.log('🆕 New chat button clicked');
           startNewChat();
         });
-        console.log('✅ New chat listener added');
+        // DEBUG: console.log('✅ New chat listener added');
       } else {
         console.error('❌ New chat button not found');
       }
@@ -5059,7 +5059,7 @@
               try {
                 const audio = new Audio(data.audioData);
                 audio.play();
-                console.log('🔊 Azure AI Speech audio playing...');
+                // DEBUG: console.log('🔊 Azure AI Speech audio playing...');
               } catch (e) {
                 console.error('Voice playback failed:', e);
               }
@@ -5460,7 +5460,7 @@
         if (themeName !== 'dark') {
           document.body.setAttribute('data-theme', themeName);
         }
-        console.log('🎨 Tema değiştirildi:', themeName);
+        // DEBUG: console.log('🎨 Tema değiştirildi:', themeName);
       }
 
       function updateActiveThemeOption() {
@@ -5620,7 +5620,7 @@
 
           if (data.success && data.response) {
             addMessage('assistant', data.response);
-            console.log('🔄 Message regenerated successfully');
+            // DEBUG: console.log('🔄 Message regenerated successfully');
           } else {
             throw new Error('Invalid response from API');
           }
@@ -5638,7 +5638,7 @@
       const userMenuBtn = document.getElementById('userMenuBtn');
       const userDropdown = document.getElementById('userDropdown');
 
-      console.log('🔍 User menu elements:', {
+      // DEBUG: console.log('🔍 User menu elements:', {
         userMenuBtn: !!userMenuBtn,
         userDropdown: !!userDropdown,
       });
@@ -5646,7 +5646,7 @@
       if (userMenuBtn && userDropdown) {
         userMenuBtn.addEventListener('click', e => {
           e.stopPropagation();
-          console.log('👤 User menu clicked');
+          // DEBUG: console.log('👤 User menu clicked');
           userDropdown.classList.toggle('active');
           userMenuBtn.classList.toggle('active');
         });
@@ -5658,7 +5658,7 @@
             userMenuBtn.classList.remove('active');
           }
         });
-        console.log('✅ User menu listener added');
+        // DEBUG: console.log('✅ User menu listener added');
       } else {
         console.error('❌ User menu elements not found');
       }
@@ -5740,7 +5740,7 @@
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('lydian_user');
 
-            console.log('🔓 User logged out');
+            // DEBUG: console.log('🔓 User logged out');
 
             // Redirect to login
             window.location.href = '/auth.html';
@@ -5761,7 +5761,7 @@
           }
         });
 
-        console.log('🚀 LyDian Quantum Chat initialized');
+        // DEBUG: console.log('🚀 LyDian Quantum Chat initialized');
       });
 
       function addChatToHistory(chatData) {
@@ -5823,7 +5823,7 @@
           addChatToHistory(chatData);
         }
 
-        console.log('💾 Chat saved:', state.currentChatId);
+        // DEBUG: console.log('💾 Chat saved:', state.currentChatId);
       }
 
       // Delete chat from history
@@ -5848,7 +5848,7 @@
           const updatedChats = savedChats.filter(chat => chat.id !== chatId);
           localStorage.setItem('chatHistory', JSON.stringify(updatedChats));
 
-          console.log('🗑️ Chat deleted:', chatId);
+          // DEBUG: console.log('🗑️ Chat deleted:', chatId);
         }
       };
 
@@ -5885,7 +5885,7 @@
 
         // If user is logged in, don't start timer
         if (isUserLoggedIn) {
-          console.log('✅ User is logged in - no timer needed');
+          // DEBUG: console.log('✅ User is logged in - no timer needed');
           return;
         }
 
@@ -5896,7 +5896,7 @@
         if (!timerStartTime) {
           // First time visiting chat page - set start time
           localStorage.setItem('guestChatStartTime', currentTime.toString());
-          console.log('⏰ Guest timer started - 5 minutes remaining');
+          // DEBUG: console.log('⏰ Guest timer started - 5 minutes remaining');
         }
 
         // Create timer UI element with modern animated hourglass
@@ -5988,7 +5988,7 @@
 
         // If time is already up, redirect immediately
         if (remainingTime <= 0) {
-          console.log('⏰ Guest time expired - redirecting to auth page');
+          // DEBUG: console.log('⏰ Guest time expired - redirecting to auth page');
           alert(
             '5 dakikalık ücretsiz deneme süreniz doldu. Devam etmek için lütfen giriş yapın veya kayıt olun.'
           );
@@ -5996,7 +5996,7 @@
           return;
         }
 
-        console.log(`⏰ Guest timer - ${Math.floor(remainingTime / 1000)} seconds remaining`);
+        // DEBUG: console.log(`⏰ Guest timer - ${Math.floor(remainingTime / 1000)} seconds remaining`);
       })();
     </script>
 

@@ -673,7 +673,7 @@
           await updateStats();
           await loadRecentTransactions();
 
-          console.log('✓ ECW Demo initialized');
+          // DEBUG: console.log('✓ ECW Demo initialized');
         } catch (error) {
           console.error('Initialization error:', error);
           addChatMessage('system', "ECW API not available. Make sure it's running on port 3210.");

@@ -1275,7 +1275,7 @@
             // Page Load Time
             window.addEventListener('load', () => {
               const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-              console.log('Page Load Time:', loadTime + 'ms');
+              // DEBUG: console.log('Page Load Time:', loadTime + 'ms');
 
               // Send to analytics if available
               if (typeof gtag !== 'undefined') {
@@ -1291,7 +1291,7 @@
                 const entries = list.getEntries();
                 entries.forEach(entry => {
                   if (entry.name === 'first-contentful-paint') {
-                    console.log('FCP:', entry.startTime + 'ms');
+                    // DEBUG: console.log('FCP:', entry.startTime + 'ms');
                   }
                 });
               });
@@ -1318,7 +1318,7 @@
             // Set up periodic status updates
             setInterval(() => this.updateSystemStatus(), 30000);
 
-            console.log('🚀 LyDian Enterprise Platform initialized successfully');
+            // DEBUG: console.log('🚀 LyDian Enterprise Platform initialized successfully');
           } catch (error) {
             console.error('Initialization failed:', error);
           }
@@ -1337,7 +1337,7 @@
         window.addEventListener('load', async () => {
           try {
             await navigator.serviceWorker.register('/sw.js');
-            console.log('Service Worker registered successfully');
+            // DEBUG: console.log('Service Worker registered successfully');
           } catch (error) {
             console.warn('Service Worker registration failed:', error);
           }

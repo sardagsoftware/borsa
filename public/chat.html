@@ -4481,10 +4481,10 @@
       // Sidebar toggle
       if (elements.sidebarToggle && elements.sidebar) {
         elements.sidebarToggle.addEventListener('click', () => {
-          console.log('🔘 Sidebar toggle clicked');
+          // DEBUG: console.log('🔘 Sidebar toggle clicked');
           elements.sidebar.classList.toggle('collapsed');
         });
-        console.log('✅ Sidebar toggle listener added');
+        // DEBUG: console.log('✅ Sidebar toggle listener added');
       } else {
         console.error('❌ Sidebar toggle elements not found:', {
           sidebarToggle: !!elements.sidebarToggle,
@@ -4494,19 +4494,19 @@
 
       if (elements.sidebarOpenBtn && elements.sidebar) {
         elements.sidebarOpenBtn.addEventListener('click', () => {
-          console.log('📂 Sidebar open clicked');
+          // DEBUG: console.log('📂 Sidebar open clicked');
           elements.sidebar.classList.remove('collapsed');
         });
-        console.log('✅ Sidebar open listener added');
+        // DEBUG: console.log('✅ Sidebar open listener added');
       }
 
       // New chat
       if (elements.newChatBtn) {
         elements.newChatBtn.addEventListener('click', () => {
-          console.log('🆕 New chat button clicked');
+          // DEBUG: console.log('🆕 New chat button clicked');
           startNewChat();
         });
-        console.log('✅ New chat listener added');
+        // DEBUG: console.log('✅ New chat listener added');
       } else {
         console.error('❌ New chat button not found');
       }
@@ -5076,7 +5076,7 @@
               try {
                 const audio = new Audio(data.audioData);
                 audio.play();
-                console.log('🔊 Azure AI Speech audio playing...');
+                // DEBUG: console.log('🔊 Azure AI Speech audio playing...');
               } catch (e) {
                 console.error('Voice playback failed:', e);
               }
@@ -5477,7 +5477,7 @@
         if (themeName !== 'dark') {
           document.body.setAttribute('data-theme', themeName);
         }
-        console.log('🎨 Tema değiştirildi:', themeName);
+        // DEBUG: console.log('🎨 Tema değiştirildi:', themeName);
       }
 
       function updateActiveThemeOption() {
@@ -5637,7 +5637,7 @@
 
           if (data.success && data.response) {
             addMessage('assistant', data.response);
-            console.log('🔄 Message regenerated successfully');
+            // DEBUG: console.log('🔄 Message regenerated successfully');
           } else {
             throw new Error('Invalid response from API');
           }
@@ -5655,7 +5655,7 @@
       const userMenuBtn = document.getElementById('userMenuBtn');
       const userDropdown = document.getElementById('userDropdown');
 
-      console.log('🔍 User menu elements:', {
+      // DEBUG: console.log('🔍 User menu elements:', {
         userMenuBtn: !!userMenuBtn,
         userDropdown: !!userDropdown,
       });
@@ -5663,7 +5663,7 @@
       if (userMenuBtn && userDropdown) {
         userMenuBtn.addEventListener('click', e => {
           e.stopPropagation();
-          console.log('👤 User menu clicked');
+          // DEBUG: console.log('👤 User menu clicked');
           userDropdown.classList.toggle('active');
           userMenuBtn.classList.toggle('active');
         });
@@ -5675,7 +5675,7 @@
             userMenuBtn.classList.remove('active');
           }
         });
-        console.log('✅ User menu listener added');
+        // DEBUG: console.log('✅ User menu listener added');
       } else {
         console.error('❌ User menu elements not found');
       }
@@ -5760,7 +5760,7 @@
           }
         });
 
-        console.log('🚀 LyDian Quantum Chat initialized');
+        // DEBUG: console.log('🚀 LyDian Quantum Chat initialized');
       });
 
       function addChatToHistory(chatData) {
@@ -5822,7 +5822,7 @@
           addChatToHistory(chatData);
         }
 
-        console.log('💾 Chat saved:', state.currentChatId);
+        // DEBUG: console.log('💾 Chat saved:', state.currentChatId);
       }
 
       // Delete chat from history
@@ -5847,7 +5847,7 @@
           const updatedChats = savedChats.filter(chat => chat.id !== chatId);
           localStorage.setItem('chatHistory', JSON.stringify(updatedChats));
 
-          console.log('🗑️ Chat deleted:', chatId);
+          // DEBUG: console.log('🗑️ Chat deleted:', chatId);
         }
       };
 
@@ -5872,7 +5872,7 @@
       // User requested: Remove 5-minute limit, make chat unlimited
       // ============================================================
       (async function initGuestTimer() {
-        console.log('✅ Guest chat timer DISABLED - unlimited access enabled');
+        // DEBUG: console.log('✅ Guest chat timer DISABLED - unlimited access enabled');
 
         // Clear any existing timer data from localStorage
         localStorage.removeItem('guestChatStartTime');
@@ -5970,7 +5970,7 @@
 
         // If time is already up, redirect immediately
         if (remainingTime <= 0) {
-          console.log('⏰ Guest time expired - redirecting to auth page');
+          // DEBUG: console.log('⏰ Guest time expired - redirecting to auth page');
           alert(
             '5 dakikalık ücretsiz deneme süreniz doldu. Devam etmek için lütfen giriş yapın veya kayıt olun.'
           );
@@ -5978,7 +5978,7 @@
           return;
         }
 
-        console.log(`⏰ Guest timer - ${Math.floor(remainingTime / 1000)} seconds remaining`);
+        // DEBUG: console.log(`⏰ Guest timer - ${Math.floor(remainingTime / 1000)} seconds remaining`);
       })();
     </script>
 

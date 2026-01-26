@@ -1774,7 +1774,7 @@
           return;
         }
 
-        console.log('🚗 Initializing Urban Mobility Charts...');
+        // DEBUG: console.log('🚗 Initializing Urban Mobility Charts...');
 
         try {
           // Fetch traffic data from Civic API
@@ -1839,7 +1839,7 @@
           // Start real-time updates
           window.CivicCharts.startRealTimeUpdates('trafficTrendChart', '/traffic/realtime', 30000);
 
-          console.log('✅ Urban Mobility charts initialized successfully');
+          // DEBUG: console.log('✅ Urban Mobility charts initialized successfully');
         } catch (error) {
           console.error('Error initializing traffic charts:', error);
         }

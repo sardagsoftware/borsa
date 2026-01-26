@@ -695,11 +695,11 @@
             cache: 'no-cache',
           })
             .then(() => {
-              console.log('✅ Connection restored');
+              // DEBUG: console.log('✅ Connection restored');
               updateConnectionStatus();
             })
             .catch(() => {
-              console.log('❌ Still offline');
+              // DEBUG: console.log('❌ Still offline');
             });
         }
       }, 5000);

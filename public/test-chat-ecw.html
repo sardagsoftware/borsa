@@ -476,7 +476,7 @@
 
       // Test 1: ECW Integration
       async function testECWIntegration() {
-        console.log('Starting ECW Integration Test...');
+        // DEBUG: // DEBUG: console.log('Starting ECW Integration Test...');
 
         try {
           if (typeof window.ecwIntegration === 'undefined') {
@@ -507,7 +507,7 @@
 
       // Test 2: ECW Widget
       async function testECWWidget() {
-        console.log('Starting ECW Widget Test...');
+        // DEBUG: // DEBUG: console.log('Starting ECW Widget Test...');
 
         try {
           if (typeof window.ecwWidget === 'undefined') {
@@ -531,7 +531,7 @@
 
       // Test 3: Chat.html Yüklenme
       async function testChatHTML() {
-        console.log('Starting Chat.html Load Test...');
+        // DEBUG: // DEBUG: console.log('Starting Chat.html Load Test...');
 
         try {
           const response = await fetch('/chat.html');
@@ -591,8 +591,8 @@
 
       // Auto-run on load
       window.addEventListener('DOMContentLoaded', async () => {
-        console.log('✓ Test page loaded');
-        console.log('Waiting for ECW scripts...');
+        // DEBUG: // DEBUG: console.log('✓ Test page loaded');
+        // DEBUG: // DEBUG: console.log('Waiting for ECW scripts...');
 
         // Wait a bit for scripts to load
         setTimeout(async () => {

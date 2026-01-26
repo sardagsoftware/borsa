@@ -1894,7 +1894,7 @@
             // 4. Make available globally
             window.i18n = i18n;
 
-            console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
+            // DEBUG: console.log('✅ i18n system initialized:', i18n.getCurrentLocale());
           }
         } catch (error) {
           console.warn('⚠️ i18n initialization failed:', error);
@@ -1919,7 +1919,7 @@
               // URL'yi güncelle (sayfa yenilemeden)
               history.pushState(null, null, '#' + targetId);
 
-              console.log('✅ Scrolled to:', targetId);
+              // DEBUG: console.log('✅ Scrolled to:', targetId);
             }
           });
         });
@@ -1947,7 +1947,7 @@
           });
         }
 
-        console.log('✅ AI Ops Center initialized');
+        // DEBUG: console.log('✅ AI Ops Center initialized');
 
         // Premium ikonları yükle
         if (window.PremiumIcons) {
@@ -1972,7 +1972,7 @@
               if (sectionId === 'compliance') icon.innerHTML = PremiumIcons.clipboard;
             });
 
-            console.log('✅ Premium icons loaded');
+            // DEBUG: console.log('✅ Premium icons loaded');
           }, 100);
         }
 
@@ -1980,7 +1980,7 @@
         if (window.opsLoader) {
           // Lazy loading aktif et
           window.opsLoader.setupLazyLoading();
-          console.log('✅ Lazy loading enabled');
+          // DEBUG: console.log('✅ Lazy loading enabled');
         }
       });
     </script>

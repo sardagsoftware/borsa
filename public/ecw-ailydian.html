@@ -964,7 +964,7 @@
           await updateStats();
           await loadRecentTransactions();
 
-          console.log('✓ ECW Integration ready');
+          // DEBUG: console.log('✓ ECW Integration ready');
         } catch (error) {
           console.error('Init error:', error);
           document.getElementById('chatMessages').innerHTML =

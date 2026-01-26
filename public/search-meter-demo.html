@@ -626,13 +626,13 @@
         // Show metrics display
         metricsDisplay.style.display = 'block';
 
-        console.log('[Demo] Metrics updated:', event.detail);
+        // DEBUG: console.log('[Demo] Metrics updated:', event.detail);
       });
 
       searchInput.addEventListener('search-meter-submit', event => {
         const { prompt, metrics } = event.detail;
 
-        console.log('[Demo] Search submitted:', { prompt, metrics });
+        // DEBUG: console.log('[Demo] Search submitted:', { prompt, metrics });
 
         // Here you would trigger actual search
         // Example: window.location.href = `/search?q=${encodeURIComponent(prompt)}`;
