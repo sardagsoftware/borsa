@@ -79,6 +79,35 @@
         border-radius: 16px;
         padding: 2rem;
         text-align: center;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      /* Custom scrollbar for auth card */
+      .auth-card::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .auth-card::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+      }
+
+      .auth-card::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        transition: background 0.2s ease;
+      }
+
+      .auth-card::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Firefox scrollbar */
+      .auth-card {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
       }
 
       h1 {
