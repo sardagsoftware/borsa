@@ -220,6 +220,73 @@
         border-color: #dc2626;
       }
 
+      .email-input-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      .email-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(30, 30, 30, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .email-suggestion-item {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .email-suggestion-item:last-child {
+        border-bottom: none;
+      }
+
+      .email-suggestion-item:hover {
+        background: rgba(0, 224, 174, 0.1);
+        color: #00e0ae;
+      }
+
+      .email-suggestion-item .icon {
+        font-size: 1.25rem;
+      }
+
+      .suggestion-hint {
+        color: #00e0ae;
+        font-size: 0.8125rem;
+        text-align: left;
+        margin-top: -0.5rem;
+        background: rgba(0, 224, 174, 0.1);
+        padding: 0.5rem;
+        border-radius: 4px;
+        border-left: 3px solid #00e0ae;
+        animation: slideIn 0.3s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       .error-message {
         color: #dc2626;
         font-size: 0.875rem;
@@ -647,15 +714,20 @@
 
           <!-- Email Form -->
           <form class="email-form" id="email-form" onsubmit="handleEmailSubmit(event)">
-            <input
-              type="email"
-              class="form-input"
-              id="email-input"
-              placeholder="E-posta adresi"
-              autocomplete="email"
-              required
-            />
+            <div class="email-input-wrapper">
+              <input
+                type="email"
+                class="form-input"
+                id="email-input"
+                placeholder="E-posta adresi"
+                autocomplete="email"
+                required
+              />
+              <!-- Email Suggestions Dropdown -->
+              <div id="email-suggestions" class="email-suggestions hidden"></div>
+            </div>
             <div id="email-error" class="error-message hidden"></div>
+            <div id="email-suggestion-hint" class="suggestion-hint hidden"></div>
             <button type="submit" class="submit-btn" id="submit-btn">Devam et</button>
           </form>
 
@@ -1221,6 +1293,186 @@
           closeForgotPassword();
         }
       };
+
+      // ========================================
+      // 🚀 PREMIUM EMAIL AUTO-COMPLETE FEATURES
+      // ========================================
+
+      // Common email providers for autocomplete
+      const emailProviders = [
+        'gmail.com',
+        'outlook.com',
+        'hotmail.com',
+        'yahoo.com',
+        'icloud.com',
+        'yandex.com',
+        'yandex.com.tr',
+        'mail.ru',
+        'protonmail.com',
+        'aol.com',
+        'zoho.com',
+      ];
+
+      // Common typos mapping for email domain correction
+      const emailTypos = {
+        'gmial.com': 'gmail.com',
+        'gmai.com': 'gmail.com',
+        'gmil.com': 'gmail.com',
+        'gmal.com': 'gmail.com',
+        'gnail.com': 'gmail.com',
+        'hotmial.com': 'hotmail.com',
+        'hotmai.com': 'hotmail.com',
+        'outlok.com': 'outlook.com',
+        'outloo.com': 'outlook.com',
+        'yahooo.com': 'yahoo.com',
+        'yaho.com': 'yahoo.com',
+        'yhoo.com': 'yahoo.com',
+        'icould.com': 'icloud.com',
+        'iclod.com': 'icloud.com',
+        'yandx.com': 'yandex.com',
+        'yandeks.com': 'yandex.com',
+      };
+
+      let selectedSuggestionIndex = -1;
+
+      // Email input autocomplete handler
+      function setupEmailAutocomplete() {
+        const emailInput = document.getElementById('email-input');
+        const suggestionsDiv = document.getElementById('email-suggestions');
+        const hintDiv = document.getElementById('email-suggestion-hint');
+
+        if (!emailInput || !suggestionsDiv) return;
+
+        // Input event for real-time suggestions
+        emailInput.addEventListener('input', function (e) {
+          const value = e.target.value;
+          const atIndex = value.indexOf('@');
+
+          // Hide suggestions if no @ or email is complete
+          if (atIndex === -1 || value.includes(' ')) {
+            suggestionsDiv.classList.add('hidden');
+            hintDiv.classList.add('hidden');
+            return;
+          }
+
+          const username = value.substring(0, atIndex);
+          const domain = value.substring(atIndex + 1);
+
+          // Check for typos in domain
+          const correctedDomain = emailTypos[domain];
+          if (correctedDomain && domain.length > 3) {
+            const correctedEmail = username + '@' + correctedDomain;
+            hintDiv.innerHTML = `💡 <strong>${sanitizeInput(
+              value
+            )}</strong> yerine <strong>${sanitizeInput(correctedEmail)}</strong> demek istediniz mi?`;
+            hintDiv.classList.remove('hidden');
+            hintDiv.onclick = () => {
+              emailInput.value = correctedEmail;
+              hintDiv.classList.add('hidden');
+              suggestionsDiv.classList.add('hidden');
+              emailInput.focus();
+            };
+          } else {
+            hintDiv.classList.add('hidden');
+          }
+
+          // Show autocomplete suggestions
+          if (username && domain.length > 0 && domain.length < 15) {
+            const matches = emailProviders.filter(provider =>
+              provider.toLowerCase().startsWith(domain.toLowerCase())
+            );
+
+            if (matches.length > 0) {
+              showEmailSuggestions(matches, username, domain);
+            } else {
+              suggestionsDiv.classList.add('hidden');
+            }
+          } else {
+            suggestionsDiv.classList.add('hidden');
+          }
+        });
+
+        // Keyboard navigation for suggestions
+        emailInput.addEventListener('keydown', function (e) {
+          const items = suggestionsDiv.querySelectorAll('.email-suggestion-item');
+          if (items.length === 0) return;
+
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, items.length - 1);
+            updateSuggestionSelection(items);
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
+            updateSuggestionSelection(items);
+          } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
+            e.preventDefault();
+            items[selectedSuggestionIndex].click();
+          } else if (e.key === 'Escape') {
+            suggestionsDiv.classList.add('hidden');
+            hintDiv.classList.add('hidden');
+            selectedSuggestionIndex = -1;
+          }
+        });
+
+        // Close suggestions on outside click
+        document.addEventListener('click', function (e) {
+          if (!emailInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
+            suggestionsDiv.classList.add('hidden');
+            selectedSuggestionIndex = -1;
+          }
+        });
+      }
+
+      function showEmailSuggestions(matches, username, currentDomain) {
+        const suggestionsDiv = document.getElementById('email-suggestions');
+        suggestionsDiv.innerHTML = '';
+        selectedSuggestionIndex = -1;
+
+        matches.slice(0, 5).forEach((provider, index) => {
+          const item = document.createElement('div');
+          item.className = 'email-suggestion-item';
+
+          const icon = document.createElement('span');
+          icon.className = 'icon';
+          icon.textContent = '📧';
+
+          const text = document.createElement('span');
+          const highlightedDomain = provider.replace(
+            new RegExp('^' + currentDomain, 'i'),
+            match => `<strong>${match}</strong>`
+          );
+          text.innerHTML = `${sanitizeInput(username)}@${highlightedDomain}`;
+
+          item.appendChild(icon);
+          item.appendChild(text);
+
+          item.addEventListener('click', () => {
+            document.getElementById('email-input').value = `${username}@${provider}`;
+            suggestionsDiv.classList.add('hidden');
+            document.getElementById('email-input').focus();
+          });
+
+          suggestionsDiv.appendChild(item);
+        });
+
+        suggestionsDiv.classList.remove('hidden');
+      }
+
+      function updateSuggestionSelection(items) {
+        items.forEach((item, index) => {
+          if (index === selectedSuggestionIndex) {
+            item.style.background = 'rgba(0, 224, 174, 0.1)';
+            item.style.color = '#00e0ae';
+          } else {
+            item.style.background = '';
+            item.style.color = '';
+          }
+        });
+      }
+
+      // Initialize email autocomplete on page load
+      window.addEventListener('DOMContentLoaded', setupEmailAutocomplete);
     </script>
   </body>
 </html>
