@@ -315,8 +315,9 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         z-index: 10000;
         align-items: center;
         justify-content: center;
@@ -324,12 +325,15 @@
       }
 
       .modal-content {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 3rem;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 2.5rem;
         border-radius: 16px;
-        max-width: 450px;
+        max-width: 420px;
         width: 100%;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
         animation: modalSlideIn 0.3s ease-out;
       }
 
@@ -346,15 +350,18 @@
 
       .modal h2 {
         font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: #000;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: #ffffff;
+        text-align: center;
       }
 
       .modal p {
-        color: #666;
+        color: #b0b0b0;
         margin-bottom: 1.5rem;
         line-height: 1.6;
+        text-align: center;
+        font-size: 0.9375rem;
       }
 
       .modal-buttons {
@@ -365,7 +372,7 @@
 
       .modal-btn {
         flex: 1;
-        padding: 0.875rem;
+        padding: 0.875rem 1rem;
         border-radius: 8px;
         font-size: 0.9375rem;
         font-weight: 600;
@@ -376,33 +383,38 @@
       }
 
       .modal-btn-primary {
-        background: #000;
-        color: white;
+        background: #00e0ae;
+        color: #000000;
       }
 
       .modal-btn-primary:hover:not(:disabled) {
-        background: #1a1a1a;
+        background: #00ffbe;
+        box-shadow: 0 0 20px rgba(0, 224, 174, 0.5);
+        transform: translateY(-1px);
       }
 
       .modal-btn-secondary {
-        background: white;
-        color: #000;
-        border: 1px solid #e0e0e0;
+        background: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
       }
 
       .modal-btn-secondary:hover {
-        background: #f7f7f7;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
       }
 
       .success-icon {
         width: 80px;
         height: 80px;
-        background: linear-gradient(135deg, #10a37f, rgba(0, 224, 174, 0.8));
+        background: linear-gradient(135deg, #00e0ae, #00ffbe);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto 1.5rem;
+        box-shadow: 0 8px 24px rgba(0, 224, 174, 0.4);
       }
 
       .hidden {
@@ -720,13 +732,13 @@
         <div id="forgot-step-1">
           <h2>Şifrenizi mi unuttunuz?</h2>
           <p>E-posta adresinizi girin, size şifre sıfırlama bağlantısı gönderelim</p>
+          <label for="forgot-email" class="form-label">E-posta</label>
           <input
             type="email"
             class="form-input"
             id="forgot-email"
-            placeholder="E-posta adresi"
+            placeholder="E-posta adresinizi girin"
             autocomplete="email"
-            style="background: rgba(0, 0, 0, 0.05); color: #000"
           />
           <div class="modal-buttons">
             <button class="modal-btn modal-btn-secondary" onclick="closeForgotPassword()">
