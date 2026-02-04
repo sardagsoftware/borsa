@@ -3222,10 +3222,10 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lydianai" />
-    <meta name="twitter:title" content="AI Chat — Çok Modelli Yapay Zeka | OX5C9E2B, AX9F7E2B" />
+    <meta name="twitter:title" content="AI Chat — Çok Modelli Yapay Zeka | LyDian Ultra AI" />
     <meta
       name="twitter:description"
-      content="10+ AI modeli tek platformda. OX5C9E2B, AX9F7E2B 3.5, LyDian Vision Pro, DALL-E 3. Görsel, kod, analiz. Ücretsiz başla ve AI gücünü keşfet."
+      content="10+ AI modeli tek platformda. LyDian Quantum, LyDian Ultra, LyDian Vision Pro. Görsel, kod, analiz. Ücretsiz başla ve AI gücünü keşfet."
     />
     <meta name="twitter:image" content="https://www.ailydian.com/twitter-cards/chat-tr.png" />
 
@@ -3524,22 +3524,22 @@
     <!-- AI Search Optimization -->
     <meta
       name="ai:context"
-      content="AILYDIAN Chat, kullanıcıların Gelişmiş AI-4, Kurumsal AI 3 Opus, ve Yapay Zeka Pro gibi en gelişmiş AI modellerle doğal dilde sohbet etmesini sağlayan ücretsiz platformdur. Türkçe, İngilizce ve 20+ dilde destek sunar."
+      content="AILYDIAN Chat, kullanıcıların LyDian Quantum, LyDian Ultra ve LyDian Vision gibi en gelişmiş AI motorlarıyla doğal dilde sohbet etmesini sağlayan ücretsiz platformdur. Türkçe, İngilizce ve 20+ dilde destek sunar."
     />
     <meta
       name="ai:keywords"
-      content="ai chat, gelişmiş ai türkçe, kurumsal ai türkçe, yapay zeka türkçe, yapay zeka sohbet, ücretsiz ai chat"
+      content="ai chat, lydian ai türkçe, yapay zeka türkçe, yapay zeka sohbet, ücretsiz ai chat"
     />
     <meta name="ai:language" content="tr" />
 
-    <!-- Gelişmiş AI/Kurumsal AI/Perplexity Optimization -->
+    <!-- LyDian AI Optimization -->
     <meta
       name="description:ai"
-      content="AILYDIAN Chat, kullanıcıların Gelişmiş AI-4, Kurumsal AI 3 Opus, ve Yapay Zeka Pro gibi en gelişmiş AI modellerle doğal dilde sohbet etmesini sağlayan ücretsiz platformdur. Türkçe, İngilizce ve 20+ dilde destek sunar."
+      content="AILYDIAN Chat, kullanıcıların LyDian Quantum, LyDian Ultra ve LyDian Vision gibi en gelişmiş AI motorlarıyla doğal dilde sohbet etmesini sağlayan ücretsiz platformdur. Türkçe, İngilizce ve 20+ dilde destek sunar."
     />
     <meta
       name="summary"
-      content="Gelişmiş AI chat deneyimi. Gelişmiş AI-4, Kurumsal AI 3, Yapay Zeka Pro ile Türkçe sohbet edin. Ücretsiz, hızlı ve güvenli yapay zeka sohbet platformu."
+      content="Gelişmiş AI chat deneyimi. LyDian Quantum, LyDian Ultra, LyDian Vision ile Türkçe sohbet edin. Ücretsiz, hızlı ve güvenli yapay zeka sohbet platformu."
     />
 
     <!-- Geo Targeting -->
@@ -4517,34 +4517,42 @@
         console.error('❌ New chat button not found');
       }
 
-      // Message input
-      elements.messageInput.addEventListener('input', e => {
-        // Auto-resize
-        e.target.style.height = 'auto';
-        e.target.style.height = e.target.scrollHeight + 'px';
+      // Message input - with null checks
+      if (elements.messageInput) {
+        elements.messageInput.addEventListener('input', e => {
+          // Auto-resize
+          e.target.style.height = 'auto';
+          e.target.style.height = e.target.scrollHeight + 'px';
 
-        // Update counters
-        const text = e.target.value;
-        const charCount = text.length;
-        const tokenCount = Math.ceil(charCount / 4); // Rough estimate
+          // Update counters
+          const text = e.target.value;
+          const charCount = text.length;
+          const tokenCount = Math.ceil(charCount / 4); // Rough estimate
 
-        if (elements.charCount) elements.charCount.textContent = charCount;
-        if (elements.tokenCount) elements.tokenCount.textContent = tokenCount;
-        if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = tokenCount;
+          if (elements.charCount) elements.charCount.textContent = charCount;
+          if (elements.tokenCount) elements.tokenCount.textContent = tokenCount;
+          if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = tokenCount;
 
-        // Enable/disable send button
-        if (elements.sendBtn) elements.sendBtn.disabled = text.trim().length === 0;
-      });
+          // Enable/disable send button
+          if (elements.sendBtn) elements.sendBtn.disabled = text.trim().length === 0;
+        });
 
-      elements.messageInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          sendMessage();
-        }
-      });
+        elements.messageInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
+      } else {
+        console.error('[CHAT] Message input element not found!');
+      }
 
-      // Send button
-      elements.sendBtn.addEventListener('click', sendMessage);
+      // Send button - with null check
+      if (elements.sendBtn) {
+        elements.sendBtn.addEventListener('click', sendMessage);
+      } else {
+        console.error('[CHAT] Send button element not found!');
+      }
 
       // Theme modal (LEGACY - Theme system removed, keeping for safety)
       if (elements.themeBtn && elements.themeModal && elements.closeThemeModalBtn) {
@@ -4991,16 +4999,25 @@
       // ========== AI RECALL CLIENT ==========
 
       // Initialize AI Recall Client for general chat
-      const recallClient = new RecallClient({
-        domain: 'general',
-        mode: 'hybrid',
-        onModeChange: (status) => {
-          updateChatConnectionStatus(status);
-        },
-        onStatusChange: (status) => {
-          console.log('[AI_CHAT] Status:', status);
+      let recallClient = null;
+      try {
+        if (typeof RecallClient === 'undefined') {
+          throw new Error('RecallClient class not loaded');
         }
-      });
+        recallClient = new RecallClient({
+          domain: 'general',
+          mode: 'hybrid',
+          onModeChange: (status) => {
+            updateChatConnectionStatus(status);
+          },
+          onStatusChange: (status) => {
+            console.log('[AI_CHAT] Status:', status);
+          }
+        });
+        console.log('[AI_CHAT] RecallClient initialized successfully');
+      } catch (initError) {
+        console.error('[AI_CHAT] Failed to initialize RecallClient:', initError);
+      }
 
       function updateChatConnectionStatus(status) {
         const indicator = document.querySelector('.recall-status-indicator');
@@ -5017,8 +5034,17 @@
       // ========== FUNCTIONS ==========
 
       async function sendMessage() {
+        // Null check for messageInput
+        if (!elements.messageInput) {
+          console.error('[CHAT] Cannot send message - input element not found');
+          return;
+        }
+
         const message = elements.messageInput.value.trim();
         if (!message || state.isTyping) return;
+
+        // Set typing state to prevent duplicate sends
+        state.isTyping = true;
 
         // Add user message
         addMessage('user', message);
@@ -5046,7 +5072,12 @@
         const startTime = Date.now();
 
         try {
-          // PURE RAG: Use only RecallClient for all responses
+          // Check if RecallClient is available
+          if (!recallClient) {
+            throw new Error('AI client not initialized');
+          }
+
+          // Use RecallClient for AI responses
           const result = await recallClient.chat(message, {
             domain: state.selectedAiType || 'general',
             language: 'tr-TR',
@@ -5073,12 +5104,17 @@
           } else {
             addMessage('assistant', `⚠️ **Yanıt Alınamadı**\n\n${result.error || 'Lütfen tekrar deneyin.'}`);
           }
+          // Reset typing state on success
+          state.isTyping = false;
         } catch (error) {
+          console.error('[CHAT] Error:', error);
           hideTypingIndicator();
           addMessage(
             'assistant',
             `⚠️ **Bağlantı Hatası**\n\nAI sistemi ile iletişim kurulamadı. Lütfen tekrar deneyin.`
           );
+          // Reset typing state on error
+          state.isTyping = false;
         }
       }
 
@@ -5583,7 +5619,7 @@
               'Content-Language': 'tr',
             },
             body: JSON.stringify({
-              model: 'GX8E2D9A', // LyDian Velocity Engine as primary model
+              model: 'LYDIAN_QUANTUM', // LyDian primary engine
               message: lastUserMessage,
               temperature: 0.9,
               max_tokens: 8000, // Maximum detail

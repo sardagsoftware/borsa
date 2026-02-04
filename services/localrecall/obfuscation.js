@@ -348,7 +348,8 @@ function sanitizeModelNames(text) {
     /claude[- ]?[\d.]*[- ]?(opus|sonnet|haiku)?/gi,
     /gpt[- ]?[\d.]+[- ]?(turbo|vision|mini)?/gi,
     /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano)?/gi,
-    /llama[- ]?[\d.]+/gi,
+    /llama[- ]?[\d.-]+[- ]?\w*/gi,
+    /meta[- ]?llama/gi,
     /mistral[- ]?[\d.]*[- ]?(large|medium|small)?/gi,
     /groq[- ]?\w*/gi,
     /anthropic/gi,
@@ -358,6 +359,8 @@ function sanitizeModelNames(text) {
     /bard/gi,
     /copilot/gi,
     /chatgpt/gi,
+    /qwen[- ]?\d*/gi,
+    /deepseek/gi,
   ];
 
   let sanitized = text;

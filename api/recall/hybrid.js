@@ -1,104 +1,138 @@
-/* global fetch */
+/* global fetch, AbortController */
 /**
  * AILYDIAN Recall Hybrid Mode API
- * Pure RAG-based responses - No external AI models
+ * Real AI responses via secure backend
  *
  * @route POST /api/recall/hybrid
- * @version 2.0.0
+ * @version 3.0.0
  */
 
-const { getInstance, obfuscation, MODES } = require('../../services/localrecall');
+const { obfuscation, MODES } = require('../../services/localrecall');
 
-// Built-in knowledge base for common queries
-const KNOWLEDGE_BASE = {
-  mathematics: {
-    greeting:
-      'Merhaba! Ben LyDian Matematik Asistanı. Size matematik problemlerinde yardımcı olabilirim.',
-    capabilities: [
-      'Temel aritmetik işlemler',
-      'Cebir problemleri',
-      'Geometri hesaplamaları',
-      'Trigonometri',
-      'Diferansiyel ve integral',
-      'İstatistik ve olasılık',
-    ],
-    examples: {
-      algebra: 'Örnek: 2x + 5 = 15 → x = 5',
-      geometry: 'Örnek: Daire alanı = πr²',
-      trigonometry: 'Örnek: sin²θ + cos²θ = 1',
-    },
-  },
-  general: {
-    greeting: 'Merhaba! Ben LyDian Asistanı. Size nasıl yardımcı olabilirim?',
-    capabilities: [
-      'Genel bilgi sorguları',
-      'Metin analizi',
-      'Özet çıkarma',
-      'Çeviri yardımı',
-      'Yazım düzeltme',
-    ],
-  },
-  medical: {
-    greeting:
-      'Merhaba! Ben LyDian Sağlık Asistanı. Genel sağlık bilgileri konusunda yardımcı olabilirim.',
-    disclaimer:
-      '⚠️ Bu bilgiler sadece eğitim amaçlıdır. Tıbbi tavsiye için mutlaka bir sağlık profesyoneline danışın.',
-  },
-  legal: {
-    greeting:
-      'Merhaba! Ben LyDian Hukuk Asistanı. Genel hukuki bilgileri konusunda yardımcı olabilirim.',
-    disclaimer:
-      '⚠️ Bu bilgiler sadece eğitim amaçlıdır. Hukuki tavsiye için mutlaka bir avukata danışın.',
-  },
+// Identity protection instruction
+const IDENTITY_PROTECTION = `
+⚠️ KİMLİK KORUMASI - ÇOK ÖNEMLİ:
+- Sen "LyDian AI" asistanısın. ASLA başka bir AI model adı söyleme.
+- GPT, Claude, Llama, Gemini, Mistral, Groq veya başka model adı ASLA belirtme.
+- Kimliğin sorulduğunda: "Ben LyDian AI asistanıyım" de.
+- Hangi model olduğun sorulduğunda: "LyDian'ın özel geliştirdiği bir AI motoruyum" de.
+- Meta, OpenAI, Anthropic, Google gibi şirket adları ASLA söyleme.
+`;
+
+// System prompts for different domains (Turkish)
+const SYSTEM_PROMPTS = {
+  mathematics: `${IDENTITY_PROTECTION}
+Sen LyDian Matematik Asistanısın. Matematik problemlerini çözmede uzmanlaşmış, Türkçe konuşan bir AI asistansın.
+Görevlerin:
+- Matematik problemlerini adım adım çöz
+- Formülleri açıkla
+- Hesaplamaları doğrula
+- Öğrencilere yardımcı ol
+Her zaman Türkçe yanıt ver. Nazik ve öğretici ol.`,
+
+  general: `${IDENTITY_PROTECTION}
+Sen LyDian AI Asistanısın. Türkçe konuşan, yardımsever ve bilgili bir AI asistansın.
+Görevlerin:
+- Kullanıcı sorularını yanıtla
+- Bilgi sağla
+- Yardımcı ol
+- Sohbet et
+Her zaman Türkçe yanıt ver. Nazik ve yardımsever ol.`,
+
+  medical: `${IDENTITY_PROTECTION}
+Sen LyDian Sağlık Asistanısın. Genel sağlık bilgileri konusunda yardımcı olan bir AI asistansın.
+⚠️ ÖNEMLİ: Tıbbi tavsiye verme. Her zaman profesyonel sağlık hizmeti almayı öner.
+Her zaman Türkçe yanıt ver.`,
+
+  legal: `${IDENTITY_PROTECTION}
+Sen LyDian Hukuk Asistanısın. Genel hukuki bilgiler konusunda yardımcı olan bir AI asistansın.
+⚠️ ÖNEMLİ: Hukuki tavsiye verme. Her zaman avukata danışmayı öner.
+Her zaman Türkçe yanıt ver.`,
+
+  coding: `${IDENTITY_PROTECTION}
+Sen LyDian Kod Asistanısın. Programlama konusunda uzmanlaşmış bir AI asistansın.
+Görevlerin:
+- Kod yazmada yardım et
+- Hataları düzelt
+- Algoritmaları açıkla
+- Best practice'leri öner
+Her zaman Türkçe yanıt ver (kod hariç).`,
 };
 
-// Intelligent response generator
-function generateIntelligentResponse(query, domain, ragContext) {
-  const domainKB = KNOWLEDGE_BASE[domain] || KNOWLEDGE_BASE.general;
-  const queryLower = query.toLowerCase();
+/**
+ * Call AI API (Groq) for real responses
+ */
+async function callAI(userMessage, domain, conversationHistory = []) {
+  const apiKey = process.env.GROQ_API_KEY;
 
-  // Check for greetings
-  if (/^(merhaba|selam|hey|hi|hello)/i.test(queryLower)) {
-    return {
-      response: domainKB.greeting,
-      type: 'greeting',
-    };
+  if (!apiKey) {
+    throw new Error('AI service not configured');
   }
 
-  // Check for capability questions
-  if (/ne yapabilir|neler yapabilir|özellik|yetenek|capability/i.test(queryLower)) {
-    const capabilities = domainKB.capabilities || KNOWLEDGE_BASE.general.capabilities;
-    return {
-      response: `**LyDian ${domain.charAt(0).toUpperCase() + domain.slice(1)} Asistanı Yetenekleri:**\n\n${capabilities.map((c, i) => `${i + 1}. ${c}`).join('\n')}`,
-      type: 'capabilities',
-    };
-  }
+  const systemPrompt = SYSTEM_PROMPTS[domain] || SYSTEM_PROMPTS.general;
 
-  // If RAG context available, use it
-  if (ragContext && ragContext.trim().length > 50) {
-    return {
-      response: `📚 **Bilgi Tabanı Yanıtı**\n\n${ragContext}\n\n---\n_Bu yanıt LyDian bilgi tabanından oluşturulmuştur._`,
-      type: 'rag_response',
-      ragUsed: true,
-    };
-  }
+  // Build messages array
+  const messages = [{ role: 'system', content: systemPrompt }];
 
-  // Domain-specific fallback responses
-  if (domain === 'mathematics') {
-    // Try to detect math expressions
-    if (/[\d+\-*/^=()x²³√∫∑]/.test(query)) {
-      return {
-        response: `📐 **Matematik Sorgusu Algılandı**\n\nSorunuz: ${query}\n\nBu matematik problemini çözmek için daha fazla bağlam bilgisine ihtiyacım var. Lütfen problemi adım adım açıklar mısınız?\n\n**İpucu:** Formüller, bilinmeyen değerler ve beklenen sonuç hakkında detay verirseniz daha iyi yardımcı olabilirim.`,
-        type: 'math_query',
-      };
+  // Add conversation history (last 10 messages)
+  if (conversationHistory && conversationHistory.length > 0) {
+    const recentHistory = conversationHistory.slice(-10);
+    for (const msg of recentHistory) {
+      if (msg.role && msg.content) {
+        messages.push({
+          role: msg.role === 'assistant' ? 'assistant' : 'user',
+          content: msg.content,
+        });
+      }
     }
   }
 
-  // Generic intelligent response
-  return {
-    response: `🤖 **LyDian Yanıtı**\n\nSorunuz: "${query}"\n\nBu konuda size yardımcı olmak istiyorum. Ancak şu anda bilgi tabanımda bu spesifik sorguya doğrudan karşılık gelen bir içerik bulamadım.\n\n**Öneriler:**\n1. Sorunuzu daha spesifik hale getirmeyi deneyin\n2. Farklı anahtar kelimeler kullanın\n3. Konuyu daha küçük parçalara ayırın\n\n_LyDian sürekli öğrenmektedir. Geri bildirimleriniz sistemin gelişmesine yardımcı olur._`,
-    type: 'fallback',
-  };
+  // Add current message
+  messages.push({ role: 'user', content: userMessage });
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+  try {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages,
+        max_tokens: 4096,
+        temperature: 0.7,
+        top_p: 0.9,
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('[AI_API_ERR]', response.status, errorText.substring(0, 200));
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      throw new Error('Invalid API response');
+    }
+
+    return {
+      success: true,
+      response: data.choices[0].message.content,
+      usage: data.usage,
+    };
+  } catch (error) {
+    clearTimeout(timeoutId);
+    throw error;
+  }
 }
 
 module.exports = async function handler(req, res) {
@@ -113,33 +147,18 @@ module.exports = async function handler(req, res) {
 
   // GET - Return current mode and status
   if (req.method === 'GET') {
-    try {
-      const recall = getInstance();
-      const health = await recall.healthCheck();
-      const isOnline = await recall.isOnline();
-
-      return res.status(200).json({
-        success: true,
-        mode: recall.getMode(),
-        status: health.status,
-        isOnline,
-        availableModes: Object.values(MODES),
-        engine: 'AI_RAG_PURE',
-        timestamp: new Date().toISOString(),
-      });
-    } catch (_error) {
-      return res.status(200).json({
-        success: true,
-        mode: 'standalone',
-        status: 'operational',
-        isOnline: true,
-        engine: 'AI_RAG_PURE',
-        timestamp: new Date().toISOString(),
-      });
-    }
+    return res.status(200).json({
+      success: true,
+      mode: 'hybrid',
+      status: 'operational',
+      isOnline: true,
+      availableModes: Object.values(MODES),
+      engine: 'AI_HYBRID_v3',
+      timestamp: new Date().toISOString(),
+    });
   }
 
-  // POST - Process query with pure RAG intelligence
+  // POST - Process query with real AI
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
@@ -148,14 +167,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const {
-      message,
-      query,
-      domain = 'general',
-      preferOffline = false,
-      conversationHistory = [],
-      language = 'tr-TR',
-    } = req.body;
+    const { message, query, domain = 'general', conversationHistory = [] } = req.body;
 
     const userQuery = message || query;
 
@@ -166,72 +178,59 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Sanitize query
+    // Sanitize query (remove any AI model name mentions)
     const sanitizedQuery = obfuscation.sanitizeModelNames(userQuery);
 
-    // Try to get RAG context
-    let ragResult = { results: [], context: null };
-    let ragContext = null;
+    // Get AI response
+    const startTime = Date.now();
+    const aiResult = await callAI(sanitizedQuery, domain, conversationHistory);
+    const responseTime = Date.now() - startTime;
 
-    try {
-      const recall = getInstance();
-      ragResult = await recall.smartSearch(sanitizedQuery, {
-        domain,
-        topK: 5,
-        preferOffline: true, // Always prefer offline for pure RAG
-      });
-      ragContext = ragResult.context;
-    } catch (_ragErr) {
-      // RAG service unavailable, continue with built-in knowledge
-    }
+    // Sanitize response (remove any AI model name mentions)
+    const sanitizedResponse = obfuscation.sanitizeModelNames(aiResult.response);
 
-    // Generate intelligent response
-    const intelligentResponse = generateIntelligentResponse(sanitizedQuery, domain, ragContext);
-
-    // Select model code for display (obfuscated)
+    // Get obfuscated model code
     const modelCode = obfuscation.selectOptimalModel({
       domain,
       isOnline: true,
-      preferSpeed: true,
-      preferAccuracy: false,
+      preferSpeed: false,
+      preferAccuracy: true,
     });
 
     const modelConfig = obfuscation.getModel(modelCode);
 
-    // Sanitize response
-    const finalResponse = obfuscation.sanitizeModelNames(intelligentResponse.response);
-
     return res.status(200).json({
       success: true,
-      mode: 'rag_pure',
+      mode: 'hybrid',
       isOnline: true,
       model: {
         code: modelCode,
         tier: modelConfig?.tier || 1,
-        category: 'ai_rag',
+        category: 'ai_hybrid',
       },
-      ragContext: {
-        found: ragResult.results?.length || 0,
-        collection: ragResult.collection || domain,
-        used: intelligentResponse.ragUsed || false,
-      },
-      response: finalResponse,
-      responseType: intelligentResponse.type,
-      source: 'ai_rag_engine',
-      engine: 'AI_RAG_PURE_v2',
+      response: sanitizedResponse,
+      responseType: 'ai_response',
+      source: 'ai_engine',
+      engine: 'AI_HYBRID_v3',
+      usage: aiResult.usage
+        ? {
+            promptTokens: aiResult.usage.prompt_tokens,
+            completionTokens: aiResult.usage.completion_tokens,
+          }
+        : null,
+      responseTime: `${(responseTime / 1000).toFixed(2)}s`,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error('[AI_RAG_ERR]', obfuscation.sanitizeModelNames(error.message));
+    console.error('[AI_HYBRID_ERR]', obfuscation.sanitizeModelNames(error.message));
 
-    // Even on error, provide a helpful response
+    // Fallback response on error
     return res.status(200).json({
       success: true,
       mode: 'fallback',
-      response:
-        '🔄 AI sistemi şu anda yoğun talep altında. Lütfen birkaç saniye sonra tekrar deneyin.\n\n_Sistem otomatik olarak yeniden bağlanmaya çalışacaktır._',
+      response: 'Üzgünüm, şu anda yanıt veremiyorum. Lütfen birkaç saniye sonra tekrar deneyin.',
       source: 'ai_fallback',
-      engine: 'AI_RAG_PURE_v2',
+      engine: 'AI_HYBRID_v3',
       timestamp: new Date().toISOString(),
     });
   }
