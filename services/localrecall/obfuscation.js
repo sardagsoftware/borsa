@@ -337,35 +337,108 @@ function decryptFromClient(encrypted) {
 
 /**
  * Sanitize any AI model names from text (for logging)
+ * Comprehensive list covering all major AI models and companies
  * @param {string} text - Text to sanitize
  * @returns {string} Sanitized text
  */
 function sanitizeModelNames(text) {
   if (!text) return text;
 
-  // List of patterns to sanitize (all known AI model names)
+  // Comprehensive list of patterns to sanitize (all known AI model/company names)
   const patterns = [
+    // Anthropic models
     /claude[- ]?[\d.]*[- ]?(opus|sonnet|haiku)?/gi,
-    /gpt[- ]?[\d.]+[- ]?(turbo|vision|mini)?/gi,
-    /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano)?/gi,
-    /llama[- ]?[\d.-]+[- ]?\w*/gi,
-    /meta[- ]?llama/gi,
-    /mistral[- ]?[\d.]*[- ]?(large|medium|small)?/gi,
-    /groq[- ]?\w*/gi,
     /anthropic/gi,
+
+    // OpenAI models
+    /gpt[- ]?[\d.]+[- ]?(turbo|vision|mini|o|preview)?/gi,
+    /chatgpt[- ]?\d*/gi,
     /openai/gi,
+    /davinci[- ]?\d*/gi,
+    /curie/gi,
+    /babbage/gi,
+    /ada/gi,
+    /whisper/gi,
+    /dall[- ]?e[- ]?\d*/gi,
+    /codex/gi,
+    /sora/gi,
+
+    // Google models
+    /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano|flash)?/gi,
     /google[- ]?ai/gi,
     /palm[- ]?[\d]*/gi,
     /bard/gi,
+    /imagen/gi,
+    /veo/gi,
+    /gemma[- ]?\d*/gi,
+
+    // Meta models
+    /llama[- ]?[\d.-]+[- ]?\w*/gi,
+    /meta[- ]?llama/gi,
+    /meta[- ]?ai/gi,
+
+    // Mistral models
+    /mistral[- ]?[\d.]*[- ]?(large|medium|small|nemo)?/gi,
+    /mixtral[- ]?\d*/gi,
+    /pixtral/gi,
+
+    // Groq
+    /groq[- ]?\w*/gi,
+
+    // Microsoft
     /copilot/gi,
-    /chatgpt/gi,
+    /bing[- ]?ai/gi,
+    /phi[- ]?\d*/gi,
+
+    // Other major models
     /qwen[- ]?\d*/gi,
-    /deepseek/gi,
+    /deepseek[- ]?\w*/gi,
+    /cohere/gi,
+    /command[- ]?r/gi,
+    /stable[- ]?diffusion/gi,
+    /midjourney/gi,
+    /perplexity/gi,
+    /yi[- ]?\d+/gi,
+    /falcon[- ]?\d*/gi,
+    /vicuna/gi,
+    /alpaca/gi,
+    /grok[- ]?\d*/gi,
+    /x\.ai/gi,
+    /nvidia[- ]?nemotron/gi,
+
+    // Chinese AI models
+    /baidu/gi,
+    /ernie/gi,
+    /alibaba/gi,
+    /tongyi/gi,
+    /zhipu/gi,
+    /glm[- ]?\d*/gi,
+    /baichuan/gi,
+    /kimi/gi,
+    /moonshot/gi,
+    /01\.ai/gi,
+
+    // Other services
+    /replicate/gi,
+    /hugging\s*face/gi,
+    /together\s*ai/gi,
+    /anyscale/gi,
+    /fireworks\s*ai/gi,
+    /baseten/gi,
+    /modal/gi,
+    /runpod/gi,
+
+    // Company names that reveal AI origin
+    /xai/gi,
+    /inflection/gi,
+    /adept/gi,
+    /character\.ai/gi,
+    /jasper\s*ai/gi,
   ];
 
   let sanitized = text;
   patterns.forEach(pattern => {
-    sanitized = sanitized.replace(pattern, '[AI_ENGINE]');
+    sanitized = sanitized.replace(pattern, 'LyDian AI');
   });
 
   return sanitized;

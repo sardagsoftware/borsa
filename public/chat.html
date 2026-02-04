@@ -1463,6 +1463,61 @@
         font-weight: 400;
       }
 
+      /* 📊 RESPONSE CONFIDENCE BADGE */
+      .response-confidence {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .confidence-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border-radius: 20px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .confidence-badge svg {
+        flex-shrink: 0;
+      }
+
+      .confidence-badge.confidence-high {
+        background: rgba(16, 163, 127, 0.15);
+        border: 1px solid rgba(16, 163, 127, 0.3);
+        color: #10a37f;
+      }
+
+      .confidence-badge.confidence-medium {
+        background: rgba(255, 193, 7, 0.15);
+        border: 1px solid rgba(255, 193, 7, 0.3);
+        color: #ffc107;
+      }
+
+      .confidence-badge.confidence-low {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #ef4444;
+      }
+
+      .research-tip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+        font-weight: 500;
+        background: rgba(139, 92, 246, 0.15);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 16px;
+        color: #a78bfa;
+      }
+
       /* ⚡ Message Actions */
       .message-actions {
         display: flex;
@@ -1736,37 +1791,39 @@
         }
       }
 
-      /* ========== PREMIUM GLASSMORPHISM INPUT (Google Studio Style) ========== */
+      /* ========== PREMIUM CHATGPT-STYLE INPUT ========== */
       .input-wrapper {
-        max-width: 100%;
-        width: calc(100% - 4rem);
+        max-width: 680px;
+        width: calc(100% - 3rem);
         margin: 0 auto;
         /* Dark Glassmorphism effect */
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        border: 2px solid rgba(255, 255, 255, 0.15);
-        border-radius: 24px;
-        padding: 0.5rem 1.5rem;
-        /* Premium multi-layer shadow for dark theme */
+        background: rgba(64, 65, 79, 0.9);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 26px;
+        padding: 0.75rem 1rem;
+        /* Premium shadow */
         box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.3),
-          0 8px 16px rgba(0, 0, 0, 0.4),
-          0 16px 32px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          0 0 0 1px rgba(0, 0, 0, 0.1),
+          0 4px 16px rgba(0, 0, 0, 0.3),
+          0 12px 32px rgba(0, 0, 0, 0.2);
         position: relative;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Flex layout for components */
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
       }
 
       .input-wrapper:focus-within {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(64, 65, 79, 1);
+        border-color: rgba(16, 163, 127, 0.4);
         box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.3),
-          0 8px 16px rgba(0, 0, 0, 0.4),
-          0 16px 32px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
+          0 0 0 1px rgba(16, 163, 127, 0.2),
+          0 4px 16px rgba(0, 0, 0, 0.3),
+          0 12px 32px rgba(0, 0, 0, 0.2),
+          0 0 30px rgba(16, 163, 127, 0.1);
       }
 
       .input-area {
@@ -1781,25 +1838,24 @@
         align-items: flex-end;
       }
 
-      /* ========== GOOGLE STUDIO LAYOUT: AUTO-GROW TEXTAREA ========== */
+      /* ========== CHATGPT-STYLE AUTO-GROW TEXTAREA ========== */
       #messageInput {
         flex: 1;
         background: transparent;
         border: none;
         outline: none;
         color: #ffffff;
-        font-size: 0.95rem;
-        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         line-height: 1.5;
         resize: none;
-        min-height: 42px; /* Compact modern height */
-        max-height: 180px; /* Reduced max height */
-        overflow-y: auto; /* Auto-scroll when max height reached */
+        min-height: 24px;
+        max-height: 200px;
+        overflow-y: auto;
         scrollbar-width: thin;
-        scrollbar-color: #10a37f transparent;
+        scrollbar-color: rgba(16, 163, 127, 0.5) transparent;
         padding: 0.5rem 0;
-        padding-left: 200px; /* More space for icons - avoid overlapping with code icon */
-        padding-right: 0.5rem;
+        padding-right: 120px; /* Space for buttons on right */
       }
 
       #messageInput::placeholder {
@@ -1815,33 +1871,26 @@
         border-radius: 10px;
       }
 
-      /* 🎬 Input Actions - LEFT SIDE OF INPUT, VERTICALLY CENTERED */
+      /* 🎬 Input Actions - RIGHT SIDE, FLEX ALIGNED */
       .input-actions {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 1rem;
         display: flex;
         gap: 0.5rem;
         align-items: center;
         z-index: 60;
         pointer-events: auto;
+        flex-shrink: 0;
       }
 
-      /* 🌟 NEON AI MODE ICONS (Premium Design - Compact, No Border) */
+      /* 🚫 NEON AI MODE ICONS - COMPLETELY HIDDEN */
       .neon-icons-container {
-        display: flex;
-        gap: 0.6rem;
-        align-items: center;
-        background: transparent;
-        padding: 0;
-        border-radius: 0;
-        border: none;
-        backdrop-filter: none;
+        display: none !important;
+        visibility: hidden !important;
       }
 
       /* 🌟 MOBILE ONLY ELEMENTS - Hidden on desktop */
       .mobile-plus-btn,
+      .mobile-plus-container,
+      .mobile-plus-dropdown,
       .mobile-search-btn,
       .mobile-toggle-btn,
       .mobile-logo-toggle,
@@ -1984,64 +2033,109 @@
         transition: all 0.3s;
       }
 
-      /* 🚀 Send Button - GREY-WHITE (No Neon, Absolute Positioned Far Right) */
+      /* 🚀 Send Button - ChatGPT Style */
       #sendBtn {
-        position: absolute;
-        right: 0.75rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 48px;
-        height: 48px;
-        background: rgba(75, 85, 99, 0.6); /* Grey background - semi-transparent */
-        border: 2px solid rgba(255, 255, 255, 0.3); /* White border */
-        border-radius: 12px;
+        width: 36px;
+        height: 36px;
+        background: #10a37f;
+        border: none;
+        border-radius: 8px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: none;
-        z-index: 61;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
       }
 
       #sendBtn:hover {
-        background: rgba(107, 114, 128, 0.8); /* Lighter grey on hover */
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: none;
-        transform: translateY(-50%) scale(1.05);
+        background: #0d8a6a;
+        transform: scale(1.05);
       }
 
       #sendBtn:active {
-        transform: translateY(-50%) scale(0.95);
-        background: rgba(55, 65, 81, 0.8); /* Darker grey on press */
+        transform: scale(0.95);
       }
 
       #sendBtn:disabled {
-        opacity: 0.4;
+        background: rgba(255, 255, 255, 0.1);
         cursor: not-allowed;
-        transform: translateY(-50%);
-        box-shadow: none;
+        transform: none;
+      }
+
+      #sendBtn:disabled svg {
+        fill: rgba(255, 255, 255, 0.3);
       }
 
       #sendBtn svg {
-        width: 24px;
-        height: 24px;
-        fill: #ffffff; /* White icon */
-        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+        width: 18px;
+        height: 18px;
+        fill: #ffffff;
       }
 
-      /* 📊 Input Stats - INSIDE WRAPPER, VERTICALLY CENTERED RIGHT SIDE */
-      .input-stats {
+      /* 🎤 Voice Chat Button - Premium Teal */
+      .voice-chat-btn {
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
         display: flex;
-        gap: 1rem;
         align-items: center;
-        font-size: 0.75rem;
+        justify-content: center;
+        transition: all 0.2s ease;
         color: rgba(255, 255, 255, 0.6);
-        position: absolute;
-        right: 4rem;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 60;
+      }
+
+      .voice-chat-btn:hover {
+        background: rgba(16, 163, 127, 0.2);
+        color: #10a37f;
+      }
+
+      .voice-chat-btn:active {
+        transform: scale(0.95);
+      }
+
+      .voice-chat-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      /* 📁 File Upload Button */
+      .file-upload-btn {
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .file-upload-btn:hover {
+        background: rgba(110, 132, 255, 0.2);
+        color: #6e84ff;
+      }
+
+      .file-upload-btn:active {
+        transform: scale(0.95);
+      }
+
+      .file-upload-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+
+      /* 📊 Input Stats - BELOW INPUT FORM */
+      .input-stats {
+        display: none; /* Hidden on desktop by default - shown above form on mobile */
       }
 
       .char-count {
@@ -2140,6 +2234,182 @@
 
       .modal-close:hover svg {
         fill: #ff6b4a;
+      }
+
+      /* 📤 SHARE MODAL STYLES */
+      .share-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 1rem;
+        animation: fadeIn 0.2s ease;
+      }
+
+      .share-modal {
+        background: rgba(32, 33, 36, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        max-width: 480px;
+        width: 100%;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        animation: slideUp 0.3s ease;
+      }
+
+      .share-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .share-modal-header h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+      }
+
+      .share-modal-close {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 10px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .share-modal-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .share-modal-close svg {
+        fill: rgba(255, 255, 255, 0.7);
+      }
+
+      .share-modal-content {
+        padding: 1.5rem;
+      }
+
+      .share-warning {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        background: rgba(255, 193, 7, 0.1);
+        border: 1px solid rgba(255, 193, 7, 0.3);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+      }
+
+      .share-warning svg {
+        flex-shrink: 0;
+        color: #ffc107;
+      }
+
+      .share-url-box {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .share-url-box input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        color: #fff;
+        font-size: 0.875rem;
+        font-family: 'SF Mono', 'Menlo', monospace;
+      }
+
+      .share-url-box input:focus {
+        outline: none;
+        border-color: #10a37f;
+      }
+
+      .copy-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: rgba(16, 163, 127, 0.2);
+        border: 1px solid rgba(16, 163, 127, 0.4);
+        border-radius: 10px;
+        color: #10a37f;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .copy-btn:hover {
+        background: rgba(16, 163, 127, 0.3);
+      }
+
+      .copy-btn svg {
+        fill: #10a37f;
+      }
+
+      .whatsapp-share-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 1rem 1.5rem;
+        background: #25d366;
+        border: none;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 1rem;
+      }
+
+      .whatsapp-share-btn:hover {
+        background: #22c55e;
+        transform: translateY(-1px);
+      }
+
+      .whatsapp-share-btn svg {
+        fill: #fff;
+      }
+
+      .share-expiry {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .share-expiry svg {
+        stroke: rgba(255, 255, 255, 0.5);
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
 
       /* 🎨 Theme Options */
@@ -2263,11 +2533,14 @@
 
         .chat-header {
           padding: 0.75rem 1rem;
+          padding-left: 140px; /* Space for mobile logo container */
           flex-wrap: nowrap;
           gap: 0.5rem;
-          justify-content: space-between;
-          background: transparent !important; /* Remove any background */
+          justify-content: flex-end;
+          background: transparent !important;
           border: none !important;
+          position: relative;
+          z-index: 100;
         }
 
         .header-left {
@@ -2275,10 +2548,52 @@
         }
 
         .header-actions {
-          gap: 0.5rem;
-          width: 100%;
+          gap: 0.25rem;
+          width: auto;
           justify-content: flex-end;
-          background: transparent !important; /* Remove background on mobile */
+          background: transparent !important;
+          flex-shrink: 0;
+        }
+
+        /* Show download/share icons on mobile with proper styling */
+        .header-btn-icon#downloadBtn,
+        .header-btn-icon#shareBtn {
+          display: flex !important;
+          width: 36px !important;
+          height: 36px !important;
+          padding: 6px !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          border-radius: 10px !important;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .header-btn-icon#downloadBtn:active,
+        .header-btn-icon#shareBtn:active {
+          transform: scale(0.95);
+          background: rgba(16, 163, 127, 0.2) !important;
+        }
+
+        .header-btn-icon#downloadBtn svg,
+        .header-btn-icon#shareBtn svg {
+          width: 18px !important;
+          height: 18px !important;
+        }
+
+        /* Compact recall status on mobile */
+        .recall-status-indicator {
+          padding: 4px 8px !important;
+          font-size: 11px !important;
+        }
+
+        .recall-status-text {
+          display: none !important; /* Hide text, show only dot */
+        }
+
+        .recall-status-dot {
+          width: 8px !important;
+          height: 8px !important;
         }
 
         .header-btn {
@@ -2355,6 +2670,9 @@
           padding: 0.5rem;
           margin: 0;
           width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
         }
 
         .input-container {
@@ -2384,11 +2702,11 @@
 
         #messageInput {
           font-size: 1rem;
-          min-height: 52px;
-          padding: 1rem 60px 1rem 60px !important; /* Space for plus button left, send right */
-          width: 100%;
-          line-height: 1.6;
-          border-radius: 16px;
+          min-height: 44px;
+          padding: 0.75rem 0.5rem !important;
+          flex: 1;
+          line-height: 1.5;
+          border-radius: 12px;
           text-align: left;
         }
 
@@ -2400,12 +2718,18 @@
         }
 
         .input-actions {
-          position: absolute;
-          left: 0.75rem;
-          top: 50%;
-          transform: translateY(-50%);
-          gap: 0.5rem;
-          z-index: 100;
+          position: relative;
+          left: auto;
+          top: auto;
+          transform: none;
+          gap: 0.25rem;
+          z-index: 10;
+          flex-shrink: 0;
+        }
+
+        /* 🚫 Hide non-functional neon icons on mobile */
+        .neon-icons-container {
+          display: none !important;
         }
 
         /* 🎯 MOBILE PLUS BUTTON - Grey tone, no green glow */
@@ -2438,42 +2762,92 @@
           transform: scale(0.95);
         }
 
-        /* 🎯 MOBILE ICONS MENU - Slide up animation */
-        .neon-icons-container {
-          position: absolute;
-          bottom: 60px;
-          left: 0;
+        /* 📱 MOBILE PLUS CONTAINER */
+        .mobile-plus-container {
+          position: relative;
           display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          padding: 0.75rem;
-          background: rgba(11, 15, 25, 0.95);
-          border: 2px solid rgba(16, 163, 127, 0.3);
-          border-radius: 16px;
-          backdrop-filter: blur(20px);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-          opacity: 0;
-          pointer-events: none;
-          transform: translateY(10px);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          z-index: 999;
-        }
-
-        .neon-icons-container.show {
-          opacity: 1;
-          pointer-events: auto;
-          transform: translateY(0);
-        }
-
-        .neon-icon {
-          width: 48px;
-          height: 48px;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 12px;
-          padding: 10px;
+          align-items: center;
           flex-shrink: 0;
+        }
+
+        /* 📋 MOBILE PLUS DROPDOWN */
+        .mobile-plus-dropdown {
+          position: absolute;
+          bottom: calc(100% + 0.5rem);
+          left: 0;
+          background: rgba(32, 33, 36, 0.98);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 16px;
+          padding: 0.5rem;
+          display: none;
+          flex-direction: column;
+          gap: 0.25rem;
+          min-width: 160px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          z-index: 1000;
+          animation: slideUp 0.2s ease-out;
+        }
+
+        .mobile-plus-dropdown.show {
+          display: flex;
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .plus-dropdown-item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.75rem 1rem;
+          background: transparent;
+          border: none;
+          border-radius: 12px;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 0.9rem;
+          font-family: inherit;
+          cursor: pointer;
           transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .plus-dropdown-item:hover,
+        .plus-dropdown-item:active {
+          background: rgba(16, 163, 127, 0.2);
+        }
+
+        .plus-dropdown-item svg {
+          width: 20px;
+          height: 20px;
+          fill: #10a37f;
+          flex-shrink: 0;
+        }
+
+        .plus-dropdown-item span {
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 🚫 COMPLETELY HIDE NEON ICONS ON MOBILE - Not functional */
+        .neon-icons-container,
+        .neon-icons-container.show,
+        .neon-icon {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+          width: 0 !important;
+          height: 0 !important;
+          overflow: hidden !important;
         }
 
         .neon-icon:hover {
@@ -2522,6 +2896,18 @@
 
         .input-stats svg {
           opacity: 0.8 !important;
+        }
+
+        /* 🎤 Voice Chat Button - Mobile optimized */
+        .voice-chat-btn {
+          position: relative !important;
+          right: auto !important;
+          top: auto !important;
+          transform: none !important;
+          width: 44px !important;
+          height: 44px !important;
+          flex-shrink: 0;
+          order: 2;
         }
 
         /* Hide mobile search button */
@@ -2818,13 +3204,34 @@
         }
 
         .chat-header {
-          padding: 0.75rem;
+          padding: 0.5rem 0.75rem;
+          padding-left: 120px; /* Smaller space for mobile logo on small screens */
         }
 
         .header-btn {
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           padding: 0.4rem;
+        }
+
+        /* Even more compact header on small screens */
+        .header-actions {
+          gap: 0.125rem;
+        }
+
+        /* Visitor badge compact on small screens */
+        .visitor-city-badge {
+          padding: 4px 8px !important;
+          font-size: 10px !important;
+          min-height: 36px !important;
+        }
+
+        .visitor-city-text {
+          max-width: 50px !important;
+        }
+
+        .visitor-device-icon {
+          display: none !important;
         }
 
         .messages-container {
@@ -3665,7 +4072,7 @@
         <div class="sidebar-header">
           <button class="sidebar-toggle" id="sidebarToggle">
             <img
-              src="/lydian-logo.png"
+              src="/icons/grape-icon-simple.svg"
               alt="LyDian Logo"
               loading="eager"
               fetchpriority="high"
@@ -3781,7 +4188,7 @@
         <div class="mobile-logo-container">
           <button class="mobile-logo-toggle" id="mobileToggleBtn" title="Menü">
             <img
-              src="/lydian-logo.png"
+              src="/icons/grape-icon-simple.svg"
               alt="LyDian Logo"
               loading="eager"
               width="800"
@@ -4100,160 +4507,86 @@
             </button>
           </div>
 
+          <!-- 📊 MOBILE STATS - Above form on mobile -->
+          <div class="mobile-input-stats" id="mobileInputStats">
+            <span class="stat-item">
+              <span id="mobileCharCount">0</span> karakter
+            </span>
+            <span class="stat-divider">•</span>
+            <span class="stat-item token-highlight">
+              ~<span id="mobileTokenCount">0</span> token
+            </span>
+            <span class="stat-item speed-item" id="mobileSpeedDisplay" style="display: none;">
+              <span class="stat-divider">•</span>
+              <span id="mobileSpeedValue">0</span> t/s
+            </span>
+          </div>
+
+          <!-- 🎯 PREMIUM INPUT WRAPPER -->
           <div class="input-wrapper">
-            <div class="input-area">
-              <div class="input-row">
-                <textarea
-                  id="messageInput"
-                  placeholder="Mesajınızı buraya yazın..."
-                  rows="1"
-                  autocomplete="on"
-                  autocorrect="on"
-                  autocapitalize="sentences"
-                  spellcheck="true"
-                ></textarea>
+            <!-- 📱 Mobile Plus Button (Left side) -->
+            <div class="mobile-plus-container">
+              <button class="mobile-plus-btn" id="mobilePlusBtn" title="Seçenekler">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+              </button>
 
-                <div class="input-actions">
-                  <!-- 🎯 MOBILE PLUS BUTTON -->
-                  <button class="mobile-plus-btn" id="mobilePlusBtn" title="AI Araçları">
-                    <svg viewBox="0 0 24 24" width="24" height="24">
-                      <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-                    </svg>
-                  </button>
-
-                  <!-- 🌟 NEON AI MODE ICONS (Inline) -->
-                  <div class="neon-icons-container">
-                    <button class="neon-icon neon-thinking" id="neonDeepThinkBtn" title="Aktif">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path
-                          d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button class="neon-icon neon-search" id="neonWebSearchBtn" title="Aktif">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button class="neon-icon neon-image" id="neonImageBtn" title="Aktif">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path
-                          d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button class="neon-icon neon-video" id="neonVideoBtn" title="Aktif">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path
-                          d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button class="neon-icon neon-mic" id="neonMicBtn" title="Aktif">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path
-                          d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button class="neon-icon neon-code" id="neonCodeBtn" title="Aktif">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path
-                          d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Hidden file inputs for Google Studio style upload -->
-                  <input type="file" id="imageFileInput" accept="image/*" style="display: none" />
-                  <input type="file" id="videoFileInput" accept="video/*" style="display: none" />
-                </div>
-              </div>
-
-              <div class="input-stats">
-                <span class="char-count">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="14"
-                    height="14"
-                    style="vertical-align: middle; margin-right: 4px"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"
-                    ></path>
+              <!-- 📋 Mobile Plus Dropdown -->
+              <div class="mobile-plus-dropdown" id="mobilePlusDropdown">
+                <button class="plus-dropdown-item" id="plusVoiceBtn">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                   </svg>
-                  <span id="charCount">0</span><span class="count-label"> karakter</span>
-                </span>
-                <span class="token-count">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="14"
-                    height="14"
-                    style="vertical-align: middle; margin-right: 4px"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                    ></path>
+                  <span>Sesli Giriş</span>
+                </button>
+                <button class="plus-dropdown-item" id="plusFileBtn">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
                   </svg>
-                  ~<span id="tokenCount">0</span><span class="count-label"> token</span>
-                </span>
-                <!-- ⚡ Real-time Speed & Token Display (after query) -->
-                <span class="speed-display" id="speedDisplay" style="display: none">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="14"
-                    height="14"
-                    style="vertical-align: middle; margin-right: 4px"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44z"
-                    ></path>
-                    <path
-                      fill="currentColor"
-                      d="M10.59 15.41a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"
-                    ></path>
-                  </svg>
-                  <span id="speedValue">0</span> token/s
-                </span>
-                <span class="response-tokens" id="responseTokens" style="display: none">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="14"
-                    height="14"
-                    style="vertical-align: middle; margin-right: 4px"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"
-                    ></path>
-                  </svg>
-                  <span id="responseTokenValue">0</span> tokens
-                </span>
+                  <span>Dosya Yükle</span>
+                </button>
               </div>
             </div>
 
-            <!-- 🔍 MOBILE SEARCH BUTTON -->
-            <button class="mobile-search-btn" id="mobileSearchBtn" title="Ara">
-              <svg viewBox="0 0 24 24" width="20" height="20">
-                <path
-                  fill="currentColor"
-                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                ></path>
-              </svg>
-            </button>
+            <textarea
+              id="messageInput"
+              placeholder="LyDian'a bir şey sorun..."
+              rows="1"
+              autocomplete="off"
+              autocorrect="on"
+              autocapitalize="sentences"
+              spellcheck="true"
+            ></textarea>
 
-            <!-- 🚀 SEND BUTTON - Grey-White Neon, Far Right Next to Token Counter -->
-            <button id="sendBtn">
-              <svg viewBox="0 0 24 24">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-              </svg>
-            </button>
+            <!-- 🎬 Input Actions - Right side -->
+            <div class="input-actions">
+              <!-- 📁 File Upload Button -->
+              <button class="file-upload-btn" id="fileUploadBtn" title="Dosya Yükle">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="currentColor" d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                </svg>
+              </button>
+
+              <!-- 🎤 Voice Chat Button -->
+              <button class="voice-chat-btn" id="voiceChatBtn" title="Sesli Sohbet">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                  <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
+              </button>
+
+              <!-- 🚀 Send Button -->
+              <button id="sendBtn" disabled>
+                <svg viewBox="0 0 24 24">
+                  <path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Hidden file input -->
+            <input type="file" id="mainFileInput" accept="image/*,.pdf,.doc,.docx,.txt,.md,.csv" style="display: none" />
           </div>
 
           <!-- 📋 LYDIAN AI DISCLAIMER - Professional Corporate Notice -->
@@ -4787,34 +5120,53 @@
         setTimeout(() => ripple.remove(), 600);
       }
 
-      // 🎯 MOBILE PLUS BUTTON - Toggle icon menu
+      // 🎯 MOBILE PLUS BUTTON - Toggle dropdown menu
       const mobilePlusBtn = document.getElementById('mobilePlusBtn');
-      const neonIconsContainer = document.querySelector('.neon-icons-container');
+      const mobilePlusDropdown = document.getElementById('mobilePlusDropdown');
+      const plusVoiceBtn = document.getElementById('plusVoiceBtn');
+      const plusFileBtn = document.getElementById('plusFileBtn');
 
-      if (mobilePlusBtn && neonIconsContainer) {
+      if (mobilePlusBtn && mobilePlusDropdown) {
+        // Toggle dropdown on click
         mobilePlusBtn.addEventListener('click', e => {
           e.stopPropagation();
           mobilePlusBtn.classList.toggle('active');
-          neonIconsContainer.classList.toggle('show');
+          mobilePlusDropdown.classList.toggle('show');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', e => {
-          if (!mobilePlusBtn.contains(e.target) && !neonIconsContainer.contains(e.target)) {
+          if (!mobilePlusBtn.contains(e.target) && !mobilePlusDropdown.contains(e.target)) {
             mobilePlusBtn.classList.remove('active');
-            neonIconsContainer.classList.remove('show');
+            mobilePlusDropdown.classList.remove('show');
           }
         });
 
-        // Close menu after selecting an icon
-        neonIconsContainer.querySelectorAll('.neon-icon').forEach(icon => {
-          icon.addEventListener('click', () => {
-            setTimeout(() => {
-              mobilePlusBtn.classList.remove('active');
-              neonIconsContainer.classList.remove('show');
-            }, 300);
+        // Voice button - trigger voice chat
+        if (plusVoiceBtn) {
+          plusVoiceBtn.addEventListener('click', () => {
+            mobilePlusBtn.classList.remove('active');
+            mobilePlusDropdown.classList.remove('show');
+            // Trigger voice chat
+            const voiceChatBtn = document.getElementById('voiceChatBtn');
+            if (voiceChatBtn) {
+              voiceChatBtn.click();
+            }
           });
-        });
+        }
+
+        // File button - trigger file upload
+        if (plusFileBtn) {
+          plusFileBtn.addEventListener('click', () => {
+            mobilePlusBtn.classList.remove('active');
+            mobilePlusDropdown.classList.remove('show');
+            // Trigger file upload
+            const mainFileInput = document.getElementById('mainFileInput');
+            if (mainFileInput) {
+              mainFileInput.click();
+            }
+          });
+        }
       }
 
       // 🎛️ MOBILE TOGGLE BUTTON & SIDEBAR - Only close functionality
@@ -5137,7 +5489,8 @@
           hideTypingIndicator();
 
           if (result.success || result.response) {
-            addMessage('assistant', result.response);
+            // Pass confidence if available from API
+            addMessage('assistant', result.response, result.confidence || null);
 
             // Save chat after getting response
             saveCurrentChat();
@@ -5175,8 +5528,8 @@
         }
       }
 
-      function addMessage(role, content) {
-        const message = { role, content, timestamp: Date.now() };
+      function addMessage(role, content, confidence = null) {
+        const message = { role, content, timestamp: Date.now(), confidence };
         state.messages.push(message);
 
         // İlk mesaj gönderildiğinde empty state'i gizle
@@ -5202,10 +5555,31 @@
           year: 'numeric',
         });
 
+        // Build confidence badge HTML if available
+        let confidenceBadgeHtml = '';
+        if (role === 'assistant' && confidence) {
+          const levelClass = confidence.level === 'high' ? 'high' : (confidence.level === 'medium' ? 'medium' : 'low');
+          const researchTip = confidence.suggestResearch
+            ? '<span class="research-tip">Araştırma önerilir</span>'
+            : '';
+          confidenceBadgeHtml = `
+            <div class="response-confidence">
+              <span class="confidence-badge confidence-${levelClass}">
+                <svg viewBox="0 0 24 24" width="14" height="14">
+                  <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                %${confidence.percentage} Doğruluk
+              </span>
+              ${researchTip}
+            </div>
+          `;
+        }
+
         messageEl.innerHTML = `
                 <div class="message-avatar">${avatarSvg}</div>
                 <div class="message-content">
                     <div class="message-text">${formatMessage(content)}</div>
+                    ${confidenceBadgeHtml}
                     <div class="message-timestamp">${timeStr} • ${dateStr}</div>
                     ${
                       role === 'assistant'
@@ -5470,31 +5844,115 @@
         showToast(`✅ Sohbet ${format.toUpperCase()} olarak indirildi!`);
       }
 
-      // 🔗 Share conversation
-      function shareConversation() {
+      // 🔗 Share conversation - Secure encrypted share
+      async function shareConversation() {
         if (state.messages.length === 0) {
-          showToast('❌ Paylaşılacak mesaj yok!');
+          showToast('Paylaşılacak mesaj yok', 'warning');
           return;
         }
 
-        const shareText = state.messages.map(m => `[${m.role}]: ${m.content}`).join('\n\n');
+        try {
+          // Show loading
+          showToast('Paylaşım linki oluşturuluyor...', 'info');
 
-        // Try Web Share API first (mobile)
-        if (navigator.share) {
-          navigator
-            .share({
-              title: 'LYDIAN Chat',
-              text: shareText,
+          // Get title from first user message
+          const title = getTitle();
+
+          // Call secure share API
+          const response = await fetch('/api/share/create', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              messages: state.messages,
+              title,
+              expiresIn: '24h',
+              whatsAppOnly: true
             })
-            .then(() => {
-              showToast('✅ Sohbet paylaşıldı!');
-            })
-            .catch(() => {
-              copyToClipboard(shareText);
-            });
-        } else {
-          // Fallback: Copy to clipboard
-          copyToClipboard(shareText);
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            showShareModal(result.shareUrl, result.expiresAt);
+          } else {
+            showToast(result.error || 'Paylaşım başarısız', 'error');
+          }
+        } catch (error) {
+          console.error('[SHARE_ERR]', error);
+          showToast('Paylaşım başarısız. Lütfen tekrar deneyin.', 'error');
+        }
+      }
+
+      // 📤 Show share modal
+      function showShareModal(shareUrl, expiresAt) {
+        // Remove existing modal if any
+        const existingModal = document.getElementById('shareModalOverlay');
+        if (existingModal) existingModal.remove();
+
+        const expiresDate = new Date(expiresAt).toLocaleString('tr-TR');
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent('LyDian AI Sohbet: ' + shareUrl)}`;
+
+        const modal = document.createElement('div');
+        modal.id = 'shareModalOverlay';
+        modal.className = 'share-modal-overlay';
+        modal.innerHTML = `
+          <div class="share-modal">
+            <div class="share-modal-header">
+              <h3>Sohbeti Paylaş</h3>
+              <button class="share-modal-close" onclick="this.closest('.share-modal-overlay').remove()">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="share-modal-content">
+              <div class="share-warning">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <path d="M7 11V7a5 5 0 0110 0v4" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>Bu link sadece WhatsApp üzerinden açılabilir ve 24 saat geçerlidir.</span>
+              </div>
+              <div class="share-url-box">
+                <input type="text" value="${shareUrl}" readonly id="shareUrlInput" />
+                <button class="copy-btn" onclick="copyShareUrl()">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                  </svg>
+                  Kopyala
+                </button>
+              </div>
+              <a href="${whatsappUrl}" class="whatsapp-share-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp ile Paylaş
+              </a>
+              <div class="share-expiry">
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                Link süresi: ${expiresDate}
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Close on overlay click
+        modal.addEventListener('click', e => {
+          if (e.target === modal) modal.remove();
+        });
+      }
+
+      // Copy share URL to clipboard
+      function copyShareUrl() {
+        const input = document.getElementById('shareUrlInput');
+        if (input) {
+          navigator.clipboard.writeText(input.value)
+            .then(() => showToast('Link kopyalandı!', 'success'))
+            .catch(() => showToast('Kopyalama başarısız', 'error'));
         }
       }
 
@@ -6045,5 +6503,9 @@
     <script src="/js/mobile-menu-handler.js"></script>
     <!-- Visitor Location & VPN Detection -->
     <script src="/js/visitor-info.js"></script>
+    <!-- Voice Chat Module -->
+    <script src="/js/voice-chat.js"></script>
+    <!-- File Analyzer Module -->
+    <script src="/js/file-analyzer.js"></script>
   </body>
 </html>

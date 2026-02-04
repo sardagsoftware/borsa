@@ -27,6 +27,61 @@ function checkRateLimit(userId = 'anonymous') {
   return true;
 }
 
+/**
+ * Calculate confidence score for AI response
+ * Based on hedging language, response length, and model tier
+ */
+function calculateConfidence(response, modelCategory) {
+  // Turkish hedging patterns
+  const hedgingPatterns = [
+    /belki/gi, /muhtemelen/gi, /sanırım/gi, /olabilir/gi,
+    /düşünüyorum/gi, /emin değilim/gi, /kesin değil/gi,
+    /tahminimce/gi, /galiba/gi, /zannediyorum/gi,
+    /possibly/gi, /maybe/gi, /perhaps/gi, /uncertain/gi,
+    /might be/gi, /could be/gi, /not sure/gi, /i think/gi,
+    /approximate/gi, /roughly/gi
+  ];
+
+  // Count hedging instances
+  let hedgingCount = 0;
+  hedgingPatterns.forEach(pattern => {
+    const matches = response.match(pattern);
+    if (matches) hedgingCount += matches.length;
+  });
+
+  // Base confidence by model category
+  const baseConfidence = {
+    'ultra': 96,
+    'premium': 93,
+    'standard': 88,
+    'economy': 82,
+    'specialized': 90
+  };
+
+  const base = baseConfidence[modelCategory] || 88;
+
+  // Reduce for hedging (max -25 points)
+  const hedgingPenalty = Math.min(hedgingCount * 4, 25);
+
+  // Response length bonus (longer detailed responses are often more reliable)
+  const lengthBonus = response.length > 500 ? 3 : (response.length > 200 ? 1 : 0);
+
+  // Calculate final confidence (60-99 range)
+  const confidence = Math.max(60, Math.min(99, base - hedgingPenalty + lengthBonus));
+
+  // Determine confidence level
+  let level = 'high';
+  if (confidence < 70) level = 'low';
+  else if (confidence < 82) level = 'medium';
+
+  return {
+    percentage: confidence,
+    level,
+    isUncertain: confidence < 75,
+    suggestResearch: confidence < 70
+  };
+}
+
 // System prompt - multilingual + hidden model names
 const getSystemPrompt = () => {
   return {
@@ -283,6 +338,9 @@ async function handleRequest(req, res) {
         break;
     }
 
+    // Calculate confidence score
+    const confidence = calculateConfidence(result.response, modelConfig.category);
+
     // Return response WITHOUT revealing model name
     res.status(200).json({
       success: true,
@@ -291,6 +349,7 @@ async function handleRequest(req, res) {
       provider: 'Ailydian AI', // Generic provider name
       category: modelConfig.category,
       usage: result.usage,
+      confidence: confidence,
       timestamp: new Date().toISOString()
     });
 
