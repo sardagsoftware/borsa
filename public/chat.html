@@ -5045,143 +5045,39 @@
         // Track start time for speed calculation
         const startTime = Date.now();
 
-        // Call backend API - Use model-specific or specialized endpoint
         try {
-          // First, try to get RAG context from RecallClient
-          let ragContext = null;
-          try {
-            const ragResult = await recallClient.search(message, {
-              domain: state.selectedAiType || 'general',
-              topK: 3,
-              includeContext: true
-            });
-            if (ragResult.success && ragResult.context) {
-              ragContext = ragResult.context;
-            }
-          } catch (ragErr) {
-            // RAG failed silently, continue without context
-          }
-
-          // Clean history: remove timestamp property for API compatibility
-          const cleanHistory = state.messages.slice(-10).map(msg => ({
-            role: msg.role,
-            content: msg.content,
-          }));
-
-          // ALWAYS use specialized endpoint - it handles all models with fallback
-          let apiEndpoint = '/api/chat/specialized';
-          let requestBody = {
-            message: message,
-            aiType: state.selectedAiType,
-            model: state.selectedModel || 'primary',
-            temperature: 0.7,
-            max_tokens: 4000,
-            history: cleanHistory,
-            language: 'tr', // Always Turkish
-            locale: 'tr-TR', // Turkish locale
-          };
-
-          // Add RAG context if available
-          if (ragContext) {
-            requestBody.context = ragContext;
-            requestBody.ragEnhanced = true;
-          }
-
-          const response = await fetch(apiEndpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
+          // PURE RAG: Use only RecallClient for all responses
+          const result = await recallClient.chat(message, {
+            domain: state.selectedAiType || 'general',
+            language: 'tr-TR',
+            preferOffline: false,
           });
 
-          // Silent status check - no model exposure
-
-          if (!response.ok) {
-            const errorText = await response.text();
-            // Generic error - no model/API details exposed
-            throw new Error(`Bağlantı hatası. Lütfen tekrar deneyin.`);
-          }
-
-          const data = await response.json();
           hideTypingIndicator();
 
-          // Extract response from different API formats
-          let aiResponse = '';
-          if (data.response) {
-            aiResponse = data.response;
-          } else if (data.message) {
-            aiResponse = data.message;
-          } else if (data.content) {
-            aiResponse = data.content;
-          } else if (data.choices && data.choices[0]?.message?.content) {
-            aiResponse = data.choices[0].message.content;
-          }
-
-          if (aiResponse) {
-            addMessage('assistant', aiResponse);
-            // Silent success - no model exposure
-
-            // 🎤 VOICE MODE: Play Azure AI Speech audio
-            if (state.selectedAiType === 'voice' && data.audioData) {
-              try {
-                const audio = new Audio(data.audioData);
-                audio.play();
-                // DEBUG: console.log('🔊 Azure AI Speech audio playing...');
-              } catch (e) {
-                console.error('Voice playback failed:', e);
-              }
-              state.selectedAiType = 'general'; // Reset mode
-            }
-
-            // Image and video are now handled by /api/chat/specialized - no extra processing needed
+          if (result.success || result.response) {
+            addMessage('assistant', result.response);
 
             // Save chat after getting response
             saveCurrentChat();
 
-            // Track speed and tokens
-            if (data.usage && data.usage.completion_tokens) {
-              const completionTokens = data.usage.completion_tokens;
-              const totalTime = Date.now() - startTime;
-              const tokensPerSecond = (completionTokens / (totalTime / 1000)).toFixed(1);
+            // Calculate response time
+            const totalTime = Date.now() - startTime;
+            const tokensPerSecond = ((result.response?.length || 100) / 4 / (totalTime / 1000)).toFixed(1);
 
-              // Display speed and tokens
-              if (elements.speedDisplay) {
-                elements.speedDisplay.style.display = 'inline';
-                elements.speedValue.textContent = tokensPerSecond;
-              }
-              if (elements.responseTokens) {
-                elements.responseTokens.style.display = 'inline';
-                elements.responseTokenValue.textContent = completionTokens;
-              }
+            // Display speed
+            if (elements.speedDisplay) {
+              elements.speedDisplay.style.display = 'inline';
+              elements.speedValue.textContent = tokensPerSecond;
             }
           } else {
-            throw new Error('Invalid response from API');
+            addMessage('assistant', `⚠️ **Yanıt Alınamadı**\n\n${result.error || 'Lütfen tekrar deneyin.'}`);
           }
         } catch (error) {
-          // Try offline fallback via RecallClient
-          try {
-            if (!navigator.onLine) {
-              const offlineResult = await recallClient.chat(message, {
-                domain: state.selectedAiType || 'general',
-                preferOffline: true
-              });
-
-              if (offlineResult.response) {
-                hideTypingIndicator();
-                addMessage('assistant', `📴 **Çevrimdışı Yanıt**\n\n${offlineResult.response}`);
-                return;
-              }
-            }
-          } catch (offlineErr) {
-            // Truly failed
-          }
-
-          // Silent error - no technical details exposed
           hideTypingIndicator();
           addMessage(
             'assistant',
-            `⚠️ **Bağlantı Hatası**\n\nSunucu ile iletişim kurulamadı. Lütfen tekrar deneyin.`
+            `⚠️ **Bağlantı Hatası**\n\nLYRA sistemi ile iletişim kurulamadı. Lütfen tekrar deneyin.`
           );
         }
       }

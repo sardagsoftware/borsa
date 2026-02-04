@@ -2787,104 +2787,35 @@
         addTypingIndicator();
 
         try {
-          // First, try RAG-enhanced response via RecallClient
-          const ragResult = await recallClient.search(text, {
-            domain: 'mathematics',
-            topK: 3,
-            includeContext: true,
-          });
-
-          // Build enhanced request with RAG context
-          const requestBody = {
-            problem: text,
+          // PURE RAG: Use only RecallClient for all responses
+          const result = await recallClient.chat(text, {
             domain: 'mathematics',
             language: 'tr-TR',
-            options: {
-              temperature: 0.7,
-              maxTokens: 2000,
-            },
-          };
-
-          // Add RAG context if available
-          if (ragResult.success && ragResult.context) {
-            requestBody.context = ragResult.context;
-            requestBody.ragEnhanced = true;
-          }
-
-          const response = await fetch('/api/lydian-iq/solve', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
+            preferOffline: false,
           });
 
           removeTypingIndicator();
 
-          if (!response.ok) {
-            // Fallback to hybrid endpoint if main fails
-            if (!navigator.onLine || response.status >= 500) {
-              const hybridResult = await recallClient.chat(text, {
-                domain: 'mathematics',
-                preferOffline: true,
-              });
-
-              if (hybridResult.success || hybridResult.response) {
-                showAIResponse({
-                  success: true,
-                  response: hybridResult.response,
-                  metadata: {
-                    provider: hybridResult.source || 'LYRA_LOCAL',
-                    mode: hybridResult.mode || 'offline',
-                  },
-                });
-                return;
-              }
-            }
-            throw new Error(`API Error: ${response.status}`);
-          }
-
-          const data = await response.json();
-
-          if (data.success) {
-            // Add RAG indicator if context was used
-            if (requestBody.ragEnhanced) {
-              data.metadata = data.metadata || {};
-              data.metadata.ragEnhanced = true;
-            }
-            showAIResponse(data);
-            showToast('Success', 'Response received', 'success');
+          if (result.success || result.response) {
+            showAIResponse({
+              success: true,
+              response: result.response,
+              metadata: {
+                provider: result.source || 'LYRA_RAG',
+                mode: result.mode || 'rag_pure',
+                engine: result.engine || 'LYRA_RAG_PURE_v2',
+                ragUsed: result.ragContext?.used || false,
+              },
+            });
+            showToast('Başarılı', 'LYRA yanıtı alındı', 'success');
           } else {
-            showErrorResponse(data.error || 'Unknown error');
-            showToast('Error', 'Failed to get response', 'error');
+            showErrorResponse(result.error || 'Yanıt alınamadı');
+            showToast('Hata', 'Yanıt alınamadı', 'error');
           }
         } catch (error) {
           removeTypingIndicator();
-
-          // Last resort: try offline-only mode
-          try {
-            const offlineResult = await recallClient.chat(text, {
-              domain: 'mathematics',
-              preferOffline: true,
-            });
-
-            if (offlineResult.response) {
-              showAIResponse({
-                success: true,
-                response: offlineResult.response,
-                metadata: {
-                  provider: 'LYRA_OFFLINE',
-                  mode: 'offline',
-                  isOffline: true,
-                },
-              });
-              return;
-            }
-          } catch (offlineErr) {
-            // Truly failed
-          }
-
           showErrorResponse('Bağlantı hatası. Lütfen tekrar deneyin.');
+          showToast('Hata', 'Bağlantı hatası', 'error');
         } finally {
           state.isProcessing = false;
           elements.sendButton.disabled = false;
