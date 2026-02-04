@@ -3174,6 +3174,8 @@
 
     <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
+    <!-- 🧠 LYRA Recall Client - RAG with Online/Offline Support -->
+    <script src="/js/recall-client.js"></script>
 
     <!-- SEO Meta Tags (TR) -->
     <title>AI Chat — Çok Modelli Yapay Zeka | LyDian Ultra AI Platform</title>
@@ -3827,7 +3829,11 @@
           </div>
 
           <div class="header-actions">
-            <!-- REMOVED: Görsel ve Video butonları (arama motorunda zaten var) -->
+            <!-- 🧠 LYRA Connection Status Indicator -->
+            <div class="recall-status-indicator" data-status="hybrid" id="recallStatus">
+              <div class="recall-status-dot"></div>
+              <span class="recall-status-text">🟡 Hibrit</span>
+            </div>
 
             <!-- 📥 Download Button - Minimal (Icon only) -->
             <button class="header-btn-icon" id="downloadBtn" title="Sohbeti İndir">
@@ -4982,6 +4988,32 @@
         });
       });
 
+      // ========== LYRA RECALL CLIENT ==========
+
+      // Initialize LYRA Recall Client for general chat
+      const recallClient = new RecallClient({
+        domain: 'general',
+        mode: 'hybrid',
+        onModeChange: (status) => {
+          updateChatConnectionStatus(status);
+        },
+        onStatusChange: (status) => {
+          console.log('[LYRA_CHAT] Status:', status);
+        }
+      });
+
+      function updateChatConnectionStatus(status) {
+        const indicator = document.querySelector('.recall-status-indicator');
+        if (indicator) {
+          indicator.setAttribute('data-status', status.effectiveMode || status.mode);
+          const textEl = indicator.querySelector('.recall-status-text');
+          if (textEl) {
+            const labels = { online: '🟢 Çevrimiçi', offline: '🔴 Çevrimdışı', hybrid: '🟡 Hibrit' };
+            textEl.textContent = labels[status.effectiveMode || status.mode] || status.mode;
+          }
+        }
+      }
+
       // ========== FUNCTIONS ==========
 
       async function sendMessage() {
@@ -5015,7 +5047,20 @@
 
         // Call backend API - Use model-specific or specialized endpoint
         try {
-          // Silent API call - no model exposure in console
+          // First, try to get RAG context from RecallClient
+          let ragContext = null;
+          try {
+            const ragResult = await recallClient.search(message, {
+              domain: state.selectedAiType || 'general',
+              topK: 3,
+              includeContext: true
+            });
+            if (ragResult.success && ragResult.context) {
+              ragContext = ragResult.context;
+            }
+          } catch (ragErr) {
+            // RAG failed silently, continue without context
+          }
 
           // Clean history: remove timestamp property for API compatibility
           const cleanHistory = state.messages.slice(-10).map(msg => ({
@@ -5035,6 +5080,12 @@
             language: 'tr', // Always Turkish
             locale: 'tr-TR', // Turkish locale
           };
+
+          // Add RAG context if available
+          if (ragContext) {
+            requestBody.context = ragContext;
+            requestBody.ragEnhanced = true;
+          }
 
           const response = await fetch(apiEndpoint, {
             method: 'POST',
@@ -5108,6 +5159,24 @@
             throw new Error('Invalid response from API');
           }
         } catch (error) {
+          // Try offline fallback via RecallClient
+          try {
+            if (!navigator.onLine) {
+              const offlineResult = await recallClient.chat(message, {
+                domain: state.selectedAiType || 'general',
+                preferOffline: true
+              });
+
+              if (offlineResult.response) {
+                hideTypingIndicator();
+                addMessage('assistant', `📴 **Çevrimdışı Yanıt**\n\n${offlineResult.response}`);
+                return;
+              }
+            }
+          } catch (offlineErr) {
+            // Truly failed
+          }
+
           // Silent error - no technical details exposed
           hideTypingIndicator();
           addMessage(

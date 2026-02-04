@@ -1588,6 +1588,8 @@
 
     <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
+    <!-- 🧠 LYRA Recall Client - RAG with Online/Offline Support -->
+    <script src="/js/recall-client.js"></script>
 
     <!-- SEO Meta Tags (TR) -->
     <title>LyDian IQ — Bilimsel AI Zeka Testi | Online IQ Ölçümü</title>
@@ -2022,9 +2024,9 @@
               </svg>
               <span id="timerText">15:00</span>
             </div>
-            <div class="status-badge">
-              <div class="status-dot"></div>
-              <span id="statusText">CANLI</span>
+            <div class="recall-status-indicator" data-status="hybrid" id="recallStatus">
+              <div class="recall-status-dot"></div>
+              <span class="recall-status-text">🟡 Hibrit</span>
             </div>
             <select
               id="languageSelector"
@@ -2744,6 +2746,34 @@
         // showClearButton(); // DISABLED - using inline icon buttons instead
       }
 
+      // Initialize LYRA Recall Client for IQ domain
+      const recallClient = new RecallClient({
+        domain: 'mathematics',
+        mode: 'hybrid',
+        onModeChange: status => {
+          updateConnectionStatus(status);
+        },
+        onStatusChange: status => {
+          console.log('[LYRA_IQ] Status:', status);
+        },
+      });
+
+      function updateConnectionStatus(status) {
+        const indicator = document.querySelector('.recall-status-indicator');
+        if (indicator) {
+          indicator.setAttribute('data-status', status.effectiveMode || status.mode);
+          const textEl = indicator.querySelector('.recall-status-text');
+          if (textEl) {
+            const labels = {
+              online: '🟢 Çevrimiçi',
+              offline: '🔴 Çevrimdışı',
+              hybrid: '🟡 Hibrit',
+            };
+            textEl.textContent = labels[status.effectiveMode || status.mode] || status.mode;
+          }
+        }
+      }
+
       async function sendMessage() {
         const text = elements.composerInput.value.trim();
         if (!text || state.isProcessing) return;
@@ -2757,31 +2787,71 @@
         addTypingIndicator();
 
         try {
+          // First, try RAG-enhanced response via RecallClient
+          const ragResult = await recallClient.search(text, {
+            domain: 'mathematics',
+            topK: 3,
+            includeContext: true,
+          });
+
+          // Build enhanced request with RAG context
+          const requestBody = {
+            problem: text,
+            domain: 'mathematics',
+            language: 'tr-TR',
+            options: {
+              temperature: 0.7,
+              maxTokens: 2000,
+            },
+          };
+
+          // Add RAG context if available
+          if (ragResult.success && ragResult.context) {
+            requestBody.context = ragResult.context;
+            requestBody.ragEnhanced = true;
+          }
+
           const response = await fetch('/api/lydian-iq/solve', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-              problem: text,
-              domain: 'mathematics',
-              language: 'tr-TR',
-              options: {
-                temperature: 0.7,
-                maxTokens: 2000,
-              },
-            }),
+            body: JSON.stringify(requestBody),
           });
 
           removeTypingIndicator();
 
           if (!response.ok) {
+            // Fallback to hybrid endpoint if main fails
+            if (!navigator.onLine || response.status >= 500) {
+              const hybridResult = await recallClient.chat(text, {
+                domain: 'mathematics',
+                preferOffline: true,
+              });
+
+              if (hybridResult.success || hybridResult.response) {
+                showAIResponse({
+                  success: true,
+                  response: hybridResult.response,
+                  metadata: {
+                    provider: hybridResult.source || 'LYRA_LOCAL',
+                    mode: hybridResult.mode || 'offline',
+                  },
+                });
+                return;
+              }
+            }
             throw new Error(`API Error: ${response.status}`);
           }
 
           const data = await response.json();
 
           if (data.success) {
+            // Add RAG indicator if context was used
+            if (requestBody.ragEnhanced) {
+              data.metadata = data.metadata || {};
+              data.metadata.ragEnhanced = true;
+            }
             showAIResponse(data);
             showToast('Success', 'Response received', 'success');
           } else {
@@ -2790,8 +2860,31 @@
           }
         } catch (error) {
           removeTypingIndicator();
-          showErrorResponse('Connection error. Please try again.');
-          // Toast removed to avoid duplicate error messages
+
+          // Last resort: try offline-only mode
+          try {
+            const offlineResult = await recallClient.chat(text, {
+              domain: 'mathematics',
+              preferOffline: true,
+            });
+
+            if (offlineResult.response) {
+              showAIResponse({
+                success: true,
+                response: offlineResult.response,
+                metadata: {
+                  provider: 'LYRA_OFFLINE',
+                  mode: 'offline',
+                  isOffline: true,
+                },
+              });
+              return;
+            }
+          } catch (offlineErr) {
+            // Truly failed
+          }
+
+          showErrorResponse('Bağlantı hatası. Lütfen tekrar deneyin.');
         } finally {
           state.isProcessing = false;
           elements.sendButton.disabled = false;

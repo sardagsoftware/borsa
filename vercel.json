@@ -20,6 +20,22 @@
   ],
   "rewrites": [
     {
+      "source": "/api/recall/search",
+      "destination": "/api/recall/search"
+    },
+    {
+      "source": "/api/recall/hybrid",
+      "destination": "/api/recall/hybrid"
+    },
+    {
+      "source": "/api/recall/collections",
+      "destination": "/api/recall/collections"
+    },
+    {
+      "source": "/api/recall",
+      "destination": "/api/recall/index"
+    },
+    {
       "source": "/api/lydian-iq/:path*",
       "destination": "/api/lydian-iq/:path*"
     },
