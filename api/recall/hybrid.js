@@ -13,7 +13,7 @@ const { getInstance, obfuscation, MODES } = require('../../services/localrecall'
 const KNOWLEDGE_BASE = {
   mathematics: {
     greeting:
-      'Merhaba! Ben LYRA Matematik Asistanı. Size matematik problemlerinde yardımcı olabilirim.',
+      'Merhaba! Ben AI Matematik Asistanı. Size matematik problemlerinde yardımcı olabilirim.',
     capabilities: [
       'Temel aritmetik işlemler',
       'Cebir problemleri',
@@ -29,7 +29,7 @@ const KNOWLEDGE_BASE = {
     },
   },
   general: {
-    greeting: 'Merhaba! Ben LYRA AI Asistanı. Size nasıl yardımcı olabilirim?',
+    greeting: 'Merhaba! Ben AI AI Asistanı. Size nasıl yardımcı olabilirim?',
     capabilities: [
       'Genel bilgi sorguları',
       'Metin analizi',
@@ -40,13 +40,13 @@ const KNOWLEDGE_BASE = {
   },
   medical: {
     greeting:
-      'Merhaba! Ben LYRA Sağlık Bilgi Asistanı. Genel sağlık bilgileri konusunda yardımcı olabilirim.',
+      'Merhaba! Ben AI Sağlık Bilgi Asistanı. Genel sağlık bilgileri konusunda yardımcı olabilirim.',
     disclaimer:
       '⚠️ Bu bilgiler sadece eğitim amaçlıdır. Tıbbi tavsiye için mutlaka bir sağlık profesyoneline danışın.',
   },
   legal: {
     greeting:
-      'Merhaba! Ben LYRA Hukuk Bilgi Asistanı. Genel hukuki bilgiler konusunda yardımcı olabilirim.',
+      'Merhaba! Ben AI Hukuk Bilgi Asistanı. Genel hukuki bilgiler konusunda yardımcı olabilirim.',
     disclaimer:
       '⚠️ Bu bilgiler sadece eğitim amaçlıdır. Hukuki tavsiye için mutlaka bir avukata danışın.',
   },
@@ -69,7 +69,7 @@ function generateIntelligentResponse(query, domain, ragContext) {
   if (/ne yapabilir|neler yapabilir|özellik|yetenek|capability/i.test(queryLower)) {
     const capabilities = domainKB.capabilities || KNOWLEDGE_BASE.general.capabilities;
     return {
-      response: `**LYRA ${domain.charAt(0).toUpperCase() + domain.slice(1)} Asistanı Yetenekleri:**\n\n${capabilities.map((c, i) => `${i + 1}. ${c}`).join('\n')}`,
+      response: `**AI ${domain.charAt(0).toUpperCase() + domain.slice(1)} Asistanı Yetenekleri:**\n\n${capabilities.map((c, i) => `${i + 1}. ${c}`).join('\n')}`,
       type: 'capabilities',
     };
   }
@@ -77,7 +77,7 @@ function generateIntelligentResponse(query, domain, ragContext) {
   // If RAG context available, use it
   if (ragContext && ragContext.trim().length > 50) {
     return {
-      response: `📚 **Bilgi Tabanı Yanıtı**\n\n${ragContext}\n\n---\n_Bu yanıt LYRA bilgi tabanından oluşturulmuştur._`,
+      response: `📚 **Bilgi Tabanı Yanıtı**\n\n${ragContext}\n\n---\n_Bu yanıt AI bilgi tabanından oluşturulmuştur._`,
       type: 'rag_response',
       ragUsed: true,
     };
@@ -96,7 +96,7 @@ function generateIntelligentResponse(query, domain, ragContext) {
 
   // Generic intelligent response
   return {
-    response: `🤖 **LYRA Yanıtı**\n\nSorunuz: "${query}"\n\nBu konuda size yardımcı olmak istiyorum. Ancak şu anda bilgi tabanımda bu spesifik sorguya doğrudan karşılık gelen bir içerik bulamadım.\n\n**Öneriler:**\n1. Sorunuzu daha spesifik hale getirmeyi deneyin\n2. Farklı anahtar kelimeler kullanın\n3. Konuyu daha küçük parçalara ayırın\n\n_LYRA sürekli öğrenmektedir. Geri bildirimleriniz sistemin gelişmesine yardımcı olur._`,
+    response: `🤖 **AI Yanıtı**\n\nSorunuz: "${query}"\n\nBu konuda size yardımcı olmak istiyorum. Ancak şu anda bilgi tabanımda bu spesifik sorguya doğrudan karşılık gelen bir içerik bulamadım.\n\n**Öneriler:**\n1. Sorunuzu daha spesifik hale getirmeyi deneyin\n2. Farklı anahtar kelimeler kullanın\n3. Konuyu daha küçük parçalara ayırın\n\n_AI sürekli öğrenmektedir. Geri bildirimleriniz sistemin gelişmesine yardımcı olur._`,
     type: 'fallback',
   };
 }
@@ -124,7 +124,7 @@ module.exports = async function handler(req, res) {
         status: health.status,
         isOnline,
         availableModes: Object.values(MODES),
-        engine: 'LYRA_RAG_PURE',
+        engine: 'AI_RAG_PURE',
         timestamp: new Date().toISOString(),
       });
     } catch (_error) {
@@ -133,7 +133,7 @@ module.exports = async function handler(req, res) {
         mode: 'standalone',
         status: 'operational',
         isOnline: true,
-        engine: 'LYRA_RAG_PURE',
+        engine: 'AI_RAG_PURE',
         timestamp: new Date().toISOString(),
       });
     }
@@ -208,7 +208,7 @@ module.exports = async function handler(req, res) {
       model: {
         code: modelCode,
         tier: modelConfig?.tier || 1,
-        category: 'lyra_rag',
+        category: 'ai_rag',
       },
       ragContext: {
         found: ragResult.results?.length || 0,
@@ -217,21 +217,21 @@ module.exports = async function handler(req, res) {
       },
       response: finalResponse,
       responseType: intelligentResponse.type,
-      source: 'lyra_rag_engine',
-      engine: 'LYRA_RAG_PURE_v2',
+      source: 'ai_rag_engine',
+      engine: 'AI_RAG_PURE_v2',
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error('[LYRA_RAG_ERR]', obfuscation.sanitizeModelNames(error.message));
+    console.error('[AI_RAG_ERR]', obfuscation.sanitizeModelNames(error.message));
 
     // Even on error, provide a helpful response
     return res.status(200).json({
       success: true,
       mode: 'fallback',
       response:
-        '🔄 LYRA sistemi şu anda yoğun talep altında. Lütfen birkaç saniye sonra tekrar deneyin.\n\n_Sistem otomatik olarak yeniden bağlanmaya çalışacaktır._',
-      source: 'lyra_fallback',
-      engine: 'LYRA_RAG_PURE_v2',
+        '🔄 AI sistemi şu anda yoğun talep altında. Lütfen birkaç saniye sonra tekrar deneyin.\n\n_Sistem otomatik olarak yeniden bağlanmaya çalışacaktır._',
+      source: 'ai_fallback',
+      engine: 'AI_RAG_PURE_v2',
       timestamp: new Date().toISOString(),
     });
   }

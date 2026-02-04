@@ -146,7 +146,7 @@ class RecallClient {
 
       return response;
     } catch (error) {
-      console.warn('[LYRA_CLIENT] Search failed:', error.message);
+      console.warn('[RAG_CLIENT] Search failed:', error.message);
 
       // Return empty result on error
       return {
@@ -190,7 +190,7 @@ class RecallClient {
 
       return response;
     } catch (error) {
-      console.warn('[LYRA_CLIENT] Chat failed:', error.message);
+      console.warn('[RAG_CLIENT] Chat failed:', error.message);
 
       // Attempt fallback to basic chat endpoint
       try {

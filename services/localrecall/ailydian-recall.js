@@ -34,7 +34,7 @@ class AilydianRecall {
     // Auto-start if enabled
     if (this.options.autoStart && process.env.NODE_ENV !== 'test') {
       this.start().catch(err => {
-        console.warn('[LYRA_CORE] Auto-start failed:', err.message);
+        console.warn('[RAG_CORE] Auto-start failed:', err.message);
       });
     }
   }
@@ -58,7 +58,7 @@ class AilydianRecall {
    */
   async start() {
     if (this.isRunning) {
-      console.log('[LYRA_CORE] Already running');
+      console.log('[RAG_CORE] Already running');
       return;
     }
 
@@ -92,13 +92,13 @@ class AilydianRecall {
       this.process.stdout.on('data', data => {
         const output = obfuscation.sanitizeModelNames(data.toString());
         if (process.env.DEBUG_RECALL) {
-          console.log('[LYRA_CORE]', output);
+          console.log('[RAG_CORE]', output);
         }
       });
 
       this.process.stderr.on('data', data => {
         const output = obfuscation.sanitizeModelNames(data.toString());
-        console.error('[LYRA_CORE_ERR]', output);
+        console.error('[RAG_CORE_ERR]', output);
       });
 
       this.process.on('error', err => {
@@ -109,7 +109,7 @@ class AilydianRecall {
       this.process.on('close', code => {
         this.isRunning = false;
         if (code !== 0 && code !== null) {
-          console.warn(`[LYRA_CORE] Process exited with code ${code}`);
+          console.warn(`[RAG_CORE] Process exited with code ${code}`);
         }
       });
 
@@ -119,7 +119,7 @@ class AilydianRecall {
           await this.healthCheck();
           this.isRunning = true;
           console.log(
-            `[LYRA_CORE] Started on port ${this.options.port} (${this.options.mode} mode)`
+            `[RAG_CORE] Started on port ${this.options.port} (${this.options.mode} mode)`
           );
           resolve();
         } catch (err) {
@@ -137,7 +137,7 @@ class AilydianRecall {
       this.process.kill('SIGTERM');
       this.process = null;
       this.isRunning = false;
-      console.log('[LYRA_CORE] Stopped');
+      console.log('[RAG_CORE] Stopped');
     }
   }
 
@@ -369,11 +369,11 @@ class AilydianRecall {
     for (const col of collections) {
       try {
         await this.createCollection(col.name);
-        console.log(`[LYRA_CORE] Collection '${col.name}' created`);
+        console.log(`[RAG_CORE] Collection '${col.name}' created`);
       } catch (error) {
         // Collection might already exist
         if (!error.message.includes('already exists')) {
-          console.warn(`[LYRA_CORE] Failed to create '${col.name}':`, error.message);
+          console.warn(`[RAG_CORE] Failed to create '${col.name}':`, error.message);
         }
       }
     }

@@ -3174,7 +3174,7 @@
 
     <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
-    <!-- 🧠 LYRA Recall Client - RAG with Online/Offline Support -->
+    <!-- 🧠 AI Recall Client - RAG with Online/Offline Support -->
     <script src="/js/recall-client.js"></script>
 
     <!-- SEO Meta Tags (TR) -->
@@ -3829,7 +3829,7 @@
           </div>
 
           <div class="header-actions">
-            <!-- 🧠 LYRA Connection Status Indicator -->
+            <!-- 🧠 AI Connection Status Indicator -->
             <div class="recall-status-indicator" data-status="hybrid" id="recallStatus">
               <div class="recall-status-dot"></div>
               <span class="recall-status-text">🟡 Hibrit</span>
@@ -4988,9 +4988,9 @@
         });
       });
 
-      // ========== LYRA RECALL CLIENT ==========
+      // ========== AI RECALL CLIENT ==========
 
-      // Initialize LYRA Recall Client for general chat
+      // Initialize AI Recall Client for general chat
       const recallClient = new RecallClient({
         domain: 'general',
         mode: 'hybrid',
@@ -4998,7 +4998,7 @@
           updateChatConnectionStatus(status);
         },
         onStatusChange: (status) => {
-          console.log('[LYRA_CHAT] Status:', status);
+          console.log('[AI_CHAT] Status:', status);
         }
       });
 
@@ -5077,7 +5077,7 @@
           hideTypingIndicator();
           addMessage(
             'assistant',
-            `⚠️ **Bağlantı Hatası**\n\nLYRA sistemi ile iletişim kurulamadı. Lütfen tekrar deneyin.`
+            `⚠️ **Bağlantı Hatası**\n\nAI sistemi ile iletişim kurulamadı. Lütfen tekrar deneyin.`
           );
         }
       }

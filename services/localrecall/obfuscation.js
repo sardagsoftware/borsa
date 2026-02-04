@@ -69,7 +69,7 @@ const MODEL_REGISTRY = {
   // ═══════════════════════════════════════════════════
 
   // Primary local RAG engine
-  LYRA_CORE_7X: {
+  NOVA_CORE_7X: {
     tier: 1,
     category: 'local_rag',
     endpoint: '/api/recall/search',
@@ -112,7 +112,7 @@ const MODEL_REGISTRY = {
     capabilities: ['hybrid', 'smart_routing', 'fallback'],
     isLocal: false,
     smartRouting: true,
-    fallback: 'LYRA_CORE_7X',
+    fallback: 'NOVA_CORE_7X',
   },
 
   // ═══════════════════════════════════════════════════
@@ -128,7 +128,7 @@ const MODEL_REGISTRY = {
     capabilities: ['mathematics', 'logic', 'patterns', 'iq_test'],
     domains: ['mathematics', 'science', 'coding', 'strategy'],
     ragCollection: 'iq_master',
-    fallback: 'LYRA_CORE_7X',
+    fallback: 'NOVA_CORE_7X',
   },
 
   // Medical specialist engine
@@ -179,7 +179,7 @@ const DOMAIN_MODEL_MAP = {
   general: 'SYNAPTIC_BRIDGE_3Z',
   conversation: 'GX8E2D9A',
   chat: 'GX8E2D9A',
-  help: 'LYRA_CORE_7X',
+  help: 'NOVA_CORE_7X',
 };
 
 /**
@@ -362,7 +362,7 @@ function sanitizeModelNames(text) {
 
   let sanitized = text;
   patterns.forEach(pattern => {
-    sanitized = sanitized.replace(pattern, '[LYRA_ENGINE]');
+    sanitized = sanitized.replace(pattern, '[AI_ENGINE]');
   });
 
   return sanitized;

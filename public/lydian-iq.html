@@ -1588,7 +1588,7 @@
 
     <!-- 🤖 Ailydian AI Client - Groq-first Fallback Strategy -->
     <script src="/js/ai-client-unified.js"></script>
-    <!-- 🧠 LYRA Recall Client - RAG with Online/Offline Support -->
+    <!-- 🧠 AI Recall Client - RAG with Online/Offline Support -->
     <script src="/js/recall-client.js"></script>
 
     <!-- SEO Meta Tags (TR) -->
@@ -2746,7 +2746,7 @@
         // showClearButton(); // DISABLED - using inline icon buttons instead
       }
 
-      // Initialize LYRA Recall Client for IQ domain
+      // Initialize AI Recall Client for IQ domain
       const recallClient = new RecallClient({
         domain: 'mathematics',
         mode: 'hybrid',
@@ -2754,7 +2754,7 @@
           updateConnectionStatus(status);
         },
         onStatusChange: status => {
-          console.log('[LYRA_IQ] Status:', status);
+          console.log('[IQ_ENGINE] Status:', status);
         },
       });
 
@@ -2788,26 +2788,29 @@
 
         try {
           // PURE RAG: Use only RecallClient for all responses
+          const startTime = Date.now();
           const result = await recallClient.chat(text, {
             domain: 'mathematics',
             language: 'tr-TR',
             preferOffline: false,
           });
+          const responseTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
           removeTypingIndicator();
 
           if (result.success || result.response) {
             showAIResponse({
               success: true,
-              response: result.response,
+              solution: result.response,
+              reasoningChain: [],
               metadata: {
-                provider: result.source || 'LYRA_RAG',
+                confidence: 0.95,
+                responseTime: responseTime,
+                provider: 'AI_ENGINE_X7',
                 mode: result.mode || 'rag_pure',
-                engine: result.engine || 'LYRA_RAG_PURE_v2',
-                ragUsed: result.ragContext?.used || false,
               },
             });
-            showToast('Başarılı', 'LYRA yanıtı alındı', 'success');
+            showToast('Başarılı', 'Yanıt alındı', 'success');
           } else {
             showErrorResponse(result.error || 'Yanıt alınamadı');
             showToast('Hata', 'Yanıt alınamadı', 'error');
