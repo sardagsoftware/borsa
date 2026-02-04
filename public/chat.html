@@ -5,7 +5,10 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover"
+    />
 
     <!-- Favicon -->
 
@@ -2197,6 +2200,36 @@
    📱 RESPONSIVE DESIGN - MOBILE FIRST
    ============================================================ */
 
+      /* Safe Area Support for iPhone X+ notch */
+      @supports (padding: env(safe-area-inset-top)) {
+        body {
+          padding-top: env(safe-area-inset-top);
+          padding-bottom: env(safe-area-inset-bottom);
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+        }
+
+        .chat-header {
+          padding-top: max(0.75rem, env(safe-area-inset-top));
+        }
+
+        .input-container {
+          padding-bottom: max(1rem, env(safe-area-inset-bottom));
+        }
+
+        .sidebar {
+          padding-top: env(safe-area-inset-top);
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+      }
+
+      /* Touch-friendly scrolling for iOS */
+      .messages-container,
+      .sidebar {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+
       /* Tablet & Below (768px) */
       @media (max-width: 768px) {
         .sidebar {
@@ -2249,20 +2282,30 @@
         }
 
         .header-btn {
-          width: 36px;
-          height: 36px;
-          padding: 0.4rem;
-          min-width: 36px;
+          width: 44px;
+          height: 44px;
+          padding: 0.5rem;
+          min-width: 44px;
           background: transparent !important; /* No background */
           border: none !important; /* No border */
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .header-btn:active {
+          transform: scale(0.95);
         }
 
         .header-btn-icon {
-          width: 36px;
-          height: 36px;
-          min-width: 36px;
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
           background: transparent !important;
           border: none !important;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .header-btn-icon:active {
+          transform: scale(0.95);
         }
 
         .header-btn svg,
@@ -3834,6 +3877,9 @@
               <div class="recall-status-dot"></div>
               <span class="recall-status-text">🟡 Hibrit</span>
             </div>
+
+            <!-- 📍 Visitor City Display -->
+            <div id="visitor-city"></div>
 
             <!-- 📥 Download Button - Minimal (Icon only) -->
             <button class="header-btn-icon" id="downloadBtn" title="Sohbeti İndir">
@@ -5997,5 +6043,7 @@
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
     <script src="/js/mobile-menu-handler.js"></script>
+    <!-- Visitor Location & VPN Detection -->
+    <script src="/js/visitor-info.js"></script>
   </body>
 </html>
